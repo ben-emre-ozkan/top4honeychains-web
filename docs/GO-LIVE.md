@@ -46,7 +46,7 @@ The values below are in git history, so rotating them is the actual fix. Removin
 
 ### Open product decisions (resolve or explicitly accept)
 - [x] QR codes encode the full public URL (`https://<domain>/honeystory/{guid}`), with the base URL taken from `App:PublicBaseUrl` ([D-11](DECISIONS.md), `feat/qr-full-url`). Without the setting, production cannot render QR codes (logged error).
-- [ ] HoneyStory shows non-finalized (draft) batches, beekeeper names/photos and apiary GPS publicly.
+- [x] ~~HoneyStory shows non-finalized (draft) batches, beekeeper names/photos and apiary GPS publicly~~: [D-12](DECISIONS.md), `feat/honeystory-privacy`. Drafts are 404; the page shows the beekeeper's name only; apiary locations are rounded to 0.1° (about 10 km) and drawn as an area; apiary photos are served only for apiaries of finalized batches.
 - [x] ~~The error page is admin-only and its layout is broken~~: fixed in `fix/db-error-handling`.
 - [x] ~~Deleting records referenced by FKs gives unhandled 500s~~: fixed in `fix/db-error-handling`.
 - [ ] The localized messages added for es/pl/lv (`Error.*` keys in `Resources/SharedResource.*.resx`) were translated by us. Ask the partners to review them.

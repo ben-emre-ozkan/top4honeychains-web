@@ -238,7 +238,7 @@ Other prerequisites:
   - Delete, Activate and Deactivate are reachable via GET (RoleManagement.Delete, UserManagement.Delete, ParameterContents.Delete, Beekeepers/Apiaries Activate/Deactivate).
 - **Unrestricted upload:** ParameterContents video upload has no type or size check, keeps the client's extension, and writes under `wwwroot` (served statically).
 - **Public data exposure:**
-  - `/honeystory/{guid}` shows beekeeper names, photos and apiary GPS, even for non-finalized batches.
+  - ~~`/honeystory/{guid}` shows beekeeper names, photos and apiary GPS, even for non-finalized batches~~: since D-12 only finalized batches are public (others 404); beekeeper name only; coordinates are rounded server-side to 0.1° and drawn as an area; `/honeystory?id=` serves apiary photos only for apiaries of finalized batches.
   - `/honeystory?id=N` enumerates every apiary photo by sequential id.
   - ~~`/honeystory/qrcode` renders arbitrary text anonymously~~: since D-11 it only renders the full public URL (`App:PublicBaseUrl` + `/honeystory/{guid}`) of an existing batch; anything else is 404.
 - No HTTPS redirect or HSTS in the app. This may be handled by IIS or a reverse proxy (**unverified**).

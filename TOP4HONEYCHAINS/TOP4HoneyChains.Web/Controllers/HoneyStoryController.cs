@@ -60,7 +60,8 @@ namespace TOP4HoneyChains.Web.Controllers
                         .ThenInclude(r => r.RawHoneyProductionHoneyTypeNavigation)
                 .FirstOrDefaultAsync(f => f.FinalHoneyProductionQR == qr);
 
-            if (batch == null)
+            // D-12: only finalized (published) batches have a public page
+            if (batch == null || !batch.FinalHoneyProductionIsFinalized)
                 return NotFound();
 
             var vm = new HoneyStoryViewModel
@@ -135,11 +136,10 @@ namespace TOP4HoneyChains.Web.Controllers
                     BeekeeperName = (beekeeper?.BeekeeperFirstName + " " + beekeeper?.BeekeeperLastName)?.Trim(),
                     HoneyType = raw.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle,
                     UsedAmount = d.UsedAmount,
-                    Latitude = apiary?.ApiaryLocationLatitude,
-                    Longitude = apiary?.ApiaryLocationLongitude,
-                    BeekeeperPhotoBase64 = beekeeper?.BeekeeperProfilePhoto != null
-        ? $"data:image/jpeg;base64,{Convert.ToBase64String(beekeeper.BeekeeperProfilePhoto)}"
-        : null
+                    // D-12: only an approximate location leaves the server (0.1° ≈ 10 km, district level);
+                    // the beekeeper's photo and phone are not shown publicly
+                    Latitude = ApproximateCoordinate(apiary?.ApiaryLocationLatitude),
+                    Longitude = ApproximateCoordinate(apiary?.ApiaryLocationLongitude)
                 };
 
                 // Photos
@@ -223,6 +223,14 @@ namespace TOP4HoneyChains.Web.Controllers
             if (photo?.ApiaryPhotoData == null || string.IsNullOrEmpty(photo.ApiaryPhotoContentType))
                 return NotFound();
 
+            // D-12: public only for apiaries that supplied a finalized batch (ids are sequential,
+            // so without this check every apiary photo could be downloaded)
+            var isPublic = await _context.FinalHoneyProductionDetails.AnyAsync(d =>
+                d.FinalHoneyProduction.FinalHoneyProductionIsFinalized &&
+                d.RawHoneyProduction.RawHoneyProductionApiaryId == photo.ApiaryPhotoApiaryId);
+            if (!isPublic)
+                return NotFound();
+
             return File(photo.ApiaryPhotoData, photo.ApiaryPhotoContentType);
         }
 
@@ -243,7 +251,8 @@ namespace TOP4HoneyChains.Web.Controllers
                         .ThenInclude(r => r.RawHoneyProductionHoneyTypeNavigation)
                 .FirstOrDefaultAsync(f => f.FinalHoneyProductionQR == qr);
 
-            if (batch == null)
+            // D-12: only finalized (published) batches have a public page
+            if (batch == null || !batch.FinalHoneyProductionIsFinalized)
                 return NotFound();
 
             var vm = new HoneyStoryViewModel
@@ -392,5 +401,8 @@ namespace TOP4HoneyChains.Web.Controllers
 
 
 
+    
+        private static decimal? ApproximateCoordinate(decimal? value) =>
+            value.HasValue ? Math.Round(value.Value, 1, MidpointRounding.AwayFromZero) : null;
     }
 }
