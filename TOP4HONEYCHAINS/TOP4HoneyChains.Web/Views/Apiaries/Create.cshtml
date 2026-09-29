@@ -54,9 +54,10 @@
                                         <button type="submit" class="btn btn-primary waves-effect waves-light me-1">
                                             Submit
                                         </button>
-                                        <button type="reset" class="btn btn-secondary waves-effect">
+                                        <a asp-action="ByBeekeeper" asp-route-beekeeperId="@Model.ApiaryBeekeeperId"
+                                           class="btn btn-secondary waves-effect">
                                             Cancel
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
                             </form>
