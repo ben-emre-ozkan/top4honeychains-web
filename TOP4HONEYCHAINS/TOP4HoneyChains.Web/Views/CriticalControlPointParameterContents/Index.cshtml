@@ -198,6 +198,11 @@
         </div>
     </div>
 
+    @* Deletes are POSTs with an anti-forgery token (no state change via GET) *@
+    <form id="deleteContentForm" asp-controller="CriticalControlPointParameterContents" asp-action="Delete" method="post" class="d-none">
+        <input type="hidden" name="id" />
+    </form>
+
     @section scripts{
         <script src="~/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
         <script src="~/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -232,7 +237,7 @@
 
                     if(result.isConfirmed){
 
-                        window.location = '/CriticalControlPointParameterContents/Delete/' + id;
+                        var f = document.getElementById('deleteContentForm'); f.elements['id'].value = id; f.submit();
 
                     }
 

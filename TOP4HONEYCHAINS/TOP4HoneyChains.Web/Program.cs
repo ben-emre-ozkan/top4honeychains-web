@@ -67,6 +67,9 @@ builder.Services.AddScoped<IEmailService, EmailService>();
 
 builder.Services.AddControllersWithViews(options =>
 {
+    // Every unsafe request (POST/PUT/DELETE) must carry the anti-forgery token
+    options.Filters.Add(new Microsoft.AspNetCore.Mvc.AutoValidateAntiforgeryTokenAttribute());
+
     // FK/unique violations on save/delete -> friendly message instead of HTTP 500
     options.Filters.Add<DbUpdateExceptionFilter>();
 
