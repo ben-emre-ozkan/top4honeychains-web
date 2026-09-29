@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using TOP4HoneyChains.Web.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -101,6 +102,8 @@ namespace TOP4HoneyChains.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Beekeeper beekeeper)
         {
+            await ValidateProfilePhotoAsync(beekeeper);
+
             if (ModelState.IsValid)
             {
 
@@ -211,6 +214,8 @@ namespace TOP4HoneyChains.Web.Controllers
             beekeeper.IsActive = existingBeekeeper.IsActive;
             beekeeper.DeactivatedAt = existingBeekeeper.DeactivatedAt;
 
+            await ValidateProfilePhotoAsync(beekeeper);
+
             if (ModelState.IsValid)
             {
                 try
@@ -307,6 +312,16 @@ namespace TOP4HoneyChains.Web.Controllers
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        private async Task ValidateProfilePhotoAsync(Beekeeper beekeeper)
+        {
+            if (beekeeper.ProfilePhotoFile == null || beekeeper.ProfilePhotoFile.Length == 0)
+                return;
+
+            var error = await UploadValidator.ValidateImageAsync(beekeeper.ProfilePhotoFile);
+            if (error != null)
+                ModelState.AddModelError(nameof(Beekeeper.ProfilePhotoFile), error);
         }
 
         private bool BeekeeperExists(string id)

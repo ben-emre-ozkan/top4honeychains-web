@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using TOP4HoneyChains.Web.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SixLabors.ImageSharp;
@@ -64,19 +65,11 @@ namespace TOP4HoneyChains.Web.Controllers
                 return RedirectToAction(nameof(Index), new { apiaryId, periodId });
             }
 
-            var allowed = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-            { "image/jpeg", "image/png", "image/webp" };
-
-            if (!allowed.Contains(file.ContentType))
+            // Extension, real image signature, dimensions and size (the posted Content-Type can be forged)
+            var uploadError = await UploadValidator.ValidateImageAsync(file);
+            if (uploadError != null)
             {
-                TempData["Error"] = $"Unsupported content type: {file.ContentType}. Please upload JPG/PNG/WEBP.";
-                return RedirectToAction(nameof(Index), new { apiaryId, periodId });
-            }
-
-            // 8 MB limit (istersen değiştir)
-            if (file.Length > 8 * 1024 * 1024)
-            {
-                TempData["Error"] = "File must be <= 8MB.";
+                TempData["Error"] = uploadError;
                 return RedirectToAction(nameof(Index), new { apiaryId, periodId });
             }
 

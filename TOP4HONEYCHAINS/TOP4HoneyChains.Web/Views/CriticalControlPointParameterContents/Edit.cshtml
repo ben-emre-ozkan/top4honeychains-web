@@ -101,11 +101,12 @@
                                 <!-- 🔥 NEW VIDEO -->
                                 <div class="mb-3">
                                     <label class="form-label fw-bold">Replace Video</label>
-                                    <input type="file" name="videoFile" class="form-control" accept="video/*" />
+                                    <input type="file" name="videoFile" class="form-control" accept=".mp4,.webm" />
 
                                     <small class="text-muted">
-                                        Leave empty to keep current video.
+                                        Leave empty to keep current video. MP4 or WEBM, at most 25 MB.
                                     </small>
+                                    @Html.ValidationMessage("videoFile", null, new { @class = "text-danger d-block" })
                                 </div>
 
                                 <!-- 🔵 SORT -->

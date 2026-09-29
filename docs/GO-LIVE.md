@@ -51,7 +51,7 @@ The values below are in git history, so rotating them is the actual fix. Removin
 - [x] ~~Deleting records referenced by FKs gives unhandled 500s~~: fixed in `fix/db-error-handling`.
 - [ ] The localized messages added for es/pl/lv (`Error.*` keys in `Resources/SharedResource.*.resx`) were translated by us. Ask the partners to review them.
 - [x] ~~Missing antiforgery / state changes via GET in User/Role management~~: global `AutoValidateAntiforgeryToken` filter; user, role and CCP-content deletes are POST-only (`fix/antiforgery-global`).
-- [ ] Unrestricted video upload in CCP ParameterContents.
+- [x] ~~Unrestricted video upload in CCP ParameterContents~~: uploads are checked server-side (type, signature, size; [D-10](DECISIONS.md), `fix/upload-limits`). Check the production folder `wwwroot/assets/videos/parameters/` for files that are not `.mp4`/`.webm` and remove them.
 - [ ] HTTPS: is it enforced by IIS/proxy? If not, add HTTPS redirect + HSTS.
 
 ## 2. Deployment day (in this order)

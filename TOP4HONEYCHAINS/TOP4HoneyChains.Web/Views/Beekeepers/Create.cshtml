@@ -22,8 +22,10 @@
                             <form class="custom-validation" asp-action="Create" enctype="multipart/form-data">
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 <div class="mb-3">
-                                    <input asp-for="ProfilePhotoFile" type="file" class="form-control" accept="image/*" />
-                                    <span asp-validation-for="ProfilePhotoFile" class="text-danger"></span>
+                                    <label asp-for="ProfilePhotoFile" class="form-label">Profile photo (optional)</label>
+                                    <input asp-for="ProfilePhotoFile" type="file" class="form-control" accept=".jpg,.jpeg,.png,.webp" />
+                                    <small class="text-muted">The beekeeper's photo, shown in the beekeeper list and on the public Honey Story page. JPG, PNG or WEBP, at most 8 MB.</small>
+                                    <span asp-validation-for="ProfilePhotoFile" class="text-danger d-block"></span>
                                 </div>
 
                                 <div class="mb-3">

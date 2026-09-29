@@ -78,11 +78,11 @@
                                 <!-- 🔥 VIDEO UPLOAD -->
                                 <div class="mb-3">
                                     <label class="form-label fw-bold required">Upload Video</label>
-                                    <input type="file" name="videoFile" class="form-control" accept="video/*" />
+                                    <input type="file" name="videoFile" class="form-control" accept=".mp4,.webm" />
                                     @Html.ValidationMessage("videoFile", null, new { @class = "text-danger d-block" })
 
                                     <small class="text-muted">
-                                        MP4 recommended. This video will be shown in Honey Story.
+                                        MP4 or WEBM, at most 25 MB. This video will be shown in Honey Story.
                                     </small>
                                 </div>
 
