@@ -32,7 +32,7 @@
 
 ## Secrets
 - Secrets never go into tracked files.
-- Locally, use `dotnet user-secrets`. The Web csproj has no `UserSecretsId` yet; run `dotnet user-secrets init` on first use.
+- Locally, use `dotnet user-secrets` (the Web csproj has a `UserSecretsId`).
 - `appsettings.json` holds placeholders only; real values live in server-side config.
 
 ## Workflow

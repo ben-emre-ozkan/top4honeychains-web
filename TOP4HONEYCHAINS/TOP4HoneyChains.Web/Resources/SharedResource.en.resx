@@ -279,6 +279,9 @@
   <data name="Error.BackHome" xml:space="preserve">
     <value>Back to home</value>
   </data>
+  <data name="Login.Invalid" xml:space="preserve">
+    <value>Invalid user name or password. After too many failed attempts the account is locked for a while.</value>
+  </data>
   <data name="Login.NoPanelAccess" xml:space="preserve">
     <value>This account does not have access to the web panel. Only administrators can sign in. Please contact an administrator.</value>
   </data>

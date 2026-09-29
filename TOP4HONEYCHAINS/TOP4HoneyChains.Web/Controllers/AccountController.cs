@@ -47,15 +47,18 @@ namespace TOP4HoneyChains.Web.Controllers
                 if (User.IsInRole(PanelRole))
                     return RedirectToAction("Index", "Dashboard");
 
-                // A non-admin session (e.g. from before D-01) would loop via AccessDenied
+                // A non-admin session (e.g. from before D-01) would loop via AccessDenied.
+                // Redirect after signing out so the form's anti-forgery token is issued anonymously.
                 await _signInManager.SignOutAsync();
-                ModelState.AddModelError("", _localizer["Login.NoPanelAccess"]);
+                TempData[LoginErrorKey] = _localizer["Login.NoPanelAccess"].Value;
+                return RedirectToAction(nameof(Login));
             }
             return View();
         }
 
         [AllowAnonymous]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
@@ -65,7 +68,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 model.UserName,
                 model.Password,
                 model.RememberMe,
-                lockoutOnFailure: false);
+                lockoutOnFailure: true);
 
             if (result.Succeeded)
             {
@@ -79,7 +82,9 @@ namespace TOP4HoneyChains.Web.Controllers
                 return View(model);
             }
 
-            ModelState.AddModelError("", "Invalid login attempt.");
+            // Same message for a wrong password and a locked-out account, so it does not reveal
+            // which user names exist or are locked (non-admin accounts are locked, D-09)
+            ModelState.AddModelError("", _localizer["Login.Invalid"]);
             return View(model);
         }
 
@@ -109,11 +114,13 @@ namespace TOP4HoneyChains.Web.Controllers
 
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
 
-            var resetLink = Url.Action(
-                "ResetPassword",
-                "Account",
-                new { email = model.Email, token = token },
-                Request.Scheme);
+            var resetLink = BuildPublicUrl(Url.Action("ResetPassword", "Account", new { email = model.Email, token = token })!);
+            if (resetLink == null)
+            {
+                _logger.LogError("App:PublicBaseUrl is not configured; password reset e-mail not sent");
+                ModelState.AddModelError("", _localizer["ForgotPassword.SendFailed"]);
+                return View(model);
+            }
 
             var mailBody = $@"<p>Hello,</p>
                               <p>You requested a password reset.</p>
@@ -229,7 +236,7 @@ namespace TOP4HoneyChains.Web.Controllers
             if (user == null)
                 return RedirectToAction("Login");
 
-            var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
+            var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, lockoutOnFailure: true);
 
             if (result.Succeeded)
                 return RedirectToAction("Index", "Dashboard");
@@ -260,6 +267,7 @@ namespace TOP4HoneyChains.Web.Controllers
 
         [HttpPost]
         [Authorize]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdatePhone(ProfileViewModel model)
         {
             var user = await _userManager.GetUserAsync(User);
@@ -275,6 +283,7 @@ namespace TOP4HoneyChains.Web.Controllers
 
         [HttpPost]
         [Authorize]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangePassword(ProfileChangePasswordViewModel model)
         {
             if (!ModelState.IsValid)
@@ -297,6 +306,19 @@ namespace TOP4HoneyChains.Web.Controllers
             }
 
             return RedirectToAction("Profile");
+        }
+    
+
+        // Links in e-mails are built from configuration, never from the request's Host header,
+        // which an attacker can set (reset-link poisoning). Development falls back to the request.
+        private string? BuildPublicUrl(string relativePath)
+        {
+            var baseUrl = HttpContext.RequestServices.GetRequiredService<IConfiguration>()["App:PublicBaseUrl"];
+            if (!string.IsNullOrWhiteSpace(baseUrl))
+                return baseUrl.TrimEnd('/') + relativePath;
+
+            var env = HttpContext.RequestServices.GetRequiredService<IWebHostEnvironment>();
+            return env.IsDevelopment() ? $"{Request.Scheme}://{Request.Host}{relativePath}" : null;
         }
     }
 }

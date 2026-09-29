@@ -279,6 +279,9 @@
   <data name="Error.BackHome" xml:space="preserve">
     <value>Powrót do strony głównej</value>
   </data>
+  <data name="Login.Invalid" xml:space="preserve">
+    <value>Nieprawidłowa nazwa użytkownika lub hasło. Po zbyt wielu nieudanych próbach konto zostaje na pewien czas zablokowane.</value>
+  </data>
   <data name="Login.NoPanelAccess" xml:space="preserve">
     <value>To konto nie ma dostępu do panelu internetowego. Zalogować się mogą tylko administratorzy. Skontaktuj się z administratorem.</value>
   </data>

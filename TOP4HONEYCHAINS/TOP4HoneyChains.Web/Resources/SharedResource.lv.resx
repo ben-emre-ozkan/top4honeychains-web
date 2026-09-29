@@ -279,6 +279,9 @@
   <data name="Error.BackHome" xml:space="preserve">
     <value>Atpakaļ uz sākumlapu</value>
   </data>
+  <data name="Login.Invalid" xml:space="preserve">
+    <value>Nepareizs lietotājvārds vai parole. Pēc pārāk daudziem neveiksmīgiem mēģinājumiem konts uz laiku tiek bloķēts.</value>
+  </data>
   <data name="Login.NoPanelAccess" xml:space="preserve">
     <value>Šim kontam nav piekļuves tīmekļa panelim. Pieteikties var tikai administratori. Lūdzu, sazinieties ar administratoru.</value>
   </data>

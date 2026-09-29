@@ -279,6 +279,9 @@
   <data name="Error.BackHome" xml:space="preserve">
     <value>Volver al inicio</value>
   </data>
+  <data name="Login.Invalid" xml:space="preserve">
+    <value>Nombre de usuario o contraseña no válidos. Tras demasiados intentos fallidos, la cuenta se bloquea durante un tiempo.</value>
+  </data>
   <data name="Login.NoPanelAccess" xml:space="preserve">
     <value>Esta cuenta no tiene acceso al panel web. Solo los administradores pueden iniciar sesión. Póngase en contacto con un administrador.</value>
   </data>

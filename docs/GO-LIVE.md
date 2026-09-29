@@ -20,6 +20,8 @@ The values below are in git history, so rotating them is the actual fix. Removin
 - [ ] Code: `appsettings.json` holds placeholders only. The Maps key is read from configuration, not from the view. The seed credentials are deleted from `Program.cs`.
 - [ ] Server-side config holds the real values: environment variables, or an `appsettings.Production.json` that exists only on the server. Never in the repo.
 - [ ] Restrict the Maps key to our domain (HTTP referrer) and to the Maps JavaScript API only.
+- [ ] Set `App:PublicBaseUrl` to the public site URL (e.g. `https://<domain>`) in server-side config. Password-reset links are built from it; without it, production refuses to send reset e-mails.
+- [ ] Set `AllowedHosts` to the production host name(s) instead of `*`.
 
 ### Accounts and access
 - [x] Public self-registration: **closed** ([D-02](DECISIONS.md)). Removed in `fix/account-flows`.
@@ -58,7 +60,8 @@ The values below are in git history, so rotating them is the actual fix. Removin
 - [ ] Admin login works. The dashboard and every menu page open.
 - [ ] `/Account/Register` returns 404 (GET and POST) and the login page has no sign-up link (D-02).
 - [ ] A non-admin account that logs in sees "no access to the web panel" and is not left signed in (D-01).
-- [ ] Forgot password for a real admin e-mail sends a mail (new SMTP password), the reset link works, and the login page confirms the reset.
+- [ ] Forgot password for a real admin e-mail sends a mail (new SMTP password), the reset link works and points to `App:PublicBaseUrl`, and the login page confirms the reset.
+- [ ] Five wrong passwords for a test admin lock the login for 15 minutes (then wait, or clear `LockoutEnd` for that account).
 - [ ] If the SMTP server is unreachable, forgot password shows "could not be sent" (no 500) and the error is logged.
 - [ ] Public `/honeystory/{guid}` loads, the map shows (new Maps key and domain restriction), and the QR code scans.
 - [ ] Raw → final honey flow and CCP monitoring pages save correctly.

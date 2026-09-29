@@ -279,6 +279,9 @@
   <data name="Error.BackHome" xml:space="preserve">
     <value>Ana sayfaya dön</value>
   </data>
+  <data name="Login.Invalid" xml:space="preserve">
+    <value>Kullanıcı adı veya şifre hatalı. Çok sayıda başarısız denemeden sonra hesap bir süre kilitlenir.</value>
+  </data>
   <data name="Login.NoPanelAccess" xml:space="preserve">
     <value>Bu hesabın web paneline erişimi yok. Yalnızca yöneticiler giriş yapabilir. Lütfen bir yöneticiyle iletişime geçin.</value>
   </data>

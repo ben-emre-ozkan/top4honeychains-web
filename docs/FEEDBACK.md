@@ -29,7 +29,7 @@ The report marks items 1, 2, 19 and 20 as critical (shown in bold in the report)
 | ID | Title | Area | Type | Severity | RC | Code location / cause | Decision | Status |
 |---|---|---|---|---|---|---|---|---|
 | **FB-01** | Password reset does not work | login | broken flow | **critical** | RC-6 | See note 1 below the table. | [D-03](DECISIONS.md): reset must work for admins | fixed (branch `fix/account-flows`, not merged) |
-| **FB-02** | "Sign up now" does not work | login | broken flow | **critical** | RC-6, RC-8 | The link itself is fine (`Views/Account/Login.cshtml` L226). See note 2 below the table. | [D-02](DECISIONS.md), D-01: sign-up removed | fixed: sign-up removed (branch `fix/account-flows`, not merged) |
+| **FB-02** | "Sign up now" does not work | login | broken flow | **critical** | RC-6, RC-8 | The link itself was fine; the Register flow behind it was the problem. See note 2 below the table. | [D-02](DECISIONS.md), D-01: sign-up removed | fixed: sign-up removed (branch `fix/account-flows`, not merged) |
 | FB-03 | Mark required beekeeper fields (First/Last name, Birth date) with * | beekeeper | UX | low | RC-4 | `Views/Beekeepers/Create.cshtml`, `Edit.cshtml` | | open |
 | FB-04 | Explain what the "File upload" field is for | beekeeper | UX | low | | `Views/Beekeepers/Create.cshtml` (profile photo, stored as a blob) | | open |
 | FB-05 | Cancel button does not work (beekeeper) | beekeeper | broken flow | medium | RC-5 | `Views/Beekeepers/Create.cshtml` L90 (confirmed) | | open |
@@ -75,6 +75,10 @@ The report marks items 1, 2, 19 and 20 as critical (shown in bold in the report)
      - The same "if an account exists…" message is shown in both cases.
      - After a reset, the login page shows a confirmation (TempData).
      - Messages are localized in 5 languages.
+   - **Hardening after review (`fix/account-flows`):**
+     - The reset link is built from `App:PublicBaseUrl`, not from the request's `Host` header, so a forged `Host` cannot send a real token to another site. Without the setting, Development falls back to the request and other environments refuse to send (logged). Verified: a POST with `Host: evil.example` produced a link to the configured URL.
+     - Login and the lock screen lock an account for 15 minutes after 5 failed attempts. A wrong password and a locked account get the same message, so user names are not revealed.
+     - Login POST, `UpdatePhone` and `ChangePassword` validate the anti-forgery token (login POST without token → 400). Login GET redirects after signing out a non-admin session, so the form's token is issued anonymously.
    - The production failure itself (Gmail credentials or `From` address) is still unverified. It will be checked with the go-live smoke test after the SMTP secrets are rotated.
 2. **FB-02 (sign-up).** Per [D-02](DECISIONS.md), public self-registration is closed.
    - **Removed:** the `Register` GET/POST, `Views/Account/Register.cshtml`, the "Sign up now" link and its resource strings. `/Account/Register` now returns 404. Admins create users in `UserManagement/Create`.
