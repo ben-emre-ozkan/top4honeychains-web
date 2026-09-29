@@ -18,6 +18,7 @@
 - The local DB is a **copy of production with real personal data**.
   - Never print rows from tables that hold personal data (AspNetUsers, Beekeepers, Apiaries, ApiaryPhotos, Wholesalers, …). Counts and schema only.
   - Create test data through the app, use obviously fake values (e.g. `zz_test_*`, `@example.invalid`), and delete it afterwards.
+  - Don't take screenshots of pages that list personal data (beekeepers, apiaries, batches with beekeeper names). Playwright MCP output in `.playwright-mcp/` (git-ignored) can contain such data; delete it after a session.
 - Never connect to production or any other remote server (e.g. `SAHINAYDIN-PC`). The only allowed remote is `git push` to `origin`.
 
 ## Database changes

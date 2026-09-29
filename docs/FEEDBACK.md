@@ -34,14 +34,14 @@ The report marks items 1, 2, 19 and 20 as critical (shown in bold in the report)
 | FB-04 | Explain what the "File upload" field is for | beekeeper | UX | low | | `Views/Beekeepers/Create.cshtml` (profile photo, stored as a blob) | | open |
 | FB-05 | Cancel button does not work (beekeeper) | beekeeper | broken flow | medium | RC-5 | `Views/Beekeepers/Create.cshtml` L90 (confirmed) | | open |
 | FB-06 | Purpose type, beekeeping type and education level have no practical function | beekeeper | UX | low | | `Beekeepers` FKs to the lookups. Nothing uses them beyond display. | [D-08](DECISIONS.md): keep, make optional | open |
-| FB-07 | Explain why Activate/Deactivate matters (beekeeper) | beekeeper | UX | low | | `BeekeepersController.Activate/Deactivate`: sets `IsActive` and locks the Identity login out | | open |
-| FB-08 | No delete function for beekeepers | beekeeper | broken flow | medium | | No delete exists by design (soft deactivate only). A hard delete would hit FKs (Apiaries) and the linked Identity user. | [D-04](DECISIONS.md): deactivate only, explain in UI | open |
+| FB-07 | Explain why Activate/Deactivate matters (beekeeper) | beekeeper | UX | low | | `BeekeepersController.Activate/Deactivate`: sets `IsActive` and locks the Identity login out | | fixed (branch `fix/deactivate-ux`, not merged) |
+| FB-08 | No delete function for beekeepers | beekeeper | broken flow | medium | | No delete exists by design (soft deactivate only). A hard delete would hit FKs (Apiaries) and the linked Identity user. | [D-04](DECISIONS.md): deactivate only, explain in UI | fixed (branch `fix/deactivate-ux`, not merged) |
 | FB-09 | Pick the apiary location on a map instead of typing coordinates | apiary | UX (feature) | low | | `Views/Apiaries/Create.cshtml`, `Edit.cshtml`. A Maps key already exists (see GO-LIVE secrets). | [D-07](DECISIONS.md) | deferred |
 | FB-10 | Cancel button does not work (apiary) | apiary | broken flow | medium | RC-5 | `Views/Apiaries/Create.cshtml` L53 (confirmed) | | open |
 | FB-11 | No validation for hive count and coordinates | apiary | validation | medium | RC-2 | `Models/Entities/Apiary.cs`: decimal lat/long without a `[Range]`, no hive-count rule | | open |
 | FB-12 | Empty apiary form can be submitted with no error message | apiary | validation | high | RC-2 | `ApiariesController.Create` L51 checks `ModelState`, but the entity lacks rules. Cause unverified. | | open |
-| FB-13 | Explain the purpose of Activate/Deactivate (apiary) | apiary | UX | low | | `ApiariesController.Activate/Deactivate` | | open |
-| FB-14 | Apiaries cannot be deleted | apiary | broken flow | medium | | No delete by design. FKs from ApiaryPhotos and RawHoneyProductions (NO ACTION). | [D-04](DECISIONS.md): deactivate only, explain in UI | open |
+| FB-13 | Explain the purpose of Activate/Deactivate (apiary) | apiary | UX | low | | `ApiariesController.Activate/Deactivate` | | fixed (branch `fix/deactivate-ux`, not merged) |
+| FB-14 | Apiaries cannot be deleted | apiary | broken flow | medium | | No delete by design. FKs from ApiaryPhotos and RawHoneyProductions (NO ACTION). | [D-04](DECISIONS.md): deactivate only, explain in UI | fixed (branch `fix/deactivate-ux`, not merged) |
 | FB-15 | Mark all raw honey production fields as required | raw honey production | validation | medium | RC-2, RC-4 | `Views/RawHoneyProductions/Create.cshtml`, `Models/Entities/RawHoneyProduction.cs` | | open |
 | FB-16 | Same period + honey type cannot be entered twice. What if another wholesaler buys from the same beekeeper? | raw honey production | validation | medium | | Duplicate check in `RawHoneyProductionsController.Create` covers apiary + period + honey type. The partner is waiting for a decision. | [D-06](DECISIONS.md), [PQ-01](PARTNER-QUESTIONS.md) | deferred |
 | FB-17 | Link production period and honey type (a season can currently take any honey type) | raw honey production | validation | medium | | There is no period↔honey-type relation in the schema. Would need a DB script. | [D-06](DECISIONS.md), [PQ-01](PARTNER-QUESTIONS.md) | deferred |
@@ -103,6 +103,13 @@ The report marks items 1, 2, 19 and 20 as critical (shown in bold in the report)
      - ManageBatch states the rule above the lot table and shows a warning when no lot is eligible.
      - A new "Raw honey lots not yet eligible" card lists the wholesaler's other lots with each missing CCP check (code and status). Every check links to its CCP monitoring page; lots without any CCP check link to "Assign CCP checks".
      - Verified with wholesaler 3: 9 lots, 1 without checks, 32 pending checks, matching the DB.
+
+### Note on FB-07, FB-08, FB-13, FB-14 (deactivate instead of delete)
+Per [D-04](DECISIONS.md) there is no delete. On branch `fix/deactivate-ux`:
+- The Beekeepers list, the Apiaries list and the apiaries-of-a-beekeeper page explain that records are never deleted and what Deactivate and Activate do. For beekeepers the records are kept, the row is greyed out and the login is locked. For apiaries the records are kept, the row is greyed out and the apiary no longer counts as active on the dashboard.
+- The Deactivate and Activate buttons have tooltips and ask for confirmation. They are POST forms with an anti-forgery token (before, a plain GET link changed the status, so a crafted link could deactivate a record).
+- The beekeeper Edit form no longer has its own "Active" checkbox. It changed the status without locking or unlocking the login, and every edit cleared `DeactivatedAt` (reproduced). Status now changes only through Deactivate/Activate.
+- Verified with a test beekeeper: deactivate locked the login (login refused), activate unlocked it, and editing kept the status.
 
 ## Proposed order of work
 

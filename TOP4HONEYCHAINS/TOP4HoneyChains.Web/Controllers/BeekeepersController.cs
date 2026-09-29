@@ -202,6 +202,11 @@ namespace TOP4HoneyChains.Web.Controllers
                 return NotFound();
             }
 
+            // Status only changes through Deactivate/Activate, which also lock/unlock the login (D-04).
+            // Copied before validation so a failed POST re-renders the real status.
+            beekeeper.IsActive = existingBeekeeper.IsActive;
+            beekeeper.DeactivatedAt = existingBeekeeper.DeactivatedAt;
+
             if (ModelState.IsValid)
             {
                 try
@@ -260,6 +265,8 @@ namespace TOP4HoneyChains.Web.Controllers
 
 
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Deactivate(string id)
         {
             var beekeeper = await _context.Beekeepers.FindAsync(id);
@@ -281,6 +288,8 @@ namespace TOP4HoneyChains.Web.Controllers
 
 
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Activate(string id)
         {
             var beekeeper = await _context.Beekeepers.FindAsync(id);

@@ -25,6 +25,17 @@
                         <div class="card-body">
 
                             <h4 class="card-title">Beekeepers List</h4>
+
+                            @* Beekeepers are deactivated, never deleted (docs/DECISIONS.md, D-04) *@
+                            <div class="alert alert-info d-flex align-items-start" role="note" id="deactivation-note">
+                                <i class="mdi mdi-information-outline me-2 font-size-18"></i>
+                                <div>
+                                    <strong>Beekeepers are never deleted</strong>, so that honey traceability is preserved.
+                                    To take a beekeeper out of use, <strong>deactivate</strong> them: the beekeeper's record,
+                                    apiaries and honey productions are kept, the row is shown greyed out as <em>Inactive</em>,
+                                    and the beekeeper's login is locked. <strong>Activate</strong> restores the beekeeper and unlocks the login.
+                                </div>
+                            </div>
                             <p class="card-title-desc">
                                 <a href="/Beekeepers/Create" class="btn btn-primary waves-effect waves-light">Add new</a>
                             </p>
@@ -111,15 +122,23 @@
 
                                                     @if (item.IsActive)
                                                     {
-                                                        <a asp-action="Deactivate" asp-route-id="@item.BeekeeperId" class="btn btn-sm btn-warning">
-                                                            Deactivate
-                                                        </a>
+                                                        <form asp-action="Deactivate" asp-route-id="@item.BeekeeperId" method="post" class="d-inline"
+                                                              onsubmit="return confirm('Deactivate this beekeeper? All records are kept and the login is locked. Beekeepers are never deleted.');">
+                                                            <button type="submit" class="btn btn-sm btn-warning"
+                                                                    title="Keeps all records; greys out the beekeeper and locks their login. Beekeepers are never deleted.">
+                                                                Deactivate
+                                                            </button>
+                                                        </form>
                                                     }
                                                     else
                                                     {
-                                                        <a asp-action="Activate" asp-route-id="@item.BeekeeperId" class="btn btn-sm btn-success">
-                                                            Activate
-                                                        </a>
+                                                        <form asp-action="Activate" asp-route-id="@item.BeekeeperId" method="post" class="d-inline"
+                                                              onsubmit="return confirm('Activate this beekeeper again?');">
+                                                            <button type="submit" class="btn btn-sm btn-success"
+                                                                    title="Makes the beekeeper active again and unlocks their login.">
+                                                                Activate
+                                                            </button>
+                                                        </form>
                                                     }
 
                                                     <a asp-controller="Apiaries"
