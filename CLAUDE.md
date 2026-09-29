@@ -10,6 +10,7 @@
 - Run: `dotnet run --project TOP4HONEYCHAINS/TOP4HoneyChains.Web --launch-profile http` → http://localhost:5255 (the profile sets `ASPNETCORE_ENVIRONMENT=Development`).
 - DB: `(localdb)\MSSQLLocalDB`, database `TOP4HoneyChainsDb`. The connection string lives in `appsettings.Development.json`; never edit the connection string in `appsettings.json`.
 - QR generation uses System.Drawing, so the app runs on Windows only.
+- Local login: a local-only test admin `zz_local_admin` (email `zz.local.admin@example.invalid`) exists in the LocalDB copy only, in the Administrator role. The password is kept by the user, not in the repo. Never use real users' accounts.
 - sqlcmd: pass `-I` (QUOTED_IDENTIFIER ON) for any DML, otherwise deletes fail on indexed tables.
 
 ## Data safety

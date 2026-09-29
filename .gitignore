@@ -485,3 +485,6 @@ $RECYCLE.BIN/
 *.bak
 *.rar
 !**/PublishProfiles/FolderProfile.pubxml
+
+# Playwright MCP output (snapshots, console logs)
+.playwright-mcp/
