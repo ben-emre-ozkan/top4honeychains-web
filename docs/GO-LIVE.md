@@ -52,7 +52,15 @@ The values below are in git history, so rotating them is the actual fix. Removin
 - [ ] The localized messages added for es/pl/lv (`Error.*` keys in `Resources/SharedResource.*.resx`) were translated by us. Ask the partners to review them.
 - [x] ~~Missing antiforgery / state changes via GET in User/Role management~~: global `AutoValidateAntiforgeryToken` filter; user, role and CCP-content deletes are POST-only (`fix/antiforgery-global`).
 - [x] ~~Unrestricted video upload in CCP ParameterContents~~: uploads are checked server-side (type, signature, size; [D-10](DECISIONS.md), `fix/upload-limits`). Check the production folder `wwwroot/assets/videos/parameters/` for files that are not `.mp4`/`.webm` and remove them.
-- [ ] HTTPS: is it enforced by IIS/proxy? If not, add HTTPS redirect + HSTS.
+- [x] ~~HTTPS: is it enforced by IIS/proxy?~~ [D-13](DECISIONS.md): TLS ends at IIS; the app redirects HTTP → HTTPS and sends HSTS (30 days, no subdomains, no preload) in Production only (`feat/https-production`). Needs the IT request below.
+
+### Request to the university IT (D-13)
+Please set up for the TOP4HoneyChains site on IIS:
+1. A trusted TLS certificate for the public host name (e.g. `<domain>`), with automatic renewal.
+2. An **HTTPS binding on port 443** for that host name, and keep the **HTTP binding on port 80** (the app redirects HTTP to HTTPS itself).
+3. If HTTPS runs on a port other than 443, or the app does not redirect after go-live: set the environment variable `ASPNETCORE_HTTPS_PORT` to the public HTTPS port on the site.
+4. Do not add an HSTS header in IIS (the app sends it); if IIS also redirects to HTTPS, that is fine.
+5. Confirm the host name(s), so we can set `AllowedHosts` and `App:PublicBaseUrl` (`https://<domain>`).
 
 ### Release candidate check (1.0.0-rc1, 2026-09-29)
 - `dotnet publish -c Release` to a local folder: 0 errors.
@@ -80,6 +88,7 @@ The values below are in git history, so rotating them is the actual fix. Removin
 
 ## 3. Smoke test after deployment
 - [ ] Admin login works. The dashboard and every menu page open.
+- [ ] `http://<domain>/` redirects to `https://<domain>/`, and HTTPS responses carry `Strict-Transport-Security` (D-13).
 - [ ] `/Account/Register` returns 404 (GET and POST) and the login page has no sign-up link (D-02).
 - [ ] A non-admin account cannot sign in: beekeeper accounts are locked (D-09) and get the generic "invalid user name or password" message; any other non-admin sees "no access to the web panel" and is not left signed in (D-01).
 - [ ] Forgot password for a real admin e-mail sends a mail (new SMTP password), the reset link works and points to `App:PublicBaseUrl`, and the login page confirms the reset.
