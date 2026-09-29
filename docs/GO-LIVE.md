@@ -54,6 +54,10 @@ The values below are in git history, so rotating them is the actual fix. Removin
 - [x] ~~Unrestricted video upload in CCP ParameterContents~~: uploads are checked server-side (type, signature, size; [D-10](DECISIONS.md), `fix/upload-limits`). Check the production folder `wwwroot/assets/videos/parameters/` for files that are not `.mp4`/`.webm` and remove them.
 - [ ] HTTPS: is it enforced by IIS/proxy? If not, add HTTPS redirect + HSTS.
 
+### Release candidate check (1.0.0-rc1, 2026-09-29)
+- `dotnet publish -c Release` to a local folder: 0 errors.
+- Started with `ASPNETCORE_ENVIRONMENT=Production` against LocalDB, all configuration from environment variables (connection string, SMTP, Maps key, `App__PublicBaseUrl`, `AllowedHosts`): login and all main pages return 200, anonymous access redirects to login, a foreign `Host` header is rejected (400), and an error shows the friendly error page (no developer page). Not deployed anywhere.
+
 ## 2. Deployment day (in this order)
 1. [ ] **Back up the production database** (full backup) and confirm it restores. The backup stays on the DB server and never goes into the repo or the deploy package.
 2. [ ] Back up the current live site folder, including server-only uploads (`wwwroot/assets/videos/parameters/`).
@@ -67,6 +71,7 @@ The values below are in git history, so rotating them is the actual fix. Removin
    - Keep the server-only config and the uploaded files.
    - Set `ASPNETCORE_ENVIRONMENT=Production`.
    - Point the `DefaultConnection` connection string to the production DB.
+   - The publish output contains the repo's `appsettings.json`, whose `DefaultConnection` points to a developer machine, and `appsettings.Development.json` (LocalDB, not loaded in Production). The production connection string **must** be supplied by server config (`ConnectionStrings__DefaultConnection` or `appsettings.Production.json`); delete `appsettings.Development.json` from the server folder.
 9. [ ] Make sure ASP.NET Core Data Protection keys persist across app-pool restarts, otherwise logins and antiforgery tokens break after a restart.
    - Also decide where logs go.
    - Unhandled errors are logged with the reference ID shown on the error page, and constraint violations as warnings.
