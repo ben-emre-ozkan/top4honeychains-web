@@ -69,12 +69,11 @@ namespace TOP4HoneyChains.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("WholesalerId,WholesalerTitle,WholesalerTaxNo,WholesalerContactName,WholesalerPhone,WholesalerEmail,WholesalerAddress,WholesalerCity,WholesalerCountry,WholesalerIsActive")] Wholesaler wholesaler)
+        public async Task<IActionResult> Create([Bind("WholesalerTitle,WholesalerTaxNo,WholesalerContactName,WholesalerPhone,WholesalerEmail,WholesalerAddress,WholesalerCity,WholesalerCountry,WholesalerIsActive")] Wholesaler wholesaler)
         {
             if (ModelState.IsValid)
             {
-                // Timestamps are set server-side, never posted from the form
-                wholesaler.CreatedAt = DateTime.Now;
+                // CreatedAt is never posted from the form; the DB default (GETDATE()) sets it
                 _context.Add(wholesaler);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -143,6 +142,11 @@ namespace TOP4HoneyChains.Web.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
+            // Not posted by the form; reload it so the page doesn't show 01.01.0001
+            wholesaler.CreatedAt = await _context.Wholesalers
+                .Where(w => w.WholesalerId == id)
+                .Select(w => w.CreatedAt)
+                .FirstOrDefaultAsync();
 
             ViewBag.Controller = "Wholesalers";
             ViewBag.Action = "Edit";

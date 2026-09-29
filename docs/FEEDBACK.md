@@ -97,7 +97,7 @@ Shared root causes and critical items come first. Each work item is one branch.
 | 1 | `fix/wholesaler-create`: set `CreatedAt` server-side, never from a hidden field (**done on branch**) | FB-19 (critical); unblocks FB-20 | no |
 | 2 | `fix/account-flows`: show Identity errors and messages on Login/Register/Reset; handle SMTP failure; verify reset end-to-end with a local SMTP catcher; decide where non-admin users land after login | FB-01, FB-02 (critical), RC-6 | partly (public sign-up, beekeeper e-mails) |
 | 3 | `fix/db-error-handling`: catch FK violations on delete with an "in use, cannot be deleted" message; guard invalid inserts; make the error page anonymous and fix its layout | FB-30, FB-24, RC-1 | no |
-| 4 | `fix/final-production-flow`: verify FB-20 once FB-19 is fixed; add an empty-state explanation; validate in `Create` | FB-20 (critical) | yes (CCP gating) |
+| 4 | `fix/final-production-flow`: explain in ManageBatch why lots are not eligible (FB-19 re-check already done, see note 4); validate in `Create` | FB-20 (critical) | yes (CCP gating) |
 | 5 | `fix/dropdown-repopulation` | FB-23, RC-3 | no |
 | 6 | `fix/form-validation`: entity rules + required `*` markers across all forms | FB-03, 11, 12, 15, 18, 21, 25, 26, 29, 31, 32 (RC-2, RC-4) | no |
 | 7 | `fix/language-switch-query` | FB-34 | no |
