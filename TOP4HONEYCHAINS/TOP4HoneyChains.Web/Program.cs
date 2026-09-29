@@ -93,41 +93,5 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 
-//using (var scope = app.Services.CreateScope())
-//{
-//    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-//    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-
-//    string adminEmail = "aydinoglu.sahin@gmail.com";
-//    string password = "415228";
-//    string roleName = "Administrator";
-
-//    // Role oluştur
-//    if (!await roleManager.RoleExistsAsync(roleName))
-//    {
-//        await roleManager.CreateAsync(new IdentityRole(roleName));
-//    }
-
-//    // Kullanıcı var mı kontrol et
-//    var user = await userManager.FindByEmailAsync(adminEmail);
-
-//    if (user == null)
-//    {
-//        user = new ApplicationUser
-//        {
-//            UserName = adminEmail,
-//            Email = adminEmail,
-//            EmailConfirmed = true
-//        };
-
-//        var result = await userManager.CreateAsync(user, password);
-
-//        if (result.Succeeded)
-//        {
-//            await userManager.AddToRoleAsync(user, roleName);
-//        }
-//    }
-//}
-
 
 app.Run();

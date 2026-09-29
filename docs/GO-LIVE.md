@@ -14,11 +14,27 @@ See `docs/ARCHITECTURE.md` for background on each point.
 
 ### Secrets
 The values below are in git history, so rotating them is the actual fix. Removing them from files is not enough.
-- [ ] Rotate the Gmail app password (`SmtpSettings:Password`).
-- [ ] Rotate the Google Maps API key (hard-coded in `Views/HoneyStory/Index.cshtml`).
-- [ ] Rotate the admin password. The credentials in the commented-out seed in `Program.cs` are exposed.
-- [ ] Code: `appsettings.json` holds placeholders only. The Maps key is read from configuration, not from the view. The seed credentials are deleted from `Program.cs`.
-- [ ] Server-side config holds the real values: environment variables, or an `appsettings.Production.json` that exists only on the server. Never in the repo.
+- [ ] Rotate the Gmail app password (`SmtpSettings:Password`). The old one is in git history.
+- [ ] Rotate the Google Maps API key (`GoogleMaps:ApiKey`). The old one is in git history.
+- [ ] Rotate the password of the admin account whose credentials were in the commented-out seed in `Program.cs` (in git history).
+- [x] Code: `appsettings.json` holds placeholders only (`SmtpSettings:UserName/Password`, `GoogleMaps:ApiKey`, `App:PublicBaseUrl` are empty). The Maps key is read from configuration (`Views/HoneyStory/Index.cshtml`; without a key the map script is not loaded). The seed with credentials is deleted from `Program.cs` (`fix/secrets-out-of-config`). Git history was not rewritten, so rotation above is required.
+- [ ] Server-side config holds the real values. Never in the repo. Use **one** of the two options:
+  - **Environment variables** on the app pool / site (double underscore = section separator):
+
+    | Setting | Environment variable |
+    |---|---|
+    | SMTP host / port / SSL | `SmtpSettings__Host`, `SmtpSettings__Port`, `SmtpSettings__EnableSsl` |
+    | SMTP account | `SmtpSettings__UserName`, `SmtpSettings__Password` |
+    | Sender | `SmtpSettings__From`, `SmtpSettings__SenderName` |
+    | Maps key | `GoogleMaps__ApiKey` |
+    | Public URL for e-mail links | `App__PublicBaseUrl` (e.g. `https://<domain>`) |
+    | Allowed host names | `AllowedHosts` (e.g. `<domain>;www.<domain>`) |
+    | Database | `ConnectionStrings__DefaultConnection` |
+    | Environment | `ASPNETCORE_ENVIRONMENT=Production` |
+
+    Under IIS, set them in `web.config` (`<aspNetCore><environmentVariables>`) **on the server only**, or in the app pool environment. A `web.config` with secrets must not be copied back into the repo.
+  - **`appsettings.Production.json`** placed next to the app on the server, with the same keys in JSON form (`{"SmtpSettings": {"Password": "..."}, "GoogleMaps": {"ApiKey": "..."}, ...}`). It is git-ignored and must not be part of the publish package from the repo; keep it when redeploying. Restrict its file permissions to the app pool identity and administrators.
+- [ ] Locally, secrets live in `dotnet user-secrets` (`dotnet user-secrets list --project TOP4HONEYCHAINS/TOP4HoneyChains.Web`); SMTP points to a local catcher, never Gmail.
 - [ ] Restrict the Maps key to our domain (HTTP referrer) and to the Maps JavaScript API only.
 - [ ] Set `App:PublicBaseUrl` to the public site URL (e.g. `https://<domain>`) in server-side config. Password-reset links are built from it; without it, production refuses to send reset e-mails.
 - [ ] Set `AllowedHosts` to the production host name(s) instead of `*`.
