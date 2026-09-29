@@ -61,7 +61,7 @@ The report marks items 1, 2, 19 and 20 as critical (shown in bold in the report)
 | FB-31 | An empty production period can be saved; all fields should be required | lookup tables | validation | medium | RC-2 | `Models/Entities/RawHoneyProductionPeriod.cs` (title and dates are all nullable) | | fixed (`fix/form-validation`, merged) |
 | FB-32 | Enforce End Date > Start Date | lookup tables | validation | medium | RC-2 | `RawHoneyProductionPeriodsController` Create/Edit | | fixed (`fix/form-validation`, merged) |
 | FB-33 | There are several roles but they all have the same functionality; role-based authorization is needed | general | broken flow | high | RC-8 | Only `[Authorize(Roles="Administrator")]` exists. The Beekeeper, Wholesaler, Consumer and SampleAcceptanceOfficer roles do nothing. | [D-01](DECISIONS.md): admins only this release | deferred |
-| FB-34 | Changing the language on the wholesaler page returns 404 (`FinalHoneyProductions/ByWholesaler`) | general | broken flow | medium | RC-7 | **Confirmed:** `returnUrl` drops `?wholesalerId=`. `ByWholesaler(0)` then returns NotFound. | | open |
+| FB-34 | Changing the language on the wholesaler page returns 404 (`FinalHoneyProductions/ByWholesaler`) | general | broken flow | medium | RC-7 | **Confirmed:** `returnUrl` drops `?wholesalerId=`. `ByWholesaler(0)` then returns NotFound. | | fixed (`fix/language-switch`, merged): the switcher returns to path + query string; `SetLanguage` sends an empty or external `returnUrl` to `/` (was a 500). Verified on `ByWholesaler?wholesalerId=` |
 
 ### Notes on the critical findings
 
@@ -150,7 +150,7 @@ Shared root causes and critical items come first. Each work item is one branch.
 | 4 | (**done, merged**) `fix/final-production-visibility`: show which lots are not eligible and which CCP checks are missing (D-05) | FB-20 (critical) | decided |
 | 5 | (**done** in `fix/form-validation`) `fix/dropdown-repopulation` | FB-23, RC-3 | no |
 | 6 | (**done, merged**) `fix/form-validation`: server-side rules; the `*` markers follow in `fix/required-markers` | FB-03, 11, 12, 15, 18, 21, 25, 26, 29, 31, 32 (RC-2, RC-4) | no |
-| 7 | `fix/language-switch-query` | FB-34 | no |
+| 7 | (**done, merged**) `fix/language-switch` | FB-34 | no |
 | 8 | `fix/form-ux`: Cancel buttons, select styling, help texts | FB-04, 05, 07, 10, 13, 22, 28 | no |
 | 9 | (**done, merged**) `fix/deactivate-ux`: make clear that beekeepers and apiaries are deactivated, not deleted, and what deactivation does (D-04) | FB-08, FB-14 (also FB-07, FB-13) | decided |
 | 10 | (**done, merged**) `fix/lookup-optional`: education level, purpose type and beekeeping type are optional (D-08) | FB-06 | decided |
