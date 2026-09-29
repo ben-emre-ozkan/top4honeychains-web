@@ -72,6 +72,9 @@ builder.Services.AddControllersWithViews(options =>
 
     // An empty number/date field posts "" and used to show "The value '' is invalid."
     options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(_ => "This field is required.");
+
+    // Decimal input must not depend on the UI language: "1.5" and "1,5" both mean 1.5 (ENG-07)
+    options.ModelBinderProviders.Insert(0, new TOP4HoneyChains.Web.ModelBinding.FlexibleDecimalModelBinderProvider());
 });
 
 var app = builder.Build();
