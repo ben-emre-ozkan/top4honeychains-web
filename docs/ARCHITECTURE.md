@@ -97,7 +97,7 @@ Missing from the pipeline: `UseHttpsRedirection`, `UseHsts`, `UseStatusCodePages
 - FK violations were unhandled 500s.
 - There was no `ILogger` usage.
 
-**On branch `fix/db-error-handling`** (not merged yet):
+**Since `fix/db-error-handling` (merged to main):**
 - `DashboardController.Error` is `[AllowAnonymous]`. It logs the exception with the reference ID shown to the user and renders `Error.cshtml` on `_BlankLayout` with localized text.
 - A global MVC filter, `Filters/DbUpdateExceptionFilter.cs`, handles `DbUpdateException` with SQL errors 547 (FK/CHECK), 2601 and 2627 (unique):
   - It logs a warning and stores a localized message in TempData.
@@ -245,8 +245,8 @@ Other prerequisites:
 - Overposting: RawHoneyProductions.Edit and CCP Parameters.Create bind the full entity.
 
 **Reliability**
-- ~~The error page is admin-only, and its layout references missing partials.~~ Fixed on branch `fix/db-error-handling`.
-- ~~Deletes on FK-restricted rows throw unhandled 500s (Wholesalers, RawHoneyProductions, lookups).~~ Fixed on branch `fix/db-error-handling` (global filter).
+- ~~The error page is admin-only, and its layout references missing partials.~~ Fixed on main (`fix/db-error-handling`).
+- ~~Deletes on FK-restricted rows throw unhandled 500s (Wholesalers, RawHoneyProductions, lookups).~~ Fixed on main (`fix/db-error-handling`) (global filter).
 - An SMTP failure during password reset produces a 500.
 - No logging anywhere.
 - CCPMonitoring has null-reference paths.
