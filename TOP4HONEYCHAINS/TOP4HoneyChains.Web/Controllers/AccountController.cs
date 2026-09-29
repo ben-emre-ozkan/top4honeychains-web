@@ -10,6 +10,8 @@ namespace TOP4HoneyChains.Web.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        private const string SelfRegistrationRole = "Beekeeper";
+
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
@@ -67,8 +69,12 @@ namespace TOP4HoneyChains.Web.Controllers
 
         [AllowAnonymous]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
+            // Self-registration never takes a role from the client; see SelfRegistrationRole
+            ModelState.Remove(nameof(RegisterViewModel.Role));
+
             if (!ModelState.IsValid)
                 return View(model);
 
@@ -82,11 +88,7 @@ namespace TOP4HoneyChains.Web.Controllers
 
             if (result.Succeeded)
             {
-                // Role yoksa oluştur
-                if (!await _roleManager.RoleExistsAsync(model.Role))
-                    await _roleManager.CreateAsync(new IdentityRole(model.Role));
-
-                await _userManager.AddToRoleAsync(user, model.Role);
+                await _userManager.AddToRoleAsync(user, SelfRegistrationRole);
                 return RedirectToAction("Login");
             }
 
