@@ -57,25 +57,25 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label asp-for="BeekeeperEducationLevelId" class="form-label">Education Level</label>
+                                    <label asp-for="BeekeeperEducationLevelId" class="form-label">Education Level <span class="text-muted fw-normal">(optional)</span></label>
                                     <select asp-for="BeekeeperEducationLevelId" class="form-select" asp-items="ViewBag.BeekeeperEducationLevelId">
-                                        <option value="">Select Education Level</option>
+                                        <option value="">Not specified</option>
                                     </select>
                                     <span asp-validation-for="BeekeeperEducationLevelId" class="text-danger"></span>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label asp-for="BeekeeperBeekeepingPurposeTypeId" class="form-label">Purpose Type</label>
+                                    <label asp-for="BeekeeperBeekeepingPurposeTypeId" class="form-label">Purpose Type <span class="text-muted fw-normal">(optional)</span></label>
                                     <select asp-for="BeekeeperBeekeepingPurposeTypeId" class="form-select" asp-items="ViewBag.BeekeeperBeekeepingPurposeTypeId">
-                                        <option value="">Select Purpose</option>
+                                        <option value="">Not specified</option>
                                     </select>
                                     <span asp-validation-for="BeekeeperBeekeepingPurposeTypeId" class="text-danger"></span>
                                 </div>
 
                                 <div class="mb-4">
-                                    <label asp-for="BeekeeperBeekeepingTypeId" class="form-label">Beekeeping Type</label>
+                                    <label asp-for="BeekeeperBeekeepingTypeId" class="form-label">Beekeeping Type <span class="text-muted fw-normal">(optional)</span></label>
                                     <select asp-for="BeekeeperBeekeepingTypeId" class="form-select" asp-items="ViewBag.BeekeeperBeekeepingTypeId">
-                                        <option value="">Select Beekeeping Type</option>
+                                        <option value="">Not specified</option>
                                     </select>
                                     <span asp-validation-for="BeekeeperBeekeepingTypeId" class="text-danger"></span>
                                 </div>

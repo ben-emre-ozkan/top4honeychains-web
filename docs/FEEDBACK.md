@@ -28,26 +28,26 @@ The report marks items 1, 2, 19 and 20 as critical (shown in bold in the report)
 
 | ID | Title | Area | Type | Severity | RC | Code location / cause | Decision | Status |
 |---|---|---|---|---|---|---|---|---|
-| **FB-01** | Password reset does not work | login | broken flow | **critical** | RC-6 | See note 1 below the table. | [D-03](DECISIONS.md): reset must work for admins | fixed (branch `fix/account-flows`, not merged) |
-| **FB-02** | "Sign up now" does not work | login | broken flow | **critical** | RC-6, RC-8 | The link itself was fine; the Register flow behind it was the problem. See note 2 below the table. | [D-02](DECISIONS.md), D-01: sign-up removed | fixed: sign-up removed (branch `fix/account-flows`, not merged) |
+| **FB-01** | Password reset does not work | login | broken flow | **critical** | RC-6 | See note 1 below the table. | [D-03](DECISIONS.md): reset must work for admins | fixed (`fix/account-flows`, merged) |
+| **FB-02** | "Sign up now" does not work | login | broken flow | **critical** | RC-6, RC-8 | The link itself was fine; the Register flow behind it was the problem. See note 2 below the table. | [D-02](DECISIONS.md), D-01: sign-up removed | fixed: sign-up removed (`fix/account-flows`, merged) |
 | FB-03 | Mark required beekeeper fields (First/Last name, Birth date) with * | beekeeper | UX | low | RC-4 | `Views/Beekeepers/Create.cshtml`, `Edit.cshtml` | | open |
 | FB-04 | Explain what the "File upload" field is for | beekeeper | UX | low | | `Views/Beekeepers/Create.cshtml` (profile photo, stored as a blob) | | open |
 | FB-05 | Cancel button does not work (beekeeper) | beekeeper | broken flow | medium | RC-5 | `Views/Beekeepers/Create.cshtml` L90 (confirmed) | | open |
-| FB-06 | Purpose type, beekeeping type and education level have no practical function | beekeeper | UX | low | | `Beekeepers` FKs to the lookups. Nothing uses them beyond display. | [D-08](DECISIONS.md): keep, make optional | open |
-| FB-07 | Explain why Activate/Deactivate matters (beekeeper) | beekeeper | UX | low | | `BeekeepersController.Activate/Deactivate`: sets `IsActive` and locks the Identity login out | | fixed (branch `fix/deactivate-ux`, not merged) |
-| FB-08 | No delete function for beekeepers | beekeeper | broken flow | medium | | No delete exists by design (soft deactivate only). A hard delete would hit FKs (Apiaries) and the linked Identity user. | [D-04](DECISIONS.md): deactivate only, explain in UI | fixed (branch `fix/deactivate-ux`, not merged) |
+| FB-06 | Purpose type, beekeeping type and education level have no practical function | beekeeper | UX | low | | `Beekeepers` FKs to the lookups. Nothing uses them beyond display. | [D-08](DECISIONS.md): keep, make optional | fixed (`fix/lookup-optional`, merged) |
+| FB-07 | Explain why Activate/Deactivate matters (beekeeper) | beekeeper | UX | low | | `BeekeepersController.Activate/Deactivate`: sets `IsActive` and locks the Identity login out | | fixed (`fix/deactivate-ux`, merged) |
+| FB-08 | No delete function for beekeepers | beekeeper | broken flow | medium | | No delete exists by design (soft deactivate only). A hard delete would hit FKs (Apiaries) and the linked Identity user. | [D-04](DECISIONS.md): deactivate only, explain in UI | fixed (`fix/deactivate-ux`, merged) |
 | FB-09 | Pick the apiary location on a map instead of typing coordinates | apiary | UX (feature) | low | | `Views/Apiaries/Create.cshtml`, `Edit.cshtml`. A Maps key already exists (see GO-LIVE secrets). | [D-07](DECISIONS.md) | deferred |
 | FB-10 | Cancel button does not work (apiary) | apiary | broken flow | medium | RC-5 | `Views/Apiaries/Create.cshtml` L53 (confirmed) | | open |
 | FB-11 | No validation for hive count and coordinates | apiary | validation | medium | RC-2 | `Models/Entities/Apiary.cs`: decimal lat/long without a `[Range]`, no hive-count rule | | open |
 | FB-12 | Empty apiary form can be submitted with no error message | apiary | validation | high | RC-2 | `ApiariesController.Create` L51 checks `ModelState`, but the entity lacks rules. Cause unverified. | | open |
-| FB-13 | Explain the purpose of Activate/Deactivate (apiary) | apiary | UX | low | | `ApiariesController.Activate/Deactivate` | | fixed (branch `fix/deactivate-ux`, not merged) |
-| FB-14 | Apiaries cannot be deleted | apiary | broken flow | medium | | No delete by design. FKs from ApiaryPhotos and RawHoneyProductions (NO ACTION). | [D-04](DECISIONS.md): deactivate only, explain in UI | fixed (branch `fix/deactivate-ux`, not merged) |
+| FB-13 | Explain the purpose of Activate/Deactivate (apiary) | apiary | UX | low | | `ApiariesController.Activate/Deactivate` | | fixed (`fix/deactivate-ux`, merged) |
+| FB-14 | Apiaries cannot be deleted | apiary | broken flow | medium | | No delete by design. FKs from ApiaryPhotos and RawHoneyProductions (NO ACTION). | [D-04](DECISIONS.md): deactivate only, explain in UI | fixed (`fix/deactivate-ux`, merged) |
 | FB-15 | Mark all raw honey production fields as required | raw honey production | validation | medium | RC-2, RC-4 | `Views/RawHoneyProductions/Create.cshtml`, `Models/Entities/RawHoneyProduction.cs` | | open |
 | FB-16 | Same period + honey type cannot be entered twice. What if another wholesaler buys from the same beekeeper? | raw honey production | validation | medium | | Duplicate check in `RawHoneyProductionsController.Create` covers apiary + period + honey type. The partner is waiting for a decision. | [D-06](DECISIONS.md), [PQ-01](PARTNER-QUESTIONS.md) | deferred |
 | FB-17 | Link production period and honey type (a season can currently take any honey type) | raw honey production | validation | medium | | There is no period↔honey-type relation in the schema. Would need a DB script. | [D-06](DECISIONS.md), [PQ-01](PARTNER-QUESTIONS.md) | deferred |
 | FB-18 | Mark required wholesaler fields with * | wholesalers | UX | low | RC-4 | `Views/Wholesalers/Create.cshtml` (only Title is required) | | open |
 | **FB-19** | A new wholesaler cannot be created | wholesalers | broken flow | **critical** | | See note 3 below the table. | | fixed (`fix/wholesaler-create`, merged) |
-| **FB-20** | Raw batches do not appear in the final production form, so no record can be created | final honey production | broken flow | **critical** | | See note 4 below the table. No longer blocked by FB-19; lots only appear once all their CCPs are completed. | [D-05](DECISIONS.md): rule stays, explain in UI | fixed (branch `fix/final-production-visibility`, not merged) |
+| **FB-20** | Raw batches do not appear in the final production form, so no record can be created | final honey production | broken flow | **critical** | | See note 4 below the table. No longer blocked by FB-19; lots only appear once all their CCPs are completed. | [D-05](DECISIONS.md): rule stays, explain in UI | fixed (`fix/final-production-visibility`, merged) |
 | FB-21 | Mark required user fields with * | administrators | UX | low | RC-4 | `Views/UserManagement/Create.cshtml` | | open |
 | FB-22 | Show that Role is a dropdown (arrow icon) | administrators | UX | low | | `Views/UserManagement/Create.cshtml` L86: `<select class="form-control">` should use `form-select` (likely) | | open |
 | FB-23 | Creating a user without a role returns HTTP 500 | administrators | crash/500 | high | RC-3 | **Confirmed:** the POST returns `View(model)` without `ViewBag.Roles`, and the view's `foreach` hits null (`UserManagementController.cs` L45-48, `Create.cshtml` L90). | | open |
@@ -111,6 +111,14 @@ Per [D-04](DECISIONS.md) there is no delete. On branch `fix/deactivate-ux`:
 - The beekeeper Edit form no longer has its own "Active" checkbox. It changed the status without locking or unlocking the login, and every edit cleared `DeactivatedAt` (reproduced). Status now changes only through Deactivate/Activate.
 - Verified with a test beekeeper: deactivate locked the login (login refused), activate unlocked it, and editing kept the status.
 
+### Note on FB-06 (optional lookup fields)
+Per [D-08](DECISIONS.md) the fields stay and are optional. The DB columns were already nullable, and Create already accepted empty values.
+- **Reproduced defect:** the beekeeper **Edit** form had no empty option. Editing a beekeeper without these values silently saved the first entry of each list, and a value could never be cleared again. None of the 62 beekeepers in the local copy currently has an empty value.
+- **Fix (`fix/lookup-optional`):**
+  - Create and Edit label the three fields "(optional)" and offer "Not specified".
+  - In Edit you can now clear a value, and an unchanged edit keeps it empty.
+- Verified with a test beekeeper (values 6/5/5 → cleared → unchanged edit → still `NULL`).
+
 ## Proposed order of work
 
 Owner-requested order for the decided items (2026-09-29): 2 → 4 → 9 → 10. The remaining items follow afterwards.
@@ -120,15 +128,15 @@ Shared root causes and critical items come first. Each work item is one branch.
 | # | Work item | Covers | Decision needed first? |
 |---|---|---|---|
 | 1 | `fix/wholesaler-create`: set `CreatedAt` server-side, never from a hidden field (**done, merged**) | FB-19 (critical); unblocks FB-20 | no |
-| 2 | `fix/account-flows`: remove self-registration (D-02); show validation and Identity errors on Login and Forgot/Reset password; non-admins get a clear message instead of an AccessDenied loop (D-01); verify reset end-to-end with a local SMTP catcher (D-03) | FB-01, FB-02 (critical), RC-6 | decided |
+| 2 | (**done, merged**) `fix/account-flows`: remove self-registration (D-02); show validation and Identity errors on Login and Forgot/Reset password; non-admins get a clear message instead of an AccessDenied loop (D-01); verify reset end-to-end with a local SMTP catcher (D-03) | FB-01, FB-02 (critical), RC-6 | decided |
 | 3 | (**done, merged**) `fix/db-error-handling`: catch FK violations on delete with an "in use, cannot be deleted" message; guard invalid inserts; make the error page anonymous and fix its layout | FB-30, FB-24, RC-1 | no |
-| 4 | `fix/final-production-visibility`: show which lots are not eligible and which CCP checks are missing (D-05) | FB-20 (critical) | decided |
+| 4 | (**done, merged**) `fix/final-production-visibility`: show which lots are not eligible and which CCP checks are missing (D-05) | FB-20 (critical) | decided |
 | 5 | `fix/dropdown-repopulation` | FB-23, RC-3 | no |
 | 6 | `fix/form-validation`: entity rules + required `*` markers across all forms | FB-03, 11, 12, 15, 18, 21, 25, 26, 29, 31, 32 (RC-2, RC-4) | no |
 | 7 | `fix/language-switch-query` | FB-34 | no |
 | 8 | `fix/form-ux`: Cancel buttons, select styling, help texts | FB-04, 05, 07, 10, 13, 22, 28 | no |
-| 9 | `fix/deactivate-ux`: make clear that beekeepers and apiaries are deactivated, not deleted, and what deactivation does (D-04) | FB-08, FB-14 (also FB-07, FB-13) | decided |
-| 10 | `fix/lookup-optional`: education level, purpose type and beekeeping type are optional (D-08) | FB-06 | decided |
+| 9 | (**done, merged**) `fix/deactivate-ux`: make clear that beekeepers and apiaries are deactivated, not deleted, and what deactivation does (D-04) | FB-08, FB-14 (also FB-07, FB-13) | decided |
+| 10 | (**done, merged**) `fix/lookup-optional`: education level, purpose type and beekeeping type are optional (D-08) | FB-06 | decided |
 | – | Deferred to a later release | FB-09, FB-27 (D-07), FB-16, FB-17 (D-06, PQ-01), FB-33 (D-01) | decided |
 
 ## Engineering follow-ups (from code review, 2026-09-29)
