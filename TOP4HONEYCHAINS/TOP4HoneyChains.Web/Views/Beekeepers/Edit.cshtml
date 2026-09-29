@@ -87,9 +87,19 @@
                             <span asp-validation-for="BeekeeperBeekeepingTypeId" class="text-danger"></span>
                         </div>
 
-                        <div class="form-check mb-3">
-                            <input asp-for="IsActive" class="form-check-input" type="checkbox" />
-                            <label asp-for="IsActive" class="form-check-label">Active</label>
+                        <div class="mb-3">
+                            <label class="form-label d-block">Status</label>
+                            @if (Model.IsActive)
+                            {
+                                <span class="badge bg-success">Active</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Inactive</span>
+                            }
+                            <small class="text-muted ms-2" id="status-hint">
+                                Change the status with Deactivate / Activate in the beekeepers list (this also locks or unlocks the login).
+                            </small>
                         </div>
 
                         <button type="submit" class="btn btn-primary">Update</button>

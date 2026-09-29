@@ -27,6 +27,8 @@
                                 Apiaries of @ViewBag.BeekeeperName
                             </h4>
 
+                            <partial name="_DeactivationNote" />
+
                             <p class="card-title-desc">
                                 <a asp-controller="Beekeepers"
                                    asp-action="Index"
@@ -94,7 +96,8 @@
                                                         {
                                                             <a asp-action="Deactivate"
                                                                asp-route-id="@item.ApiaryId"
-                                                               class="btn btn-sm btn-warning">
+                                                               class="btn btn-sm btn-warning"
+                                                               title="Keeps photos and honey productions; greys out the apiary. Apiaries are never deleted.">
                                                                 Deactivate
                                                             </a>
                                                         }
@@ -102,7 +105,8 @@
                                                         {
                                                             <a asp-action="Activate"
                                                                asp-route-id="@item.ApiaryId"
-                                                               class="btn btn-sm btn-success">
+                                                               class="btn btn-sm btn-success"
+                                                               title="Makes the apiary active again.">
                                                                 Activate
                                                             </a>
                                                         }

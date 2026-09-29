@@ -208,6 +208,10 @@ namespace TOP4HoneyChains.Web.Controllers
                 {
                     beekeeper.BeekeeperBusinessNumber = existingBeekeeper.BeekeeperBusinessNumber;
 
+                    // Status only changes through Deactivate/Activate, which also lock/unlock the login (D-04)
+                    beekeeper.IsActive = existingBeekeeper.IsActive;
+                    beekeeper.DeactivatedAt = existingBeekeeper.DeactivatedAt;
+
                     if (beekeeper.ProfilePhotoFile != null && beekeeper.ProfilePhotoFile.Length > 0)
                     {
                         using var image = await SixLabors.ImageSharp.Image.LoadAsync(beekeeper.ProfilePhotoFile.OpenReadStream());
