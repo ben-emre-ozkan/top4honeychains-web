@@ -124,7 +124,7 @@
                                 <div class="alert alert-warning" id="no-eligible-lots">
                                     <i class="mdi mdi-alert-outline me-1"></i>
                                     No raw honey lot of this wholesaler is eligible yet.
-                                    @if (Model.IneligibleRawHoneyList.Any())
+                                    @if (!Model.Batch.FinalHoneyProductionIsFinalized && Model.IneligibleRawHoneyList.Any())
                                     {
                                         <span>See <a href="#not-eligible-lots">Raw honey lots not yet eligible</a> below for the missing CCP checks.</span>
                                     }
@@ -284,7 +284,8 @@
 
 
 
-            @if (Model.IneligibleRawHoneyList.Any())
+            @* A finalized batch cannot take more lots, so the list would only be noise *@
+            @if (!Model.Batch.FinalHoneyProductionIsFinalized && Model.IneligibleRawHoneyList.Any())
             {
                 <div class="row" id="not-eligible-lots">
                     <div class="col-12">
