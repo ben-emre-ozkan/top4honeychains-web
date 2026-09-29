@@ -46,7 +46,7 @@ Anything marked **unverified** could not be confirmed from the repo or the local
 | Localization | L32-55 | Cultures en, tr, es, pl, lv. Resources in `Resources/SharedResource.*.resx` |
 | `Configure<SmtpSettings>("SmtpSettings")` + `IEmailService` | L58-60 | |
 | Middleware | L66-80 | `UseExceptionHandler("/Dashboard/Error")` (non-Development only) → StaticFiles → Routing → RequestLocalization → AuthN → AuthZ → `{controller=Home}/{action=Index}/{id?}` |
-| Seed (roles/admin) | L83-117 | **Fully commented out.** Contains hard-coded admin credentials (***). |
+| Seed (roles/admin) | – | Was fully commented out with hard-coded admin credentials; **deleted** in `fix/secrets-out-of-config` (still in git history, see GO-LIVE rotation). |
 
 Missing from the pipeline: `UseHttpsRedirection`, `UseHsts`, `UseStatusCodePages`.
 
@@ -192,7 +192,7 @@ Local DB tables (27 + history):
 | Setting | Where | Current value | Local change needed |
 |---|---|---|---|
 | `ConnectionStrings:DefaultConnection` | `TOP4HoneyChains.Web/appsettings.json` L9 | `Server=SAHINAYDIN-PC\MSSQLSERVER2019; Database=TOP4HoneyChainsDb; Integrated Security; Encrypt=False; TrustServerCertificate=True; Pooling=False` | **Done:** `appsettings.Development.json` overrides it with `(localdb)\MSSQLLocalDB` (commit `1b89b58`). `appsettings.json` is unchanged. |
-| `SmtpSettings` (Host `smtp.gmail.com`, 587, SSL, UserName, **Password = *** (plaintext in repo)**, From, SenderName) | `appsettings.json` L11-19, bound in `Program.cs` L58 | Real Gmail account | Use a dev SMTP catcher (smtp4dev/Papercut) or a pickup directory. Do not send from the real account. |
+| `SmtpSettings` (Host `smtp.gmail.com`, 587, SSL, UserName, Password (placeholder in `appsettings.json` since `fix/secrets-out-of-config`; locally in user-secrets, in production server-side config), From, SenderName) | `appsettings.json` L11-19, bound in `Program.cs` L58 | Real Gmail account | Use a dev SMTP catcher (smtp4dev/Papercut) or a pickup directory. Do not send from the real account. |
 | Launch URLs | `Properties/launchSettings.json` | `http://localhost:5255` (Kestrel), `http://localhost:35398` (IIS Express), HTTP only | none |
 | Environment | launchSettings | `Development` → no exception handler, developer exception page | none |
 
@@ -201,7 +201,7 @@ Other prerequisites:
 - Windows, because of System.Drawing in QR generation.
 - A local DB that already has the business tables. They cannot be created from migrations.
 - An Administrator user. The seed is commented out; the owner believes the existing admin was added manually. Since the local DB is a prod copy, an admin row probably exists there (unverified; user tables were not read).
-- A Google Maps key is hard-coded in `Views/HoneyStory/Index.cshtml` (~L1098).
+- The Google Maps key is read from configuration `GoogleMaps:ApiKey` in `Views/HoneyStory/Index.cshtml` (was hard-coded until `fix/secrets-out-of-config`). Without a key the map script is not loaded.
 
 ---
 

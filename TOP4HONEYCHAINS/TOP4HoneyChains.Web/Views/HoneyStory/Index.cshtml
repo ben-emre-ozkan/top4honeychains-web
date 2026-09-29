@@ -1,10 +1,13 @@
 ﻿@using TOP4HoneyChains.Web.Models.ViewModels.HoneyStory
 @using System.Text.Json
 @model HoneyStoryViewModel
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 
 @{
     Layout = null;
     var tr = new System.Globalization.CultureInfo("tr-TR");
+    // Rotatable key from configuration (GoogleMaps:ApiKey); never hard-code it here
+    var mapsApiKey = Configuration["GoogleMaps:ApiKey"];
 }
 
 <!DOCTYPE html>
@@ -1094,8 +1097,11 @@
 
     </script>
 
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDP6OpidL5VaYgthLPt56wzj3uhWZhxbj0&callback=initMap">
-    </script>
+    @if (!string.IsNullOrWhiteSpace(mapsApiKey))
+    {
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=@Uri.EscapeDataString(mapsApiKey)&callback=initMap">
+        </script>
+    }
 </body>
 </html>
