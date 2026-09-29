@@ -8,5 +8,8 @@ namespace TOP4HoneyChains.Web.Models.ViewModels.FinalProduct
         public Wholesaler? Wholesaler { get; set; }
 
         public List<RawHoneyBatchItemViewModel> RawHoneyList { get; set; } = new();
+
+        // Lots of the same wholesaler that are not eligible yet, with the missing CCP checks
+        public List<IneligibleRawHoneyItemViewModel> IneligibleRawHoneyList { get; set; } = new();
     }
 }

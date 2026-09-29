@@ -114,6 +114,40 @@ namespace TOP4HoneyChains.Web.Controllers
                 });
             }
 
+            // Lots of the same wholesaler that are not eligible yet, and which CCP checks are missing (D-05)
+            var eligibleIds = rawHoneys.Select(r => r.RawHoneyProductionId).ToList();
+            var ineligibleRawHoneys = await _context.RawHoneyProductions
+                .Where(r => r.RawHoneyProductionWholesalerId == batch.FinalHoneyProductionWholesalerId
+                            && !eligibleIds.Contains(r.RawHoneyProductionId))
+                .Include(r => r.RawHoneyProductionApiary)
+                    .ThenInclude(a => a!.ApiaryBeekeeper)
+                .Include(r => r.RawHoneyProductionHoneyTypeNavigation)
+                .Include(r => r.RawHoneyCCPAssignments)
+                    .ThenInclude(a => a.CCP)
+                .Include(r => r.RawHoneyCCPAssignments)
+                    .ThenInclude(a => a.AssignmentStatus)
+                .OrderBy(r => r.RawHoneyProductionId)
+                .ToListAsync();
+
+            foreach (var raw in ineligibleRawHoneys)
+            {
+                model.IneligibleRawHoneyList.Add(new IneligibleRawHoneyItemViewModel
+                {
+                    RawHoney = raw,
+                    PendingChecks = raw.RawHoneyCCPAssignments
+                        .Where(a => a.RawHoneyCCPAssignmentStatus != 3) // 3 = Completed
+                        .OrderBy(a => a.CCP?.Code)
+                        .Select(a => new PendingCcpCheckViewModel
+                        {
+                            CcpId = a.RawHoneyCCPAssignmentCCP,
+                            Code = a.CCP?.Code ?? a.RawHoneyCCPAssignmentCCP.ToString(),
+                            Title = a.CCP?.Title,
+                            StatusName = a.AssignmentStatus?.AssignmentStatusName
+                                         ?? a.RawHoneyCCPAssignmentStatus.ToString()
+                        })
+                        .ToList()
+                });
+            }
 
             ViewBag.Controller = "Final Honey Productions";
             ViewBag.Action = "Manage Batch";

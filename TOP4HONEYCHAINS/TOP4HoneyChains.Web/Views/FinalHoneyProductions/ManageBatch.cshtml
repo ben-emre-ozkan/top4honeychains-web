@@ -114,6 +114,27 @@
 
                             <h5 class="card-title mb-3">Raw Honey Sources</h5>
 
+                            <p class="text-muted mb-3">
+                                <i class="mdi mdi-information-outline me-1"></i>
+                                Only raw honey lots of this wholesaler whose CCP checks are <strong>all completed</strong> can be added to a batch.
+                            </p>
+
+                            @if (!Model.RawHoneyList.Any())
+                            {
+                                <div class="alert alert-warning" id="no-eligible-lots">
+                                    <i class="mdi mdi-alert-outline me-1"></i>
+                                    No raw honey lot of this wholesaler is eligible yet.
+                                    @if (!Model.Batch.FinalHoneyProductionIsFinalized && Model.IneligibleRawHoneyList.Any())
+                                    {
+                                        <span>See <a href="#not-eligible-lots">Raw honey lots not yet eligible</a> below for the missing CCP checks.</span>
+                                    }
+                                    else
+                                    {
+                                        <span>This wholesaler has no raw honey production yet.</span>
+                                    }
+                                </div>
+                            }
+
                             <form id="manageBatchForm" asp-action="ManageBatchPost" method="post">
 
                                 <input type="hidden" name="batchId" value="@Model.Batch.FinalHoneyProductionId" />
@@ -262,6 +283,79 @@
 
 
 
+
+            @* A finalized batch cannot take more lots, so the list would only be noise *@
+            @if (!Model.Batch.FinalHoneyProductionIsFinalized && Model.IneligibleRawHoneyList.Any())
+            {
+                <div class="row" id="not-eligible-lots">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <h5 class="card-title mb-1">Raw honey lots not yet eligible</h5>
+                                <p class="text-muted mb-3">
+                                    These lots of @(Model.Wholesaler?.WholesalerTitle ?? "this wholesaler") cannot be added until all their CCP checks are completed.
+                                </p>
+
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-sm align-middle mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Apiary</th>
+                                                <th>Beekeeper</th>
+                                                <th>Honey Type</th>
+                                                <th>Total (kg)</th>
+                                                <th>Missing CCP checks</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.IneligibleRawHoneyList)
+                                            {
+                                                <tr>
+                                                    <td>@item.RawHoney.RawHoneyProductionId</td>
+                                                    <td>@item.RawHoney.RawHoneyProductionApiary?.ApiaryTitle</td>
+                                                    <td>
+                                                        @item.RawHoney.RawHoneyProductionApiary?.ApiaryBeekeeper?.BeekeeperFirstName
+                                                        @item.RawHoney.RawHoneyProductionApiary?.ApiaryBeekeeper?.BeekeeperLastName
+                                                    </td>
+                                                    <td>@item.RawHoney.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle</td>
+                                                    <td>@item.RawHoney.RawHoneyProductionAmount kg</td>
+                                                    <td>
+                                                        @if (item.NoChecksAssigned)
+                                                        {
+                                                            <span class="text-danger">No CCP checks assigned.</span>
+                                                            <a asp-controller="RawHoneyProductions"
+                                                               asp-action="ManageCCP"
+                                                               asp-route-id="@item.RawHoney.RawHoneyProductionId"
+                                                               class="ms-1">Assign CCP checks</a>
+                                                        }
+                                                        else
+                                                        {
+                                                            @foreach (var check in item.PendingChecks)
+                                                            {
+                                                                <a asp-controller="CCPMonitoring"
+                                                                   asp-action="RawHoneyProductionManageCCP"
+                                                                   asp-route-rawHoneyProductionId="@item.RawHoney.RawHoneyProductionId"
+                                                                   asp-route-ccpId="@check.CcpId"
+                                                                   class="badge bg-warning text-dark me-1 mb-1 pending-ccp"
+                                                                   title="@check.Title">
+                                                                    @check.Code: @check.StatusName
+                                                                </a>
+                                                            }
+                                                        }
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
 
         </div>
     </div>
