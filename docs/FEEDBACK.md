@@ -130,6 +130,7 @@ Fix:
 - Entity rules: apiary title, hive count 1-10000, latitude ±90, longitude ±180 (FB-11); raw honey period, honey type, wholesaler and amount > 0 (FB-15); period title and dates, with end date after start date (FB-31, FB-32); category name (FB-25); batch title and date; CCP id ≥ 1 (FB-24 follow-up).
 - `FinalHoneyProductions.Create` checks `ModelState`. User creation and raw honey Create reload their dropdowns after a failed POST, and user creation checks that the role exists. A new CCP content needs a video ("A video file is required."); on edit the video is optional and the old one is kept.
 - The forms show field messages and keep the entered values. An empty number or date field now says "This field is required." instead of "The value '' is invalid."
+- Follow-up (`fix/form-validation-range`): the decimal limit of the amount rule was parsed with the UI culture, so under `tr` the raw honey form could return HTTP 500 depending on which culture first used the rule. The limits are now parsed invariantly; verified under `tr` and `en`.
 - Verified in the browser: every form rejects empty input with messages and nothing is saved; values and dropdown selections are kept; a valid apiary, period and CCP content still save; editing a CCP content without a new video keeps the video.
 
 ## Proposed order of work

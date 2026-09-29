@@ -22,7 +22,8 @@ public partial class RawHoneyProduction
 
     [Column(TypeName = "decimal(10, 2)")]
     [Required(ErrorMessage = "The amount is required.")]
-    [Range(typeof(decimal), "0.01", "99999999", ErrorMessage = "The amount must be greater than 0.")]
+    // Limits are parsed invariantly; under the default "tr" culture "0.01" is not a valid decimal (HTTP 500)
+    [Range(typeof(decimal), "0.01", "99999999", ParseLimitsInInvariantCulture = true, ErrorMessage = "The amount must be greater than 0.")]
     public decimal? RawHoneyProductionAmount { get; set; }
 
     public DateOnly? RawHoneyProductionDate { get; set; }
