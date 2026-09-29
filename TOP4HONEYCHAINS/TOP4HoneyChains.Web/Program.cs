@@ -86,6 +86,14 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Dashboard/Error");
 }
+// D-13: TLS ends at IIS (certificate and binding by the university IT); the app redirects HTTP to HTTPS
+// and sends HSTS in Production only. Under IIS the HTTPS port comes from the binding (ANCM_HTTPS_PORT).
+if (app.Environment.IsProduction())
+{
+    app.UseHsts();
+    app.UseHttpsRedirection();
+}
+
 app.UseStaticFiles();
 
 app.UseRouting();
