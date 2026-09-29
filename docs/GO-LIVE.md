@@ -68,7 +68,7 @@ Please set up for the TOP4HoneyChains site on IIS:
 
 ### Release candidate check (1.0.0-rc2, 2026-09-29)
 - Includes D-11 (QR full URL), D-12 (HoneyStory privacy) and D-13 (HTTPS). `dotnet publish -c Release`: 0 errors.
-- Production run against LocalDB with configuration from environment variables and a local test certificate: HTTP → 307 to HTTPS, HSTS header on HTTPS for a real host name, login over HTTPS (auth cookie `Secure`, `HttpOnly`), main pages and a published Honey Story page return 200; a draft batch's page returns 404. Not deployed anywhere.
+- Production run against LocalDB with configuration from environment variables and a local test certificate: HTTP → 307 to HTTPS, HSTS header on HTTPS for a real host name, login over HTTPS (auth cookie `Secure`, `HttpOnly`), main pages and a published Honey Story page return 200. The draft-batch 404, the QR content and the approximate map were verified in the Development run. Not deployed anywhere.
 
 ## 2. Deployment day (in this order)
 1. [ ] **Back up the production database** (full backup) and confirm it restores. The backup stays on the DB server and never goes into the repo or the deploy package.
