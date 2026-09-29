@@ -398,23 +398,8 @@
 
                 document.getElementById('selectedTotal').innerText = total.toFixed(2);
 
-                let target = parseFloat(document.getElementById('targetAmount').innerText);
-
-                if (!isNaN(target) && target > 0) {
-
-                    let percentage = (total / target) * 100;
-                    if (percentage > 100) percentage = 100;
-
-
-
-                    if (total > target) {
-                        bar.classList.remove('bg-success');
-                        bar.classList.add('bg-danger');
-                    } else {
-                        bar.classList.remove('bg-danger');
-                        bar.classList.add('bg-success');
-                    }
-                }
+                // The batch progress bar no longer exists on this page; the leftover code that
+                // coloured it referenced an undefined "bar" and threw on every load (ENG-05)
             }
 
             document.querySelectorAll('.use-amount').forEach(function(input){
