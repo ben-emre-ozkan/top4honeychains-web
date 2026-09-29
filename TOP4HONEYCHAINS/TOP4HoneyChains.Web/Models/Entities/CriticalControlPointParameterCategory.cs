@@ -7,6 +7,7 @@ namespace TOP4HoneyChains.Web.Models.Entities
         [Key]
         public int CategoryId { get; set; }
 
+        [Required(ErrorMessage = "The category name is required.")]
         [StringLength(100)]
         public string? CategoryName { get; set; }
 

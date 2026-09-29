@@ -149,7 +149,7 @@ namespace TOP4HoneyChains.Web.Controllers
 
             ViewBag.ApiaryId = rawHoneyProduction.RawHoneyProductionApiaryId;
 
-            ViewData["RawHoneyProductionHoneyTypeId"] =
+            ViewData["RawHoneyProductionHoneyType"] =
                 new SelectList(_context.HoneyTypes, "HoneyTypeId", "HoneyTypeTitle", rawHoneyProduction.RawHoneyProductionHoneyType);
 
             ViewData["RawHoneyProductionPeriodId"] =

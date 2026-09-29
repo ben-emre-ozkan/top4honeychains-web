@@ -16,16 +16,20 @@ public partial class Apiary
 
     public Guid ApiaryQRCode { get; set; }
 
+    [Required(ErrorMessage = "The title is required.")]
     [StringLength(50)]
     [Unicode(false)]
     public string ApiaryTitle { get; set; } = null!;
 
+    [Range(1, 10000, ErrorMessage = "The beehive count must be between 1 and 10000.")]
     public short ApiaryBeehivesCount { get; set; }
 
     [Column(TypeName = "decimal(12, 9)")]
+    [Range(-90.0, 90.0, ErrorMessage = "The latitude must be between -90 and 90.")]
     public decimal ApiaryLocationLatitude { get; set; }
 
     [Column(TypeName = "decimal(12, 9)")]
+    [Range(-180.0, 180.0, ErrorMessage = "The longitude must be between -180 and 180.")]
     public decimal ApiaryLocationLongitude { get; set; }
 
     public bool ApiaryIsActive { get; set; } = true;

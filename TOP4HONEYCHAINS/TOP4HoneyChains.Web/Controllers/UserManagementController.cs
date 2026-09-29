@@ -44,8 +44,11 @@ namespace TOP4HoneyChains.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(RegisterViewModel model)
         {
+            if (!string.IsNullOrEmpty(model.Role) && !await _roleManager.RoleExistsAsync(model.Role))
+                ModelState.AddModelError(nameof(model.Role), "Select a valid role.");
+
             if (!ModelState.IsValid)
-                return View(model);
+                return CreateView(model);
 
             var user = new ApplicationUser
             {
@@ -64,6 +67,15 @@ namespace TOP4HoneyChains.Web.Controllers
             foreach (var error in result.Errors)
                 ModelState.AddModelError("", error.Description);
 
+            return CreateView(model);
+        }
+
+        // The role dropdown must be reloaded whenever the form is shown again
+        private IActionResult CreateView(RegisterViewModel model)
+        {
+            ViewBag.Roles = _roleManager.Roles.Select(r => r.Name).ToList();
+            ViewBag.Controller = "User Management";
+            ViewBag.Action = "Create New User";
             return View(model);
         }
 

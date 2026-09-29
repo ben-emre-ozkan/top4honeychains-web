@@ -65,8 +65,12 @@ namespace TOP4HoneyChains.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
     CriticalControlPointParameterContent content,
-    IFormFile videoFile)
+    IFormFile? videoFile)
         {
+            // The video is shown in Honey Story, so a new content item needs one
+            if (videoFile == null || videoFile.Length == 0)
+                ModelState.AddModelError("videoFile", "A video file is required.");
+
             if (ModelState.IsValid)
             {
                 if (videoFile != null && videoFile.Length > 0)
@@ -89,7 +93,11 @@ namespace TOP4HoneyChains.Web.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewBag.ParameterId = new SelectList(_context.CriticalControlPointParameters, "ParameterId", "ParameterName", content.ParameterId);
+            ViewBag.ParameterName = _context.CriticalControlPointParameters
+                .Where(p => p.ParameterId == content.ParameterId)
+                .Select(p => p.ParameterName)
+                .FirstOrDefault();
+            ViewBag.ParameterId = content.ParameterId;
 
             return View(content);
         }
@@ -114,7 +122,7 @@ namespace TOP4HoneyChains.Web.Controllers
         public async Task<IActionResult> Edit(
      int id,
      CriticalControlPointParameterContent content,
-     IFormFile videoFile)
+     IFormFile? videoFile)
         {
             if (id != content.ContentId)
                 return NotFound();
@@ -155,6 +163,7 @@ namespace TOP4HoneyChains.Web.Controllers
                     new { parameterId = content.ParameterId });
             }
 
+            content.Parameter = await _context.CriticalControlPointParameters.FindAsync(content.ParameterId);
             return View(content);
         }
 

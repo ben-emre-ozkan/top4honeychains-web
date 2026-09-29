@@ -69,6 +69,9 @@ builder.Services.AddControllersWithViews(options =>
 {
     // FK/unique violations on save/delete -> friendly message instead of HTTP 500
     options.Filters.Add<DbUpdateExceptionFilter>();
+
+    // An empty number/date field posts "" and used to show "The value '' is invalid."
+    options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(_ => "This field is required.");
 });
 
 var app = builder.Build();

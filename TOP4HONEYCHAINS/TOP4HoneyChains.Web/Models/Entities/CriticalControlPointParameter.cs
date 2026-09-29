@@ -9,6 +9,7 @@ namespace TOP4HoneyChains.Web.Models.Entities
         public int ParameterId { get; set; }
 
         [Required(ErrorMessage = "The CCP field is required.")]
+        [Range(1, int.MaxValue, ErrorMessage = "The CCP field is required.")]
         public int? CCPId { get; set; }
 
         [StringLength(500)]

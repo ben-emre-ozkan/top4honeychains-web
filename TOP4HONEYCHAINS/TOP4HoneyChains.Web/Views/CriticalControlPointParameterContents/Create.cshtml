@@ -79,6 +79,7 @@
                                 <div class="mb-3">
                                     <label class="form-label fw-bold">Upload Video</label>
                                     <input type="file" name="videoFile" class="form-control" accept="video/*" />
+                                    @Html.ValidationMessage("videoFile", null, new { @class = "text-danger d-block" })
 
                                     <small class="text-muted">
                                         MP4 recommended. This video will be shown in Honey Story.
