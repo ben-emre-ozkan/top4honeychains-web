@@ -210,12 +210,6 @@
   <data name="Login.ForgotPassword" xml:space="preserve">
     <value>Forgot your password?</value>
   </data>
-  <data name="Login.DontHaveAccount" xml:space="preserve">
-    <value>Don't have an account?</value>
-  </data>
-  <data name="Login.SignUpNow" xml:space="preserve">
-    <value>Sign up now</value>
-  </data>
   <data name="Login.LoginButton" xml:space="preserve">
     <value>Log In</value>
   </data>
@@ -224,45 +218,6 @@
   </data>
   <data name="Login.PasswordPlaceholder" xml:space="preserve">
     <value>Enter your password</value>
-  </data>
-  <data name="Register.Email" xml:space="preserve">
-    <value>Email</value>
-  </data>
-  <data name="Register.Username" xml:space="preserve">
-    <value>Username</value>
-  </data>
-  <data name="Register.Password" xml:space="preserve">
-    <value>Password</value>
-  </data>
-  <data name="Register.ConfirmPassword" xml:space="preserve">
-    <value>Confirm Password</value>
-  </data>
-  <data name="Register.FreeRegister" xml:space="preserve">
-    <value>Free registration</value>
-  </data>
-  <data name="Register.CreateAccount" xml:space="preserve">
-    <value>Create your account</value>
-  </data>
-  <data name="Register.HaveAccount" xml:space="preserve">
-    <value>Already have an account?</value>
-  </data>
-  <data name="Register.RegisterButton" xml:space="preserve">
-    <value>Register</value>
-  </data>
-  <data name="Register.UsernamePlaceholder" xml:space="preserve">
-    <value>Enter your username</value>
-  </data>
-  <data name="Register.EmailPlaceholder" xml:space="preserve">
-    <value>Enter your email address</value>
-  </data>
-  <data name="Register.PasswordPlaceholder" xml:space="preserve">
-    <value>Enter your password</value>
-  </data>
-  <data name="Register.ConfirmPasswordPlaceholder" xml:space="preserve">
-    <value>Re-enter your password</value>
-  </data>
-  <data name="Register.Login" xml:space="preserve">
-    <value>Log In</value>
   </data>
   <data name="ForgotPassword.ResetPassword" xml:space="preserve">
     <value>Reset Password</value>
@@ -323,5 +278,17 @@
   </data>
   <data name="Error.BackHome" xml:space="preserve">
     <value>Back to home</value>
+  </data>
+  <data name="Login.NoPanelAccess" xml:space="preserve">
+    <value>This account does not have access to the web panel. Only administrators can sign in. Please contact an administrator.</value>
+  </data>
+  <data name="ForgotPassword.Sent" xml:space="preserve">
+    <value>If an account with this e-mail address exists, password reset instructions have been sent to it.</value>
+  </data>
+  <data name="ForgotPassword.SendFailed" xml:space="preserve">
+    <value>The password reset e-mail could not be sent. Please try again later or contact an administrator.</value>
+  </data>
+  <data name="ResetPassword.Success" xml:space="preserve">
+    <value>Your password has been reset. You can now sign in with your new password.</value>
   </data>
 </root>

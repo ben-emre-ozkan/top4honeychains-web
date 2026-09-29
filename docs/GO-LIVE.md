@@ -56,9 +56,10 @@ The values below are in git history, so rotating them is the actual fix. Removin
 
 ## 3. Smoke test after deployment
 - [ ] Admin login works. The dashboard and every menu page open.
-- [ ] Register with a tampered `Role=Administrator` → the user gets `Beekeeper`. Then delete the test user.
-- [ ] A Register POST without an antiforgery token is rejected (400).
-- [ ] Forgot password sends an email (new SMTP password), and the reset link works.
+- [ ] `/Account/Register` returns 404 (GET and POST) and the login page has no sign-up link (D-02).
+- [ ] A non-admin account that logs in sees "no access to the web panel" and is not left signed in (D-01).
+- [ ] Forgot password for a real admin e-mail sends a mail (new SMTP password), the reset link works, and the login page confirms the reset.
+- [ ] If the SMTP server is unreachable, forgot password shows "could not be sent" (no 500) and the error is logged.
 - [ ] Public `/honeystory/{guid}` loads, the map shows (new Maps key and domain restriction), and the QR code scans.
 - [ ] Raw → final honey flow and CCP monitoring pages save correctly.
 - [ ] Error page: as an anonymous user, trigger an error (e.g. `/honeystory/qrcode` without `code`). Expect HTTP 500 with the "Something went wrong" page and a reference, not a login redirect. The reference must appear in the log.

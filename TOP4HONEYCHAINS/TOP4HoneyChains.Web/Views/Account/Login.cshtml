@@ -211,29 +211,17 @@
                             </div>
                         }
 
+                        @if (TempData[TOP4HoneyChains.Web.Controllers.AccountController.LoginErrorKey] is string loginError)
+                        {
+                            <div class="text-danger mt-3">@loginError</div>
+                        }
+
+                        @if (TempData[TOP4HoneyChains.Web.Controllers.AccountController.LoginSuccessKey] is string loginSuccess)
+                        {
+                            <div class="alert alert-success mt-3">@loginSuccess</div>
+                        }
+
                     </form>
-
-
-                    <hr class="mt-4">
-
-
-                    <div class="text-center">
-
-                        <p class="mb-0 text-muted">
-
-                            @L["Login.DontHaveAccount"]
-
-                            <a asp-action="Register"
-                               asp-controller="Account"
-                               class="fw-semibold text-primary">
-
-                                @L["Login.SignUpNow"]
-
-                            </a>
-
-                        </p>
-
-                    </div>
 
                 </div>
 

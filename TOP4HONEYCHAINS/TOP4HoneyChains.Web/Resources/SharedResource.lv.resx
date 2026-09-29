@@ -210,12 +210,6 @@
   <data name="Login.ForgotPassword" xml:space="preserve">
     <value>Aizmirsāt paroli?</value>
   </data>
-  <data name="Login.DontHaveAccount" xml:space="preserve">
-    <value>Nav konta?</value>
-  </data>
-  <data name="Login.SignUpNow" xml:space="preserve">
-    <value>Reģistrējieties tagad</value>
-  </data>
   <data name="Login.LoginButton" xml:space="preserve">
     <value>Pieteikties</value>
   </data>
@@ -224,45 +218,6 @@
   </data>
   <data name="Login.PasswordPlaceholder" xml:space="preserve">
     <value>Ievadiet paroli</value>
-  </data>
-  <data name="Register.Email" xml:space="preserve">
-    <value>E-pasts</value>
-  </data>
-  <data name="Register.Username" xml:space="preserve">
-    <value>Lietotājvārds</value>
-  </data>
-  <data name="Register.Password" xml:space="preserve">
-    <value>Parole</value>
-  </data>
-  <data name="Register.ConfirmPassword" xml:space="preserve">
-    <value>Apstiprināt paroli</value>
-  </data>
-  <data name="Register.FreeRegister" xml:space="preserve">
-    <value>Bezmaksas reģistrācija</value>
-  </data>
-  <data name="Register.CreateAccount" xml:space="preserve">
-    <value>Izveidot kontu</value>
-  </data>
-  <data name="Register.HaveAccount" xml:space="preserve">
-    <value>Jums jau ir konts?</value>
-  </data>
-  <data name="Register.RegisterButton" xml:space="preserve">
-    <value>Reģistrēties</value>
-  </data>
-  <data name="Register.UsernamePlaceholder" xml:space="preserve">
-    <value>Ievadiet lietotājvārdu</value>
-  </data>
-  <data name="Register.EmailPlaceholder" xml:space="preserve">
-    <value>Ievadiet savu e-pasta adresi</value>
-  </data>
-  <data name="Register.PasswordPlaceholder" xml:space="preserve">
-    <value>Ievadiet paroli</value>
-  </data>
-  <data name="Register.ConfirmPasswordPlaceholder" xml:space="preserve">
-    <value>Ievadiet paroli vēlreiz</value>
-  </data>
-  <data name="Register.Login" xml:space="preserve">
-    <value>Pieteikties</value>
   </data>
   <data name="ForgotPassword.ResetPassword" xml:space="preserve">
     <value>Atiestatīt paroli</value>
@@ -323,5 +278,17 @@
   </data>
   <data name="Error.BackHome" xml:space="preserve">
     <value>Atpakaļ uz sākumlapu</value>
+  </data>
+  <data name="Login.NoPanelAccess" xml:space="preserve">
+    <value>Šim kontam nav piekļuves tīmekļa panelim. Pieteikties var tikai administratori. Lūdzu, sazinieties ar administratoru.</value>
+  </data>
+  <data name="ForgotPassword.Sent" xml:space="preserve">
+    <value>Ja ar šo e-pasta adresi ir saistīts konts, uz to ir nosūtītas paroles atiestatīšanas instrukcijas.</value>
+  </data>
+  <data name="ForgotPassword.SendFailed" xml:space="preserve">
+    <value>Paroles atiestatīšanas e-pastu neizdevās nosūtīt. Lūdzu, mēģiniet vēlāk vēlreiz vai sazinieties ar administratoru.</value>
+  </data>
+  <data name="ResetPassword.Success" xml:space="preserve">
+    <value>Jūsu parole ir atiestatīta. Tagad varat pieteikties ar jauno paroli.</value>
   </data>
 </root>
