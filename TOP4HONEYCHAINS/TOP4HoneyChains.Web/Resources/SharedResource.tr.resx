@@ -210,12 +210,6 @@
   <data name="Login.ForgotPassword" xml:space="preserve">
     <value>Şifrenizi mi unuttunuz?</value>
   </data>
-  <data name="Login.DontHaveAccount" xml:space="preserve">
-    <value>Hesabınız yok mu?</value>
-  </data>
-  <data name="Login.SignUpNow" xml:space="preserve">
-    <value>Hemen kayıt olun</value>
-  </data>
   <data name="Login.LoginButton" xml:space="preserve">
     <value>Giriş Yap</value>
   </data>
@@ -224,45 +218,6 @@
   </data>
   <data name="Login.PasswordPlaceholder" xml:space="preserve">
     <value>Şifrenizi girin</value>
-  </data>
-  <data name="Register.Email" xml:space="preserve">
-    <value>E-posta</value>
-  </data>
-  <data name="Register.Username" xml:space="preserve">
-    <value>Kullanıcı Adı</value>
-  </data>
-  <data name="Register.Password" xml:space="preserve">
-    <value>Şifre</value>
-  </data>
-  <data name="Register.ConfirmPassword" xml:space="preserve">
-    <value>Şifreyi Onayla</value>
-  </data>
-  <data name="Register.FreeRegister" xml:space="preserve">
-    <value>Ücretsiz kayıt</value>
-  </data>
-  <data name="Register.CreateAccount" xml:space="preserve">
-    <value>Hesabınızı oluşturun</value>
-  </data>
-  <data name="Register.HaveAccount" xml:space="preserve">
-    <value>Zaten hesabınız var mı?</value>
-  </data>
-  <data name="Register.RegisterButton" xml:space="preserve">
-    <value>Kayıt Ol</value>
-  </data>
-  <data name="Register.UsernamePlaceholder" xml:space="preserve">
-    <value>Kullanıcı adınızı girin</value>
-  </data>
-  <data name="Register.EmailPlaceholder" xml:space="preserve">
-    <value>E-posta adresinizi girin</value>
-  </data>
-  <data name="Register.PasswordPlaceholder" xml:space="preserve">
-    <value>Şifrenizi girin</value>
-  </data>
-  <data name="Register.ConfirmPasswordPlaceholder" xml:space="preserve">
-    <value>Şifrenizi tekrar girin</value>
-  </data>
-  <data name="Register.Login" xml:space="preserve">
-    <value>Giriş Yap</value>
   </data>
   <data name="ForgotPassword.ResetPassword" xml:space="preserve">
     <value>Şifreyi Sıfırla</value>
@@ -323,5 +278,20 @@
   </data>
   <data name="Error.BackHome" xml:space="preserve">
     <value>Ana sayfaya dön</value>
+  </data>
+  <data name="Login.Invalid" xml:space="preserve">
+    <value>Kullanıcı adı veya şifre hatalı. Çok sayıda başarısız denemeden sonra hesap bir süre kilitlenir.</value>
+  </data>
+  <data name="Login.NoPanelAccess" xml:space="preserve">
+    <value>Bu hesabın web paneline erişimi yok. Yalnızca yöneticiler giriş yapabilir. Lütfen bir yöneticiyle iletişime geçin.</value>
+  </data>
+  <data name="ForgotPassword.Sent" xml:space="preserve">
+    <value>Bu e-posta adresine ait bir hesap varsa, şifre sıfırlama talimatları gönderildi.</value>
+  </data>
+  <data name="ForgotPassword.SendFailed" xml:space="preserve">
+    <value>Şifre sıfırlama e-postası gönderilemedi. Lütfen daha sonra tekrar deneyin veya bir yöneticiyle iletişime geçin.</value>
+  </data>
+  <data name="ResetPassword.Success" xml:space="preserve">
+    <value>Şifreniz sıfırlandı. Artık yeni şifrenizle giriş yapabilirsiniz.</value>
   </data>
 </root>

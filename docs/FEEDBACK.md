@@ -20,7 +20,7 @@ The report marks items 1, 2, 19 and 20 as critical (shown in bold in the report)
 | RC-3 | **Dropdown data is not reloaded when a POST fails validation.** The view then iterates a null `ViewBag`, which causes a NullReferenceException and a 500. | `UserManagementController.Create` POST (`ViewBag.Roles` is only set in GET) → `Views/UserManagement/Create.cshtml` L90. The same pattern exists in `RawHoneyProductions.Create` (wrong ViewData key). | FB-23 |
 | RC-4 | **There is no required-field marker convention.** No view marks required fields with `*`. | all `Views/*/Create.cshtml`, `Edit.cshtml` | FB-03, FB-15, FB-18, FB-21, FB-26, FB-29 |
 | RC-5 | **"Cancel" is `<button type="reset">`.** It clears the form instead of navigating back. | `Views/Beekeepers/Create.cshtml` L90, `Views/Apiaries/Create.cshtml` L53 | FB-05, FB-10 |
-| RC-6 | **Account pages hide errors.** Identity errors are added under the empty key, but Login, Register and ResetPassword have no validation summary. `ViewBag.Message` is set before a redirect and is lost. The Login page shows no messages. | `Controllers/AccountController.cs` L93-94, L175-191; `Views/Account/{Login,Register,ResetPassword}.cshtml` | FB-01, FB-02 |
+| RC-6 | **Account pages lost or never showed some messages.** Login and ResetPassword already rendered Identity errors in their own error blocks. However, ForgotPassword had no error display, an SMTP failure was an unhandled 500, and the reset success message was set in `ViewBag` before a redirect and lost. A signed-in non-admin was stuck in an AccessDenied loop (Login → Dashboard → AccessDenied, whose only link is the Dashboard). | `Controllers/AccountController.cs`; `Views/Account/{Login,ForgotPassword}.cshtml` (reproduced 2026-09-29) | FB-01, FB-02 |
 | RC-7 | **The language switcher drops the query string.** `returnUrl = Context.Request.Path` loses values like `?wholesalerId=`, so pages that take query parameters return 404. | `Views/Shared/_horizontal.cshtml` L85-125 | FB-34 |
 | RC-8 | **Role model.** "Administrator" is the only role that is enforced. Every business controller is admin-only, and the menu has no role checks. | ARCHITECTURE §2.4 | FB-02, FB-33 |
 
@@ -28,8 +28,8 @@ The report marks items 1, 2, 19 and 20 as critical (shown in bold in the report)
 
 | ID | Title | Area | Type | Severity | RC | Code location / cause | Decision | Status |
 |---|---|---|---|---|---|---|---|---|
-| **FB-01** | Password reset does not work | login | broken flow | **critical** | RC-6 | See note 1 below the table. | [D-03](DECISIONS.md): reset must work for admins | open |
-| **FB-02** | "Sign up now" does not work | login | broken flow | **critical** | RC-6, RC-8 | The link itself is fine (`Views/Account/Login.cshtml` L226). See note 2 below the table. | [D-02](DECISIONS.md), D-01: sign-up removed | open |
+| **FB-01** | Password reset does not work | login | broken flow | **critical** | RC-6 | See note 1 below the table. | [D-03](DECISIONS.md): reset must work for admins | fixed (branch `fix/account-flows`, not merged) |
+| **FB-02** | "Sign up now" does not work | login | broken flow | **critical** | RC-6, RC-8 | The link itself was fine; the Register flow behind it was the problem. See note 2 below the table. | [D-02](DECISIONS.md), D-01: sign-up removed | fixed: sign-up removed (branch `fix/account-flows`, not merged) |
 | FB-03 | Mark required beekeeper fields (First/Last name, Birth date) with * | beekeeper | UX | low | RC-4 | `Views/Beekeepers/Create.cshtml`, `Edit.cshtml` | | open |
 | FB-04 | Explain what the "File upload" field is for | beekeeper | UX | low | | `Views/Beekeepers/Create.cshtml` (profile photo, stored as a blob) | | open |
 | FB-05 | Cancel button does not work (beekeeper) | beekeeper | broken flow | medium | RC-5 | `Views/Beekeepers/Create.cshtml` L90 (confirmed) | | open |
@@ -65,15 +65,27 @@ The report marks items 1, 2, 19 and 20 as critical (shown in bold in the report)
 
 ### Notes on the critical findings
 
-1. **FB-01 (password reset).** Code location: `AccountController` ForgotPassword/ResetPassword (L106-194), `Services/EmailService.cs`. Likely causes:
-   - (a) Beekeeper accounts created by admins get the fake address `{businessNo}@top4honeychains.com`, so reset mail can never reach them.
-   - (b) Reset errors are invisible (RC-6) and the success message is lost.
-   - (c) An SMTP failure is unhandled.
-   - The actual failure on production is unverified.
-2. **FB-02 (sign-up).** Code location: `AccountController.Register`. Likely causes:
-   - (a) Identity errors such as a duplicate username are not shown (RC-6), so the form just reloads.
-   - (b) After a successful sign-up the user gets `Beekeeper`, and Login redirects to the admin-only Dashboard, which ends in AccessDenied.
-   - The role-escalation part is already fixed (`1b89b58`).
+1. **FB-01 (password reset).** Code location: `AccountController` ForgotPassword/ResetPassword, `Services/EmailService.cs`.
+   - **Reproduced locally (2026-09-29, smtp4dev):**
+     - With a working SMTP server the reset itself works end to end, and invalid-token errors are shown.
+     - The defects were: an SMTP failure caused an unhandled `SmtpException` (HTTP 500); the success message was lost after the redirect; and the "sent" message differed for existing vs. unknown e-mails (account enumeration).
+     - Beekeepers' placeholder e-mails can never receive mail; that is accepted by [D-03](DECISIONS.md).
+   - **Fix (`fix/account-flows`):**
+     - An SMTP failure is logged, and the form shows "could not be sent, try later or contact an administrator".
+     - The same "if an account exists…" message is shown in both cases.
+     - After a reset, the login page shows a confirmation (TempData).
+     - Messages are localized in 5 languages.
+   - **Hardening after review (`fix/account-flows`):**
+     - The reset link is built from `App:PublicBaseUrl`, not from the request's `Host` header, so a forged `Host` cannot send a real token to another site. Without the setting, Development falls back to the request and other environments refuse to send (logged). Verified: a POST with `Host: evil.example` produced a link to the configured URL.
+     - Login and the lock screen lock an account for 15 minutes after 5 failed attempts. A wrong password and a locked account get the same message, so user names are not revealed.
+     - Login POST, `UpdatePhone` and `ChangePassword` validate the anti-forgery token (login POST without token → 400). Login GET redirects after signing out a non-admin session, so the form's token is issued anonymously.
+   - The production failure itself (Gmail credentials or `From` address) is still unverified. It will be checked with the go-live smoke test after the SMTP secrets are rotated.
+2. **FB-02 (sign-up).** Per [D-02](DECISIONS.md), public self-registration is closed.
+   - **Removed:** the `Register` GET/POST, `Views/Account/Register.cshtml`, the "Sign up now" link and its resource strings. `/Account/Register` now returns 404. Admins create users in `UserManagement/Create`.
+   - **Non-admins ([D-01](DECISIONS.md)):**
+     - Valid credentials without the Administrator role now get "This account does not have access to the web panel…" on the login page, and are not left signed in.
+     - A stale non-admin session is signed out by `Login` (GET) and `AccessDenied` instead of looping.
+   - The role-escalation part was fixed earlier (`1b89b58`).
 3. **FB-19 (wholesaler creation).** Code location: `WholesalersController.Create`/`Edit`, `Views/Wholesalers/Create.cshtml`, `Edit.cshtml`.
    - **Confirmed cause (reproduced 2026-09-29):** the hidden `CreatedAt` field posted an empty value. Binding it to a non-nullable `DateTime` failed, so `ModelState` was invalid. The `ModelOnly` validation summary hid that property error, and the form silently re-rendered without saving. The earlier "0001-01-01 → 500" guess was wrong: the request never reached the DB.
    - **Fix:** `CreatedAt` is no longer bound from the form. Create sets it on the server; Edit keeps the stored value (`IsModified = false`).

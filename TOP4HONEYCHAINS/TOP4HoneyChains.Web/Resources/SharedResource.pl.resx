@@ -210,12 +210,6 @@
   <data name="Login.ForgotPassword" xml:space="preserve">
     <value>Zapomniałeś hasła?</value>
   </data>
-  <data name="Login.DontHaveAccount" xml:space="preserve">
-    <value>Nie masz konta?</value>
-  </data>
-  <data name="Login.SignUpNow" xml:space="preserve">
-    <value>Zarejestruj się teraz</value>
-  </data>
   <data name="Login.LoginButton" xml:space="preserve">
     <value>Zaloguj się</value>
   </data>
@@ -224,45 +218,6 @@
   </data>
   <data name="Login.PasswordPlaceholder" xml:space="preserve">
     <value>Wpisz hasło</value>
-  </data>
-  <data name="Register.Email" xml:space="preserve">
-    <value>E-mail</value>
-  </data>
-  <data name="Register.Username" xml:space="preserve">
-    <value>Nazwa użytkownika</value>
-  </data>
-  <data name="Register.Password" xml:space="preserve">
-    <value>Hasło</value>
-  </data>
-  <data name="Register.ConfirmPassword" xml:space="preserve">
-    <value>Potwierdź hasło</value>
-  </data>
-  <data name="Register.FreeRegister" xml:space="preserve">
-    <value>Darmowa rejestracja</value>
-  </data>
-  <data name="Register.CreateAccount" xml:space="preserve">
-    <value>Utwórz konto</value>
-  </data>
-  <data name="Register.HaveAccount" xml:space="preserve">
-    <value>Masz już konto?</value>
-  </data>
-  <data name="Register.RegisterButton" xml:space="preserve">
-    <value>Zarejestruj się</value>
-  </data>
-  <data name="Register.UsernamePlaceholder" xml:space="preserve">
-    <value>Wprowadź nazwę użytkownika</value>
-  </data>
-  <data name="Register.EmailPlaceholder" xml:space="preserve">
-    <value>Wprowadź adres e-mail</value>
-  </data>
-  <data name="Register.PasswordPlaceholder" xml:space="preserve">
-    <value>Wprowadź hasło</value>
-  </data>
-  <data name="Register.ConfirmPasswordPlaceholder" xml:space="preserve">
-    <value>Wprowadź ponownie hasło</value>
-  </data>
-  <data name="Register.Login" xml:space="preserve">
-    <value>Zaloguj się</value>
   </data>
   <data name="ForgotPassword.ResetPassword" xml:space="preserve">
     <value>Zresetuj hasło</value>
@@ -323,5 +278,20 @@
   </data>
   <data name="Error.BackHome" xml:space="preserve">
     <value>Powrót do strony głównej</value>
+  </data>
+  <data name="Login.Invalid" xml:space="preserve">
+    <value>Nieprawidłowa nazwa użytkownika lub hasło. Po zbyt wielu nieudanych próbach konto zostaje na pewien czas zablokowane.</value>
+  </data>
+  <data name="Login.NoPanelAccess" xml:space="preserve">
+    <value>To konto nie ma dostępu do panelu internetowego. Zalogować się mogą tylko administratorzy. Skontaktuj się z administratorem.</value>
+  </data>
+  <data name="ForgotPassword.Sent" xml:space="preserve">
+    <value>Jeśli istnieje konto z tym adresem e-mail, wysłano na nie instrukcje resetowania hasła.</value>
+  </data>
+  <data name="ForgotPassword.SendFailed" xml:space="preserve">
+    <value>Nie udało się wysłać wiadomości e-mail z resetem hasła. Spróbuj ponownie później lub skontaktuj się z administratorem.</value>
+  </data>
+  <data name="ResetPassword.Success" xml:space="preserve">
+    <value>Hasło zostało zresetowane. Możesz teraz zalogować się nowym hasłem.</value>
   </data>
 </root>

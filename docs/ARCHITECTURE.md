@@ -86,9 +86,9 @@ Missing from the pipeline: `UseHttpsRedirection`, `UseHsts`, `UseStatusCodePages
   2. The link is built as `Url.Action("ResetPassword", "Account", {email, token}, Request.Scheme)` and sent by email.
   3. `ResetPassword` GET/POST (L145-192) calls `ResetPasswordAsync`.
   - Views: `Views/Account/ForgotPassword.cshtml` and `Views/Account/ResetPassword.cshtml`.
-  - An SMTP failure is unhandled (500).
-  - The success message is lost because `ViewBag` is set before a redirect.
-- **There is no email confirmation** on register.
+  - ~~An SMTP failure is unhandled (500). The success message is lost because `ViewBag` is set before a redirect.~~ Fixed in `fix/account-flows`: the failure is logged and shown on the form, and the success message goes through TempData to the login page.
+- Self-registration was removed in `fix/account-flows` ([D-02](DECISIONS.md)); users are created by admins in `UserManagement/Create`. Non-admins cannot use the panel ([D-01](DECISIONS.md)): login signs them out with a message.
+- Local e-mail: SMTP settings are overridden with `dotnet user-secrets` (`UserSecretsId` in the csproj) to point at smtp4dev (`localhost:2525`, UI `http://localhost:5100`). See `CLAUDE.md`.
 
 ### 2.6 Error handling and logging
 **Baseline** (confirmed at runtime 2026-09-29):
@@ -116,7 +116,7 @@ All controllers are in `Controllers/`, views in `Views/<Controller>/`, and entit
 
 | Area (test report) | Controller(s) | Key actions | Views | Tables |
 |---|---|---|---|---|
-| Login / sign-up / reset | `AccountController` | Login, Register, ForgotPassword, ResetPassword, Logout, Profile, ChangePassword, UpdatePhone, LockScreen/Unlock, AccessDenied | `Account/*` | AspNetUsers, AspNetRoles, AspNetUserRoles |
+| Login / sign-up / reset | `AccountController` | Login, ~~Register~~ (removed, D-02), ForgotPassword, ResetPassword, Logout, Profile, ChangePassword, UpdatePhone, LockScreen/Unlock, AccessDenied | `Account/*` | AspNetUsers, AspNetRoles, AspNetUserRoles |
 | Beekeeper profile | `BeekeepersController` | Index, Create, Edit, Activate, Deactivate (no delete; Details has no view) | `Beekeepers/Index, Create, Edit` | Beekeepers (+ lookups) |
 | Apiary | `ApiariesController`, `ApiaryPhotosController` | Index, ByBeekeeper, Create, Edit, (De)Activate; photos: UploadSingle, UpdateDesc, Delete, Image | `Apiaries/*`, `ApiaryPhotos/Index` | Apiaries, ApiaryPhotos (blob) |
 | Raw honey production | `RawHoneyProductionsController`, `RawHoneyProductionPeriodsController` | CRUD, RawHoneyProductionByApiary, ManageCCP, CCPOverview | `RawHoneyProductions/*`, `RawHoneyProductionPeriods/*` | RawHoneyProductions, RawHoneyProductionPeriods, RawHoneyCCPAssignments |

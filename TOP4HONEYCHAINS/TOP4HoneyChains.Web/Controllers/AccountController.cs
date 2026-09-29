@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using TOP4HoneyChains.Web.Models.Identity;
 using TOP4HoneyChains.Web.Models.ViewModels;
 using TOP4HoneyChains.Web.Services;
@@ -10,38 +11,54 @@ namespace TOP4HoneyChains.Web.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private const string SelfRegistrationRole = "Beekeeper";
+        // Only administrators use the web panel in this release (docs/DECISIONS.md, D-01)
+        private const string PanelRole = "Administrator";
+
+        // Flash messages shown on the login page
+        public const string LoginSuccessKey = "LoginSuccess";
+        public const string LoginErrorKey = "LoginError";
 
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IEmailService _emailService;
+        private readonly IStringLocalizer<SharedResource> _localizer;
+        private readonly ILogger<AccountController> _logger;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            RoleManager<IdentityRole> roleManager,
-            IEmailService emailService)
+            IEmailService emailService,
+            IStringLocalizer<SharedResource> localizer,
+            ILogger<AccountController> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _roleManager = roleManager;
             _emailService = emailService;
+            _localizer = localizer;
+            _logger = logger;
         }
 
         [AllowAnonymous]
         [HttpGet]
-        public IActionResult Login()
+        public async Task<IActionResult> Login()
         {
-            if (User.Identity.IsAuthenticated)
+            if (User.Identity?.IsAuthenticated == true)
             {
-                return RedirectToAction("Index", "Dashboard");
+                if (User.IsInRole(PanelRole))
+                    return RedirectToAction("Index", "Dashboard");
+
+                // A non-admin session (e.g. from before D-01) would loop via AccessDenied.
+                // Redirect after signing out so the form's anti-forgery token is issued anonymously.
+                await _signInManager.SignOutAsync();
+                TempData[LoginErrorKey] = _localizer["Login.NoPanelAccess"].Value;
+                return RedirectToAction(nameof(Login));
             }
             return View();
         }
 
         [AllowAnonymous]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
@@ -51,50 +68,23 @@ namespace TOP4HoneyChains.Web.Controllers
                 model.UserName,
                 model.Password,
                 model.RememberMe,
-                lockoutOnFailure: false);
+                lockoutOnFailure: true);
 
             if (result.Succeeded)
-                return RedirectToAction("Index", "Dashboard");
+            {
+                var user = await _userManager.FindByNameAsync(model.UserName);
+                if (user != null && await _userManager.IsInRoleAsync(user, PanelRole))
+                    return RedirectToAction("Index", "Dashboard");
 
-            ModelState.AddModelError("", "Invalid login attempt.");
-            return View(model);
-        }
-
-        [AllowAnonymous]
-        [HttpGet]
-        public IActionResult Register()
-        {
-            return View();
-        }
-
-        [AllowAnonymous]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel model)
-        {
-            // Self-registration never takes a role from the client; see SelfRegistrationRole
-            ModelState.Remove(nameof(RegisterViewModel.Role));
-
-            if (!ModelState.IsValid)
+                // Valid credentials, but no access to the panel: don't keep the session
+                await _signInManager.SignOutAsync();
+                ModelState.AddModelError("", _localizer["Login.NoPanelAccess"]);
                 return View(model);
-
-            var user = new ApplicationUser
-            {
-                UserName = model.UserName,
-                Email = model.Email
-            };
-
-            var result = await _userManager.CreateAsync(user, model.Password);
-
-            if (result.Succeeded)
-            {
-                await _userManager.AddToRoleAsync(user, SelfRegistrationRole);
-                return RedirectToAction("Login");
             }
 
-            foreach (var error in result.Errors)
-                ModelState.AddModelError("", error.Description);
-
+            // Same message for a wrong password and a locked-out account, so it does not reveal
+            // which user names exist or are locked (non-admin accounts are locked, D-09)
+            ModelState.AddModelError("", _localizer["Login.Invalid"]);
             return View(model);
         }
 
@@ -115,20 +105,22 @@ namespace TOP4HoneyChains.Web.Controllers
 
             var user = await _userManager.FindByEmailAsync(model.Email);
 
+            // Same message whether or not the account exists (no account enumeration)
             if (user == null)
             {
-                ViewBag.Message =
-                    "If an account with this email exists, password reset instructions have been sent.";
+                ViewBag.Message = _localizer["ForgotPassword.Sent"].Value;
                 return View();
             }
 
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
 
-            var resetLink = Url.Action(
-                "ResetPassword",
-                "Account",
-                new { email = model.Email, token = token },
-                Request.Scheme);
+            var resetLink = BuildPublicUrl(Url.Action("ResetPassword", "Account", new { email = model.Email, token = token })!);
+            if (resetLink == null)
+            {
+                _logger.LogError("App:PublicBaseUrl is not configured; password reset e-mail not sent");
+                ModelState.AddModelError("", _localizer["ForgotPassword.SendFailed"]);
+                return View(model);
+            }
 
             var mailBody = $@"<p>Hello,</p>
                               <p>You requested a password reset.</p>
@@ -137,9 +129,18 @@ namespace TOP4HoneyChains.Web.Controllers
                               <br />
                               <p>TOP4HoneyChains</p>";
 
-            await _emailService.SendAsync(model.Email, "Reset your TOP4HoneyChains password", mailBody);
+            try
+            {
+                await _emailService.SendAsync(model.Email, "Reset your TOP4HoneyChains password", mailBody);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Password reset e-mail could not be sent for user {UserId}", user.Id);
+                ModelState.AddModelError("", _localizer["ForgotPassword.SendFailed"]);
+                return View(model);
+            }
 
-            ViewBag.Message = "Password reset instructions have been sent to your email.";
+            ViewBag.Message = _localizer["ForgotPassword.Sent"].Value;
 
             return View();
         }
@@ -172,7 +173,7 @@ namespace TOP4HoneyChains.Web.Controllers
             if (user == null)
             {
                 // Güvenlik: kullanıcı yoksa bile aynı mesaj
-                ViewBag.Message = "Your password has been reset successfully.";
+                TempData[LoginSuccessKey] = _localizer["ResetPassword.Success"].Value;
                 return RedirectToAction("Login");
             }
 
@@ -183,7 +184,7 @@ namespace TOP4HoneyChains.Web.Controllers
 
             if (result.Succeeded)
             {
-                ViewBag.Message = "Your password has been reset successfully.";
+                TempData[LoginSuccessKey] = _localizer["ResetPassword.Success"].Value;
                 return RedirectToAction("Login");
             }
 
@@ -201,8 +202,17 @@ namespace TOP4HoneyChains.Web.Controllers
         }
 
         [AllowAnonymous]
-        public IActionResult AccessDenied()
+        public async Task<IActionResult> AccessDenied()
         {
+            // Signed-in non-admins have nothing to open in the panel (D-01): sign them out
+            // instead of showing a page whose only link leads back here
+            if (User.Identity?.IsAuthenticated == true && !User.IsInRole(PanelRole))
+            {
+                await _signInManager.SignOutAsync();
+                TempData[LoginErrorKey] = _localizer["Login.NoPanelAccess"].Value;
+                return RedirectToAction(nameof(Login));
+            }
+
             return View();
         }
 
@@ -226,7 +236,7 @@ namespace TOP4HoneyChains.Web.Controllers
             if (user == null)
                 return RedirectToAction("Login");
 
-            var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
+            var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, lockoutOnFailure: true);
 
             if (result.Succeeded)
                 return RedirectToAction("Index", "Dashboard");
@@ -257,6 +267,7 @@ namespace TOP4HoneyChains.Web.Controllers
 
         [HttpPost]
         [Authorize]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdatePhone(ProfileViewModel model)
         {
             var user = await _userManager.GetUserAsync(User);
@@ -272,6 +283,7 @@ namespace TOP4HoneyChains.Web.Controllers
 
         [HttpPost]
         [Authorize]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangePassword(ProfileChangePasswordViewModel model)
         {
             if (!ModelState.IsValid)
@@ -294,6 +306,19 @@ namespace TOP4HoneyChains.Web.Controllers
             }
 
             return RedirectToAction("Profile");
+        }
+    
+
+        // Links in e-mails are built from configuration, never from the request's Host header,
+        // which an attacker can set (reset-link poisoning). Development falls back to the request.
+        private string? BuildPublicUrl(string relativePath)
+        {
+            var baseUrl = HttpContext.RequestServices.GetRequiredService<IConfiguration>()["App:PublicBaseUrl"];
+            if (!string.IsNullOrWhiteSpace(baseUrl))
+                return baseUrl.TrimEnd('/') + relativePath;
+
+            var env = HttpContext.RequestServices.GetRequiredService<IWebHostEnvironment>();
+            return env.IsDevelopment() ? $"{Request.Scheme}://{Request.Host}{relativePath}" : null;
         }
     }
 }
