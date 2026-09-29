@@ -1,6 +1,6 @@
 # TOP4HoneyChains web panel – release notes
 
-**Version:** 1.0.0-rc1 (release candidate, not yet deployed)
+**Version:** 1.0.0-rc2 (release candidate, not yet deployed; rc1 was 2026-09-29)
 **Date:** 2026-09-29
 **Audience:** project partners (LBTU test report follow-up)
 
@@ -33,7 +33,7 @@ Status legend: **fixed** = changed in this release · **deferred** = agreed to m
 ### Apiaries
 | ID | Finding | Status | Change |
 |---|---|---|---|
-| FB-09 | Pick the location on a map | deferred | Planned for a later release. |
+| FB-09 | Pick the location on a map | deferred | Planned for the next release. |
 | FB-10 | Cancel button does not work | fixed | Cancel returns to the beekeeper's apiaries. |
 | FB-11 | No validation for hive count and coordinates | fixed | Hive count 1–10000, latitude ±90, longitude ±180. Decimal numbers are read correctly in every UI language ("1.5" and "1,5"). |
 | FB-12 | Empty apiary form can be submitted without a message | fixed | Every field shows its own error message. |
@@ -64,7 +64,7 @@ Status legend: **fixed** = changed in this release · **deferred** = agreed to m
 | FB-24 | Saving an empty "Create CCP Parameter" form crashes | fixed | A clear message is shown instead of an error page. |
 | FB-25 | An empty category can be saved | fixed | The category name is required. |
 | FB-26 | The content video is required but not marked | fixed | Marked with *, with a clear message; allowed types and size are checked (MP4 or WEBM, up to 25 MB). |
-| FB-27 | Support other media types (e.g. images) | deferred | Planned for a later release. |
+| FB-27 | Support other media types (e.g. images) | deferred | Planned for the next release. |
 | FB-28 | Dropdown icon for Content Type | fixed | The field now shows the dropdown arrow. |
 
 ### Lookup tables
@@ -78,8 +78,14 @@ Status legend: **fixed** = changed in this release · **deferred** = agreed to m
 ### General
 | ID | Finding | Status | Change |
 |---|---|---|---|
-| FB-33 | Role-based authorization | deferred | This release is for administrators only; roles for beekeepers and wholesalers come later. |
+| FB-33 | Role-based authorization | deferred | This release is for administrators only; roles for beekeepers and wholesalers are planned for the next release. |
 | FB-34 | Changing the language on the wholesaler page gives "not found" | fixed | Switching the language stays on the same page, including its parameters. |
+
+## Public Honey Story page (QR code)
+- The QR code on a batch now contains the full web address of its Honey Story page, so scanning it with a phone opens the page directly (before, it contained only an internal code).
+- Only published (finalized) batches have a public page; unfinished batches are not visible.
+- Privacy of the beekeepers: the page shows the beekeeper's name, but no photo or phone number. Apiary locations are shown only approximately (an area of about 10 km, no exact position), and the exact coordinates are not sent to the browser.
+- Apiary photos are only available for apiaries that supplied a published batch.
 
 ## Other improvements found during the work
 - Numbers with decimals are read the same way in every UI language (English, Turkish, Spanish, Polish, Latvian). Before, "1.5" could be stored as 15 in some languages. A check of the existing data found no values affected in this way.
@@ -94,8 +100,9 @@ The release includes a security review of the panel. In general terms:
 - Protection against forged requests on every form and action that changes data; deleting and (de)activating records requires a confirmed form submission.
 - Uploaded files are checked on the server (type, content and size).
 - Passwords and keys were removed from the source code and are supplied by the server configuration; the affected credentials will be renewed at go-live.
+- In production the site is served over HTTPS only: plain HTTP is redirected and browsers are told to use HTTPS (HSTS). The certificate is managed by the university IT.
 
 ## Questions for the partners
 - **PQ-01 (FB-16, FB-17):** A raw honey production is unique per apiary + production period + honey type. If two wholesalers buy honey from the same beekeeper for the same apiary, period and honey type, how should this be recorded? Should a production period be restricted to certain honey types?
-- **CCP measurement data:** in the test data, most CCP parameters hold the same value ten times, and the values of five parameters look shifted by one position (for example a honey moisture of 5.9 % and a proline value of 3.75 mg/kg). Please check whether these records are test data or were entered under the wrong parameter.
+- **PQ-02, CCP measurement data:** in the current data, most CCP parameters hold the same value ten times, and the values of five parameters look shifted by one position (for example a honey moisture of 5.9 % and a proline value of 3.75 mg/kg). Please check whether these records are test data or were entered under the wrong parameter, and whether they should be corrected before go-live.
 - **Translations:** the new messages in Spanish, Polish and Latvian were translated by us; please review them.

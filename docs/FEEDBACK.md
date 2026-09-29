@@ -147,18 +147,13 @@ Every Create and Edit form marks the fields that the server requires with a red 
   - Batch details (22): none above its lot amount, no lot used beyond its amount.
   - CCP numeric values (36 parameters with values): no value ≥ 9× or ≤ 1/9 of its parameter's median. Not a decimal problem, but worth a look by the partners: most parameters hold the same value repeated 10 times (demo-like data), and parameters 38–42 hold exactly the values of parameters 22–26 shifted by one position (e.g. "Moisture" 5.90 %, "Proline" 3.75 mg/kg, both implausible for honey), which looks like values entered under the wrong parameter.
 
-## Items that need a decision (2026-09-29)
-All FB/ENG items that did not need a decision are fixed. These remain:
+## Items that need a decision (updated 2026-09-29)
+All FB/ENG items that did not need a decision are fixed. The owner decided D-09 to D-13 on 2026-09-29 (QR full URL, HoneyStory privacy, HTTPS; D-09/D-10 confirmed). Remaining:
 | Item | Decision needed | Who |
 |---|---|---|
 | FB-16, FB-17 | Raw honey uniqueness with several wholesalers; period ↔ honey type link ([PQ-01](PARTNER-QUESTIONS.md)). No change in this release (D-06). | partners |
-| FB-09, FB-27, FB-33 | Deferred by D-07 / D-01; schedule for the next release. | owner |
-| D-09 (provisional parts) | Lock new beekeeper accounts at creation; Activate keeps the lock. | owner |
-| D-10 (provisional) | Upload limits: images 8 MB, videos 25 MB (MP4/WEBM). Larger videos need a server limit change. | owner |
-| QR content (GO-LIVE) | QR codes encode only the batch GUID, so scanning does not open a link. Encode the full public URL (`App:PublicBaseUrl` + `/honeystory/{guid}`)? Printed labels would differ from new ones. | owner |
-| HoneyStory privacy (GO-LIVE) | The public page shows draft batches, beekeeper names/photos and apiary GPS. | owner |
-| HTTPS (GO-LIVE) | Enforced by IIS/proxy, or add HTTPS redirect + HSTS in the app? | owner / hosting |
-| CCP test data | Repeated and shifted CCP values in the data (see the note on decimal input). | partners |
+| CCP test data | Repeated and shifted CCP values in the data ([PQ-02](PARTNER-QUESTIONS.md)); not a code issue. | partners |
+| FB-09, FB-27, FB-33 | Deferred to the next release (D-07 / D-01); kept in this backlog. | next release |
 
 ## Proposed order of work
 
