@@ -1,0 +1,6 @@
+/* Required form fields: <label class="form-label required"> shows a red asterisk (RC-4) */
+label.required::after {
+    content: " *";
+    color: #f46a6a;
+    font-weight: 600;
+}

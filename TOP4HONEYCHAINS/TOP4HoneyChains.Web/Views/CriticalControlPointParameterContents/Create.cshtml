@@ -49,7 +49,7 @@
 
                                 <!-- 🔵 CONTENT TYPE -->
                                 <div class="mb-3">
-                                    <label asp-for="ContentType" class="form-label fw-bold">Content Type</label>
+                                    <label asp-for="ContentType" class="form-label fw-bold required">Content Type</label>
                                     <select asp-for="ContentType" class="form-control">
                                         <option value="Info">Info</option>
                                         <option value="Video">Video</option>
@@ -77,7 +77,7 @@
 
                                 <!-- 🔥 VIDEO UPLOAD -->
                                 <div class="mb-3">
-                                    <label class="form-label fw-bold">Upload Video</label>
+                                    <label class="form-label fw-bold required">Upload Video</label>
                                     <input type="file" name="videoFile" class="form-control" accept="video/*" />
                                     @Html.ValidationMessage("videoFile", null, new { @class = "text-danger d-block" })
 
