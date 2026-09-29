@@ -50,7 +50,7 @@ The values below are in git history, so rotating them is the actual fix. Removin
 - [x] ~~The error page is admin-only and its layout is broken~~: fixed in `fix/db-error-handling`.
 - [x] ~~Deleting records referenced by FKs gives unhandled 500s~~: fixed in `fix/db-error-handling`.
 - [ ] The localized messages added for es/pl/lv (`Error.*` keys in `Resources/SharedResource.*.resx`) were translated by us. Ask the partners to review them.
-- [ ] Missing antiforgery / state changes via GET in User/Role management.
+- [x] ~~Missing antiforgery / state changes via GET in User/Role management~~: global `AutoValidateAntiforgeryToken` filter; user, role and CCP-content deletes are POST-only (`fix/antiforgery-global`).
 - [ ] Unrestricted video upload in CCP ParameterContents.
 - [ ] HTTPS: is it enforced by IIS/proxy? If not, add HTTPS redirect + HSTS.
 

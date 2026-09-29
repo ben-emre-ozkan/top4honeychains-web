@@ -167,6 +167,7 @@ namespace TOP4HoneyChains.Web.Controllers
             return View(content);
         }
 
+        [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
             var content = await _context.CriticalControlPointParameterContents

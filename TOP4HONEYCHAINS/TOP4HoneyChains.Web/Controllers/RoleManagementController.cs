@@ -25,6 +25,7 @@ namespace TOP4HoneyChains.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(string roleName)
         {
             if (!string.IsNullOrEmpty(roleName))
@@ -37,6 +38,7 @@ namespace TOP4HoneyChains.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, string roleName)
         {
             var role = await _roleManager.FindByIdAsync(id);
@@ -51,6 +53,8 @@ namespace TOP4HoneyChains.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(string id)
         {
             var role = await _roleManager.FindByIdAsync(id);

@@ -206,6 +206,11 @@
         </div>
     </div>
 
+    @* Deletes are POSTs with an anti-forgery token (no state change via GET) *@
+    <form id="deleteUserForm" asp-controller="UserManagement" asp-action="Delete" method="post" class="d-none">
+        <input type="hidden" name="id" />
+    </form>
+
     @section scripts{
 
         <script src="~/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
@@ -248,9 +253,9 @@
                     confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        $.post('/UserManagement/Delete', { id: userId }, function () {
-                            location.reload();
-                        });
+                        var f = document.getElementById('deleteUserForm');
+                        f.elements['id'].value = userId;
+                        f.submit();
                     }
                 });
             }

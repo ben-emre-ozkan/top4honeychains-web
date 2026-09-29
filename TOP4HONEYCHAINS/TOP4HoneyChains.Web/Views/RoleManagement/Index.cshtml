@@ -232,6 +232,11 @@
     </div>
 
 
+    @* Deletes are POSTs with an anti-forgery token (no state change via GET) *@
+    <form id="deleteRoleForm" asp-controller="RoleManagement" asp-action="Delete" method="post" class="d-none">
+        <input type="hidden" name="id" />
+    </form>
+
     @section scripts{
 
         <script src="~/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
@@ -282,7 +287,7 @@
 
         if(result.isConfirmed){
 
-        window.location = '/RoleManagement/Delete/' + id
+        var f = document.getElementById('deleteRoleForm'); f.elements['id'].value = id; f.submit();
 
         }
 
