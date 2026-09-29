@@ -33,7 +33,7 @@ The report marks items 1, 2, 19 and 20 as critical (shown in bold in the report)
 | FB-03 | Mark required beekeeper fields (First/Last name, Birth date) with * | beekeeper | UX | low | RC-4 | `Views/Beekeepers/Create.cshtml`, `Edit.cshtml` | | open |
 | FB-04 | Explain what the "File upload" field is for | beekeeper | UX | low | | `Views/Beekeepers/Create.cshtml` (profile photo, stored as a blob) | | open |
 | FB-05 | Cancel button does not work (beekeeper) | beekeeper | broken flow | medium | RC-5 | `Views/Beekeepers/Create.cshtml` L90 (confirmed) | | open |
-| FB-06 | Purpose type, beekeeping type and education level have no practical function | beekeeper | UX | low | | `Beekeepers` FKs to the lookups. Nothing uses them beyond display. | [D-08](DECISIONS.md): keep, make optional | open |
+| FB-06 | Purpose type, beekeeping type and education level have no practical function | beekeeper | UX | low | | `Beekeepers` FKs to the lookups. Nothing uses them beyond display. | [D-08](DECISIONS.md): keep, make optional | fixed (branch `fix/lookup-optional`, not merged) |
 | FB-07 | Explain why Activate/Deactivate matters (beekeeper) | beekeeper | UX | low | | `BeekeepersController.Activate/Deactivate`: sets `IsActive` and locks the Identity login out | | open |
 | FB-08 | No delete function for beekeepers | beekeeper | broken flow | medium | | No delete exists by design (soft deactivate only). A hard delete would hit FKs (Apiaries) and the linked Identity user. | [D-04](DECISIONS.md): deactivate only, explain in UI | open |
 | FB-09 | Pick the apiary location on a map instead of typing coordinates | apiary | UX (feature) | low | | `Views/Apiaries/Create.cshtml`, `Edit.cshtml`. A Maps key already exists (see GO-LIVE secrets). | [D-07](DECISIONS.md) | deferred |
@@ -87,6 +87,14 @@ The report marks items 1, 2, 19 and 20 as critical (shown in bold in the report)
      - Data-wide, only 10 of 61 raw lots are eligible: 49 have incomplete CCPs and 2 have none.
    - **So FB-20 is mainly the CCP-completion gate** plus a missing empty-state message, not a crash. Decision [D-05](DECISIONS.md): the rule stays and the UI must explain it.
    - `Create` POST also skips `ModelState`.
+
+### Note on FB-06 (optional lookup fields)
+Per [D-08](DECISIONS.md) the fields stay and are optional. The DB columns were already nullable, and Create already accepted empty values.
+- **Reproduced defect:** the beekeeper **Edit** form had no empty option. Editing a beekeeper without these values silently saved the first entry of each list, and a value could never be cleared again. None of the 62 beekeepers in the local copy currently has an empty value.
+- **Fix (`fix/lookup-optional`):**
+  - Create and Edit label the three fields "(optional)" and offer "Not specified".
+  - In Edit you can now clear a value, and an unchanged edit keeps it empty.
+- Verified with a test beekeeper (values 6/5/5 → cleared → unchanged edit → still `NULL`).
 
 ## Proposed order of work
 
