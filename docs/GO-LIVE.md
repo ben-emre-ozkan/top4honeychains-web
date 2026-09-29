@@ -45,7 +45,7 @@ The values below are in git history, so rotating them is the actual fix. Removin
 - [ ] Review users who self-registered on production while sign-up was open (role `Beekeeper` without a Beekeepers profile) and remove them.
 
 ### Open product decisions (resolve or explicitly accept)
-- [ ] QR codes encode the full public URL (`https://<domain>/honeystory/{guid}`), with the base URL taken from config.
+- [x] QR codes encode the full public URL (`https://<domain>/honeystory/{guid}`), with the base URL taken from `App:PublicBaseUrl` ([D-11](DECISIONS.md), `feat/qr-full-url`). Without the setting, production cannot render QR codes (logged error).
 - [ ] HoneyStory shows non-finalized (draft) batches, beekeeper names/photos and apiary GPS publicly.
 - [x] ~~The error page is admin-only and its layout is broken~~: fixed in `fix/db-error-handling`.
 - [x] ~~Deleting records referenced by FKs gives unhandled 500s~~: fixed in `fix/db-error-handling`.
@@ -85,9 +85,9 @@ The values below are in git history, so rotating them is the actual fix. Removin
 - [ ] Forgot password for a real admin e-mail sends a mail (new SMTP password), the reset link works and points to `App:PublicBaseUrl`, and the login page confirms the reset.
 - [ ] Five wrong passwords for a test admin lock the login for 15 minutes (then wait, or clear `LockoutEnd` for that account).
 - [ ] If the SMTP server is unreachable, forgot password shows "could not be sent" (no 500) and the error is logged.
-- [ ] Public `/honeystory/{guid}` loads, the map shows (new Maps key and domain restriction), and the QR code scans.
+- [ ] Public `/honeystory/{guid}` loads, the map shows (new Maps key and domain restriction), and the QR code scans and opens `https://<domain>/honeystory/{guid}`.
 - [ ] Raw → final honey flow and CCP monitoring pages save correctly.
-- [ ] Error page: as an anonymous user, trigger an error (e.g. `/honeystory/qrcode` without `code`). Expect HTTP 500 with the "Something went wrong" page and a reference, not a login redirect. The reference must appear in the log.
+- [ ] Error page: as an anonymous user, open `/Dashboard/Error`. Expect the "Something went wrong" page with a reference, not a login redirect. (Unhandled errors are logged with the same reference; `/honeystory/qrcode` no longer fails, it returns 404 for unknown codes.)
 - [ ] Deleting a lookup value that is in use shows "This record is in use and cannot be deleted." (no 500).
 
 ## 4. Rollback
