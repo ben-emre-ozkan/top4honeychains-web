@@ -248,6 +248,11 @@ public partial class TOP4HoneyChainsContext : DbContext
         {
             entity.HasKey(e => e.WholesalerId)
                 .HasName("PK_Wholesalers");
+
+            // Matches the DB column: datetime DEFAULT getdate()
+            entity.Property(e => e.CreatedAt)
+                .HasColumnType("datetime")
+                .HasDefaultValueSql("GETDATE()");
         });
 
 

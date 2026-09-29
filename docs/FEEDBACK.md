@@ -15,7 +15,7 @@ The report marks items 1, 2, 19 and 20 as critical (shown in bold in the report)
 
 | RC | Root cause | Evidence | Findings |
 |---|---|---|---|
-| RC-1 | **Database exceptions are unhandled and return HTTP 500.** Nothing catches `DbUpdateException` (FK violations on delete, invalid inserts). The error page `/Dashboard/Error` is Administrator-only and its layout references missing partials (see ARCHITECTURE §2.6). | `*Controller.DeleteConfirmed` actions; `Program.cs` L66-69; `DashboardController.cs` L11/L214 | FB-19, FB-24, FB-30 |
+| RC-1 | **Database exceptions are unhandled and return HTTP 500.** Nothing catches `DbUpdateException` (FK violations on delete, invalid inserts). The error page `/Dashboard/Error` is Administrator-only and its layout references missing partials (see ARCHITECTURE §2.6). | `*Controller.DeleteConfirmed` actions; `Program.cs` L66-69; `DashboardController.cs` L11/L214 | FB-24, FB-30 |
 | RC-2 | **Server-side validation is missing.** Entities have no `[Required]`/`[Range]`/date rules. FK ints default to 0 and pass validation. Some actions skip `ModelState`, e.g. `FinalHoneyProductions.Create` and the commented-out block in `CriticalControlPointParameters.Create`. | `Models/Entities/*.cs` (the lookup entities have 0 `[Required]`) | FB-11, FB-12, FB-15, FB-24, FB-25, FB-29, FB-31, FB-32 |
 | RC-3 | **Dropdown data is not reloaded when a POST fails validation.** The view then iterates a null `ViewBag`, which causes a NullReferenceException and a 500. | `UserManagementController.Create` POST (`ViewBag.Roles` is only set in GET) → `Views/UserManagement/Create.cshtml` L90. The same pattern exists in `RawHoneyProductions.Create` (wrong ViewData key). | FB-23 |
 | RC-4 | **There is no required-field marker convention.** No view marks required fields with `*`. | all `Views/*/Create.cshtml`, `Edit.cshtml` | FB-03, FB-15, FB-18, FB-21, FB-26, FB-29 |
@@ -46,8 +46,8 @@ The report marks items 1, 2, 19 and 20 as critical (shown in bold in the report)
 | FB-16 | Same period + honey type cannot be entered twice. What if another wholesaler buys from the same beekeeper? | raw honey production | validation | medium | | Duplicate check in `RawHoneyProductionsController.Create` covers apiary + period + honey type. The partner is waiting for a decision. | 🟡 uniqueness rule | open |
 | FB-17 | Link production period and honey type (a season can currently take any honey type) | raw honey production | validation | medium | | There is no period↔honey-type relation in the schema. Would need a DB script. | 🟡 domain rule | open |
 | FB-18 | Mark required wholesaler fields with * | wholesalers | UX | low | RC-4 | `Views/Wholesalers/Create.cshtml` (only Title is required) | | open |
-| **FB-19** | A new wholesaler cannot be created | wholesalers | crash/500 | **critical** | RC-1 | See note 3 below the table. | | open |
-| **FB-20** | Raw batches do not appear in the final production form, so no record can be created | final honey production | broken flow | **critical** | | See note 4 below the table. | 🟡 is CCP gating intended? | open |
+| **FB-19** | A new wholesaler cannot be created | wholesalers | broken flow | **critical** | | See note 3 below the table. | | fixed (branch `fix/wholesaler-create`, not merged) |
+| **FB-20** | Raw batches do not appear in the final production form, so no record can be created | final honey production | broken flow | **critical** | | See note 4 below the table. No longer blocked by FB-19; lots only appear once all their CCPs are completed. | 🟡 is CCP gating intended? | open |
 | FB-21 | Mark required user fields with * | administrators | UX | low | RC-4 | `Views/UserManagement/Create.cshtml` | | open |
 | FB-22 | Show that Role is a dropdown (arrow icon) | administrators | UX | low | | `Views/UserManagement/Create.cshtml` L86: `<select class="form-control">` should use `form-select` (likely) | | open |
 | FB-23 | Creating a user without a role returns HTTP 500 | administrators | crash/500 | high | RC-3 | **Confirmed:** the POST returns `View(model)` without `ViewBag.Roles`, and the view's `foreach` hits null (`UserManagementController.cs` L45-48, `Create.cshtml` L90). | | open |
@@ -74,12 +74,18 @@ The report marks items 1, 2, 19 and 20 as critical (shown in bold in the report)
    - (a) Identity errors such as a duplicate username are not shown (RC-6), so the form just reloads.
    - (b) After a successful sign-up the user gets `Beekeeper`, and Login redirects to the admin-only Dashboard, which ends in AccessDenied.
    - The role-escalation part is already fixed (`1b89b58`).
-3. **FB-19 (wholesaler creation).** Code location: `WholesalersController.Create` L72 and `Views/Wholesalers/Create.cshtml` L135.
-   - **Likely cause:** the hidden `CreatedAt` field posts `0001-01-01`. EF has no default configured for `Wholesaler.CreatedAt`, while the DB column is `datetime` with a `getdate()` default. Year 1 is below the `datetime` minimum (1753), so the insert fails and the page returns a 500.
+3. **FB-19 (wholesaler creation).** Code location: `WholesalersController.Create`/`Edit`, `Views/Wholesalers/Create.cshtml`, `Edit.cshtml`.
+   - **Confirmed cause (reproduced 2026-09-29):** the hidden `CreatedAt` field posted an empty value. Binding it to a non-nullable `DateTime` failed, so `ModelState` was invalid. The `ModelOnly` validation summary hid that property error, and the form silently re-rendered without saving. The earlier "0001-01-01 → 500" guess was wrong: the request never reached the DB.
+   - **Fix:** `CreatedAt` is no longer bound from the form. Create sets it on the server; Edit keeps the stored value (`IsModified = false`).
+   - Verified with Playwright: create saves with a server timestamp; edit keeps `CreatedAt`.
+   - No other form posts timestamps through hidden fields. All other timestamps (`MeasurementDate`, `*StartDate`, `FinalizedDate`, `DeactivatedAt`, `ApiaryPhotoCreatedDate`) are already set on the server.
 4. **FB-20 (raw batches missing).** Code location: `FinalHoneyProductionsController.ManageBatch` L69-80.
    - **Confirmed filter:** only raw lots from the **same wholesaler** with **at least one CCP assignment, all in status 3 (Completed)** are listed.
-   - Testers could not create wholesalers (FB-19), so this is probably blocked downstream of it.
-   - There is no empty-state message explaining the rule.
+   - **Checked after the FB-19 fix (2026-09-29, local prod copy):**
+     - New wholesalers can now get batches, but the ManageBatch list is empty ("No data available in table") with no explanation.
+     - For wholesaler 2, the list shows exactly its 10 eligible lots.
+     - Data-wide, only 10 of 61 raw lots are eligible: 49 have incomplete CCPs and 2 have none.
+   - **So FB-20 is mainly the CCP-completion gate** plus a missing empty-state message, not a crash. It needs the CCP-gating decision (🟡).
    - `Create` POST also skips `ModelState`.
 
 ## Proposed order of work
@@ -88,10 +94,10 @@ Shared root causes and critical items come first. Each work item is one branch.
 
 | # | Work item | Covers | Decision needed first? |
 |---|---|---|---|
-| 1 | `fix/wholesaler-create`: stop posting `CreatedAt` and let the DB default apply | FB-19 (critical); unblocks FB-20 | no |
+| 1 | `fix/wholesaler-create`: set `CreatedAt` server-side, never from a hidden field (**done on branch**) | FB-19 (critical); unblocks FB-20 | no |
 | 2 | `fix/account-flows`: show Identity errors and messages on Login/Register/Reset; handle SMTP failure; verify reset end-to-end with a local SMTP catcher; decide where non-admin users land after login | FB-01, FB-02 (critical), RC-6 | partly (public sign-up, beekeeper e-mails) |
 | 3 | `fix/db-error-handling`: catch FK violations on delete with an "in use, cannot be deleted" message; guard invalid inserts; make the error page anonymous and fix its layout | FB-30, FB-24, RC-1 | no |
-| 4 | `fix/final-production-flow`: verify FB-20 once FB-19 is fixed; add an empty-state explanation; validate in `Create` | FB-20 (critical) | yes (CCP gating) |
+| 4 | `fix/final-production-flow`: explain in ManageBatch why lots are not eligible (FB-19 re-check already done, see note 4); validate in `Create` | FB-20 (critical) | yes (CCP gating) |
 | 5 | `fix/dropdown-repopulation` | FB-23, RC-3 | no |
 | 6 | `fix/form-validation`: entity rules + required `*` markers across all forms | FB-03, 11, 12, 15, 18, 21, 25, 26, 29, 31, 32 (RC-2, RC-4) | no |
 | 7 | `fix/language-switch-query` | FB-34 | no |
