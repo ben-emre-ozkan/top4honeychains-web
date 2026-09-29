@@ -27,6 +27,10 @@ namespace TOP4HoneyChains.Web.Controllers
                     IsEssential = true
                 });
 
+            // Only redirect within the site; an empty or external returnUrl goes to the start page
+            if (string.IsNullOrEmpty(returnUrl) || !Url.IsLocalUrl(returnUrl))
+                returnUrl = "/";
+
             return LocalRedirect(returnUrl);
         }
 

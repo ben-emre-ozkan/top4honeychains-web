@@ -3,6 +3,10 @@
 @{
     var culture = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
 
+    // Return to the same page including its query string (e.g. ?wholesalerId=), otherwise
+    // pages that need a query parameter return 404 after switching language (FB-34)
+    var languageReturnUrl = $"{Context.Request.PathBase}{Context.Request.Path}{Context.Request.QueryString}";
+
     var lang = "English";
     var flag = "us_flag.jpg";
 
@@ -82,7 +86,7 @@
                         <a asp-controller="Home"
                            asp-action="SetLanguage"
                            asp-route-culture="en"
-                           asp-route-returnUrl="@Context.Request.Path"
+                           asp-route-returnUrl="@languageReturnUrl"
                            class="dropdown-item">
                             <img src="~/assets/images/flags/us_flag.jpg" class="me-1" height="12">
                             English
@@ -92,7 +96,7 @@
                         <a asp-controller="Home"
                            asp-action="SetLanguage"
                            asp-route-culture="tr"
-                           asp-route-returnUrl="@Context.Request.Path"
+                           asp-route-returnUrl="@languageReturnUrl"
                            class="dropdown-item">
                             <img src="~/assets/images/flags/turkey_flag.jpg" class="me-1" height="12">
                             Türkçe
@@ -102,7 +106,7 @@
                         <a asp-controller="Home"
                            asp-action="SetLanguage"
                            asp-route-culture="es"
-                           asp-route-returnUrl="@Context.Request.Path"
+                           asp-route-returnUrl="@languageReturnUrl"
                            class="dropdown-item">
                             <img src="~/assets/images/flags/argentina_flag.jpg" class="me-1" height="12">
                             Español
@@ -112,7 +116,7 @@
                         <a asp-controller="Home"
                            asp-action="SetLanguage"
                            asp-route-culture="pl"
-                           asp-route-returnUrl="@Context.Request.Path"
+                           asp-route-returnUrl="@languageReturnUrl"
                            class="dropdown-item">
                             <img src="~/assets/images/flags/poland_flag.jpg" class="me-1" height="12">
                             Polski
@@ -122,7 +126,7 @@
                         <a asp-controller="Home"
                            asp-action="SetLanguage"
                            asp-route-culture="lv"
-                           asp-route-returnUrl="@Context.Request.Path"
+                           asp-route-returnUrl="@languageReturnUrl"
                            class="dropdown-item">
                             <img src="~/assets/images/flags/latvia_flag.jpg" class="me-1" height="12">
                             Latviešu
