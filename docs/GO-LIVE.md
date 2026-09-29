@@ -22,8 +22,9 @@ The values below are in git history, so rotating them is the actual fix. Removin
 - [ ] Restrict the Maps key to our domain (HTTP referrer) and to the Maps JavaScript API only.
 
 ### Accounts and access
-- [ ] Decide whether public self-registration stays. It currently creates `Beekeeper` users who have no Beekeepers profile and can only see AccessDenied.
-- [ ] Decide what to do with beekeeper accounts whose password equals their business number (e.g. force a reset or set random passwords).
+- [x] Public self-registration: **closed** ([D-02](DECISIONS.md)). Removed in `fix/account-flows`.
+- [ ] Beekeeper accounts whose password equals their business number: beekeepers do not log in in this release ([D-01](DECISIONS.md), [D-03](DECISIONS.md)), but the logins still exist and are guessable. Decide whether to lock them or set random passwords at go-live (open).
+- [ ] Review users who self-registered on production while sign-up was open (role `Beekeeper` without a Beekeepers profile) and remove them.
 
 ### Open product decisions (resolve or explicitly accept)
 - [ ] QR codes encode the full public URL (`https://<domain>/honeystory/{guid}`), with the base URL taken from config.
