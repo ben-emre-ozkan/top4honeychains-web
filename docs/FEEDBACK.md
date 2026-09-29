@@ -97,3 +97,14 @@ Shared root causes and critical items come first. Each work item is one branch.
 | 7 | `fix/language-switch-query` | FB-34 | no |
 | 8 | `fix/form-ux`: Cancel buttons, select styling, help texts | FB-04, 05, 07, 10, 13, 22, 28 | no |
 | 9 | Decision-dependent items | FB-06, 08, 09, 14, 16, 17, 27, 33 | yes |
+
+## Engineering follow-ups (from code review, 2026-09-29)
+
+These are not partner findings. They are pre-existing patterns found while reviewing `fix/wholesaler-create` and `fix/db-error-handling`.
+
+| ID | Issue | Where | Status |
+|---|---|---|---|
+| ENG-01 | **Multi-step saves are not atomic.** `BeekeepersController.Create` creates the Identity user before saving the Beekeepers row. If the second step fails, the login remains and retries fail with "username taken" (the business number is regenerated identically). CCPMonitoring saves in two phases in the same way. Needs a transaction around both steps. | `BeekeepersController.Create`, `CCPMonitoringController` | open |
+| ENG-02 | **Flash messages are inconsistent.** Controllers set `TempData["Error"/"Success"/"error"/"success"]`, but most pages never render them (e.g. "Password changed." on Profile is dropped). One shared alert partial should render them all; `DbUpdateExceptionFilter` should then write to it. | `Views/Shared/*`, 7+ controllers | open |
+| ENG-03 | **Edits call `_context.Update()` on partially bound entities**, so any column not in the form is overwritten with its default. Load the tracked entity and copy the posted fields (or use `TryUpdateModelAsync` with a whitelist). | scaffolded `Edit` POST actions | open |
+| ENG-04 | **A failed Create loses the entered values.** When a constraint violation redirects back, the typed data is gone. Field-level validation of FK ids (RC-2) avoids reaching the DB. | covered by `fix/form-validation` | open |

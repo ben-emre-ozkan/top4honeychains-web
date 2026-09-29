@@ -222,9 +222,10 @@ namespace TOP4HoneyChains.Web.Controllers
             var failure = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
             if (failure != null)
             {
-                // The reference shown to the user, so a reported error can be found in the log
-                _logger.LogError(failure.Error, "Unhandled exception on {Path} (reference {RequestId})",
-                    failure.Path, requestId);
+                // ExceptionHandlerMiddleware already logs the full exception; this line links it
+                // to the reference shown to the user
+                _logger.LogError("Error page shown for {ExceptionType} on {Path} (reference {RequestId})",
+                    failure.Error.GetType().Name, failure.Path, requestId);
             }
 
             return View(new ErrorViewModel { RequestId = requestId });
