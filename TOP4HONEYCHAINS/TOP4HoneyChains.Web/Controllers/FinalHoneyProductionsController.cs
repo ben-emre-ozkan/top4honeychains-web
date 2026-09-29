@@ -158,8 +158,11 @@ namespace TOP4HoneyChains.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ManageBatchPost(int batchId, Dictionary<int, decimal> usedAmounts)
+        // An explicit form name stops MVC from falling back to the empty prefix when the batch has
+        // no eligible lots (no usedAmounts[...] fields); it then tried to parse "batchId" as a lot id (HTTP 500)
+        public async Task<IActionResult> ManageBatchPost(int batchId, [FromForm(Name = "usedAmounts")] Dictionary<int, decimal>? usedAmounts)
         {
+            usedAmounts ??= new Dictionary<int, decimal>();
 
             var batch = await _context.FinalHoneyProductions
                 .Include(f => f.FinalHoneyProductionDetails)
