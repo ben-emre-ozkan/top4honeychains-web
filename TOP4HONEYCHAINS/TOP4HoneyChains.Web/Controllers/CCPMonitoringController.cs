@@ -96,6 +96,9 @@ namespace TOP4HoneyChains.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RawHoneyProductionManageCCP(CCPMonitoringViewModelForRawHoney model)
         {
+            // Logs and the assignment status are saved in two steps; keep them in one transaction (ENG-01)
+            await using var transaction = await _context.Database.BeginTransactionAsync();
+
             // 1️⃣ Mevcut logları tek seferde çek
             var existingLogs = await _context.CriticalControlPointMonitoringLogs
                 .Where(x =>
@@ -185,6 +188,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 await _context.SaveChangesAsync();
             }
 
+
+            await transaction.CommitAsync();
 
             //var loggedParameters = existingLogs
             //    .Where(x => x.MeasuredNumericValue != null ||
@@ -312,6 +317,9 @@ namespace TOP4HoneyChains.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> FinalHoneyProductionManageCCP(CCPMonitoringViewModelForFinalBatch model)
         {
+            // Logs and the assignment status are saved in two steps; keep them in one transaction (ENG-01)
+            await using var transaction = await _context.Database.BeginTransactionAsync();
+
             var existingLogs = await _context.CriticalControlPointMonitoringLogs
                 .Where(x =>
                     x.FinalHoneyProductionId == model.FinalHoneyProductionId &&
@@ -393,6 +401,7 @@ namespace TOP4HoneyChains.Web.Controllers
             }
 
             await _context.SaveChangesAsync();
+            await transaction.CommitAsync();
 
             var batch = await _context.FinalHoneyProductions
                 .FirstOrDefaultAsync(x => x.FinalHoneyProductionId == model.FinalHoneyProductionId);

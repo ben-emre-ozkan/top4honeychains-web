@@ -128,34 +128,45 @@ namespace TOP4HoneyChains.Web.Controllers
                     return View(beekeeper);
                 }
 
-                await _userManager.AddToRoleAsync(user, "Beekeeper");
-                await _userManager.SetLockoutEndDateAsync(user, DateTimeOffset.MaxValue);
-
-                beekeeper.BeekeeperId = user.Id;
-                beekeeper.BeekeeperBusinessNumber = businessNumber;
-
-                if (beekeeper.ProfilePhotoFile != null && beekeeper.ProfilePhotoFile.Length > 0)
+                // The login (Identity DB context) and the Beekeepers row (business DB context) are saved
+                // separately. If anything after this point fails, remove the login again so a retry does not
+                // fail with "user name taken" (ENG-01).
+                try
                 {
-                    using var image = await Image.LoadAsync(beekeeper.ProfilePhotoFile.OpenReadStream());
+                    await _userManager.AddToRoleAsync(user, "Beekeeper");
+                    await _userManager.SetLockoutEndDateAsync(user, DateTimeOffset.MaxValue);
 
-                    image.Mutate(x => x.Resize(new ResizeOptions
+                    beekeeper.BeekeeperId = user.Id;
+                    beekeeper.BeekeeperBusinessNumber = businessNumber;
+
+                    if (beekeeper.ProfilePhotoFile != null && beekeeper.ProfilePhotoFile.Length > 0)
                     {
-                        Size = new Size(300, 300),
-                        Mode = ResizeMode.Crop
-                    }));
+                        using var image = await Image.LoadAsync(beekeeper.ProfilePhotoFile.OpenReadStream());
 
-                    using var memoryStream = new MemoryStream();
+                        image.Mutate(x => x.Resize(new ResizeOptions
+                        {
+                            Size = new Size(300, 300),
+                            Mode = ResizeMode.Crop
+                        }));
 
-                    await image.SaveAsync(memoryStream, new JpegEncoder
-                    {
-                        Quality = 80
-                    });
+                        using var memoryStream = new MemoryStream();
 
-                    beekeeper.BeekeeperProfilePhoto = memoryStream.ToArray();
+                        await image.SaveAsync(memoryStream, new JpegEncoder
+                        {
+                            Quality = 80
+                        });
+
+                        beekeeper.BeekeeperProfilePhoto = memoryStream.ToArray();
+                    }
+
+                    _context.Add(beekeeper);
+                    await _context.SaveChangesAsync();
                 }
-
-                _context.Add(beekeeper);
-                await _context.SaveChangesAsync();
+                catch
+                {
+                    await _userManager.DeleteAsync(user);
+                    throw;
+                }
                 return RedirectToAction(nameof(Index));
             }
             ViewData["BeekeeperBeekeepingPurposeTypeId"] = new SelectList(_context.BeekeepingPurposeTypes, "BeekeepingPurposeTypeId", "BeekeepingPurposeTypeTitle", beekeeper.BeekeeperBeekeepingPurposeTypeId);
