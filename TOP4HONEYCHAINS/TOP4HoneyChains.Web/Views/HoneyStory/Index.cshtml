@@ -587,6 +587,7 @@
 
                         <hr class="section-divider">
 
+                        <p class="small text-muted mb-2" id="approximate-location-note"><i class="mdi mdi-information-outline me-1"></i>Apiary locations are shown approximately (about 10 km) to protect the beekeepers' privacy.</p>
                         <div id="apiary-map"
                              style="height:450px;border-radius:14px;">
                         </div>
@@ -626,17 +627,9 @@
 
                                     <div class="d-flex align-items-center gap-3 mt-2">
 
-                                        @if (!string.IsNullOrEmpty(source.BeekeeperPhotoBase64))
-                                        {
-                                            <img src="@source.BeekeeperPhotoBase64"
-                                                 class="beekeeper-avatar" />
-                                        }
-                                        else
-                                        {
-                                            <div class="beekeeper-avatar d-flex align-items-center justify-content-center bg-light text-dark">
+                                        <div class="beekeeper-avatar d-flex align-items-center justify-content-center bg-light text-dark">
                                                 <i class="mdi mdi-account"></i>
                                             </div>
-                                        }
 
                                         <div class="small text-white opacity-75">
                                             <i class="mdi mdi-account-outline me-1"></i>
@@ -1052,38 +1045,32 @@
 
                 var position = { lat: a.lat, lng: a.lng };
 
-                var marker = new google.maps.Marker({
-                    position: position,
+                // D-12: an area of about 10 km instead of an exact pin
+                var area = new google.maps.Circle({
                     map: map,
-                            icon: {
-                                url: "/assets/images/hive-marker.png",
-                                scaledSize: new google.maps.Size(48,67),
-                                anchor: new google.maps.Point(24,67)
-                            }
+                    center: position,
+                    radius: 7000,
+                    strokeColor: "#16a34a",
+                    strokeOpacity: 0.8,
+                    strokeWeight: 2,
+                    fillColor: "#16a34a",
+                    fillOpacity: 0.25
                 });
 
-            marker.addListener("mouseover", function () {
-                marker.setAnimation(google.maps.Animation.BOUNCE);
-            });
+                // Built from text nodes, so names cannot inject HTML
+                var content = document.createElement("div");
+                content.style.minWidth = "220px";
+                var name = document.createElement("b"); name.textContent = a.beekeeper || "";
+                var apiaryName = document.createElement("span"); apiaryName.style.color = "#16a34a"; apiaryName.style.fontWeight = "600"; apiaryName.textContent = a.apiary || "";
+                var used = document.createElement("div"); used.textContent = "Honey Used: " + a.amount;
+                var share = document.createElement("div"); share.textContent = "Contribution: " + a.percent;
+                var note = document.createElement("div"); note.style.color = "#6b7280"; note.textContent = "Approximate area";
+                content.append(name, document.createElement("br"), apiaryName, document.createElement("br"), used, share, note);
 
-            marker.addListener("mouseout", function () {
-                marker.setAnimation(null);
-            });
+                var infowindow = new google.maps.InfoWindow({ content: content, position: position });
 
-                       var content = 
-                       `<div style="min-width:220px">
-                       <b>${a.beekeeper}</b><br>
-                       <span style="color:#16a34a;font-weight:600">${a.apiary}</span><br><br>
-                       Honey Used: <b>${a.amount}</b><br>
-                       Contribution: <b>${a.percent}</b>
-                       </div>`;
-
-                var infowindow = new google.maps.InfoWindow({
-                    content: content
-                });
-
-                marker.addListener("click", function() {
-                    infowindow.open(map, marker);
+                area.addListener("click", function() {
+                    infowindow.open(map);
                 });
 
                 bounds.extend(position);
@@ -1092,6 +1079,11 @@
 
             if (apiaries.length > 0)
                 map.fitBounds(bounds);
+
+            // Never zoom in closer than the approximate area (D-12)
+            google.maps.event.addListenerOnce(map, "idle", function () {
+                if (map.getZoom() > 10) map.setZoom(10);
+            });
 
         }
 
