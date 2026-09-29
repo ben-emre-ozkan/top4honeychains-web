@@ -66,6 +66,10 @@ Please set up for the TOP4HoneyChains site on IIS:
 - `dotnet publish -c Release` to a local folder: 0 errors.
 - Started with `ASPNETCORE_ENVIRONMENT=Production` against LocalDB, all configuration from environment variables (connection string, SMTP, Maps key, `App__PublicBaseUrl`, `AllowedHosts`): login and all main pages return 200, anonymous access redirects to login, a foreign `Host` header is rejected (400), and an error shows the friendly error page (no developer page). Not deployed anywhere.
 
+### Release candidate check (1.0.0-rc2, 2026-09-29)
+- Includes D-11 (QR full URL), D-12 (HoneyStory privacy) and D-13 (HTTPS). `dotnet publish -c Release`: 0 errors.
+- Production run against LocalDB with configuration from environment variables and a local test certificate: HTTP → 307 to HTTPS, HSTS header on HTTPS for a real host name, login over HTTPS (auth cookie `Secure`, `HttpOnly`), main pages and a published Honey Story page return 200; a draft batch's page returns 404. Not deployed anywhere.
+
 ## 2. Deployment day (in this order)
 1. [ ] **Back up the production database** (full backup) and confirm it restores. The backup stays on the DB server and never goes into the repo or the deploy package.
 2. [ ] Back up the current live site folder, including server-only uploads (`wwwroot/assets/videos/parameters/`).
