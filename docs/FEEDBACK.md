@@ -47,7 +47,7 @@ The report marks items 1, 2, 19 and 20 as critical (shown in bold in the report)
 | FB-17 | Link production period and honey type (a season can currently take any honey type) | raw honey production | validation | medium | | There is no period↔honey-type relation in the schema. Would need a DB script. | [D-06](DECISIONS.md), [PQ-01](PARTNER-QUESTIONS.md) | deferred |
 | FB-18 | Mark required wholesaler fields with * | wholesalers | UX | low | RC-4 | `Views/Wholesalers/Create.cshtml` (only Title is required) | | open |
 | **FB-19** | A new wholesaler cannot be created | wholesalers | broken flow | **critical** | | See note 3 below the table. | | fixed (`fix/wholesaler-create`, merged) |
-| **FB-20** | Raw batches do not appear in the final production form, so no record can be created | final honey production | broken flow | **critical** | | See note 4 below the table. No longer blocked by FB-19; lots only appear once all their CCPs are completed. | [D-05](DECISIONS.md): rule stays, explain in UI | open |
+| **FB-20** | Raw batches do not appear in the final production form, so no record can be created | final honey production | broken flow | **critical** | | See note 4 below the table. No longer blocked by FB-19; lots only appear once all their CCPs are completed. | [D-05](DECISIONS.md): rule stays, explain in UI | fixed (branch `fix/final-production-visibility`, not merged) |
 | FB-21 | Mark required user fields with * | administrators | UX | low | RC-4 | `Views/UserManagement/Create.cshtml` | | open |
 | FB-22 | Show that Role is a dropdown (arrow icon) | administrators | UX | low | | `Views/UserManagement/Create.cshtml` L86: `<select class="form-control">` should use `form-select` (likely) | | open |
 | FB-23 | Creating a user without a role returns HTTP 500 | administrators | crash/500 | high | RC-3 | **Confirmed:** the POST returns `View(model)` without `ViewBag.Roles`, and the view's `foreach` hits null (`UserManagementController.cs` L45-48, `Create.cshtml` L90). | | open |
@@ -87,6 +87,10 @@ The report marks items 1, 2, 19 and 20 as critical (shown in bold in the report)
      - Data-wide, only 10 of 61 raw lots are eligible: 49 have incomplete CCPs and 2 have none.
    - **So FB-20 is mainly the CCP-completion gate** plus a missing empty-state message, not a crash. Decision [D-05](DECISIONS.md): the rule stays and the UI must explain it.
    - `Create` POST also skips `ModelState`.
+   - **Fix (`fix/final-production-visibility`, [D-05](DECISIONS.md)):**
+     - ManageBatch states the rule above the lot table and shows a warning when no lot is eligible.
+     - A new "Raw honey lots not yet eligible" card lists the wholesaler's other lots with each missing CCP check (code and status). Every check links to its CCP monitoring page; lots without any CCP check link to "Assign CCP checks".
+     - Verified with wholesaler 3: 9 lots, 1 without checks, 32 pending checks, matching the DB.
 
 ## Proposed order of work
 
@@ -118,3 +122,4 @@ These are not partner findings. They are pre-existing patterns found while revie
 | ENG-02 | **Flash messages are inconsistent.** Controllers set `TempData["Error"/"Success"/"error"/"success"]`, but most pages never render them (e.g. "Password changed." on Profile is dropped). One shared alert partial should render them all; `DbUpdateExceptionFilter` should then write to it. | `Views/Shared/*`, 7+ controllers | open |
 | ENG-03 | **Edits call `_context.Update()` on partially bound entities**, so any column not in the form is overwritten with its default. Load the tracked entity and copy the posted fields (or use `TryUpdateModelAsync` with a whitelist). | scaffolded `Edit` POST actions | open |
 | ENG-04 | **A failed Create loses the entered values.** When a constraint violation redirects back, the typed data is gone. Field-level validation of FK ids (RC-2) avoids reaching the DB. | covered by `fix/form-validation` | open |
+| ENG-05 | **JavaScript error on ManageBatch:** `updateTotals()` uses an undefined variable `bar` (`ReferenceError: bar is not defined`), so the batch-total progress bar does not update when amounts change. Pre-existing; found while verifying FB-20. | `Views/FinalHoneyProductions/ManageBatch.cshtml` (scripts) | open |
