@@ -42,7 +42,8 @@
 - Before committing:
   - build with 0 errors;
   - run the app and verify the change in the browser (Playwright MCP is available), including the security-relevant negative cases.
-- **Ask the user before merging into `main`.**
+- A branch whose checks above passed may be merged into `main` and `main` pushed to `origin` without asking.
+- **Ask the user first** before creating or pushing a tag, before any deployment, and before running a script that deletes or changes data (the local test-data cleanup of your own `zz_test_*` records is exempt).
 - Nothing is deployed piecemeal. Everything goes live together via `docs/GO-LIVE.md`.
 
 ## Language
