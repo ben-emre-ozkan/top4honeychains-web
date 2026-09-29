@@ -1,0 +1,130 @@
+﻿@model TOP4HoneyChains.Web.Models.Entities.CriticalControlPointParameter
+
+@{
+    ViewData["Title"] = "Edit CCP Parameter";
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+}
+
+<body data-topbar="light" data-layout="horizontal">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-xl-12">
+
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title">Edit CCP Parameter</h4>
+                            <p class="card-title-desc">
+                                Update the selected monitoring parameter details.
+                            </p>
+
+                            <form asp-action="Edit" class="custom-validation">
+
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                <input type="hidden" asp-for="ParameterId" />
+
+                                <!-- CCP Selection -->
+                                <div class="mb-3">
+                                    <label asp-for="CCPId" class="form-label">
+                                        Critical Control Point
+                                    </label>
+
+                                    <select asp-for="CCPId"
+                                            class="form-select"
+                                            asp-items="ViewBag.CCPId">
+                                        <option value="">-- Select CCP --</option>
+                                    </select>
+
+                                    <span asp-validation-for="CCPId" class="text-danger"></span>
+                                </div>
+
+                                <!-- Parameter Name -->
+                                <div class="mb-3">
+                                    <label asp-for="ParameterName" class="form-label">
+                                        Parameter Name
+                                    </label>
+
+                                    <input asp-for="ParameterName"
+                                           class="form-control"
+                                           placeholder="Enter parameter name" />
+
+                                    <span asp-validation-for="ParameterName" class="text-danger"></span>
+                                </div>
+
+                                <!-- Parameter Category -->
+                                <div class="mb-3">
+                                    <label asp-for="ParameterCategory" class="form-label">
+                                        Parameter Category
+                                    </label>
+
+                                    <select asp-for="ParameterCategory"
+                                            class="form-select"
+                                            asp-items="ViewBag.ParameterCategory">
+                                        <option value="">-- Select Category --</option>
+                                    </select>
+
+                                    <span asp-validation-for="ParameterCategory" class="text-danger"></span>
+                                </div>
+
+                                <!-- Parameter Unit -->
+                                <div class="mb-3">
+                                    <label asp-for="ParameterUnit" class="form-label">
+                                        Unit
+                                    </label>
+
+                                    <input asp-for="ParameterUnit"
+                                           class="form-control"
+                                           placeholder="e.g. °C, %, ppm, CFU/g" />
+
+                                    <span asp-validation-for="ParameterUnit" class="text-danger"></span>
+                                </div>
+
+                                <!-- Critical Limit -->
+                                <div class="mb-3">
+                                    <label asp-for="CriticalLimit" class="form-label">
+                                        Critical Limit
+                                    </label>
+
+                                    <input asp-for="CriticalLimit"
+                                           class="form-control"
+                                           placeholder="Enter critical threshold value" />
+
+                                    <span asp-validation-for="CriticalLimit" class="text-danger"></span>
+                                </div>
+
+                                <!-- Buttons -->
+                                <div class="d-flex gap-2">
+
+                                    <button type="submit"
+                                            class="btn btn-primary waves-effect waves-light">
+                                        Update
+                                    </button>
+
+                                    <a asp-action="Index"
+                                       class="btn btn-secondary waves-effect">
+                                        Back to List
+                                    </a>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    @section scripts{
+        <script src="~/assets/libs/parsleyjs/parsley.min.js"></script>
+        <script src="~/assets/js/pages/form-validation.init.js"></script>
+        <script src="~/assets/js/app.js"></script>
+    }
+</body>

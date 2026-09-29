@@ -1,0 +1,279 @@
+﻿@model TOP4HoneyChains.Web.Models.ViewModels.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_BlankLayout.cshtml";
+}
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
+<style>
+
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+
+    /* PAGE */
+
+    .login-page {
+        height: 100vh;
+        display: flex;
+    }
+
+    /* LEFT LOGIN */
+
+    .login-left {
+        width: 40%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f8f9fa;
+    }
+
+    /* RIGHT VIDEO */
+
+    .login-right {
+        width: 60%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* VIDEO */
+
+    .login-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* OVERLAY */
+
+    .video-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.35);
+    }
+
+    /* CARD */
+
+    .login-card {
+        width: 420px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        border-radius: 12px;
+    }
+
+    .video-text {
+        position: absolute;
+        bottom: 80px;
+        left: 60px;
+        color: white;
+        max-width: 420px;
+        z-index: 2;
+    }
+
+        .video-text h2 {
+            font-weight: 700;
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .video-text p {
+            font-size: 24px;
+            opacity: 0.9;
+        }
+
+</style>
+
+
+<div class="login-page">
+
+
+    <!-- LEFT LOGIN CARD -->
+
+    <div class="login-left">
+
+        <div class="card login-card overflow-hidden">
+
+            <div class="card-body pt-0">
+
+                <h3 class="text-center mt-5 mb-4">
+
+                    <a href="/" class="d-block auth-logo">
+
+                        <img src="~/assets/images/logo-dark.png" alt="" height="120" class="auth-logo-dark">
+
+                        <img src="~/assets/images/logo-light.png" alt="" height="120" class="auth-logo-light">
+
+                    </a>
+
+                </h3>
+
+
+                <div class="p-3">
+
+                    <h4 class="text-muted font-size-18 mb-1 text-center">@L["Login.WelcomeBack"]</h4>
+
+                    <p class="text-muted text-center">@L["Login.SignInContinue"]</p>
+
+
+                    <form asp-action="Login" asp-controller="Account" method="post" class="form-horizontal mt-4">
+
+                        @Html.AntiForgeryToken()
+
+                        <div class="mb-3">
+
+                            <label asp-for="UserName" class="form-label">@L["Login.Username"]</label>
+
+                            <input asp-for="UserName" class="form-control" placeholder="@L["Login.UsernamePlaceholder"]" />
+
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+
+                        </div>
+
+
+                        <div class="mb-3">
+
+                            <label asp-for="Password" class="form-label">@L["Login.Password"]</label>
+
+                            <input asp-for="Password" type="password" class="form-control" placeholder="@L["Login.PasswordPlaceholder"]" />
+
+                            <span asp-validation-for="Password" class="text-danger"></span>
+
+                        </div>
+
+
+                        <div class="mb-3 row mt-4">
+
+                            <div class="col-6">
+
+                                <div class="form-check">
+
+                                    <input asp-for="RememberMe" class="form-check-input" />
+
+                                    <label asp-for="RememberMe" class="form-check-label">
+
+                                        @L["Login.RememberMe"]
+
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-6 text-end">
+
+                                <button class="btn btn-primary w-md waves-effect waves-light" type="submit">
+
+                                    @L["Login.LoginButton"]
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group mb-0 row">
+
+                            <div class="col-12 mt-4">
+
+                                <a asp-action="ForgotPassword"
+                                   asp-controller="Account"
+                                   class="text-muted">
+
+                                    <i class="mdi mdi-lock"></i> @L["Login.ForgotPassword"]
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+                        @if (!ViewData.ModelState.IsValid)
+                        {
+                            <div class="text-danger mt-3">
+
+                                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                                {
+                                    <div>@error.ErrorMessage</div>
+                                }
+
+                            </div>
+                        }
+
+                    </form>
+
+
+                    <hr class="mt-4">
+
+
+                    <div class="text-center">
+
+                        <p class="mb-0 text-muted">
+
+                            @L["Login.DontHaveAccount"]
+
+                            <a asp-action="Register"
+                               asp-controller="Account"
+                               class="fw-semibold text-primary">
+
+                                @L["Login.SignUpNow"]
+
+                            </a>
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT VIDEO -->
+
+    <div class="login-right">
+
+        <video autoplay muted loop playsinline class="login-video">
+            <source src="~/landingassets/videos/261844.mp4" type="video/mp4">
+        </video>
+
+        <div class="video-overlay"></div>
+
+        <div class="video-text">
+
+            <h2>TOP4HoneyChains</h2>
+
+            <p>
+                Trustable and Sustainable Open Platform
+                for Smart Honey Value Chains
+            </p>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+@section scripts {
+
+    <script src="~/assets/js/app.js"></script>
+
+    <partial name="_ValidationScriptsPartial" />
+
+}

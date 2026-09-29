@@ -1,0 +1,70 @@
+﻿@model TOP4HoneyChains.Web.Models.Entities.BeekeeperEducationLevel
+
+@{
+    ViewData["Title"] = "Edit Education Level";
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+}
+
+<body data-topbar="light" data-layout="horizontal">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-xl-12">
+
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title">Edit Education Level</h4>
+                            <p class="card-title-desc">
+                                Update the selected beekeeper education level.
+                            </p>
+
+                            <form asp-action="Edit" class="custom-validation">
+
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                <input type="hidden" asp-for="BeekeeperEducationLevelId" />
+
+                                <div class="mb-3">
+                                    <label asp-for="BeekeeperEducationLevelTitle" class="form-label">Education Level Title</label>
+                                    <input asp-for="BeekeeperEducationLevelTitle"
+                                           class="form-control"
+                                           placeholder="Enter education level title" />
+                                    <span asp-validation-for="BeekeeperEducationLevelTitle"
+                                          class="text-danger"></span>
+                                </div>
+
+                                <div class="d-flex gap-2">
+
+                                    <button type="submit"
+                                            class="btn btn-primary waves-effect waves-light">
+                                        Update
+                                    </button>
+
+                                    <a asp-action="Index"
+                                       class="btn btn-secondary waves-effect">
+                                        Back to List
+                                    </a>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    @section scripts{
+        <script src="~/assets/libs/parsleyjs/parsley.min.js"></script>
+        <script src="~/assets/js/pages/form-validation.init.js"></script>
+        <script src="~/assets/js/app.js"></script>
+    }
+
+</body>

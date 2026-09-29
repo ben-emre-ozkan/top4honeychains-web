@@ -1,0 +1,147 @@
+﻿@model IEnumerable<TOP4HoneyChains.Web.Models.Entities.Apiary>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+}
+
+@section AddToHead {
+    <!-- DataTables -->
+
+    <link href="~/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="~/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title">
+                                Apiaries of @ViewBag.BeekeeperName
+                            </h4>
+
+                            <p class="card-title-desc">
+                                <a asp-controller="Beekeepers"
+                                   asp-action="Index"
+                                   class="btn btn-secondary waves-effect waves-light">
+                                    Back to Beekeepers
+                                </a>
+
+                                <a asp-action="Create"
+                                   asp-route-beekeeperId="@ViewBag.BeekeeperId"
+                                   class="btn btn-primary waves-effect waves-light">
+                                    Add new Apiary
+                                </a>
+
+                                <table id="datatable-buttons"
+                                       class="table table-striped table-bordered dt-responsive nowrap"
+                                       style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Beehives Count</th>
+                                            <th>Latitude</th>
+                                            <th>Longitude</th>
+                                            <th>QR Code</th>
+                                            <th>Status</th>
+                                            <th>Buttons</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr class="@(item.ApiaryIsActive ? "" : "table-light text-muted")">
+                                                <td>@item.ApiaryTitle</td>
+
+                                                <td>@item.ApiaryBeehivesCount</td>
+
+                                                <td>@item.ApiaryLocationLatitude</td>
+
+                                                <td>@item.ApiaryLocationLongitude</td>
+
+                                                <td>@item.ApiaryQRCode</td>
+
+                                                <td>
+                                                    @if (item.ApiaryIsActive)
+                                                    {
+                                                        <span class="badge bg-success">Active</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="badge bg-danger">Inactive</span>
+                                                    }
+                                                </td>
+
+                                                <td>
+                                                    <div class="d-flex flex-wrap gap-2">
+
+                                                        <a asp-action="Edit"
+                                                           asp-route-id="@item.ApiaryId"
+                                                           class="btn btn-sm btn-info">
+                                                            Edit
+                                                        </a>
+
+                                                        @if (item.ApiaryIsActive)
+                                                        {
+                                                            <a asp-action="Deactivate"
+                                                               asp-route-id="@item.ApiaryId"
+                                                               class="btn btn-sm btn-warning">
+                                                                Deactivate
+                                                            </a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a asp-action="Activate"
+                                                               asp-route-id="@item.ApiaryId"
+                                                               class="btn btn-sm btn-success">
+                                                                Activate
+                                                            </a>
+                                                        }
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+            </div>
+        </div>
+    </div>
+    @section scripts{
+        <!-- Required datatable js -->
+        <script src="~/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="~/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <!-- Buttons examples -->
+        <script src="~/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="~/assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+        <script src="~/assets/libs/jszip/jszip.min.js"></script>
+        <script src="~/assets/libs/pdfmake/build/pdfmake.min.js"></script>
+        <script src="~/assets/libs/pdfmake/build/vfs_fonts.js"></script>
+        <script src="~/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+        <script src="~/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+        <script src="~/assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+        <!-- Responsive examples -->
+        <script src="~/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="~/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
+        <!-- Datatable init js -->
+        <script src="~/assets/js/pages/datatables.init.js"></script>
+
+        <!-- App js -->
+        <script src="~/assets/js/app.js"></script>
+    }
+</body>
+

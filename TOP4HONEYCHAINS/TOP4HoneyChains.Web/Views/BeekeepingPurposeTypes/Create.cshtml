@@ -1,0 +1,73 @@
+﻿@model TOP4HoneyChains.Web.Models.Entities.BeekeepingPurposeType
+
+@{
+    ViewData["Title"] = "Create Purpose Type";
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+}
+
+<body data-topbar="light" data-layout="horizontal">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-xl-12">
+
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title">Create New Beekeeping Purpose</h4>
+                            <p class="card-title-desc">
+                                Add a new purpose type to the system.
+                            </p>
+
+                            <form asp-action="Create" class="custom-validation">
+
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                <div class="mb-3">
+                                    <label asp-for="BeekeepingPurposeTypeTitle"
+                                           class="form-label">
+                                        Purpose Title
+                                    </label>
+
+                                    <input asp-for="BeekeepingPurposeTypeTitle"
+                                           class="form-control"
+                                           placeholder="Enter purpose title" />
+
+                                    <span asp-validation-for="BeekeepingPurposeTypeTitle"
+                                          class="text-danger"></span>
+                                </div>
+
+                                <div class="d-flex gap-2">
+
+                                    <button type="submit"
+                                            class="btn btn-primary waves-effect waves-light">
+                                        Save
+                                    </button>
+
+                                    <a asp-action="Index"
+                                       class="btn btn-secondary waves-effect">
+                                        Back to List
+                                    </a>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    @section scripts{
+        <script src="~/assets/libs/parsleyjs/parsley.min.js"></script>
+        <script src="~/assets/js/pages/form-validation.init.js"></script>
+        <script src="~/assets/js/app.js"></script>
+    }
+
+</body>

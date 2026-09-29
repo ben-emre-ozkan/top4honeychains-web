@@ -1,0 +1,103 @@
+﻿@model TOP4HoneyChains.Web.Models.Entities.Beekeeper
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+}
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+
+                    <h4 class="card-title">Edit Beekeeper</h4>
+                    <a asp-action="Index"
+                       class="btn btn-secondary waves-effect waves-light">
+                        Back to List
+                    </a>
+
+                    <form asp-action="Edit" enctype="multipart/form-data">
+                        <input type="hidden" asp-for="BeekeeperId" />
+                        <input type="hidden" asp-for="BeekeeperBusinessNumber" />
+
+                        <!-- Mevcut Foto -->
+                        @if (Model.BeekeeperProfilePhoto != null)
+                        {
+                            var base64 = Convert.ToBase64String(Model.BeekeeperProfilePhoto);
+                            <img src="data:image/jpeg;base64,@base64"
+                                 class="rounded-circle mb-3"
+                                 width="100" height="100"
+                                 style="object-fit:cover;" />
+                        }
+
+                        <!-- Yeni Foto -->
+                        <div class="mb-3">
+                            <label class="form-label">Change Profile Photo</label>
+                            <input asp-for="ProfilePhotoFile" type="file" class="form-control" accept="image/*" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="BeekeeperFirstName" class="form-label">First Name</label>
+                            <input asp-for="BeekeeperFirstName" class="form-control" />
+                            <span asp-validation-for="BeekeeperFirstName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="BeekeeperLastName" class="form-label">Last Name</label>
+                            <input asp-for="BeekeeperLastName" class="form-control" />
+                            <span asp-validation-for="BeekeeperLastName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="BeekeeperBirthDate" class="form-label">Birth Date</label>
+                            <input asp-for="BeekeeperBirthDate" type="date" class="form-control" />
+                            <span asp-validation-for="BeekeeperBirthDate" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="BeekeeperExperienceTime" class="form-label">Experience Time</label>
+                            <input asp-for="BeekeeperExperienceTime" type="number" class="form-control" />
+                            <span asp-validation-for="BeekeeperExperienceTime" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="BeekeeperPhoneNumber" class="form-label">Phone Number</label>
+                            <input asp-for="BeekeeperPhoneNumber" class="form-control" />
+                            <span asp-validation-for="BeekeeperPhoneNumber" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="BeekeeperEducationLevelId" class="form-label">Education Level</label>
+                            <select asp-for="BeekeeperEducationLevelId" class="form-select"
+                                    asp-items="ViewBag.BeekeeperEducationLevelId"></select>
+                            <span asp-validation-for="BeekeeperEducationLevelId" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="BeekeeperBeekeepingPurposeTypeId" class="form-label">Beekeeping Purpose Type</label>
+                            <select asp-for="BeekeeperBeekeepingPurposeTypeId" class="form-select"
+                                    asp-items="ViewBag.BeekeeperBeekeepingPurposeTypeId"></select>
+                            <span asp-validation-for="BeekeeperBeekeepingPurposeTypeId" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="BeekeeperBeekeepingTypeId" class="form-label">Beekeeping Type</label>
+                            <select asp-for="BeekeeperBeekeepingTypeId" class="form-select"
+                                    asp-items="ViewBag.BeekeeperBeekeepingTypeId"></select>
+                            <span asp-validation-for="BeekeeperBeekeepingTypeId" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-check mb-3">
+                            <input asp-for="IsActive" class="form-check-input" type="checkbox" />
+                            <label asp-for="IsActive" class="form-check-label">Active</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Update</button>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

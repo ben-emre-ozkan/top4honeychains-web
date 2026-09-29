@@ -1,0 +1,264 @@
+﻿@model List<TOP4HoneyChains.Web.Models.Entities.ApiaryPhoto>
+
+@{
+    ViewData["Title"] = "Apiary Photos";
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+}
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card text-white"
+                         style="background: linear-gradient(90deg, #556ee6 0%, #34c38f 100%);">
+
+                        <div class="card-body">
+
+                            <div class="d-flex justify-content-between align-items-center">
+
+                                <div>
+                                    <h4 class="mb-1">
+                                        Apiary Photo Management
+                                    </h4>
+
+                                    <div class="mt-2">
+
+                                        <span class="me-4">
+                                            <strong>Beekeeper:</strong>
+                                            @ViewBag.BeekeeperName
+                                        </span>
+
+                                        <span class="me-4">
+                                            <strong>Apiary:</strong>
+                                            @ViewBag.ApiaryTitle
+                                        </span>
+
+                                        <span>
+                                            <strong>Season:</strong>
+                                            @ViewBag.PeriodTitle
+                                        </span>
+
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <a asp-controller="RawHoneyProductions"
+                                       asp-action="RawHoneyProductionByApiary"
+                                       asp-route-id="@ViewBag.ApiaryId"
+                                       class="btn btn-light btn-sm">
+                                        <i class="mdi mdi-arrow-left"></i> Back
+                                    </a>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <!-- LEFT SIDE -->
+                <div class="col-xl-6">
+
+                    <!-- Upload Card -->
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title">Upload Photo</h4>
+
+                            <form asp-controller="ApiaryPhotos"
+                                  asp-action="UploadSingle"
+                                  method="post"
+                                  enctype="multipart/form-data">
+
+                                @Html.AntiForgeryToken()
+
+                                <input type="hidden" name="apiaryId" value="@ViewBag.ApiaryId" />
+                                <input type="hidden" name="periodId" value="@ViewBag.PeriodId" />
+
+                                <div class="mb-3">
+                                    <label class="form-label">Photo</label>
+                                    <input class="form-control"
+                                           type="file"
+                                           name="file"
+                                           accept="image/*"
+                                           required />
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Description</label>
+                                    <textarea class="form-control"
+                                              name="desc"
+                                              rows="4"
+                                              style="resize: vertical;"></textarea>
+                                </div>
+
+                                <div class="text-end">
+                                    <button type="submit"
+                                            class="btn btn-primary">
+                                        Upload
+                                    </button>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+
+
+                    <!-- Uploaded Photos Table -->
+                    @if (Model != null && Model.Count > 0)
+                    {
+                        <div class="card mt-3">
+                            <div class="card-body">
+
+                                <h5 class="card-title mb-3">Uploaded Photos</h5>
+
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped mb-0">
+
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th style="width:80px;">#</th>
+                                                <th style="width:90px;">Preview</th>
+                                                <th>File Name</th>
+                                                <th>Description</th>
+                                                <th style="width:100px;">Action</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            @{
+                                                int i = 1;
+                                                foreach (var p in Model)
+                                                {
+                                                    <tr>
+                                                        <td>@i</td>
+
+                                                        <td>
+                                                            <img src="@Url.Action("Image", "ApiaryPhotos", new { id = p.ApiaryPhotoId })"
+                                                                 style="width:70px; height:50px; object-fit:cover;"
+                                                                 class="rounded shadow-sm" />
+                                                        </td>
+
+                                                        <td>@p.ApiaryPhotoFileName</td>
+
+                                                        <td>
+                                                            <small class="text-muted">
+                                                                @p.ApiaryPhotoDesc
+                                                            </small>
+                                                        </td>
+
+                                                        <td>
+                                                            <form asp-controller="ApiaryPhotos"
+                                                                  asp-action="Delete"
+                                                                  method="post"
+                                                                  onsubmit="return confirm('Delete this photo?');">
+
+                                                                @Html.AntiForgeryToken()
+
+                                                                <input type="hidden" name="id" value="@p.ApiaryPhotoId" />
+                                                                <input type="hidden" name="apiaryId" value="@ViewBag.ApiaryId" />
+                                                                <input type="hidden" name="periodId" value="@ViewBag.PeriodId" />
+
+                                                                <button type="submit"
+                                                                        class="btn btn-sm btn-danger">
+                                                                    <i class="mdi mdi-delete"></i>
+                                                                </button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+
+                                                    i++;
+                                                }
+                                            }
+                                        </tbody>
+
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    }
+
+                </div>
+
+
+                <!-- RIGHT SIDE -->
+                <div class="col-xl-6">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title">Photos</h4>
+
+                            @if (Model == null || Model.Count == 0)
+                            {
+                                <div class="alert alert-warning">
+                                    No photos uploaded yet.
+                                </div>
+                            }
+                            else
+                            {
+                                <div id="carouselApiaryPhotos"
+                                     class="carousel slide"
+                                     data-bs-ride="carousel">
+
+                                    <div class="carousel-inner">
+
+                                        @{
+                                            var first = true;
+                                            foreach (var p in Model)
+                                            {
+                                                <div class="carousel-item @(first ? "active" : "")">
+
+                                                    <img src="@Url.Action("Image", "ApiaryPhotos", new { id = p.ApiaryPhotoId })"
+                                                         class="d-block w-100"
+                                                         style="height:530px; object-fit:cover;" />
+
+                                                    <div class="carousel-caption bg-dark bg-opacity-50 rounded p-3">
+                                                        <h5>@p.ApiaryPhotoFileName</h5>
+                                                        <p>@p.ApiaryPhotoDesc</p>
+                                                    </div>
+
+                                                </div>
+
+                                                first = false;
+                                            }
+                                        }
+
+                                    </div>
+
+                                    @if (Model.Count > 1)
+                                    {
+                                        <button class="carousel-control-prev"
+                                                type="button"
+                                                data-bs-target="#carouselApiaryPhotos"
+                                                data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon"></span>
+                                        </button>
+
+                                        <button class="carousel-control-next"
+                                                type="button"
+                                                data-bs-target="#carouselApiaryPhotos"
+                                                data-bs-slide="next">
+                                            <span class="carousel-control-next-icon"></span>
+                                        </button>
+                                    }
+
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    @section scripts {
+        <script src="~/assets/js/app.js"></script>
+    }
+</body>

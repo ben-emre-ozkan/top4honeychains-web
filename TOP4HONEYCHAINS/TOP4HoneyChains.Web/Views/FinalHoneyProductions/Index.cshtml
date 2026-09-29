@@ -1,0 +1,137 @@
+﻿@model IEnumerable<TOP4HoneyChains.Web.Models.Entities.FinalHoneyProduction>
+
+@{
+    ViewData["Title"] = "Final Honey Productions";
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+}
+
+@section AddToHead {
+    <!-- DataTables CSS -->
+    <link href="~/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" />
+}
+
+<body data-topbar="light" data-layout="horizontal">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                                <div>
+                                    <h4 class="card-title mb-1">
+                                        Final Honey Productions
+                                    </h4>
+                                    <p class="text-muted mb-0">
+                                        Manage blended honey batches and CCP traceability records.
+                                    </p>
+                                </div>
+
+                             
+
+                            </div>
+
+                            <table id="datatable" class="table table-bordered table-striped table-hover dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Batch Title</th>
+                                        <th>QR Code</th>
+                                        <th>Production Date</th>
+                                        <th>Total Amount (kg)</th>
+                                        <th>Overview</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+
+                                            <!-- Batch Title -->
+                                            <td>
+                                                <strong>
+                                                    @item.FinalHoneyProductionTitle
+                                                </strong>
+                                            </td>
+
+                                            <!-- QR Code -->
+                                            <td>
+                                                @if (!string.IsNullOrEmpty(item.FinalHoneyProductionQR.ToString()))
+                                                {
+                                                    <span class="badge bg-dark">
+                                                        @(item.FinalHoneyProductionQR.ToString().Length > 8
+                                                                                                        ? item.FinalHoneyProductionQR.ToString().Substring(0, 8) + "..."
+                                                                                                        : item.FinalHoneyProductionQR)
+                                            </span>
+                                                                                        }
+                                                else
+                                                {
+                                                    <span class="text-muted">N/A</span>
+                                                }
+                                            </td>
+
+                                            <!-- Date -->
+                                            <td>
+                                                @item.FinalHoneyProductionDate?.ToString("dd.MM.yyyy")
+                                            </td>
+
+                                            <!-- Total Amount -->
+                                            <td>
+                                                <span class="badge bg-success px-3 py-2">
+                                                    @item.FinalHoneyProductionTotalAmount?.ToString("0.00") kg
+                                                </span>
+                                            </td>
+
+                                            <!-- Overview Button -->
+                                            <td>
+                                                <a asp-action="CCPOverview"
+                                                   asp-route-id="@item.FinalHoneyProductionId"
+                                                   class="btn btn-primary btn-sm waves-effect waves-light">
+                                                    <i class="mdi mdi-timeline-clock-outline me-1"></i>
+                                                    CCP Overview
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    @section scripts{
+        <!-- DataTables JS -->
+        <script src="~/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="~/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+
+        <script src="~/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="~/assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+        <script src="~/assets/libs/jszip/jszip.min.js"></script>
+        <script src="~/assets/libs/pdfmake/build/pdfmake.min.js"></script>
+        <script src="~/assets/libs/pdfmake/build/vfs_fonts.js"></script>
+        <script src="~/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+        <script src="~/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+        <script src="~/assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+
+        <script src="~/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="~/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
+        <script src="~/assets/js/pages/datatables.init.js"></script>
+        <script src="~/assets/js/app.js"></script>
+    }
+</body>

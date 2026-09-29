@@ -1,0 +1,180 @@
+﻿@model TOP4HoneyChains.Web.Models.Entities.CriticalControlPointParameterContent
+
+@{
+    ViewData["Title"] = "Edit Content";
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+}
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <!-- 🔷 HEADER -->
+            <div class="row mb-3">
+                <div class="col-12">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body d-flex justify-content-between align-items-center">
+
+                            <div>
+                                <h4 class="card-title mb-1">Edit Parameter Content</h4>
+                                <p class="text-muted mb-0">
+                                    Update video and explanation for this parameter.
+                                </p>
+                            </div>
+
+                            <a asp-action="Index"
+                               asp-route-parameterId="@Model.ParameterId"
+                               class="btn btn-secondary">
+                                <i class="mdi mdi-arrow-left me-1"></i>
+                                Back
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 🔷 FORM -->
+            <div class="row">
+                <div class="col-lg-8">
+
+                    <div class="card">
+                        <div class="card-body">
+
+                            <form asp-action="Edit" enctype="multipart/form-data">
+
+                                <input type="hidden" asp-for="ContentId" />
+                                <input type="hidden" asp-for="ParameterId" />
+
+                                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                                <!-- 🔵 PARAMETER (readonly) -->
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">Parameter</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           value="@Model.Parameter?.ParameterName"
+                                           readonly />
+                                </div>
+
+                                <!-- 🔵 TYPE -->
+                                <div class="mb-3">
+                                    <label asp-for="ContentType" class="form-label fw-bold"></label>
+                                    <select asp-for="ContentType" class="form-control">
+                                        <option value="Info">Info</option>
+                                        <option value="Video">Video</option>
+                                        <option value="Warning">Warning</option>
+                                    </select>
+                                </div>
+
+                                <!-- 🔵 WHAT -->
+                                <div class="mb-3">
+                                    <label asp-for="WhatIsIt" class="form-label fw-bold"></label>
+                                    <textarea asp-for="WhatIsIt" class="form-control" rows="3"></textarea>
+                                </div>
+
+                                <!-- 🔵 WHY -->
+                                <div class="mb-3">
+                                    <label asp-for="WhyImportant" class="form-label fw-bold"></label>
+                                    <textarea asp-for="WhyImportant" class="form-control" rows="3"></textarea>
+                                </div>
+
+                                <!-- 🔵 EXTRA -->
+                                <div class="mb-3">
+                                    <label asp-for="ExtraInfo" class="form-label fw-bold"></label>
+                                    <textarea asp-for="ExtraInfo" class="form-control" rows="2"></textarea>
+                                </div>
+
+                                <!-- 🔥 CURRENT VIDEO -->
+                                @if (!string.IsNullOrEmpty(Model.VideoPath))
+                                {
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">Current Video</label>
+
+                                        <div class="border rounded p-2">
+                                            <video controls style="width:100%; border-radius:10px;">
+                                                <source src="@Model.VideoPath" type="video/mp4" />
+                                            </video>
+                                        </div>
+                                    </div>
+                                }
+
+                                <!-- 🔥 NEW VIDEO -->
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">Replace Video</label>
+                                    <input type="file" name="videoFile" class="form-control" accept="video/*" />
+
+                                    <small class="text-muted">
+                                        Leave empty to keep current video.
+                                    </small>
+                                </div>
+
+                                <!-- 🔵 SORT -->
+                                <div class="mb-3">
+                                    <label asp-for="SortOrder" class="form-label fw-bold"></label>
+                                    <input asp-for="SortOrder" class="form-control" />
+                                </div>
+
+                                <!-- 🔵 ACTIVE -->
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" asp-for="IsActive" />
+                                    <label class="form-check-label fw-bold">
+                                        Active Content
+                                    </label>
+                                </div>
+
+                                <!-- 🔥 ACTIONS -->
+                                <div class="d-flex gap-2 mt-4">
+
+                                    <button type="submit"
+                                            class="btn btn-success px-4">
+                                        <i class="mdi mdi-content-save-outline me-1"></i>
+                                        Update Content
+                                    </button>
+
+                                    <a asp-action="Index"
+                                       asp-route-parameterId="@Model.ParameterId"
+                                       class="btn btn-outline-secondary">
+                                        <i class="mdi mdi-arrow-left me-1"></i>
+                                        Back
+                                    </a>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- 🔷 SIDE CARD -->
+                <div class="col-lg-4">
+                    <div class="card border-warning">
+                        <div class="card-body">
+
+                            <h5 class="text-warning fw-bold mb-3">
+                                <i class="mdi mdi-alert-circle-outline me-1"></i>
+                                Editing Tips
+                            </h5>
+
+                            <ul class="text-muted small">
+                                <li>You can update text without changing video</li>
+                                <li>Uploading a new video will replace the old one</li>
+                                <li>Keep explanations user-friendly</li>
+                                <li>Check content before saving</li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    @section scripts{
+        <script src="~/assets/libs/parsleyjs/parsley.min.js"></script>
+        <script src="~/assets/js/pages/form-validation.init.js"></script>
+        <script src="~/assets/js/app.js"></script>
+    }
+</body>

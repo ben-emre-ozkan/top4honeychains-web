@@ -1,0 +1,94 @@
+﻿@model TOP4HoneyChains.Web.Models.Entities.HoneyType
+
+@{
+    ViewData["Title"] = "Edit Honey Type";
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+}
+
+<body data-topbar="light" data-layout="horizontal">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-xl-12">
+
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title">Edit Honey Type</h4>
+                            <p class="card-title-desc">
+                                Update the selected honey type.
+                            </p>
+
+                            <form asp-action="Edit" class="custom-validation">
+
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                <input type="hidden" asp-for="HoneyTypeId" />
+
+                                <!-- Title -->
+                                <div class="mb-3">
+                                    <label asp-for="HoneyTypeTitle"
+                                           class="form-label">
+                                        Honey Type Title
+                                    </label>
+
+                                    <input asp-for="HoneyTypeTitle"
+                                           class="form-control"
+                                           placeholder="Enter honey type title" />
+
+                                    <span asp-validation-for="HoneyTypeTitle"
+                                          class="text-danger"></span>
+                                </div>
+
+                                <!-- Description -->
+                                <div class="mb-3">
+                                    <label asp-for="HoneyTypeDescription"
+                                           class="form-label">
+                                        Description
+                                    </label>
+
+                                    <textarea asp-for="HoneyTypeDescription"
+                                              class="form-control"
+                                              rows="4"
+                                              placeholder="Enter description for this honey type">
+                                    </textarea>
+
+                                    <span asp-validation-for="HoneyTypeDescription"
+                                          class="text-danger"></span>
+                                </div>
+
+                                <!-- Buttons -->
+                                <div class="d-flex gap-2">
+
+                                    <button type="submit"
+                                            class="btn btn-primary waves-effect waves-light">
+                                        Update
+                                    </button>
+
+                                    <a asp-action="Index"
+                                       class="btn btn-secondary waves-effect">
+                                        Back to List
+                                    </a>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    @section scripts{
+        <script src="~/assets/libs/parsleyjs/parsley.min.js"></script>
+        <script src="~/assets/js/pages/form-validation.init.js"></script>
+        <script src="~/assets/js/app.js"></script>
+    }
+
+</body>

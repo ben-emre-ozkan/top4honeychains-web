@@ -1,0 +1,242 @@
+﻿@using TOP4HoneyChains.Web.Models.ViewModels.Monitoring
+@model CCPMonitoringViewModelForRawHoney
+
+@{
+    ViewData["Title"] = "CCP Monitoring";
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <!-- 🔷 CCP HEADER -->
+            <div class="card mb-4 border-0 shadow-lg">
+                <div class="card-body text-white rounded"
+                     style="background: linear-gradient(135deg,#141e30,#243b55);">
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <div>
+                            <h3 class="mb-1 fw-bold">
+                                <i class="mdi mdi-shield-check-outline me-2"></i>
+                                @Model.CCPCode - @Model.CCPTitle
+                            </h3>
+
+                            <small class="opacity-75">
+                                @Model.ProcessingStep
+                            </small>
+                        </div>
+
+                        <div class="text-end">
+                            <span class="badge bg-light text-dark fs-6 px-3 py-2 shadow-sm">
+                                CCP Monitoring
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <hr class="border-light opacity-25" />
+
+                    <div>
+                        <small class="opacity-75">
+                            @Model.CriticalityJustification
+                        </small>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- 🔷 PRODUCTION CARD -->
+            <div class="card mb-5 border-0 shadow-sm">
+                <div class="card-body bg-light rounded">
+
+                    <div class="row text-center">
+
+                        <div class="col-md-3">
+                            <small class="text-uppercase text-muted">Beekeeper</small>
+                            <div class="fw-bold fs-5">@Model.BeekeeperName</div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <small class="text-uppercase text-muted">Apiary</small>
+                            <div class="fw-bold fs-5">@Model.ApiaryName</div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <small class="text-uppercase text-muted">Honey Type</small>
+                            <div class="fw-bold fs-5">@Model.HoneyType</div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <small class="text-uppercase text-muted">Production Date</small>
+                            <div class="fw-bold fs-5">
+                                @Model.ProductionDate?.ToString("dd.MM.yyyy")
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            <!-- 🔷 MONITORING FORM -->
+            <div class="card border-0 shadow-lg">
+                <div class="card-body">
+
+                    <form asp-action="RawHoneyProductionManageCCP" method="post">
+
+                        <input type="hidden" asp-for="CCPId" />
+                        <input type="hidden" asp-for="RawHoneyProductionId" />
+                        <input type="hidden" asp-for="ApiaryId" />
+
+                        @for (int i = 0; i < Model.Groups.Count; i++)
+                        {
+                            <div class="card mb-4 border-0 shadow-sm">
+
+                                <!-- CATEGORY HEADER -->
+                                <div class="card-header border-0 text-white"
+                                     style="background: linear-gradient(135deg,#2c3e50,#4ca1af);">
+
+                                    <div class="d-flex justify-content-between align-items-start">
+
+                                        <div>
+                                            <h6 class="mb-1 fw-bold">
+                                                <i class="mdi mdi-folder-outline me-2"></i>
+                                                @Model.Groups[i].CategoryName
+                                            </h6>
+
+                                            @if (!string.IsNullOrEmpty(Model.Groups[i].CategoryDescription))
+                                            {
+                                                <small class="opacity-75">
+                                                    @Model.Groups[i].CategoryDescription
+                                                </small>
+                                            }
+                                        </div>
+
+                                        <span class="badge bg-light text-dark">
+                                            @Model.Groups[i].Parameters.Count Parameters
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="card-body">
+
+                                    @for (int j = 0; j < Model.Groups[i].Parameters.Count; j++)
+                                    {
+                                        <input type="hidden"
+                                               asp-for="Groups[i].Parameters[j].ParameterId" />
+
+                                        <div class="mb-4 p-4 rounded shadow-sm"
+                                             style="background:#f8fafc; transition:.3s ease;"
+                                             onmouseover="this.style.transform='scale(1.01)'"
+                                             onmouseout="this.style.transform='scale(1)'">
+
+                                            <!-- PARAMETER TITLE -->
+                                            <label class="form-label fw-bold fs-6">
+                                                @Model.Groups[i].Parameters[j].ParameterName
+
+                                                @if (!string.IsNullOrEmpty(Model.Groups[i].Parameters[j].Unit))
+                                                {
+                                                    <span class="text-muted">
+                                                        (@Model.Groups[i].Parameters[j].Unit)
+                                                    </span>
+                                                }
+                                            </label>
+
+                                            <!-- INPUTS -->
+                                            <div class="row mt-2">
+
+                                                <div class="col-md-6">
+                                                    <label class="form-label small text-muted">
+                                                        Numeric Value
+                                                    </label>
+                                                    <input type="number"
+                                                           step="0.0001"
+                                                           class="form-control shadow-sm"
+                                                           asp-for="Groups[i].Parameters[j].MeasuredNumericValue" />
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <label class="form-label small text-muted">
+                                                        Text Value
+                                                    </label>
+                                                    <input type="text"
+                                                           class="form-control shadow-sm"
+                                                           asp-for="Groups[i].Parameters[j].MeasuredTextValue" />
+                                                </div>
+
+                                            </div>
+
+                                            <!-- NOTES -->
+                                            <div class="row mt-3">
+                                                <div class="col-12">
+                                                    <label class="form-label small text-muted">
+                                                        Notes
+                                                    </label>
+                                                    <textarea class="form-control shadow-sm"
+                                                              rows="2"
+                                                              asp-for="Groups[i].Parameters[j].Notes"
+                                                              placeholder="Optional professional observation...">
+                                                    </textarea>
+                                                </div>
+                                            </div>
+
+                                            <!-- CRITICAL LIMIT -->
+                                            @if (!string.IsNullOrEmpty(Model.Groups[i].Parameters[j].CriticalLimit))
+                                            {
+                                                <div class="mt-3 p-2 rounded"
+                                                     style="background:#fff5f5; border-left:4px solid #dc3545;">
+                                                    <small class="text-danger fw-semibold">
+                                                        <i class="mdi mdi-alert-circle-outline me-1"></i>
+                                                        Critical Limit: @Model.Groups[i].Parameters[j].CriticalLimit
+                                                    </small>
+                                                </div>
+                                            }
+
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+                        }
+
+                        <!-- ACTION BUTTONS -->
+                        <div class="d-flex justify-content-between mt-4">
+
+                            <a asp-controller="RawHoneyProductions"
+                               asp-action="RawHoneyProductionByApiary"
+                               asp-route-id="@Model.ApiaryId"
+                               class="btn btn-outline-secondary px-4">
+                                <i class="mdi mdi-arrow-left me-1"></i>
+                                Back
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-success px-5 shadow">
+                                <i class="mdi mdi-content-save-outline me-1"></i>
+                                Save Monitoring Logs
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    @section scripts{
+        <script src="~/assets/libs/parsleyjs/parsley.min.js"></script>
+        <script src="~/assets/js/pages/form-validation.init.js"></script>
+        <script src="~/assets/js/app.js"></script>
+    }
+</body>

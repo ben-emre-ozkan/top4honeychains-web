@@ -1,0 +1,441 @@
+﻿@model TOP4HoneyChains.Web.Models.ViewModels.FinalProduct.ManageBatchViewModel
+
+@{
+    ViewData["Title"] = "Manage Batch";
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+}
+
+
+@section AddToHead {
+    <!-- DataTables -->
+    <link href="~/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="~/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+}
+
+<body data-topbar="light" data-layout="horizontal">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+
+            <!-- HEADER CARDS -->
+            <div class="row">
+
+                <div class="col-xl-4 col-sm-6">
+                    <div class="card mini-stat bg-info">
+                        <div class="card-body mini-stat-img">
+                            <div class="mini-stat-icon">
+                                <i class="mdi mdi-information-outline float-end"></i>
+                            </div>
+                            <div class="text-white">
+                                <h6 class="text-uppercase mb-3 font-size-16 text-white">Batch Info</h6>
+                                <p><strong>Title:</strong> @Model.Batch.FinalHoneyProductionTitle</p>
+                                <p><strong>Date:</strong> @Model.Batch.FinalHoneyProductionDate?.ToString("dd.MM.yyyy")</p>
+                                <p><strong>QR:</strong> @Model.Batch.FinalHoneyProductionQR.ToString().Substring(0, 8)...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-xl-4 col-sm-6">
+                    <div class="card mini-stat bg-warning">
+                        <div class="card-body mini-stat-img">
+                            <div class="mini-stat-icon">
+                                <i class="mdi mdi-truck-outline float-end"></i>
+                            </div>
+                            <div class="text-white">
+                                <h6 class="text-uppercase mb-3 font-size-16 text-white">Wholesaler</h6>
+                                <p><strong>Company:</strong> @Model.Wholesaler?.WholesalerTitle</p>
+                                <p><strong>City:</strong> @Model.Wholesaler?.WholesalerCity</p>
+                                <p>
+                                    <strong>Status:</strong>
+                                    @(Model.Wholesaler?.WholesalerIsActive == true
+                                                                        ? "Active" : "Passive")
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-xl-4 col-sm-6">
+                    <div class="card mini-stat bg-primary">
+                        <div class="card-body mini-stat-img">
+                            <div class="mini-stat-icon">
+                                <i class="mdi mdi-file-table-outline float-end"></i>
+                            </div>
+                            <div class="text-white">
+                                <h6 class="text-uppercase mb-3 font-size-16 text-white">Summary</h6>
+                                <p>
+                                    <strong>Target:</strong>
+                                    <span id="targetAmount">
+                                        @Model.Batch.FinalHoneyProductionTotalAmount
+                                    </span> kg
+                                </p>
+
+                                <p>
+                                    <strong>Total Selected:</strong>
+                                    <span id="selectedTotal">0</span> kg
+                                </p>
+                                <p>
+                                    <strong>Status:</strong>
+                                    @if (Model.Batch.FinalHoneyProductionIsFinalized)
+                                    {
+                                        <span class="badge bg-success">Finalized</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-warning text-dark">Draft</span>
+                                    }
+                                </p>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+            <div class="row">
+                <div class="col-12">
+                    <!-- RAW HONEY TABLE -->
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h5 class="card-title mb-3">Raw Honey Sources</h5>
+
+                            <form id="manageBatchForm" asp-action="ManageBatchPost" method="post">
+
+                                <input type="hidden" name="batchId" value="@Model.Batch.FinalHoneyProductionId" />
+
+                                <div class="table-responsive">
+                                    <table id="datatable"
+                                           class="table table-bordered table-hover dt-responsive nowrap"
+                                           style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+
+                                        <thead class="table-dark">
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Apiary</th>
+                                                <th>Beekeeper</th>
+                                                <th>Honey Type</th>
+                                                <th>Total (kg)</th>
+                                                <th>Use Amount (kg)</th>
+                                                <th>Available Amount</th>
+                                                <th>Add Amount</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            @foreach (var item in Model.RawHoneyList)
+                                            {
+                                                <tr>
+
+                                                    <td>@item.RawHoney.RawHoneyProductionId</td>
+
+                                                    <td>@item.RawHoney.RawHoneyProductionApiary?.ApiaryTitle</td>
+
+                                                    <td>
+                                                        @item.RawHoney.RawHoneyProductionApiary?.ApiaryBeekeeper?.BeekeeperFirstName
+                                                        @item.RawHoney.RawHoneyProductionApiary?.ApiaryBeekeeper?.BeekeeperLastName
+                                                    </td>
+
+                                                    <td>
+                                                        <span class="badge bg-warning text-dark">
+                                                            @item.RawHoney.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle
+                                                        </span>
+                                                    </td>
+
+                                                    <td>
+                                                        <span class="badge bg-info">
+                                                            @item.RawHoney.RawHoneyProductionAmount kg
+                                                        </span>
+                                                    </td>
+
+                                                    <td>
+                                                        <span class="badge bg-danger">
+                                                            @item.AlreadyUsed kg
+                                                        </span>
+                                                    </td>
+
+                                                    <td>
+                                                        <span class="badge bg-success">
+                                                            @item.AvailableAmount kg
+                                                        </span>
+                                                    </td>
+
+                                                    <td>
+                                                        <input type="number"
+                                                               @(Model.Batch.FinalHoneyProductionIsFinalized ? "disabled" : "")
+                                                               step="0.01"
+                                                               min="0"
+                                                               max="@item.AvailableAmount.ToString(System.Globalization.CultureInfo.InvariantCulture)"
+                                                               value="@item.CurrentBatchAmount"
+                                                               name="usedAmounts[@item.RawHoney.RawHoneyProductionId]"
+                                                               class="form-control use-amount"
+                                                               data-max="@item.AvailableAmount.ToString(System.Globalization.CultureInfo.InvariantCulture)"
+                                                               placeholder="0.00" />
+                                                    </td>
+
+                                                </tr>
+                                            }
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </form>
+                            <!-- ✅ ACTIONS (NO NESTED FORM) -->
+                            <div class="mt-4 d-flex justify-content-between align-items-center gap-2 flex-wrap">
+
+                                <!-- Back -->
+                                <a asp-action="ByWholesaler"
+                                   asp-route-wholesalerId="@Model.Batch.FinalHoneyProductionWholesalerId"
+                                   class="btn btn-outline-secondary btn-lg px-4">
+                                    <i class="mdi mdi-arrow-left me-2"></i>
+                                    Back to Batches
+                                </a>
+
+                                <div class="d-flex align-items-center gap-2 flex-wrap">
+
+                                    @if (!Model.Batch.FinalHoneyProductionIsFinalized)
+                                    {
+                                        <!-- Save (submits main form) -->
+                                        <button type="button"
+                                                class="btn btn-success btn-lg px-4 shadow-sm"
+                                                onclick="confirmSaveBatch()">
+                                            <i class="mdi mdi-content-save-outline me-2"></i>
+                                            Save Batch Composition
+                                        </button>
+
+                                        <!-- Finalize -->
+                                        <form id="finalizeForm" asp-action="FinalizeBatch" method="post" class="d-inline">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="id" value="@Model.Batch.FinalHoneyProductionId" />
+                                            <button type="button"
+                                                    class="btn btn-danger btn-lg px-4"
+                                                    onclick="confirmFinalize()">
+                                                <i class="mdi mdi-lock-outline me-2"></i>
+                                                Finalize Batch
+                                            </button>
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-success fs-6">
+                                            <i class="mdi mdi-lock-check-outline"></i>
+                                            Finalized
+                                        </span>
+
+                                        <!-- Unfinalize (role check later) -->
+                                        <form id="unfinalizeForm" asp-action="UnfinalizeBatch" method="post" class="d-inline">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="id" value="@Model.Batch.FinalHoneyProductionId" />
+                                            <button type="button"
+                                                    class="btn btn-outline-danger"
+                                                    onclick="confirmUnfinalize()">
+                                                <i class="mdi mdi-lock-open-outline me-2"></i>
+                                                Unfinalize
+                                            </button>
+                                        </form>
+                                    }
+
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+    @section scripts{
+
+
+        <!-- Required datatable js -->
+        <script src="~/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="~/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <!-- Buttons examples -->
+        <script src="~/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="~/assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+        <script src="~/assets/libs/jszip/jszip.min.js"></script>
+        <script src="~/assets/libs/pdfmake/build/pdfmake.min.js"></script>
+        <script src="~/assets/libs/pdfmake/build/vfs_fonts.js"></script>
+        <script src="~/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+        <script src="~/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+        <script src="~/assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+        <!-- Responsive examples -->
+        <script src="~/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="~/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
+        <!-- Datatable init js -->
+        <script src="~/assets/js/pages/datatables.init.js"></script>
+
+        <script>
+
+            function updateTotals() {
+
+                let inputs = document.querySelectorAll('.use-amount');
+                let total = 0;
+
+                inputs.forEach(function (input) {
+                    let val = parseFloat(input.value);
+                    if (!isNaN(val)) {
+                        total += val;
+                    }
+                });
+
+                document.getElementById('selectedTotal').innerText = total.toFixed(2);
+
+                let target = parseFloat(document.getElementById('targetAmount').innerText);
+
+                if (!isNaN(target) && target > 0) {
+
+                    let percentage = (total / target) * 100;
+                    if (percentage > 100) percentage = 100;
+
+
+
+                    if (total > target) {
+                        bar.classList.remove('bg-success');
+                        bar.classList.add('bg-danger');
+                    } else {
+                        bar.classList.remove('bg-danger');
+                        bar.classList.add('bg-success');
+                    }
+                }
+            }
+
+            document.querySelectorAll('.use-amount').forEach(function(input){
+
+                input.addEventListener('input', function(){
+
+                    let max = parseFloat(this.dataset.max);
+                    let val = parseFloat(this.value);
+
+                    if (isNaN(val)) return;
+
+                    if (val > max) this.value = max;
+                    if (val < 0) this.value = 0;
+
+                    updateTotals();
+                });
+
+            });
+
+            // Sayfa yüklenince de hesapla
+            updateTotals();
+
+        </script>
+
+
+        <script src="~/assets/libs/sweetalert2/sweetalert2.min.js"></script>
+
+        <script>
+
+            // ✅ SUCCESS MESSAGE
+            @if (TempData["Success"] != null)
+            {
+                            <text>
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success',
+                                text: '@TempData["Success"]',
+                                confirmButtonColor: '#28a745'
+                            });
+                            </text>
+            }
+
+            // ❌ ERROR MESSAGE
+            @if (TempData["Error"] != null)
+            {
+                            <text>
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: '@TempData["Error"]',
+                                confirmButtonColor: '#dc3545'
+                            });
+                            </text>
+            }
+
+            // 🔒 Finalize Confirm
+            function confirmFinalize() {
+                Swal.fire({
+                    title: 'Finalize this batch?',
+                    text: 'After finalizing, editing will be disabled.',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#6c757d',
+                    confirmButtonText: 'Yes, finalize it',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('finalizeForm').submit();
+                    }
+                });
+            }
+
+            // 🔓 Unfinalize Confirm
+            function confirmUnfinalize() {
+                Swal.fire({
+                    title: 'Unfinalize this batch?',
+                    text: 'Editing will be enabled again.',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#dc3545',
+                    cancelButtonColor: '#6c757d',
+                    confirmButtonText: 'Yes, unlock it',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('unfinalizeForm').submit();
+                    }
+                });
+            }
+
+             function confirmSaveBatch() {
+
+                Swal.fire({
+                    title: 'Save batch changes?',
+                    text: 'This will update the batch composition.',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#28a745',
+                    cancelButtonColor: '#6c757d',
+                    confirmButtonText: 'Yes, save it',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+
+                    if (result.isConfirmed) {
+                        document.getElementById('manageBatchForm').submit();
+                    }
+
+                });
+            }
+        </script>
+
+
+
+        <script src="~/assets/js/app.js"></script>
+    }
+
+</body>

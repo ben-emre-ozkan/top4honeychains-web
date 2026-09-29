@@ -1,0 +1,6 @@
+@TOP4HoneyChains.API_HostAddress = http://localhost:5298
+
+GET {{TOP4HoneyChains.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

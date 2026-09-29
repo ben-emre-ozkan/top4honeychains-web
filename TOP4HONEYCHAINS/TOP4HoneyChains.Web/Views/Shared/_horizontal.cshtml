@@ -1,0 +1,304 @@
+﻿@using System.Globalization
+
+@{
+    var culture = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+
+    var lang = "English";
+    var flag = "us_flag.jpg";
+
+    if (culture == "tr")
+    {
+        lang = "Türkçe";
+        flag = "turkey_flag.jpg";
+    }
+    else if (culture == "es")
+    {
+        lang = "Español";
+        flag = "argentina_flag.jpg";
+    }
+    else if (culture == "pl")
+    {
+        lang = "Polski";
+        flag = "poland_flag.jpg";
+    }
+    else if (culture == "lv")
+    {
+        lang = "Latviešu";
+        flag = "latvia_flag.jpg";
+    }
+}
+
+<header id="page-topbar">
+    <div class="navbar-header">
+        <div class="container-fluid">
+            <div class="float-start">
+                <!-- LOGO -->
+                <div class="navbar-brand-box">
+                    <a href="/" class="logo logo-dark">
+                        <span class="logo-sm">
+                            <img src="~/assets/images/logo-sm.png" alt="" height="70">
+                        </span>
+                        <span class="logo-lg">
+                            <img src="~/assets/images/logo-dark.png" alt="" height="70">
+                        </span>
+                    </a>
+
+                    <a href="/" class="logo logo-light">
+                        <span class="logo-sm">
+                            <img src="~/assets/images/logo-sm.png" alt="" height="70">
+                        </span>
+                        <span class="logo-lg">
+                            <img src="~/assets/images/logo-light.png" alt="" height="70">
+                        </span>
+                    </a>
+                </div>
+
+                <button type="button" class="btn btn-sm px-3 font-size-24 d-lg-none header-item waves-effect waves-light" data-bs-toggle="collapse" data-bs-target="#topnav-menu-content">
+                    <i class="mdi mdi-menu"></i>
+                </button>
+            </div>
+
+            <div class="float-end">
+
+                <div class="dropdown d-none d-lg-inline-block ms-2">
+
+                    <button type="button"
+                            class="btn header-item waves-effect"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false">
+
+                        <img class="me-2"
+                             src="~/assets/images/flags/@flag"
+                             height="16">
+
+                        @lang
+
+                        <span class="mdi mdi-chevron-down"></span>
+                    </button>
+
+                    <div class="dropdown-menu dropdown-menu-end">
+
+                        <!-- English -->
+                        <a asp-controller="Home"
+                           asp-action="SetLanguage"
+                           asp-route-culture="en"
+                           asp-route-returnUrl="@Context.Request.Path"
+                           class="dropdown-item">
+                            <img src="~/assets/images/flags/us_flag.jpg" class="me-1" height="12">
+                            English
+                        </a>
+
+                        <!-- Turkish -->
+                        <a asp-controller="Home"
+                           asp-action="SetLanguage"
+                           asp-route-culture="tr"
+                           asp-route-returnUrl="@Context.Request.Path"
+                           class="dropdown-item">
+                            <img src="~/assets/images/flags/turkey_flag.jpg" class="me-1" height="12">
+                            Türkçe
+                        </a>
+
+                        <!-- Spanish -->
+                        <a asp-controller="Home"
+                           asp-action="SetLanguage"
+                           asp-route-culture="es"
+                           asp-route-returnUrl="@Context.Request.Path"
+                           class="dropdown-item">
+                            <img src="~/assets/images/flags/argentina_flag.jpg" class="me-1" height="12">
+                            Español
+                        </a>
+
+                        <!-- Polish -->
+                        <a asp-controller="Home"
+                           asp-action="SetLanguage"
+                           asp-route-culture="pl"
+                           asp-route-returnUrl="@Context.Request.Path"
+                           class="dropdown-item">
+                            <img src="~/assets/images/flags/poland_flag.jpg" class="me-1" height="12">
+                            Polski
+                        </a>
+
+                        <!-- Latvian -->
+                        <a asp-controller="Home"
+                           asp-action="SetLanguage"
+                           asp-route-culture="lv"
+                           asp-route-returnUrl="@Context.Request.Path"
+                           class="dropdown-item">
+                            <img src="~/assets/images/flags/latvia_flag.jpg" class="me-1" height="12">
+                            Latviešu
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="dropdown d-none d-lg-inline-block">
+                    <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
+                        <i class="mdi mdi-fullscreen font-size-24"></i>
+                    </button>
+                </div>
+
+
+
+
+                <div class="dropdown d-inline-block">
+                    <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="rounded-circle header-profile-user" src="~/assets/images/users/user-4.jpg"
+                             alt="Header Avatar">
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <!-- item-->
+                        <a class="dropdown-item" asp-controller="Account" asp-action="Profile">
+                            <i class="mdi mdi-account-circle font-size-17 text-muted align-middle me-1"></i>@L["Menu.Profile"]
+                        </a>
+                        <a class="dropdown-item"
+                           asp-controller="Account"
+                           asp-action="LockScreen">
+                            <i class="mdi mdi-lock-open-outline font-size-17 text-muted align-middle me-1"></i>
+                            @L["Menu.LockScreen"]
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <form asp-controller="Account"
+                              asp-action="Logout"
+                              method="post"
+                              class="m-0">
+
+                            @Html.AntiForgeryToken()
+
+                            <button type="submit"
+                                    class="dropdown-item text-danger">
+
+                                <i class="mdi mdi-power font-size-17 text-muted align-middle me-1 text-danger"></i>
+                                @L["Menu.Logout"]
+
+                            </button>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="top-navigation">
+        <div class="page-title-content">
+            <div class="container-fluid">
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="page-title-box">
+                            <h4>
+                                Trustable and Sustainable Open Platform for
+                                Smart Honey Value Chains
+                            </h4>
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">TOP4HoneyChains</a></li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">@ViewBag.Controller</a></li>
+                                <li class="breadcrumb-item active">@ViewBag.Action</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- end page title -->
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="topnav">
+                <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
+
+                    <div class="collapse navbar-collapse" id="topnav-menu-content">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Dashboard/Index">
+                                    <i class="mdi mdi-view-dashboard"></i>@L["Menu.Dashboard"]
+                                </a>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-email" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="mdi mdi-beekeeper"></i>@L["Menu.Beekeepers"]
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="topnav-email">
+                                    <a href="/Beekeepers/Index" class="dropdown-item">@L["Menu.BeekeepersList"]</a>
+                                    <a href="/Apiaries/Index" class="dropdown-item">@L["Menu.Apiaries"]</a>
+                                    <a href="/BeekeeperEducationLevels/Index" class="dropdown-item">@L["Menu.EducationLevels"]</a>
+                                    <a href="/BeekeepingPurposeTypes/Index" class="dropdown-item">@L["Menu.BeekeepingPurposeTypes"]</a>
+                                    <a href="/BeekeepingTypes/Index" class="dropdown-item">@L["Menu.BeekeepingTypes"]</a>
+                                </div>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-components" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="mdi mdi-beehive-outline"></i>@L["Menu.RawHoneyProduction"]
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="topnav-components">
+                                    <a href="/RawHoneyProductions/Index" class="dropdown-item">@L["Menu.RawHoneyProductions"]</a>
+                                    <a href="/HoneyTypes/Index" class="dropdown-item">@L["Menu.HoneyTypes"]</a>
+                                    <a href="/RawHoneyProductionPeriods/Index" class="dropdown-item">@L["Menu.RawHoneyProductionPeriods"]</a>
+                                </div>
+                            </li>
+
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-wholesalers" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="mdi mdi-truck-delivery"></i>@L["Menu.Wholesalers"]
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="topnav-wholesalers">
+                                    <a href="/Wholesalers/Index" class="dropdown-item">@L["Menu.WholesalersList"]</a>
+                                    <a href="/Wholesalers/Create" class="dropdown-item">@L["Menu.AddWholesaler"]</a>
+                                </div>
+                            </li>
+
+
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-finalprod" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="mdi mdi-cog-transfer"></i>@L["Menu.FinalHoneyProductions"]
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="topnav-finalprod">
+                                    <a href="/FinalHoneyProductions/Index" class="dropdown-item">@L["Menu.FinalHoneyProductions"]</a>
+                                </div>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-ccp" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="mdi mdi-timeline-text-outline"></i>@L["Menu.CriticalControlPoints"]
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="topnav-ccp">
+                                    <a href="/CriticalControlPoints/Index" class="dropdown-item">@L["Menu.CriticalControlPoints"]</a>
+                                    <a href="/CriticalControlPointParameterCategories/Index" class="dropdown-item">@L["Menu.ParameterCategories"]</a>
+                                    <a href="/CriticalControlPointParameters/Index" class="dropdown-item">@L["Menu.Parameters"]</a>
+                                </div>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-usermanagement" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="mdi mdi-account-cog"></i>@L["Menu.UserManagement"]
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="topnav-usermanagement">
+                                    <a href="/UserManagement/Index" class="dropdown-item">@L["Menu.Users"]</a>
+                                    <a href="/RoleManagement/Index" class="dropdown-item">@L["Menu.Roles"]</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>

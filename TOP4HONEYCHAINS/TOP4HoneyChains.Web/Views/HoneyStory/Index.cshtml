@@ -1,0 +1,1101 @@
+﻿@using TOP4HoneyChains.Web.Models.ViewModels.HoneyStory
+@using System.Text.Json
+@model HoneyStoryViewModel
+
+@{
+    Layout = null;
+    var tr = new System.Globalization.CultureInfo("tr-TR");
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <title>@(Model.BatchTitle ?? "Honey Story")</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/assets/css/icons.min.css" rel="stylesheet" />
+    <link href="~/assets/css/app.min.css" rel="stylesheet" />
+    <link href="~/assets/libs/c3/c3.min.css" rel="stylesheet" />
+
+    <style>
+
+        body {
+            background: radial-gradient(circle at 20% 20%,rgba(44,83,100,.05),transparent 40%), radial-gradient(circle at 80% 10%,rgba(15,32,39,.04),transparent 40%), linear-gradient(180deg,#f6f9fc,#eef2f7);
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+
+        .soft-shadow {
+            box-shadow: 0 10px 35px rgba(0,0,0,.08);
+        }
+
+        .hero-wrap {
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.08);
+        }
+
+        .qr-frame {
+            width: 128px;
+            height: 128px;
+            background: #fff;
+            padding: 8px;
+            margin: auto;
+            border-radius: 14px;
+            border: 1px solid rgba(0,0,0,.08);
+            box-shadow: 0 10px 28px rgba(0,0,0,.20);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .metric-pill {
+            background: rgba(255,255,255,.10);
+            border: 1px solid rgba(255,255,255,.18);
+            border-radius: 12px;
+            padding: 8px 12px;
+        }
+
+            .metric-pill .value {
+                font-weight: 600;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+        .section-header {
+            padding: 16px 20px;
+            border-radius: 12px;
+            background: linear-gradient(135deg,#134e4a,#166534,#14532d);
+        }
+
+        .section-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            background: rgba(255,255,255,0.15);
+            color: white;
+        }
+
+        .section-divider {
+            height: 2px;
+            border: none;
+            background: linear-gradient(90deg,#16a34a,transparent);
+            margin-top: 14px;
+            margin-bottom: 20px;
+        }
+
+        .origin-card {
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all .25s ease;
+        }
+
+            .origin-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 14px 35px rgba(0,0,0,.12);
+            }
+
+        .origin-header {
+            background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+            border-bottom: 1px solid rgba(255,255,255,.10);
+        }
+
+        .origin-divider {
+            border-color: rgba(255,255,255,.20);
+        }
+
+        .carousel-item img {
+            height: 420px;
+            object-fit: cover;
+            border-radius: 14px;
+        }
+
+        .legend-card {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 16px;
+            border-radius: 14px;
+            background: #f8fafc;
+            border: 1px solid rgba(0,0,0,.06);
+            transition: all .2s ease;
+        }
+
+            .legend-card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px rgba(0,0,0,.08);
+            }
+
+        .legend-color {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+        }
+
+        .legend-percent {
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .legend-name {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .legend-weight {
+            font-size: 12px;
+            color: #6c757d;
+        }
+
+        .ccp-param-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: .4px;
+        }
+
+        .ccp-param-box {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 10px;
+            padding: 16px 18px;
+            transition: all .2s ease;
+            position: relative;
+        }
+
+            .ccp-param-box:hover {
+                background: #ecfdf5;
+                border-color: #86efac;
+            }
+
+        .ccp-param-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            font-weight: 600;
+            color: #065f46;
+            text-transform: uppercase;
+            letter-spacing: .4px;
+        }
+
+            .ccp-param-header i {
+                font-size: 18px;
+                color: #16a34a;
+            }
+
+        .ccp-param-value {
+            font-size: 26px;
+            font-weight: 700;
+            color: #064e3b;
+            margin-top: 6px;
+        }
+
+        .ccp-param-date {
+            margin-top: 4px;
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .ccp-info-link {
+            position: absolute;
+            bottom: 10px;
+            right: 14px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #15803d;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+            .ccp-info-link:hover {
+                color: #065f46;
+                text-decoration: underline;
+            }
+
+        .contribution-bar {
+            height: 6px;
+            background: #e5e7eb;
+            border-radius: 6px;
+            margin-top: 6px;
+            overflow: hidden;
+        }
+
+        .contribution-fill {
+            height: 100%;
+            background: linear-gradient(90deg,#16a34a,#4ade80);
+        }
+
+        .ccp-metric-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 18px 20px;
+            position: relative;
+            transition: all .25s ease;
+        }
+
+            .ccp-metric-card:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 12px 28px rgba(0,0,0,.08);
+                border-color: #bbf7d0;
+            }
+
+        .ccp-metric-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .ccp-metric-name {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: .4px;
+            color: #6b7280;
+            text-transform: uppercase;
+        }
+
+        .ccp-metric-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: #065f46;
+            line-height: 1.2;
+        }
+
+        .ccp-metric-date {
+            margin-top: 6px;
+            font-size: 12px;
+            color: #6b7280;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .ccp-help {
+            font-size: 18px;
+            color: #16a34a;
+            text-decoration: none;
+        }
+
+            .ccp-help:hover {
+                color: #065f46;
+            }
+
+        .beekeeper-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255,255,255,.3);
+            box-shadow: 0 4px 10px rgba(0,0,0,.2);
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container py-5">
+
+        <!-- HERO -->
+        <!-- HERO -->
+        <div class="card mb-5 border-0 shadow-lg hero-wrap">
+
+            <div class="card-body text-white p-4"
+                 style="background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);">
+
+                <div class="row align-items-center g-4">
+
+                    <!-- QR -->
+                    <div class="col-md-2 text-center">
+
+                        <div class="qr-frame">
+                            <img src="@Url.Action("BatchQRCode", "HoneyStory", new { code = Model.BatchQR.ToString() })"
+                                 style="width:100%;height:100%;object-fit:contain;border-radius:10px;" />
+                        </div>
+
+                        <div class="small mt-2 opacity-75">
+                            Scan to verify authenticity
+                        </div>
+
+                    </div>
+
+
+                    <!-- CENTER -->
+                    <div class="col-md-6">
+
+                        <h2 class="fw-bold mb-2">
+                            <i class="mdi mdi-shield-check-outline me-2"></i>
+                            @(Model.BatchTitle ?? "Honey Traceability Certificate")
+                        </h2>
+
+                        <div class="opacity-75 mb-3">
+                            Verified source & quality information
+                        </div>
+
+
+                        <!-- METRICS -->
+                        <div class="row small g-2">
+
+                            <div class="col-md-4">
+                                <div class="metric-pill">
+                                    <div class="opacity-75">Wholesaler</div>
+
+                                    <div class="value"
+                                         title="@Model.WholesalerName">
+                                        @Model.WholesalerName
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <div class="metric-pill">
+                                    <div class="opacity-75">Production</div>
+
+                                    <div class="value">
+                                        @(Model.ProductionDate?.ToString("dd MMM yyyy", tr) ?? "-")
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <div class="metric-pill">
+                                    <div class="opacity-75">Apiaries</div>
+
+                                    <div class="value">
+                                        @Model.RawSources.Count
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- RIGHT -->
+                    <div class="col-md-4 text-md-end">
+
+                        <div class="display-6 fw-bold">
+                            @((Model.TotalAmount ?? 0).ToString("N2", tr)) kg
+                        </div>
+
+                        <div class="opacity-75">
+                            Total Batch Amount
+                        </div>
+
+
+                        <div class="mt-3">
+
+                            <span class="badge bg-success px-3 py-2 fs-6">
+
+                                <i class="mdi mdi-certificate-outline me-1"></i>
+
+                                Traceable Product
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        @{
+            var donutData = (Model.RawSources ?? new List<HoneyStoryRawSource>())
+            .Select(s => new
+            {
+                Label = s.BeekeeperName,
+                Value = Model.TotalAmount > 0
+            ? Math.Round((s.UsedAmount / Model.TotalAmount.Value) * 100, 2)
+            : 0
+            })
+            .ToList();
+        }
+
+
+        <div class="row mb-4">
+
+            <div class="col-lg-12">
+
+                <div class="card border-0 soft-shadow">
+
+                    <div class="card-body">
+
+                        <div class="section-header mb-4 d-flex justify-content-between align-items-center flex-wrap">
+
+                            <div class="d-flex align-items-center">
+
+                                <div class="section-icon me-3">
+                                    <i class="mdi mdi-chart-donut"></i>
+                                </div>
+
+                                <div>
+                                    <h5 class="mb-0 fw-bold text-white">
+                                        Beekeeper Contribution Breakdown
+                                    </h5>
+
+                                    <div class="small text-white opacity-75">
+                                        Percentage share of honey supplied by each beekeeper in this batch
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="badge bg-light text-success px-3 py-2">
+                                <i class="mdi mdi-beehive-outline me-1"></i>
+                                @Model.RawSources.Count Apiaries
+                            </div>
+
+                        </div>
+
+                        <hr class="section-divider">
+
+                        <!-- DONUT CHART -->
+                        <div id="honey-donut-chart">
+                        </div>
+
+                        <!-- LEGEND -->
+                        <div class="row text-center mt-4">
+
+                            <div class="row mt-4">
+
+                                @{
+                                    var colorIndex = 0;
+
+                                    var chartColors = new[]
+                                    {
+                                                                "#134e4a",
+                                                                "#166534",
+                                                                "#15803d",
+                                                                "#22c55e",
+                                                                "#4ade80",
+                                                                "#86efac"
+                                                                };
+                                }
+
+                                @foreach (var s in Model.RawSources)
+                                {
+                                    var percent = Model.TotalAmount > 0
+                                    ? (s.UsedAmount / Model.TotalAmount.Value) * 100
+                                    : 0;
+
+                                    var color = chartColors[colorIndex % chartColors.Length];
+                                    colorIndex++;
+
+                                    <div class="col-md-4 mb-3">
+
+                                        <div class="legend-card">
+
+                                            <div class="legend-color"
+                                                 style="background:@color">
+                                            </div>
+
+                                            <div class="legend-content">
+
+                                                <div class="legend-percent">
+                                                    @percent.ToString("N1", tr) %
+                                                </div>
+
+                                                <div class="legend-name">
+                                                    @s.BeekeeperName
+                                                </div>
+
+                                                <div class="legend-weight">
+                                                    @s.UsedAmount.ToString("N1", tr) kg
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                }
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="row mb-5">
+
+            <div class="col-lg-12">
+
+                <div class="card border-0 soft-shadow">
+
+                    <div class="card-body">
+
+                        <div class="section-header mb-4 d-flex justify-content-between align-items-center flex-wrap">
+
+                            <div class="d-flex align-items-center">
+
+                                <div class="section-icon me-3">
+                                    <i class="mdi mdi-earth"></i>
+                                </div>
+
+                                <div>
+                                    <h5 class="mb-0 fw-bold text-white">
+                                        Honey Origins Map
+                                    </h5>
+
+                                    <div class="small text-white opacity-75">
+                                        Geographic locations of apiaries contributing to this batch
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="badge bg-light text-success px-3 py-2">
+                                <i class="mdi mdi-map-marker-outline me-1"></i>
+                                @Model.RawSources.Count Locations
+                            </div>
+
+                        </div>
+
+                        <hr class="section-divider">
+
+                        <div id="apiary-map"
+                             style="height:450px;border-radius:14px;">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="row g-4">
+
+            @foreach (var source in Model.RawSources ?? new List<HoneyStoryRawSource>())
+            {
+
+                <div class="col-12">
+
+                    <div class="card border-0 soft-shadow origin-card">
+
+                        <!-- HEADER -->
+
+                        <div class="p-4 origin-header">
+
+                            <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
+
+                                <!-- LEFT -->
+                                <div>
+
+                                    <h4 class="fw-bold mb-1 text-white">
+                                        <i class="mdi mdi-hive-outline me-2"></i>
+                                        @source.ApiaryName
+                                    </h4>
+
+                                    <div class="d-flex align-items-center gap-3 mt-2">
+
+                                        @if (!string.IsNullOrEmpty(source.BeekeeperPhotoBase64))
+                                        {
+                                            <img src="@source.BeekeeperPhotoBase64"
+                                                 class="beekeeper-avatar" />
+                                        }
+                                        else
+                                        {
+                                            <div class="beekeeper-avatar d-flex align-items-center justify-content-center bg-light text-dark">
+                                                <i class="mdi mdi-account"></i>
+                                            </div>
+                                        }
+
+                                        <div class="small text-white opacity-75">
+                                            <i class="mdi mdi-account-outline me-1"></i>
+                                            Beekeeper: <strong>@source.BeekeeperName</strong>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- BADGE -->
+                                <span class="badge bg-light text-success px-3 py-2">
+                                    <i class="mdi mdi-map-marker-radius me-1"></i>
+                                    Apiary Source
+                                </span>
+
+                            </div>
+
+                            <hr class="origin-divider my-3">
+
+                            <!-- META -->
+                            <div class="row g-3 text-white">
+
+                                <div class="col-md-4">
+
+                                    <div class="small opacity-75">Honey Type</div>
+
+                                    <div class="fw-semibold">
+                                        <span class="badge bg-light text-dark border px-3 py-2">
+                                            <i class="mdi mdi-flower-outline me-1"></i>
+                                            @source.HoneyType
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-4">
+
+                                    <div class="small opacity-75">Used Amount</div>
+
+                                    <div class="fw-bold fs-5">
+                                        @source.UsedAmount.ToString("N2", tr) kg
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-4">
+
+                                    <div class="small opacity-75">Contribution</div>
+
+                                    @{
+                                        var percent = Model.TotalAmount > 0
+                                        ? (source.UsedAmount / Model.TotalAmount.Value) * 100
+                                        : 0;
+                                    }
+
+                                    <div class="fw-bold">
+                                        @percent.ToString("N1", tr) %
+                                    </div>
+                                    <div class="contribution-bar">
+                                        <div class="contribution-fill" style="width:@percent%"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- PHOTOS -->
+
+                        <div class="card-body">
+
+                            <div class="section-header mb-4 d-flex justify-content-between align-items-center flex-wrap">
+
+                                <div class="d-flex align-items-center">
+
+                                    <div class="section-icon me-3">
+                                        <i class="mdi mdi-image-multiple-outline"></i>
+                                    </div>
+
+                                    <div>
+
+                                        <h5 class="mb-0 fw-bold text-white">
+                                            Apiary Evidence Photos
+                                        </h5>
+
+                                        <div class="small text-white opacity-75">
+                                            Photographic documentation from the apiary during honey collection
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="badge bg-light text-success px-3 py-2">
+                                    <i class="mdi mdi-camera-outline me-1"></i>
+                                    @source.Photos.Count Photos
+                                </div>
+
+                            </div>
+                            <hr class="section-divider">
+
+                            @if (source.Photos == null || source.Photos.Count == 0)
+                            {
+                                <div class="alert alert-warning">No photos uploaded.</div>
+                            }
+                            else
+                            {
+                                var carouselId = $"carousel_{source.RawHoneyProductionId}";
+
+                                <div id="@carouselId" class="carousel slide">
+
+                                    <div class="carousel-inner">
+
+                                        @{
+                                            var first = true;
+                                            foreach (var p in source.Photos)
+                                            {
+                                                <div class="carousel-item @(first ? "active" : "")">
+                                                    <img src="@Url.Action("Image", "HoneyStory", new { id = p.ApiaryPhotoId })"
+                                                         class="d-block w-100" />
+                                                </div>
+                                                first = false;
+                                            }
+                                        }
+
+                                    </div>
+
+                                    @if (source.Photos.Count > 1)
+                                    {
+                                        <button class="carousel-control-prev" type="button"
+                                                data-bs-target="#@carouselId" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon"></span>
+                                        </button>
+
+                                        <button class="carousel-control-next" type="button"
+                                                data-bs-target="#@carouselId" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon"></span>
+                                        </button>
+                                    }
+
+                                </div>
+                            }
+
+                        </div>
+
+
+
+                        <!-- QUALITY CONTROL SECTION -->
+
+                        <div class="card-body pt-0">
+
+                            <div class="section-header mb-4 d-flex justify-content-between align-items-center flex-wrap">
+
+                                <div class="d-flex align-items-center">
+
+                                    <div class="section-icon me-3">
+                                        <i class="mdi mdi-flask-outline"></i>
+                                    </div>
+
+                                    <div>
+
+                                        <h5 class="mb-0 fw-bold text-white">
+                                            Raw Honey Quality Control
+                                        </h5>
+
+                                        <div class="small text-white opacity-75">
+                                            Laboratory analysis performed during raw honey acceptance
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="badge bg-light text-success px-3 py-2">
+                                    <i class="mdi mdi-lab-flask-outline me-1"></i>
+                                    CCP 1
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <hr class="section-divider">
+
+                        <!-- CCP1 -->
+                        @if (source.RawCCPs != null && source.RawCCPs.Any())
+                        {
+
+                            var ccpRows = source.RawCCPs
+                            .Where(x => x.CCPId == 2)
+                            .OrderBy(x => x.ParameterName)
+                            .ToList();
+
+                            if (ccpRows.Any())
+                            {
+
+                                <div class="card-body pt-0">
+
+                                    <div class="row">
+
+                                        @foreach (var row in ccpRows)
+                                        {
+                                            var value = row.NumericValue != null
+                                            ? row.NumericValue.Value.ToString("N2", tr) + " " + row.Unit
+                                            : row.TextValue ?? "-";
+
+                                            <div class="col-md-6 mb-3">
+
+                                                <div class="ccp-metric-card">
+
+                                                    <div class="ccp-metric-header">
+
+                                                        <span class="ccp-metric-name">
+                                                            @row.ParameterName
+                                                        </span>
+
+                                                        <a href="/honeystory/parameter/@row.ParameterId"
+                                                           class="ccp-help"
+                                                           target="_blank">
+
+                                                            <i class="mdi mdi-help-circle-outline"></i>
+
+                                                        </a>
+
+                                                    </div>
+
+                                                    <div class="ccp-metric-value">
+
+                                                        @value
+
+                                                    </div>
+
+                                                    @if (row.MeasurementDate != null)
+                                                    {
+                                                        <div class="ccp-metric-date">
+
+                                                            <i class="mdi mdi-calendar-outline"></i>
+
+                                                            @row.MeasurementDate?.ToString("dd MMM yyyy", tr)
+
+                                                        </div>
+                                                    }
+
+                                                </div>
+
+                                            </div>
+                                        }
+
+                                    </div>
+
+                                </div>
+
+                            }
+
+                        }
+
+                    </div>
+
+                </div>
+
+            }
+
+        </div>
+
+
+        <div class="text-center text-muted mt-5 small">
+            <i class="mdi mdi-shield-check-outline me-1"></i>
+            Verified by <strong>TOP4HoneyChains Traceability System</strong>
+        </div>
+
+    </div>
+
+    <!--C3 Chart-->
+    <script src="~/assets/libs/d3/d3.min.js"></script>
+    <script src="~/assets/libs/c3/c3.min.js"></script>
+
+    <!-- Init js -->
+    <script src="~/assets/js/pages/c3-chart.init.js"></script>
+
+    <script src="~/assets/libs/jquery/jquery.min.js"></script>
+
+    <script src="~/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+
+        var honeyData = @Html.Raw(
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                JsonSerializer.Serialize(
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Model.RawSources.Select(s => new object[]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                s.BeekeeperName,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Model.TotalAmount > 0
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ? (s.UsedAmount / Model.TotalAmount.Value) * 100
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                : 0
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                })
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                )
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                );
+
+        var honeyKg = @Html.Raw(
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                JsonSerializer.Serialize(
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Model.RawSources.ToDictionary(
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                s => s.BeekeeperName,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                s => s.UsedAmount
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                )
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                )
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                );
+
+    </script>
+
+    <script>
+
+        var chart = c3.generate({
+
+            bindto: '#honey-donut-chart',
+
+            data: {
+                columns: honeyData,
+                type: 'donut',
+
+                onclick: function (d) {
+                    console.log("clicked", d);
+                }
+            },
+
+            donut: {
+                title: "@Model.TotalAmount?.ToString("N0", tr) kg\nTOTAL HONEY"
+            },
+
+            tooltip: {
+                format: {
+                    value: function (value, ratio, id) {
+
+                        var kg = honeyKg[id];
+
+                        return kg.toLocaleString("tr-TR", {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        }) + " kg (" + value.toFixed(1) + "%)";
+                    }
+                }
+            },
+
+            color: {
+                pattern: [
+                    "#134e4a",
+                    "#166534",
+                    "#15803d",
+                    "#16a34a",
+                    "#22c55e",
+                    "#4ade80"
+                ]
+            },
+
+            legend: {
+                position: 'right'
+            },
+
+            padding: {
+                top: 10,
+                bottom: 10
+            }
+
+        });
+
+    </script>
+
+    <script>
+
+        var apiaries = @Html.Raw(
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                System.Text.Json.JsonSerializer.Serialize(
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Model.RawSources
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .Where(s => s.Latitude != null && s.Longitude != null)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .Select(s => new
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                lat = s.Latitude,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                lng = s.Longitude,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                beekeeper = s.BeekeeperName,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                apiary = s.ApiaryName,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                amount = s.UsedAmount.ToString("N1", tr) + " kg",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                percent = (Model.TotalAmount > 0
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ? (s.UsedAmount / Model.TotalAmount.Value) * 100
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                : 0).ToString("N1", tr) + "%"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                })
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                )
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                );
+
+    </script>
+
+    <script>
+
+        function initMap() {
+
+            var center = { lat: 39.0, lng: 35.0 };
+
+            var map = new google.maps.Map(
+                document.getElementById("apiary-map"),
+                {
+                    zoom: 6,
+                    center: center,
+                    styles: [
+                        {
+                            featureType: "poi",
+                            stylers: [{ visibility: "off" }]
+                        }
+                    ]
+                }
+            );
+
+            var bounds = new google.maps.LatLngBounds();
+
+            apiaries.forEach(function(a) {
+
+                var position = { lat: a.lat, lng: a.lng };
+
+                var marker = new google.maps.Marker({
+                    position: position,
+                    map: map,
+                            icon: {
+                                url: "/assets/images/hive-marker.png",
+                                scaledSize: new google.maps.Size(48,67),
+                                anchor: new google.maps.Point(24,67)
+                            }
+                });
+
+            marker.addListener("mouseover", function () {
+                marker.setAnimation(google.maps.Animation.BOUNCE);
+            });
+
+            marker.addListener("mouseout", function () {
+                marker.setAnimation(null);
+            });
+
+                       var content = 
+                       `<div style="min-width:220px">
+                       <b>${a.beekeeper}</b><br>
+                       <span style="color:#16a34a;font-weight:600">${a.apiary}</span><br><br>
+                       Honey Used: <b>${a.amount}</b><br>
+                       Contribution: <b>${a.percent}</b>
+                       </div>`;
+
+                var infowindow = new google.maps.InfoWindow({
+                    content: content
+                });
+
+                marker.addListener("click", function() {
+                    infowindow.open(map, marker);
+                });
+
+                bounds.extend(position);
+
+            });
+
+            if (apiaries.length > 0)
+                map.fitBounds(bounds);
+
+        }
+
+    </script>
+
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDP6OpidL5VaYgthLPt56wzj3uhWZhxbj0&callback=initMap">
+    </script>
+</body>
+</html>

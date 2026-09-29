@@ -1,0 +1,115 @@
+﻿@model TOP4HoneyChains.Web.Models.Entities.CriticalControlPoint
+
+@{
+    ViewData["Title"] = "Edit Critical Control Point";
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+}
+
+<body data-topbar="light" data-layout="horizontal">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-xl-12">
+
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title">Edit Critical Control Point</h4>
+                            <p class="card-title-desc">
+                                Update the details of the selected CCP.
+                            </p>
+
+                            <form asp-action="Edit" class="custom-validation">
+
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                <input type="hidden" asp-for="Id" />
+
+                                <!-- Processing Step -->
+                                <div class="mb-3">
+                                    <label asp-for="ProcessingStep" class="form-label">
+                                        Processing Step
+                                    </label>
+
+                                    <input asp-for="ProcessingStep"
+                                           class="form-control"
+                                           placeholder="Enter processing step" />
+
+                                    <span asp-validation-for="ProcessingStep" class="text-danger"></span>
+                                </div>
+
+                                <!-- Code -->
+                                <div class="mb-3">
+                                    <label asp-for="Code" class="form-label">
+                                        CCP Code
+                                    </label>
+
+                                    <input asp-for="Code"
+                                           class="form-control"
+                                           placeholder="Enter CCP Code"
+                                           readonly />
+
+                                    <span asp-validation-for="Code" class="text-danger"></span>
+                                </div>
+
+                                <!-- Title -->
+                                <div class="mb-3">
+                                    <label asp-for="Title" class="form-label">
+                                        Title
+                                    </label>
+
+                                    <input asp-for="Title"
+                                           class="form-control"
+                                           placeholder="Enter title" />
+
+                                    <span asp-validation-for="Title" class="text-danger"></span>
+                                </div>
+
+                                <!-- Criticality Justification -->
+                                <div class="mb-3">
+                                    <label asp-for="CriticalityJustification" class="form-label">
+                                        Criticality Justification
+                                    </label>
+
+                                    <textarea asp-for="CriticalityJustification"
+                                              class="form-control"
+                                              rows="4"
+                                              placeholder="Explain why this step is critical..."></textarea>
+
+                                    <span asp-validation-for="CriticalityJustification" class="text-danger"></span>
+                                </div>
+
+                                <!-- Buttons -->
+                                <div class="d-flex gap-2">
+
+                                    <button type="submit"
+                                            class="btn btn-primary waves-effect waves-light">
+                                        Update
+                                    </button>
+
+                                    <a asp-action="Index"
+                                       class="btn btn-secondary waves-effect">
+                                        Back to List
+                                    </a>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    @section scripts{
+        <script src="~/assets/libs/parsleyjs/parsley.min.js"></script>
+        <script src="~/assets/js/pages/form-validation.init.js"></script>
+        <script src="~/assets/js/app.js"></script>
+    }
+</body>

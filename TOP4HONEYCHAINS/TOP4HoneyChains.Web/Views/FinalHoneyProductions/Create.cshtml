@@ -1,0 +1,110 @@
+﻿@model TOP4HoneyChains.Web.Models.Entities.FinalHoneyProduction
+
+@{
+    ViewData["Title"] = "Create Final Honey Batch";
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var wholesaler = ViewBag.Wholesaler as TOP4HoneyChains.Web.Models.Entities.Wholesaler;
+}
+
+<body data-topbar="light" data-layout="horizontal">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-xl-12">
+
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title">Create Final Honey Batch</h4>
+                            <p class="card-title-desc">
+                                Create a new blended honey production batch. QR code will be generated automatically.
+                            </p>
+
+                            <form asp-action="Create" method="post" class="custom-validation">
+
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                <!-- Hidden Wholesaler -->
+                                <input type="hidden" asp-for="FinalHoneyProductionWholesalerId" />
+
+                                <!-- Wholesaler Display -->
+                                <div class="mb-3">
+                                    <label class="form-label">Wholesaler</label>
+                                    <input class="form-control"
+                                           value="@wholesaler?.WholesalerTitle"
+                                           readonly />
+                                </div>
+
+                                <!-- Batch Title -->
+                                <div class="mb-3">
+                                    <label asp-for="FinalHoneyProductionTitle" class="form-label">
+                                        Batch Title
+                                    </label>
+
+                                    <input asp-for="FinalHoneyProductionTitle"
+                                           class="form-control"
+                                           placeholder="Enter batch title"
+                                           required />
+
+                                    <span asp-validation-for="FinalHoneyProductionTitle"
+                                          class="text-danger"></span>
+                                </div>
+
+                                <!-- Production Date -->
+                                <div class="mb-3">
+                                    <label asp-for="FinalHoneyProductionDate" class="form-label">
+                                        Production Date
+                                    </label>
+
+                                    <input asp-for="FinalHoneyProductionDate"
+                                           type="date"
+                                           class="form-control"
+                                           required />
+
+                                    <span asp-validation-for="FinalHoneyProductionDate"
+                                          class="text-danger"></span>
+                                </div>
+
+                                <!-- Info Alert -->
+                                <div class="alert alert-info mt-3">
+                                    After creating the batch, you will select raw honey amounts
+                                    in the next step.
+                                </div>
+
+                                <!-- Buttons -->
+                                <div class="d-flex gap-2 mt-3">
+
+                                    <button type="submit"
+                                            class="btn btn-primary waves-effect waves-light">
+                                        <i class="mdi mdi-content-save me-1"></i>
+                                        Create Batch
+                                    </button>
+
+                                    <a asp-action="ByWholesaler"
+                                       asp-route-wholesalerId="@Model.FinalHoneyProductionWholesalerId"
+                                       class="btn btn-secondary waves-effect">
+                                        Back
+                                    </a>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    @section scripts{
+        <script src="~/assets/libs/parsleyjs/parsley.min.js"></script>
+        <script src="~/assets/js/pages/form-validation.init.js"></script>
+        <script src="~/assets/js/app.js"></script>
+    }
+
+</body>

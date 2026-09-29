@@ -1,0 +1,189 @@
+﻿@model IEnumerable<TOP4HoneyChains.Web.Models.Entities.RawHoneyProduction>
+
+@{
+    ViewData["Title"] = "Productions";
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+
+}
+
+@section AddToHead {
+    <!-- DataTables -->
+
+    <link href="~/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="~/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+}
+
+<body data-topbar="light" data-layout="horizontal">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title">Raw Honey Productions</h4>
+
+                            <p class="card-title-desc">
+                                <a asp-action="Create"
+                                   asp-route-apiaryId="@ViewBag.Apiary.ApiaryId"
+                                   class="btn btn-primary waves-effect waves-light">
+                                    Add Production
+                                </a>
+
+                                <a asp-controller="Apiaries"
+                                   asp-action="Index"
+                                   class="btn btn-primary waves-effect waves-light">
+                                    Back to list
+                                </a>
+                            </p>
+
+                            <table id="datatable-buttons"
+                                   class="table table-striped table-bordered dt-responsive nowrap"
+                                   style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+
+                                <thead>
+                                    <tr>
+                                        <th>Amount (kg)</th>
+                                        <th>Production Date</th>
+                                        <th>Apiary</th>
+                                        <th>Wholesaler</th>
+                                        <th>Honey Type</th>
+                                        <th>Production Period</th>
+                                        <th>Assigned CCPs</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @item.RawHoneyProductionAmount
+                                            </td>
+
+                                            <td>
+                                                @item.RawHoneyProductionDate.Value.ToString("dd.MM.yyyy")
+                                            </td>
+
+                                            <td>
+                                                @item.RawHoneyProductionApiary?.ApiaryTitle
+                                            </td>
+
+                                            <td>
+                                                @if (item.RawHoneyProductionWholesaler != null)
+                                                {
+                                                    <span class="badge bg-info">
+                                                        @item.RawHoneyProductionWholesaler.WholesalerTitle
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-muted">Not Assigned</span>
+                                                }
+                                            </td>
+
+                                            <td>
+                                                @item.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle
+                                            </td>
+
+                                            <td>
+                                                @item.RawHoneyProductionPeriod?.RawHoneyProductionPeriodTitle
+                                            </td>
+                                            <td>
+                                                @if (item.RawHoneyCCPAssignments != null && item.RawHoneyCCPAssignments.Any())
+                                                {
+                                                    foreach (var assignment in item.RawHoneyCCPAssignments)
+                                                    {
+                                                        var isCompleted = assignment.RawHoneyCCPAssignmentStatus == 3;
+
+                                                        var btnClass = isCompleted ? "btn-success" : "btn-secondary";
+
+                                                        <a asp-controller="CCPMonitoring"
+                                                           asp-action="RawHoneyProductionManageCCP"
+                                                           asp-route-rawHoneyProductionId="@item.RawHoneyProductionId"
+                                                           asp-route-ccpId="@assignment.RawHoneyCCPAssignmentCCP"
+                                                           class="btn btn-sm @btnClass me-1 mb-1">
+                                                            @assignment.CCP.Code
+                                                        </a>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-muted">No CCP assigned yet.</span>
+                                                }
+                                            </td>
+
+                                            <td>
+                                                <div class="d-flex gap-2">
+                                                    <a asp-action="Edit"
+                                                       asp-route-id="@item.RawHoneyProductionId"
+                                                       class="btn btn-sm btn-info">
+                                                        Edit
+                                                    </a>
+
+                                                    <a asp-action="Delete"
+                                                       asp-route-id="@item.RawHoneyProductionId"
+                                                       class="btn btn-sm btn-danger">
+                                                        Delete
+                                                    </a>
+
+                                                    <a asp-action="ManageCCP"
+                                                       asp-route-id="@item.RawHoneyProductionId"
+                                                       class="btn btn-sm btn-warning">
+                                                        CCP Management
+                                                    </a>
+
+                                                    <a asp-controller="ApiaryPhotos"
+                                                       asp-action="Index"
+                                                       asp-route-apiaryId="@item.RawHoneyProductionApiaryId"
+                                                       asp-route-periodId="@item.RawHoneyProductionPeriodId"
+                                                       class="btn btn-sm btn-primary">
+                                                        Photos
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    @section scripts{
+        <!-- Required datatable js -->
+        <script src="~/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="~/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <!-- Buttons examples -->
+        <script src="~/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="~/assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+        <script src="~/assets/libs/jszip/jszip.min.js"></script>
+        <script src="~/assets/libs/pdfmake/build/pdfmake.min.js"></script>
+        <script src="~/assets/libs/pdfmake/build/vfs_fonts.js"></script>
+        <script src="~/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+        <script src="~/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+        <script src="~/assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+        <!-- Responsive examples -->
+        <script src="~/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="~/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
+        <!-- Datatable init js -->
+        <script src="~/assets/js/pages/datatables.init.js"></script>
+
+        <!-- App js -->
+        <script src="~/assets/js/app.js"></script>
+    }
+
+</body>

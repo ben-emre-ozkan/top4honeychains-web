@@ -1,0 +1,121 @@
+﻿@using TOP4HoneyChains.Web.Models.ViewModels.Monitoring
+@model ManageRawHoneyCCPViewModel
+
+@{
+    ViewData["Title"] = "CCP Management";
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+}
+
+@section AddToHead {
+    <link href="~/assets/libs/select2/css/select2.min.css" rel="stylesheet" />
+}
+
+<body data-topbar="light" data-layout="horizontal">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title">
+                                CCP Assignment
+                            </h4>
+
+                            <p class="card-title-desc">
+                                Assign Critical Control Points to this Raw Honey Production.
+                            </p>
+
+                            <div class="mb-4 p-3 bg-light rounded">
+                                <strong>Production Info:</strong><br />
+                                Amount: @Model.Production.RawHoneyProductionAmount kg <br />
+                                Date: @Model.Production.RawHoneyProductionDate?.ToString("dd.MM.yyyy")
+                            </div>
+
+                            <form asp-action="ManageCCP" method="post">
+
+                                <input type="hidden" asp-for="RawHoneyProductionId" />
+
+                                <div class="row">
+
+                                    @foreach (var ccp in Model.AllCCPs)
+                                    {
+                                        var isChecked = Model.SelectedCCPIds.Contains(ccp.Id);
+
+                                        <div class="col-md-4 mb-4">
+                                            <div class="card border shadow-sm h-100">
+                                                <div class="card-body">
+
+                                                    <div class="d-flex justify-content-between align-items-start">
+
+                                                        <div>
+                                                            <h5 class="mb-1">
+                                                                @ccp.Code
+                                                            </h5>
+                                                            <small class="text-muted">
+                                                                @ccp.Title
+                                                            </small>
+                                                        </div>
+
+                                                        <div>
+                                                            <input type="checkbox"
+                                                                   id="ccp_@ccp.Id"
+                                                                   name="SelectedCCPIds"
+                                                                   value="@ccp.Id"
+                                                                   switch="primary"
+                                                                   @(isChecked ? "checked" : "") />
+
+                                                            <label for="ccp_@ccp.Id"
+                                                                   data-on-label="Yes"
+                                                                   data-off-label="No">
+                                                            </label>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <hr />
+
+                                                    <small class="text-muted">
+                                                        @ccp.CriticalityJustification
+                                                    </small>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+                                </div>
+
+                                <div class="d-flex gap-2 mt-3">
+
+                                    <button type="submit"
+                                            class="btn btn-success waves-effect waves-light">
+                                        Save Assignments
+                                    </button>
+
+                                    <a asp-action="RawHoneyProductionByApiary"
+                                       asp-route-id="@Model.Production.RawHoneyProductionApiaryId"
+                                       class="btn btn-secondary waves-effect">
+                                        Back
+                                    </a>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    @section scripts{
+        <script src="~/assets/js/app.js"></script>
+    }
+</body>

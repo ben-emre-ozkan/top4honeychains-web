@@ -1,0 +1,120 @@
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using System.Globalization;
+using TOP4HoneyChains.Web.Data;
+using TOP4HoneyChains.Web.Models.Email;
+using TOP4HoneyChains.Web.Models.Identity;
+using TOP4HoneyChains.Web.Services;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<TOP4HoneyChainsContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+{
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequiredLength = 6; // Telefon için yeterli
+})
+.AddEntityFrameworkStores<ApplicationDbContext>()
+.AddDefaultTokenProviders();
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.AccessDeniedPath = "/Account/AccessDenied";
+});
+
+var supportedCultures = new[]
+{
+    new CultureInfo("en"),
+    new CultureInfo("tr"),
+    new CultureInfo("es"),
+    new CultureInfo("pl"),
+    new CultureInfo("lv")
+};
+
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+var localizationOptions = new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new RequestCulture("en"),
+    SupportedCultures = supportedCultures,
+    SupportedUICultures = supportedCultures
+};
+
+localizationOptions.RequestCultureProviders = new IRequestCultureProvider[]
+{
+    new QueryStringRequestCultureProvider(),
+    new CookieRequestCultureProvider(),
+    new AcceptLanguageHeaderRequestCultureProvider()
+};
+
+
+builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
+
+builder.Services.AddScoped<IEmailService, EmailService>();
+
+builder.Services.AddControllersWithViews();
+
+var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Dashboard/Error");
+}
+app.UseStaticFiles();
+
+app.UseRouting();
+app.UseRequestLocalization(localizationOptions);
+app.UseAuthentication();
+app.UseAuthorization();
+
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
+//using (var scope = app.Services.CreateScope())
+//{
+//    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+//    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+//    string adminEmail = "aydinoglu.sahin@gmail.com";
+//    string password = "415228";
+//    string roleName = "Administrator";
+
+//    // Role oluştur
+//    if (!await roleManager.RoleExistsAsync(roleName))
+//    {
+//        await roleManager.CreateAsync(new IdentityRole(roleName));
+//    }
+
+//    // Kullanıcı var mı kontrol et
+//    var user = await userManager.FindByEmailAsync(adminEmail);
+
+//    if (user == null)
+//    {
+//        user = new ApplicationUser
+//        {
+//            UserName = adminEmail,
+//            Email = adminEmail,
+//            EmailConfirmed = true
+//        };
+
+//        var result = await userManager.CreateAsync(user, password);
+
+//        if (result.Succeeded)
+//        {
+//            await userManager.AddToRoleAsync(user, roleName);
+//        }
+//    }
+//}
+
+
+app.Run();

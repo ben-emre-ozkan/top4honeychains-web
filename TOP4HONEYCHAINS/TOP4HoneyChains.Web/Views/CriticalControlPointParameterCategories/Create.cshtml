@@ -1,0 +1,86 @@
+﻿@model TOP4HoneyChains.Web.Models.Entities.CriticalControlPointParameterCategory
+
+@{
+    ViewData["Title"] = "Create CCP Parameter Category";
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+}
+
+<body data-topbar="light" data-layout="horizontal">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-xl-12">
+
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title">Create New CCP Parameter Category</h4>
+                            <p class="card-title-desc">
+                                Define a new category for CCP monitoring parameters.
+                            </p>
+
+                            <form asp-action="Create" class="custom-validation">
+
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                <!-- Category Name -->
+                                <div class="mb-3">
+                                    <label asp-for="CategoryName" class="form-label">
+                                        Category Name
+                                    </label>
+
+                                    <input asp-for="CategoryName"
+                                           class="form-control"
+                                           placeholder="Enter category name (e.g., Chemical, Physical, Microbiological)" />
+
+                                    <span asp-validation-for="CategoryName" class="text-danger"></span>
+                                </div>
+
+                                <!-- Category Description -->
+                                <div class="mb-3">
+                                    <label asp-for="CategoryDesc" class="form-label">
+                                        Description
+                                    </label>
+
+                                    <textarea asp-for="CategoryDesc"
+                                              class="form-control"
+                                              rows="3"
+                                              placeholder="Enter category description"></textarea>
+
+                                    <span asp-validation-for="CategoryDesc" class="text-danger"></span>
+                                </div>
+
+                                <!-- Buttons -->
+                                <div class="d-flex gap-2">
+
+                                    <button type="submit"
+                                            class="btn btn-primary waves-effect waves-light">
+                                        Save
+                                    </button>
+
+                                    <a asp-action="Index"
+                                       class="btn btn-secondary waves-effect">
+                                        Back to List
+                                    </a>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    @section scripts{
+        <script src="~/assets/libs/parsleyjs/parsley.min.js"></script>
+        <script src="~/assets/js/pages/form-validation.init.js"></script>
+        <script src="~/assets/js/app.js"></script>
+    }
+</body>

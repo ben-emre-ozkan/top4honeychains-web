@@ -1,0 +1,891 @@
+﻿<!DOCTYPE html>
+@{
+    Layout = null;
+}
+<html lang="tr" id="html-root" class="lang-tr">
+
+<head>
+    <meta charset="utf-8">
+    <title data-en="TOP4HoneyChains - Trustable and Sustainable Open Platform for Smart Honey Value Chains"
+           data-tr="TOP4HoneyChains - Akıllı Bal Değer Zincirleri için Güvenilir ve Sürdürülebilir Açık Platform"
+           data-es="TOP4HoneyChains - Plataforma Abierta Confiable y Sostenible para Cadenas de Valor Inteligentes de Miel"
+           data-pl="TOP4HoneyChains - Zaufana i Zrównoważona Otwarta Platforma dla Inteligentnych Łańcuchów Wartości Miodu"
+           data-lv="TOP4HoneyChains - Uzticama un Ilgtspējīga Atvērtā Platforma Viedajām Medus Vērtību Ķēdēm">
+        TOP4HoneyChains - Trustable and Sustainable Open Platform for Smart Honey Value Chains
+    </title>
+
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <meta name="keywords"
+          content="TOP4HoneyChains, smart honey value chains, honey traceability, sustainable beekeeping, open data platform, honey quality control, digital beekeeping, microservice architecture, ontology-based information systems"
+          data-en="TOP4HoneyChains, smart honey value chains, honey traceability, sustainable beekeeping, open data platform, honey quality control, digital beekeeping, microservice architecture, ontology-based information systems"
+          data-tr="TOP4HoneyChains, akıllı bal değer zincirleri, bal izlenebilirliği, sürdürülebilir arıcılık, açık veri platformu, bal kalite kontrolü, dijital arıcılık, mikroservis mimarisi, ontoloji tabanlı bilgi sistemleri"
+          data-es="TOP4HoneyChains, cadenas de valor inteligentes de miel, trazabilidad de la miel, apicultura sostenible, plataforma de datos abiertos, control de calidad de la miel, apicultura digital, arquitectura de microservicios, sistemas de información basados en ontologías"
+          data-pl="TOP4HoneyChains, inteligentne łańcuchy wartości miodu, identyfikowalność miodu, zrównoważone pszczelarstwo, platforma otwartych danych, kontrola jakości miodu, cyfrowe pszczelarstwo, architektura mikroserwisów, systemy informacyjne oparte na ontologiach"
+          data-lv="TOP4HoneyChains, viedās medus vērtību ķēdes, medus izsekojamība, ilgtspējīga biškopība, atvērto datu platforma, medus kvalitātes kontrole, digitālā biškopība, mikropakalpojumu arhitektūra, uz ontoloģijām balstītas informācijas sistēmas">
+
+    <meta name="description"
+          content="TOP4HoneyChains is a trustable and sustainable open platform designed for smart honey value chains, improving transparency, traceability, quality control, and digital collaboration among stakeholders."
+          data-en="TOP4HoneyChains is a trustable and sustainable open platform designed for smart honey value chains, improving transparency, traceability, quality control, and digital collaboration among stakeholders."
+          data-tr="TOP4HoneyChains, akıllı bal değer zincirleri için tasarlanmış; şeffaflığı, izlenebilirliği, kalite kontrolünü ve paydaşlar arası dijital iş birliğini geliştiren güvenilir ve sürdürülebilir bir açık platformdur."
+          data-es="TOP4HoneyChains es una plataforma abierta confiable y sostenible diseñada para cadenas de valor inteligentes de miel, mejorando la transparencia, la trazabilidad, el control de calidad y la colaboración digital entre las partes interesadas."
+          data-pl="TOP4HoneyChains to zaufana i zrównoważona otwarta platforma zaprojektowana dla inteligentnych łańcuchów wartości miodu, poprawiająca przejrzystość, identyfikowalność, kontrolę jakości oraz cyfrową współpracę między interesariuszami."
+          data-lv="TOP4HoneyChains ir uzticama un ilgtspējīga atvērtā platforma, kas paredzēta viedajām medus vērtību ķēdēm, uzlabojot pārredzamību, izsekojamību, kvalitātes kontroli un digitālo sadarbību starp iesaistītajām pusēm.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="TOP4HoneyChains - Trustable and Sustainable Open Platform for Smart Honey Value Chains">
+    <meta property="og:description" content="Explore TOP4HoneyChains, an open digital platform for transparent, traceable, and sustainable smart honey value chains.">
+    <meta property="og:image" content="img/flotech-honey-logo.png">
+    <meta property="og:url" content="https://top4honeychains.isikun.edu.tr">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TOP4HoneyChains - Smart Honey Value Chains Platform">
+    <meta name="twitter:description" content="A trustable and sustainable open platform for traceable, transparent, and smart honey value chains.">
+    <meta name="twitter:image" content="img/flotech-honey-logo.png">
+
+    <!-- Additional SEO -->
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="INTALA LAB - Işık University">
+    <link rel="canonical" href="https://top4honeychains.isikun.edu.tr">
+
+    <link href="~/assets/images/favicon.ico" rel="icon">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
+    <link href="~/landingassets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/landingassets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/landingassets/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="~/landingassets/lib/venobox/venobox.css" rel="stylesheet">
+    <link href="~/landingassets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="~/landingassets/css/style.css" rel="stylesheet">
+    <link href="~/landingassets/css/languagecss.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    <!-- Preloader -->
+    <div id="preloader"></div>
+
+    <header id="header">
+        <div class="container">
+
+            <div id="logo" class="pull-left">
+                <h1><a href="#intro"><span>TOP4</span>HoneyChains</a></h1>
+            </div>
+
+            <nav id="nav-menu-container" aria-label="Main navigation">
+                <ul class="nav-menu">
+
+                    <li class="menu-active">
+                        <a href="#intro" aria-current="page"
+                           data-en="Home"
+                           data-tr="Ana Sayfa"
+                           data-es="Inicio"
+                           data-pl="Strona główna"
+                           data-lv="Sākums">
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#about"
+                           data-en="About Platform"
+                           data-tr="Platform Hakkında"
+                           data-es="Sobre la Plataforma"
+                           data-pl="O Platformie"
+                           data-lv="Par Platformu">
+                            About Platform
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#features"
+                           data-en="Features"
+                           data-tr="Özellikler"
+                           data-es="Funciones"
+                           data-pl="Funkcje"
+                           data-lv="Funkcijas">
+                            Features
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="#partners"
+                           data-en="Partners"
+                           data-tr="Ortaklar"
+                           data-es="Socios"
+                           data-pl="Partnerzy"
+                           data-lv="Partneri">
+                            Partners
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#contact"
+                           data-en="Contact"
+                           data-tr="İletişim"
+                           data-es="Contacto"
+                           data-pl="Kontakt"
+                           data-lv="Kontakti">
+                            Contact
+                        </a>
+                    </li>
+
+                    <li class="language-switch">
+
+                        <button class="language-btn" onclick="toggleLanguageMenu(event)">
+                            <span class="flag flag-en" id="current-flag"></span>
+                            <span id="current-lang">EN</span>
+                            <span class="arrow">▼</span>
+                        </button>
+
+                        <div class="language-dropdown" id="language-menu">
+
+                            <div class="language-option" onclick="switchLanguage('en')">
+                                <span class="flag flag-en"></span>
+                                <span>English</span>
+                            </div>
+
+                            <div class="language-option" onclick="switchLanguage('tr')">
+                                <span class="flag flag-tr"></span>
+                                <span>Türkçe</span>
+                            </div>
+
+                            <div class="language-option" onclick="switchLanguage('es')">
+                                <span class="flag flag-es"></span>
+                                <span>Español</span>
+                            </div>
+
+                            <div class="language-option" onclick="switchLanguage('pl')">
+                                <span class="flag flag-pl"></span>
+                                <span>Polski</span>
+                            </div>
+
+                            <div class="language-option" onclick="switchLanguage('lv')">
+                                <span class="flag flag-lv"></span>
+                                <span>Latviešu</span>
+                            </div>
+
+                        </div>
+
+                    </li>
+
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+
+
+
+    <section id="intro">
+
+        <video autoplay muted loop playsinline id="intro-video">
+            <source src="~/landingassets/videos/261844.mp4" type="video/mp4">
+        </video>
+
+        <div class="intro-container wow fadeIn">
+
+            <h1 class="mb-4 pb-0">TOP4HoneyChains</h1>
+
+            <h1 class="mb-4 pb-0"
+                data-en="Trustable and Sustainable Open Platform"
+                data-tr="Güvenilir ve Sürdürülebilir Açık Platform"
+                data-es="Plataforma Abierta Confiable y Sostenible"
+                data-pl="Zaufana i Zrównoważona Otwarta Platforma"
+                data-lv="Uzticama un Ilgtspējīga Atvērtā Platforma">
+                Trustable and Sustainable Open Platform
+            </h1>
+
+            <h1 class="mb-4 pb-0">
+                <span data-en="for Smart Honey Value Chains"
+                      data-tr="Akıllı Bal Değer Zincirleri için"
+                      data-es="para Cadenas de Valor Inteligentes de Miel"
+                      data-pl="dla Inteligentnych Łańcuchów Wartości Miodu"
+                      data-lv="Viedajām Medus Vērtību Ķēdēm">
+                    for Smart Honey Value Chains
+                </span>
+            </h1>
+
+            <p class="mb-4 pb-0"
+               data-en="Project Duration: September 15, 2023 – September 15, 2026"
+               data-tr="Proje Süresi: 15 Eylül 2023 – 15 Eylül 2026"
+               data-es="Duración del Proyecto: 15 de septiembre de 2023 – 15 de septiembre de 2026"
+               data-pl="Czas trwania projektu: 15 września 2023 – 15 września 2026"
+               data-lv="Projekta ilgums: 2023. gada 15. septembris – 2026. gada 15. septembris">
+                Project Duration: September 15, 2023 – September 15, 2026
+            </p>
+
+
+            <!-- Quick Highlights -->
+
+            <div class="workshop-highlights">
+
+                <div class="highlight-item">
+                    <i class="fa fa-globe"></i>
+                    <span data-en="International Research Collaboration"
+                          data-tr="Uluslararası Araştırma İşbirliği"
+                          data-es="Colaboración Internacional de Investigación"
+                          data-pl="Międzynarodowa Współpraca Badawcza"
+                          data-lv="Starptautiska pētniecības sadarbība">
+                        International Research Collaboration
+                    </span>
+                </div>
+
+                <div class="highlight-item">
+                    <i class="fa fa-database"></i>
+                    <span data-en="Open Digital Platform"
+                          data-tr="Açık Dijital Platform"
+                          data-es="Plataforma Digital Abierta"
+                          data-pl="Otwarta Platforma Cyfrowa"
+                          data-lv="Atvērta digitālā platforma">
+                        Open Digital Platform
+                    </span>
+                </div>
+
+                <div class="highlight-item">
+                    <i class="fa fa-leaf"></i>
+                    <span data-en="Sustainable Beekeeping"
+                          data-tr="Sürdürülebilir Arıcılık"
+                          data-es="Apicultura Sostenible"
+                          data-pl="Zrównoważone Pszczelarstwo"
+                          data-lv="Ilgtspējīga biškopība">
+                        Sustainable Beekeeping
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Floating Submit Button -->
+    <a href="javascript:void(0)"
+       class="floating-submit-btn"
+       id="submitBtn"
+       onclick="goToPlatform()">
+
+        <i class="fa fa-sign-in"></i>
+
+        <span data-en="Access Platform"
+              data-tr="Platforma Gidin"
+              data-es="Acceder a la Plataforma"
+              data-pl="Przejdź do Platformy"
+              data-lv="Piekļūt Platformai">
+
+            Access Platform
+
+        </span>
+
+    </a>
+
+    <main id="main">
+
+        <section id="about">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-6">
+
+                        <h2 data-tr="Proje Hakkında"
+                            data-en="About the Project"
+                            data-es="Sobre el Proyecto"
+                            data-pl="O Projekcie"
+                            data-lv="Par Projektu">
+
+                            About the Project
+
+                        </h2>
+
+                        <p style="text-align: justify;"
+                           data-tr="🍯 TOP4HoneyChains (Trustable and Sustainable Open Platform for Smart Honey Value Chains) projesi, akıllı bal değer zincirleri için güvenilir ve sürdürülebilir bir açık platform geliştirmeyi amaçlamaktadır. Arılar, çiçekli bitkilerin döllenmesinde hayati bir rol oynar ve insan gıdasının yaklaşık üçte biri doğrudan veya dolaylı olarak arılara bağlıdır. Ancak bal sektörü, iklim değişikliği, artan rekabet, değişen tüketici beklentileri ve bal sahteciliği gibi önemli sürdürülebilirlik sorunlarıyla karşı karşıyadır.
+
+TOP4HoneyChains projesi; Türkiye ve Arjantin’de veri odaklı dijital hizmetlerle desteklenen, şeffaflığı ve izlenebilirliği artıran akıllı bal değer zincirleri oluşturmayı hedeflemektedir. Proje kapsamında geliştirilecek açık platform sayesinde arıcılar üretim süreçlerini daha iyi yönetebilecek, bal partilerinin kalite testlerine erişebilecek ve üretim verilerini izleyebilecektir.
+
+Aynı zamanda tüketiciler de balın hangi üreticiden geldiğini, üretim koşullarını ve kalite test sonuçlarını şeffaf bir şekilde görüntüleyebilecektir. Böylece güvenilir ve sürdürülebilir bir bal ekosistemi oluşturulması hedeflenmektedir."
+                           data-en="🍯 TOP4HoneyChains (Trustable and Sustainable Open Platform for Smart Honey Value Chains) aims to develop a reliable and sustainable open platform for smart honey value chains. Honey bees play a crucial role in pollinating flowering plants, and nearly one-third of human food production depends directly or indirectly on bees. However, the honey sector faces major sustainability challenges such as climate change, increasing competition, evolving consumer expectations, and honey adulteration.
+
+The TOP4HoneyChains project aims to establish smart honey value chains supported by data-driven digital services in Türkiye and Argentina. The platform will enhance transparency and traceability across the honey production chain.
+
+Through the developed open platform, beekeepers will be able to access quality test results of their honey batches, monitor production information, and manage their operations more efficiently. At the same time, consumers will be able to transparently see where honey was produced, how it was processed, and the quality test results associated with it, strengthening trust across the honey value chain."
+                           data-es="🍯 TOP4HoneyChains (Plataforma Abierta Confiable y Sostenible para Cadenas de Valor Inteligentes de Miel) tiene como objetivo desarrollar una plataforma abierta confiable y sostenible para cadenas de valor inteligentes de miel. Las abejas desempeñan un papel fundamental en la polinización de plantas con flores y aproximadamente un tercio de la producción mundial de alimentos depende directa o indirectamente de ellas.
+
+El proyecto TOP4HoneyChains busca establecer cadenas de valor de miel inteligentes respaldadas por servicios digitales basados en datos en Turquía y Argentina, mejorando la transparencia y la trazabilidad en toda la cadena de producción de miel."
+                           data-pl="🍯 Projekt TOP4HoneyChains (Zaufana i Zrównoważona Otwarta Platforma dla Inteligentnych Łańcuchów Wartości Miodu) ma na celu opracowanie niezawodnej i zrównoważonej otwartej platformy dla inteligentnych łańcuchów wartości miodu. Pszczoły odgrywają kluczową rolę w zapylaniu roślin, a znaczna część światowej produkcji żywności zależy od ich działalności.
+
+Projekt koncentruje się na tworzeniu inteligentnych łańcuchów wartości miodu wspieranych przez cyfrowe usługi oparte na danych, zwiększając przejrzystość i identyfikowalność produkcji miodu."
+                           data-lv="🍯 TOP4HoneyChains projekta mērķis ir izstrādāt uzticamu un ilgtspējīgu atvērtu platformu viedām medus vērtību ķēdēm. Bites ir būtiskas ziedošo augu apputeksnēšanai, un liela daļa pasaules pārtikas ražošanas ir tieši vai netieši atkarīga no bitēm.
+
+Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu un izsekojamību medus piegādes ķēdē, nodrošinot uzticamu informāciju gan ražotājiem, gan patērētājiem.">
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="col-lg-3">
+
+                        <h3 data-tr="Proje Süresi"
+                            data-en="Project Duration"
+                            data-es="Duración del Proyecto"
+                            data-pl="Czas trwania projektu"
+                            data-lv="Projekta ilgums">
+
+                            Project Duration
+
+                        </h3>
+
+                        <p data-tr="15 Eylül 2023 – 15 Eylül 2026"
+                           data-en="15 September 2023 – 15 September 2026"
+                           data-es="15 septiembre 2023 – 15 septiembre 2026"
+                           data-pl="15 września 2023 – 15 września 2026"
+                           data-lv="2023. gada 15. septembris – 2026. gada 15. septembris">
+
+                            15 September 2023 – 15 September 2026
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="col-lg-3">
+
+                        <h3 data-tr="Proje Alanı"
+                            data-en="Project Scope"
+                            data-es="Alcance del Proyecto"
+                            data-pl="Zakres projektu"
+                            data-lv="Projekta darbības joma">
+
+                            Project Scope
+
+                        </h3>
+
+                        <p data-tr="Türkiye ve Arjantin"
+                           data-en="Türkiye and Argentina"
+                           data-es="Turquía y Argentina"
+                           data-pl="Turcja i Argentyna"
+                           data-lv="Turcija un Argentīna">
+
+                            Türkiye and Argentina
+
+                        </p>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="section-with-bg">
+            <div class="container wow fadeInUp">
+
+                <div class="section-header">
+                    <h2 data-tr="Platform Özellikleri"
+                        data-en="Platform Features"
+                        data-es="Características de la Plataforma"
+                        data-pl="Funkcje Platformy"
+                        data-lv="Platformas Funkcijas">
+
+                        Platform Features
+
+                    </h2>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-box">
+                            <i class="fa fa-link"></i>
+
+                            <h4 data-tr="Bal İzlenebilirliği"
+                                data-en="Honey Traceability"
+                                data-es="Trazabilidad de la Miel"
+                                data-pl="Identyfikowalność Miodu"
+                                data-lv="Medus Izsekojamība">
+
+                                Honey Traceability
+
+                            </h4>
+
+                            <p data-tr="Tüketiciler balın hangi arıcıdan geldiğini, üretim koşullarını ve kalite test sonuçlarını şeffaf bir şekilde görebilir."
+                               data-en="Consumers can transparently see where honey was produced, how it was processed, and its quality test results."
+                               data-es="Los consumidores pueden ver de forma transparente dónde se produjo la miel, cómo se procesó y sus resultados de calidad."
+                               data-pl="Konsumenci mogą przejrzyście zobaczyć skąd pochodzi miód, jak został wyprodukowany i jego wyniki jakości."
+                               data-lv="Patērētāji var caurspīdīgi redzēt, kur medus tika ražots un kādi ir kvalitātes testi.">
+
+                                Consumers can transparently see where honey was produced, how it was processed, and its quality test results.
+
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-box">
+                            <i class="fa fa-database"></i>
+
+                            <h4 data-tr="Açık Veri Platformu"
+                                data-en="Open Data Platform"
+                                data-es="Plataforma de Datos Abiertos"
+                                data-pl="Platforma Otwartych Danych"
+                                data-lv="Atvērto Datu Platforma">
+
+                                Open Data Platform
+
+                            </h4>
+
+                            <p data-tr="Bal değer zinciri boyunca veri paylaşımı için mikroservis tabanlı bir açık veri platformu geliştirilmiştir."
+                               data-en="A microservice-based open data platform enables secure data sharing across the honey value chain."
+                               data-es="Una plataforma abierta basada en microservicios permite compartir datos a lo largo de la cadena de valor de la miel."
+                               data-pl="Platforma oparta na mikroserwisach umożliwia bezpieczne udostępnianie danych w łańcuchu wartości miodu."
+                               data-lv="Mikropakalpojumu balstīta platforma nodrošina datu koplietošanu medus vērtību ķēdē.">
+
+                                A microservice-based open data platform enables secure data sharing across the honey value chain.
+
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-box">
+                            <i class="fa fa-mobile"></i>
+
+                            <h4 data-tr="Dijital Arıcılık Araçları"
+                                data-en="Digital Beekeeping Tools"
+                                data-es="Herramientas Digitales de Apicultura"
+                                data-pl="Cyfrowe Narzędzia Pszczelarskie"
+                                data-lv="Digitālie Biškopības Rīki">
+
+                                Digital Beekeeping Tools
+
+                            </h4>
+
+                            <p data-tr="Arıcılar mobil uygulamalar ve dijital araçlar ile üretim verilerini takip edebilir ve operasyonlarını daha verimli yönetebilir."
+                               data-en="Beekeepers can monitor production data and manage operations efficiently using digital tools and mobile applications."
+                               data-es="Los apicultores pueden gestionar sus operaciones y monitorear datos de producción mediante herramientas digitales."
+                               data-pl="Pszczelarze mogą monitorować produkcję i zarządzać operacjami dzięki narzędziom cyfrowym."
+                               data-lv="Biškopji var sekot līdzi ražošanas datiem un pārvaldīt darbības ar digitāliem rīkiem.">
+
+                                Beekeepers can monitor production data and manage operations efficiently using digital tools.
+
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-box">
+                            <i class="fa fa-check-circle"></i>
+
+                            <h4 data-tr="Kalite Kontrol"
+                                data-en="Quality Control"
+                                data-es="Control de Calidad"
+                                data-pl="Kontrola Jakości"
+                                data-lv="Kvalitātes Kontrole">
+
+                                Quality Control
+
+                            </h4>
+
+                            <p data-tr="Bal partileri için kalite test sonuçları platform üzerinden kayıt altına alınır ve izlenebilir."
+                               data-en="Quality test results for honey batches are recorded and accessible through the platform."
+                               data-es="Los resultados de calidad de los lotes de miel se registran y se pueden consultar en la plataforma."
+                               data-pl="Wyniki testów jakości miodu są rejestrowane i dostępne na platformie."
+                               data-lv="Medus kvalitātes testi tiek reģistrēti un pieejami platformā.">
+
+                                Quality test results for honey batches are recorded and accessible through the platform.
+
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-box">
+                            <i class="fa fa-project-diagram"></i>
+
+                            <h4 data-tr="Ontoloji Tabanlı Bilgi Yönetimi"
+                                data-en="Ontology-based Knowledge Management"
+                                data-es="Gestión del Conocimiento basada en Ontologías"
+                                data-pl="Zarządzanie Wiedzą oparte na Ontologiach"
+                                data-lv="Ontoloģijās balstīta zināšanu pārvaldība">
+
+                                Ontology-based Knowledge Management
+
+                            </h4>
+
+                            <p data-tr="Bal üretim zinciri boyunca semantik veri yönetimi sağlayan ontoloji tabanlı bilgi sistemleri geliştirilmiştir."
+                               data-en="Ontology-based systems enable semantic knowledge management across the honey supply chain."
+                               data-es="Los sistemas basados en ontologías permiten gestionar el conocimiento a lo largo de la cadena de valor."
+                               data-pl="Systemy ontologiczne wspierają zarządzanie wiedzą w łańcuchu wartości miodu."
+                               data-lv="Ontoloģijas nodrošina semantisku zināšanu pārvaldību medus ķēdē.">
+
+                                Ontology-based systems enable semantic knowledge management across the honey supply chain.
+
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-box">
+                            <i class="fa fa-globe"></i>
+
+                            <h4 data-tr="Uluslararası İş Birliği"
+                                data-en="International Collaboration"
+                                data-es="Colaboración Internacional"
+                                data-pl="Współpraca Międzynarodowa"
+                                data-lv="Starptautiskā Sadarbība">
+
+                                International Collaboration
+
+                            </h4>
+
+                            <p data-tr="Platform Türkiye ve Arjantin’de uygulanacak ve diğer ülkelerde de kullanılabilecek şekilde tasarlanmıştır."
+                               data-en="The platform is implemented in Türkiye and Argentina and designed for international scalability."
+                               data-es="La plataforma se implementará en Turquía y Argentina con potencial de expansión internacional."
+                               data-pl="Platforma będzie wdrażana w Turcji i Argentynie z możliwością rozszerzenia międzynarodowego."
+                               data-lv="Platforma tiek izstrādāta Turcijā un Argentīnā ar iespēju izmantot citās valstīs.">
+
+                                The platform is implemented in Türkiye and Argentina with potential global adoption.
+
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="partners" class="wow fadeInUp">
+
+            <div class="container">
+
+                <div class="section-header">
+                    <h2 data-tr="Proje Ortakları"
+                        data-en="Project Consortium"
+                        data-es="Consorcio del Proyecto"
+                        data-pl="Konsorcjum Projektu"
+                        data-lv="Projekta Konsorcijs">
+
+                        Project Consortium
+
+                    </h2>
+                </div>
+
+
+                <div class="row">
+
+                    <section class="editorial-board-table">
+
+                        <h2 data-tr="Koordinatör Kurum"
+                            data-en="Project Coordinator"
+                            data-es="Coordinador del Proyecto"
+                            data-pl="Koordynator Projektu"
+                            data-lv="Projekta Koordinators">
+
+                            Project Coordinator
+
+                        </h2>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th data-tr="Rol"
+                                        data-en="Role"
+                                        data-es="Rol"
+                                        data-pl="Rola"
+                                        data-lv="Loma">
+
+                                        Role
+
+                                    </th>
+
+                                    <th data-tr="Kurum"
+                                        data-en="Institution"
+                                        data-es="Institución"
+                                        data-pl="Instytucja"
+                                        data-lv="Institūcija">
+
+                                        Institution
+
+                                    </th>
+
+                                    <th data-tr="Ülke"
+                                        data-en="Country"
+                                        data-es="País"
+                                        data-pl="Kraj"
+                                        data-lv="Valsts">
+
+                                        Country
+
+                                    </th>
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+                                    <td data-tr="Proje Koordinatörü"
+                                        data-en="Project Coordinator"
+                                        data-es="Coordinador del Proyecto"
+                                        data-pl="Koordynator Projektu"
+                                        data-lv="Projekta koordinators">
+
+                                        Project Coordinator
+
+                                    </td>
+
+                                    <td>Boğaziçi University</td>
+
+                                    <td>Türkiye</td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </section>
+
+                </div>
+
+
+                <div class="row">
+
+                    <section class="editorial-board-table">
+
+                        <h2 data-tr="Proje Ortakları"
+                            data-en="Project Partners"
+                            data-es="Socios del Proyecto"
+                            data-pl="Partnerzy Projektu"
+                            data-lv="Projekta Partneri">
+
+                            Project Partners
+
+                        </h2>
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th data-tr="Kurum"
+                                        data-en="Institution"
+                                        data-es="Institución"
+                                        data-pl="Instytucja"
+                                        data-lv="Institūcija">
+
+                                        Institution
+
+                                    </th>
+
+                                    <th data-tr="Ülke"
+                                        data-en="Country"
+                                        data-es="País"
+                                        data-pl="Kraj"
+                                        data-lv="Valsts">
+
+                                        Country
+
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+                                    <td>Işık University</td>
+                                    <td>Türkiye</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Apiculture Research Institute</td>
+                                    <td>Türkiye</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Instituto Nacional de Tecnología Agropecuaria (INTA)</td>
+                                    <td>Argentina</td>
+                                </tr>
+
+                                <tr>
+                                    <td>NEXCO S.A</td>
+                                    <td>Argentina</td>
+                                </tr>
+
+                                <tr>
+                                    <td>CNORTEGRANDE Cooperative</td>
+                                    <td>Argentina</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Alimentos Naturales Natural Foods S.A.</td>
+                                    <td>Argentina</td>
+                                </tr>
+
+                                <tr>
+                                    <td>University of Economics in Katowice</td>
+                                    <td>Poland</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Latvia University of Life Sciences and Technologies</td>
+                                    <td>Latvia</td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </section>
+
+                </div>
+
+            </div>
+
+        </section>
+        <section id="contact" class="section-bg wow fadeInUp">
+            <div class="container">
+                <div class="section-header">
+                    <h2 data-tr="İletişim" data-en="Contact" data-es="Contacto" data-pl="Kontakt" data-mt="Kuntatt" data-lv="Kontakti">İletişim</h2>
+                </div>
+
+                <div class="row contact-info">
+
+                    <div class="col-md-4">
+                        <div class="contact-address">
+                            <i class="ion-ios-location-outline"></i>
+                            <h3 data-tr="Adres" data-en="Address" data-es="Dirección" data-pl="Adres" data-mt="Indirizz" data-lv="Adrese">Adres</h3>
+                            <address>
+                                Işık Üniversitesi Şile Kampüsü <br />
+                                Meşrutiyet Mahallesi, Üniversite Sokak No:2
+                                Şile / İstanbul
+                            </address>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="contact-phone">
+                            <i class="ion-ios-telephone-outline"></i>
+                            <h3 data-tr="Telefon" data-en="Phone" data-es="Teléfono" data-pl="Telefon" data-mt="Telefon" data-lv="Tālrunis">Telefon</h3>
+                            <p><a href="tel:+902165288000">+90 216 528 80 00 - 7164</a></p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="contact-email">
+                            <i class="ion-ios-email-outline"></i>
+                            <h3 data-tr="E-posta" data-en="Email" data-es="Correo electrónico" data-pl="E-mail" data-mt="Email" data-lv="E-pasts">E-posta</h3>
+                            <p><a href="mailto:intalalab@isikun.edu.tr">intalalab@isikun.edu.tr</a></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <!--==========================
+      Footer
+    ============================-->
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 footer-links">
+                        <h4 data-tr="Faydalı Bağlantılar" data-en="Useful Links" data-es="Enlaces Útiles" data-pl="Przydatne Linki" data-mt="Links Utli" data-lv="Noderīgas saites">Faydalı Bağlantılar</h4>
+                        <ul>
+                            <li>
+                                <i class="fa fa-angle-right"></i> <a href="https://www.isikun.edu.tr/" target="_blank">
+                                    <span data-tr="Işık Üniversitesi" data-en="Işık University" data-es="Universidad Işık" data-pl="Uniwersytet Işık" data-mt="Università Işık" data-lv="Išikas Universitāte">Işık Üniversitesi</span>
+                                </a>
+                            </li>
+                            <li>
+                                <i class="fa fa-angle-right"></i> <a href="https://intalalab.isikun.edu.tr/" target="_blank">
+                                    <span data-tr="INTALA LAB" data-en="INTALA LAB">INTALA LAB</span>
+                                </a>
+                            </li>
+                            <li>
+                                <i class="fa fa-angle-right"></i><a href="https://top4honeychains.isikun.edu.tr/" target="_blank">
+                                    <span data-tr="TOP4HONEYCHAINS" data-en="TOP4HONEYCHAINS">TOP4HONEYCHAINS</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 footer-contact">
+                        <h4 data-tr="Bizimle İletişime Geçin" data-en="Contact Us" data-es="Contáctenos" data-pl="Skontaktuj się z nami" data-mt="Ikkuntattjana" data-lv="Sazinieties ar mums">Bizimle İletişime Geçin</h4>
+                        <p>
+                            Işık Üniversitesi, Şile Kampüsü<br>
+                            Meşrutiyet Köyü<br />
+                            Üniversite Sokak<br />
+                            No: 2 <br />
+                            Şile / Istanbul, Türkiye <br />
+                            <strong data-tr="Telefon:" data-en="Phone:" data-es="Teléfono:" data-pl="Telefon:" data-mt="Telefon:" data-lv="Tālrunis:">Telefon:</strong> +90 216 528 80 00<br />
+                            <strong data-tr="E-posta:" data-en="Email:" data-es="Correo electrónico:" data-pl="E-mail:" data-mt="Email:" data-lv="E-pasts:">E-posta:</strong> intalalab@isikun.edu.tr<br />
+                        </p>
+
+                        <div class="social-links">
+                            <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                            <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+                            <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="~/landingassets/lib/jquery/jquery.min.js"></script>
+    <script src="~/landingassets/lib/jquery/jquery-migrate.min.js"></script>
+    <script src="~/landingassets/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/landingassets/lib/easing/easing.min.js"></script>
+    <script src="~/landingassets/lib/superfish/hoverIntent.js"></script>
+    <script src="~/landingassets/lib/superfish/superfish.min.js"></script>
+    <script src="~/landingassets/lib/wow/wow.min.js"></script>
+    <script src="~/landingassets/lib/venobox/venobox.min.js"></script>
+    <script src="~/landingassets/lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Contact Form JavaScript File -->
+    <script src="~/landingassets/contactform/contactform.js"></script>
+
+    <!-- Template Main Javascript File -->
+    <script src="~/landingassets/js/main.js"></script>
+
+    <script>
+        
+        function goToPlatform() {
+
+            let lang = "en";
+
+            if (document.documentElement.classList.contains("lang-tr")) lang = "tr";
+            if (document.documentElement.classList.contains("lang-es")) lang = "es";
+            if (document.documentElement.classList.contains("lang-pl")) lang = "pl";
+            if (document.documentElement.classList.contains("lang-lv")) lang = "lv";
+
+            window.location.href =
+                "/Home/SetLanguage?culture=" + lang + "&returnUrl=/Account/Login";
+        }
+    </script>
+</body>
+
+</html>

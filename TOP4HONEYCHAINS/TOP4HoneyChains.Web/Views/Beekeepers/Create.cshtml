@@ -1,0 +1,109 @@
+﻿@model TOP4HoneyChains.Web.Models.Entities.Beekeeper
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Create new beekeeper</h4>
+                            <p class="card-title-desc">
+                                <a asp-action="Index"
+                                   class="btn btn-secondary waves-effect waves-light">
+                                    Back to List
+                                </a>
+                            </p>
+                            <form class="custom-validation" asp-action="Create" enctype="multipart/form-data">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="mb-3">
+                                    <input asp-for="ProfilePhotoFile" type="file" class="form-control" accept="image/*" />
+                                    <span asp-validation-for="ProfilePhotoFile" class="text-danger"></span>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label asp-for="BeekeeperFirstName" class="form-label">First Name</label>
+                                    <input asp-for="BeekeeperFirstName" class="form-control" placeholder="Enter first name" />
+                                    <span asp-validation-for="BeekeeperFirstName" class="text-danger"></span>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label asp-for="BeekeeperLastName" class="form-label">Last Name</label>
+                                    <input asp-for="BeekeeperLastName" class="form-control" placeholder="Enter last name" />
+                                    <span asp-validation-for="BeekeeperLastName" class="text-danger"></span>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label asp-for="BeekeeperBirthDate" class="form-label">Birth Date</label>
+                                    <input asp-for="BeekeeperBirthDate" type="date" class="form-control" />
+                                    <span asp-validation-for="BeekeeperBirthDate" class="text-danger"></span>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label asp-for="BeekeeperExperienceTime" class="form-label">Experience Time</label>
+                                    <input asp-for="BeekeeperExperienceTime" type="number" class="form-control" />
+                                    <span asp-validation-for="BeekeeperExperienceTime" class="text-danger"></span>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label asp-for="BeekeeperPhoneNumber" class="form-label">Phone Number</label>
+                                    <input asp-for="BeekeeperPhoneNumber" class="form-control" placeholder="05XX XXX XX XX" />
+                                    <span asp-validation-for="BeekeeperPhoneNumber" class="text-danger"></span>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label asp-for="BeekeeperEducationLevelId" class="form-label">Education Level</label>
+                                    <select asp-for="BeekeeperEducationLevelId" class="form-select" asp-items="ViewBag.BeekeeperEducationLevelId">
+                                        <option value="">Select Education Level</option>
+                                    </select>
+                                    <span asp-validation-for="BeekeeperEducationLevelId" class="text-danger"></span>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label asp-for="BeekeeperBeekeepingPurposeTypeId" class="form-label">Purpose Type</label>
+                                    <select asp-for="BeekeeperBeekeepingPurposeTypeId" class="form-select" asp-items="ViewBag.BeekeeperBeekeepingPurposeTypeId">
+                                        <option value="">Select Purpose</option>
+                                    </select>
+                                    <span asp-validation-for="BeekeeperBeekeepingPurposeTypeId" class="text-danger"></span>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label asp-for="BeekeeperBeekeepingTypeId" class="form-label">Beekeeping Type</label>
+                                    <select asp-for="BeekeeperBeekeepingTypeId" class="form-select" asp-items="ViewBag.BeekeeperBeekeepingTypeId">
+                                        <option value="">Select Beekeeping Type</option>
+                                    </select>
+                                    <span asp-validation-for="BeekeeperBeekeepingTypeId" class="text-danger"></span>
+                                </div>
+
+
+
+                                <div class="mb-0">
+                                    <div>
+                                        <button type="submit" class="btn btn-primary waves-effect waves-light me-1">
+                                            Submit
+                                        </button>
+                                        <button type="reset" class="btn btn-secondary waves-effect">
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- end form -->
+                        </div>
+                    </div>
+                </div> <!-- end col -->
+            </div>
+        </div>
+    </div>
+    @section scripts{
+        <script src="~/assets/libs/parsleyjs/parsley.min.js"></script>
+        <script src="~/assets/js/pages/form-validation.init.js"></script>
+        <script src="~/assets/js/app.js"></script>
+    }
+</body>
+

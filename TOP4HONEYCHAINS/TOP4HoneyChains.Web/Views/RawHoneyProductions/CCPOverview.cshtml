@@ -1,0 +1,196 @@
+﻿@using TOP4HoneyChains.Web.Models.ViewModels.Timeline
+@model CCPOverviewViewModel
+
+@{
+    ViewData["Title"] = "CCP Process Overview";
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+
+    var progressPercent = ViewBag.ProgressPercent;
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <!-- 🔶 PRODUCTION OVERVIEW -->
+            <div class="card mb-4 border-0 shadow-lg">
+                <div class="card-body text-white rounded"
+                     style="background: linear-gradient(135deg,#ffb347,#ffcc33);">
+
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+
+                        <div>
+                            <h3 class="fw-bold mb-1">
+                                <i class="mdi mdi-barrel-outline me-2"></i>
+                                Production Overview
+                            </h3>
+                            <small class="opacity-75">
+                                Raw Honey Production Traceability
+                            </small>
+                        </div>
+
+                        <div class="text-end">
+                            <div class="display-6 fw-bold">
+                                @Model.Amount kg
+                            </div>
+                            <small>Total Amount</small>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <small class="text-uppercase opacity-75">Beekeeper</small>
+                            <div class="fw-bold fs-5">
+                                @Model.BeekeeperName
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <small class="text-uppercase opacity-75">Apiary</small>
+                            <div class="fw-bold fs-5">
+                                @Model.ApiaryName
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <small class="text-uppercase opacity-75">Wholesaler</small>
+                            <div class="fw-bold fs-5">
+                                <span class="badge bg-dark px-3 py-2">
+                                    @Model.WholesalerName
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <small class="text-uppercase opacity-75">Honey Type</small>
+                            <div class="fw-bold fs-5">
+                                @Model.HoneyType
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <small class="text-uppercase opacity-75">Production Date</small>
+                            <div class="fw-bold fs-5">
+                                @Model.ProductionDate?.ToString("dd.MM.yyyy")
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 🔷 TIMELINE HEADER -->
+            <div class="card mb-4 border-0 shadow-lg">
+                <div class="card-body text-white rounded"
+                     style="background: linear-gradient(135deg,#1e3c72,#2a5298);">
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <div>
+                            <h3 class="fw-bold mb-1">
+                                <i class="mdi mdi-timeline-check-outline me-2"></i>
+                                CCP Process Overview
+                            </h3>
+                            <small class="opacity-75">
+                                Monitoring lifecycle visualization
+                            </small>
+                        </div>
+
+                        <div class="text-end">
+                            <div class="fw-bold fs-4">
+                                @progressPercent%
+                            </div>
+                            <small>Completion</small>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 🔷 TIMELINE -->
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+
+                    <section id="cd-timeline" class="cd-container">
+
+                        @for (int i = 0; i < Model.Timeline.Count; i++)
+                        {
+                            var item = Model.Timeline[i];
+                            var isLast = i == Model.Timeline.Count - 1;
+
+                            var statusClass = item.StatusName switch
+                            {
+                                "Completed" => "success",
+                                "In Progress" => "warning",
+                                "Rejected" => "danger",
+                                _ => "secondary"
+                            };
+
+                            var alignment = i % 2 == 0 ? "timeline-right" : "timeline-left";
+
+                            <div class="cd-timeline-block @(isLast ? "" : alignment)">
+
+                                <div class="cd-timeline-img bg-@statusClass @(isLast ? "d-xl-none" : "")">
+                                    <i class="mdi mdi-checkbox-marked-circle-outline"></i>
+                                </div>
+
+                                <div class="cd-timeline-content shadow border-0 rounded p-4"
+                                     style="transition: all .3s ease;">
+
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+
+                                        <h5 class="fw-bold mb-0">
+                                            @item.CCPCode - @item.CCPTitle
+                                        </h5>
+
+                                        <span class="badge bg-@statusClass fs-6 px-3 py-2">
+                                            @item.StatusName
+                                        </span>
+
+                                    </div>
+
+                                    @if (item.StartDate != null)
+                                    {
+                                        <div class="text-muted small">
+                                            <i class="mdi mdi-clock-start me-1"></i>
+                                            Started:
+                                            @item.StartDate.Value.ToString("dd.MM.yyyy HH:mm")
+                                        </div>
+                                    }
+
+                                    @if (item.EndDate != null)
+                                    {
+                                        <div class="text-muted small">
+                                            <i class="mdi mdi-check-circle-outline me-1"></i>
+                                            Completed:
+                                            @item.EndDate.Value.ToString("dd.MM.yyyy HH:mm")
+                                        </div>
+                                    }
+
+                                    @if (isLast)
+                                    {
+                                        <div class="mt-3">
+                                            <span class="badge bg-dark px-3 py-2">
+                                                Process End
+                                            </span>
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+                        }
+
+                    </section>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    @section scripts{
+        <script src="~/assets/js/app.js"></script>
+    }
+</body>

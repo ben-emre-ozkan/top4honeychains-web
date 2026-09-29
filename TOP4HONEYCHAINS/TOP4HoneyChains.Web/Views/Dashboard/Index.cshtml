@@ -1,0 +1,411 @@
+﻿@{
+    ViewBag.Title = "TOP4HoneyChains Project";
+    ViewBag.subTitle = "TOP4HoneyChains";
+    ViewBag.pageTitle = "TOP4HoneyChains";
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+}
+
+
+<body data-topbar="light" data-layout="horizontal">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-xl-3 col-sm-6">
+                    <div class="card mini-stat bg-primary">
+                        <div class="card-body mini-stat-img">
+                            <div class="mini-stat-icon">
+                                <i class="mdi mdi-beekeeper float-end"></i>
+                            </div>
+                            <div class="text-white">
+                                <h6 class="text-uppercase mb-3 font-size-16 text-white">Total Beekeepers</h6>
+                                <h2 class="mb-4 text-white">@ViewBag.TotalBeekeepers</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6">
+                    <div class="card mini-stat bg-success">
+                        <div class="card-body mini-stat-img">
+                            <div class="mini-stat-icon">
+                                <i class="mdi mdi-beehive-outline float-end"></i>
+                            </div>
+                            <div class="text-white">
+                                <h6 class="text-uppercase mb-3 font-size-16 text-white">Total Apiaries</h6>
+                                <h2 class="mb-4 text-white">@ViewBag.TotalApiaries</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6">
+                    <div class="card mini-stat bg-warning">
+                        <div class="card-body mini-stat-img">
+                            <div class="mini-stat-icon">
+                                <i class="mdi mdi-truck-delivery-outline float-end"></i>
+                            </div>
+                            <div class="text-white">
+                                <h6 class="text-uppercase mb-3 font-size-16 text-white"> Total Wholesalers</h6>
+                                <h2 class="mb-4 text-white">@ViewBag.TotalWholesalers</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6">
+                    <div class="card mini-stat bg-info">
+                        <div class="card-body mini-stat-img">
+                            <div class="mini-stat-icon">
+                                <i class="mdi mdi-bee-flower float-end"></i>
+                            </div>
+                            @{
+                                decimal totalKg = 0m;
+                                if (ViewBag.TotalProduction != null)
+                                {
+                                    totalKg = Convert.ToDecimal(ViewBag.TotalProduction);
+                                }
+
+                                var totalTonText = (totalKg / 1000m).ToString("N2");
+                            }
+
+                            <div class="text-white">
+                                <h6 class="text-uppercase mb-3 font-size-16 text-white">
+                                    Total Production
+                                </h6>
+
+                                <h2 class="mb-4 text-white">
+                                    @totalTonText ton
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+
+            <div class="row">
+
+                <div class="col-xl-6">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title mb-4">
+                                Production by Honey Type
+                            </h4>
+
+                            <!-- SUMMARY -->
+                            <div class="row text-center mt-2 mb-4">
+
+                                @foreach (var item in ViewBag.ProductionByHoneyType)
+                                {
+                                    <div class="col">
+
+                                        <h5 class="mb-0 font-size-20 text-truncate">
+                                            @item.value.ToString("N0")
+                                        </h5>
+
+                                        <p class="text-muted text-truncate">
+                                            @item.label
+                                        </p>
+
+                                    </div>
+                                }
+
+                            </div>
+
+                            <!-- DONUT CHART -->
+                            <div id="morris-donut-example"
+                                 class="morris-charts morris-charts-height"
+                                 dir="ltr">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-6">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title mb-4">
+                                Top 3 Raw Honey Wholesalers
+                            </h4>
+
+                            <!-- SUMMARY -->
+                            <div class="row text-center mt-2 mb-4">
+
+                                @foreach (var item in ViewBag.ProductionByWholesaler)
+                                {
+                                    <div class="col">
+
+                                        <h5 class="mb-0 font-size-20 text-truncate">
+                                            @item.value.ToString("N0")
+                                        </h5>
+
+                                        <p class="text-muted text-truncate">
+                                            @item.label
+                                        </p>
+
+                                    </div>
+                                }
+
+                            </div>
+
+                            <!-- DONUT CHART -->
+                            <div id="morris-donut-wholesaler"
+                                 class="morris-charts morris-charts-height"
+                                 dir="ltr">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- end row -->
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title mb-4">
+                                Top 5 Most Productive Beekeepers
+                            </h4>
+
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle mb-0">
+
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th style="width:60px;">#</th>
+                                            <th>Beekeeper</th>
+                                            <th class="text-end">Total Production (kg)</th>
+                                            <th style="width:120px;" class="text-center">Rank</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        @{
+                                            int rank = 1;
+                                        }
+
+                                        @foreach (var beekeeper in ViewBag.TopBeekeepers)
+                                        {
+                                            var base64Photo = beekeeper.Photo != null
+                                            ? "data:image/jpeg;base64," + Convert.ToBase64String((byte[])beekeeper.Photo)
+                                            : Url.Content("~/assets/images/users/default-user.jpg");
+
+                                            <tr>
+
+                                                <th scope="row">
+                                                    @rank
+                                                </th>
+
+                                                <td>
+
+                                                    <div class="d-flex align-items-center">
+
+                                                        <img src="@base64Photo"
+                                                             class="rounded-circle me-3"
+                                                             width="40"
+                                                             height="40"
+                                                             style="object-fit:cover;" />
+
+                                                        <span class="fw-semibold">
+                                                            @beekeeper.FullName
+                                                        </span>
+
+                                                    </div>
+
+                                                </td>
+
+                                                <td class="text-end fw-bold">
+                                                    @beekeeper.TotalProduction.ToString("N0") kg
+                                                </td>
+
+                                                <td class="text-center">
+
+                                                    @if (rank == 1)
+                                                    {
+                                                        <span class="badge bg-warning text-dark">
+                                                            🥇 #1
+                                                        </span>
+                                                    }
+                                                    else if (rank == 2)
+                                                    {
+                                                        <span class="badge bg-secondary">
+                                                            🥈 #2
+                                                        </span>
+                                                    }
+                                                    else if (rank == 3)
+                                                    {
+                                                        <span class="badge bg-info">
+                                                            🥉 #3
+                                                        </span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="badge bg-light text-dark">
+                                                            #@rank
+                                                        </span>
+                                                    }
+
+                                                </td>
+
+                                            </tr>
+
+                                            rank++;
+                                        }
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title mb-4">
+                                Top 5 Most Productive Apiaries
+                            </h4>
+
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle mb-0">
+
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th style="width:60px;">#</th>
+                                            <th>Apiary</th>
+                                            <th>Beekeeper</th>
+                                            <th class="text-center">Hives</th>
+                                            <th class="text-end">Total Production (kg)</th>
+                                            <th style="width:120px;" class="text-center">Rank</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        @{
+                                            int rankA = 1;
+                                        }
+
+                                        @foreach (var apiary in ViewBag.TopApiaries)
+                                        {
+                                            <tr>
+
+                                                <th scope="row">
+                                                    @rankA
+                                                </th>
+
+                                                <td class="fw-semibold">
+                                                    🏡 @apiary.ApiaryTitle
+                                                </td>
+
+                                                <td>
+                                                    👨‍🌾 @apiary.BeekeeperName
+                                                </td>
+
+                                                <td class="text-center">
+                                                    🐝 @apiary.BeehivesCount
+                                                </td>
+
+                                                <td class="text-end fw-bold">
+                                                    @apiary.TotalProduction.ToString("N0") kg
+                                                </td>
+
+                                                <td class="text-center">
+
+                                                    @if (rankA == 1)
+                                                    {
+                                                        <span class="badge bg-warning text-dark">🥇 #1</span>
+                                                    }
+                                                    else if (rankA == 2)
+                                                    {
+                                                        <span class="badge bg-secondary">🥈 #2</span>
+                                                    }
+                                                    else if (rankA == 3)
+                                                    {
+                                                        <span class="badge bg-info">🥉 #3</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="badge bg-light text-dark">#@rankA</span>
+                                                    }
+
+                                                </td>
+
+                                            </tr>
+
+                                            rankA++;
+                                        }
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+        </div> <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+    @section scripts{
+        <!--Morris Chart-->
+        <script src="~/assets/libs/morris.js/morris.min.js"></script>
+        <script src="~/assets/libs/raphael/raphael.min.js"></script>
+
+        @* <script src="~/assets/js/pages/dashboard.init.js"></script> *@
+
+
+        <script>
+
+            var honeyTypeData = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(ViewBag.ProductionByHoneyType));
+
+            new Morris.Donut({
+                element: 'morris-donut-example',
+                data: honeyTypeData,
+                resize: true,
+                colors: ['#34c38f', '#556ee6', '#f1b44c', '#f46a6a', '#50a5f1']
+            });
+        </script>
+
+        <script>
+
+            var wholesalerData = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(ViewBag.ProductionByWholesaler));
+
+            new Morris.Donut({
+                element: 'morris-donut-wholesaler',
+                data: wholesalerData,
+                resize: true,
+                colors: [
+                    '#556ee6',
+                    '#34c38f',
+                    '#f1b44c',
+                    '#f46a6a',
+                    '#50a5f1'
+                ]
+            });
+
+        </script>
+
+
+
+        <!-- App js -->
+        <script src="~/assets/js/app.js"></script>
+    }
+
+</body>

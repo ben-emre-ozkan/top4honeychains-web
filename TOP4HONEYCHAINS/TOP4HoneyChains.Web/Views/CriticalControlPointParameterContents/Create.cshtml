@@ -1,0 +1,156 @@
+﻿@model TOP4HoneyChains.Web.Models.Entities.CriticalControlPointParameterContent
+
+@{
+    ViewData["Title"] = "Create Parameter Content";
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+}
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <!-- 🔷 HEADER -->
+            <div class="row mb-3">
+                <div class="col-12">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body d-flex justify-content-between align-items-center">
+
+                            <div>
+                                <h4 class="card-title mb-1">Add Parameter Content for @ViewBag.ParameterName</h4>
+                                <p class="text-muted mb-0">
+                                    Create educational content (video + explanation) for CCP parameters.
+                                </p>
+                            </div>
+
+                            <a asp-action="Index"
+                               asp-route-parameterId="@Model.ParameterId"
+                               class="btn btn-secondary waves-effect">
+                                <i class="mdi mdi-arrow-left me-1"></i>
+                                Back
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 🔷 FORM -->
+            <div class="row">
+                <div class="col-lg-8">
+
+                    <div class="card">
+                        <div class="card-body">
+
+                            <form asp-action="Create" enctype="multipart/form-data" class="custom-validation">
+
+                                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                                <!-- 🔵 PARAMETER -->
+                                <input type="hidden" asp-for="ParameterId" />
+
+                                <!-- 🔵 CONTENT TYPE -->
+                                <div class="mb-3">
+                                    <label asp-for="ContentType" class="form-label fw-bold">Content Type</label>
+                                    <select asp-for="ContentType" class="form-control">
+                                        <option value="Info">Info</option>
+                                        <option value="Video">Video</option>
+                                        <option value="Warning">Warning</option>
+                                    </select>
+                                </div>
+
+                                <!-- 🔵 WHAT -->
+                                <div class="mb-3">
+                                    <label asp-for="WhatIsIt" class="form-label fw-bold">What Is It?</label>
+                                    <textarea asp-for="WhatIsIt" class="form-control" rows="3"></textarea>
+                                </div>
+
+                                <!-- 🔵 WHY -->
+                                <div class="mb-3">
+                                    <label asp-for="WhyImportant" class="form-label fw-bold">Why Important?</label>
+                                    <textarea asp-for="WhyImportant" class="form-control" rows="3"></textarea>
+                                </div>
+
+                                <!-- 🔵 EXTRA -->
+                                <div class="mb-3">
+                                    <label asp-for="ExtraInfo" class="form-label fw-bold">Extra Info</label>
+                                    <textarea asp-for="ExtraInfo" class="form-control" rows="2"></textarea>
+                                </div>
+
+                                <!-- 🔥 VIDEO UPLOAD -->
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">Upload Video</label>
+                                    <input type="file" name="videoFile" class="form-control" accept="video/*" />
+
+                                    <small class="text-muted">
+                                        MP4 recommended. This video will be shown in Honey Story.
+                                    </small>
+                                </div>
+
+                                <!-- 🔵 SORT -->
+                                <div class="mb-3">
+                                    <label asp-for="SortOrder" class="form-label fw-bold">Sort Order</label>
+                                    <input asp-for="SortOrder" class="form-control" />
+                                </div>
+
+                                <!-- 🔵 ACTIVE -->
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" asp-for="IsActive" />
+                                    <label class="form-check-label fw-bold">
+                                        Active Content
+                                    </label>
+                                </div>
+
+                                <!-- 🔥 ACTIONS -->
+                                <div class="d-flex gap-2 mt-4">
+
+                                    <button type="submit" class="btn btn-success px-4">
+                                        <i class="mdi mdi-content-save-outline me-1"></i>
+                                        Save Content
+                                    </button>
+
+                                    <a asp-action="Index"
+                                       asp-route-parameterId="@Model.ParameterId"
+                                       class="btn btn-light waves-effect">
+                                        <i class="mdi mdi-close me-1"></i>
+                                        Cancel
+                                    </a>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- 🔷 SIDE INFO CARD -->
+                <div class="col-lg-4">
+                    <div class="card border-info">
+                        <div class="card-body">
+
+                            <h5 class="text-info fw-bold mb-3">
+                                <i class="mdi mdi-lightbulb-outline me-1"></i>
+                                Tips
+                            </h5>
+
+                            <ul class="text-muted small">
+                                <li>Keep explanations short and clear</li>
+                                <li>Use simple language for consumers</li>
+                                <li>Video is optional but highly recommended</li>
+                                <li>Sort order controls display priority</li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    @section scripts{
+        <script src="~/assets/libs/parsleyjs/parsley.min.js"></script>
+        <script src="~/assets/js/pages/form-validation.init.js"></script>
+        <script src="~/assets/js/app.js"></script>
+    }
+</body>

@@ -1,0 +1,221 @@
+﻿@model IEnumerable<TOP4HoneyChains.Web.Models.Entities.Wholesaler>
+
+@{
+    ViewData["Title"] = "Wholesalers";
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+}
+
+@section AddToHead {
+    <link href="~/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" />
+}
+
+<body data-topbar="light" data-layout="horizontal">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title">Wholesalers</h4>
+                            <p class="card-title-desc">
+                                Manage wholesaler companies used in raw honey production traceability.
+                            </p>
+
+                            <p>
+                                <a asp-action="Create"
+                                   class="btn btn-primary waves-effect waves-light">
+                                    Create New Wholesaler
+                                </a>
+                            </p>
+
+                            <table id="datatable"
+                                   class="table table-bordered table-hover dt-responsive nowrap"
+                                   style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Company</th>
+                                        <th>Tax No</th>
+                                        <th>Contact</th>
+                                        <th>Phone</th>
+                                        <th>Email</th>
+                                        <th>City</th>
+                                        <th>Country</th>
+                                        <th>Status</th>
+                                        <th>Created</th>
+                                        <th style="width:300px;">Actions</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+
+                                            <td>
+                                                <strong>@item.WholesalerTitle</strong>
+                                                @if (!string.IsNullOrWhiteSpace(item.WholesalerAddress))
+                                                {
+                                                    <div class="text-muted small text-truncate" style="max-width: 320px;">
+                                                        @item.WholesalerAddress
+                                                    </div>
+                                                }
+                                            </td>
+
+                                            <td>
+                                                @if (!string.IsNullOrWhiteSpace(item.WholesalerTaxNo))
+                                                {
+                                                    <span class="badge bg-dark">@item.WholesalerTaxNo</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-muted">—</span>
+                                                }
+                                            </td>
+
+                                            <td>
+                                                @if (!string.IsNullOrWhiteSpace(item.WholesalerContactName))
+                                                {
+                                                    @item.WholesalerContactName
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-muted">—</span>
+                                                }
+                                            </td>
+
+                                            <td>
+                                                @if (!string.IsNullOrWhiteSpace(item.WholesalerPhone))
+                                                {
+                                                    @item.WholesalerPhone
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-muted">—</span>
+                                                }
+                                            </td>
+
+                                            <td>
+                                                @if (!string.IsNullOrWhiteSpace(item.WholesalerEmail))
+                                                {
+                                                    @item.WholesalerEmail
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-muted">—</span>
+                                                }
+                                            </td>
+
+                                            <td>
+                                                @if (!string.IsNullOrWhiteSpace(item.WholesalerCity))
+                                                {
+                                                    @item.WholesalerCity
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-muted">—</span>
+                                                }
+                                            </td>
+
+                                            <td>
+                                                @if (!string.IsNullOrWhiteSpace(item.WholesalerCountry))
+                                                {
+                                                    @item.WholesalerCountry
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-muted">—</span>
+                                                }
+                                            </td>
+
+                                            <td>
+                                                @if (item.WholesalerIsActive)
+                                                {
+                                                    <span class="badge bg-success px-3 py-2">Active</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-secondary px-3 py-2">Passive</span>
+                                                }
+                                            </td>
+
+                                            <td>
+                                                <span class="text-muted">
+                                                    @item.CreatedAt.ToString("dd.MM.yyyy")
+                                                </span>
+                                            </td>
+
+                                            <td>
+                                                <div class="d-flex gap-2">
+
+                                                    <a asp-controller="FinalHoneyProductions"
+                                                       asp-action="ByWholesaler"
+                                                       asp-route-wholesalerId="@item.WholesalerId"
+                                                       class="btn btn-sm btn-primary w-100">
+                                                        <i class="mdi mdi-layers-outline me-1"></i>
+                                                        Final Honey Productions (Batches)
+                                                    </a>
+
+                                                    <a asp-action="RawHoneyProductions"
+                                                       asp-route-id="@item.WholesalerId"
+                                                       class="btn btn-sm btn-warning w-100">
+
+                                                        <i class="mdi mdi-beehive-outline me-1"></i>
+                                                        Raw Honey Productions
+                                                    </a>
+
+                                                    <a asp-action="Edit"
+                                                       asp-route-id="@item.WholesalerId"
+                                                       class="btn btn-sm btn-info w-100">
+                                                        Edit
+                                                    </a>
+
+                                                    <a asp-action="Delete"
+                                                       asp-route-id="@item.WholesalerId"
+                                                       class="btn btn-sm btn-danger w-100">
+                                                        Delete
+                                                    </a>
+
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                    }
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    @section scripts{
+        <script src="~/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="~/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <script src="~/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="~/assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+        <script src="~/assets/libs/jszip/jszip.min.js"></script>
+        <script src="~/assets/libs/pdfmake/build/pdfmake.min.js"></script>
+        <script src="~/assets/libs/pdfmake/build/vfs_fonts.js"></script>
+        <script src="~/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+        <script src="~/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+        <script src="~/assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+        <script src="~/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="~/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
+        <script src="~/assets/js/pages/datatables.init.js"></script>
+        <script src="~/assets/js/app.js"></script>
+    }
+
+</body>
