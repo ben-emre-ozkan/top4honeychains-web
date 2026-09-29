@@ -132,6 +132,8 @@ namespace TOP4HoneyChains.Web.Controllers
         }
 
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Activate(int id)
         {
             var apiary = await _context.Apiaries.FindAsync(id);
@@ -145,6 +147,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 new { beekeeperId = apiary.ApiaryBeekeeperId });
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Deactivate(int id)
         {
             var apiary = await _context.Apiaries.FindAsync(id);

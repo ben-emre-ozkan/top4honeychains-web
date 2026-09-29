@@ -94,21 +94,23 @@
 
                                                         @if (item.ApiaryIsActive)
                                                         {
-                                                            <a asp-action="Deactivate"
-                                                               asp-route-id="@item.ApiaryId"
-                                                               class="btn btn-sm btn-warning"
-                                                               title="Keeps photos and honey productions; greys out the apiary. Apiaries are never deleted.">
-                                                                Deactivate
-                                                            </a>
+                                                            <form asp-action="Deactivate" asp-route-id="@item.ApiaryId" method="post" class="d-inline"
+                                                                  onsubmit="return confirm('Deactivate this apiary? Photos and honey productions are kept. Apiaries are never deleted.');">
+                                                                <button type="submit" class="btn btn-sm btn-warning"
+                                                                        title="Keeps photos and honey productions; greys out the apiary. Apiaries are never deleted.">
+                                                                    Deactivate
+                                                                </button>
+                                                            </form>
                                                         }
                                                         else
                                                         {
-                                                            <a asp-action="Activate"
-                                                               asp-route-id="@item.ApiaryId"
-                                                               class="btn btn-sm btn-success"
-                                                               title="Makes the apiary active again.">
-                                                                Activate
-                                                            </a>
+                                                            <form asp-action="Activate" asp-route-id="@item.ApiaryId" method="post" class="d-inline"
+                                                                  onsubmit="return confirm('Activate this apiary again?');">
+                                                                <button type="submit" class="btn btn-sm btn-success"
+                                                                        title="Makes the apiary active again.">
+                                                                    Activate
+                                                                </button>
+                                                            </form>
                                                         }
 
                                                     </div>

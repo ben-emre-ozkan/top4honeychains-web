@@ -122,17 +122,23 @@
 
                                                     @if (item.IsActive)
                                                     {
-                                                        <a asp-action="Deactivate" asp-route-id="@item.BeekeeperId" class="btn btn-sm btn-warning"
-                                                           title="Keeps all records; greys out the beekeeper and locks their login. Beekeepers are never deleted.">
-                                                            Deactivate
-                                                        </a>
+                                                        <form asp-action="Deactivate" asp-route-id="@item.BeekeeperId" method="post" class="d-inline"
+                                                              onsubmit="return confirm('Deactivate this beekeeper? All records are kept and the login is locked. Beekeepers are never deleted.');">
+                                                            <button type="submit" class="btn btn-sm btn-warning"
+                                                                    title="Keeps all records; greys out the beekeeper and locks their login. Beekeepers are never deleted.">
+                                                                Deactivate
+                                                            </button>
+                                                        </form>
                                                     }
                                                     else
                                                     {
-                                                        <a asp-action="Activate" asp-route-id="@item.BeekeeperId" class="btn btn-sm btn-success"
-                                                           title="Makes the beekeeper active again and unlocks their login.">
-                                                            Activate
-                                                        </a>
+                                                        <form asp-action="Activate" asp-route-id="@item.BeekeeperId" method="post" class="d-inline"
+                                                              onsubmit="return confirm('Activate this beekeeper again?');">
+                                                            <button type="submit" class="btn btn-sm btn-success"
+                                                                    title="Makes the beekeeper active again and unlocks their login.">
+                                                                Activate
+                                                            </button>
+                                                        </form>
                                                     }
 
                                                     <a asp-controller="Apiaries"
