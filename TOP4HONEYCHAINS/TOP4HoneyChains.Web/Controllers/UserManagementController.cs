@@ -99,12 +99,18 @@ namespace TOP4HoneyChains.Web.Controllers
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {
             if (!ModelState.IsValid)
+            {
+                TempData["error"] = "Password update failed: enter the new password twice (identical).";
                 return RedirectToAction("Index");
+            }
 
             var user = await _userManager.FindByIdAsync(model.UserId);
 
             if (user == null)
+            {
+                TempData["error"] = "Password update failed: user not found.";
                 return RedirectToAction("Index");
+            }
 
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
 
