@@ -25,7 +25,7 @@ The values below are in git history, so rotating them is the actual fix. Removin
 
 ### Accounts and access
 - [x] Public self-registration: **closed** ([D-02](DECISIONS.md)). Removed in `fix/account-flows`.
-- [ ] Beekeeper accounts whose password equals their business number: beekeepers do not log in in this release ([D-01](DECISIONS.md), [D-03](DECISIONS.md)), but the logins still exist and are guessable. Decide whether to lock them or set random passwords at go-live (open).
+- [x] Beekeeper accounts whose password equals their business number: decided in [D-09](DECISIONS.md). New accounts get a random password (`fix/beekeeper-accounts`); existing non-admin accounts are locked by `db/migrations/001_lock_out_non_admin_accounts.sql` (deployment step 4).
 - [ ] Review users who self-registered on production while sign-up was open (role `Beekeeper` without a Beekeepers profile) and remove them.
 
 ### Open product decisions (resolve or explicitly accept)
@@ -43,6 +43,7 @@ The values below are in git history, so rotating them is the actual fix. Removin
 2. [ ] Back up the current live site folder, including server-only uploads (`wwwroot/assets/videos/parameters/`).
 3. [ ] Put the site into maintenance mode (e.g. `app_offline.htm`).
 4. [ ] Apply every SQL script in `db/migrations/` **in numeric order** (`001_…`, `002_…`). Scripts are idempotent; record which ones were applied. The DB compatibility level must be 150 (SQL Server 2019).
+   - `001_lock_out_non_admin_accounts.sql` ([D-09](DECISIONS.md)) locks out every account that is not an Administrator and prints how many it changed. It aborts if no Administrator exists. Run it again after steps 5-7 (it is idempotent): an account removed from the Administrator role there becomes a non-admin that must be locked.
 5. [ ] Review users in the **Administrator** role on production and remove unknown accounts. The register role-escalation bug was live until this deployment.
 6. [ ] Also review who created the roles `Consumer`, `Wholesaler` and `SampleAcceptanceOfficer`, and any users in them.
 7. [ ] Make sure at least one known admin account exists with the new, strong password.
@@ -59,7 +60,7 @@ The values below are in git history, so rotating them is the actual fix. Removin
 ## 3. Smoke test after deployment
 - [ ] Admin login works. The dashboard and every menu page open.
 - [ ] `/Account/Register` returns 404 (GET and POST) and the login page has no sign-up link (D-02).
-- [ ] A non-admin account that logs in sees "no access to the web panel" and is not left signed in (D-01).
+- [ ] A non-admin account cannot sign in: beekeeper accounts are locked (D-09) and get the generic "invalid user name or password" message; any other non-admin sees "no access to the web panel" and is not left signed in (D-01).
 - [ ] Forgot password for a real admin e-mail sends a mail (new SMTP password), the reset link works and points to `App:PublicBaseUrl`, and the login page confirms the reset.
 - [ ] Five wrong passwords for a test admin lock the login for 15 minutes (then wait, or clear `LockoutEnd` for that account).
 - [ ] If the SMTP server is unreachable, forgot password shows "could not be sent" (no 500) and the error is logged.

@@ -13,3 +13,6 @@ Findings in `docs/FEEDBACK.md` refer to these by ID.
 | D-06 | **Raw honey rules unchanged:** no change and no DB change in this release. | The partner's question goes to `docs/PARTNER-QUESTIONS.md` (PQ-01). | FB-16, FB-17 (deferred) |
 | D-07 | **Deferred features:** map-based location picking and CCP images are postponed to a later release. | Not implemented now. | FB-09, FB-27 (deferred) |
 | D-08 | **Lookup fields stay but are optional:** education level, beekeeping purpose type and beekeeping type. | Make them clearly optional in the beekeeper forms. No DB change: the FK columns are already nullable. | FB-06 |
+| D-09 | **Non-admin accounts are locked out** (follows from D-01). Beekeeper logins used the business number as the password, which is guessable. | (a) New beekeeper accounts get a random, never-shown password. (b) `db/migrations/001_lock_out_non_admin_accounts.sql` locks out every account outside the Administrator role at go-live (Identity lockout, security stamp rotated). *Provisional (conservative choice, owner to confirm):* new beekeeper accounts are also locked at creation, and **Activate** no longer unlocks a beekeeper's login; Deactivate still locks it. | ENG-06 |
+
+Decisions marked *provisional* were taken during implementation as the most conservative option and still need the owner's confirmation.
