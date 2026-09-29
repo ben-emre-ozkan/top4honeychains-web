@@ -131,6 +131,7 @@ Fix:
 - `FinalHoneyProductions.Create` checks `ModelState`. User creation and raw honey Create reload their dropdowns after a failed POST, and user creation checks that the role exists. A new CCP content needs a video ("A video file is required."); on edit the video is optional and the old one is kept.
 - The forms show field messages and keep the entered values. An empty number or date field now says "This field is required." instead of "The value '' is invalid."
 - Follow-up (`fix/form-validation-range`): the decimal limit of the amount rule was parsed with the UI culture, so under `tr` the raw honey form could return HTTP 500 depending on which culture first used the rule. The limits are now parsed invariantly; verified under `tr` and `en`.
+- Follow-up (`fix/final-batch-create`): once `FinalHoneyProductions.Create` honoured `ModelState`, every valid batch was rejected without a message, because the non-nullable navigation `FinalHoneyProductionWholesaler` counts as implicitly required. The batch **Edit** had the same hidden failure before this work (metadata edits were never saved). The navigation is now `[ValidateNever]`; verified: create, edit and the empty-title rejection.
 - Verified in the browser: every form rejects empty input with messages and nothing is saved; values and dropdown selections are kept; a valid apiary, period and CCP content still save; editing a CCP content without a new video keeps the video.
 
 ### Note on required-field markers (RC-4, `fix/required-markers`)

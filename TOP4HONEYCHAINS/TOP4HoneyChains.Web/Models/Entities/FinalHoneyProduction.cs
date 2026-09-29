@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace TOP4HoneyChains.Web.Models.Entities
 {
@@ -30,6 +31,9 @@ namespace TOP4HoneyChains.Web.Models.Entities
         public DateTime? FinalHoneyProductionFinalizedDate { get; set; }
 
 
+        // Not posted by the forms; without this the non-nullable navigation is implicitly
+        // required and every Create/Edit POST fails validation without a visible message
+        [ValidateNever]
         [ForeignKey(nameof(FinalHoneyProductionWholesalerId))]
         public virtual Wholesaler FinalHoneyProductionWholesaler { get; set; } = null!;
 
