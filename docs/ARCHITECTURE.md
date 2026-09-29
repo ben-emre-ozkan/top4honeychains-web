@@ -83,7 +83,7 @@ Missing from the pipeline: `UseHttpsRedirection`, `UseHsts`, `UseStatusCodePages
 - `Services/EmailService.cs` uses `System.Net.Mail.SmtpClient` + `NetworkCredential`, with options from the `SmtpSettings` section (`Host, Port, EnableSsl, UserName, Password, From, SenderName`). It has no try/catch, no logging and no dispose.
 - Password reset flow in `Controllers/AccountController.cs`:
   1. `ForgotPassword` POST (L106-143) calls `FindByEmailAsync`, then `GeneratePasswordResetTokenAsync`.
-  2. The link is built as `Url.Action("ResetPassword", "Account", {email, token}, Request.Scheme)` and sent by email.
+  2. The link is built from `App:PublicBaseUrl` (not the request's Host header; Development falls back to the request) and sent by email.
   3. `ResetPassword` GET/POST (L145-192) calls `ResetPasswordAsync`.
   - Views: `Views/Account/ForgotPassword.cshtml` and `Views/Account/ResetPassword.cshtml`.
   - ~~An SMTP failure is unhandled (500). The success message is lost because `ViewBag` is set before a redirect.~~ Fixed in `fix/account-flows`: the failure is logged and shown on the form, and the success message goes through TempData to the login page.

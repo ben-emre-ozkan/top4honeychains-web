@@ -33,7 +33,8 @@
                                     <strong>Beekeepers are never deleted</strong>, so that honey traceability is preserved.
                                     To take a beekeeper out of use, <strong>deactivate</strong> them: the beekeeper's record,
                                     apiaries and honey productions are kept, the row is shown greyed out as <em>Inactive</em>,
-                                    and the beekeeper's login is locked. <strong>Activate</strong> restores the beekeeper and unlocks the login.
+                                    and the beekeeper's login is locked. <strong>Activate</strong> restores the beekeeper.
+                                    Beekeepers do not sign in to the web panel, so their login stays locked either way.
                                 </div>
                             </div>
                             <p class="card-title-desc">
@@ -135,7 +136,7 @@
                                                         <form asp-action="Activate" asp-route-id="@item.BeekeeperId" method="post" class="d-inline"
                                                               onsubmit="return confirm('Activate this beekeeper again?');">
                                                             <button type="submit" class="btn btn-sm btn-success"
-                                                                    title="Makes the beekeeper active again and unlocks their login.">
+                                                                    title="Makes the beekeeper active again.">
                                                                 Activate
                                                             </button>
                                                         </form>

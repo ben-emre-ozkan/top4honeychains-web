@@ -9,6 +9,7 @@ using SixLabors.ImageSharp.Processing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using TOP4HoneyChains.Web.Data;
 using TOP4HoneyChains.Web.Models.Entities;
@@ -112,7 +113,9 @@ namespace TOP4HoneyChains.Web.Controllers
                     Email = businessNumber + "@top4honeychains.com" // geçici
                 };
 
-                var result = await _userManager.CreateAsync(user, businessNumber);
+                // Beekeepers do not log in (D-01, D-09): the account gets a random, never-shown
+                // password (the business number used to be the password, which is guessable)
+                var result = await _userManager.CreateAsync(user, Convert.ToBase64String(RandomNumberGenerator.GetBytes(32)));
 
                 if (!result.Succeeded)
                 {
@@ -123,6 +126,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 }
 
                 await _userManager.AddToRoleAsync(user, "Beekeeper");
+                await _userManager.SetLockoutEndDateAsync(user, DateTimeOffset.MaxValue);
 
                 beekeeper.BeekeeperId = user.Id;
                 beekeeper.BeekeeperBusinessNumber = businessNumber;
@@ -202,7 +206,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 return NotFound();
             }
 
-            // Status only changes through Deactivate/Activate, which also lock/unlock the login (D-04).
+            // Status only changes through Deactivate/Activate (D-04).
             // Copied before validation so a failed POST re-renders the real status.
             beekeeper.IsActive = existingBeekeeper.IsActive;
             beekeeper.DeactivatedAt = existingBeekeeper.DeactivatedAt;
@@ -299,11 +303,7 @@ namespace TOP4HoneyChains.Web.Controllers
             beekeeper.IsActive = true;
             beekeeper.DeactivatedAt = null;
 
-            var user = await _userManager.FindByIdAsync(id);
-            if (user != null)
-            {
-                await _userManager.SetLockoutEndDateAsync(user, null);
-            }
+            // The login stays locked: beekeepers do not log in in this release (D-01, D-09)
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
