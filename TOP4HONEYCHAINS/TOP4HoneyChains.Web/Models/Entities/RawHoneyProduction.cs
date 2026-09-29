@@ -11,18 +11,24 @@ public partial class RawHoneyProduction
     [Key]
     public int RawHoneyProductionId { get; set; }
 
+    [Required(ErrorMessage = "The apiary is required.")]
     public int? RawHoneyProductionApiaryId { get; set; }
 
+    [Required(ErrorMessage = "The production period is required.")]
     public int? RawHoneyProductionPeriodId { get; set; }
 
+    [Required(ErrorMessage = "The honey type is required.")]
     public int? RawHoneyProductionHoneyType { get; set; }
 
     [Column(TypeName = "decimal(10, 2)")]
+    [Required(ErrorMessage = "The amount is required.")]
+    [Range(typeof(decimal), "0.01", "99999999", ErrorMessage = "The amount must be greater than 0.")]
     public decimal? RawHoneyProductionAmount { get; set; }
 
     public DateOnly? RawHoneyProductionDate { get; set; }
     
     [Column("RawHoneyProductionWholesalerId")]
+    [Required(ErrorMessage = "The wholesaler is required.")]
     public int? RawHoneyProductionWholesalerId { get; set; }
 
     [ForeignKey("RawHoneyProductionApiaryId")]

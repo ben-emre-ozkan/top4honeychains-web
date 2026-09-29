@@ -98,6 +98,7 @@
                                         class="form-select shadow-sm"
                                         asp-items="ViewBag.RawHoneyProductionPeriodId">
                                 </select>
+                                <span asp-validation-for="RawHoneyProductionPeriodId" class="text-danger"></span>
                             </div>
 
                             <div class="col-md-4 mb-4">
@@ -109,6 +110,7 @@
                                         class="form-select shadow-sm"
                                         asp-items="ViewBag.RawHoneyProductionHoneyType">
                                 </select>
+                                <span asp-validation-for="RawHoneyProductionHoneyType" class="text-danger"></span>
                             </div>
 
                             <div class="col-md-4 mb-4">
@@ -120,6 +122,7 @@
                                         class="form-select shadow-sm"
                                         asp-items="ViewBag.RawHoneyProductionWholesalerId">
                                 </select>
+                                <span asp-validation-for="RawHoneyProductionWholesalerId" class="text-danger"></span>
                             </div>
 
                         </div>
@@ -139,6 +142,7 @@
                                            step="0.01" />
                                     <span class="input-group-text">kg</span>
                                 </div>
+                                <span asp-validation-for="RawHoneyProductionAmount" class="text-danger"></span>
                             </div>
 
                             <div class="col-md-6 mb-4">

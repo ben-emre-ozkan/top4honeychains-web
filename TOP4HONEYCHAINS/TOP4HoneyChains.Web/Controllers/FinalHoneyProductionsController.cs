@@ -492,6 +492,15 @@ namespace TOP4HoneyChains.Web.Controllers
 
             ViewBag.Wholesaler = wholesaler;
 
+            if (wholesaler == null)
+                return NotFound();
+
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Controller = "Final Honey Productions";
+                ViewBag.Action = "Create";
+                return View(model);
+            }
 
             model.FinalHoneyProductionQR = Guid.NewGuid();
             model.FinalHoneyProductionTotalAmount = 0;

@@ -8,12 +8,14 @@ namespace TOP4HoneyChains.Web.Models.Entities
         [Key]
         public int FinalHoneyProductionId { get; set; }
 
+        [Required(ErrorMessage = "The title is required.")]
         [StringLength(150)]
         public string? FinalHoneyProductionTitle { get; set; }
 
         public Guid FinalHoneyProductionQR { get; set; }
 
         [Column(TypeName = "date")]
+        [Required(ErrorMessage = "The date is required.")]
         public DateTime? FinalHoneyProductionDate { get; set; }
 
         [Column(TypeName = "decimal(10,2)")]
