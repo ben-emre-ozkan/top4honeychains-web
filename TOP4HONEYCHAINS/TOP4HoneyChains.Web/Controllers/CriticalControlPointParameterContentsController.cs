@@ -165,6 +165,10 @@ namespace TOP4HoneyChains.Web.Controllers
                 _context.Update(content);
                 await _context.SaveChangesAsync();
 
+                // The replaced video is no longer referenced
+                if (content.VideoPath != existing.VideoPath)
+                    DeleteStoredVideo(existing.VideoPath);
+
                 return RedirectToAction("Index",
                     new { parameterId = content.ParameterId });
             }
@@ -183,11 +187,37 @@ namespace TOP4HoneyChains.Web.Controllers
             {
                 _context.CriticalControlPointParameterContents.Remove(content);
                 await _context.SaveChangesAsync();
+                DeleteStoredVideo(content.VideoPath);
 
                 TempData["success"] = "Content deleted successfully";
+                return RedirectToAction(nameof(Index), new { parameterId = content.ParameterId });
             }
 
             return RedirectToAction(nameof(Index));
+        }
+
+        // Removes an uploaded video file (only inside the uploads folder) once no content uses it
+        private void DeleteStoredVideo(string? videoPath)
+        {
+            const string prefix = "/assets/videos/parameters/";
+            if (string.IsNullOrEmpty(videoPath) || !videoPath.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
+                return;
+            if (_context.CriticalControlPointParameterContents.Any(c => c.VideoPath == videoPath))
+                return;
+
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/assets/videos/parameters", Path.GetFileName(videoPath));
+            try
+            {
+                if (System.IO.File.Exists(path))
+                    System.IO.File.Delete(path);
+            }
+            catch (IOException)
+            {
+                // A file that cannot be deleted now is only wasted space; the record is already gone
+            }
+            catch (UnauthorizedAccessException)
+            {
+            }
         }
 
         private bool CriticalControlPointParameterContentExists(int id)
