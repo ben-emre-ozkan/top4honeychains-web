@@ -33,7 +33,9 @@
                         <!-- Yeni Foto -->
                         <div class="mb-3">
                             <label class="form-label">Change Profile Photo</label>
-                            <input asp-for="ProfilePhotoFile" type="file" class="form-control" accept="image/*" />
+                            <input asp-for="ProfilePhotoFile" type="file" class="form-control" accept=".jpg,.jpeg,.png,.webp" />
+                            <small class="text-muted">Optional. JPG, PNG or WEBP, at most 8 MB. Leave empty to keep the current photo.</small>
+                            <span asp-validation-for="ProfilePhotoFile" class="text-danger d-block"></span>
                         </div>
 
                         <div class="mb-3">

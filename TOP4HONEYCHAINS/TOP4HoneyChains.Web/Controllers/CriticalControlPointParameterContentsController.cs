@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using TOP4HoneyChains.Web.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -70,12 +71,14 @@ namespace TOP4HoneyChains.Web.Controllers
             // The video is shown in Honey Story, so a new content item needs one
             if (videoFile == null || videoFile.Length == 0)
                 ModelState.AddModelError("videoFile", "A video file is required.");
+            else if (await UploadValidator.ValidateVideoAsync(videoFile) is string videoError)
+                ModelState.AddModelError("videoFile", videoError);
 
             if (ModelState.IsValid)
             {
                 if (videoFile != null && videoFile.Length > 0)
                 {
-                    var fileName = Guid.NewGuid() + Path.GetExtension(videoFile.FileName);
+                    var fileName = Guid.NewGuid() + UploadValidator.SafeVideoExtension(videoFile);
                     var path = Path.Combine(Directory.GetCurrentDirectory(),
                         "wwwroot/assets/videos/parameters", fileName);
 
@@ -127,6 +130,9 @@ namespace TOP4HoneyChains.Web.Controllers
             if (id != content.ContentId)
                 return NotFound();
 
+            if (videoFile != null && videoFile.Length > 0 && await UploadValidator.ValidateVideoAsync(videoFile) is string videoError)
+                ModelState.AddModelError("videoFile", videoError);
+
             if (ModelState.IsValid)
             {
                 var existing = await _context.CriticalControlPointParameterContents
@@ -139,7 +145,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 // 🔥 VIDEO UPDATE
                 if (videoFile != null && videoFile.Length > 0)
                 {
-                    var fileName = Guid.NewGuid() + Path.GetExtension(videoFile.FileName);
+                    var fileName = Guid.NewGuid() + UploadValidator.SafeVideoExtension(videoFile);
                     var path = Path.Combine(Directory.GetCurrentDirectory(),
                         "wwwroot/assets/videos/parameters", fileName);
 
