@@ -240,7 +240,7 @@ Other prerequisites:
 - **Public data exposure:**
   - `/honeystory/{guid}` shows beekeeper names, photos and apiary GPS, even for non-finalized batches.
   - `/honeystory?id=N` enumerates every apiary photo by sequential id.
-  - `/honeystory/qrcode` renders arbitrary text anonymously.
+  - ~~`/honeystory/qrcode` renders arbitrary text anonymously~~: since D-11 it only renders the full public URL (`App:PublicBaseUrl` + `/honeystory/{guid}`) of an existing batch; anything else is 404.
 - No HTTPS redirect or HSTS in the app. This may be handled by IIS or a reverse proxy (**unverified**).
 - Overposting: RawHoneyProductions.Edit and CCP Parameters.Create bind the full entity.
 

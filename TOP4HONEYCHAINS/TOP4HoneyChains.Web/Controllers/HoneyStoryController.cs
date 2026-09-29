@@ -6,6 +6,7 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.Runtime.Versioning;
 using TOP4HoneyChains.Web.Data;
+using TOP4HoneyChains.Web.Services;
 using TOP4HoneyChains.Web.Models.ViewModels.HoneyStory;
 
 namespace TOP4HoneyChains.Web.Controllers
@@ -184,10 +185,18 @@ namespace TOP4HoneyChains.Web.Controllers
 
         [HttpGet("qrcode")]
         [SupportedOSPlatform("windows")]
-        public IActionResult BatchQRCode(string code)
+        public async Task<IActionResult> BatchQRCode(string code)
         {
+            // Only for real batches (not a general QR generator for any text)
+            if (!Guid.TryParse(code, out var qr) || !await _context.FinalHoneyProductions.AnyAsync(f => f.FinalHoneyProductionQR == qr))
+                return NotFound();
+
+            // D-11: the QR code holds the full public address of the Honey Story page, so a phone opens it directly
+            var url = PublicUrl.Build(HttpContext, Url.Action(nameof(Index), new { qr })!)
+                ?? throw new InvalidOperationException("App:PublicBaseUrl is not configured; QR codes need the public site address.");
+
             using var qrGenerator = new QRCodeGenerator();
-            var qrCodeData = qrGenerator.CreateQrCode(code, QRCodeGenerator.ECCLevel.Q);
+            var qrCodeData = qrGenerator.CreateQrCode(url, QRCodeGenerator.ECCLevel.Q);
 
             using var qrCode = new QRCode(qrCodeData);
             using var qrCodeImage = qrCode.GetGraphic(

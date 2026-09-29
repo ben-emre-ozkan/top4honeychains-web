@@ -114,7 +114,7 @@ namespace TOP4HoneyChains.Web.Controllers
 
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
 
-            var resetLink = BuildPublicUrl(Url.Action("ResetPassword", "Account", new { email = model.Email, token = token })!);
+            var resetLink = PublicUrl.Build(HttpContext, Url.Action("ResetPassword", "Account", new { email = model.Email, token = token })!);
             if (resetLink == null)
             {
                 _logger.LogError("App:PublicBaseUrl is not configured; password reset e-mail not sent");
@@ -306,19 +306,6 @@ namespace TOP4HoneyChains.Web.Controllers
             }
 
             return RedirectToAction("Profile");
-        }
-    
-
-        // Links in e-mails are built from configuration, never from the request's Host header,
-        // which an attacker can set (reset-link poisoning). Development falls back to the request.
-        private string? BuildPublicUrl(string relativePath)
-        {
-            var baseUrl = HttpContext.RequestServices.GetRequiredService<IConfiguration>()["App:PublicBaseUrl"];
-            if (!string.IsNullOrWhiteSpace(baseUrl))
-                return baseUrl.TrimEnd('/') + relativePath;
-
-            var env = HttpContext.RequestServices.GetRequiredService<IWebHostEnvironment>();
-            return env.IsDevelopment() ? $"{Request.Scheme}://{Request.Host}{relativePath}" : null;
         }
     }
 }
