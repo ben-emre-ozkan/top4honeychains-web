@@ -91,11 +91,22 @@ Missing from the pipeline: `UseHttpsRedirection`, `UseHsts`, `UseStatusCodePages
 - **There is no email confirmation** on register.
 
 ### 2.6 Error handling and logging
-- `UseExceptionHandler("/Dashboard/Error")`, but `DashboardController` is `[Authorize(Roles="Administrator")]` and `Error()` has no `[AllowAnonymous]`. Anonymous and non-admin users who hit an error are redirected to login or AccessDenied.
-- `Views/Shared/Error.cshtml` uses `_Layout.cshtml`, which references `_Header.cshtml` and `_HeaderRight.cshtml`. **Neither file exists**, so the error page itself probably throws (**unverified at runtime**).
-- The only try/catch blocks catch `DbUpdateConcurrencyException` in scaffolded Edit actions.
-- No `ILogger` usage, no Serilog.
-- There is no global exception filter and no custom 404.
+**Baseline** (confirmed at runtime 2026-09-29):
+- `UseExceptionHandler("/Dashboard/Error")` pointed at an Administrator-only action, so anonymous users were redirected to login.
+- `Error.cshtml` used `_Layout.cshtml`, which references the missing `_Header.cshtml`, so even admins got an empty 500.
+- FK violations were unhandled 500s.
+- There was no `ILogger` usage.
+
+**On branch `fix/db-error-handling`** (not merged yet):
+- `DashboardController.Error` is `[AllowAnonymous]`. It logs the exception with the reference ID shown to the user and renders `Error.cshtml` on `_BlankLayout` with localized text.
+- A global MVC filter, `Filters/DbUpdateExceptionFilter.cs`, handles `DbUpdateException` with SQL errors 547 (FK/CHECK), 2601 and 2627 (unique):
+  - It logs a warning and stores a localized message in TempData.
+  - It redirects back to the posting page, or to the controller's Index.
+  - `Views/Shared/_DbUpdateError.cshtml`, rendered from `HorizontalLayout`, shows the message.
+- Not covered:
+  - Custom 404 page.
+  - Logging only goes to the default providers (console, Windows Event Log).
+  - `_Layout.cshtml` is still broken, but nothing uses it after this change except `Shared/View.cshtml`.
 
 ---
 
@@ -234,8 +245,8 @@ Other prerequisites:
 - Overposting: RawHoneyProductions.Edit and CCP Parameters.Create bind the full entity.
 
 **Reliability**
-- The error page is admin-only, and its layout references missing partials.
-- Deletes on FK-restricted rows throw unhandled 500s (Wholesalers, RawHoneyProductions, lookups).
+- ~~The error page is admin-only, and its layout references missing partials.~~ Fixed on branch `fix/db-error-handling`.
+- ~~Deletes on FK-restricted rows throw unhandled 500s (Wholesalers, RawHoneyProductions, lookups).~~ Fixed on branch `fix/db-error-handling` (global filter).
 - An SMTP failure during password reset produces a 500.
 - No logging anywhere.
 - CCPMonitoring has null-reference paths.

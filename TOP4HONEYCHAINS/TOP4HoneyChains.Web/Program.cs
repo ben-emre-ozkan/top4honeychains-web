@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System.Globalization;
 using TOP4HoneyChains.Web.Data;
+using TOP4HoneyChains.Web.Filters;
 using TOP4HoneyChains.Web.Models.Email;
 using TOP4HoneyChains.Web.Models.Identity;
 using TOP4HoneyChains.Web.Services;
@@ -59,7 +60,11 @@ builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpS
 
 builder.Services.AddScoped<IEmailService, EmailService>();
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(options =>
+{
+    // FK/unique violations on save/delete -> friendly message instead of HTTP 500
+    options.Filters.Add<DbUpdateExceptionFilter>();
+});
 
 var app = builder.Build();
 

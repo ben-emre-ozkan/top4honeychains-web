@@ -1,0 +1,13 @@
+@using TOP4HoneyChains.Web.Filters
+@{
+    var dbError = TempData[DbUpdateExceptionFilter.TempDataKey] as string;
+}
+@if (!string.IsNullOrEmpty(dbError))
+{
+    <div class="position-fixed end-0 me-3" style="top: 90px; z-index: 1100; max-width: 420px;">
+        <div class="alert alert-danger alert-dismissible fade show shadow" role="alert" id="db-update-error">
+            <i class="mdi mdi-alert-circle-outline me-1"></i>@dbError
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+}

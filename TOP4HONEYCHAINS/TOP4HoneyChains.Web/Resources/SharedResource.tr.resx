@@ -306,4 +306,22 @@
   <data name="LockScreen.SignIn" xml:space="preserve">
     <value>Giriş Yap</value>
   </data>
+  <data name="Error.RecordInUse" xml:space="preserve">
+    <value>Bu kayıt kullanımda olduğu için silinemez.</value>
+  </data>
+  <data name="Error.InvalidReference" xml:space="preserve">
+    <value>Kayıt kaydedilemedi: zorunlu bir seçim eksik veya geçersiz.</value>
+  </data>
+  <data name="Error.DuplicateRecord" xml:space="preserve">
+    <value>Aynı değerlere sahip bir kayıt zaten var.</value>
+  </data>
+  <data name="Error.Title" xml:space="preserve">
+    <value>Bir hata oluştu</value>
+  </data>
+  <data name="Error.Message" xml:space="preserve">
+    <value>İsteğiniz işlenirken beklenmeyen bir hata oluştu. Lütfen tekrar deneyin. Sorun devam ederse yöneticiye başvurun ve şu referansı iletin:</value>
+  </data>
+  <data name="Error.BackHome" xml:space="preserve">
+    <value>Ana sayfaya dön</value>
+  </data>
 </root>
