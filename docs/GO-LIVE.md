@@ -28,8 +28,9 @@ The values below are in git history, so rotating them is the actual fix. Removin
 ### Open product decisions (resolve or explicitly accept)
 - [ ] QR codes encode the full public URL (`https://<domain>/honeystory/{guid}`), with the base URL taken from config.
 - [ ] HoneyStory shows non-finalized (draft) batches, beekeeper names/photos and apiary GPS publicly.
-- [ ] The error page (`/Dashboard/Error`) is admin-only and its layout references missing partials; anonymous users see no proper error page.
-- [ ] Deleting records referenced by FKs gives unhandled 500s.
+- [x] ~~The error page is admin-only and its layout is broken~~: fixed in `fix/db-error-handling`.
+- [x] ~~Deleting records referenced by FKs gives unhandled 500s~~: fixed in `fix/db-error-handling`.
+- [ ] The localized messages added for es/pl/lv (`Error.*` keys in `Resources/SharedResource.*.resx`) were translated by us. Ask the partners to review them.
 - [ ] Missing antiforgery / state changes via GET in User/Role management.
 - [ ] Unrestricted video upload in CCP ParameterContents.
 - [ ] HTTPS: is it enforced by IIS/proxy? If not, add HTTPS redirect + HSTS.
@@ -47,6 +48,9 @@ The values below are in git history, so rotating them is the actual fix. Removin
    - Set `ASPNETCORE_ENVIRONMENT=Production`.
    - Point the `DefaultConnection` connection string to the production DB.
 9. [ ] Make sure ASP.NET Core Data Protection keys persist across app-pool restarts, otherwise logins and antiforgery tokens break after a restart.
+   - Also decide where logs go.
+   - Unhandled errors are logged with the reference ID shown on the error page, and constraint violations as warnings.
+   - The Windows Event Log receives warnings and errors by default. Console output is lost under IIS unless stdout logging is enabled.
 10. [ ] Remove maintenance mode.
 
 ## 3. Smoke test after deployment
@@ -56,7 +60,8 @@ The values below are in git history, so rotating them is the actual fix. Removin
 - [ ] Forgot password sends an email (new SMTP password), and the reset link works.
 - [ ] Public `/honeystory/{guid}` loads, the map shows (new Maps key and domain restriction), and the QR code scans.
 - [ ] Raw → final honey flow and CCP monitoring pages save correctly.
-- [ ] The error page behaves acceptably for an anonymous user.
+- [ ] Error page: as an anonymous user, trigger an error (e.g. `/honeystory/qrcode` without `code`). Expect HTTP 500 with the "Something went wrong" page and a reference, not a login redirect. The reference must appear in the log.
+- [ ] Deleting a lookup value that is in use shows "This record is in use and cannot be deleted." (no 500).
 
 ## 4. Rollback
 - Restore the previous site folder.

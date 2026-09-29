@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,11 +13,13 @@ namespace TOP4HoneyChains.Web.Controllers
     public class DashboardController : Controller
     {
         private readonly TOP4HoneyChainsContext _context;
+        private readonly ILogger<DashboardController> _logger;
 
-        public DashboardController(TOP4HoneyChainsContext context)
+        public DashboardController(TOP4HoneyChainsContext context, ILogger<DashboardController> logger)
         {
 
             _context = context;
+            _logger = logger;
         }
 
 
@@ -210,10 +213,22 @@ namespace TOP4HoneyChains.Web.Controllers
             return View();
         }
 
+        // Target of UseExceptionHandler: must work for every user, including anonymous ones
+        [AllowAnonymous]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var requestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
+            var failure = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+            if (failure != null)
+            {
+                // ExceptionHandlerMiddleware already logs the full exception; this line links it
+                // to the reference shown to the user
+                _logger.LogError("Error page shown for {ExceptionType} on {Path} (reference {RequestId})",
+                    failure.Error.GetType().Name, failure.Path, requestId);
+            }
+
+            return View(new ErrorViewModel { RequestId = requestId });
         }
     }
 }

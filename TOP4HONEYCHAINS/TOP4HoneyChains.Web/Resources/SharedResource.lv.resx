@@ -306,4 +306,22 @@
   <data name="LockScreen.SignIn" xml:space="preserve">
     <value>Pierakstīties</value>
   </data>
+  <data name="Error.RecordInUse" xml:space="preserve">
+    <value>Šis ieraksts tiek izmantots, un to nevar dzēst.</value>
+  </data>
+  <data name="Error.InvalidReference" xml:space="preserve">
+    <value>Ierakstu nevarēja saglabāt: trūkst obligātas izvēles vai tā nav derīga.</value>
+  </data>
+  <data name="Error.DuplicateRecord" xml:space="preserve">
+    <value>Ieraksts ar tādām pašām vērtībām jau pastāv.</value>
+  </data>
+  <data name="Error.Title" xml:space="preserve">
+    <value>Radās kļūda</value>
+  </data>
+  <data name="Error.Message" xml:space="preserve">
+    <value>Apstrādājot pieprasījumu, radās neparedzēta kļūda. Lūdzu, mēģiniet vēlreiz. Ja problēma atkārtojas, sazinieties ar administratoru un norādiet šo atsauci:</value>
+  </data>
+  <data name="Error.BackHome" xml:space="preserve">
+    <value>Atpakaļ uz sākumlapu</value>
+  </data>
 </root>

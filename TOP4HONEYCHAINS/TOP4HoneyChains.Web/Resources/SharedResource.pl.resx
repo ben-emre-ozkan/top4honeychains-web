@@ -306,4 +306,22 @@
   <data name="LockScreen.SignIn" xml:space="preserve">
     <value>Zaloguj się</value>
   </data>
+  <data name="Error.RecordInUse" xml:space="preserve">
+    <value>Ten rekord jest używany i nie można go usunąć.</value>
+  </data>
+  <data name="Error.InvalidReference" xml:space="preserve">
+    <value>Nie można zapisać rekordu: brakuje wymaganego wyboru lub jest on nieprawidłowy.</value>
+  </data>
+  <data name="Error.DuplicateRecord" xml:space="preserve">
+    <value>Rekord o tych samych wartościach już istnieje.</value>
+  </data>
+  <data name="Error.Title" xml:space="preserve">
+    <value>Coś poszło nie tak</value>
+  </data>
+  <data name="Error.Message" xml:space="preserve">
+    <value>Podczas przetwarzania żądania wystąpił nieoczekiwany błąd. Spróbuj ponownie. Jeśli problem będzie się powtarzał, skontaktuj się z administratorem i podaj ten identyfikator:</value>
+  </data>
+  <data name="Error.BackHome" xml:space="preserve">
+    <value>Powrót do strony głównej</value>
+  </data>
 </root>

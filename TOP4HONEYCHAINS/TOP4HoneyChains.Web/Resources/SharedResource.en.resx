@@ -306,4 +306,22 @@
   <data name="LockScreen.SignIn" xml:space="preserve">
     <value>Sign In</value>
   </data>
+  <data name="Error.RecordInUse" xml:space="preserve">
+    <value>This record is in use and cannot be deleted.</value>
+  </data>
+  <data name="Error.InvalidReference" xml:space="preserve">
+    <value>The record could not be saved: a required selection is missing or invalid.</value>
+  </data>
+  <data name="Error.DuplicateRecord" xml:space="preserve">
+    <value>A record with the same values already exists.</value>
+  </data>
+  <data name="Error.Title" xml:space="preserve">
+    <value>Something went wrong</value>
+  </data>
+  <data name="Error.Message" xml:space="preserve">
+    <value>An unexpected error occurred while processing your request. Please try again. If the problem persists, contact the administrator and quote this reference:</value>
+  </data>
+  <data name="Error.BackHome" xml:space="preserve">
+    <value>Back to home</value>
+  </data>
 </root>

@@ -306,4 +306,22 @@
   <data name="LockScreen.SignIn" xml:space="preserve">
     <value>Iniciar sesión</value>
   </data>
+  <data name="Error.RecordInUse" xml:space="preserve">
+    <value>Este registro está en uso y no se puede eliminar.</value>
+  </data>
+  <data name="Error.InvalidReference" xml:space="preserve">
+    <value>No se pudo guardar el registro: falta una selección obligatoria o no es válida.</value>
+  </data>
+  <data name="Error.DuplicateRecord" xml:space="preserve">
+    <value>Ya existe un registro con los mismos valores.</value>
+  </data>
+  <data name="Error.Title" xml:space="preserve">
+    <value>Algo salió mal</value>
+  </data>
+  <data name="Error.Message" xml:space="preserve">
+    <value>Se produjo un error inesperado al procesar su solicitud. Inténtelo de nuevo. Si el problema persiste, contacte con el administrador e indique esta referencia:</value>
+  </data>
+  <data name="Error.BackHome" xml:space="preserve">
+    <value>Volver al inicio</value>
+  </data>
 </root>
