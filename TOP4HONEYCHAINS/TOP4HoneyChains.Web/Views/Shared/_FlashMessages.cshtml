@@ -1,0 +1,38 @@
+@using TOP4HoneyChains.Web.Filters
+@*
+    One place for flash messages (ENG-02). Controllers set TempData["Success"] / TempData["Error"]
+    (older code uses lower-case keys); the DbUpdateExceptionFilter sets its own key.
+    A view that shows Success/Error itself sets ViewData["FlashHandled"] = true.
+*@
+@{
+    var dbError = TempData[DbUpdateExceptionFilter.TempDataKey] as string;
+    var handled = ViewData["FlashHandled"] as bool? == true;
+    var error = handled ? null : (TempData["Error"] ?? TempData["error"]) as string;
+    var success = handled ? null : (TempData["Success"] ?? TempData["success"]) as string;
+}
+@if (!string.IsNullOrEmpty(dbError) || !string.IsNullOrEmpty(error) || !string.IsNullOrEmpty(success))
+{
+    <div class="position-fixed end-0 me-3" style="top: 90px; z-index: 1100; max-width: 420px;">
+        @if (!string.IsNullOrEmpty(dbError))
+        {
+            <div class="alert alert-danger alert-dismissible fade show shadow" role="alert" id="db-update-error">
+                <i class="mdi mdi-alert-circle-outline me-1"></i>@dbError
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+        @if (!string.IsNullOrEmpty(error))
+        {
+            <div class="alert alert-danger alert-dismissible fade show shadow" role="alert" id="flash-error">
+                <i class="mdi mdi-alert-circle-outline me-1"></i>@error
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+        @if (!string.IsNullOrEmpty(success))
+        {
+            <div class="alert alert-success alert-dismissible fade show shadow" role="alert" id="flash-success">
+                <i class="mdi mdi-check-circle-outline me-1"></i>@success
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+    </div>
+}

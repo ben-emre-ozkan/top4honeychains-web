@@ -102,7 +102,7 @@ Missing from the pipeline: `UseHttpsRedirection`, `UseHsts`, `UseStatusCodePages
 - A global MVC filter, `Filters/DbUpdateExceptionFilter.cs`, handles `DbUpdateException` with SQL errors 547 (FK/CHECK), 2601 and 2627 (unique):
   - It logs a warning and stores a localized message in TempData.
   - It redirects back to the posting page, or to the controller's Index.
-  - `Views/Shared/_DbUpdateError.cshtml`, rendered from `HorizontalLayout`, shows the message.
+  - `Views/Shared/_FlashMessages.cshtml`, rendered from `HorizontalLayout` and `_BlankLayout`, shows the message together with `TempData["Success"/"Error"]` (ENG-02).
 - Not covered:
   - Custom 404 page.
   - Logging only goes to the default providers (console, Windows Event Log).
