@@ -32,6 +32,19 @@ public partial class TOP4HoneyChainsContext : DbContext
     public virtual DbSet<CriticalControlPointParameterContent> CriticalControlPointParameterContents { get; set; }
     public virtual DbSet<CriticalControlPointParameterCategory> CriticalControlPointParameterCategories { get; set; }
     public virtual DbSet<CriticalControlPointParameterLimit> CriticalControlPointParameterLimits { get; set; }
+
+    // Organization model (P1, docs/ROLE-MODEL.md)
+    public virtual DbSet<Organization> Organizations { get; set; }
+    public virtual DbSet<Capability> Capabilities { get; set; }
+    public virtual DbSet<OrgCapability> OrgCapabilities { get; set; }
+    public virtual DbSet<OrgDocument> OrgDocuments { get; set; }
+    public virtual DbSet<OrgVerificationEvent> OrgVerificationEvents { get; set; }
+    public virtual DbSet<OrgRoleDefinition> OrgRoleDefinitions { get; set; }
+    public virtual DbSet<Membership> Memberships { get; set; }
+    public virtual DbSet<BeekeeperAssociation> BeekeeperAssociations { get; set; }
+    public virtual DbSet<BeekeeperRegistry> BeekeeperRegistry { get; set; }
+    public virtual DbSet<RegistryVerification> RegistryVerifications { get; set; }
+    public virtual DbSet<AuditEntry> AuditEntries { get; set; }
     public virtual DbSet<CriticalControlPointMonitoringLog> CriticalControlPointMonitoringLogs { get; set; }
     public virtual DbSet<AssignmentStatus> AssignmentStatuses { get; set; }
     public virtual DbSet<RawHoneyCCPAssignment> RawHoneyCCPAssignments { get; set; }
@@ -182,6 +195,66 @@ public partial class TOP4HoneyChainsContext : DbContext
             entity.HasOne(d => d.ParameterCategoryNavigation)
                 .WithMany(p => p.CriticalControlPointParameters)
                 .HasForeignKey(d => d.ParameterCategory);
+        });
+
+        modelBuilder.Entity<Organization>(entity =>
+        {
+            entity.ToTable("Organizations");
+            entity.Property(e => e.CreatedAt).HasDefaultValueSql("SYSUTCDATETIME()");
+            entity.HasOne(e => e.LegacyWholesaler).WithMany().HasForeignKey(e => e.LegacyWholesalerId).OnDelete(DeleteBehavior.Restrict);
+        });
+        modelBuilder.Entity<Capability>().ToTable("Capabilities");
+        modelBuilder.Entity<OrgRoleDefinition>().ToTable("OrgRoles");
+        modelBuilder.Entity<OrgCapability>(entity =>
+        {
+            entity.ToTable("OrgCapabilities");
+            entity.HasKey(e => new { e.OrgId, e.Capability });
+            entity.Property(e => e.AddedAt).HasDefaultValueSql("SYSUTCDATETIME()");
+            entity.HasOne(e => e.Org).WithMany(o => o.Capabilities).HasForeignKey(e => e.OrgId).OnDelete(DeleteBehavior.Restrict);
+        });
+        modelBuilder.Entity<OrgDocument>(entity =>
+        {
+            entity.ToTable("OrgDocuments");
+            entity.Property(e => e.Sha256).IsFixedLength();
+            entity.Property(e => e.UploadedAt).HasDefaultValueSql("SYSUTCDATETIME()");
+            entity.HasOne(e => e.Org).WithMany(o => o.Documents).HasForeignKey(e => e.OrgId).OnDelete(DeleteBehavior.Restrict);
+        });
+        modelBuilder.Entity<OrgVerificationEvent>(entity =>
+        {
+            entity.ToTable("OrgVerificationEvents");
+            entity.Property(e => e.At).HasDefaultValueSql("SYSUTCDATETIME()");
+            entity.HasOne(e => e.Org).WithMany(o => o.VerificationEvents).HasForeignKey(e => e.OrgId).OnDelete(DeleteBehavior.Restrict);
+        });
+        modelBuilder.Entity<Membership>(entity =>
+        {
+            entity.ToTable("Memberships");
+            entity.Property(e => e.GrantedAt).HasDefaultValueSql("SYSUTCDATETIME()");
+            entity.HasOne(e => e.Org).WithMany(o => o.Memberships).HasForeignKey(e => e.OrgId).OnDelete(DeleteBehavior.Restrict);
+        });
+        modelBuilder.Entity<BeekeeperAssociation>(entity =>
+        {
+            entity.ToTable("BeekeeperAssociations");
+            entity.Property(e => e.CreatedAt).HasDefaultValueSql("SYSUTCDATETIME()");
+            entity.HasOne(e => e.Beekeeper).WithMany().HasForeignKey(e => e.BeekeeperId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne(e => e.AssociationOrg).WithMany().HasForeignKey(e => e.AssociationOrgId).OnDelete(DeleteBehavior.Restrict);
+        });
+        modelBuilder.Entity<BeekeeperRegistry>(entity =>
+        {
+            entity.ToTable("BeekeeperRegistry");
+            entity.HasOne(e => e.Beekeeper).WithOne().HasForeignKey<BeekeeperRegistry>(e => e.BeekeeperId).OnDelete(DeleteBehavior.Restrict);
+        });
+        modelBuilder.Entity<RegistryVerification>(entity =>
+        {
+            entity.ToTable("RegistryVerifications");
+            entity.Property(e => e.Sha256).IsFixedLength();
+            entity.Property(e => e.RequestedAt).HasDefaultValueSql("SYSUTCDATETIME()");
+            entity.HasOne(e => e.Beekeeper).WithMany().HasForeignKey(e => e.BeekeeperId).OnDelete(DeleteBehavior.Restrict);
+        });
+        modelBuilder.Entity<AuditEntry>(entity =>
+        {
+            entity.ToTable("AuditEntries", tb => tb.HasTrigger("TR_AuditEntries_AppendOnly"));
+            entity.Property(e => e.PrevHash).IsFixedLength();
+            entity.Property(e => e.Hash).IsFixedLength();
         });
 
         modelBuilder.Entity<CriticalControlPointParameterLimit>(entity =>

@@ -30,6 +30,16 @@ namespace TOP4HoneyChains.Web.Models.Entities
 
         public DateTime? NotApplicableAt { get; set; }
 
+        // Four-eyes approval of the CCP record (D-27); SelfApproved = approved by its recorder under an exemption
+        [StringLength(450)]
+        public string? ApprovedByUserId { get; set; }
+
+        public int? ApprovedByOrgId { get; set; }
+
+        public DateTime? ApprovedAt { get; set; }
+
+        public bool SelfApproved { get; set; }
+
         [ForeignKey(nameof(FinalHoneyCCPAssignmentCCP))]
         public virtual CriticalControlPoint? CCP { get; set; }
 
