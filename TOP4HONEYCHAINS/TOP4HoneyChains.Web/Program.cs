@@ -8,11 +8,19 @@ using TOP4HoneyChains.Web.Filters;
 using TOP4HoneyChains.Web.Models.Email;
 using TOP4HoneyChains.Web.Models.Identity;
 using TOP4HoneyChains.Web.Services;
+using TOP4HoneyChains.Web.Services.OrgModel;
+using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddDbContext<TOP4HoneyChainsContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+// Organization model (docs/ROLE-MODEL.md, P1). Features:OrgRoleModel = false keeps v1.0 behaviour.
+builder.Services.Configure<FeatureFlags>(builder.Configuration.GetSection("Features"));
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<AuditInterceptor>();
+builder.Services.AddDbContext<TOP4HoneyChainsContext>((sp, options) => options
+    .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+    .AddInterceptors(sp.GetRequiredService<AuditInterceptor>()));
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
@@ -65,6 +73,19 @@ builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpS
 
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<CcpIntegrityService>();
+builder.Services.AddScoped<ICurrentOrg, CurrentOrg>();
+builder.Services.AddScoped<OrgScope>();
+builder.Services.AddScoped<AuditWriter>();
+builder.Services.AddScoped<ManualRegistryVerifier>();
+builder.Services.AddScoped<IRegistryVerifier>(sp => sp.GetRequiredService<ManualRegistryVerifier>());
+builder.Services.AddScoped<IAuthorizationHandler, PanelUserHandler>();
+builder.Services.AddScoped<IAuthorizationHandler, OrganizationAuthorizationHandler>();
+builder.Services.AddScoped<IAuthorizationHandler, CcpAuthorizationHandler>();
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy(AuthPolicies.PanelUser, p => p.RequireAuthenticatedUser().AddRequirements(new PanelUserRequirement()));
+    options.AddPolicy(AuthPolicies.PlatformAdmin, p => p.RequireRole(CurrentOrg.AdminRole));
+});
 
 builder.Services.AddControllersWithViews(options =>
 {
