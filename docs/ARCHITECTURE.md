@@ -78,6 +78,7 @@ Missing from the pipeline: `UseHttpsRedirection`, `UseHsts`, `UseStatusCodePages
   - There is no Wholesaler role.
 - No per-user ownership filtering exists. This is an admin-only back office.
 - The menu (`Views/Shared/_horizontal.cshtml`) has no role checks.
+- Planned (design only, not implemented): organizations, capabilities and memberships behind the flag `Features:OrgRoleModel`, see [ROLE-MODEL.md](ROLE-MODEL.md) (D-22 to D-31).
 
 ### 2.5 Email and password reset
 - `Services/EmailService.cs` uses `System.Net.Mail.SmtpClient` + `NetworkCredential`, with options from the `SmtpSettings` section (`Host, Port, EnableSsl, UserName, Password, From, SenderName`). It has no try/catch, no logging and no dispose.
