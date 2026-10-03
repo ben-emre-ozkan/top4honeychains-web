@@ -59,6 +59,18 @@
                                           class="text-danger"></span>
                                 </div>
 
+                                <!-- Honey class (D-18) -->
+                                <div class="mb-3">
+                                    <label asp-for="HoneyClass" class="form-label">Honey class for CCP limits</label>
+                                    <select asp-for="HoneyClass" class="form-select">
+                                        <option value="">(unknown: only limits for every honey class apply)</option>
+                                        <option value="Floral">Floral (blossom)</option>
+                                        <option value="Honeydew">Honeydew</option>
+                                        <option value="Pine">Pine (honeydew)</option>
+                                    </select>
+                                    <span asp-validation-for="HoneyClass" class="text-danger"></span>
+                                </div>
+
                                 <!-- Buttons -->
                                 <div class="d-flex gap-2">
 

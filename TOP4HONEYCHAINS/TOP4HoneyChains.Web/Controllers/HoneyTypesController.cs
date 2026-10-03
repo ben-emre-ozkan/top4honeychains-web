@@ -68,7 +68,7 @@ namespace TOP4HoneyChains.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("HoneyTypeId,HoneyTypeTitle,HoneyTypeDescription")] HoneyType honeyType)
+        public async Task<IActionResult> Create([Bind("HoneyTypeId,HoneyTypeTitle,HoneyTypeDescription,HoneyClass")] HoneyType honeyType)
         {
             if (ModelState.IsValid)
             {
@@ -108,7 +108,7 @@ namespace TOP4HoneyChains.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("HoneyTypeId,HoneyTypeTitle,HoneyTypeDescription")] HoneyType honeyType)
+        public async Task<IActionResult> Edit(int id, [Bind("HoneyTypeId,HoneyTypeTitle,HoneyTypeDescription,HoneyClass")] HoneyType honeyType)
         {
             if (id != honeyType.HoneyTypeId)
             {
