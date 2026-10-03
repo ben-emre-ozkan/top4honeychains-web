@@ -1,7 +1,9 @@
-# CCPs in the current system (as-is)
+﻿# CCPs in the current system (as-is)
 
 Status: read-only investigation on 2026-10-03 against `main` (`b41127b`) and the local DB copy of production.
-No code or data was changed. Usage numbers are aggregates only. Paths are relative to `TOP4HONEYCHAINS/TOP4HoneyChains.Web/` unless noted.
+No code or data was changed. Usage numbers are aggregates only.
+
+> **Update 2026-10-03:** the integrity gaps described here (locks, lost values, no "not applicable", finalize rule, applicability, parameter metadata and limits) were fixed in `fix/ccp-integrity`; see [FEEDBACK.md](FEEDBACK.md) (CCP-01 to CCP-06) and [DECISIONS.md](DECISIONS.md) (D-14 to D-19). Ownership per organization (§3, §6) is still open. Paths are relative to `TOP4HONEYCHAINS/TOP4HoneyChains.Web/` unless noted.
 
 ---
 
