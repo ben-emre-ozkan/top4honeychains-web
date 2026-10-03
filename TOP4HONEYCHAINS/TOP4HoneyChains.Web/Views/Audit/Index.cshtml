@@ -1,0 +1,75 @@
+@model List<TOP4HoneyChains.Web.Models.Entities.AuditEntry>
+@{
+    ViewData["Title"] = "Audit log";
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    int page = ViewBag.Page, size = ViewBag.PageSize, total = ViewBag.Total;
+    dynamic f = ViewBag.Filter;
+    var entities = ViewBag.Entities as List<string> ?? new();
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <div>
+                            <h4 class="card-title mb-1">Audit log</h4>
+                            <p class="card-title-desc mb-0">Append-only and hash-chained: every row holds the hash of the previous row. Rows cannot be changed or deleted.</p>
+                        </div>
+                        <form asp-action="Verify" method="post">
+                            <button type="submit" class="btn btn-outline-primary" id="verify-chain">Verify hash chain</button>
+                        </form>
+                    </div>
+
+                    <form method="get" class="row g-2 mb-3">
+                        <div class="col-md-3">
+                            <select name="entity" class="form-select">
+                                <option value="">all entities</option>
+                                @foreach (var e in entities) { <option value="@e" selected="@(e == (string?)f.entity)">@e</option> }
+                            </select>
+                        </div>
+                        <div class="col-md-2"><input name="act" value="@f.act" class="form-control" placeholder="action" /></div>
+                        <div class="col-md-3"><input name="user" value="@f.user" class="form-control" placeholder="user name" /></div>
+                        <div class="col-md-2"><input name="flag" value="@f.flag" class="form-control" placeholder="flag, e.g. SelfApproved" /></div>
+                        <div class="col-md-2"><button type="submit" class="btn btn-secondary w-100">Filter</button></div>
+                    </form>
+
+                    <div class="small text-muted mb-1">@total rows</div>
+                    <table class="table table-sm table-bordered small" id="audit-table">
+                        <thead><tr><th>#</th><th>UTC</th><th>User</th><th>Org</th><th>Action</th><th>Entity</th><th>Key</th><th>Flags</th><th>Old</th><th>New</th><th>Hash</th></tr></thead>
+                        <tbody>
+                            @foreach (var a in Model)
+                            {
+                                <tr>
+                                    <td>@a.AuditId</td>
+                                    <td>@a.At.ToString("dd.MM.yyyy HH:mm:ss")</td>
+                                    <td>@a.UserName</td>
+                                    <td>@a.OrgId</td>
+                                    <td>@a.Action</td>
+                                    <td>@a.Entity</td>
+                                    <td>@a.EntityKey</td>
+                                    <td>@if (a.Flags != null) { <span class="badge bg-warning text-dark">@a.Flags</span> }</td>
+                                    <td style="max-width:260px; word-break:break-all">@a.OldValues</td>
+                                    <td style="max-width:260px; word-break:break-all">@a.NewValues</td>
+                                    <td><code title="@a.Hash">@a.Hash[..10]…</code></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    <div class="d-flex gap-2">
+                        @if (page > 1)
+                        {
+                            <a asp-action="Index" asp-route-page="@(page - 1)" asp-route-entity="@f.entity" asp-route-act="@f.act" asp-route-user="@f.user" asp-route-flag="@f.flag" class="btn btn-sm btn-outline-secondary">Newer</a>
+                        }
+                        @if (page * size < total)
+                        {
+                            <a asp-action="Index" asp-route-page="@(page + 1)" asp-route-entity="@f.entity" asp-route-act="@f.act" asp-route-user="@f.user" asp-route-flag="@f.flag" class="btn btn-sm btn-outline-secondary">Older</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

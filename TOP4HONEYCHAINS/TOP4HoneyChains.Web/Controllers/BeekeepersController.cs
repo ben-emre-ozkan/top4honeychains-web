@@ -24,8 +24,11 @@ namespace TOP4HoneyChains.Web.Controllers
         private readonly TOP4HoneyChainsContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        public BeekeepersController(TOP4HoneyChainsContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        private readonly TOP4HoneyChains.Web.Services.OrgModel.FeatureFlags _flags;
+        public BeekeepersController(TOP4HoneyChainsContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager,
+            Microsoft.Extensions.Options.IOptions<TOP4HoneyChains.Web.Services.OrgModel.FeatureFlags> flags)
         {
+            _flags = flags.Value;
             _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
@@ -109,23 +112,28 @@ namespace TOP4HoneyChains.Web.Controllers
 
                 var businessNumber = await GenerateBusinessNumberAsync();
 
-
-                var user = new ApplicationUser
+                // With the organization model a beekeeper is a record without an account (D-23); the
+                // association records data for them. v1.0 keeps creating a locked login.
+                ApplicationUser? user = null;
+                if (!_flags.OrgRoleModel)
                 {
-                    UserName = businessNumber, // veya email alanı
-                    Email = businessNumber + "@top4honeychains.com" // geçici
-                };
+                    user = new ApplicationUser
+                    {
+                        UserName = businessNumber, // veya email alanı
+                        Email = businessNumber + "@top4honeychains.com" // geçici
+                    };
 
-                // Beekeepers do not log in (D-01, D-09): the account gets a random, never-shown
-                // password (the business number used to be the password, which is guessable)
-                var result = await _userManager.CreateAsync(user, Convert.ToBase64String(RandomNumberGenerator.GetBytes(32)));
+                    // Beekeepers do not log in (D-01, D-09): the account gets a random, never-shown
+                    // password (the business number used to be the password, which is guessable)
+                    var result = await _userManager.CreateAsync(user, Convert.ToBase64String(RandomNumberGenerator.GetBytes(32)));
 
-                if (!result.Succeeded)
-                {
-                    foreach (var error in result.Errors)
-                        ModelState.AddModelError("", error.Description);
+                    if (!result.Succeeded)
+                    {
+                        foreach (var error in result.Errors)
+                            ModelState.AddModelError("", error.Description);
 
-                    return View(beekeeper);
+                        return View(beekeeper);
+                    }
                 }
 
                 // The login (Identity DB context) and the Beekeepers row (business DB context) are saved
@@ -133,10 +141,16 @@ namespace TOP4HoneyChains.Web.Controllers
                 // fail with "user name taken" (ENG-01).
                 try
                 {
-                    await _userManager.AddToRoleAsync(user, "Beekeeper");
-                    await _userManager.SetLockoutEndDateAsync(user, DateTimeOffset.MaxValue);
-
-                    beekeeper.BeekeeperId = user.Id;
+                    if (user != null)
+                    {
+                        await _userManager.AddToRoleAsync(user, "Beekeeper");
+                        await _userManager.SetLockoutEndDateAsync(user, DateTimeOffset.MaxValue);
+                        beekeeper.BeekeeperId = user.Id;
+                    }
+                    else
+                    {
+                        beekeeper.BeekeeperId = Guid.NewGuid().ToString();
+                    }
                     beekeeper.BeekeeperBusinessNumber = businessNumber;
 
                     if (beekeeper.ProfilePhotoFile != null && beekeeper.ProfilePhotoFile.Length > 0)
@@ -164,7 +178,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 }
                 catch
                 {
-                    await _userManager.DeleteAsync(user);
+                    if (user != null)
+                        await _userManager.DeleteAsync(user);
                     throw;
                 }
                 return RedirectToAction(nameof(Index));
@@ -296,7 +311,8 @@ namespace TOP4HoneyChains.Web.Controllers
             beekeeper.IsActive = false;
             beekeeper.DeactivatedAt = DateTime.UtcNow;
 
-            var user = await _userManager.FindByIdAsync(id);
+            // With the organization model, beekeeper logins are left untouched: they stay locked (D-09, D-23)
+            var user = _flags.OrgRoleModel ? null : await _userManager.FindByIdAsync(id);
             if (user != null)
             {
                 await _userManager.SetLockoutEndDateAsync(user, DateTimeOffset.MaxValue);

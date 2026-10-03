@@ -144,6 +144,12 @@
 
                         <div class="d-flex justify-content-between mt-4">
 
+                            @if (!User.IsInRole("Administrator"))
+                            {
+                                <a href="/OrgWorkspace/Index" class="btn btn-outline-secondary px-4"><i class="mdi mdi-arrow-left me-1"></i> Back</a>
+                            }
+                            else
+                            {
                             <a asp-controller="FinalHoneyProductions"
                                asp-action="ByWholesaler"
                                asp-route-wholesalerId="@Model.WholesalerId"
@@ -151,8 +157,9 @@
                                 <i class="mdi mdi-arrow-left me-1"></i>
                                 Back
                             </a>
+                            }
 
-                            @if (Model.LockReason == null && Model.StatusId != TOP4HoneyChains.Web.Models.Entities.AssignmentStatusIds.NotApplicable)
+                            @if (Model.LockReason == null && Model.CanEnter && Model.StatusId != TOP4HoneyChains.Web.Models.Entities.AssignmentStatusIds.NotApplicable)
                             {
                             <button type="submit"
                                     class="btn btn-success px-5 shadow">

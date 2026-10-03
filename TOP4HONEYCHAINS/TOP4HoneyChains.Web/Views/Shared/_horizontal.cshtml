@@ -1,4 +1,5 @@
-﻿@using System.Globalization
+﻿@inject Microsoft.Extensions.Options.IOptions<TOP4HoneyChains.Web.Services.OrgModel.FeatureFlags> FeatureFlagOptions
+@using System.Globalization
 
 @{
     var culture = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
@@ -215,6 +216,21 @@
                 <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
 
                     <div class="collapse navbar-collapse" id="topnav-menu-content">
+                        @{
+                            // With Features:OrgRoleModel, organization members (no Administrator role) get their own menu
+                            var orgModelOn = FeatureFlagOptions.Value.OrgRoleModel;
+                            var isPanelAdmin = User.IsInRole("Administrator");
+                        }
+                        @if (orgModelOn && !isPanelAdmin)
+                        {
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/OrgWorkspace/Index"><i class="mdi mdi-domain"></i>My organization</a>
+                            </li>
+                        </ul>
+                        }
+                        else
+                        {
                         <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a class="nav-link" href="/Dashboard/Index">
@@ -299,7 +315,24 @@
                                     <a href="/RoleManagement/Index" class="dropdown-item">@L["Menu.Roles"]</a>
                                 </div>
                             </li>
+
+                            @if (orgModelOn)
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-orgs" role="button"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="mdi mdi-domain"></i>Organizations
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="topnav-orgs">
+                                        <a href="/Organizations/Index" class="dropdown-item">Organizations</a>
+                                        <a href="/Registry/Index" class="dropdown-item">Beekeeper registry</a>
+                                        <a href="/Audit/Index" class="dropdown-item">Audit log</a>
+                                        <a href="/OrgWorkspace/Index" class="dropdown-item">Workspace view</a>
+                                    </div>
+                                </li>
+                            }
                         </ul>
+                        }
                     </div>
                 </nav>
             </div>

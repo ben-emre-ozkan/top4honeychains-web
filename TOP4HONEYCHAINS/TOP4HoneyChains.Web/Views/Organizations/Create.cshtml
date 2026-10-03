@@ -1,0 +1,72 @@
+@using TOP4HoneyChains.Web.Models.Entities
+@model Organization
+@{
+    ViewData["Title"] = "New organization";
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var caps = ViewBag.Capabilities as List<Capability> ?? new();
+    var selected = ViewBag.Selected as string[] ?? Array.Empty<string>();
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">New organization</h4>
+                    <p class="card-title-desc">The organization starts as <strong>Pending</strong>. It can enter data only after it is verified with documents.</p>
+
+                    <form asp-action="Create" method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="DisplayName" class="form-label required">Display name</label>
+                                <input asp-for="DisplayName" class="form-control" maxlength="200" />
+                                <span asp-validation-for="DisplayName" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="LegalName" class="form-label">Legal name</label>
+                                <input asp-for="LegalName" class="form-control" maxlength="300" />
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="TaxNo" class="form-label">Tax number</label>
+                                <input asp-for="TaxNo" class="form-control" maxlength="50" />
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="Province" class="form-label">Province</label>
+                                <input asp-for="Province" class="form-control" maxlength="100" />
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="District" class="form-label">District</label>
+                                <input asp-for="District" class="form-control" maxlength="100" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="LegacyWholesalerId" class="form-label">Existing wholesaler record (optional)</label>
+                                <select asp-for="LegacyWholesalerId" asp-items="ViewBag.Wholesalers" class="form-select">
+                                    <option value="">(none)</option>
+                                </select>
+                                <small class="text-muted">Lots and batches of that wholesaler then belong to this organization.</small>
+                            </div>
+                        </div>
+
+                        <label class="form-label required">Capabilities</label>
+                        <div class="row mb-3">
+                            @foreach (var c in caps)
+                            {
+                                <div class="col-md-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="capabilities" value="@c.Code" id="cap_@c.Code" @(selected.Contains(c.Code) ? "checked" : "") />
+                                        <label class="form-check-label" for="cap_@c.Code"><strong>@c.Code</strong> <small class="text-muted">@c.Description</small></label>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                        <button type="submit" class="btn btn-success">Create</button>
+                        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

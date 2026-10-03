@@ -1,4 +1,4 @@
-namespace TOP4HoneyChains.Web.Models.ViewModels.Monitoring
+﻿namespace TOP4HoneyChains.Web.Models.ViewModels.Monitoring
 {
     // Shared by the raw lot and final batch monitoring pages
     public abstract class CcpMonitoringViewModelBase
@@ -30,5 +30,15 @@ namespace TOP4HoneyChains.Web.Models.ViewModels.Monitoring
 
         // Honey class used to pick limits (Floral / Honeydew / Pine); null = unknown or mixed
         public string? HoneyClass { get; set; }
+
+        // Organization model (P1): what the user may do here, and the four-eyes approval (D-27)
+        public bool OrgModelOn { get; set; }
+        public bool CanEnter { get; set; } = true;
+        public string? EnterDeniedReason { get; set; }
+        public bool CanApprove { get; set; }
+        public string? ApproveDeniedReason { get; set; }
+        public string? ApprovedBy { get; set; }
+        public DateTime? ApprovedAt { get; set; }
+        public bool SelfApproved { get; set; }
     }
 }

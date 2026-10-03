@@ -5,6 +5,7 @@ using Microsoft.Extensions.Localization;
 using TOP4HoneyChains.Web.Models.Identity;
 using TOP4HoneyChains.Web.Models.ViewModels;
 using TOP4HoneyChains.Web.Services;
+using TOP4HoneyChains.Web.Services.OrgModel;
 
 namespace TOP4HoneyChains.Web.Controllers
 {
@@ -23,20 +24,34 @@ namespace TOP4HoneyChains.Web.Controllers
         private readonly IEmailService _emailService;
         private readonly IStringLocalizer<SharedResource> _localizer;
         private readonly ILogger<AccountController> _logger;
+        private readonly ICurrentOrg _currentOrg;
+        private readonly AuditWriter _audit;
+        private readonly TOP4HoneyChains.Web.Data.TOP4HoneyChainsContext _context;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailService emailService,
             IStringLocalizer<SharedResource> localizer,
-            ILogger<AccountController> logger)
+            ILogger<AccountController> logger,
+            ICurrentOrg currentOrg,
+            AuditWriter audit,
+            TOP4HoneyChains.Web.Data.TOP4HoneyChainsContext context)
         {
+            _currentOrg = currentOrg;
+            _audit = audit;
+            _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
             _emailService = emailService;
             _localizer = localizer;
             _logger = logger;
         }
+
+        // With Features:OrgRoleModel, a user with an active membership may use the panel as well (ROLE-MODEL P1)
+        private async Task<bool> IsMemberAsync(string userId) =>
+            _currentOrg.Enabled && await Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.AnyAsync(
+                _context.Memberships, m => m.UserId == userId && m.Status == Models.Entities.MembershipStatus.Active);
 
         [AllowAnonymous]
         [HttpGet]
@@ -46,6 +61,8 @@ namespace TOP4HoneyChains.Web.Controllers
             {
                 if (User.IsInRole(PanelRole))
                     return RedirectToAction("Index", "Dashboard");
+                if (await _currentOrg.GetAsync() != null)
+                    return RedirectToAction("Index", "OrgWorkspace");
 
                 // A non-admin session (e.g. from before D-01) would loop via AccessDenied.
                 // Redirect after signing out so the form's anti-forgery token is issued anonymously.
@@ -74,7 +91,15 @@ namespace TOP4HoneyChains.Web.Controllers
             {
                 var user = await _userManager.FindByNameAsync(model.UserName);
                 if (user != null && await _userManager.IsInRoleAsync(user, PanelRole))
+                {
+                    await _audit.WriteAsync("Login", "AspNetUsers", user.Id, userId: user.Id, userName: user.UserName);
                     return RedirectToAction("Index", "Dashboard");
+                }
+                if (user != null && await IsMemberAsync(user.Id))
+                {
+                    await _audit.WriteAsync("Login", "AspNetUsers", user.Id, userId: user.Id, userName: user.UserName);
+                    return RedirectToAction("Index", "OrgWorkspace");
+                }
 
                 // Valid credentials, but no access to the panel: don't keep the session
                 await _signInManager.SignOutAsync();
@@ -206,7 +231,7 @@ namespace TOP4HoneyChains.Web.Controllers
         {
             // Signed-in non-admins have nothing to open in the panel (D-01): sign them out
             // instead of showing a page whose only link leads back here
-            if (User.Identity?.IsAuthenticated == true && !User.IsInRole(PanelRole))
+            if (User.Identity?.IsAuthenticated == true && !User.IsInRole(PanelRole) && await _currentOrg.GetAsync() == null)
             {
                 await _signInManager.SignOutAsync();
                 TempData[LoginErrorKey] = _localizer["Login.NoPanelAccess"].Value;

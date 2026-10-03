@@ -36,6 +36,12 @@ namespace TOP4HoneyChains.Web.Models.Entities
         [StringLength(260)]
         public string? StoredFileName { get; set; }
 
+        // Who recorded the value (D-27); null for values recorded before the org model
+        [StringLength(450)]
+        public string? RecordedByUserId { get; set; }
+
+        public int? RecordedByOrgId { get; set; }
+
         [ForeignKey(nameof(CCPId))]
         public virtual CriticalControlPoint? CCP { get; set; }
 

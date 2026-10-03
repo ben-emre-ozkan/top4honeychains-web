@@ -72,6 +72,12 @@ The seeds in `db/migrations/002_ccp_integrity.sql` come from the Turkish Food Co
 - [ ] Verify the seeded data types (Number / Yes-No / Text) and that every parameter should stay required.
 - [ ] Verify the honey classes: Pine Honey = Pine; Flower, Thyme, Sunflower, Citrus, Chestnut and Highland = Floral. Chestnut honey's conductivity exception is a honey-type row (D-21); it depends on the honey type being named "Chestnut Honey" when 003 runs.
 
+### Organization model (P1, D-22 to D-32)
+- [ ] Decide whether `Features:OrgRoleModel` is switched on at go-live. Default and recommended for this release: **off** (v1.0 admin-only panel). To switch on: `Features__OrgRoleModel=true` (environment) or `"Features": { "OrgRoleModel": true }` in `appsettings.Production.json`, then restart the site. Switching back off is safe; the data stays.
+- [ ] Audit log protection on the production DB: deny changes to the audit table for the app's DB login (on the LocalDB copy the IIS identity `DefaultAppPool` exists as a DB user; confirm the real one), e.g. `DENY UPDATE, DELETE ON dbo.AuditEntries TO [<app user>];`. The append-only trigger is installed by 004 in any case.
+- [ ] The app pool identity needs write access to `App_Data/org-documents/` and `App_Data/registry-proofs/` (created on first upload) and they must be backed up with the site (step 2). They are outside `wwwroot`.
+- [ ] Optional setting `OrgModel:AssociationVerifier` = `PlatformAdmin` (default) or `CentralAssociation`.
+
 ### Request to the university IT (D-13)
 Please set up for the TOP4HoneyChains site on IIS:
 1. A trusted TLS certificate for the public host name (e.g. `<domain>`), with automatic renewal.
@@ -90,11 +96,12 @@ Please set up for the TOP4HoneyChains site on IIS:
 
 ## 2. Deployment day (in this order)
 1. [ ] **Back up the production database** (full backup) and confirm it restores. The backup stays on the DB server and never goes into the repo or the deploy package.
-2. [ ] Back up the current live site folder, including server-only uploads (`wwwroot/assets/videos/parameters/`, and `App_Data/ccp-files/` once it exists, D-19).
+2. [ ] Back up the current live site folder, including server-only uploads (`wwwroot/assets/videos/parameters/`, and `App_Data/ccp-files/`, `App_Data/org-documents/`, `App_Data/registry-proofs/` once they exist, D-19, D-22).
 3. [ ] Put the site into maintenance mode (e.g. `app_offline.htm`).
 4. [ ] Apply every SQL script in `db/migrations/` **in numeric order** (`001_…`, `002_…`). Scripts are idempotent; record which ones were applied. The DB compatibility level must be 150 (SQL Server 2019).
    - `001_lock_out_non_admin_accounts.sql` ([D-09](DECISIONS.md)) locks out every account that is not an Administrator and prints how many it changed. It aborts if no Administrator exists. Run it again after steps 5-7 (it is idempotent): an account removed from the Administrator role there becomes a non-admin that must be locked.
    - `002_ccp_integrity.sql` ([D-14 to D-19](DECISIONS.md)) adds CCP applicability, the "Not applicable" status (id 5), parameter metadata and limits, honey classes and the in-range columns, and seeds them. It prints what it seeded; on LocalDB: 4 RawLot + 7 Batch CCPs, 21 + 48 data types, 22 default limits, 3 units, 13 limit rows. It aborts if `AssignmentStatuses` id 5 is already used by another status. Existing assignments, values and finalized batches are not changed. A second run changes 0 rows.
+   - `004_org_model.sql` ([D-22 to D-32](DECISIONS.md), [ROLE-MODEL.md](ROLE-MODEL.md) P1) adds organizations, capabilities, memberships, documents, verification events, beekeeper association and registry tables, the append-only audit log, and approval / recorded-by columns. It inserts (never updates): the platform organization, an OrgAdmin membership for every Administrator, and one Pending organization per wholesaler. A second run inserts nothing. Nothing reads these tables while `Features:OrgRoleModel` is `false`.
    - `003_ccp_followup.sql` ([D-20, D-21](DECISIONS.md)) runs after 002 (it aborts without it). It adds `PublicTextValues` (on for CCP 1–10, off for CCP 0), honey-type and ratio limit columns, the chestnut conductivity and fructose/glucose ratio rows, and the pine moisture notes. A second run changes 0 rows.
 5. [ ] Review users in the **Administrator** role on production and remove unknown accounts. The register role-escalation bug was live until this deployment.
 6. [ ] Also review who created the roles `Consumer`, `Wholesaler` and `SampleAcceptanceOfficer`, and any users in them.
