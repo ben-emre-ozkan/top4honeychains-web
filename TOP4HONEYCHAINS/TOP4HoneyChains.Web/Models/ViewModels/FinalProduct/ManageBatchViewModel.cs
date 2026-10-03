@@ -11,5 +11,8 @@ namespace TOP4HoneyChains.Web.Models.ViewModels.FinalProduct
 
         // Lots of the same wholesaler that are not eligible yet, with the missing CCP checks
         public List<IneligibleRawHoneyItemViewModel> IneligibleRawHoneyList { get; set; } = new();
+
+        // What still prevents finalizing (D-16); empty = the batch can be finalized
+        public List<string> FinalizeBlockers { get; set; } = new();
     }
 }

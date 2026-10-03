@@ -144,7 +144,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 {
                     RawHoney = raw,
                     PendingChecks = raw.RawHoneyCCPAssignments
-                        .Where(a => a.RawHoneyCCPAssignmentStatus != 3) // 3 = Completed
+                        .Where(a => !AssignmentStatusIds.IsDone(a.RawHoneyCCPAssignmentStatus))
                         .OrderBy(a => a.CCP?.Code)
                         .Select(a => new PendingCcpCheckViewModel
                         {
@@ -157,6 +157,9 @@ namespace TOP4HoneyChains.Web.Controllers
                         .ToList()
                 });
             }
+
+            if (!batch.FinalHoneyProductionIsFinalized)
+                model.FinalizeBlockers = await _ccp.GetFinalizeBlockersAsync(batch.FinalHoneyProductionId);
 
             ViewBag.Controller = "Final Honey Productions";
             ViewBag.Action = "Manage Batch";
@@ -275,14 +278,11 @@ namespace TOP4HoneyChains.Web.Controllers
             if (batch.FinalHoneyProductionIsFinalized)
                 return BadRequest("Batch already finalized.");
 
-            // 🔴 TOTAL KONTROLÜ (EN KRİTİK)
-            var total = await _context.FinalHoneyProductionDetails
-                .Where(d => d.FinalHoneyProductionId == id)
-                .SumAsync(d => (decimal?)d.UsedAmount) ?? 0;
-
-            if (total <= 0)
+            // All CCPs of the batch and of its lots must be Completed or Not applicable (D-16)
+            var blockers = await _ccp.GetFinalizeBlockersAsync(id);
+            if (blockers.Count > 0)
             {
-                TempData["Error"] = "Batch total must be greater than zero before finalizing.";
+                TempData["Error"] = "The batch cannot be finalized yet: " + string.Join(" ", blockers);
                 return RedirectToAction("ManageBatch", new { id });
             }
 

@@ -816,77 +816,67 @@
 
                         <hr class="section-divider">
 
-                        <!-- CCP1 -->
-                        @if (source.RawCCPs != null && source.RawCCPs.Any())
-                        {
+                        <!-- CCP 1 (raw honey acceptance analysis); missing values are shown, not hidden (D-16) -->
+                        @{
+                            var acceptance = source.CcpBlocks.FirstOrDefault(b => (b.CCPCode ?? "").Replace(" ", "") == "CCP1");
+                            var recordedChecks = source.CcpBlocks.Count(b => b.State == HoneyStoryCcpBlock.Recorded || b.State == HoneyStoryCcpBlock.NotApplicable);
+                        }
 
-                            var ccpRows = source.RawCCPs
-                            .Where(x => x.CCPId == 2)
-                            .OrderBy(x => x.ParameterName)
-                            .ToList();
-
-                            if (ccpRows.Any())
+                        <div class="card-body pt-0">
+                            @if (acceptance == null || acceptance.State == HoneyStoryCcpBlock.NotRecorded)
                             {
-
-                                <div class="card-body pt-0">
-
-                                    <div class="row">
-
-                                        @foreach (var row in ccpRows)
-                                        {
-                                            var value = row.NumericValue != null
-                                            ? row.NumericValue.Value.ToString("N2", tr) + " " + row.Unit
+                                <div class="text-muted small ccp-not-recorded"><i class="mdi mdi-alert-outline me-1"></i> Not recorded.</div>
+                            }
+                            else if (acceptance.State == HoneyStoryCcpBlock.NotApplicable)
+                            {
+                                <div class="text-muted small">Not applicable: @acceptance.NotApplicableReason</div>
+                            }
+                            else
+                            {
+                                <div class="row">
+                                    @foreach (var row in acceptance.Parameters.OrderBy(x => x.ParameterName))
+                                    {
+                                        var value = !row.Recorded ? "not recorded"
+                                            : row.IsFile ? "document on file"
+                                            : row.NumericValue != null ? row.NumericValue.Value.ToString("N2", tr) + " " + row.Unit
                                             : row.TextValue ?? "-";
 
-                                            <div class="col-md-6 mb-3">
-
-                                                <div class="ccp-metric-card">
-
-                                                    <div class="ccp-metric-header">
-
-                                                        <span class="ccp-metric-name">
-                                                            @row.ParameterName
-                                                        </span>
-
-                                                        <a href="/honeystory/parameter/@row.ParameterId"
-                                                           class="ccp-help"
-                                                           target="_blank">
-
-                                                            <i class="mdi mdi-help-circle-outline"></i>
-
-                                                        </a>
-
-                                                    </div>
-
-                                                    <div class="ccp-metric-value">
-
-                                                        @value
-
-                                                    </div>
-
-                                                    @if (row.MeasurementDate != null)
-                                                    {
-                                                        <div class="ccp-metric-date">
-
-                                                            <i class="mdi mdi-calendar-outline"></i>
-
-                                                            @row.MeasurementDate?.ToString("dd MMM yyyy", tr)
-
-                                                        </div>
-                                                    }
-
+                                        <div class="col-md-6 mb-3">
+                                            <div class="ccp-metric-card">
+                                                <div class="ccp-metric-header">
+                                                    <span class="ccp-metric-name">@row.ParameterName</span>
+                                                    <a href="/honeystory/parameter/@row.ParameterId" class="ccp-help" target="_blank">
+                                                        <i class="mdi mdi-help-circle-outline"></i>
+                                                    </a>
                                                 </div>
-
+                                                <div class="ccp-metric-value @(row.Recorded ? "" : "text-muted")">
+                                                    @value
+                                                    @if (row.Compliant == true)
+                                                    {
+                                                        <span class="badge bg-success ms-1 ccp-compliance" title="Limit: @row.LimitText">within limit</span>
+                                                    }
+                                                    else if (row.Compliant == false)
+                                                    {
+                                                        <span class="badge bg-danger ms-1 ccp-compliance" title="Limit: @row.LimitText">outside limit</span>
+                                                    }
+                                                </div>
+                                                @if (row.MeasurementDate != null)
+                                                {
+                                                    <div class="ccp-metric-date">
+                                                        <i class="mdi mdi-calendar-outline"></i>
+                                                        @row.MeasurementDate?.ToString("dd MMM yyyy", tr)
+                                                    </div>
+                                                }
                                             </div>
-                                        }
-
-                                    </div>
-
+                                        </div>
+                                    }
                                 </div>
-
                             }
-
-                        }
+                            <div class="small text-muted mt-2">
+                                Quality control points recorded for this honey: @recordedChecks of @source.CcpBlocks.Count
+                                (<a href="/honeystory/details/@Model.BatchQR">full traceability</a>)
+                            </div>
+                        </div>
 
                     </div>
 
