@@ -24,7 +24,9 @@ namespace TOP4HoneyChains.Web.Controllers
         // GET: CriticalControlPointParameters
         public async Task<IActionResult> Index()
         {
-            var tOP4HoneyChainsContext = _context.CriticalControlPointParameters.Include(c => c.CCP).Include(c => c.ParameterCategoryNavigation);
+            var tOP4HoneyChainsContext = _context.CriticalControlPointParameters.Include(c => c.CCP).Include(c => c.ParameterCategoryNavigation)
+                .Include(c => c.Limits).ThenInclude(l => l.ConditionParameter)
+                .Include(c => c.Limits).ThenInclude(l => l.SumWithParameter);
 
             ViewBag.Controller = "Critical Control Point Parameters";
             ViewBag.Action = "Index";
@@ -71,8 +73,9 @@ namespace TOP4HoneyChains.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CriticalControlPointParameter criticalControlPointParameter)
+        public async Task<IActionResult> Create([Bind("CCPId,ParameterName,ParameterCategory,ParameterUnit,CriticalLimit,DataType,MinValue,MaxValue,IsRequired,LimitNote,LimitSource,LimitVerified")] CriticalControlPointParameter criticalControlPointParameter)
         {
+            ValidateLimits(criticalControlPointParameter.MinValue, criticalControlPointParameter.MaxValue);
 
             //if (!ModelState.IsValid)
             //{
@@ -128,12 +131,14 @@ namespace TOP4HoneyChains.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ParameterId,CCPId,ParameterName,ParameterCategory,ParameterUnit,CriticalLimit")] CriticalControlPointParameter criticalControlPointParameter)
+        public async Task<IActionResult> Edit(int id, [Bind("ParameterId,CCPId,ParameterName,ParameterCategory,ParameterUnit,CriticalLimit,DataType,MinValue,MaxValue,IsRequired,LimitNote,LimitSource,LimitVerified")] CriticalControlPointParameter criticalControlPointParameter)
         {
             if (id != criticalControlPointParameter.ParameterId)
             {
                 return NotFound();
             }
+
+            ValidateLimits(criticalControlPointParameter.MinValue, criticalControlPointParameter.MaxValue);
 
             if (ModelState.IsValid)
             {
@@ -201,6 +206,101 @@ namespace TOP4HoneyChains.Web.Controllers
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        private void ValidateLimits(decimal? min, decimal? max)
+        {
+            if (min != null && max != null && min > max)
+                ModelState.AddModelError("MaxValue", "The maximum must not be lower than the minimum.");
+        }
+
+        // ---- Honey-type specific, conditional and sum limits (D-18) ----
+
+        public async Task<IActionResult> Limits(int id)
+        {
+            var parameter = await _context.CriticalControlPointParameters
+                .Include(p => p.CCP)
+                .Include(p => p.Limits).ThenInclude(l => l.ConditionParameter)
+                .Include(p => p.Limits).ThenInclude(l => l.SumWithParameter)
+                .FirstOrDefaultAsync(p => p.ParameterId == id);
+            if (parameter == null)
+                return NotFound();
+
+            ViewBag.Siblings = await _context.CriticalControlPointParameters
+                .Where(p => p.CCPId == parameter.CCPId && p.ParameterId != id)
+                .OrderBy(p => p.ParameterName)
+                .ToListAsync();
+            ViewBag.Controller = "Critical Control Point Parameters";
+            ViewBag.Action = "Limits";
+            return View(parameter);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddLimit(int parameterId, string? honeyClass, int? conditionParameterId, decimal? conditionMaxValue,
+            int? sumWithParameterId, decimal? minValue, decimal? maxValue, string? note)
+        {
+            var parameter = await _context.CriticalControlPointParameters.FindAsync(parameterId);
+            if (parameter == null)
+                return NotFound();
+
+            honeyClass = string.IsNullOrWhiteSpace(honeyClass) ? null : honeyClass;
+            string? error = null;
+            if (honeyClass != null && !HoneyClasses.All.Contains(honeyClass))
+                error = "Unknown honey class.";
+            else if (minValue == null && maxValue == null)
+                error = "Enter a minimum or a maximum.";
+            else if (minValue != null && maxValue != null && minValue > maxValue)
+                error = "The maximum must not be lower than the minimum.";
+            else if ((conditionParameterId == null) != (conditionMaxValue == null))
+                error = "A condition needs both a parameter and a value.";
+            else if (note?.Length > 300)
+                error = "The note can be at most 300 characters.";
+            else
+            {
+                foreach (var otherId in new[] { conditionParameterId, sumWithParameterId }.Where(x => x != null))
+                {
+                    var other = await _context.CriticalControlPointParameters.FindAsync(otherId);
+                    if (other == null || other.CCPId != parameter.CCPId || other.ParameterId == parameterId)
+                        error = "Condition and sum parameters must be other parameters of the same CCP.";
+                }
+            }
+
+            if (error != null)
+            {
+                TempData["Error"] = error;
+            }
+            else
+            {
+                _context.CriticalControlPointParameterLimits.Add(new CriticalControlPointParameterLimit
+                {
+                    ParameterId = parameterId,
+                    HoneyClass = honeyClass,
+                    ConditionParameterId = conditionParameterId,
+                    ConditionMaxValue = conditionMaxValue,
+                    SumWithParameterId = sumWithParameterId,
+                    MinValue = minValue,
+                    MaxValue = maxValue,
+                    Note = string.IsNullOrWhiteSpace(note) ? null : note.Trim()
+                });
+                await _context.SaveChangesAsync();
+                TempData["Success"] = "Limit added.";
+            }
+            return RedirectToAction(nameof(Limits), new { id = parameterId });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteLimit(int limitId)
+        {
+            var limit = await _context.CriticalControlPointParameterLimits.FindAsync(limitId);
+            if (limit == null)
+                return NotFound();
+
+            _context.CriticalControlPointParameterLimits.Remove(limit);
+            await _context.SaveChangesAsync();
+            TempData["Success"] = "Limit removed.";
+            return RedirectToAction(nameof(Limits), new { id = limit.ParameterId });
         }
 
         private bool CriticalControlPointParameterExists(int id)

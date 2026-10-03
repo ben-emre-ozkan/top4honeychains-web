@@ -1,8 +1,10 @@
-﻿@model IEnumerable<TOP4HoneyChains.Web.Models.Entities.RawHoneyProduction>
+﻿@using TOP4HoneyChains.Web.Models.Entities
+@model IEnumerable<TOP4HoneyChains.Web.Models.Entities.RawHoneyProduction>
 
 @{
     ViewData["Title"] = "Productions";
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var lockedLotIds = ViewBag.LockedLotIds as HashSet<int> ?? new HashSet<int>();
 
 }
 
@@ -100,9 +102,12 @@
                                                 {
                                                     foreach (var assignment in item.RawHoneyCCPAssignments)
                                                     {
-                                                        var isCompleted = assignment.RawHoneyCCPAssignmentStatus == 3;
-
-                                                        var btnClass = isCompleted ? "btn-success" : "btn-secondary";
+                                                        var btnClass = assignment.RawHoneyCCPAssignmentStatus switch
+                                                        {
+                                                            AssignmentStatusIds.Completed => "btn-success",
+                                                            AssignmentStatusIds.NotApplicable => "btn-outline-dark",
+                                                            _ => "btn-secondary"
+                                                        };
 
                                                         <a asp-controller="CCPMonitoring"
                                                            asp-action="RawHoneyProductionManageCCP"
@@ -121,17 +126,28 @@
 
                                             <td>
                                                 <div class="d-flex gap-2">
-                                                    <a asp-action="Edit"
-                                                       asp-route-id="@item.RawHoneyProductionId"
-                                                       class="btn btn-sm btn-info">
-                                                        Edit
-                                                    </a>
+                                                    @if (lockedLotIds.Contains(item.RawHoneyProductionId))
+                                                    {
+                                                        @* D-14: lots used in a finalized batch are locked *@
+                                                        <span class="badge bg-success align-self-center"
+                                                              title="Used in a finalized batch; it cannot be edited or deleted">
+                                                            <i class="mdi mdi-lock-outline"></i> Locked
+                                                        </span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a asp-action="Edit"
+                                                           asp-route-id="@item.RawHoneyProductionId"
+                                                           class="btn btn-sm btn-info">
+                                                            Edit
+                                                        </a>
 
-                                                    <a asp-action="Delete"
-                                                       asp-route-id="@item.RawHoneyProductionId"
-                                                       class="btn btn-sm btn-danger">
-                                                        Delete
-                                                    </a>
+                                                        <a asp-action="Delete"
+                                                           asp-route-id="@item.RawHoneyProductionId"
+                                                           class="btn btn-sm btn-danger">
+                                                            Delete
+                                                        </a>
+                                                    }
 
                                                     <a asp-action="ManageCCP"
                                                        asp-route-id="@item.RawHoneyProductionId"

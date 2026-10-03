@@ -417,110 +417,45 @@
             Critical Control Points monitored throughout honey processing and packaging stages.
         </div>
 
-        <div class="card border-0 shadow-sm mb-4">
-            <div class="card-body small">
-
-                <strong>Processing Phases</strong>
-
-                <div class="mt-2 d-flex gap-3 flex-wrap">
-
-                    <span class="badge bg-secondary">
-                        Raw Honey Handling (CCP1–CCP3)
-                    </span>
-
-                    <span class="badge bg-primary">
-                        Processing & Packaging (CCP4–CCP10)
-                    </span>
-
-                </div>
-
-            </div>
-        </div>
-
         @{
-            var rawRowsAll = (Model.RawSources ?? new List<HoneyStoryRawSource>())
-            .SelectMany(s => s.RawCCPs ?? new List<HoneyStoryCCPRow>())
-            .ToList();
-
-            var finalRowsAll = (Model.FinalCCPs ?? new List<HoneyStoryCCPRow>()).ToList();
-
-            var allCcpGroups = rawRowsAll
-            .Concat(finalRowsAll)
-            .GroupBy(x => x.CCPCode ?? $"CCP{x.CCPId}")
-            .OrderBy(g => g.First().CCPId)
-            .ToList();
+            var batchBlocks = Model.BatchCcpBlocks ?? new List<HoneyStoryCcpBlock>();
+            var gapCount = (Model.RawSources ?? new List<HoneyStoryRawSource>()).SelectMany(s => s.CcpBlocks)
+                .Concat(batchBlocks)
+                .Count(b => b.State == HoneyStoryCcpBlock.NotRecorded || b.State == HoneyStoryCcpBlock.Incomplete);
         }
 
-        @if (!allCcpGroups.Any())
+        @if (gapCount > 0)
         {
-            <div class="alert alert-warning">No CCP records found.</div>
+            <div class="alert alert-light border small" id="ccp-gaps">
+                <i class="mdi mdi-information-outline me-1"></i>
+                @gapCount control point record(s) of this batch are missing or incomplete; they are marked "Not recorded" or "Partly recorded" below.
+            </div>
         }
-        else
+
+        @foreach (var source in Model.RawSources ?? new List<HoneyStoryRawSource>())
         {
+            <h5 class="mt-4 mb-3">
+                <span class="badge bg-secondary me-2">Raw honey</span>
+                @source.ApiaryName · @source.HoneyType
+            </h5>
             <div class="ccp-container">
-
-                @foreach (var g in allCcpGroups)
+                @foreach (var block in source.CcpBlocks)
                 {
-                    <div class="ccp-card">
-
-                        <div class="ccp-header">
-
-                            <div class="ccp-step">
-                                @g.First().CCPCode
-                            </div>
-
-                            <div>
-                                <div class="ccp-title">
-                                    @g.First().CCPTitle
-                                </div>
-
-                                <div class="ccp-phase">
-                                    @(g.First().CCPId <= 3 ? "Raw Honey Processing" : "Final Processing")
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="row mt-4">
-
-                            @foreach (var row in g)
-                            {
-                                <div class="col-md-4 mb-3">
-
-                                    <div class="parameter-card">
-
-                                        <div class="param-name">
-                                            @row.ParameterName
-                                        </div>
-
-                                        <div class="param-value">
-
-                                            @if (row.NumericValue != null)
-                                            {
-                                                <span class="badge bg-success">
-                                                    @row.NumericValue @row.Unit
-                                                </span>
-                                            }
-                                            else
-                                            {
-                                                <span class="badge bg-info">
-                                                    @row.TextValue
-                                                </span>
-                                            }
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            }
-
-                        </div>
-
-                    </div>
+                    <partial name="_CcpBlock" model="block" />
                 }
             </div>
         }
+
+        <h5 class="mt-5 mb-3">
+            <span class="badge bg-primary me-2">Final batch</span>
+            Processing &amp; packaging
+        </h5>
+        <div class="ccp-container">
+            @foreach (var block in batchBlocks)
+            {
+                <partial name="_CcpBlock" model="block" />
+            }
+        </div>
 
         <div class="text-center text-muted mt-5 small">
             <i class="mdi mdi-shield-check-outline me-1"></i>

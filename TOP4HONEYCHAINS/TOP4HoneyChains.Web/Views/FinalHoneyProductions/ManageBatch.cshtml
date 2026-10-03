@@ -117,7 +117,7 @@
 
                             <p class="text-muted mb-3">
                                 <i class="mdi mdi-information-outline me-1"></i>
-                                Only raw honey lots of this wholesaler whose CCP checks are <strong>all completed</strong> can be added to a batch.
+                                Only raw honey lots of this wholesaler whose CCP checks are <strong>all completed or "Not applicable"</strong> can be added to a batch.
                             </p>
 
                             @if (!Model.RawHoneyList.Any())
@@ -239,12 +239,13 @@
                                             Save Batch Composition
                                         </button>
 
-                                        <!-- Finalize -->
+                                        <!-- Finalize: only when nothing is missing (D-16) -->
                                         <form id="finalizeForm" asp-action="FinalizeBatch" method="post" class="d-inline">
                                             @Html.AntiForgeryToken()
                                             <input type="hidden" name="id" value="@Model.Batch.FinalHoneyProductionId" />
                                             <button type="button"
                                                     class="btn btn-danger btn-lg px-4"
+                                                    @(Model.FinalizeBlockers.Any() ? "disabled title=\"See what is missing below\"" : "")
                                                     onclick="confirmFinalize()">
                                                 <i class="mdi mdi-lock-outline me-2"></i>
                                                 Finalize Batch
@@ -258,17 +259,9 @@
                                             Finalized
                                         </span>
 
-                                        <!-- Unfinalize (role check later) -->
-                                        <form id="unfinalizeForm" asp-action="UnfinalizeBatch" method="post" class="d-inline">
-                                            @Html.AntiForgeryToken()
-                                            <input type="hidden" name="id" value="@Model.Batch.FinalHoneyProductionId" />
-                                            <button type="button"
-                                                    class="btn btn-outline-danger"
-                                                    onclick="confirmUnfinalize()">
-                                                <i class="mdi mdi-lock-open-outline me-2"></i>
-                                                Unfinalize
-                                            </button>
-                                        </form>
+                                        <span class="text-muted small">
+                                            A finalized batch is permanent: its data, composition and CCPs can no longer be changed.
+                                        </span>
                                     }
 
                                 </div>
@@ -284,6 +277,31 @@
 
 
 
+
+            @if (!Model.Batch.FinalHoneyProductionIsFinalized && Model.FinalizeBlockers.Any())
+            {
+                <div class="row" id="finalize-blockers">
+                    <div class="col-12">
+                        <div class="card border-warning">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="mdi mdi-clipboard-alert-outline me-1"></i> Missing before this batch can be finalized</h5>
+                                <p class="text-muted small mb-2">
+                                    Every final-batch CCP must be assigned and Completed or "Not applicable",
+                                    and every lot in the batch must have all its CCPs Completed or "Not applicable".
+                                </p>
+                                <ul class="mb-2">
+                                    @foreach (var b in Model.FinalizeBlockers)
+                                    {
+                                        <li>@b</li>
+                                    }
+                                </ul>
+                                <a asp-action="ManageCCP" asp-route-id="@Model.Batch.FinalHoneyProductionId" class="btn btn-sm btn-dark">Manage batch CCPs</a>
+                                <a asp-action="ByWholesaler" asp-route-wholesalerId="@Model.Batch.FinalHoneyProductionWholesalerId" class="btn btn-sm btn-outline-secondary">Record CCP values</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
 
             @* A finalized batch cannot take more lots, so the list would only be noise *@
             @if (!Model.Batch.FinalHoneyProductionIsFinalized && Model.IneligibleRawHoneyList.Any())
@@ -470,24 +488,6 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         document.getElementById('finalizeForm').submit();
-                    }
-                });
-            }
-
-            // 🔓 Unfinalize Confirm
-            function confirmUnfinalize() {
-                Swal.fire({
-                    title: 'Unfinalize this batch?',
-                    text: 'Editing will be enabled again.',
-                    icon: 'question',
-                    showCancelButton: true,
-                    confirmButtonColor: '#dc3545',
-                    cancelButtonColor: '#6c757d',
-                    confirmButtonText: 'Yes, unlock it',
-                    cancelButtonText: 'Cancel'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        document.getElementById('unfinalizeForm').submit();
                     }
                 });
             }

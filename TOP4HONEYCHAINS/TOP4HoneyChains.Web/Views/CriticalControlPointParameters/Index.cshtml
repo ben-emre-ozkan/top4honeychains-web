@@ -42,7 +42,8 @@
                                     <tr>
                                         <th>Parameter Name</th>
                                         <th>Unit</th>
-                                        <th>Critical Limit</th>
+                                        <th>Type</th>
+                                        <th>Limits</th>
                                         <th>CCP</th>
                                         <th>Category</th>
                                         <th style="width:150px;">Actions</th>
@@ -69,8 +70,13 @@
                                                 </span>
                                             </td>
 
+                                            <td>@(item.DataType ?? "-")@(item.IsRequired ? "" : " (optional)")</td>
                                             <td>
-                                                @item.CriticalLimit
+                                                @(TOP4HoneyChains.Web.Services.CcpLimitEvaluator.DescribeAll(item) ?? (item.CriticalLimit == "None" ? "-" : item.CriticalLimit))
+                                                @if (TOP4HoneyChains.Web.Services.CcpLimitEvaluator.DescribeAll(item) != null && !item.LimitVerified)
+                                                {
+                                                    <span class="badge bg-warning text-dark">to verify</span>
+                                                }
                                             </td>
 
                                             <td>
@@ -92,6 +98,12 @@
                                                        class="btn btn-sm btn-primary w-100">
                                                         <i class="mdi mdi-play-circle-outline me-1"></i>
                                                         Content
+                                                    </a>
+
+                                                    <a asp-action="Limits"
+                                                       asp-route-id="@item.ParameterId"
+                                                       class="btn btn-sm btn-warning w-100">
+                                                        Limits
                                                     </a>
 
                                                     <a asp-action="Edit"

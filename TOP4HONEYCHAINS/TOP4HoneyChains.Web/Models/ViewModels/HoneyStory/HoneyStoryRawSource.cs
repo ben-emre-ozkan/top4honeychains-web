@@ -18,7 +18,7 @@ namespace TOP4HoneyChains.Web.Models.ViewModels.HoneyStory
         // Photos for that apiary
         public List<HoneyStoryPhoto> Photos { get; set; } = new();
 
-        // CCP0-CCP3 rows for THIS raw honey production
-        public List<HoneyStoryCCPRow> RawCCPs { get; set; } = new();
+        // Every CCP that applies to raw lots, for THIS raw honey production
+        public List<HoneyStoryCcpBlock> CcpBlocks { get; set; } = new();
     }
 }

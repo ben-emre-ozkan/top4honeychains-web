@@ -10,6 +10,7 @@ using TOP4HoneyChains.Web.Data;
 using TOP4HoneyChains.Web.Models.Entities;
 using TOP4HoneyChains.Web.Models.ViewModels.Monitoring;
 using TOP4HoneyChains.Web.Models.ViewModels.Timeline;
+using TOP4HoneyChains.Web.Services;
 
 namespace TOP4HoneyChains.Web.Controllers
 {
@@ -17,10 +18,27 @@ namespace TOP4HoneyChains.Web.Controllers
     public class RawHoneyProductionsController : Controller
     {
         private readonly TOP4HoneyChainsContext _context;
+        private readonly CcpIntegrityService _ccp;
 
-        public RawHoneyProductionsController(TOP4HoneyChainsContext context)
+        public RawHoneyProductionsController(TOP4HoneyChainsContext context, CcpIntegrityService ccp)
         {
             _context = context;
+            _ccp = ccp;
+        }
+
+        // Lots used in a finalized batch are locked (D-14): show why and go back to the apiary's lots
+        private async Task<IActionResult?> RedirectIfLockedAsync(int rawHoneyProductionId)
+        {
+            var reason = await _ccp.GetRawLotLockReasonAsync(rawHoneyProductionId);
+            if (reason == null)
+                return null;
+
+            var apiaryId = await _context.RawHoneyProductions
+                .Where(r => r.RawHoneyProductionId == rawHoneyProductionId)
+                .Select(r => r.RawHoneyProductionApiaryId)
+                .FirstAsync();
+            TempData["Error"] = reason;
+            return RedirectToAction(nameof(RawHoneyProductionByApiary), new { id = apiaryId });
         }
 
         public async Task<IActionResult> RawHoneyProductionByApiary(int id)
@@ -49,6 +67,7 @@ namespace TOP4HoneyChains.Web.Controllers
 
             ViewBag.Apiary = apiary;
             ViewBag.LogLookup = logLookup;
+            ViewBag.LockedLotIds = await _ccp.GetLockedRawLotIdsAsync(productions.Select(p => p.RawHoneyProductionId));
 
 
             ViewBag.Controller = "Raw Honey Production";
@@ -190,6 +209,9 @@ namespace TOP4HoneyChains.Web.Controllers
                 return NotFound();
             }
 
+            if (await RedirectIfLockedAsync(id.Value) is IActionResult locked)
+                return locked;
+
             var apiary = await _context.Apiaries
                 .Include(a => a.ApiaryBeekeeper)
                 .FirstOrDefaultAsync(a => a.ApiaryId == rawHoneyProduction.RawHoneyProductionApiaryId);
@@ -222,6 +244,12 @@ namespace TOP4HoneyChains.Web.Controllers
             {
                 return NotFound();
             }
+
+            if (!RawHoneyProductionExists(id))
+                return NotFound();
+
+            if (await RedirectIfLockedAsync(id) is IActionResult locked)
+                return locked;
 
             if (ModelState.IsValid)
             {
@@ -277,7 +305,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 return NotFound();
             }
 
-
+            if (await RedirectIfLockedAsync(id.Value) is IActionResult locked)
+                return locked;
 
             ViewBag.Controller = "Raw Honey Production";
             ViewBag.Action = "Delete";
@@ -290,6 +319,9 @@ namespace TOP4HoneyChains.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            if (RawHoneyProductionExists(id) && await RedirectIfLockedAsync(id) is IActionResult locked)
+                return locked;
+
             var rawHoneyProduction = await _context.RawHoneyProductions.FindAsync(id);
             if (rawHoneyProduction != null)
             {
@@ -329,8 +361,13 @@ namespace TOP4HoneyChains.Web.Controllers
                 RawHoneyProductionId = id,
                 ApiaryId = production.RawHoneyProductionApiaryId ?? 0,
                 Production = production,
-                AllCCPs = await _context.CriticalControlPoints.ToListAsync(),
-                SelectedCCPIds = assignedCCPs
+                // Only CCPs that apply to this kind of record (D-17), plus any assigned earlier
+                AllCCPs = await _context.CriticalControlPoints
+                    .Where(c => c.AppliesTo == CcpAppliesTo.RawLot || assignedCCPs.Contains(c.Id))
+                    .OrderBy(c => c.Id)
+                    .ToListAsync(),
+                SelectedCCPIds = assignedCCPs,
+                LockReason = await _ccp.GetRawLotLockReasonAsync(id)
             };
 
             return View(vm);
@@ -342,8 +379,15 @@ namespace TOP4HoneyChains.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ManageCCP(ManageRawHoneyCCPViewModel model)
         {
+            if (!RawHoneyProductionExists(model.RawHoneyProductionId))
+                return NotFound();
+
+            if (await RedirectIfLockedAsync(model.RawHoneyProductionId) is IActionResult locked)
+                return locked;
+
             var existingAssignments = await _context.RawHoneyCCPAssignments
                 .Where(x => x.RawHoneyProductionId == model.RawHoneyProductionId)
+                .Include(x => x.CCP)
                 .ToListAsync();
 
             var existingIds = existingAssignments
@@ -351,6 +395,17 @@ namespace TOP4HoneyChains.Web.Controllers
                 .ToList();
 
             var selectedIds = model.SelectedCCPIds ?? new List<int>();
+
+            // Only CCPs that apply to raw lots can be added (D-17)
+            var applicableIds = await _context.CriticalControlPoints
+                .Where(c => c.AppliesTo == CcpAppliesTo.RawLot)
+                .Select(c => c.Id)
+                .ToListAsync();
+            if (selectedIds.Any(id => !existingIds.Contains(id) && !applicableIds.Contains(id)))
+            {
+                TempData["Error"] = "Only CCPs that apply to raw honey lots can be assigned. Nothing was changed.";
+                return RedirectToAction(nameof(ManageCCP), new { id = model.RawHoneyProductionId });
+            }
 
             // -------------------------
             // 1️⃣ EKLENECEKLER
@@ -379,6 +434,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 .Where(x => !selectedIds.Contains(x.RawHoneyCCPAssignmentCCP))
                 .ToList();
 
+            // Never lose recorded values (D-14): a CCP with values or a "Not applicable" record stays
+            var blocked = new List<string>();
             foreach (var assignment in toRemove)
             {
                 var hasMonitoringLog = await _context.CriticalControlPointMonitoringLogs
@@ -386,17 +443,20 @@ namespace TOP4HoneyChains.Web.Controllers
                         log.RawHoneyProductionId == model.RawHoneyProductionId &&
                         log.CCPId == assignment.RawHoneyCCPAssignmentCCP);
 
-                if (hasMonitoringLog)
-                {
-                    TempData["Error"] =
-                        $"CCP {assignment.RawHoneyCCPAssignmentCCP} cannot be removed because monitoring data exists.";
-
-                    return RedirectToAction(nameof(ManageCCP),
-                        new { id = model.RawHoneyProductionId });
-                }
-
-                _context.RawHoneyCCPAssignments.Remove(assignment);
+                if (hasMonitoringLog || assignment.RawHoneyCCPAssignmentStatus == AssignmentStatusIds.NotApplicable)
+                    blocked.Add(assignment.CCP?.Code ?? assignment.RawHoneyCCPAssignmentCCP.ToString());
             }
+
+            if (blocked.Count > 0)
+            {
+                TempData["Error"] =
+                    $"{string.Join(", ", blocked)} cannot be removed because values or a \"Not applicable\" record exist for this lot. Nothing was changed.";
+
+                return RedirectToAction(nameof(ManageCCP),
+                    new { id = model.RawHoneyProductionId });
+            }
+
+            _context.RawHoneyCCPAssignments.RemoveRange(toRemove);
 
             await _context.SaveChangesAsync();
 
@@ -459,7 +519,7 @@ namespace TOP4HoneyChains.Web.Controllers
 
 
             var total = timeline.Count;
-            var completed = timeline.Count(x => x.StatusName == "Completed");
+            var completed = timeline.Count(x => x.StatusName == "Completed" || x.StatusName == "Not applicable");
 
             ViewBag.ProgressPercent = total == 0 ? 0 : (completed * 100 / total);
 

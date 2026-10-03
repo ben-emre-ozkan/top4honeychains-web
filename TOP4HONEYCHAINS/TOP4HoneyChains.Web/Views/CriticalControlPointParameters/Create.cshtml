@@ -94,6 +94,61 @@
                                     <span asp-validation-for="CriticalLimit" class="text-danger"></span>
                                 </div>
 
+                                <!-- Metadata (D-18) -->
+                                <div class="row">
+                                    <div class="col-md-4 mb-3">
+                                        <label asp-for="DataType" class="form-label">Data type</label>
+                                        <select asp-for="DataType" class="form-select">
+                                            <option value="">(not set: number or text)</option>
+                                            <option value="Number">Number</option>
+                                            <option value="YesNo">Yes / No</option>
+                                            <option value="Text">Text</option>
+                                            <option value="File">File (e.g. lab report)</option>
+                                        </select>
+                                        <span asp-validation-for="DataType" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label asp-for="MinValue" class="form-label">Minimum</label>
+                                        <input asp-for="MinValue" type="text" inputmode="decimal" class="form-control" placeholder="no minimum"
+                                               value="@Model?.MinValue?.ToString("0.####", System.Globalization.CultureInfo.InvariantCulture)" />
+                                        <span asp-validation-for="MinValue" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label asp-for="MaxValue" class="form-label">Maximum</label>
+                                        <input asp-for="MaxValue" type="text" inputmode="decimal" class="form-control" placeholder="no maximum"
+                                               value="@Model?.MaxValue?.ToString("0.####", System.Globalization.CultureInfo.InvariantCulture)" />
+                                        <span asp-validation-for="MaxValue" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <small class="text-muted d-block mb-3">
+                                    Minimum and maximum apply to every honey type. Honey-type specific and conditional limits
+                                    are on the parameter's "Limits" page. Stored results are not recalculated when limits change.
+                                </small>
+
+                                <div class="mb-3 form-check">
+                                    <input asp-for="IsRequired" class="form-check-input" />
+                                    <label asp-for="IsRequired" class="form-check-label">Required for the CCP to be completed</label>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label asp-for="LimitNote" class="form-label">Limit note</label>
+                                    <input asp-for="LimitNote" class="form-control" maxlength="300" />
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-8 mb-3">
+                                        <label asp-for="LimitSource" class="form-label">Limit source</label>
+                                        <input asp-for="LimitSource" class="form-control" maxlength="200" placeholder="e.g. Turkish Food Codex, honey communique" />
+                                    </div>
+                                    <div class="col-md-4 mb-3 d-flex align-items-end">
+                                        <div class="form-check">
+                                            <input asp-for="LimitVerified" class="form-check-input" />
+                                            <label asp-for="LimitVerified" class="form-check-label">Limits verified (shown publicly)</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                                 <!-- Buttons -->
                                 <div class="d-flex gap-2">
 

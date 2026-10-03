@@ -1,4 +1,4 @@
-# Go-live checklist
+﻿# Go-live checklist
 
 Everything ships together in one deployment. Nothing from `main` is live until this checklist is done.
 Tick items as they are completed; add new items whenever a change needs a deploy-time step.
@@ -54,6 +54,24 @@ The values below are in git history, so rotating them is the actual fix. Removin
 - [x] ~~Unrestricted video upload in CCP ParameterContents~~: uploads are checked server-side (type, signature, size; [D-10](DECISIONS.md), `fix/upload-limits`). Check the production folder `wwwroot/assets/videos/parameters/` for files that are not `.mp4`/`.webm` and remove them.
 - [x] ~~HTTPS: is it enforced by IIS/proxy?~~ [D-13](DECISIONS.md): TLS ends at IIS; the app redirects HTTP → HTTPS and sends HSTS (30 days, no subdomains, no preload) in Production only (`feat/https-production`). Needs the IT request below.
 
+### CCP limits and honey classes (D-18) – verify before go-live
+The seeds in `db/migrations/002_ccp_integrity.sql` come from the Turkish Food Codex honey communique as given by the owner and are marked **to verify** (`LimitVerified = 0`). Until a parameter is marked verified (CCP Parameters → Edit → "Limits verified"), the admin pages show its in-range result with a "to verify" tag and Honey Story shows **no** compliance for it.
+- [ ] Owner/partners verify each seed and mark it verified, or correct it first (Parameters → Edit for min/max, Parameters → Limits for honey-class and conditional rows):
+  - Moisture max 20 %, Pine max 23 % (CCP 1, 2, 4, 5)
+  - Free acidity max 50 meq/kg (CCP 1)
+  - Electrical conductivity: Floral max 0.8, Honeydew and Pine min 0.8 mS/cm (CCP 1)
+  - Fructose + glucose: Floral min 60, Honeydew and Pine min 45 g/100 g (CCP 1, checked on "Fruktoz" with "Glikoz")
+  - Sucrose max 5 g/100 g; the "max 10 for specific honeys" case is only a note, no honey class exists for it (CCP 1)
+  - HMF max 40 mg/kg (CCP 1, 2, 5)
+  - Diastase min 8, min 3 when HMF ≤ 15 mg/kg (CCP 1, 2, 5)
+  - Proline min 300 mg/kg (CCP 1, 2, 5)
+  - pH 3.2–4.5 (CCP 1)
+  - C4 sugar max 7 % (CCP 1)
+  - Antibiotics max 0 ppb, zero tolerance for veterinary drug residues (CCP 1). Pesticides and naphthalene have no limit.
+  - Storage temperature max 25 °C (CCP 10); no relative humidity limit
+- [ ] Verify the seeded data types (Number / Yes-No / Text) and that every parameter should stay required.
+- [ ] Verify the honey classes: Pine Honey = Pine; Flower, Thyme, Sunflower, Citrus, Chestnut and Highland = Floral. Chestnut honey has a conductivity exception in the Codex (like honeydew), which the Floral class does not cover.
+
 ### Request to the university IT (D-13)
 Please set up for the TOP4HoneyChains site on IIS:
 1. A trusted TLS certificate for the public host name (e.g. `<domain>`), with automatic renewal.
@@ -72,15 +90,17 @@ Please set up for the TOP4HoneyChains site on IIS:
 
 ## 2. Deployment day (in this order)
 1. [ ] **Back up the production database** (full backup) and confirm it restores. The backup stays on the DB server and never goes into the repo or the deploy package.
-2. [ ] Back up the current live site folder, including server-only uploads (`wwwroot/assets/videos/parameters/`).
+2. [ ] Back up the current live site folder, including server-only uploads (`wwwroot/assets/videos/parameters/`, and `App_Data/ccp-files/` once it exists, D-19).
 3. [ ] Put the site into maintenance mode (e.g. `app_offline.htm`).
 4. [ ] Apply every SQL script in `db/migrations/` **in numeric order** (`001_…`, `002_…`). Scripts are idempotent; record which ones were applied. The DB compatibility level must be 150 (SQL Server 2019).
    - `001_lock_out_non_admin_accounts.sql` ([D-09](DECISIONS.md)) locks out every account that is not an Administrator and prints how many it changed. It aborts if no Administrator exists. Run it again after steps 5-7 (it is idempotent): an account removed from the Administrator role there becomes a non-admin that must be locked.
+   - `002_ccp_integrity.sql` ([D-14 to D-19](DECISIONS.md)) adds CCP applicability, the "Not applicable" status (id 5), parameter metadata and limits, honey classes and the in-range columns, and seeds them. It prints what it seeded; on LocalDB: 4 RawLot + 7 Batch CCPs, 21 + 48 data types, 22 default limits, 3 units, 13 limit rows. It aborts if `AssignmentStatuses` id 5 is already used by another status. Existing assignments, values and finalized batches are not changed. A second run changes 0 rows.
 5. [ ] Review users in the **Administrator** role on production and remove unknown accounts. The register role-escalation bug was live until this deployment.
 6. [ ] Also review who created the roles `Consumer`, `Wholesaler` and `SampleAcceptanceOfficer`, and any users in them.
 7. [ ] Make sure at least one known admin account exists with the new, strong password.
 8. [ ] Deploy the published Web build.
-   - Keep the server-only config and the uploaded files.
+   - Keep the server-only config and the uploaded files (including `App_Data/ccp-files/`).
+   - The app pool identity needs write access to `App_Data/ccp-files/` (created on the first CCP file upload; D-19). It is outside `wwwroot`, so files are only served through the admin-only download.
    - Set `ASPNETCORE_ENVIRONMENT=Production`.
    - Point the `DefaultConnection` connection string to the production DB.
    - The publish output contains the repo's `appsettings.json`, whose `DefaultConnection` points to a developer machine, and `appsettings.Development.json` (LocalDB, not loaded in Production). The production connection string **must** be supplied by server config (`ConnectionStrings__DefaultConnection` or `appsettings.Production.json`); delete `appsettings.Development.json` from the server folder.
@@ -100,6 +120,8 @@ Please set up for the TOP4HoneyChains site on IIS:
 - [ ] If the SMTP server is unreachable, forgot password shows "could not be sent" (no 500) and the error is logged.
 - [ ] Public `/honeystory/{guid}` loads, the map shows (new Maps key and domain restriction), and the QR code scans and opens `https://<domain>/honeystory/{guid}`.
 - [ ] Raw → final honey flow and CCP monitoring pages save correctly.
+- [ ] A finalized batch shows "Finalized (locked)" and has no Edit/Delete/Unfinalize; its CCP pages are read-only (D-14). A draft batch lists what is missing before it can be finalized (D-16).
+- [ ] Honey Story of a finalized batch lists every CCP; batches finalized before this release (ids 2–6 on the copy) show their missing CCPs as "Not recorded" (D-16).
 - [ ] Error page: as an anonymous user, open `/Dashboard/Error`. Expect the "Something went wrong" page with a reference, not a login redirect. (Unhandled errors are logged with the same reference; `/honeystory/qrcode` no longer fails, it returns 404 for unknown codes.)
 - [ ] Deleting a lookup value that is in use shows "This record is in use and cannot be deleted." (no 500).
 

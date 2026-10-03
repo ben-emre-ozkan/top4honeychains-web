@@ -13,7 +13,7 @@
         // Raw sources (apiary/beekeeper level)
         public List<HoneyStoryRawSource> RawSources { get; set; } = new();
 
-        // Final CCPs (CCP4-CCP10) - batch level
-        public List<HoneyStoryCCPRow> FinalCCPs { get; set; } = new();
+        // Every CCP that applies to batches - batch level
+        public List<HoneyStoryCcpBlock> BatchCcpBlocks { get; set; } = new();
     }
 }

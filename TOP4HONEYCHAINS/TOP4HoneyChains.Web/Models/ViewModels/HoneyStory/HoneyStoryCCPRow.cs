@@ -15,5 +15,12 @@
 
         public DateTime? MeasurementDate { get; set; }
         public string? Notes { get; set; }
+
+        public bool Recorded { get; set; } = true;
+        public bool IsFile { get; set; }
+
+        // Compliance with verified limits only (D-18); null = no verified limit or not checkable
+        public bool? Compliant { get; set; }
+        public string? LimitText { get; set; }
     }
 }

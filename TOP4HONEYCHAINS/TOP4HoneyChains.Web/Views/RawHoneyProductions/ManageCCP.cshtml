@@ -29,6 +29,13 @@
                                 Assign Critical Control Points to this Raw Honey Production.
                             </p>
 
+                            @if (Model.LockReason != null)
+                            {
+                                <div class="alert alert-warning">
+                                    <i class="mdi mdi-lock-outline me-1"></i> @Model.LockReason
+                                </div>
+                            }
+
                             <div class="mb-4 p-3 bg-light rounded">
                                 <strong>Production Info:</strong><br />
                                 Amount: @Model.Production.RawHoneyProductionAmount kg <br />
@@ -66,7 +73,8 @@
                                                                    name="SelectedCCPIds"
                                                                    value="@ccp.Id"
                                                                    switch="primary"
-                                                                   @(isChecked ? "checked" : "") />
+                                                                   @(isChecked ? "checked" : "")
+                                                                   @(Model.LockReason != null ? "disabled" : "") />
 
                                                             <label for="ccp_@ccp.Id"
                                                                    data-on-label="Yes"
@@ -91,10 +99,13 @@
 
                                 <div class="d-flex gap-2 mt-3">
 
+                                    @if (Model.LockReason == null)
+                                    {
                                     <button type="submit"
                                             class="btn btn-success waves-effect waves-light">
                                         Save Assignments
                                     </button>
+                                    }
 
                                     <a asp-action="RawHoneyProductionByApiary"
                                        asp-route-id="@Model.Production.RawHoneyProductionApiaryId"

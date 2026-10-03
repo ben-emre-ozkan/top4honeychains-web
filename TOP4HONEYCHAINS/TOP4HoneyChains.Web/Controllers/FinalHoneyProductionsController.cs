@@ -11,6 +11,7 @@ using TOP4HoneyChains.Web.Models.Entities;
 using TOP4HoneyChains.Web.Models.ViewModels.FinalProduct;
 using TOP4HoneyChains.Web.Models.ViewModels.Monitoring;
 using TOP4HoneyChains.Web.Models.ViewModels.Timeline;
+using TOP4HoneyChains.Web.Services;
 
 namespace TOP4HoneyChains.Web.Controllers
 {
@@ -18,10 +19,27 @@ namespace TOP4HoneyChains.Web.Controllers
     public class FinalHoneyProductionsController : Controller
     {
         private readonly TOP4HoneyChainsContext _context;
+        private readonly CcpIntegrityService _ccp;
 
-        public FinalHoneyProductionsController(TOP4HoneyChainsContext context)
+        public FinalHoneyProductionsController(TOP4HoneyChainsContext context, CcpIntegrityService ccp)
         {
             _context = context;
+            _ccp = ccp;
+        }
+
+        // Finalized batches are locked (D-14): show why and go back to the batch list
+        private async Task<IActionResult?> RedirectIfLockedAsync(int batchId)
+        {
+            var reason = await _ccp.GetBatchLockReasonAsync(batchId);
+            if (reason == null)
+                return null;
+
+            var wholesalerId = await _context.FinalHoneyProductions
+                .Where(f => f.FinalHoneyProductionId == batchId)
+                .Select(f => f.FinalHoneyProductionWholesalerId)
+                .FirstAsync();
+            TempData["Error"] = reason;
+            return RedirectToAction("ByWholesaler", new { wholesalerId });
         }
 
         public async Task<IActionResult> ByWholesaler(int wholesalerId)
@@ -67,18 +85,9 @@ namespace TOP4HoneyChains.Web.Controllers
                 .FirstOrDefaultAsync(w => w.WholesalerId == batch.FinalHoneyProductionWholesalerId);
 
             // 🔐 CCP süreci tamamlanmış raw honey’ler
-            var rawHoneys = await _context.RawHoneyProductions
-                .Where(r => r.RawHoneyProductionWholesalerId == batch.FinalHoneyProductionWholesalerId)
-
-                // En az 1 CCP assignment olmalı
-                .Where(r => _context.RawHoneyCCPAssignments
-                    .Any(a => a.RawHoneyProductionId == r.RawHoneyProductionId))
-
-                // Tüm assignment’ların status’u 3 olmalı
-                .Where(r => _context.RawHoneyCCPAssignments
-                    .Where(a => a.RawHoneyProductionId == r.RawHoneyProductionId)
-                    .All(a => a.RawHoneyCCPAssignmentStatus == 3))
-
+            // At least one CCP, all Completed or Not applicable (D-05, D-15)
+            var rawHoneys = await _ccp.EligibleRawLots(_context.RawHoneyProductions
+                .Where(r => r.RawHoneyProductionWholesalerId == batch.FinalHoneyProductionWholesalerId))
                 .Include(r => r.RawHoneyProductionApiary)
                     .ThenInclude(a => a.ApiaryBeekeeper)
                 .Include(r => r.RawHoneyProductionHoneyTypeNavigation)
@@ -135,7 +144,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 {
                     RawHoney = raw,
                     PendingChecks = raw.RawHoneyCCPAssignments
-                        .Where(a => a.RawHoneyCCPAssignmentStatus != 3) // 3 = Completed
+                        .Where(a => !AssignmentStatusIds.IsDone(a.RawHoneyCCPAssignmentStatus))
                         .OrderBy(a => a.CCP?.Code)
                         .Select(a => new PendingCcpCheckViewModel
                         {
@@ -148,6 +157,9 @@ namespace TOP4HoneyChains.Web.Controllers
                         .ToList()
                 });
             }
+
+            if (!batch.FinalHoneyProductionIsFinalized)
+                model.FinalizeBlockers = await _ccp.GetFinalizeBlockersAsync(batch.FinalHoneyProductionId);
 
             ViewBag.Controller = "Final Honey Productions";
             ViewBag.Action = "Manage Batch";
@@ -202,12 +214,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 if (raw == null)
                     continue;
 
-                // ✅ CCP tamam mı?
-                var allCompleted = await _context.RawHoneyCCPAssignments
-                    .Where(a => a.RawHoneyProductionId == rawId)
-                    .AllAsync(a => a.RawHoneyCCPAssignmentStatus == 3);
-
-                if (!allCompleted)
+                // Same rule as the list: a lot without any CCP is not eligible either
+                if (!await _ccp.EligibleRawLots(_context.RawHoneyProductions.Where(r => r.RawHoneyProductionId == rawId)).AnyAsync())
                     continue;
 
                 var totalUsed = raw.FinalHoneyProductionDetails
@@ -270,14 +278,11 @@ namespace TOP4HoneyChains.Web.Controllers
             if (batch.FinalHoneyProductionIsFinalized)
                 return BadRequest("Batch already finalized.");
 
-            // 🔴 TOTAL KONTROLÜ (EN KRİTİK)
-            var total = await _context.FinalHoneyProductionDetails
-                .Where(d => d.FinalHoneyProductionId == id)
-                .SumAsync(d => (decimal?)d.UsedAmount) ?? 0;
-
-            if (total <= 0)
+            // All CCPs of the batch and of its lots must be Completed or Not applicable (D-16)
+            var blockers = await _ccp.GetFinalizeBlockersAsync(id);
+            if (blockers.Count > 0)
             {
-                TempData["Error"] = "Batch total must be greater than zero before finalizing.";
+                TempData["Error"] = "The batch cannot be finalized yet: " + string.Join(" ", blockers);
                 return RedirectToAction("ManageBatch", new { id });
             }
 
@@ -296,35 +301,7 @@ namespace TOP4HoneyChains.Web.Controllers
             return RedirectToAction("ManageBatch", new { id });
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UnfinalizeBatch(int id)
-        {
-            var batch = await _context.FinalHoneyProductions
-                .FirstOrDefaultAsync(f => f.FinalHoneyProductionId == id);
-
-            if (batch == null)
-                return NotFound();
-
-            // Zaten draft mı?
-            if (!batch.FinalHoneyProductionIsFinalized)
-                return BadRequest("Batch is already draft.");
-
-            // 🔒 ROLE CHECK (şimdilik basit kontrol)
-            //if (!User.IsInRole("Admin"))
-            //    return Forbid();
-
-            batch.FinalHoneyProductionIsFinalized = false;
-            batch.FinalHoneyProductionFinalizedDate = null;
-
-            await _context.SaveChangesAsync();
-
-            ViewBag.Controller = "Final Honey Productions";
-            ViewBag.Action = "Unfinalize Batch";
-
-            return RedirectToAction("ManageBatch", new { id });
-        }
-
+        // There is no "unfinalize": a finalized batch is permanent (D-14)
 
         public async Task<IActionResult> ManageCCP(int id)
         {
@@ -344,8 +321,13 @@ namespace TOP4HoneyChains.Web.Controllers
             {
                 FinalHoneyProductionId = id,
                 Production = production,
-                AllCCPs = await _context.CriticalControlPoints.ToListAsync(),
-                SelectedCCPIds = assignedCCPs
+                // Only CCPs that apply to this kind of record (D-17), plus any assigned earlier
+                AllCCPs = await _context.CriticalControlPoints
+                    .Where(c => c.AppliesTo == CcpAppliesTo.Batch || assignedCCPs.Contains(c.Id))
+                    .OrderBy(c => c.Id)
+                    .ToListAsync(),
+                SelectedCCPIds = assignedCCPs,
+                LockReason = await _ccp.GetBatchLockReasonAsync(id)
             };
 
 
@@ -366,14 +348,49 @@ namespace TOP4HoneyChains.Web.Controllers
             if (production == null)
                 return NotFound();
 
+            if (await RedirectIfLockedAsync(vm.FinalHoneyProductionId) is IActionResult locked)
+                return locked;
+
+            vm.SelectedCCPIds ??= new List<int>();
+
+            // Only CCPs that apply to batches can be added (D-17)
+            var applicableIds = await _context.CriticalControlPoints
+                .Where(c => c.AppliesTo == CcpAppliesTo.Batch)
+                .Select(c => c.Id)
+                .ToListAsync();
+            var assignedIds = await _context.FinalHoneyCCPAssignments
+                .Where(x => x.FinalHoneyProductionId == vm.FinalHoneyProductionId)
+                .Select(x => x.FinalHoneyCCPAssignmentCCP)
+                .ToListAsync();
+            if (vm.SelectedCCPIds.Any(id => !assignedIds.Contains(id) && !applicableIds.Contains(id)))
+            {
+                TempData["Error"] = "Only CCPs that apply to final batches can be assigned. Nothing was changed.";
+                return RedirectToAction(nameof(ManageCCP), new { id = vm.FinalHoneyProductionId });
+            }
+
             var existingAssignments = await _context.FinalHoneyCCPAssignments
                 .Where(x => x.FinalHoneyProductionId == vm.FinalHoneyProductionId)
+                .Include(x => x.CCP)
                 .ToListAsync();
 
-            // Silinenleri kaldır
             var toRemove = existingAssignments
                 .Where(x => !vm.SelectedCCPIds.Contains(x.FinalHoneyCCPAssignmentCCP))
                 .ToList();
+
+            // Never lose recorded values (D-14): a CCP with values or a "Not applicable" record stays
+            var blocked = new List<string>();
+            foreach (var assignment in toRemove)
+            {
+                var hasValues = await _context.CriticalControlPointMonitoringLogs.AnyAsync(l =>
+                    l.FinalHoneyProductionId == vm.FinalHoneyProductionId && l.CCPId == assignment.FinalHoneyCCPAssignmentCCP);
+                if (hasValues || assignment.FinalHoneyCCPAssignmentStatus == AssignmentStatusIds.NotApplicable)
+                    blocked.Add(assignment.CCP?.Code ?? assignment.FinalHoneyCCPAssignmentCCP.ToString());
+            }
+            if (blocked.Count > 0)
+            {
+                TempData["Error"] = $"{string.Join(", ", blocked)} cannot be removed because values or a \"Not applicable\" record exist for this batch. Nothing was changed.";
+                return RedirectToAction(nameof(ManageCCP), new { id = vm.FinalHoneyProductionId });
+            }
 
             _context.FinalHoneyCCPAssignments.RemoveRange(toRemove);
 
@@ -446,7 +463,7 @@ namespace TOP4HoneyChains.Web.Controllers
             };
 
             var total = timeline.Count;
-            var completed = timeline.Count(x => x.StatusName == "Completed");
+            var completed = timeline.Count(x => x.StatusName == "Completed" || x.StatusName == "Not applicable");
 
             ViewBag.ProgressPercent = total == 0 ? 0 : (completed * 100 / total);
             ViewBag.ReturnUrl = Url.Action("Index", "FinalHoneyProductions");
@@ -569,6 +586,9 @@ namespace TOP4HoneyChains.Web.Controllers
                 return NotFound();
             }
 
+            if (await RedirectIfLockedAsync(id.Value) is IActionResult locked)
+                return locked;
+
             ViewBag.Controller = "Final Honey Productions";
             ViewBag.Action = "Edit";
 
@@ -587,6 +607,9 @@ namespace TOP4HoneyChains.Web.Controllers
 
             if (batch == null)
                 return NotFound();
+
+            if (await RedirectIfLockedAsync(id) is IActionResult locked)
+                return locked;
 
             if (!ModelState.IsValid)
                 return View(model);
@@ -620,6 +643,9 @@ namespace TOP4HoneyChains.Web.Controllers
                 return NotFound();
             }
 
+            if (await RedirectIfLockedAsync(id.Value) is IActionResult locked)
+                return locked;
+
             ViewBag.Controller = "Final Honey Productions";
             ViewBag.Action = "Delete";
 
@@ -631,6 +657,9 @@ namespace TOP4HoneyChains.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            if (await RedirectIfLockedAsync(id) is IActionResult locked)
+                return locked;
+
             var finalHoneyProduction = await _context.FinalHoneyProductions.FindAsync(id);
             if (finalHoneyProduction != null)
             {

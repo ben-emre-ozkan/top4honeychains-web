@@ -1,4 +1,5 @@
-﻿@model IEnumerable<TOP4HoneyChains.Web.Models.Entities.FinalHoneyProduction>
+﻿@using TOP4HoneyChains.Web.Models.Entities
+@model IEnumerable<TOP4HoneyChains.Web.Models.Entities.FinalHoneyProduction>
 
 @{
     var wholesaler = ViewBag.Wholesaler as TOP4HoneyChains.Web.Models.Entities.Wholesaler;
@@ -155,8 +156,12 @@
                                             {
                                                 foreach (var assignment in item.FinalHoneyCCPAssignments)
                                                 {
-                                                    var isCompleted = assignment.FinalHoneyCCPAssignmentStatus == 3;
-                                                    var btnClass = isCompleted ? "btn-success" : "btn-secondary";
+                                                    var btnClass = assignment.FinalHoneyCCPAssignmentStatus switch
+                                                    {
+                                                        AssignmentStatusIds.Completed => "btn-success",
+                                                        AssignmentStatusIds.NotApplicable => "btn-outline-dark",
+                                                        _ => "btn-secondary"
+                                                    };
 
                                                     <a asp-controller="CCPMonitoring"
                                                        asp-action="FinalHoneyProductionManageCCP"
@@ -195,19 +200,31 @@
                                                     </a>
                                                 }
 
-                                                <a asp-action="Edit"
-                                                   asp-route-id="@item.FinalHoneyProductionId"
-                                                   class="btn btn-info btn-sm w-100 text-start">
-                                                    <i class="mdi mdi-pencil me-1"></i>
-                                                    Edit
-                                                </a>
+                                                @if (item.FinalHoneyProductionIsFinalized)
+                                                {
+                                                    @* D-14: finalized batches are locked *@
+                                                    <span class="badge bg-success w-100 text-start py-2"
+                                                          title="Finalized batches cannot be edited or deleted">
+                                                        <i class="mdi mdi-lock-outline me-1"></i>
+                                                        Finalized (locked)
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    <a asp-action="Edit"
+                                                       asp-route-id="@item.FinalHoneyProductionId"
+                                                       class="btn btn-info btn-sm w-100 text-start">
+                                                        <i class="mdi mdi-pencil me-1"></i>
+                                                        Edit
+                                                    </a>
 
-                                                <a asp-action="Delete"
-                                                   asp-route-id="@item.FinalHoneyProductionId"
-                                                   class="btn btn-danger btn-sm w-100 text-start">
-                                                    <i class="mdi mdi-delete me-1"></i>
-                                                    Delete
-                                                </a>
+                                                    <a asp-action="Delete"
+                                                       asp-route-id="@item.FinalHoneyProductionId"
+                                                       class="btn btn-danger btn-sm w-100 text-start">
+                                                        <i class="mdi mdi-delete me-1"></i>
+                                                        Delete
+                                                    </a>
+                                                }
 
                                             </div>
                                         </td>

@@ -19,6 +19,11 @@ public partial class HoneyType
     [StringLength(250)]
     public string? HoneyTypeDescription { get; set; }
 
+    // Selects honey-class specific CCP limits: Floral, Honeydew or Pine (D-18)
+    [StringLength(20)]
+    [RegularExpression("^(Floral|Honeydew|Pine)$", ErrorMessage = "Choose a honey class.")]
+    public string? HoneyClass { get; set; }
+
     [InverseProperty("RawHoneyProductionHoneyTypeNavigation")]
     public virtual ICollection<RawHoneyProduction> RawHoneyProductions { get; set; } = new List<RawHoneyProduction>();
 }

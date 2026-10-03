@@ -6,6 +6,7 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.Runtime.Versioning;
 using TOP4HoneyChains.Web.Data;
+using TOP4HoneyChains.Web.Models.Entities;
 using TOP4HoneyChains.Web.Services;
 using TOP4HoneyChains.Web.Models.ViewModels.HoneyStory;
 
@@ -108,17 +109,6 @@ namespace TOP4HoneyChains.Web.Controllers
                 .ToListAsync();
 
 
-            var rawIds = details.Select(x => x.RawHoneyProductionId).Distinct().ToList();
-
-            var rawCcpLogs = await _context.CriticalControlPointMonitoringLogs
-                .AsNoTracking()
-                .Where(l => l.RawHoneyProductionId != null && rawIds.Contains(l.RawHoneyProductionId.Value))
-                .Where(l => l.CCPId == 2) // CCP1
-                .Include(l => l.Parameter)
-                .Include(l => l.CCP)
-                .ToListAsync();
-
-            
             // 4) VM doldur
             foreach (var d in details)
             {
@@ -156,28 +146,10 @@ namespace TOP4HoneyChains.Web.Controllers
                         .ToList();
                 }
 
-                // Raw CCP rows (CCP0-CCP3) for THIS raw
-                source.RawCCPs = rawCcpLogs
-                    .Where(l => l.RawHoneyProductionId == d.RawHoneyProductionId)
-                    .Select(l => new HoneyStoryCCPRow
-                    {
-                        CCPId = l.CCPId,
-                        CCPCode = l.CCP?.Code,
-                        CCPTitle = l.CCP?.Title,
-                        ParameterId = l.ParameterId,
-                        ParameterName = l.Parameter?.ParameterName,
-                        Unit = l.Parameter?.ParameterUnit,
-                        NumericValue = l.MeasuredNumericValue,
-                        TextValue = l.MeasuredTextValue,
-                        MeasurementDate = l.MeasurementDate,
-                        Notes = l.Notes
-                    })
-                    .OrderBy(x => x.CCPId)
-                    .ThenBy(x => x.ParameterName)
-                    .ToList();
-
                 vm.RawSources.Add(source);
             }
+
+            await FillCcpBlocksAsync(vm);
 
             return View(vm);
         }
@@ -298,27 +270,6 @@ namespace TOP4HoneyChains.Web.Controllers
                 })
                 .ToListAsync();
 
-            // 2b) Raw CCP (CCP0-CCP3) monitoring loglarını raw honey production id’lerine göre çek
-            // Not: Senin sistemde RawHoney tarafı loglar RawHoneyProductionId ile tutuluyor.
-            var rawIds = details.Select(x => x.RawHoneyProductionId).Distinct().ToList();
-
-            var rawCcpLogs = await _context.CriticalControlPointMonitoringLogs
-                .AsNoTracking()
-                .Where(l => l.RawHoneyProductionId != null && rawIds.Contains(l.RawHoneyProductionId.Value))
-                .Where(l => l.CCPId >= 2 && l.CCPId <= 4) // CCP0-CCP3
-                .Include(l => l.Parameter)
-                .Include(l => l.CCP)
-                .ToListAsync();
-
-            // 3) Final CCP (CCP4-CCP10) monitoring loglarını batch’e göre çek
-            var finalCcpLogs = await _context.CriticalControlPointMonitoringLogs
-                .AsNoTracking()
-                .Where(l => l.FinalHoneyProductionId == batch.FinalHoneyProductionId)
-                .Where(l => l.CCPId >= 5 && l.CCPId <= 11)
-                .Include(l => l.Parameter)
-                .Include(l => l.CCP)
-                .ToListAsync();
-
             // 4) VM doldur
             foreach (var d in details)
             {
@@ -352,47 +303,10 @@ namespace TOP4HoneyChains.Web.Controllers
                         .ToList();
                 }
 
-                // Raw CCP rows (CCP0-CCP3) for THIS raw
-                source.RawCCPs = rawCcpLogs
-                    .Where(l => l.RawHoneyProductionId == d.RawHoneyProductionId)
-                    .Select(l => new HoneyStoryCCPRow
-                    {
-                        CCPId = l.CCPId,
-                        CCPCode = l.CCP?.Code,
-                        CCPTitle = l.CCP?.Title,
-                        ParameterId = l.ParameterId,
-                        ParameterName = l.Parameter?.ParameterName,
-                        Unit = l.Parameter?.ParameterUnit,
-                        NumericValue = l.MeasuredNumericValue,
-                        TextValue = l.MeasuredTextValue,
-                        MeasurementDate = l.MeasurementDate,
-                        Notes = l.Notes
-                    })
-                    .OrderBy(x => x.CCPId)
-                    .ThenBy(x => x.ParameterName)
-                    .ToList();
-
                 vm.RawSources.Add(source);
             }
 
-            // Final CCP rows (CCP4-CCP10)
-            vm.FinalCCPs = finalCcpLogs
-                .Select(l => new HoneyStoryCCPRow
-                {
-                    CCPId = l.CCPId,
-                    CCPCode = l.CCP?.Code,
-                    CCPTitle = l.CCP?.Title,
-                    ParameterId = l.ParameterId,
-                    ParameterName = l.Parameter?.ParameterName,
-                    Unit = l.Parameter?.ParameterUnit,
-                    NumericValue = l.MeasuredNumericValue,
-                    TextValue = l.MeasuredTextValue,
-                    MeasurementDate = l.MeasurementDate,
-                    Notes = l.Notes
-                })
-                .OrderBy(x => x.CCPId)
-                .ThenBy(x => x.ParameterName)
-                .ToList();
+            await FillCcpBlocksAsync(vm);
 
             return View(vm);
         }
@@ -402,6 +316,126 @@ namespace TOP4HoneyChains.Web.Controllers
 
 
     
+        // Every CCP that applies to the lots and to the batch, with its state; missing CCPs and
+        // parameters are listed as "not recorded" instead of being hidden (D-16). Compliance is shown
+        // only for parameters whose limits are verified (D-18).
+        private async Task FillCcpBlocksAsync(HoneyStoryViewModel vm)
+        {
+            var rawIds = vm.RawSources.Select(s => s.RawHoneyProductionId).Distinct().ToList();
+            var batchId = vm.FinalHoneyProductionId;
+
+            var ccps = await _context.CriticalControlPoints.AsNoTracking()
+                .Include(c => c.CriticalControlPointParameters).ThenInclude(p => p.Limits).ThenInclude(l => l.ConditionParameter)
+                .Include(c => c.CriticalControlPointParameters).ThenInclude(p => p.Limits).ThenInclude(l => l.SumWithParameter)
+                .OrderBy(c => c.Id)
+                .ToListAsync();
+            var rawAssignments = await _context.RawHoneyCCPAssignments.AsNoTracking()
+                .Where(a => rawIds.Contains(a.RawHoneyProductionId))
+                .ToListAsync();
+            var batchAssignments = await _context.FinalHoneyCCPAssignments.AsNoTracking()
+                .Where(a => a.FinalHoneyProductionId == batchId)
+                .ToListAsync();
+            var logs = await _context.CriticalControlPointMonitoringLogs.AsNoTracking()
+                .Where(l => (l.RawHoneyProductionId != null && rawIds.Contains(l.RawHoneyProductionId.Value))
+                            || l.FinalHoneyProductionId == batchId)
+                .ToListAsync();
+            var classes = await _context.RawHoneyProductions.AsNoTracking()
+                .Where(r => rawIds.Contains(r.RawHoneyProductionId))
+                .Select(r => new { r.RawHoneyProductionId, r.RawHoneyProductionHoneyTypeNavigation!.HoneyClass })
+                .ToListAsync();
+
+            foreach (var source in vm.RawSources)
+            {
+                var honeyClass = classes.FirstOrDefault(c => c.RawHoneyProductionId == source.RawHoneyProductionId)?.HoneyClass;
+                var own = rawAssignments.Where(a => a.RawHoneyProductionId == source.RawHoneyProductionId).ToList();
+                source.CcpBlocks = ccps
+                    .Where(c => c.AppliesTo == CcpAppliesTo.RawLot || own.Any(a => a.RawHoneyCCPAssignmentCCP == c.Id))
+                    .Select(c =>
+                    {
+                        var a = own.FirstOrDefault(x => x.RawHoneyCCPAssignmentCCP == c.Id);
+                        return BuildCcpBlock(c, a?.RawHoneyCCPAssignmentStatus, a?.NotApplicableReason,
+                            logs.Where(l => l.RawHoneyProductionId == source.RawHoneyProductionId && l.CCPId == c.Id).ToList(), honeyClass);
+                    })
+                    .ToList();
+            }
+
+            var batchClasses = classes.Select(c => c.HoneyClass).Distinct().ToList();
+            var batchClass = batchClasses.Count == 1 ? batchClasses[0] : null;
+            vm.BatchCcpBlocks = ccps
+                .Where(c => c.AppliesTo == CcpAppliesTo.Batch || batchAssignments.Any(a => a.FinalHoneyCCPAssignmentCCP == c.Id))
+                .Select(c =>
+                {
+                    var a = batchAssignments.FirstOrDefault(x => x.FinalHoneyCCPAssignmentCCP == c.Id);
+                    return BuildCcpBlock(c, a?.FinalHoneyCCPAssignmentStatus, a?.NotApplicableReason,
+                        logs.Where(l => l.FinalHoneyProductionId == batchId && l.CCPId == c.Id).ToList(), batchClass);
+                })
+                .ToList();
+        }
+
+        private static HoneyStoryCcpBlock BuildCcpBlock(CriticalControlPoint ccp, int? status, string? notApplicableReason,
+            List<CriticalControlPointMonitoringLog> logs, string? honeyClass)
+        {
+            var block = new HoneyStoryCcpBlock
+            {
+                CCPId = ccp.Id,
+                CCPCode = ccp.Code,
+                CCPTitle = ccp.Title,
+                ProcessingStep = ccp.ProcessingStep
+            };
+
+            if (status == AssignmentStatusIds.NotApplicable)
+            {
+                block.State = HoneyStoryCcpBlock.NotApplicable;
+                block.NotApplicableReason = notApplicableReason;
+                return block;
+            }
+            if (status == null || logs.Count == 0)
+            {
+                block.State = HoneyStoryCcpBlock.NotRecorded;
+                return block;
+            }
+
+            block.State = status == AssignmentStatusIds.Completed ? HoneyStoryCcpBlock.Recorded : HoneyStoryCcpBlock.Incomplete;
+            var siblings = logs.Where(l => l.ParameterId != null && l.MeasuredNumericValue != null)
+                .GroupBy(l => l.ParameterId!.Value)
+                .ToDictionary(g => g.Key, g => g.First().MeasuredNumericValue!.Value);
+
+            foreach (var p in ccp.CriticalControlPointParameters.OrderBy(p => p.ParameterId))
+            {
+                var log = logs.FirstOrDefault(l => l.ParameterId == p.ParameterId);
+                bool? compliant = null;
+                string? limitText = null;
+                if (log != null && p.LimitVerified)
+                {
+                    // The result stored at entry time; values recorded before limits existed are checked now
+                    var result = log.IsInRange != null
+                        ? new CcpLimitEvaluator.Result(log.IsInRange, log.AppliedLimit)
+                        : CcpLimitEvaluator.Evaluate(p, log.MeasuredNumericValue, siblings, honeyClass);
+                    compliant = result.IsInRange;
+                    limitText = result.AppliedLimit;
+                }
+
+                var isFile = p.DataType == CcpDataType.File;
+                block.Parameters.Add(new HoneyStoryCCPRow
+                {
+                    CCPId = ccp.Id,
+                    CCPCode = ccp.Code,
+                    CCPTitle = ccp.Title,
+                    ParameterId = p.ParameterId,
+                    ParameterName = p.ParameterName,
+                    Unit = p.ParameterUnit == "None" ? null : p.ParameterUnit,
+                    NumericValue = log?.MeasuredNumericValue,
+                    TextValue = isFile ? null : log?.MeasuredTextValue,   // documents are not published
+                    IsFile = isFile && log != null,
+                    MeasurementDate = log?.MeasurementDate,
+                    Recorded = log != null,
+                    Compliant = compliant,
+                    LimitText = limitText
+                });
+            }
+            return block;
+        }
+
         private static decimal? ApproximateCoordinate(decimal? value) =>
             value.HasValue ? Math.Round(value.Value, 1, MidpointRounding.AwayFromZero) : null;
     }

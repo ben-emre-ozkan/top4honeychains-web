@@ -51,6 +51,22 @@
                                     <span asp-validation-for="Code" class="text-danger"></span>
                                 </div>
 
+                                <!-- Applies to (D-17) -->
+                                <div class="mb-3">
+                                    <label asp-for="AppliesTo" class="form-label required">
+                                        Applies to
+                                    </label>
+
+                                    <select asp-for="AppliesTo" class="form-select">
+                                        <option value="">-- Select --</option>
+                                        <option value="RawLot">Raw honey lot</option>
+                                        <option value="Batch">Final batch</option>
+                                    </select>
+                                    <small class="text-muted">Only lots or batches of this kind are offered this CCP.</small>
+
+                                    <span asp-validation-for="AppliesTo" class="text-danger"></span>
+                                </div>
+
                                 <!-- Title -->
                                 <div class="mb-3">
                                     <label asp-for="Title" class="form-label">

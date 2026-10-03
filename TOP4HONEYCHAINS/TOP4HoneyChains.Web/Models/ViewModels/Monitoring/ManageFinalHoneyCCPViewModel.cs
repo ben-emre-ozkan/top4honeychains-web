@@ -11,5 +11,8 @@ namespace TOP4HoneyChains.Web.Models.ViewModels.Monitoring
         public List<int> SelectedCCPIds { get; set; } = new();
 
         public List<CriticalControlPoint> AllCCPs { get; set; } = new();
+
+        // Set when the batch is finalized (D-14); the page is then read-only
+        public string? LockReason { get; set; }
     }
 }
