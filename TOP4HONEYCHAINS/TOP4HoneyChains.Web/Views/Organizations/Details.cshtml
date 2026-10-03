@@ -1,0 +1,247 @@
+@using TOP4HoneyChains.Web.Models.Entities
+@model Organization
+@{
+    ViewData["Title"] = Model.DisplayName;
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var isAdmin = (bool)ViewBag.IsAdmin;
+    var canDocs = (bool)ViewBag.CanManageDocuments;
+    var canVerify = (bool)ViewBag.CanVerify;
+    var members = ViewBag.Members as List<Membership> ?? new();
+    var names = ViewBag.UserNames as Dictionary<string, string> ?? new();
+    var allCaps = ViewBag.AllCapabilities as List<Capability> ?? new();
+    var roles = ViewBag.Roles as string[] ?? Array.Empty<string>();
+    var kinds = ViewBag.DocumentKinds as string[] ?? Array.Empty<string>();
+    var badge = Model.Status switch { OrgStatus.Verified => "bg-success", OrgStatus.Suspended => "bg-danger", _ => "bg-warning text-dark" };
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h4 class="card-title mb-1">@Model.DisplayName @if (Model.IsPlatform) { <span class="badge bg-dark">platform</span> }</h4>
+                            <div class="text-muted small">
+                                @Model.LegalName @(Model.TaxNo != null ? " · Tax no. " + Model.TaxNo : "") @(Model.Province != null ? " · " + Model.Province : "") @(Model.District != null ? " / " + Model.District : "")
+                                @if (Model.LegacyWholesaler != null) { <span> · created from the wholesaler record "@Model.LegacyWholesaler.WholesalerTitle"</span> }
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <span class="badge @badge fs-6" id="org-status">@Model.Status</span>
+                            @if (isAdmin)
+                            {
+                                <div class="mt-2"><a asp-action="Edit" asp-route-id="@Model.OrgId" class="btn btn-sm btn-outline-primary">Edit details</a></div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Verification -->
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Verification</h5>
+                            <p class="text-muted small mb-2">Pending → Verified → Suspended. Only verified organizations can enter data; suspension keeps all data and blocks new entries.</p>
+                            @if (canVerify && !Model.IsPlatform)
+                            {
+                                <form asp-action="ChangeStatus" asp-route-id="@Model.OrgId" method="post" class="mb-3" id="verify-form">
+                                    <textarea name="reason" class="form-control mb-2" rows="2" maxlength="500" placeholder="Reason / note (required to suspend or to request documents)"></textarea>
+                                    @if (Model.Status != OrgStatus.Verified)
+                                    {
+                                        <button type="submit" name="toStatus" value="Verified" class="btn btn-sm btn-success">@(Model.Status == OrgStatus.Suspended ? "Reinstate" : "Verify")</button>
+                                    }
+                                    @if (Model.Status == OrgStatus.Pending)
+                                    {
+                                        <button type="submit" name="toStatus" value="Pending" class="btn btn-sm btn-outline-secondary">Request documents</button>
+                                    }
+                                    @if (Model.Status == OrgStatus.Verified)
+                                    {
+                                        <button type="submit" name="toStatus" value="Suspended" class="btn btn-sm btn-danger">Suspend</button>
+                                    }
+                                </form>
+                            }
+                            <table class="table table-sm">
+                                <thead><tr><th>When (UTC)</th><th>From</th><th>To</th><th>Reason</th></tr></thead>
+                                <tbody>
+                                    @foreach (var e in Model.VerificationEvents.OrderByDescending(e => e.EventId))
+                                    {
+                                        <tr><td>@e.At.ToString("dd.MM.yyyy HH:mm")</td><td>@e.FromStatus</td><td>@e.ToStatus</td><td>@e.Reason</td></tr>
+                                    }
+                                    @if (!Model.VerificationEvents.Any())
+                                    {
+                                        <tr><td colspan="4" class="text-muted">No status changes yet.</td></tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Documents -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Documents</h5>
+                            <table class="table table-sm" id="documents">
+                                <thead><tr><th>Type</th><th>File</th><th>SHA-256</th><th>Uploaded (UTC)</th></tr></thead>
+                                <tbody>
+                                    @foreach (var d in Model.Documents.OrderByDescending(d => d.DocumentId))
+                                    {
+                                        <tr>
+                                            <td>@d.Kind</td>
+                                            <td><a asp-action="Document" asp-route-id="@d.DocumentId" target="_blank">@d.OriginalFileName</a></td>
+                                            <td><code title="@d.Sha256">@d.Sha256[..12]…</code></td>
+                                            <td>@d.UploadedAt.ToString("dd.MM.yyyy HH:mm")</td>
+                                        </tr>
+                                    }
+                                    @if (!Model.Documents.Any())
+                                    {
+                                        <tr><td colspan="4" class="text-muted">No documents yet.</td></tr>
+                                    }
+                                </tbody>
+                            </table>
+                            @if (canDocs)
+                            {
+                                <form asp-action="UploadDocument" asp-route-id="@Model.OrgId" method="post" enctype="multipart/form-data" class="row g-2" id="upload-form">
+                                    <div class="col-md-4">
+                                        <select name="kind" class="form-select">
+                                            @foreach (var k in kinds) { <option value="@k">@k</option> }
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6"><input type="file" name="file" class="form-control" accept=".pdf,.jpg,.jpeg,.png,.webp" /></div>
+                                    <div class="col-md-2"><button type="submit" class="btn btn-primary w-100">Upload</button></div>
+                                    <small class="text-muted">PDF up to 10 MB, or JPG/PNG/WEBP up to 8 MB. Stored outside the web folder with its SHA-256.</small>
+                                </form>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <!-- Capabilities -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Capabilities</h5>
+                            <ul class="list-group mb-3" id="capabilities">
+                                @foreach (var c in Model.Capabilities.OrderBy(c => c.Capability))
+                                {
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <span>
+                                            <strong>@c.Capability</strong>
+                                            @if (c.Capability == Capabilities.Laboratory)
+                                            {
+                                                <small class="text-muted">@(c.IsAccredited ? $"accredited, no. {c.AccreditationNumber}" : "not accredited") @(c.AccreditationValidUntil != null ? $", valid until {c.AccreditationValidUntil:dd.MM.yyyy}" : "")</small>
+                                            }
+                                        </span>
+                                        @if (isAdmin && c.Capability != Capabilities.PlatformAdmin)
+                                        {
+                                            <form asp-action="RemoveCapability" asp-route-id="@Model.OrgId" method="post">
+                                                <input type="hidden" name="capability" value="@c.Capability" />
+                                                <button type="submit" class="btn btn-sm btn-outline-danger">Remove</button>
+                                            </form>
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                            @if (isAdmin && !Model.IsPlatform)
+                            {
+                                <form asp-action="AddCapability" asp-route-id="@Model.OrgId" method="post" class="row g-2">
+                                    <div class="col-md-4">
+                                        <select name="capability" class="form-select">
+                                            @foreach (var c in allCaps.Where(c => c.Code != Capabilities.PlatformAdmin && Model.Capabilities.All(x => x.Capability != c.Code)))
+                                            {
+                                                <option value="@c.Code">@c.Code</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="col-md-8 small">
+                                        <label><input type="checkbox" name="isAccredited" value="true" /> accredited (laboratory)</label>
+                                        <input name="accreditationNumber" class="form-control form-control-sm d-inline-block w-auto" placeholder="accreditation no." maxlength="100" />
+                                        <input name="accreditationValidUntil" type="date" class="form-control form-control-sm d-inline-block w-auto" />
+                                    </div>
+                                    <div class="col-12"><button type="submit" class="btn btn-sm btn-primary">Add capability</button></div>
+                                </form>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Four-eyes -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Four-eyes exemption</h5>
+                            <p class="small text-muted mb-2">
+                                With the exemption, a member may approve a CCP record they recorded themselves (e.g. a one-person association).
+                                Every such approval is flagged <code>SelfApproved</code> in the audit log. It never applies to lab results. Set only by platform administrators.
+                            </p>
+                            <div>Current: <strong id="four-eyes">@(Model.FourEyesExempt ? "exempt" : "not exempt")</strong></div>
+                            @if (isAdmin)
+                            {
+                                <form asp-action="SetFourEyesExempt" asp-route-id="@Model.OrgId" method="post" class="mt-2">
+                                    <input type="hidden" name="exempt" value="@(!Model.FourEyesExempt)" />
+                                    <button type="submit" class="btn btn-sm btn-outline-warning">@(Model.FourEyesExempt ? "Remove exemption" : "Grant exemption")</button>
+                                </form>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Members -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Members</h5>
+                            <table class="table table-sm" id="members">
+                                <thead><tr><th>User</th><th>Org role</th><th>Status</th><th></th></tr></thead>
+                                <tbody>
+                                    @foreach (var m in members)
+                                    {
+                                        <tr>
+                                            <td>@(names.TryGetValue(m.UserId, out var n) ? n : m.UserId)</td>
+                                            <td>@m.OrgRole</td>
+                                            <td>@m.Status</td>
+                                            <td>
+                                                @if (isAdmin && m.Status == MembershipStatus.Active)
+                                                {
+                                                    <form asp-action="RevokeMember" method="post">
+                                                        <input type="hidden" name="membershipId" value="@m.MembershipId" />
+                                                        <button type="submit" class="btn btn-sm btn-outline-danger">Revoke</button>
+                                                    </form>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (!members.Any())
+                                    {
+                                        <tr><td colspan="4" class="text-muted">No members yet.</td></tr>
+                                    }
+                                </tbody>
+                            </table>
+                            @if (isAdmin)
+                            {
+                                <form asp-action="AddMember" asp-route-id="@Model.OrgId" method="post" class="row g-2" id="add-member">
+                                    <div class="col-md-4">
+                                        <label class="form-label small">Org role</label>
+                                        <select name="orgRole" class="form-select">
+                                            @foreach (var r in roles) { <option value="@r">@r</option> }
+                                        </select>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <label class="form-label small">Existing user name</label>
+                                        <input name="existingUserName" class="form-control" autocomplete="off" />
+                                    </div>
+                                    <div class="col-12 small text-muted">or create a new user (no global role; access only through memberships):</div>
+                                    <div class="col-md-4"><input name="newUserName" class="form-control" placeholder="user name" autocomplete="off" /></div>
+                                    <div class="col-md-4"><input name="newEmail" type="email" class="form-control" placeholder="e-mail" autocomplete="off" /></div>
+                                    <div class="col-md-4"><input name="newPassword" type="password" class="form-control" placeholder="password" autocomplete="new-password" /></div>
+                                    <div class="col-12"><button type="submit" class="btn btn-sm btn-primary">Add member</button></div>
+                                </form>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a asp-action="Index" class="btn btn-secondary">Back</a>
+        </div>
+    </div>
+</body>

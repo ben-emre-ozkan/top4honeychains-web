@@ -1,0 +1,135 @@
+@using TOP4HoneyChains.Web.Models.Entities
+@using TOP4HoneyChains.Web.Services.OrgModel
+@{
+    ViewData["Title"] = "My organization";
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var active = ViewBag.Active as ActiveMembership;
+    var memberships = ViewBag.Memberships as List<MembershipOption> ?? new();
+    var lots = ViewBag.Lots as List<RawHoneyProduction> ?? new();
+    var batches = ViewBag.Batches as List<FinalHoneyProduction> ?? new();
+    string Chip(int status) => status switch
+    {
+        AssignmentStatusIds.Completed => "btn-success",
+        AssignmentStatusIds.NotApplicable => "btn-outline-dark",
+        _ => "btn-secondary"
+    };
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <div class="card">
+                <div class="card-body">
+                    @if (active == null)
+                    {
+                        <h4 class="card-title">No active membership</h4>
+                        <p class="text-muted">You are not a member of an organization.</p>
+                    }
+                    else
+                    {
+                        <div class="d-flex flex-wrap justify-content-between align-items-start gap-3">
+                            <div>
+                                <h4 class="card-title mb-1" id="active-org">@active.OrgName</h4>
+                                <div>
+                                    Role: <strong id="active-role">@active.OrgRole</strong> ·
+                                    Status: <strong id="active-status">@active.OrgStatus</strong> ·
+                                    Capabilities: @string.Join(", ", active.Capabilities)
+                                </div>
+                                @if (!active.IsVerified)
+                                {
+                                    <div class="alert alert-warning mt-2 mb-0" id="not-verified">
+                                        Your organization is <strong>@active.OrgStatus</strong>. You can read its data and (as OrgAdmin) upload documents, but nobody can enter data until it is verified.
+                                    </div>
+                                }
+                                <a asp-controller="Organizations" asp-action="Details" asp-route-id="@active.OrgId" class="btn btn-sm btn-outline-primary mt-2">Organization page</a>
+                            </div>
+                            @if (memberships.Count > 1)
+                            {
+                                <form asp-action="Switch" method="post" class="d-flex gap-2 align-items-end" id="switch-form">
+                                    <div>
+                                        <label class="form-label small mb-0">Act as</label>
+                                        <select name="membershipId" class="form-select">
+                                            @foreach (var m in memberships)
+                                            {
+                                                <option value="@m.MembershipId" selected="@(m.MembershipId == active.MembershipId)">@m.OrgName – @m.OrgRole</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Switch</button>
+                                </form>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Raw honey lots</h5>
+                    <p class="small text-muted">Lots of your organization (and, for associations, of member beekeepers). Click a CCP to see or record its values.</p>
+                    <table class="table table-sm table-bordered" id="lots">
+                        <thead><tr><th>#</th><th>Apiary</th><th>Honey type</th><th>Amount (kg)</th><th>Date</th><th>CCPs</th></tr></thead>
+                        <tbody>
+                            @foreach (var l in lots)
+                            {
+                                <tr data-lot-id="@l.RawHoneyProductionId">
+                                    <td>@l.RawHoneyProductionId</td>
+                                    <td>@l.RawHoneyProductionApiary?.ApiaryTitle</td>
+                                    <td>@l.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle</td>
+                                    <td>@l.RawHoneyProductionAmount</td>
+                                    <td>@l.RawHoneyProductionDate?.ToString("dd.MM.yyyy")</td>
+                                    <td>
+                                        @foreach (var a in l.RawHoneyCCPAssignments.OrderBy(a => a.RawHoneyCCPAssignmentCCP))
+                                        {
+                                            <a asp-controller="CCPMonitoring" asp-action="RawHoneyProductionManageCCP"
+                                               asp-route-rawHoneyProductionId="@l.RawHoneyProductionId" asp-route-ccpId="@a.RawHoneyCCPAssignmentCCP"
+                                               class="btn btn-sm @Chip(a.RawHoneyCCPAssignmentStatus) me-1 mb-1">@a.CCP?.Code @(a.ApprovedAt != null ? "✓" : "")</a>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                            @if (!lots.Any())
+                            {
+                                <tr><td colspan="6" class="text-muted">No lots.</td></tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Batches</h5>
+                    <table class="table table-sm table-bordered" id="batches">
+                        <thead><tr><th>#</th><th>Title</th><th>Date</th><th>Total (kg)</th><th>Status</th><th>CCPs</th></tr></thead>
+                        <tbody>
+                            @foreach (var b in batches)
+                            {
+                                <tr data-batch-id="@b.FinalHoneyProductionId">
+                                    <td>@b.FinalHoneyProductionId</td>
+                                    <td>@b.FinalHoneyProductionTitle</td>
+                                    <td>@b.FinalHoneyProductionDate?.ToString("dd.MM.yyyy")</td>
+                                    <td>@b.FinalHoneyProductionTotalAmount</td>
+                                    <td>@(b.FinalHoneyProductionIsFinalized ? "Finalized" : "Draft")</td>
+                                    <td>
+                                        @foreach (var a in b.FinalHoneyCCPAssignments.OrderBy(a => a.FinalHoneyCCPAssignmentCCP))
+                                        {
+                                            <a asp-controller="CCPMonitoring" asp-action="FinalHoneyProductionManageCCP"
+                                               asp-route-finalHoneyProductionId="@b.FinalHoneyProductionId" asp-route-ccpId="@a.FinalHoneyCCPAssignmentCCP"
+                                               class="btn btn-sm @Chip(a.FinalHoneyCCPAssignmentStatus) me-1 mb-1">@a.CCP?.Code @(a.ApprovedAt != null ? "✓" : "")</a>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                            @if (!batches.Any())
+                            {
+                                <tr><td colspan="6" class="text-muted">No batches.</td></tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
