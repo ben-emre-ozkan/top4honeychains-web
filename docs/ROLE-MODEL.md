@@ -1,6 +1,6 @@
-# Role and organization model (design)
+﻿# Role and organization model (design)
 
-Status: **design only**, written 2026-10-03 on `feat/role-model`. No code or schema has changed. Decisions D-22 to D-31 in [DECISIONS.md](DECISIONS.md) are **assumptions, revisable**; open points are PQ-04 to PQ-12 in [PARTNER-QUESTIONS.md](PARTNER-QUESTIONS.md).
+Status: written 2026-10-03 on `feat/role-model`. **P1 is implemented** (`feat/role-model-p1`, flag `Features:OrgRoleModel`, default off); P2–P5 are design. Implementation choices and deviations from this text: D-32 (active membership as a re-checked cookie choice instead of a claim; lot/batch ownership through `Organizations.LegacyWholesalerId` until the P3 custody columns; registry data in `BeekeeperRegistry` instead of new `Beekeepers` columns; fixed enter/approve roles until the P2 configuration). Decisions D-22 to D-31 in [DECISIONS.md](DECISIONS.md) are **assumptions, revisable**; open points are PQ-04 to PQ-12 in [PARTNER-QUESTIONS.md](PARTNER-QUESTIONS.md).
 Paths are relative to `TOP4HONEYCHAINS/TOP4HoneyChains.Web/`.
 
 **Ground rule:** v1.0 behaviour stays as it is: admin-only web panel (D-01), beekeeper logins locked (D-09). Everything below is switched on by one feature flag, `Features:OrgRoleModel` (default `false`). All schema changes are additive numbered scripts (CLAUDE.md).

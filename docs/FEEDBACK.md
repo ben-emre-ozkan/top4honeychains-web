@@ -228,3 +228,32 @@ Source: the as-is analysis in [`CCP-CURRENT.md`](CCP-CURRENT.md). Decisions [D-1
 - **What CCP 0 showed publicly** (checked on a real finalized batch, anonymous, structure only): per lot the title "Primary Audit", the step "Pre-Production" and all 21 audit questions with their answers, including the 3 free-text questions (how temperature is measured, which disinfection methods, how often water is tested). No notes, dates, files or locations. After the fix: the same CCP shows 18 Yes/No answers; CCP 1 still shows its text (sensory analysis).
 - **Migration 003** applied to LocalDB twice; the second run changed 0 rows. Seeds: public text on CCP 1–10, the chestnut conductivity row, the floral fructose/glucose ratio row, 4 + 4 pine moisture notes.
 - **Verified in the browser** (`zz_test` lots, deleted afterwards): chestnut lot, conductivity 0.5 → out of limit "min 0.8 (Chestnut Honey)"; thyme lot, 0.5 → within "max 0.8 (Floral)". Fructose 30 / glucose 25 → out (sum 55 < 60, ratio 1.2 in); 30 / 40 → out (ratio 0.75); 35 / 30 → within (sum 65, ratio 1.17). The Limits page shows honey-type and ratio rows and refuses a row with both a sum and a ratio. The CCP form keeps "Show free-text values".
+
+## Role model, phase P1 (`feat/role-model-p1`, 2026-10-03)
+
+Design: [ROLE-MODEL.md](ROLE-MODEL.md). Decisions: D-22 to D-32. Schema and data migration: `db/migrations/004_org_model.sql`. Everything is behind `Features:OrgRoleModel` (default `false`).
+
+| ID | Item | Status |
+|---|---|---|
+| ORG-01 | Organizations, capabilities (incl. lab accreditation fields), memberships with org roles; admin screens (Organizations, Registry, Audit log) and a member workspace with a membership switcher | done |
+| ORG-02 | Verification workflow Pending → Verified → Suspended (reinstate), documents with SHA-256 stored outside `wwwroot`, reasons, history | done |
+| ORG-03 | Registry verification interface (`IRegistryVerifier`) with the manual implementation (format TR + province 01–81 + 10 digits, proof document, decision) | done |
+| ORG-04 | Append-only, hash-chained audit log for every create/update/delete of the business data, plus verify, approve, login and user creation; chain check in the UI | done |
+| ORG-05 | Authorization: `PanelUser` / `PlatformAdmin` policies, resource-based handlers for organizations and CCP records (read / enter / approve), org-scoped queries (`OrgScope`) | done |
+| ORG-06 | Four-eyes approval of CCP records with the PlatformAdmin-set exemption, flagged `SelfApproved` (D-27) | done |
+| ORG-07 | Beekeepers as records without an account under the flag; the 62 existing logins untouched (D-23) | done |
+
+### Note on the P1 verification (2026-10-03)
+- **Migration 004** applied to LocalDB twice; the second run inserted nothing. Counts: 10 capabilities, 7 org roles, 1 platform organization, 2 platform memberships (the users in the Administrator role), 7 organizations from the existing wholesalers (Pending, 21 capabilities). No existing row was changed.
+- **Flag off (v1.0 regression):** as admin, 27 main admin pages return 200 (dashboard, beekeepers and lookups, apiaries, raw lots incl. by-apiary / Manage CCP / overview, honey types, periods, wholesalers, batches incl. by-wholesaler / ManageBatch / Manage CCP / overview, both CCP monitoring pages, CCP definitions / categories / parameters / limits, users, roles, profile); no new menu or approval panel; Organizations, Registry, Audit and Workspace return 404; the public Honey Story returns 200. Writes: wholesalers, a beekeeper (still gets a locked login, v1.0), an apiary, lots, a CCP assignment and a CCP value save with the usual redirect; 0 audit rows. A user who is only an org member cannot log in (no panel access message).
+- **Flag on** (`zz_test` organizations A and B, users with OrgAdmin / Staff / QualityApprover roles, one user with three memberships):
+  - Pending org: its Staff user sees its own lot read-only with "only verified organizations can enter data"; a crafted save is refused. Verify without documents is refused; the OrgAdmin uploads a document (Staff gets access denied); after Verify, Staff enters values.
+  - Isolation: org A's user gets 404 for org B's lot, org B's page and the platform page; a crafted save on org B's lot returns 404; lists show only the own organization and own lots; admin pages are denied.
+  - Approval: Staff cannot approve ("Only a QualityApprover…"); the QualityApprover approves; changing a value removes the approval; a user who recorded a value and then switches to QualityApprover is refused (four-eyes); after the PlatformAdmin sets the exemption (a member trying it is denied) the self-approval succeeds and is shown and logged as `SelfApproved`.
+  - Membership switch: the active membership changes the visible lots and rights at once; switching to another user's membership id returns 404.
+  - Suspend needs a reason; a suspended org can read but not enter; reinstate works; a revoked member can no longer log in.
+  - Registry: province 99 and a missing proof are refused; a valid number (entered with spaces and lower case) becomes Pending, then Verified. An association sees the lots of its linked beekeeper read-only.
+  - A beekeeper created with the flag on has no login.
+  - Audit: 66 rows (create/update/delete/verify/approve/login), "All rows verify"; `UPDATE` and `DELETE` on `AuditEntries` fail with the trigger error; a row changed with the trigger disabled is reported ("Row 1 was changed after it was written"), and verifies again once restored.
+  - With the flag on, the main admin pages still return 200 for administrators.
+- All `zz_test` data (orgs, users, memberships, documents, lots, beekeepers, files) and the test audit rows were deleted afterwards; the audit table was empty before the session. Counts back to baseline.
