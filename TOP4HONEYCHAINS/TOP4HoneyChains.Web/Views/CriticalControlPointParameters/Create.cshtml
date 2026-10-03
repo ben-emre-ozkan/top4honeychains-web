@@ -109,12 +109,14 @@
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label asp-for="MinValue" class="form-label">Minimum</label>
-                                        <input asp-for="MinValue" type="text" inputmode="decimal" class="form-control" placeholder="no minimum" />
+                                        <input asp-for="MinValue" type="text" inputmode="decimal" class="form-control" placeholder="no minimum"
+                                               value="@Model?.MinValue?.ToString("0.####", System.Globalization.CultureInfo.InvariantCulture)" />
                                         <span asp-validation-for="MinValue" class="text-danger"></span>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label asp-for="MaxValue" class="form-label">Maximum</label>
-                                        <input asp-for="MaxValue" type="text" inputmode="decimal" class="form-control" placeholder="no maximum" />
+                                        <input asp-for="MaxValue" type="text" inputmode="decimal" class="form-control" placeholder="no maximum"
+                                               value="@Model?.MaxValue?.ToString("0.####", System.Globalization.CultureInfo.InvariantCulture)" />
                                         <span asp-validation-for="MaxValue" class="text-danger"></span>
                                     </div>
                                 </div>
