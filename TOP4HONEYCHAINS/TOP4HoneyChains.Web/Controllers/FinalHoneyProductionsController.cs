@@ -463,7 +463,7 @@ namespace TOP4HoneyChains.Web.Controllers
             };
 
             var total = timeline.Count;
-            var completed = timeline.Count(x => x.StatusName == "Completed");
+            var completed = timeline.Count(x => x.StatusName == "Completed" || x.StatusName == "Not applicable");
 
             ViewBag.ProgressPercent = total == 0 ? 0 : (completed * 100 / total);
             ViewBag.ReturnUrl = Url.Action("Index", "FinalHoneyProductions");

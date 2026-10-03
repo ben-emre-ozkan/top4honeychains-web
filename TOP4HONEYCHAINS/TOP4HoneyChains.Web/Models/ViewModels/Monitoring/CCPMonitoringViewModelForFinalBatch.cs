@@ -1,16 +1,8 @@
-﻿namespace TOP4HoneyChains.Web.Models.ViewModels.Monitoring
+namespace TOP4HoneyChains.Web.Models.ViewModels.Monitoring
 {
-    public class CCPMonitoringViewModelForFinalBatch
+    public class CCPMonitoringViewModelForFinalBatch : CcpMonitoringViewModelBase
     {
-        public int CCPId { get; set; }
         public int FinalHoneyProductionId { get; set; }
-
-        public string CCPCode { get; set; } = "";
-        public string CCPTitle { get; set; } = "";
-        public string ProcessingStep { get; set; } = "";
-        public string CriticalityJustification { get; set; } = "";
-
-        public List<CCPParameterGroup> Groups { get; set; } = new();
 
         // 🔹 Batch Info
         public string? BatchTitle { get; set; }
@@ -23,5 +15,8 @@
         // 🔹 Raw Sources Summary
         public int RawSourceCount { get; set; }
         public List<FinalBatchRawSourceInfo> RawSources { get; set; } = new();
+
+        public override string OwnerKind => "batch";
+        public override int OwnerId => FinalHoneyProductionId;
     }
 }
