@@ -26,7 +26,9 @@ namespace TOP4HoneyChains.Web.Controllers
         {
             var tOP4HoneyChainsContext = _context.CriticalControlPointParameters.Include(c => c.CCP).Include(c => c.ParameterCategoryNavigation)
                 .Include(c => c.Limits).ThenInclude(l => l.ConditionParameter)
-                .Include(c => c.Limits).ThenInclude(l => l.SumWithParameter);
+                .Include(c => c.Limits).ThenInclude(l => l.SumWithParameter)
+                .Include(c => c.Limits).ThenInclude(l => l.RatioWithParameter)
+                .Include(c => c.Limits).ThenInclude(l => l.HoneyType);
 
             ViewBag.Controller = "Critical Control Point Parameters";
             ViewBag.Action = "Index";
@@ -222,6 +224,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 .Include(p => p.CCP)
                 .Include(p => p.Limits).ThenInclude(l => l.ConditionParameter)
                 .Include(p => p.Limits).ThenInclude(l => l.SumWithParameter)
+                .Include(p => p.Limits).ThenInclude(l => l.RatioWithParameter)
+                .Include(p => p.Limits).ThenInclude(l => l.HoneyType)
                 .FirstOrDefaultAsync(p => p.ParameterId == id);
             if (parameter == null)
                 return NotFound();
@@ -230,6 +234,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 .Where(p => p.CCPId == parameter.CCPId && p.ParameterId != id)
                 .OrderBy(p => p.ParameterName)
                 .ToListAsync();
+            ViewBag.HoneyTypes = await _context.HoneyTypes.OrderBy(h => h.HoneyTypeTitle).ToListAsync();
             ViewBag.Controller = "Critical Control Point Parameters";
             ViewBag.Action = "Limits";
             return View(parameter);
@@ -237,8 +242,8 @@ namespace TOP4HoneyChains.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddLimit(int parameterId, string? honeyClass, int? conditionParameterId, decimal? conditionMaxValue,
-            int? sumWithParameterId, decimal? minValue, decimal? maxValue, string? note)
+        public async Task<IActionResult> AddLimit(int parameterId, string? honeyClass, int? honeyTypeId, int? conditionParameterId, decimal? conditionMaxValue,
+            int? sumWithParameterId, int? ratioWithParameterId, decimal? minValue, decimal? maxValue, string? note)
         {
             var parameter = await _context.CriticalControlPointParameters.FindAsync(parameterId);
             if (parameter == null)
@@ -256,13 +261,17 @@ namespace TOP4HoneyChains.Web.Controllers
                 error = "A condition needs both a parameter and a value.";
             else if (note?.Length > 300)
                 error = "The note can be at most 300 characters.";
+            else if (sumWithParameterId != null && ratioWithParameterId != null)
+                error = "A limit can use a sum or a ratio, not both.";
+            else if (honeyTypeId != null && !await _context.HoneyTypes.AnyAsync(h => h.HoneyTypeId == honeyTypeId))
+                error = "Unknown honey type.";
             else
             {
-                foreach (var otherId in new[] { conditionParameterId, sumWithParameterId }.Where(x => x != null))
+                foreach (var otherId in new[] { conditionParameterId, sumWithParameterId, ratioWithParameterId }.Where(x => x != null))
                 {
                     var other = await _context.CriticalControlPointParameters.FindAsync(otherId);
                     if (other == null || other.CCPId != parameter.CCPId || other.ParameterId == parameterId)
-                        error = "Condition and sum parameters must be other parameters of the same CCP.";
+                        error = "Condition, sum and ratio parameters must be other parameters of the same CCP.";
                 }
             }
 
@@ -276,6 +285,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 {
                     ParameterId = parameterId,
                     HoneyClass = honeyClass,
+                    HoneyTypeId = honeyTypeId,
+                    RatioWithParameterId = ratioWithParameterId,
                     ConditionParameterId = conditionParameterId,
                     ConditionMaxValue = conditionMaxValue,
                     SumWithParameterId = sumWithParameterId,

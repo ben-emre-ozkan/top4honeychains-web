@@ -1,4 +1,4 @@
-@using TOP4HoneyChains.Web.Models.Entities
+﻿@using TOP4HoneyChains.Web.Models.Entities
 @using TOP4HoneyChains.Web.Services
 @model CriticalControlPointParameter
 
@@ -6,6 +6,7 @@
     ViewData["Title"] = "Parameter Limits";
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
     var siblings = ViewBag.Siblings as List<CriticalControlPointParameter> ?? new();
+    var honeyTypes = ViewBag.HoneyTypes as List<HoneyType> ?? new();
 }
 
 <body data-topbar="light" data-layout="horizontal">
@@ -20,8 +21,9 @@
                             <p class="card-title-desc">
                                 Default limits (every honey type): <strong>@(CcpLimitEvaluator.Describe(Model.MinValue, Model.MaxValue, Model.ParameterUnit) is { Length: > 0 } d ? d : "none")</strong>
                                 (edit them on the parameter).
-                                A row below overrides the default: a row for the lot's honey class beats one for every class,
-                                and a row whose condition is met beats one without a condition.
+                                A row below overrides the default: a row for the lot's honey type beats one for its honey class,
+                                which beats one for every class; a row whose condition is met beats one without a condition.
+                                Ratio rows are extra checks (value / other value) that must also pass.
                                 @if (!string.IsNullOrEmpty(Model.LimitSource))
                                 {
                                     <br />@:Source: @Model.LimitSource
@@ -35,9 +37,9 @@
                             <table class="table table-sm table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Honey class</th>
+                                        <th>Honey class / type</th>
                                         <th>Condition</th>
-                                        <th>Sum with</th>
+                                        <th>Sum / ratio with</th>
                                         <th>Min</th>
                                         <th>Max</th>
                                         <th>Note</th>
@@ -52,9 +54,9 @@
                                     @foreach (var l in Model.Limits.OrderBy(l => l.HoneyClass).ThenBy(l => l.LimitId))
                                     {
                                         <tr>
-                                            <td>@(l.HoneyClass ?? "every class")</td>
+                                            <td>@(l.HoneyType != null ? l.HoneyType.HoneyTypeTitle : l.HoneyClass ?? "every class")</td>
                                             <td>@(l.ConditionParameter != null ? $"{l.ConditionParameter.ParameterName} <= {l.ConditionMaxValue:0.####}" : "-")</td>
-                                            <td>@(l.SumWithParameter?.ParameterName ?? "-")</td>
+                                            <td>@(l.SumWithParameter != null ? "+ " + l.SumWithParameter.ParameterName : l.RatioWithParameter != null ? "/ " + l.RatioWithParameter.ParameterName : "-")</td>
                                             <td>@l.MinValue?.ToString("0.####")</td>
                                             <td>@l.MaxValue?.ToString("0.####")</td>
                                             <td>@l.Note</td>
@@ -82,7 +84,17 @@
                                         }
                                     </select>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
+                                    <label class="form-label small">or honey type</label>
+                                    <select name="honeyTypeId" class="form-select">
+                                        <option value="">(none)</option>
+                                        @foreach (var h in honeyTypes)
+                                        {
+                                            <option value="@h.HoneyTypeId">@h.HoneyTypeTitle</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
                                     <label class="form-label small">Only if this parameter</label>
                                     <select name="conditionParameterId" class="form-select">
                                         <option value="">(no condition)</option>
@@ -95,6 +107,16 @@
                                 <div class="col-md-1">
                                     <label class="form-label small">is &lt;=</label>
                                     <input name="conditionMaxValue" type="text" inputmode="decimal" class="form-control" />
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-label small">Ratio to (extra check)</label>
+                                    <select name="ratioWithParameterId" class="form-select">
+                                        <option value="">(none)</option>
+                                        @foreach (var s in siblings)
+                                        {
+                                            <option value="@s.ParameterId">@s.ParameterName</option>
+                                        }
+                                    </select>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="form-label small">Sum with</label>

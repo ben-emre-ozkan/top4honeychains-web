@@ -1,4 +1,4 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TOP4HoneyChains.Web.Models.Entities
@@ -16,6 +16,9 @@ namespace TOP4HoneyChains.Web.Models.Entities
         [StringLength(20)]
         public string? HoneyClass { get; set; }
 
+        // A limit for one honey type; it beats a honey-class limit (e.g. chestnut honey, D-21)
+        public int? HoneyTypeId { get; set; }
+
         // Applies only when the value of this parameter is <= ConditionMaxValue
         public int? ConditionParameterId { get; set; }
 
@@ -24,6 +27,10 @@ namespace TOP4HoneyChains.Web.Models.Entities
 
         // The limit applies to value + the value of this parameter
         public int? SumWithParameterId { get; set; }
+
+        // An extra check on value / the value of this parameter, evaluated in addition to the
+        // selected limit (e.g. fructose / glucose ratio, D-21)
+        public int? RatioWithParameterId { get; set; }
 
         [Column(TypeName = "decimal(10,4)")]
         public decimal? MinValue { get; set; }
@@ -37,5 +44,7 @@ namespace TOP4HoneyChains.Web.Models.Entities
         public virtual CriticalControlPointParameter? Parameter { get; set; }
         public virtual CriticalControlPointParameter? ConditionParameter { get; set; }
         public virtual CriticalControlPointParameter? SumWithParameter { get; set; }
+        public virtual CriticalControlPointParameter? RatioWithParameter { get; set; }
+        public virtual HoneyType? HoneyType { get; set; }
     }
 }

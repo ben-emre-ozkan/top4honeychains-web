@@ -200,6 +200,16 @@ public partial class TOP4HoneyChainsContext : DbContext
                 .WithMany()
                 .HasForeignKey(e => e.SumWithParameterId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            entity.HasOne(e => e.RatioWithParameter)
+                .WithMany()
+                .HasForeignKey(e => e.RatioWithParameterId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            entity.HasOne(e => e.HoneyType)
+                .WithMany()
+                .HasForeignKey(e => e.HoneyTypeId)
+                .OnDelete(DeleteBehavior.Restrict);
         });
 
         modelBuilder.Entity<CriticalControlPointParameterContent>(entity =>

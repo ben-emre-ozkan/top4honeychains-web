@@ -327,6 +327,8 @@ namespace TOP4HoneyChains.Web.Controllers
             var ccps = await _context.CriticalControlPoints.AsNoTracking()
                 .Include(c => c.CriticalControlPointParameters).ThenInclude(p => p.Limits).ThenInclude(l => l.ConditionParameter)
                 .Include(c => c.CriticalControlPointParameters).ThenInclude(p => p.Limits).ThenInclude(l => l.SumWithParameter)
+                .Include(c => c.CriticalControlPointParameters).ThenInclude(p => p.Limits).ThenInclude(l => l.RatioWithParameter)
+                .Include(c => c.CriticalControlPointParameters).ThenInclude(p => p.Limits).ThenInclude(l => l.HoneyType)
                 .OrderBy(c => c.Id)
                 .ToListAsync();
             var rawAssignments = await _context.RawHoneyCCPAssignments.AsNoTracking()
@@ -341,12 +343,13 @@ namespace TOP4HoneyChains.Web.Controllers
                 .ToListAsync();
             var classes = await _context.RawHoneyProductions.AsNoTracking()
                 .Where(r => rawIds.Contains(r.RawHoneyProductionId))
-                .Select(r => new { r.RawHoneyProductionId, r.RawHoneyProductionHoneyTypeNavigation!.HoneyClass })
+                .Select(r => new { r.RawHoneyProductionId, r.RawHoneyProductionHoneyType, r.RawHoneyProductionHoneyTypeNavigation!.HoneyClass })
                 .ToListAsync();
 
             foreach (var source in vm.RawSources)
             {
-                var honeyClass = classes.FirstOrDefault(c => c.RawHoneyProductionId == source.RawHoneyProductionId)?.HoneyClass;
+                var lot = classes.FirstOrDefault(c => c.RawHoneyProductionId == source.RawHoneyProductionId);
+                var honey = lot == null ? HoneyProfile.Unknown : new HoneyProfile(lot.RawHoneyProductionHoneyType, lot.HoneyClass);
                 var own = rawAssignments.Where(a => a.RawHoneyProductionId == source.RawHoneyProductionId).ToList();
                 source.CcpBlocks = ccps
                     .Where(c => c.AppliesTo == CcpAppliesTo.RawLot || own.Any(a => a.RawHoneyCCPAssignmentCCP == c.Id))
@@ -354,26 +357,27 @@ namespace TOP4HoneyChains.Web.Controllers
                     {
                         var a = own.FirstOrDefault(x => x.RawHoneyCCPAssignmentCCP == c.Id);
                         return BuildCcpBlock(c, a?.RawHoneyCCPAssignmentStatus, a?.NotApplicableReason,
-                            logs.Where(l => l.RawHoneyProductionId == source.RawHoneyProductionId && l.CCPId == c.Id).ToList(), honeyClass);
+                            logs.Where(l => l.RawHoneyProductionId == source.RawHoneyProductionId && l.CCPId == c.Id).ToList(), honey);
                     })
                     .ToList();
             }
 
+            var batchTypes = classes.Select(c => c.RawHoneyProductionHoneyType).Distinct().ToList();
             var batchClasses = classes.Select(c => c.HoneyClass).Distinct().ToList();
-            var batchClass = batchClasses.Count == 1 ? batchClasses[0] : null;
+            var batchHoney = new HoneyProfile(batchTypes.Count == 1 ? batchTypes[0] : null, batchClasses.Count == 1 ? batchClasses[0] : null);
             vm.BatchCcpBlocks = ccps
                 .Where(c => c.AppliesTo == CcpAppliesTo.Batch || batchAssignments.Any(a => a.FinalHoneyCCPAssignmentCCP == c.Id))
                 .Select(c =>
                 {
                     var a = batchAssignments.FirstOrDefault(x => x.FinalHoneyCCPAssignmentCCP == c.Id);
                     return BuildCcpBlock(c, a?.FinalHoneyCCPAssignmentStatus, a?.NotApplicableReason,
-                        logs.Where(l => l.FinalHoneyProductionId == batchId && l.CCPId == c.Id).ToList(), batchClass);
+                        logs.Where(l => l.FinalHoneyProductionId == batchId && l.CCPId == c.Id).ToList(), batchHoney);
                 })
                 .ToList();
         }
 
         private static HoneyStoryCcpBlock BuildCcpBlock(CriticalControlPoint ccp, int? status, string? notApplicableReason,
-            List<CriticalControlPointMonitoringLog> logs, string? honeyClass)
+            List<CriticalControlPointMonitoringLog> logs, HoneyProfile honey)
         {
             var block = new HoneyStoryCcpBlock
             {
@@ -403,6 +407,16 @@ namespace TOP4HoneyChains.Web.Controllers
             foreach (var p in ccp.CriticalControlPointParameters.OrderBy(p => p.ParameterId))
             {
                 var log = logs.FirstOrDefault(l => l.ParameterId == p.ParameterId);
+
+                // D-12/D-20: without PublicTextValues only Yes/No and numbers are published; free text
+                // (typed or untyped) and files are left out entirely
+                if (!ccp.PublicTextValues)
+                {
+                    var isText = p.DataType is CcpDataType.Text or CcpDataType.File
+                                 || (p.DataType == null && log?.MeasuredTextValue != null);
+                    if (isText)
+                        continue;
+                }
                 bool? compliant = null;
                 string? limitText = null;
                 if (log != null && p.LimitVerified)
@@ -410,7 +424,7 @@ namespace TOP4HoneyChains.Web.Controllers
                     // The result stored at entry time; values recorded before limits existed are checked now
                     var result = log.IsInRange != null
                         ? new CcpLimitEvaluator.Result(log.IsInRange, log.AppliedLimit)
-                        : CcpLimitEvaluator.Evaluate(p, log.MeasuredNumericValue, siblings, honeyClass);
+                        : CcpLimitEvaluator.Evaluate(p, log.MeasuredNumericValue, siblings, honey);
                     compliant = result.IsInRange;
                     limitText = result.AppliedLimit;
                 }
