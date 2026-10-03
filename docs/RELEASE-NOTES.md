@@ -1,13 +1,39 @@
-# TOP4HoneyChains web panel – release notes
+﻿# TOP4HoneyChains web panel – release notes
 
-**Version:** 1.0.0-rc2 (release candidate, not yet deployed; rc1 was 2026-09-29)
-**Date:** 2026-09-29
+**Version:** 1.0.0-rc3 (release candidate, not yet deployed; rc1 and rc2 were 2026-09-29)
+**Date:** 2026-10-03
 **Audience:** project partners (LBTU test report follow-up)
 
 This release answers the LBTU partner test report. Each finding keeps its number (FB-01 … FB-34).
 In this release only administrators use the web panel; beekeeper and wholesaler logins are planned for a later release.
 
 Status legend: **fixed** = changed in this release · **deferred** = agreed to move to a later release · **needs decision** = waiting for an answer.
+
+## What is new in rc3 (2026-10-03)
+
+### CCP integrity
+- **Finalized batches are locked.** After a batch is finalized, its data, its composition, its CCP assignments and CCP values can no longer be changed or deleted; the same applies to every raw honey lot used in it. The pages become read-only. The "Unfinalize" button was removed: a correction needs a new batch.
+- **Recorded values are never lost.** A CCP that already has values (or a "Not applicable" record) cannot be removed from a lot or batch.
+- **"Not applicable".** A CCP can be marked as not applicable (for example no heating or pasteurization of raw honey) with a required reason; the user and time are recorded. The public Honey Story page shows it as "Not applicable" with the reason.
+- **Finalize rule.** A batch can be finalized only when all its CCPs (and those of its lots) are completed or not applicable. The batch page lists what is still missing.
+- **CCPs by type of record.** Each CCP is marked for raw honey lots (CCP 0–3) or for final batches (CCP 4–10); the assignment pages only offer the matching ones.
+- **Parameter details and limits.** Parameters have a data type (number, yes/no, text, file), unit, minimum/maximum and a required flag, with limits per honey type where needed (for example floral and honeydew/pine honey). Values are checked when saved and shown green or red. Lab reports can be attached as files (PDF or image, admin download only). All limits are starting values from the Turkish Food Codex and are marked **to verify**; the public page shows compliance only for verified limits.
+- **Honey Story shows gaps.** Every CCP of the batch and its lots is listed. Missing ones appear as "Not recorded" instead of being hidden. The five batches finalized before this release are unchanged; their missing CCPs now show as "Not recorded".
+
+### CCP follow-up
+- CCP 0 (field audit at the beekeeper) shows only its status and yes/no answers publicly; free-text answers and files are never published (a per-CCP setting).
+- Chestnut honey uses the honeydew rule for electrical conductivity; a fructose/glucose ratio check (0.9–1.4) was added for floral honey; the pine 23 % moisture value is marked as doubtful. All to verify.
+- A one-page Turkish table of all limits was prepared for the accredited partner lab (`docs/LIMITS-TO-VERIFY-TR.md`, question PQ-03).
+
+### Other
+- The public landing page no longer shows project dates.
+- The code for the organization and role model (phase 1, `docs/ROLE-MODEL.md`) is included but **switched off** (`Features:OrgRoleModel = false`). The panel works exactly as before: administrators only.
+
+### Database scripts for this release
+Run in numeric order at deployment (see `docs/GO-LIVE.md`); all are additive and can be re-run safely:
+- `002_ccp_integrity.sql` – CCP types, "Not applicable", parameter details and limits.
+- `003_ccp_followup.sql` – public text setting, chestnut and ratio limits, notes.
+- `004_org_model.sql` – tables for the organization model (not used while it is switched off).
 
 ## Findings from the test report
 
