@@ -18,6 +18,12 @@ namespace TOP4HoneyChains.Web.Models.Entities
 
         public string? CriticalityJustification { get; set; }
 
+        // Where the CCP is recorded: CcpAppliesTo.RawLot or CcpAppliesTo.Batch (D-17)
+        [Required(ErrorMessage = "Choose where this CCP applies.")]
+        [RegularExpression("^(RawLot|Batch)$", ErrorMessage = "Choose where this CCP applies.")]
+        [StringLength(10)]
+        public string? AppliesTo { get; set; }
+
         public virtual ICollection<CriticalControlPointParameter> CriticalControlPointParameters { get; set; }
             = new List<CriticalControlPointParameter>();
 

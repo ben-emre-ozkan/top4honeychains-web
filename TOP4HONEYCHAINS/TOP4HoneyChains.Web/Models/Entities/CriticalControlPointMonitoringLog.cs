@@ -25,6 +25,17 @@ namespace TOP4HoneyChains.Web.Models.Entities
         [StringLength(500)]
         public string? Notes { get; set; }
 
+        // Computed on save from the parameter's limits (D-18); null when no limit applies
+        public bool? IsInRange { get; set; }
+
+        // The limit the value was checked against, as text (e.g. "max 40")
+        [StringLength(200)]
+        public string? AppliedLimit { get; set; }
+
+        // File name under App_Data/ccp-files for File parameters (D-19); MeasuredTextValue holds the original name
+        [StringLength(260)]
+        public string? StoredFileName { get; set; }
+
         [ForeignKey(nameof(CCPId))]
         public virtual CriticalControlPoint? CCP { get; set; }
 

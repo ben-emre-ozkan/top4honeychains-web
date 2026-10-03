@@ -64,6 +64,7 @@ localizationOptions.RequestCultureProviders = new IRequestCultureProvider[]
 builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
 
 builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddScoped<CcpIntegrityService>();
 
 builder.Services.AddControllersWithViews(options =>
 {

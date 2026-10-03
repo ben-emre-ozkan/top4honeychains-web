@@ -31,6 +31,7 @@ public partial class TOP4HoneyChainsContext : DbContext
     public virtual DbSet<CriticalControlPointParameter> CriticalControlPointParameters { get; set; }
     public virtual DbSet<CriticalControlPointParameterContent> CriticalControlPointParameterContents { get; set; }
     public virtual DbSet<CriticalControlPointParameterCategory> CriticalControlPointParameterCategories { get; set; }
+    public virtual DbSet<CriticalControlPointParameterLimit> CriticalControlPointParameterLimits { get; set; }
     public virtual DbSet<CriticalControlPointMonitoringLog> CriticalControlPointMonitoringLogs { get; set; }
     public virtual DbSet<AssignmentStatus> AssignmentStatuses { get; set; }
     public virtual DbSet<RawHoneyCCPAssignment> RawHoneyCCPAssignments { get; set; }
@@ -181,6 +182,24 @@ public partial class TOP4HoneyChainsContext : DbContext
             entity.HasOne(d => d.ParameterCategoryNavigation)
                 .WithMany(p => p.CriticalControlPointParameters)
                 .HasForeignKey(d => d.ParameterCategory);
+        });
+
+        modelBuilder.Entity<CriticalControlPointParameterLimit>(entity =>
+        {
+            entity.HasOne(e => e.Parameter)
+                .WithMany(p => p.Limits)
+                .HasForeignKey(e => e.ParameterId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            entity.HasOne(e => e.ConditionParameter)
+                .WithMany()
+                .HasForeignKey(e => e.ConditionParameterId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            entity.HasOne(e => e.SumWithParameter)
+                .WithMany()
+                .HasForeignKey(e => e.SumWithParameterId)
+                .OnDelete(DeleteBehavior.Restrict);
         });
 
         modelBuilder.Entity<CriticalControlPointParameterContent>(entity =>
