@@ -361,7 +361,11 @@ namespace TOP4HoneyChains.Web.Controllers
                 RawHoneyProductionId = id,
                 ApiaryId = production.RawHoneyProductionApiaryId ?? 0,
                 Production = production,
-                AllCCPs = await _context.CriticalControlPoints.ToListAsync(),
+                // Only CCPs that apply to this kind of record (D-17), plus any assigned earlier
+                AllCCPs = await _context.CriticalControlPoints
+                    .Where(c => c.AppliesTo == CcpAppliesTo.RawLot || assignedCCPs.Contains(c.Id))
+                    .OrderBy(c => c.Id)
+                    .ToListAsync(),
                 SelectedCCPIds = assignedCCPs,
                 LockReason = await _ccp.GetRawLotLockReasonAsync(id)
             };
@@ -391,6 +395,17 @@ namespace TOP4HoneyChains.Web.Controllers
                 .ToList();
 
             var selectedIds = model.SelectedCCPIds ?? new List<int>();
+
+            // Only CCPs that apply to raw lots can be added (D-17)
+            var applicableIds = await _context.CriticalControlPoints
+                .Where(c => c.AppliesTo == CcpAppliesTo.RawLot)
+                .Select(c => c.Id)
+                .ToListAsync();
+            if (selectedIds.Any(id => !existingIds.Contains(id) && !applicableIds.Contains(id)))
+            {
+                TempData["Error"] = "Only CCPs that apply to raw honey lots can be assigned. Nothing was changed.";
+                return RedirectToAction(nameof(ManageCCP), new { id = model.RawHoneyProductionId });
+            }
 
             // -------------------------
             // 1️⃣ EKLENECEKLER

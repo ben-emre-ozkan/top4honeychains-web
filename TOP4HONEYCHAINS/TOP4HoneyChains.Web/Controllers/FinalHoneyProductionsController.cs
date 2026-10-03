@@ -321,7 +321,11 @@ namespace TOP4HoneyChains.Web.Controllers
             {
                 FinalHoneyProductionId = id,
                 Production = production,
-                AllCCPs = await _context.CriticalControlPoints.ToListAsync(),
+                // Only CCPs that apply to this kind of record (D-17), plus any assigned earlier
+                AllCCPs = await _context.CriticalControlPoints
+                    .Where(c => c.AppliesTo == CcpAppliesTo.Batch || assignedCCPs.Contains(c.Id))
+                    .OrderBy(c => c.Id)
+                    .ToListAsync(),
                 SelectedCCPIds = assignedCCPs,
                 LockReason = await _ccp.GetBatchLockReasonAsync(id)
             };
@@ -348,6 +352,21 @@ namespace TOP4HoneyChains.Web.Controllers
                 return locked;
 
             vm.SelectedCCPIds ??= new List<int>();
+
+            // Only CCPs that apply to batches can be added (D-17)
+            var applicableIds = await _context.CriticalControlPoints
+                .Where(c => c.AppliesTo == CcpAppliesTo.Batch)
+                .Select(c => c.Id)
+                .ToListAsync();
+            var assignedIds = await _context.FinalHoneyCCPAssignments
+                .Where(x => x.FinalHoneyProductionId == vm.FinalHoneyProductionId)
+                .Select(x => x.FinalHoneyCCPAssignmentCCP)
+                .ToListAsync();
+            if (vm.SelectedCCPIds.Any(id => !assignedIds.Contains(id) && !applicableIds.Contains(id)))
+            {
+                TempData["Error"] = "Only CCPs that apply to final batches can be assigned. Nothing was changed.";
+                return RedirectToAction(nameof(ManageCCP), new { id = vm.FinalHoneyProductionId });
+            }
 
             var existingAssignments = await _context.FinalHoneyCCPAssignments
                 .Where(x => x.FinalHoneyProductionId == vm.FinalHoneyProductionId)

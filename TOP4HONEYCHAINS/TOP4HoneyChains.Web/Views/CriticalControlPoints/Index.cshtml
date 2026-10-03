@@ -39,6 +39,7 @@
                                         <th>Processing Step</th>
                                         <th>Code</th>
                                         <th>Title</th>
+                                        <th>Applies to</th>
                                         <th>Criticality Justification</th>
                                         <th style="width:150px;">Actions</th>
                                     </tr>
@@ -55,6 +56,7 @@
                                                 </span>
                                             </td>
                                             <td>@item.Title</td>
+                                            <td>@(item.AppliesTo == "RawLot" ? "Raw honey lot" : item.AppliesTo == "Batch" ? "Final batch" : "-")</td>
                                             <td>
                                                 @(item.CriticalityJustification?.Length > 50
                                                                                             ? item.CriticalityJustification.Substring(0, 50) + "..."
