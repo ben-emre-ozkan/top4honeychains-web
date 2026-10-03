@@ -29,6 +29,13 @@
                                 Assign Critical Control Points to this Final Batch.
                             </p>
 
+                            @if (Model.LockReason != null)
+                            {
+                                <div class="alert alert-warning">
+                                    <i class="mdi mdi-lock-outline me-1"></i> @Model.LockReason
+                                </div>
+                            }
+
                             <div class="mb-4 p-3 bg-light rounded">
                                 <strong>Batch Info:</strong><br />
                                 Title: @Model.Production.FinalHoneyProductionTitle <br />
@@ -67,7 +74,8 @@
                                                                    name="SelectedCCPIds"
                                                                    value="@ccp.Id"
                                                                    switch="primary"
-                                                                   @(isChecked ? "checked" : "") />
+                                                                   @(isChecked ? "checked" : "")
+                                                                   @(Model.LockReason != null ? "disabled" : "") />
 
                                                             <label for="ccp_@ccp.Id"
                                                                    data-on-label="Yes"
@@ -92,10 +100,13 @@
 
                                 <div class="d-flex gap-2 mt-3">
 
+                                    @if (Model.LockReason == null)
+                                    {
                                     <button type="submit"
                                             class="btn btn-success waves-effect waves-light">
                                         Save Assignments
                                     </button>
+                                    }
 
                                     <a asp-action="ByWholesaler"
                                        asp-route-wholesalerId="@Model.Production.FinalHoneyProductionWholesalerId"

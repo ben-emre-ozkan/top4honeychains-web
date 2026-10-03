@@ -258,17 +258,9 @@
                                             Finalized
                                         </span>
 
-                                        <!-- Unfinalize (role check later) -->
-                                        <form id="unfinalizeForm" asp-action="UnfinalizeBatch" method="post" class="d-inline">
-                                            @Html.AntiForgeryToken()
-                                            <input type="hidden" name="id" value="@Model.Batch.FinalHoneyProductionId" />
-                                            <button type="button"
-                                                    class="btn btn-outline-danger"
-                                                    onclick="confirmUnfinalize()">
-                                                <i class="mdi mdi-lock-open-outline me-2"></i>
-                                                Unfinalize
-                                            </button>
-                                        </form>
+                                        <span class="text-muted small">
+                                            A finalized batch is permanent: its data, composition and CCPs can no longer be changed.
+                                        </span>
                                     }
 
                                 </div>
@@ -470,24 +462,6 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         document.getElementById('finalizeForm').submit();
-                    }
-                });
-            }
-
-            // 🔓 Unfinalize Confirm
-            function confirmUnfinalize() {
-                Swal.fire({
-                    title: 'Unfinalize this batch?',
-                    text: 'Editing will be enabled again.',
-                    icon: 'question',
-                    showCancelButton: true,
-                    confirmButtonColor: '#dc3545',
-                    cancelButtonColor: '#6c757d',
-                    confirmButtonText: 'Yes, unlock it',
-                    cancelButtonText: 'Cancel'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        document.getElementById('unfinalizeForm').submit();
                     }
                 });
             }
