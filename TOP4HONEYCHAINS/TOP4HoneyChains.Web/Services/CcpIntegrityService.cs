@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using TOP4HoneyChains.Web.Data;
 using TOP4HoneyChains.Web.Models.Entities;
 
@@ -120,21 +120,23 @@ namespace TOP4HoneyChains.Web.Services
             return blockers;
         }
 
-        public async Task<string?> GetHoneyClassForRawLotAsync(int rawHoneyProductionId) =>
+        public async Task<HoneyProfile> GetHoneyProfileForRawLotAsync(int rawHoneyProductionId) =>
             await _context.RawHoneyProductions
                 .Where(r => r.RawHoneyProductionId == rawHoneyProductionId)
-                .Select(r => r.RawHoneyProductionHoneyTypeNavigation!.HoneyClass)
-                .FirstOrDefaultAsync();
+                .Select(r => new HoneyProfile(r.RawHoneyProductionHoneyType, r.RawHoneyProductionHoneyTypeNavigation!.HoneyClass))
+                .FirstOrDefaultAsync() ?? HoneyProfile.Unknown;
 
-        // The batch's honey class is the class shared by all its lots; mixed or unknown -> null
-        public async Task<string?> GetHoneyClassForBatchAsync(int batchId)
+        // A batch's honey type and class are those shared by all its lots; mixed or unknown -> null
+        public async Task<HoneyProfile> GetHoneyProfileForBatchAsync(int batchId)
         {
-            var classes = await _context.FinalHoneyProductionDetails
+            var lots = await _context.FinalHoneyProductionDetails
                 .Where(d => d.FinalHoneyProductionId == batchId)
-                .Select(d => d.RawHoneyProduction.RawHoneyProductionHoneyTypeNavigation!.HoneyClass)
+                .Select(d => new { d.RawHoneyProduction.RawHoneyProductionHoneyType, d.RawHoneyProduction.RawHoneyProductionHoneyTypeNavigation!.HoneyClass })
                 .Distinct()
                 .ToListAsync();
-            return classes.Count == 1 ? classes[0] : null;
+            var types = lots.Select(l => l.RawHoneyProductionHoneyType).Distinct().ToList();
+            var classes = lots.Select(l => l.HoneyClass).Distinct().ToList();
+            return new HoneyProfile(types.Count == 1 ? types[0] : null, classes.Count == 1 ? classes[0] : null);
         }
     }
 }

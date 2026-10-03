@@ -3,67 +3,101 @@ using TOP4HoneyChains.Web.Models.Entities;
 
 namespace TOP4HoneyChains.Web.Services
 {
-    // Checks a numeric CCP value against the parameter's limits (D-18).
-    // Order: a limit row for the honey class (exact class beats "every class"), where a row with a
-    // satisfied condition beats one without; rows whose condition is not met or cannot be checked are
-    // skipped. Without a matching row, the parameter's default min/max apply.
+    // The honey a value belongs to: its honey type and that type's class (Floral / Honeydew / Pine).
+    // Unknown or mixed (batch of several types) -> nulls.
+    public record HoneyProfile(int? HoneyTypeId, string? HoneyClass)
+    {
+        public static readonly HoneyProfile Unknown = new(null, null);
+    }
+
+    // Checks a numeric CCP value against the parameter's limits (D-18, D-21).
+    // Main limit: a limit row for the honey type beats one for the honey class, which beats one for
+    // every honey; a row with a satisfied condition beats one without; rows whose condition is not met
+    // or cannot be checked are skipped. Without a matching row, the parameter's default min/max apply.
+    // Ratio rows (value / other value) are extra checks evaluated in addition; all checks must pass.
     public static class CcpLimitEvaluator
     {
         public record Result(bool? IsInRange, string? AppliedLimit);
 
         // siblingValues: numeric values of the other parameters of the same lot/batch (ParameterId -> value)
         public static Result Evaluate(CriticalControlPointParameter parameter, decimal? value,
-            IReadOnlyDictionary<int, decimal> siblingValues, string? honeyClass)
+            IReadOnlyDictionary<int, decimal> siblingValues, HoneyProfile honey)
         {
             if (value == null || (parameter.DataType != null && parameter.DataType != CcpDataType.Number))
                 return new Result(null, null);
 
-            var row = SelectLimit(parameter, siblingValues, honeyClass);
-            decimal? min, max;
-            decimal checkedValue = value.Value;
-            string label;
+            var checks = new List<(bool? ok, string label)>();
 
-            if (row != null)
+            var main = MainCheck(parameter, value.Value, siblingValues, honey);
+            if (main != null)
+                checks.Add(main.Value);
+
+            foreach (var row in Matching(parameter, siblingValues, honey).Where(l => l.RatioWithParameterId != null))
             {
-                min = row.MinValue;
-                max = row.MaxValue;
-                label = Describe(min, max, parameter.ParameterUnit);
-                if (row.SumWithParameterId != null)
-                {
-                    if (!siblingValues.TryGetValue(row.SumWithParameterId.Value, out var other))
-                        return new Result(null, $"{label} (sum with {row.SumWithParameter?.ParameterName ?? "another value"}; not recorded)");
-                    checkedValue += other;
-                    label = $"{parameter.ParameterName} + {row.SumWithParameter?.ParameterName}: {label}";
-                }
-                if (row.HoneyClass != null)
-                    label += $" ({row.HoneyClass})";
-                if (row.ConditionParameterId != null)
-                    label += $" ({row.ConditionParameter?.ParameterName} <= {Format(row.ConditionMaxValue!.Value)})";
-            }
-            else
-            {
-                min = parameter.MinValue;
-                max = parameter.MaxValue;
-                if (min == null && max == null)
-                    return new Result(null, null);
-                label = Describe(min, max, parameter.ParameterUnit);
+                var label = $"{parameter.ParameterName} / {row.RatioWithParameter?.ParameterName}: {Describe(row.MinValue, row.MaxValue, null)}{Scope(row)}";
+                if (!siblingValues.TryGetValue(row.RatioWithParameterId!.Value, out var other) || other == 0)
+                    checks.Add((null, label + " (not checkable)"));
+                else
+                    checks.Add((InRange(value.Value / other, row.MinValue, row.MaxValue), label));
             }
 
-            var inRange = (min == null || checkedValue >= min) && (max == null || checkedValue <= max);
-            return new Result(inRange, Truncate(label, 200));
+            if (checks.Count == 0)
+                return new Result(null, null);
+
+            // Out of range if any check fails; in range only if every check could be made and passed
+            bool? inRange = checks.Any(c => c.ok == false) ? false
+                : checks.All(c => c.ok == true) ? true
+                : null;
+            return new Result(inRange, Truncate(string.Join("; ", checks.Select(c => c.label)), 200));
         }
 
-        private static CriticalControlPointParameterLimit? SelectLimit(CriticalControlPointParameter parameter,
-            IReadOnlyDictionary<int, decimal> siblingValues, string? honeyClass)
+        private static (bool? ok, string label)? MainCheck(CriticalControlPointParameter parameter, decimal value,
+            IReadOnlyDictionary<int, decimal> siblingValues, HoneyProfile honey)
         {
-            return parameter.Limits
-                .Where(l => l.HoneyClass == null || l.HoneyClass == honeyClass)
-                .Where(l => l.ConditionParameterId == null
-                            || (siblingValues.TryGetValue(l.ConditionParameterId.Value, out var c) && c <= l.ConditionMaxValue))
-                .OrderByDescending(l => l.HoneyClass != null)
+            var row = Matching(parameter, siblingValues, honey)
+                .Where(l => l.RatioWithParameterId == null)
+                .OrderByDescending(l => l.HoneyTypeId != null)
+                .ThenByDescending(l => l.HoneyClass != null)
                 .ThenByDescending(l => l.ConditionParameterId != null)
                 .FirstOrDefault();
+
+            if (row == null)
+            {
+                if (parameter.MinValue == null && parameter.MaxValue == null)
+                    return null;
+                return (InRange(value, parameter.MinValue, parameter.MaxValue), Describe(parameter.MinValue, parameter.MaxValue, parameter.ParameterUnit));
+            }
+
+            var label = Describe(row.MinValue, row.MaxValue, parameter.ParameterUnit);
+            var checkedValue = value;
+            if (row.SumWithParameterId != null)
+            {
+                label = $"{parameter.ParameterName} + {row.SumWithParameter?.ParameterName}: {label}";
+                if (!siblingValues.TryGetValue(row.SumWithParameterId.Value, out var other))
+                    return (null, label + Scope(row) + " (not checkable)");
+                checkedValue += other;
+            }
+            label += Scope(row);
+            if (row.ConditionParameterId != null)
+                label += $" ({row.ConditionParameter?.ParameterName} <= {Format(row.ConditionMaxValue!.Value)})";
+            return (InRange(checkedValue, row.MinValue, row.MaxValue), label);
         }
+
+        private static IEnumerable<CriticalControlPointParameterLimit> Matching(CriticalControlPointParameter parameter,
+            IReadOnlyDictionary<int, decimal> siblingValues, HoneyProfile honey) =>
+            parameter.Limits
+                .Where(l => l.HoneyTypeId == null || l.HoneyTypeId == honey.HoneyTypeId)
+                .Where(l => l.HoneyClass == null || l.HoneyClass == honey.HoneyClass)
+                .Where(l => l.ConditionParameterId == null
+                            || (siblingValues.TryGetValue(l.ConditionParameterId.Value, out var c) && c <= l.ConditionMaxValue));
+
+        private static bool InRange(decimal v, decimal? min, decimal? max) =>
+            (min == null || v >= min) && (max == null || v <= max);
+
+        private static string Scope(CriticalControlPointParameterLimit row) =>
+            row.HoneyTypeId != null ? $" ({row.HoneyType?.HoneyTypeTitle ?? "honey type " + row.HoneyTypeId})"
+            : row.HoneyClass != null ? $" ({row.HoneyClass})"
+            : "";
 
         // All limits of a parameter as one line, e.g. "max 20; Pine: max 23"
         public static string? DescribeAll(CriticalControlPointParameter parameter)
@@ -71,14 +105,17 @@ namespace TOP4HoneyChains.Web.Services
             var parts = new List<string>();
             if (parameter.MinValue != null || parameter.MaxValue != null)
                 parts.Add(Describe(parameter.MinValue, parameter.MaxValue, parameter.ParameterUnit));
-            foreach (var l in parameter.Limits.OrderBy(l => l.HoneyClass).ThenBy(l => l.LimitId))
+            foreach (var l in parameter.Limits.OrderBy(l => l.HoneyTypeId != null).ThenBy(l => l.HoneyClass).ThenBy(l => l.LimitId))
             {
-                var text = Describe(l.MinValue, l.MaxValue, parameter.ParameterUnit);
+                var text = l.RatioWithParameterId != null
+                    ? $"/ {l.RatioWithParameter?.ParameterName}: {Describe(l.MinValue, l.MaxValue, null)}"
+                    : Describe(l.MinValue, l.MaxValue, parameter.ParameterUnit);
                 if (l.SumWithParameterId != null)
                     text = $"+ {l.SumWithParameter?.ParameterName}: {text}";
                 if (l.ConditionParameterId != null)
                     text += $" if {l.ConditionParameter?.ParameterName} <= {Format(l.ConditionMaxValue!.Value)}";
-                parts.Add(l.HoneyClass != null ? $"{l.HoneyClass}: {text}" : text);
+                var scope = l.HoneyTypeId != null ? l.HoneyType?.HoneyTypeTitle ?? $"honey type {l.HoneyTypeId}" : l.HoneyClass;
+                parts.Add(scope != null ? $"{scope}: {text}" : text);
             }
             return parts.Count == 0 ? null : string.Join("; ", parts);
         }

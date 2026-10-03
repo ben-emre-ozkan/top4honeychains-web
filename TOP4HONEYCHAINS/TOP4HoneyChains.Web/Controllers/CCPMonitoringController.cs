@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TOP4HoneyChains.Web.Data;
@@ -206,6 +206,10 @@ namespace TOP4HoneyChains.Web.Controllers
             ? RedirectToAction(nameof(RawHoneyProductionManageCCP), new { rawHoneyProductionId = ownerId, ccpId })
             : RedirectToAction(nameof(FinalHoneyProductionManageCCP), new { finalHoneyProductionId = ownerId, ccpId });
 
+        private Task<HoneyProfile> HoneyProfileAsync(Owner owner, int ownerId) => owner == Owner.RawLot
+            ? _ccp.GetHoneyProfileForRawLotAsync(ownerId)
+            : _ccp.GetHoneyProfileForBatchAsync(ownerId);
+
         private Task<string?> LockReasonAsync(Owner owner, int ownerId) => owner == Owner.RawLot
             ? _ccp.GetRawLotLockReasonAsync(ownerId)
             : _ccp.GetBatchLockReasonAsync(ownerId);
@@ -269,6 +273,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 .Include(p => p.ParameterCategoryNavigation)
                 .Include(p => p.Limits).ThenInclude(l => l.ConditionParameter)
                 .Include(p => p.Limits).ThenInclude(l => l.SumWithParameter)
+                .Include(p => p.Limits).ThenInclude(l => l.RatioWithParameter)
+                .Include(p => p.Limits).ThenInclude(l => l.HoneyType)
                 .Where(p => p.CCPId == ccpId)
                 .OrderBy(p => p.ParameterId)
                 .ToListAsync();
@@ -327,9 +333,7 @@ namespace TOP4HoneyChains.Web.Controllers
             model.NotApplicableAt = assignment?.NotApplicableAt;
             model.HasValues = logs.Count > 0;
             model.LockReason = await LockReasonAsync(owner, ownerId);
-            model.HoneyClass = owner == Owner.RawLot
-                ? await _ccp.GetHoneyClassForRawLotAsync(ownerId)
-                : await _ccp.GetHoneyClassForBatchAsync(ownerId);
+            model.HoneyClass = (await HoneyProfileAsync(owner, ownerId)).HoneyClass;
             return true;
         }
 
@@ -550,14 +554,12 @@ namespace TOP4HoneyChains.Web.Controllers
                 var siblings = logs.Where(l => l.ParameterId != null && l.MeasuredNumericValue != null)
                     .GroupBy(l => l.ParameterId!.Value)
                     .ToDictionary(g => g.Key, g => g.First().MeasuredNumericValue!.Value);
-                var honeyClass = owner == Owner.RawLot
-                    ? await _ccp.GetHoneyClassForRawLotAsync(ownerId)
-                    : await _ccp.GetHoneyClassForBatchAsync(ownerId);
+                var honey = await HoneyProfileAsync(owner, ownerId);
                 foreach (var log in logs)
                 {
                     if (log.ParameterId == null || !parameters.TryGetValue(log.ParameterId.Value, out var p))
                         continue;
-                    var result = CcpLimitEvaluator.Evaluate(p, log.MeasuredNumericValue, siblings, honeyClass);
+                    var result = CcpLimitEvaluator.Evaluate(p, log.MeasuredNumericValue, siblings, honey);
                     log.IsInRange = result.IsInRange;
                     log.AppliedLimit = result.AppliedLimit;
                 }

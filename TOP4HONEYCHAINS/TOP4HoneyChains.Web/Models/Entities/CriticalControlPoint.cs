@@ -24,6 +24,9 @@ namespace TOP4HoneyChains.Web.Models.Entities
         [StringLength(10)]
         public string? AppliesTo { get; set; }
 
+        // Whether free-text values of this CCP may appear on the public Honey Story page (D-20)
+        public bool PublicTextValues { get; set; }
+
         public virtual ICollection<CriticalControlPointParameter> CriticalControlPointParameters { get; set; }
             = new List<CriticalControlPointParameter>();
 

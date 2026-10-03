@@ -1,4 +1,4 @@
-# Feedback backlog – LBTU partner test report
+﻿# Feedback backlog – LBTU partner test report
 
 Source: `docs/feedback/LBTU_Bulgu_Listesi_.docx`, last modified 2026-09-08, written in Turkish, 34 findings.
 The report marks items 1, 2, 19 and 20 as critical (shown in bold in the report).
@@ -206,6 +206,8 @@ Source: the as-is analysis in [`CCP-CURRENT.md`](CCP-CURRENT.md). Decisions [D-1
 | CCP-04 | **Finalize checked only the total amount**, not the batch's CCPs; the batch status never returned to "In Progress" when a value was cleared; a crafted POST could add a lot without any CCP. | D-16 | fixed: blockers listed on ManageBatch and enforced on finalize; status logic shared by lot and batch; eligibility checked the same way on GET and POST |
 | CCP-05 | **CCP applicability was implicit** (any CCP could be assigned anywhere; Honey Story used hard-coded ids and skipped CCP 0). | D-17 | fixed: `AppliesTo` on the CCP |
 | CCP-06 | **Parameters had no type, limits or required flag;** any text counted as a value; no file values. | D-18, D-19 | fixed: metadata, honey-class / conditional / sum limits, in-range flag, Yes/No and file inputs; seeds **to verify** |
+| CCP-07 | **CCP 0 became public on Honey Story** with all its answers, including the free-text answers of the field audit. | D-12, D-20 | fixed (`fix/ccp-followup`): only status and Yes/No / numeric results of CCP 0 are public |
+| CCP-08 | **Limit design gaps:** chestnut honey's conductivity exception, the fructose/glucose ratio and a doubtful pine moisture seed. | D-21 | fixed (`fix/ccp-followup`): honey-type rows, ratio rows, note; all to verify (PQ-03) |
 
 ### Note on reproduction and verification (2026-10-03)
 - **Reproduced on the baseline** with `zz_test` records (wholesaler, beekeeper, apiary, lot, batch): a batch was finalized while its CCP 4 was unstarted; after finalize the batch CCP values and the lot's CCP 1 value were changed; removing the batch CCP deleted the assignment and left 4 orphaned values.
@@ -221,3 +223,8 @@ Source: the as-is analysis in [`CCP-CURRENT.md`](CCP-CURRENT.md). Decisions [D-1
   - Honey Story (anonymous): every CCP is listed per lot and for the batch as Recorded / Partly recorded / Not applicable (with reason) / Not recorded, with a gap note; no compliance badges while limits are unverified; after marking one limit verified, the badge appears ("outside limit, max 20"); real finalized batches show their unrecorded CCP 4–10 as "Not recorded".
   - Admin forms: parameter, CCP and honey type edits keep the new fields; min > max refused; Limits page add, invalid add and remove.
 - The five batches finalized before this change (ids 2–6) are unchanged: batch 2 has CCP 4–10 completed (23 values); batches 3–6 have CCP 4–10 assigned but never started (no values). No stored flag was written to existing values.
+
+### Note on the CCP follow-up (`fix/ccp-followup`, 2026-10-03)
+- **What CCP 0 showed publicly** (checked on a real finalized batch, anonymous, structure only): per lot the title "Primary Audit", the step "Pre-Production" and all 21 audit questions with their answers, including the 3 free-text questions (how temperature is measured, which disinfection methods, how often water is tested). No notes, dates, files or locations. After the fix: the same CCP shows 18 Yes/No answers; CCP 1 still shows its text (sensory analysis).
+- **Migration 003** applied to LocalDB twice; the second run changed 0 rows. Seeds: public text on CCP 1–10, the chestnut conductivity row, the floral fructose/glucose ratio row, 4 + 4 pine moisture notes.
+- **Verified in the browser** (`zz_test` lots, deleted afterwards): chestnut lot, conductivity 0.5 → out of limit "min 0.8 (Chestnut Honey)"; thyme lot, 0.5 → within "max 0.8 (Floral)". Fructose 30 / glucose 25 → out (sum 55 < 60, ratio 1.2 in); 30 / 40 → out (ratio 0.75); 35 / 30 → within (sum 65, ratio 1.17). The Limits page shows honey-type and ratio rows and refuses a row with both a sum and a ratio. The CCP form keeps "Show free-text values".

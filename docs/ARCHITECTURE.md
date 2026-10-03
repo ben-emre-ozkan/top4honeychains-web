@@ -251,7 +251,7 @@ Other prerequisites:
 - No logging anywhere.
 - ~~CCPMonitoring has null-reference paths.~~ **Fixed on main** (rewritten in `fix/ccp-integrity`).
 - ~~Hard-coded CCP ids and AssignmentStatus ids.~~ CCP ids: **fixed** (AppliesTo, D-17). Status ids are fixed constants (1–5).
-- CCP rules (D-14 to D-19): `Services/CcpIntegrityService.cs` (locks, eligibility, finalize blockers, honey class) and `Services/CcpLimitEvaluator.cs` (limits). CCP file values live in `App_Data/ccp-files/` (git-ignored, server-only).
+- CCP rules (D-14 to D-19): `Services/CcpIntegrityService.cs` (locks, eligibility, finalize blockers, honey class) and `Services/CcpLimitEvaluator.cs` (limits: default, honey class, honey type, condition, sum, ratio; D-18, D-21). CCP file values live in `App_Data/ccp-files/` (git-ignored, server-only). Honey Story publishes free text only for CCPs with `PublicTextValues` (D-20).
 
 **Maintainability**
 - There is no schema source of truth for the business tables (no migrations, no script), and the EF model has drifted from the DB (§4.2).
