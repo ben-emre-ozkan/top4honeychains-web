@@ -1,11 +1,11 @@
-@using TOP4HoneyChains.Web.Models.Entities
+﻿@using TOP4HoneyChains.Web.Models.Entities
 @using TOP4HoneyChains.Web.Models.ViewModels.Monitoring
 @model CcpMonitoringViewModelBase
 
 @* Parameter inputs by data type, limits and the stored in-range result (D-18, D-19).
    Rendered inside the page's form; disabled when the page is read-only. *@
 @{
-    var readOnly = Model.LockReason != null || Model.StatusId == AssignmentStatusIds.NotApplicable;
+    var readOnly = Model.LockReason != null || Model.StatusId == AssignmentStatusIds.NotApplicable || !Model.CanEnter;
 }
 
 <fieldset @(readOnly ? "disabled" : "")>

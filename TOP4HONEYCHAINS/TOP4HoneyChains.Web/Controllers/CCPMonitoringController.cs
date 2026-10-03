@@ -5,6 +5,10 @@ using TOP4HoneyChains.Web.Data;
 using TOP4HoneyChains.Web.Models.Entities;
 using TOP4HoneyChains.Web.Models.ViewModels.Monitoring;
 using TOP4HoneyChains.Web.Services;
+using TOP4HoneyChains.Web.Services.OrgModel;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
+using TOP4HoneyChains.Web.Models.Identity;
 
 namespace TOP4HoneyChains.Web.Controllers
 {
@@ -12,7 +16,9 @@ namespace TOP4HoneyChains.Web.Controllers
     // applies to the record (D-17), never for a locked record (D-14) or a "Not applicable" CCP (D-15);
     // values are checked against the parameter's data type and limits (D-18); file values are stored
     // outside wwwroot (D-19).
-    [Authorize(Roles = "Administrator")]
+    // Administrators (v1.0); with Features:OrgRoleModel also organization members, checked per record
+    // by CcpAuthorizationHandler (read / enter / approve)
+    [Authorize(Policy = AuthPolicies.PanelUser)]
     public class CCPMonitoringController : Controller
     {
         private const string FileFolder = "App_Data/ccp-files";
@@ -20,25 +26,49 @@ namespace TOP4HoneyChains.Web.Controllers
         private readonly TOP4HoneyChainsContext _context;
         private readonly CcpIntegrityService _ccp;
         private readonly IWebHostEnvironment _env;
+        private readonly IAuthorizationService _authz;
+        private readonly ICurrentOrg _current;
+        private readonly AuditWriter _audit;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public CCPMonitoringController(TOP4HoneyChainsContext context, CcpIntegrityService ccp, IWebHostEnvironment env)
+        public CCPMonitoringController(TOP4HoneyChainsContext context, CcpIntegrityService ccp, IWebHostEnvironment env,
+            IAuthorizationService authz, ICurrentOrg current, AuditWriter audit, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _ccp = ccp;
             _env = env;
+            _authz = authz;
+            _current = current;
+            _audit = audit;
+            _userManager = userManager;
         }
+
+        private static string KindOf(Owner owner) => owner == Owner.RawLot ? "raw" : "batch";
+
+        private Task<AuthorizationResult> AuthorizeAsync(Owner owner, int ownerId, int ccpId, OperationAuthorizationRequirement op) =>
+            _authz.AuthorizeAsync(User, new CcpResource(KindOf(owner), ownerId, ccpId), op);
+
+        private static string? ReasonOf(AuthorizationResult r) =>
+            r.Failure?.FailureReasons.Select(x => x.Message).FirstOrDefault();
+
+        // Members have no access to the admin lists: send them back to their workspace
+        private IActionResult BackToList(string controller, string action, object routeValues) =>
+            User.IsInRole(CurrentOrg.AdminRole) ? RedirectToAction(action, controller, routeValues) : RedirectToAction("Index", "OrgWorkspace");
 
         // ------------------------------------------------------------------ raw honey lot
 
         public async Task<IActionResult> RawHoneyProductionManageCCP(int rawHoneyProductionId, int ccpId)
         {
+            // Another organization's record answers 404, so its existence is not revealed
+            if (!(await AuthorizeAsync(Owner.RawLot, rawHoneyProductionId, ccpId, CcpOperations.Read)).Succeeded)
+                return NotFound();
             var model = await BuildRawModelAsync(rawHoneyProductionId, ccpId);
             if (model == null)
                 return NotFound();
             if (await FindAssignmentAsync(Owner.RawLot, rawHoneyProductionId, ccpId) == null)
             {
                 TempData["Error"] = "This CCP is not assigned to the lot.";
-                return RedirectToAction("RawHoneyProductionByApiary", "RawHoneyProductions", new { id = model.ApiaryId });
+                return BackToList("RawHoneyProductions", "RawHoneyProductionByApiary", new { id = model.ApiaryId });
             }
 
             ViewBag.Controller = "Raw Honey Production Manage CCP";
@@ -50,6 +80,8 @@ namespace TOP4HoneyChains.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RawHoneyProductionManageCCP(CCPMonitoringViewModelForRawHoney model)
         {
+            if (!(await AuthorizeAsync(Owner.RawLot, model.RawHoneyProductionId, model.CCPId, CcpOperations.Read)).Succeeded)
+                return NotFound();
             var display = await BuildRawModelAsync(model.RawHoneyProductionId, model.CCPId);
             if (display == null)
                 return NotFound();
@@ -58,7 +90,7 @@ namespace TOP4HoneyChains.Web.Controllers
             if (errors == null)
             {
                 TempData["Success"] = $"{display.CCPCode} values saved.";
-                return RedirectToAction("RawHoneyProductionByApiary", "RawHoneyProductions", new { id = display.ApiaryId });
+                return BackToList("RawHoneyProductions", "RawHoneyProductionByApiary", new { id = display.ApiaryId });
             }
 
             return ShowErrors(display, model.Groups, errors);
@@ -68,13 +100,15 @@ namespace TOP4HoneyChains.Web.Controllers
 
         public async Task<IActionResult> FinalHoneyProductionManageCCP(int finalHoneyProductionId, int ccpId)
         {
+            if (!(await AuthorizeAsync(Owner.Batch, finalHoneyProductionId, ccpId, CcpOperations.Read)).Succeeded)
+                return NotFound();
             var model = await BuildBatchModelAsync(finalHoneyProductionId, ccpId);
             if (model == null)
                 return NotFound();
             if (await FindAssignmentAsync(Owner.Batch, finalHoneyProductionId, ccpId) == null)
             {
                 TempData["Error"] = "This CCP is not assigned to the batch.";
-                return RedirectToAction("ByWholesaler", "FinalHoneyProductions", new { wholesalerId = model.WholesalerId });
+                return BackToList("FinalHoneyProductions", "ByWholesaler", new { wholesalerId = model.WholesalerId });
             }
 
             ViewBag.Controller = "Final Honey Production Manage CCP";
@@ -86,6 +120,8 @@ namespace TOP4HoneyChains.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> FinalHoneyProductionManageCCP(CCPMonitoringViewModelForFinalBatch model)
         {
+            if (!(await AuthorizeAsync(Owner.Batch, model.FinalHoneyProductionId, model.CCPId, CcpOperations.Read)).Succeeded)
+                return NotFound();
             var display = await BuildBatchModelAsync(model.FinalHoneyProductionId, model.CCPId);
             if (display == null)
                 return NotFound();
@@ -94,7 +130,7 @@ namespace TOP4HoneyChains.Web.Controllers
             if (errors == null)
             {
                 TempData["Success"] = $"{display.CCPCode} values saved.";
-                return RedirectToAction("ByWholesaler", "FinalHoneyProductions", new { wholesalerId = display.WholesalerId });
+                return BackToList("FinalHoneyProductions", "ByWholesaler", new { wholesalerId = display.WholesalerId });
             }
 
             return ShowErrors(display, model.Groups, errors);
@@ -111,11 +147,14 @@ namespace TOP4HoneyChains.Web.Controllers
                 return NotFound();
 
             var assignment = await FindAssignmentAsync(owner.Value, ownerId, ccpId);
-            if (assignment == null)
+            if (assignment == null || !(await AuthorizeAsync(owner.Value, ownerId, ccpId, CcpOperations.Read)).Succeeded)
                 return NotFound();
 
             reason = reason?.Trim();
             string? error = await LockReasonAsync(owner.Value, ownerId);
+            var enter = await AuthorizeAsync(owner.Value, ownerId, ccpId, CcpOperations.Enter);
+            if (error == null && !enter.Succeeded)
+                error = ReasonOf(enter) ?? "Your role cannot record this CCP.";
             if (error == null && await HasValuesAsync(owner.Value, ownerId, ccpId))
                 error = "This CCP already has recorded values, so it cannot be marked \"Not applicable\". Clear the values first if the CCP really does not apply.";
             if (error == null && string.IsNullOrEmpty(reason))
@@ -134,6 +173,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 assignment.NotApplicableBy = User.Identity?.Name ?? "unknown";
                 assignment.NotApplicableAt = DateTime.Now;
                 assignment.EndDate = DateTime.Now;
+                assignment.ClearApproval();
                 await _context.SaveChangesAsync();
                 TempData["Success"] = "The CCP is marked \"Not applicable\".";
             }
@@ -149,12 +189,17 @@ namespace TOP4HoneyChains.Web.Controllers
                 return NotFound();
 
             var assignment = await FindAssignmentAsync(owner.Value, ownerId, ccpId);
-            if (assignment == null)
+            if (assignment == null || !(await AuthorizeAsync(owner.Value, ownerId, ccpId, CcpOperations.Read)).Succeeded)
                 return NotFound();
 
+            var enter = await AuthorizeAsync(owner.Value, ownerId, ccpId, CcpOperations.Enter);
             if (await LockReasonAsync(owner.Value, ownerId) is string lockReason)
             {
                 TempData["Error"] = lockReason;
+            }
+            else if (!enter.Succeeded)
+            {
+                TempData["Error"] = ReasonOf(enter) ?? "Your role cannot record this CCP.";
             }
             else if (assignment.Status == AssignmentStatusIds.NotApplicable)
             {
@@ -163,9 +208,51 @@ namespace TOP4HoneyChains.Web.Controllers
                 assignment.NotApplicableBy = null;
                 assignment.NotApplicableAt = null;
                 assignment.EndDate = null;
+                assignment.ClearApproval();
                 await _context.SaveChangesAsync();
                 TempData["Success"] = "\"Not applicable\" was removed; values can be recorded again.";
             }
+            return RedirectToMonitoring(owner.Value, ownerId, ccpId);
+        }
+
+        // ------------------------------------------------------------------ four-eyes approval (D-27)
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Approve(string ownerKind, int ownerId, int ccpId)
+        {
+            var owner = ParseOwner(ownerKind);
+            if (!_current.Enabled || owner == null)
+                return NotFound();
+            var assignment = await FindAssignmentAsync(owner.Value, ownerId, ccpId);
+            if (assignment == null || !(await AuthorizeAsync(owner.Value, ownerId, ccpId, CcpOperations.Read)).Succeeded)
+                return NotFound();
+
+            var result = await AuthorizeAsync(owner.Value, ownerId, ccpId, CcpOperations.Approve);
+            string? error = await LockReasonAsync(owner.Value, ownerId);
+            if (error == null && !result.Succeeded)
+                error = ReasonOf(result) ?? "Only a QualityApprover of the organization can approve.";
+            if (error == null && !AssignmentStatusIds.IsDone(assignment.Status))
+                error = "Only a completed (or \"Not applicable\") CCP record can be approved.";
+            if (error == null && assignment.ApprovedAt != null)
+                error = "This CCP record is already approved.";
+
+            if (error != null)
+            {
+                TempData["Error"] = error;
+                return RedirectToMonitoring(owner.Value, ownerId, ccpId);
+            }
+
+            var self = HttpContext.Items.ContainsKey(CcpAuthorizationHandler.SelfApprovalKey);
+            var active = await _current.GetAsync();
+            assignment.ApprovedByUserId = _current.UserId;
+            assignment.ApprovedByOrgId = active?.OrgId;
+            assignment.ApprovedAt = DateTime.Now;
+            assignment.SelfApproved = self;
+            await _context.SaveChangesAsync();
+            await _audit.WriteAsync("Approve", owner == Owner.RawLot ? "RawHoneyCCPAssignments" : "FinalHoneyCCPAssignments",
+                $"{ownerId}/{ccpId}", null, new { Status = assignment.Status }, self ? "SelfApproved" : null);
+            TempData["Success"] = self ? "Approved under the four-eyes exemption (flagged in the audit log)." : "CCP record approved.";
             return RedirectToMonitoring(owner.Value, ownerId, ccpId);
         }
 
@@ -174,7 +261,11 @@ namespace TOP4HoneyChains.Web.Controllers
         public async Task<IActionResult> File(int id)
         {
             var log = await _context.CriticalControlPointMonitoringLogs.FirstOrDefaultAsync(l => l.LogId == id);
-            if (log?.StoredFileName == null)
+            if (log?.StoredFileName == null || log.CCPId == null)
+                return NotFound();
+            var owner = log.RawHoneyProductionId != null ? Owner.RawLot : Owner.Batch;
+            var ownerId = log.RawHoneyProductionId ?? log.FinalHoneyProductionId!.Value;
+            if (!(await AuthorizeAsync(owner, ownerId, log.CCPId.Value, CcpOperations.Read)).Succeeded)
                 return NotFound();
 
             var path = Path.Combine(_env.ContentRootPath, FileFolder, Path.GetFileName(log.StoredFileName));
@@ -253,6 +344,36 @@ namespace TOP4HoneyChains.Web.Controllers
                 set { if (Raw != null) Raw.NotApplicableAt = value; else Final!.NotApplicableAt = value; }
             }
             public string? StatusName => Raw?.AssignmentStatus?.AssignmentStatusName ?? Final?.AssignmentStatus?.AssignmentStatusName;
+
+            public string? ApprovedByUserId
+            {
+                get => Raw != null ? Raw.ApprovedByUserId : Final!.ApprovedByUserId;
+                set { if (Raw != null) Raw.ApprovedByUserId = value; else Final!.ApprovedByUserId = value; }
+            }
+            public int? ApprovedByOrgId
+            {
+                get => Raw != null ? Raw.ApprovedByOrgId : Final!.ApprovedByOrgId;
+                set { if (Raw != null) Raw.ApprovedByOrgId = value; else Final!.ApprovedByOrgId = value; }
+            }
+            public DateTime? ApprovedAt
+            {
+                get => Raw != null ? Raw.ApprovedAt : Final!.ApprovedAt;
+                set { if (Raw != null) Raw.ApprovedAt = value; else Final!.ApprovedAt = value; }
+            }
+            public bool SelfApproved
+            {
+                get => Raw != null ? Raw.SelfApproved : Final!.SelfApproved;
+                set { if (Raw != null) Raw.SelfApproved = value; else Final!.SelfApproved = value; }
+            }
+
+            // A changed record needs a new approval
+            public void ClearApproval()
+            {
+                ApprovedByUserId = null;
+                ApprovedByOrgId = null;
+                ApprovedAt = null;
+                SelfApproved = false;
+            }
         }
 
         private async Task<AssignmentRef?> FindAssignmentAsync(Owner owner, int ownerId, int ccpId)
@@ -333,6 +454,22 @@ namespace TOP4HoneyChains.Web.Controllers
             model.NotApplicableAt = assignment?.NotApplicableAt;
             model.HasValues = logs.Count > 0;
             model.LockReason = await LockReasonAsync(owner, ownerId);
+            model.OrgModelOn = _current.Enabled;
+            var enter = await AuthorizeAsync(owner, ownerId, ccpId, CcpOperations.Enter);
+            model.CanEnter = enter.Succeeded;
+            model.EnterDeniedReason = enter.Succeeded ? null : ReasonOf(enter) ?? "Your role can read this CCP but not record it.";
+            if (_current.Enabled && assignment != null)
+            {
+                var approve = await AuthorizeAsync(owner, ownerId, ccpId, CcpOperations.Approve);
+                model.CanApprove = approve.Succeeded;
+                model.ApproveDeniedReason = approve.Succeeded ? null : ReasonOf(approve);
+                model.ApprovedAt = assignment.ApprovedAt;
+                model.SelfApproved = assignment.SelfApproved;
+                if (assignment.ApprovedByUserId != null)
+                    model.ApprovedBy = (await _userManager.FindByIdAsync(assignment.ApprovedByUserId))?.UserName ?? assignment.ApprovedByUserId;
+                // The self-approval marker of the check above must not leak into a later action
+                HttpContext.Items.Remove(CcpAuthorizationHandler.SelfApprovalKey);
+            }
             model.HoneyClass = (await HoneyProfileAsync(owner, ownerId)).HoneyClass;
             return true;
         }
@@ -434,6 +571,11 @@ namespace TOP4HoneyChains.Web.Controllers
                 return new() { lockReason };
             if (assignment.Status == AssignmentStatusIds.NotApplicable)
                 return new() { "This CCP is marked \"Not applicable\". Remove that mark first to record values." };
+            var enter = await AuthorizeAsync(owner, ownerId, ccpId, CcpOperations.Enter);
+            if (!enter.Succeeded)
+                return new() { ReasonOf(enter) ?? "Your role can read this CCP but not record it." };
+            var active = await _current.GetAsync();
+            var changed = false;
 
             var parameters = (await LoadParametersAsync(ccpId)).ToDictionary(p => p.ParameterId);
             var posted = (groups ?? new()).SelectMany(g => g.Parameters ?? new())
@@ -510,6 +652,9 @@ namespace TOP4HoneyChains.Web.Controllers
                             if (log?.StoredFileName != null)
                                 obsoleteFiles.Add(log.StoredFileName);
                             log ??= NewLog(owner, ownerId, ccpId, p.ParameterId);
+                            changed = true;
+                            log.RecordedByUserId = _current.UserId;
+                            log.RecordedByOrgId = active?.OrgId;
                             log.StoredFileName = stored;
                             log.MeasuredTextValue = Truncate(Path.GetFileName(input.File.FileName), 100);
                             log.MeasuredNumericValue = null;
@@ -521,6 +666,7 @@ namespace TOP4HoneyChains.Web.Controllers
                             if (log.StoredFileName != null)
                                 obsoleteFiles.Add(log.StoredFileName);
                             _context.CriticalControlPointMonitoringLogs.Remove(log);
+                            changed = true;
                         }
                         else if (log != null && log.Notes != input.Notes)
                         {
@@ -533,7 +679,10 @@ namespace TOP4HoneyChains.Web.Controllers
                     if (!hasValue)
                     {
                         if (log != null)
+                        {
                             _context.CriticalControlPointMonitoringLogs.Remove(log);
+                            changed = true;
+                        }
                         continue;
                     }
 
@@ -545,6 +694,9 @@ namespace TOP4HoneyChains.Web.Controllers
                         log.MeasuredTextValue = input.MeasuredTextValue;
                         log.Notes = input.Notes;
                         log.MeasurementDate = DateTime.Now;
+                        log.RecordedByUserId = _current.UserId;
+                        log.RecordedByOrgId = active?.OrgId;
+                        changed = true;
                     }
                 }
                 await _context.SaveChangesAsync();
@@ -572,6 +724,8 @@ namespace TOP4HoneyChains.Web.Controllers
                     : logs.Count > 0 ? AssignmentStatusIds.InProgress
                     : AssignmentStatusIds.Assigned;
                 assignment.EndDate = complete ? (assignment.EndDate ?? DateTime.Now) : null;
+                if (changed)
+                    assignment.ClearApproval();
 
                 await _context.SaveChangesAsync();
                 await transaction.CommitAsync();
