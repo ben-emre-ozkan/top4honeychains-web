@@ -1,5 +1,5 @@
 ﻿<!doctype html>
-<html lang="en">
+<html lang="@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName">
 
 <head>
 
@@ -14,6 +14,7 @@
 </head>
 
 <body>
+    <partial name="~/Views/Shared/_LanguageSwitch.cshtml" />
     <!-- Begin page -->
     <partial name="~/Views/Shared/_FlashMessages.cshtml" />
 
@@ -28,6 +29,7 @@
     <script src="~/assets/libs/jquery-sparkline/jquery.sparkline.min.js"></script>
     <!-- App js -->
     @RenderSection("scripts", required: false)
+    <partial name="~/Views/Shared/_I18nScripts.cshtml" />
 </body>
 
 </html>

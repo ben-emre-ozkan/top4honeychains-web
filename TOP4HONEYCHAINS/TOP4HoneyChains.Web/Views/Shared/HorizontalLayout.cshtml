@@ -1,5 +1,5 @@
 ﻿<!doctype html>
-<html lang="en">
+<html lang="@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName">
 
 <head>
 
@@ -51,6 +51,7 @@
     <partial name="~/Views/Shared/_FieldSupport.cshtml" />
 
     @RenderSection("scripts", required: false)
+    <partial name="~/Views/Shared/_I18nScripts.cshtml" />
 </body>
 
 </html>

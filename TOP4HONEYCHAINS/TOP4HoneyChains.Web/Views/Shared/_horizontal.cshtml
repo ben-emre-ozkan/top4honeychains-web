@@ -200,8 +200,8 @@
                             </h4>
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">TOP4HoneyChains</a></li>
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">@ViewBag.Controller</a></li>
-                                <li class="breadcrumb-item active">@ViewBag.Action</li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">@(ViewBag.Controller is string crumb && crumb.Length > 0 ? L[crumb].Value : "")</a></li>
+                                <li class="breadcrumb-item active">@(ViewBag.Action is string step && step.Length > 0 ? L[step].Value : "")</li>
                             </ol>
                         </div>
                     </div>

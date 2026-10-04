@@ -7,7 +7,7 @@
 }
 
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName">
 <head>
     <meta charset="utf-8" />
     <title>@(Model.BatchTitle ?? L["Honey Story"].Value)</title>
@@ -202,6 +202,7 @@
 </head>
 
 <body>
+    <partial name="~/Views/Shared/_LanguageSwitch.cshtml" />
 
     <div class="container py-5">
 

@@ -53,10 +53,12 @@ var supportedCultures = new[]
 };
 
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+builder.Services.AddSingleton<Microsoft.Extensions.Options.IConfigureOptions<Microsoft.AspNetCore.Mvc.MvcOptions>, ConfigureLocalizedMvc>();
 
 var localizationOptions = new RequestLocalizationOptions
 {
-    DefaultRequestCulture = new RequestCulture("en"),
+    // D-51: Turkish is the default language; English is only the fallback for a missing translation
+    DefaultRequestCulture = new RequestCulture("tr"),
     SupportedCultures = supportedCultures,
     SupportedUICultures = supportedCultures
 };

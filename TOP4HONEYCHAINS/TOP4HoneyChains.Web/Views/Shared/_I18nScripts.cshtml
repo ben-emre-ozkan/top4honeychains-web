@@ -1,0 +1,51 @@
+@* D-51: third-party widgets (DataTables, Parsley) follow the selected language. Rendered after the page scripts
+   and before the page is ready, so the defaults apply to every table and form initialized on document ready. *@
+@{
+    var lang = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+    var dt = new Dictionary<string, object>
+    {
+        ["emptyTable"] = L["No data available in table"].Value,
+        ["info"] = L["Showing _START_ to _END_ of _TOTAL_ entries"].Value,
+        ["infoEmpty"] = L["Showing 0 to 0 of 0 entries"].Value,
+        ["infoFiltered"] = L["(filtered from _MAX_ total entries)"].Value,
+        ["lengthMenu"] = L["Show _MENU_ entries"].Value,
+        ["loadingRecords"] = L["Loading..."].Value,
+        ["processing"] = L["Processing..."].Value,
+        ["search"] = L["Search:"].Value,
+        ["zeroRecords"] = L["No matching records found"].Value,
+        ["paginate"] = new Dictionary<string, string>
+        {
+            ["first"] = L["First"].Value, ["last"] = L["Last"].Value, ["next"] = L["Next"].Value, ["previous"] = L["Previous"].Value
+        },
+        ["buttons"] = new Dictionary<string, object>
+        {
+            ["copy"] = L["Copy"].Value, ["excel"] = "Excel", ["pdf"] = "PDF", ["print"] = L["Print"].Value, ["colvis"] = L["Column visibility"].Value,
+            ["copyTitle"] = L["Copy to clipboard"].Value,
+            ["copySuccess"] = new Dictionary<string, string> { ["_"] = L["Copied %d rows to clipboard"].Value, ["1"] = L["Copied 1 row to clipboard"].Value }
+        }
+    };
+}
+<script>
+    (function () {
+        if (window.jQuery && jQuery.fn.dataTable) {
+            jQuery.extend(true, jQuery.fn.dataTable.defaults, { language: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(dt)) });
+        }
+        if (window.Swal && Swal.mixin) {
+            window.Swal = Swal.mixin({
+                confirmButtonText: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["OK"].Value)),
+                cancelButtonText: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Cancel"].Value))
+            });
+        }
+    })();
+</script>
+@if (lang != "en")
+{
+    <script>
+        (function () {
+            if (!window.Parsley) return;
+            var s = document.createElement('script');
+            s.src = '@Url.Content("~/assets/libs/parsleyjs/i18n/" + lang + ".js")';
+            document.head.appendChild(s);
+        })();
+    </script>
+}

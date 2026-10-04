@@ -2,7 +2,7 @@
 @{
     Layout = null;
 }
-<html lang="tr" id="html-root" class="lang-tr">
+<html lang="@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName" id="html-root" class="lang-@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName">
 
 <head>
     <meta charset="utf-8">
@@ -63,6 +63,7 @@
 </head>
 
 <body>
+    <partial name="~/Views/Shared/_LanguageSwitch.cshtml" />
     <!-- Skip to main content for accessibility -->
     <a href="#main" class="skip-link">@L["Skip to main content"]</a>
 
