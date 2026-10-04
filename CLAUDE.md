@@ -7,7 +7,7 @@
 
 ## Build and run locally
 - Build: `dotnet build TOP4HONEYCHAINS/TOP4HoneyChains.Web` (must be 0 errors).
-- Tests: `dotnet run --project TOP4HONEYCHAINS/TOP4HoneyChains.Web.Tests` (dependency-free runner, exit code 1 on a failure; must pass).
+- Tests: `dotnet test TOP4HONEYCHAINS/TOP4HoneyChains.Web.Tests` (xUnit; must pass).
 - Run: `dotnet run --project TOP4HONEYCHAINS/TOP4HoneyChains.Web --launch-profile http` → http://localhost:5255 (the profile sets `ASPNETCORE_ENVIRONMENT=Development`).
 - DB: `(localdb)\MSSQLLocalDB`, database `TOP4HoneyChainsDb`. The connection string lives in `appsettings.Development.json`; never edit the connection string in `appsettings.json`.
 - QR generation uses System.Drawing, so the app runs on Windows only.
@@ -20,7 +20,8 @@
   - Never print rows from tables that hold personal data (AspNetUsers, Beekeepers, Apiaries, ApiaryPhotos, Wholesalers, …). Counts and schema only.
   - Create test data through the app, use obviously fake values (e.g. `zz_test_*`, `@example.invalid`), and delete it afterwards.
   - Don't take screenshots of pages that list personal data (beekeepers, apiaries, batches with beekeeper names). Playwright MCP output in `.playwright-mcp/` (git-ignored) can contain such data; delete it after a session.
-- Never connect to production or any other remote server (e.g. `SAHINAYDIN-PC`). The only allowed remote is `git push` to `origin`.
+- Never connect to production or any other remote server or database (e.g. `SAHINAYDIN-PC`). The only allowed git remote is `git push` to `origin`.
+- Package registries (nuget.org, npm) are allowed for development dependencies (restore, tools such as smtp4dev); the rule above is about production and remote servers and databases only.
 
 ## Database changes
 - Business tables are database-first. EF migrations cover Identity tables only.
