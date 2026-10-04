@@ -16,8 +16,10 @@ namespace TOP4HoneyChains.Web.Controllers
     public class OrgWorkspaceController : Controller
     {
         // Who may request finalizing an own batch, and who finalizes it (four-eyes)
-        private static readonly string[] FinalizeRequestRoles = { OrgRoles.Staff, OrgRoles.OrgAdmin };
-        private static readonly string[] FinalizeApproveRoles = { OrgRoles.QualityApprover };
+        // D-56: rights of organization roles (editable matrix)
+        private TOP4HoneyChains.Web.Services.OrgModel.Permissions Perm => HttpContext.RequestServices.GetRequiredService<TOP4HoneyChains.Web.Services.OrgModel.Permissions>();
+        private string[] FinalizeRequestRoles => Perm.Roles(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Finalize, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Enter);
+        private string[] FinalizeApproveRoles => Perm.Roles(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Finalize, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Approve);
 
         private readonly TOP4HoneyChainsContext _context;
         private readonly ICurrentOrg _current;

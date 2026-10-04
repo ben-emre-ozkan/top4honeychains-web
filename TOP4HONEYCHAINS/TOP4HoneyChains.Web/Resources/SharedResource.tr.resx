@@ -4624,7 +4624,7 @@
     <value>Atama durumları</value>
   </data>
   <data name="Capabilities" xml:space="preserve">
-    <value>Yetenekler</value>
+    <value>Yetkinlikler</value>
   </data>
   <data name="LabResults" xml:space="preserve">
     <value>Laboratuvar sonuçları</value>
@@ -5033,5 +5033,113 @@
   </data>
   <data name="Required" xml:space="preserve">
     <value>Zorunlu</value>
+  </data>
+  <data name="Your role ({0}) cannot record deliveries; roles: {1}." xml:space="preserve">
+    <value>Rolünüz ({0}) teslim kaydedemez; yetkili roller: {1}.</value>
+  </data>
+  <data name="Your role ({0}) cannot open this page; roles: {1}." xml:space="preserve">
+    <value>Rolünüz ({0}) bu sayfayı açamaz; yetkili roller: {1}.</value>
+  </data>
+  <data name="Your role ({0}) cannot take samples; roles: {1}." xml:space="preserve">
+    <value>Rolünüz ({0}) numune alamaz; yetkili roller: {1}.</value>
+  </data>
+  <data name="Your role ({0}) cannot manage storefronts; roles: {1}." xml:space="preserve">
+    <value>Rolünüz ({0}) arıcı sayfalarını yönetemez; yetkili roller: {1}.</value>
+  </data>
+  <data name="Roles and permissions" xml:space="preserve">
+    <value>Roller ve yetkiler</value>
+  </data>
+  <data name="Who works for which organization in which role, what each role may do, and which functions each organization has. Every change is recorded in the audit log." xml:space="preserve">
+    <value>Kim hangi kurumda hangi rolle çalışıyor, her rol neler yapabilir ve her kurumun hangi işlevleri var. Her değişiklik denetim kaydına yazılır.</value>
+  </data>
+  <data name="Fixed rules (cannot be switched off):" xml:space="preserve">
+    <value>Sabit kurallar (kapatılamaz):</value>
+  </data>
+  <data name="Nobody approves a record they entered themselves." xml:space="preserve">
+    <value>Kimse kendi girdiği kaydı onaylayamaz.</value>
+  </data>
+  <data name="Lab results are always approved by a second person." xml:space="preserve">
+    <value>Laboratuvar sonuçlarını her zaman ikinci bir kişi onaylar.</value>
+  </data>
+  <data name="The audit log can only be added to; nothing in it is changed or deleted." xml:space="preserve">
+    <value>Denetim kaydına yalnızca ekleme yapılır; içindeki hiçbir şey değiştirilmez veya silinmez.</value>
+  </data>
+  <data name="Every change on this page is recorded in the audit log." xml:space="preserve">
+    <value>Bu sayfadaki her değişiklik denetim kaydına yazılır.</value>
+  </data>
+  <data name="Members" xml:space="preserve">
+    <value>Üyeler</value>
+  </data>
+  <data name="Role permissions" xml:space="preserve">
+    <value>Rol yetkileri</value>
+  </data>
+  <data name="Organization capabilities" xml:space="preserve">
+    <value>Kurum yetkinlikleri</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Kullanıcı</value>
+  </data>
+  <data name="Organization" xml:space="preserve">
+    <value>Kurum</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Ekle</value>
+  </data>
+  <data name="Since" xml:space="preserve">
+    <value>Başlangıç</value>
+  </data>
+  <data name="Revoke this membership?" xml:space="preserve">
+    <value>Bu üyelik sonlandırılsın mı?</value>
+  </data>
+  <data name="Revoke" xml:space="preserve">
+    <value>Sonlandır</value>
+  </data>
+  <data name="Function" xml:space="preserve">
+    <value>İşlev</value>
+  </data>
+  <data name="Enter" xml:space="preserve">
+    <value>Giriş</value>
+  </data>
+  <data name="Read" xml:space="preserve">
+    <value>Okuma</value>
+  </data>
+  <data name="CCP enter and approve rights are the CCP responsibility matrix; the organization still needs the capability the CCP requires." xml:space="preserve">
+    <value>KKN giriş ve onay yetkileri KKN sorumluluk tablosudur; kurumun yine de KKN'nin gerektirdiği yetkinliğe sahip olması gerekir.</value>
+  </data>
+  <data name="A beekeeping enterprise that sells its own honey can get Packing and Retail here. Accreditation of a laboratory is recorded on the organization page." xml:space="preserve">
+    <value>Kendi balını satan bir arıcılık işletmesine buradan Paketleme ve Perakende verilebilir. Laboratuvar akreditasyonu kurum sayfasında kaydedilir.</value>
+  </data>
+  <data name="Area.Intake" xml:space="preserve">
+    <value>Teslim alma</value>
+  </data>
+  <data name="Area.Samples" xml:space="preserve">
+    <value>Numuneler (alma / laboratuvarda teslim alma)</value>
+  </data>
+  <data name="Area.LabResults" xml:space="preserve">
+    <value>Laboratuvar sonuçları</value>
+  </data>
+  <data name="Area.Shipments" xml:space="preserve">
+    <value>Sevkiyatlar (gönderme / teslimi onaylama)</value>
+  </data>
+  <data name="Area.Storefront" xml:space="preserve">
+    <value>Arıcı sayfaları (rıza)</value>
+  </data>
+  <data name="Area.Recall" xml:space="preserve">
+    <value>Geri çağırma raporu</value>
+  </data>
+  <data name="Area.Finalize" xml:space="preserve">
+    <value>Parti kesinleştirme (talep / onay)</value>
+  </data>
+  <data name="Choose an organization." xml:space="preserve">
+    <value>Bir kurum seçin.</value>
+  </data>
+  <data name="Every right needs at least one role; nobody would have: {0}." xml:space="preserve">
+    <value>Her yetkinin en az bir rolü olmalı; şunlar kimsede kalmazdı: {0}.</value>
+  </data>
+  <data name="Permissions of {0} saved; they apply at once." xml:space="preserve">
+    <value>{0} yetkileri kaydedildi; hemen geçerli.</value>
+  </data>
+  <data name="Capabilities of {0} saved." xml:space="preserve">
+    <value>{0} yetkinlikleri kaydedildi.</value>
   </data>
 </root>

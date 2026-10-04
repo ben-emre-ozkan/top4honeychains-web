@@ -1,4 +1,5 @@
-﻿@using TOP4HoneyChains.Web.Models.Entities
+﻿@inject TOP4HoneyChains.Web.Services.OrgModel.Permissions MenuPermissions
+@using TOP4HoneyChains.Web.Models.Entities
 @using TOP4HoneyChains.Web.Services.OrgModel
 @{
     ViewData["Title"] = L["Org.MyOrganization"];
@@ -42,19 +43,19 @@
                                     <div class="alert alert-warning mt-2 mb-0" id="not-verified">@L["Org.NotVerifiedBanner"]</div>
                                 }
                                 <a asp-controller="Organizations" asp-action="Details" asp-route-id="@active.OrgId" class="btn btn-sm btn-outline-primary mt-2">@L["Org.OrganizationPage"]</a>
-                                @if (TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Shipments(active))
+                                @if (TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Shipments(active, MenuPermissions))
                                 {
                                     <a asp-controller="Shipments" asp-action="Index" class="btn btn-sm btn-outline-primary mt-2" id="link-shipments">@L["Cust.Shipments"]</a>
                                 }
-                                @if (TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Intake(active))
+                                @if (TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Intake(active, MenuPermissions))
                                 {
                                     <a asp-controller="Intake" asp-action="Index" class="btn btn-sm btn-outline-primary mt-2" id="link-intakes">@L["Cust.Intakes"]</a>
                                 }
-                                @if (TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Storefronts(active))
+                                @if (TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Storefronts(active, MenuPermissions))
                                 {
                                     <a asp-controller="Storefronts" asp-action="Index" class="btn btn-sm btn-outline-primary mt-2" id="link-storefronts">@L["P5.Storefronts"]</a>
                                 }
-                                @if (TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Samples(active))
+                                @if (TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Samples(active, MenuPermissions))
                                 {
                                     <a asp-controller="Samples" asp-action="Index" class="btn btn-sm btn-outline-primary mt-2" id="link-samples">@L["Lab.Samples"]</a>
                                 }

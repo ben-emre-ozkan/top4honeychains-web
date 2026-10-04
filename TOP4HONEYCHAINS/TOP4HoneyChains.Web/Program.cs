@@ -77,6 +77,7 @@ builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<CcpIntegrityService>();
 builder.Services.AddSingleton<RefText>();
 builder.Services.AddSingleton<Places>();
+builder.Services.AddSingleton<TOP4HoneyChains.Web.Services.OrgModel.Permissions>();
 builder.Services.AddScoped<MessageTranslator>();
 builder.Services.AddScoped<ICurrentOrg, CurrentOrg>();
 builder.Services.AddScoped<CcpResponsibilityService>();

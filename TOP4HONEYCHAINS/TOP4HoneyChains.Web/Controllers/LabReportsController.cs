@@ -17,8 +17,10 @@ namespace TOP4HoneyChains.Web.Controllers
     [Authorize(Policy = AuthPolicies.PanelUser)]
     public class LabReportsController : Controller
     {
-        private static readonly string[] EnterRoles = { OrgRoles.Analyst };
-        private static readonly string[] ApproveRoles = { OrgRoles.LabManager };
+        // D-56: rights of organization roles (editable matrix); lab results always need a second person (fixed)
+        private TOP4HoneyChains.Web.Services.OrgModel.Permissions Perm => HttpContext.RequestServices.GetRequiredService<TOP4HoneyChains.Web.Services.OrgModel.Permissions>();
+        private string[] EnterRoles => Perm.Roles(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.LabResults, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Enter);
+        private string[] ApproveRoles => Perm.Roles(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.LabResults, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Approve);
 
         private readonly TOP4HoneyChainsContext _context;
         private readonly ICurrentOrg _current;
@@ -53,7 +55,8 @@ namespace TOP4HoneyChains.Web.Controllers
             if (_current.IsPlatformAdmin)
                 return sample;
             var active = await _current.GetAsync();
-            return active != null && (active.OrgId == sample.LabOrgId || active.OrgId == sample.TakingOrgId) ? sample : null;
+            return active != null && (active.OrgId == sample.LabOrgId || active.OrgId == sample.TakingOrgId)
+                   && Perm.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.LabResults, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Read, active.OrgRole) ? sample : null;
         }
 
         public async Task<IActionResult> Edit(int id)

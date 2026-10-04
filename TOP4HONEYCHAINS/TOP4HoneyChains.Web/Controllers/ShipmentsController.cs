@@ -22,6 +22,8 @@ namespace TOP4HoneyChains.Web.Controllers
         private readonly OrgScope _scope;
         private readonly AuditWriter _audit;
         private readonly CcpIntegrityService _ccp;
+        // D-56: rights of organization roles (editable matrix)
+        private TOP4HoneyChains.Web.Services.OrgModel.Permissions Perm => HttpContext.RequestServices.GetRequiredService<TOP4HoneyChains.Web.Services.OrgModel.Permissions>();
 
         public ShipmentsController(TOP4HoneyChainsContext context, ICurrentOrg current, CustodyService custody,
             CcpResponsibilityService resp, OrgScope scope, AuditWriter audit, CcpIntegrityService ccp)
@@ -69,11 +71,12 @@ namespace TOP4HoneyChains.Web.Controllers
                 .Where(s => s.ToOrgId == active.OrgId).OrderBy(s => s.Status == ShipmentStatus.Pending ? 0 : 1).ThenByDescending(s => s.ShipmentId).Take(200).ToListAsync();
             ViewBag.Outgoing = await _context.Shipments.AsNoTracking().Include(s => s.Batch).Include(s => s.ToOrg)
                 .Where(s => s.FromOrgId == active.OrgId).OrderByDescending(s => s.ShipmentId).Take(200).ToListAsync();
-            ViewBag.CanShip = active.IsVerified && CustodyService.ShippingRoles.Contains(active.OrgRole);
+            ViewBag.CanShip = active.IsVerified && Perm.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Shipments, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Enter, active.OrgRole);
+            ViewBag.CanReceive = active.IsVerified && Perm.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Shipments, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Approve, active.OrgRole);
             return View();
         }
 
-        private async Task<string?> ShipDeniedAsync(ActiveMembership? active)
+        private async Task<string?> ShipDeniedAsync(ActiveMembership? active, string action = TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Enter)
         {
             if (_current.IsPlatformAdmin)
                 return "Platform administrators are read-only on business data; request a correction instead.";
@@ -81,8 +84,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 return "No active membership.";
             if (!active.IsVerified)
                 return $"Your organization is {active.OrgStatus}; only verified organizations can enter data.";
-            if (!CustodyService.ShippingRoles.Contains(active.OrgRole))
-                return $"Your role ({active.OrgRole}) cannot ship or receive goods; roles: {string.Join(", ", CustodyService.ShippingRoles)}.";
+            if (!Perm.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Shipments, action, active.OrgRole))
+                return $"Your role ({active.OrgRole}) cannot ship or receive goods; roles: {string.Join(", ", Perm.Roles(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Shipments, action))}.";
             return null;
         }
 
@@ -168,7 +171,7 @@ namespace TOP4HoneyChains.Web.Controllers
             if (shipment == null || active == null || shipment.ToOrgId != active.OrgId)
                 return NotFound();
             reason = string.IsNullOrWhiteSpace(reason) ? null : reason.Trim();
-            string? error = await ShipDeniedAsync(active);
+            string? error = await ShipDeniedAsync(active, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Approve);
             if (error == null && shipment.Status != ShipmentStatus.Pending)
                 error = "This shipment was already decided.";
             else if (error == null && !confirm && reason == null)

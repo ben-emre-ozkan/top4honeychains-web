@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TOP4HoneyChains.Web.Data;
@@ -19,6 +19,8 @@ namespace TOP4HoneyChains.Web.Controllers
         private readonly ICurrentOrg _current;
         private readonly StorefrontService _storefronts;
         private readonly IWebHostEnvironment _env;
+        // D-56: rights of organization roles (editable matrix)
+        private TOP4HoneyChains.Web.Services.OrgModel.Permissions Perm => HttpContext.RequestServices.GetRequiredService<TOP4HoneyChains.Web.Services.OrgModel.Permissions>();
 
         public StorefrontsController(TOP4HoneyChainsContext context, ICurrentOrg current, StorefrontService storefronts, IWebHostEnvironment env)
         {
@@ -42,8 +44,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 return "Only a beekeepers' association manages storefronts.";
             if (!active.IsVerified)
                 return $"Your organization is {active.OrgStatus}; only verified organizations can enter data.";
-            if (active.OrgRole != OrgRoles.OrgAdmin)
-                return $"Your role ({active.OrgRole}) cannot manage storefronts; only the association's OrgAdmin can.";
+            if (!Perm.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Storefront, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Enter, active.OrgRole))
+                return $"Your role ({active.OrgRole}) cannot manage storefronts; roles: {string.Join(", ", Perm.Roles(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Storefront, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Enter))}.";
             return null;
         }
 
