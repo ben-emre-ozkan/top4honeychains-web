@@ -53,5 +53,5 @@
 - No new summary documents unless the user asks for one.
 
 ## Language
-- Code, comments, commits and docs: English.
-- Reports to the user: Turkish, at most 5 lines.
+- Code, comments, commits, docs and reports to the user: English. Reports at most 5 lines unless the user asks otherwise.
+- Exception: `docs/LIMITS-TO-VERIFY-TR.md` stays in Turkish; it is meant for a Turkish laboratory.
