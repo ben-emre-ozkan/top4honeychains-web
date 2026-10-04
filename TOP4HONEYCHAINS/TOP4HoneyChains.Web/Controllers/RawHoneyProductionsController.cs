@@ -19,11 +19,21 @@ namespace TOP4HoneyChains.Web.Controllers
     {
         private readonly TOP4HoneyChainsContext _context;
         private readonly CcpIntegrityService _ccp;
+        private readonly TOP4HoneyChains.Web.Services.OrgModel.FeatureFlags _flags;
 
-        public RawHoneyProductionsController(TOP4HoneyChainsContext context, CcpIntegrityService ccp)
+        public RawHoneyProductionsController(TOP4HoneyChainsContext context, CcpIntegrityService ccp,
+            Microsoft.Extensions.Options.IOptions<TOP4HoneyChains.Web.Services.OrgModel.FeatureFlags> flags)
         {
             _context = context;
             _ccp = ccp;
+            _flags = flags.Value;
+        }
+
+        // D-36: the owning organization is chosen on the edit form only with the organization model
+        private void FillOwnerOrgs(int? selected)
+        {
+            if (_flags.OrgRoleModel)
+                ViewBag.OwnerOrgs = new SelectList(_context.Organizations.Where(o => !o.IsPlatform).OrderBy(o => o.DisplayName), "OrgId", "DisplayName", selected);
         }
 
         // Lots used in a finalized batch are locked (D-14): show why and go back to the apiary's lots
@@ -230,6 +240,7 @@ namespace TOP4HoneyChains.Web.Controllers
         );
 
 
+            FillOwnerOrgs(rawHoneyProduction.OwnerOrgId);
             ViewBag.Controller = "Raw Honey Production";
             ViewBag.Action = "Edit";
 
@@ -250,6 +261,13 @@ namespace TOP4HoneyChains.Web.Controllers
 
             if (await RedirectIfLockedAsync(id) is IActionResult locked)
                 return locked;
+
+            // The form posts the whole row (ENG-03): keep the stored owner unless the organization model sets it
+            if (!_flags.OrgRoleModel)
+                rawHoneyProduction.OwnerOrgId = await _context.RawHoneyProductions.AsNoTracking()
+                    .Where(r => r.RawHoneyProductionId == id).Select(r => r.OwnerOrgId).FirstOrDefaultAsync();
+            else if (rawHoneyProduction.OwnerOrgId != null && !await _context.Organizations.AnyAsync(o => o.OrgId == rawHoneyProduction.OwnerOrgId && !o.IsPlatform))
+                ModelState.AddModelError("OwnerOrgId", "Unknown organization.");
 
             if (ModelState.IsValid)
             {
@@ -279,6 +297,7 @@ namespace TOP4HoneyChains.Web.Controllers
             ViewData["RawHoneyProductionWholesalerId"] = new SelectList(
                 _context.Wholesalers.Where(w => w.WholesalerIsActive),
                 "WholesalerId", "WholesalerTitle", rawHoneyProduction.RawHoneyProductionWholesalerId);
+            FillOwnerOrgs(rawHoneyProduction.OwnerOrgId);
 
 
             ViewBag.Controller = "Raw Honey Production";

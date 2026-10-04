@@ -20,11 +20,14 @@ namespace TOP4HoneyChains.Web.Controllers
     {
         private readonly TOP4HoneyChainsContext _context;
         private readonly CcpIntegrityService _ccp;
+        private readonly TOP4HoneyChains.Web.Services.OrgModel.FeatureFlags _flags;
 
-        public FinalHoneyProductionsController(TOP4HoneyChainsContext context, CcpIntegrityService ccp)
+        public FinalHoneyProductionsController(TOP4HoneyChainsContext context, CcpIntegrityService ccp,
+            Microsoft.Extensions.Options.IOptions<TOP4HoneyChains.Web.Services.OrgModel.FeatureFlags> flags)
         {
             _context = context;
             _ccp = ccp;
+            _flags = flags.Value;
         }
 
         // Finalized batches are locked (D-14): show why and go back to the batch list
@@ -86,8 +89,8 @@ namespace TOP4HoneyChains.Web.Controllers
 
             // 🔐 CCP süreci tamamlanmış raw honey’ler
             // At least one CCP, all Completed or Not applicable (D-05, D-15)
-            var rawHoneys = await _ccp.EligibleRawLots(_context.RawHoneyProductions
-                .Where(r => r.RawHoneyProductionWholesalerId == batch.FinalHoneyProductionWholesalerId))
+            var rawHoneys = await (await _ccp.EligibleRawLotsAsync(_context.RawHoneyProductions
+                .Where(r => r.RawHoneyProductionWholesalerId == batch.FinalHoneyProductionWholesalerId)))
                 .Include(r => r.RawHoneyProductionApiary)
                     .ThenInclude(a => a.ApiaryBeekeeper)
                 .Include(r => r.RawHoneyProductionHoneyTypeNavigation)
@@ -125,6 +128,7 @@ namespace TOP4HoneyChains.Web.Controllers
 
             // Lots of the same wholesaler that are not eligible yet, and which CCP checks are missing (D-05)
             var eligibleIds = rawHoneys.Select(r => r.RawHoneyProductionId).ToList();
+            var done = await _ccp.DonePredicateAsync();
             var ineligibleRawHoneys = await _context.RawHoneyProductions
                 .Where(r => r.RawHoneyProductionWholesalerId == batch.FinalHoneyProductionWholesalerId
                             && !eligibleIds.Contains(r.RawHoneyProductionId))
@@ -144,7 +148,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 {
                     RawHoney = raw,
                     PendingChecks = raw.RawHoneyCCPAssignments
-                        .Where(a => !AssignmentStatusIds.IsDone(a.RawHoneyCCPAssignmentStatus))
+                        .Where(a => !done(a.RawHoneyCCPAssignmentStatus, a.ApprovedAt, a.RawHoneyCCPAssignmentCCP))
                         .OrderBy(a => a.CCP?.Code)
                         .Select(a => new PendingCcpCheckViewModel
                         {
@@ -160,6 +164,7 @@ namespace TOP4HoneyChains.Web.Controllers
 
             if (!batch.FinalHoneyProductionIsFinalized)
                 model.FinalizeBlockers = await _ccp.GetFinalizeBlockersAsync(batch.FinalHoneyProductionId);
+            ViewBag.MemberFinalize = _flags.OrgRoleModel;
 
             ViewBag.Controller = "Final Honey Productions";
             ViewBag.Action = "Manage Batch";
@@ -215,7 +220,7 @@ namespace TOP4HoneyChains.Web.Controllers
                     continue;
 
                 // Same rule as the list: a lot without any CCP is not eligible either
-                if (!await _ccp.EligibleRawLots(_context.RawHoneyProductions.Where(r => r.RawHoneyProductionId == rawId)).AnyAsync())
+                if (!await (await _ccp.EligibleRawLotsAsync(_context.RawHoneyProductions.Where(r => r.RawHoneyProductionId == rawId))).AnyAsync())
                     continue;
 
                 var totalUsed = raw.FinalHoneyProductionDetails
@@ -277,6 +282,13 @@ namespace TOP4HoneyChains.Web.Controllers
             // 🔒 Zaten finalize edilmiş mi?
             if (batch.FinalHoneyProductionIsFinalized)
                 return BadRequest("Batch already finalized.");
+
+            // With the organization model the owning organization finalizes with four-eyes (D-27, D-35)
+            if (_flags.OrgRoleModel)
+            {
+                TempData["Error"] = "With the organization model, the owning organization finalizes the batch (request and approval by two people).";
+                return RedirectToAction("ManageBatch", new { id });
+            }
 
             // All CCPs of the batch and of its lots must be Completed or Not applicable (D-16)
             var blockers = await _ccp.GetFinalizeBlockersAsync(id);
@@ -589,6 +601,8 @@ namespace TOP4HoneyChains.Web.Controllers
             if (await RedirectIfLockedAsync(id.Value) is IActionResult locked)
                 return locked;
 
+            if (_flags.OrgRoleModel)
+                ViewBag.OwnerOrgs = new SelectList(_context.Organizations.Where(o => !o.IsPlatform).OrderBy(o => o.DisplayName), "OrgId", "DisplayName", finalHoneyProduction.OwnerOrgId);
             ViewBag.Controller = "Final Honey Productions";
             ViewBag.Action = "Edit";
 
@@ -617,6 +631,8 @@ namespace TOP4HoneyChains.Web.Controllers
             // ✅ Sadece metadata güncelle
             batch.FinalHoneyProductionTitle = model.FinalHoneyProductionTitle;
             batch.FinalHoneyProductionDate = model.FinalHoneyProductionDate;
+            if (_flags.OrgRoleModel && (model.OwnerOrgId == null || await _context.Organizations.AnyAsync(o => o.OrgId == model.OwnerOrgId && !o.IsPlatform)))
+                batch.OwnerOrgId = model.OwnerOrgId;   // D-36
 
             await _context.SaveChangesAsync();
 

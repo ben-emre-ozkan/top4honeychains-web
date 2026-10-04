@@ -125,6 +125,17 @@
                                 <span asp-validation-for="RawHoneyProductionWholesalerId" class="text-danger"></span>
                             </div>
 
+                            @if (ViewBag.OwnerOrgs != null)
+                            {
+                                @* D-36: owning organization (organization model only) *@
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-semibold" for="OwnerOrgId">@L["Org.OwningOrg"]</label>
+                                    <select name="OwnerOrgId" id="OwnerOrgId" class="form-select shadow-sm" asp-items="ViewBag.OwnerOrgs">
+                                        <option value="">@L["Org.OwningOrgDefault"]</option>
+                                    </select>
+                                </div>
+                            }
+
                         </div>
 
                         <hr class="my-4" />

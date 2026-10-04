@@ -30,10 +30,13 @@ namespace TOP4HoneyChains.Web.Controllers
         private readonly ICurrentOrg _current;
         private readonly AuditWriter _audit;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly CcpResponsibilityService _resp;
 
         public CCPMonitoringController(TOP4HoneyChainsContext context, CcpIntegrityService ccp, IWebHostEnvironment env,
-            IAuthorizationService authz, ICurrentOrg current, AuditWriter audit, UserManager<ApplicationUser> userManager)
+            IAuthorizationService authz, ICurrentOrg current, AuditWriter audit, UserManager<ApplicationUser> userManager,
+            CcpResponsibilityService resp)
         {
+            _resp = resp;
             _context = context;
             _ccp = ccp;
             _env = env;
@@ -232,8 +235,8 @@ namespace TOP4HoneyChains.Web.Controllers
             string? error = await LockReasonAsync(owner.Value, ownerId);
             if (error == null && !result.Succeeded)
                 error = ReasonOf(result) ?? "Only a QualityApprover of the organization can approve.";
-            if (error == null && !AssignmentStatusIds.IsDone(assignment.Status))
-                error = "Only a completed (or \"Not applicable\") CCP record can be approved.";
+            if (error == null && !(assignment.Status is AssignmentStatusIds.Submitted or AssignmentStatusIds.Completed or AssignmentStatusIds.NotApplicable))
+                error = "Only a submitted (or \"Not applicable\") CCP record can be approved.";
             if (error == null && assignment.ApprovedAt != null)
                 error = "This CCP record is already approved.";
 
@@ -249,11 +252,136 @@ namespace TOP4HoneyChains.Web.Controllers
             assignment.ApprovedByOrgId = active?.OrgId;
             assignment.ApprovedAt = DateTime.Now;
             assignment.SelfApproved = self;
+            if (assignment.Status == AssignmentStatusIds.Submitted)
+                assignment.Status = AssignmentStatusIds.Completed;
             await _context.SaveChangesAsync();
             await _audit.WriteAsync("Approve", owner == Owner.RawLot ? "RawHoneyCCPAssignments" : "FinalHoneyCCPAssignments",
                 $"{ownerId}/{ccpId}", null, new { Status = assignment.Status }, self ? "SelfApproved" : null);
             TempData["Success"] = self ? "Approved under the four-eyes exemption (flagged in the audit log)." : "CCP record approved.";
             return RedirectToMonitoring(owner.Value, ownerId, ccpId);
+        }
+
+        // ------------------------------------------------------------------ corrections (D-35)
+
+        // A platform administrator requests the change of one recorded value; it is applied only when a
+        // second administrator approves it. Works on locked (finalized) records as well: corrections never unlock.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Policy = AuthPolicies.PlatformAdmin)]
+        public async Task<IActionResult> RequestCorrection(string ownerKind, int ownerId, int ccpId, int parameterId,
+            decimal? newNumericValue, string? newTextValue, string? reason)
+        {
+            var owner = ParseOwner(ownerKind);
+            if (!_current.Enabled || owner == null || await FindAssignmentAsync(owner.Value, ownerId, ccpId) == null)
+                return NotFound();
+            var p = await _context.CriticalControlPointParameters.FirstOrDefaultAsync(x => x.ParameterId == parameterId && x.CCPId == ccpId);
+            if (p == null)
+                return NotFound();
+
+            newTextValue = string.IsNullOrWhiteSpace(newTextValue) ? null : newTextValue.Trim();
+            reason = string.IsNullOrWhiteSpace(reason) ? null : reason.Trim();
+            string? error = null;
+            if (reason == null)
+                error = "A reason is required for a correction.";
+            else if (reason.Length > 500)
+                error = "The reason can be at most 500 characters.";
+            else if (p.DataType == CcpDataType.File)
+                error = "File values cannot be corrected here.";
+            else if (p.DataType == CcpDataType.Number && (newNumericValue == null || newTextValue != null))
+                error = $"{p.ParameterName}: enter a number.";
+            else if (p.DataType == CcpDataType.YesNo && (newNumericValue != null || newTextValue is not ("Yes" or "No")))
+                error = $"{p.ParameterName}: choose Yes or No.";
+            else if (p.DataType == CcpDataType.Text && (newNumericValue != null || newTextValue == null))
+                error = $"{p.ParameterName}: enter text.";
+            else if (p.DataType == null && (newNumericValue == null) == (newTextValue == null))
+                error = $"{p.ParameterName}: enter either a number or a text.";
+            else if (newTextValue?.Length > 100)
+                error = "The text can be at most 100 characters.";
+
+            if (error != null)
+            {
+                TempData["Error"] = error;
+                return RedirectToMonitoring(owner.Value, ownerId, ccpId);
+            }
+
+            var log = await LogsOf(owner.Value, ownerId, ccpId).FirstOrDefaultAsync(l => l.ParameterId == parameterId);
+            _context.CcpCorrections.Add(new CcpCorrection
+            {
+                OwnerKind = KindOf(owner.Value),
+                OwnerId = ownerId,
+                CcpId = ccpId,
+                ParameterId = parameterId,
+                OldNumericValue = log?.MeasuredNumericValue,
+                OldTextValue = log?.MeasuredTextValue,
+                NewNumericValue = newNumericValue,
+                NewTextValue = newTextValue,
+                Reason = reason!,
+                RequestedByUserId = _current.UserId!
+            });
+            await _context.SaveChangesAsync();
+            TempData["Success"] = "Correction requested; another platform administrator must approve it.";
+            return RedirectToMonitoring(owner.Value, ownerId, ccpId);
+        }
+
+        [Authorize(Policy = AuthPolicies.PlatformAdmin)]
+        public async Task<IActionResult> Corrections()
+        {
+            if (!_current.Enabled)
+                return NotFound();
+            var list = await _context.CcpCorrections.AsNoTracking()
+                .Include(c => c.Ccp).Include(c => c.Parameter)
+                .OrderBy(c => c.Status == CorrectionStatus.Pending ? 0 : 1).ThenByDescending(c => c.CorrectionId)
+                .Take(200).ToListAsync();
+            var ids = list.SelectMany(c => new[] { c.RequestedByUserId, c.DecidedByUserId }).Where(x => x != null).Distinct().ToList();
+            ViewBag.UserNames = await _userManager.Users.Where(u => ids.Contains(u.Id)).ToDictionaryAsync(u => u.Id, u => u.UserName ?? u.Id);
+            ViewBag.Controller = "Corrections";
+            ViewBag.Action = "Index";
+            return View(list);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Policy = AuthPolicies.PlatformAdmin)]
+        public async Task<IActionResult> DecideCorrection(int correctionId, bool approve, string? note)
+        {
+            if (!_current.Enabled)
+                return NotFound();
+            var c = await _context.CcpCorrections.FirstOrDefaultAsync(x => x.CorrectionId == correctionId);
+            if (c == null)
+                return NotFound();
+            if (c.Status != CorrectionStatus.Pending)
+                TempData["Error"] = "This correction was already decided.";
+            else if (c.RequestedByUserId == _current.UserId)
+                TempData["Error"] = "Four-eyes: the person who requested a correction cannot decide it.";
+            else if (!approve && string.IsNullOrWhiteSpace(note))
+                TempData["Error"] = "A note is required to reject a correction.";
+            else
+            {
+                var owner = ParseOwner(c.OwnerKind)!.Value;
+                await using var transaction = await _context.Database.BeginTransactionAsync();
+                c.Status = approve ? CorrectionStatus.Applied : CorrectionStatus.Rejected;
+                c.DecidedByUserId = _current.UserId;
+                c.DecidedAt = DateTime.UtcNow;
+                c.DecisionNote = string.IsNullOrWhiteSpace(note) ? null : note.Trim();
+                if (approve)
+                {
+                    var log = await LogsOf(owner, c.OwnerId, c.CcpId).FirstOrDefaultAsync(l => l.ParameterId == c.ParameterId)
+                              ?? NewLog(owner, c.OwnerId, c.CcpId, c.ParameterId);
+                    log.MeasuredNumericValue = c.NewNumericValue;
+                    log.MeasuredTextValue = c.NewTextValue;
+                    log.MeasurementDate = DateTime.Now;
+                    log.RecordedByUserId = c.RequestedByUserId;
+                    log.RecordedByOrgId = null;
+                    await _context.SaveChangesAsync();
+                    await RecomputeFlagsAsync(owner, c.OwnerId, c.CcpId, (await LoadParametersAsync(c.CcpId)).ToDictionary(p => p.ParameterId));
+                }
+                await _context.SaveChangesAsync();
+                await _audit.WriteAsync(approve ? "Correct" : "Reject", "CcpCorrections", c.CorrectionId.ToString(),
+                    new { c.OldNumericValue, c.OldTextValue }, new { c.NewNumericValue, c.NewTextValue, c.Reason }, "Correction");
+                await transaction.CommitAsync();
+                TempData["Success"] = approve ? "Correction applied." : "Correction rejected.";
+            }
+            return RedirectToAction(nameof(Corrections));
         }
 
         // ------------------------------------------------------------------ file values (D-19)
@@ -455,6 +583,14 @@ namespace TOP4HoneyChains.Web.Controllers
             model.HasValues = logs.Count > 0;
             model.LockReason = await LockReasonAsync(owner, ownerId);
             model.OrgModelOn = _current.Enabled;
+            model.AdminCorrections = _current.Enabled && _current.IsPlatformAdmin;
+            if (model.AdminCorrections)
+            {
+                var kind = KindOf(owner);
+                model.Corrections = await _context.CcpCorrections.AsNoTracking()
+                    .Where(c => c.OwnerKind == kind && c.OwnerId == ownerId && c.CcpId == ccpId)
+                    .OrderByDescending(c => c.CorrectionId).Include(c => c.Parameter).ToListAsync();
+            }
             var enter = await AuthorizeAsync(owner, ownerId, ccpId, CcpOperations.Enter);
             model.CanEnter = enter.Succeeded;
             model.EnterDeniedReason = enter.Succeeded ? null : ReasonOf(enter) ?? "Your role can read this CCP but not record it.";
@@ -701,31 +837,23 @@ namespace TOP4HoneyChains.Web.Controllers
                 }
                 await _context.SaveChangesAsync();
 
-                // 3) range flags: siblings are the numeric values of the same lot/batch and CCP
-                var logs = await LogsOf(owner, ownerId, ccpId).ToListAsync();
-                var siblings = logs.Where(l => l.ParameterId != null && l.MeasuredNumericValue != null)
-                    .GroupBy(l => l.ParameterId!.Value)
-                    .ToDictionary(g => g.Key, g => g.First().MeasuredNumericValue!.Value);
-                var honey = await HoneyProfileAsync(owner, ownerId);
-                foreach (var log in logs)
-                {
-                    if (log.ParameterId == null || !parameters.TryGetValue(log.ParameterId.Value, out var p))
-                        continue;
-                    var result = CcpLimitEvaluator.Evaluate(p, log.MeasuredNumericValue, siblings, honey);
-                    log.IsInRange = result.IsInRange;
-                    log.AppliedLimit = result.AppliedLimit;
-                }
+                // 3) range flags
+                var logs = await RecomputeFlagsAsync(owner, ownerId, ccpId, parameters);
 
-                // 4) status: Completed when every required parameter has a value
+                // 4) status: complete when every required parameter has a value. With the organization model
+                // a complete record is Submitted until another person approves it (D-27); a save without
+                // changes keeps an existing approval.
                 var filled = logs.Where(l => l.ParameterId != null).Select(l => l.ParameterId!.Value).ToHashSet();
                 var required = parameters.Values.Where(p => p.IsRequired).Select(p => p.ParameterId).ToList();
                 var complete = parameters.Count > 0 && required.All(filled.Contains) && (required.Count > 0 || filled.Count > 0);
-                assignment.Status = complete ? AssignmentStatusIds.Completed
+                if (changed)
+                    assignment.ClearApproval();
+                var needsApproval = _current.Enabled && await _resp.RequiresApprovalAsync(ccpId);
+                assignment.Status = complete
+                    ? (needsApproval && assignment.ApprovedAt == null ? AssignmentStatusIds.Submitted : AssignmentStatusIds.Completed)
                     : logs.Count > 0 ? AssignmentStatusIds.InProgress
                     : AssignmentStatusIds.Assigned;
                 assignment.EndDate = complete ? (assignment.EndDate ?? DateTime.Now) : null;
-                if (changed)
-                    assignment.ClearApproval();
 
                 await _context.SaveChangesAsync();
                 await transaction.CommitAsync();
@@ -740,6 +868,26 @@ namespace TOP4HoneyChains.Web.Controllers
             foreach (var f in obsoleteFiles)
                 TryDelete(Path.Combine(dir, Path.GetFileName(f)));
             return null;
+        }
+
+        // In-range flags of all values of a lot/batch CCP; siblings are the numeric values of the same record
+        private async Task<List<CriticalControlPointMonitoringLog>> RecomputeFlagsAsync(Owner owner, int ownerId, int ccpId,
+            Dictionary<int, CriticalControlPointParameter> parameters)
+        {
+            var logs = await LogsOf(owner, ownerId, ccpId).ToListAsync();
+            var siblings = logs.Where(l => l.ParameterId != null && l.MeasuredNumericValue != null)
+                .GroupBy(l => l.ParameterId!.Value)
+                .ToDictionary(g => g.Key, g => g.First().MeasuredNumericValue!.Value);
+            var honey = await HoneyProfileAsync(owner, ownerId);
+            foreach (var log in logs)
+            {
+                if (log.ParameterId == null || !parameters.TryGetValue(log.ParameterId.Value, out var p))
+                    continue;
+                var result = CcpLimitEvaluator.Evaluate(p, log.MeasuredNumericValue, siblings, honey);
+                log.IsInRange = result.IsInRange;
+                log.AppliedLimit = result.AppliedLimit;
+            }
+            return logs;
         }
 
         private CriticalControlPointMonitoringLog NewLog(Owner owner, int ownerId, int ccpId, int parameterId)

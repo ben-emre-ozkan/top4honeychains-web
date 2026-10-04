@@ -40,5 +40,9 @@
         public string? ApprovedBy { get; set; }
         public DateTime? ApprovedAt { get; set; }
         public bool SelfApproved { get; set; }
+
+        // Platform administrators with the organization model: read-only, changes through corrections (D-35)
+        public bool AdminCorrections { get; set; }
+        public List<TOP4HoneyChains.Web.Models.Entities.CcpCorrection> Corrections { get; set; } = new();
     }
 }
