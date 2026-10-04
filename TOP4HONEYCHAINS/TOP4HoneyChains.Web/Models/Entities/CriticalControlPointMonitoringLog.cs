@@ -42,6 +42,9 @@ namespace TOP4HoneyChains.Web.Models.Entities
 
         public int? RecordedByOrgId { get; set; }
 
+        // P4: the value comes from this approved lab report and is immutable (corrections only)
+        public int? LabReportId { get; set; }
+
         [ForeignKey(nameof(CCPId))]
         public virtual CriticalControlPoint? CCP { get; set; }
 

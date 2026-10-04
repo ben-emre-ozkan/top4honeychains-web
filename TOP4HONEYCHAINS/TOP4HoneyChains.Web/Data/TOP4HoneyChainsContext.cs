@@ -53,6 +53,10 @@ public partial class TOP4HoneyChainsContext : DbContext
     public virtual DbSet<Shipment> Shipments { get; set; }
     public virtual DbSet<HolderStorageRecord> HolderStorageRecords { get; set; }
     public virtual DbSet<HolderStorageValue> HolderStorageValues { get; set; }
+    public virtual DbSet<Sample> Samples { get; set; }
+    public virtual DbSet<SampleCustodyEvent> SampleCustodyEvents { get; set; }
+    public virtual DbSet<LabReport> LabReports { get; set; }
+    public virtual DbSet<LabResult> LabResults { get; set; }
     public virtual DbSet<CriticalControlPointMonitoringLog> CriticalControlPointMonitoringLogs { get; set; }
     public virtual DbSet<AssignmentStatus> AssignmentStatuses { get; set; }
     public virtual DbSet<RawHoneyCCPAssignment> RawHoneyCCPAssignments { get; set; }
@@ -320,6 +324,43 @@ public partial class TOP4HoneyChainsContext : DbContext
             entity.Property(e => e.MeasuredAt).HasDefaultValueSql("SYSUTCDATETIME()");
             entity.HasIndex(e => new { e.RecordId, e.ParameterId }).IsUnique();
             entity.HasOne(e => e.Record).WithMany(r => r.Values).HasForeignKey(e => e.RecordId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne(e => e.Parameter).WithMany().HasForeignKey(e => e.ParameterId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<Sample>(entity =>
+        {
+            entity.ToTable("Samples");
+            entity.Property(e => e.Status).HasDefaultValue(SampleStatus.Sent);
+            entity.Property(e => e.TakenAt).HasDefaultValueSql("SYSUTCDATETIME()");
+            entity.HasIndex(e => e.SampleCode).IsUnique();
+            entity.HasOne(e => e.RawHoneyProduction).WithMany().HasForeignKey(e => e.RawHoneyProductionId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne(e => e.TakingOrg).WithMany().HasForeignKey(e => e.TakingOrgId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne(e => e.LabOrg).WithMany().HasForeignKey(e => e.LabOrgId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne(e => e.Report).WithOne(r => r.Sample).HasForeignKey<LabReport>(r => r.SampleId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<SampleCustodyEvent>(entity =>
+        {
+            entity.ToTable("SampleCustodyEvents");
+            entity.Property(e => e.At).HasDefaultValueSql("SYSUTCDATETIME()");
+            entity.HasOne(e => e.Sample).WithMany(s => s.Events).HasForeignKey(e => e.SampleId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<LabReport>(entity =>
+        {
+            entity.ToTable("LabReports");
+            entity.Property(e => e.Status).HasDefaultValue(LabReportStatus.Draft);
+            entity.Property(e => e.CreatedAt).HasDefaultValueSql("SYSUTCDATETIME()");
+            entity.Property(e => e.Sha256).IsFixedLength().IsUnicode(false);
+            entity.HasIndex(e => e.ReportCode).IsUnique();
+            entity.HasOne(e => e.LabOrg).WithMany().HasForeignKey(e => e.LabOrgId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<LabResult>(entity =>
+        {
+            entity.ToTable("LabResults");
+            entity.HasIndex(e => new { e.ReportId, e.ParameterId }).IsUnique();
+            entity.HasOne(e => e.Report).WithMany(r => r.Results).HasForeignKey(e => e.ReportId).OnDelete(DeleteBehavior.Restrict);
             entity.HasOne(e => e.Parameter).WithMany().HasForeignKey(e => e.ParameterId).OnDelete(DeleteBehavior.Restrict);
         });
 
