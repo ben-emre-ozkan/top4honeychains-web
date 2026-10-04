@@ -845,7 +845,7 @@
                                 <div class="row">
                                     @foreach (var row in acceptance.Parameters.OrderBy(x => x.ParameterName))
                                     {
-                                        var value = !row.Recorded ? L["not recorded"].Value
+                                        var value = !row.Recorded ? L["Not recorded"].Value
                                             : row.IsFile ? L["document on file"].Value
                                             : row.NumericValue != null ? row.NumericValue.Value.ToString("N2", tr) + " " + Ref.Text("Parameter", "Unit", row.Unit)
                                             : (row.TextValue is "Yes" or "No" ? L[row.TextValue!].Value : row.TextValue) ?? "-";
@@ -862,7 +862,7 @@
                                                     @value
                                                     @if (row.Compliant == true)
                                                     {
-                                                        <span class="badge bg-success ms-1 ccp-compliance" title="@L["Limit:"] @Ref.Limit(row.LimitText, k => L[k])">@L["within limit"]</span>
+                                                        <span class="badge bg-success ms-1 ccp-compliance" title="@L["Limit:"] @Ref.Limit(row.LimitText, k => L[k])">@L["Within limit"]</span>
                                                     }
                                                     else if (row.Compliant == false)
                                                     {

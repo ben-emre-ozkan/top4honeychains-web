@@ -310,7 +310,7 @@ namespace TOP4HoneyChains.Web.Controllers
 
 
             ViewBag.Controller = "Final Honey Productions";
-            ViewBag.Action = "Final Batch";
+            ViewBag.Action = "Final batch";
 
             return RedirectToAction("ManageBatch", new { id });
         }
@@ -469,9 +469,9 @@ namespace TOP4HoneyChains.Web.Controllers
             var model = new CCPOverviewViewModel
             {
                 RawHoneyProductionId = id, // reuse ediyoruz
-                BeekeeperName = HttpContext.RequestServices.GetRequiredService<Microsoft.Extensions.Localization.IStringLocalizer<SharedResource>>()["Final Batch"],
+                BeekeeperName = HttpContext.RequestServices.GetRequiredService<Microsoft.Extensions.Localization.IStringLocalizer<SharedResource>>()["Final batch"],
                 ApiaryName = HttpContext.RequestServices.GetRequiredService<Microsoft.Extensions.Localization.IStringLocalizer<SharedResource>>()["Blended Production"],
-                WholesalerName = batch.FinalHoneyProductionWholesaler?.WholesalerTitle ?? HttpContext.RequestServices.GetRequiredService<Microsoft.Extensions.Localization.IStringLocalizer<SharedResource>>()["Not Assigned"],
+                WholesalerName = batch.FinalHoneyProductionWholesaler?.WholesalerTitle ?? HttpContext.RequestServices.GetRequiredService<Microsoft.Extensions.Localization.IStringLocalizer<SharedResource>>()["Not assigned"],
                 HoneyType = HttpContext.RequestServices.GetRequiredService<Microsoft.Extensions.Localization.IStringLocalizer<SharedResource>>()["Mixed"],
                 ProductionDate = batch.FinalHoneyProductionDate,
                 Amount = batch.FinalHoneyProductionTotalAmount,

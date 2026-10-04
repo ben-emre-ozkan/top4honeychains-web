@@ -107,7 +107,7 @@
                                 <form asp-action="UploadDocument" asp-route-id="@Model.OrgId" method="post" enctype="multipart/form-data" class="row g-2" id="upload-form">
                                     <div class="col-md-4">
                                         <select name="kind" class="form-select">
-                                            @foreach (var k in kinds) { <option value="@k">@k</option> }
+                                            @foreach (var k in kinds) { <option value="@k">@L[k]</option> }
                                         </select>
                                     </div>
                                     <div class="col-md-6"><input type="file" name="file" class="form-control" accept=".pdf,.jpg,.jpeg,.png,.webp" /></div>
@@ -138,7 +138,7 @@
                                         @if (isAdmin && c.Capability != Capabilities.PlatformAdmin)
                                         {
                                             <form asp-action="RemoveCapability" asp-route-id="@Model.OrgId" method="post">
-                                                <input type="hidden" name="capability" value="@Ref.Capability(c.Capability)" />
+                                                <input type="hidden" name="capability" value="@c.Capability" />
                                                 <button type="submit" class="btn btn-sm btn-outline-danger">@L["Org.Remove"]</button>
                                             </form>
                                         }

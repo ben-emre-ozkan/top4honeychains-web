@@ -2082,9 +2082,6 @@
   <data name="Project Consortium" xml:space="preserve">
     <value>Proje Konsorsiyumu</value>
   </data>
-  <data name="within limit" xml:space="preserve">
-    <value>limit içinde</value>
-  </data>
   <data name="Create Beekeeping Type" xml:space="preserve">
     <value>Arıcılık Türü Oluştur</value>
   </data>
@@ -2124,9 +2121,6 @@
   <data name="Confirm Deletion" xml:space="preserve">
     <value>Silmeyi Onayla</value>
   </data>
-  <data name="file" xml:space="preserve">
-    <value>dosya</value>
-  </data>
   <data name="Sort order controls display priority" xml:space="preserve">
     <value>Sıralama, gösterim önceliğini belirler</value>
   </data>
@@ -2144,9 +2138,6 @@
   </data>
   <data name="Note.ApiaryDeactivation" xml:space="preserve">
     <value>Bal izlenebilirliğinin korunması için &lt;strong&gt;arılıklar hiçbir zaman silinmez&lt;/strong&gt;. Bir arılığı kullanımdan kaldırmak için arıcının arılık listesinden &lt;strong&gt;pasifleştirin&lt;/strong&gt;: fotoğrafları ve bal üretimleri korunur, gri olarak &lt;em&gt;Pasif&lt;/em&gt; şeklinde gösterilir ve panelde artık etkin olarak sayılmaz. &lt;strong&gt;Etkinleştir&lt;/strong&gt; onu geri getirir.</value>
-  </data>
-  <data name="action" xml:space="preserve">
-    <value>işlem</value>
   </data>
   <data name="Institution" xml:space="preserve">
     <value>Kurum</value>
@@ -2171,9 +2162,6 @@
   </data>
   <data name="Digital Beekeeping Tools" xml:space="preserve">
     <value>Dijital Arıcılık Araçları</value>
-  </data>
-  <data name="no" xml:space="preserve">
-    <value>hayır</value>
   </data>
   <data name="Define a monitoring parameter for a selected Critical Control Point." xml:space="preserve">
     <value>Seçilen bir Kritik Kontrol Noktası için izleme parametresi tanımlayın.</value>
@@ -2340,9 +2328,6 @@
   <data name="e.g. °C, %, ppm, CFU/g" xml:space="preserve">
     <value>ör. °C, %, ppm, CFU/g</value>
   </data>
-  <data name="Applies to" xml:space="preserve">
-    <value>Uygulandığı yer</value>
-  </data>
   <data name="Apiary:" xml:space="preserve">
     <value>Arılık:</value>
   </data>
@@ -2370,9 +2355,6 @@
   <data name="Top 3 Raw Honey Wholesalers" xml:space="preserve">
     <value>İlk 3 Ham Bal Toptancısı</value>
   </data>
-  <data name="wholesaler" xml:space="preserve">
-    <value>toptancı</value>
-  </data>
   <data name="Delete Final Honey Batch" xml:space="preserve">
     <value>Partiyi Sil</value>
   </data>
@@ -2382,14 +2364,8 @@
   <data name="Geographic locations of apiaries contributing to this batch" xml:space="preserve">
     <value>Bu partiye katkıda bulunan arılıkların coğrafi konumları</value>
   </data>
-  <data name="Add New" xml:space="preserve">
-    <value>Yeni Ekle</value>
-  </data>
   <data name="Video is optional but highly recommended" xml:space="preserve">
     <value>Video isteğe bağlıdır ama önemle tavsiye edilir</value>
-  </data>
-  <data name="What Is It?" xml:space="preserve">
-    <value>Nedir?</value>
   </data>
   <data name="Check content before saving" xml:space="preserve">
     <value>Kaydetmeden önce içeriği kontrol edin</value>
@@ -2477,9 +2453,6 @@
   </data>
   <data name="Hives" xml:space="preserve">
     <value>Kovan</value>
-  </data>
-  <data name="Data type" xml:space="preserve">
-    <value>Veri türü</value>
   </data>
   <data name="Edit Education Level" xml:space="preserve">
     <value>Eğitim Seviyesini Düzenle</value>
@@ -2648,9 +2621,6 @@
   </data>
   <data name="Active Status" xml:space="preserve">
     <value>Etkinlik Durumu</value>
-  </data>
-  <data name="Back to List" xml:space="preserve">
-    <value>Listeye Dön</value>
   </data>
   <data name="Enter processing step (e.g., Mixing, Filtering)" xml:space="preserve">
     <value>İşlem adımını girin (ör. Karıştırma, Süzme)</value>
@@ -2889,9 +2859,6 @@
   <data name="Tips" xml:space="preserve">
     <value>İpuçları</value>
   </data>
-  <data name="yes" xml:space="preserve">
-    <value>evet</value>
-  </data>
   <data name="Are you sure?" xml:space="preserve">
     <value>Emin misiniz?</value>
   </data>
@@ -2939,9 +2906,6 @@
   </data>
   <data name="Honey class for CCP limits" xml:space="preserve">
     <value>KKN limitleri için bal sınıfı</value>
-  </data>
-  <data name="remove" xml:space="preserve">
-    <value>kaldır</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Hata</value>
@@ -3036,9 +3000,6 @@
   <data name="-- Select CCP --" xml:space="preserve">
     <value>-- KKN Seçin --</value>
   </data>
-  <data name="Confirm Password" xml:space="preserve">
-    <value>Parolayı Onayla</value>
-  </data>
   <data name="Apiary locations are shown approximately (about 10 km) to protect the beekeepers' privacy." xml:space="preserve">
     <value>Arıcıların gizliliğini korumak için arılık konumları yaklaşık olarak (yaklaşık 10 km) gösterilir.</value>
   </data>
@@ -3095,9 +3056,6 @@
   </data>
   <data name="is &lt;=" xml:space="preserve">
     <value>&lt;= ise</value>
-  </data>
-  <data name="Not Assigned" xml:space="preserve">
-    <value>Atanmadı</value>
   </data>
   <data name="Create Parameter Content" xml:space="preserve">
     <value>Parametre İçeriği Oluştur</value>
@@ -3176,9 +3134,6 @@
   </data>
   <data name="Parameter Category" xml:space="preserve">
     <value>Parametre Kategorisi</value>
-  </data>
-  <data name="not recorded" xml:space="preserve">
-    <value>kaydedilmedi</value>
   </data>
   <data name="Are you sure you want to delete this production record?" xml:space="preserve">
     <value>Bu üretim kaydını silmek istediğinizden emin misiniz?</value>
@@ -3369,9 +3324,6 @@
   <data name="Assign Critical Control Points to this Raw Honey Production." xml:space="preserve">
     <value>Bu ham bal üretimine Kritik Kontrol Noktaları atayın.</value>
   </data>
-  <data name="Limit note" xml:space="preserve">
-    <value>Limit notu</value>
-  </data>
   <data name="Final Honey Productions" xml:space="preserve">
     <value>Nihai Bal Üretimleri</value>
   </data>
@@ -3501,14 +3453,8 @@
   <data name="Add New User" xml:space="preserve">
     <value>Yeni Kullanıcı Ekle</value>
   </data>
-  <data name="Honey class" xml:space="preserve">
-    <value>Bal sınıfı</value>
-  </data>
   <data name="Beekeeping Purpose Type" xml:space="preserve">
     <value>Arıcılık Amaç Türü</value>
-  </data>
-  <data name="Final Batch" xml:space="preserve">
-    <value>Parti</value>
   </data>
   <data name="Organizations" xml:space="preserve">
     <value>Kurumlar</value>
@@ -3530,9 +3476,6 @@
   </data>
   <data name="Source apiaries and photo evidence from collection stage." xml:space="preserve">
     <value>Kaynak arılıklar ve toplama aşamasına ait fotoğraf kanıtları.</value>
-  </data>
-  <data name="Limit source" xml:space="preserve">
-    <value>Limit kaynağı</value>
   </data>
   <data name="Delete role?" xml:space="preserve">
     <value>Rol silinsin mi?</value>
@@ -4512,9 +4455,6 @@
   <data name="Apiary Beekeeper Id" xml:space="preserve">
     <value>Arılığın arıcısı</value>
   </data>
-  <data name="honey type" xml:space="preserve">
-    <value>bal türü</value>
-  </data>
   <data name="Raw Honey Production Honey Type" xml:space="preserve">
     <value>Ham bal türü</value>
   </data>
@@ -4608,9 +4548,6 @@
   <data name="Storefront" xml:space="preserve">
     <value>Arıcı sayfası</value>
   </data>
-  <data name="storage" xml:space="preserve">
-    <value>depolama</value>
-  </data>
   <data name="Is Active" xml:space="preserve">
     <value>Etkin</value>
   </data>
@@ -4668,9 +4605,6 @@
   <data name="Reset your TOP4HoneyChains password" xml:space="preserve">
     <value>TOP4HoneyChains şifrenizi sıfırlayın</value>
   </data>
-  <data name="not checkable" xml:space="preserve">
-    <value>kontrol edilemez</value>
-  </data>
   <data name="'{0}' and '{1}' do not match." xml:space="preserve">
     <value>'{0}' ve '{1}' eşleşmiyor.</value>
   </data>
@@ -4719,9 +4653,6 @@
   <data name="Raw sources: {0}" xml:space="preserve">
     <value>Ham kaynaklar: {0}</value>
   </data>
-  <data name="lot" xml:space="preserve">
-    <value>lot</value>
-  </data>
   <data name="HolderStorageRecords" xml:space="preserve">
     <value>Emanetçi depolama kayıtları</value>
   </data>
@@ -4733,9 +4664,6 @@
   </data>
   <data name="Legacy Wholesaler Id" xml:space="preserve">
     <value>Mevcut toptancı kaydı</value>
-  </data>
-  <data name="if" xml:space="preserve">
-    <value>koşul:</value>
   </data>
   <data name="AspNetRoles" xml:space="preserve">
     <value>Roller</value>
@@ -4773,14 +4701,8 @@
   <data name="CcpCorrections" xml:space="preserve">
     <value>KKN düzeltmeleri</value>
   </data>
-  <data name="min" xml:space="preserve">
-    <value>en az</value>
-  </data>
   <data name="Extra" xml:space="preserve">
     <value>Ek</value>
-  </data>
-  <data name="max" xml:space="preserve">
-    <value>en çok</value>
   </data>
   <data name="Video Path" xml:space="preserve">
     <value>Video yolu</value>
@@ -4835,9 +4757,6 @@
   </data>
   <data name="SampleCustodyEvents" xml:space="preserve">
     <value>Numune gözetim olayları</value>
-  </data>
-  <data name="batch" xml:space="preserve">
-    <value>parti</value>
   </data>
   <data name="Parameter Id" xml:space="preserve">
     <value>Parametre</value>
@@ -5048,5 +4967,44 @@
   </data>
   <data name="RefField.ExtraInfo" xml:space="preserve">
     <value>Ek bilgi</value>
+  </data>
+  <data name="Kind.batch" xml:space="preserve">
+    <value>parti</value>
+  </data>
+  <data name="Kind.lot" xml:space="preserve">
+    <value>lot</value>
+  </data>
+  <data name="Kind.storage" xml:space="preserve">
+    <value>depolama</value>
+  </data>
+  <data name="Limit.min" xml:space="preserve">
+    <value>en az</value>
+  </data>
+  <data name="Limit.max" xml:space="preserve">
+    <value>en çok</value>
+  </data>
+  <data name="Limit.if" xml:space="preserve">
+    <value>koşul:</value>
+  </data>
+  <data name="Limit.honeyType" xml:space="preserve">
+    <value>bal türü</value>
+  </data>
+  <data name="Limit.notCheckable" xml:space="preserve">
+    <value>kontrol edilemez</value>
+  </data>
+  <data name="Recorded" xml:space="preserve">
+    <value>Kaydedildi</value>
+  </data>
+  <data name="Partly recorded" xml:space="preserve">
+    <value>Kısmen kaydedildi</value>
+  </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>Kaydedilmedi</value>
+  </data>
+  <data name="Blended Production" xml:space="preserve">
+    <value>Harmanlanmış üretim</value>
+  </data>
+  <data name="Mixed" xml:space="preserve">
+    <value>Karışık</value>
   </data>
 </root>

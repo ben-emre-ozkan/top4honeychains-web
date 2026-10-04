@@ -56,8 +56,16 @@ namespace TOP4HoneyChains.Web.Tests
             Assert.True(problems.Count == 0, string.Join("\n", problems.Take(50)));
         }
 
-        // Literal keys used in views and code: L["…"], _localizer["…"]
-        private static readonly Regex KeyUse = new(@"(?<![\w.])(?:L|_localizer|Localizer)\[""((?:[^""\\]|\\.)*)""(?:\s*,|\])");
+        // Compiled resources drop one of two keys that differ only by letter case
+        [Fact]
+        public void No_two_keys_differ_only_by_case()
+        {
+            var dups = Resources.Value["en"].Keys.GroupBy(k => k, StringComparer.OrdinalIgnoreCase).Where(g => g.Count() > 1).Select(g => string.Join(" / ", g)).ToList();
+            Assert.True(dups.Count == 0, string.Join("\n", dups));
+        }
+
+        // Literal keys used in views and code: L["…"], _localizer["…"], GetRequiredService<IStringLocalizer<…>>()["…"]
+        private static readonly Regex KeyUse = new(@"(?:(?<![\w.])(?:L|_localizer|Localizer)|SharedResource>>\(\))\[""((?:[^""\\]|\\.)*)""(?:\s*,|\])");
 
         [Fact]
         public void Every_key_used_in_views_and_code_exists()

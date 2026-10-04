@@ -61,7 +61,7 @@
                                             <td>@r.Id</td>
                                             <td>@r.EnterpriseNumber</td>
                                             <td>@L[r.Status ?? ""] @(r.Reason != null ? "(" + r.Reason + ")" : "")</td>
-                                            <td>@if (r.StoredFileName != null) { <a asp-action="Proof" asp-route-id="@r.Id" target="_blank">@L["file"]</a> }</td>
+                                            <td>@if (r.StoredFileName != null) { <a asp-action="Proof" asp-route-id="@r.Id" target="_blank">@L["File"]</a> }</td>
                                             <td>
                                                 @if (r.Status == RegistryStatus.Pending)
                                                 {

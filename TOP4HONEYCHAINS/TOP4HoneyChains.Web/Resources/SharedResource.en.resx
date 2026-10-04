@@ -1377,9 +1377,6 @@
   <data name="New Password" xml:space="preserve">
     <value>New Password</value>
   </data>
-  <data name="Confirm Password" xml:space="preserve">
-    <value>Confirm Password</value>
-  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
@@ -1551,9 +1548,6 @@
   <data name="No photos uploaded yet." xml:space="preserve">
     <value>No photos uploaded yet.</value>
   </data>
-  <data name="action" xml:space="preserve">
-    <value>action</value>
-  </data>
   <data name="flag, e.g. SelfApproved" xml:space="preserve">
     <value>flag, e.g. SelfApproved</value>
   </data>
@@ -1574,9 +1568,6 @@
   </data>
   <data name="Enter education level title" xml:space="preserve">
     <value>Enter education level title</value>
-  </data>
-  <data name="Back to List" xml:space="preserve">
-    <value>Back to List</value>
   </data>
   <data name="Delete Education Level" xml:space="preserve">
     <value>Delete Education Level</value>
@@ -1728,9 +1719,6 @@
   <data name="Beekeeping Purpose Types" xml:space="preserve">
     <value>Beekeeping Purpose Types</value>
   </data>
-  <data name="Add New" xml:space="preserve">
-    <value>Add New</value>
-  </data>
   <data name="Create Beekeeping Type" xml:space="preserve">
     <value>Create Beekeeping Type</value>
   </data>
@@ -1808,9 +1796,6 @@
   </data>
   <data name="No" xml:space="preserve">
     <value>No</value>
-  </data>
-  <data name="remove" xml:space="preserve">
-    <value>remove</value>
   </data>
   <data name="Numeric Value" xml:space="preserve">
     <value>Numeric Value</value>
@@ -1922,9 +1907,6 @@
   </data>
   <data name="Warning" xml:space="preserve">
     <value>Warning</value>
-  </data>
-  <data name="What Is It?" xml:space="preserve">
-    <value>What Is It?</value>
   </data>
   <data name="Why Important?" xml:space="preserve">
     <value>Why Important?</value>
@@ -2082,9 +2064,6 @@
   <data name="Enter critical threshold value" xml:space="preserve">
     <value>Enter critical threshold value</value>
   </data>
-  <data name="Data type" xml:space="preserve">
-    <value>Data type</value>
-  </data>
   <data name="(not set: number or text)" xml:space="preserve">
     <value>(not set: number or text)</value>
   </data>
@@ -2117,12 +2096,6 @@
   </data>
   <data name="Required for the CCP to be completed" xml:space="preserve">
     <value>Required for the CCP to be completed</value>
-  </data>
-  <data name="Limit note" xml:space="preserve">
-    <value>Limit note</value>
-  </data>
-  <data name="Limit source" xml:space="preserve">
-    <value>Limit source</value>
   </data>
   <data name="e.g. Turkish Food Codex, honey communique" xml:space="preserve">
     <value>e.g. Turkish Food Codex, honey communique</value>
@@ -2208,9 +2181,6 @@
   <data name="Add a limit" xml:space="preserve">
     <value>Add a limit</value>
   </data>
-  <data name="Honey class" xml:space="preserve">
-    <value>Honey class</value>
-  </data>
   <data name="or honey type" xml:space="preserve">
     <value>or honey type</value>
   </data>
@@ -2258,9 +2228,6 @@
   </data>
   <data name="Enter CCP Code (e.g., CCP1, CCP2)" xml:space="preserve">
     <value>Enter CCP Code (e.g., CCP1, CCP2)</value>
-  </data>
-  <data name="Applies to" xml:space="preserve">
-    <value>Applies to</value>
   </data>
   <data name="-- Select --" xml:space="preserve">
     <value>-- Select --</value>
@@ -2844,14 +2811,8 @@
   <data name="Not recorded." xml:space="preserve">
     <value>Not recorded.</value>
   </data>
-  <data name="not recorded" xml:space="preserve">
-    <value>not recorded</value>
-  </data>
   <data name="document on file" xml:space="preserve">
     <value>document on file</value>
-  </data>
-  <data name="within limit" xml:space="preserve">
-    <value>within limit</value>
   </data>
   <data name="outside limit" xml:space="preserve">
     <value>outside limit</value>
@@ -3015,15 +2976,6 @@
   <data name="Created from a wholesaler record" xml:space="preserve">
     <value>Created from a wholesaler record</value>
   </data>
-  <data name="wholesaler" xml:space="preserve">
-    <value>wholesaler</value>
-  </data>
-  <data name="yes" xml:space="preserve">
-    <value>yes</value>
-  </data>
-  <data name="no" xml:space="preserve">
-    <value>no</value>
-  </data>
   <data name="Create Production Period" xml:space="preserve">
     <value>Create Production Period</value>
   </data>
@@ -3135,9 +3087,6 @@
   <data name="CCP Process" xml:space="preserve">
     <value>CCP Process</value>
   </data>
-  <data name="Not Assigned" xml:space="preserve">
-    <value>Not Assigned</value>
-  </data>
   <data name="CCP Assignment" xml:space="preserve">
     <value>CCP Assignment</value>
   </data>
@@ -3170,9 +3119,6 @@
   </data>
   <data name="TR + 2 + 10 digits" xml:space="preserve">
     <value>TR + 2 + 10 digits</value>
-  </data>
-  <data name="file" xml:space="preserve">
-    <value>file</value>
   </data>
   <data name="Beekeepers are records, not users: they never log in, and their association records data for them. The national registry (AKS) number is verified manually for now (document + approval)." xml:space="preserve">
     <value>Beekeepers are records, not users: they never log in, and their association records data for them. The national registry (AKS) number is verified manually for now (document + approval).</value>
@@ -4236,9 +4182,6 @@
   <data name="Details" xml:space="preserve">
     <value>Details</value>
   </data>
-  <data name="Final Batch" xml:space="preserve">
-    <value>Final Batch</value>
-  </data>
   <data name="Final Honey Production Manage CCP" xml:space="preserve">
     <value>Final Honey Production Manage CCP</value>
   </data>
@@ -4352,9 +4295,6 @@
   </data>
   <data name="Shipment" xml:space="preserve">
     <value>Shipment</value>
-  </data>
-  <data name="batch" xml:space="preserve">
-    <value>batch</value>
   </data>
   <data name="{0} shipment(s) between other organizations" xml:space="preserve">
     <value>{0} shipment(s) between other organizations</value>
@@ -4517,27 +4457,6 @@
   </data>
   <data name="Consumer" xml:space="preserve">
     <value>Consumer</value>
-  </data>
-  <data name="lot" xml:space="preserve">
-    <value>lot</value>
-  </data>
-  <data name="storage" xml:space="preserve">
-    <value>storage</value>
-  </data>
-  <data name="min" xml:space="preserve">
-    <value>min</value>
-  </data>
-  <data name="max" xml:space="preserve">
-    <value>max</value>
-  </data>
-  <data name="if" xml:space="preserve">
-    <value>if</value>
-  </data>
-  <data name="not checkable" xml:space="preserve">
-    <value>not checkable</value>
-  </data>
-  <data name="honey type" xml:space="preserve">
-    <value>honey type</value>
   </data>
   <data name="SMS" xml:space="preserve">
     <value>SMS</value>
@@ -5048,5 +4967,44 @@
   </data>
   <data name="RefField.ExtraInfo" xml:space="preserve">
     <value>Extra information</value>
+  </data>
+  <data name="Kind.batch" xml:space="preserve">
+    <value>batch</value>
+  </data>
+  <data name="Kind.lot" xml:space="preserve">
+    <value>lot</value>
+  </data>
+  <data name="Kind.storage" xml:space="preserve">
+    <value>storage</value>
+  </data>
+  <data name="Limit.min" xml:space="preserve">
+    <value>min</value>
+  </data>
+  <data name="Limit.max" xml:space="preserve">
+    <value>max</value>
+  </data>
+  <data name="Limit.if" xml:space="preserve">
+    <value>if</value>
+  </data>
+  <data name="Limit.honeyType" xml:space="preserve">
+    <value>honey type</value>
+  </data>
+  <data name="Limit.notCheckable" xml:space="preserve">
+    <value>not checkable</value>
+  </data>
+  <data name="Recorded" xml:space="preserve">
+    <value>Recorded</value>
+  </data>
+  <data name="Partly recorded" xml:space="preserve">
+    <value>Partly recorded</value>
+  </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>Not recorded</value>
+  </data>
+  <data name="Blended Production" xml:space="preserve">
+    <value>Blended production</value>
+  </data>
+  <data name="Mixed" xml:space="preserve">
+    <value>Mixed</value>
   </data>
 </root>

@@ -184,7 +184,7 @@ namespace TOP4HoneyChains.Web.Controllers
             var sb = new StringBuilder();
             void Row(params object?[] cells) => sb.AppendLine(string.Join(",", cells.Select(Csv)));
             Row(L["Section"].Value, "Id", L["Name"].Value, L["Detail"].Value, L["Quantity (kg)"].Value, L["Date"].Value, L["Status"].Value, L["Extra"].Value);
-            Row(L["Report"].Value, report.Id, report.Title, L[report.Kind].Value, null, DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm 'UTC'"), report.Scope switch
+            Row(L["Report"].Value, report.Id, report.Title, L["Kind." + report.Kind].Value, null, DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm 'UTC'"), report.Scope switch
             {
                 "Scope.All" => L["all data (platform administrator)"].Value,
                 "Scope.Owner" => L["owning organization's part"].Value,
@@ -203,7 +203,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 Row(L["Batch"].Value, b.BatchId, b.Title, b.Owner, b.UsedAmount, b.Date?.ToString("yyyy-MM-dd"), b.Finalized ? L["Finalized"].Value : L["Draft"].Value, b.Total);
             if (report.HiddenBatches > 0) Row(L["Batch"].Value, null, L["not shown"].Value, L["{0} batch(es) of another organization", report.HiddenBatches].Value, null, null, null, null);
             foreach (var s in report.Shipments)
-                Row(L["Shipment"].Value, s.ShipmentId, $"{s.From} -> {s.To}", $"{L["batch"].Value} {s.BatchId}", s.Quantity, s.ShippedAt.ToString("yyyy-MM-dd HH:mm"), L[s.Status].Value, s.RejectReason);
+                Row(L["Shipment"].Value, s.ShipmentId, $"{s.From} -> {s.To}", $"{L["Kind.batch"].Value} {s.BatchId}", s.Quantity, s.ShippedAt.ToString("yyyy-MM-dd HH:mm"), L[s.Status].Value, s.RejectReason);
             if (report.HiddenShipments > 0) Row(L["Shipment"].Value, null, L["not shown"].Value, L["{0} shipment(s) between other organizations", report.HiddenShipments].Value, null, null, null, null);
             foreach (var h in report.Holders)
                 Row(L["Holder"].Value, h.BatchId, h.Org, null, h.Held, null, null, null);

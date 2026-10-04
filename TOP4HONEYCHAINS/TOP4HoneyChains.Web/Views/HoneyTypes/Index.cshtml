@@ -31,7 +31,7 @@
                             <p class="card-title-desc">
                                 <a asp-action="Create"
                                    class="btn btn-primary waves-effect waves-light">
-                                    @L["Add New"]
+                                    @L["Add new"]
                                 </a>
                             </p>
 
@@ -67,7 +67,7 @@
                                                 }
                                             </td>
 
-                                            <td>@(item.HoneyClass ?? "-")</td>
+                                            <td>@(item.HoneyClass != null ? L[item.HoneyClass].Value : "-")</td>
 
                                             <td>
                                                 <div class="d-flex gap-2">

@@ -64,7 +64,7 @@
 
                                             <td>
                                                 <span class="badge bg-secondary">
-                                                    @Ref.T("Parameter", item.ParameterId, "Unit", item.ParameterUnit)
+                                                    @(item.ParameterUnit is null or "None" ? "-" : Ref.T("Parameter", item.ParameterId, "Unit", item.ParameterUnit))
                                                 </span>
                                             </td>
 

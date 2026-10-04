@@ -40,7 +40,7 @@ namespace TOP4HoneyChains.Web.Filters
                 return;
 
             var controller = context.RouteData.Values["controller"]?.ToString();
-            var action = context.RouteData.Values["action"]?.ToString();
+            var action = context.RouteData.Values["Action"]?.ToString();
             // A 547 while removing rows means the row is still referenced ("in use")
             var isDelete = dbUpdate.Entries.Any(e => e.State == EntityState.Deleted);
 

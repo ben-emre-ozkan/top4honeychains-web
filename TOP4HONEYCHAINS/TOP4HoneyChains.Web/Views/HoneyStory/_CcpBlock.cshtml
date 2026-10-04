@@ -22,7 +22,7 @@
             <div class="ccp-title">@Ref.CcpTitle(Model.CCPId, Model.CCPTitle)</div>
             <div class="ccp-phase">@Ref.T("Ccp", Model.CCPId, "ProcessingStep", Model.ProcessingStep)</div>
         </div>
-        <span class="badge @badgeClass ccp-state">@badgeText</span>
+        <span class="badge @badgeClass ccp-state">@L[badgeText]</span>
     </div>
 
     @if (Model.State == HoneyStoryCcpBlock.NotApplicable)
@@ -55,7 +55,7 @@
                         <div class="param-value">
                             @if (!row.Recorded)
                             {
-                                <span class="badge bg-light text-muted border">@L["not recorded"]</span>
+                                <span class="badge bg-light text-muted border">@L["Not recorded"]</span>
                             }
                             else if (row.IsFile)
                             {
@@ -73,7 +73,7 @@
                             @if (row.Compliant == true)
                             {
                                 <span class="badge bg-success ms-1 ccp-compliance" title="@L["Limit:"] @Ref.Limit(row.LimitText, k => L[k])">
-                                    <i class="mdi mdi-check"></i> @L["within limit"]
+                                    <i class="mdi mdi-check"></i> @L["Within limit"]
                                 </span>
                             }
                             else if (row.Compliant == false)

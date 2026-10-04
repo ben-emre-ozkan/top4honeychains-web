@@ -1314,9 +1314,6 @@
   <data name="Confirm Deletion" xml:space="preserve">
     <value>Potwierdź usunięcie</value>
   </data>
-  <data name="action" xml:space="preserve">
-    <value>akcja</value>
-  </data>
   <data name="Header Avatar" xml:space="preserve">
     <value>Awatar w nagłówku</value>
   </data>
@@ -1460,9 +1457,6 @@
   </data>
   <data name="Active Status" xml:space="preserve">
     <value>Status aktywności</value>
-  </data>
-  <data name="Back to List" xml:space="preserve">
-    <value>Powrót do listy</value>
   </data>
   <data name="Define a new raw honey production period." xml:space="preserve">
     <value>Zdefiniuj nowy okres produkcji surowego miodu.</value>
@@ -1622,9 +1616,6 @@
   </data>
   <data name="Save Content" xml:space="preserve">
     <value>Zapisz treść</value>
-  </data>
-  <data name="Not Assigned" xml:space="preserve">
-    <value>Nieprzypisany</value>
   </data>
   <data name="Create Parameter Content" xml:space="preserve">
     <value>Utwórz treść parametru</value>
@@ -2001,9 +1992,6 @@
   <data name="The longitude must be between -180 and 180." xml:space="preserve">
     <value>Długość geograficzna musi mieścić się w zakresie od -180 do 180.</value>
   </data>
-  <data name="within limit" xml:space="preserve">
-    <value>w granicach limitu</value>
-  </data>
   <data name="Batch" xml:space="preserve">
     <value>Partia końcowa</value>
   </data>
@@ -2033,9 +2021,6 @@
   </data>
   <data name="Period" xml:space="preserve">
     <value>Okres</value>
-  </data>
-  <data name="file" xml:space="preserve">
-    <value>plik</value>
   </data>
   <data name="Sort order controls display priority" xml:space="preserve">
     <value>Kolejność sortowania określa priorytet wyświetlania</value>
@@ -2115,9 +2100,6 @@
   <data name="Only CCPs that apply to raw honey lots can be assigned. Nothing was changed." xml:space="preserve">
     <value>Można przypisać tylko KPK dotyczące partii surowca miodu. Niczego nie zmieniono.</value>
   </data>
-  <data name="Applies to" xml:space="preserve">
-    <value>Dotyczy</value>
-  </data>
   <data name="Ontology-based Knowledge Management" xml:space="preserve">
     <value>Zarządzanie wiedzą oparte na ontologii</value>
   </data>
@@ -2162,9 +2144,6 @@
   </data>
   <data name="Hives" xml:space="preserve">
     <value>Ule</value>
-  </data>
-  <data name="Data type" xml:space="preserve">
-    <value>Typ danych</value>
   </data>
   <data name="Edit Education Level" xml:space="preserve">
     <value>Edytuj poziom wykształcenia</value>
@@ -2486,9 +2465,6 @@
   </data>
   <data name="The text can be at most 100 characters." xml:space="preserve">
     <value>Tekst może mieć maksymalnie 100 znaków.</value>
-  </data>
-  <data name="Final Batch" xml:space="preserve">
-    <value>Partia końcowa</value>
   </data>
   <data name="Raw Honey Batches" xml:space="preserve">
     <value>Partie surowego miodu</value>
@@ -2859,9 +2835,6 @@
   <data name="Create Production Period" xml:space="preserve">
     <value>Utwórz okres produkcji</value>
   </data>
-  <data name="no" xml:space="preserve">
-    <value>nie</value>
-  </data>
   <data name="Add Raw Honey Production" xml:space="preserve">
     <value>Dodaj produkcję surowego miodu</value>
   </data>
@@ -2919,17 +2892,11 @@
   <data name="Pending" xml:space="preserve">
     <value>Oczekująca</value>
   </data>
-  <data name="wholesaler" xml:space="preserve">
-    <value>hurtownik</value>
-  </data>
   <data name="Video not available for this parameter." xml:space="preserve">
     <value>Film dla tego parametru jest niedostępny.</value>
   </data>
   <data name="Top 3 Raw Honey Wholesalers" xml:space="preserve">
     <value>3 najwięksi hurtownicy surowego miodu</value>
-  </data>
-  <data name="What Is It?" xml:space="preserve">
-    <value>Co to jest?</value>
   </data>
   <data name="Add a limit" xml:space="preserve">
     <value>Dodaj limit</value>
@@ -3135,9 +3102,6 @@
   <data name="The report is submitted; the LabManager approves it or returns it for changes." xml:space="preserve">
     <value>Raport został przesłany; LabManager go zatwierdzi lub zwróci do poprawy.</value>
   </data>
-  <data name="remove" xml:space="preserve">
-    <value>usuń</value>
-  </data>
   <data name="New Password" xml:space="preserve">
     <value>Nowe hasło</value>
   </data>
@@ -3170,9 +3134,6 @@
   </data>
   <data name="-- Select CCP --" xml:space="preserve">
     <value>-- Wybierz KPK --</value>
-  </data>
-  <data name="Confirm Password" xml:space="preserve">
-    <value>Potwierdź hasło</value>
   </data>
   <data name="First Name" xml:space="preserve">
     <value>Imię</value>
@@ -3224,9 +3185,6 @@
   </data>
   <data name="What?" xml:space="preserve">
     <value>Co?</value>
-  </data>
-  <data name="not recorded" xml:space="preserve">
-    <value>nie zarejestrowano</value>
   </data>
   <data name="Unknown honey class." xml:space="preserve">
     <value>Nieznana klasa miodu.</value>
@@ -3291,9 +3249,6 @@
   <data name="A value for the '{0}' parameter or property was not provided." xml:space="preserve">
     <value>Nie podano wartości parametru lub właściwości „{0}”.</value>
   </data>
-  <data name="Limit note" xml:space="preserve">
-    <value>Uwaga do limitu</value>
-  </data>
   <data name="Final Honey Productions" xml:space="preserve">
     <value>Końcowe produkcje miodu</value>
   </data>
@@ -3321,9 +3276,6 @@
   <data name="Enter beekeeping type title" xml:space="preserve">
     <value>Wprowadź nazwę typu pszczelarstwa</value>
   </data>
-  <data name="Honey class" xml:space="preserve">
-    <value>Klasa miodu</value>
-  </data>
   <data name="The sample and the counter-sample need different seals." xml:space="preserve">
     <value>Próbka i przeciwpróbka wymagają różnych plomb.</value>
   </data>
@@ -3335,9 +3287,6 @@
   </data>
   <data name="QR Code" xml:space="preserve">
     <value>Kod QR</value>
-  </data>
-  <data name="Limit source" xml:space="preserve">
-    <value>Źródło limitu</value>
   </data>
   <data name="Phone Number" xml:space="preserve">
     <value>Numer telefonu</value>
@@ -3711,9 +3660,6 @@
   <data name="Every final-batch CCP must be assigned and Completed or &quot;Not applicable&quot;, and every lot in the batch must have all its CCPs Completed or &quot;Not applicable&quot;." xml:space="preserve">
     <value>Każdy KPK partii końcowej musi być przypisany i mieć status Ukończony lub „Nie dotyczy”, a każda partia w partii końcowej musi mieć wszystkie KPK ze statusem Ukończony lub „Nie dotyczy”.</value>
   </data>
-  <data name="Add New" xml:space="preserve">
-    <value>Dodaj nowy</value>
-  </data>
   <data name="First" xml:space="preserve">
     <value>Pierwsza</value>
   </data>
@@ -3851,9 +3797,6 @@
   </data>
   <data name="Note.LimitsHelp" xml:space="preserve">
     <value>(edytuj je w parametrze). Wiersz poniżej zastępuje wartość domyślną: wiersz dla rodzaju miodu partii ma pierwszeństwo przed wierszem dla jego klasy miodu, a ten przed wierszem dla wszystkich klas; wiersz, którego warunek jest spełniony, ma pierwszeństwo przed wierszem bez warunku. Wiersze proporcji to dodatkowe kontrole (wartość / inna wartość), które również muszą zostać spełnione.</value>
-  </data>
-  <data name="yes" xml:space="preserve">
-    <value>tak</value>
   </data>
   <data name="Are you sure?" xml:space="preserve">
     <value>Czy na pewno?</value>
@@ -4512,9 +4455,6 @@
   <data name="Apiary Beekeeper Id" xml:space="preserve">
     <value>Pszczelarz (nr)</value>
   </data>
-  <data name="honey type" xml:space="preserve">
-    <value>rodzaj miodu</value>
-  </data>
   <data name="Raw Honey Production Honey Type" xml:space="preserve">
     <value>Rodzaj miodu</value>
   </data>
@@ -4608,9 +4548,6 @@
   <data name="Storefront" xml:space="preserve">
     <value>Strona pszczelarza</value>
   </data>
-  <data name="storage" xml:space="preserve">
-    <value>przechowywanie</value>
-  </data>
   <data name="Is Active" xml:space="preserve">
     <value>Aktywny</value>
   </data>
@@ -4668,9 +4605,6 @@
   <data name="Reset your TOP4HoneyChains password" xml:space="preserve">
     <value>Zresetuj hasło do TOP4HoneyChains</value>
   </data>
-  <data name="not checkable" xml:space="preserve">
-    <value>nie do sprawdzenia</value>
-  </data>
   <data name="'{0}' and '{1}' do not match." xml:space="preserve">
     <value>Pola '{0}' i '{1}' nie są zgodne.</value>
   </data>
@@ -4719,9 +4653,6 @@
   <data name="Raw sources: {0}" xml:space="preserve">
     <value>Źródła surowca: {0}</value>
   </data>
-  <data name="lot" xml:space="preserve">
-    <value>partia</value>
-  </data>
   <data name="HolderStorageRecords" xml:space="preserve">
     <value>Zapisy przechowywania posiadaczy</value>
   </data>
@@ -4733,9 +4664,6 @@
   </data>
   <data name="Legacy Wholesaler Id" xml:space="preserve">
     <value>Dotychczasowy hurtownik (nr)</value>
-  </data>
-  <data name="if" xml:space="preserve">
-    <value>jeśli</value>
   </data>
   <data name="AspNetRoles" xml:space="preserve">
     <value>Role</value>
@@ -4773,14 +4701,8 @@
   <data name="CcpCorrections" xml:space="preserve">
     <value>Korekty KPK</value>
   </data>
-  <data name="min" xml:space="preserve">
-    <value>min.</value>
-  </data>
   <data name="Extra" xml:space="preserve">
     <value>Dodatkowe</value>
-  </data>
-  <data name="max" xml:space="preserve">
-    <value>maks.</value>
   </data>
   <data name="Video Path" xml:space="preserve">
     <value>Ścieżka wideo</value>
@@ -4835,9 +4757,6 @@
   </data>
   <data name="SampleCustodyEvents" xml:space="preserve">
     <value>Zdarzenia łańcucha nadzoru próbek</value>
-  </data>
-  <data name="batch" xml:space="preserve">
-    <value>partia końcowa</value>
   </data>
   <data name="Parameter Id" xml:space="preserve">
     <value>Parametr (nr)</value>
@@ -5048,5 +4967,44 @@
   </data>
   <data name="RefField.ExtraInfo" xml:space="preserve">
     <value>Dodatkowe informacje</value>
+  </data>
+  <data name="Kind.batch" xml:space="preserve">
+    <value>partia końcowa</value>
+  </data>
+  <data name="Kind.lot" xml:space="preserve">
+    <value>partia</value>
+  </data>
+  <data name="Kind.storage" xml:space="preserve">
+    <value>przechowywanie</value>
+  </data>
+  <data name="Limit.min" xml:space="preserve">
+    <value>min.</value>
+  </data>
+  <data name="Limit.max" xml:space="preserve">
+    <value>maks.</value>
+  </data>
+  <data name="Limit.if" xml:space="preserve">
+    <value>jeśli</value>
+  </data>
+  <data name="Limit.honeyType" xml:space="preserve">
+    <value>rodzaj miodu</value>
+  </data>
+  <data name="Limit.notCheckable" xml:space="preserve">
+    <value>nie do sprawdzenia</value>
+  </data>
+  <data name="Recorded" xml:space="preserve">
+    <value>Zarejestrowano</value>
+  </data>
+  <data name="Partly recorded" xml:space="preserve">
+    <value>Zarejestrowano częściowo</value>
+  </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>Nie zarejestrowano</value>
+  </data>
+  <data name="Blended Production" xml:space="preserve">
+    <value>Produkcja mieszana</value>
+  </data>
+  <data name="Mixed" xml:space="preserve">
+    <value>Mieszany</value>
   </data>
 </root>

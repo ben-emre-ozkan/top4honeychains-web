@@ -1314,9 +1314,6 @@
   <data name="Confirm Deletion" xml:space="preserve">
     <value>Confirmar eliminación</value>
   </data>
-  <data name="action" xml:space="preserve">
-    <value>acción</value>
-  </data>
   <data name="Header Avatar" xml:space="preserve">
     <value>Avatar del encabezado</value>
   </data>
@@ -1460,9 +1457,6 @@
   </data>
   <data name="Active Status" xml:space="preserve">
     <value>Estado de actividad</value>
-  </data>
-  <data name="Back to List" xml:space="preserve">
-    <value>Volver a la lista</value>
   </data>
   <data name="Define a new raw honey production period." xml:space="preserve">
     <value>Defina un nuevo período de producción de miel cruda.</value>
@@ -1622,9 +1616,6 @@
   </data>
   <data name="Save Content" xml:space="preserve">
     <value>Guardar contenido</value>
-  </data>
-  <data name="Not Assigned" xml:space="preserve">
-    <value>No asignado</value>
   </data>
   <data name="Create Parameter Content" xml:space="preserve">
     <value>Crear contenido del parámetro</value>
@@ -2001,9 +1992,6 @@
   <data name="The longitude must be between -180 and 180." xml:space="preserve">
     <value>La longitud debe estar entre -180 y 180.</value>
   </data>
-  <data name="within limit" xml:space="preserve">
-    <value>dentro del límite</value>
-  </data>
   <data name="Batch" xml:space="preserve">
     <value>Partida</value>
   </data>
@@ -2033,9 +2021,6 @@
   </data>
   <data name="Period" xml:space="preserve">
     <value>Período</value>
-  </data>
-  <data name="file" xml:space="preserve">
-    <value>archivo</value>
   </data>
   <data name="Sort order controls display priority" xml:space="preserve">
     <value>El orden controla la prioridad de visualización</value>
@@ -2115,9 +2100,6 @@
   <data name="Only CCPs that apply to raw honey lots can be assigned. Nothing was changed." xml:space="preserve">
     <value>Solo se pueden asignar los PCC que se aplican a lotes de miel cruda. No se modificó nada.</value>
   </data>
-  <data name="Applies to" xml:space="preserve">
-    <value>Se aplica a</value>
-  </data>
   <data name="Ontology-based Knowledge Management" xml:space="preserve">
     <value>Gestión del conocimiento basada en ontologías</value>
   </data>
@@ -2162,9 +2144,6 @@
   </data>
   <data name="Hives" xml:space="preserve">
     <value>Colmenas</value>
-  </data>
-  <data name="Data type" xml:space="preserve">
-    <value>Tipo de dato</value>
   </data>
   <data name="Edit Education Level" xml:space="preserve">
     <value>Editar nivel de educación</value>
@@ -2486,9 +2465,6 @@
   </data>
   <data name="The text can be at most 100 characters." xml:space="preserve">
     <value>El texto puede tener como máximo 100 caracteres.</value>
-  </data>
-  <data name="Final Batch" xml:space="preserve">
-    <value>Partida final</value>
   </data>
   <data name="Raw Honey Batches" xml:space="preserve">
     <value>Lotes de miel cruda</value>
@@ -2859,9 +2835,6 @@
   <data name="Create Production Period" xml:space="preserve">
     <value>Crear período de producción</value>
   </data>
-  <data name="no" xml:space="preserve">
-    <value>no</value>
-  </data>
   <data name="Add Raw Honey Production" xml:space="preserve">
     <value>Agregar producción de miel cruda</value>
   </data>
@@ -2919,17 +2892,11 @@
   <data name="Pending" xml:space="preserve">
     <value>Pendiente</value>
   </data>
-  <data name="wholesaler" xml:space="preserve">
-    <value>mayorista</value>
-  </data>
   <data name="Video not available for this parameter." xml:space="preserve">
     <value>No hay video disponible para este parámetro.</value>
   </data>
   <data name="Top 3 Raw Honey Wholesalers" xml:space="preserve">
     <value>Los 3 principales mayoristas de miel cruda</value>
-  </data>
-  <data name="What Is It?" xml:space="preserve">
-    <value>¿Qué es?</value>
   </data>
   <data name="Add a limit" xml:space="preserve">
     <value>Agregar un límite</value>
@@ -3135,9 +3102,6 @@
   <data name="The report is submitted; the LabManager approves it or returns it for changes." xml:space="preserve">
     <value>El informe se envió; el LabManager lo aprueba o lo devuelve para modificaciones.</value>
   </data>
-  <data name="remove" xml:space="preserve">
-    <value>quitar</value>
-  </data>
   <data name="New Password" xml:space="preserve">
     <value>Nueva contraseña</value>
   </data>
@@ -3170,9 +3134,6 @@
   </data>
   <data name="-- Select CCP --" xml:space="preserve">
     <value>-- Seleccione el PCC --</value>
-  </data>
-  <data name="Confirm Password" xml:space="preserve">
-    <value>Confirmar contraseña</value>
   </data>
   <data name="First Name" xml:space="preserve">
     <value>Nombre</value>
@@ -3224,9 +3185,6 @@
   </data>
   <data name="What?" xml:space="preserve">
     <value>¿Qué?</value>
-  </data>
-  <data name="not recorded" xml:space="preserve">
-    <value>no registrado</value>
   </data>
   <data name="Unknown honey class." xml:space="preserve">
     <value>Clase de miel desconocida.</value>
@@ -3291,9 +3249,6 @@
   <data name="A value for the '{0}' parameter or property was not provided." xml:space="preserve">
     <value>No se proporcionó un valor para el parámetro o la propiedad '{0}'.</value>
   </data>
-  <data name="Limit note" xml:space="preserve">
-    <value>Nota sobre el límite</value>
-  </data>
   <data name="Final Honey Productions" xml:space="preserve">
     <value>Producciones finales de miel</value>
   </data>
@@ -3321,9 +3276,6 @@
   <data name="Enter beekeeping type title" xml:space="preserve">
     <value>Introduzca el título del tipo de apicultura</value>
   </data>
-  <data name="Honey class" xml:space="preserve">
-    <value>Clase de miel</value>
-  </data>
   <data name="The sample and the counter-sample need different seals." xml:space="preserve">
     <value>La muestra y la contramuestra necesitan precintos diferentes.</value>
   </data>
@@ -3335,9 +3287,6 @@
   </data>
   <data name="QR Code" xml:space="preserve">
     <value>Código QR</value>
-  </data>
-  <data name="Limit source" xml:space="preserve">
-    <value>Fuente del límite</value>
   </data>
   <data name="Phone Number" xml:space="preserve">
     <value>Número de teléfono</value>
@@ -3711,9 +3660,6 @@
   <data name="Every final-batch CCP must be assigned and Completed or &quot;Not applicable&quot;, and every lot in the batch must have all its CCPs Completed or &quot;Not applicable&quot;." xml:space="preserve">
     <value>Todos los PCC de partida final deben estar asignados y en estado Completado o &quot;No aplicable&quot;, y todos los lotes de la partida deben tener todos sus PCC en estado Completado o &quot;No aplicable&quot;.</value>
   </data>
-  <data name="Add New" xml:space="preserve">
-    <value>Agregar nuevo</value>
-  </data>
   <data name="First" xml:space="preserve">
     <value>Primero</value>
   </data>
@@ -3851,9 +3797,6 @@
   </data>
   <data name="Note.LimitsHelp" xml:space="preserve">
     <value>(edítelos en el parámetro). Una fila de abajo prevalece sobre el valor predeterminado: una fila para el tipo de miel del lote prevalece sobre una para su clase de miel, que a su vez prevalece sobre una para todas las clases; una fila cuya condición se cumple prevalece sobre una sin condición. Las filas de relación son comprobaciones adicionales (valor / otro valor) que también deben cumplirse.</value>
-  </data>
-  <data name="yes" xml:space="preserve">
-    <value>sí</value>
   </data>
   <data name="Are you sure?" xml:space="preserve">
     <value>¿Está seguro?</value>
@@ -4512,9 +4455,6 @@
   <data name="Apiary Beekeeper Id" xml:space="preserve">
     <value>Apicultor del apiario</value>
   </data>
-  <data name="honey type" xml:space="preserve">
-    <value>tipo de miel</value>
-  </data>
   <data name="Raw Honey Production Honey Type" xml:space="preserve">
     <value>Tipo de miel de la producción de miel cruda</value>
   </data>
@@ -4608,9 +4548,6 @@
   <data name="Storefront" xml:space="preserve">
     <value>Página del apicultor</value>
   </data>
-  <data name="storage" xml:space="preserve">
-    <value>almacenamiento</value>
-  </data>
   <data name="Is Active" xml:space="preserve">
     <value>Activo</value>
   </data>
@@ -4668,9 +4605,6 @@
   <data name="Reset your TOP4HoneyChains password" xml:space="preserve">
     <value>Restablezca su contraseña de TOP4HoneyChains</value>
   </data>
-  <data name="not checkable" xml:space="preserve">
-    <value>no verificable</value>
-  </data>
   <data name="'{0}' and '{1}' do not match." xml:space="preserve">
     <value>'{0}' y '{1}' no coinciden.</value>
   </data>
@@ -4719,9 +4653,6 @@
   <data name="Raw sources: {0}" xml:space="preserve">
     <value>Lotes de origen: {0}</value>
   </data>
-  <data name="lot" xml:space="preserve">
-    <value>lote</value>
-  </data>
   <data name="HolderStorageRecords" xml:space="preserve">
     <value>Registros de almacenamiento del poseedor</value>
   </data>
@@ -4733,9 +4664,6 @@
   </data>
   <data name="Legacy Wholesaler Id" xml:space="preserve">
     <value>Mayorista anterior (n.º)</value>
-  </data>
-  <data name="if" xml:space="preserve">
-    <value>si</value>
   </data>
   <data name="AspNetRoles" xml:space="preserve">
     <value>Roles</value>
@@ -4773,14 +4701,8 @@
   <data name="CcpCorrections" xml:space="preserve">
     <value>Correcciones de PCC</value>
   </data>
-  <data name="min" xml:space="preserve">
-    <value>mín.</value>
-  </data>
   <data name="Extra" xml:space="preserve">
     <value>Adicional</value>
-  </data>
-  <data name="max" xml:space="preserve">
-    <value>máx.</value>
   </data>
   <data name="Video Path" xml:space="preserve">
     <value>Ruta del video</value>
@@ -4835,9 +4757,6 @@
   </data>
   <data name="SampleCustodyEvents" xml:space="preserve">
     <value>Eventos de custodia de muestras</value>
-  </data>
-  <data name="batch" xml:space="preserve">
-    <value>partida</value>
   </data>
   <data name="Parameter Id" xml:space="preserve">
     <value>Parámetro (n.º)</value>
@@ -5048,5 +4967,44 @@
   </data>
   <data name="RefField.ExtraInfo" xml:space="preserve">
     <value>Información adicional</value>
+  </data>
+  <data name="Kind.batch" xml:space="preserve">
+    <value>partida</value>
+  </data>
+  <data name="Kind.lot" xml:space="preserve">
+    <value>lote</value>
+  </data>
+  <data name="Kind.storage" xml:space="preserve">
+    <value>almacenamiento</value>
+  </data>
+  <data name="Limit.min" xml:space="preserve">
+    <value>mín.</value>
+  </data>
+  <data name="Limit.max" xml:space="preserve">
+    <value>máx.</value>
+  </data>
+  <data name="Limit.if" xml:space="preserve">
+    <value>si</value>
+  </data>
+  <data name="Limit.honeyType" xml:space="preserve">
+    <value>tipo de miel</value>
+  </data>
+  <data name="Limit.notCheckable" xml:space="preserve">
+    <value>no verificable</value>
+  </data>
+  <data name="Recorded" xml:space="preserve">
+    <value>Registrado</value>
+  </data>
+  <data name="Partly recorded" xml:space="preserve">
+    <value>Registrado en parte</value>
+  </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>No registrado</value>
+  </data>
+  <data name="Blended Production" xml:space="preserve">
+    <value>Producción mezclada</value>
+  </data>
+  <data name="Mixed" xml:space="preserve">
+    <value>Mixta</value>
   </data>
 </root>

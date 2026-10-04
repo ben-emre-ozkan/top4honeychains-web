@@ -18,7 +18,7 @@
             <div class="row g-3 mb-3">
                 <div class="col-sm-4"><div class="border rounded p-3 text-center"><div class="fs-3 fw-bold" id="sf-lots">@Model.VerifiedLots</div><div class="small text-muted">@L["P5.VerifiedLots"]</div></div></div>
                 <div class="col-sm-8"><div class="border rounded p-3"><div class="small text-muted mb-1">@L["P5.HoneyTypes"]</div>
-                    <div id="sf-honey">@foreach (var h in Model.HoneyTypes) { <span class="badge bg-warning text-dark me-1">@h</span> }@if (!Model.HoneyTypes.Any()) { <span class="text-muted">–</span> }</div></div></div>
+                    <div id="sf-honey">@foreach (var h in Model.HoneyTypes) { <span class="badge bg-warning text-dark me-1">@Ref.Text("HoneyType", "Title", h)</span> }@if (!Model.HoneyTypes.Any()) { <span class="text-muted">–</span> }</div></div></div>
             </div>
 
             <h6>@L["P5.LabResults"]</h6>

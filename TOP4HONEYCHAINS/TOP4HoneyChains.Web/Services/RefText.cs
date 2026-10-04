@@ -104,11 +104,11 @@ namespace TOP4HoneyChains.Web.Services
             var parts = new List<string>();
             foreach (var (pattern, value) in map)
                 text = pattern.Replace(text, _ => { parts.Add(value); return "\u0001" + (parts.Count - 1) + "\u0002"; });
-            text = System.Text.RegularExpressions.Regex.Replace(text, @"\bmin\b", ui("min"));
-            text = System.Text.RegularExpressions.Regex.Replace(text, @"\bmax\b", ui("max"));
-            text = System.Text.RegularExpressions.Regex.Replace(text, @"\bif\b", ui("if"));
-            text = text.Replace("(not checkable)", "(" + ui("not checkable") + ")");
-            text = System.Text.RegularExpressions.Regex.Replace(text, @"\bhoney type (\d+)", m => T(RefEntity.HoneyType, m.Groups[1].Value, "Title", ui("honey type") + " " + m.Groups[1].Value));
+            text = System.Text.RegularExpressions.Regex.Replace(text, @"\bmin\b", ui("Limit.min"));
+            text = System.Text.RegularExpressions.Regex.Replace(text, @"\bmax\b", ui("Limit.max"));
+            text = System.Text.RegularExpressions.Regex.Replace(text, @"\bif\b", ui("Limit.if"));
+            text = text.Replace("(not checkable)", "(" + ui("Limit.notCheckable") + ")");
+            text = System.Text.RegularExpressions.Regex.Replace(text, @"\bhoney type (\d+)", m => T(RefEntity.HoneyType, m.Groups[1].Value, "Title", ui("Limit.honeyType") + " " + m.Groups[1].Value));
             return System.Text.RegularExpressions.Regex.Replace(text, "\u0001(\\d+)\u0002", m => parts[int.Parse(m.Groups[1].Value)]);
         }
 

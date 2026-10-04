@@ -26,10 +26,10 @@
                         <div class="col-md-3">
                             <select name="entity" class="form-select">
                                 <option value="">@L["Audit.AllEntities"]</option>
-                                @foreach (var e in entities) { <option value="@e" selected="@(e == (string?)f.entity)">@e</option> }
+                                @foreach (var e in entities) { <option value="@e" selected="@(e == (string?)f.entity)">@L[e]</option> }
                             </select>
                         </div>
-                        <div class="col-md-2"><input name="act" value="@f.act" class="form-control" placeholder="@L["action"]" /></div>
+                        <div class="col-md-2"><input name="act" value="@f.act" class="form-control" placeholder="@L["Action"]" /></div>
                         <div class="col-md-3"><input name="user" value="@f.user" class="form-control" placeholder="@L["Org.UserName"]" /></div>
                         <div class="col-md-2"><input name="flag" value="@f.flag" class="form-control" placeholder="@L["flag, e.g. SelfApproved"]" /></div>
                         <div class="col-md-2"><button type="submit" class="btn btn-secondary w-100">@L["Audit.Filter"]</button></div>
