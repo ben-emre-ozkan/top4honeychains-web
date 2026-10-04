@@ -13,7 +13,7 @@ public partial class ApiaryPhoto
 
     public int ApiaryPhotoApiaryId { get; set; }
 
-    [Unicode(false)]
+    // D-55: nvarchar since 012 (Turkish letters)
     public string? ApiaryPhotoDesc { get; set; }
 
     [Column(TypeName = "datetime")]

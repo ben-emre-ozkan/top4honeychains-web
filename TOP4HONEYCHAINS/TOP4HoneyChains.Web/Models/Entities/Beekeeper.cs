@@ -17,11 +17,11 @@ public partial class Beekeeper
     public IFormFile? ProfilePhotoFile { get; set; }
 
     [StringLength(50)]
-    [Unicode(false)]
+    // D-55: nvarchar since 012 (Turkish letters)
     public string BeekeeperFirstName { get; set; } = null!;
 
     [StringLength(50)]
-    [Unicode(false)]
+    // D-55: nvarchar since 012 (Turkish letters)
     public string BeekeeperLastName { get; set; } = null!;
 
     public DateOnly BeekeeperBirthDate { get; set; }

@@ -13,7 +13,7 @@ public partial class RawHoneyProductionPeriod : IValidatableObject
 
     [Required(ErrorMessage = "The title is required.")]
     [StringLength(50)]
-    [Unicode(false)]
+    // D-55: nvarchar since 012 (Turkish letters)
     public string? RawHoneyProductionPeriodTitle { get; set; }
 
     [Required(ErrorMessage = "The start date is required.")]
