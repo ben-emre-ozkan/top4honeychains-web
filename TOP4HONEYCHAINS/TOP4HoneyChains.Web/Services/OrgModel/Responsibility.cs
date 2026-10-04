@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using TOP4HoneyChains.Web.Data;
 using TOP4HoneyChains.Web.Models.Entities;
 
@@ -125,6 +125,9 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             }
             if (!read && kind == "raw")
                 read = await LotInOwnedBatchAsync(ownerId, active.OrgId);
+            // Later holders of a batch read its records (D-26, D-41)
+            if (!read && kind == "batch")
+                read = await _context.Shipments.AnyAsync(s => s.FinalHoneyProductionId == ownerId && s.ToOrgId == active.OrgId && s.Status == ShipmentStatus.Received);
 
             string? enterDenied = null, approveDenied = null;
             if (!responsible || cfg == null)
