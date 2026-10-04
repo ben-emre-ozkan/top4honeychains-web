@@ -638,6 +638,10 @@
                                         <div class="small text-white opacity-75">
                                             <i class="mdi mdi-account-outline me-1"></i>
                                             Beekeeper: <strong>@source.BeekeeperName</strong>
+                                            @if (source.StorefrontCode != null)
+                                            {
+                                                <a href="/storefront/@source.StorefrontCode" class="badge bg-light text-dark ms-1 storefront-link">@L["P5.BeekeeperPage"]</a>
+                                            }
                                         </div>
 
                                     </div>

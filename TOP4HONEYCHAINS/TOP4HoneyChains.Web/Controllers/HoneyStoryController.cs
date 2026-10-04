@@ -18,13 +18,15 @@ namespace TOP4HoneyChains.Web.Controllers
         private readonly TOP4HoneyChainsContext _context;
         private readonly Microsoft.Extensions.Options.IOptions<Services.OrgModel.FeatureFlags> _flags;
         private readonly CcpIntegrityService _ccp;
+        private readonly Services.OrgModel.StorefrontService _storefronts;
 
         public HoneyStoryController(TOP4HoneyChainsContext context, Microsoft.Extensions.Options.IOptions<Services.OrgModel.FeatureFlags> flags,
-            CcpIntegrityService ccp)
+            CcpIntegrityService ccp, Services.OrgModel.StorefrontService storefronts)
         {
             _context = context;
             _flags = flags;
             _ccp = ccp;
+            _storefronts = storefronts;
         }
 
         // P4 badges (D-42), only with the organization model and only from approved, verified data:
@@ -51,6 +53,24 @@ namespace TOP4HoneyChains.Web.Controllers
                 LimitsCompliant = rows.Count > 0 && rows.All(r => r.Compliant == true),
                 ReportCodes = reports.Select(r => r.ReportCode).Distinct().ToList()
             };
+
+            // P5 (D-31): stored origin shares; batches finalized before P5 are computed from their composition
+            var stored = await _context.BatchOriginShares.AsNoTracking().Where(s => s.FinalHoneyProductionId == vm.FinalHoneyProductionId).ToListAsync();
+            var shares = stored.Count > 0
+                ? stored.Select(s => new Origin.Share(s.CountryCode, s.Amount, s.Percentage)).ToList()
+                : Origin.Compute(await _context.FinalHoneyProductionDetails.AsNoTracking().Where(d => d.FinalHoneyProductionId == vm.FinalHoneyProductionId)
+                    .Select(d => new ValueTuple<string?, decimal>(d.RawHoneyProduction.OriginCountry, d.UsedAmount)).ToListAsync());
+            vm.Badges.Origins = shares.OrderByDescending(s => s.Percentage).Select(s => new HoneyStoryOrigin(Origin.Name(s.Country), s.Percentage)).ToList();
+
+            // P5 (D-43): links to the published storefronts of the contributing beekeepers
+            var owners = await _context.RawHoneyProductions.AsNoTracking().Where(r => rawIds.Contains(r.RawHoneyProductionId) && r.RawHoneyProductionApiary != null)
+                .Select(r => new { r.RawHoneyProductionId, r.RawHoneyProductionApiary!.ApiaryBeekeeperId }).ToListAsync();
+            var codes = await _storefronts.PublishedCodesAsync(owners.Select(o => o.ApiaryBeekeeperId));
+            foreach (var source in vm.RawSources)
+            {
+                var owner = owners.FirstOrDefault(o => o.RawHoneyProductionId == source.RawHoneyProductionId);
+                source.StorefrontCode = owner == null ? null : codes.GetValueOrDefault(owner.ApiaryBeekeeperId);
+            }
         }
 
 

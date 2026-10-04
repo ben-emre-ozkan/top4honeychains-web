@@ -106,13 +106,14 @@ namespace TOP4HoneyChains.Web.Controllers
             var periods = await _context.RawHoneyProductionPeriods.OrderByDescending(p => p.RawHoneyProductionPeriodStartDate).ToListAsync();
             var current = periods.FirstOrDefault(p => p.RawHoneyProductionPeriodStartDate <= today && (p.RawHoneyProductionPeriodEndDate == null || p.RawHoneyProductionPeriodEndDate >= today));
             ViewBag.Periods = new SelectList(periods, "RawHoneyProductionPeriodId", "RawHoneyProductionPeriodTitle", current?.RawHoneyProductionPeriodId);
+            ViewBag.Origins = new SelectList(Origin.Countries.Select(c => new { c.Code, Name = Origin.Name(c.Code) + " (" + c.Code + ")" }), "Code", "Name", Origin.Default);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [RequestSizeLimit(12 * 1024 * 1024)]
         public async Task<IActionResult> Create(string number, int apiaryId, int honeyTypeId, int periodId, DateOnly? deliveryDate,
-            decimal? quantity, string? province, string? district, IFormFile? deliveryForm, bool sendSms)
+            decimal? quantity, string? province, string? district, IFormFile? deliveryForm, bool sendSms, string? originCountry)
         {
             if (await DeniedAsync() is string denied)
             {
@@ -140,6 +141,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 error = "The amount must be greater than 0.";
             else if (string.IsNullOrEmpty(province) || string.IsNullOrEmpty(district) || province.Length > 100 || district.Length > 100)
                 error = "Enter the province and district of origin.";
+            else if (!Origin.IsKnown(originCountry ?? Origin.Default))
+                error = "Choose the country of origin.";
             else if (deliveryForm == null)
                 error = "Attach the photo of the signed delivery form.";
             else if (fileError != null)
@@ -167,7 +170,8 @@ namespace TOP4HoneyChains.Web.Controllers
                     RawHoneyProductionAmount = quantity,
                     RawHoneyProductionDate = deliveryDate,
                     RawHoneyProductionWholesalerId = org.LegacyWholesalerId,
-                    OwnerOrgId = active.OrgId
+                    OwnerOrgId = active.OrgId,
+                    OriginCountry = originCountry ?? Origin.Default
                 };
                 _context.RawHoneyProductions.Add(lot);
                 await _context.SaveChangesAsync();

@@ -35,6 +35,10 @@ public partial class RawHoneyProduction
     // Owning organization (D-36); null = the organization created from the wholesaler
     public int? OwnerOrgId { get; set; }
 
+    // P5 (D-31, EU 2024/1438): ISO 3166-1 alpha-2; null = TR (lots recorded before the column existed)
+    [StringLength(2)]
+    public string? OriginCountry { get; set; }
+
     [ForeignKey("RawHoneyProductionApiaryId")]
     [InverseProperty("RawHoneyProductions")]
     public virtual Apiary? RawHoneyProductionApiary { get; set; }

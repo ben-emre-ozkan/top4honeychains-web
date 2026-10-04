@@ -47,6 +47,10 @@
                                 {
                                     <a asp-controller="Intake" asp-action="Index" class="btn btn-sm btn-outline-primary mt-2" id="link-intakes">@L["Cust.Intakes"]</a>
                                 }
+                                @if (active.Has(TOP4HoneyChains.Web.Models.Entities.Capabilities.Association))
+                                {
+                                    <a asp-controller="Storefronts" asp-action="Index" class="btn btn-sm btn-outline-primary mt-2" id="link-storefronts">@L["P5.Storefronts"]</a>
+                                }
                                 @if (active.Has(TOP4HoneyChains.Web.Models.Entities.Capabilities.Processing) || active.Has(TOP4HoneyChains.Web.Models.Entities.Capabilities.Laboratory))
                                 {
                                     <a asp-controller="Samples" asp-action="Index" class="btn btn-sm btn-outline-primary mt-2" id="link-samples">@L["Lab.Samples"]</a>

@@ -1,0 +1,26 @@
+@using TOP4HoneyChains.Web.Services.OrgModel
+@{
+    ViewData["Title"] = L["P5.Card"];
+    Layout = "~/Views/Shared/_BlankLayout.cshtml";
+    var state = (StorefrontService.State)ViewBag.State;
+}
+
+<style>
+    .sf-card { width: 85mm; min-height: 55mm; border: 1px solid #ccc; border-radius: 8px; padding: 6mm; margin: 12mm auto; display: flex; gap: 5mm; align-items: center; background: #fff; }
+    .sf-card img { width: 30mm; height: 30mm; }
+    @@media print { .no-print { display: none !important; } body { background: #fff !important; } .sf-card { margin: 0; } }
+</style>
+
+<div class="sf-card" id="storefront-card">
+    <img src="/storefront/@state.Code/qr" alt="QR" id="card-qr" />
+    <div>
+        <div class="small text-muted">TOP4HoneyChains · @L["P5.BeekeeperPage"]</div>
+        <div class="fw-bold fs-5" id="card-name">@ViewBag.DisplayName</div>
+        <div class="small">@state.AssociationName</div>
+        <div class="small text-muted mt-1" style="word-break:break-all">@ViewBag.PublicUrl</div>
+    </div>
+</div>
+<div class="text-center no-print">
+    <button type="button" class="btn btn-primary" onclick="window.print()">@L["Cust.Print"]</button>
+    <a href="/Storefronts/Index" class="btn btn-secondary">@L["Org.Back"]</a>
+</div>

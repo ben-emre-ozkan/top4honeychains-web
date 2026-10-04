@@ -301,6 +301,7 @@ namespace TOP4HoneyChains.Web.Controllers
             // 🔒 Finalize
             batch.FinalHoneyProductionIsFinalized = true;
             batch.FinalHoneyProductionFinalizedDate = DateTime.UtcNow;
+            await Origin.StoreAsync(_context, id);   // D-31: country shares by weight, a snapshot
 
             await _context.SaveChangesAsync();
 

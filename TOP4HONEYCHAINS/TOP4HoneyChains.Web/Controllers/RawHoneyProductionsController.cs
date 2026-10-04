@@ -29,6 +29,14 @@ namespace TOP4HoneyChains.Web.Controllers
             _flags = flags.Value;
         }
 
+        // D-31: the origin country is chosen on the forms only with the organization model
+        private void FillOrigins(string? selected)
+        {
+            if (_flags.OrgRoleModel)
+                ViewBag.Origins = new SelectList(Origin.Countries.Select(c => new { c.Code, Name = Origin.Name(c.Code) + " (" + c.Code + ")" }),
+                    "Code", "Name", selected ?? Origin.Default);
+        }
+
         // D-36: the owning organization is chosen on the edit form only with the organization model
         private void FillOwnerOrgs(int? selected)
         {
@@ -135,6 +143,7 @@ namespace TOP4HoneyChains.Web.Controllers
        );
 
 
+            FillOrigins(null);
             ViewBag.Controller = "Raw Honey Production";
             ViewBag.Action = "Create";
 
@@ -159,6 +168,10 @@ namespace TOP4HoneyChains.Web.Controllers
                 ModelState.AddModelError(string.Empty,
                     "This apiary already has a production record for the selected period and honey type.");
             }
+            if (!_flags.OrgRoleModel)
+                rawHoneyProduction.OriginCountry = null;   // v1.0 form: the database default (TR) applies
+            else if (!Origin.IsKnown(rawHoneyProduction.OriginCountry))
+                ModelState.AddModelError("OriginCountry", "Choose the country of origin.");
 
 
             if (ModelState.IsValid)
@@ -194,6 +207,7 @@ namespace TOP4HoneyChains.Web.Controllers
 
 
 
+            FillOrigins(rawHoneyProduction.OriginCountry);
             ViewBag.Controller = "Raw Honey Production";
             ViewBag.Action = "Create";
 
@@ -241,6 +255,7 @@ namespace TOP4HoneyChains.Web.Controllers
 
 
             FillOwnerOrgs(rawHoneyProduction.OwnerOrgId);
+            FillOrigins(rawHoneyProduction.OriginCountry);
             ViewBag.Controller = "Raw Honey Production";
             ViewBag.Action = "Edit";
 
@@ -264,8 +279,14 @@ namespace TOP4HoneyChains.Web.Controllers
 
             // The form posts the whole row (ENG-03): keep the stored owner unless the organization model sets it
             if (!_flags.OrgRoleModel)
-                rawHoneyProduction.OwnerOrgId = await _context.RawHoneyProductions.AsNoTracking()
-                    .Where(r => r.RawHoneyProductionId == id).Select(r => r.OwnerOrgId).FirstOrDefaultAsync();
+            {
+                var stored = await _context.RawHoneyProductions.AsNoTracking()
+                    .Where(r => r.RawHoneyProductionId == id).Select(r => new { r.OwnerOrgId, r.OriginCountry }).FirstOrDefaultAsync();
+                rawHoneyProduction.OwnerOrgId = stored?.OwnerOrgId;
+                rawHoneyProduction.OriginCountry = stored?.OriginCountry;
+            }
+            else if (!Origin.IsKnown(rawHoneyProduction.OriginCountry))
+                ModelState.AddModelError("OriginCountry", "Choose the country of origin.");
             else if (rawHoneyProduction.OwnerOrgId != null && !await _context.Organizations.AnyAsync(o => o.OrgId == rawHoneyProduction.OwnerOrgId && !o.IsPlatform))
                 ModelState.AddModelError("OwnerOrgId", "Unknown organization.");
 
@@ -298,6 +319,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 _context.Wholesalers.Where(w => w.WholesalerIsActive),
                 "WholesalerId", "WholesalerTitle", rawHoneyProduction.RawHoneyProductionWholesalerId);
             FillOwnerOrgs(rawHoneyProduction.OwnerOrgId);
+            FillOrigins(rawHoneyProduction.OriginCountry);
 
 
             ViewBag.Controller = "Raw Honey Production";

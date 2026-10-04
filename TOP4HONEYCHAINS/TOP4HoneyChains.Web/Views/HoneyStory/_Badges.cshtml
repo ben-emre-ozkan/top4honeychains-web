@@ -1,4 +1,4 @@
-@model TOP4HoneyChains.Web.Models.ViewModels.HoneyStory.HoneyStoryBadges
+﻿@model TOP4HoneyChains.Web.Models.ViewModels.HoneyStory.HoneyStoryBadges
 @* P4 (D-42): badges only from approved, verified data; shown only with the organization model *@
 <div class="d-flex flex-wrap gap-2 mb-3" id="honeystory-badges">
     @if (Model.AccreditedLab)
@@ -19,6 +19,12 @@
     @if (Model.LimitsCompliant)
     {
         <span class="badge bg-success px-3 py-2" id="badge-limits"><i class="mdi mdi-scale-balance me-1"></i>@L["Hs.LimitsCompliant"]</span>
+    }
+    @if (Model.Origins.Any())
+    {
+        <span class="badge bg-light text-dark border px-3 py-2" id="badge-origin">
+            <i class="mdi mdi-earth me-1"></i>@L["P5.Origin"]: @string.Join(", ", Model.Origins.Select(o => $"{o.Country} {o.Percentage.ToString("0.##")} %"))
+        </span>
     }
     @foreach (var code in Model.ReportCodes)
     {

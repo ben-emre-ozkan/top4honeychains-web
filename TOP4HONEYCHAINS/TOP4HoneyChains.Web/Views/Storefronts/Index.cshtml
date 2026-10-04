@@ -1,0 +1,82 @@
+@using TOP4HoneyChains.Web.Controllers
+@{
+    ViewData["Title"] = L["P5.Storefronts"];
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var rows = ViewBag.Rows as List<StorefrontsController.Row> ?? new();
+    var denied = ViewBag.ManageDenied as string;
+    var isAdmin = ViewBag.IsAdmin == true;
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">@L["P5.Storefronts"]</h4>
+                    <p class="card-title-desc">@L["P5.StorefrontsHelp"]</p>
+                    @if (denied != null && !isAdmin)
+                    {
+                        <div class="alert alert-secondary" id="manage-denied">@L["Ccp.ReadOnly"]: @Msg.T(denied)</div>
+                    }
+                    <table class="table table-sm table-bordered" id="storefronts">
+                        <thead><tr><th>@L["Reg.Beekeeper"]</th><th>@L["Reg.RegistryNo"]</th><th>@L["P5.Consent"]</th><th>@L["P5.Published"]</th><th></th></tr></thead>
+                        <tbody>
+                            @foreach (var r in rows)
+                            {
+                                var s = r.State;
+                                <tr data-beekeeper-id="@r.Beekeeper.BeekeeperId">
+                                    <td>@r.Beekeeper.BeekeeperFirstName @r.Beekeeper.BeekeeperLastName <small class="text-muted">@r.Beekeeper.BeekeeperBusinessNumber</small></td>
+                                    <td>@(r.RegistryNumber ?? "–") @(s.RegistryVerified ? "✓" : "")</td>
+                                    <td class="consent-cell">
+                                        @if (s.Consent != null)
+                                        {
+                                            <span>@s.Consent.GivenOn.ToString("dd.MM.yyyy") · @(s.Consent.NameConsented ? L["P5.NameShown"] : L["P5.CodeOnly"])</span>
+                                            <a asp-action="Document" asp-route-id="@s.Consent.ConsentId" target="_blank" class="small">@L["P5.Document"]</a>
+                                        }
+                                        else { <span class="text-muted">–</span> }
+                                    </td>
+                                    <td class="published-cell">
+                                        @if (s.Published)
+                                        {
+                                            <a href="/storefront/@s.Code" target="_blank" class="badge bg-success text-decoration-none">@L["P5.Public"] @s.Code</a>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-light text-dark">@L["P5.NotPublic"]</span>
+                                            @if (!s.RegistryVerified) { <small class="text-muted d-block">@L["P5.NeedsRegistry"]</small> }
+                                        }
+                                    </td>
+                                    <td class="text-nowrap">
+                                        @if (denied == null)
+                                        {
+                                            @if (s.Consent == null)
+                                            {
+                                                <a asp-action="Consent" asp-route-id="@r.Beekeeper.BeekeeperId" class="btn btn-sm btn-primary record-consent">@L["P5.RecordConsent"]</a>
+                                            }
+                                            else
+                                            {
+                                                <form asp-action="Withdraw" method="post" class="d-inline-flex gap-1 withdraw-form">
+                                                    <input type="hidden" name="consentId" value="@s.Consent.ConsentId" />
+                                                    <input name="reason" class="form-control form-control-sm" maxlength="500" placeholder="@L["P5.WithdrawReason"]" />
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger">@L["P5.Withdraw"]</button>
+                                                </form>
+                                            }
+                                        }
+                                        @if (s.Published)
+                                        {
+                                            <a asp-action="Card" asp-route-id="@r.Beekeeper.BeekeeperId" class="btn btn-sm btn-outline-secondary card-link">@L["P5.Card"]</a>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                            @if (!rows.Any())
+                            {
+                                <tr><td colspan="5" class="text-muted">@L["Org.None"]</td></tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

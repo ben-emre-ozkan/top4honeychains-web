@@ -79,6 +79,7 @@ builder.Services.AddScoped<CcpResponsibilityService>();
 builder.Services.AddScoped<OrgScope>();
 builder.Services.AddScoped<CustodyService>();
 builder.Services.AddScoped<LabService>();
+builder.Services.AddScoped<StorefrontService>();
 builder.Services.AddScoped<ISmsSender, LoggingSmsSender>();
 builder.Services.AddScoped<AuditWriter>();
 builder.Services.AddScoped<ManualRegistryVerifier>();

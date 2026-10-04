@@ -57,6 +57,9 @@ public partial class TOP4HoneyChainsContext : DbContext
     public virtual DbSet<SampleCustodyEvent> SampleCustodyEvents { get; set; }
     public virtual DbSet<LabReport> LabReports { get; set; }
     public virtual DbSet<LabResult> LabResults { get; set; }
+    public virtual DbSet<Consent> Consents { get; set; }
+    public virtual DbSet<BeekeeperStorefront> BeekeeperStorefronts { get; set; }
+    public virtual DbSet<BatchOriginShare> BatchOriginShares { get; set; }
     public virtual DbSet<CriticalControlPointMonitoringLog> CriticalControlPointMonitoringLogs { get; set; }
     public virtual DbSet<AssignmentStatus> AssignmentStatuses { get; set; }
     public virtual DbSet<RawHoneyCCPAssignment> RawHoneyCCPAssignments { get; set; }
@@ -119,6 +122,7 @@ public partial class TOP4HoneyChainsContext : DbContext
             entity.HasKey(e => e.RawHoneyProductionId).HasName("PK__ApiaryHo__D5D9A2D54CD1EFEC");
 
             entity.Property(e => e.RawHoneyProductionDate).HasDefaultValueSql("(getdate())");
+            entity.Property(e => e.OriginCountry).IsFixedLength().IsUnicode(false).HasDefaultValue("TR");
 
             entity.HasOne(d => d.RawHoneyProductionApiary).WithMany(p => p.RawHoneyProductions).HasConstraintName("FK_HoneyProductions_Apiaries");
 
@@ -362,6 +366,31 @@ public partial class TOP4HoneyChainsContext : DbContext
             entity.HasIndex(e => new { e.ReportId, e.ParameterId }).IsUnique();
             entity.HasOne(e => e.Report).WithMany(r => r.Results).HasForeignKey(e => e.ReportId).OnDelete(DeleteBehavior.Restrict);
             entity.HasOne(e => e.Parameter).WithMany().HasForeignKey(e => e.ParameterId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<Consent>(entity =>
+        {
+            entity.ToTable("Consents");
+            entity.Property(e => e.RecordedAt).HasDefaultValueSql("SYSUTCDATETIME()");
+            entity.Property(e => e.TextSha256).IsFixedLength().IsUnicode(false);
+            entity.Property(e => e.DocumentSha256).IsFixedLength().IsUnicode(false);
+            entity.HasOne(e => e.Beekeeper).WithMany().HasForeignKey(e => e.BeekeeperId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne(e => e.AssociationOrg).WithMany().HasForeignKey(e => e.AssociationOrgId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<BeekeeperStorefront>(entity =>
+        {
+            entity.ToTable("BeekeeperStorefronts");
+            entity.Property(e => e.CreatedAt).HasDefaultValueSql("SYSUTCDATETIME()");
+            entity.HasIndex(e => e.Code).IsUnique();
+        });
+
+        modelBuilder.Entity<BatchOriginShare>(entity =>
+        {
+            entity.ToTable("BatchOriginShares");
+            entity.HasKey(e => new { e.FinalHoneyProductionId, e.CountryCode });
+            entity.Property(e => e.CountryCode).IsFixedLength().IsUnicode(false);
+            entity.Property(e => e.ComputedAt).HasDefaultValueSql("SYSUTCDATETIME()");
         });
 
         modelBuilder.Entity<AuditEntry>(entity =>

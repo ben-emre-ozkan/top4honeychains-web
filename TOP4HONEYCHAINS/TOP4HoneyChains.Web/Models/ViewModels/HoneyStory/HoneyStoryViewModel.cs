@@ -29,5 +29,10 @@
         public bool AllCcpsApproved { get; set; }
         public bool LimitsCompliant { get; set; }
         public List<string> ReportCodes { get; set; } = new();
+
+        // P5 (D-31): country shares by weight, largest first
+        public List<HoneyStoryOrigin> Origins { get; set; } = new();
     }
+
+    public record HoneyStoryOrigin(string Country, decimal Percentage);
 }
