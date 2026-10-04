@@ -155,6 +155,7 @@ namespace TOP4HoneyChains.Web.Controllers
                             CcpId = a.RawHoneyCCPAssignmentCCP,
                             Code = a.CCP?.Code ?? a.RawHoneyCCPAssignmentCCP.ToString(),
                             Title = a.CCP?.Title,
+                            StatusId = a.RawHoneyCCPAssignmentStatus,
                             StatusName = a.AssignmentStatus?.AssignmentStatusName
                                          ?? a.RawHoneyCCPAssignmentStatus.ToString()
                         })
@@ -455,6 +456,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 .OrderBy(x => x.CCP.Id)
                 .Select(x => new CCPTimelineItem
                 {
+                    CcpId = x.CCP.Id,
+                    StatusId = x.FinalHoneyCCPAssignmentStatus,
                     CCPCode = x.CCP.Code,
                     CCPTitle = x.CCP.Title,
                     StatusName = x.AssignmentStatus.AssignmentStatusName,
@@ -573,7 +576,7 @@ namespace TOP4HoneyChains.Web.Controllers
         }
 
         public record DetailsLot(int LotId, string? Beekeeper, string? Apiary, string? HoneyType, DateOnly? ProductionDate, decimal UsedAmount, int CcpsDone, int CcpsTotal);
-        public record DetailsCcp(string Code, string? Title, int Status, string? StatusName, DateTime? ApprovedAt);
+        public record DetailsCcp(int CcpId, string Code, string? Title, int Status, string? StatusName, DateTime? ApprovedAt);
         public record DetailsReport(string ReportCode, string? Lab, bool IsAccredited, string? AccreditationNumber, bool InHouse, DateOnly? IssuedOn);
         public class DetailsModel
         {
@@ -635,7 +638,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 model.Ccps = await _context.FinalHoneyCCPAssignments.AsNoTracking()
                     .Where(a => a.FinalHoneyProductionId == batch.FinalHoneyProductionId)
                     .OrderBy(a => a.FinalHoneyCCPAssignmentCCP)
-                    .Select(a => new DetailsCcp(a.CCP!.Code, a.CCP.Title, a.FinalHoneyCCPAssignmentStatus, a.AssignmentStatus!.AssignmentStatusName, a.ApprovedAt))
+                    .Select(a => new DetailsCcp(a.CCP!.Id, a.CCP.Code, a.CCP.Title, a.FinalHoneyCCPAssignmentStatus, a.AssignmentStatus!.AssignmentStatusName, a.ApprovedAt))
                     .ToListAsync();
 
                 if (_flags.OrgRoleModel)

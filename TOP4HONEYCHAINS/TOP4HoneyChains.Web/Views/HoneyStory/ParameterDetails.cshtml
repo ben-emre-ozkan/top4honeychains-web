@@ -150,7 +150,7 @@
                                 @if (!string.IsNullOrEmpty(Model?.Parameter?.ParameterUnit))
                                 {
                                     <span class="ms-2 badge bg-light text-dark">
-                                        @Model.Parameter.ParameterUnit
+                                        @Ref.T("Parameter", Model.Parameter.ParameterId, "Unit", Model.Parameter.ParameterUnit)
                                     </span>
                                     <span class="badge bg-success ms-2">
                                         @Model.Parameter?.CCP?.Code
@@ -173,7 +173,7 @@
                             {
                                 <p>
                                     <strong>@L["What is it?"]</strong><br>
-                                    @Model.WhatIsIt
+                                    @Ref.T("ParameterContent", Model.ContentId, "WhatIsIt", Model.WhatIsIt)
                                 </p>
                             }
 
@@ -181,7 +181,7 @@
                             {
                                 <p>
                                     <strong>@L["Why it matters?"]</strong><br>
-                                    @Model.WhyImportant
+                                    @Ref.T("ParameterContent", Model.ContentId, "WhyImportant", Model.WhyImportant)
                                 </p>
                             }
 
@@ -189,7 +189,7 @@
                             {
                                 <p>
                                     <strong>@L["Additional Info"]</strong><br>
-                                    @Model.ExtraInfo
+                                    @Ref.T("ParameterContent", Model.ContentId, "ExtraInfo", Model.ExtraInfo)
                                 </p>
                             }
 

@@ -174,7 +174,7 @@
 
                                                     <td>
                                                         <span class="badge bg-warning text-dark">
-                                                            @item.RawHoney.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle
+                                                            @Ref.T("HoneyType", item.RawHoney.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeId, "Title", item.RawHoney.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle)
                                                         </span>
                                                     </td>
 
@@ -349,7 +349,7 @@
                                                         @item.RawHoney.RawHoneyProductionApiary?.ApiaryBeekeeper?.BeekeeperFirstName
                                                         @item.RawHoney.RawHoneyProductionApiary?.ApiaryBeekeeper?.BeekeeperLastName
                                                     </td>
-                                                    <td>@item.RawHoney.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle</td>
+                                                    <td>@Ref.T("HoneyType", item.RawHoney.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeId, "Title", item.RawHoney.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle)</td>
                                                     <td>@item.RawHoney.RawHoneyProductionAmount kg</td>
                                                     <td>
                                                         @if (item.NoChecksAssigned)
@@ -369,8 +369,8 @@
                                                                    asp-route-rawHoneyProductionId="@item.RawHoney.RawHoneyProductionId"
                                                                    asp-route-ccpId="@check.CcpId"
                                                                    class="badge bg-warning text-dark me-1 mb-1 pending-ccp"
-                                                                   title="@check.Title">
-                                                                    @check.Code: @check.StatusName
+                                                                   title="@Ref.CcpTitle(check.CcpId, check.Title)">
+                                                                    @check.Code: @Ref.Status(check.StatusId, check.StatusName)
                                                                 </a>
                                                             }
                                                         }

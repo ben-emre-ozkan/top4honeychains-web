@@ -20,7 +20,7 @@
                 <div class="card-body">
                     <h4 class="card-title">@L["Lab.Report"]: @sample.SampleCode</h4>
                     <div class="small text-muted mb-2">
-                        @L["Cust.Lot"] #@sample.RawHoneyProductionId · @sample.RawHoneyProduction?.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle ·
+                        @L["Cust.Lot"] #@sample.RawHoneyProductionId · @Ref.T("HoneyType", sample.RawHoneyProduction?.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeId, "Title", sample.RawHoneyProduction?.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle) ·
                         @L["Lab.Laboratory"]: @sample.LabOrg?.DisplayName · @L["Lab.SealNumber"]: @sample.SealNumber ·
                         @L["Org.Status"]: <strong id="sample-status">@sample.Status</strong>
                     </div>
@@ -82,7 +82,7 @@
                                     {
                                         var r = ResultOf(p.ParameterId);
                                         <tr data-parameter-id="@p.ParameterId">
-                                            <td>@p.ParameterName @(p.ParameterUnit is null or "None" ? "" : $"({p.ParameterUnit})")</td>
+                                            <td>@Ref.T("Parameter", p.ParameterId, "Name", p.ParameterName) @(p.ParameterUnit is null or "None" ? "" : $"({p.ParameterUnit})")</td>
                                             <td style="max-width:180px">
                                                 <input name="values[@p.ParameterId]" class="form-control form-control-sm" maxlength="100"
                                                        value="@(r?.MeasuredNumericValue?.ToString("0.####", System.Globalization.CultureInfo.InvariantCulture) ?? r?.MeasuredTextValue)" />

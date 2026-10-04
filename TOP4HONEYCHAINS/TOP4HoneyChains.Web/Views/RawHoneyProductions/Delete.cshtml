@@ -40,12 +40,12 @@
 
                                 <dt class="col-sm-3">@L["Honey Type"]</dt>
                                 <dd class="col-sm-9">
-                                    @Model.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle
+                                    @Ref.T("HoneyType", Model.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeId, "Title", Model.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle)
                                 </dd>
 
                                 <dt class="col-sm-3">@L["Production Period"]</dt>
                                 <dd class="col-sm-9">
-                                    @Model.RawHoneyProductionPeriod?.RawHoneyProductionPeriodTitle
+                                    @Ref.T("ProductionPeriod", Model.RawHoneyProductionPeriod?.RawHoneyProductionPeriodId, "Title", Model.RawHoneyProductionPeriod?.RawHoneyProductionPeriodTitle)
                                 </dd>
 
                             </dl>

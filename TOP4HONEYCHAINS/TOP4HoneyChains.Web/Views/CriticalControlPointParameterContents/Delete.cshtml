@@ -22,19 +22,19 @@
             @Html.DisplayNameFor(model => model.WhatIsIt)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.WhatIsIt)
+            @Ref.T("ParameterContent", Model.ContentId, "WhatIsIt", Model.WhatIsIt)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.WhyImportant)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.WhyImportant)
+            @Ref.T("ParameterContent", Model.ContentId, "WhyImportant", Model.WhyImportant)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.ExtraInfo)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ExtraInfo)
+            @Ref.T("ParameterContent", Model.ContentId, "ExtraInfo", Model.ExtraInfo)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.VideoPath)

@@ -66,7 +66,7 @@
 
                                             <td>
                                                 <span class="badge bg-secondary">
-                                                    @item.ParameterUnit
+                                                    @Ref.T("Parameter", item.ParameterId, "Unit", item.ParameterUnit)
                                                 </span>
                                             </td>
 
@@ -86,7 +86,7 @@
                                             </td>
 
                                             <td>
-                                                @item.ParameterCategoryNavigation?.CategoryName
+                                                @Ref.T("ParameterCategory", item.ParameterCategoryNavigation?.CategoryId, "Name", item.ParameterCategoryNavigation?.CategoryName)
                                             </td>
 
                                             <td>

@@ -529,6 +529,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 .OrderBy(x => x.CCP.Id)
                 .Select(x => new CCPTimelineItem
                 {
+                    CcpId = x.CCP.Id,
+                    StatusId = x.RawHoneyCCPAssignmentStatus,
                     CCPCode = x.CCP.Code,
                     CCPTitle = x.CCP.Title,
                     StatusName = x.AssignmentStatus.AssignmentStatusName,

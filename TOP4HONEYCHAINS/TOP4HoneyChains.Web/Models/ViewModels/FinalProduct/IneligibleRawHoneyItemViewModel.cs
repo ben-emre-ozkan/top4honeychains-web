@@ -1,4 +1,4 @@
-using TOP4HoneyChains.Web.Models.Entities;
+﻿using TOP4HoneyChains.Web.Models.Entities;
 
 namespace TOP4HoneyChains.Web.Models.ViewModels.FinalProduct
 {
@@ -24,6 +24,8 @@ namespace TOP4HoneyChains.Web.Models.ViewModels.FinalProduct
         public string Code { get; set; } = "";
 
         public string? Title { get; set; }
+
+        public int StatusId { get; set; }
 
         public string StatusName { get; set; } = "";
     }

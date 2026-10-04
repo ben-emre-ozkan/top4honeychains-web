@@ -31,7 +31,7 @@
                             <dl class="row">
 
                                 <dt class="col-sm-3">@L["Processing Step"]</dt>
-                                <dd class="col-sm-9">@Model.ProcessingStep</dd>
+                                <dd class="col-sm-9">@Ref.T("Ccp", Model.Id, "ProcessingStep", Model.ProcessingStep)</dd>
 
                                 <dt class="col-sm-3">@L["Code"]</dt>
                                 <dd class="col-sm-9">
@@ -41,11 +41,11 @@
                                 </dd>
 
                                 <dt class="col-sm-3">@L["Title"]</dt>
-                                <dd class="col-sm-9">@Model.Title</dd>
+                                <dd class="col-sm-9">@Ref.CcpTitle(Model.Id, Model.Title)</dd>
 
                                 <dt class="col-sm-3">@L["Criticality Justification"]</dt>
                                 <dd class="col-sm-9">
-                                    @Model.CriticalityJustification
+                                    @Ref.T("Ccp", Model.Id, "CriticalityJustification", Model.CriticalityJustification)
                                 </dd>
 
                             </dl>

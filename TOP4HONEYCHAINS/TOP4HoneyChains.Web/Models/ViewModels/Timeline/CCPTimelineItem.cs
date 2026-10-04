@@ -2,6 +2,8 @@
 {
     public class CCPTimelineItem
     {
+        public int CcpId { get; set; }
+        public int StatusId { get; set; }
         public string CCPCode { get; set; }
         public string CCPTitle { get; set; }
         public string StatusName { get; set; }

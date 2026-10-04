@@ -91,11 +91,11 @@
                                             </td>
 
                                             <td>
-                                                @item.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle
+                                                @Ref.T("HoneyType", item.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeId, "Title", item.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle)
                                             </td>
 
                                             <td>
-                                                @item.RawHoneyProductionPeriod?.RawHoneyProductionPeriodTitle
+                                                @Ref.T("ProductionPeriod", item.RawHoneyProductionPeriod?.RawHoneyProductionPeriodId, "Title", item.RawHoneyProductionPeriod?.RawHoneyProductionPeriodTitle)
                                             </td>
                                             <td>
                                                 @if (item.RawHoneyCCPAssignments != null && item.RawHoneyCCPAssignments.Any())

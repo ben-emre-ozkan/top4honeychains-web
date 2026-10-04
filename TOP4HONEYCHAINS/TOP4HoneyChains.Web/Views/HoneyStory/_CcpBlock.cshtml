@@ -1,4 +1,4 @@
-@using TOP4HoneyChains.Web.Models.ViewModels.HoneyStory
+﻿@using TOP4HoneyChains.Web.Models.ViewModels.HoneyStory
 @model HoneyStoryCcpBlock
 
 @* One CCP on the public page: recorded values with compliance, "Not applicable" with its reason,
@@ -19,8 +19,8 @@
     <div class="ccp-header">
         <div class="ccp-step">@Model.CCPCode</div>
         <div class="flex-grow-1">
-            <div class="ccp-title">@Model.CCPTitle</div>
-            <div class="ccp-phase">@Model.ProcessingStep</div>
+            <div class="ccp-title">@Ref.CcpTitle(Model.CCPId, Model.CCPTitle)</div>
+            <div class="ccp-phase">@Ref.T("Ccp", Model.CCPId, "ProcessingStep", Model.ProcessingStep)</div>
         </div>
         <span class="badge @badgeClass ccp-state">@badgeText</span>
     </div>
@@ -47,7 +47,7 @@
                 <div class="col-md-4 mb-3">
                     <div class="parameter-card">
                         <div class="param-name">
-                            @row.ParameterName
+                            @Ref.T("Parameter", row.ParameterId, "Name", row.ParameterName)
                             <a href="/honeystory/parameter/@row.ParameterId" class="ccp-help ms-1" target="_blank" title="@L["What is this?"]">
                                 <i class="mdi mdi-help-circle-outline"></i>
                             </a>

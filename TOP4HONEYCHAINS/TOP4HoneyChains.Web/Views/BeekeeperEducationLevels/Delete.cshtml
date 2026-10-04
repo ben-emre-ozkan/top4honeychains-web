@@ -31,7 +31,7 @@
                                     @L["Education Level Title"]
                                 </label>
                                 <div class="form-control bg-light">
-                                    @Html.DisplayFor(model => model.BeekeeperEducationLevelTitle)
+                                    @Ref.T("EducationLevel", Model.BeekeeperEducationLevelId, "Title", Model.BeekeeperEducationLevelTitle)
                                 </div>
                             </div>
 

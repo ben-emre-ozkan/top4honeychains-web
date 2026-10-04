@@ -20,11 +20,11 @@
                         <div>
                             <h3 class="mb-1 fw-bold">
                                 <i class="mdi mdi-shield-check-outline me-2"></i>
-                                @Model.CCPCode - @Model.CCPTitle
+                                @Model.CCPCode - @Ref.CcpTitle(Model.CCPId, Model.CCPTitle)
                             </h3>
 
                             <small class="opacity-75">
-                                @Model.ProcessingStep
+                                @Ref.T("Ccp", Model.CCPId, "ProcessingStep", Model.ProcessingStep)
                             </small>
                         </div>
 
@@ -40,7 +40,7 @@
 
                     <div>
                         <small class="opacity-75">
-                            @Model.CriticalityJustification
+                            @Ref.T("Ccp", Model.CCPId, "CriticalityJustification", Model.CriticalityJustification)
                         </small>
                     </div>
 

@@ -92,7 +92,7 @@
                                 <tr data-lot-id="@l.RawHoneyProductionId">
                                     <td>@l.RawHoneyProductionId</td>
                                     <td>@l.RawHoneyProductionApiary?.ApiaryTitle</td>
-                                    <td>@l.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle</td>
+                                    <td>@Ref.T("HoneyType", l.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeId, "Title", l.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle)</td>
                                     <td>@l.RawHoneyProductionAmount</td>
                                     <td>@l.RawHoneyProductionDate?.ToString("dd.MM.yyyy") <a asp-controller="Flow" asp-action="Lot" asp-route-id="@l.RawHoneyProductionId" class="small ms-1 flow-link">@L["Flow.Title"]</a> <a asp-controller="Recall" asp-action="Lot" asp-route-id="@l.RawHoneyProductionId" class="small ms-1">@L["Cust.Recall"]</a></td>
                                     <td>

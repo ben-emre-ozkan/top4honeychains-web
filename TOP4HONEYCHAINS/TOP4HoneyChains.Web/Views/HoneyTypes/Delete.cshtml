@@ -33,7 +33,7 @@
                                 </label>
 
                                 <div class="form-control bg-light">
-                                    @Html.DisplayFor(model => model.HoneyTypeTitle)
+                                    @Ref.T("HoneyType", Model.HoneyTypeId, "Title", Model.HoneyTypeTitle)
                                 </div>
                             </div>
 
@@ -46,7 +46,7 @@
                                 <div class="form-control bg-light" style="min-height:80px;">
                                     @if (!string.IsNullOrEmpty(Model.HoneyTypeDescription))
                                     {
-                                        @Model.HoneyTypeDescription
+                                        @Ref.T("HoneyType", Model.HoneyTypeId, "Description", Model.HoneyTypeDescription)
                                     }
                                     else
                                     {

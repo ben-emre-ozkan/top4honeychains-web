@@ -1,4 +1,4 @@
-@using TOP4HoneyChains.Web.Models.Entities
+﻿@using TOP4HoneyChains.Web.Models.Entities
 @model TOP4HoneyChains.Web.Controllers.FlowController.Model
 @{
     ViewData["Title"] = L["Flow.Title"];
@@ -7,10 +7,10 @@
         !s.Assigned ? ("flow-none", L["Flow.NotAssigned"].Value)
         : s.Status == AssignmentStatusIds.NotApplicable ? ("flow-na", L["Ccp.NotApplicableShort"].Value)
         : s.Status == AssignmentStatusIds.Completed && s.Approved ? ("flow-approved", L["Ccp.Approved"].Value)
-        : s.Status == AssignmentStatusIds.Completed ? ("flow-done", s.StatusName ?? "")
+        : s.Status == AssignmentStatusIds.Completed ? ("flow-done", Ref.Status(s.Status, s.StatusName))
         : s.Status == AssignmentStatusIds.Submitted ? ("flow-submitted", L["Lab.Submitted"].Value)
-        : s.Status == AssignmentStatusIds.InProgress ? ("flow-progress", s.StatusName ?? "")
-        : ("flow-open", s.StatusName ?? "");
+        : s.Status == AssignmentStatusIds.InProgress ? ("flow-progress", Ref.Status(s.Status, s.StatusName))
+        : ("flow-open", Ref.Status(s.Status, s.StatusName));
 }
 
 <style>
@@ -58,7 +58,7 @@
                                         <div class="d-flex flex-wrap justify-content-between gap-1">
                                             <div>
                                                 @if (s.Url != null) { <a href="@s.Url" class="fw-semibold">@s.Code</a> } else { <span class="fw-semibold">@s.Code</span> }
-                                                <span class="text-muted">@s.Title</span>
+                                                <span class="text-muted">@Ref.CcpTitle(s.CcpId, s.Title)</span>
                                             </div>
                                             <span class="small flow-state">@st.Text @(s.ApprovedAt != null ? s.ApprovedAt.Value.ToString("dd.MM.yyyy") : "") @if (s.SelfApproved) { <span class="badge bg-warning text-dark">@L["Org.SelfApproved"]</span> }</span>
                                         </div>

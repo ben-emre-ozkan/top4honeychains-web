@@ -75,6 +75,7 @@ builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpS
 
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<CcpIntegrityService>();
+builder.Services.AddSingleton<RefText>();
 builder.Services.AddScoped<MessageTranslator>();
 builder.Services.AddScoped<ICurrentOrg, CurrentOrg>();
 builder.Services.AddScoped<CcpResponsibilityService>();

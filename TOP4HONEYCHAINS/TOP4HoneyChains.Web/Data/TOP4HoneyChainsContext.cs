@@ -60,6 +60,7 @@ public partial class TOP4HoneyChainsContext : DbContext
     public virtual DbSet<Consent> Consents { get; set; }
     public virtual DbSet<BeekeeperStorefront> BeekeeperStorefronts { get; set; }
     public virtual DbSet<BatchOriginShare> BatchOriginShares { get; set; }
+    public virtual DbSet<ReferenceTranslation> ReferenceTranslations { get; set; }
     public virtual DbSet<CriticalControlPointMonitoringLog> CriticalControlPointMonitoringLogs { get; set; }
     public virtual DbSet<AssignmentStatus> AssignmentStatuses { get; set; }
     public virtual DbSet<RawHoneyCCPAssignment> RawHoneyCCPAssignments { get; set; }
@@ -410,6 +411,16 @@ public partial class TOP4HoneyChainsContext : DbContext
             entity.ToTable("BeekeeperStorefronts");
             entity.Property(e => e.CreatedAt).HasDefaultValueSql("SYSUTCDATETIME()");
             entity.HasIndex(e => e.Code).IsUnique();
+        });
+
+        modelBuilder.Entity<ReferenceTranslation>(entity =>
+        {
+            entity.ToTable("ReferenceTranslations");
+            entity.HasKey(e => new { e.Entity, e.EntityKey, e.Field, e.Culture });
+            entity.Property(e => e.Entity).IsUnicode(false);
+            entity.Property(e => e.Field).IsUnicode(false);
+            entity.Property(e => e.Culture).IsUnicode(false);
+            entity.Property(e => e.UpdatedAt).HasColumnType("datetime2(0)").HasDefaultValueSql("SYSUTCDATETIME()");
         });
 
         modelBuilder.Entity<BatchOriginShare>(entity =>

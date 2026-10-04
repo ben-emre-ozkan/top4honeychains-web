@@ -93,13 +93,13 @@
                                                 @Html.DisplayFor(modelItem => item.BeekeeperBusinessNumber)
                                             </td>
                                             <td>
-                                                @item.BeekeeperBeekeepingPurposeType?.BeekeepingPurposeTypeTitle
+                                                @Ref.T("BeekeepingPurposeType", item.BeekeeperBeekeepingPurposeType?.BeekeepingPurposeTypeId, "Title", item.BeekeeperBeekeepingPurposeType?.BeekeepingPurposeTypeTitle)
                                             </td>
                                             <td>
-                                                @item.BeekeeperBeekeepingType?.BeekeepingTypeTitle
+                                                @Ref.T("BeekeepingType", item.BeekeeperBeekeepingType?.BeekeepingTypeId, "Title", item.BeekeeperBeekeepingType?.BeekeepingTypeTitle)
                                             </td>
                                             <td>
-                                                @item.BeekeeperEducationLevel?.BeekeeperEducationLevelTitle
+                                                @Ref.T("EducationLevel", item.BeekeeperEducationLevel?.BeekeeperEducationLevelId, "Title", item.BeekeeperEducationLevel?.BeekeeperEducationLevelTitle)
                                             </td>
                                             <td>
 

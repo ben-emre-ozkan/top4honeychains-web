@@ -34,7 +34,7 @@ else if (!Model.CanEnter)
                         _ => "bg-secondary"
                     };
                 }
-                <span class="badge @badge fs-6 ms-2" id="ccp-status">@(Model.StatusName ?? L["Not assigned"].Value)</span>
+                <span class="badge @badge fs-6 ms-2" id="ccp-status">@(Model.StatusName != null ? Ref.Status(Model.StatusId, Model.StatusName) : L["Not assigned"].Value)</span>
                 @if (Model.HoneyClass != null)
                 {
                     <span class="text-muted small ms-3">@L["Limits for honey class:"] <strong>@Model.HoneyClass</strong></span>
@@ -139,7 +139,7 @@ else if (!Model.CanEnter)
                 <input type="hidden" name="ccpId" value="@Model.CCPId" />
                 <div class="col-md-4">
                     <select name="parameterId" class="form-select form-select-sm">
-                        @foreach (var p in allParams) { <option value="@p.ParameterId">@p.ParameterName</option> }
+                        @foreach (var p in allParams) { <option value="@p.ParameterId">@Ref.T("Parameter", p.ParameterId, "Name", p.ParameterName)</option> }
                     </select>
                 </div>
                 <div class="col-md-2"><input name="newNumericValue" type="text" inputmode="decimal" class="form-control form-control-sm" placeholder="@L["Corr.Number"]" /></div>
@@ -153,7 +153,7 @@ else if (!Model.CanEnter)
                     <tbody>
                         @foreach (var c in Model.Corrections)
                         {
-                            <tr><td>#@c.CorrectionId</td><td>@c.Parameter?.ParameterName</td><td>@(c.OldNumericValue?.ToString("0.####") ?? c.OldTextValue ?? "–") → @(c.NewNumericValue?.ToString("0.####") ?? c.NewTextValue)</td><td>@c.Reason</td><td>@c.Status</td></tr>
+                            <tr><td>#@c.CorrectionId</td><td>@Ref.T("Parameter", c.Parameter?.ParameterId, "Name", c.Parameter?.ParameterName)</td><td>@(c.OldNumericValue?.ToString("0.####") ?? c.OldTextValue ?? "–") → @(c.NewNumericValue?.ToString("0.####") ?? c.NewTextValue)</td><td>@c.Reason</td><td>@c.Status</td></tr>
                         }
                     </tbody>
                 </table>

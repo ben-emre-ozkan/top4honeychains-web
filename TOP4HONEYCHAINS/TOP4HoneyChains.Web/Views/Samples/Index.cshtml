@@ -22,7 +22,7 @@
                             {
                                 <tr data-sample-id="@s.SampleId">
                                     <td>@s.SampleCode</td>
-                                    <td><a href="/Flow/Lot/@s.RawHoneyProductionId" class="flow-link">#@s.RawHoneyProductionId</a> @s.RawHoneyProduction?.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle</td>
+                                    <td><a href="/Flow/Lot/@s.RawHoneyProductionId" class="flow-link">#@s.RawHoneyProductionId</a> @Ref.T("HoneyType", s.RawHoneyProduction?.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeId, "Title", s.RawHoneyProduction?.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle)</td>
                                     <td>@s.LabOrg?.DisplayName</td>
                                     <td>@s.SealNumber</td>
                                     <td>@s.CounterSealNumber · @s.CounterLocation · @s.RetainUntil.ToString("dd.MM.yyyy")</td>

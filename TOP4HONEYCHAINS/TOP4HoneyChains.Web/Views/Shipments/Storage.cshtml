@@ -34,7 +34,7 @@
                                 {
                                     var v = ValueOf(p.ParameterId);
                                     <tr>
-                                        <td>@p.ParameterName @(p.ParameterUnit != null ? $"({p.ParameterUnit})" : "")</td>
+                                        <td>@Ref.T("Parameter", p.ParameterId, "Name", p.ParameterName) @(p.ParameterUnit != null ? $"({p.ParameterUnit})" : "")</td>
                                         <td>
                                             @if (p.DataType == CcpDataType.YesNo)
                                             {

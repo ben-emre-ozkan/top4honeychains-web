@@ -32,7 +32,7 @@
                                             <a asp-action="FinalHoneyProductionManageCCP" asp-route-finalHoneyProductionId="@c.OwnerId" asp-route-ccpId="@c.CcpId">@L["Corr.Batch"] #@c.OwnerId · @c.Ccp?.Code</a>
                                         }
                                     </td>
-                                    <td>@c.Parameter?.ParameterName</td>
+                                    <td>@Ref.T("Parameter", c.Parameter?.ParameterId, "Name", c.Parameter?.ParameterName)</td>
                                     <td>@Val(c.OldNumericValue, c.OldTextValue)</td>
                                     <td>@Val(c.NewNumericValue, c.NewTextValue)</td>
                                     <td>@c.Reason</td>

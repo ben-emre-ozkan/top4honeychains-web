@@ -853,7 +853,7 @@
                                         <div class="col-md-6 mb-3">
                                             <div class="ccp-metric-card">
                                                 <div class="ccp-metric-header">
-                                                    <span class="ccp-metric-name">@row.ParameterName</span>
+                                                    <span class="ccp-metric-name">@Ref.T("Parameter", row.ParameterId, "Name", row.ParameterName)</span>
                                                     <a href="/honeystory/parameter/@row.ParameterId" class="ccp-help" target="_blank">
                                                         <i class="mdi mdi-help-circle-outline"></i>
                                                     </a>

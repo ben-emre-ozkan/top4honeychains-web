@@ -49,13 +49,13 @@
                                     @foreach (var item in Model)
                                     {
                                         <tr>
-                                            <td>@item.ProcessingStep</td>
+                                            <td>@Ref.T("Ccp", item.Id, "ProcessingStep", item.ProcessingStep)</td>
                                             <td>
                                                 <span class="badge bg-info">
                                                     @item.Code
                                                 </span>
                                             </td>
-                                            <td>@item.Title</td>
+                                            <td>@Ref.CcpTitle(item.Id, item.Title)</td>
                                             <td>@(item.AppliesTo == "RawLot" ? L["Raw honey lot"].Value : item.AppliesTo == "Batch" ? L["Final batch"].Value : "-")</td>
                                             <td>
                                                 @(item.CriticalityJustification?.Length > 50

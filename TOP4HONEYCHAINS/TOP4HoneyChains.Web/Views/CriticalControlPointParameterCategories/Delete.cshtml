@@ -32,12 +32,12 @@
 
                                 <dt class="col-sm-3">@L["Category Name"]</dt>
                                 <dd class="col-sm-9">
-                                    <strong>@Model.CategoryName</strong>
+                                    <strong>@Ref.T("ParameterCategory", Model.CategoryId, "Name", Model.CategoryName)</strong>
                                 </dd>
 
                                 <dt class="col-sm-3">@L["Description"]</dt>
                                 <dd class="col-sm-9">
-                                    @Model.CategoryDesc
+                                    @Ref.T("ParameterCategory", Model.CategoryId, "Description", Model.CategoryDesc)
                                 </dd>
 
                             </dl>

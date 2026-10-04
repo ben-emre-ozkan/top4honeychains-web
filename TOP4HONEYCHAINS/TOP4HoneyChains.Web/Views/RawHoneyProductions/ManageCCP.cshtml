@@ -63,7 +63,7 @@
                                                                 @ccp.Code
                                                             </h5>
                                                             <small class="text-muted">
-                                                                @ccp.Title
+                                                                @Ref.CcpTitle(ccp.Id, ccp.Title)
                                                             </small>
                                                         </div>
 
@@ -87,7 +87,7 @@
                                                     <hr />
 
                                                     <small class="text-muted">
-                                                        @ccp.CriticalityJustification
+                                                        @Ref.T("Ccp", ccp.Id, "CriticalityJustification", ccp.CriticalityJustification)
                                                     </small>
 
                                                 </div>

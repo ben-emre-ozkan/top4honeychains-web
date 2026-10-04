@@ -166,8 +166,8 @@
 
                                             <td class="fw-bold">@item.RawHoneyProductionId</td>
                                             <td>@item.RawHoneyProductionApiary?.ApiaryTitle</td>
-                                            <td>@item.RawHoneyProductionPeriod?.RawHoneyProductionPeriodTitle</td>
-                                            <td>@item.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle</td>
+                                            <td>@Ref.T("ProductionPeriod", item.RawHoneyProductionPeriod?.RawHoneyProductionPeriodId, "Title", item.RawHoneyProductionPeriod?.RawHoneyProductionPeriodTitle)</td>
+                                            <td>@Ref.T("HoneyType", item.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeId, "Title", item.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle)</td>
                                             <td>@string.Format("{0:N2}", item.RawHoneyProductionAmount)</td>
                                             <td>@item.RawHoneyProductionDate?.ToString("dd.MM.yyyy")</td>
 

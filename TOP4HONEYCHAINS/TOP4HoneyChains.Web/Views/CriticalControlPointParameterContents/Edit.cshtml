@@ -52,7 +52,7 @@
                                     <label class="form-label fw-bold">@L["Parameter"]</label>
                                     <input type="text"
                                            class="form-control"
-                                           value="@Model.Parameter?.ParameterName"
+                                           value="@Ref.T("Parameter", Model.Parameter?.ParameterId, "Name", Model.Parameter?.ParameterName)"
                                            readonly />
                                 </div>
 

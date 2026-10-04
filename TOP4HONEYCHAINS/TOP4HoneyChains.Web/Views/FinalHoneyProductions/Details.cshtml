@@ -1,4 +1,4 @@
-@using TOP4HoneyChains.Web.Models.Entities
+﻿@using TOP4HoneyChains.Web.Models.Entities
 @model TOP4HoneyChains.Web.Controllers.FinalHoneyProductionsController.DetailsModel
 @{
     ViewData["Title"] = L["Fhp.Details"];
@@ -94,8 +94,8 @@
                                 @foreach (var ccp in Model.Ccps)
                                 {
                                     <tr>
-                                        <td><strong>@ccp.Code</strong> @ccp.Title</td>
-                                        <td>@(ccp.Status == AssignmentStatusIds.NotApplicable ? L["Ccp.NotApplicableShort"].Value : ccp.StatusName)</td>
+                                        <td><strong>@ccp.Code</strong> @Ref.CcpTitle(ccp.CcpId, ccp.Title)</td>
+                                        <td>@(ccp.Status == AssignmentStatusIds.NotApplicable ? L["Ccp.NotApplicableShort"].Value : Ref.Status(ccp.Status, ccp.StatusName))</td>
                                         <td>@ccp.ApprovedAt?.ToString("dd.MM.yyyy HH:mm")</td>
                                     </tr>
                                 }

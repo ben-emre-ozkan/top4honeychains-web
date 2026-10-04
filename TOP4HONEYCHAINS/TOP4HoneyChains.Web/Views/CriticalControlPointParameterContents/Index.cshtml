@@ -161,7 +161,7 @@
                                     <!-- 🔵 PARAMETER -->
                                     <td>
                                         <span class="badge bg-info">
-                                            @item.Parameter?.ParameterName
+                                            @Ref.T("Parameter", item.Parameter?.ParameterId, "Name", item.Parameter?.ParameterName)
                                         </span>
                                     </td>
 

@@ -17,13 +17,13 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">@L["Limits"]: @Model.CCP?.Code / @Model.ParameterName</h4>
+                            <h4 class="card-title">@L["Limits"]: @Model.CCP?.Code / @Ref.T("Parameter", Model.ParameterId, "Name", Model.ParameterName)</h4>
                             <p class="card-title-desc">
                                 @L["Default limits (every honey type):"] <strong>@(CcpLimitEvaluator.Describe(Model.MinValue, Model.MaxValue, Model.ParameterUnit) is { Length: > 0 } d ? d : L["none"].Value)</strong>
                                 @L["Note.LimitsHelp"]
                                 @if (!string.IsNullOrEmpty(Model.LimitSource))
                                 {
-                                    <br />@L["Source:"] @Model.LimitSource
+                                    <br />@L["Source:"] @Ref.T("Parameter", Model.ParameterId, "LimitSource", Model.LimitSource)
                                 }
                                 @if (!Model.LimitVerified)
                                 {
@@ -87,7 +87,7 @@
                                         <option value="">@L["(none)"]</option>
                                         @foreach (var h in honeyTypes)
                                         {
-                                            <option value="@h.HoneyTypeId">@h.HoneyTypeTitle</option>
+                                            <option value="@h.HoneyTypeId">@Ref.T("HoneyType", h.HoneyTypeId, "Title", h.HoneyTypeTitle)</option>
                                         }
                                     </select>
                                 </div>
@@ -97,7 +97,7 @@
                                         <option value="">@L["(no condition)"]</option>
                                         @foreach (var s in siblings)
                                         {
-                                            <option value="@s.ParameterId">@s.ParameterName</option>
+                                            <option value="@s.ParameterId">@Ref.T("Parameter", s.ParameterId, "Name", s.ParameterName)</option>
                                         }
                                     </select>
                                 </div>
@@ -111,7 +111,7 @@
                                         <option value="">@L["(none)"]</option>
                                         @foreach (var s in siblings)
                                         {
-                                            <option value="@s.ParameterId">@s.ParameterName</option>
+                                            <option value="@s.ParameterId">@Ref.T("Parameter", s.ParameterId, "Name", s.ParameterName)</option>
                                         }
                                     </select>
                                 </div>
@@ -121,7 +121,7 @@
                                         <option value="">@L["(none)"]</option>
                                         @foreach (var s in siblings)
                                         {
-                                            <option value="@s.ParameterId">@s.ParameterName</option>
+                                            <option value="@s.ParameterId">@Ref.T("Parameter", s.ParameterId, "Name", s.ParameterName)</option>
                                         }
                                     </select>
                                 </div>
