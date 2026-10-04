@@ -98,6 +98,11 @@ namespace TOP4HoneyChains.Web.Controllers
             var holding = await _custody.HoldingOfAsync(batchId, active!.OrgId);
             if (batch == null || holding.Held <= 0)
                 return NotFound();
+            if (!batch.FinalHoneyProductionIsFinalized)
+            {
+                TempData["Error"] = "Only a finalized batch can be shipped.";
+                return RedirectToAction(nameof(Index));
+            }
             ViewBag.Batch = batch;
             ViewBag.Holding = holding;
             ViewBag.Receivers = await _context.Organizations.AsNoTracking()

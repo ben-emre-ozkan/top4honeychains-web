@@ -181,7 +181,13 @@ namespace TOP4HoneyChains.Web.Controllers
             var sb = new StringBuilder();
             void Row(params object?[] cells) => sb.AppendLine(string.Join(",", cells.Select(Csv)));
             Row("Section", "Id", "Name", "Detail", "Quantity_kg", "Date", "Status", "Extra");
-            Row("Report", report.Id, report.Title, report.Kind, null, DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm 'UTC'"), report.Scope, null);
+            Row("Report", report.Id, report.Title, report.Kind, null, DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm 'UTC'"), report.Scope switch
+            {
+                "Scope.All" => "all data (platform administrator)",
+                "Scope.Owner" => "owning organization's part",
+                "Scope.Holder" => "shipments to and from the organization",
+                _ => "association's member lot"
+            }, null);
             foreach (var l in report.Lots)
             {
                 Row("Lot", l.LotId, l.Apiary, l.HoneyType, l.UsedAmount ?? l.Amount, null, null, null);
