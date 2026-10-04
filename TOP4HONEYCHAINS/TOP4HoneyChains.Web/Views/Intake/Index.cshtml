@@ -1,4 +1,4 @@
-@using TOP4HoneyChains.Web.Models.Entities
+﻿@using TOP4HoneyChains.Web.Models.Entities
 @{
     ViewData["Title"] = L["Cust.Intakes"];
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
@@ -39,7 +39,8 @@
                                     <td>@i.Province / @i.District</td>
                                     <td><a asp-action="Form" asp-route-id="@i.IntakeId" target="_blank">@L["Org.Open"]</a> <small class="text-muted" title="SHA-256">@i.FormSha256[..12]…</small></td>
                                     <td>@(i.SmsStatus ?? "–")</td>
-                                    <td><a asp-controller="Recall" asp-action="Lot" asp-route-id="@i.RawHoneyProductionId" class="btn btn-sm btn-outline-secondary">@L["Cust.Recall"]</a></td>
+                                    <td class="text-nowrap"><a asp-controller="Samples" asp-action="Create" asp-route-lotId="@i.RawHoneyProductionId" class="btn btn-sm btn-outline-primary">@L["Lab.Sample"]</a>
+                                        <a asp-controller="Recall" asp-action="Lot" asp-route-id="@i.RawHoneyProductionId" class="btn btn-sm btn-outline-secondary">@L["Cust.Recall"]</a></td>
                                 </tr>
                             }
                             @if (!intakes.Any())

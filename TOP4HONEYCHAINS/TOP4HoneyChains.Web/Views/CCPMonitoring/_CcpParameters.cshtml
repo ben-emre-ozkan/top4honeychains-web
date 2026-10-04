@@ -39,8 +39,16 @@
 
                 <input type="hidden" asp-for="Groups[i].Parameters[j].ParameterId" />
 
+                @if (p.LabReportId != null)
+                {
+                    @:<fieldset disabled class="lab-value">
+                }
                 <div class="mb-4 p-4 rounded shadow-sm ccp-param" data-parameter-id="@p.ParameterId"
                      style="background:#f8fafc; border-left:5px solid @border;">
+                    @if (p.LabReportId != null)
+                    {
+                        <span class="badge bg-info text-dark mb-2 lab-badge"><i class="mdi mdi-flask-outline"></i> @L["Lab.ValueFromReport"]</span>
+                    }
 
                     <div class="d-flex flex-wrap justify-content-between align-items-start gap-2">
                         <label class="form-label fw-bold fs-6 @(p.IsRequired ? "required" : "")">
@@ -152,6 +160,10 @@
                         </div>
                     }
                 </div>
+                @if (p.LabReportId != null)
+                {
+                    @:</fieldset>
+                }
             }
         </div>
     </div>

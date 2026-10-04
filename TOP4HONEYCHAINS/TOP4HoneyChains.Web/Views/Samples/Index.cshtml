@@ -1,0 +1,84 @@
+@using TOP4HoneyChains.Web.Models.Entities
+@{
+    ViewData["Title"] = L["Lab.Samples"];
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var sent = ViewBag.Sent as List<Sample> ?? new();
+    var received = ViewBag.Received as List<Sample> ?? new();
+    var canReceive = ViewBag.CanReceive == true;
+    string StatusText(Sample s) => s.Status switch { "Sent" => L["Lab.StatusSent"], "Received" => L["Lab.StatusReceived"], "Rejected" => L["Lab.StatusRejected"], _ => s.Status };
+    string ReportText(Sample s) => s.Report == null ? "–" : s.Report.Status switch { "Draft" => L["Org.Draft"], "Submitted" => L["Cust.Pending"], "Approved" => L["Ccp.Approved"], _ => s.Report.Status };
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">@(ViewBag.IsAdmin == true ? L["Lab.AllSamples"] : L["Lab.SentSamples"])</h4>
+                    <table class="table table-sm table-bordered" id="sent-samples">
+                        <thead><tr><th>@L["Lab.Sample"]</th><th>@L["Cust.Lot"]</th><th>@L["Lab.Laboratory"]</th><th>@L["Lab.SealNumber"]</th><th>@L["Lab.CounterSample"]</th><th>@L["Org.Status"]</th><th>@L["Lab.Report"]</th></tr></thead>
+                        <tbody>
+                            @foreach (var s in sent)
+                            {
+                                <tr data-sample-id="@s.SampleId">
+                                    <td>@s.SampleCode</td>
+                                    <td>#@s.RawHoneyProductionId @s.RawHoneyProduction?.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle</td>
+                                    <td>@s.LabOrg?.DisplayName</td>
+                                    <td>@s.SealNumber</td>
+                                    <td>@s.CounterSealNumber · @s.CounterLocation · @s.RetainUntil.ToString("dd.MM.yyyy")</td>
+                                    <td class="sample-status">@StatusText(s) @if (s.SealIntact == false) { <span class="badge bg-danger">@L["Lab.SealBroken"]</span> } @s.RejectReason</td>
+                                    <td><a asp-controller="LabReports" asp-action="Edit" asp-route-id="@s.SampleId">@ReportText(s)</a></td>
+                                </tr>
+                            }
+                            @if (!sent.Any())
+                            {
+                                <tr><td colspan="7" class="text-muted">@L["Org.None"]</td></tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            @if (ViewBag.IsAdmin != true)
+            {
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">@L["Lab.ReceivedSamples"]</h4>
+                        <p class="card-title-desc">@L["Lab.ReceivedHelp"]</p>
+                        <table class="table table-sm table-bordered" id="lab-samples">
+                            <thead><tr><th>@L["Lab.Sample"]</th><th>@L["Cust.From"]</th><th>@L["Lab.SealNumber"]</th><th>@L["Org.Status"]</th><th>@L["Lab.Report"]</th><th></th></tr></thead>
+                            <tbody>
+                                @foreach (var s in received)
+                                {
+                                    <tr data-sample-id="@s.SampleId">
+                                        <td>@s.SampleCode</td>
+                                        <td>@s.TakingOrg?.DisplayName</td>
+                                        <td>@s.SealNumber</td>
+                                        <td class="sample-status">@StatusText(s) @if (s.SealIntact == false) { <span class="badge bg-danger">@L["Lab.SealBroken"]</span> } @s.RejectReason</td>
+                                        <td><a asp-controller="LabReports" asp-action="Edit" asp-route-id="@s.SampleId" class="report-link">@ReportText(s)</a></td>
+                                        <td>
+                                            @if (s.Status == SampleStatus.Sent && canReceive)
+                                            {
+                                                <form asp-action="Receive" method="post" class="d-flex gap-1 receive-form">
+                                                    <input type="hidden" name="id" value="@s.SampleId" />
+                                                    <input name="note" class="form-control form-control-sm" maxlength="500" placeholder="@L["Lab.BrokenReason"]" />
+                                                    <button type="submit" name="sealIntact" value="true" class="btn btn-sm btn-success">@L["Lab.ReceiveIntact"]</button>
+                                                    <button type="submit" name="sealIntact" value="false" class="btn btn-sm btn-outline-danger">@L["Lab.ReceiveBroken"]</button>
+                                                </form>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                                @if (!received.Any())
+                                {
+                                    <tr><td colspan="6" class="text-muted">@L["Org.None"]</td></tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
+            <a asp-controller="OrgWorkspace" asp-action="Index" class="btn btn-secondary">@L["Org.Back"]</a>
+        </div>
+    </div>
+</body>

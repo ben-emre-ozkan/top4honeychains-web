@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Automated tests without external packages (no NuGet download needed): a console runner that
+       exits with code 1 when a test fails. Run with dotnet run, project TOP4HONEYCHAINS/TOP4HoneyChains.Web.Tests. -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TOP4HoneyChains.Web\TOP4HoneyChains.Web.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -154,6 +154,7 @@ namespace TOP4HoneyChains.Web.Controllers
             }
 
             var (stored, sha) = await FileStore.SaveAsync(_env, IntakeForms, deliveryForm!);
+            int newLotId;
             var org = await _context.Organizations.AsNoTracking().FirstAsync(o => o.OrgId == active.OrgId);
             try
             {
@@ -206,6 +207,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 await _context.SaveChangesAsync();
                 await transaction.CommitAsync();
                 TempData["Success"] = $"Delivery recorded as lot #{lot.RawHoneyProductionId}.";
+                newLotId = lot.RawHoneyProductionId;
             }
             catch
             {
@@ -214,7 +216,8 @@ namespace TOP4HoneyChains.Web.Controllers
                     System.IO.File.Delete(path);
                 throw;
             }
-            return RedirectToAction(nameof(Index));
+            // D-42: the sample is taken at intake
+            return RedirectToAction("Create", "Samples", new { lotId = newLotId });
         }
 
         // The delivery form: the receiving organization, owners of batches made from the lot, and

@@ -71,6 +71,27 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         public Task<bool> TakesPartAsync(int batchId, int orgId) =>
             _context.Shipments.AnyAsync(s => s.FinalHoneyProductionId == batchId && (s.ToOrgId == orgId || s.FromOrgId == orgId));
 
+        // The shipment rules (D-41) as a pure function, so they can be tested without a database.
+        // Returns the reason a shipment is refused, or null when it may be created.
+        public static string? DraftBatchError(bool batchFinalized) =>
+            batchFinalized ? null : "Only a finalized batch can be shipped.";
+
+        public static string? CheckShipment(bool batchFinalized, int fromOrgId, int toOrgId, bool receiverVerified,
+            decimal? quantity, decimal available, string? note)
+        {
+            if (DraftBatchError(batchFinalized) is string draft)
+                return draft;
+            if (toOrgId == fromOrgId || !receiverVerified)
+                return "Choose another verified organization as receiver.";
+            if (quantity == null || quantity <= 0)
+                return "The amount must be greater than 0.";
+            if (quantity > available)
+                return $"You can ship at most {available:0.##} kg of this batch.";
+            if (note?.Length > 500)
+                return "The note can be at most 500 characters.";
+            return null;
+        }
+
         public Task<int?> StorageCcpIdAsync() =>
             _context.CriticalControlPoints.Where(c => c.Code == "CCP 10").Select(c => (int?)c.Id).FirstOrDefaultAsync();
     }

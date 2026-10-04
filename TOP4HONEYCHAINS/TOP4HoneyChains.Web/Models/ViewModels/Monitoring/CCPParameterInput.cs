@@ -1,4 +1,4 @@
-namespace TOP4HoneyChains.Web.Models.ViewModels.Monitoring
+﻿namespace TOP4HoneyChains.Web.Models.ViewModels.Monitoring
 {
     public class CCPParameterInput
     {
@@ -33,6 +33,9 @@ namespace TOP4HoneyChains.Web.Models.ViewModels.Monitoring
         public bool HasStoredFile { get; set; }
         public IFormFile? File { get; set; }
         public bool RemoveFile { get; set; }
+
+        // P4: the value comes from an approved lab report and cannot be changed here (D-42)
+        public int? LabReportId { get; set; }
     }
 
 }

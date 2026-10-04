@@ -234,6 +234,10 @@
                         <div class="opacity-75 mb-3">
                             Verified lifecycle & quality control record
                         </div>
+                        @if (Model.Badges != null)
+                        {
+                            <partial name="_Badges" model="Model.Badges" />
+                        }
 
                         <div class="row small g-2">
 
