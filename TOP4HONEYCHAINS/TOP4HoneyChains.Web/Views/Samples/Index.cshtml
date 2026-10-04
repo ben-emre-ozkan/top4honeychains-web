@@ -1,4 +1,4 @@
-@using TOP4HoneyChains.Web.Models.Entities
+﻿@using TOP4HoneyChains.Web.Models.Entities
 @{
     ViewData["Title"] = L["Lab.Samples"];
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
@@ -22,7 +22,7 @@
                             {
                                 <tr data-sample-id="@s.SampleId">
                                     <td>@s.SampleCode</td>
-                                    <td>#@s.RawHoneyProductionId @s.RawHoneyProduction?.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle</td>
+                                    <td><a href="/Flow/Lot/@s.RawHoneyProductionId" class="flow-link">#@s.RawHoneyProductionId</a> @s.RawHoneyProduction?.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle</td>
                                     <td>@s.LabOrg?.DisplayName</td>
                                     <td>@s.SealNumber</td>
                                     <td>@s.CounterSealNumber · @s.CounterLocation · @s.RetainUntil.ToString("dd.MM.yyyy")</td>
@@ -52,7 +52,7 @@
                                 {
                                     <tr data-sample-id="@s.SampleId">
                                         <td>@s.SampleCode</td>
-                                        <td>@s.TakingOrg?.DisplayName</td>
+                                        <td>@s.TakingOrg?.DisplayName <a href="/Flow/Lot/@s.RawHoneyProductionId" class="small flow-link">@L["Flow.Title"]</a></td>
                                         <td>@s.SealNumber</td>
                                         <td class="sample-status">@StatusText(s) @if (s.SealIntact == false) { <span class="badge bg-danger">@L["Lab.SealBroken"]</span> } @s.RejectReason</td>
                                         <td><a asp-controller="LabReports" asp-action="Edit" asp-route-id="@s.SampleId" class="report-link">@ReportText(s)</a></td>

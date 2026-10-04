@@ -1908,4 +1908,55 @@
   <data name="Choose the country of origin." xml:space="preserve">
     <value>Menşe ülkeyi seçin.</value>
   </data>
+  <data name="Work.Title" xml:space="preserve">
+    <value>İşlerim</value>
+  </data>
+  <data name="Work.Empty" xml:space="preserve">
+    <value>Sizi bekleyen bir iş yok.</value>
+  </data>
+  <data name="Work.Kind.Approve" xml:space="preserve">
+    <value>Onaylanacak değerler</value>
+  </data>
+  <data name="Work.Kind.LabApprove" xml:space="preserve">
+    <value>Onaylanacak laboratuvar raporları</value>
+  </data>
+  <data name="Work.Kind.Finalize" xml:space="preserve">
+    <value>Kesinleştirme talepleri</value>
+  </data>
+  <data name="Work.Kind.Confirm" xml:space="preserve">
+    <value>Onaylanacak sevkiyatlar</value>
+  </data>
+  <data name="Work.Kind.Receive" xml:space="preserve">
+    <value>Teslim alınacak numuneler</value>
+  </data>
+  <data name="Work.Kind.Results" xml:space="preserve">
+    <value>Girilecek laboratuvar sonuçları</value>
+  </data>
+  <data name="Work.Kind.Verify" xml:space="preserve">
+    <value>Doğrulanacak kurumlar</value>
+  </data>
+  <data name="Work.Kind.Registry" xml:space="preserve">
+    <value>Doğrulanacak kayıt numaraları</value>
+  </data>
+  <data name="Work.Kind.Correction" xml:space="preserve">
+    <value>Karar bekleyen düzeltmeler</value>
+  </data>
+  <data name="Work.Kind.Enter" xml:space="preserve">
+    <value>Girilecek değerler</value>
+  </data>
+  <data name="Flow.Title" xml:space="preserve">
+    <value>Süreç akışı</value>
+  </data>
+  <data name="Flow.NotAssigned" xml:space="preserve">
+    <value>atanmadı</value>
+  </data>
+  <data name="Flow.InProgress" xml:space="preserve">
+    <value>devam ediyor</value>
+  </data>
+  <data name="Flow.Open" xml:space="preserve">
+    <value>açık</value>
+  </data>
+  <data name="Ccp.NotApplicableShort" xml:space="preserve">
+    <value>Uygulanamaz</value>
+  </data>
 </root>

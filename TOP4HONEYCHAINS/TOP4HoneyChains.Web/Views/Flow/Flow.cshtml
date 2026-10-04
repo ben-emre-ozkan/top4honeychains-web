@@ -1,0 +1,110 @@
+@using TOP4HoneyChains.Web.Models.Entities
+@model TOP4HoneyChains.Web.Controllers.FlowController.Model
+@{
+    ViewData["Title"] = L["Flow.Title"];
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    (string Css, string Text) State(TOP4HoneyChains.Web.Controllers.FlowController.Stage s) =>
+        !s.Assigned ? ("flow-none", L["Flow.NotAssigned"].Value)
+        : s.Status == AssignmentStatusIds.NotApplicable ? ("flow-na", L["Ccp.NotApplicableShort"].Value)
+        : s.Status == AssignmentStatusIds.Completed && s.Approved ? ("flow-approved", L["Ccp.Approved"].Value)
+        : s.Status == AssignmentStatusIds.Completed ? ("flow-done", s.StatusName ?? "")
+        : s.Status == AssignmentStatusIds.Submitted ? ("flow-submitted", L["Lab.Submitted"].Value)
+        : s.Status == AssignmentStatusIds.InProgress ? ("flow-progress", s.StatusName ?? "")
+        : ("flow-open", s.StatusName ?? "");
+}
+
+<style>
+    .flow { list-style: none; padding: 0; margin: 0; }
+    .flow li { position: relative; padding: 0 0 18px 34px; }
+    .flow li::before { content: ""; position: absolute; left: 11px; top: 22px; bottom: 0; width: 2px; background: #dee2e6; }
+    .flow li:last-child::before { display: none; }
+    .flow .dot { position: absolute; left: 2px; top: 2px; width: 20px; height: 20px; border-radius: 50%; border: 3px solid #adb5bd; background: #fff; }
+    .flow-approved .dot { background: #198754; border-color: #198754; }
+    .flow-done .dot { border-color: #198754; }
+    .flow-submitted .dot { background: #ffc107; border-color: #ffc107; }
+    .flow-progress .dot { background: #0dcaf0; border-color: #0dcaf0; }
+    .flow-na .dot { background: #343a40; border-color: #343a40; }
+    .flow-none .dot { border-style: dashed; }
+    .flow-none { opacity: .6; }
+</style>
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-1">@L["Flow.Title"]: @(Model.Kind == "lot" ? L["Cust.Lot"] : L["Cust.Batch"]) @Model.Title</h4>
+                    @if (Model.Intake != null) { <div class="small text-muted">@L["Cust.Intake"]: @Model.Intake</div> }
+                    @if (Model.Kind == "batch") { <div class="small text-muted">@(Model.Finalized ? L["Org.Finalized"] : L["Org.Draft"])</div> }
+                    <div class="small mt-2">
+                        <span class="me-2"><span class="badge bg-success">●</span> @L["Ccp.Approved"]</span>
+                        <span class="me-2"><span class="badge bg-warning text-dark">●</span> @L["Lab.Submitted"]</span>
+                        <span class="me-2"><span class="badge bg-info text-dark">●</span> @L["Flow.InProgress"]</span>
+                        <span class="me-2"><span class="badge bg-light text-dark border">○</span> @L["Flow.Open"]</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <ul class="flow" id="flow-stages">
+                                @foreach (var s in Model.Stages)
+                                {
+                                    var st = State(s);
+                                    <li class="@st.Css" data-ccp="@s.Code" data-state="@st.Css">
+                                        <span class="dot"></span>
+                                        <div class="d-flex flex-wrap justify-content-between gap-1">
+                                            <div>
+                                                @if (s.Url != null) { <a href="@s.Url" class="fw-semibold">@s.Code</a> } else { <span class="fw-semibold">@s.Code</span> }
+                                                <span class="text-muted">@s.Title</span>
+                                            </div>
+                                            <span class="small flow-state">@st.Text @(s.ApprovedAt != null ? s.ApprovedAt.Value.ToString("dd.MM.yyyy") : "") @if (s.SelfApproved) { <span class="badge bg-warning text-dark">@L["Org.SelfApproved"]</span> }</span>
+                                        </div>
+                                        <div class="small text-muted">@s.Step @if (s.Responsible.Any()) { <span>· @L["Resp.Responsible"]: <span class="flow-org">@string.Join(", ", s.Responsible)</span></span> }</div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    @if (Model.Kind == "lot")
+                    {
+                        <div class="card">
+                            <div class="card-body">
+                                <h6>@L["Lab.Samples"]</h6>
+                                <ul class="list-unstyled small mb-0" id="flow-samples">
+                                    @foreach (var s in Model.Samples)
+                                    {
+                                        <li class="mb-1">
+                                            <a href="/LabReports/Edit/@s.SampleId">@s.Code</a> · @s.Lab · @s.Status
+                                            @if (s.SealIntact == false) { <span class="badge bg-danger">@L["Lab.SealBroken"]</span> }
+                                            @if (s.ReportCode != null) { <a href="/verify-report?code=@s.ReportCode" class="badge bg-success text-decoration-none">@s.ReportCode</a> }
+                                            else if (s.ReportStatus != null) { <span class="badge bg-light text-dark">@s.ReportStatus</span> }
+                                        </li>
+                                    }
+                                    @if (!Model.Samples.Any()) { <li class="text-muted">–</li> }
+                                </ul>
+                            </div>
+                        </div>
+                        <a href="/Recall/Lot/@Model.Id" class="btn btn-outline-secondary btn-sm">@L["Cust.RecallReport"]</a>
+                    }
+                    else
+                    {
+                        <div class="card">
+                            <div class="card-body">
+                                <h6>@L["Org.SourceLots"]</h6>
+                                <ul class="list-unstyled small mb-0" id="flow-lots">
+                                    @foreach (var l in Model.Lots) { <li><a href="/Flow/Lot/@l.LotId">#@l.LotId</a> · @l.HoneyType · @l.Used.ToString("0.##") kg</li> }
+                                </ul>
+                            </div>
+                        </div>
+                        <a href="/Recall/Batch/@Model.Id" class="btn btn-outline-secondary btn-sm">@L["Cust.RecallReport"]</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

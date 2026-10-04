@@ -42,16 +42,19 @@
                                     <div class="alert alert-warning mt-2 mb-0" id="not-verified">@L["Org.NotVerifiedBanner"]</div>
                                 }
                                 <a asp-controller="Organizations" asp-action="Details" asp-route-id="@active.OrgId" class="btn btn-sm btn-outline-primary mt-2">@L["Org.OrganizationPage"]</a>
-                                <a asp-controller="Shipments" asp-action="Index" class="btn btn-sm btn-outline-primary mt-2" id="link-shipments">@L["Cust.Shipments"]</a>
-                                @if (active.Has(TOP4HoneyChains.Web.Models.Entities.Capabilities.Processing))
+                                @if (TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Shipments(active))
+                                {
+                                    <a asp-controller="Shipments" asp-action="Index" class="btn btn-sm btn-outline-primary mt-2" id="link-shipments">@L["Cust.Shipments"]</a>
+                                }
+                                @if (TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Intake(active))
                                 {
                                     <a asp-controller="Intake" asp-action="Index" class="btn btn-sm btn-outline-primary mt-2" id="link-intakes">@L["Cust.Intakes"]</a>
                                 }
-                                @if (active.Has(TOP4HoneyChains.Web.Models.Entities.Capabilities.Association))
+                                @if (TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Storefronts(active))
                                 {
                                     <a asp-controller="Storefronts" asp-action="Index" class="btn btn-sm btn-outline-primary mt-2" id="link-storefronts">@L["P5.Storefronts"]</a>
                                 }
-                                @if (active.Has(TOP4HoneyChains.Web.Models.Entities.Capabilities.Processing) || active.Has(TOP4HoneyChains.Web.Models.Entities.Capabilities.Laboratory))
+                                @if (TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Samples(active))
                                 {
                                     <a asp-controller="Samples" asp-action="Index" class="btn btn-sm btn-outline-primary mt-2" id="link-samples">@L["Lab.Samples"]</a>
                                 }
@@ -91,7 +94,7 @@
                                     <td>@l.RawHoneyProductionApiary?.ApiaryTitle</td>
                                     <td>@l.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle</td>
                                     <td>@l.RawHoneyProductionAmount</td>
-                                    <td>@l.RawHoneyProductionDate?.ToString("dd.MM.yyyy") <a asp-controller="Recall" asp-action="Lot" asp-route-id="@l.RawHoneyProductionId" class="small ms-1">@L["Cust.Recall"]</a></td>
+                                    <td>@l.RawHoneyProductionDate?.ToString("dd.MM.yyyy") <a asp-controller="Flow" asp-action="Lot" asp-route-id="@l.RawHoneyProductionId" class="small ms-1 flow-link">@L["Flow.Title"]</a> <a asp-controller="Recall" asp-action="Lot" asp-route-id="@l.RawHoneyProductionId" class="small ms-1">@L["Cust.Recall"]</a></td>
                                     <td>
                                         @foreach (var a in l.RawHoneyCCPAssignments.Where(a => can.Contains(a.RawHoneyCCPAssignmentCCP)).OrderBy(a => a.RawHoneyCCPAssignmentCCP))
                                         {
@@ -134,7 +137,7 @@
                                                class="btn btn-sm @Chip(a.FinalHoneyCCPAssignmentStatus, a.ApprovedAt) me-1 mb-1 ccp-chip" data-ccp="@a.CCP?.Code">@a.CCP?.Code @(a.ApprovedAt != null ? "✓" : "")</a>
                                         }
                                     </td>
-                                    <td><a asp-action="Batch" asp-route-id="@b.FinalHoneyProductionId" class="btn btn-sm btn-primary">@L["Org.Open"]</a></td>
+                                    <td class="text-nowrap"><a asp-action="Batch" asp-route-id="@b.FinalHoneyProductionId" class="btn btn-sm btn-primary">@L["Org.Open"]</a> <a asp-controller="Flow" asp-action="Batch" asp-route-id="@b.FinalHoneyProductionId" class="btn btn-sm btn-outline-secondary flow-link">@L["Flow.Title"]</a></td>
                                 </tr>
                             }
                             @if (!batches.Any())

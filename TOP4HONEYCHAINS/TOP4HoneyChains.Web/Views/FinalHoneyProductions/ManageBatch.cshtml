@@ -232,6 +232,7 @@
                                     @if (ViewBag.MemberFinalize == true)
                                     {
                                         <a asp-controller="Recall" asp-action="Batch" asp-route-id="@Model.Batch.FinalHoneyProductionId" class="btn btn-outline-secondary" id="admin-recall">@L["Cust.RecallReport"]</a>
+                                        <a asp-controller="Flow" asp-action="Batch" asp-route-id="@Model.Batch.FinalHoneyProductionId" class="btn btn-outline-secondary">@L["Flow.Title"]</a>
                                     }
                                     @if (!Model.Batch.FinalHoneyProductionIsFinalized)
                                     {
