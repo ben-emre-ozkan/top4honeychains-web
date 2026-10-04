@@ -5034,4 +5034,16 @@
   <data name="Required" xml:space="preserve">
     <value>Obligatorio</value>
   </data>
+  <data name="Your role ({0}) cannot record deliveries; roles: {1}." xml:space="preserve">
+    <value>Su rol ({0}) no puede registrar entregas; roles: {1}.</value>
+  </data>
+  <data name="Your role ({0}) cannot open this page; roles: {1}." xml:space="preserve">
+    <value>Su rol ({0}) no puede abrir esta página; roles: {1}.</value>
+  </data>
+  <data name="Your role ({0}) cannot take samples; roles: {1}." xml:space="preserve">
+    <value>Su rol ({0}) no puede tomar muestras; roles: {1}.</value>
+  </data>
+  <data name="Your role ({0}) cannot manage storefronts; roles: {1}." xml:space="preserve">
+    <value>Su rol ({0}) no puede gestionar las páginas de apicultores; roles: {1}.</value>
+  </data>
 </root>

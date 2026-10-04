@@ -5034,4 +5034,16 @@
   <data name="Required" xml:space="preserve">
     <value>Required</value>
   </data>
+  <data name="Your role ({0}) cannot record deliveries; roles: {1}." xml:space="preserve">
+    <value>Your role ({0}) cannot record deliveries; roles: {1}.</value>
+  </data>
+  <data name="Your role ({0}) cannot open this page; roles: {1}." xml:space="preserve">
+    <value>Your role ({0}) cannot open this page; roles: {1}.</value>
+  </data>
+  <data name="Your role ({0}) cannot take samples; roles: {1}." xml:space="preserve">
+    <value>Your role ({0}) cannot take samples; roles: {1}.</value>
+  </data>
+  <data name="Your role ({0}) cannot manage storefronts; roles: {1}." xml:space="preserve">
+    <value>Your role ({0}) cannot manage storefronts; roles: {1}.</value>
+  </data>
 </root>

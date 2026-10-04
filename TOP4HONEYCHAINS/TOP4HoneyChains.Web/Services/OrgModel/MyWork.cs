@@ -17,10 +17,12 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         private readonly CcpResponsibilityService _resp;
         private readonly CustodyService _custody;
         private readonly IConfiguration _config;
+        private readonly Permissions _perm;
 
         public MyWorkService(TOP4HoneyChainsContext context, ICurrentOrg current, OrgScope scope, CcpResponsibilityService resp,
-            CustodyService custody, IConfiguration config)
+            CustodyService custody, IConfiguration config, Permissions perm)
         {
+            _perm = perm;
             _context = context;
             _current = current;
             _scope = scope;
@@ -85,7 +87,7 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             var own = await (await _scope.OwnedBatchesAsync(active.OrgId)).Where(f => !f.FinalHoneyProductionIsFinalized).ToListAsync();
             foreach (var b in own)
             {
-                if (b.FinalizeRequestedByUserId != null && active.OrgRole == OrgRoles.QualityApprover)
+                if (b.FinalizeRequestedByUserId != null && _perm.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Finalize, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Approve, active.OrgRole))
                     items.Add(new Item("Finalize", b.FinalHoneyProductionTitle ?? $"#{b.FinalHoneyProductionId}", null, $"/OrgWorkspace/Batch/{b.FinalHoneyProductionId}", b.FinalizeRequestedAt));
             }
         }
@@ -94,14 +96,14 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         {
             if (!active.Has(Capabilities.Laboratory))
                 return;
-            if (LabService.ReceiveRoles.Contains(active.OrgRole))
+            if (_perm.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Samples, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Approve, active.OrgRole))
                 foreach (var s in await _context.Samples.AsNoTracking().Where(s => s.LabOrgId == active.OrgId && s.Status == SampleStatus.Sent).ToListAsync())
                     items.Add(new Item("Receive", s.SampleCode, s.SealNumber, "/Samples/Index", s.TakenAt));
-            if (active.OrgRole == OrgRoles.Analyst)
+            if (_perm.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.LabResults, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Enter, active.OrgRole))
                 foreach (var s in await _context.Samples.AsNoTracking().Include(s => s.Report)
                              .Where(s => s.LabOrgId == active.OrgId && s.Status == SampleStatus.Received && (s.Report == null || s.Report.Status == LabReportStatus.Draft)).ToListAsync())
                     items.Add(new Item("Results", s.SampleCode, s.Report?.ReturnReason, $"/LabReports/Edit/{s.SampleId}", s.ReceivedAt));
-            if (active.OrgRole == OrgRoles.LabManager)
+            if (_perm.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.LabResults, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Approve, active.OrgRole))
                 foreach (var r in await _context.LabReports.AsNoTracking().Include(r => r.Sample)
                              .Where(r => r.LabOrgId == active.OrgId && r.Status == LabReportStatus.Submitted).ToListAsync())
                     items.Add(new Item("LabApprove", r.Sample!.SampleCode, r.ReportNumber, $"/LabReports/Edit/{r.SampleId}", r.SubmittedAt));
@@ -109,7 +111,7 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
 
         private async Task CustodyItemsAsync(ActiveMembership active, List<Item> items)
         {
-            if (CustodyService.ShippingRoles.Contains(active.OrgRole))
+            if (_perm.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Shipments, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Approve, active.OrgRole))
                 foreach (var s in await _context.Shipments.AsNoTracking().Include(s => s.Batch).Include(s => s.FromOrg)
                              .Where(s => s.ToOrgId == active.OrgId && s.Status == ShipmentStatus.Pending).ToListAsync())
                     items.Add(new Item("Confirm", s.Batch?.FinalHoneyProductionTitle ?? $"#{s.FinalHoneyProductionId}", $"{s.Quantity:0.##} kg · {s.FromOrg?.DisplayName}", "/Shipments/Index", s.ShippedAt));
@@ -144,18 +146,18 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
     {
         private static bool Any(ActiveMembership a, params string[] capabilities) => capabilities.Any(a.Has);
 
-        public static bool Intake(ActiveMembership a) =>
-            a.Has(Capabilities.Processing) && a.OrgRole is OrgRoles.SampleAcceptanceOfficer or OrgRoles.OrgAdmin;
+        // D-56: the capability decides which organizations have a function; the role matrix decides who sees it
+        public static bool Intake(ActiveMembership a, Permissions p) =>
+            a.Has(Capabilities.Processing) && p.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Intake, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Read, a.OrgRole);
 
-        public static bool Samples(ActiveMembership a) =>
-            (a.Has(Capabilities.Processing) && a.OrgRole is OrgRoles.SampleAcceptanceOfficer or OrgRoles.OrgAdmin)
-            || (a.Has(Capabilities.Laboratory) && a.OrgRole is OrgRoles.Analyst or OrgRoles.LabManager or OrgRoles.OrgAdmin);
+        public static bool Samples(ActiveMembership a, Permissions p) =>
+            Any(a, Capabilities.Processing, Capabilities.Laboratory) && p.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Samples, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Read, a.OrgRole);
 
-        public static bool Shipments(ActiveMembership a) =>
+        public static bool Shipments(ActiveMembership a, Permissions p) =>
             Any(a, Capabilities.Processing, Capabilities.Packing, Capabilities.Wholesale, Capabilities.Retail)
-            && a.OrgRole is OrgRoles.Staff or OrgRoles.OrgAdmin or OrgRoles.QualityApprover;
+            && p.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Shipments, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Read, a.OrgRole);
 
-        public static bool Storefronts(ActiveMembership a) =>
-            a.Has(Capabilities.Association) && a.OrgRole == OrgRoles.OrgAdmin;
+        public static bool Storefronts(ActiveMembership a, Permissions p) =>
+            a.Has(Capabilities.Association) && p.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Storefront, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Read, a.OrgRole);
     }
 }

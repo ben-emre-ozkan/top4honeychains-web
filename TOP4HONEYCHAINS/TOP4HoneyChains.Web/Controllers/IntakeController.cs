@@ -23,6 +23,8 @@ namespace TOP4HoneyChains.Web.Controllers
         private readonly CcpResponsibilityService _resp;
         private readonly ISmsSender _sms;
         private readonly IWebHostEnvironment _env;
+        // D-56: rights of organization roles (editable matrix)
+        private TOP4HoneyChains.Web.Services.OrgModel.Permissions Perm => HttpContext.RequestServices.GetRequiredService<TOP4HoneyChains.Web.Services.OrgModel.Permissions>();
 
         public IntakeController(TOP4HoneyChainsContext context, ICurrentOrg current, CcpResponsibilityService resp, ISmsSender sms, IWebHostEnvironment env)
         {
@@ -44,8 +46,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 return $"Your organization is {active.OrgStatus}; only verified organizations can enter data.";
             if (!active.Has(Capabilities.Processing))
                 return "Only a Processing organization records deliveries.";
-            if (active.OrgRole != OrgRoles.SampleAcceptanceOfficer)
-                return $"Your role ({active.OrgRole}) cannot record deliveries; only a SampleAcceptanceOfficer can.";
+            if (!Perm.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Intake, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Enter, active.OrgRole))
+                return $"Your role ({active.OrgRole}) cannot record deliveries; roles: {string.Join(", ", Perm.Roles(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Intake, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Enter))}.";
             return null;
         }
 
@@ -67,6 +69,11 @@ namespace TOP4HoneyChains.Web.Controllers
             var active = await _current.GetAsync();
             if (active == null)
                 return NotFound();
+            if (!Perm.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Intake, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Read, active.OrgRole))
+            {
+                TempData["Error"] = $"Your role ({active.OrgRole}) cannot open this page; roles: {string.Join(", ", Perm.Roles(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Intake, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Read))}.";
+                return RedirectToAction("Index", "MyWork");
+            }
             ViewBag.Intakes = await _context.LotIntakes.AsNoTracking()
                 .Where(i => i.ReceivingOrgId == active.OrgId)
                 .Include(i => i.RawHoneyProduction!).ThenInclude(r => r.RawHoneyProductionApiary)

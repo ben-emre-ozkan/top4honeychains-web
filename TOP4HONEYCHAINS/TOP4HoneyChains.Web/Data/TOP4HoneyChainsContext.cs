@@ -62,6 +62,7 @@ public partial class TOP4HoneyChainsContext : DbContext
     public virtual DbSet<BatchOriginShare> BatchOriginShares { get; set; }
     public virtual DbSet<ReferenceTranslation> ReferenceTranslations { get; set; }
     public virtual DbSet<Province> Provinces { get; set; }
+    public virtual DbSet<RolePermission> RolePermissions { get; set; }
     public virtual DbSet<District> Districts { get; set; }
     public virtual DbSet<CriticalControlPointMonitoringLog> CriticalControlPointMonitoringLogs { get; set; }
     public virtual DbSet<AssignmentStatus> AssignmentStatuses { get; set; }
@@ -413,6 +414,16 @@ public partial class TOP4HoneyChainsContext : DbContext
             entity.ToTable("BeekeeperStorefronts");
             entity.Property(e => e.CreatedAt).HasDefaultValueSql("SYSUTCDATETIME()");
             entity.HasIndex(e => e.Code).IsUnique();
+        });
+
+        modelBuilder.Entity<RolePermission>(entity =>
+        {
+            entity.ToTable("RolePermissions");
+            entity.HasKey(e => new { e.Area, e.AreaKey, e.Action, e.OrgRole });
+            entity.Property(e => e.Area).IsUnicode(false);
+            entity.Property(e => e.AreaKey).IsUnicode(false).HasDefaultValue("");
+            entity.Property(e => e.Action).IsUnicode(false);
+            entity.Property(e => e.UpdatedAt).HasColumnType("datetime2(0)").HasDefaultValueSql("SYSUTCDATETIME()");
         });
 
         modelBuilder.Entity<Province>(entity =>

@@ -21,12 +21,14 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
     // Read per request, so changes to the matrix act at once.
     public class CcpResponsibilityService
     {
+        private readonly Permissions? _perm;
         private readonly TOP4HoneyChainsContext _context;
         private readonly ICurrentOrg _current;
         private Dictionary<int, CcpConfig>? _configs;
 
-        public CcpResponsibilityService(TOP4HoneyChainsContext context, ICurrentOrg current)
+        public CcpResponsibilityService(TOP4HoneyChainsContext context, ICurrentOrg current, Permissions? perm = null)
         {
+            _perm = perm;
             _context = context;
             _current = current;
         }
@@ -128,6 +130,9 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             // Later holders of a batch read its records (D-26, D-41)
             if (!read && kind == "batch")
                 read = await _context.Shipments.AnyAsync(s => s.FinalHoneyProductionId == ownerId && s.ToOrgId == active.OrgId && s.Status == ShipmentStatus.Received);
+            // D-56: the role must also hold the read right for this CCP (default: every role)
+            if (read && _perm != null && !_perm.CcpRead(ccpId, active.OrgRole))
+                read = false;
 
             string? enterDenied = null, approveDenied = null;
             if (!responsible || cfg == null)

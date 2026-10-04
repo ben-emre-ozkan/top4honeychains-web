@@ -1,4 +1,5 @@
-﻿@inject Microsoft.Extensions.Options.IOptions<TOP4HoneyChains.Web.Services.OrgModel.FeatureFlags> FeatureFlagOptions
+﻿@inject TOP4HoneyChains.Web.Services.OrgModel.Permissions MenuPermissions
+@inject Microsoft.Extensions.Options.IOptions<TOP4HoneyChains.Web.Services.OrgModel.FeatureFlags> FeatureFlagOptions
 @inject TOP4HoneyChains.Web.Services.OrgModel.ICurrentOrg MenuCurrentOrg
 @using System.Globalization
 
@@ -228,19 +229,19 @@
                         <ul class="navbar-nav" id="member-menu">
                             <li class="nav-item"><a class="nav-link" href="/MyWork/Index"><i class="mdi mdi-clipboard-check-outline"></i>@L["Work.Title"]</a></li>
                             <li class="nav-item"><a class="nav-link" href="/OrgWorkspace/Index"><i class="mdi mdi-domain"></i>@L["Org.MyOrganization"]</a></li>
-                            @if (menuActive != null && TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Intake(menuActive))
+                            @if (menuActive != null && TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Intake(menuActive, MenuPermissions))
                             {
                                 <li class="nav-item"><a class="nav-link" href="/Intake/Index"><i class="mdi mdi-truck-delivery-outline"></i>@L["Cust.Intakes"]</a></li>
                             }
-                            @if (menuActive != null && TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Samples(menuActive))
+                            @if (menuActive != null && TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Samples(menuActive, MenuPermissions))
                             {
                                 <li class="nav-item"><a class="nav-link" href="/Samples/Index"><i class="mdi mdi-flask-outline"></i>@L["Lab.Samples"]</a></li>
                             }
-                            @if (menuActive != null && TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Shipments(menuActive))
+                            @if (menuActive != null && TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Shipments(menuActive, MenuPermissions))
                             {
                                 <li class="nav-item"><a class="nav-link" href="/Shipments/Index"><i class="mdi mdi-truck-outline"></i>@L["Cust.Shipments"]</a></li>
                             }
-                            @if (menuActive != null && TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Storefronts(menuActive))
+                            @if (menuActive != null && TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Storefronts(menuActive, MenuPermissions))
                             {
                                 <li class="nav-item"><a class="nav-link" href="/Storefronts/Index"><i class="mdi mdi-storefront-outline"></i>@L["P5.Storefronts"]</a></li>
                             }

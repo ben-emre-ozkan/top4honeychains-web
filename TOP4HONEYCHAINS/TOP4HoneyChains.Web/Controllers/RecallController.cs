@@ -21,6 +21,8 @@ namespace TOP4HoneyChains.Web.Controllers
         private readonly ICurrentOrg _current;
         private readonly CcpResponsibilityService _resp;
         private readonly CustodyService _custody;
+        // D-56: rights of organization roles (editable matrix)
+        private TOP4HoneyChains.Web.Services.OrgModel.Permissions Perm => HttpContext.RequestServices.GetRequiredService<TOP4HoneyChains.Web.Services.OrgModel.Permissions>();
 
         public RecallController(TOP4HoneyChainsContext context, ICurrentOrg current, CcpResponsibilityService resp, CustodyService custody)
         {
@@ -60,6 +62,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 return NotFound();
             var admin = _current.IsPlatformAdmin;
             var active = await _current.GetAsync();
+            if (!admin && active != null && !Perm.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Recall, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Read, active.OrgRole))
+                return NotFound();
             var orgId = active?.OrgId ?? 0;
             var owner = await _resp.BatchOwnerAsync(id);
             var isOwner = !admin && owner == orgId && orgId != 0;
@@ -95,6 +99,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 return NotFound();
             var admin = _current.IsPlatformAdmin;
             var active = await _current.GetAsync();
+            if (!admin && active != null && !Perm.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Recall, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Read, active.OrgRole))
+                return NotFound();
             var orgId = active?.OrgId ?? 0;
             var batches = await _context.FinalHoneyProductionDetails.Where(d => d.RawHoneyProductionId == id)
                 .Select(d => new { d.FinalHoneyProductionId, d.UsedAmount }).ToListAsync();

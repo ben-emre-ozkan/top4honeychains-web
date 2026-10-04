@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TOP4HoneyChains.Web.Data;
@@ -18,6 +18,8 @@ namespace TOP4HoneyChains.Web.Controllers
         private readonly ICurrentOrg _current;
         private readonly CcpResponsibilityService _resp;
         private readonly LabService _lab;
+        // D-56: rights of organization roles (editable matrix)
+        private TOP4HoneyChains.Web.Services.OrgModel.Permissions Perm => HttpContext.RequestServices.GetRequiredService<TOP4HoneyChains.Web.Services.OrgModel.Permissions>();
 
         public SamplesController(TOP4HoneyChainsContext context, ICurrentOrg current, CcpResponsibilityService resp, LabService lab)
         {
@@ -44,10 +46,15 @@ namespace TOP4HoneyChains.Web.Controllers
             var active = await _current.GetAsync();
             if (active == null)
                 return NotFound();
+            if (!Perm.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Samples, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Read, active.OrgRole))
+            {
+                TempData["Error"] = $"Your role ({active.OrgRole}) cannot open this page; roles: {string.Join(", ", Perm.Roles(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Samples, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Read))}.";
+                return RedirectToAction("Index", "MyWork");
+            }
             ViewBag.Sent = await q.Where(s => s.TakingOrgId == active.OrgId).OrderByDescending(s => s.SampleId).Take(200).ToListAsync();
             ViewBag.Received = await q.Where(s => s.LabOrgId == active.OrgId).OrderBy(s => s.Status == SampleStatus.Sent ? 0 : 1)
                 .ThenByDescending(s => s.SampleId).Take(200).ToListAsync();
-            ViewBag.CanReceive = await _lab.LabDeniedAsync(active.OrgId, LabService.ReceiveRoles) == null;
+            ViewBag.CanReceive = await _lab.LabDeniedAsync(active.OrgId, Perm.Roles(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Samples, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Approve)) == null;
             return View();
         }
 
@@ -60,8 +67,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 return "Only the organization that holds the lot takes its samples.";
             if (!active.IsVerified)
                 return $"Your organization is {active.OrgStatus}; only verified organizations can enter data.";
-            if (active.OrgRole != OrgRoles.SampleAcceptanceOfficer)
-                return $"Your role ({active.OrgRole}) cannot take samples; only a SampleAcceptanceOfficer can.";
+            if (!Perm.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Samples, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Enter, active.OrgRole))
+                return $"Your role ({active.OrgRole}) cannot take samples; roles: {string.Join(", ", Perm.Roles(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Samples, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Enter))}.";
             return null;
         }
 
@@ -164,7 +171,7 @@ namespace TOP4HoneyChains.Web.Controllers
             if (!_current.IsPlatformAdmin && active?.OrgId != sample.LabOrgId)
                 return NotFound();
             note = string.IsNullOrWhiteSpace(note) ? null : note.Trim();
-            string? error = await _lab.LabDeniedAsync(sample.LabOrgId, LabService.ReceiveRoles);
+            string? error = await _lab.LabDeniedAsync(sample.LabOrgId, Perm.Roles(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Samples, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Approve));
             if (error == null && sample.Status != SampleStatus.Sent)
                 error = "This sample was already received or rejected.";
             else if (error == null && !sealIntact && note == null)

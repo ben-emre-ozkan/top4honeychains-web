@@ -35,7 +35,7 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             "AssignmentStatuses", "HoneyTypes", "RawHoneyProductionPeriods", "BeekeeperEducationLevels", "BeekeepingPurposeTypes", "BeekeepingTypes",
             "Capabilities", "OrgRoles", "CriticalControlPoints", "CriticalControlPointParameterCategories", "CriticalControlPointParameters",
             "CriticalControlPointParameterLimits", "CcpResponsibilities", "CcpResponsibilityCapabilities", "CcpResponsibilityRoles",
-            "Provinces", "Districts"
+            "Provinces", "Districts", "RolePermissions"
         };
 
         protected override void ConfigureWebHost(IWebHostBuilder builder)
