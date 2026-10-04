@@ -20,5 +20,8 @@ namespace TOP4HoneyChains.Web.Models.ViewModels.HoneyStory
 
         // Every CCP that applies to raw lots, for THIS raw honey production
         public List<HoneyStoryCcpBlock> CcpBlocks { get; set; } = new();
+
+        // P5 (D-43): code of the beekeeper's published storefront, if any
+        public string? StorefrontCode { get; set; }
     }
 }

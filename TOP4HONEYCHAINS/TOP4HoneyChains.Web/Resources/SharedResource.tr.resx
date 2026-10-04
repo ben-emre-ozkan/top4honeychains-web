@@ -1788,4 +1788,124 @@
   <data name="Lab report approved; the results are now the lot's CCP 1 values." xml:space="preserve">
     <value>Laboratuvar raporu onaylandı; sonuçlar artık lotun CCP 1 değerleri.</value>
   </data>
+  <data name="P5.OriginCountry" xml:space="preserve">
+    <value>Menşe ülke</value>
+  </data>
+  <data name="P5.Origin" xml:space="preserve">
+    <value>Menşe</value>
+  </data>
+  <data name="P5.BeekeeperPage" xml:space="preserve">
+    <value>Arıcı sayfası</value>
+  </data>
+  <data name="P5.Storefronts" xml:space="preserve">
+    <value>Arıcı sayfaları</value>
+  </data>
+  <data name="P5.StorefrontsHelp" xml:space="preserve">
+    <value>Üyenin herkese açık sayfası yalnızca kayıtlı rıza ve doğrulanmış kayıt numarasıyla yayımlanır; rıza geri çekilince sayfa hemen yayından kalkar.</value>
+  </data>
+  <data name="P5.Consent" xml:space="preserve">
+    <value>Rıza</value>
+  </data>
+  <data name="P5.Published" xml:space="preserve">
+    <value>Herkese açık sayfa</value>
+  </data>
+  <data name="P5.NameShown" xml:space="preserve">
+    <value>ad gösterilir</value>
+  </data>
+  <data name="P5.CodeOnly" xml:space="preserve">
+    <value>yalnızca kod</value>
+  </data>
+  <data name="P5.Document" xml:space="preserve">
+    <value>belge</value>
+  </data>
+  <data name="P5.Public" xml:space="preserve">
+    <value>yayında</value>
+  </data>
+  <data name="P5.NotPublic" xml:space="preserve">
+    <value>yayında değil</value>
+  </data>
+  <data name="P5.NeedsRegistry" xml:space="preserve">
+    <value>doğrulanmış kayıt numarası gerekli</value>
+  </data>
+  <data name="P5.RecordConsent" xml:space="preserve">
+    <value>Rıza kaydet</value>
+  </data>
+  <data name="P5.WithdrawReason" xml:space="preserve">
+    <value>gerekçe (isteğe bağlı)</value>
+  </data>
+  <data name="P5.Withdraw" xml:space="preserve">
+    <value>Rızayı geri çek</value>
+  </data>
+  <data name="P5.Card" xml:space="preserve">
+    <value>Yazdırılabilir kart</value>
+  </data>
+  <data name="P5.ConsentHelp" xml:space="preserve">
+    <value>Rıza metnini arıcıya okuyun ve imzalı rıza belgesini ekleyin.</value>
+  </data>
+  <data name="P5.TextVersion" xml:space="preserve">
+    <value>Metin sürümü</value>
+  </data>
+  <data name="P5.TextRead" xml:space="preserve">
+    <value>Rıza metni arıcıya okundu ve imzalandı.</value>
+  </data>
+  <data name="P5.NameConsent" xml:space="preserve">
+    <value>Arıcı adının gösterilmesine onay veriyor (aksi halde nötr bir kod gösterilir)</value>
+  </data>
+  <data name="P5.GivenOn" xml:space="preserve">
+    <value>Rıza tarihi</value>
+  </data>
+  <data name="P5.SignedDocument" xml:space="preserve">
+    <value>İmzalı rıza belgesi</value>
+  </data>
+  <data name="P5.VerifiedLots" xml:space="preserve">
+    <value>doğrulanmış lot</value>
+  </data>
+  <data name="P5.HoneyTypes" xml:space="preserve">
+    <value>Bal türleri</value>
+  </data>
+  <data name="P5.LabResults" xml:space="preserve">
+    <value>Onaylı laboratuvar sonuçları</value>
+  </data>
+  <data name="P5.Batches" xml:space="preserve">
+    <value>Bu balın bulunduğu partiler</value>
+  </data>
+  <data name="P5.PublicNote" xml:space="preserve">
+    <value>Yalnızca doğrulanmış veriler gösterilir. Telefon, fotoğraf, doğum tarihi veya kesin konum gösterilmez.</value>
+  </data>
+  <data name="Only a beekeepers' association manages storefronts." xml:space="preserve">
+    <value>Arıcı sayfalarını yalnızca arıcı birliği yönetir.</value>
+  </data>
+  <data name="Your role ({0}) cannot manage storefronts; only the association's OrgAdmin can." xml:space="preserve">
+    <value>Rolünüz ({0}) arıcı sayfalarını yönetemez; yalnızca birliğin OrgAdmin'i yönetebilir.</value>
+  </data>
+  <data name="This beekeeper already has an active consent; withdraw it first to record a new one." xml:space="preserve">
+    <value>Bu arıcının etkin bir rızası var; yenisini kaydetmek için önce geri çekin.</value>
+  </data>
+  <data name="Confirm that the consent text was read to the beekeeper." xml:space="preserve">
+    <value>Rıza metninin arıcıya okunduğunu onaylayın.</value>
+  </data>
+  <data name="Enter the date of the consent (not in the future)." xml:space="preserve">
+    <value>Rıza tarihini girin (gelecekte olamaz).</value>
+  </data>
+  <data name="Attach the signed consent document." xml:space="preserve">
+    <value>İmzalı rıza belgesini ekleyin.</value>
+  </data>
+  <data name="Consent recorded; the storefront is published." xml:space="preserve">
+    <value>Rıza kaydedildi; arıcı sayfası yayında.</value>
+  </data>
+  <data name="Consent recorded. The storefront is published once the registry number is verified." xml:space="preserve">
+    <value>Rıza kaydedildi. Arıcı sayfası kayıt numarası doğrulanınca yayımlanır.</value>
+  </data>
+  <data name="This consent was already withdrawn." xml:space="preserve">
+    <value>Bu rıza zaten geri çekildi.</value>
+  </data>
+  <data name="Consent withdrawn; the storefront is no longer public." xml:space="preserve">
+    <value>Rıza geri çekildi; arıcı sayfası artık yayında değil.</value>
+  </data>
+  <data name="The storefront is not published." xml:space="preserve">
+    <value>Arıcı sayfası yayında değil.</value>
+  </data>
+  <data name="Choose the country of origin." xml:space="preserve">
+    <value>Menşe ülkeyi seçin.</value>
+  </data>
 </root>

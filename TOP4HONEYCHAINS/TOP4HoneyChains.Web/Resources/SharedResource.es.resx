@@ -1074,4 +1074,88 @@
   <data name="Ver.NotFound" xml:space="preserve">
     <value>No report with this code.</value>
   </data>
+  <data name="P5.OriginCountry" xml:space="preserve">
+    <value>Country of origin</value>
+  </data>
+  <data name="P5.Origin" xml:space="preserve">
+    <value>Origin</value>
+  </data>
+  <data name="P5.BeekeeperPage" xml:space="preserve">
+    <value>Beekeeper page</value>
+  </data>
+  <data name="P5.Storefronts" xml:space="preserve">
+    <value>Beekeeper pages</value>
+  </data>
+  <data name="P5.StorefrontsHelp" xml:space="preserve">
+    <value>A member's public page is published only with a recorded consent and a verified registry number; withdrawing the consent unpublishes it at once.</value>
+  </data>
+  <data name="P5.Consent" xml:space="preserve">
+    <value>Consent</value>
+  </data>
+  <data name="P5.Published" xml:space="preserve">
+    <value>Public page</value>
+  </data>
+  <data name="P5.NameShown" xml:space="preserve">
+    <value>name shown</value>
+  </data>
+  <data name="P5.CodeOnly" xml:space="preserve">
+    <value>code only</value>
+  </data>
+  <data name="P5.Document" xml:space="preserve">
+    <value>document</value>
+  </data>
+  <data name="P5.Public" xml:space="preserve">
+    <value>public</value>
+  </data>
+  <data name="P5.NotPublic" xml:space="preserve">
+    <value>not public</value>
+  </data>
+  <data name="P5.NeedsRegistry" xml:space="preserve">
+    <value>needs a verified registry number</value>
+  </data>
+  <data name="P5.RecordConsent" xml:space="preserve">
+    <value>Record consent</value>
+  </data>
+  <data name="P5.WithdrawReason" xml:space="preserve">
+    <value>reason (optional)</value>
+  </data>
+  <data name="P5.Withdraw" xml:space="preserve">
+    <value>Withdraw consent</value>
+  </data>
+  <data name="P5.Card" xml:space="preserve">
+    <value>Printable card</value>
+  </data>
+  <data name="P5.ConsentHelp" xml:space="preserve">
+    <value>Read the consent text to the beekeeper and attach the signed consent document.</value>
+  </data>
+  <data name="P5.TextVersion" xml:space="preserve">
+    <value>Text version</value>
+  </data>
+  <data name="P5.TextRead" xml:space="preserve">
+    <value>The consent text was read to the beekeeper and signed.</value>
+  </data>
+  <data name="P5.NameConsent" xml:space="preserve">
+    <value>The beekeeper agrees to show the name (otherwise a neutral code is shown)</value>
+  </data>
+  <data name="P5.GivenOn" xml:space="preserve">
+    <value>Date of consent</value>
+  </data>
+  <data name="P5.SignedDocument" xml:space="preserve">
+    <value>Signed consent document</value>
+  </data>
+  <data name="P5.VerifiedLots" xml:space="preserve">
+    <value>verified lots</value>
+  </data>
+  <data name="P5.HoneyTypes" xml:space="preserve">
+    <value>Honey types</value>
+  </data>
+  <data name="P5.LabResults" xml:space="preserve">
+    <value>Approved lab results</value>
+  </data>
+  <data name="P5.Batches" xml:space="preserve">
+    <value>Batches with this honey</value>
+  </data>
+  <data name="P5.PublicNote" xml:space="preserve">
+    <value>Only verified data is shown. No phone, photo, birth date or exact location.</value>
+  </data>
 </root>

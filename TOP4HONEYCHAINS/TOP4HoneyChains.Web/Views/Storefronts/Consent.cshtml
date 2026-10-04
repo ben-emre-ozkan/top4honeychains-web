@@ -1,0 +1,45 @@
+@using TOP4HoneyChains.Web.Models.Entities
+@using TOP4HoneyChains.Web.Services.OrgModel
+@{
+    ViewData["Title"] = L["P5.RecordConsent"];
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var bk = (Beekeeper)ViewBag.Beekeeper;
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">@L["P5.RecordConsent"]: @bk.BeekeeperFirstName @bk.BeekeeperLastName</h4>
+                    <p class="card-title-desc">@L["P5.ConsentHelp"]</p>
+                    <div class="border rounded p-3 bg-light mb-3" id="consent-text" style="white-space:pre-line">@ConsentText.Text</div>
+                    <div class="small text-muted mb-3">@L["P5.TextVersion"]: @ConsentText.Version · SHA-256 <code>@ConsentText.Sha256</code></div>
+                    <form asp-action="Consent" asp-route-id="@bk.BeekeeperId" method="post" enctype="multipart/form-data" id="consent-form">
+                        <div class="form-check mb-2">
+                            <input type="checkbox" class="form-check-input" name="textRead" value="true" id="textRead" />
+                            <label class="form-check-label" for="textRead">@L["P5.TextRead"]</label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input type="checkbox" class="form-check-input" name="nameConsented" value="true" id="nameConsented" />
+                            <label class="form-check-label" for="nameConsented">@L["P5.NameConsent"]</label>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label required" for="givenOn">@L["P5.GivenOn"]</label>
+                                <input type="date" name="givenOn" id="givenOn" class="form-control" max="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label required" for="document">@L["P5.SignedDocument"]</label>
+                                <input type="file" name="document" id="document" class="form-control" accept=".pdf,.jpg,.jpeg,.png,.webp" />
+                                <div class="form-text">@L["Org.UploadHelp"]</div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success">@L["P5.RecordConsent"]</button>
+                        <a asp-action="Index" class="btn btn-secondary">@L["Org.Cancel"]</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
