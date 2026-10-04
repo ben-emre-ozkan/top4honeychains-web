@@ -35,12 +35,14 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         private readonly TOP4HoneyChainsContext _context;
         private readonly ICurrentOrg _current;
         private readonly CcpResponsibilityService _resp;
+        private readonly IConfiguration _config;
 
-        public OrgScope(TOP4HoneyChainsContext context, ICurrentOrg current, CcpResponsibilityService resp)
+        public OrgScope(TOP4HoneyChainsContext context, ICurrentOrg current, CcpResponsibilityService resp, IConfiguration config)
         {
             _context = context;
             _current = current;
             _resp = resp;
+            _config = config;
         }
 
         public Task<int?> LotOrgIdAsync(int rawHoneyProductionId) => _resp.LotOwnerAsync(rawHoneyProductionId);
@@ -98,9 +100,12 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             if (await ReadsAllAsync())
                 return _context.Organizations;
             var active = await _current.GetAsync();
-            return active == null
-                ? _context.Organizations.Where(o => false)
-                : _context.Organizations.Where(o => o.OrgId == active.OrgId);
+            if (active == null)
+                return _context.Organizations.Where(o => false);
+            // A configured central association also lists the associations it verifies
+            if (OrganizationAuthorizationHandler.IsCentralVerifier(_config, active))
+                return _context.Organizations.Where(o => o.OrgId == active.OrgId || o.Capabilities.Any(c => c.Capability == Capabilities.Association));
+            return _context.Organizations.Where(o => o.OrgId == active.OrgId);
         }
     }
 
@@ -127,6 +132,10 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             _config = config;
         }
 
+        public static bool IsCentralVerifier(IConfiguration config, ActiveMembership active) =>
+            string.Equals(config["OrgModel:AssociationVerifier"], Capabilities.CentralAssociation, StringComparison.OrdinalIgnoreCase)
+            && active.Has(Capabilities.CentralAssociation) && active.IsVerified && active.OrgRole == OrgRoles.OrgAdmin;
+
         protected override async Task HandleRequirementAsync(AuthorizationHandlerContext context, OperationAuthorizationRequirement requirement, Organization org)
         {
             if (_current.IsPlatformAdmin)
@@ -139,10 +148,12 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                 return;
 
             var own = active.OrgId == org.OrgId;
+            // Associations may be verified by a verified central association, if configured (ROLE-MODEL section 8)
+            var centralVerifier = !own && IsCentralVerifier(_config, active) && org.Capabilities.Any(c => c.Capability == Capabilities.Association);
             switch (requirement.Name)
             {
                 case nameof(OrgOperations.Read):
-                    if (own || await _scope.ReadsAllAsync())
+                    if (own || centralVerifier || await _scope.ReadsAllAsync())
                         context.Succeed(requirement);
                     break;
                 case nameof(OrgOperations.ManageDocuments):
@@ -151,10 +162,7 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                         context.Succeed(requirement);
                     break;
                 case nameof(OrgOperations.Verify):
-                    // Associations may be verified by a verified central association, if configured (ROLE-MODEL section 8)
-                    var byCentral = string.Equals(_config["OrgModel:AssociationVerifier"], Capabilities.CentralAssociation, StringComparison.OrdinalIgnoreCase);
-                    if (byCentral && !own && org.Capabilities.Any(c => c.Capability == Capabilities.Association)
-                        && active.Has(Capabilities.CentralAssociation) && active.IsVerified && active.OrgRole == OrgRoles.OrgAdmin)
+                    if (centralVerifier)
                         context.Succeed(requirement);
                     break;
                 // Configure (capabilities, members, four-eyes exemption): platform administrators only
