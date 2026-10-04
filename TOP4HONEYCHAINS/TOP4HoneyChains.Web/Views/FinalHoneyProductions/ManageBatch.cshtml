@@ -197,11 +197,8 @@
                                                     </td>
 
                                                     <td>
-                                                        <input type="number"
+                                                        <input type="text" inputmode="decimal" autocomplete="off"
                                                                @(Model.Batch.FinalHoneyProductionIsFinalized ? "disabled" : "")
-                                                               step="0.01"
-                                                               min="0"
-                                                               max="@item.AvailableAmount.ToString(System.Globalization.CultureInfo.InvariantCulture)"
                                                                value="@item.CurrentBatchAmount.ToString(System.Globalization.CultureInfo.InvariantCulture)"
                                                                name="usedAmounts[@item.RawHoney.RawHoneyProductionId]"
                                                                class="form-control use-amount"
@@ -414,13 +411,22 @@
 
         <script>
 
+            // D-53: a comma or a dot as decimal separator
+            function toNumber(v) {
+                var s = String(v == null ? '' : v).replace(/\s/g, '');
+                var dot = s.lastIndexOf('.'), comma = s.lastIndexOf(',');
+                if (dot >= 0 && comma >= 0) s = dot > comma ? s.replace(/,/g, '') : s.replace(/\./g, '').replace(',', '.');
+                else s = s.replace(',', '.');
+                return parseFloat(s);
+            }
+
             function updateTotals() {
 
                 let inputs = document.querySelectorAll('.use-amount');
                 let total = 0;
 
                 inputs.forEach(function (input) {
-                    let val = parseFloat(input.value);
+                    let val = toNumber(input.value);
                     if (!isNaN(val)) {
                         total += val;
                     }
@@ -436,8 +442,8 @@
 
                 input.addEventListener('input', function(){
 
-                    let max = parseFloat(this.dataset.max);
-                    let val = parseFloat(this.value);
+                    let max = toNumber(this.dataset.max);
+                    let val = toNumber(this.value);
 
                     if (isNaN(val)) return;
 

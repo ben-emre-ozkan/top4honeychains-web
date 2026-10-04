@@ -1,4 +1,4 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
@@ -80,6 +80,8 @@ namespace TOP4HoneyChains.Web.Services
         {
             var l = _factory.Create(typeof(SharedResource));
             options.ModelMetadataDetailsProviders.Add(new LocalizedMetadataProvider(l));
+            // D-53: decimal numbers accept a comma or a dot in every language
+            options.ModelBinderProviders.Insert(0, new DecimalInputModelBinderProvider());
 
             // model-binding messages (wrong number format, missing value…)
             var m = options.ModelBindingMessageProvider;

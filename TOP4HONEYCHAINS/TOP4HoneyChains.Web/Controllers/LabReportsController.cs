@@ -74,7 +74,7 @@ namespace TOP4HoneyChains.Web.Controllers
         }
 
         private static decimal? ParseNumber(string raw) =>
-            decimal.TryParse(raw.Replace(',', '.'), NumberStyles.Number, CultureInfo.InvariantCulture, out var d) ? d : null;
+            DecimalInput.Parse(raw);
 
         [HttpPost]
         [ValidateAntiForgeryToken]
