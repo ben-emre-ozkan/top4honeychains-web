@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<TOP4HoneyChains.Web.Models.Entities.CriticalControlPointParameter>
 
 @{
-    ViewData["Title"] = "CCP Parameters";
+    ViewData["Title"] = L["CCP Parameters"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 
@@ -22,15 +22,15 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">Critical Control Point Parameters</h4>
+                            <h4 class="card-title">@L["Critical Control Point Parameters"]</h4>
                             <p class="card-title-desc">
-                                Manage monitoring parameters assigned to critical control points.
+                                @L["Manage monitoring parameters assigned to critical control points."]
                             </p>
 
                             <p>
                                 <a asp-action="Create"
                                    class="btn btn-primary waves-effect waves-light">
-                                    Add New Parameter
+                                    @L["Add New Parameter"]
                                 </a>
                             </p>
 
@@ -40,13 +40,13 @@
 
                                 <thead>
                                     <tr>
-                                        <th>Parameter Name</th>
-                                        <th>Unit</th>
-                                        <th>Type</th>
-                                        <th>Limits</th>
+                                        <th>@L["Parameter Name"]</th>
+                                        <th>@L["Unit"]</th>
+                                        <th>@L["Type"]</th>
+                                        <th>@L["Limits"]</th>
                                         <th>CCP</th>
-                                        <th>Category</th>
-                                        <th style="width:150px;">Actions</th>
+                                        <th>@L["Category"]</th>
+                                        <th style="width:150px;">@L["Actions"]</th>
                                     </tr>
                                 </thead>
 
@@ -75,7 +75,7 @@
                                                 @(TOP4HoneyChains.Web.Services.CcpLimitEvaluator.DescribeAll(item) ?? (item.CriticalLimit == "None" ? "-" : item.CriticalLimit))
                                                 @if (TOP4HoneyChains.Web.Services.CcpLimitEvaluator.DescribeAll(item) != null && !item.LimitVerified)
                                                 {
-                                                    <span class="badge bg-warning text-dark">to verify</span>
+                                                    <span class="badge bg-warning text-dark">@L["to verify"]</span>
                                                 }
                                             </td>
 
@@ -97,25 +97,25 @@
                                                        asp-route-parameterId="@item.ParameterId"
                                                        class="btn btn-sm btn-primary w-100">
                                                         <i class="mdi mdi-play-circle-outline me-1"></i>
-                                                        Content
+                                                        @L["Content"]
                                                     </a>
 
                                                     <a asp-action="Limits"
                                                        asp-route-id="@item.ParameterId"
                                                        class="btn btn-sm btn-warning w-100">
-                                                        Limits
+                                                        @L["Limits"]
                                                     </a>
 
                                                     <a asp-action="Edit"
                                                        asp-route-id="@item.ParameterId"
                                                        class="btn btn-sm btn-info w-100">
-                                                        Edit
+                                                        @L["Edit"]
                                                     </a>
 
                                                     <a asp-action="Delete"
                                                        asp-route-id="@item.ParameterId"
                                                        class="btn btn-sm btn-danger w-100">
-                                                        Delete
+                                                        @L["Delete"]
                                                     </a>
 
                                                 </div>

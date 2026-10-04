@@ -3,7 +3,7 @@
 
 @{
     var wholesaler = ViewBag.Wholesaler as TOP4HoneyChains.Web.Models.Entities.Wholesaler;
-    ViewData["Title"] = "Final Batches";
+    ViewData["Title"] = L["Final Batches"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 
     var totalAmount = Model.Sum(x => x.FinalHoneyProductionTotalAmount ?? 0);
@@ -40,7 +40,7 @@
                                    asp-route-wholesalerId="@wholesaler?.WholesalerId"
                                    class="btn btn-primary waves-effect waves-light">
                                     <i class="mdi mdi-plus-circle me-1"></i>
-                                    New Batch
+                                    @L["New Batch"]
                                 </a>
                             </div>
 
@@ -55,7 +55,7 @@
                 <div class="col-md-4">
                     <div class="card border-primary h-100">
                         <div class="card-body">
-                            <h6 class="text-primary fw-bold">Total Batches</h6>
+                            <h6 class="text-primary fw-bold">@L["Total Batches"]</h6>
                             <h3 class="fw-bold">@Model.Count()</h3>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                 <div class="col-md-4">
                     <div class="card border-success h-100">
                         <div class="card-body">
-                            <h6 class="text-success fw-bold">Total Production (kg)</h6>
+                            <h6 class="text-success fw-bold">@L["Total Production (kg)"]</h6>
                             <h3 class="fw-bold">@totalAmount.ToString("N2", new System.Globalization.CultureInfo("tr-TR"))</h3>
                         </div>
                     </div>
@@ -73,15 +73,15 @@
                 <div class="col-md-4">
                     <div class="card border-info h-100">
                         <div class="card-body">
-                            <h6 class="text-info fw-bold">Active Status</h6>
+                            <h6 class="text-info fw-bold">@L["Active Status"]</h6>
                             <h5>
                                 @if (wholesaler?.WholesalerIsActive == true)
                                 {
-                                    <span class="badge bg-success px-3 py-2">Active</span>
+                                    <span class="badge bg-success px-3 py-2">@L["Active"]</span>
                                 }
                                 else
                                 {
-                                    <span class="badge bg-secondary px-3 py-2">Passive</span>
+                                    <span class="badge bg-secondary px-3 py-2">@L["Passive"]</span>
                                 }
                             </h5>
                         </div>
@@ -100,12 +100,12 @@
 
                         <thead class="table-dark">
                             <tr>
-                                <th>Batch Title</th>
-                                <th>QR Code</th>
-                                <th>Production Date</th>
-                                <th>Total Amount (kg)</th>
-                                <th>Assigned CCPs</th>
-                                <th style="width:300px;">Actions</th>
+                                <th>@L["Batch Title"]</th>
+                                <th>@L["QR Code"]</th>
+                                <th>@L["Production Date"]</th>
+                                <th>@L["Total Amount (kg)"]</th>
+                                <th>@L["Assigned CCPs"]</th>
+                                <th style="width:300px;">@L["Actions"]</th>
                             </tr>
                         </thead>
 
@@ -175,7 +175,7 @@
                                             }
                                             else
                                             {
-                                                <span class="text-muted">No CCP assigned yet.</span>
+                                                <span class="text-muted">@L["No CCP assigned yet."]</span>
                                             }
                                         </td>
 
@@ -187,7 +187,7 @@
                                                    asp-route-id="@item.FinalHoneyProductionId"
                                                    class="btn btn-warning btn-sm w-100 text-start">
                                                     <i class="mdi mdi-tune me-1"></i>
-                                                    Manage
+                                                    @L["Manage"]
                                                 </a>
 
                                                 @if ((item.FinalHoneyProductionTotalAmount ?? 0) > 0)
@@ -196,7 +196,7 @@
                                                        asp-route-id="@item.FinalHoneyProductionId"
                                                        class="btn btn-dark btn-sm w-100 text-start">
                                                         <i class="mdi mdi-clipboard-check-outline me-1"></i>
-                                                        Manage CCP
+                                                        @L["Manage CCP"]
                                                     </a>
                                                 }
 
@@ -204,9 +204,9 @@
                                                 {
                                                     @* D-14: finalized batches are locked *@
                                                     <span class="badge bg-success w-100 text-start py-2"
-                                                          title="Finalized batches cannot be edited or deleted">
+                                                          title="@L["Finalized batches cannot be edited or deleted"]">
                                                         <i class="mdi mdi-lock-outline me-1"></i>
-                                                        Finalized (locked)
+                                                        @L["Finalized (locked)"]
                                                     </span>
                                                 }
                                                 else
@@ -215,14 +215,14 @@
                                                        asp-route-id="@item.FinalHoneyProductionId"
                                                        class="btn btn-info btn-sm w-100 text-start">
                                                         <i class="mdi mdi-pencil me-1"></i>
-                                                        Edit
+                                                        @L["Edit"]
                                                     </a>
 
                                                     <a asp-action="Delete"
                                                        asp-route-id="@item.FinalHoneyProductionId"
                                                        class="btn btn-danger btn-sm w-100 text-start">
                                                         <i class="mdi mdi-delete me-1"></i>
-                                                        Delete
+                                                        @L["Delete"]
                                                     </a>
                                                 }
 

@@ -2,7 +2,7 @@
 @model UnlockViewModel
 
 @{
-    ViewBag.Title = "Lock-screen";
+    ViewBag.Title = L["Lock-screen"].Value;
     Layout = "~/Views/Shared/_BlankLayout.cshtml";
 }
 
@@ -42,7 +42,7 @@
 
                                     <img src="~/assets/images/users/user-4.jpg"
                                          class="rounded-circle avatar-md img-thumbnail"
-                                         alt="thumbnail">
+                                         alt="@L["thumbnail"]">
 
                                     <h6 class="font-size-16 mt-3">
                                         @User.Identity.Name

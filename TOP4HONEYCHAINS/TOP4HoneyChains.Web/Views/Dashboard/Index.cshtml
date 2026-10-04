@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "TOP4HoneyChains Project";
+    ViewBag.Title = L["TOP4HoneyChains Project"].Value;
     ViewBag.subTitle = "TOP4HoneyChains";
     ViewBag.pageTitle = "TOP4HoneyChains";
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
@@ -19,7 +19,7 @@
                                 <i class="mdi mdi-beekeeper float-end"></i>
                             </div>
                             <div class="text-white">
-                                <h6 class="text-uppercase mb-3 font-size-16 text-white">Total Beekeepers</h6>
+                                <h6 class="text-uppercase mb-3 font-size-16 text-white">@L["Total Beekeepers"]</h6>
                                 <h2 class="mb-4 text-white">@ViewBag.TotalBeekeepers</h2>
                             </div>
                         </div>
@@ -32,7 +32,7 @@
                                 <i class="mdi mdi-beehive-outline float-end"></i>
                             </div>
                             <div class="text-white">
-                                <h6 class="text-uppercase mb-3 font-size-16 text-white">Total Apiaries</h6>
+                                <h6 class="text-uppercase mb-3 font-size-16 text-white">@L["Total Apiaries"]</h6>
                                 <h2 class="mb-4 text-white">@ViewBag.TotalApiaries</h2>
                             </div>
                         </div>
@@ -45,7 +45,7 @@
                                 <i class="mdi mdi-truck-delivery-outline float-end"></i>
                             </div>
                             <div class="text-white">
-                                <h6 class="text-uppercase mb-3 font-size-16 text-white"> Total Wholesalers</h6>
+                                <h6 class="text-uppercase mb-3 font-size-16 text-white"> @L["Total Wholesalers"]</h6>
                                 <h2 class="mb-4 text-white">@ViewBag.TotalWholesalers</h2>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
 
                             <div class="text-white">
                                 <h6 class="text-uppercase mb-3 font-size-16 text-white">
-                                    Total Production
+                                    @L["Total Production"]
                                 </h6>
 
                                 <h2 class="mb-4 text-white">
@@ -89,7 +89,7 @@
                         <div class="card-body">
 
                             <h4 class="card-title mb-4">
-                                Production by Honey Type
+                                @L["Production by Honey Type"]
                             </h4>
 
                             <!-- SUMMARY -->
@@ -127,7 +127,7 @@
                         <div class="card-body">
 
                             <h4 class="card-title mb-4">
-                                Top 3 Raw Honey Wholesalers
+                                @L["Top 3 Raw Honey Wholesalers"]
                             </h4>
 
                             <!-- SUMMARY -->
@@ -170,7 +170,7 @@
                         <div class="card-body">
 
                             <h4 class="card-title mb-4">
-                                Top 5 Most Productive Beekeepers
+                                @L["Top 5 Most Productive Beekeepers"]
                             </h4>
 
                             <div class="table-responsive">
@@ -179,9 +179,9 @@
                                     <thead class="table-light">
                                         <tr>
                                             <th style="width:60px;">#</th>
-                                            <th>Beekeeper</th>
-                                            <th class="text-end">Total Production (kg)</th>
-                                            <th style="width:120px;" class="text-center">Rank</th>
+                                            <th>@L["Beekeeper"]</th>
+                                            <th class="text-end">@L["Total Production (kg)"]</th>
+                                            <th style="width:120px;" class="text-center">@L["Rank"]</th>
                                         </tr>
                                     </thead>
 
@@ -277,7 +277,7 @@
                         <div class="card-body">
 
                             <h4 class="card-title mb-4">
-                                Top 5 Most Productive Apiaries
+                                @L["Top 5 Most Productive Apiaries"]
                             </h4>
 
                             <div class="table-responsive">
@@ -286,11 +286,11 @@
                                     <thead class="table-light">
                                         <tr>
                                             <th style="width:60px;">#</th>
-                                            <th>Apiary</th>
-                                            <th>Beekeeper</th>
-                                            <th class="text-center">Hives</th>
-                                            <th class="text-end">Total Production (kg)</th>
-                                            <th style="width:120px;" class="text-center">Rank</th>
+                                            <th>@L["Apiary"]</th>
+                                            <th>@L["Beekeeper"]</th>
+                                            <th class="text-center">@L["Hives"]</th>
+                                            <th class="text-end">@L["Total Production (kg)"]</th>
+                                            <th style="width:120px;" class="text-center">@L["Rank"]</th>
                                         </tr>
                                     </thead>
 

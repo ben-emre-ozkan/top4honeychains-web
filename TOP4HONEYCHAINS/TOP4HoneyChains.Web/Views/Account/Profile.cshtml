@@ -2,7 +2,7 @@
 @model ProfileViewModel
 
 @{
-    ViewData["Title"] = "Profile";
+    ViewData["Title"] = L["Profile"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 <body data-topbar="light" data-layout="horizontal">
@@ -15,16 +15,16 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">Profile</h4>
+                            <h4 class="card-title">@L["Profile"]</h4>
                             <p class="card-title-desc">
-                                Manage your account information.
+                                @L["Manage your account information."]
                             </p>
 
                             <form asp-action="UpdatePhone" class="custom-validation">
 
                                 <div class="mb-3">
 
-                                    <label class="form-label">Username</label>
+                                    <label class="form-label">@L["Username"]</label>
 
                                     <input class="form-control"
                                            value="@Model.UserName"
@@ -34,7 +34,7 @@
 
                                 <div class="mb-3">
 
-                                    <label class="form-label">Email</label>
+                                    <label class="form-label">@L["Email"]</label>
 
                                     <input class="form-control"
                                            value="@Model.Email"
@@ -44,7 +44,7 @@
 
                                 <div class="mb-3">
 
-                                    <label class="form-label">Phone Number</label>
+                                    <label class="form-label">@L["Phone Number"]</label>
 
                                     <input asp-for="PhoneNumber"
                                            class="form-control"
@@ -56,14 +56,14 @@
 
                                     <button type="submit"
                                             class="btn btn-primary waves-effect waves-light">
-                                        Save
+                                        @L["Save"]
                                     </button>
 
                                     <button type="button"
                                             class="btn btn-warning"
                                             data-bs-toggle="modal"
                                             data-bs-target="#changePasswordModal">
-                                        Change Password
+                                        @L["Change Password"]
                                     </button>
 
                                 </div>
@@ -90,7 +90,7 @@
                 <form asp-action="ChangePassword">
 
                     <div class="modal-header">
-                        <h5 class="modal-title">Change Password</h5>
+                        <h5 class="modal-title">@L["Change Password"]</h5>
                         <button type="button"
                                 class="btn-close"
                                 data-bs-dismiss="modal"></button>
@@ -100,7 +100,7 @@
 
                         <div class="mb-3">
 
-                            <label class="form-label">Current Password</label>
+                            <label class="form-label">@L["Current Password"]</label>
 
                             <input type="password"
                                    name="CurrentPassword"
@@ -111,7 +111,7 @@
 
                         <div class="mb-3">
 
-                            <label class="form-label">New Password</label>
+                            <label class="form-label">@L["New Password"]</label>
 
                             <input type="password"
                                    name="NewPassword"
@@ -122,7 +122,7 @@
 
                         <div class="mb-3">
 
-                            <label class="form-label">Confirm Password</label>
+                            <label class="form-label">@L["Confirm Password"]</label>
 
                             <input type="password"
                                    name="ConfirmPassword"
@@ -138,12 +138,12 @@
                         <button type="button"
                                 class="btn btn-light"
                                 data-bs-dismiss="modal">
-                            Cancel
+                            @L["Cancel"]
                         </button>
 
                         <button type="submit"
                                 class="btn btn-primary">
-                            Update Password
+                            @L["Update Password"]
                         </button>
 
                     </div>

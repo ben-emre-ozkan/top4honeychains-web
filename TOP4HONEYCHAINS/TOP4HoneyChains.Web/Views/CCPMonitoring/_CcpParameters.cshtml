@@ -73,7 +73,7 @@
                         }
                         else if (hasValue && p.LimitText != null)
                         {
-                            <span class="badge bg-secondary ccp-range">Not checked</span>
+                            <span class="badge bg-secondary ccp-range">@L["Not checked"]</span>
                         }
                     </div>
 
@@ -89,9 +89,9 @@
                             case CcpDataType.YesNo:
                                 <div class="col-md-6">
                                     <select class="form-select shadow-sm" asp-for="Groups[i].Parameters[j].MeasuredTextValue">
-                                        <option value="">-- not recorded --</option>
-                                        <option value="Yes">Yes</option>
-                                        <option value="No">No</option>
+                                        <option value="">@L["-- not recorded --"]</option>
+                                        <option value="Yes">@L["Yes"]</option>
+                                        <option value="No">@L["No"]</option>
                                     </select>
                                 </div>
                                 break;
@@ -112,7 +112,7 @@
                                             @if (!readOnly)
                                             {
                                                 <label class="ms-3 small">
-                                                    <input type="checkbox" asp-for="Groups[i].Parameters[j].RemoveFile" /> remove
+                                                    <input type="checkbox" asp-for="Groups[i].Parameters[j].RemoveFile" /> @L["remove"]
                                                 </label>
                                             }
                                         </div>
@@ -124,12 +124,12 @@
                                 break;
                             default:
                                 <div class="col-md-6">
-                                    <label class="form-label small text-muted">Numeric Value</label>
+                                    <label class="form-label small text-muted">@L["Numeric Value"]</label>
                                     <input type="number" step="0.0001" class="form-control shadow-sm"
                                            asp-for="Groups[i].Parameters[j].MeasuredNumericValue" />
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label small text-muted">Text Value</label>
+                                    <label class="form-label small text-muted">@L["Text Value"]</label>
                                     <input type="text" maxlength="100" class="form-control shadow-sm"
                                            asp-for="Groups[i].Parameters[j].MeasuredTextValue" />
                                 </div>
@@ -139,10 +139,10 @@
 
                     <div class="row mt-3">
                         <div class="col-12">
-                            <label class="form-label small text-muted">Notes</label>
+                            <label class="form-label small text-muted">@L["Notes"]</label>
                             <textarea class="form-control shadow-sm" rows="2" maxlength="500"
                                       asp-for="Groups[i].Parameters[j].Notes"
-                                      placeholder="Optional professional observation..."></textarea>
+                                      placeholder="@L["Optional professional observation..."]"></textarea>
                         </div>
                     </div>
 
@@ -155,7 +155,7 @@
                             </small>
                             @if (p.LimitText != null && !p.LimitVerified)
                             {
-                                <span class="badge bg-warning text-dark ms-2" title="Seeded from the Turkish Food Codex; to be verified">to verify</span>
+                                <span class="badge bg-warning text-dark ms-2" title="Seeded from the Turkish Food Codex; to be verified">@L["to verify"]</span>
                             }
                         </div>
                     }

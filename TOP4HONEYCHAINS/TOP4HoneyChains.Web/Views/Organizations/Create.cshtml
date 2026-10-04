@@ -1,7 +1,7 @@
 ﻿@using TOP4HoneyChains.Web.Models.Entities
 @model Organization
 @{
-    ViewData["Title"] = "New organization";
+    ViewData["Title"] = L["New organization"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
     var caps = ViewBag.Capabilities as List<Capability> ?? new();
     var selected = ViewBag.Selected as string[] ?? Array.Empty<string>();
@@ -13,7 +13,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">@L["Org.NewOrganization"]</h4>
-                    <p class="card-title-desc">The organization starts as <strong>Pending</strong>. It can enter data only after it is verified with documents.</p>
+                    <p class="card-title-desc">@L["The organization starts as"] <strong>@L["Pending"]</strong>@L[". It can enter data only after it is verified with documents."]</p>
 
                     <form asp-action="Create" method="post">
                         <div asp-validation-summary="All" class="text-danger"></div>
@@ -43,7 +43,7 @@
                             <div class="col-md-6 mb-3">
                                 <label asp-for="LegacyWholesalerId" class="form-label">@L["Org.ExistingWholesaler"]</label>
                                 <select asp-for="LegacyWholesalerId" asp-items="ViewBag.Wholesalers" class="form-select">
-                                    <option value="">(none)</option>
+                                    <option value="">@L["(none)"]</option>
                                 </select>
                                 <small class="text-muted">@L["Org.ExistingWholesalerHelp"]</small>
                             </div>

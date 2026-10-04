@@ -1,7 +1,7 @@
 ﻿@model TOP4HoneyChains.Web.Models.Entities.CriticalControlPointParameterContent
 
 @{
-    ViewData["Title"] = "Edit Content";
+    ViewData["Title"] = L["Edit Content"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 <body data-topbar="light" data-layout="horizontal">
@@ -15,9 +15,9 @@
                         <div class="card-body d-flex justify-content-between align-items-center">
 
                             <div>
-                                <h4 class="card-title mb-1">Edit Parameter Content</h4>
+                                <h4 class="card-title mb-1">@L["Edit Parameter Content"]</h4>
                                 <p class="text-muted mb-0">
-                                    Update video and explanation for this parameter.
+                                    @L["Update video and explanation for this parameter."]
                                 </p>
                             </div>
 
@@ -25,7 +25,7 @@
                                asp-route-parameterId="@Model.ParameterId"
                                class="btn btn-secondary">
                                 <i class="mdi mdi-arrow-left me-1"></i>
-                                Back
+                                @L["Back"]
                             </a>
 
                         </div>
@@ -49,7 +49,7 @@
 
                                 <!-- 🔵 PARAMETER (readonly) -->
                                 <div class="mb-3">
-                                    <label class="form-label fw-bold">Parameter</label>
+                                    <label class="form-label fw-bold">@L["Parameter"]</label>
                                     <input type="text"
                                            class="form-control"
                                            value="@Model.Parameter?.ParameterName"
@@ -60,9 +60,9 @@
                                 <div class="mb-3">
                                     <label asp-for="ContentType" class="form-label fw-bold required"></label>
                                     <select asp-for="ContentType" class="form-select">
-                                        <option value="Info">Info</option>
-                                        <option value="Video">Video</option>
-                                        <option value="Warning">Warning</option>
+                                        <option value="Info">@L["Info"]</option>
+                                        <option value="Video">@L["Video"]</option>
+                                        <option value="Warning">@L["Warning"]</option>
                                     </select>
                                 </div>
 
@@ -88,7 +88,7 @@
                                 @if (!string.IsNullOrEmpty(Model.VideoPath))
                                 {
                                     <div class="mb-3">
-                                        <label class="form-label fw-bold">Current Video</label>
+                                        <label class="form-label fw-bold">@L["Current Video"]</label>
 
                                         <div class="border rounded p-2">
                                             <video controls style="width:100%; border-radius:10px;">
@@ -100,11 +100,11 @@
 
                                 <!-- 🔥 NEW VIDEO -->
                                 <div class="mb-3">
-                                    <label class="form-label fw-bold">Replace Video</label>
+                                    <label class="form-label fw-bold">@L["Replace Video"]</label>
                                     <input type="file" name="videoFile" class="form-control" accept=".mp4,.webm" />
 
                                     <small class="text-muted">
-                                        Leave empty to keep current video. MP4 or WEBM, at most 25 MB.
+                                        @L["Leave empty to keep current video. MP4 or WEBM, at most 25 MB."]
                                     </small>
                                     @Html.ValidationMessage("videoFile", null, new { @class = "text-danger d-block" })
                                 </div>
@@ -119,7 +119,7 @@
                                 <div class="form-check mb-3">
                                     <input class="form-check-input" asp-for="IsActive" />
                                     <label class="form-check-label fw-bold">
-                                        Active Content
+                                        @L["Active Content"]
                                     </label>
                                 </div>
 
@@ -129,14 +129,14 @@
                                     <button type="submit"
                                             class="btn btn-success px-4">
                                         <i class="mdi mdi-content-save-outline me-1"></i>
-                                        Update Content
+                                        @L["Update Content"]
                                     </button>
 
                                     <a asp-action="Index"
                                        asp-route-parameterId="@Model.ParameterId"
                                        class="btn btn-outline-secondary">
                                         <i class="mdi mdi-arrow-left me-1"></i>
-                                        Back
+                                        @L["Back"]
                                     </a>
 
                                 </div>
@@ -155,14 +155,14 @@
 
                             <h5 class="text-warning fw-bold mb-3">
                                 <i class="mdi mdi-alert-circle-outline me-1"></i>
-                                Editing Tips
+                                @L["Editing Tips"]
                             </h5>
 
                             <ul class="text-muted small">
-                                <li>You can update text without changing video</li>
-                                <li>Uploading a new video will replace the old one</li>
-                                <li>Keep explanations user-friendly</li>
-                                <li>Check content before saving</li>
+                                <li>@L["You can update text without changing video"]</li>
+                                <li>@L["Uploading a new video will replace the old one"]</li>
+                                <li>@L["Keep explanations user-friendly"]</li>
+                                <li>@L["Check content before saving"]</li>
                             </ul>
 
                         </div>

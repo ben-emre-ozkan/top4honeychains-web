@@ -2,7 +2,7 @@
 @model CCPMonitoringViewModelForRawHoney
 
 @{
-    ViewData["Title"] = "CCP Monitoring";
+    ViewData["Title"] = L["CCP Monitoring"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 
@@ -30,7 +30,7 @@
 
                         <div class="text-end">
                             <span class="badge bg-light text-dark fs-6 px-3 py-2 shadow-sm">
-                                CCP Monitoring
+                                @L["CCP Monitoring"]
                             </span>
                         </div>
 
@@ -55,22 +55,22 @@
                     <div class="row text-center">
 
                         <div class="col-md-3">
-                            <small class="text-uppercase text-muted">Beekeeper</small>
+                            <small class="text-uppercase text-muted">@L["Beekeeper"]</small>
                             <div class="fw-bold fs-5">@Model.BeekeeperName</div>
                         </div>
 
                         <div class="col-md-3">
-                            <small class="text-uppercase text-muted">Apiary</small>
+                            <small class="text-uppercase text-muted">@L["Apiary"]</small>
                             <div class="fw-bold fs-5">@Model.ApiaryName</div>
                         </div>
 
                         <div class="col-md-3">
-                            <small class="text-uppercase text-muted">Honey Type</small>
+                            <small class="text-uppercase text-muted">@L["Honey Type"]</small>
                             <div class="fw-bold fs-5">@Model.HoneyType</div>
                         </div>
 
                         <div class="col-md-3">
-                            <small class="text-uppercase text-muted">Production Date</small>
+                            <small class="text-uppercase text-muted">@L["Production Date"]</small>
                             <div class="fw-bold fs-5">
                                 @Model.ProductionDate?.ToString("dd.MM.yyyy")
                             </div>
@@ -102,7 +102,7 @@
 
                             @if (!User.IsInRole("Administrator"))
                             {
-                                <a href="/OrgWorkspace/Index" class="btn btn-outline-secondary px-4"><i class="mdi mdi-arrow-left me-1"></i> Back</a>
+                                <a href="/OrgWorkspace/Index" class="btn btn-outline-secondary px-4"><i class="mdi mdi-arrow-left me-1"></i> @L["Back"]</a>
                             }
                             else
                             {
@@ -111,7 +111,7 @@
                                asp-route-id="@Model.ApiaryId"
                                class="btn btn-outline-secondary px-4">
                                 <i class="mdi mdi-arrow-left me-1"></i>
-                                Back
+                                @L["Back"]
                             </a>
                             }
 
@@ -120,7 +120,7 @@
                             <button type="submit"
                                     class="btn btn-success px-5 shadow">
                                 <i class="mdi mdi-content-save-outline me-1"></i>
-                                Save Monitoring Logs
+                                @L["Save Monitoring Logs"]
                             </button>
                             }
 

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<TOP4HoneyChains.Web.Models.Entities.HoneyType>
 
 @{
-    ViewData["Title"] = "Honey Types";
+    ViewData["Title"] = L["Honey Types"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 
@@ -26,12 +26,12 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">Honey Types</h4>
+                            <h4 class="card-title">@L["Honey Types"]</h4>
 
                             <p class="card-title-desc">
                                 <a asp-action="Create"
                                    class="btn btn-primary waves-effect waves-light">
-                                    Add New
+                                    @L["Add New"]
                                 </a>
                             </p>
 
@@ -41,10 +41,10 @@
 
                                 <thead>
                                     <tr>
-                                        <th style="width:250px;">Honey Type</th>
-                                        <th>Description</th>
-                                        <th>Class</th>
-                                        <th>Actions</th>
+                                        <th style="width:250px;">@L["Honey Type"]</th>
+                                        <th>@L["Description"]</th>
+                                        <th>@L["Class"]</th>
+                                        <th>@L["Actions"]</th>
                                     </tr>
                                 </thead>
 
@@ -65,7 +65,7 @@
                                                                                         }
                                                 else
                                                 {
-                                                    <span class="text-muted">No description</span>
+                                                    <span class="text-muted">@L["No description"]</span>
                                                 }
                                             </td>
 
@@ -77,14 +77,14 @@
                                                     <a asp-action="Edit"
                                                        asp-route-id="@item.HoneyTypeId"
                                                        class="btn btn-sm btn-info w-100">
-                                                        Edit
+                                                        @L["Edit"]
                                                     </a>
 
 
                                                     <a asp-action="Delete"
                                                        asp-route-id="@item.HoneyTypeId"
                                                        class="btn btn-sm btn-danger w-100">
-                                                        Delete
+                                                        @L["Delete"]
                                                     </a>
 
                                                 </div>

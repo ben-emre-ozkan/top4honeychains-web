@@ -1,7 +1,7 @@
 ﻿@model TOP4HoneyChains.Web.Models.Entities.Apiary
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = L["Create"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 
@@ -12,11 +12,11 @@
                 <div class="col-xl-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Create apiary</h4>
+                            <h4 class="card-title">@L["Create apiary"]</h4>
                             <p class="card-title-desc">
                                 <a asp-action="ByBeekeeper"
                                    asp-route-beekeeperId="@Model.ApiaryBeekeeperId">
-                                    Back to Apiaries
+                                    @L["Back to Apiaries"]
                                 </a>
                             </p>
                             <form class="custom-validation" asp-action="Create">
@@ -24,25 +24,25 @@
                                 <input type="hidden" asp-for="ApiaryBeekeeperId" />
 
                                 <div class="mb-3">
-                                    <label asp-for="ApiaryTitle" class="form-label required">Title</label>
+                                    <label asp-for="ApiaryTitle" class="form-label required">@L["Title"]</label>
                                     <input asp-for="ApiaryTitle" class="form-control" />
                                     <span asp-validation-for="ApiaryTitle" class="text-danger"></span>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label asp-for="ApiaryBeehivesCount" class="form-label required">Beehives Count</label>
+                                    <label asp-for="ApiaryBeehivesCount" class="form-label required">@L["Beehives Count"]</label>
                                     <input asp-for="ApiaryBeehivesCount" class="form-control" />
                                     <span asp-validation-for="ApiaryBeehivesCount" class="text-danger"></span>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label asp-for="ApiaryLocationLatitude" class="form-label required">Location Latitude</label>
+                                    <label asp-for="ApiaryLocationLatitude" class="form-label required">@L["Location Latitude"]</label>
                                     <input asp-for="ApiaryLocationLatitude" class="form-control" />
                                     <span asp-validation-for="ApiaryLocationLatitude" class="text-danger"></span>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label asp-for="ApiaryLocationLongitude" class="form-label required">Location Longitude</label>
+                                    <label asp-for="ApiaryLocationLongitude" class="form-label required">@L["Location Longitude"]</label>
                                     <input asp-for="ApiaryLocationLongitude" class="form-control" />
                                     <span asp-validation-for="ApiaryLocationLongitude" class="text-danger"></span>
                                 </div>
@@ -52,11 +52,11 @@
                                 <div class="mb-0">
                                     <div>
                                         <button type="submit" class="btn btn-primary waves-effect waves-light me-1">
-                                            Submit
+                                            @L["Submit"]
                                         </button>
                                         <a asp-action="ByBeekeeper" asp-route-beekeeperId="@Model.ApiaryBeekeeperId"
                                            class="btn btn-secondary waves-effect">
-                                            Cancel
+                                            @L["Cancel"]
                                         </a>
                                     </div>
                                 </div>

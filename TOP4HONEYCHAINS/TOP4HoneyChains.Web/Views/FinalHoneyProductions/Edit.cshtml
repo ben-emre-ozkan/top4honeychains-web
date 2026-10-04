@@ -1,7 +1,7 @@
 ﻿@model TOP4HoneyChains.Web.Models.Entities.FinalHoneyProduction
 
 @{
-    ViewData["Title"] = "Edit Final Honey Batch";
+    ViewData["Title"] = L["Edit Final Honey Batch"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 
@@ -16,9 +16,9 @@
                     <div class="card shadow-sm">
                         <div class="card-body">
 
-                            <h4 class="card-title">Edit Final Honey Batch</h4>
+                            <h4 class="card-title">@L["Edit Final Honey Batch"]</h4>
                             <p class="card-title-desc">
-                                Update batch metadata. Composition and total amount are managed separately.
+                                @L["Update batch metadata. Composition and total amount are managed separately."]
                             </p>
 
                             <form asp-action="Edit" method="post" class="custom-validation">
@@ -34,19 +34,19 @@
                                 <!-- Batch Title -->
                                 <div class="mb-3">
                                     <label asp-for="FinalHoneyProductionTitle" class="form-label required">
-                                        Batch Title
+                                        @L["Batch Title"]
                                     </label>
 
                                     <input asp-for="FinalHoneyProductionTitle"
                                            class="form-control"
-                                           placeholder="Enter batch title" />
+                                           placeholder="@L["Enter batch title"]" />
 
                                     <span asp-validation-for="FinalHoneyProductionTitle" class="text-danger"></span>
                                 </div>
 
                                 <!-- QR (Readonly Display) -->
                                 <div class="mb-3">
-                                    <label class="form-label">QR Code</label>
+                                    <label class="form-label">@L["QR Code"]</label>
                                     <input value="@Model.FinalHoneyProductionQR"
                                            class="form-control"
                                            readonly />
@@ -55,7 +55,7 @@
                                 <!-- Production Date -->
                                 <div class="mb-3">
                                     <label asp-for="FinalHoneyProductionDate" class="form-label required">
-                                        Production Date
+                                        @L["Production Date"]
                                     </label>
 
                                     <input asp-for="FinalHoneyProductionDate"
@@ -78,7 +78,7 @@
 
                                 <!-- Total (Readonly) -->
                                 <div class="mb-3">
-                                    <label class="form-label">Total Amount (kg)</label>
+                                    <label class="form-label">@L["Total Amount (kg)"]</label>
                                     <input value="@Model.FinalHoneyProductionTotalAmount?.ToString("0.00")"
                                            class="form-control"
                                            readonly />
@@ -88,13 +88,13 @@
 
                                     <button type="submit"
                                             class="btn btn-primary waves-effect waves-light">
-                                        Update Metadata
+                                        @L["Update Metadata"]
                                     </button>
 
                                     <a asp-action="ByWholesaler"
                                        asp-route-wholesalerId="@Model.FinalHoneyProductionWholesalerId"
                                        class="btn btn-secondary waves-effect">
-                                        Back
+                                        @L["Back"]
                                     </a>
 
                                 </div>

@@ -36,7 +36,7 @@
     {
         <div class="mt-3 text-muted small">
             <i class="mdi mdi-alert-outline me-1"></i>
-            No values were recorded for this control point.
+            @L["No values were recorded for this control point."]
         </div>
     }
     else
@@ -48,18 +48,18 @@
                     <div class="parameter-card">
                         <div class="param-name">
                             @row.ParameterName
-                            <a href="/honeystory/parameter/@row.ParameterId" class="ccp-help ms-1" target="_blank" title="What is this?">
+                            <a href="/honeystory/parameter/@row.ParameterId" class="ccp-help ms-1" target="_blank" title="@L["What is this?"]">
                                 <i class="mdi mdi-help-circle-outline"></i>
                             </a>
                         </div>
                         <div class="param-value">
                             @if (!row.Recorded)
                             {
-                                <span class="badge bg-light text-muted border">not recorded</span>
+                                <span class="badge bg-light text-muted border">@L["not recorded"]</span>
                             }
                             else if (row.IsFile)
                             {
-                                <span class="badge bg-info">document on file</span>
+                                <span class="badge bg-info">@L["document on file"]</span>
                             }
                             else if (row.NumericValue != null)
                             {
@@ -73,13 +73,13 @@
                             @if (row.Compliant == true)
                             {
                                 <span class="badge bg-success ms-1 ccp-compliance" title="Limit: @row.LimitText">
-                                    <i class="mdi mdi-check"></i> within limit
+                                    <i class="mdi mdi-check"></i> @L["within limit"]
                                 </span>
                             }
                             else if (row.Compliant == false)
                             {
                                 <span class="badge bg-danger ms-1 ccp-compliance" title="Limit: @row.LimitText">
-                                    <i class="mdi mdi-close"></i> outside limit
+                                    <i class="mdi mdi-close"></i> @L["outside limit"]
                                 </span>
                             }
                         </div>

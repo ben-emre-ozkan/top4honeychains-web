@@ -1,7 +1,7 @@
 ﻿@model TOP4HoneyChains.Web.Models.Entities.RawHoneyProductionPeriod
 
 @{
-    ViewData["Title"] = "Edit Production Period";
+    ViewData["Title"] = L["Edit Production Period"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 
@@ -16,9 +16,9 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">Edit Production Period</h4>
+                            <h4 class="card-title">@L["Edit Production Period"]</h4>
                             <p class="card-title-desc">
-                                Update the selected raw honey production period.
+                                @L["Update the selected raw honey production period."]
                             </p>
 
                             <form asp-action="Edit" class="custom-validation">
@@ -31,11 +31,11 @@
                                 <div class="mb-3">
                                     <label asp-for="RawHoneyProductionPeriodTitle"
                                            class="form-label required">
-                                        Period Title
+                                        @L["Period Title"]
                                     </label>
                                     <input asp-for="RawHoneyProductionPeriodTitle"
                                            class="form-control"
-                                           placeholder="Enter production period title" />
+                                           placeholder="@L["Enter production period title"]" />
                                     <span asp-validation-for="RawHoneyProductionPeriodTitle"
                                           class="text-danger"></span>
                                 </div>
@@ -44,7 +44,7 @@
                                 <div class="mb-3">
                                     <label asp-for="RawHoneyProductionPeriodStartDate"
                                            class="form-label required">
-                                        Start Date
+                                        @L["Start Date"]
                                     </label>
                                     <input asp-for="RawHoneyProductionPeriodStartDate"
                                            type="date"
@@ -57,7 +57,7 @@
                                 <div class="mb-3">
                                     <label asp-for="RawHoneyProductionPeriodEndDate"
                                            class="form-label required">
-                                        End Date
+                                        @L["End Date"]
                                     </label>
                                     <input asp-for="RawHoneyProductionPeriodEndDate"
                                            type="date"
@@ -71,12 +71,12 @@
 
                                     <button type="submit"
                                             class="btn btn-primary waves-effect waves-light">
-                                        Update
+                                        @L["Update"]
                                     </button>
 
                                     <a asp-action="Index"
                                        class="btn btn-secondary waves-effect">
-                                        Back to List
+                                        @L["Back to List"]
                                     </a>
 
                                 </div>

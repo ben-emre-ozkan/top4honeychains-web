@@ -1,6 +1,6 @@
 ﻿@model List<TOP4HoneyChains.Web.Controllers.RegistryRow>
 @{
-    ViewData["Title"] = "Beekeeper registry";
+    ViewData["Title"] = L["Beekeeper registry"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 
@@ -11,8 +11,7 @@
                 <div class="card-body">
                     <h4 class="card-title">@L["Reg.Title"]</h4>
                     <p class="card-title-desc">
-                        Beekeepers are records, not users: they never log in, and their association records data for them.
-                        The national registry (AKS) number is verified manually for now (document + approval).
+                        @L["Beekeepers are records, not users: they never log in, and their association records data for them. The national registry (AKS) number is verified manually for now (document + approval)."]
                     </p>
                     <div class="table-responsive"><table class="table table-sm table-bordered" id="registry-table">
                         <thead><tr><th>@L["Reg.BusinessNo"]</th><th>@L["Reg.Beekeeper"]</th><th>@L["Reg.RegistryNo"]</th><th>@L["Org.Status"]</th><th>@L["Reg.Association"]</th><th></th></tr></thead>

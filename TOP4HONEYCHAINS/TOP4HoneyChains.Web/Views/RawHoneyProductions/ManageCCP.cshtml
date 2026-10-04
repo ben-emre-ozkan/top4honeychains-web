@@ -2,7 +2,7 @@
 @model ManageRawHoneyCCPViewModel
 
 @{
-    ViewData["Title"] = "CCP Management";
+    ViewData["Title"] = L["CCP Management"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 
@@ -22,11 +22,11 @@
                         <div class="card-body">
 
                             <h4 class="card-title">
-                                CCP Assignment
+                                @L["CCP Assignment"]
                             </h4>
 
                             <p class="card-title-desc">
-                                Assign Critical Control Points to this Raw Honey Production.
+                                @L["Assign Critical Control Points to this Raw Honey Production."]
                             </p>
 
                             @if (Model.LockReason != null)
@@ -37,7 +37,7 @@
                             }
 
                             <div class="mb-4 p-3 bg-light rounded">
-                                <strong>Production Info:</strong><br />
+                                <strong>@L["Production Info:"]</strong><br />
                                 Amount: @Model.Production.RawHoneyProductionAmount kg <br />
                                 Date: @Model.Production.RawHoneyProductionDate?.ToString("dd.MM.yyyy")
                             </div>
@@ -103,14 +103,14 @@
                                     {
                                     <button type="submit"
                                             class="btn btn-success waves-effect waves-light">
-                                        Save Assignments
+                                        @L["Save Assignments"]
                                     </button>
                                     }
 
                                     <a asp-action="RawHoneyProductionByApiary"
                                        asp-route-id="@Model.Production.RawHoneyProductionApiaryId"
                                        class="btn btn-secondary waves-effect">
-                                        Back
+                                        @L["Back"]
                                     </a>
 
                                 </div>

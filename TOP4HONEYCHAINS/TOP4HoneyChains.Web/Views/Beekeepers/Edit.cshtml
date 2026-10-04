@@ -1,7 +1,7 @@
 ﻿@model TOP4HoneyChains.Web.Models.Entities.Beekeeper
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = L["Edit"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 <body data-topbar="light" data-layout="horizontal">
@@ -10,10 +10,10 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title">Edit Beekeeper</h4>
+                    <h4 class="card-title">@L["Edit Beekeeper"]</h4>
                     <a asp-action="Index"
                        class="btn btn-secondary waves-effect waves-light">
-                        Back to List
+                        @L["Back to List"]
                     </a>
 
                     <form asp-action="Edit" enctype="multipart/form-data">
@@ -32,85 +32,85 @@
 
                         <!-- Yeni Foto -->
                         <div class="mb-3">
-                            <label class="form-label">Change Profile Photo</label>
+                            <label class="form-label">@L["Change Profile Photo"]</label>
                             <input asp-for="ProfilePhotoFile" type="file" class="form-control" accept=".jpg,.jpeg,.png,.webp" />
-                            <small class="text-muted">Optional. JPG, PNG or WEBP, at most 8 MB. Leave empty to keep the current photo.</small>
+                            <small class="text-muted">@L["Optional. JPG, PNG or WEBP, at most 8 MB. Leave empty to keep the current photo."]</small>
                             <span asp-validation-for="ProfilePhotoFile" class="text-danger d-block"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="BeekeeperFirstName" class="form-label required">First Name</label>
+                            <label asp-for="BeekeeperFirstName" class="form-label required">@L["First Name"]</label>
                             <input asp-for="BeekeeperFirstName" class="form-control" />
                             <span asp-validation-for="BeekeeperFirstName" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="BeekeeperLastName" class="form-label required">Last Name</label>
+                            <label asp-for="BeekeeperLastName" class="form-label required">@L["Last Name"]</label>
                             <input asp-for="BeekeeperLastName" class="form-control" />
                             <span asp-validation-for="BeekeeperLastName" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="BeekeeperBirthDate" class="form-label required">Birth Date</label>
+                            <label asp-for="BeekeeperBirthDate" class="form-label required">@L["Birth Date"]</label>
                             <input asp-for="BeekeeperBirthDate" type="date" class="form-control" />
                             <span asp-validation-for="BeekeeperBirthDate" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="BeekeeperExperienceTime" class="form-label">Experience Time</label>
+                            <label asp-for="BeekeeperExperienceTime" class="form-label">@L["Experience Time"]</label>
                             <input asp-for="BeekeeperExperienceTime" type="number" class="form-control" />
                             <span asp-validation-for="BeekeeperExperienceTime" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="BeekeeperPhoneNumber" class="form-label">Phone Number</label>
+                            <label asp-for="BeekeeperPhoneNumber" class="form-label">@L["Phone Number"]</label>
                             <input asp-for="BeekeeperPhoneNumber" class="form-control" />
                             <span asp-validation-for="BeekeeperPhoneNumber" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="BeekeeperEducationLevelId" class="form-label">Education Level <span class="text-muted fw-normal">(optional)</span></label>
+                            <label asp-for="BeekeeperEducationLevelId" class="form-label">@L["Education Level"] <span class="text-muted fw-normal">@L["(optional)"]</span></label>
                             <select asp-for="BeekeeperEducationLevelId" class="form-select"
                                     asp-items="ViewBag.BeekeeperEducationLevelId">
-                                <option value="">Not specified</option>
+                                <option value="">@L["Not specified"]</option>
                             </select>
                             <span asp-validation-for="BeekeeperEducationLevelId" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="BeekeeperBeekeepingPurposeTypeId" class="form-label">Beekeeping Purpose Type <span class="text-muted fw-normal">(optional)</span></label>
+                            <label asp-for="BeekeeperBeekeepingPurposeTypeId" class="form-label">@L["Beekeeping Purpose Type"] <span class="text-muted fw-normal">@L["(optional)"]</span></label>
                             <select asp-for="BeekeeperBeekeepingPurposeTypeId" class="form-select"
                                     asp-items="ViewBag.BeekeeperBeekeepingPurposeTypeId">
-                                <option value="">Not specified</option>
+                                <option value="">@L["Not specified"]</option>
                             </select>
                             <span asp-validation-for="BeekeeperBeekeepingPurposeTypeId" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="BeekeeperBeekeepingTypeId" class="form-label">Beekeeping Type <span class="text-muted fw-normal">(optional)</span></label>
+                            <label asp-for="BeekeeperBeekeepingTypeId" class="form-label">@L["Beekeeping Type"] <span class="text-muted fw-normal">@L["(optional)"]</span></label>
                             <select asp-for="BeekeeperBeekeepingTypeId" class="form-select"
                                     asp-items="ViewBag.BeekeeperBeekeepingTypeId">
-                                <option value="">Not specified</option>
+                                <option value="">@L["Not specified"]</option>
                             </select>
                             <span asp-validation-for="BeekeeperBeekeepingTypeId" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label d-block">Status</label>
+                            <label class="form-label d-block">@L["Status"]</label>
                             @if (Model.IsActive)
                             {
-                                <span class="badge bg-success">Active</span>
+                                <span class="badge bg-success">@L["Active"]</span>
                             }
                             else
                             {
-                                <span class="badge bg-danger">Inactive</span>
+                                <span class="badge bg-danger">@L["Inactive"]</span>
                             }
                             <small class="text-muted ms-2" id="status-hint">
-                                Change the status with Deactivate / Activate in the beekeepers list (beekeepers do not sign in, so their login stays locked).
+                                @L["Change the status with Deactivate / Activate in the beekeepers list (beekeepers do not sign in, so their login stays locked)."]
                             </small>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="submit" class="btn btn-primary">@L["Update"]</button>
 
                     </form>
 

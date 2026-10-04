@@ -115,11 +115,11 @@
 
                     <div>
                         <h3 class="fw-bold mb-1">
-                            Honey Quality Parameter
+                            @L["Honey Quality Parameter"]
                         </h3>
 
                         <div class="opacity-75">
-                            Educational explanation
+                            @L["Educational explanation"]
                         </div>
                     </div>
 
@@ -156,7 +156,7 @@
                                     </span>
                                 }
                                 <small class="text-white-50 d-block mt-1">
-                                    Honey quality control parameter
+                                    @L["Honey quality control parameter"]
                                 </small>
 
 
@@ -171,7 +171,7 @@
                             @if (!string.IsNullOrEmpty(Model?.WhatIsIt))
                             {
                                 <p>
-                                    <strong>What is it?</strong><br>
+                                    <strong>@L["What is it?"]</strong><br>
                                     @Model.WhatIsIt
                                 </p>
                             }
@@ -179,7 +179,7 @@
                             @if (!string.IsNullOrEmpty(Model?.WhyImportant))
                             {
                                 <p>
-                                    <strong>Why it matters?</strong><br>
+                                    <strong>@L["Why it matters?"]</strong><br>
                                     @Model.WhyImportant
                                 </p>
                             }
@@ -187,7 +187,7 @@
                             @if (!string.IsNullOrEmpty(Model?.ExtraInfo))
                             {
                                 <p>
-                                    <strong>Additional Info</strong><br>
+                                    <strong>@L["Additional Info"]</strong><br>
                                     @Model.ExtraInfo
                                 </p>
                             }
@@ -195,7 +195,7 @@
                             @if (Model == null)
                             {
                                 <div class="alert alert-warning">
-                                    No information available for this parameter.
+                                    @L["No information available for this parameter."]
                                 </div>
                             }
 
@@ -220,7 +220,7 @@
                                 </div>
 
                                 <div class="text-white fw-bold">
-                                    Parameter Video
+                                    @L["Parameter Video"]
                                 </div>
                             </div>
 
@@ -232,7 +232,7 @@
                                 {
                                     <video controls preload="metadata"
                                            style="width:100%;border-radius:14px"
-                                           onerror="this.outerHTML='<div class=&quot;alert alert-warning&quot;>Video not found</div>'">
+                                           onerror="this.outerHTML='<div class=&quot;alert alert-warning&quot;>@L["Video not found"]</div>'">
 
                                         <source src="@Model.VideoPath" type="video/mp4">
 
@@ -241,14 +241,14 @@
                                 else
                                 {
                                     <div class="alert alert-warning">
-                                        Video not available for this parameter.
+                                        @L["Video not available for this parameter."]
                                     </div>
                                 }
 
                             </div>
 
                             <small class="text-muted d-block mt-2">
-                                ⏱ Quick explanation (30–60 sec)
+                                @L["⏱ Quick explanation (30–60 sec)"]
                             </small>
 
                         </div>
@@ -263,7 +263,7 @@
         <!-- FOOTER -->
         <div class="text-center text-muted mt-5 small">
             <i class="mdi mdi-shield-check-outline me-1"></i>
-            TOP4HoneyChains Educational Content
+            @L["TOP4HoneyChains Educational Content"]
         </div>
 
     </div>

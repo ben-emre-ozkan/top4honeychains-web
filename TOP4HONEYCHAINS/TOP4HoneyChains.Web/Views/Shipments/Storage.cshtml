@@ -40,8 +40,8 @@
                                             {
                                                 <select name="values[@p.ParameterId]" class="form-select form-select-sm" disabled="@(!canEnter)">
                                                     <option value=""></option>
-                                                    <option value="Yes" selected="@(v?.MeasuredTextValue == "Yes")">Yes</option>
-                                                    <option value="No" selected="@(v?.MeasuredTextValue == "No")">No</option>
+                                                    <option value="Yes" selected="@(v?.MeasuredTextValue == "Yes")">@L["Yes"]</option>
+                                                    <option value="No" selected="@(v?.MeasuredTextValue == "No")">@L["No"]</option>
                                                 </select>
                                             }
                                             else

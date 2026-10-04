@@ -71,7 +71,7 @@
                                     <input type="file" name="reportFile" id="reportFile" class="form-control" accept=".pdf" />
                                     @if (Model?.Sha256 != null)
                                     {
-                                        <div class="small mt-1"><a asp-action="Pdf" asp-route-id="@sample.SampleId" target="_blank">@Model.OriginalFileName</a> · SHA-256 <code id="report-sha">@Model.Sha256</code></div>
+                                        <div class="small mt-1"><a asp-action="Pdf" asp-route-id="@sample.SampleId" target="_blank">@Model.OriginalFileName</a> @L["· SHA-256"] <code id="report-sha">@Model.Sha256</code></div>
                                     }
                                 </div>
                             </div>

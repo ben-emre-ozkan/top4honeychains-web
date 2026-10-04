@@ -1,7 +1,7 @@
 ﻿@model List<TOP4HoneyChains.Web.Models.Entities.ApiaryPhoto>
 
 @{
-    ViewData["Title"] = "Apiary Photos";
+    ViewData["Title"] = L["Apiary Photos"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 <body data-topbar="light" data-layout="horizontal">
@@ -18,23 +18,23 @@
 
                                 <div>
                                     <h4 class="mb-1">
-                                        Apiary Photo Management
+                                        @L["Apiary Photo Management"]
                                     </h4>
 
                                     <div class="mt-2">
 
                                         <span class="me-4">
-                                            <strong>Beekeeper:</strong>
+                                            <strong>@L["Beekeeper:"]</strong>
                                             @ViewBag.BeekeeperName
                                         </span>
 
                                         <span class="me-4">
-                                            <strong>Apiary:</strong>
+                                            <strong>@L["Apiary:"]</strong>
                                             @ViewBag.ApiaryTitle
                                         </span>
 
                                         <span>
-                                            <strong>Season:</strong>
+                                            <strong>@L["Season:"]</strong>
                                             @ViewBag.PeriodTitle
                                         </span>
 
@@ -46,7 +46,7 @@
                                        asp-action="RawHoneyProductionByApiary"
                                        asp-route-id="@ViewBag.ApiaryId"
                                        class="btn btn-light btn-sm">
-                                        <i class="mdi mdi-arrow-left"></i> Back
+                                        <i class="mdi mdi-arrow-left"></i> @L["Back"]
                                     </a>
                                 </div>
 
@@ -66,7 +66,7 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">Upload Photo</h4>
+                            <h4 class="card-title">@L["Upload Photo"]</h4>
 
                             <form asp-controller="ApiaryPhotos"
                                   asp-action="UploadSingle"
@@ -79,17 +79,17 @@
                                 <input type="hidden" name="periodId" value="@ViewBag.PeriodId" />
 
                                 <div class="mb-3">
-                                    <label class="form-label">Photo</label>
+                                    <label class="form-label">@L["Photo"]</label>
                                     <input class="form-control"
                                            type="file"
                                            name="file"
                                            accept=".jpg,.jpeg,.png,.webp"
                                            required />
-                                    <small class="text-muted">JPG, PNG or WEBP, at most 8 MB.</small>
+                                    <small class="text-muted">@L["JPG, PNG or WEBP, at most 8 MB."]</small>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label">Description</label>
+                                    <label class="form-label">@L["Description"]</label>
                                     <textarea class="form-control"
                                               name="desc"
                                               rows="4"
@@ -99,7 +99,7 @@
                                 <div class="text-end">
                                     <button type="submit"
                                             class="btn btn-primary">
-                                        Upload
+                                        @L["Upload"]
                                     </button>
                                 </div>
 
@@ -115,7 +115,7 @@
                         <div class="card mt-3">
                             <div class="card-body">
 
-                                <h5 class="card-title mb-3">Uploaded Photos</h5>
+                                <h5 class="card-title mb-3">@L["Uploaded Photos"]</h5>
 
                                 <div class="table-responsive">
                                     <table class="table table-hover table-striped mb-0">
@@ -123,10 +123,10 @@
                                         <thead class="table-light">
                                             <tr>
                                                 <th style="width:80px;">#</th>
-                                                <th style="width:90px;">Preview</th>
-                                                <th>File Name</th>
-                                                <th>Description</th>
-                                                <th style="width:100px;">Action</th>
+                                                <th style="width:90px;">@L["Preview"]</th>
+                                                <th>@L["File Name"]</th>
+                                                <th>@L["Description"]</th>
+                                                <th style="width:100px;">@L["Action"]</th>
                                             </tr>
                                         </thead>
 
@@ -192,12 +192,12 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">Photos</h4>
+                            <h4 class="card-title">@L["Photos"]</h4>
 
                             @if (Model == null || Model.Count == 0)
                             {
                                 <div class="alert alert-warning">
-                                    No photos uploaded yet.
+                                    @L["No photos uploaded yet."]
                                 </div>
                             }
                             else

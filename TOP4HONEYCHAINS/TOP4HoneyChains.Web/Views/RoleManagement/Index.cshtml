@@ -2,7 +2,7 @@
 @model IEnumerable<IdentityRole>
 
 @{
-    ViewData["Title"] = "Role Management";
+    ViewData["Title"] = L["Role Management"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 
@@ -26,7 +26,7 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">Roles</h4>
+                            <h4 class="card-title">@L["Roles"]</h4>
 
                             <p class="card-title-desc">
 
@@ -35,7 +35,7 @@
                                         data-bs-target="#createRoleModal">
 
                                     <i class="mdi mdi-plus"></i>
-                                    Add Role
+                                    @L["Add Role"]
 
                                 </button>
 
@@ -49,8 +49,8 @@
 
                                     <tr>
 
-                                        <th>Role Name</th>
-                                        <th width="200">Actions</th>
+                                        <th>@L["Role Name"]</th>
+                                        <th width="200">@L["Actions"]</th>
 
                                     </tr>
 
@@ -80,14 +80,14 @@
                                                             data-id="@role.Id"
                                                             data-name="@role.Name">
 
-                                                        Edit
+                                                        @L["Edit"]
 
                                                     </button>
 
                                                     <button class="btn btn-sm btn-danger"
                                                             onclick="deleteRole('@role.Id')">
 
-                                                        Delete
+                                                        @L["Delete"]
 
                                                     </button>
 
@@ -122,7 +122,7 @@
 
                     <div class="modal-header">
 
-                        <h5 class="modal-title">Create Role</h5>
+                        <h5 class="modal-title">@L["Create Role"]</h5>
 
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 
@@ -132,7 +132,7 @@
 
                         <div class="mb-3">
 
-                            <label class="form-label">Role Name</label>
+                            <label class="form-label">@L["Role Name"]</label>
 
                             <input type="text"
                                    name="roleName"
@@ -149,14 +149,14 @@
                                 class="btn btn-light"
                                 data-bs-dismiss="modal">
 
-                            Cancel
+                            @L["Cancel"]
 
                         </button>
 
                         <button type="submit"
                                 class="btn btn-primary">
 
-                            Create
+                            @L["Create"]
 
                         </button>
 
@@ -180,7 +180,7 @@
 
                     <div class="modal-header">
 
-                        <h5 class="modal-title">Edit Role</h5>
+                        <h5 class="modal-title">@L["Edit Role"]</h5>
 
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 
@@ -192,7 +192,7 @@
 
                         <div class="mb-3">
 
-                            <label class="form-label">Role Name</label>
+                            <label class="form-label">@L["Role Name"]</label>
 
                             <input type="text"
                                    name="roleName"
@@ -210,14 +210,14 @@
                                 class="btn btn-light"
                                 data-bs-dismiss="modal">
 
-                            Cancel
+                            @L["Cancel"]
 
                         </button>
 
                         <button type="submit"
                                 class="btn btn-primary">
 
-                            Update
+                            @L["Update"]
 
                         </button>
 

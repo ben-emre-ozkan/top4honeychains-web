@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<TOP4HoneyChains.Web.Models.Entities.FinalHoneyProduction>
 
 @{
-    ViewData["Title"] = "Final Honey Productions";
+    ViewData["Title"] = L["Final Honey Productions"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
     var completedIds = ViewBag.CompletedIds as HashSet<int> ?? new HashSet<int>();
 }
@@ -28,10 +28,10 @@
 
                                 <div>
                                     <h4 class="card-title mb-1">
-                                        Final Honey Productions
+                                        @L["Final Honey Productions"]
                                     </h4>
                                     <p class="text-muted mb-0">
-                                        Manage blended honey batches and CCP traceability records.
+                                        @L["Manage blended honey batches and CCP traceability records."]
                                     </p>
                                 </div>
 
@@ -43,11 +43,11 @@
 
                                 <thead class="table-dark">
                                     <tr>
-                                        <th>Batch Title</th>
-                                        <th>QR Code</th>
-                                        <th>Production Date</th>
-                                        <th>Total Amount (kg)</th>
-                                        <th>Overview</th>
+                                        <th>@L["Batch Title"]</th>
+                                        <th>@L["QR Code"]</th>
+                                        <th>@L["Production Date"]</th>
+                                        <th>@L["Total Amount (kg)"]</th>
+                                        <th>@L["Overview"]</th>
                                     </tr>
                                 </thead>
 
@@ -97,7 +97,7 @@
                                                    asp-route-id="@item.FinalHoneyProductionId"
                                                    class="btn btn-primary btn-sm waves-effect waves-light">
                                                     <i class="mdi mdi-timeline-clock-outline me-1"></i>
-                                                    CCP Overview
+                                                    @L["CCP Overview"]
                                                 </a>
                                                 @if (completedIds.Contains(item.FinalHoneyProductionId))
                                                 {

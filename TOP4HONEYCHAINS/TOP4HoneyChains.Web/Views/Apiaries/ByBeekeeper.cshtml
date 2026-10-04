@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<TOP4HoneyChains.Web.Models.Entities.Apiary>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = L["Index"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 
@@ -33,13 +33,13 @@
                                 <a asp-controller="Beekeepers"
                                    asp-action="Index"
                                    class="btn btn-secondary waves-effect waves-light">
-                                    Back to Beekeepers
+                                    @L["Back to Beekeepers"]
                                 </a>
 
                                 <a asp-action="Create"
                                    asp-route-beekeeperId="@ViewBag.BeekeeperId"
                                    class="btn btn-primary waves-effect waves-light">
-                                    Add new Apiary
+                                    @L["Add new Apiary"]
                                 </a>
 
                                 <table id="datatable-buttons"
@@ -48,12 +48,12 @@
 
                                     <thead>
                                         <tr>
-                                            <th>Title</th>
-                                            <th>Beehives Count</th>
-                                            <th>Latitude</th>
-                                            <th>Longitude</th>
-                                            <th>QR Code</th>
-                                            <th>Status</th>
+                                            <th>@L["Title"]</th>
+                                            <th>@L["Beehives Count"]</th>
+                                            <th>@L["Latitude"]</th>
+                                            <th>@L["Longitude"]</th>
+                                            <th>@L["QR Code"]</th>
+                                            <th>@L["Status"]</th>
                                             <th>Buttons</th>
                                         </tr>
                                     </thead>
@@ -75,11 +75,11 @@
                                                 <td>
                                                     @if (item.ApiaryIsActive)
                                                     {
-                                                        <span class="badge bg-success">Active</span>
+                                                        <span class="badge bg-success">@L["Active"]</span>
                                                     }
                                                     else
                                                     {
-                                                        <span class="badge bg-danger">Inactive</span>
+                                                        <span class="badge bg-danger">@L["Inactive"]</span>
                                                     }
                                                 </td>
 
@@ -89,7 +89,7 @@
                                                         <a asp-action="Edit"
                                                            asp-route-id="@item.ApiaryId"
                                                            class="btn btn-sm btn-info">
-                                                            Edit
+                                                            @L["Edit"]
                                                         </a>
 
                                                         @if (item.ApiaryIsActive)
@@ -98,7 +98,7 @@
                                                                   onsubmit="return confirm('Deactivate this apiary? Photos and honey productions are kept. Apiaries are never deleted.');">
                                                                 <button type="submit" class="btn btn-sm btn-warning"
                                                                         title="Keeps photos and honey productions; greys out the apiary. Apiaries are never deleted.">
-                                                                    Deactivate
+                                                                    @L["Deactivate"]
                                                                 </button>
                                                             </form>
                                                         }
@@ -107,8 +107,8 @@
                                                             <form asp-action="Activate" asp-route-id="@item.ApiaryId" method="post" class="d-inline"
                                                                   onsubmit="return confirm('Activate this apiary again?');">
                                                                 <button type="submit" class="btn btn-sm btn-success"
-                                                                        title="Makes the apiary active again.">
-                                                                    Activate
+                                                                        title="@L["Makes the apiary active again."]">
+                                                                    @L["Activate"]
                                                                 </button>
                                                             </form>
                                                         }

@@ -29,15 +29,15 @@
                                 @foreach (var e in entities) { <option value="@e" selected="@(e == (string?)f.entity)">@e</option> }
                             </select>
                         </div>
-                        <div class="col-md-2"><input name="act" value="@f.act" class="form-control" placeholder="action" /></div>
+                        <div class="col-md-2"><input name="act" value="@f.act" class="form-control" placeholder="@L["action"]" /></div>
                         <div class="col-md-3"><input name="user" value="@f.user" class="form-control" placeholder="@L["Org.UserName"]" /></div>
-                        <div class="col-md-2"><input name="flag" value="@f.flag" class="form-control" placeholder="flag, e.g. SelfApproved" /></div>
+                        <div class="col-md-2"><input name="flag" value="@f.flag" class="form-control" placeholder="@L["flag, e.g. SelfApproved"]" /></div>
                         <div class="col-md-2"><button type="submit" class="btn btn-secondary w-100">@L["Audit.Filter"]</button></div>
                     </form>
 
                     <div class="small text-muted mb-1">@total rows</div>
                     <div class="table-responsive"><table class="table table-sm table-bordered small" id="audit-table">
-                        <thead><tr><th>#</th><th>UTC</th><th>@L["Org.User"]</th><th>@L["Org.OrgRole"]</th><th>@L["Audit.Action"]</th><th>@L["Audit.Entity"]</th><th>@L["Audit.Key"]</th><th>@L["Audit.Flags"]</th><th>@L["Audit.Old"]</th><th>@L["Audit.New"]</th><th>Hash</th></tr></thead>
+                        <thead><tr><th>#</th><th>UTC</th><th>@L["Org.User"]</th><th>@L["Org.OrgRole"]</th><th>@L["Audit.Action"]</th><th>@L["Audit.Entity"]</th><th>@L["Audit.Key"]</th><th>@L["Audit.Flags"]</th><th>@L["Audit.Old"]</th><th>@L["Audit.New"]</th><th>@L["Hash"]</th></tr></thead>
                         <tbody>
                             @foreach (var a in Model)
                             {

@@ -331,7 +331,7 @@
                         </div>
 
                         <div class="small mt-2 opacity-75">
-                            Scan to verify authenticity
+                            @L["Scan to verify authenticity"]
                         </div>
 
                     </div>
@@ -346,7 +346,7 @@
                         </h2>
 
                         <div class="opacity-75 mb-3">
-                            Verified source & quality information
+                            @L["Verified source & quality information"]
                         </div>
                         @if (Model.Badges != null)
                         {
@@ -359,7 +359,7 @@
 
                             <div class="col-md-4">
                                 <div class="metric-pill">
-                                    <div class="opacity-75">Wholesaler</div>
+                                    <div class="opacity-75">@L["Wholesaler"]</div>
 
                                     <div class="value"
                                          title="@Model.WholesalerName">
@@ -372,7 +372,7 @@
 
                             <div class="col-md-4">
                                 <div class="metric-pill">
-                                    <div class="opacity-75">Production</div>
+                                    <div class="opacity-75">@L["Production"]</div>
 
                                     <div class="value">
                                         @(Model.ProductionDate?.ToString("dd MMM yyyy", tr) ?? "-")
@@ -384,7 +384,7 @@
 
                             <div class="col-md-4">
                                 <div class="metric-pill">
-                                    <div class="opacity-75">Apiaries</div>
+                                    <div class="opacity-75">@L["Apiaries"]</div>
 
                                     <div class="value">
                                         @Model.RawSources.Count
@@ -406,7 +406,7 @@
                         </div>
 
                         <div class="opacity-75">
-                            Total Batch Amount
+                            @L["Total Batch Amount"]
                         </div>
 
 
@@ -416,7 +416,7 @@
 
                                 <i class="mdi mdi-certificate-outline me-1"></i>
 
-                                Traceable Product
+                                @L["Traceable Product"]
 
                             </span>
 
@@ -461,11 +461,11 @@
 
                                 <div>
                                     <h5 class="mb-0 fw-bold text-white">
-                                        Beekeeper Contribution Breakdown
+                                        @L["Beekeeper Contribution Breakdown"]
                                     </h5>
 
                                     <div class="small text-white opacity-75">
-                                        Percentage share of honey supplied by each beekeeper in this batch
+                                        @L["Percentage share of honey supplied by each beekeeper in this batch"]
                                     </div>
                                 </div>
 
@@ -572,11 +572,11 @@
 
                                 <div>
                                     <h5 class="mb-0 fw-bold text-white">
-                                        Honey Origins Map
+                                        @L["Honey Origins Map"]
                                     </h5>
 
                                     <div class="small text-white opacity-75">
-                                        Geographic locations of apiaries contributing to this batch
+                                        @L["Geographic locations of apiaries contributing to this batch"]
                                     </div>
                                 </div>
 
@@ -591,7 +591,7 @@
 
                         <hr class="section-divider">
 
-                        <p class="small text-muted mb-2" id="approximate-location-note"><i class="mdi mdi-information-outline me-1"></i>Apiary locations are shown approximately (about 10 km) to protect the beekeepers' privacy.</p>
+                        <p class="small text-muted mb-2" id="approximate-location-note"><i class="mdi mdi-information-outline me-1"></i>@L["Apiary locations are shown approximately (about 10 km) to protect the beekeepers' privacy."]</p>
                         <div id="apiary-map"
                              style="height:450px;border-radius:14px;">
                         </div>
@@ -637,7 +637,7 @@
 
                                         <div class="small text-white opacity-75">
                                             <i class="mdi mdi-account-outline me-1"></i>
-                                            Beekeeper: <strong>@source.BeekeeperName</strong>
+                                            @L["Beekeeper:"] <strong>@source.BeekeeperName</strong>
                                             @if (source.StorefrontCode != null)
                                             {
                                                 <a href="/storefront/@source.StorefrontCode" class="badge bg-light text-dark ms-1 storefront-link">@L["P5.BeekeeperPage"]</a>
@@ -651,7 +651,7 @@
                                 <!-- BADGE -->
                                 <span class="badge bg-light text-success px-3 py-2">
                                     <i class="mdi mdi-map-marker-radius me-1"></i>
-                                    Apiary Source
+                                    @L["Apiary Source"]
                                 </span>
 
                             </div>
@@ -663,7 +663,7 @@
 
                                 <div class="col-md-4">
 
-                                    <div class="small opacity-75">Honey Type</div>
+                                    <div class="small opacity-75">@L["Honey Type"]</div>
 
                                     <div class="fw-semibold">
                                         <span class="badge bg-light text-dark border px-3 py-2">
@@ -676,7 +676,7 @@
 
                                 <div class="col-md-4">
 
-                                    <div class="small opacity-75">Used Amount</div>
+                                    <div class="small opacity-75">@L["Used Amount"]</div>
 
                                     <div class="fw-bold fs-5">
                                         @source.UsedAmount.ToString("N2", tr) kg
@@ -686,7 +686,7 @@
 
                                 <div class="col-md-4">
 
-                                    <div class="small opacity-75">Contribution</div>
+                                    <div class="small opacity-75">@L["Contribution"]</div>
 
                                     @{
                                         var percent = Model.TotalAmount > 0
@@ -722,11 +722,11 @@
                                     <div>
 
                                         <h5 class="mb-0 fw-bold text-white">
-                                            Apiary Evidence Photos
+                                            @L["Apiary Evidence Photos"]
                                         </h5>
 
                                         <div class="small text-white opacity-75">
-                                            Photographic documentation from the apiary during honey collection
+                                            @L["Photographic documentation from the apiary during honey collection"]
                                         </div>
 
                                     </div>
@@ -743,7 +743,7 @@
 
                             @if (source.Photos == null || source.Photos.Count == 0)
                             {
-                                <div class="alert alert-warning">No photos uploaded.</div>
+                                <div class="alert alert-warning">@L["No photos uploaded."]</div>
                             }
                             else
                             {
@@ -802,11 +802,11 @@
                                     <div>
 
                                         <h5 class="mb-0 fw-bold text-white">
-                                            Raw Honey Quality Control
+                                            @L["Raw Honey Quality Control"]
                                         </h5>
 
                                         <div class="small text-white opacity-75">
-                                            Laboratory analysis performed during raw honey acceptance
+                                            @L["Laboratory analysis performed during raw honey acceptance"]
                                         </div>
 
                                     </div>
@@ -833,7 +833,7 @@
                         <div class="card-body pt-0">
                             @if (acceptance == null || acceptance.State == HoneyStoryCcpBlock.NotRecorded)
                             {
-                                <div class="text-muted small ccp-not-recorded"><i class="mdi mdi-alert-outline me-1"></i> Not recorded.</div>
+                                <div class="text-muted small ccp-not-recorded"><i class="mdi mdi-alert-outline me-1"></i> @L["Not recorded."]</div>
                             }
                             else if (acceptance.State == HoneyStoryCcpBlock.NotApplicable)
                             {
@@ -861,11 +861,11 @@
                                                     @value
                                                     @if (row.Compliant == true)
                                                     {
-                                                        <span class="badge bg-success ms-1 ccp-compliance" title="Limit: @row.LimitText">within limit</span>
+                                                        <span class="badge bg-success ms-1 ccp-compliance" title="Limit: @row.LimitText">@L["within limit"]</span>
                                                     }
                                                     else if (row.Compliant == false)
                                                     {
-                                                        <span class="badge bg-danger ms-1 ccp-compliance" title="Limit: @row.LimitText">outside limit</span>
+                                                        <span class="badge bg-danger ms-1 ccp-compliance" title="Limit: @row.LimitText">@L["outside limit"]</span>
                                                     }
                                                 </div>
                                                 @if (row.MeasurementDate != null)
@@ -882,7 +882,7 @@
                             }
                             <div class="small text-muted mt-2">
                                 Quality control points recorded for this honey: @recordedChecks of @source.CcpBlocks.Count
-                                (<a href="/honeystory/details/@Model.BatchQR">full traceability</a>)
+                                (<a href="/honeystory/details/@Model.BatchQR">@L["full traceability"]</a>)
                             </div>
                         </div>
 
@@ -897,7 +897,7 @@
 
         <div class="text-center text-muted mt-5 small">
             <i class="mdi mdi-shield-check-outline me-1"></i>
-            Verified by <strong>TOP4HoneyChains Traceability System</strong>
+            @L["Verified by"] <strong>@L["TOP4HoneyChains Traceability System"]</strong>
         </div>
 
     </div>

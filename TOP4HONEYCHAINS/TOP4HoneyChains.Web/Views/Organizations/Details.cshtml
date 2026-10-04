@@ -22,7 +22,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-start">
                         <div>
-                            <h4 class="card-title mb-1">@Model.DisplayName @if (Model.IsPlatform) { <span class="badge bg-dark">platform</span> }</h4>
+                            <h4 class="card-title mb-1">@Model.DisplayName @if (Model.IsPlatform) { <span class="badge bg-dark">@L["platform"]</span> }</h4>
                             <div class="text-muted small">
                                 @Model.LegalName @(Model.TaxNo != null ? " · Tax no. " + Model.TaxNo : "") @(Model.Province != null ? " · " + Model.Province : "") @(Model.District != null ? " / " + Model.District : "")
                                 @if (Model.LegacyWholesaler != null) { <span> · created from the wholesaler record "@Model.LegacyWholesaler.WholesalerTitle"</span> }
@@ -172,8 +172,7 @@
                         <div class="card-body">
                             <h5 class="card-title">@L["Org.FourEyesExemption"]</h5>
                             <p class="small text-muted mb-2">
-                                With the exemption, a member may approve a CCP record they recorded themselves (e.g. a one-person association).
-                                Every such approval is flagged <code>SelfApproved</code> in the audit log. It never applies to lab results. Set only by platform administrators.
+                                @L["With the exemption, a member may approve a CCP record they recorded themselves (e.g. a one-person association). Every such approval is flagged"] <code>SelfApproved</code> @L["in the audit log. It never applies to lab results. Set only by platform administrators."]
                             </p>
                             <div>@L["Org.Current"] <strong id="four-eyes">@(Model.FourEyesExempt ? "exempt" : "not exempt")</strong></div>
                             @if (isAdmin)

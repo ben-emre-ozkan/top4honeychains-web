@@ -1,7 +1,7 @@
 ﻿@model TOP4HoneyChains.Web.Models.Entities.CriticalControlPoint
 
 @{
-    ViewData["Title"] = "Edit Critical Control Point";
+    ViewData["Title"] = L["Edit Critical Control Point"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 
@@ -16,9 +16,9 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">Edit Critical Control Point</h4>
+                            <h4 class="card-title">@L["Edit Critical Control Point"]</h4>
                             <p class="card-title-desc">
-                                Update the details of the selected CCP.
+                                @L["Update the details of the selected CCP."]
                             </p>
 
                             <form asp-action="Edit" class="custom-validation">
@@ -30,12 +30,12 @@
                                 <!-- Processing Step -->
                                 <div class="mb-3">
                                     <label asp-for="ProcessingStep" class="form-label required">
-                                        Processing Step
+                                        @L["Processing Step"]
                                     </label>
 
                                     <input asp-for="ProcessingStep"
                                            class="form-control"
-                                           placeholder="Enter processing step" />
+                                           placeholder="@L["Enter processing step"]" />
 
                                     <span asp-validation-for="ProcessingStep" class="text-danger"></span>
                                 </div>
@@ -43,12 +43,12 @@
                                 <!-- Code -->
                                 <div class="mb-3">
                                     <label asp-for="Code" class="form-label required">
-                                        CCP Code
+                                        @L["CCP Code"]
                                     </label>
 
                                     <input asp-for="Code"
                                            class="form-control"
-                                           placeholder="Enter CCP Code"
+                                           placeholder="@L["Enter CCP Code"]"
                                            readonly />
 
                                     <span asp-validation-for="Code" class="text-danger"></span>
@@ -57,15 +57,15 @@
                                 <!-- Applies to (D-17) -->
                                 <div class="mb-3">
                                     <label asp-for="AppliesTo" class="form-label required">
-                                        Applies to
+                                        @L["Applies to"]
                                     </label>
 
                                     <select asp-for="AppliesTo" class="form-select">
-                                        <option value="">-- Select --</option>
-                                        <option value="RawLot">Raw honey lot</option>
-                                        <option value="Batch">Final batch</option>
+                                        <option value="">@L["-- Select --"]</option>
+                                        <option value="RawLot">@L["Raw honey lot"]</option>
+                                        <option value="Batch">@L["Final batch"]</option>
                                     </select>
-                                    <small class="text-muted">Only lots or batches of this kind are offered this CCP.</small>
+                                    <small class="text-muted">@L["Only lots or batches of this kind are offered this CCP."]</small>
 
                                     <span asp-validation-for="AppliesTo" class="text-danger"></span>
                                 </div>
@@ -73,19 +73,19 @@
                                 <!-- Public text values (D-20) -->
                                 <div class="mb-3 form-check">
                                     <input asp-for="PublicTextValues" class="form-check-input" />
-                                    <label asp-for="PublicTextValues" class="form-check-label">Show free-text values on the public Honey Story page</label>
+                                    <label asp-for="PublicTextValues" class="form-check-label">@L["Show free-text values on the public Honey Story page"]</label>
                                     <div><small class="text-muted">Leave off when answers may contain personal data or locations (e.g. a field audit at the beekeeper). Yes/No and numbers are always shown; files never.</small></div>
                                 </div>
 
                                 <!-- Title -->
                                 <div class="mb-3">
                                     <label asp-for="Title" class="form-label">
-                                        Title
+                                        @L["Title"]
                                     </label>
 
                                     <input asp-for="Title"
                                            class="form-control"
-                                           placeholder="Enter title" />
+                                           placeholder="@L["Enter title"]" />
 
                                     <span asp-validation-for="Title" class="text-danger"></span>
                                 </div>
@@ -93,13 +93,13 @@
                                 <!-- Criticality Justification -->
                                 <div class="mb-3">
                                     <label asp-for="CriticalityJustification" class="form-label">
-                                        Criticality Justification
+                                        @L["Criticality Justification"]
                                     </label>
 
                                     <textarea asp-for="CriticalityJustification"
                                               class="form-control"
                                               rows="4"
-                                              placeholder="Explain why this step is critical..."></textarea>
+                                              placeholder="@L["Explain why this step is critical..."]"></textarea>
 
                                     <span asp-validation-for="CriticalityJustification" class="text-danger"></span>
                                 </div>
@@ -109,12 +109,12 @@
 
                                     <button type="submit"
                                             class="btn btn-primary waves-effect waves-light">
-                                        Update
+                                        @L["Update"]
                                     </button>
 
                                     <a asp-action="Index"
                                        class="btn btn-secondary waves-effect">
-                                        Back to List
+                                        @L["Back to List"]
                                     </a>
 
                                 </div>

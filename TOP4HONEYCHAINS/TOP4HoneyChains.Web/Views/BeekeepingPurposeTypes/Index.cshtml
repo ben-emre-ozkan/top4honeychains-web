@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<TOP4HoneyChains.Web.Models.Entities.BeekeepingPurposeType>
 
 @{
-    ViewData["Title"] = "Beekeeping Purpose Types";
+    ViewData["Title"] = L["Beekeeping Purpose Types"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 
@@ -25,11 +25,11 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">Beekeeping Purpose Types</h4>
+                            <h4 class="card-title">@L["Beekeeping Purpose Types"]</h4>
                             <p class="card-title-desc">
                                 <a asp-action="Create"
                                    class="btn btn-primary waves-effect waves-light">
-                                    Add New
+                                    @L["Add New"]
                                 </a>
                             </p>
 
@@ -39,8 +39,8 @@
 
                                 <thead>
                                     <tr>
-                                        <th>Purpose Title</th>
-                                        <th>Actions</th>
+                                        <th>@L["Purpose Title"]</th>
+                                        <th>@L["Actions"]</th>
                                     </tr>
                                 </thead>
 
@@ -58,13 +58,13 @@
                                                     <a asp-action="Edit"
                                                        asp-route-id="@item.BeekeepingPurposeTypeId"
                                                        class="btn btn-sm btn-info w-100">
-                                                        Edit
+                                                        @L["Edit"]
                                                     </a>
 
                                                     <a asp-action="Delete"
                                                        asp-route-id="@item.BeekeepingPurposeTypeId"
                                                        class="btn btn-sm btn-danger w-100">
-                                                        Delete
+                                                        @L["Delete"]
                                                     </a>
 
                                                 </div>

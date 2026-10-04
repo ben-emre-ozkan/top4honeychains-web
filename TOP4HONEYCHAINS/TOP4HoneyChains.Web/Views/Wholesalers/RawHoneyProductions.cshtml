@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<TOP4HoneyChains.Web.Models.Entities.RawHoneyProduction>
 
 @{
-    ViewData["Title"] = "Raw Honey Batches";
+    ViewData["Title"] = L["Raw Honey Batches"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
     var wholesaler = ViewBag.Wholesaler as TOP4HoneyChains.Web.Models.Entities.Wholesaler;
 
@@ -43,7 +43,7 @@
                                     </h3>
 
                                     <div class="text-light opacity-75">
-                                        Raw Honey Production Monitoring Panel
+                                        @L["Raw Honey Production Monitoring Panel"]
                                     </div>
                                 </div>
 
@@ -54,7 +54,7 @@
 
                                         <div>
                                             <div class="small text-light opacity-75">
-                                                City
+                                                @L["City"]
                                             </div>
                                             <div class="fw-semibold">
                                                 @wholesaler?.WholesalerCity
@@ -63,7 +63,7 @@
 
                                         <div>
                                             <div class="small text-light opacity-75">
-                                                Contact Person
+                                                @L["Contact Person"]
                                             </div>
                                             <div class="fw-semibold">
                                                 @wholesaler?.WholesalerContactName
@@ -72,7 +72,7 @@
 
                                         <div>
                                             <div class="small text-light opacity-75">
-                                                Email
+                                                @L["Email"]
                                             </div>
                                             <div class="fw-semibold">
                                                 @wholesaler?.WholesalerEmail
@@ -97,7 +97,7 @@
                 <div class="col-md-3">
                     <div class="card shadow-sm">
                         <div class="card-body text-center">
-                            <h6 class="text-muted">Total Batches</h6>
+                            <h6 class="text-muted">@L["Total Batches"]</h6>
                             <h3 class="fw-bold">@totalProductions</h3>
                         </div>
                     </div>
@@ -106,7 +106,7 @@
                 <div class="col-md-3">
                     <div class="card shadow-sm">
                         <div class="card-body text-center">
-                            <h6 class="text-muted">Total Raw Honey</h6>
+                            <h6 class="text-muted">@L["Total Raw Honey"]</h6>
                             <h3 class="fw-bold">@string.Format("{0:N2}", totalRawHoneyStock) kg</h3>
                         </div>
                     </div>
@@ -115,7 +115,7 @@
                 <div class="col-md-3">
                     <div class="card shadow-sm">
                         <div class="card-body text-center">
-                            <h6 class="text-muted">Fully Completed</h6>
+                            <h6 class="text-muted">@L["Fully Completed"]</h6>
                             <h3 class="fw-bold text-success">@fullyCompletedCount</h3>
                         </div>
                     </div>
@@ -124,7 +124,7 @@
                 <div class="col-md-3">
                     <div class="card shadow-sm">
                         <div class="card-body text-center">
-                            <h6 class="text-muted">Missing CCP</h6>
+                            <h6 class="text-muted">@L["Missing CCP"]</h6>
                             <h3 class="fw-bold text-danger">@missingCcpCount</h3>
                         </div>
                     </div>
@@ -137,7 +137,7 @@
                     <div class="card shadow-sm">
                         <div class="card-body">
 
-                            <h4 class="card-title mb-4">Assigned Raw Honey Productions</h4>
+                            <h4 class="card-title mb-4">@L["Assigned Raw Honey Productions"]</h4>
 
                             <table id="datatable"
                                    class="table table-bordered table-hover dt-responsive nowrap"
@@ -146,12 +146,12 @@
                                 <thead class="table-dark">
                                     <tr>
                                         <th>ID</th>
-                                        <th>Apiary</th>
-                                        <th>Period</th>
-                                        <th>Honey Type</th>
-                                        <th>Amount (kg)</th>
-                                        <th>Date</th>
-                                        <th style="min-width:220px;">CCP Progress</th>
+                                        <th>@L["Apiary"]</th>
+                                        <th>@L["Period"]</th>
+                                        <th>@L["Honey Type"]</th>
+                                        <th>@L["Amount (kg)"]</th>
+                                        <th>@L["Date"]</th>
+                                        <th style="min-width:220px;">@L["CCP Progress"]</th>
                                     </tr>
                                 </thead>
 
@@ -175,7 +175,7 @@
                                                 @if (totalCcp == 0)
                                                 {
                                                     <span class="badge bg-danger px-3 py-2">
-                                                        No CCP Assigned
+                                                        @L["No CCP Assigned"]
                                                     </span>
                                                 }
                                                 else
@@ -215,7 +215,7 @@
                             <div class="mt-4 text-end">
                                 <a asp-action="Index"
                                    class="btn btn-outline-secondary">
-                                    ← Back to Wholesalers
+                                    @L["← Back to Wholesalers"]
                                 </a>
                             </div>
 

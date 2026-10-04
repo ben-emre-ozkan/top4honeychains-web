@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<TOP4HoneyChains.Web.Models.Entities.Wholesaler>
 
 @{
-    ViewData["Title"] = "Wholesalers";
+    ViewData["Title"] = L["Wholesalers"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 
@@ -22,15 +22,15 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">Wholesalers</h4>
+                            <h4 class="card-title">@L["Wholesalers"]</h4>
                             <p class="card-title-desc">
-                                Manage wholesaler companies used in raw honey production traceability.
+                                @L["Manage wholesaler companies used in raw honey production traceability."]
                             </p>
 
                             <p>
                                 <a asp-action="Create"
                                    class="btn btn-primary waves-effect waves-light">
-                                    Create New Wholesaler
+                                    @L["Create New Wholesaler"]
                                 </a>
                             </p>
 
@@ -40,16 +40,16 @@
 
                                 <thead class="table-dark">
                                     <tr>
-                                        <th>Company</th>
-                                        <th>Tax No</th>
-                                        <th>Contact</th>
-                                        <th>Phone</th>
-                                        <th>Email</th>
-                                        <th>City</th>
-                                        <th>Country</th>
-                                        <th>Status</th>
-                                        <th>Created</th>
-                                        <th style="width:300px;">Actions</th>
+                                        <th>@L["Company"]</th>
+                                        <th>@L["Tax No"]</th>
+                                        <th>@L["Contact"]</th>
+                                        <th>@L["Phone"]</th>
+                                        <th>@L["Email"]</th>
+                                        <th>@L["City"]</th>
+                                        <th>@L["Country"]</th>
+                                        <th>@L["Status"]</th>
+                                        <th>@L["Created"]</th>
+                                        <th style="width:300px;">@L["Actions"]</th>
                                     </tr>
                                 </thead>
 
@@ -137,11 +137,11 @@
                                             <td>
                                                 @if (item.WholesalerIsActive)
                                                 {
-                                                    <span class="badge bg-success px-3 py-2">Active</span>
+                                                    <span class="badge bg-success px-3 py-2">@L["Active"]</span>
                                                 }
                                                 else
                                                 {
-                                                    <span class="badge bg-secondary px-3 py-2">Passive</span>
+                                                    <span class="badge bg-secondary px-3 py-2">@L["Passive"]</span>
                                                 }
                                             </td>
 
@@ -159,7 +159,7 @@
                                                        asp-route-wholesalerId="@item.WholesalerId"
                                                        class="btn btn-sm btn-primary w-100">
                                                         <i class="mdi mdi-layers-outline me-1"></i>
-                                                        Final Honey Productions (Batches)
+                                                        @L["Final Honey Productions (Batches)"]
                                                     </a>
 
                                                     <a asp-action="RawHoneyProductions"
@@ -167,19 +167,19 @@
                                                        class="btn btn-sm btn-warning w-100">
 
                                                         <i class="mdi mdi-beehive-outline me-1"></i>
-                                                        Raw Honey Productions
+                                                        @L["Raw Honey Productions"]
                                                     </a>
 
                                                     <a asp-action="Edit"
                                                        asp-route-id="@item.WholesalerId"
                                                        class="btn btn-sm btn-info w-100">
-                                                        Edit
+                                                        @L["Edit"]
                                                     </a>
 
                                                     <a asp-action="Delete"
                                                        asp-route-id="@item.WholesalerId"
                                                        class="btn btn-sm btn-danger w-100">
-                                                        Delete
+                                                        @L["Delete"]
                                                     </a>
 
                                                 </div>

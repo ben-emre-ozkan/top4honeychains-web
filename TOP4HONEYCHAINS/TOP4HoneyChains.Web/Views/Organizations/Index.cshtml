@@ -40,7 +40,7 @@
                             {
                                 var badge = o.Status switch { OrgStatus.Verified => "bg-success", OrgStatus.Suspended => "bg-danger", _ => "bg-warning text-dark" };
                                 <tr data-org-id="@o.OrgId">
-                                    <td>@o.DisplayName @if (o.IsPlatform) { <span class="badge bg-dark ms-1">platform</span> } @if (o.LegacyWholesalerId != null) { <span class="badge bg-light text-dark border ms-1" title="Created from a wholesaler record">wholesaler</span> }</td>
+                                    <td>@o.DisplayName @if (o.IsPlatform) { <span class="badge bg-dark ms-1">@L["platform"]</span> } @if (o.LegacyWholesalerId != null) { <span class="badge bg-light text-dark border ms-1" title="@L["Created from a wholesaler record"]">@L["wholesaler"]</span> }</td>
                                     <td>@string.Join(", ", o.Capabilities.Select(c => c.Capability))</td>
                                     <td><span class="badge @badge org-status">@o.Status</span></td>
                                     <td>@o.Province</td>

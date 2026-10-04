@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<TOP4HoneyChains.Web.Models.Entities.CriticalControlPoint>
 
 @{
-    ViewData["Title"] = "Critical Control Points";
+    ViewData["Title"] = L["Critical Control Points"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 
@@ -22,11 +22,11 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">Critical Control Points</h4>
+                            <h4 class="card-title">@L["Critical Control Points"]</h4>
                             <p class="card-title-desc">
                                 <a asp-action="Create"
                                    class="btn btn-primary waves-effect waves-light">
-                                    Add New CCP
+                                    @L["Add New CCP"]
                                 </a>
                             </p>
 
@@ -36,12 +36,12 @@
 
                                 <thead>
                                     <tr>
-                                        <th>Processing Step</th>
-                                        <th>Code</th>
-                                        <th>Title</th>
-                                        <th>Applies to</th>
-                                        <th>Criticality Justification</th>
-                                        <th style="width:150px;">Actions</th>
+                                        <th>@L["Processing Step"]</th>
+                                        <th>@L["Code"]</th>
+                                        <th>@L["Title"]</th>
+                                        <th>@L["Applies to"]</th>
+                                        <th>@L["Criticality Justification"]</th>
+                                        <th style="width:150px;">@L["Actions"]</th>
                                     </tr>
                                 </thead>
 
@@ -68,13 +68,13 @@
                                                     <a asp-action="Edit"
                                                        asp-route-id="@item.Id"
                                                        class="btn btn-sm btn-info w-100">
-                                                        Edit
+                                                        @L["Edit"]
                                                     </a>
 
                                                     <a asp-action="Delete"
                                                        asp-route-id="@item.Id"
                                                        class="btn btn-sm btn-danger w-100">
-                                                        Delete
+                                                        @L["Delete"]
                                                     </a>
 
                                                 </div>

@@ -1,7 +1,7 @@
 ﻿@model TOP4HoneyChains.Web.Models.Entities.BeekeeperEducationLevel
 
 @{
-    ViewData["Title"] = "Edit Education Level";
+    ViewData["Title"] = L["Edit Education Level"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 
@@ -16,9 +16,9 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">Edit Education Level</h4>
+                            <h4 class="card-title">@L["Edit Education Level"]</h4>
                             <p class="card-title-desc">
-                                Update the selected beekeeper education level.
+                                @L["Update the selected beekeeper education level."]
                             </p>
 
                             <form asp-action="Edit" class="custom-validation">
@@ -28,10 +28,10 @@
                                 <input type="hidden" asp-for="BeekeeperEducationLevelId" />
 
                                 <div class="mb-3">
-                                    <label asp-for="BeekeeperEducationLevelTitle" class="form-label required">Education Level Title</label>
+                                    <label asp-for="BeekeeperEducationLevelTitle" class="form-label required">@L["Education Level Title"]</label>
                                     <input asp-for="BeekeeperEducationLevelTitle"
                                            class="form-control"
-                                           placeholder="Enter education level title" />
+                                           placeholder="@L["Enter education level title"]" />
                                     <span asp-validation-for="BeekeeperEducationLevelTitle"
                                           class="text-danger"></span>
                                 </div>
@@ -40,12 +40,12 @@
 
                                     <button type="submit"
                                             class="btn btn-primary waves-effect waves-light">
-                                        Update
+                                        @L["Update"]
                                     </button>
 
                                     <a asp-action="Index"
                                        class="btn btn-secondary waves-effect">
-                                        Back to List
+                                        @L["Back to List"]
                                     </a>
 
                                 </div>

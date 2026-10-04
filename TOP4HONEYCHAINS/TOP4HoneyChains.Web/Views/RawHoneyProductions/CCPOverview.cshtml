@@ -2,7 +2,7 @@
 @model CCPOverviewViewModel
 
 @{
-    ViewData["Title"] = "CCP Process Overview";
+    ViewData["Title"] = L["CCP Process Overview"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 
     var progressPercent = ViewBag.ProgressPercent;
@@ -22,10 +22,10 @@
                         <div>
                             <h3 class="fw-bold mb-1">
                                 <i class="mdi mdi-barrel-outline me-2"></i>
-                                Production Overview
+                                @L["Production Overview"]
                             </h3>
                             <small class="opacity-75">
-                                Raw Honey Production Traceability
+                                @L["Raw Honey Production Traceability"]
                             </small>
                         </div>
 
@@ -33,7 +33,7 @@
                             <div class="display-6 fw-bold">
                                 @Model.Amount kg
                             </div>
-                            <small>Total Amount</small>
+                            <small>@L["Total Amount"]</small>
                         </div>
 
                     </div>
@@ -41,21 +41,21 @@
                     <div class="row">
 
                         <div class="col-md-3">
-                            <small class="text-uppercase opacity-75">Beekeeper</small>
+                            <small class="text-uppercase opacity-75">@L["Beekeeper"]</small>
                             <div class="fw-bold fs-5">
                                 @Model.BeekeeperName
                             </div>
                         </div>
 
                         <div class="col-md-3">
-                            <small class="text-uppercase opacity-75">Apiary</small>
+                            <small class="text-uppercase opacity-75">@L["Apiary"]</small>
                             <div class="fw-bold fs-5">
                                 @Model.ApiaryName
                             </div>
                         </div>
 
                         <div class="col-md-2">
-                            <small class="text-uppercase opacity-75">Wholesaler</small>
+                            <small class="text-uppercase opacity-75">@L["Wholesaler"]</small>
                             <div class="fw-bold fs-5">
                                 <span class="badge bg-dark px-3 py-2">
                                     @Model.WholesalerName
@@ -64,14 +64,14 @@
                         </div>
 
                         <div class="col-md-2">
-                            <small class="text-uppercase opacity-75">Honey Type</small>
+                            <small class="text-uppercase opacity-75">@L["Honey Type"]</small>
                             <div class="fw-bold fs-5">
                                 @Model.HoneyType
                             </div>
                         </div>
 
                         <div class="col-md-2">
-                            <small class="text-uppercase opacity-75">Production Date</small>
+                            <small class="text-uppercase opacity-75">@L["Production Date"]</small>
                             <div class="fw-bold fs-5">
                                 @Model.ProductionDate?.ToString("dd.MM.yyyy")
                             </div>
@@ -91,10 +91,10 @@
                         <div>
                             <h3 class="fw-bold mb-1">
                                 <i class="mdi mdi-timeline-check-outline me-2"></i>
-                                CCP Process Overview
+                                @L["CCP Process Overview"]
                             </h3>
                             <small class="opacity-75">
-                                Monitoring lifecycle visualization
+                                @L["Monitoring lifecycle visualization"]
                             </small>
                         </div>
 
@@ -102,7 +102,7 @@
                             <div class="fw-bold fs-4">
                                 @progressPercent%
                             </div>
-                            <small>Completion</small>
+                            <small>@L["Completion"]</small>
                         </div>
 
                     </div>
@@ -174,7 +174,7 @@
                                     {
                                         <div class="mt-3">
                                             <span class="badge bg-dark px-3 py-2">
-                                                Process End
+                                                @L["Process End"]
                                             </span>
                                         </div>
                                     }
