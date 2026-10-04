@@ -147,16 +147,17 @@ namespace TOP4HoneyChains.Web.Controllers
                 return View(model);
             }
 
-            var mailBody = $@"<p>Hello,</p>
-                              <p>You requested a password reset.</p>
-                              <p><a href='{resetLink}'>Click here to reset your password</a></p>
-                              <p>If you did not request this, please ignore this email.</p>
+            // D-51: the e-mail is written in the language selected when the reset was requested
+            var mailBody = $@"<p>{System.Net.WebUtility.HtmlEncode(_localizer["Hello,"])}</p>
+                              <p>{System.Net.WebUtility.HtmlEncode(_localizer["You requested a password reset."])}</p>
+                              <p><a href='{resetLink}'>{System.Net.WebUtility.HtmlEncode(_localizer["Click here to reset your password"])}</a></p>
+                              <p>{System.Net.WebUtility.HtmlEncode(_localizer["If you did not request this, please ignore this email."])}</p>
                               <br />
                               <p>TOP4HoneyChains</p>";
 
             try
             {
-                await _emailService.SendAsync(model.Email, "Reset your TOP4HoneyChains password", mailBody);
+                await _emailService.SendAsync(model.Email, _localizer["Reset your TOP4HoneyChains password"], mailBody);
             }
             catch (Exception ex)
             {

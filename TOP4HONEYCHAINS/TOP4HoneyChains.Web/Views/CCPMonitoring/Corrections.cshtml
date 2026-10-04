@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
     var names = ViewBag.UserNames as Dictionary<string, string> ?? new();
     string Name(string? id) => id == null ? "" : names.TryGetValue(id, out var n) ? n : id;
-    string Val(decimal? n, string? t) => n?.ToString("0.####") ?? t ?? "–";
+    string Val(decimal? n, string? t) => n?.ToString("0.####") ?? (t is "Yes" or "No" ? L[t].Value : t) ?? "–";
 }
 
 <body data-topbar="light" data-layout="horizontal">

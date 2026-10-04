@@ -49,9 +49,9 @@ else if (!Model.CanEnter)
         @if (Model.StatusId == AssignmentStatusIds.NotApplicable)
         {
             <div class="mt-3 p-3 rounded bg-light border" id="ccp-not-applicable">
-                <strong>@L["Not applicable."]</strong> Reason: @Model.NotApplicableReason
+                <strong>@L["Not applicable."]</strong> @L["Reason:"] @Model.NotApplicableReason
                 <div class="small text-muted">
-                    Recorded by @Model.NotApplicableBy on @Model.NotApplicableAt?.ToString("dd.MM.yyyy HH:mm")
+                    @L["Recorded by {0} on {1}", Model.NotApplicableBy ?? "", Model.NotApplicableAt?.ToString("dd.MM.yyyy HH:mm") ?? ""]
                 </div>
                 @if (Model.LockReason == null)
                 {
@@ -153,7 +153,7 @@ else if (!Model.CanEnter)
                     <tbody>
                         @foreach (var c in Model.Corrections)
                         {
-                            <tr><td>#@c.CorrectionId</td><td>@Ref.T("Parameter", c.Parameter?.ParameterId, "Name", c.Parameter?.ParameterName)</td><td>@(c.OldNumericValue?.ToString("0.####") ?? c.OldTextValue ?? "–") → @(c.NewNumericValue?.ToString("0.####") ?? c.NewTextValue)</td><td>@c.Reason</td><td>@L[c.Status ?? ""]</td></tr>
+                            <tr><td>#@c.CorrectionId</td><td>@Ref.T("Parameter", c.Parameter?.ParameterId, "Name", c.Parameter?.ParameterName)</td><td>@(c.OldNumericValue?.ToString("0.####") ?? (c.OldTextValue is "Yes" or "No" ? L[c.OldTextValue!].Value : c.OldTextValue) ?? "–") → @(c.NewNumericValue?.ToString("0.####") ?? (c.NewTextValue is "Yes" or "No" ? L[c.NewTextValue!].Value : c.NewTextValue))</td><td>@c.Reason</td><td>@L[c.Status ?? ""]</td></tr>
                         }
                     </tbody>
                 </table>

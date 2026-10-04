@@ -122,7 +122,7 @@
                                                         <form asp-action="Deactivate" asp-route-id="@item.BeekeeperId" method="post" class="d-inline"
                                                               data-confirm="@L["Deactivate this beekeeper? All records are kept and the login is locked. Beekeepers are never deleted."]" onsubmit="return confirm(this.dataset.confirm);">
                                                             <button type="submit" class="btn btn-sm btn-warning"
-                                                                    title="Keeps all records; greys out the beekeeper and locks their login. Beekeepers are never deleted.">
+                                                                    title="@L["Keeps all records; greys out the beekeeper and locks their login. Beekeepers are never deleted."]">
                                                                 @L["Deactivate"]
                                                             </button>
                                                         </form>

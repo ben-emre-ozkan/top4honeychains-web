@@ -44,6 +44,11 @@ namespace TOP4HoneyChains.Web.Services
             }
             foreach (var h in db.HoneyTypes.AsNoTracking().Select(h => new { h.HoneyTypeId, h.HoneyTypeTitle }).ToList())
                 list.Add((RefEntity.HoneyType, h.HoneyTypeId.ToString(CultureInfo.InvariantCulture), "Title", h.HoneyTypeTitle));
+            foreach (var c in db.CriticalControlPoints.AsNoTracking().Select(c => new { c.Id, c.Title }).ToList())
+                if (c.Title != null)
+                    list.Add((RefEntity.Ccp, c.Id.ToString(CultureInfo.InvariantCulture), "Title", c.Title));
+            foreach (var s in db.AssignmentStatuses.AsNoTracking().Select(s => new { s.AssignmentStatusId, s.AssignmentStatusName }).ToList())
+                list.Add((RefEntity.AssignmentStatus, s.AssignmentStatusId.ToString(CultureInfo.InvariantCulture), "Name", s.AssignmentStatusName));
             foreach (var p in db.RawHoneyProductionPeriods.AsNoTracking().Select(p => new { p.RawHoneyProductionPeriodId, p.RawHoneyProductionPeriodTitle }).ToList())
                 if (p.RawHoneyProductionPeriodTitle != null)
                     list.Add((RefEntity.ProductionPeriod, p.RawHoneyProductionPeriodId.ToString(CultureInfo.InvariantCulture), "Title", p.RawHoneyProductionPeriodTitle));
@@ -54,6 +59,16 @@ namespace TOP4HoneyChains.Web.Services
         // shortened text for list columns
         public static string Short(string? text, int max) =>
             string.IsNullOrEmpty(text) ? "" : text.Length > max ? text[..max] + "..." : text;
+
+        // translation of a reference-data text of any kind (used for the variable parts of server messages)
+        public string? AnyText(string text)
+        {
+            var b = Bases().FirstOrDefault(x => x.Text == text);
+            if (b.Key == null)
+                return null;
+            var t = T(b.Entity, b.Key, b.Field, text);
+            return t == text ? null : t;
+        }
 
         // translation by base text, for view models that carry only the text (honey type names, units)
         public string Text(string entity, string field, string? baseText)

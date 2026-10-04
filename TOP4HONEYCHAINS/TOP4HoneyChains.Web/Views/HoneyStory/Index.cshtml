@@ -474,7 +474,7 @@
 
                             <div class="badge bg-light text-success px-3 py-2">
                                 <i class="mdi mdi-beehive-outline me-1"></i>
-                                @Model.RawSources.Count Apiaries
+                                @L["{0} apiaries", Model.RawSources.Count]
                             </div>
 
                         </div>
@@ -585,7 +585,7 @@
 
                             <div class="badge bg-light text-success px-3 py-2">
                                 <i class="mdi mdi-map-marker-outline me-1"></i>
-                                @Model.RawSources.Count Locations
+                                @L["{0} locations", Model.RawSources.Count]
                             </div>
 
                         </div>
@@ -736,7 +736,7 @@
 
                                 <div class="badge bg-light text-success px-3 py-2">
                                     <i class="mdi mdi-camera-outline me-1"></i>
-                                    @source.Photos.Count Photos
+                                    @L["{0} photos", source.Photos.Count]
                                 </div>
 
                             </div>
@@ -838,7 +838,7 @@
                             }
                             else if (acceptance.State == HoneyStoryCcpBlock.NotApplicable)
                             {
-                                <div class="text-muted small">Not applicable: @acceptance.NotApplicableReason</div>
+                                <div class="text-muted small">@L["Not applicable:"] @acceptance.NotApplicableReason</div>
                             }
                             else
                             {
@@ -848,7 +848,7 @@
                                         var value = !row.Recorded ? L["not recorded"].Value
                                             : row.IsFile ? L["document on file"].Value
                                             : row.NumericValue != null ? row.NumericValue.Value.ToString("N2", tr) + " " + Ref.Text("Parameter", "Unit", row.Unit)
-                                            : row.TextValue ?? "-";
+                                            : (row.TextValue is "Yes" or "No" ? L[row.TextValue!].Value : row.TextValue) ?? "-";
 
                                         <div class="col-md-6 mb-3">
                                             <div class="ccp-metric-card">
@@ -882,7 +882,7 @@
                                 </div>
                             }
                             <div class="small text-muted mt-2">
-                                Quality control points recorded for this honey: @recordedChecks of @source.CcpBlocks.Count
+                                @L["Quality control points recorded for this honey: {0} of {1}", recordedChecks, source.CcpBlocks.Count]
                                 (<a href="/honeystory/details/@Model.BatchQR">@L["full traceability"]</a>)
                             </div>
                         </div>

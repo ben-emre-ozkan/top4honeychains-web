@@ -38,8 +38,8 @@
 
                             <div class="mb-4 p-3 bg-light rounded">
                                 <strong>@L["Production Info:"]</strong><br />
-                                Amount: @Model.Production.RawHoneyProductionAmount kg <br />
-                                Date: @Model.Production.RawHoneyProductionDate?.ToString("dd.MM.yyyy")
+                                @L["Amount:"] @Model.Production.RawHoneyProductionAmount kg <br />
+                                @L["Date:"] @Model.Production.RawHoneyProductionDate?.ToString("dd.MM.yyyy")
                             </div>
 
                             <form asp-action="ManageCCP" method="post">
@@ -77,8 +77,8 @@
                                                                    @(Model.LockReason != null ? "disabled" : "") />
 
                                                             <label for="ccp_@ccp.Id"
-                                                                   data-on-label="Yes"
-                                                                   data-off-label="No">
+                                                                   data-on-label="@L["Yes"]"
+                                                                   data-off-label="@L["No"]">
                                                             </label>
                                                         </div>
 

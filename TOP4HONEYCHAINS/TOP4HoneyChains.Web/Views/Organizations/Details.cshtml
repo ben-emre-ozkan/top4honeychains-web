@@ -25,7 +25,7 @@
                             <h4 class="card-title mb-1">@Model.DisplayName @if (Model.IsPlatform) { <span class="badge bg-dark">@L["platform"]</span> }</h4>
                             <div class="text-muted small">
                                 @Model.LegalName @(Model.TaxNo != null ? " · Tax no. " + Model.TaxNo : "") @(Model.Province != null ? " · " + Model.Province : "") @(Model.District != null ? " / " + Model.District : "")
-                                @if (Model.LegacyWholesaler != null) { <span> · created from the wholesaler record "@Model.LegacyWholesaler.WholesalerTitle"</span> }
+                                @if (Model.LegacyWholesaler != null) { <span> · @L["created from the wholesaler record \"{0}\"", Model.LegacyWholesaler.WholesalerTitle]</span> }
                             </div>
                         </div>
                         <div class="text-end">

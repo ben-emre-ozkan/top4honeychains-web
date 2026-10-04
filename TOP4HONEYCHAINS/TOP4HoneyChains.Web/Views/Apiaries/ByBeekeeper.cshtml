@@ -24,7 +24,7 @@
                         <div class="card-body">
 
                             <h4 class="card-title">
-                                Apiaries of @ViewBag.BeekeeperName
+                                @L["Apiaries of {0}", (string?)ViewBag.BeekeeperName ?? ""]
                             </h4>
 
                             <partial name="_DeactivationNote" />
@@ -97,7 +97,7 @@
                                                             <form asp-action="Deactivate" asp-route-id="@item.ApiaryId" method="post" class="d-inline"
                                                                   data-confirm="@L["Deactivate this apiary? Photos and honey productions are kept. Apiaries are never deleted."]" onsubmit="return confirm(this.dataset.confirm);">
                                                                 <button type="submit" class="btn btn-sm btn-warning"
-                                                                        title="Keeps photos and honey productions; greys out the apiary. Apiaries are never deleted.">
+                                                                        title="@L["Keeps photos and honey productions; greys out the apiary. Apiaries are never deleted."]">
                                                                     @L["Deactivate"]
                                                                 </button>
                                                             </form>
