@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Data.SqlClient;
@@ -34,7 +34,8 @@ namespace TOP4HoneyChains.Web.Tests.E2E
         {
             "AssignmentStatuses", "HoneyTypes", "RawHoneyProductionPeriods", "BeekeeperEducationLevels", "BeekeepingPurposeTypes", "BeekeepingTypes",
             "Capabilities", "OrgRoles", "CriticalControlPoints", "CriticalControlPointParameterCategories", "CriticalControlPointParameters",
-            "CriticalControlPointParameterLimits", "CcpResponsibilities", "CcpResponsibilityCapabilities", "CcpResponsibilityRoles"
+            "CriticalControlPointParameterLimits", "CcpResponsibilities", "CcpResponsibilityCapabilities", "CcpResponsibilityRoles",
+            "Provinces", "Districts"
         };
 
         protected override void ConfigureWebHost(IWebHostBuilder builder)

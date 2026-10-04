@@ -61,6 +61,8 @@ public partial class TOP4HoneyChainsContext : DbContext
     public virtual DbSet<BeekeeperStorefront> BeekeeperStorefronts { get; set; }
     public virtual DbSet<BatchOriginShare> BatchOriginShares { get; set; }
     public virtual DbSet<ReferenceTranslation> ReferenceTranslations { get; set; }
+    public virtual DbSet<Province> Provinces { get; set; }
+    public virtual DbSet<District> Districts { get; set; }
     public virtual DbSet<CriticalControlPointMonitoringLog> CriticalControlPointMonitoringLogs { get; set; }
     public virtual DbSet<AssignmentStatus> AssignmentStatuses { get; set; }
     public virtual DbSet<RawHoneyCCPAssignment> RawHoneyCCPAssignments { get; set; }
@@ -411,6 +413,22 @@ public partial class TOP4HoneyChainsContext : DbContext
             entity.ToTable("BeekeeperStorefronts");
             entity.Property(e => e.CreatedAt).HasDefaultValueSql("SYSUTCDATETIME()");
             entity.HasIndex(e => e.Code).IsUnique();
+        });
+
+        modelBuilder.Entity<Province>(entity =>
+        {
+            entity.ToTable("Provinces");
+            entity.HasKey(e => e.Code);
+            entity.Property(e => e.Code).IsFixedLength().IsUnicode(false);
+            entity.HasIndex(e => e.Name).IsUnique();
+        });
+
+        modelBuilder.Entity<District>(entity =>
+        {
+            entity.ToTable("Districts");
+            entity.Property(e => e.ProvinceCode).IsFixedLength().IsUnicode(false);
+            entity.HasIndex(e => new { e.ProvinceCode, e.Name }).IsUnique();
+            entity.HasOne<Province>().WithMany().HasForeignKey(e => e.ProvinceCode).OnDelete(DeleteBehavior.ClientSetNull);
         });
 
         modelBuilder.Entity<ReferenceTranslation>(entity =>

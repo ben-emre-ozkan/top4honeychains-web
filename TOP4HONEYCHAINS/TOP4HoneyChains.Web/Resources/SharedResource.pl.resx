@@ -5010,4 +5010,13 @@
   <data name="Confirm Password" xml:space="preserve">
     <value>Potwierdź hasło</value>
   </data>
+  <data name="Choose a province from the list." xml:space="preserve">
+    <value>Wybierz prowincję z listy.</value>
+  </data>
+  <data name="Choose a district of the selected province." xml:space="preserve">
+    <value>Wybierz powiat (dystrykt) wybranej prowincji.</value>
+  </data>
+  <data name="Choose the province first." xml:space="preserve">
+    <value>Najpierw wybierz prowincję.</value>
+  </data>
 </root>

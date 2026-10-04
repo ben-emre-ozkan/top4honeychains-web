@@ -1,4 +1,4 @@
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
 using TOP4HoneyChains.Web.Models.Entities;
 using Xunit;
@@ -85,11 +85,15 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             var sao = await UserClient.LoginAsync(_app, "e2e_sao");
             var period = await _app.WithContextAsync(db => db.RawHoneyProductionPeriods.Select(p => p.RawHoneyProductionPeriodId).FirstAsync());
             var honey = await _app.WithContextAsync(db => db.HoneyTypes.Select(h => h.HoneyTypeId).FirstAsync());
-            var intake = await sao.PostMultipartAsync("/Intake/Create", new()
+            // D-52: province and district come from the lists; a district of another province is refused
+            Dictionary<string, string> IntakeForm(string district) => new()
             {
                 ["number"] = "E2E-BEE-0001", ["apiaryId"] = apiaryId.ToString(), ["honeyTypeId"] = honey.ToString(), ["periodId"] = period.ToString(),
-                ["deliveryDate"] = DateTime.Today.ToString("yyyy-MM-dd"), ["quantity"] = "100", ["province"] = "E2E Il", ["district"] = "E2E Ilce", ["originCountry"] = "TR"
-            }, Pdf.File("deliveryForm"), "/Intake/Create?number=E2E-BEE-0001");
+                ["deliveryDate"] = DateTime.Today.ToString("yyyy-MM-dd"), ["quantity"] = "100", ["province"] = "Düzce", ["district"] = district, ["originCountry"] = "TR"
+            };
+            Assert.Contains("Choose a district of the selected province.", await sao.FlashAfterAsync(
+                await sao.PostMultipartAsync("/Intake/Create", IntakeForm("Kadıköy"), Pdf.File("deliveryForm"), "/Intake/Create?number=E2E-BEE-0001")));
+            var intake = await sao.PostMultipartAsync("/Intake/Create", IntakeForm("Akçakoca"), Pdf.File("deliveryForm"), "/Intake/Create?number=E2E-BEE-0001");
             var location = intake.Headers.Location?.ToString() ?? "";
             Assert.True(location.Contains("lotId="), "intake did not redirect to the sample form: " + await sao.FlashAfterAsync(intake));
             var lot = int.Parse(Regex.Match(location, @"lotId=(\d+)").Groups[1].Value);
@@ -197,6 +201,9 @@ namespace TOP4HoneyChains.Web.Tests.E2E
                 new() { ["enterpriseNumber"] = "TR810000000099" }, Pdf.File("proof"), $"/Registry/Edit/{beekeeperId}")));
             var requestId = await _app.WithContextAsync(db => db.RegistryVerifications.Where(r => r.BeekeeperId == beekeeperId).Select(r => r.Id).FirstAsync());
             Assert.Contains("verified", await admin.PostFlashAsync("/Registry/Decide", new() { ["requestId"] = requestId.ToString(), ["approve"] = "true" }, $"/Registry/Edit/{beekeeperId}"));
+            // D-52: a beekeeper found by registry number (TR + plate 81) gets the province preselected on intake
+            var intakeForm = System.Net.WebUtility.HtmlDecode(await sao.HtmlAsync("/Intake/Create?number=TR810000000099"));
+            Assert.Matches(@"<option value=""Düzce"" data-plate=""81""[^>]*selected", intakeForm);
             var assocAdmin = await UserClient.LoginAsync(_app, "e2e_aadmin");
             Assert.Contains("storefront is published", await assocAdmin.FlashAfterAsync(await assocAdmin.PostMultipartAsync($"/Storefronts/Consent/{beekeeperId}",
                 new() { ["textRead"] = "true", ["nameConsented"] = "false", ["givenOn"] = DateTime.Today.ToString("yyyy-MM-dd") }, Pdf.File("document"), $"/Storefronts/Consent/{beekeeperId}")));
