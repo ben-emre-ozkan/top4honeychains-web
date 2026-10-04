@@ -3,7 +3,8 @@
 -- beekeepers' association, a retailer, two beekeepers, two raw lots with intake records, a sample of each
 -- lot with an approved, accredited lab report, a finalized batch with every CCP approved, a shipment received by the retailer with
 -- its CCP 10 record, origin shares and a published beekeeper storefront.
--- Every name starts with "[DEMO]"; remove everything with cleanup_demo.sql.
+-- Every name starts with "[DEMO]"; remove everything with cleanup_demo.sql. Names keep the Turkish letters
+-- (ç, ğ, ı, ö, ş, ü): the script checks them before it commits (D-55; needs 012 and sqlcmd -f 65001).
 -- Logins are not created here (no passwords in the repository): add them in the app as platform administrator
 -- under Organizations -> organization -> Add member, with user names "demo_*" and "@example.invalid" e-mails,
 -- so that cleanup_demo.sql removes them too.
@@ -63,12 +64,12 @@ INSERT dbo.OrgCapabilities (OrgId, Capability, IsAccredited, AccreditationNumber
 DECLARE @bk1 nvarchar(450) = CONVERT(nvarchar(450), NEWID()), @bk2 nvarchar(450) = CONVERT(nvarchar(450), NEWID());
 INSERT dbo.Beekeepers (BeekeeperId, BeekeeperFirstName, BeekeeperLastName, BeekeeperBirthDate, BeekeeperBusinessNumber, IsActive) VALUES
     (@bk1, N'[DEMO] Ayşe', N'Petek', '1975-05-20', N'DEMO-BEE-0001', 1),
-    (@bk2, N'[DEMO] Mehmet', N'Kovan', '1968-09-02', N'DEMO-BEE-0002', 1);
+    (@bk2, N'[DEMO] Mehmet', N'Öztürk', '1968-09-02', N'DEMO-BEE-0002', 1);
 INSERT dbo.Apiaries (ApiaryBeekeeperId, ApiaryQRCode, ApiaryTitle, ApiaryBeehivesCount, ApiaryLocationLatitude, ApiaryLocationLongitude, ApiaryIsActive) VALUES
     (@bk1, NEWID(), N'[DEMO] Yayla Arılığı', 60, 40.8, 31.2, 1);
 DECLARE @apiary1 int = SCOPE_IDENTITY();
 INSERT dbo.Apiaries (ApiaryBeekeeperId, ApiaryQRCode, ApiaryTitle, ApiaryBeehivesCount, ApiaryLocationLatitude, ApiaryLocationLongitude, ApiaryIsActive) VALUES
-    (@bk2, NEWID(), N'[DEMO] Orman Arılığı', 40, 40.9, 31.1, 1);
+    (@bk2, NEWID(), N'[DEMO] Çam Ormanı Arılığı', 40, 40.9, 31.1, 1);
 DECLARE @apiary2 int = SCOPE_IDENTITY();
 INSERT dbo.BeekeeperRegistry (BeekeeperId, RegistryNumber, Status, VerifiedAt, VerifiedByUserId) VALUES
     (@bk1, N'TR819999990001', N'Verified', @now, @seed), (@bk2, N'TR819999990002', N'Verified', @now, @seed);
@@ -179,6 +180,17 @@ END;
 INSERT dbo.Consents (BeekeeperId, AssociationOrgId, Purpose, NameConsented, TextVersion, TextSha256, GivenOn, DocumentStoredFileName, DocumentOriginalFileName, DocumentSha256, RecordedByUserId, RecordedAt)
 VALUES (@bk1, @association, N'Storefront', 1, N'storefront-2026-10-v1', @hash, @today, N'demo-missing.pdf', N'demo-riza.pdf', @hash, @seed, @now);
 INSERT dbo.BeekeeperStorefronts (BeekeeperId, Code, CreatedAt) VALUES (@bk1, N'BK-DEMQ2026', @now);
+
+-- D-55: the Turkish letters must arrive unchanged (sqlcmd -f 65001, migration 012 applied); otherwise nothing is kept
+IF NOT EXISTS (SELECT 1 FROM dbo.Beekeepers WHERE BeekeeperId = @bk1 AND BeekeeperFirstName = N'[DEMO] Ayşe')
+   OR NOT EXISTS (SELECT 1 FROM dbo.Beekeepers WHERE BeekeeperId = @bk2 AND BeekeeperLastName = N'Öztürk')
+   OR NOT EXISTS (SELECT 1 FROM dbo.Apiaries WHERE ApiaryId = @apiary2 AND ApiaryTitle = N'[DEMO] Çam Ormanı Arılığı')
+   OR NOT EXISTS (SELECT 1 FROM dbo.Organizations WHERE OrgId = @association AND DisplayName = N'[DEMO] Arıcılar Birliği')
+BEGIN
+    ROLLBACK TRANSACTION;
+    RAISERROR(N'Turkish letters were not stored as typed: run with sqlcmd -f 65001 after migration 012_unicode_names.sql. Nothing was created.', 16, 1);
+    SET NOEXEC ON;
+END;
 
 COMMIT TRANSACTION;
 

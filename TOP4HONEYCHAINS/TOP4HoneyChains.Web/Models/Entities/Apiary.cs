@@ -18,7 +18,7 @@ public partial class Apiary
 
     [Required(ErrorMessage = "The title is required.")]
     [StringLength(50)]
-    [Unicode(false)]
+    // D-55: nvarchar since 012 (Turkish letters)
     public string ApiaryTitle { get; set; } = null!;
 
     [Range(1, 10000, ErrorMessage = "The beehive count must be between 1 and 10000.")]
