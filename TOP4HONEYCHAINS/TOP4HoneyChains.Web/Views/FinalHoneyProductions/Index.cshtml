@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Final Honey Productions";
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var completedIds = ViewBag.CompletedIds as HashSet<int> ?? new HashSet<int>();
 }
 
 @section AddToHead {
@@ -98,6 +99,15 @@
                                                     <i class="mdi mdi-timeline-clock-outline me-1"></i>
                                                     CCP Overview
                                                 </a>
+                                                @if (completedIds.Contains(item.FinalHoneyProductionId))
+                                                {
+                                                    <a asp-action="Details"
+                                                       asp-route-id="@item.FinalHoneyProductionId"
+                                                       class="btn btn-outline-success btn-sm waves-effect waves-light">
+                                                        <i class="mdi mdi-check-decagram-outline me-1"></i>
+                                                        @L["Fhp.Details"]
+                                                    </a>
+                                                }
                                             </td>
                                         </tr>
                                     }

@@ -1212,4 +1212,82 @@
   <data name="Mob.Camera" xml:space="preserve">
     <value>Camera</value>
   </data>
+  <data name="Fhp.Details" xml:space="preserve">
+    <value>Production details</value>
+  </data>
+  <data name="Fhp.Completed" xml:space="preserve">
+    <value>All required tests completed</value>
+  </data>
+  <data name="Fhp.NotCompleted" xml:space="preserve">
+    <value>This production has not completed all required tests yet. Its record is listed here once they are done.</value>
+  </data>
+  <data name="Fhp.Missing" xml:space="preserve">
+    <value>Still missing</value>
+  </data>
+  <data name="Fhp.Wholesaler" xml:space="preserve">
+    <value>Wholesaler</value>
+  </data>
+  <data name="Fhp.Owner" xml:space="preserve">
+    <value>Owner organization</value>
+  </data>
+  <data name="Fhp.Date" xml:space="preserve">
+    <value>Production date</value>
+  </data>
+  <data name="Fhp.Total" xml:space="preserve">
+    <value>Total amount</value>
+  </data>
+  <data name="Fhp.Finalized" xml:space="preserve">
+    <value>Finalized</value>
+  </data>
+  <data name="Fhp.NotFinalized" xml:space="preserve">
+    <value>Not finalized</value>
+  </data>
+  <data name="Fhp.Lots" xml:space="preserve">
+    <value>Raw honey lots</value>
+  </data>
+  <data name="Fhp.Lot" xml:space="preserve">
+    <value>Lot</value>
+  </data>
+  <data name="Fhp.Beekeeper" xml:space="preserve">
+    <value>Beekeeper</value>
+  </data>
+  <data name="Fhp.Apiary" xml:space="preserve">
+    <value>Apiary</value>
+  </data>
+  <data name="Fhp.HoneyType" xml:space="preserve">
+    <value>Honey type</value>
+  </data>
+  <data name="Fhp.Used" xml:space="preserve">
+    <value>Used</value>
+  </data>
+  <data name="Fhp.LotCcps" xml:space="preserve">
+    <value>Lot CCPs</value>
+  </data>
+  <data name="Fhp.BatchCcps" xml:space="preserve">
+    <value>Batch CCPs</value>
+  </data>
+  <data name="Fhp.Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Fhp.ApprovedAt" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="Fhp.Reports" xml:space="preserve">
+    <value>Approved lab reports</value>
+  </data>
+  <data name="Fhp.Accredited" xml:space="preserve">
+    <value>accredited</value>
+  </data>
+  <data name="Fhp.InHouse" xml:space="preserve">
+    <value>in-house</value>
+  </data>
+  <data name="Fhp.HoneyStory" xml:space="preserve">
+    <value>Public Honey Story</value>
+  </data>
+  <data name="Fhp.ManageCcps" xml:space="preserve">
+    <value>Manage CCPs</value>
+  </data>
+  <data name="Fhp.Back" xml:space="preserve">
+    <value>Back to list</value>
+  </data>
 </root>

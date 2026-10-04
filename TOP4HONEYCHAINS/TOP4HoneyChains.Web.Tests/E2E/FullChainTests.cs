@@ -148,6 +148,10 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             await admin.PostAsync($"/FinalHoneyProductions/ManageCCP/{batch}", assign, $"/FinalHoneyProductions/ManageCCP/{batch}");
             Assert.Equal(80m, await _app.WithContextAsync(db => db.FinalHoneyProductions.Where(f => f.FinalHoneyProductionId == batch).Select(f => f.FinalHoneyProductionTotalAmount ?? 0).FirstAsync()));
             Assert.Equal(batchCcps.Count, await _app.WithContextAsync(db => db.FinalHoneyCCPAssignments.CountAsync(a => a.FinalHoneyProductionId == batch)));
+            // D-49: the details page shows only what is still missing until every required test is done
+            var openDetails = await admin.HtmlAsync($"/FinalHoneyProductions/Details/{batch}");
+            Assert.Contains("details-not-completed", openDetails);
+            Assert.DoesNotContain("details-lots", openDetails);
             foreach (var id in batchCcps)
             {
                 Assert.Contains("values saved", await SaveCcpAsync(staff, "batch", batch, id));
@@ -157,6 +161,9 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             // ---- 6. finalize: request (Staff) and confirmation (QualityApprover)
             Assert.Contains("Finalizing requested", await staff.PostFlashAsync($"/OrgWorkspace/RequestFinalize/{batch}", new(), $"/OrgWorkspace/Batch/{batch}"));
             Assert.Contains("Batch finalized.", await qa.PostFlashAsync($"/OrgWorkspace/Finalize/{batch}", new(), $"/OrgWorkspace/Batch/{batch}"));
+            var details = await admin.HtmlAsync($"/FinalHoneyProductions/Details/{batch}");
+            foreach (var part in new[] { "details-completed", "details-lots", "details-ccps", "details-reports", "details-honeystory" })
+                Assert.Contains(part, details);
             var shares = await _app.WithContextAsync(db => db.BatchOriginShares.Where(s => s.FinalHoneyProductionId == batch).ToListAsync());
             Assert.Equal(("TR", 100m), (Assert.Single(shares).CountryCode, shares[0].Percentage));
 
