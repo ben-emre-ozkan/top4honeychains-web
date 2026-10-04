@@ -81,7 +81,7 @@ Missing from the pipeline: `UseHttpsRedirection`, `UseHsts`, `UseStatusCodePages
 - Organization model (P1 implemented, flag `Features:OrgRoleModel`, default off; [ROLE-MODEL.md](ROLE-MODEL.md), D-22 to D-32):
   - `Services/OrgModel/`: `CurrentOrg` (active membership, re-checked per request), `Authorization` (policies `PanelUser` and `PlatformAdmin`, handlers for organizations and CCP records, `OrgScope` for org-scoped queries), `Audit` (hash-chained append-only log, EF `SaveChangesInterceptor` + `AuditWriter`), `RegistryVerifier` (`IRegistryVerifier`, manual), `FileStore` (documents under `App_Data`).
   - Controllers: `Organizations`, `Registry`, `Audit` (admin), `OrgWorkspace` (members). `CCPMonitoring` uses the `PanelUser` policy and per-record checks; all other business controllers stay `Administrator`-only.
-  - With the flag off: the new controllers answer 404, only administrators can log in, no audit rows are written.
+  - With the flag off: the organization controllers answer 404 and only administrators can log in. The audit log is written in both modes and `/Audit` is available to administrators (D-34).
 
 ### 2.5 Email and password reset
 - `Services/EmailService.cs` uses `System.Net.Mail.SmtpClient` + `NetworkCredential`, with options from the `SmtpSettings` section (`Host, Port, EnableSsl, UserName, Password, From, SenderName`). It has no try/catch, no logging and no dispose.

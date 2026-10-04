@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Storage;
@@ -108,8 +108,7 @@ VALUES ({rec.At}, {rec.UserId}, {rec.UserName}, {rec.OrgId}, {rec.Action}, {rec.
         public async Task WriteAsync(string action, string entity, string? key, object? oldValues = null, object? newValues = null,
             string? flags = null, string? userId = null, string? userName = null)
         {
-            if (!_current.Enabled)
-                return;
+            // The audit log is on from go-live, with or without the organization model (D-34)
             var active = userId == null ? await _current.GetAsync() : null;
             await AuditChain.AppendAsync(_context, new[]
             {
@@ -121,24 +120,22 @@ VALUES ({rec.At}, {rec.UserId}, {rec.UserName}, {rec.OrgId}, {rec.Action}, {rec.
     }
 
     // Writes an audit row for every insert, update and delete of the business context, in the same
-    // transaction as the change (D-28). Active only with Features:OrgRoleModel.
+    // transaction as the change (D-28). Always active, independent of Features:OrgRoleModel (D-34).
     public class AuditInterceptor : SaveChangesInterceptor
     {
         private readonly IServiceProvider _services;
-        private readonly FeatureFlags _flags;
         private List<(EntityEntry Entry, string Action, string Entity, string? Key, string? Old, string? New)>? _pending;
         private IDbContextTransaction? _ownTransaction;
 
-        public AuditInterceptor(IServiceProvider services, IOptions<FeatureFlags> flags)
+        public AuditInterceptor(IServiceProvider services)
         {
             _services = services;
-            _flags = flags.Value;
         }
 
         public override async ValueTask<InterceptionResult<int>> SavingChangesAsync(DbContextEventData eventData, InterceptionResult<int> result, CancellationToken ct = default)
         {
             var ctx = eventData.Context;
-            if (!_flags.OrgRoleModel || ctx == null)
+            if (ctx == null)
                 return result;
 
             _pending = ctx.ChangeTracker.Entries()
@@ -193,7 +190,7 @@ VALUES ({rec.At}, {rec.UserId}, {rec.UserName}, {rec.OrgId}, {rec.Action}, {rec.
         // The app only uses async saves; a synchronous save would bypass the audit, so refuse it
         public override InterceptionResult<int> SavingChanges(DbContextEventData eventData, InterceptionResult<int> result)
         {
-            if (_flags.OrgRoleModel && eventData.Context?.ChangeTracker.HasChanges() == true)
+            if (eventData.Context?.ChangeTracker.HasChanges() == true)
                 throw new InvalidOperationException("Use SaveChangesAsync: synchronous saves are not audited.");
             return result;
         }

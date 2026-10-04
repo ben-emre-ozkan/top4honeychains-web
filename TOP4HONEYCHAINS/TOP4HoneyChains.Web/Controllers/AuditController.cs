@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TOP4HoneyChains.Web.Data;
@@ -7,7 +7,7 @@ using TOP4HoneyChains.Web.Services.OrgModel;
 namespace TOP4HoneyChains.Web.Controllers
 {
     // Read-only view of the append-only audit log and its hash-chain check (D-28)
-    [RequireOrgModel]
+    // Available with or without the organization model: the audit log is on from go-live (D-34)
     [Authorize(Policy = AuthPolicies.PlatformAdmin)]
     public class AuditController : Controller
     {

@@ -72,11 +72,15 @@ The seeds in `db/migrations/002_ccp_integrity.sql` come from the Turkish Food Co
 - [ ] Verify the seeded data types (Number / Yes-No / Text) and that every parameter should stay required.
 - [ ] Verify the honey classes: Pine Honey = Pine; Flower, Thyme, Sunflower, Citrus, Chestnut and Highland = Floral. Chestnut honey's conductivity exception is a honey-type row (D-21); it depends on the honey type being named "Chestnut Honey" when 003 runs.
 
-### Organization model (P1, D-22 to D-32)
-- [ ] Decide whether `Features:OrgRoleModel` is switched on at go-live. Default and recommended for this release: **off** (v1.0 admin-only panel). To switch on: `Features__OrgRoleModel=true` (environment) or `"Features": { "OrgRoleModel": true }` in `appsettings.Production.json`, then restart the site. Switching back off is safe; the data stays.
-- [ ] Audit log protection on the production DB: deny changes to the audit table for the app's DB login (on the LocalDB copy the IIS identity `DefaultAppPool` exists as a DB user; confirm the real one), e.g. `DENY UPDATE, DELETE ON dbo.AuditEntries TO [<app user>];`. The append-only trigger is installed by 004 in any case.
-- [ ] The app pool identity needs write access to `App_Data/org-documents/` and `App_Data/registry-proofs/` (created on first upload) and they must be backed up with the site (step 2). They are outside `wwwroot`.
-- [ ] Optional setting `OrgModel:AssociationVerifier` = `PlatformAdmin` (default) or `CentralAssociation`.
+### Organization model and audit log (D-22 to D-39)
+- [x] `Features:OrgRoleModel` stays **off** at go-live ([D-33](DECISIONS.md)); it is switched on only after P2 and the partners' confirmation. Nothing to set: the default in `appsettings.json` is `false`.
+- [x] The audit log is **on** from go-live, independent of the flag ([D-34](DECISIONS.md)); migration 004 creates the table and its append-only trigger.
+- [ ] The app's DB login is **not** `db_owner` (a `db_owner` can disable the trigger). On the LocalDB copy the IIS identity `DefaultAppPool` exists as a DB user; confirm the real one. Give it only the rights the app needs (`db_datareader`, `db_datawriter`, `EXECUTE` if needed) ([D-39](DECISIONS.md)).
+- [ ] `DENY UPDATE, DELETE ON dbo.AuditEntries TO [<app user>];` for that login.
+- [ ] The IIS app pool can write to the `App_Data` upload folders: `App_Data/ccp-files/`, `App_Data/org-documents/`, `App_Data/registry-proofs/` (created on first upload).
+- [ ] `App_Data` is included in the site backups (deployment step 2 and the regular backups).
+- [ ] The audit trigger `TR_AuditEntries_AppendOnly` is **never disabled** in production; check after deployment: `SELECT is_disabled FROM sys.triggers WHERE name = 'TR_AuditEntries_AppendOnly'` returns 0.
+- [ ] Optional setting `OrgModel:AssociationVerifier` = `PlatformAdmin` (default) or `CentralAssociation` (only relevant once the flag is on).
 
 ### Request to the university IT (D-13)
 Please set up for the TOP4HoneyChains site on IIS:
@@ -134,6 +138,7 @@ Please set up for the TOP4HoneyChains site on IIS:
 - [ ] Raw → final honey flow and CCP monitoring pages save correctly.
 - [ ] A finalized batch shows "Finalized (locked)" and has no Edit/Delete/Unfinalize; its CCP pages are read-only (D-14). A draft batch lists what is missing before it can be finalized (D-16).
 - [ ] Honey Story of a finalized batch lists every CCP; batches finalized before this release (ids 2–6 on the copy) show their missing CCPs as "Not recorded" (D-16).
+- [ ] Audit log: after a few admin actions, `/Audit` lists them (login, creates, updates) and "Verify hash chain" reports that all rows verify; an `UPDATE` on `AuditEntries` with the app's DB login is refused (D-34, D-39).
 - [ ] Error page: as an anonymous user, open `/Dashboard/Error`. Expect the "Something went wrong" page with a reference, not a login redirect. (Unhandled errors are logged with the same reference; `/honeystory/qrcode` no longer fails, it returns 404 for unknown codes.)
 - [ ] Deleting a lookup value that is in use shows "This record is in use and cannot be deleted." (no 500).
 

@@ -257,3 +257,17 @@ Design: [ROLE-MODEL.md](ROLE-MODEL.md). Decisions: D-22 to D-32. Schema and data
   - Audit: 66 rows (create/update/delete/verify/approve/login), "All rows verify"; `UPDATE` and `DELETE` on `AuditEntries` fail with the trigger error; a row changed with the trigger disabled is reported ("Row 1 was changed after it was written"), and verifies again once restored.
   - With the flag on, the main admin pages still return 200 for administrators.
 - All `zz_test` data (orgs, users, memberships, documents, lots, beekeepers, files) and the test audit rows were deleted afterwards; the audit table was empty before the session. Counts back to baseline.
+
+### P2 backlog (owner decisions 2026-10-04)
+| ID | Item | Source |
+|---|---|---|
+| P2-01 | Owning organization on lots and batches (set by admin or at intake) and org-scoped views built on it | D-36 |
+| P2-02 | Platform administrators read-only on business data with the flag on; corrections only through correction records | D-35 |
+| P2-03 | Registry verification: optional second approver (configurable, default off) | D-37 |
+| P2-04 | Turkish translations for the new screens (Organizations, Registry, Audit log, My organization, approval panel) | owner |
+| P2-05 | Test the P1 items not verified yet: a central association verifying associations (`OrgModel:AssociationVerifier`), lab accreditation fields, document download by a member, organization edit, the batch list of a second organization | P1 verification |
+| P2-06 | Audit chain under concurrent writes (only sequential writes were tested) | P1 verification |
+
+### Note on `fix/audit-always-on` (2026-10-04, D-34)
+- The audit interceptor and the explicit audit writes no longer depend on `Features:OrgRoleModel`; `/Audit` is available to administrators in both modes (link under User Management).
+- Verified with the flag **off**: 17 main admin pages return 200 (dashboard, beekeepers, apiaries, raw lots incl. by-apiary, honey types, wholesalers, batches incl. by-wholesaler and ManageBatch, CCP monitoring, CCP definitions and parameters, users, roles, profile, audit log); Organizations, Registry and Workspace still return 404 and the organization menu stays hidden. A login and a `zz_test` honey type created and deleted wrote 3 audit rows (Login, Create, Delete) and the chain verified. The 3 test rows were removed afterwards on the local copy (the table was empty before).
