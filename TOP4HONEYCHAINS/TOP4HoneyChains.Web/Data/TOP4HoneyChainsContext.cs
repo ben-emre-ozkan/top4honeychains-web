@@ -49,6 +49,10 @@ public partial class TOP4HoneyChainsContext : DbContext
     public virtual DbSet<CcpResponsibilityCapability> CcpResponsibilityCapabilities { get; set; }
     public virtual DbSet<CcpResponsibilityRole> CcpResponsibilityRoles { get; set; }
     public virtual DbSet<CcpCorrection> CcpCorrections { get; set; }
+    public virtual DbSet<LotIntake> LotIntakes { get; set; }
+    public virtual DbSet<Shipment> Shipments { get; set; }
+    public virtual DbSet<HolderStorageRecord> HolderStorageRecords { get; set; }
+    public virtual DbSet<HolderStorageValue> HolderStorageValues { get; set; }
     public virtual DbSet<CriticalControlPointMonitoringLog> CriticalControlPointMonitoringLogs { get; set; }
     public virtual DbSet<AssignmentStatus> AssignmentStatuses { get; set; }
     public virtual DbSet<RawHoneyCCPAssignment> RawHoneyCCPAssignments { get; set; }
@@ -278,6 +282,44 @@ public partial class TOP4HoneyChainsContext : DbContext
             entity.ToTable("CcpCorrections");
             entity.Property(e => e.RequestedAt).HasDefaultValueSql("SYSUTCDATETIME()");
             entity.HasOne(e => e.Ccp).WithMany().HasForeignKey(e => e.CcpId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne(e => e.Parameter).WithMany().HasForeignKey(e => e.ParameterId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<LotIntake>(entity =>
+        {
+            entity.ToTable("LotIntakes");
+            entity.Property(e => e.ReceivedAt).HasDefaultValueSql("SYSUTCDATETIME()");
+            entity.Property(e => e.FormSha256).IsFixedLength().IsUnicode(false);
+            entity.HasIndex(e => e.RawHoneyProductionId).IsUnique();
+            entity.HasOne(e => e.RawHoneyProduction).WithMany().HasForeignKey(e => e.RawHoneyProductionId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne(e => e.ReceivingOrg).WithMany().HasForeignKey(e => e.ReceivingOrgId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<Shipment>(entity =>
+        {
+            entity.ToTable("Shipments");
+            entity.Property(e => e.Status).HasDefaultValue(ShipmentStatus.Pending);
+            entity.Property(e => e.ShippedAt).HasDefaultValueSql("SYSUTCDATETIME()");
+            entity.HasOne(e => e.Batch).WithMany().HasForeignKey(e => e.FinalHoneyProductionId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne(e => e.FromOrg).WithMany().HasForeignKey(e => e.FromOrgId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne(e => e.ToOrg).WithMany().HasForeignKey(e => e.ToOrgId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<HolderStorageRecord>(entity =>
+        {
+            entity.ToTable("HolderStorageRecords");
+            entity.HasIndex(e => new { e.FinalHoneyProductionId, e.HolderOrgId, e.CcpId }).IsUnique();
+            entity.HasOne(e => e.Batch).WithMany().HasForeignKey(e => e.FinalHoneyProductionId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne(e => e.HolderOrg).WithMany().HasForeignKey(e => e.HolderOrgId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne(e => e.Ccp).WithMany().HasForeignKey(e => e.CcpId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<HolderStorageValue>(entity =>
+        {
+            entity.ToTable("HolderStorageValues");
+            entity.Property(e => e.MeasuredAt).HasDefaultValueSql("SYSUTCDATETIME()");
+            entity.HasIndex(e => new { e.RecordId, e.ParameterId }).IsUnique();
+            entity.HasOne(e => e.Record).WithMany(r => r.Values).HasForeignKey(e => e.RecordId).OnDelete(DeleteBehavior.Restrict);
             entity.HasOne(e => e.Parameter).WithMany().HasForeignKey(e => e.ParameterId).OnDelete(DeleteBehavior.Restrict);
         });
 
