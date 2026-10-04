@@ -1,4 +1,4 @@
-@using TOP4HoneyChains.Web.Models.Entities
+﻿@using TOP4HoneyChains.Web.Models.Entities
 @model Organization
 @{
     ViewData["Title"] = Model.DisplayName;
@@ -32,7 +32,7 @@
                             <span class="badge @badge fs-6" id="org-status">@Model.Status</span>
                             @if (isAdmin)
                             {
-                                <div class="mt-2"><a asp-action="Edit" asp-route-id="@Model.OrgId" class="btn btn-sm btn-outline-primary">Edit details</a></div>
+                                <div class="mt-2"><a asp-action="Edit" asp-route-id="@Model.OrgId" class="btn btn-sm btn-outline-primary">@L["Org.EditDetails"]</a></div>
                             }
                         </div>
                     </div>
@@ -44,28 +44,28 @@
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Verification</h5>
-                            <p class="text-muted small mb-2">Pending → Verified → Suspended. Only verified organizations can enter data; suspension keeps all data and blocks new entries.</p>
+                            <h5 class="card-title">@L["Org.Verification"]</h5>
+                            <p class="text-muted small mb-2">@L["Org.VerificationHelp"]</p>
                             @if (canVerify && !Model.IsPlatform)
                             {
                                 <form asp-action="ChangeStatus" asp-route-id="@Model.OrgId" method="post" class="mb-3" id="verify-form">
-                                    <textarea name="reason" class="form-control mb-2" rows="2" maxlength="500" placeholder="Reason / note (required to suspend or to request documents)"></textarea>
+                                    <textarea name="reason" class="form-control mb-2" rows="2" maxlength="500" placeholder="@L["Org.ReasonPlaceholder"]"></textarea>
                                     @if (Model.Status != OrgStatus.Verified)
                                     {
                                         <button type="submit" name="toStatus" value="Verified" class="btn btn-sm btn-success">@(Model.Status == OrgStatus.Suspended ? "Reinstate" : "Verify")</button>
                                     }
                                     @if (Model.Status == OrgStatus.Pending)
                                     {
-                                        <button type="submit" name="toStatus" value="Pending" class="btn btn-sm btn-outline-secondary">Request documents</button>
+                                        <button type="submit" name="toStatus" value="Pending" class="btn btn-sm btn-outline-secondary">@L["Org.RequestDocuments"]</button>
                                     }
                                     @if (Model.Status == OrgStatus.Verified)
                                     {
-                                        <button type="submit" name="toStatus" value="Suspended" class="btn btn-sm btn-danger">Suspend</button>
+                                        <button type="submit" name="toStatus" value="Suspended" class="btn btn-sm btn-danger">@L["Org.Suspend"]</button>
                                     }
                                 </form>
                             }
                             <table class="table table-sm">
-                                <thead><tr><th>When (UTC)</th><th>From</th><th>To</th><th>Reason</th></tr></thead>
+                                <thead><tr><th>@L["Org.When"]</th><th>@L["Org.From"]</th><th>@L["Org.To"]</th><th>@L["Org.Reason"]</th></tr></thead>
                                 <tbody>
                                     @foreach (var e in Model.VerificationEvents.OrderByDescending(e => e.EventId))
                                     {
@@ -73,7 +73,7 @@
                                     }
                                     @if (!Model.VerificationEvents.Any())
                                     {
-                                        <tr><td colspan="4" class="text-muted">No status changes yet.</td></tr>
+                                        <tr><td colspan="4" class="text-muted">@L["Org.NoStatusChanges"]</td></tr>
                                     }
                                 </tbody>
                             </table>
@@ -83,9 +83,9 @@
                     <!-- Documents -->
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Documents</h5>
+                            <h5 class="card-title">@L["Org.Documents"]</h5>
                             <table class="table table-sm" id="documents">
-                                <thead><tr><th>Type</th><th>File</th><th>SHA-256</th><th>Uploaded (UTC)</th></tr></thead>
+                                <thead><tr><th>@L["Org.Type"]</th><th>@L["Org.File"]</th><th>SHA-256</th><th>@L["Org.Uploaded"]</th></tr></thead>
                                 <tbody>
                                     @foreach (var d in Model.Documents.OrderByDescending(d => d.DocumentId))
                                     {
@@ -98,7 +98,7 @@
                                     }
                                     @if (!Model.Documents.Any())
                                     {
-                                        <tr><td colspan="4" class="text-muted">No documents yet.</td></tr>
+                                        <tr><td colspan="4" class="text-muted">@L["Org.NoDocuments"]</td></tr>
                                     }
                                 </tbody>
                             </table>
@@ -111,8 +111,8 @@
                                         </select>
                                     </div>
                                     <div class="col-md-6"><input type="file" name="file" class="form-control" accept=".pdf,.jpg,.jpeg,.png,.webp" /></div>
-                                    <div class="col-md-2"><button type="submit" class="btn btn-primary w-100">Upload</button></div>
-                                    <small class="text-muted">PDF up to 10 MB, or JPG/PNG/WEBP up to 8 MB. Stored outside the web folder with its SHA-256.</small>
+                                    <div class="col-md-2"><button type="submit" class="btn btn-primary w-100">@L["Org.Upload"]</button></div>
+                                    <small class="text-muted">@L["Org.UploadHelp"]</small>
                                 </form>
                             }
                         </div>
@@ -123,7 +123,7 @@
                     <!-- Capabilities -->
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Capabilities</h5>
+                            <h5 class="card-title">@L["Org.Capabilities"]</h5>
                             <ul class="list-group mb-3" id="capabilities">
                                 @foreach (var c in Model.Capabilities.OrderBy(c => c.Capability))
                                 {
@@ -139,7 +139,7 @@
                                         {
                                             <form asp-action="RemoveCapability" asp-route-id="@Model.OrgId" method="post">
                                                 <input type="hidden" name="capability" value="@c.Capability" />
-                                                <button type="submit" class="btn btn-sm btn-outline-danger">Remove</button>
+                                                <button type="submit" class="btn btn-sm btn-outline-danger">@L["Org.Remove"]</button>
                                             </form>
                                         }
                                     </li>
@@ -157,11 +157,11 @@
                                         </select>
                                     </div>
                                     <div class="col-md-8 small">
-                                        <label><input type="checkbox" name="isAccredited" value="true" /> accredited (laboratory)</label>
-                                        <input name="accreditationNumber" class="form-control form-control-sm d-inline-block w-auto" placeholder="accreditation no." maxlength="100" />
+                                        <label><input type="checkbox" name="isAccredited" value="true" /> @L["Org.Accredited"]</label>
+                                        <input name="accreditationNumber" class="form-control form-control-sm d-inline-block w-auto" placeholder="@L["Org.AccreditationNo"]" maxlength="100" />
                                         <input name="accreditationValidUntil" type="date" class="form-control form-control-sm d-inline-block w-auto" />
                                     </div>
-                                    <div class="col-12"><button type="submit" class="btn btn-sm btn-primary">Add capability</button></div>
+                                    <div class="col-12"><button type="submit" class="btn btn-sm btn-primary">@L["Org.AddCapability"]</button></div>
                                 </form>
                             }
                         </div>
@@ -170,12 +170,12 @@
                     <!-- Four-eyes -->
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Four-eyes exemption</h5>
+                            <h5 class="card-title">@L["Org.FourEyesExemption"]</h5>
                             <p class="small text-muted mb-2">
                                 With the exemption, a member may approve a CCP record they recorded themselves (e.g. a one-person association).
                                 Every such approval is flagged <code>SelfApproved</code> in the audit log. It never applies to lab results. Set only by platform administrators.
                             </p>
-                            <div>Current: <strong id="four-eyes">@(Model.FourEyesExempt ? "exempt" : "not exempt")</strong></div>
+                            <div>@L["Org.Current"] <strong id="four-eyes">@(Model.FourEyesExempt ? "exempt" : "not exempt")</strong></div>
                             @if (isAdmin)
                             {
                                 <form asp-action="SetFourEyesExempt" asp-route-id="@Model.OrgId" method="post" class="mt-2">
@@ -189,9 +189,9 @@
                     <!-- Members -->
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Members</h5>
+                            <h5 class="card-title">@L["Org.Members"]</h5>
                             <table class="table table-sm" id="members">
-                                <thead><tr><th>User</th><th>Org role</th><th>Status</th><th></th></tr></thead>
+                                <thead><tr><th>@L["Org.User"]</th><th>@L["Org.OrgRole"]</th><th>@L["Org.Status"]</th><th></th></tr></thead>
                                 <tbody>
                                     @foreach (var m in members)
                                     {
@@ -204,7 +204,7 @@
                                                 {
                                                     <form asp-action="RevokeMember" method="post">
                                                         <input type="hidden" name="membershipId" value="@m.MembershipId" />
-                                                        <button type="submit" class="btn btn-sm btn-outline-danger">Revoke</button>
+                                                        <button type="submit" class="btn btn-sm btn-outline-danger">@L["Org.Revoke"]</button>
                                                     </form>
                                                 }
                                             </td>
@@ -212,7 +212,7 @@
                                     }
                                     @if (!members.Any())
                                     {
-                                        <tr><td colspan="4" class="text-muted">No members yet.</td></tr>
+                                        <tr><td colspan="4" class="text-muted">@L["Org.NoMembers"]</td></tr>
                                     }
                                 </tbody>
                             </table>
@@ -220,20 +220,20 @@
                             {
                                 <form asp-action="AddMember" asp-route-id="@Model.OrgId" method="post" class="row g-2" id="add-member">
                                     <div class="col-md-4">
-                                        <label class="form-label small">Org role</label>
+                                        <label class="form-label small">@L["Org.OrgRole"]</label>
                                         <select name="orgRole" class="form-select">
                                             @foreach (var r in roles) { <option value="@r">@r</option> }
                                         </select>
                                     </div>
                                     <div class="col-md-8">
-                                        <label class="form-label small">Existing user name</label>
+                                        <label class="form-label small">@L["Org.ExistingUser"]</label>
                                         <input name="existingUserName" class="form-control" autocomplete="off" />
                                     </div>
-                                    <div class="col-12 small text-muted">or create a new user (no global role; access only through memberships):</div>
-                                    <div class="col-md-4"><input name="newUserName" class="form-control" placeholder="user name" autocomplete="off" /></div>
-                                    <div class="col-md-4"><input name="newEmail" type="email" class="form-control" placeholder="e-mail" autocomplete="off" /></div>
-                                    <div class="col-md-4"><input name="newPassword" type="password" class="form-control" placeholder="password" autocomplete="new-password" /></div>
-                                    <div class="col-12"><button type="submit" class="btn btn-sm btn-primary">Add member</button></div>
+                                    <div class="col-12 small text-muted">@L["Org.NewUserHint"]</div>
+                                    <div class="col-md-4"><input name="newUserName" class="form-control" placeholder="@L["Org.UserName"]" autocomplete="off" /></div>
+                                    <div class="col-md-4"><input name="newEmail" type="email" class="form-control" placeholder="@L["Org.Email"]" autocomplete="off" /></div>
+                                    <div class="col-md-4"><input name="newPassword" type="password" class="form-control" placeholder="@L["Org.Password"]" autocomplete="new-password" /></div>
+                                    <div class="col-12"><button type="submit" class="btn btn-sm btn-primary">@L["Org.AddMember"]</button></div>
                                 </form>
                             }
                         </div>
@@ -241,7 +241,7 @@
                 </div>
             </div>
 
-            <a asp-action="Index" class="btn btn-secondary">Back</a>
+            <a asp-action="Index" class="btn btn-secondary">@L["Org.Back"]</a>
         </div>
     </div>
 </body>

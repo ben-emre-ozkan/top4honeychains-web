@@ -1,0 +1,64 @@
+@using TOP4HoneyChains.Web.Models.Entities
+@model List<CcpCorrection>
+@{
+    ViewData["Title"] = L["Corr.Title"];
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var names = ViewBag.UserNames as Dictionary<string, string> ?? new();
+    string Name(string? id) => id == null ? "" : names.TryGetValue(id, out var n) ? n : id;
+    string Val(decimal? n, string? t) => n?.ToString("0.####") ?? t ?? "–";
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">@L["Corr.Title"]</h4>
+                    <p class="card-title-desc">@L["Corr.Help"]</p>
+                    <table class="table table-sm table-bordered" id="corrections">
+                        <thead><tr><th>#</th><th>@L["Corr.Record"]</th><th>@L["Corr.Parameter"]</th><th>@L["Corr.OldValue"]</th><th>@L["Corr.NewValue"]</th><th>@L["Corr.Reason"]</th><th>@L["Corr.RequestedBy"]</th><th>@L["Org.Status"]</th><th></th></tr></thead>
+                        <tbody>
+                            @foreach (var c in Model)
+                            {
+                                <tr data-correction-id="@c.CorrectionId">
+                                    <td>@c.CorrectionId</td>
+                                    <td>
+                                        @if (c.OwnerKind == "raw")
+                                        {
+                                            <a asp-action="RawHoneyProductionManageCCP" asp-route-rawHoneyProductionId="@c.OwnerId" asp-route-ccpId="@c.CcpId">@L["Corr.Lot"] #@c.OwnerId · @c.Ccp?.Code</a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-action="FinalHoneyProductionManageCCP" asp-route-finalHoneyProductionId="@c.OwnerId" asp-route-ccpId="@c.CcpId">@L["Corr.Batch"] #@c.OwnerId · @c.Ccp?.Code</a>
+                                        }
+                                    </td>
+                                    <td>@c.Parameter?.ParameterName</td>
+                                    <td>@Val(c.OldNumericValue, c.OldTextValue)</td>
+                                    <td>@Val(c.NewNumericValue, c.NewTextValue)</td>
+                                    <td>@c.Reason</td>
+                                    <td>@Name(c.RequestedByUserId)</td>
+                                    <td class="correction-status">@c.Status @(c.DecidedByUserId != null ? "· " + Name(c.DecidedByUserId) : "") @(c.DecisionNote != null ? "· " + c.DecisionNote : "")</td>
+                                    <td>
+                                        @if (c.Status == CorrectionStatus.Pending)
+                                        {
+                                            <form asp-action="DecideCorrection" method="post" class="d-flex gap-1">
+                                                <input type="hidden" name="correctionId" value="@c.CorrectionId" />
+                                                <input name="note" class="form-control form-control-sm" placeholder="@L["Corr.NotePlaceholder"]" maxlength="500" />
+                                                <button type="submit" name="approve" value="true" class="btn btn-sm btn-success">@L["Corr.Apply"]</button>
+                                                <button type="submit" name="approve" value="false" class="btn btn-sm btn-outline-danger">@L["Corr.Reject"]</button>
+                                            </form>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                            @if (!Model.Any())
+                            {
+                                <tr><td colspan="9" class="text-muted">@L["Org.None"]</td></tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

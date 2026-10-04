@@ -15,7 +15,7 @@
 else if (!Model.CanEnter)
 {
     <div class="alert alert-info" id="ccp-read-only">
-        <i class="mdi mdi-eye-outline me-1"></i> Read only: @Model.EnterDeniedReason
+        <i class="mdi mdi-eye-outline me-1"></i> @L["Ccp.ReadOnly"]: @Model.EnterDeniedReason
     </div>
 }
 
@@ -30,6 +30,7 @@ else if (!Model.CanEnter)
                         AssignmentStatusIds.Completed => "bg-success",
                         AssignmentStatusIds.NotApplicable => "bg-dark",
                         AssignmentStatusIds.InProgress => "bg-warning text-dark",
+                        AssignmentStatusIds.Submitted => "bg-info text-dark",
                         _ => "bg-secondary"
                     };
                 }
@@ -92,27 +93,27 @@ else if (!Model.CanEnter)
     @* Four-eyes approval of the CCP record (D-27) *@
     <div class="card mb-4 border-0 shadow-sm" id="ccp-approval">
         <div class="card-body">
-            <h6 class="mb-2">Approval (four-eyes)</h6>
+            <h6 class="mb-2">@L["Ccp.ApprovalTitle"]</h6>
             @if (Model.ApprovedAt != null)
             {
                 <div id="approval-state">
-                    <span class="badge bg-success">Approved</span> by @Model.ApprovedBy on @Model.ApprovedAt?.ToString("dd.MM.yyyy HH:mm")
+                    <span class="badge bg-success">@L["Ccp.Approved"]</span> @Model.ApprovedBy · @Model.ApprovedAt?.ToString("dd.MM.yyyy HH:mm")
                     @if (Model.SelfApproved)
                     {
-                        <span class="badge bg-warning text-dark ms-1">self-approved (exemption)</span>
+                        <span class="badge bg-warning text-dark ms-1">@L["Org.SelfApproved"]</span>
                     }
                 </div>
             }
             else
             {
-                <div id="approval-state" class="text-muted">Not approved yet. Changing a value removes an approval.</div>
-                @if (Model.CanApprove && Model.LockReason == null && (Model.StatusId == AssignmentStatusIds.Completed || Model.StatusId == AssignmentStatusIds.NotApplicable))
+                <div id="approval-state" class="text-muted">@L["Ccp.NotApproved"]</div>
+                @if (Model.CanApprove && Model.LockReason == null && (Model.StatusId == AssignmentStatusIds.Submitted || Model.StatusId == AssignmentStatusIds.Completed || Model.StatusId == AssignmentStatusIds.NotApplicable))
                 {
                     <form asp-action="Approve" method="post" class="mt-2">
                         <input type="hidden" name="ownerKind" value="@Model.OwnerKind" />
                         <input type="hidden" name="ownerId" value="@Model.OwnerId" />
                         <input type="hidden" name="ccpId" value="@Model.CCPId" />
-                        <button type="submit" class="btn btn-sm btn-success" id="approve-button">Approve</button>
+                        <button type="submit" class="btn btn-sm btn-success" id="approve-button">@L["Ccp.Approve"]</button>
                     </form>
                 }
                 else if (Model.ApproveDeniedReason != null)
@@ -120,6 +121,44 @@ else if (!Model.CanEnter)
                     <div class="small text-muted mt-1">@Model.ApproveDeniedReason</div>
                 }
             }
+        </div>
+    </div>
+}
+
+@if (Model.AdminCorrections)
+{
+    @* D-35: platform administrators correct values only through a correction record and a second administrator *@
+    var allParams = Model.Groups.SelectMany(g => g.Parameters).Where(p => p.DataType != CcpDataType.File).ToList();
+    <div class="card mb-4 border-0 shadow-sm" id="ccp-corrections">
+        <div class="card-body">
+            <h6 class="mb-1">@L["Corr.Title"]</h6>
+            <p class="small text-muted">@L["Corr.FormHelp"]</p>
+            <form asp-action="RequestCorrection" method="post" class="row g-2" id="correction-form">
+                <input type="hidden" name="ownerKind" value="@Model.OwnerKind" />
+                <input type="hidden" name="ownerId" value="@Model.OwnerId" />
+                <input type="hidden" name="ccpId" value="@Model.CCPId" />
+                <div class="col-md-4">
+                    <select name="parameterId" class="form-select form-select-sm">
+                        @foreach (var p in allParams) { <option value="@p.ParameterId">@p.ParameterName</option> }
+                    </select>
+                </div>
+                <div class="col-md-2"><input name="newNumericValue" type="text" inputmode="decimal" class="form-control form-control-sm" placeholder="@L["Corr.Number"]" /></div>
+                <div class="col-md-2"><input name="newTextValue" class="form-control form-control-sm" maxlength="100" placeholder="@L["Corr.Text"]" /></div>
+                <div class="col-md-3"><input name="reason" class="form-control form-control-sm" maxlength="500" placeholder="@L["Corr.Reason"]" /></div>
+                <div class="col-md-1"><button type="submit" class="btn btn-sm btn-outline-primary w-100">@L["Corr.Request"]</button></div>
+            </form>
+            @if (Model.Corrections.Any())
+            {
+                <table class="table table-sm mt-3 mb-0">
+                    <tbody>
+                        @foreach (var c in Model.Corrections)
+                        {
+                            <tr><td>#@c.CorrectionId</td><td>@c.Parameter?.ParameterName</td><td>@(c.OldNumericValue?.ToString("0.####") ?? c.OldTextValue ?? "–") → @(c.NewNumericValue?.ToString("0.####") ?? c.NewTextValue)</td><td>@c.Reason</td><td>@c.Status</td></tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            <a asp-action="Corrections" class="small">@L["Corr.All"]</a>
         </div>
     </div>
 }

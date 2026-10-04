@@ -1,0 +1,37 @@
+@using TOP4HoneyChains.Web.Models.Entities
+@{
+    ViewData["Title"] = L["Resp.Title"];
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var ccps = ViewBag.Ccps as List<CriticalControlPoint> ?? new();
+    var configs = ViewBag.Configs as Dictionary<int, CcpResponsibility> ?? new();
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">@L["Resp.Title"]</h4>
+                    <p class="card-title-desc">@L["Resp.Help"]</p>
+                    <table class="table table-sm table-bordered" id="resp-table">
+                        <thead><tr><th>CCP</th><th>@L["Resp.Responsible"]</th><th>@L["Org.Capabilities"]</th><th>@L["Resp.EnterRoles"]</th><th>@L["Resp.ApproveRoles"]</th><th></th></tr></thead>
+                        <tbody>
+                            @foreach (var c in ccps)
+                            {
+                                configs.TryGetValue(c.Id, out var r);
+                                <tr data-ccp="@c.Code">
+                                    <td><strong>@c.Code</strong> <small class="text-muted">@c.Title</small></td>
+                                    <td>@(r == null ? L["Resp.NotSet"] : r.OwnerRule == CcpOwnerRules.Owner ? L["Resp.RuleOwner"] : L["Resp.RuleAssociation"])</td>
+                                    <td>@(r == null ? "" : string.Join(", ", r.Capabilities.Select(x => x.Capability)))</td>
+                                    <td>@(r == null ? "" : string.Join(", ", r.Roles.Where(x => x.Action == CcpActions.Enter).Select(x => x.OrgRole)))</td>
+                                    <td>@(r == null ? "" : r.RequiresApproval ? string.Join(", ", r.Roles.Where(x => x.Action == CcpActions.Approve).Select(x => x.OrgRole)) : L["Resp.NoApproval"].Value)</td>
+                                    <td><a asp-action="Edit" asp-route-id="@c.Id" class="btn btn-sm btn-primary">@L["Org.Edit"]</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

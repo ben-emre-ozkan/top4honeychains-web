@@ -1,6 +1,6 @@
-@model List<TOP4HoneyChains.Web.Models.Entities.AuditEntry>
+﻿@model List<TOP4HoneyChains.Web.Models.Entities.AuditEntry>
 @{
-    ViewData["Title"] = "Audit log";
+    ViewData["Title"] = L["Audit.Title"];
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
     int page = ViewBag.Page, size = ViewBag.PageSize, total = ViewBag.Total;
     dynamic f = ViewBag.Filter;
@@ -14,30 +14,30 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-start mb-2">
                         <div>
-                            <h4 class="card-title mb-1">Audit log</h4>
-                            <p class="card-title-desc mb-0">Append-only and hash-chained: every row holds the hash of the previous row. Rows cannot be changed or deleted.</p>
+                            <h4 class="card-title mb-1">@L["Audit.Title"]</h4>
+                            <p class="card-title-desc mb-0">@L["Audit.Help"]</p>
                         </div>
                         <form asp-action="Verify" method="post">
-                            <button type="submit" class="btn btn-outline-primary" id="verify-chain">Verify hash chain</button>
+                            <button type="submit" class="btn btn-outline-primary" id="verify-chain">@L["Audit.Verify"]</button>
                         </form>
                     </div>
 
                     <form method="get" class="row g-2 mb-3">
                         <div class="col-md-3">
                             <select name="entity" class="form-select">
-                                <option value="">all entities</option>
+                                <option value="">@L["Audit.AllEntities"]</option>
                                 @foreach (var e in entities) { <option value="@e" selected="@(e == (string?)f.entity)">@e</option> }
                             </select>
                         </div>
                         <div class="col-md-2"><input name="act" value="@f.act" class="form-control" placeholder="action" /></div>
-                        <div class="col-md-3"><input name="user" value="@f.user" class="form-control" placeholder="user name" /></div>
+                        <div class="col-md-3"><input name="user" value="@f.user" class="form-control" placeholder="@L["Org.UserName"]" /></div>
                         <div class="col-md-2"><input name="flag" value="@f.flag" class="form-control" placeholder="flag, e.g. SelfApproved" /></div>
-                        <div class="col-md-2"><button type="submit" class="btn btn-secondary w-100">Filter</button></div>
+                        <div class="col-md-2"><button type="submit" class="btn btn-secondary w-100">@L["Audit.Filter"]</button></div>
                     </form>
 
                     <div class="small text-muted mb-1">@total rows</div>
                     <table class="table table-sm table-bordered small" id="audit-table">
-                        <thead><tr><th>#</th><th>UTC</th><th>User</th><th>Org</th><th>Action</th><th>Entity</th><th>Key</th><th>Flags</th><th>Old</th><th>New</th><th>Hash</th></tr></thead>
+                        <thead><tr><th>#</th><th>UTC</th><th>@L["Org.User"]</th><th>@L["Org.OrgRole"]</th><th>@L["Audit.Action"]</th><th>@L["Audit.Entity"]</th><th>@L["Audit.Key"]</th><th>@L["Audit.Flags"]</th><th>@L["Audit.Old"]</th><th>@L["Audit.New"]</th><th>Hash</th></tr></thead>
                         <tbody>
                             @foreach (var a in Model)
                             {
@@ -61,11 +61,11 @@
                     <div class="d-flex gap-2">
                         @if (page > 1)
                         {
-                            <a asp-action="Index" asp-route-page="@(page - 1)" asp-route-entity="@f.entity" asp-route-act="@f.act" asp-route-user="@f.user" asp-route-flag="@f.flag" class="btn btn-sm btn-outline-secondary">Newer</a>
+                            <a asp-action="Index" asp-route-page="@(page - 1)" asp-route-entity="@f.entity" asp-route-act="@f.act" asp-route-user="@f.user" asp-route-flag="@f.flag" class="btn btn-sm btn-outline-secondary">@L["Audit.Newer"]</a>
                         }
                         @if (page * size < total)
                         {
-                            <a asp-action="Index" asp-route-page="@(page + 1)" asp-route-entity="@f.entity" asp-route-act="@f.act" asp-route-user="@f.user" asp-route-flag="@f.flag" class="btn btn-sm btn-outline-secondary">Older</a>
+                            <a asp-action="Index" asp-route-page="@(page + 1)" asp-route-entity="@f.entity" asp-route-act="@f.act" asp-route-user="@f.user" asp-route-flag="@f.flag" class="btn btn-sm btn-outline-secondary">@L["Audit.Older"]</a>
                         }
                     </div>
                 </div>
