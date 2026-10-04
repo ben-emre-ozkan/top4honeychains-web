@@ -46,6 +46,10 @@
 - **Ask the user first** before creating or pushing a tag, before any deployment, and before running a script that deletes or changes data (the local test-data cleanup of your own `zz_test_*` records is exempt).
 - Nothing is deployed piecemeal. Everything goes live together via `docs/GO-LIVE.md`.
 
+## Documentation
+- Update docs only when a decision or the deploy steps change (`docs/DECISIONS.md`, the migration list in `docs/GO-LIVE.md`).
+- No new summary documents unless the user asks for one.
+
 ## Language
 - Code, comments, commits and docs: English.
-- Reports to the user: Turkish, short.
+- Reports to the user: Turkish, at most 5 lines.
