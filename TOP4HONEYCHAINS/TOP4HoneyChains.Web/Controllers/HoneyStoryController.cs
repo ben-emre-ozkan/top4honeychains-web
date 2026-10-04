@@ -12,6 +12,8 @@ using TOP4HoneyChains.Web.Models.ViewModels.HoneyStory;
 
 namespace TOP4HoneyChains.Web.Controllers
 {
+    // Public pages (D-47)
+    [Microsoft.AspNetCore.Authorization.AllowAnonymous]
     [Route("honeystory")]
     public class HoneyStoryController : Controller
     {

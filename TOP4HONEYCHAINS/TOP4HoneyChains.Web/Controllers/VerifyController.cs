@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TOP4HoneyChains.Web.Data;
 using TOP4HoneyChains.Web.Models.Entities;
@@ -8,6 +8,8 @@ namespace TOP4HoneyChains.Web.Controllers
 {
     // Public "verify report" page (D-42): anyone enters a lab report code and sees the report's SHA-256
     // hash and approval status. No personal data: no lot, beekeeper, apiary or user is shown.
+    // Public pages (D-47)
+    [Microsoft.AspNetCore.Authorization.AllowAnonymous]
     [RequireOrgModel]
     [Route("verify-report")]
     public class VerifyController : Controller

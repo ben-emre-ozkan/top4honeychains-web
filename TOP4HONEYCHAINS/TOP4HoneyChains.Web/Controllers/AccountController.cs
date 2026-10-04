@@ -9,7 +9,7 @@ using TOP4HoneyChains.Web.Services.OrgModel;
 
 namespace TOP4HoneyChains.Web.Controllers
 {
-    [Authorize]
+    [Authorize(Policy = AuthPolicies.SignedIn)]
     public class AccountController : Controller
     {
         // Only administrators use the web panel in this release (docs/DECISIONS.md, D-01)
@@ -219,7 +219,7 @@ namespace TOP4HoneyChains.Web.Controllers
             return View(model);
         }
 
-        [Authorize]
+        [Authorize(Policy = AuthPolicies.SignedIn)]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
@@ -241,14 +241,14 @@ namespace TOP4HoneyChains.Web.Controllers
             return View();
         }
 
-        [Authorize]
+        [Authorize(Policy = AuthPolicies.SignedIn)]
         [HttpGet]
         public IActionResult LockScreen()
         {
             return View(new UnlockViewModel());
         }
 
-        [Authorize]
+        [Authorize(Policy = AuthPolicies.SignedIn)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Unlock(UnlockViewModel model)
@@ -271,7 +271,7 @@ namespace TOP4HoneyChains.Web.Controllers
             return View("LockScreen", model);
         }
 
-        [Authorize]
+        [Authorize(Policy = AuthPolicies.SignedIn)]
         public async Task<IActionResult> Profile()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -291,7 +291,7 @@ namespace TOP4HoneyChains.Web.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Policy = AuthPolicies.SignedIn)]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdatePhone(ProfileViewModel model)
         {
@@ -307,7 +307,7 @@ namespace TOP4HoneyChains.Web.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Policy = AuthPolicies.SignedIn)]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangePassword(ProfileChangePasswordViewModel model)
         {

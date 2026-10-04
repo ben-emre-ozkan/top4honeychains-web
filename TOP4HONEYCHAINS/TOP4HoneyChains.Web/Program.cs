@@ -92,6 +92,9 @@ builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy(AuthPolicies.PanelUser, p => p.RequireAuthenticatedUser().AddRequirements(new PanelUserRequirement()));
     options.AddPolicy(AuthPolicies.PlatformAdmin, p => p.RequireRole(CurrentOrg.AdminRole));
+    options.AddPolicy(AuthPolicies.SignedIn, p => p.RequireAuthenticatedUser());
+    // D-47: safety net - an endpoint without an explicit policy or [AllowAnonymous] requires sign-in
+    options.FallbackPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
 });
 
 builder.Services.AddControllersWithViews(options =>

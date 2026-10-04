@@ -11,6 +11,8 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         // Who may use the web panel: administrators; with the flag on also users with an active membership
         public const string PanelUser = "PanelUser";
         public const string PlatformAdmin = "PlatformAdmin";
+        // Any signed-in user (own profile, sign-out)
+        public const string SignedIn = "SignedIn";
     }
 
     public class PanelUserRequirement : IAuthorizationRequirement { }

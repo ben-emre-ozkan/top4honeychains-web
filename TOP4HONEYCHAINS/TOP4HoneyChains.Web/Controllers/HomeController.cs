@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Localization;
 
 namespace TOP4HoneyChains.Web.Controllers
 {
+    // Public pages (D-47)
+    [Microsoft.AspNetCore.Authorization.AllowAnonymous]
     public class HomeController : Controller
     {
         public IActionResult Index()
