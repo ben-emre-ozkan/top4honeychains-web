@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TOP4HoneyChains.Web.Data;
@@ -98,9 +98,9 @@ namespace TOP4HoneyChains.Web.Controllers
             var holding = await _custody.HoldingOfAsync(batchId, active!.OrgId);
             if (batch == null || holding.Held <= 0)
                 return NotFound();
-            if (!batch.FinalHoneyProductionIsFinalized)
+            if (CustodyService.DraftBatchError(batch.FinalHoneyProductionIsFinalized) is string draft)
             {
-                TempData["Error"] = "Only a finalized batch can be shipped.";
+                TempData["Error"] = draft;
                 return RedirectToAction(nameof(Index));
             }
             ViewBag.Batch = batch;
@@ -134,17 +134,9 @@ namespace TOP4HoneyChains.Web.Controllers
                 $"SELECT * FROM dbo.FinalHoneyProductions WITH (UPDLOCK, HOLDLOCK) WHERE FinalHoneyProductionId = {batchId}").ToListAsync();
             var holding = await _custody.HoldingOfAsync(batchId, active.OrgId);
 
-            string? error = null;
-            if (!batch.FinalHoneyProductionIsFinalized)
-                error = "Only a finalized batch can be shipped.";
-            else if (toOrgId == active.OrgId || !await _context.Organizations.AnyAsync(o => o.OrgId == toOrgId && !o.IsPlatform && o.Status == OrgStatus.Verified))
-                error = "Choose another verified organization as receiver.";
-            else if (quantity == null || quantity <= 0)
-                error = "The amount must be greater than 0.";
-            else if (quantity > holding.Available)
-                error = $"You can ship at most {holding.Available:0.##} kg of this batch.";
-            else if (note?.Length > 500)
-                error = "The note can be at most 500 characters.";
+            var receiverVerified = await _context.Organizations.AnyAsync(o => o.OrgId == toOrgId && !o.IsPlatform && o.Status == OrgStatus.Verified);
+            var error = CustodyService.CheckShipment(batch.FinalHoneyProductionIsFinalized, active.OrgId, toOrgId, receiverVerified,
+                quantity, holding.Available, note);
             if (error != null)
             {
                 TempData["Error"] = error;

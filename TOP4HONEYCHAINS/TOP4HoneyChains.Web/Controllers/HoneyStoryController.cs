@@ -16,10 +16,41 @@ namespace TOP4HoneyChains.Web.Controllers
     public class HoneyStoryController : Controller
     {
         private readonly TOP4HoneyChainsContext _context;
+        private readonly Microsoft.Extensions.Options.IOptions<Services.OrgModel.FeatureFlags> _flags;
+        private readonly CcpIntegrityService _ccp;
 
-        public HoneyStoryController(TOP4HoneyChainsContext context)
+        public HoneyStoryController(TOP4HoneyChainsContext context, Microsoft.Extensions.Options.IOptions<Services.OrgModel.FeatureFlags> flags,
+            CcpIntegrityService ccp)
         {
             _context = context;
+            _flags = flags;
+            _ccp = ccp;
+        }
+
+        // P4 badges (D-42), only with the organization model and only from approved, verified data:
+        // every lot tested by an accredited, verified laboratory; an in-house lab (the lab belongs to the
+        // producer); every CCP approved; every value with a verified limit within it
+        private async Task FillBadgesAsync(HoneyStoryViewModel vm)
+        {
+            if (!_flags.Value.OrgRoleModel)
+                return;
+            var rawIds = vm.RawSources.Select(s => s.RawHoneyProductionId).Distinct().ToList();
+            var reports = await _context.LabReports.AsNoTracking()
+                .Where(r => r.Status == LabReportStatus.Approved && rawIds.Contains(r.Sample!.RawHoneyProductionId)
+                            && r.LabOrg!.Status == OrgStatus.Verified)
+                .Select(r => new { r.Sample!.RawHoneyProductionId, r.IsAccredited, r.AccreditationNumber, r.InHouse, r.ReportCode })
+                .ToListAsync();
+            var rows = vm.RawSources.SelectMany(s => s.CcpBlocks).Concat(vm.BatchCcpBlocks).SelectMany(b => b.Parameters)
+                .Where(r => r.Compliant != null).ToList();
+            vm.Badges = new HoneyStoryBadges
+            {
+                AccreditedLab = rawIds.Count > 0 && rawIds.All(id => reports.Any(r => r.RawHoneyProductionId == id && r.IsAccredited)),
+                AccreditationNumbers = reports.Where(r => r.IsAccredited && r.AccreditationNumber != null).Select(r => r.AccreditationNumber!).Distinct().ToList(),
+                InHouseLab = reports.Any(r => r.InHouse),
+                AllCcpsApproved = (await _ccp.GetFinalizeBlockersAsync(vm.FinalHoneyProductionId)).Count == 0,
+                LimitsCompliant = rows.Count > 0 && rows.All(r => r.Compliant == true),
+                ReportCodes = reports.Select(r => r.ReportCode).Distinct().ToList()
+            };
         }
 
 
@@ -150,6 +181,7 @@ namespace TOP4HoneyChains.Web.Controllers
             }
 
             await FillCcpBlocksAsync(vm);
+            await FillBadgesAsync(vm);
 
             return View(vm);
         }
@@ -307,6 +339,7 @@ namespace TOP4HoneyChains.Web.Controllers
             }
 
             await FillCcpBlocksAsync(vm);
+            await FillBadgesAsync(vm);
 
             return View(vm);
         }

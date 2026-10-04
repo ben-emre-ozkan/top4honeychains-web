@@ -915,4 +915,163 @@
   <data name="Scope.Association" xml:space="preserve">
     <value>Your part: your member's lot</value>
   </data>
+  <data name="Lab.Samples" xml:space="preserve">
+    <value>Samples and lab</value>
+  </data>
+  <data name="Lab.Sample" xml:space="preserve">
+    <value>Sample</value>
+  </data>
+  <data name="Lab.TakeSample" xml:space="preserve">
+    <value>Take a sample</value>
+  </data>
+  <data name="Lab.TakeSampleHelp" xml:space="preserve">
+    <value>Seal the sample and the counter-sample, keep the counter-sample and send the sample to a verified laboratory.</value>
+  </data>
+  <data name="Lab.Laboratory" xml:space="preserve">
+    <value>Laboratory</value>
+  </data>
+  <data name="Lab.SealNumber" xml:space="preserve">
+    <value>Seal number</value>
+  </data>
+  <data name="Lab.CounterSealNumber" xml:space="preserve">
+    <value>Counter-sample seal number</value>
+  </data>
+  <data name="Lab.CounterLocation" xml:space="preserve">
+    <value>Where the counter-sample is kept</value>
+  </data>
+  <data name="Lab.RetainUntil" xml:space="preserve">
+    <value>Keep until</value>
+  </data>
+  <data name="Lab.SendSample" xml:space="preserve">
+    <value>Send to the laboratory</value>
+  </data>
+  <data name="Lab.Later" xml:space="preserve">
+    <value>Later</value>
+  </data>
+  <data name="Lab.AllSamples" xml:space="preserve">
+    <value>All samples</value>
+  </data>
+  <data name="Lab.SentSamples" xml:space="preserve">
+    <value>Samples sent by your organization</value>
+  </data>
+  <data name="Lab.CounterSample" xml:space="preserve">
+    <value>Counter-sample</value>
+  </data>
+  <data name="Lab.Report" xml:space="preserve">
+    <value>Lab report</value>
+  </data>
+  <data name="Lab.ReceivedSamples" xml:space="preserve">
+    <value>Samples sent to your laboratory</value>
+  </data>
+  <data name="Lab.ReceivedHelp" xml:space="preserve">
+    <value>Check the seal on receipt. A broken seal rejects the sample; write the reason.</value>
+  </data>
+  <data name="Lab.StatusSent" xml:space="preserve">
+    <value>Sent</value>
+  </data>
+  <data name="Lab.StatusReceived" xml:space="preserve">
+    <value>Received</value>
+  </data>
+  <data name="Lab.StatusRejected" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="Lab.SealBroken" xml:space="preserve">
+    <value>seal broken</value>
+  </data>
+  <data name="Lab.SealIntact" xml:space="preserve">
+    <value>seal intact</value>
+  </data>
+  <data name="Lab.BrokenReason" xml:space="preserve">
+    <value>reason (if the seal is broken)</value>
+  </data>
+  <data name="Lab.ReceiveIntact" xml:space="preserve">
+    <value>Received, seal intact</value>
+  </data>
+  <data name="Lab.ReceiveBroken" xml:space="preserve">
+    <value>Seal broken: reject</value>
+  </data>
+  <data name="Lab.Custody" xml:space="preserve">
+    <value>Chain of custody</value>
+  </data>
+  <data name="Lab.Results" xml:space="preserve">
+    <value>Results</value>
+  </data>
+  <data name="Lab.ReportCode" xml:space="preserve">
+    <value>Report code</value>
+  </data>
+  <data name="Lab.Returned" xml:space="preserve">
+    <value>Returned by the LabManager</value>
+  </data>
+  <data name="Lab.ReportNumber" xml:space="preserve">
+    <value>Report number</value>
+  </data>
+  <data name="Lab.IssuedOn" xml:space="preserve">
+    <value>Issue date</value>
+  </data>
+  <data name="Lab.ReportPdf" xml:space="preserve">
+    <value>Report PDF</value>
+  </data>
+  <data name="Lab.Submit" xml:space="preserve">
+    <value>Submit for approval</value>
+  </data>
+  <data name="Lab.Submitted" xml:space="preserve">
+    <value>Submitted</value>
+  </data>
+  <data name="Lab.ReturnReason" xml:space="preserve">
+    <value>reason (to return)</value>
+  </data>
+  <data name="Lab.Return" xml:space="preserve">
+    <value>Return</value>
+  </data>
+  <data name="Lab.NoExemption" xml:space="preserve">
+    <value>Four-eyes always applies to lab results: the approver must be another person.</value>
+  </data>
+  <data name="Lab.VerifyPage" xml:space="preserve">
+    <value>public verification page</value>
+  </data>
+  <data name="Lab.ValueFromReport" xml:space="preserve">
+    <value>From an approved lab report (corrections only)</value>
+  </data>
+  <data name="Hs.AccreditedLab" xml:space="preserve">
+    <value>Tested by an accredited lab</value>
+  </data>
+  <data name="Hs.InHouseLab" xml:space="preserve">
+    <value>In-house lab</value>
+  </data>
+  <data name="Hs.AllCcpsApproved" xml:space="preserve">
+    <value>All control points approved</value>
+  </data>
+  <data name="Hs.LimitsCompliant" xml:space="preserve">
+    <value>Within verified limits</value>
+  </data>
+  <data name="Hs.LabReport" xml:space="preserve">
+    <value>Lab report</value>
+  </data>
+  <data name="Ver.Title" xml:space="preserve">
+    <value>Verify a lab report</value>
+  </data>
+  <data name="Ver.Help" xml:space="preserve">
+    <value>Enter the report code printed on the label or the report. You see the approval status and the SHA-256 fingerprint of the report file; no personal data is shown.</value>
+  </data>
+  <data name="Ver.Check" xml:space="preserve">
+    <value>Check</value>
+  </data>
+  <data name="Ver.Approved" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="Ver.NotApproved" xml:space="preserve">
+    <value>Not approved yet</value>
+  </data>
+  <data name="Ver.CompareFile" xml:space="preserve">
+    <value>Compare a PDF with this fingerprint (the file stays on your device)</value>
+  </data>
+  <data name="Ver.Match" xml:space="preserve">
+    <value>The file matches the approved report.</value>
+  </data>
+  <data name="Ver.NoMatch" xml:space="preserve">
+    <value>The file does NOT match this report.</value>
+  </data>
+  <data name="Ver.NotFound" xml:space="preserve">
+    <value>No report with this code.</value>
+  </data>
 </root>

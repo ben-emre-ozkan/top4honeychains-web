@@ -1,0 +1,68 @@
+@model TOP4HoneyChains.Web.Controllers.VerifyController.ReportInfo?
+@{
+    ViewData["Title"] = L["Ver.Title"];
+    Layout = "~/Views/Shared/_BlankLayout.cshtml";
+}
+
+<div class="container py-5" style="max-width:760px">
+    <div class="card shadow-sm">
+        <div class="card-body p-4">
+            <h3 class="mb-1"><i class="mdi mdi-file-certificate-outline me-1"></i>@L["Ver.Title"]</h3>
+            <p class="text-muted">@L["Ver.Help"]</p>
+            <form method="get" action="/verify-report" class="d-flex gap-2 mb-4" id="verify-form">
+                <input name="code" class="form-control text-uppercase" maxlength="20" value="@ViewBag.Code" placeholder="@L["Lab.ReportCode"]" autocomplete="off" />
+                <button type="submit" class="btn btn-primary">@L["Ver.Check"]</button>
+            </form>
+
+            @if (Model != null)
+            {
+                <table class="table table-sm" id="verify-result">
+                    <tbody>
+                        <tr><th>@L["Lab.ReportCode"]</th><td>@Model.Code</td></tr>
+                        <tr><th>@L["Org.Status"]</th><td id="verify-status">
+                            @if (Model.Status == "Approved")
+                            {
+                                <span class="badge bg-success">@L["Ver.Approved"]</span> @Model.ApprovedAt?.ToString("dd.MM.yyyy")
+                            }
+                            else
+                            {
+                                <span class="badge bg-warning text-dark">@L["Ver.NotApproved"]</span>
+                            }
+                        </td></tr>
+                        <tr><th>@L["Lab.Laboratory"]</th><td>@Model.Laboratory
+                            @if (Model.Accredited) { <span class="badge bg-success ms-1">@L["Org.Accredited"] @Model.AccreditationNumber</span> }
+                            @if (Model.InHouse) { <span class="badge bg-warning text-dark ms-1">@L["Hs.InHouseLab"]</span> }
+                        </td></tr>
+                        <tr><th>@L["Lab.ReportNumber"]</th><td>@Model.ReportNumber</td></tr>
+                        <tr><th>@L["Lab.IssuedOn"]</th><td>@Model.IssuedOn?.ToString("dd.MM.yyyy")</td></tr>
+                        <tr><th>SHA-256</th><td><code id="verify-sha" style="word-break:break-all">@Model.Sha256</code></td></tr>
+                    </tbody>
+                </table>
+                @if (Model.Sha256 != null)
+                {
+                    <div class="border rounded p-3 bg-light">
+                        <label class="form-label" for="pdf">@L["Ver.CompareFile"]</label>
+                        <input type="file" id="pdf" class="form-control" accept=".pdf" />
+                        <div class="mt-2 fw-semibold" id="compare-result"></div>
+                    </div>
+                    <script>
+                        // The file is hashed in the browser; it is never uploaded
+                        document.getElementById('pdf').addEventListener('change', async e => {
+                            const f = e.target.files[0]; if (!f) return;
+                            const hash = await crypto.subtle.digest('SHA-256', await f.arrayBuffer());
+                            const hex = [...new Uint8Array(hash)].map(b => b.toString(16).padStart(2, '0')).join('');
+                            const ok = hex === '@Model.Sha256';
+                            const out = document.getElementById('compare-result');
+                            out.textContent = ok ? '@Html.Raw(L["Ver.Match"].Value.Replace("'", "\\'"))' : '@Html.Raw(L["Ver.NoMatch"].Value.Replace("'", "\\'"))';
+                            out.className = 'mt-2 fw-semibold ' + (ok ? 'text-success' : 'text-danger');
+                        });
+                    </script>
+                }
+            }
+            else if (ViewBag.Searched == true)
+            {
+                <div class="alert alert-warning" id="verify-none">@L["Ver.NotFound"]</div>
+            }
+        </div>
+    </div>
+</div>

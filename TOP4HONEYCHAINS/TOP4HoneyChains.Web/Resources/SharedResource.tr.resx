@@ -1527,4 +1527,265 @@
   <data name="Storage values saved." xml:space="preserve">
     <value>Depolama değerleri kaydedildi.</value>
   </data>
+  <data name="Lab.Samples" xml:space="preserve">
+    <value>Numuneler ve laboratuvar</value>
+  </data>
+  <data name="Lab.Sample" xml:space="preserve">
+    <value>Numune</value>
+  </data>
+  <data name="Lab.TakeSample" xml:space="preserve">
+    <value>Numune al</value>
+  </data>
+  <data name="Lab.TakeSampleHelp" xml:space="preserve">
+    <value>Numuneyi ve şahit numuneyi mühürleyin, şahit numuneyi saklayın ve numuneyi doğrulanmış bir laboratuvara gönderin.</value>
+  </data>
+  <data name="Lab.Laboratory" xml:space="preserve">
+    <value>Laboratuvar</value>
+  </data>
+  <data name="Lab.SealNumber" xml:space="preserve">
+    <value>Mühür numarası</value>
+  </data>
+  <data name="Lab.CounterSealNumber" xml:space="preserve">
+    <value>Şahit numune mühür numarası</value>
+  </data>
+  <data name="Lab.CounterLocation" xml:space="preserve">
+    <value>Şahit numunenin saklandığı yer</value>
+  </data>
+  <data name="Lab.RetainUntil" xml:space="preserve">
+    <value>Saklama süresi sonu</value>
+  </data>
+  <data name="Lab.SendSample" xml:space="preserve">
+    <value>Laboratuvara gönder</value>
+  </data>
+  <data name="Lab.Later" xml:space="preserve">
+    <value>Sonra</value>
+  </data>
+  <data name="Lab.AllSamples" xml:space="preserve">
+    <value>Tüm numuneler</value>
+  </data>
+  <data name="Lab.SentSamples" xml:space="preserve">
+    <value>Kurumunuzun gönderdiği numuneler</value>
+  </data>
+  <data name="Lab.CounterSample" xml:space="preserve">
+    <value>Şahit numune</value>
+  </data>
+  <data name="Lab.Report" xml:space="preserve">
+    <value>Laboratuvar raporu</value>
+  </data>
+  <data name="Lab.ReceivedSamples" xml:space="preserve">
+    <value>Laboratuvarınıza gelen numuneler</value>
+  </data>
+  <data name="Lab.ReceivedHelp" xml:space="preserve">
+    <value>Teslim alırken mührü kontrol edin. Mühür bozuksa numune reddedilir; gerekçeyi yazın.</value>
+  </data>
+  <data name="Lab.StatusSent" xml:space="preserve">
+    <value>Gönderildi</value>
+  </data>
+  <data name="Lab.StatusReceived" xml:space="preserve">
+    <value>Teslim alındı</value>
+  </data>
+  <data name="Lab.StatusRejected" xml:space="preserve">
+    <value>Reddedildi</value>
+  </data>
+  <data name="Lab.SealBroken" xml:space="preserve">
+    <value>mühür bozuk</value>
+  </data>
+  <data name="Lab.SealIntact" xml:space="preserve">
+    <value>mühür sağlam</value>
+  </data>
+  <data name="Lab.BrokenReason" xml:space="preserve">
+    <value>gerekçe (mühür bozuksa)</value>
+  </data>
+  <data name="Lab.ReceiveIntact" xml:space="preserve">
+    <value>Teslim alındı, mühür sağlam</value>
+  </data>
+  <data name="Lab.ReceiveBroken" xml:space="preserve">
+    <value>Mühür bozuk: reddet</value>
+  </data>
+  <data name="Lab.Custody" xml:space="preserve">
+    <value>Gözetim zinciri</value>
+  </data>
+  <data name="Lab.Results" xml:space="preserve">
+    <value>Sonuçlar</value>
+  </data>
+  <data name="Lab.ReportCode" xml:space="preserve">
+    <value>Rapor kodu</value>
+  </data>
+  <data name="Lab.Returned" xml:space="preserve">
+    <value>LabManager tarafından geri gönderildi</value>
+  </data>
+  <data name="Lab.ReportNumber" xml:space="preserve">
+    <value>Rapor numarası</value>
+  </data>
+  <data name="Lab.IssuedOn" xml:space="preserve">
+    <value>Düzenleme tarihi</value>
+  </data>
+  <data name="Lab.ReportPdf" xml:space="preserve">
+    <value>Rapor PDF</value>
+  </data>
+  <data name="Lab.Submit" xml:space="preserve">
+    <value>Onaya gönder</value>
+  </data>
+  <data name="Lab.Submitted" xml:space="preserve">
+    <value>Onaya gönderildi</value>
+  </data>
+  <data name="Lab.ReturnReason" xml:space="preserve">
+    <value>gerekçe (geri göndermek için)</value>
+  </data>
+  <data name="Lab.Return" xml:space="preserve">
+    <value>Geri gönder</value>
+  </data>
+  <data name="Lab.NoExemption" xml:space="preserve">
+    <value>Laboratuvar sonuçlarında dört göz her zaman geçerlidir: onaylayan başka bir kişi olmalıdır.</value>
+  </data>
+  <data name="Lab.VerifyPage" xml:space="preserve">
+    <value>herkese açık doğrulama sayfası</value>
+  </data>
+  <data name="Lab.ValueFromReport" xml:space="preserve">
+    <value>Onaylı laboratuvar raporundan (yalnızca düzeltmeyle değişir)</value>
+  </data>
+  <data name="Hs.AccreditedLab" xml:space="preserve">
+    <value>Akredite laboratuvarda test edildi</value>
+  </data>
+  <data name="Hs.InHouseLab" xml:space="preserve">
+    <value>Kurum içi laboratuvar</value>
+  </data>
+  <data name="Hs.AllCcpsApproved" xml:space="preserve">
+    <value>Tüm kontrol noktaları onaylı</value>
+  </data>
+  <data name="Hs.LimitsCompliant" xml:space="preserve">
+    <value>Doğrulanmış limitler içinde</value>
+  </data>
+  <data name="Hs.LabReport" xml:space="preserve">
+    <value>Laboratuvar raporu</value>
+  </data>
+  <data name="Ver.Title" xml:space="preserve">
+    <value>Laboratuvar raporu doğrula</value>
+  </data>
+  <data name="Ver.Help" xml:space="preserve">
+    <value>Etikette veya raporda yazan rapor kodunu girin. Onay durumunu ve rapor dosyasının SHA-256 parmak izini görürsünüz; kişisel veri gösterilmez.</value>
+  </data>
+  <data name="Ver.Check" xml:space="preserve">
+    <value>Sorgula</value>
+  </data>
+  <data name="Ver.Approved" xml:space="preserve">
+    <value>Onaylı</value>
+  </data>
+  <data name="Ver.NotApproved" xml:space="preserve">
+    <value>Henüz onaylanmadı</value>
+  </data>
+  <data name="Ver.CompareFile" xml:space="preserve">
+    <value>Bir PDF dosyasını bu parmak izle karşılaştırın (dosya cihazınızdan çıkmaz)</value>
+  </data>
+  <data name="Ver.Match" xml:space="preserve">
+    <value>Dosya onaylı raporla aynı.</value>
+  </data>
+  <data name="Ver.NoMatch" xml:space="preserve">
+    <value>Dosya bu raporla UYUŞMUYOR.</value>
+  </data>
+  <data name="Ver.NotFound" xml:space="preserve">
+    <value>Bu kodla rapor yok.</value>
+  </data>
+  <data name="Only the laboratory the sample was sent to can do this." xml:space="preserve">
+    <value>Bunu yalnızca numunenin gönderildiği laboratuvar yapabilir.</value>
+  </data>
+  <data name="Only a Laboratory organization can do this." xml:space="preserve">
+    <value>Bunu yalnızca bir laboratuvar kurumu yapabilir.</value>
+  </data>
+  <data name="Your role ({0}) cannot do this; roles: {1}." xml:space="preserve">
+    <value>Rolünüz ({0}) bunu yapamaz; roller: {1}.</value>
+  </data>
+  <data name="Only the organization that holds the lot takes its samples." xml:space="preserve">
+    <value>Numuneyi yalnızca lotun bulunduğu kurum alır.</value>
+  </data>
+  <data name="Your role ({0}) cannot take samples; only a SampleAcceptanceOfficer can." xml:space="preserve">
+    <value>Rolünüz ({0}) numune alamaz; yalnızca SampleAcceptanceOfficer alabilir.</value>
+  </data>
+  <data name="Choose a verified laboratory." xml:space="preserve">
+    <value>Doğrulanmış bir laboratuvar seçin.</value>
+  </data>
+  <data name="Enter the seal numbers of the sample and of the counter-sample (at most 50 characters)." xml:space="preserve">
+    <value>Numunenin ve şahit numunenin mühür numaralarını girin (en çok 50 karakter).</value>
+  </data>
+  <data name="The sample and the counter-sample need different seals." xml:space="preserve">
+    <value>Numune ve şahit numune farklı mühürler gerektirir.</value>
+  </data>
+  <data name="Enter where the counter-sample is kept (at most 200 characters)." xml:space="preserve">
+    <value>Şahit numunenin nerede saklandığını girin (en çok 200 karakter).</value>
+  </data>
+  <data name="Enter until when the counter-sample is kept (a future date)." xml:space="preserve">
+    <value>Şahit numunenin ne zamana kadar saklanacağını girin (ileri bir tarih).</value>
+  </data>
+  <data name="Sample {0} sent to the laboratory." xml:space="preserve">
+    <value>{0} numunesi laboratuvara gönderildi.</value>
+  </data>
+  <data name="This sample was already received or rejected." xml:space="preserve">
+    <value>Bu numune zaten teslim alındı veya reddedildi.</value>
+  </data>
+  <data name="A broken seal rejects the sample: write the reason." xml:space="preserve">
+    <value>Bozuk mühür numuneyi reddeder: gerekçeyi yazın.</value>
+  </data>
+  <data name="Sample received; the seal is intact." xml:space="preserve">
+    <value>Numune teslim alındı; mühür sağlam.</value>
+  </data>
+  <data name="Sample rejected: the seal is broken." xml:space="preserve">
+    <value>Numune reddedildi: mühür bozuk.</value>
+  </data>
+  <data name="Results are entered only for a received sample with an intact seal." xml:space="preserve">
+    <value>Sonuçlar yalnızca mührü sağlam teslim alınmış numune için girilir.</value>
+  </data>
+  <data name="An approved lab report cannot be changed; request a correction instead." xml:space="preserve">
+    <value>Onaylı laboratuvar raporu değiştirilemez; bunun yerine düzeltme talep edin.</value>
+  </data>
+  <data name="The report is submitted; the LabManager approves it or returns it for changes." xml:space="preserve">
+    <value>Rapor onaya gönderildi; LabManager onaylar ya da değişiklik için geri gönderir.</value>
+  </data>
+  <data name="The report number can be at most 50 characters." xml:space="preserve">
+    <value>Rapor numarası en çok 50 karakter olabilir.</value>
+  </data>
+  <data name="The issue date cannot be in the future." xml:space="preserve">
+    <value>Düzenleme tarihi gelecekte olamaz.</value>
+  </data>
+  <data name="The lab report must be a PDF." xml:space="preserve">
+    <value>Laboratuvar raporu PDF olmalıdır.</value>
+  </data>
+  <data name="Lab results saved." xml:space="preserve">
+    <value>Laboratuvar sonuçları kaydedildi.</value>
+  </data>
+  <data name="Only a draft report can be submitted." xml:space="preserve">
+    <value>Yalnızca taslak rapor onaya gönderilebilir.</value>
+  </data>
+  <data name="Enter at least one result before submitting." xml:space="preserve">
+    <value>Göndermeden önce en az bir sonuç girin.</value>
+  </data>
+  <data name="Upload the report PDF before submitting." xml:space="preserve">
+    <value>Göndermeden önce rapor PDF dosyasını yükleyin.</value>
+  </data>
+  <data name="Enter the report number and the issue date before submitting." xml:space="preserve">
+    <value>Göndermeden önce rapor numarasını ve düzenleme tarihini girin.</value>
+  </data>
+  <data name="Report submitted; a LabManager (another person) must approve it." xml:space="preserve">
+    <value>Rapor onaya gönderildi; bir LabManager (başka bir kişi) onaylamalı.</value>
+  </data>
+  <data name="Only a submitted report can be approved or returned." xml:space="preserve">
+    <value>Yalnızca onaya gönderilmiş rapor onaylanabilir veya geri gönderilebilir.</value>
+  </data>
+  <data name="Four-eyes: the person who entered the results cannot approve them (no exemption for lab results)." xml:space="preserve">
+    <value>Dört göz: sonuçları giren kişi onaylayamaz (laboratuvar sonuçlarında muafiyet yok).</value>
+  </data>
+  <data name="A reason is required to return a report." xml:space="preserve">
+    <value>Raporu geri göndermek için gerekçe zorunludur.</value>
+  </data>
+  <data name="The stored report file does not match its SHA-256 hash; upload it again." xml:space="preserve">
+    <value>Saklanan rapor dosyası SHA-256 özetiyle uyuşmuyor; yeniden yükleyin.</value>
+  </data>
+  <data name="The lot is locked in a finalized batch; lab values can only be changed through a correction." xml:space="preserve">
+    <value>Lot kesinleşmiş bir partide kilitli; laboratuvar değerleri yalnızca düzeltmeyle değişebilir.</value>
+  </data>
+  <data name="Report returned to the analyst." xml:space="preserve">
+    <value>Rapor analiste geri gönderildi.</value>
+  </data>
+  <data name="Lab report approved; the results are now the lot's CCP 1 values." xml:space="preserve">
+    <value>Laboratuvar raporu onaylandı; sonuçlar artık lotun CCP 1 değerleri.</value>
+  </data>
 </root>

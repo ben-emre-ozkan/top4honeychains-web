@@ -1,0 +1,144 @@
+@using TOP4HoneyChains.Web.Models.Entities
+@using TOP4HoneyChains.Web.Services
+@model LabReport?
+@{
+    ViewData["Title"] = L["Lab.Report"];
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var sample = (Sample)ViewBag.Sample;
+    var parameters = ViewBag.Parameters as List<CriticalControlPointParameter> ?? new();
+    var enterDenied = ViewBag.EnterDenied as string;
+    var approveDenied = ViewBag.ApproveDenied as string;
+    var editable = enterDenied == null && (Model == null || Model.Status == LabReportStatus.Draft);
+    LabResult? ResultOf(int id) => Model?.Results.FirstOrDefault(r => r.ParameterId == id);
+    string StatusText(string s) => s switch { "Draft" => L["Org.Draft"], "Submitted" => L["Lab.Submitted"], "Approved" => L["Ccp.Approved"], _ => s };
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">@L["Lab.Report"]: @sample.SampleCode</h4>
+                    <div class="small text-muted mb-2">
+                        @L["Cust.Lot"] #@sample.RawHoneyProductionId · @sample.RawHoneyProduction?.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle ·
+                        @L["Lab.Laboratory"]: @sample.LabOrg?.DisplayName · @L["Lab.SealNumber"]: @sample.SealNumber ·
+                        @L["Org.Status"]: <strong id="sample-status">@sample.Status</strong>
+                    </div>
+                    <h6 class="mt-3">@L["Lab.Custody"]</h6>
+                    <ul class="small" id="custody-events">
+                        @foreach (var e in sample.Events.OrderBy(e => e.EventId))
+                        {
+                            <li>@e.At.ToLocalTime().ToString("dd.MM.yyyy HH:mm") · @e.Event @(e.SealIntact == true ? "· " + L["Lab.SealIntact"].Value : e.SealIntact == false ? "· " + L["Lab.SealBroken"].Value : "") @e.Note</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card" id="lab-report">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between flex-wrap gap-2">
+                        <h5 class="card-title">@L["Lab.Results"]</h5>
+                        @if (Model != null)
+                        {
+                            <div>
+                                <span class="badge bg-light text-dark border" id="report-status">@StatusText(Model.Status)</span>
+                                <span class="small text-muted ms-2">@L["Lab.ReportCode"]: <strong id="report-code">@Model.ReportCode</strong></span>
+                            </div>
+                        }
+                    </div>
+                    @if (Model?.ReturnReason != null)
+                    {
+                        <div class="alert alert-warning" id="return-reason">@L["Lab.Returned"]: @Model.ReturnReason</div>
+                    }
+                    @if (!editable && enterDenied != null && (Model == null || Model.Status == LabReportStatus.Draft))
+                    {
+                        <div class="alert alert-secondary" id="enter-denied">@L["Ccp.ReadOnly"]: @Msg.T(enterDenied)</div>
+                    }
+
+                    <form asp-action="Save" asp-route-id="@sample.SampleId" method="post" enctype="multipart/form-data" id="report-form">
+                        <fieldset @(editable ? "" : "disabled")>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label" for="reportNumber">@L["Lab.ReportNumber"]</label>
+                                    <input name="reportNumber" id="reportNumber" class="form-control" maxlength="50" value="@Model?.ReportNumber" />
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label class="form-label" for="issuedOn">@L["Lab.IssuedOn"]</label>
+                                    <input type="date" name="issuedOn" id="issuedOn" class="form-control" value="@Model?.IssuedOn?.ToString("yyyy-MM-dd")" />
+                                </div>
+                                <div class="col-md-5 mb-3">
+                                    <label class="form-label" for="reportFile">@L["Lab.ReportPdf"]</label>
+                                    <input type="file" name="reportFile" id="reportFile" class="form-control" accept=".pdf" />
+                                    @if (Model?.Sha256 != null)
+                                    {
+                                        <div class="small mt-1"><a asp-action="Pdf" asp-route-id="@sample.SampleId" target="_blank">@Model.OriginalFileName</a> · SHA-256 <code id="report-sha">@Model.Sha256</code></div>
+                                    }
+                                </div>
+                            </div>
+                            <table class="table table-sm">
+                                <thead><tr><th>@L["Corr.Parameter"]</th><th>@L["Cust.Value"]</th><th>@L["Cust.Limit"]</th></tr></thead>
+                                <tbody>
+                                    @foreach (var p in parameters)
+                                    {
+                                        var r = ResultOf(p.ParameterId);
+                                        <tr data-parameter-id="@p.ParameterId">
+                                            <td>@p.ParameterName @(p.ParameterUnit is null or "None" ? "" : $"({p.ParameterUnit})")</td>
+                                            <td style="max-width:180px">
+                                                <input name="values[@p.ParameterId]" class="form-control form-control-sm" maxlength="100"
+                                                       value="@(r?.MeasuredNumericValue?.ToString("0.####", System.Globalization.CultureInfo.InvariantCulture) ?? r?.MeasuredTextValue)" />
+                                            </td>
+                                            <td class="small">
+                                                @(r?.AppliedLimit ?? CcpLimitEvaluator.DescribeAll(p))
+                                                @if (r?.IsInRange == false) { <span class="badge bg-danger">!</span> }
+                                                @if (r?.IsInRange == true) { <span class="badge bg-success">✓</span> }
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            @if (editable)
+                            {
+                                <button type="submit" class="btn btn-success">@L["Org.Save"]</button>
+                            }
+                        </fieldset>
+                    </form>
+
+                    @if (editable && Model != null)
+                    {
+                        <form asp-action="Submit" asp-route-id="@sample.SampleId" method="post" class="mt-2">
+                            <button type="submit" class="btn btn-primary" id="submit-report">@L["Lab.Submit"]</button>
+                        </form>
+                    }
+                    @if (Model?.Status == LabReportStatus.Submitted)
+                    {
+                        <div class="mt-3" id="approval">
+                            @if (approveDenied == null)
+                            {
+                                <form asp-action="Decide" asp-route-id="@sample.SampleId" method="post" class="d-flex gap-2">
+                                    <input name="reason" class="form-control form-control-sm" maxlength="500" placeholder="@L["Lab.ReturnReason"]" style="max-width:320px" />
+                                    <button type="submit" name="approve" value="true" class="btn btn-success" id="approve-report">@L["Ccp.Approve"]</button>
+                                    <button type="submit" name="approve" value="false" class="btn btn-outline-warning">@L["Lab.Return"]</button>
+                                </form>
+                                <div class="small text-muted mt-1">@L["Lab.NoExemption"]</div>
+                            }
+                            else
+                            {
+                                <div class="small text-muted">@Msg.T(approveDenied)</div>
+                            }
+                        </div>
+                    }
+                    @if (Model?.Status == LabReportStatus.Approved)
+                    {
+                        <div class="alert alert-success mt-3" id="approved-info">
+                            @L["Ccp.Approved"] · @Model.ApprovedAt?.ToLocalTime().ToString("dd.MM.yyyy HH:mm")
+                            @if (Model.IsAccredited) { <span class="badge bg-success ms-1">@L["Org.Accredited"] @Model.AccreditationNumber</span> }
+                            @if (Model.InHouse) { <span class="badge bg-warning text-dark ms-1">@L["Hs.InHouseLab"]</span> }
+                            · <a href="/verify-report?code=@Model.ReportCode" target="_blank">@L["Lab.VerifyPage"]</a>
+                        </div>
+                    }
+                </div>
+            </div>
+            <a asp-controller="Samples" asp-action="Index" class="btn btn-secondary">@L["Org.Back"]</a>
+        </div>
+    </div>
+</body>

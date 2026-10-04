@@ -569,7 +569,8 @@ namespace TOP4HoneyChains.Web.Controllers
                             IsInRange = log?.IsInRange,
                             AppliedLimit = log?.AppliedLimit,
                             LogId = log?.LogId,
-                            HasStoredFile = log?.StoredFileName != null
+                            HasStoredFile = log?.StoredFileName != null,
+                            LabReportId = log?.LabReportId
                         };
                     }).ToList()
                 }).ToList();
@@ -774,6 +775,10 @@ namespace TOP4HoneyChains.Web.Controllers
                 {
                     var p = parameters[input.ParameterId];
                     var log = existingLogs.FirstOrDefault(x => x.ParameterId == input.ParameterId);
+
+                    // Values from an approved lab report are immutable; only a correction changes them (D-42)
+                    if (log?.LabReportId != null)
+                        continue;
 
                     if (p.DataType == CcpDataType.File)
                     {
