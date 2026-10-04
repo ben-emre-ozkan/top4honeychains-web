@@ -5010,4 +5010,13 @@
   <data name="Confirm Password" xml:space="preserve">
     <value>Parolayı onaylayın</value>
   </data>
+  <data name="Choose a province from the list." xml:space="preserve">
+    <value>Listeden bir il seçin.</value>
+  </data>
+  <data name="Choose a district of the selected province." xml:space="preserve">
+    <value>Seçilen ilin bir ilçesini seçin.</value>
+  </data>
+  <data name="Choose the province first." xml:space="preserve">
+    <value>Önce ili seçin.</value>
+  </data>
 </root>

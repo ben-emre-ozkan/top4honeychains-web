@@ -1,0 +1,68 @@
+@* D-52: province dropdown (81 provinces) and district dropdown filtered by the province. A stored value that is not in
+   the list (older free text) stays selectable so editing never loses it. *@
+@model TOP4HoneyChains.Web.Models.ViewModels.ProvinceDistrictField
+@inject TOP4HoneyChains.Web.Services.Places Places
+@{
+    var all = Places.All();
+    var pid = Model.ProvinceName + "-select";
+    var did = Model.DistrictName + "-select";
+    var data = all.ToDictionary(p => p.Name, p => p.Districts);
+    var known = Places.Province(Model.Province);
+}
+<div class="row g-2">
+    <div class="col-md-6">
+        <label class="form-label @(Model.Required ? "required" : "")" for="@pid">@L[Model.ProvinceLabel]</label>
+        <select id="@pid" name="@Model.ProvinceName" class="form-select" data-province-select="@did" required="@Model.Required">
+            <option value="">@L["-- Select --"]</option>
+            @if (!string.IsNullOrEmpty(Model.Province) && known == null)
+            {
+                <option value="@Model.Province" selected>@Model.Province</option>
+            }
+            @foreach (var p in all)
+            {
+                <option value="@p.Name" data-plate="@p.Code" selected="@(known?.Name == p.Name)">@p.Name</option>
+            }
+        </select>
+    </div>
+    <div class="col-md-6">
+        <label class="form-label @(Model.Required ? "required" : "")" for="@did">@L[Model.DistrictLabel]</label>
+        <select id="@did" name="@Model.DistrictName" class="form-select" required="@Model.Required" data-current="@Model.District">
+            <option value="">@L["-- Select --"]</option>
+            @if (known != null)
+            {
+                var current = Places.DistrictOf(known, Model.District);
+                if (!string.IsNullOrEmpty(Model.District) && current == null)
+                {
+                    <option value="@Model.District" selected>@Model.District</option>
+                }
+                foreach (var d in known.Districts)
+                {
+                    <option value="@d" selected="@(current == d)">@d</option>
+                }
+            }
+            else if (!string.IsNullOrEmpty(Model.District))
+            {
+                <option value="@Model.District" selected>@Model.District</option>
+            }
+        </select>
+    </div>
+</div>
+<script>
+    (function () {
+        var districts = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(data));
+        var province = document.getElementById(@Html.Raw(System.Text.Json.JsonSerializer.Serialize(pid)));
+        var district = document.getElementById(@Html.Raw(System.Text.Json.JsonSerializer.Serialize(did)));
+        var placeholder = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["-- Select --"].Value));
+        province.addEventListener('change', function () {
+            district.innerHTML = '';
+            var first = document.createElement('option');
+            first.value = ''; first.textContent = placeholder;
+            district.appendChild(first);
+            (districts[province.value] || []).forEach(function (name) {
+                var o = document.createElement('option');
+                o.value = name; o.textContent = name;
+                district.appendChild(o);
+            });
+        });
+    })();
+</script>

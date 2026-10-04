@@ -5010,4 +5010,13 @@
   <data name="Confirm Password" xml:space="preserve">
     <value>Apstipriniet paroli</value>
   </data>
+  <data name="Choose a province from the list." xml:space="preserve">
+    <value>Izvēlieties provinci no saraksta.</value>
+  </data>
+  <data name="Choose a district of the selected province." xml:space="preserve">
+    <value>Izvēlieties izvēlētās provinces rajonu.</value>
+  </data>
+  <data name="Choose the province first." xml:space="preserve">
+    <value>Vispirms izvēlieties provinci.</value>
+  </data>
 </root>

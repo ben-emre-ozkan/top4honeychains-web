@@ -29,13 +29,8 @@
                                 <label asp-for="TaxNo" class="form-label">@L["Org.TaxNumber"]</label>
                                 <input asp-for="TaxNo" class="form-control" maxlength="50" />
                             </div>
-                            <div class="col-md-4 mb-3">
-                                <label asp-for="Province" class="form-label">@L["Org.Province"]</label>
-                                <input asp-for="Province" class="form-control" maxlength="100" />
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <label asp-for="District" class="form-label">@L["Org.District"]</label>
-                                <input asp-for="District" class="form-control" maxlength="100" />
+                            <div class="col-md-8 mb-3">
+                                @await Html.PartialAsync("~/Views/Shared/_ProvinceDistrict.cshtml", new TOP4HoneyChains.Web.Models.ViewModels.ProvinceDistrictField("Province", "District", Model?.Province, Model?.District, false, "Org.Province", "Org.District"))
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">@L["Org.Save"]</button>

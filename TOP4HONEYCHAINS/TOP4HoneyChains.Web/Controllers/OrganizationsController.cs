@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -81,6 +81,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 ModelState.AddModelError("", "Unknown or reserved capability.");
             if (org.LegacyWholesalerId != null && await _context.Organizations.AnyAsync(o => o.LegacyWholesalerId == org.LegacyWholesalerId))
                 ModelState.AddModelError("LegacyWholesalerId", "This wholesaler is already linked to an organization.");
+            CheckPlace(org.Province, org.District, null, null);
 
             if (!ModelState.IsValid)
             {
@@ -97,6 +98,25 @@ namespace TOP4HoneyChains.Web.Controllers
             await _context.SaveChangesAsync();
             TempData["Success"] = "Organization created. It stays Pending until it is verified.";
             return RedirectToAction(nameof(Details), new { id = org.OrgId });
+        }
+
+        // D-52: an optional province from the list, and a district of that province; values already stored stay valid
+        private void CheckPlace(string? province, string? district, string? storedProvince, string? storedDistrict)
+        {
+            var places = HttpContext.RequestServices.GetRequiredService<Places>();
+            if (!places.Available || (province == storedProvince && district == storedDistrict))
+                return;
+            if (string.IsNullOrWhiteSpace(province))
+            {
+                if (!string.IsNullOrWhiteSpace(district))
+                    ModelState.AddModelError("District", "Choose the province first.");
+                return;
+            }
+            var p = places.Province(province);
+            if (p == null)
+                ModelState.AddModelError("Province", "Choose a province from the list.");
+            else if (!string.IsNullOrWhiteSpace(district) && places.DistrictOf(p, district) == null && district != storedDistrict)
+                ModelState.AddModelError("District", "Choose a district of the selected province.");
         }
 
         private async Task FillCreateListsAsync()
@@ -126,6 +146,7 @@ namespace TOP4HoneyChains.Web.Controllers
             var org = await LoadAsync(id);
             if (org == null)
                 return NotFound();
+            CheckPlace(posted.Province, posted.District, org.Province, org.District);
             if (!ModelState.IsValid)
                 return View(org);
 

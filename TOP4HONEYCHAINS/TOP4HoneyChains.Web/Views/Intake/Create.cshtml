@@ -58,13 +58,8 @@
                                     <label class="form-label required" for="quantity">@L["Org.Amount"]</label>
                                     <input name="quantity" id="quantity" type="text" inputmode="decimal" class="form-control" autocomplete="off" />
                                 </div>
-                                <div class="col-md-3 mb-3">
-                                    <label class="form-label required" for="province">@L["Org.Province"]</label>
-                                    <input name="province" id="province" class="form-control" maxlength="100" />
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <label class="form-label required" for="district">@L["Org.District"]</label>
-                                    <input name="district" id="district" class="form-control" maxlength="100" />
+                                <div class="col-md-6 mb-3">
+                                    @await Html.PartialAsync("~/Views/Shared/_ProvinceDistrict.cshtml", new TOP4HoneyChains.Web.Models.ViewModels.ProvinceDistrictField("province", "district", (string?)ViewBag.Province, null, true, "Org.Province", "Org.District"))
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label required" for="deliveryForm">@L["Cust.DeliveryFormPhoto"]</label>

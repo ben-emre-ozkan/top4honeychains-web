@@ -91,12 +91,29 @@ namespace TOP4HoneyChains.Web.Controllers
                 if (bk == null)
                     TempData["Error"] = "No active beekeeper with this number.";
                 ViewBag.Beekeeper = bk;
+                // D-52: the province comes from the registry number (TR + 2-digit plate code), typed or on record
+                var places = HttpContext.RequestServices.GetRequiredService<Places>();
+                var registry = bk == null ? null : await _context.BeekeeperRegistry.Where(r => r.BeekeeperId == bk.BeekeeperId && r.Status == RegistryStatus.Verified)
+                    .Select(r => r.RegistryNumber).FirstOrDefaultAsync();
+                ViewBag.Province = (places.FromRegistryNumber(number.Trim()) ?? places.FromRegistryNumber(registry))?.Name;
             }
             await FillListsAsync();
             ViewBag.Number = number;
             ViewBag.Controller = "Intake";
             ViewBag.Action = "Create";
             return View();
+        }
+
+        // D-52: the province must be one of the 81 provinces and the district one of its districts
+        private string? PlaceError(string province, string district)
+        {
+            var places = HttpContext.RequestServices.GetRequiredService<Places>();
+            if (!places.Available)
+                return null;
+            var p = places.Province(province);
+            if (p == null)
+                return "Choose a province from the list.";
+            return places.DistrictOf(p, district) == null ? "Choose a district of the selected province." : null;
         }
 
         private async Task FillListsAsync()
@@ -141,6 +158,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 error = "The amount must be greater than 0.";
             else if (string.IsNullOrEmpty(province) || string.IsNullOrEmpty(district) || province.Length > 100 || district.Length > 100)
                 error = "Enter the province and district of origin.";
+            else if (PlaceError(province, district) is string placeError)
+                error = placeError;
             else if (!Origin.IsKnown(originCountry ?? Origin.Default))
                 error = "Choose the country of origin.";
             else if (deliveryForm == null)
