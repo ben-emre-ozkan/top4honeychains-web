@@ -1,4 +1,4 @@
-namespace TOP4HoneyChains.Web.Models.Entities
+﻿namespace TOP4HoneyChains.Web.Models.Entities
 {
     // Fixed ids of AssignmentStatuses (rows 1-4 pre-exist, 5 is added by db/migrations/002)
     public static class AssignmentStatusIds
@@ -8,6 +8,7 @@ namespace TOP4HoneyChains.Web.Models.Entities
         public const int Completed = 3;
         public const int Rejected = 4;
         public const int NotApplicable = 5;
+        public const int Submitted = 6;   // all required values recorded, waiting for approval (P2, D-27)
 
         // A CCP that no longer blocks finalizing
         public static bool IsDone(int status) => status == Completed || status == NotApplicable;

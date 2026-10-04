@@ -74,6 +74,7 @@ builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpS
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<CcpIntegrityService>();
 builder.Services.AddScoped<ICurrentOrg, CurrentOrg>();
+builder.Services.AddScoped<CcpResponsibilityService>();
 builder.Services.AddScoped<OrgScope>();
 builder.Services.AddScoped<AuditWriter>();
 builder.Services.AddScoped<ManualRegistryVerifier>();

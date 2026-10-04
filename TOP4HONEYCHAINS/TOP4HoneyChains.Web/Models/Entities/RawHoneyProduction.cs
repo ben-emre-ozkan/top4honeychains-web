@@ -32,6 +32,9 @@ public partial class RawHoneyProduction
     [Required(ErrorMessage = "The wholesaler is required.")]
     public int? RawHoneyProductionWholesalerId { get; set; }
 
+    // Owning organization (D-36); null = the organization created from the wholesaler
+    public int? OwnerOrgId { get; set; }
+
     [ForeignKey("RawHoneyProductionApiaryId")]
     [InverseProperty("RawHoneyProductions")]
     public virtual Apiary? RawHoneyProductionApiary { get; set; }

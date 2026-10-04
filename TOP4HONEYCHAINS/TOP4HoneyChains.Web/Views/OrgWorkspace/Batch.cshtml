@@ -1,0 +1,103 @@
+@using TOP4HoneyChains.Web.Models.Entities
+@model FinalHoneyProduction
+@{
+    ViewData["Title"] = Model.FinalHoneyProductionTitle;
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var readable = ViewBag.Readable as Dictionary<string, HashSet<int>> ?? new();
+    var blockers = ViewBag.Blockers as List<string> ?? new();
+    var done = (Func<int, DateTime?, int, bool>)ViewBag.Done;
+    var batchCan = readable.TryGetValue("batch" + Model.FinalHoneyProductionId, out var bs) ? bs : new HashSet<int>();
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-1">@Model.FinalHoneyProductionTitle</h4>
+                    <div class="text-muted small">@Model.FinalHoneyProductionDate?.ToString("dd.MM.yyyy") · @Model.FinalHoneyProductionTotalAmount kg ·
+                        <strong id="batch-state">@(Model.FinalHoneyProductionIsFinalized ? L["Org.Finalized"] : L["Org.Draft"])</strong></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@L["Org.BatchCcps"]</h5>
+                    @foreach (var a in Model.FinalHoneyCCPAssignments.Where(a => batchCan.Contains(a.FinalHoneyCCPAssignmentCCP)).OrderBy(a => a.FinalHoneyCCPAssignmentCCP))
+                    {
+                        <a asp-controller="CCPMonitoring" asp-action="FinalHoneyProductionManageCCP"
+                           asp-route-finalHoneyProductionId="@Model.FinalHoneyProductionId" asp-route-ccpId="@a.FinalHoneyCCPAssignmentCCP"
+                           class="btn btn-sm @(done(a.FinalHoneyCCPAssignmentStatus, a.ApprovedAt, a.FinalHoneyCCPAssignmentCCP) ? "btn-success" : "btn-secondary") me-1 mb-1">@a.CCP?.Code</a>
+                    }
+
+                    <h5 class="card-title mt-4">@L["Org.SourceLots"]</h5>
+                    <p class="small text-muted">@L["Org.SourceLotsHelp"]</p>
+                    <table class="table table-sm" id="source-lots">
+                        <thead><tr><th>#</th><th>@L["Org.Apiary"]</th><th>@L["Org.Amount"]</th><th>@L["Org.Ccps"]</th></tr></thead>
+                        <tbody>
+                            @foreach (var d in Model.FinalHoneyProductionDetails)
+                            {
+                                var can = readable.TryGetValue("raw" + d.RawHoneyProductionId, out var set) ? set : new HashSet<int>();
+                                <tr>
+                                    <td>@d.RawHoneyProductionId</td>
+                                    <td>@d.RawHoneyProduction.RawHoneyProductionApiary?.ApiaryTitle</td>
+                                    <td>@d.UsedAmount</td>
+                                    <td>
+                                        @foreach (var a in d.RawHoneyProduction.RawHoneyCCPAssignments.Where(a => can.Contains(a.RawHoneyCCPAssignmentCCP)).OrderBy(a => a.RawHoneyCCPAssignmentCCP))
+                                        {
+                                            <a asp-controller="CCPMonitoring" asp-action="RawHoneyProductionManageCCP"
+                                               asp-route-rawHoneyProductionId="@d.RawHoneyProductionId" asp-route-ccpId="@a.RawHoneyCCPAssignmentCCP"
+                                               class="btn btn-sm @(done(a.RawHoneyCCPAssignmentStatus, a.ApprovedAt, a.RawHoneyCCPAssignmentCCP) ? "btn-success" : "btn-secondary") me-1 mb-1">@a.CCP?.Code</a>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card" id="finalize-card">
+                <div class="card-body">
+                    <h5 class="card-title">@L["Org.Finalize"]</h5>
+                    <p class="small text-muted">@L["Org.FinalizeHelp"]</p>
+                    @if (Model.FinalHoneyProductionIsFinalized)
+                    {
+                        <div class="alert alert-success mb-0">@L["Org.Finalized"] · @Model.FinalHoneyProductionFinalizedDate?.ToString("dd.MM.yyyy HH:mm")
+                            @if (Model.SelfFinalized) { <span class="badge bg-warning text-dark ms-1">@L["Org.SelfApproved"]</span> }</div>
+                    }
+                    else
+                    {
+                        @if (blockers.Any())
+                        {
+                            <div class="alert alert-warning" id="finalize-blockers">
+                                <strong>@L["Org.MissingBeforeFinalize"]</strong>
+                                <ul class="mb-0">@foreach (var b in blockers) { <li>@b</li> }</ul>
+                            </div>
+                        }
+                        @if (Model.FinalizeRequestedByUserId == null)
+                        {
+                            @if (ViewBag.CanRequest == true)
+                            {
+                                <form asp-action="RequestFinalize" asp-route-id="@Model.FinalHoneyProductionId" method="post">
+                                    <button type="submit" class="btn btn-outline-primary" id="request-finalize" @(blockers.Any() ? "disabled" : "")>@L["Org.RequestFinalize"]</button>
+                                </form>
+                            }
+                        }
+                        else
+                        {
+                            <div class="mb-2" id="finalize-requested">@L["Org.FinalizeRequested"] @Model.FinalizeRequestedAt?.ToString("dd.MM.yyyy HH:mm")</div>
+                            @if (ViewBag.CanFinalize == true)
+                            {
+                                <form asp-action="Finalize" asp-route-id="@Model.FinalHoneyProductionId" method="post">
+                                    <button type="submit" class="btn btn-danger" id="confirm-finalize" @(blockers.Any() ? "disabled" : "")>@L["Org.ConfirmFinalize"]</button>
+                                </form>
+                            }
+                        }
+                    }
+                </div>
+            </div>
+            <a asp-action="Index" class="btn btn-secondary">@L["Org.Back"]</a>
+        </div>
+    </div>
+</body>

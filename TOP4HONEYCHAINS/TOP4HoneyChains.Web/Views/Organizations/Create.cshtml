@@ -1,4 +1,4 @@
-@using TOP4HoneyChains.Web.Models.Entities
+﻿@using TOP4HoneyChains.Web.Models.Entities
 @model Organization
 @{
     ViewData["Title"] = "New organization";
@@ -12,7 +12,7 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">New organization</h4>
+                    <h4 class="card-title">@L["Org.NewOrganization"]</h4>
                     <p class="card-title-desc">The organization starts as <strong>Pending</strong>. It can enter data only after it is verified with documents.</p>
 
                     <form asp-action="Create" method="post">
@@ -20,36 +20,36 @@
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label asp-for="DisplayName" class="form-label required">Display name</label>
+                                <label asp-for="DisplayName" class="form-label required">@L["Org.DisplayName"]</label>
                                 <input asp-for="DisplayName" class="form-control" maxlength="200" />
                                 <span asp-validation-for="DisplayName" class="text-danger"></span>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label asp-for="LegalName" class="form-label">Legal name</label>
+                                <label asp-for="LegalName" class="form-label">@L["Org.LegalName"]</label>
                                 <input asp-for="LegalName" class="form-control" maxlength="300" />
                             </div>
                             <div class="col-md-4 mb-3">
-                                <label asp-for="TaxNo" class="form-label">Tax number</label>
+                                <label asp-for="TaxNo" class="form-label">@L["Org.TaxNumber"]</label>
                                 <input asp-for="TaxNo" class="form-control" maxlength="50" />
                             </div>
                             <div class="col-md-4 mb-3">
-                                <label asp-for="Province" class="form-label">Province</label>
+                                <label asp-for="Province" class="form-label">@L["Org.Province"]</label>
                                 <input asp-for="Province" class="form-control" maxlength="100" />
                             </div>
                             <div class="col-md-4 mb-3">
-                                <label asp-for="District" class="form-label">District</label>
+                                <label asp-for="District" class="form-label">@L["Org.District"]</label>
                                 <input asp-for="District" class="form-control" maxlength="100" />
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label asp-for="LegacyWholesalerId" class="form-label">Existing wholesaler record (optional)</label>
+                                <label asp-for="LegacyWholesalerId" class="form-label">@L["Org.ExistingWholesaler"]</label>
                                 <select asp-for="LegacyWholesalerId" asp-items="ViewBag.Wholesalers" class="form-select">
                                     <option value="">(none)</option>
                                 </select>
-                                <small class="text-muted">Lots and batches of that wholesaler then belong to this organization.</small>
+                                <small class="text-muted">@L["Org.ExistingWholesalerHelp"]</small>
                             </div>
                         </div>
 
-                        <label class="form-label required">Capabilities</label>
+                        <label class="form-label required">@L["Org.Capabilities"]</label>
                         <div class="row mb-3">
                             @foreach (var c in caps)
                             {
@@ -62,8 +62,8 @@
                             }
                         </div>
 
-                        <button type="submit" class="btn btn-success">Create</button>
-                        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                        <button type="submit" class="btn btn-success">@L["Org.Create"]</button>
+                        <a asp-action="Index" class="btn btn-secondary">@L["Org.Cancel"]</a>
                     </form>
                 </div>
             </div>

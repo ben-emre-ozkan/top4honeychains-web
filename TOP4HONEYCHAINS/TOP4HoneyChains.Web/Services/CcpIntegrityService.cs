@@ -8,11 +8,32 @@ namespace TOP4HoneyChains.Web.Services
     public class CcpIntegrityService
     {
         private readonly TOP4HoneyChainsContext _context;
+        private readonly OrgModel.FeatureFlags _flags;
+        private readonly OrgModel.CcpResponsibilityService _resp;
 
-        public CcpIntegrityService(TOP4HoneyChainsContext context)
+        public CcpIntegrityService(TOP4HoneyChainsContext context, Microsoft.Extensions.Options.IOptions<OrgModel.FeatureFlags> flags,
+            OrgModel.CcpResponsibilityService resp)
         {
             _context = context;
+            _flags = flags.Value;
+            _resp = resp;
         }
+
+        // With the organization model a CCP counts as done only when it is also approved (D-27), unless the
+        // responsibility matrix says the CCP needs no approval. v1.0: Completed or Not applicable.
+        private async Task<List<int>> NoApprovalCcpIdsAsync() =>
+            (await _resp.ConfigsAsync()).Values.Where(c => !c.RequiresApproval).Select(c => c.CcpId).ToList();
+
+        public async Task<Func<int, DateTime?, int, bool>> DonePredicateAsync()
+        {
+            if (!_flags.OrgRoleModel)
+                return (status, _, _) => AssignmentStatusIds.IsDone(status);
+            var exempt = await NoApprovalCcpIdsAsync();
+            return (status, approvedAt, ccpId) => AssignmentStatusIds.IsDone(status) && (approvedAt != null || exempt.Contains(ccpId));
+        }
+
+        private static string NotDoneText(string? statusName, int status) =>
+            AssignmentStatusIds.IsDone(status) ? $"{statusName}, not approved yet" : statusName ?? "not completed";
 
         // A finalized batch is locked for good: batch data, composition, CCP assignments and logs (D-14)
         public async Task<string?> GetBatchLockReasonAsync(int batchId)
@@ -54,17 +75,23 @@ namespace TOP4HoneyChains.Web.Services
 
         // A raw lot can go into a batch when it has at least one CCP and all of them are Completed or
         // Not applicable (D-05, D-15)
-        public IQueryable<RawHoneyProduction> EligibleRawLots(IQueryable<RawHoneyProduction> lots) =>
-            lots.Where(r => _context.RawHoneyCCPAssignments.Any(a => a.RawHoneyProductionId == r.RawHoneyProductionId))
+        public async Task<IQueryable<RawHoneyProduction>> EligibleRawLotsAsync(IQueryable<RawHoneyProduction> lots)
+        {
+            var on = _flags.OrgRoleModel;
+            var exempt = on ? await NoApprovalCcpIdsAsync() : new List<int>();
+            return lots.Where(r => _context.RawHoneyCCPAssignments.Any(a => a.RawHoneyProductionId == r.RawHoneyProductionId))
                 .Where(r => _context.RawHoneyCCPAssignments
                     .Where(a => a.RawHoneyProductionId == r.RawHoneyProductionId)
-                    .All(a => a.RawHoneyCCPAssignmentStatus == AssignmentStatusIds.Completed
-                              || a.RawHoneyCCPAssignmentStatus == AssignmentStatusIds.NotApplicable));
+                    .All(a => (a.RawHoneyCCPAssignmentStatus == AssignmentStatusIds.Completed
+                               || a.RawHoneyCCPAssignmentStatus == AssignmentStatusIds.NotApplicable)
+                              && (!on || a.ApprovedAt != null || exempt.Contains(a.RawHoneyCCPAssignmentCCP))));
+        }
 
         // Everything that prevents finalizing a batch; empty = it can be finalized (D-16)
         public async Task<List<string>> GetFinalizeBlockersAsync(int batchId)
         {
             var blockers = new List<string>();
+            var done = await DonePredicateAsync();
 
             var details = await _context.FinalHoneyProductionDetails
                 .Where(d => d.FinalHoneyProductionId == batchId)
@@ -90,14 +117,14 @@ namespace TOP4HoneyChains.Web.Services
                 var a = assignments.FirstOrDefault(x => x.FinalHoneyCCPAssignmentCCP == ccp.Id);
                 if (a == null)
                     blockers.Add($"Batch: {ccp.Code} ({ccp.Title}) is not assigned.");
-                else if (!AssignmentStatusIds.IsDone(a.FinalHoneyCCPAssignmentStatus))
-                    blockers.Add($"Batch: {ccp.Code} ({ccp.Title}) is {a.AssignmentStatus?.AssignmentStatusName ?? "not completed"}.");
+                else if (!done(a.FinalHoneyCCPAssignmentStatus, a.ApprovedAt, a.FinalHoneyCCPAssignmentCCP))
+                    blockers.Add($"Batch: {ccp.Code} ({ccp.Title}) is {NotDoneText(a.AssignmentStatus?.AssignmentStatusName, a.FinalHoneyCCPAssignmentStatus)}.");
             }
             foreach (var a in assignments.Where(a => batchCcps.All(c => c.Id != a.FinalHoneyCCPAssignmentCCP)
-                                                     && !AssignmentStatusIds.IsDone(a.FinalHoneyCCPAssignmentStatus)))
+                                                     && !done(a.FinalHoneyCCPAssignmentStatus, a.ApprovedAt, a.FinalHoneyCCPAssignmentCCP)))
             {
                 var ccp = await _context.CriticalControlPoints.FindAsync(a.FinalHoneyCCPAssignmentCCP);
-                blockers.Add($"Batch: {ccp?.Code} ({ccp?.Title}) is {a.AssignmentStatus?.AssignmentStatusName ?? "not completed"}.");
+                blockers.Add($"Batch: {ccp?.Code} ({ccp?.Title}) is {NotDoneText(a.AssignmentStatus?.AssignmentStatusName, a.FinalHoneyCCPAssignmentStatus)}.");
             }
 
             // Lots: as for eligibility, checked again because a lot's CCPs can change after it was added
@@ -113,8 +140,8 @@ namespace TOP4HoneyChains.Web.Services
                 var own = rawAssignments.Where(a => a.RawHoneyProductionId == d.RawHoneyProductionId).ToList();
                 if (own.Count == 0)
                     blockers.Add($"{lot}: no CCP assigned.");
-                foreach (var a in own.Where(a => !AssignmentStatusIds.IsDone(a.RawHoneyCCPAssignmentStatus)).OrderBy(a => a.CCP?.Id))
-                    blockers.Add($"{lot}: {a.CCP?.Code} ({a.CCP?.Title}) is {a.AssignmentStatus?.AssignmentStatusName ?? "not completed"}.");
+                foreach (var a in own.Where(a => !done(a.RawHoneyCCPAssignmentStatus, a.ApprovedAt, a.RawHoneyCCPAssignmentCCP)).OrderBy(a => a.CCP?.Id))
+                    blockers.Add($"{lot}: {a.CCP?.Code} ({a.CCP?.Title}) is {NotDoneText(a.AssignmentStatus?.AssignmentStatusName, a.RawHoneyCCPAssignmentStatus)}.");
             }
 
             return blockers;

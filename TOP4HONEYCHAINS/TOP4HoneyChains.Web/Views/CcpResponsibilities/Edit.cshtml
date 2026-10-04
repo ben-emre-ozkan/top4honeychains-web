@@ -1,0 +1,63 @@
+@using TOP4HoneyChains.Web.Models.Entities
+@{
+    ViewData["Title"] = L["Resp.Title"];
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var ccp = (CriticalControlPoint)ViewBag.Ccp;
+    var cfg = ViewBag.Config as CcpResponsibility;
+    var caps = ViewBag.AllCapabilities as List<string> ?? new();
+    var roles = ViewBag.AllRoles as string[] ?? Array.Empty<string>();
+    bool HasCap(string c) => cfg?.Capabilities.Any(x => x.Capability == c) == true;
+    bool HasRole(string a, string r) => cfg?.Roles.Any(x => x.Action == a && x.OrgRole == r) == true;
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">@ccp.Code – @ccp.Title</h4>
+                    <form asp-action="Edit" asp-route-id="@ccp.Id" method="post" id="resp-form">
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">@L["Resp.Responsible"]</label>
+                            <select name="ownerRule" class="form-select">
+                                <option value="Owner" selected="@(cfg?.OwnerRule != CcpOwnerRules.BeekeeperAssociation)">@L["Resp.RuleOwner"]</option>
+                                <option value="BeekeeperAssociation" selected="@(cfg?.OwnerRule == CcpOwnerRules.BeekeeperAssociation)">@L["Resp.RuleAssociation"]</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">@L["Org.Capabilities"]</label>
+                            <div class="d-flex flex-wrap gap-3">
+                                @foreach (var c in caps)
+                                {
+                                    <label><input type="checkbox" name="capabilities" value="@c" checked="@HasCap(c)" /> @c</label>
+                                }
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">@L["Resp.EnterRoles"]</label>
+                                @foreach (var r in roles)
+                                {
+                                    <div><label><input type="checkbox" name="enterRoles" value="@r" checked="@HasRole(CcpActions.Enter, r)" /> @r</label></div>
+                                }
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">@L["Resp.ApproveRoles"]</label>
+                                @foreach (var r in roles)
+                                {
+                                    <div><label><input type="checkbox" name="approveRoles" value="@r" checked="@HasRole(CcpActions.Approve, r)" /> @r</label></div>
+                                }
+                            </div>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input type="checkbox" class="form-check-input" name="requiresApproval" value="true" id="requiresApproval" checked="@(cfg?.RequiresApproval ?? true)" />
+                            <label class="form-check-label" for="requiresApproval">@L["Resp.RequiresApproval"]</label>
+                        </div>
+                        <button type="submit" class="btn btn-success">@L["Org.Save"]</button>
+                        <a asp-action="Index" class="btn btn-secondary">@L["Org.Back"]</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

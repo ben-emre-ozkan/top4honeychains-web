@@ -294,4 +294,454 @@
   <data name="ResetPassword.Success" xml:space="preserve">
     <value>Jūsu parole ir atiestatīta. Tagad varat pieteikties ar jauno paroli.</value>
   </data>
+  <data name="Org.MyOrganization" xml:space="preserve">
+    <value>My organization</value>
+  </data>
+  <data name="Org.NoMembership" xml:space="preserve">
+    <value>No active membership</value>
+  </data>
+  <data name="Org.Role" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="Org.Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Org.Capabilities" xml:space="preserve">
+    <value>Capabilities</value>
+  </data>
+  <data name="Org.NotVerifiedBanner" xml:space="preserve">
+    <value>Your organization is not verified yet. You can read its data and (as OrgAdmin) upload documents, but nobody can enter data until it is verified.</value>
+  </data>
+  <data name="Org.OrganizationPage" xml:space="preserve">
+    <value>Organization page</value>
+  </data>
+  <data name="Org.ActAs" xml:space="preserve">
+    <value>Act as</value>
+  </data>
+  <data name="Org.Switch" xml:space="preserve">
+    <value>Switch</value>
+  </data>
+  <data name="Org.RawLots" xml:space="preserve">
+    <value>Raw honey lots</value>
+  </data>
+  <data name="Org.RawLotsHelp" xml:space="preserve">
+    <value>Lots your organization works on and the lots of your batches. Only the control points you may open are shown; earlier stages are read-only.</value>
+  </data>
+  <data name="Org.Apiary" xml:space="preserve">
+    <value>Apiary</value>
+  </data>
+  <data name="Org.HoneyType" xml:space="preserve">
+    <value>Honey type</value>
+  </data>
+  <data name="Org.Amount" xml:space="preserve">
+    <value>Amount (kg)</value>
+  </data>
+  <data name="Org.Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Org.Ccps" xml:space="preserve">
+    <value>Control points</value>
+  </data>
+  <data name="Org.None" xml:space="preserve">
+    <value>Nothing to show.</value>
+  </data>
+  <data name="Org.Batches" xml:space="preserve">
+    <value>Batches</value>
+  </data>
+  <data name="Org.Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="Org.Total" xml:space="preserve">
+    <value>Total (kg)</value>
+  </data>
+  <data name="Org.Finalized" xml:space="preserve">
+    <value>Finalized</value>
+  </data>
+  <data name="Org.Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="Org.Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="Org.ChipLegend" xml:space="preserve">
+    <value>Green with ✓ = approved · yellow = submitted, waiting for approval · grey = open · outlined = not applicable</value>
+  </data>
+  <data name="Org.BatchCcps" xml:space="preserve">
+    <value>Control points of the batch</value>
+  </data>
+  <data name="Org.SourceLots" xml:space="preserve">
+    <value>Source lots</value>
+  </data>
+  <data name="Org.SourceLotsHelp" xml:space="preserve">
+    <value>Earlier stages of the lots in this batch (read-only).</value>
+  </data>
+  <data name="Org.Finalize" xml:space="preserve">
+    <value>Finalize</value>
+  </data>
+  <data name="Org.FinalizeHelp" xml:space="preserve">
+    <value>All control points of the batch and its lots must be approved. One person requests, another person (QualityApprover) confirms. A finalized batch cannot be changed.</value>
+  </data>
+  <data name="Org.SelfApproved" xml:space="preserve">
+    <value>self-approved (exemption)</value>
+  </data>
+  <data name="Org.MissingBeforeFinalize" xml:space="preserve">
+    <value>Missing before finalizing:</value>
+  </data>
+  <data name="Org.RequestFinalize" xml:space="preserve">
+    <value>Request finalizing</value>
+  </data>
+  <data name="Org.FinalizeRequested" xml:space="preserve">
+    <value>Finalizing requested on</value>
+  </data>
+  <data name="Org.ConfirmFinalize" xml:space="preserve">
+    <value>Confirm and finalize</value>
+  </data>
+  <data name="Org.Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Org.Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Org.Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Org.Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Org.OwningOrg" xml:space="preserve">
+    <value>Owning organization</value>
+  </data>
+  <data name="Org.OwningOrgDefault" xml:space="preserve">
+    <value>(the organization of the wholesaler)</value>
+  </data>
+  <data name="Org.MemberFinalizeNote" xml:space="preserve">
+    <value>With the organization model the owning organization finalizes the batch (request and confirmation by two people).</value>
+  </data>
+  <data name="Org.Organizations" xml:space="preserve">
+    <value>Organizations</value>
+  </data>
+  <data name="Org.OrganizationsHelp" xml:space="preserve">
+    <value>Organizations take part through capabilities; people join them through memberships. Only verified organizations can enter data.</value>
+  </data>
+  <data name="Org.NewOrganization" xml:space="preserve">
+    <value>New organization</value>
+  </data>
+  <data name="Org.Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Org.Province" xml:space="preserve">
+    <value>Province</value>
+  </data>
+  <data name="Org.District" xml:space="preserve">
+    <value>District</value>
+  </data>
+  <data name="Org.Members" xml:space="preserve">
+    <value>Members</value>
+  </data>
+  <data name="Org.FourEyesExemption" xml:space="preserve">
+    <value>Four-eyes exemption</value>
+  </data>
+  <data name="Org.DisplayName" xml:space="preserve">
+    <value>Display name</value>
+  </data>
+  <data name="Org.LegalName" xml:space="preserve">
+    <value>Legal name</value>
+  </data>
+  <data name="Org.TaxNumber" xml:space="preserve">
+    <value>Tax number</value>
+  </data>
+  <data name="Org.ExistingWholesaler" xml:space="preserve">
+    <value>Existing wholesaler record (optional)</value>
+  </data>
+  <data name="Org.ExistingWholesalerHelp" xml:space="preserve">
+    <value>Lots and batches of that wholesaler then belong to this organization.</value>
+  </data>
+  <data name="Org.Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="Org.EditOrganization" xml:space="preserve">
+    <value>Edit organization</value>
+  </data>
+  <data name="Org.EditHelp" xml:space="preserve">
+    <value>Status, capabilities and members are changed on the organization page.</value>
+  </data>
+  <data name="Org.EditDetails" xml:space="preserve">
+    <value>Edit details</value>
+  </data>
+  <data name="Org.Verification" xml:space="preserve">
+    <value>Verification</value>
+  </data>
+  <data name="Org.VerificationHelp" xml:space="preserve">
+    <value>Pending → Verified → Suspended. Only verified organizations can enter data; suspension keeps all data and blocks new entries.</value>
+  </data>
+  <data name="Org.ReasonPlaceholder" xml:space="preserve">
+    <value>Reason / note (required to suspend or to request documents)</value>
+  </data>
+  <data name="Org.RequestDocuments" xml:space="preserve">
+    <value>Request documents</value>
+  </data>
+  <data name="Org.Suspend" xml:space="preserve">
+    <value>Suspend</value>
+  </data>
+  <data name="Org.Documents" xml:space="preserve">
+    <value>Documents</value>
+  </data>
+  <data name="Org.Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Org.File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="Org.Uploaded" xml:space="preserve">
+    <value>Uploaded (UTC)</value>
+  </data>
+  <data name="Org.NoDocuments" xml:space="preserve">
+    <value>No documents yet.</value>
+  </data>
+  <data name="Org.Upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="Org.UploadHelp" xml:space="preserve">
+    <value>PDF up to 10 MB, or JPG/PNG/WEBP up to 8 MB. Stored outside the web folder with its SHA-256.</value>
+  </data>
+  <data name="Org.Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="Org.AddCapability" xml:space="preserve">
+    <value>Add capability</value>
+  </data>
+  <data name="Org.Accredited" xml:space="preserve">
+    <value>accredited (laboratory)</value>
+  </data>
+  <data name="Org.AccreditationNo" xml:space="preserve">
+    <value>accreditation no.</value>
+  </data>
+  <data name="Org.Current" xml:space="preserve">
+    <value>Current:</value>
+  </data>
+  <data name="Org.User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="Org.OrgRole" xml:space="preserve">
+    <value>Org role</value>
+  </data>
+  <data name="Org.Revoke" xml:space="preserve">
+    <value>Revoke</value>
+  </data>
+  <data name="Org.NoMembers" xml:space="preserve">
+    <value>No members yet.</value>
+  </data>
+  <data name="Org.ExistingUser" xml:space="preserve">
+    <value>Existing user name</value>
+  </data>
+  <data name="Org.NewUserHint" xml:space="preserve">
+    <value>or create a new user (no global role; access only through memberships):</value>
+  </data>
+  <data name="Org.UserName" xml:space="preserve">
+    <value>user name</value>
+  </data>
+  <data name="Org.Email" xml:space="preserve">
+    <value>e-mail</value>
+  </data>
+  <data name="Org.Password" xml:space="preserve">
+    <value>password</value>
+  </data>
+  <data name="Org.AddMember" xml:space="preserve">
+    <value>Add member</value>
+  </data>
+  <data name="Org.NoStatusChanges" xml:space="preserve">
+    <value>No status changes yet.</value>
+  </data>
+  <data name="Org.When" xml:space="preserve">
+    <value>When (UTC)</value>
+  </data>
+  <data name="Org.From" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="Org.To" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="Org.Reason" xml:space="preserve">
+    <value>Reason</value>
+  </data>
+  <data name="Reg.Title" xml:space="preserve">
+    <value>Beekeeper registry and associations</value>
+  </data>
+  <data name="Reg.BusinessNo" xml:space="preserve">
+    <value>Business no.</value>
+  </data>
+  <data name="Reg.Beekeeper" xml:space="preserve">
+    <value>Beekeeper</value>
+  </data>
+  <data name="Reg.RegistryNo" xml:space="preserve">
+    <value>Registry no.</value>
+  </data>
+  <data name="Reg.Association" xml:space="preserve">
+    <value>Association</value>
+  </data>
+  <data name="Reg.AssociationHelp" xml:space="preserve">
+    <value>The association records data on behalf of the beekeeper. Changes keep the history.</value>
+  </data>
+  <data name="Reg.FormatHelp" xml:space="preserve">
+    <value>Format TR, a province code 01-81 and 10 digits. A proof document (registry printout or photo) is required.</value>
+  </data>
+  <data name="Reg.Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="Reg.Number" xml:space="preserve">
+    <value>Number</value>
+  </data>
+  <data name="Reg.Proof" xml:space="preserve">
+    <value>Proof</value>
+  </data>
+  <data name="Reg.Decision" xml:space="preserve">
+    <value>Decision</value>
+  </data>
+  <data name="Reg.Verify" xml:space="preserve">
+    <value>Verify</value>
+  </data>
+  <data name="Reg.Reject" xml:space="preserve">
+    <value>Reject</value>
+  </data>
+  <data name="Reg.RejectReason" xml:space="preserve">
+    <value>reason (to reject)</value>
+  </data>
+  <data name="Audit.Title" xml:space="preserve">
+    <value>Audit log</value>
+  </data>
+  <data name="Audit.Help" xml:space="preserve">
+    <value>Append-only and hash-chained: every row holds the hash of the previous row. Rows cannot be changed or deleted.</value>
+  </data>
+  <data name="Audit.Verify" xml:space="preserve">
+    <value>Verify hash chain</value>
+  </data>
+  <data name="Audit.AllEntities" xml:space="preserve">
+    <value>all entities</value>
+  </data>
+  <data name="Audit.Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="Audit.Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="Audit.Entity" xml:space="preserve">
+    <value>Entity</value>
+  </data>
+  <data name="Audit.Key" xml:space="preserve">
+    <value>Key</value>
+  </data>
+  <data name="Audit.Flags" xml:space="preserve">
+    <value>Flags</value>
+  </data>
+  <data name="Audit.Old" xml:space="preserve">
+    <value>Old</value>
+  </data>
+  <data name="Audit.New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="Audit.Newer" xml:space="preserve">
+    <value>Newer</value>
+  </data>
+  <data name="Audit.Older" xml:space="preserve">
+    <value>Older</value>
+  </data>
+  <data name="Resp.Title" xml:space="preserve">
+    <value>CCP responsibilities</value>
+  </data>
+  <data name="Resp.Help" xml:space="preserve">
+    <value>Who records and who approves each control point. Changes apply at once.</value>
+  </data>
+  <data name="Resp.Responsible" xml:space="preserve">
+    <value>Responsible organization</value>
+  </data>
+  <data name="Resp.EnterRoles" xml:space="preserve">
+    <value>Roles that enter values</value>
+  </data>
+  <data name="Resp.ApproveRoles" xml:space="preserve">
+    <value>Roles that approve</value>
+  </data>
+  <data name="Resp.NotSet" xml:space="preserve">
+    <value>not configured</value>
+  </data>
+  <data name="Resp.RuleOwner" xml:space="preserve">
+    <value>The organization that owns the lot / batch</value>
+  </data>
+  <data name="Resp.RuleAssociation" xml:space="preserve">
+    <value>The association of the lot's beekeeper</value>
+  </data>
+  <data name="Resp.NoApproval" xml:space="preserve">
+    <value>no approval needed</value>
+  </data>
+  <data name="Resp.RequiresApproval" xml:space="preserve">
+    <value>Values need approval by another person (four-eyes)</value>
+  </data>
+  <data name="Corr.Title" xml:space="preserve">
+    <value>Corrections</value>
+  </data>
+  <data name="Corr.Help" xml:space="preserve">
+    <value>Platform administrators do not edit business data. A correction is applied only when a second administrator approves it.</value>
+  </data>
+  <data name="Corr.FormHelp" xml:space="preserve">
+    <value>Request the correction of one value. A second administrator must approve it; finalized records are corrected without being unlocked.</value>
+  </data>
+  <data name="Corr.Record" xml:space="preserve">
+    <value>Record</value>
+  </data>
+  <data name="Corr.Parameter" xml:space="preserve">
+    <value>Parameter</value>
+  </data>
+  <data name="Corr.OldValue" xml:space="preserve">
+    <value>Old value</value>
+  </data>
+  <data name="Corr.NewValue" xml:space="preserve">
+    <value>New value</value>
+  </data>
+  <data name="Corr.Reason" xml:space="preserve">
+    <value>Reason</value>
+  </data>
+  <data name="Corr.RequestedBy" xml:space="preserve">
+    <value>Requested by</value>
+  </data>
+  <data name="Corr.Lot" xml:space="preserve">
+    <value>Lot</value>
+  </data>
+  <data name="Corr.Batch" xml:space="preserve">
+    <value>Batch</value>
+  </data>
+  <data name="Corr.NotePlaceholder" xml:space="preserve">
+    <value>note (required to reject)</value>
+  </data>
+  <data name="Corr.Apply" xml:space="preserve">
+    <value>Approve and apply</value>
+  </data>
+  <data name="Corr.Reject" xml:space="preserve">
+    <value>Reject</value>
+  </data>
+  <data name="Corr.Number" xml:space="preserve">
+    <value>number</value>
+  </data>
+  <data name="Corr.Text" xml:space="preserve">
+    <value>or text</value>
+  </data>
+  <data name="Corr.Request" xml:space="preserve">
+    <value>Request</value>
+  </data>
+  <data name="Corr.All" xml:space="preserve">
+    <value>All corrections</value>
+  </data>
+  <data name="Ccp.ReadOnly" xml:space="preserve">
+    <value>Read only</value>
+  </data>
+  <data name="Ccp.ApprovalTitle" xml:space="preserve">
+    <value>Approval (four-eyes)</value>
+  </data>
+  <data name="Ccp.Approved" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="Ccp.NotApproved" xml:space="preserve">
+    <value>Not approved yet. Changing a value removes an approval.</value>
+  </data>
+  <data name="Ccp.Approve" xml:space="preserve">
+    <value>Approve</value>
+  </data>
 </root>

@@ -30,6 +30,17 @@ namespace TOP4HoneyChains.Web.Models.Entities
 
         public DateTime? FinalHoneyProductionFinalizedDate { get; set; }
 
+        // Owning organization (D-36); null = the organization created from the wholesaler
+        public int? OwnerOrgId { get; set; }
+
+        // Finalize with four-eyes when the organization model is on (D-27)
+        [StringLength(450)]
+        public string? FinalizeRequestedByUserId { get; set; }
+        public DateTime? FinalizeRequestedAt { get; set; }
+        [StringLength(450)]
+        public string? FinalizedByUserId { get; set; }
+        public bool SelfFinalized { get; set; }
+
 
         // Not posted by the forms; without this the non-nullable navigation is implicitly
         // required and every Create/Edit POST fails validation without a visible message

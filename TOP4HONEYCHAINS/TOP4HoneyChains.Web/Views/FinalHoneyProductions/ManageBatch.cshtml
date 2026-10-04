@@ -239,6 +239,12 @@
                                             Save Batch Composition
                                         </button>
 
+                                        @if (ViewBag.MemberFinalize == true)
+                                        {
+                                            <span class="text-muted small" id="member-finalize-note">@L["Org.MemberFinalizeNote"]</span>
+                                        }
+                                        else
+                                        {
                                         <!-- Finalize: only when nothing is missing (D-16) -->
                                         <form id="finalizeForm" asp-action="FinalizeBatch" method="post" class="d-inline">
                                             @Html.AntiForgeryToken()
@@ -251,6 +257,7 @@
                                                 Finalize Batch
                                             </button>
                                         </form>
+                                        }
                                     }
                                     else
                                     {

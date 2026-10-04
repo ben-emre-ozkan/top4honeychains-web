@@ -294,4 +294,454 @@
   <data name="ResetPassword.Success" xml:space="preserve">
     <value>Şifreniz sıfırlandı. Artık yeni şifrenizle giriş yapabilirsiniz.</value>
   </data>
+  <data name="Org.MyOrganization" xml:space="preserve">
+    <value>Kurumum</value>
+  </data>
+  <data name="Org.NoMembership" xml:space="preserve">
+    <value>Etkin üyelik yok</value>
+  </data>
+  <data name="Org.Role" xml:space="preserve">
+    <value>Rol</value>
+  </data>
+  <data name="Org.Status" xml:space="preserve">
+    <value>Durum</value>
+  </data>
+  <data name="Org.Capabilities" xml:space="preserve">
+    <value>Yetenekler</value>
+  </data>
+  <data name="Org.NotVerifiedBanner" xml:space="preserve">
+    <value>Kurumunuz henüz doğrulanmadı. Verileri okuyabilir ve (OrgAdmin olarak) belge yükleyebilirsiniz; doğrulanana kadar kimse veri giremez.</value>
+  </data>
+  <data name="Org.OrganizationPage" xml:space="preserve">
+    <value>Kurum sayfası</value>
+  </data>
+  <data name="Org.ActAs" xml:space="preserve">
+    <value>Şu rolle çalış</value>
+  </data>
+  <data name="Org.Switch" xml:space="preserve">
+    <value>Geçiş yap</value>
+  </data>
+  <data name="Org.RawLots" xml:space="preserve">
+    <value>Ham bal lotları</value>
+  </data>
+  <data name="Org.RawLotsHelp" xml:space="preserve">
+    <value>Kurumunuzun çalıştığı lotlar ve partilerinizin lotları. Yalnızca açabileceğiniz kontrol noktaları gösterilir; önceki aşamalar salt okunurdur.</value>
+  </data>
+  <data name="Org.Apiary" xml:space="preserve">
+    <value>Arılık</value>
+  </data>
+  <data name="Org.HoneyType" xml:space="preserve">
+    <value>Bal türü</value>
+  </data>
+  <data name="Org.Amount" xml:space="preserve">
+    <value>Miktar (kg)</value>
+  </data>
+  <data name="Org.Date" xml:space="preserve">
+    <value>Tarih</value>
+  </data>
+  <data name="Org.Ccps" xml:space="preserve">
+    <value>Kontrol noktaları</value>
+  </data>
+  <data name="Org.None" xml:space="preserve">
+    <value>Gösterilecek kayıt yok.</value>
+  </data>
+  <data name="Org.Batches" xml:space="preserve">
+    <value>Partiler</value>
+  </data>
+  <data name="Org.Title" xml:space="preserve">
+    <value>Başlık</value>
+  </data>
+  <data name="Org.Total" xml:space="preserve">
+    <value>Toplam (kg)</value>
+  </data>
+  <data name="Org.Finalized" xml:space="preserve">
+    <value>Kesinleşti</value>
+  </data>
+  <data name="Org.Draft" xml:space="preserve">
+    <value>Taslak</value>
+  </data>
+  <data name="Org.Open" xml:space="preserve">
+    <value>Aç</value>
+  </data>
+  <data name="Org.ChipLegend" xml:space="preserve">
+    <value>Yeşil ve ✓ = onaylandı · sarı = gönderildi, onay bekliyor · gri = açık · çerçeveli = uygulanamaz</value>
+  </data>
+  <data name="Org.BatchCcps" xml:space="preserve">
+    <value>Partinin kontrol noktaları</value>
+  </data>
+  <data name="Org.SourceLots" xml:space="preserve">
+    <value>Kaynak lotlar</value>
+  </data>
+  <data name="Org.SourceLotsHelp" xml:space="preserve">
+    <value>Bu partideki lotların önceki aşamaları (salt okunur).</value>
+  </data>
+  <data name="Org.Finalize" xml:space="preserve">
+    <value>Kesinleştirme</value>
+  </data>
+  <data name="Org.FinalizeHelp" xml:space="preserve">
+    <value>Partinin ve lotlarının tüm kontrol noktaları onaylanmış olmalıdır. Bir kişi talep eder, başka bir kişi (QualityApprover) onaylar. Kesinleşen parti değiştirilemez.</value>
+  </data>
+  <data name="Org.SelfApproved" xml:space="preserve">
+    <value>kendi onayı (muafiyet)</value>
+  </data>
+  <data name="Org.MissingBeforeFinalize" xml:space="preserve">
+    <value>Kesinleştirmeden önce eksik olanlar:</value>
+  </data>
+  <data name="Org.RequestFinalize" xml:space="preserve">
+    <value>Kesinleştirme talep et</value>
+  </data>
+  <data name="Org.FinalizeRequested" xml:space="preserve">
+    <value>Kesinleştirme talep edildi:</value>
+  </data>
+  <data name="Org.ConfirmFinalize" xml:space="preserve">
+    <value>Onayla ve kesinleştir</value>
+  </data>
+  <data name="Org.Back" xml:space="preserve">
+    <value>Geri</value>
+  </data>
+  <data name="Org.Edit" xml:space="preserve">
+    <value>Düzenle</value>
+  </data>
+  <data name="Org.Save" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="Org.Cancel" xml:space="preserve">
+    <value>Vazgeç</value>
+  </data>
+  <data name="Org.OwningOrg" xml:space="preserve">
+    <value>Sahip kurum</value>
+  </data>
+  <data name="Org.OwningOrgDefault" xml:space="preserve">
+    <value>(toptancının kurumu)</value>
+  </data>
+  <data name="Org.MemberFinalizeNote" xml:space="preserve">
+    <value>Kurum modelinde partiyi sahibi olan kurum kesinleştirir (iki kişi: talep ve onay).</value>
+  </data>
+  <data name="Org.Organizations" xml:space="preserve">
+    <value>Kurumlar</value>
+  </data>
+  <data name="Org.OrganizationsHelp" xml:space="preserve">
+    <value>Kurumlar yetenekleriyle sürece katılır; kişiler kurumlara üyelikle bağlanır. Yalnızca doğrulanmış kurumlar veri girebilir.</value>
+  </data>
+  <data name="Org.NewOrganization" xml:space="preserve">
+    <value>Yeni kurum</value>
+  </data>
+  <data name="Org.Name" xml:space="preserve">
+    <value>Ad</value>
+  </data>
+  <data name="Org.Province" xml:space="preserve">
+    <value>İl</value>
+  </data>
+  <data name="Org.District" xml:space="preserve">
+    <value>İlçe</value>
+  </data>
+  <data name="Org.Members" xml:space="preserve">
+    <value>Üyeler</value>
+  </data>
+  <data name="Org.FourEyesExemption" xml:space="preserve">
+    <value>Dört göz muafiyeti</value>
+  </data>
+  <data name="Org.DisplayName" xml:space="preserve">
+    <value>Görünen ad</value>
+  </data>
+  <data name="Org.LegalName" xml:space="preserve">
+    <value>Resmî unvan</value>
+  </data>
+  <data name="Org.TaxNumber" xml:space="preserve">
+    <value>Vergi numarası</value>
+  </data>
+  <data name="Org.ExistingWholesaler" xml:space="preserve">
+    <value>Mevcut toptancı kaydı (isteğe bağlı)</value>
+  </data>
+  <data name="Org.ExistingWholesalerHelp" xml:space="preserve">
+    <value>Bu toptancının lot ve partileri bu kuruma ait olur.</value>
+  </data>
+  <data name="Org.Create" xml:space="preserve">
+    <value>Oluştur</value>
+  </data>
+  <data name="Org.EditOrganization" xml:space="preserve">
+    <value>Kurumu düzenle</value>
+  </data>
+  <data name="Org.EditHelp" xml:space="preserve">
+    <value>Durum, yetenekler ve üyeler kurum sayfasında değiştirilir.</value>
+  </data>
+  <data name="Org.EditDetails" xml:space="preserve">
+    <value>Bilgileri düzenle</value>
+  </data>
+  <data name="Org.Verification" xml:space="preserve">
+    <value>Doğrulama</value>
+  </data>
+  <data name="Org.VerificationHelp" xml:space="preserve">
+    <value>Beklemede → Doğrulandı → Askıda. Yalnızca doğrulanmış kurumlar veri girebilir; askıya alma verileri korur, yeni girişi engeller.</value>
+  </data>
+  <data name="Org.ReasonPlaceholder" xml:space="preserve">
+    <value>Gerekçe / not (askıya almak veya belge istemek için zorunlu)</value>
+  </data>
+  <data name="Org.RequestDocuments" xml:space="preserve">
+    <value>Belge iste</value>
+  </data>
+  <data name="Org.Suspend" xml:space="preserve">
+    <value>Askıya al</value>
+  </data>
+  <data name="Org.Documents" xml:space="preserve">
+    <value>Belgeler</value>
+  </data>
+  <data name="Org.Type" xml:space="preserve">
+    <value>Tür</value>
+  </data>
+  <data name="Org.File" xml:space="preserve">
+    <value>Dosya</value>
+  </data>
+  <data name="Org.Uploaded" xml:space="preserve">
+    <value>Yüklendi (UTC)</value>
+  </data>
+  <data name="Org.NoDocuments" xml:space="preserve">
+    <value>Henüz belge yok.</value>
+  </data>
+  <data name="Org.Upload" xml:space="preserve">
+    <value>Yükle</value>
+  </data>
+  <data name="Org.UploadHelp" xml:space="preserve">
+    <value>En çok 10 MB PDF veya en çok 8 MB JPG/PNG/WEBP. Web klasörü dışında SHA-256 özetiyle saklanır.</value>
+  </data>
+  <data name="Org.Remove" xml:space="preserve">
+    <value>Kaldır</value>
+  </data>
+  <data name="Org.AddCapability" xml:space="preserve">
+    <value>Yetenek ekle</value>
+  </data>
+  <data name="Org.Accredited" xml:space="preserve">
+    <value>akredite (laboratuvar)</value>
+  </data>
+  <data name="Org.AccreditationNo" xml:space="preserve">
+    <value>akreditasyon no.</value>
+  </data>
+  <data name="Org.Current" xml:space="preserve">
+    <value>Şu an:</value>
+  </data>
+  <data name="Org.User" xml:space="preserve">
+    <value>Kullanıcı</value>
+  </data>
+  <data name="Org.OrgRole" xml:space="preserve">
+    <value>Kurum rolü</value>
+  </data>
+  <data name="Org.Revoke" xml:space="preserve">
+    <value>İptal et</value>
+  </data>
+  <data name="Org.NoMembers" xml:space="preserve">
+    <value>Henüz üye yok.</value>
+  </data>
+  <data name="Org.ExistingUser" xml:space="preserve">
+    <value>Mevcut kullanıcı adı</value>
+  </data>
+  <data name="Org.NewUserHint" xml:space="preserve">
+    <value>veya yeni kullanıcı oluşturun (genel rol yok; erişim yalnızca üyelikle):</value>
+  </data>
+  <data name="Org.UserName" xml:space="preserve">
+    <value>kullanıcı adı</value>
+  </data>
+  <data name="Org.Email" xml:space="preserve">
+    <value>e-posta</value>
+  </data>
+  <data name="Org.Password" xml:space="preserve">
+    <value>parola</value>
+  </data>
+  <data name="Org.AddMember" xml:space="preserve">
+    <value>Üye ekle</value>
+  </data>
+  <data name="Org.NoStatusChanges" xml:space="preserve">
+    <value>Henüz durum değişikliği yok.</value>
+  </data>
+  <data name="Org.When" xml:space="preserve">
+    <value>Zaman (UTC)</value>
+  </data>
+  <data name="Org.From" xml:space="preserve">
+    <value>Önce</value>
+  </data>
+  <data name="Org.To" xml:space="preserve">
+    <value>Sonra</value>
+  </data>
+  <data name="Org.Reason" xml:space="preserve">
+    <value>Gerekçe</value>
+  </data>
+  <data name="Reg.Title" xml:space="preserve">
+    <value>Arıcı kaydı ve birlikler</value>
+  </data>
+  <data name="Reg.BusinessNo" xml:space="preserve">
+    <value>İşletme no.</value>
+  </data>
+  <data name="Reg.Beekeeper" xml:space="preserve">
+    <value>Arıcı</value>
+  </data>
+  <data name="Reg.RegistryNo" xml:space="preserve">
+    <value>Kayıt no.</value>
+  </data>
+  <data name="Reg.Association" xml:space="preserve">
+    <value>Birlik</value>
+  </data>
+  <data name="Reg.AssociationHelp" xml:space="preserve">
+    <value>Birlik, arıcı adına veri girer. Değişikliklerde geçmiş korunur.</value>
+  </data>
+  <data name="Reg.FormatHelp" xml:space="preserve">
+    <value>Biçim: TR, 01-81 arası il kodu ve 10 hane. Kanıt belgesi (kayıt çıktısı veya fotoğraf) zorunludur.</value>
+  </data>
+  <data name="Reg.Submit" xml:space="preserve">
+    <value>Gönder</value>
+  </data>
+  <data name="Reg.Number" xml:space="preserve">
+    <value>Numara</value>
+  </data>
+  <data name="Reg.Proof" xml:space="preserve">
+    <value>Kanıt</value>
+  </data>
+  <data name="Reg.Decision" xml:space="preserve">
+    <value>Karar</value>
+  </data>
+  <data name="Reg.Verify" xml:space="preserve">
+    <value>Doğrula</value>
+  </data>
+  <data name="Reg.Reject" xml:space="preserve">
+    <value>Reddet</value>
+  </data>
+  <data name="Reg.RejectReason" xml:space="preserve">
+    <value>gerekçe (reddetmek için)</value>
+  </data>
+  <data name="Audit.Title" xml:space="preserve">
+    <value>Denetim kaydı</value>
+  </data>
+  <data name="Audit.Help" xml:space="preserve">
+    <value>Yalnızca eklenir ve hash zinciriyle bağlıdır: her satır bir öncekinin özetini taşır. Satırlar değiştirilemez ve silinemez.</value>
+  </data>
+  <data name="Audit.Verify" xml:space="preserve">
+    <value>Hash zincirini doğrula</value>
+  </data>
+  <data name="Audit.AllEntities" xml:space="preserve">
+    <value>tüm tablolar</value>
+  </data>
+  <data name="Audit.Filter" xml:space="preserve">
+    <value>Filtrele</value>
+  </data>
+  <data name="Audit.Action" xml:space="preserve">
+    <value>İşlem</value>
+  </data>
+  <data name="Audit.Entity" xml:space="preserve">
+    <value>Tablo</value>
+  </data>
+  <data name="Audit.Key" xml:space="preserve">
+    <value>Anahtar</value>
+  </data>
+  <data name="Audit.Flags" xml:space="preserve">
+    <value>İşaretler</value>
+  </data>
+  <data name="Audit.Old" xml:space="preserve">
+    <value>Eski</value>
+  </data>
+  <data name="Audit.New" xml:space="preserve">
+    <value>Yeni</value>
+  </data>
+  <data name="Audit.Newer" xml:space="preserve">
+    <value>Daha yeni</value>
+  </data>
+  <data name="Audit.Older" xml:space="preserve">
+    <value>Daha eski</value>
+  </data>
+  <data name="Resp.Title" xml:space="preserve">
+    <value>KKN sorumlulukları</value>
+  </data>
+  <data name="Resp.Help" xml:space="preserve">
+    <value>Her kontrol noktasını kimin gireceği ve kimin onaylayacağı. Değişiklikler hemen geçerli olur.</value>
+  </data>
+  <data name="Resp.Responsible" xml:space="preserve">
+    <value>Sorumlu kurum</value>
+  </data>
+  <data name="Resp.EnterRoles" xml:space="preserve">
+    <value>Değer giren roller</value>
+  </data>
+  <data name="Resp.ApproveRoles" xml:space="preserve">
+    <value>Onaylayan roller</value>
+  </data>
+  <data name="Resp.NotSet" xml:space="preserve">
+    <value>ayarlanmamış</value>
+  </data>
+  <data name="Resp.RuleOwner" xml:space="preserve">
+    <value>Lotun / partinin sahibi kurum</value>
+  </data>
+  <data name="Resp.RuleAssociation" xml:space="preserve">
+    <value>Lotun arıcısının birliği</value>
+  </data>
+  <data name="Resp.NoApproval" xml:space="preserve">
+    <value>onay gerekmez</value>
+  </data>
+  <data name="Resp.RequiresApproval" xml:space="preserve">
+    <value>Değerler başka bir kişinin onayını gerektirir (dört göz)</value>
+  </data>
+  <data name="Corr.Title" xml:space="preserve">
+    <value>Düzeltmeler</value>
+  </data>
+  <data name="Corr.Help" xml:space="preserve">
+    <value>Platform yöneticileri iş verisini doğrudan değiştirmez. Düzeltme ancak ikinci bir yönetici onaylayınca uygulanır.</value>
+  </data>
+  <data name="Corr.FormHelp" xml:space="preserve">
+    <value>Bir değerin düzeltilmesini talep edin. İkinci bir yönetici onaylamalıdır; kesinleşmiş kayıtlar kilidi açılmadan düzeltilir.</value>
+  </data>
+  <data name="Corr.Record" xml:space="preserve">
+    <value>Kayıt</value>
+  </data>
+  <data name="Corr.Parameter" xml:space="preserve">
+    <value>Parametre</value>
+  </data>
+  <data name="Corr.OldValue" xml:space="preserve">
+    <value>Eski değer</value>
+  </data>
+  <data name="Corr.NewValue" xml:space="preserve">
+    <value>Yeni değer</value>
+  </data>
+  <data name="Corr.Reason" xml:space="preserve">
+    <value>Gerekçe</value>
+  </data>
+  <data name="Corr.RequestedBy" xml:space="preserve">
+    <value>Talep eden</value>
+  </data>
+  <data name="Corr.Lot" xml:space="preserve">
+    <value>Lot</value>
+  </data>
+  <data name="Corr.Batch" xml:space="preserve">
+    <value>Parti</value>
+  </data>
+  <data name="Corr.NotePlaceholder" xml:space="preserve">
+    <value>not (reddetmek için zorunlu)</value>
+  </data>
+  <data name="Corr.Apply" xml:space="preserve">
+    <value>Onayla ve uygula</value>
+  </data>
+  <data name="Corr.Reject" xml:space="preserve">
+    <value>Reddet</value>
+  </data>
+  <data name="Corr.Number" xml:space="preserve">
+    <value>sayı</value>
+  </data>
+  <data name="Corr.Text" xml:space="preserve">
+    <value>veya metin</value>
+  </data>
+  <data name="Corr.Request" xml:space="preserve">
+    <value>Talep et</value>
+  </data>
+  <data name="Corr.All" xml:space="preserve">
+    <value>Tüm düzeltmeler</value>
+  </data>
+  <data name="Ccp.ReadOnly" xml:space="preserve">
+    <value>Salt okunur</value>
+  </data>
+  <data name="Ccp.ApprovalTitle" xml:space="preserve">
+    <value>Onay (dört göz)</value>
+  </data>
+  <data name="Ccp.Approved" xml:space="preserve">
+    <value>Onaylandı</value>
+  </data>
+  <data name="Ccp.NotApproved" xml:space="preserve">
+    <value>Henüz onaylanmadı. Bir değerin değişmesi onayı kaldırır.</value>
+  </data>
+  <data name="Ccp.Approve" xml:space="preserve">
+    <value>Onayla</value>
+  </data>
 </root>
