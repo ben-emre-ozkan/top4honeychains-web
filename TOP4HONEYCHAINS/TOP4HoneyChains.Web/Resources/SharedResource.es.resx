@@ -3456,9 +3456,6 @@
   <data name="Update the selected parameter category details." xml:space="preserve">
     <value>Actualice los datos de la categoría de parámetros seleccionada.</value>
   </data>
-  <data name="Confirm password" xml:space="preserve">
-    <value>Confirme la contraseña</value>
-  </data>
   <data name="Title:" xml:space="preserve">
     <value>Título:</value>
   </data>
@@ -5006,5 +5003,11 @@
   </data>
   <data name="Mixed" xml:space="preserve">
     <value>Mixta</value>
+  </data>
+  <data name="NoPhoneNumber" xml:space="preserve">
+    <value>Sin número de teléfono</value>
+  </data>
+  <data name="Confirm Password" xml:space="preserve">
+    <value>Confirme la contraseña</value>
   </data>
 </root>

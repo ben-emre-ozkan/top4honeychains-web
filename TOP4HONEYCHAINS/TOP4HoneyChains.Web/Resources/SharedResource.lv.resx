@@ -3615,9 +3615,6 @@
   <data name="Overview" xml:space="preserve">
     <value>Pārskats</value>
   </data>
-  <data name="Confirm password" xml:space="preserve">
-    <value>Apstipriniet paroli</value>
-  </data>
   <data name="Recall" xml:space="preserve">
     <value>Atsaukšana</value>
   </data>
@@ -5006,5 +5003,11 @@
   </data>
   <data name="Mixed" xml:space="preserve">
     <value>Jaukts</value>
+  </data>
+  <data name="NoPhoneNumber" xml:space="preserve">
+    <value>Nav tālruņa numura</value>
+  </data>
+  <data name="Confirm Password" xml:space="preserve">
+    <value>Apstipriniet paroli</value>
   </data>
 </root>

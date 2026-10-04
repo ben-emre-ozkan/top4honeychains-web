@@ -175,7 +175,7 @@ namespace TOP4HoneyChains.Web.Controllers
             if (!string.Equals(format, "csv", StringComparison.OrdinalIgnoreCase))
             {
                 ViewBag.Controller = "Recall";
-                ViewBag.Action = report.Kind;
+                ViewBag.Action = "Kind." + report.Kind;
                 return View("Report", report);
             }
             // D-51: the export follows the selected language, like the page

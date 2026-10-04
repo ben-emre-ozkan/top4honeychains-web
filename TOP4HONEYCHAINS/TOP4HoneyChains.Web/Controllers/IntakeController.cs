@@ -202,7 +202,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 if (sendSms)
                 {
                     intake.SmsAt = DateTime.UtcNow;
-                    var honey = await _context.HoneyTypes.Where(h => h.HoneyTypeId == honeyTypeId).Select(h => h.HoneyTypeTitle).FirstOrDefaultAsync();
+                    var honey = HttpContext.RequestServices.GetRequiredService<RefText>().HoneyType(honeyTypeId,
+                        await _context.HoneyTypes.Where(h => h.HoneyTypeId == honeyTypeId).Select(h => h.HoneyTypeTitle).FirstOrDefaultAsync());
                     intake.SmsStatus = string.IsNullOrWhiteSpace(bk!.BeekeeperPhoneNumber)
                         ? "NoPhoneNumber"
                         : await _sms.SendAsync(bk.BeekeeperPhoneNumber, $"TOP4HoneyChains: {quantity:0.##} kg {honey} {deliveryDate:dd.MM.yyyy} - {org.DisplayName}");

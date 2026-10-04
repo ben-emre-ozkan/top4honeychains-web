@@ -83,6 +83,25 @@ namespace TOP4HoneyChains.Web.Tests
             Assert.True(missing.Count == 0, string.Join("\n", missing.Distinct().Take(50)));
         }
 
+        // Field names generated from property names (forms and validation messages) have translations
+        [Fact]
+        public void Generated_field_names_of_form_fields_exist()
+        {
+            var en = Resources.Value["en"];
+            var missing = new List<string>();
+            foreach (var file in Directory.EnumerateFiles(Path.Combine(WebRoot.Value, "Views"), "*.cshtml", SearchOption.AllDirectories))
+                foreach (Match m in Regex.Matches(File.ReadAllText(file), @"asp-(?:for|validation-for)=""([^""]+)"""))
+                {
+                    var property = Regex.Split(m.Groups[1].Value, @"[.\]]").Last();
+                    if (!Regex.IsMatch(property, @"^[A-Za-z]\w*$"))
+                        continue;
+                    var key = TOP4HoneyChains.Web.Services.LocalizedMetadataProvider.Humanize(property);
+                    if (!en.ContainsKey(key))
+                        missing.Add($"{Path.GetFileName(file)}: \"{key}\"");
+                }
+            Assert.True(missing.Count == 0, string.Join("\n", missing.Distinct()));
+        }
+
         // Code values the views show through the localizer (statuses, kinds, honey classes, data types)
         public static IEnumerable<object[]> CodeValues()
         {

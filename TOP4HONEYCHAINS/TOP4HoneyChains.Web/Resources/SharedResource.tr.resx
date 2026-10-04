@@ -3945,9 +3945,6 @@
   <data name="Update the selected parameter category details." xml:space="preserve">
     <value>Seçili parametre kategorisinin bilgilerini güncelleyin.</value>
   </data>
-  <data name="Confirm password" xml:space="preserve">
-    <value>Parolayı onaylayın</value>
-  </data>
   <data name="OK" xml:space="preserve">
     <value>Tamam</value>
   </data>
@@ -5006,5 +5003,11 @@
   </data>
   <data name="Mixed" xml:space="preserve">
     <value>Karışık</value>
+  </data>
+  <data name="NoPhoneNumber" xml:space="preserve">
+    <value>Telefon numarası yok</value>
+  </data>
+  <data name="Confirm Password" xml:space="preserve">
+    <value>Parolayı onaylayın</value>
   </data>
 </root>

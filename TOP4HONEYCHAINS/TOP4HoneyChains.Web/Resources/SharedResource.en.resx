@@ -1392,9 +1392,6 @@
   <data name="Enter new password" xml:space="preserve">
     <value>Enter new password</value>
   </data>
-  <data name="Confirm password" xml:space="preserve">
-    <value>Confirm password</value>
-  </data>
   <data name="Index" xml:space="preserve">
     <value>Index</value>
   </data>
@@ -5006,5 +5003,11 @@
   </data>
   <data name="Mixed" xml:space="preserve">
     <value>Mixed</value>
+  </data>
+  <data name="NoPhoneNumber" xml:space="preserve">
+    <value>No phone number</value>
+  </data>
+  <data name="Confirm Password" xml:space="preserve">
+    <value>Confirm password</value>
   </data>
 </root>

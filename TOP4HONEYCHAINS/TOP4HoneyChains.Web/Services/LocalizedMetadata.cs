@@ -51,6 +51,13 @@ namespace TOP4HoneyChains.Web.Services
 
         public void CreateValidationMetadata(ValidationMetadataProviderContext context)
         {
+            // a non-nullable value type (date, number) is required implicitly; MVC would create that check later with
+            // the fixed English message, so it is added here with the translatable template
+            var type = context.Key.ModelType;
+            if (context.Key.MetadataKind == ModelMetadataKind.Property && type.IsValueType && Nullable.GetUnderlyingType(type) == null
+                && !context.ValidationMetadata.ValidatorMetadata.OfType<RequiredAttribute>().Any())
+                context.ValidationMetadata.ValidatorMetadata.Add(new RequiredAttribute { ErrorMessage = "The {0} field is required." });
+
             foreach (var attribute in context.ValidationMetadata.ValidatorMetadata.OfType<ValidationAttribute>())
             {
                 if (!string.IsNullOrEmpty(attribute.ErrorMessage) || !string.IsNullOrEmpty(attribute.ErrorMessageResourceName))
@@ -62,13 +69,14 @@ namespace TOP4HoneyChains.Web.Services
         }
     }
 
-    public class ConfigureLocalizedMvc : IConfigureOptions<MvcOptions>
+    // Post-configure: runs after MVC added its own metadata providers (implicit [Required] for non-nullable members)
+    public class ConfigureLocalizedMvc : IPostConfigureOptions<MvcOptions>
     {
         private readonly IStringLocalizerFactory _factory;
 
         public ConfigureLocalizedMvc(IStringLocalizerFactory factory) => _factory = factory;
 
-        public void Configure(MvcOptions options)
+        public void PostConfigure(string? name, MvcOptions options)
         {
             var l = _factory.Create(typeof(SharedResource));
             options.ModelMetadataDetailsProviders.Add(new LocalizedMetadataProvider(l));
