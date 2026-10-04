@@ -1,6 +1,6 @@
 ﻿# TOP4HoneyChains web panel – release notes
 
-**Version:** 1.0.0-rc4 (release candidate, not yet deployed)
+**Version:** 1.0.0-rc5 (release candidate, not yet deployed)
 **Date:** 2026-10-04
 **Audience:** project partners (LBTU test report follow-up)
 
@@ -10,6 +10,8 @@ In this release only administrators use the web panel; beekeeper and wholesaler 
 Status legend: **fixed** = changed in this release · **deferred** = agreed to move to a later release · **needs decision** = waiting for an answer.
 
 **rc4 (2026-10-04):** the audit log is on from go-live for all users, independent of the organization model; administrators find it under User Management → Audit log.
+
+**rc5 (2026-10-04):** the public Honey Story page no longer fails for a batch with several lots of the same beekeeper; server messages are shown in Turkish (English stays the fallback).
 
 ## What is new in rc3 (2026-10-03)
 
