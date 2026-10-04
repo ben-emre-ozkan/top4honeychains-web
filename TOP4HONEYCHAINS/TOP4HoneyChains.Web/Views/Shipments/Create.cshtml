@@ -1,4 +1,4 @@
-@using TOP4HoneyChains.Web.Models.Entities
+﻿@using TOP4HoneyChains.Web.Models.Entities
 @using TOP4HoneyChains.Web.Services.OrgModel
 @{
     ViewData["Title"] = L["Cust.Ship"];
@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <h4 class="card-title">@L["Cust.Ship"]: @batch.FinalHoneyProductionTitle</h4>
                     <p class="card-title-desc">@L["Cust.ShipHelp"] <strong id="available">@holding.Available.ToString("0.##")</strong> kg</p>
-                    <form asp-action="Create" method="post" id="ship-form">
+                    <form asp-action="Create" method="post" id="ship-form" class="field-form">
                         <input type="hidden" name="batchId" value="@batch.FinalHoneyProductionId" />
                         <div class="row">
                             <div class="col-md-5 mb-3">

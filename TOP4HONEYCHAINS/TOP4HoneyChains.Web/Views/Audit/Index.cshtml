@@ -36,7 +36,7 @@
                     </form>
 
                     <div class="small text-muted mb-1">@total rows</div>
-                    <table class="table table-sm table-bordered small" id="audit-table">
+                    <div class="table-responsive"><table class="table table-sm table-bordered small" id="audit-table">
                         <thead><tr><th>#</th><th>UTC</th><th>@L["Org.User"]</th><th>@L["Org.OrgRole"]</th><th>@L["Audit.Action"]</th><th>@L["Audit.Entity"]</th><th>@L["Audit.Key"]</th><th>@L["Audit.Flags"]</th><th>@L["Audit.Old"]</th><th>@L["Audit.New"]</th><th>Hash</th></tr></thead>
                         <tbody>
                             @foreach (var a in Model)
@@ -56,7 +56,7 @@
                                 </tr>
                             }
                         </tbody>
-                    </table>
+                    </table></div>
 
                     <div class="d-flex gap-2">
                         @if (page > 1)

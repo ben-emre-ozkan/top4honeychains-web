@@ -1,4 +1,4 @@
-@using TOP4HoneyChains.Web.Models.Entities
+﻿@using TOP4HoneyChains.Web.Models.Entities
 @using TOP4HoneyChains.Web.Services.OrgModel
 @{
     ViewData["Title"] = L["P5.RecordConsent"];
@@ -15,7 +15,7 @@
                     <p class="card-title-desc">@L["P5.ConsentHelp"]</p>
                     <div class="border rounded p-3 bg-light mb-3" id="consent-text" style="white-space:pre-line">@ConsentText.Text</div>
                     <div class="small text-muted mb-3">@L["P5.TextVersion"]: @ConsentText.Version · SHA-256 <code>@ConsentText.Sha256</code></div>
-                    <form asp-action="Consent" asp-route-id="@bk.BeekeeperId" method="post" enctype="multipart/form-data" id="consent-form">
+                    <form asp-action="Consent" asp-route-id="@bk.BeekeeperId" method="post" enctype="multipart/form-data" id="consent-form" class="field-form">
                         <div class="form-check mb-2">
                             <input type="checkbox" class="form-check-input" name="textRead" value="true" id="textRead" />
                             <label class="form-check-label" for="textRead">@L["P5.TextRead"]</label>
@@ -31,7 +31,7 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="form-label required" for="document">@L["P5.SignedDocument"]</label>
-                                <input type="file" name="document" id="document" class="form-control" accept=".pdf,.jpg,.jpeg,.png,.webp" />
+                                <input type="file" name="document" id="document" class="form-control" accept=".pdf,.jpg,.jpeg,.png,.webp" data-camera="@L["Mob.Camera"]" />
                                 <div class="form-text">@L["Org.UploadHelp"]</div>
                             </div>
                         </div>

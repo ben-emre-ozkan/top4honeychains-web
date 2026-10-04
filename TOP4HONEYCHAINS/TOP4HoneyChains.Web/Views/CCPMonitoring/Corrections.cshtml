@@ -1,4 +1,4 @@
-@using TOP4HoneyChains.Web.Models.Entities
+﻿@using TOP4HoneyChains.Web.Models.Entities
 @model List<CcpCorrection>
 @{
     ViewData["Title"] = L["Corr.Title"];
@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <h4 class="card-title">@L["Corr.Title"]</h4>
                     <p class="card-title-desc">@L["Corr.Help"]</p>
-                    <table class="table table-sm table-bordered" id="corrections">
+                    <div class="table-responsive"><table class="table table-sm table-bordered" id="corrections">
                         <thead><tr><th>#</th><th>@L["Corr.Record"]</th><th>@L["Corr.Parameter"]</th><th>@L["Corr.OldValue"]</th><th>@L["Corr.NewValue"]</th><th>@L["Corr.Reason"]</th><th>@L["Corr.RequestedBy"]</th><th>@L["Org.Status"]</th><th></th></tr></thead>
                         <tbody>
                             @foreach (var c in Model)
@@ -56,7 +56,7 @@
                                 <tr><td colspan="9" class="text-muted">@L["Org.None"]</td></tr>
                             }
                         </tbody>
-                    </table>
+                    </table></div>
                 </div>
             </div>
         </div>

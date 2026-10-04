@@ -1,4 +1,4 @@
-@using TOP4HoneyChains.Web.Models.Entities
+﻿@using TOP4HoneyChains.Web.Models.Entities
 @{
     ViewData["Title"] = L["Cust.Shipments"];
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <h4 class="card-title">@L["Cust.Shipments"]</h4>
                     <p class="card-title-desc">@L["Cust.AllHelp"]</p>
-                    <table class="table table-sm table-bordered" id="all-shipments">
+                    <div class="table-responsive"><table class="table table-sm table-bordered" id="all-shipments">
                         <thead><tr><th>#</th><th>@L["Cust.Batch"]</th><th>@L["Cust.From"]</th><th>@L["Cust.To"]</th><th>@L["Org.Amount"]</th><th>@L["Org.Date"]</th><th>@L["Org.Status"]</th><th></th></tr></thead>
                         <tbody>
                             @foreach (var s in all)
@@ -33,7 +33,7 @@
                                 <tr><td colspan="8" class="text-muted">@L["Org.None"]</td></tr>
                             }
                         </tbody>
-                    </table>
+                    </table></div>
                 </div>
             </div>
         </div>

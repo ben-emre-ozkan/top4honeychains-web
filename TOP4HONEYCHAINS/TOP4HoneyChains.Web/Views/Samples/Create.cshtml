@@ -1,4 +1,4 @@
-@using TOP4HoneyChains.Web.Models.Entities
+﻿@using TOP4HoneyChains.Web.Models.Entities
 @{
     ViewData["Title"] = L["Lab.TakeSample"];
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
@@ -20,7 +20,7 @@
                             @foreach (var s in existing) { <div>@s.SampleCode · @s.LabOrg?.DisplayName · @s.Status</div> }
                         </div>
                     }
-                    <form asp-action="Create" method="post" id="sample-form">
+                    <form asp-action="Create" method="post" id="sample-form" class="field-form">
                         <input type="hidden" name="lotId" value="@lot.RawHoneyProductionId" />
                         <div class="row">
                             <div class="col-md-4 mb-3">
@@ -35,11 +35,11 @@
                             </div>
                             <div class="col-md-4 mb-3">
                                 <label class="form-label required" for="sealNumber">@L["Lab.SealNumber"]</label>
-                                <input name="sealNumber" id="sealNumber" class="form-control" maxlength="50" />
+                                <input name="sealNumber" id="sealNumber" class="form-control" maxlength="50" autocapitalize="characters" autocomplete="off" />
                             </div>
                             <div class="col-md-4 mb-3">
                                 <label class="form-label required" for="counterSealNumber">@L["Lab.CounterSealNumber"]</label>
-                                <input name="counterSealNumber" id="counterSealNumber" class="form-control" maxlength="50" />
+                                <input name="counterSealNumber" id="counterSealNumber" class="form-control" maxlength="50" autocapitalize="characters" autocomplete="off" />
                             </div>
                             <div class="col-md-8 mb-3">
                                 <label class="form-label required" for="counterLocation">@L["Lab.CounterLocation"]</label>

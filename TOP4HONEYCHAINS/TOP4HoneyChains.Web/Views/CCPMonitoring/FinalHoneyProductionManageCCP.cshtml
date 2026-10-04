@@ -134,7 +134,7 @@
             <div class="card border-0 shadow-lg">
                 <div class="card-body">
 
-                    <form asp-action="FinalHoneyProductionManageCCP" method="post" enctype="multipart/form-data">
+                    <form asp-action="FinalHoneyProductionManageCCP" method="post" enctype="multipart/form-data" class="@(Model.OrgModelOn ? "field-form" : null)">
 
                         <input type="hidden" asp-for="CCPId" />
                         <input type="hidden" asp-for="FinalHoneyProductionId" />
