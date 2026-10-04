@@ -68,7 +68,7 @@
                                                 </span>
                                             </td>
 
-                                            <td>@(item.DataType ?? "-")@(item.IsRequired ? "" : " (optional)")</td>
+                                            <td>@(item.DataType != null ? L[item.DataType].Value : "-")@(item.IsRequired ? "" : " (" + L["optional"].Value + ")")</td>
                                             <td>
                                                 @Ref.Limit(TOP4HoneyChains.Web.Services.CcpLimitEvaluator.DescribeAll(item) ?? (item.CriticalLimit == "None" ? "-" : item.CriticalLimit), k => L[k])
                                                 @if (TOP4HoneyChains.Web.Services.CcpLimitEvaluator.DescribeAll(item) != null && !item.LimitVerified)

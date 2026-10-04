@@ -4299,4 +4299,754 @@
   <data name="Edit Beekeeping Type" xml:space="preserve">
     <value>Rediģēt biškopības veidu</value>
   </data>
+  <data name="Not applicable:" xml:space="preserve">
+    <value>Nav piemērojams:</value>
+  </data>
+  <data name="ApiaryPhotos" xml:space="preserve">
+    <value>Dravu fotoattēli</value>
+  </data>
+  <data name="Honey Class" xml:space="preserve">
+    <value>Medus klase</value>
+  </data>
+  <data name="{0} batch(es) of another organization" xml:space="preserve">
+    <value>{0} citas organizācijas gala partija(-s)</value>
+  </data>
+  <data name="The {0} field is not a valid phone number." xml:space="preserve">
+    <value>Lauks {0} nav derīgs tālruņa numurs.</value>
+  </data>
+  <data name="Beekeeper Phone Number" xml:space="preserve">
+    <value>Tālruņa numurs</value>
+  </data>
+  <data name="Quality control points recorded for this honey: {0} of {1}" xml:space="preserve">
+    <value>Šim medum reģistrētie kvalitātes kontroles punkti: {0} no {1}</value>
+  </data>
+  <data name="Beekeeping Type Id" xml:space="preserve">
+    <value>Biškopības veids</value>
+  </data>
+  <data name="Why Important" xml:space="preserve">
+    <value>Kāpēc tas ir svarīgi</value>
+  </data>
+  <data name="BeekeeperRegistry" xml:space="preserve">
+    <value>Biškopju reģistrs</value>
+  </data>
+  <data name="Final Honey Production Date" xml:space="preserve">
+    <value>Gala partijas ražošanas datums</value>
+  </data>
+  <data name="Beekeeper Id" xml:space="preserve">
+    <value>Biškopis</value>
+  </data>
+  <data name="Shipment" xml:space="preserve">
+    <value>Sūtījums</value>
+  </data>
+  <data name="The field {0} must be between {1} and {2}." xml:space="preserve">
+    <value>Lauka {0} vērtībai jābūt no {1} līdz {2}.</value>
+  </data>
+  <data name="Registry verification" xml:space="preserve">
+    <value>Reģistrācijas pārbaude</value>
+  </data>
+  <data name="Wholesaler Tax No" xml:space="preserve">
+    <value>Nodokļu maksātāja numurs</value>
+  </data>
+  <data name="District" xml:space="preserve">
+    <value>Rajons</value>
+  </data>
+  <data name="t" xml:space="preserve">
+    <value>t</value>
+  </data>
+  <data name="Content Id" xml:space="preserve">
+    <value>Saturs</value>
+  </data>
+  <data name="CriticalControlPointMonitoringLogs" xml:space="preserve">
+    <value>Kritisko kontroles punktu uzraudzības ieraksti</value>
+  </data>
+  <data name="Data Type" xml:space="preserve">
+    <value>Datu tips</value>
+  </data>
+  <data name="Critical limit:" xml:space="preserve">
+    <value>Kritiskā robežvērtība:</value>
+  </data>
+  <data name="FinalHoneyProductionDetails" xml:space="preserve">
+    <value>Gala medus ražošanas detaļas</value>
+  </data>
+  <data name="Apiary QR Code" xml:space="preserve">
+    <value>Dravas QR kods</value>
+  </data>
+  <data name="Long:" xml:space="preserve">
+    <value>Gar.:</value>
+  </data>
+  <data name="Final Honey Production Title" xml:space="preserve">
+    <value>Gala partijas nosaukums</value>
+  </data>
+  <data name="Wholesaler Phone" xml:space="preserve">
+    <value>Tālrunis</value>
+  </data>
+  <data name="BeekeeperStorefronts" xml:space="preserve">
+    <value>Biškopju publiskās lapas</value>
+  </data>
+  <data name="CriticalControlPoints" xml:space="preserve">
+    <value>Kritiskie kontroles punkti</value>
+  </data>
+  <data name="all data (platform administrator)" xml:space="preserve">
+    <value>visi dati (platformas administrators)</value>
+  </data>
+  <data name="Beekeeper Experience Time" xml:space="preserve">
+    <value>Pieredze</value>
+  </data>
+  <data name="Honey Type Description" xml:space="preserve">
+    <value>Medus veida apraksts</value>
+  </data>
+  <data name="Raw Honey Production Period Title" xml:space="preserve">
+    <value>Perioda nosaukums</value>
+  </data>
+  <data name="Limit Note" xml:space="preserve">
+    <value>Piezīme par robežvērtību</value>
+  </data>
+  <data name="association's member lot" xml:space="preserve">
+    <value>biedrības biedra partija</value>
+  </data>
+  <data name="{0} lot(s) of another organization" xml:space="preserve">
+    <value>{0} citas organizācijas partija(-s)</value>
+  </data>
+  <data name="The field {0} must be a string with a minimum length of {2} and a maximum length of {1}." xml:space="preserve">
+    <value>Lauka {0} garumam jābūt no {2} līdz {1} rakstzīmēm.</value>
+  </data>
+  <data name="CcpResponsibilities" xml:space="preserve">
+    <value>KKP atbildība</value>
+  </data>
+  <data name="Apiary Id" xml:space="preserve">
+    <value>Drava</value>
+  </data>
+  <data name="OrgVerificationEvents" xml:space="preserve">
+    <value>Organizāciju pārbaudes notikumi</value>
+  </data>
+  <data name="BatchOriginShares" xml:space="preserve">
+    <value>Gala partiju izcelsmes daļas</value>
+  </data>
+  <data name="ReferenceTranslations" xml:space="preserve">
+    <value>Atsauces datu tulkojumi</value>
+  </data>
+  <data name="Out of limit" xml:space="preserve">
+    <value>Ārpus robežām</value>
+  </data>
+  <data name="Final Honey Production Wholesaler Id" xml:space="preserve">
+    <value>Vairumtirgotājs</value>
+  </data>
+  <data name="Remove File" xml:space="preserve">
+    <value>Noņemt failu</value>
+  </data>
+  <data name="CcpResponsibilityRoles" xml:space="preserve">
+    <value>KKP atbildības lomas</value>
+  </data>
+  <data name="OrgRoles" xml:space="preserve">
+    <value>Organizāciju lomas</value>
+  </data>
+  <data name="RawLot" xml:space="preserve">
+    <value>Neapstrādāta medus partija</value>
+  </data>
+  <data name="You requested a password reset." xml:space="preserve">
+    <value>Jūs pieprasījāt paroles atiestatīšanu.</value>
+  </data>
+  <data name="Public Text Values" xml:space="preserve">
+    <value>Publiskās teksta vērtības</value>
+  </data>
+  <data name="Reason:" xml:space="preserve">
+    <value>Iemesls:</value>
+  </data>
+  <data name="Unverified" xml:space="preserve">
+    <value>Nepārbaudīts</value>
+  </data>
+  <data name="AuditEntries" xml:space="preserve">
+    <value>Audita ieraksti</value>
+  </data>
+  <data name="Leave off when answers may contain personal data or locations (e.g. a field audit at the beekeeper). Yes/No and numbers are always shown; files never." xml:space="preserve">
+    <value>Atstājiet izslēgtu, ja atbildes var saturēt personas datus vai atrašanās vietas (piem., lauka audits pie biškopja). Jā/Nē un skaitļi tiek rādīti vienmēr; faili nekad.</value>
+  </data>
+  <data name="Beekeeper Education Level Title" xml:space="preserve">
+    <value>Izglītības līmeņa nosaukums</value>
+  </data>
+  <data name="Is Required" xml:space="preserve">
+    <value>Obligāts</value>
+  </data>
+  <data name="Hello," xml:space="preserve">
+    <value>Labdien,</value>
+  </data>
+  <data name="Manual" xml:space="preserve">
+    <value>Manuāli (dokuments un apstiprinājums)</value>
+  </data>
+  <data name="Legal Name" xml:space="preserve">
+    <value>Juridiskais nosaukums</value>
+  </data>
+  <data name="Profile Photo File" xml:space="preserve">
+    <value>Profila fotoattēla fails</value>
+  </data>
+  <data name="Wholesaler City" xml:space="preserve">
+    <value>Pilsēta</value>
+  </data>
+  <data name="Seeded from the Turkish Food Codex; to be verified" xml:space="preserve">
+    <value>Sākotnējie dati no Turcijas Pārtikas kodeksa; jāpārbauda</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>Atsaukts</value>
+  </data>
+  <data name="Category Desc" xml:space="preserve">
+    <value>Kategorijas apraksts</value>
+  </data>
+  <data name="shipments to and from the organization" xml:space="preserve">
+    <value>sūtījumi uz organizāciju un no tās</value>
+  </data>
+  <data name="Finalize" xml:space="preserve">
+    <value>Pabeigt (fiksēt)</value>
+  </data>
+  <data name="Consents" xml:space="preserve">
+    <value>Piekrišanas</value>
+  </data>
+  <data name="Raw Honey Production Amount" xml:space="preserve">
+    <value>Neapstrādāta medus daudzums</value>
+  </data>
+  <data name="Keeps photos and honey productions; greys out the apiary. Apiaries are never deleted." xml:space="preserve">
+    <value>Saglabā fotoattēlus un medus ražošanas ierakstus; drava tiek parādīta pelēkā krāsā. Dravas nekad netiek dzēstas.</value>
+  </data>
+  <data name="BeekeepingPurposeTypes" xml:space="preserve">
+    <value>Biškopības mērķa veidi</value>
+  </data>
+  <data name="Apiary Beekeeper Id" xml:space="preserve">
+    <value>Biškopis</value>
+  </data>
+  <data name="honey type" xml:space="preserve">
+    <value>medus veids</value>
+  </data>
+  <data name="Raw Honey Production Honey Type" xml:space="preserve">
+    <value>Medus veids</value>
+  </data>
+  <data name="SMS" xml:space="preserve">
+    <value>SMS</value>
+  </data>
+  <data name="Logged" xml:space="preserve">
+    <value>Reģistrēts žurnālā</value>
+  </data>
+  <data name="Beekeeper Education Level Id" xml:space="preserve">
+    <value>Izglītības līmenis</value>
+  </data>
+  <data name="The {0} field is not a valid e-mail address." xml:space="preserve">
+    <value>Lauks {0} nav derīga e-pasta adrese.</value>
+  </data>
+  <data name="Pine" xml:space="preserve">
+    <value>Priežu medus</value>
+  </data>
+  <data name="RawHoneyCCPAssignments" xml:space="preserve">
+    <value>Neapstrādāta medus KKP piešķīrumi</value>
+  </data>
+  <data name="Beekeeper First Name" xml:space="preserve">
+    <value>Vārds</value>
+  </data>
+  <data name="Section" xml:space="preserve">
+    <value>Sadaļa</value>
+  </data>
+  <data name="Apiaries of {0}" xml:space="preserve">
+    <value>Dravas: {0}</value>
+  </data>
+  <data name="Limit Source" xml:space="preserve">
+    <value>Robežvērtības avots</value>
+  </data>
+  <data name="Wholesaler Email" xml:space="preserve">
+    <value>E-pasts</value>
+  </data>
+  <data name="The {0} field is required." xml:space="preserve">
+    <value>Lauks {0} ir obligāts.</value>
+  </data>
+  <data name="The field {0} must match the regular expression '{1}'." xml:space="preserve">
+    <value>Laukam {0} jāatbilst regulārajai izteiksmei '{1}'.</value>
+  </data>
+  <data name="Wholesaler Address" xml:space="preserve">
+    <value>Adrese</value>
+  </data>
+  <data name="What Is It" xml:space="preserve">
+    <value>Kas tas ir</value>
+  </data>
+  <data name="Started:" xml:space="preserve">
+    <value>Sākts:</value>
+  </data>
+  <data name="Max Value" xml:space="preserve">
+    <value>Maksimālā vērtība</value>
+  </data>
+  <data name="Administrator" xml:space="preserve">
+    <value>Administrators</value>
+  </data>
+  <data name="Raw Honey Production Period Start Date" xml:space="preserve">
+    <value>Perioda sākuma datums</value>
+  </data>
+  <data name="CcpResponsibilityCapabilities" xml:space="preserve">
+    <value>KKP atbildības kompetences</value>
+  </data>
+  <data name="YesNo" xml:space="preserve">
+    <value>Jā / Nē</value>
+  </data>
+  <data name="Used in a finalized batch; it cannot be edited or deleted" xml:space="preserve">
+    <value>Izmantota pabeigtā (fiksētā) gala partijā; to nevar rediģēt vai dzēst</value>
+  </data>
+  <data name="Apiary Beehives Count" xml:space="preserve">
+    <value>Stropu skaits</value>
+  </data>
+  <data name="The field {0} must be a string with a maximum length of {1}." xml:space="preserve">
+    <value>Lauka {0} garums nedrīkst pārsniegt {1} rakstzīmes.</value>
+  </data>
+  <data name="OrgRoleDefinitions" xml:space="preserve">
+    <value>Organizāciju lomu definīcijas</value>
+  </data>
+  <data name="Province" xml:space="preserve">
+    <value>Province</value>
+  </data>
+  <data name="FinalHoneyProductions" xml:space="preserve">
+    <value>Gala medus ražošana</value>
+  </data>
+  <data name="Raw Honey Production Period Id" xml:space="preserve">
+    <value>Ražošanas periods</value>
+  </data>
+  <data name="If you did not request this, please ignore this email." xml:space="preserve">
+    <value>Ja jūs to nepieprasījāt, lūdzu, ignorējiet šo e-pasta vēstuli.</value>
+  </data>
+  <data name="Storefront" xml:space="preserve">
+    <value>Publiskā lapa</value>
+  </data>
+  <data name="storage" xml:space="preserve">
+    <value>uzglabāšana</value>
+  </data>
+  <data name="Is Active" xml:space="preserve">
+    <value>Aktīvs</value>
+  </data>
+  <data name="Floral" xml:space="preserve">
+    <value>Ziedu medus</value>
+  </data>
+  <data name="Lat:" xml:space="preserve">
+    <value>Plat.:</value>
+  </data>
+  <data name="Amount:" xml:space="preserve">
+    <value>Daudzums:</value>
+  </data>
+  <data name="The field {0} must be a string or array type with a maximum length of '{1}'." xml:space="preserve">
+    <value>Laukam {0} jābūt virknei vai masīvam ar maksimālo garumu '{1}'.</value>
+  </data>
+  <data name="Recorded by {0} on {1}" xml:space="preserve">
+    <value>Reģistrēja {0}, {1}</value>
+  </data>
+  <data name="Licence" xml:space="preserve">
+    <value>Licence</value>
+  </data>
+  <data name="Beekeeping Purpose Type Id" xml:space="preserve">
+    <value>Biškopības mērķa veids</value>
+  </data>
+  <data name="Add Parameter Content for" xml:space="preserve">
+    <value>Pievienot saturu parametram</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Apstiprināts</value>
+  </data>
+  <data name="TaxCertificate" xml:space="preserve">
+    <value>Nodokļu apliecība</value>
+  </data>
+  <data name="AspNetUsers" xml:space="preserve">
+    <value>Lietotāji</value>
+  </data>
+  <data name="Detail" xml:space="preserve">
+    <value>Informācija</value>
+  </data>
+  <data name="HolderStorageValues" xml:space="preserve">
+    <value>Turētāju uzglabāšanas vērtības</value>
+  </data>
+  <data name="LabReports" xml:space="preserve">
+    <value>Laboratorijas pārskati</value>
+  </data>
+  <data name="Raw Honey Production Date" xml:space="preserve">
+    <value>Ražošanas datums</value>
+  </data>
+  <data name="Quantity (kg)" xml:space="preserve">
+    <value>Daudzums (kg)</value>
+  </data>
+  <data name="Applied" xml:space="preserve">
+    <value>Piemērots</value>
+  </data>
+  <data name="Reset your TOP4HoneyChains password" xml:space="preserve">
+    <value>Atiestatiet savu TOP4HoneyChains paroli</value>
+  </data>
+  <data name="not checkable" xml:space="preserve">
+    <value>nav pārbaudāms</value>
+  </data>
+  <data name="'{0}' and '{1}' do not match." xml:space="preserve">
+    <value>'{0}' un '{1}' nesakrīt.</value>
+  </data>
+  <data name="Measured Numeric Value" xml:space="preserve">
+    <value>Izmērītā skaitliskā vērtība</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>Fails</value>
+  </data>
+  <data name="CriticalControlPointParameterLimits" xml:space="preserve">
+    <value>Kritisko kontroles punktu parametru robežvērtības</value>
+  </data>
+  <data name="owning organization's part" xml:space="preserve">
+    <value>īpašnieces organizācijas daļa</value>
+  </data>
+  <data name="Keeps all records; greys out the beekeeper and locks their login. Beekeepers are never deleted." xml:space="preserve">
+    <value>Saglabā visus ierakstus; biškopis tiek parādīts pelēkā krāsā, un viņa pieteikšanās tiek bloķēta. Biškopji nekad netiek dzēsti.</value>
+  </data>
+  <data name="AssignmentStatuses" xml:space="preserve">
+    <value>Piešķīrumu statusi</value>
+  </data>
+  <data name="Capabilities" xml:space="preserve">
+    <value>Kompetences</value>
+  </data>
+  <data name="LabResults" xml:space="preserve">
+    <value>Laboratorijas rezultāti</value>
+  </data>
+  <data name="Received" xml:space="preserve">
+    <value>Saņemts</value>
+  </data>
+  <data name="CCP Id" xml:space="preserve">
+    <value>KKP</value>
+  </data>
+  <data name="Click here to reset your password" xml:space="preserve">
+    <value>Noklikšķiniet šeit, lai atiestatītu paroli</value>
+  </data>
+  <data name="{0} rows" xml:space="preserve">
+    <value>Rindas: {0}</value>
+  </data>
+  <data name="RegistryProof" xml:space="preserve">
+    <value>Reģistrācijas apliecinājums</value>
+  </data>
+  <data name="RawHoneyProductions" xml:space="preserve">
+    <value>Neapstrādāta medus ražošana</value>
+  </data>
+  <data name="Raw sources: {0}" xml:space="preserve">
+    <value>Neapstrādāta medus avoti: {0}</value>
+  </data>
+  <data name="lot" xml:space="preserve">
+    <value>partija</value>
+  </data>
+  <data name="HolderStorageRecords" xml:space="preserve">
+    <value>Turētāju uzglabāšanas ieraksti</value>
+  </data>
+  <data name="Consumer" xml:space="preserve">
+    <value>Patērētājs</value>
+  </data>
+  <data name="LotIntakes" xml:space="preserve">
+    <value>Partiju piegādes</value>
+  </data>
+  <data name="Legacy Wholesaler Id" xml:space="preserve">
+    <value>Iepriekšējā vairumtirgotāja ieraksts (Nr.)</value>
+  </data>
+  <data name="if" xml:space="preserve">
+    <value>ja</value>
+  </data>
+  <data name="AspNetRoles" xml:space="preserve">
+    <value>Lomas</value>
+  </data>
+  <data name="Holder" xml:space="preserve">
+    <value>Turētājs</value>
+  </data>
+  <data name="Apiary Location Longitude" xml:space="preserve">
+    <value>Ģeogrāfiskais garums</value>
+  </data>
+  <data name="Limit Verified" xml:space="preserve">
+    <value>Robežvērtība pārbaudīta</value>
+  </data>
+  <data name="Raw Honey Production Wholesaler Id" xml:space="preserve">
+    <value>Vairumtirgotājs</value>
+  </data>
+  <data name="Parameter Unit" xml:space="preserve">
+    <value>Parametra mērvienība</value>
+  </data>
+  <data name="Final Honey Production Total Amount" xml:space="preserve">
+    <value>Gala partijas kopējais daudzums</value>
+  </data>
+  <data name="FinalHoneyCCPAssignments" xml:space="preserve">
+    <value>Gala medus KKP piešķīrumi</value>
+  </data>
+  <data name="Beekeeper Last Name" xml:space="preserve">
+    <value>Uzvārds</value>
+  </data>
+  <data name="Final Honey Production Id" xml:space="preserve">
+    <value>Gala partija</value>
+  </data>
+  <data name="CriticalControlPointParameters" xml:space="preserve">
+    <value>Kritisko kontroles punktu parametri</value>
+  </data>
+  <data name="CcpCorrections" xml:space="preserve">
+    <value>KKP labojumi</value>
+  </data>
+  <data name="min" xml:space="preserve">
+    <value>min.</value>
+  </data>
+  <data name="Extra" xml:space="preserve">
+    <value>Papildinformācija</value>
+  </data>
+  <data name="max" xml:space="preserve">
+    <value>maks.</value>
+  </data>
+  <data name="Video Path" xml:space="preserve">
+    <value>Video ceļš</value>
+  </data>
+  <data name="Raw Honey Production Period End Date" xml:space="preserve">
+    <value>Perioda beigu datums</value>
+  </data>
+  <data name="OrgDocuments" xml:space="preserve">
+    <value>Organizāciju dokumenti</value>
+  </data>
+  <data name="The {0} field is not a valid fully-qualified http, https, or ftp URL." xml:space="preserve">
+    <value>Lauks {0} nav derīgs pilns http, https vai ftp URL.</value>
+  </data>
+  <data name="The field {0} must be a string or array type with a minimum length of '{1}'." xml:space="preserve">
+    <value>Laukam {0} jābūt virknei vai masīvam ar minimālo garumu '{1}'.</value>
+  </data>
+  <data name="Honey Type Id" xml:space="preserve">
+    <value>Medus veids</value>
+  </data>
+  <data name="Wholesaler Title" xml:space="preserve">
+    <value>Vairumtirgotāja nosaukums</value>
+  </data>
+  <data name="Measured Text Value" xml:space="preserve">
+    <value>Izmērītā teksta vērtība</value>
+  </data>
+  <data name="Raw Honey Production Id" xml:space="preserve">
+    <value>Neapstrādāta medus partija</value>
+  </data>
+  <data name="Wholesaler Is Active" xml:space="preserve">
+    <value>Aktīvs</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Cits</value>
+  </data>
+  <data name="AspNetUserRoles" xml:space="preserve">
+    <value>Lietotāju lomas</value>
+  </data>
+  <data name="Beekeeper Beekeeping Type Id" xml:space="preserve">
+    <value>Biškopības veids</value>
+  </data>
+  <data name="Raw Honey Production Apiary Id" xml:space="preserve">
+    <value>Drava</value>
+  </data>
+  <data name="created from the wholesaler record &quot;{0}&quot;" xml:space="preserve">
+    <value>izveidota no vairumtirgotāja ieraksta &quot;{0}&quot;</value>
+  </data>
+  <data name="not shown" xml:space="preserve">
+    <value>netiek rādīts</value>
+  </data>
+  <data name="Final Honey Production QR" xml:space="preserve">
+    <value>Gala partijas QR kods</value>
+  </data>
+  <data name="SampleCustodyEvents" xml:space="preserve">
+    <value>Paraugu uzraudzības ķēdes notikumi</value>
+  </data>
+  <data name="batch" xml:space="preserve">
+    <value>gala partija</value>
+  </data>
+  <data name="Parameter Id" xml:space="preserve">
+    <value>Parametrs</value>
+  </data>
+  <data name="Applies To" xml:space="preserve">
+    <value>Attiecas uz</value>
+  </data>
+  <data name="Memberships" xml:space="preserve">
+    <value>Dalības</value>
+  </data>
+  <data name="{0} shipment(s) between other organizations" xml:space="preserve">
+    <value>{0} sūtījums(-i) starp citām organizācijām</value>
+  </data>
+  <data name="Category Id" xml:space="preserve">
+    <value>Kategorija</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Nr.</value>
+  </data>
+  <data name="Remember Me" xml:space="preserve">
+    <value>Atcerēties mani</value>
+  </data>
+  <data name="{0} apiaries" xml:space="preserve">
+    <value>Dravas: {0}</value>
+  </data>
+  <data name="{0} parameters" xml:space="preserve">
+    <value>Parametri: {0}</value>
+  </data>
+  <data name="BeekeeperEducationLevels" xml:space="preserve">
+    <value>Biškopju izglītības līmeņi</value>
+  </data>
+  <data name="Wholesaler Contact Name" xml:space="preserve">
+    <value>Kontaktpersona</value>
+  </data>
+  <data name="Within limit" xml:space="preserve">
+    <value>Robežās</value>
+  </data>
+  <data name="Sent" xml:space="preserve">
+    <value>Nosūtīts</value>
+  </data>
+  <data name="Wholesaler Id" xml:space="preserve">
+    <value>Vairumtirgotājs</value>
+  </data>
+  <data name="Completed:" xml:space="preserve">
+    <value>Pabeigts:</value>
+  </data>
+  <data name="Beekeeper Birth Date" xml:space="preserve">
+    <value>Dzimšanas datums</value>
+  </data>
+  <data name="CriticalControlPointParameterContents" xml:space="preserve">
+    <value>Kritisko kontroles punktu parametru saturs</value>
+  </data>
+  <data name="Token" xml:space="preserve">
+    <value>Marķieris</value>
+  </data>
+  <data name="Wholesaler Country" xml:space="preserve">
+    <value>Valsts</value>
+  </data>
+  <data name="BeekeeperAssociations" xml:space="preserve">
+    <value>Biškopju biedrības</value>
+  </data>
+  <data name="{0} photos" xml:space="preserve">
+    <value>Fotoattēli: {0}</value>
+  </data>
+  <data name="HoneyTypes" xml:space="preserve">
+    <value>Medus veidi</value>
+  </data>
+  <data name="RegistryVerifications" xml:space="preserve">
+    <value>Reģistrācijas pārbaudes</value>
+  </data>
+  <data name="Apiary Title" xml:space="preserve">
+    <value>Dravas nosaukums</value>
+  </data>
+  <data name="Min Value" xml:space="preserve">
+    <value>Minimālā vērtība</value>
+  </data>
+  <data name="Approve" xml:space="preserve">
+    <value>Apstiprināt</value>
+  </data>
+  <data name="Display Name" xml:space="preserve">
+    <value>Attēlojamais nosaukums</value>
+  </data>
+  <data name="RawHoneyProductionPeriods" xml:space="preserve">
+    <value>Neapstrādāta medus ražošanas periodi</value>
+  </data>
+  <data name="Limit:" xml:space="preserve">
+    <value>Robežvērtība:</value>
+  </data>
+  <data name="Apiary Location Latitude" xml:space="preserve">
+    <value>Ģeogrāfiskais platums</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nosaukums</value>
+  </data>
+  <data name="Accreditation" xml:space="preserve">
+    <value>Akreditācija</value>
+  </data>
+  <data name="OrgCapabilities" xml:space="preserve">
+    <value>Organizāciju kompetences</value>
+  </data>
+  <data name="This control point does not apply to this honey. Reason:" xml:space="preserve">
+    <value>Šis kontroles punkts uz šo medu neattiecas. Iemesls:</value>
+  </data>
+  <data name="optional" xml:space="preserve">
+    <value>neobligāts</value>
+  </data>
+  <data name="CriticalControlPointParameterCategories" xml:space="preserve">
+    <value>Kritisko kontroles punktu parametru kategorijas</value>
+  </data>
+  <data name="Beekeeper Beekeeping Purpose Type Id" xml:space="preserve">
+    <value>Biškopības mērķa veids</value>
+  </data>
+  <data name="{0} locations" xml:space="preserve">
+    <value>Atrašanās vietas: {0}</value>
+  </data>
+  <data name="BeekeepingTypes" xml:space="preserve">
+    <value>Biškopības veidi</value>
+  </data>
+  <data name="Translations of reference data" xml:space="preserve">
+    <value>Atsauces datu tulkojumi</value>
+  </data>
+  <data name="Names shown in dropdowns, tables and public pages. An empty field falls back to English, then to the base text." xml:space="preserve">
+    <value>Nosaukumi, kas redzami nolaižamajos sarakstos, tabulās un publiskajās lapās. Ja lauks ir tukšs, tiek rādīts angļu teksts, pēc tam pamata teksts.</value>
+  </data>
+  <data name="Base text" xml:space="preserve">
+    <value>Pamata teksts</value>
+  </data>
+  <data name="Translations" xml:space="preserve">
+    <value>Tulkojumi</value>
+  </data>
+  <data name="{0} translations saved." xml:space="preserve">
+    <value>Saglabāti tulkojumi: {0}.</value>
+  </data>
+  <data name="RefEntity.HoneyType" xml:space="preserve">
+    <value>Medus veidi</value>
+  </data>
+  <data name="RefEntity.ProductionPeriod" xml:space="preserve">
+    <value>Ražošanas periodi</value>
+  </data>
+  <data name="RefEntity.EducationLevel" xml:space="preserve">
+    <value>Izglītības līmeņi</value>
+  </data>
+  <data name="RefEntity.BeekeepingPurposeType" xml:space="preserve">
+    <value>Biškopības mērķi</value>
+  </data>
+  <data name="RefEntity.BeekeepingType" xml:space="preserve">
+    <value>Biškopības veidi</value>
+  </data>
+  <data name="RefEntity.AssignmentStatus" xml:space="preserve">
+    <value>KKP statusi</value>
+  </data>
+  <data name="RefEntity.Capability" xml:space="preserve">
+    <value>Organizācijas kompetences</value>
+  </data>
+  <data name="RefEntity.OrgRole" xml:space="preserve">
+    <value>Organizācijas lomas</value>
+  </data>
+  <data name="RefEntity.Ccp" xml:space="preserve">
+    <value>Kritiskie kontroles punkti</value>
+  </data>
+  <data name="RefEntity.ParameterCategory" xml:space="preserve">
+    <value>Parametru kategorijas</value>
+  </data>
+  <data name="RefEntity.Parameter" xml:space="preserve">
+    <value>Parametri</value>
+  </data>
+  <data name="RefEntity.ParameterLimit" xml:space="preserve">
+    <value>Parametru robežvērtības</value>
+  </data>
+  <data name="RefEntity.ParameterContent" xml:space="preserve">
+    <value>Parametru skaidrojumi</value>
+  </data>
+  <data name="RefEntity.Country" xml:space="preserve">
+    <value>Valstis</value>
+  </data>
+  <data name="RefField.Title" xml:space="preserve">
+    <value>Nosaukums</value>
+  </data>
+  <data name="RefField.Description" xml:space="preserve">
+    <value>Apraksts</value>
+  </data>
+  <data name="RefField.Name" xml:space="preserve">
+    <value>Nosaukums</value>
+  </data>
+  <data name="RefField.ProcessingStep" xml:space="preserve">
+    <value>Apstrādes posms</value>
+  </data>
+  <data name="RefField.CriticalityJustification" xml:space="preserve">
+    <value>Kritiskuma pamatojums</value>
+  </data>
+  <data name="RefField.Unit" xml:space="preserve">
+    <value>Mērvienība</value>
+  </data>
+  <data name="RefField.LimitNote" xml:space="preserve">
+    <value>Piezīme par robežvērtību</value>
+  </data>
+  <data name="RefField.LimitSource" xml:space="preserve">
+    <value>Robežvērtības avots</value>
+  </data>
+  <data name="RefField.Note" xml:space="preserve">
+    <value>Piezīme</value>
+  </data>
+  <data name="RefField.WhatIsIt" xml:space="preserve">
+    <value>Kas tas ir?</value>
+  </data>
+  <data name="RefField.WhyImportant" xml:space="preserve">
+    <value>Kāpēc tas ir svarīgi</value>
+  </data>
+  <data name="RefField.ExtraInfo" xml:space="preserve">
+    <value>Papildu informācija</value>
+  </data>
 </root>

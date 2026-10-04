@@ -1,0 +1,68 @@
+@using TOP4HoneyChains.Web.Models.Entities
+@model List<TOP4HoneyChains.Web.Controllers.ReferenceTranslationsController.Row>
+@{
+    ViewData["Title"] = L["Translations of reference data"].Value;
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var entity = (string)ViewBag.Entity;
+    var field = (string)ViewBag.Field;
+    var languages = TOP4HoneyChains.Web.Controllers.ReferenceTranslationsController.Languages;
+}
+@* D-51: the base text (left) is the fallback; an empty translation falls back to English, then to the base text *@
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">@L["Translations of reference data"]</h4>
+                <p class="card-title-desc">@L["Names shown in dropdowns, tables and public pages. An empty field falls back to English, then to the base text."]</p>
+                <form method="get" class="row g-2 mb-3" id="ref-picker">
+                    <div class="col-sm-4">
+                        <select name="entity" class="form-select" onchange="this.form.field.value='';this.form.submit()">
+                            @foreach (var e in RefEntity.Fields.Keys)
+                            {
+                                <option value="@e" selected="@(e == entity)">@L["RefEntity." + e]</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <select name="field" class="form-select" onchange="this.form.submit()">
+                            @foreach (var f in RefEntity.Fields[entity])
+                            {
+                                <option value="@f" selected="@(f == field)">@L["RefField." + f]</option>
+                            }
+                        </select>
+                    </div>
+                </form>
+                <form asp-action="Save" method="post" id="ref-form">
+                    <input type="hidden" name="entity" value="@entity" />
+                    <input type="hidden" name="field" value="@field" />
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th style="min-width:180px">@L["Base text"]</th>
+                                    @foreach (var lang in languages)
+                                    {
+                                        <th style="min-width:160px">@lang.ToUpperInvariant()</th>
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var r in Model)
+                                {
+                                    <tr>
+                                        <td class="small">@r.Base</td>
+                                        @foreach (var lang in languages)
+                                        {
+                                            <td><textarea name="v[@r.Key][@lang]" rows="1" class="form-control form-control-sm" lang="@lang">@(r.Values.TryGetValue(lang, out var v) ? v : "")</textarea></td>
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <button type="submit" class="btn btn-primary">@L["Save"]</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

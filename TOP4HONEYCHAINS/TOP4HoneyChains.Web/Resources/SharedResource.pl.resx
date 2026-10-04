@@ -4299,4 +4299,754 @@
   <data name="Unsupported image type ({0})." xml:space="preserve">
     <value>Nieobsługiwany typ obrazu ({0}).</value>
   </data>
+  <data name="Not applicable:" xml:space="preserve">
+    <value>Nie dotyczy:</value>
+  </data>
+  <data name="ApiaryPhotos" xml:space="preserve">
+    <value>Zdjęcia pasiek</value>
+  </data>
+  <data name="Honey Class" xml:space="preserve">
+    <value>Klasa miodu</value>
+  </data>
+  <data name="{0} batch(es) of another organization" xml:space="preserve">
+    <value>Partie końcowe innej organizacji: {0}</value>
+  </data>
+  <data name="The {0} field is not a valid phone number." xml:space="preserve">
+    <value>Pole {0} nie zawiera prawidłowego numeru telefonu.</value>
+  </data>
+  <data name="Beekeeper Phone Number" xml:space="preserve">
+    <value>Numer telefonu pszczelarza</value>
+  </data>
+  <data name="Quality control points recorded for this honey: {0} of {1}" xml:space="preserve">
+    <value>Punkty kontroli jakości zarejestrowane dla tego miodu: {0} z {1}</value>
+  </data>
+  <data name="Beekeeping Type Id" xml:space="preserve">
+    <value>Typ pszczelarstwa (nr)</value>
+  </data>
+  <data name="Why Important" xml:space="preserve">
+    <value>Dlaczego to ważne</value>
+  </data>
+  <data name="BeekeeperRegistry" xml:space="preserve">
+    <value>Rejestr pszczelarzy</value>
+  </data>
+  <data name="Final Honey Production Date" xml:space="preserve">
+    <value>Data produkcji partii końcowej</value>
+  </data>
+  <data name="Beekeeper Id" xml:space="preserve">
+    <value>Pszczelarz (nr)</value>
+  </data>
+  <data name="Shipment" xml:space="preserve">
+    <value>Wysyłka</value>
+  </data>
+  <data name="The field {0} must be between {1} and {2}." xml:space="preserve">
+    <value>Pole {0} musi mieć wartość od {1} do {2}.</value>
+  </data>
+  <data name="Registry verification" xml:space="preserve">
+    <value>Weryfikacja w rejestrze</value>
+  </data>
+  <data name="Wholesaler Tax No" xml:space="preserve">
+    <value>NIP hurtownika</value>
+  </data>
+  <data name="District" xml:space="preserve">
+    <value>Powiat</value>
+  </data>
+  <data name="t" xml:space="preserve">
+    <value>t</value>
+  </data>
+  <data name="Content Id" xml:space="preserve">
+    <value>Treść (nr)</value>
+  </data>
+  <data name="CriticalControlPointMonitoringLogs" xml:space="preserve">
+    <value>Dzienniki monitorowania krytycznych punktów kontroli</value>
+  </data>
+  <data name="Data Type" xml:space="preserve">
+    <value>Typ danych</value>
+  </data>
+  <data name="Critical limit:" xml:space="preserve">
+    <value>Limit krytyczny:</value>
+  </data>
+  <data name="FinalHoneyProductionDetails" xml:space="preserve">
+    <value>Szczegóły końcowych produkcji miodu</value>
+  </data>
+  <data name="Apiary QR Code" xml:space="preserve">
+    <value>Kod QR pasieki</value>
+  </data>
+  <data name="Long:" xml:space="preserve">
+    <value>Dł.:</value>
+  </data>
+  <data name="Final Honey Production Title" xml:space="preserve">
+    <value>Tytuł partii końcowej</value>
+  </data>
+  <data name="Wholesaler Phone" xml:space="preserve">
+    <value>Telefon hurtownika</value>
+  </data>
+  <data name="BeekeeperStorefronts" xml:space="preserve">
+    <value>Strony pszczelarzy</value>
+  </data>
+  <data name="CriticalControlPoints" xml:space="preserve">
+    <value>Krytyczne punkty kontroli</value>
+  </data>
+  <data name="all data (platform administrator)" xml:space="preserve">
+    <value>wszystkie dane (administrator platformy)</value>
+  </data>
+  <data name="Beekeeper Experience Time" xml:space="preserve">
+    <value>Doświadczenie pszczelarza</value>
+  </data>
+  <data name="Honey Type Description" xml:space="preserve">
+    <value>Opis rodzaju miodu</value>
+  </data>
+  <data name="Raw Honey Production Period Title" xml:space="preserve">
+    <value>Nazwa okresu produkcji</value>
+  </data>
+  <data name="Limit Note" xml:space="preserve">
+    <value>Uwaga do limitu</value>
+  </data>
+  <data name="association's member lot" xml:space="preserve">
+    <value>partia członka stowarzyszenia</value>
+  </data>
+  <data name="{0} lot(s) of another organization" xml:space="preserve">
+    <value>Partie innej organizacji: {0}</value>
+  </data>
+  <data name="The field {0} must be a string with a minimum length of {2} and a maximum length of {1}." xml:space="preserve">
+    <value>Pole {0} musi być tekstem o długości od {2} do {1} znaków.</value>
+  </data>
+  <data name="CcpResponsibilities" xml:space="preserve">
+    <value>Odpowiedzialności za KPK</value>
+  </data>
+  <data name="Apiary Id" xml:space="preserve">
+    <value>Pasieka (nr)</value>
+  </data>
+  <data name="OrgVerificationEvents" xml:space="preserve">
+    <value>Zdarzenia weryfikacji organizacji</value>
+  </data>
+  <data name="BatchOriginShares" xml:space="preserve">
+    <value>Udziały pochodzenia partii</value>
+  </data>
+  <data name="ReferenceTranslations" xml:space="preserve">
+    <value>Tłumaczenia danych referencyjnych</value>
+  </data>
+  <data name="Out of limit" xml:space="preserve">
+    <value>Poza limitem</value>
+  </data>
+  <data name="Final Honey Production Wholesaler Id" xml:space="preserve">
+    <value>Hurtownik partii końcowej</value>
+  </data>
+  <data name="Remove File" xml:space="preserve">
+    <value>Usuń plik</value>
+  </data>
+  <data name="CcpResponsibilityRoles" xml:space="preserve">
+    <value>Role odpowiedzialne za KPK</value>
+  </data>
+  <data name="OrgRoles" xml:space="preserve">
+    <value>Role w organizacji</value>
+  </data>
+  <data name="RawLot" xml:space="preserve">
+    <value>Partia surowego miodu</value>
+  </data>
+  <data name="You requested a password reset." xml:space="preserve">
+    <value>Otrzymaliśmy prośbę o zresetowanie hasła.</value>
+  </data>
+  <data name="Public Text Values" xml:space="preserve">
+    <value>Publiczne wartości tekstowe</value>
+  </data>
+  <data name="Reason:" xml:space="preserve">
+    <value>Powód:</value>
+  </data>
+  <data name="Unverified" xml:space="preserve">
+    <value>Niezweryfikowany</value>
+  </data>
+  <data name="AuditEntries" xml:space="preserve">
+    <value>Wpisy audytu</value>
+  </data>
+  <data name="Leave off when answers may contain personal data or locations (e.g. a field audit at the beekeeper). Yes/No and numbers are always shown; files never." xml:space="preserve">
+    <value>Pozostaw wyłączone, jeśli odpowiedzi mogą zawierać dane osobowe lub lokalizacje (np. audyt terenowy u pszczelarza). Wartości Tak/Nie i liczby są wyświetlane zawsze, pliki nigdy.</value>
+  </data>
+  <data name="Beekeeper Education Level Title" xml:space="preserve">
+    <value>Nazwa poziomu wykształcenia</value>
+  </data>
+  <data name="Is Required" xml:space="preserve">
+    <value>Wymagany</value>
+  </data>
+  <data name="Hello," xml:space="preserve">
+    <value>Dzień dobry,</value>
+  </data>
+  <data name="Manual" xml:space="preserve">
+    <value>Ręcznie (dokument i zatwierdzenie)</value>
+  </data>
+  <data name="Legal Name" xml:space="preserve">
+    <value>Nazwa prawna</value>
+  </data>
+  <data name="Profile Photo File" xml:space="preserve">
+    <value>Plik zdjęcia profilowego</value>
+  </data>
+  <data name="Wholesaler City" xml:space="preserve">
+    <value>Miasto hurtownika</value>
+  </data>
+  <data name="Seeded from the Turkish Food Codex; to be verified" xml:space="preserve">
+    <value>Wartość wstępna z Tureckiego Kodeksu Żywnościowego; do weryfikacji</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>Cofnięte</value>
+  </data>
+  <data name="Category Desc" xml:space="preserve">
+    <value>Opis kategorii</value>
+  </data>
+  <data name="shipments to and from the organization" xml:space="preserve">
+    <value>wysyłki do i z organizacji</value>
+  </data>
+  <data name="Finalize" xml:space="preserve">
+    <value>Ostateczne zatwierdzenie</value>
+  </data>
+  <data name="Consents" xml:space="preserve">
+    <value>Zgody</value>
+  </data>
+  <data name="Raw Honey Production Amount" xml:space="preserve">
+    <value>Ilość surowego miodu</value>
+  </data>
+  <data name="Keeps photos and honey productions; greys out the apiary. Apiaries are never deleted." xml:space="preserve">
+    <value>Zachowuje zdjęcia i produkcje miodu; pasieka jest wyświetlana na szaro. Pasieki nigdy nie są usuwane.</value>
+  </data>
+  <data name="BeekeepingPurposeTypes" xml:space="preserve">
+    <value>Typy celów pszczelarstwa</value>
+  </data>
+  <data name="Apiary Beekeeper Id" xml:space="preserve">
+    <value>Pszczelarz (nr)</value>
+  </data>
+  <data name="honey type" xml:space="preserve">
+    <value>rodzaj miodu</value>
+  </data>
+  <data name="Raw Honey Production Honey Type" xml:space="preserve">
+    <value>Rodzaj miodu</value>
+  </data>
+  <data name="SMS" xml:space="preserve">
+    <value>SMS</value>
+  </data>
+  <data name="Logged" xml:space="preserve">
+    <value>Zapisano w dzienniku</value>
+  </data>
+  <data name="Beekeeper Education Level Id" xml:space="preserve">
+    <value>Poziom wykształcenia</value>
+  </data>
+  <data name="The {0} field is not a valid e-mail address." xml:space="preserve">
+    <value>Pole {0} nie zawiera prawidłowego adresu e-mail.</value>
+  </data>
+  <data name="Pine" xml:space="preserve">
+    <value>Sosnowy</value>
+  </data>
+  <data name="RawHoneyCCPAssignments" xml:space="preserve">
+    <value>Przypisania KPK surowego miodu</value>
+  </data>
+  <data name="Beekeeper First Name" xml:space="preserve">
+    <value>Imię pszczelarza</value>
+  </data>
+  <data name="Section" xml:space="preserve">
+    <value>Sekcja</value>
+  </data>
+  <data name="Apiaries of {0}" xml:space="preserve">
+    <value>Pasieki: {0}</value>
+  </data>
+  <data name="Limit Source" xml:space="preserve">
+    <value>Źródło limitu</value>
+  </data>
+  <data name="Wholesaler Email" xml:space="preserve">
+    <value>E-mail hurtownika</value>
+  </data>
+  <data name="The {0} field is required." xml:space="preserve">
+    <value>Pole {0} jest wymagane.</value>
+  </data>
+  <data name="The field {0} must match the regular expression '{1}'." xml:space="preserve">
+    <value>Pole {0} musi pasować do wyrażenia regularnego '{1}'.</value>
+  </data>
+  <data name="Wholesaler Address" xml:space="preserve">
+    <value>Adres hurtownika</value>
+  </data>
+  <data name="What Is It" xml:space="preserve">
+    <value>Co to jest</value>
+  </data>
+  <data name="Started:" xml:space="preserve">
+    <value>Rozpoczęto:</value>
+  </data>
+  <data name="Max Value" xml:space="preserve">
+    <value>Wartość maksymalna</value>
+  </data>
+  <data name="Administrator" xml:space="preserve">
+    <value>Administrator</value>
+  </data>
+  <data name="Raw Honey Production Period Start Date" xml:space="preserve">
+    <value>Data rozpoczęcia okresu produkcji</value>
+  </data>
+  <data name="CcpResponsibilityCapabilities" xml:space="preserve">
+    <value>Funkcje odpowiedzialne za KPK</value>
+  </data>
+  <data name="YesNo" xml:space="preserve">
+    <value>Tak / Nie</value>
+  </data>
+  <data name="Used in a finalized batch; it cannot be edited or deleted" xml:space="preserve">
+    <value>Użyta w partii końcowej zatwierdzonej ostatecznie; nie można jej edytować ani usunąć</value>
+  </data>
+  <data name="Apiary Beehives Count" xml:space="preserve">
+    <value>Liczba uli w pasiece</value>
+  </data>
+  <data name="The field {0} must be a string with a maximum length of {1}." xml:space="preserve">
+    <value>Pole {0} musi być tekstem o długości maksymalnie {1} znaków.</value>
+  </data>
+  <data name="OrgRoleDefinitions" xml:space="preserve">
+    <value>Definicje ról w organizacji</value>
+  </data>
+  <data name="Province" xml:space="preserve">
+    <value>Prowincja</value>
+  </data>
+  <data name="FinalHoneyProductions" xml:space="preserve">
+    <value>Końcowe produkcje miodu</value>
+  </data>
+  <data name="Raw Honey Production Period Id" xml:space="preserve">
+    <value>Okres produkcji</value>
+  </data>
+  <data name="If you did not request this, please ignore this email." xml:space="preserve">
+    <value>Jeśli to nie Ty wysłałeś tę prośbę, zignoruj tę wiadomość.</value>
+  </data>
+  <data name="Storefront" xml:space="preserve">
+    <value>Strona pszczelarza</value>
+  </data>
+  <data name="storage" xml:space="preserve">
+    <value>przechowywanie</value>
+  </data>
+  <data name="Is Active" xml:space="preserve">
+    <value>Aktywny</value>
+  </data>
+  <data name="Floral" xml:space="preserve">
+    <value>Nektarowy</value>
+  </data>
+  <data name="Lat:" xml:space="preserve">
+    <value>Szer.:</value>
+  </data>
+  <data name="Amount:" xml:space="preserve">
+    <value>Ilość:</value>
+  </data>
+  <data name="The field {0} must be a string or array type with a maximum length of '{1}'." xml:space="preserve">
+    <value>Pole {0} musi być tekstem lub tablicą o długości maksymalnie '{1}'.</value>
+  </data>
+  <data name="Recorded by {0} on {1}" xml:space="preserve">
+    <value>Zarejestrowane przez: {0}, {1}</value>
+  </data>
+  <data name="Licence" xml:space="preserve">
+    <value>Licencja</value>
+  </data>
+  <data name="Beekeeping Purpose Type Id" xml:space="preserve">
+    <value>Typ celu pszczelarstwa (nr)</value>
+  </data>
+  <data name="Add Parameter Content for" xml:space="preserve">
+    <value>Dodaj treść parametru dla</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Zatwierdzone</value>
+  </data>
+  <data name="TaxCertificate" xml:space="preserve">
+    <value>Zaświadczenie podatkowe</value>
+  </data>
+  <data name="AspNetUsers" xml:space="preserve">
+    <value>Użytkownicy</value>
+  </data>
+  <data name="Detail" xml:space="preserve">
+    <value>Szczegóły</value>
+  </data>
+  <data name="HolderStorageValues" xml:space="preserve">
+    <value>Wartości przechowywania posiadaczy</value>
+  </data>
+  <data name="LabReports" xml:space="preserve">
+    <value>Raporty laboratoryjne</value>
+  </data>
+  <data name="Raw Honey Production Date" xml:space="preserve">
+    <value>Data produkcji surowego miodu</value>
+  </data>
+  <data name="Quantity (kg)" xml:space="preserve">
+    <value>Ilość (kg)</value>
+  </data>
+  <data name="Applied" xml:space="preserve">
+    <value>Zastosowana</value>
+  </data>
+  <data name="Reset your TOP4HoneyChains password" xml:space="preserve">
+    <value>Zresetuj hasło do TOP4HoneyChains</value>
+  </data>
+  <data name="not checkable" xml:space="preserve">
+    <value>nie do sprawdzenia</value>
+  </data>
+  <data name="'{0}' and '{1}' do not match." xml:space="preserve">
+    <value>Pola '{0}' i '{1}' nie są zgodne.</value>
+  </data>
+  <data name="Measured Numeric Value" xml:space="preserve">
+    <value>Zmierzona wartość liczbowa</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>Plik</value>
+  </data>
+  <data name="CriticalControlPointParameterLimits" xml:space="preserve">
+    <value>Limity parametrów krytycznych punktów kontroli</value>
+  </data>
+  <data name="owning organization's part" xml:space="preserve">
+    <value>część organizacji będącej właścicielem</value>
+  </data>
+  <data name="Keeps all records; greys out the beekeeper and locks their login. Beekeepers are never deleted." xml:space="preserve">
+    <value>Zachowuje wszystkie rekordy; pszczelarz jest wyświetlany na szaro, a jego logowanie zostaje zablokowane. Pszczelarze nigdy nie są usuwani.</value>
+  </data>
+  <data name="AssignmentStatuses" xml:space="preserve">
+    <value>Statusy przypisań</value>
+  </data>
+  <data name="Capabilities" xml:space="preserve">
+    <value>Funkcje</value>
+  </data>
+  <data name="LabResults" xml:space="preserve">
+    <value>Wyniki laboratoryjne</value>
+  </data>
+  <data name="Received" xml:space="preserve">
+    <value>Odebrana</value>
+  </data>
+  <data name="CCP Id" xml:space="preserve">
+    <value>KPK (nr)</value>
+  </data>
+  <data name="Click here to reset your password" xml:space="preserve">
+    <value>Kliknij tutaj, aby zresetować hasło</value>
+  </data>
+  <data name="{0} rows" xml:space="preserve">
+    <value>Wiersze: {0}</value>
+  </data>
+  <data name="RegistryProof" xml:space="preserve">
+    <value>Dowód wpisu do rejestru</value>
+  </data>
+  <data name="RawHoneyProductions" xml:space="preserve">
+    <value>Produkcje surowego miodu</value>
+  </data>
+  <data name="Raw sources: {0}" xml:space="preserve">
+    <value>Źródła surowca: {0}</value>
+  </data>
+  <data name="lot" xml:space="preserve">
+    <value>partia</value>
+  </data>
+  <data name="HolderStorageRecords" xml:space="preserve">
+    <value>Zapisy przechowywania posiadaczy</value>
+  </data>
+  <data name="Consumer" xml:space="preserve">
+    <value>Konsument</value>
+  </data>
+  <data name="LotIntakes" xml:space="preserve">
+    <value>Dostawy partii</value>
+  </data>
+  <data name="Legacy Wholesaler Id" xml:space="preserve">
+    <value>Dotychczasowy hurtownik (nr)</value>
+  </data>
+  <data name="if" xml:space="preserve">
+    <value>jeśli</value>
+  </data>
+  <data name="AspNetRoles" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="Holder" xml:space="preserve">
+    <value>Posiadacz</value>
+  </data>
+  <data name="Apiary Location Longitude" xml:space="preserve">
+    <value>Długość geograficzna pasieki</value>
+  </data>
+  <data name="Limit Verified" xml:space="preserve">
+    <value>Limit zweryfikowany</value>
+  </data>
+  <data name="Raw Honey Production Wholesaler Id" xml:space="preserve">
+    <value>Hurtownik</value>
+  </data>
+  <data name="Parameter Unit" xml:space="preserve">
+    <value>Jednostka parametru</value>
+  </data>
+  <data name="Final Honey Production Total Amount" xml:space="preserve">
+    <value>Łączna ilość w partii końcowej</value>
+  </data>
+  <data name="FinalHoneyCCPAssignments" xml:space="preserve">
+    <value>Przypisania KPK partii końcowych</value>
+  </data>
+  <data name="Beekeeper Last Name" xml:space="preserve">
+    <value>Nazwisko pszczelarza</value>
+  </data>
+  <data name="Final Honey Production Id" xml:space="preserve">
+    <value>Partia końcowa (nr)</value>
+  </data>
+  <data name="CriticalControlPointParameters" xml:space="preserve">
+    <value>Parametry krytycznych punktów kontroli</value>
+  </data>
+  <data name="CcpCorrections" xml:space="preserve">
+    <value>Korekty KPK</value>
+  </data>
+  <data name="min" xml:space="preserve">
+    <value>min.</value>
+  </data>
+  <data name="Extra" xml:space="preserve">
+    <value>Dodatkowe</value>
+  </data>
+  <data name="max" xml:space="preserve">
+    <value>maks.</value>
+  </data>
+  <data name="Video Path" xml:space="preserve">
+    <value>Ścieżka wideo</value>
+  </data>
+  <data name="Raw Honey Production Period End Date" xml:space="preserve">
+    <value>Data zakończenia okresu produkcji</value>
+  </data>
+  <data name="OrgDocuments" xml:space="preserve">
+    <value>Dokumenty organizacji</value>
+  </data>
+  <data name="The {0} field is not a valid fully-qualified http, https, or ftp URL." xml:space="preserve">
+    <value>Pole {0} nie zawiera prawidłowego, pełnego adresu URL http, https lub ftp.</value>
+  </data>
+  <data name="The field {0} must be a string or array type with a minimum length of '{1}'." xml:space="preserve">
+    <value>Pole {0} musi być tekstem lub tablicą o długości co najmniej '{1}'.</value>
+  </data>
+  <data name="Honey Type Id" xml:space="preserve">
+    <value>Rodzaj miodu (nr)</value>
+  </data>
+  <data name="Wholesaler Title" xml:space="preserve">
+    <value>Nazwa hurtownika</value>
+  </data>
+  <data name="Measured Text Value" xml:space="preserve">
+    <value>Zmierzona wartość tekstowa</value>
+  </data>
+  <data name="Raw Honey Production Id" xml:space="preserve">
+    <value>Partia surowego miodu (nr)</value>
+  </data>
+  <data name="Wholesaler Is Active" xml:space="preserve">
+    <value>Hurtownik aktywny</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Inne</value>
+  </data>
+  <data name="AspNetUserRoles" xml:space="preserve">
+    <value>Role użytkowników</value>
+  </data>
+  <data name="Beekeeper Beekeeping Type Id" xml:space="preserve">
+    <value>Typ pszczelarstwa</value>
+  </data>
+  <data name="Raw Honey Production Apiary Id" xml:space="preserve">
+    <value>Pasieka</value>
+  </data>
+  <data name="created from the wholesaler record &quot;{0}&quot;" xml:space="preserve">
+    <value>utworzona z rekordu hurtownika &quot;{0}&quot;</value>
+  </data>
+  <data name="not shown" xml:space="preserve">
+    <value>nie wyświetlono</value>
+  </data>
+  <data name="Final Honey Production QR" xml:space="preserve">
+    <value>Kod QR partii końcowej</value>
+  </data>
+  <data name="SampleCustodyEvents" xml:space="preserve">
+    <value>Zdarzenia łańcucha nadzoru próbek</value>
+  </data>
+  <data name="batch" xml:space="preserve">
+    <value>partia końcowa</value>
+  </data>
+  <data name="Parameter Id" xml:space="preserve">
+    <value>Parametr (nr)</value>
+  </data>
+  <data name="Applies To" xml:space="preserve">
+    <value>Dotyczy</value>
+  </data>
+  <data name="Memberships" xml:space="preserve">
+    <value>Członkostwa</value>
+  </data>
+  <data name="{0} shipment(s) between other organizations" xml:space="preserve">
+    <value>Wysyłki między innymi organizacjami: {0}</value>
+  </data>
+  <data name="Category Id" xml:space="preserve">
+    <value>Kategoria (nr)</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Nr</value>
+  </data>
+  <data name="Remember Me" xml:space="preserve">
+    <value>Zapamiętaj mnie</value>
+  </data>
+  <data name="{0} apiaries" xml:space="preserve">
+    <value>Pasieki: {0}</value>
+  </data>
+  <data name="{0} parameters" xml:space="preserve">
+    <value>Parametry: {0}</value>
+  </data>
+  <data name="BeekeeperEducationLevels" xml:space="preserve">
+    <value>Poziomy wykształcenia pszczelarzy</value>
+  </data>
+  <data name="Wholesaler Contact Name" xml:space="preserve">
+    <value>Osoba kontaktowa hurtownika</value>
+  </data>
+  <data name="Within limit" xml:space="preserve">
+    <value>W granicach limitu</value>
+  </data>
+  <data name="Sent" xml:space="preserve">
+    <value>Wysłana</value>
+  </data>
+  <data name="Wholesaler Id" xml:space="preserve">
+    <value>Hurtownik (nr)</value>
+  </data>
+  <data name="Completed:" xml:space="preserve">
+    <value>Zakończono:</value>
+  </data>
+  <data name="Beekeeper Birth Date" xml:space="preserve">
+    <value>Data urodzenia pszczelarza</value>
+  </data>
+  <data name="CriticalControlPointParameterContents" xml:space="preserve">
+    <value>Treści parametrów krytycznych punktów kontroli</value>
+  </data>
+  <data name="Token" xml:space="preserve">
+    <value>Token</value>
+  </data>
+  <data name="Wholesaler Country" xml:space="preserve">
+    <value>Kraj hurtownika</value>
+  </data>
+  <data name="BeekeeperAssociations" xml:space="preserve">
+    <value>Stowarzyszenia pszczelarzy</value>
+  </data>
+  <data name="{0} photos" xml:space="preserve">
+    <value>Zdjęcia: {0}</value>
+  </data>
+  <data name="HoneyTypes" xml:space="preserve">
+    <value>Rodzaje miodu</value>
+  </data>
+  <data name="RegistryVerifications" xml:space="preserve">
+    <value>Weryfikacje w rejestrze</value>
+  </data>
+  <data name="Apiary Title" xml:space="preserve">
+    <value>Nazwa pasieki</value>
+  </data>
+  <data name="Min Value" xml:space="preserve">
+    <value>Wartość minimalna</value>
+  </data>
+  <data name="Approve" xml:space="preserve">
+    <value>Zatwierdzenie</value>
+  </data>
+  <data name="Display Name" xml:space="preserve">
+    <value>Nazwa wyświetlana</value>
+  </data>
+  <data name="RawHoneyProductionPeriods" xml:space="preserve">
+    <value>Okresy produkcji surowego miodu</value>
+  </data>
+  <data name="Limit:" xml:space="preserve">
+    <value>Limit:</value>
+  </data>
+  <data name="Apiary Location Latitude" xml:space="preserve">
+    <value>Szerokość geograficzna pasieki</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nazwa</value>
+  </data>
+  <data name="Accreditation" xml:space="preserve">
+    <value>Akredytacja</value>
+  </data>
+  <data name="OrgCapabilities" xml:space="preserve">
+    <value>Funkcje organizacji</value>
+  </data>
+  <data name="This control point does not apply to this honey. Reason:" xml:space="preserve">
+    <value>Ten punkt kontrolny nie dotyczy tego miodu. Powód:</value>
+  </data>
+  <data name="optional" xml:space="preserve">
+    <value>opcjonalnie</value>
+  </data>
+  <data name="CriticalControlPointParameterCategories" xml:space="preserve">
+    <value>Kategorie parametrów krytycznych punktów kontroli</value>
+  </data>
+  <data name="Beekeeper Beekeeping Purpose Type Id" xml:space="preserve">
+    <value>Typ celu pszczelarstwa</value>
+  </data>
+  <data name="{0} locations" xml:space="preserve">
+    <value>Lokalizacje: {0}</value>
+  </data>
+  <data name="BeekeepingTypes" xml:space="preserve">
+    <value>Typy pszczelarstwa</value>
+  </data>
+  <data name="Translations of reference data" xml:space="preserve">
+    <value>Tłumaczenia danych referencyjnych</value>
+  </data>
+  <data name="Names shown in dropdowns, tables and public pages. An empty field falls back to English, then to the base text." xml:space="preserve">
+    <value>Nazwy wyświetlane na listach rozwijanych, w tabelach i na stronach publicznych. Puste pole zastępuje tekst angielski, a potem tekst bazowy.</value>
+  </data>
+  <data name="Base text" xml:space="preserve">
+    <value>Tekst bazowy</value>
+  </data>
+  <data name="Translations" xml:space="preserve">
+    <value>Tłumaczenia</value>
+  </data>
+  <data name="{0} translations saved." xml:space="preserve">
+    <value>Zapisano tłumaczenia: {0}.</value>
+  </data>
+  <data name="RefEntity.HoneyType" xml:space="preserve">
+    <value>Rodzaje miodu</value>
+  </data>
+  <data name="RefEntity.ProductionPeriod" xml:space="preserve">
+    <value>Okresy produkcji</value>
+  </data>
+  <data name="RefEntity.EducationLevel" xml:space="preserve">
+    <value>Poziomy wykształcenia</value>
+  </data>
+  <data name="RefEntity.BeekeepingPurposeType" xml:space="preserve">
+    <value>Cele pszczelarstwa</value>
+  </data>
+  <data name="RefEntity.BeekeepingType" xml:space="preserve">
+    <value>Rodzaje pszczelarstwa</value>
+  </data>
+  <data name="RefEntity.AssignmentStatus" xml:space="preserve">
+    <value>Statusy KPK</value>
+  </data>
+  <data name="RefEntity.Capability" xml:space="preserve">
+    <value>Funkcje organizacji</value>
+  </data>
+  <data name="RefEntity.OrgRole" xml:space="preserve">
+    <value>Role w organizacji</value>
+  </data>
+  <data name="RefEntity.Ccp" xml:space="preserve">
+    <value>Krytyczne punkty kontroli</value>
+  </data>
+  <data name="RefEntity.ParameterCategory" xml:space="preserve">
+    <value>Kategorie parametrów</value>
+  </data>
+  <data name="RefEntity.Parameter" xml:space="preserve">
+    <value>Parametry</value>
+  </data>
+  <data name="RefEntity.ParameterLimit" xml:space="preserve">
+    <value>Limity parametrów</value>
+  </data>
+  <data name="RefEntity.ParameterContent" xml:space="preserve">
+    <value>Objaśnienia parametrów</value>
+  </data>
+  <data name="RefEntity.Country" xml:space="preserve">
+    <value>Kraje</value>
+  </data>
+  <data name="RefField.Title" xml:space="preserve">
+    <value>Tytuł</value>
+  </data>
+  <data name="RefField.Description" xml:space="preserve">
+    <value>Opis</value>
+  </data>
+  <data name="RefField.Name" xml:space="preserve">
+    <value>Nazwa</value>
+  </data>
+  <data name="RefField.ProcessingStep" xml:space="preserve">
+    <value>Etap procesu</value>
+  </data>
+  <data name="RefField.CriticalityJustification" xml:space="preserve">
+    <value>Uzasadnienie krytyczności</value>
+  </data>
+  <data name="RefField.Unit" xml:space="preserve">
+    <value>Jednostka</value>
+  </data>
+  <data name="RefField.LimitNote" xml:space="preserve">
+    <value>Uwaga do limitu</value>
+  </data>
+  <data name="RefField.LimitSource" xml:space="preserve">
+    <value>Źródło limitu</value>
+  </data>
+  <data name="RefField.Note" xml:space="preserve">
+    <value>Uwaga</value>
+  </data>
+  <data name="RefField.WhatIsIt" xml:space="preserve">
+    <value>Co to jest?</value>
+  </data>
+  <data name="RefField.WhyImportant" xml:space="preserve">
+    <value>Dlaczego to ważne</value>
+  </data>
+  <data name="RefField.ExtraInfo" xml:space="preserve">
+    <value>Dodatkowe informacje</value>
+  </data>
 </root>
