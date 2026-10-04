@@ -143,3 +143,5 @@ app.MapControllerRoute(
 
 
 app.Run();
+// Lets the integration tests host the app (WebApplicationFactory<Program>)
+public partial class Program { }
