@@ -1,4 +1,4 @@
-using System.Drawing;
+﻿using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.Versioning;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +15,8 @@ namespace TOP4HoneyChains.Web.Controllers
     // display name (or the neutral code), province/district, honey types, verified lots, approved lab
     // results, the batches with the beekeeper's honey and the association. Never a phone, photo, birth
     // date or exact location.
+    // Public pages (D-47)
+    [Microsoft.AspNetCore.Authorization.AllowAnonymous]
     [RequireOrgModel]
     [Route("storefront")]
     public class StorefrontController : Controller
