@@ -1,4 +1,4 @@
-@using TOP4HoneyChains.Web.Filters
+﻿@using TOP4HoneyChains.Web.Filters
 @*
     One place for flash messages (ENG-02). Controllers set TempData["Success"] / TempData["Error"]
     (older code uses lower-case keys); the DbUpdateExceptionFilter sets its own key.
@@ -23,14 +23,14 @@
         @if (!string.IsNullOrEmpty(error))
         {
             <div class="alert alert-danger alert-dismissible fade show shadow" role="alert" id="flash-error">
-                <i class="mdi mdi-alert-circle-outline me-1"></i>@error
+                <i class="mdi mdi-alert-circle-outline me-1"></i>@Msg.T(error)
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
         @if (!string.IsNullOrEmpty(success))
         {
             <div class="alert alert-success alert-dismissible fade show shadow" role="alert" id="flash-success">
-                <i class="mdi mdi-check-circle-outline me-1"></i>@success
+                <i class="mdi mdi-check-circle-outline me-1"></i>@Msg.T(success)
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }

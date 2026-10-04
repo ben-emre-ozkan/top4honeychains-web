@@ -299,7 +299,7 @@
                                 <ul class="mb-2">
                                     @foreach (var b in Model.FinalizeBlockers)
                                     {
-                                        <li>@b</li>
+                                        <li>@Msg.T(b)</li>
                                     }
                                 </ul>
                                 <a asp-action="ManageCCP" asp-route-id="@Model.Batch.FinalHoneyProductionId" class="btn btn-sm btn-dark">Manage batch CCPs</a>
@@ -462,7 +462,7 @@
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Success',
-                                text: '@TempData["Success"]',
+                                text: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Msg.T(TempData["Success"] as string))),
                                 confirmButtonColor: '#28a745'
                             });
                             </text>
@@ -475,7 +475,7 @@
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Error',
-                                text: '@TempData["Error"]',
+                                text: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Msg.T(TempData["Error"] as string))),
                                 confirmButtonColor: '#dc3545'
                             });
                             </text>
