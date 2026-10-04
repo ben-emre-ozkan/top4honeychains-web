@@ -7,7 +7,7 @@
 
 ## Build and run locally
 - Build: `dotnet build TOP4HONEYCHAINS/TOP4HoneyChains.Web` (must be 0 errors).
-- Tests: `dotnet test TOP4HONEYCHAINS/TOP4HoneyChains.Web.Tests` (xUnit; must pass).
+- Tests: `dotnet test TOP4HONEYCHAINS/TOP4HoneyChains.Web.Tests` (xUnit; must pass). `Category=E2E` tests host the app against a throw-away LocalDB database `TOP4HoneyChainsE2E` (schema from the EF model, reference tables copied from the local database, no personal data); stop the running app first so the build is not locked.
 - Run: `dotnet run --project TOP4HONEYCHAINS/TOP4HoneyChains.Web --launch-profile http` → http://localhost:5255 (the profile sets `ASPNETCORE_ENVIRONMENT=Development`).
 - DB: `(localdb)\MSSQLLocalDB`, database `TOP4HoneyChainsDb`. The connection string lives in `appsettings.Development.json`; never edit the connection string in `appsettings.json`.
 - QR generation uses System.Drawing, so the app runs on Windows only.

@@ -293,6 +293,33 @@ public partial class TOP4HoneyChainsContext : DbContext
             entity.HasOne(e => e.Parameter).WithMany().HasForeignKey(e => e.ParameterId).OnDelete(DeleteBehavior.Restrict);
         });
 
+        // D-46: column types of the real database that the conventions would map differently
+        modelBuilder.Entity<OrgDocument>().Property(e => e.Sha256).IsFixedLength().IsUnicode(false);
+        modelBuilder.Entity<RegistryVerification>().Property(e => e.Sha256).IsFixedLength().IsUnicode(false);
+        modelBuilder.Entity<CriticalControlPointParameterContent>().Property(e => e.ContentType).HasMaxLength(50);
+        modelBuilder.Entity<CriticalControlPointParameterContent>().Property(e => e.VideoPath).HasMaxLength(500);
+        modelBuilder.Entity<Beekeeper>().Property(e => e.DeactivatedAt).HasColumnType("datetime");
+        modelBuilder.Entity<CriticalControlPointMonitoringLog>().Property(e => e.MeasurementDate).HasColumnType("datetime");
+        modelBuilder.Entity<FinalHoneyProduction>(entity =>
+        {
+            entity.Property(e => e.FinalHoneyProductionFinalizedDate).HasColumnType("datetime");
+            entity.Property(e => e.FinalizeRequestedAt).HasColumnType("datetime");
+        });
+        modelBuilder.Entity<RawHoneyCCPAssignment>(entity =>
+        {
+            entity.Property(e => e.RawHoneyCCPAssignmentStartDate).HasColumnType("datetime");
+            entity.Property(e => e.RawHoneyCCPAssignmentEndDate).HasColumnType("datetime");
+            entity.Property(e => e.ApprovedAt).HasColumnType("datetime");
+            entity.Property(e => e.NotApplicableAt).HasColumnType("datetime");
+        });
+        modelBuilder.Entity<FinalHoneyCCPAssignment>(entity =>
+        {
+            entity.Property(e => e.FinalHoneyCCPAssignmentStartDate).HasColumnType("datetime");
+            entity.Property(e => e.FinalHoneyCCPAssignmentEndDate).HasColumnType("datetime");
+            entity.Property(e => e.ApprovedAt).HasColumnType("datetime");
+            entity.Property(e => e.NotApplicableAt).HasColumnType("datetime");
+        });
+
         modelBuilder.Entity<LotIntake>(entity =>
         {
             entity.ToTable("LotIntakes");
@@ -396,8 +423,16 @@ public partial class TOP4HoneyChainsContext : DbContext
         modelBuilder.Entity<AuditEntry>(entity =>
         {
             entity.ToTable("AuditEntries", tb => tb.HasTrigger("TR_AuditEntries_AppendOnly"));
-            entity.Property(e => e.PrevHash).IsFixedLength();
-            entity.Property(e => e.Hash).IsFixedLength();
+            // column types as in 004_org_model.sql (D-46: the EF model describes the real schema)
+            entity.Property(e => e.PrevHash).HasMaxLength(64).IsFixedLength().IsUnicode(false);
+            entity.Property(e => e.Hash).HasMaxLength(64).IsFixedLength().IsUnicode(false);
+            entity.Property(e => e.Action).HasMaxLength(30);
+            entity.Property(e => e.Entity).HasMaxLength(100);
+            entity.Property(e => e.EntityKey).HasMaxLength(200);
+            entity.Property(e => e.Flags).HasMaxLength(200);
+            entity.Property(e => e.UserId).HasMaxLength(450);
+            entity.Property(e => e.UserName).HasMaxLength(256);
+            entity.Property(e => e.ClientIp).HasMaxLength(64);
         });
 
         modelBuilder.Entity<CriticalControlPointParameterLimit>(entity =>
