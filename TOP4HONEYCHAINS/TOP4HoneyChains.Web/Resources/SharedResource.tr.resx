@@ -1296,4 +1296,235 @@
   <data name="Batch already finalized." xml:space="preserve">
     <value>Parti zaten kesinleşti.</value>
   </data>
+  <data name="Cust.Intakes" xml:space="preserve">
+    <value>Teslim almalar</value>
+  </data>
+  <data name="Cust.IntakesHelp" xml:space="preserve">
+    <value>Arıcıların kurumunuza teslim ettiği bal. Her teslim, kurumunuza ait bir ham bal lotu oluşturur.</value>
+  </data>
+  <data name="Cust.NewIntake" xml:space="preserve">
+    <value>Teslim al</value>
+  </data>
+  <data name="Cust.NewIntakeHelp" xml:space="preserve">
+    <value>Arıcıyı işletme veya kayıt numarasıyla bulun, ardından teslimi imzalı teslim formunun fotoğrafıyla girin.</value>
+  </data>
+  <data name="Cust.BeekeeperNumber" xml:space="preserve">
+    <value>Arıcı işletme veya kayıt numarası</value>
+  </data>
+  <data name="Cust.Find" xml:space="preserve">
+    <value>Bul</value>
+  </data>
+  <data name="Cust.Period" xml:space="preserve">
+    <value>Üretim dönemi</value>
+  </data>
+  <data name="Cust.DeliveryDate" xml:space="preserve">
+    <value>Teslim tarihi</value>
+  </data>
+  <data name="Cust.DeliveryFormPhoto" xml:space="preserve">
+    <value>İmzalı teslim formunun fotoğrafı</value>
+  </data>
+  <data name="Cust.SendSms" xml:space="preserve">
+    <value>Arıcıya SMS gönder</value>
+  </data>
+  <data name="Cust.RecordIntake" xml:space="preserve">
+    <value>Teslimi kaydet</value>
+  </data>
+  <data name="Cust.Lot" xml:space="preserve">
+    <value>Lot</value>
+  </data>
+  <data name="Cust.Origin" xml:space="preserve">
+    <value>Menşe (il / ilçe)</value>
+  </data>
+  <data name="Cust.DeliveryForm" xml:space="preserve">
+    <value>Teslim formu</value>
+  </data>
+  <data name="Cust.Recall" xml:space="preserve">
+    <value>Geri çağırma</value>
+  </data>
+  <data name="Cust.RecallReport" xml:space="preserve">
+    <value>Geri çağırma raporu</value>
+  </data>
+  <data name="Cust.Shipments" xml:space="preserve">
+    <value>Sevkiyatlar ve stok</value>
+  </data>
+  <data name="Cust.Holdings" xml:space="preserve">
+    <value>Elinizdeki partiler</value>
+  </data>
+  <data name="Cust.HoldingsHelp" xml:space="preserve">
+    <value>Kurumunuzun sahibi olduğu veya teslim aldığı kesinleşmiş partiler. Sevkiyat miktarı hemen ayırır; emanet alıcı onaylayınca geçer.</value>
+  </data>
+  <data name="Cust.Held" xml:space="preserve">
+    <value>Eldeki (kg)</value>
+  </data>
+  <data name="Cust.Reserved" xml:space="preserve">
+    <value>Yolda (kg)</value>
+  </data>
+  <data name="Cust.Available" xml:space="preserve">
+    <value>Sevk edilebilir (kg)</value>
+  </data>
+  <data name="Cust.Storage" xml:space="preserve">
+    <value>Depolama</value>
+  </data>
+  <data name="Cust.Own" xml:space="preserve">
+    <value>kendi</value>
+  </data>
+  <data name="Cust.Ship" xml:space="preserve">
+    <value>Sevk et</value>
+  </data>
+  <data name="Cust.ShipHelp" xml:space="preserve">
+    <value>Alıcı doğrulanmış kurumu ve miktarı seçin. Sevk edilebilir:</value>
+  </data>
+  <data name="Cust.Note" xml:space="preserve">
+    <value>Not</value>
+  </data>
+  <data name="Cust.Incoming" xml:space="preserve">
+    <value>Gelen sevkiyatlar</value>
+  </data>
+  <data name="Cust.Outgoing" xml:space="preserve">
+    <value>Giden sevkiyatlar</value>
+  </data>
+  <data name="Cust.Batch" xml:space="preserve">
+    <value>Parti</value>
+  </data>
+  <data name="Cust.From" xml:space="preserve">
+    <value>Gönderen</value>
+  </data>
+  <data name="Cust.To" xml:space="preserve">
+    <value>Alıcı</value>
+  </data>
+  <data name="Cust.Pending" xml:space="preserve">
+    <value>Bekliyor</value>
+  </data>
+  <data name="Cust.Received" xml:space="preserve">
+    <value>Teslim alındı</value>
+  </data>
+  <data name="Cust.Rejected" xml:space="preserve">
+    <value>Reddedildi</value>
+  </data>
+  <data name="Cust.Confirm" xml:space="preserve">
+    <value>Teslimi onayla</value>
+  </data>
+  <data name="Cust.RejectReason" xml:space="preserve">
+    <value>gerekçe (reddetmek için)</value>
+  </data>
+  <data name="Cust.AllHelp" xml:space="preserve">
+    <value>Tüm sevkiyatlar (platform yöneticileri için salt okunur).</value>
+  </data>
+  <data name="Cust.StorageHelp" xml:space="preserve">
+    <value>Elindeki miktar için emanetçinin kaydettiği depolama koşulları:</value>
+  </data>
+  <data name="Cust.Value" xml:space="preserve">
+    <value>Değer</value>
+  </data>
+  <data name="Cust.Limit" xml:space="preserve">
+    <value>Limit</value>
+  </data>
+  <data name="Cust.Submitted" xml:space="preserve">
+    <value>Gönderildi, başka bir kişinin onayı bekleniyor.</value>
+  </data>
+  <data name="Cust.Print" xml:space="preserve">
+    <value>Yazdır</value>
+  </data>
+  <data name="Cust.Upstream" xml:space="preserve">
+    <value>Kaynak: lotlar, arıcılar ve teslim formları</value>
+  </data>
+  <data name="Cust.Downstream" xml:space="preserve">
+    <value>Sevkiyatlar</value>
+  </data>
+  <data name="Cust.Intake" xml:space="preserve">
+    <value>Teslim</value>
+  </data>
+  <data name="Cust.HiddenLots" xml:space="preserve">
+    <value>{0} lot gösterilmiyor: başka bir kuruma ait.</value>
+  </data>
+  <data name="Cust.HiddenBatches" xml:space="preserve">
+    <value>{0} parti gösterilmiyor: başka bir kuruma ait.</value>
+  </data>
+  <data name="Cust.HiddenShipments" xml:space="preserve">
+    <value>Diğer kurumlar arasındaki {0} sevkiyat gösterilmiyor.</value>
+  </data>
+  <data name="Cust.Holders" xml:space="preserve">
+    <value>Şu anki emanetçiler</value>
+  </data>
+  <data name="Cust.Holder" xml:space="preserve">
+    <value>Emanetçi</value>
+  </data>
+  <data name="Cust.Owner" xml:space="preserve">
+    <value>Sahip</value>
+  </data>
+  <data name="Cust.UsedAmount" xml:space="preserve">
+    <value>Kullanılan (kg)</value>
+  </data>
+  <data name="Scope.All" xml:space="preserve">
+    <value>Tüm veriler (platform yöneticisi, salt okunur)</value>
+  </data>
+  <data name="Scope.Owner" xml:space="preserve">
+    <value>Sizin kısmınız: sahip kurum</value>
+  </data>
+  <data name="Scope.Holder" xml:space="preserve">
+    <value>Sizin kısmınız: kurumunuza gelen ve giden sevkiyatlar</value>
+  </data>
+  <data name="Scope.Association" xml:space="preserve">
+    <value>Sizin kısmınız: üyenizin lotu</value>
+  </data>
+  <data name="Only a Processing organization records deliveries." xml:space="preserve">
+    <value>Teslimleri yalnızca işleme (Processing) kurumu kaydeder.</value>
+  </data>
+  <data name="Your role ({0}) cannot record deliveries; only a SampleAcceptanceOfficer can." xml:space="preserve">
+    <value>Rolünüz ({0}) teslim kaydedemez; yalnızca SampleAcceptanceOfficer kaydedebilir.</value>
+  </data>
+  <data name="No active beekeeper with this number." xml:space="preserve">
+    <value>Bu numarayla etkin bir arıcı yok.</value>
+  </data>
+  <data name="Choose one of the beekeeper's apiaries." xml:space="preserve">
+    <value>Arıcının arılıklarından birini seçin.</value>
+  </data>
+  <data name="Enter the delivery date (not in the future)." xml:space="preserve">
+    <value>Teslim tarihini girin (gelecekte olamaz).</value>
+  </data>
+  <data name="Enter the province and district of origin." xml:space="preserve">
+    <value>Menşe il ve ilçesini girin.</value>
+  </data>
+  <data name="Attach the photo of the signed delivery form." xml:space="preserve">
+    <value>İmzalı teslim formunun fotoğrafını ekleyin.</value>
+  </data>
+  <data name="Delivery recorded as lot #{0}." xml:space="preserve">
+    <value>Teslim #{0} numaralı lot olarak kaydedildi.</value>
+  </data>
+  <data name="Your role ({0}) cannot ship or receive goods; roles: {1}." xml:space="preserve">
+    <value>Rolünüz ({0}) sevk edemez veya teslim alamaz; roller: {1}.</value>
+  </data>
+  <data name="Only a finalized batch can be shipped." xml:space="preserve">
+    <value>Yalnızca kesinleşmiş bir parti sevk edilebilir.</value>
+  </data>
+  <data name="Choose another verified organization as receiver." xml:space="preserve">
+    <value>Alıcı olarak başka bir doğrulanmış kurum seçin.</value>
+  </data>
+  <data name="You can ship at most {0} kg of this batch." xml:space="preserve">
+    <value>Bu partiden en çok {0} kg sevk edebilirsiniz.</value>
+  </data>
+  <data name="Shipment created; custody moves when the receiver confirms it." xml:space="preserve">
+    <value>Sevkiyat oluşturuldu; emanet alıcı onaylayınca geçer.</value>
+  </data>
+  <data name="This shipment was already decided." xml:space="preserve">
+    <value>Bu sevkiyat için zaten karar verildi.</value>
+  </data>
+  <data name="A reason is required to reject a shipment." xml:space="preserve">
+    <value>Sevkiyatı reddetmek için gerekçe zorunludur.</value>
+  </data>
+  <data name="Receipt confirmed; you now hold this quantity." xml:space="preserve">
+    <value>Teslim onaylandı; bu miktar artık sizde.</value>
+  </data>
+  <data name="Shipment rejected; the quantity stays with the sender." xml:space="preserve">
+    <value>Sevkiyat reddedildi; miktar gönderende kalır.</value>
+  </data>
+  <data name="You no longer hold any quantity of this batch." xml:space="preserve">
+    <value>Bu partiden elinizde artık miktar yok.</value>
+  </data>
+  <data name="{0}: enter a value." xml:space="preserve">
+    <value>{0}: bir değer girin.</value>
+  </data>
+  <data name="Storage values saved." xml:space="preserve">
+    <value>Depolama değerleri kaydedildi.</value>
+  </data>
 </root>

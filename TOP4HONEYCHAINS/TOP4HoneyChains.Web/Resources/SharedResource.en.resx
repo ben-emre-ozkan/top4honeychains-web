@@ -744,4 +744,175 @@
   <data name="Ccp.Approve" xml:space="preserve">
     <value>Approve</value>
   </data>
+  <data name="Cust.Intakes" xml:space="preserve">
+    <value>Deliveries (intake)</value>
+  </data>
+  <data name="Cust.IntakesHelp" xml:space="preserve">
+    <value>Honey delivered by beekeepers to your organization. Each delivery creates a raw lot owned by your organization.</value>
+  </data>
+  <data name="Cust.NewIntake" xml:space="preserve">
+    <value>Record a delivery</value>
+  </data>
+  <data name="Cust.NewIntakeHelp" xml:space="preserve">
+    <value>Find the beekeeper by business or registry number, then enter the delivery with the photo of the signed delivery form.</value>
+  </data>
+  <data name="Cust.BeekeeperNumber" xml:space="preserve">
+    <value>Beekeeper business or registry number</value>
+  </data>
+  <data name="Cust.Find" xml:space="preserve">
+    <value>Find</value>
+  </data>
+  <data name="Cust.Period" xml:space="preserve">
+    <value>Production period</value>
+  </data>
+  <data name="Cust.DeliveryDate" xml:space="preserve">
+    <value>Delivery date</value>
+  </data>
+  <data name="Cust.DeliveryFormPhoto" xml:space="preserve">
+    <value>Photo of the signed delivery form</value>
+  </data>
+  <data name="Cust.SendSms" xml:space="preserve">
+    <value>Send an SMS to the beekeeper</value>
+  </data>
+  <data name="Cust.RecordIntake" xml:space="preserve">
+    <value>Record delivery</value>
+  </data>
+  <data name="Cust.Lot" xml:space="preserve">
+    <value>Lot</value>
+  </data>
+  <data name="Cust.Origin" xml:space="preserve">
+    <value>Origin (province / district)</value>
+  </data>
+  <data name="Cust.DeliveryForm" xml:space="preserve">
+    <value>Delivery form</value>
+  </data>
+  <data name="Cust.Recall" xml:space="preserve">
+    <value>Recall</value>
+  </data>
+  <data name="Cust.RecallReport" xml:space="preserve">
+    <value>Recall report</value>
+  </data>
+  <data name="Cust.Shipments" xml:space="preserve">
+    <value>Shipments and stock</value>
+  </data>
+  <data name="Cust.Holdings" xml:space="preserve">
+    <value>Batches you hold</value>
+  </data>
+  <data name="Cust.HoldingsHelp" xml:space="preserve">
+    <value>Finalized batches your organization owns or has received. A shipment reserves its quantity at once; custody moves when the receiver confirms.</value>
+  </data>
+  <data name="Cust.Held" xml:space="preserve">
+    <value>Held (kg)</value>
+  </data>
+  <data name="Cust.Reserved" xml:space="preserve">
+    <value>In transit (kg)</value>
+  </data>
+  <data name="Cust.Available" xml:space="preserve">
+    <value>Available (kg)</value>
+  </data>
+  <data name="Cust.Storage" xml:space="preserve">
+    <value>Storage</value>
+  </data>
+  <data name="Cust.Own" xml:space="preserve">
+    <value>own</value>
+  </data>
+  <data name="Cust.Ship" xml:space="preserve">
+    <value>Ship</value>
+  </data>
+  <data name="Cust.ShipHelp" xml:space="preserve">
+    <value>Choose the receiving verified organization and the quantity. Available:</value>
+  </data>
+  <data name="Cust.Note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="Cust.Incoming" xml:space="preserve">
+    <value>Incoming shipments</value>
+  </data>
+  <data name="Cust.Outgoing" xml:space="preserve">
+    <value>Outgoing shipments</value>
+  </data>
+  <data name="Cust.Batch" xml:space="preserve">
+    <value>Batch</value>
+  </data>
+  <data name="Cust.From" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="Cust.To" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="Cust.Pending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="Cust.Received" xml:space="preserve">
+    <value>Received</value>
+  </data>
+  <data name="Cust.Rejected" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="Cust.Confirm" xml:space="preserve">
+    <value>Confirm receipt</value>
+  </data>
+  <data name="Cust.RejectReason" xml:space="preserve">
+    <value>reason (to reject)</value>
+  </data>
+  <data name="Cust.AllHelp" xml:space="preserve">
+    <value>All shipments (read-only for platform administrators).</value>
+  </data>
+  <data name="Cust.StorageHelp" xml:space="preserve">
+    <value>Storage conditions recorded by the holder for the quantity it holds:</value>
+  </data>
+  <data name="Cust.Value" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="Cust.Limit" xml:space="preserve">
+    <value>Limit</value>
+  </data>
+  <data name="Cust.Submitted" xml:space="preserve">
+    <value>Submitted, waiting for approval by another person.</value>
+  </data>
+  <data name="Cust.Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="Cust.Upstream" xml:space="preserve">
+    <value>Upstream: lots, beekeepers and delivery forms</value>
+  </data>
+  <data name="Cust.Downstream" xml:space="preserve">
+    <value>Downstream: shipments</value>
+  </data>
+  <data name="Cust.Intake" xml:space="preserve">
+    <value>Delivery</value>
+  </data>
+  <data name="Cust.HiddenLots" xml:space="preserve">
+    <value>{0} lot(s) are not shown: they belong to another organization.</value>
+  </data>
+  <data name="Cust.HiddenBatches" xml:space="preserve">
+    <value>{0} batch(es) are not shown: they belong to another organization.</value>
+  </data>
+  <data name="Cust.HiddenShipments" xml:space="preserve">
+    <value>{0} shipment(s) between other organizations are not shown.</value>
+  </data>
+  <data name="Cust.Holders" xml:space="preserve">
+    <value>Current holders</value>
+  </data>
+  <data name="Cust.Holder" xml:space="preserve">
+    <value>Holder</value>
+  </data>
+  <data name="Cust.Owner" xml:space="preserve">
+    <value>Owner</value>
+  </data>
+  <data name="Cust.UsedAmount" xml:space="preserve">
+    <value>Used (kg)</value>
+  </data>
+  <data name="Scope.All" xml:space="preserve">
+    <value>All data (platform administrator, read-only)</value>
+  </data>
+  <data name="Scope.Owner" xml:space="preserve">
+    <value>Your part: owning organization</value>
+  </data>
+  <data name="Scope.Holder" xml:space="preserve">
+    <value>Your part: shipments to and from your organization</value>
+  </data>
+  <data name="Scope.Association" xml:space="preserve">
+    <value>Your part: your member's lot</value>
+  </data>
 </root>

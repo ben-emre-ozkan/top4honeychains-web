@@ -194,7 +194,7 @@ namespace TOP4HoneyChains.Web.Controllers
 
         // ---------------------------------------------------------------- CCP 10 of a later holder
 
-        private record StorageAccess(bool Read, bool Enter, bool Approve, string? EnterDenied, string? ApproveDenied);
+        public record StorageAccess(bool Read, bool Enter, bool Approve, string? EnterDenied, string? ApproveDenied);
 
         private async Task<StorageAccess> StorageAccessAsync(int batchId, int ccpId)
         {

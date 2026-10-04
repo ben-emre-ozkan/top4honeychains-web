@@ -1,0 +1,41 @@
+@using TOP4HoneyChains.Web.Models.Entities
+@{
+    ViewData["Title"] = L["Cust.Shipments"];
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var all = ViewBag.All as List<Shipment> ?? new();
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">@L["Cust.Shipments"]</h4>
+                    <p class="card-title-desc">@L["Cust.AllHelp"]</p>
+                    <table class="table table-sm table-bordered" id="all-shipments">
+                        <thead><tr><th>#</th><th>@L["Cust.Batch"]</th><th>@L["Cust.From"]</th><th>@L["Cust.To"]</th><th>@L["Org.Amount"]</th><th>@L["Org.Date"]</th><th>@L["Org.Status"]</th><th></th></tr></thead>
+                        <tbody>
+                            @foreach (var s in all)
+                            {
+                                <tr data-shipment-id="@s.ShipmentId">
+                                    <td>@s.ShipmentId</td>
+                                    <td>@s.Batch?.FinalHoneyProductionTitle</td>
+                                    <td>@s.FromOrg?.DisplayName</td>
+                                    <td>@s.ToOrg?.DisplayName</td>
+                                    <td>@s.Quantity.ToString("0.##")</td>
+                                    <td>@s.ShippedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</td>
+                                    <td>@s.Status @s.RejectReason</td>
+                                    <td><a asp-controller="Recall" asp-action="Batch" asp-route-id="@s.FinalHoneyProductionId" class="btn btn-sm btn-outline-secondary">@L["Cust.Recall"]</a></td>
+                                </tr>
+                            }
+                            @if (!all.Any())
+                            {
+                                <tr><td colspan="8" class="text-muted">@L["Org.None"]</td></tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

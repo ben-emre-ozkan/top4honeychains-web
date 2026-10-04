@@ -1,0 +1,56 @@
+@using TOP4HoneyChains.Web.Models.Entities
+@{
+    ViewData["Title"] = L["Cust.Intakes"];
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var intakes = ViewBag.Intakes as List<LotIntake> ?? new();
+    var denied = ViewBag.Denied as string;
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+                        <div>
+                            <h4 class="card-title">@L["Cust.Intakes"]</h4>
+                            <p class="card-title-desc">@L["Cust.IntakesHelp"]</p>
+                        </div>
+                        @if (denied == null)
+                        {
+                            <a asp-action="Create" class="btn btn-primary" id="new-intake"><i class="mdi mdi-plus"></i> @L["Cust.NewIntake"]</a>
+                        }
+                        else
+                        {
+                            <div class="text-muted small" id="intake-denied">@Msg.T(denied)</div>
+                        }
+                    </div>
+                    <table class="table table-sm table-bordered mt-2" id="intakes">
+                        <thead><tr><th>@L["Cust.Lot"]</th><th>@L["Org.Date"]</th><th>@L["Org.Apiary"]</th><th>@L["Org.HoneyType"]</th><th>@L["Org.Amount"]</th><th>@L["Cust.Origin"]</th><th>@L["Cust.DeliveryForm"]</th><th>SMS</th><th></th></tr></thead>
+                        <tbody>
+                            @foreach (var i in intakes)
+                            {
+                                <tr data-lot-id="@i.RawHoneyProductionId">
+                                    <td>#@i.RawHoneyProductionId</td>
+                                    <td>@i.DeliveryDate.ToString("dd.MM.yyyy")</td>
+                                    <td>@i.RawHoneyProduction?.RawHoneyProductionApiary?.ApiaryTitle</td>
+                                    <td>@i.RawHoneyProduction?.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle</td>
+                                    <td>@i.Quantity.ToString("0.##")</td>
+                                    <td>@i.Province / @i.District</td>
+                                    <td><a asp-action="Form" asp-route-id="@i.IntakeId" target="_blank">@L["Org.Open"]</a> <small class="text-muted" title="SHA-256">@i.FormSha256[..12]…</small></td>
+                                    <td>@(i.SmsStatus ?? "–")</td>
+                                    <td><a asp-controller="Recall" asp-action="Lot" asp-route-id="@i.RawHoneyProductionId" class="btn btn-sm btn-outline-secondary">@L["Cust.Recall"]</a></td>
+                                </tr>
+                            }
+                            @if (!intakes.Any())
+                            {
+                                <tr><td colspan="9" class="text-muted">@L["Org.None"]</td></tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <a asp-controller="OrgWorkspace" asp-action="Index" class="btn btn-secondary">@L["Org.Back"]</a>
+        </div>
+    </div>
+</body>

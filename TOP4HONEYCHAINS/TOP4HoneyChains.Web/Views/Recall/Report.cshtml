@@ -1,0 +1,117 @@
+@model TOP4HoneyChains.Web.Controllers.RecallController.Report
+@{
+    ViewData["Title"] = L["Cust.RecallReport"];
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    string StatusText(string s) => s switch { "Pending" => L["Cust.Pending"], "Received" => L["Cust.Received"], "Rejected" => L["Cust.Rejected"], _ => s };
+}
+
+<style>
+    @@media print {
+        #page-topbar, .topnav, footer, .no-print, #flash-error, #flash-success { display: none !important; }
+        .page-content { padding: 0 !important; margin: 0 !important; }
+        .card { border: 0 !important; box-shadow: none !important; }
+        a { color: inherit; text-decoration: none; }
+    }
+</style>
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card" id="recall-report" data-kind="@Model.Kind" data-scope="@Model.Scope">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between flex-wrap gap-2">
+                        <div>
+                            <h4 class="card-title mb-1">@L["Cust.RecallReport"]: @(Model.Kind == "batch" ? L["Cust.Batch"] : L["Cust.Lot"]) @Model.Title</h4>
+                            <div class="small text-muted">@DateTime.Now.ToString("dd.MM.yyyy HH:mm") · @L[Model.Scope]</div>
+                        </div>
+                        <div class="no-print">
+                            <button type="button" class="btn btn-outline-primary" onclick="window.print()"><i class="mdi mdi-printer"></i> @L["Cust.Print"]</button>
+                            <a href="?format=csv" class="btn btn-outline-secondary" id="csv-link"><i class="mdi mdi-file-delimited"></i> CSV</a>
+                        </div>
+                    </div>
+
+                    <h5 class="mt-4">@L["Cust.Upstream"]</h5>
+                    <table class="table table-sm table-bordered" id="recall-lots">
+                        <thead><tr><th>@L["Cust.Lot"]</th><th>@L["Org.Apiary"]</th><th>@L["Org.HoneyType"]</th><th>@L["Org.Amount"]</th><th>@L["Reg.Beekeeper"]</th><th>@L["Cust.Intake"]</th></tr></thead>
+                        <tbody>
+                            @foreach (var l in Model.Lots)
+                            {
+                                <tr data-lot-id="@l.LotId">
+                                    <td>#@l.LotId</td>
+                                    <td>@l.Apiary</td>
+                                    <td>@l.HoneyType</td>
+                                    <td>@((l.UsedAmount ?? l.Amount)?.ToString("0.##"))</td>
+                                    <td>@l.Beekeeper <small class="text-muted">@l.BeekeeperNumber</small></td>
+                                    <td>
+                                        @if (l.IntakeId != null)
+                                        {
+                                            <span>@l.DeliveryDate?.ToString("dd.MM.yyyy") · @l.IntakeOrg · @l.IntakeQuantity?.ToString("0.##") kg · @l.Origin</span>
+                                            <a asp-controller="Intake" asp-action="Form" asp-route-id="@l.IntakeId" target="_blank" class="no-print intake-form-link">@L["Cust.DeliveryForm"]</a>
+                                            <div class="small text-muted">SHA-256 @l.FormSha256</div>
+                                        }
+                                        else { <span class="text-muted">–</span> }
+                                    </td>
+                                </tr>
+                            }
+                            @if (Model.HiddenLots > 0)
+                            {
+                                <tr><td colspan="6" class="text-muted" id="hidden-lots">@string.Format(L["Cust.HiddenLots"].Value, Model.HiddenLots)</td></tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    @if (Model.Kind == "lot")
+                    {
+                        <h5 class="mt-4">@L["Org.Batches"]</h5>
+                        <table class="table table-sm table-bordered" id="recall-batches">
+                            <thead><tr><th>#</th><th>@L["Org.Title"]</th><th>@L["Cust.Owner"]</th><th>@L["Cust.UsedAmount"]</th><th>@L["Org.Date"]</th><th>@L["Org.Status"]</th></tr></thead>
+                            <tbody>
+                                @foreach (var b in Model.Batches)
+                                {
+                                    <tr data-batch-id="@b.BatchId">
+                                        <td>@b.BatchId</td><td>@b.Title</td><td>@b.Owner</td><td>@b.UsedAmount?.ToString("0.##")</td>
+                                        <td>@b.Date?.ToString("dd.MM.yyyy")</td><td>@(b.Finalized ? L["Org.Finalized"] : L["Org.Draft"])</td>
+                                    </tr>
+                                }
+                                @if (Model.HiddenBatches > 0)
+                                {
+                                    <tr><td colspan="6" class="text-muted" id="hidden-batches">@string.Format(L["Cust.HiddenBatches"].Value, Model.HiddenBatches)</td></tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+
+                    <h5 class="mt-4">@L["Cust.Downstream"]</h5>
+                    <table class="table table-sm table-bordered" id="recall-shipments">
+                        <thead><tr><th>#</th><th>@L["Cust.Batch"]</th><th>@L["Cust.From"]</th><th>@L["Cust.To"]</th><th>@L["Org.Amount"]</th><th>@L["Org.Date"]</th><th>@L["Org.Status"]</th></tr></thead>
+                        <tbody>
+                            @foreach (var s in Model.Shipments)
+                            {
+                                <tr data-shipment-id="@s.ShipmentId">
+                                    <td>@s.ShipmentId</td><td>@s.BatchId</td><td>@s.From</td><td>@s.To</td><td>@s.Quantity.ToString("0.##")</td>
+                                    <td>@s.ShippedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</td><td>@StatusText(s.Status) @s.RejectReason</td>
+                                </tr>
+                            }
+                            @if (Model.HiddenShipments > 0)
+                            {
+                                <tr><td colspan="7" class="text-muted" id="hidden-shipments">@string.Format(L["Cust.HiddenShipments"].Value, Model.HiddenShipments)</td></tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    @if (Model.Holders.Any())
+                    {
+                        <h5 class="mt-4">@L["Cust.Holders"]</h5>
+                        <table class="table table-sm table-bordered" id="recall-holders">
+                            <thead><tr><th>@L["Cust.Holder"]</th><th>@L["Cust.Held"]</th></tr></thead>
+                            <tbody>
+                                @foreach (var h in Model.Holders) { <tr><td>@h.Org</td><td>@h.Held.ToString("0.##")</td></tr> }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+            <a href="javascript:history.back()" class="btn btn-secondary no-print">@L["Org.Back"]</a>
+        </div>
+    </div>
+</body>

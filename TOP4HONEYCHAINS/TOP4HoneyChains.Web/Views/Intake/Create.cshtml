@@ -1,0 +1,85 @@
+@using TOP4HoneyChains.Web.Models.Entities
+@{
+    ViewData["Title"] = L["Cust.NewIntake"];
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var bk = ViewBag.Beekeeper as Beekeeper;
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">@L["Cust.NewIntake"]</h4>
+                    <p class="card-title-desc">@L["Cust.NewIntakeHelp"]</p>
+
+                    <form asp-action="Create" method="get" class="row g-2 align-items-end mb-4" id="find-beekeeper">
+                        <div class="col-md-5">
+                            <label class="form-label fw-semibold" for="number">@L["Cust.BeekeeperNumber"]</label>
+                            <input name="number" id="number" class="form-control" value="@ViewBag.Number" maxlength="50" autocomplete="off" />
+                        </div>
+                        <div class="col-md-2"><button type="submit" class="btn btn-outline-primary">@L["Cust.Find"]</button></div>
+                    </form>
+
+                    @if (bk != null)
+                    {
+                        <form asp-action="Create" method="post" enctype="multipart/form-data" id="intake-form">
+                            <input type="hidden" name="number" value="@ViewBag.Number" />
+                            <div class="alert alert-light border" id="beekeeper-found">
+                                <strong>@bk.BeekeeperFirstName @bk.BeekeeperLastName</strong> · @bk.BeekeeperBusinessNumber
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label required" for="apiaryId">@L["Org.Apiary"]</label>
+                                    <select name="apiaryId" id="apiaryId" class="form-select">
+                                        @foreach (var a in bk.Apiaries.OrderBy(a => a.ApiaryTitle))
+                                        {
+                                            <option value="@a.ApiaryId">@a.ApiaryTitle</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label required" for="honeyTypeId">@L["Org.HoneyType"]</label>
+                                    <select name="honeyTypeId" id="honeyTypeId" class="form-select" asp-items="ViewBag.HoneyTypes"></select>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label required" for="periodId">@L["Cust.Period"]</label>
+                                    <select name="periodId" id="periodId" class="form-select" asp-items="ViewBag.Periods"></select>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label class="form-label required" for="deliveryDate">@L["Cust.DeliveryDate"]</label>
+                                    <input type="date" name="deliveryDate" id="deliveryDate" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-dd")" max="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label class="form-label required" for="quantity">@L["Org.Amount"]</label>
+                                    <input name="quantity" id="quantity" type="text" inputmode="decimal" class="form-control" />
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label class="form-label required" for="province">@L["Org.Province"]</label>
+                                    <input name="province" id="province" class="form-control" maxlength="100" />
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label class="form-label required" for="district">@L["Org.District"]</label>
+                                    <input name="district" id="district" class="form-control" maxlength="100" />
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label required" for="deliveryForm">@L["Cust.DeliveryFormPhoto"]</label>
+                                    <input type="file" name="deliveryForm" id="deliveryForm" class="form-control" accept=".pdf,.jpg,.jpeg,.png,.webp" />
+                                    <div class="form-text">@L["Org.UploadHelp"]</div>
+                                </div>
+                                <div class="col-md-6 mb-3 d-flex align-items-center">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" name="sendSms" value="true" id="sendSms" />
+                                        <label class="form-check-label" for="sendSms">@L["Cust.SendSms"]</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-success">@L["Cust.RecordIntake"]</button>
+                        </form>
+                    }
+                </div>
+            </div>
+            <a asp-action="Index" class="btn btn-secondary">@L["Org.Back"]</a>
+        </div>
+    </div>
+</body>

@@ -229,6 +229,10 @@
 
                                 <div class="d-flex align-items-center gap-2 flex-wrap">
 
+                                    @if (ViewBag.MemberFinalize == true)
+                                    {
+                                        <a asp-controller="Recall" asp-action="Batch" asp-route-id="@Model.Batch.FinalHoneyProductionId" class="btn btn-outline-secondary" id="admin-recall">@L["Cust.RecallReport"]</a>
+                                    }
                                     @if (!Model.Batch.FinalHoneyProductionIsFinalized)
                                     {
                                         <!-- Save (submits main form) -->

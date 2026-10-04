@@ -1,0 +1,117 @@
+@using TOP4HoneyChains.Web.Models.Entities
+@using TOP4HoneyChains.Web.Controllers
+@{
+    ViewData["Title"] = L["Cust.Shipments"];
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var holdings = ViewBag.Holdings as List<ShipmentsController.HoldingRow> ?? new();
+    var incoming = ViewBag.Incoming as List<Shipment> ?? new();
+    var outgoing = ViewBag.Outgoing as List<Shipment> ?? new();
+    var canShip = ViewBag.CanShip == true;
+    string StatusText(string s) => s switch { "Pending" => L["Cust.Pending"], "Received" => L["Cust.Received"], "Rejected" => L["Cust.Rejected"], _ => s };
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">@L["Cust.Holdings"]</h4>
+                    <p class="card-title-desc">@L["Cust.HoldingsHelp"]</p>
+                    <table class="table table-sm table-bordered" id="holdings">
+                        <thead><tr><th>#</th><th>@L["Org.Title"]</th><th>@L["Cust.Held"]</th><th>@L["Cust.Reserved"]</th><th>@L["Cust.Available"]</th><th>@L["Cust.Storage"]</th><th></th></tr></thead>
+                        <tbody>
+                            @foreach (var h in holdings)
+                            {
+                                <tr data-batch-id="@h.Batch.FinalHoneyProductionId">
+                                    <td>@h.Batch.FinalHoneyProductionId</td>
+                                    <td>@h.Batch.FinalHoneyProductionTitle @if (h.Owner) { <span class="badge bg-light text-dark">@L["Cust.Own"]</span> }</td>
+                                    <td class="held">@h.Holding.Held.ToString("0.##")</td>
+                                    <td>@h.Holding.ReservedOut.ToString("0.##")</td>
+                                    <td class="available">@h.Holding.Available.ToString("0.##")</td>
+                                    <td>
+                                        @if (!h.Owner)
+                                        {
+                                            <a asp-action="Storage" asp-route-batchId="@h.Batch.FinalHoneyProductionId" class="storage-link">CCP 10</a>
+                                            <span class="small text-muted">@(h.Storage == null ? "–" : h.Storage.ApprovedAt != null ? "✓" : h.Storage.Status == AssignmentStatusIds.Submitted ? L["Cust.Pending"].Value : "…")</span>
+                                        }
+                                    </td>
+                                    <td class="text-nowrap">
+                                        @if (canShip && h.Holding.Available > 0)
+                                        {
+                                            <a asp-action="Create" asp-route-batchId="@h.Batch.FinalHoneyProductionId" class="btn btn-sm btn-primary ship-link">@L["Cust.Ship"]</a>
+                                        }
+                                        <a asp-controller="Recall" asp-action="Batch" asp-route-id="@h.Batch.FinalHoneyProductionId" class="btn btn-sm btn-outline-secondary">@L["Cust.Recall"]</a>
+                                    </td>
+                                </tr>
+                            }
+                            @if (!holdings.Any())
+                            {
+                                <tr><td colspan="7" class="text-muted">@L["Org.None"]</td></tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@L["Cust.Incoming"]</h5>
+                    <table class="table table-sm table-bordered" id="incoming">
+                        <thead><tr><th>#</th><th>@L["Cust.Batch"]</th><th>@L["Cust.From"]</th><th>@L["Org.Amount"]</th><th>@L["Org.Date"]</th><th>@L["Org.Status"]</th><th></th></tr></thead>
+                        <tbody>
+                            @foreach (var s in incoming)
+                            {
+                                <tr data-shipment-id="@s.ShipmentId">
+                                    <td>@s.ShipmentId</td>
+                                    <td>@s.Batch?.FinalHoneyProductionTitle</td>
+                                    <td>@s.FromOrg?.DisplayName</td>
+                                    <td>@s.Quantity.ToString("0.##")</td>
+                                    <td>@s.ShippedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</td>
+                                    <td class="shipment-status">@StatusText(s.Status) @s.RejectReason</td>
+                                    <td>
+                                        @if (s.Status == ShipmentStatus.Pending && canShip)
+                                        {
+                                            <form asp-action="Decide" method="post" class="d-flex gap-1">
+                                                <input type="hidden" name="id" value="@s.ShipmentId" />
+                                                <input name="reason" class="form-control form-control-sm" maxlength="500" placeholder="@L["Cust.RejectReason"]" />
+                                                <button type="submit" name="confirm" value="true" class="btn btn-sm btn-success">@L["Cust.Confirm"]</button>
+                                                <button type="submit" name="confirm" value="false" class="btn btn-sm btn-outline-danger">@L["Corr.Reject"]</button>
+                                            </form>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                            @if (!incoming.Any())
+                            {
+                                <tr><td colspan="7" class="text-muted">@L["Org.None"]</td></tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    <h5 class="card-title mt-4">@L["Cust.Outgoing"]</h5>
+                    <table class="table table-sm table-bordered" id="outgoing">
+                        <thead><tr><th>#</th><th>@L["Cust.Batch"]</th><th>@L["Cust.To"]</th><th>@L["Org.Amount"]</th><th>@L["Org.Date"]</th><th>@L["Org.Status"]</th></tr></thead>
+                        <tbody>
+                            @foreach (var s in outgoing)
+                            {
+                                <tr data-shipment-id="@s.ShipmentId">
+                                    <td>@s.ShipmentId</td>
+                                    <td>@s.Batch?.FinalHoneyProductionTitle</td>
+                                    <td>@s.ToOrg?.DisplayName</td>
+                                    <td>@s.Quantity.ToString("0.##")</td>
+                                    <td>@s.ShippedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</td>
+                                    <td class="shipment-status">@StatusText(s.Status) @s.RejectReason</td>
+                                </tr>
+                            }
+                            @if (!outgoing.Any())
+                            {
+                                <tr><td colspan="6" class="text-muted">@L["Org.None"]</td></tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <a asp-controller="OrgWorkspace" asp-action="Index" class="btn btn-secondary">@L["Org.Back"]</a>
+        </div>
+    </div>
+</body>
