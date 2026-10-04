@@ -29,7 +29,7 @@
                                     @foreach (var o in labs)
                                     {
                                         var cap = o.Capabilities.FirstOrDefault(c => c.Capability == Capabilities.Laboratory);
-                                        <option value="@o.OrgId">@o.DisplayName @(cap?.IsAccredited == true ? "(" + L["Org.Accredited"].Value + ")" : "")</option>
+                                        <option value="@o.OrgId">@o.DisplayName @(cap?.IsAccredited == true ? "· ✓ " + cap.AccreditationNumber : "")</option>
                                     }
                                 </select>
                             </div>

@@ -256,7 +256,7 @@ namespace TOP4HoneyChains.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Storage(int batchId, Dictionary<int, string?> values)
+        public async Task<IActionResult> Storage(int batchId, [Bind(Prefix = "values")] Dictionary<int, string?>? values)
         {
             var ccpId = await _custody.StorageCcpIdAsync() ?? 0;
             var access = await StorageAccessAsync(batchId, ccpId);
@@ -274,7 +274,8 @@ namespace TOP4HoneyChains.Web.Controllers
             var parsed = new Dictionary<int, (decimal? Number, string? Text)>();
             foreach (var p in parameters)
             {
-                values.TryGetValue(p.ParameterId, out var raw);
+                string? raw = null;
+                values?.TryGetValue(p.ParameterId, out raw);
                 raw = raw?.Trim();
                 if (string.IsNullOrEmpty(raw))
                 {

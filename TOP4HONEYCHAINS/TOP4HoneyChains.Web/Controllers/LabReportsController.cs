@@ -79,7 +79,7 @@ namespace TOP4HoneyChains.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [RequestSizeLimit(12 * 1024 * 1024)]
-        public async Task<IActionResult> Save(int id, string? reportNumber, DateOnly? issuedOn, Dictionary<int, string?>? values, IFormFile? reportFile)
+        public async Task<IActionResult> Save(int id, string? reportNumber, DateOnly? issuedOn, [Bind(Prefix = "values")] Dictionary<int, string?>? values, IFormFile? reportFile)
         {
             var sample = await ReadableSampleAsync(id);
             if (sample == null)
