@@ -77,6 +77,8 @@ builder.Services.AddScoped<MessageTranslator>();
 builder.Services.AddScoped<ICurrentOrg, CurrentOrg>();
 builder.Services.AddScoped<CcpResponsibilityService>();
 builder.Services.AddScoped<OrgScope>();
+builder.Services.AddScoped<CustodyService>();
+builder.Services.AddScoped<ISmsSender, LoggingSmsSender>();
 builder.Services.AddScoped<AuditWriter>();
 builder.Services.AddScoped<ManualRegistryVerifier>();
 builder.Services.AddScoped<IRegistryVerifier>(sp => sp.GetRequiredService<ManualRegistryVerifier>());

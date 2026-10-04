@@ -1,0 +1,93 @@
+@using TOP4HoneyChains.Web.Models.Entities
+@{
+    ViewData["Title"] = "CCP 10";
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var batch = ViewBag.Batch as FinalHoneyProduction;
+    var holder = ViewBag.Holder as Organization;
+    var record = ViewBag.Record as HolderStorageRecord;
+    var parameters = ViewBag.Parameters as List<CriticalControlPointParameter> ?? new();
+    var access = (TOP4HoneyChains.Web.Controllers.ShipmentsController.StorageAccess)ViewBag.Access;
+    bool canEnter = access.Enter;
+    bool canApprove = access.Approve;
+    string? enterDenied = access.EnterDenied;
+    string? approveDenied = access.ApproveDenied;
+    HolderStorageValue? ValueOf(int id) => record?.Values.FirstOrDefault(v => v.ParameterId == id);
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">CCP 10 – @L["Cust.Storage"]: @batch?.FinalHoneyProductionTitle</h4>
+                    <p class="card-title-desc">@L["Cust.StorageHelp"] <strong>@holder?.DisplayName</strong> · @L["Cust.Held"]: <strong id="held">@(((decimal)ViewBag.Held).ToString("0.##"))</strong> kg</p>
+                    @if (!canEnter && enterDenied != null)
+                    {
+                        <div class="alert alert-secondary" id="storage-read-only">@L["Ccp.ReadOnly"]: @Msg.T(enterDenied)</div>
+                    }
+                    <form asp-action="Storage" method="post" id="storage-form">
+                        <input type="hidden" name="batchId" value="@batch?.FinalHoneyProductionId" />
+                        <table class="table table-sm">
+                            <thead><tr><th>@L["Corr.Parameter"]</th><th>@L["Cust.Value"]</th><th>@L["Cust.Limit"]</th></tr></thead>
+                            <tbody>
+                                @foreach (var p in parameters)
+                                {
+                                    var v = ValueOf(p.ParameterId);
+                                    <tr>
+                                        <td>@p.ParameterName @(p.ParameterUnit != null ? $"({p.ParameterUnit})" : "")</td>
+                                        <td>
+                                            @if (p.DataType == CcpDataType.YesNo)
+                                            {
+                                                <select name="values[@p.ParameterId]" class="form-select form-select-sm" disabled="@(!canEnter)">
+                                                    <option value=""></option>
+                                                    <option value="Yes" selected="@(v?.MeasuredTextValue == "Yes")">Yes</option>
+                                                    <option value="No" selected="@(v?.MeasuredTextValue == "No")">No</option>
+                                                </select>
+                                            }
+                                            else
+                                            {
+                                                <input name="values[@p.ParameterId]" class="form-control form-control-sm" value="@(v?.MeasuredNumericValue?.ToString("0.####", System.Globalization.CultureInfo.InvariantCulture) ?? v?.MeasuredTextValue)" readonly="@(!canEnter)" maxlength="100" />
+                                            }
+                                        </td>
+                                        <td class="small">@v?.AppliedLimit @if (v?.IsInRange == false) { <span class="badge bg-danger">!</span> }</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        @if (canEnter)
+                        {
+                            <button type="submit" class="btn btn-success">@L["Org.Save"]</button>
+                        }
+                    </form>
+                </div>
+            </div>
+
+            <div class="card" id="storage-approval">
+                <div class="card-body">
+                    <h6>@L["Ccp.ApprovalTitle"]</h6>
+                    @if (record?.ApprovedAt != null)
+                    {
+                        <span class="badge bg-success" id="storage-approved">@L["Ccp.Approved"]</span> @record.ApprovedAt?.ToLocalTime().ToString("dd.MM.yyyy HH:mm")
+                        @if (record.SelfApproved) { <span class="badge bg-warning text-dark">@L["Org.SelfApproved"]</span> }
+                    }
+                    else
+                    {
+                        <div class="text-muted" id="storage-state">@(record?.Status == AssignmentStatusIds.Submitted ? L["Cust.Submitted"] : L["Ccp.NotApproved"])</div>
+                        @if (canApprove && record?.Status == AssignmentStatusIds.Submitted)
+                        {
+                            <form asp-action="ApproveStorage" method="post" class="mt-2">
+                                <input type="hidden" name="batchId" value="@batch?.FinalHoneyProductionId" />
+                                <button type="submit" class="btn btn-sm btn-success" id="approve-storage">@L["Ccp.Approve"]</button>
+                            </form>
+                        }
+                        else if (!canApprove && approveDenied != null)
+                        {
+                            <div class="small text-muted mt-1">@Msg.T(approveDenied)</div>
+                        }
+                    }
+                </div>
+            </div>
+            <a asp-action="Index" class="btn btn-secondary">@L["Org.Back"]</a>
+        </div>
+    </div>
+</body>
