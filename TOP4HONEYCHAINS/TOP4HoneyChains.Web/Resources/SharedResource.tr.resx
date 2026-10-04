@@ -1962,4 +1962,82 @@
   <data name="Mob.Camera" xml:space="preserve">
     <value>Kamera</value>
   </data>
+  <data name="Fhp.Details" xml:space="preserve">
+    <value>Üretim ayrıntıları</value>
+  </data>
+  <data name="Fhp.Completed" xml:space="preserve">
+    <value>Tüm zorunlu testler tamamlandı</value>
+  </data>
+  <data name="Fhp.NotCompleted" xml:space="preserve">
+    <value>Bu üretim henüz tüm zorunlu testleri tamamlamadı. Kaydı, testler tamamlandığında burada listelenir.</value>
+  </data>
+  <data name="Fhp.Missing" xml:space="preserve">
+    <value>Eksik olanlar</value>
+  </data>
+  <data name="Fhp.Wholesaler" xml:space="preserve">
+    <value>Toptancı</value>
+  </data>
+  <data name="Fhp.Owner" xml:space="preserve">
+    <value>Sahip kurum</value>
+  </data>
+  <data name="Fhp.Date" xml:space="preserve">
+    <value>Üretim tarihi</value>
+  </data>
+  <data name="Fhp.Total" xml:space="preserve">
+    <value>Toplam miktar</value>
+  </data>
+  <data name="Fhp.Finalized" xml:space="preserve">
+    <value>Kesinleştirildi</value>
+  </data>
+  <data name="Fhp.NotFinalized" xml:space="preserve">
+    <value>Kesinleştirilmedi</value>
+  </data>
+  <data name="Fhp.Lots" xml:space="preserve">
+    <value>Ham bal lotları</value>
+  </data>
+  <data name="Fhp.Lot" xml:space="preserve">
+    <value>Lot</value>
+  </data>
+  <data name="Fhp.Beekeeper" xml:space="preserve">
+    <value>Arıcı</value>
+  </data>
+  <data name="Fhp.Apiary" xml:space="preserve">
+    <value>Arılık</value>
+  </data>
+  <data name="Fhp.HoneyType" xml:space="preserve">
+    <value>Bal türü</value>
+  </data>
+  <data name="Fhp.Used" xml:space="preserve">
+    <value>Kullanılan</value>
+  </data>
+  <data name="Fhp.LotCcps" xml:space="preserve">
+    <value>Lot KKN'leri</value>
+  </data>
+  <data name="Fhp.BatchCcps" xml:space="preserve">
+    <value>Parti KKN'leri</value>
+  </data>
+  <data name="Fhp.Status" xml:space="preserve">
+    <value>Durum</value>
+  </data>
+  <data name="Fhp.ApprovedAt" xml:space="preserve">
+    <value>Onay</value>
+  </data>
+  <data name="Fhp.Reports" xml:space="preserve">
+    <value>Onaylı laboratuvar raporları</value>
+  </data>
+  <data name="Fhp.Accredited" xml:space="preserve">
+    <value>akredite</value>
+  </data>
+  <data name="Fhp.InHouse" xml:space="preserve">
+    <value>şirket içi</value>
+  </data>
+  <data name="Fhp.HoneyStory" xml:space="preserve">
+    <value>Herkese açık Bal Hikâyesi</value>
+  </data>
+  <data name="Fhp.ManageCcps" xml:space="preserve">
+    <value>KKN'leri yönet</value>
+  </data>
+  <data name="Fhp.Back" xml:space="preserve">
+    <value>Listeye dön</value>
+  </data>
 </root>

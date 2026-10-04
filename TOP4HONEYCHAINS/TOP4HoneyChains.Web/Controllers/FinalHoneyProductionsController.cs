@@ -561,10 +561,34 @@ namespace TOP4HoneyChains.Web.Controllers
             ViewBag.Controller = "Final Honey Productions";
             ViewBag.Action = "Index";
 
-            return View(await _context.FinalHoneyProductions.ToListAsync());
+            var batches = await _context.FinalHoneyProductions.ToListAsync();
+            // D-49 (WP4): the details record is offered only for productions that completed all required tests
+            var completed = new HashSet<int>();
+            foreach (var batch in batches.Where(b => b.FinalHoneyProductionIsFinalized))
+                if ((await _ccp.GetFinalizeBlockersAsync(batch.FinalHoneyProductionId)).Count == 0)
+                    completed.Add(batch.FinalHoneyProductionId);
+            ViewBag.CompletedIds = completed;
+
+            return View(batches);
         }
 
-        // GET: FinalHoneyProductions/Details/5
+        public record DetailsLot(int LotId, string? Beekeeper, string? Apiary, string? HoneyType, DateOnly? ProductionDate, decimal UsedAmount, int CcpsDone, int CcpsTotal);
+        public record DetailsCcp(string Code, string? Title, int Status, string? StatusName, DateTime? ApprovedAt);
+        public record DetailsReport(string ReportCode, string? Lab, bool IsAccredited, string? AccreditationNumber, bool InHouse, DateOnly? IssuedOn);
+        public class DetailsModel
+        {
+            public FinalHoneyProduction Batch { get; set; } = null!;
+            public string? Owner { get; set; }
+            // WP4: the full record is shown only for productions that completed all required tests
+            public List<string> Blockers { get; set; } = new();
+            public bool Completed => Blockers.Count == 0;
+            public List<DetailsLot> Lots { get; set; } = new();
+            public List<DetailsCcp> Ccps { get; set; } = new();
+            public List<DetailsReport> Reports { get; set; } = new();
+            public bool OrgModelOn { get; set; }
+        }
+
+        // GET: FinalHoneyProductions/Details/5 (D-49)
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -572,18 +596,63 @@ namespace TOP4HoneyChains.Web.Controllers
                 return NotFound();
             }
 
-            var finalHoneyProduction = await _context.FinalHoneyProductions
+            var batch = await _context.FinalHoneyProductions.AsNoTracking()
+                .Include(f => f.FinalHoneyProductionWholesaler)
                 .FirstOrDefaultAsync(m => m.FinalHoneyProductionId == id);
-            if (finalHoneyProduction == null)
+            if (batch == null)
             {
                 return NotFound();
             }
 
+            var model = new DetailsModel
+            {
+                Batch = batch,
+                Blockers = await _ccp.GetFinalizeBlockersAsync(batch.FinalHoneyProductionId),
+                OrgModelOn = _flags.OrgRoleModel
+            };
+            if (batch.OwnerOrgId != null)
+                model.Owner = await _context.Organizations.Where(o => o.OrgId == batch.OwnerOrgId).Select(o => o.DisplayName).FirstOrDefaultAsync();
+
+            if (model.Completed)
+            {
+                var lots = await _context.FinalHoneyProductionDetails.AsNoTracking()
+                    .Where(d => d.FinalHoneyProductionId == batch.FinalHoneyProductionId)
+                    .OrderBy(d => d.RawHoneyProductionId)
+                    .Select(d => new
+                    {
+                        d.RawHoneyProductionId,
+                        d.UsedAmount,
+                        Beekeeper = d.RawHoneyProduction.RawHoneyProductionApiary!.ApiaryBeekeeper!.BeekeeperFirstName + " " + d.RawHoneyProduction.RawHoneyProductionApiary!.ApiaryBeekeeper!.BeekeeperLastName,
+                        Apiary = d.RawHoneyProduction.RawHoneyProductionApiary!.ApiaryTitle,
+                        HoneyType = d.RawHoneyProduction.RawHoneyProductionHoneyTypeNavigation!.HoneyTypeTitle,
+                        d.RawHoneyProduction.RawHoneyProductionDate,
+                        Done = d.RawHoneyProduction.RawHoneyCCPAssignments.Count(a => a.RawHoneyCCPAssignmentStatus == AssignmentStatusIds.Completed || a.RawHoneyCCPAssignmentStatus == AssignmentStatusIds.NotApplicable),
+                        Total = d.RawHoneyProduction.RawHoneyCCPAssignments.Count()
+                    })
+                    .ToListAsync();
+                model.Lots = lots.Select(l => new DetailsLot(l.RawHoneyProductionId, l.Beekeeper, l.Apiary, l.HoneyType, l.RawHoneyProductionDate, l.UsedAmount, l.Done, l.Total)).ToList();
+
+                model.Ccps = await _context.FinalHoneyCCPAssignments.AsNoTracking()
+                    .Where(a => a.FinalHoneyProductionId == batch.FinalHoneyProductionId)
+                    .OrderBy(a => a.FinalHoneyCCPAssignmentCCP)
+                    .Select(a => new DetailsCcp(a.CCP!.Code, a.CCP.Title, a.FinalHoneyCCPAssignmentStatus, a.AssignmentStatus!.AssignmentStatusName, a.ApprovedAt))
+                    .ToListAsync();
+
+                if (_flags.OrgRoleModel)
+                {
+                    var lotIds = model.Lots.Select(l => l.LotId).ToList();
+                    model.Reports = await _context.LabReports.AsNoTracking()
+                        .Where(r => r.Status == LabReportStatus.Approved && lotIds.Contains(r.Sample!.RawHoneyProductionId))
+                        .OrderBy(r => r.ReportCode)
+                        .Select(r => new DetailsReport(r.ReportCode, r.LabOrg!.DisplayName, r.IsAccredited, r.AccreditationNumber, r.InHouse, r.IssuedOn))
+                        .ToListAsync();
+                }
+            }
 
             ViewBag.Controller = "Final Honey Productions";
             ViewBag.Action = "Details";
 
-            return View(finalHoneyProduction);
+            return View(model);
         }
 
         public async Task<IActionResult> Edit(int? id)

@@ -1,0 +1,134 @@
+@using TOP4HoneyChains.Web.Models.Entities
+@model TOP4HoneyChains.Web.Controllers.FinalHoneyProductionsController.DetailsModel
+@{
+    ViewData["Title"] = L["Fhp.Details"];
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var b = Model.Batch;
+}
+@* D-49 (WP4): the full record of a production is shown only once it has completed all required tests *@
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-3">
+                    <div>
+                        <h4 class="card-title mb-1">@b.FinalHoneyProductionTitle</h4>
+                        <p class="text-muted mb-0">@L["Fhp.Details"] · #@b.FinalHoneyProductionId</p>
+                    </div>
+                    <div class="d-flex flex-wrap gap-2">
+                        @if (Model.Completed)
+                        {
+                            <span class="badge bg-success px-3 py-2" id="details-completed"><i class="mdi mdi-check-decagram-outline me-1"></i>@L["Fhp.Completed"]</span>
+                        }
+                        @if (b.FinalHoneyProductionIsFinalized)
+                        {
+                            <span class="badge bg-dark px-3 py-2">@L["Fhp.Finalized"] @b.FinalHoneyProductionFinalizedDate?.ToString("dd.MM.yyyy")</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-light text-dark border px-3 py-2">@L["Fhp.NotFinalized"]</span>
+                        }
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-3">
+                    <div class="col-6 col-md-3"><div class="text-muted small">@L["Fhp.Wholesaler"]</div><div>@b.FinalHoneyProductionWholesaler?.WholesalerTitle</div></div>
+                    @if (Model.Owner != null)
+                    {
+                        <div class="col-6 col-md-3"><div class="text-muted small">@L["Fhp.Owner"]</div><div>@Model.Owner</div></div>
+                    }
+                    <div class="col-6 col-md-3"><div class="text-muted small">@L["Fhp.Date"]</div><div>@b.FinalHoneyProductionDate?.ToString("dd.MM.yyyy")</div></div>
+                    <div class="col-6 col-md-3"><div class="text-muted small">@L["Fhp.Total"]</div><div>@b.FinalHoneyProductionTotalAmount?.ToString("0.##") kg</div></div>
+                </div>
+
+                @if (!Model.Completed)
+                {
+                    <div class="alert alert-warning" id="details-not-completed">
+                        <p class="mb-2">@L["Fhp.NotCompleted"]</p>
+                        <strong>@L["Fhp.Missing"]:</strong>
+                        <ul class="mb-0">
+                            @foreach (var blocker in Model.Blockers)
+                            {
+                                <li>@Msg.T(blocker)</li>
+                            }
+                        </ul>
+                    </div>
+                    @if (!b.FinalHoneyProductionIsFinalized)
+                    {
+                        <a asp-action="ManageCCP" asp-route-id="@b.FinalHoneyProductionId" class="btn btn-primary btn-sm">@L["Fhp.ManageCcps"]</a>
+                    }
+                }
+                else
+                {
+                    <h5 class="mt-2">@L["Fhp.Lots"]</h5>
+                    <div class="table-responsive mb-3">
+                        <table class="table table-sm table-bordered align-middle" id="details-lots">
+                            <thead class="table-light">
+                                <tr><th>@L["Fhp.Lot"]</th><th>@L["Fhp.Beekeeper"]</th><th>@L["Fhp.Apiary"]</th><th>@L["Fhp.HoneyType"]</th><th>@L["Fhp.Date"]</th><th>@L["Fhp.Used"]</th><th>@L["Fhp.LotCcps"]</th></tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var lot in Model.Lots)
+                                {
+                                    <tr>
+                                        <td>#@lot.LotId</td>
+                                        <td>@lot.Beekeeper</td>
+                                        <td>@lot.Apiary</td>
+                                        <td>@lot.HoneyType</td>
+                                        <td>@lot.ProductionDate?.ToString("dd.MM.yyyy")</td>
+                                        <td>@lot.UsedAmount.ToString("0.##") kg</td>
+                                        <td>@lot.CcpsDone / @lot.CcpsTotal</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h5>@L["Fhp.BatchCcps"]</h5>
+                    <div class="table-responsive mb-3">
+                        <table class="table table-sm table-bordered align-middle" id="details-ccps">
+                            <thead class="table-light">
+                                <tr><th>KKN / CCP</th><th>@L["Fhp.Status"]</th><th>@L["Fhp.ApprovedAt"]</th></tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var ccp in Model.Ccps)
+                                {
+                                    <tr>
+                                        <td><strong>@ccp.Code</strong> @ccp.Title</td>
+                                        <td>@(ccp.Status == AssignmentStatusIds.NotApplicable ? L["Ccp.NotApplicableShort"].Value : ccp.StatusName)</td>
+                                        <td>@ccp.ApprovedAt?.ToString("dd.MM.yyyy HH:mm")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    @if (Model.OrgModelOn && Model.Reports.Any())
+                    {
+                        <h5>@L["Fhp.Reports"]</h5>
+                        <ul id="details-reports">
+                            @foreach (var report in Model.Reports)
+                            {
+                                <li>
+                                    <a href="/verify-report?code=@report.ReportCode" target="_blank" rel="noopener">@report.ReportCode</a>
+                                    · @report.Lab
+                                    @if (report.IsAccredited) { <span class="badge bg-success">@L["Fhp.Accredited"] @report.AccreditationNumber</span> }
+                                    @if (report.InHouse) { <span class="badge bg-warning text-dark">@L["Fhp.InHouse"]</span> }
+                                    @report.IssuedOn?.ToString("dd.MM.yyyy")
+                                </li>
+                            }
+                        </ul>
+                    }
+
+                    @if (b.FinalHoneyProductionIsFinalized)
+                    {
+                        <a href="/honeystory/@b.FinalHoneyProductionQR" target="_blank" rel="noopener" class="btn btn-outline-success btn-sm" id="details-honeystory">
+                            <i class="mdi mdi-qrcode me-1"></i>@L["Fhp.HoneyStory"]
+                        </a>
+                    }
+                }
+                <a asp-action="Index" class="btn btn-light btn-sm">@L["Fhp.Back"]</a>
+            </div>
+        </div>
+    </div>
+</div>
