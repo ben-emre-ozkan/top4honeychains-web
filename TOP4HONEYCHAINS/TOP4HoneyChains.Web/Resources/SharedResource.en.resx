@@ -5046,4 +5046,100 @@
   <data name="Your role ({0}) cannot manage storefronts; roles: {1}." xml:space="preserve">
     <value>Your role ({0}) cannot manage storefronts; roles: {1}.</value>
   </data>
+  <data name="Roles and permissions" xml:space="preserve">
+    <value>Roles and permissions</value>
+  </data>
+  <data name="Who works for which organization in which role, what each role may do, and which functions each organization has. Every change is recorded in the audit log." xml:space="preserve">
+    <value>Who works for which organization in which role, what each role may do, and which functions each organization has. Every change is recorded in the audit log.</value>
+  </data>
+  <data name="Fixed rules (cannot be switched off):" xml:space="preserve">
+    <value>Fixed rules (cannot be switched off):</value>
+  </data>
+  <data name="Nobody approves a record they entered themselves." xml:space="preserve">
+    <value>Nobody approves a record they entered themselves.</value>
+  </data>
+  <data name="Lab results are always approved by a second person." xml:space="preserve">
+    <value>Lab results are always approved by a second person.</value>
+  </data>
+  <data name="The audit log can only be added to; nothing in it is changed or deleted." xml:space="preserve">
+    <value>The audit log can only be added to; nothing in it is changed or deleted.</value>
+  </data>
+  <data name="Every change on this page is recorded in the audit log." xml:space="preserve">
+    <value>Every change on this page is recorded in the audit log.</value>
+  </data>
+  <data name="Members" xml:space="preserve">
+    <value>Members</value>
+  </data>
+  <data name="Role permissions" xml:space="preserve">
+    <value>Role permissions</value>
+  </data>
+  <data name="Organization capabilities" xml:space="preserve">
+    <value>Organization capabilities</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="Organization" xml:space="preserve">
+    <value>Organization</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Since" xml:space="preserve">
+    <value>Since</value>
+  </data>
+  <data name="Revoke this membership?" xml:space="preserve">
+    <value>Revoke this membership?</value>
+  </data>
+  <data name="Revoke" xml:space="preserve">
+    <value>Revoke</value>
+  </data>
+  <data name="Function" xml:space="preserve">
+    <value>Function</value>
+  </data>
+  <data name="Enter" xml:space="preserve">
+    <value>Enter</value>
+  </data>
+  <data name="Read" xml:space="preserve">
+    <value>Read</value>
+  </data>
+  <data name="CCP enter and approve rights are the CCP responsibility matrix; the organization still needs the capability the CCP requires." xml:space="preserve">
+    <value>CCP enter and approve rights are the CCP responsibility matrix; the organization still needs the capability the CCP requires.</value>
+  </data>
+  <data name="A beekeeping enterprise that sells its own honey can get Packing and Retail here. Accreditation of a laboratory is recorded on the organization page." xml:space="preserve">
+    <value>A beekeeping enterprise that sells its own honey can get Packing and Retail here. Accreditation of a laboratory is recorded on the organization page.</value>
+  </data>
+  <data name="Area.Intake" xml:space="preserve">
+    <value>Lot intake</value>
+  </data>
+  <data name="Area.Samples" xml:space="preserve">
+    <value>Samples (take / receive at the lab)</value>
+  </data>
+  <data name="Area.LabResults" xml:space="preserve">
+    <value>Lab results</value>
+  </data>
+  <data name="Area.Shipments" xml:space="preserve">
+    <value>Shipments (send / confirm receipt)</value>
+  </data>
+  <data name="Area.Storefront" xml:space="preserve">
+    <value>Beekeeper pages (consent)</value>
+  </data>
+  <data name="Area.Recall" xml:space="preserve">
+    <value>Recall report</value>
+  </data>
+  <data name="Area.Finalize" xml:space="preserve">
+    <value>Finalize batches (request / confirm)</value>
+  </data>
+  <data name="Choose an organization." xml:space="preserve">
+    <value>Choose an organization.</value>
+  </data>
+  <data name="Every right needs at least one role; nobody would have: {0}." xml:space="preserve">
+    <value>Every right needs at least one role; nobody would have: {0}.</value>
+  </data>
+  <data name="Permissions of {0} saved; they apply at once." xml:space="preserve">
+    <value>Permissions of {0} saved; they apply at once.</value>
+  </data>
+  <data name="Capabilities of {0} saved." xml:space="preserve">
+    <value>Capabilities of {0} saved.</value>
+  </data>
 </root>

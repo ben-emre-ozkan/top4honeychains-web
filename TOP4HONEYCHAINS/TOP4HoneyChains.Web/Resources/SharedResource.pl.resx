@@ -5046,4 +5046,100 @@
   <data name="Your role ({0}) cannot manage storefronts; roles: {1}." xml:space="preserve">
     <value>Twoja rola ({0}) nie może zarządzać stronami pszczelarzy; role: {1}.</value>
   </data>
+  <data name="Roles and permissions" xml:space="preserve">
+    <value>Role i uprawnienia</value>
+  </data>
+  <data name="Who works for which organization in which role, what each role may do, and which functions each organization has. Every change is recorded in the audit log." xml:space="preserve">
+    <value>Kto pracuje dla której organizacji i w jakiej roli, co może każda rola i jakie funkcje ma każda organizacja. Każda zmiana trafia do dziennika audytu.</value>
+  </data>
+  <data name="Fixed rules (cannot be switched off):" xml:space="preserve">
+    <value>Stałe zasady (nie można ich wyłączyć):</value>
+  </data>
+  <data name="Nobody approves a record they entered themselves." xml:space="preserve">
+    <value>Nikt nie zatwierdza wpisu, który sam wprowadził.</value>
+  </data>
+  <data name="Lab results are always approved by a second person." xml:space="preserve">
+    <value>Wyniki laboratoryjne zawsze zatwierdza druga osoba.</value>
+  </data>
+  <data name="The audit log can only be added to; nothing in it is changed or deleted." xml:space="preserve">
+    <value>Do dziennika audytu można tylko dopisywać; nic w nim nie jest zmieniane ani usuwane.</value>
+  </data>
+  <data name="Every change on this page is recorded in the audit log." xml:space="preserve">
+    <value>Każda zmiana na tej stronie trafia do dziennika audytu.</value>
+  </data>
+  <data name="Members" xml:space="preserve">
+    <value>Członkowie</value>
+  </data>
+  <data name="Role permissions" xml:space="preserve">
+    <value>Uprawnienia ról</value>
+  </data>
+  <data name="Organization capabilities" xml:space="preserve">
+    <value>Funkcje organizacji</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Użytkownik</value>
+  </data>
+  <data name="Organization" xml:space="preserve">
+    <value>Organizacja</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Dodaj</value>
+  </data>
+  <data name="Since" xml:space="preserve">
+    <value>Od</value>
+  </data>
+  <data name="Revoke this membership?" xml:space="preserve">
+    <value>Cofnąć to członkostwo?</value>
+  </data>
+  <data name="Revoke" xml:space="preserve">
+    <value>Cofnij</value>
+  </data>
+  <data name="Function" xml:space="preserve">
+    <value>Funkcja</value>
+  </data>
+  <data name="Enter" xml:space="preserve">
+    <value>Wprowadzanie</value>
+  </data>
+  <data name="Read" xml:space="preserve">
+    <value>Odczyt</value>
+  </data>
+  <data name="CCP enter and approve rights are the CCP responsibility matrix; the organization still needs the capability the CCP requires." xml:space="preserve">
+    <value>Prawa wprowadzania i zatwierdzania KPK to macierz odpowiedzialności KPK; organizacja nadal potrzebuje funkcji wymaganej przez KPK.</value>
+  </data>
+  <data name="A beekeeping enterprise that sells its own honey can get Packing and Retail here. Accreditation of a laboratory is recorded on the organization page." xml:space="preserve">
+    <value>Gospodarstwo pszczelarskie sprzedające własny miód może tu otrzymać Konfekcjonowanie i Sprzedaż detaliczną. Akredytację laboratorium zapisuje się na stronie organizacji.</value>
+  </data>
+  <data name="Area.Intake" xml:space="preserve">
+    <value>Przyjęcie partii</value>
+  </data>
+  <data name="Area.Samples" xml:space="preserve">
+    <value>Próbki (pobranie / przyjęcie w laboratorium)</value>
+  </data>
+  <data name="Area.LabResults" xml:space="preserve">
+    <value>Wyniki laboratoryjne</value>
+  </data>
+  <data name="Area.Shipments" xml:space="preserve">
+    <value>Wysyłki (wysłanie / potwierdzenie odbioru)</value>
+  </data>
+  <data name="Area.Storefront" xml:space="preserve">
+    <value>Strony pszczelarzy (zgoda)</value>
+  </data>
+  <data name="Area.Recall" xml:space="preserve">
+    <value>Raport wycofania</value>
+  </data>
+  <data name="Area.Finalize" xml:space="preserve">
+    <value>Zatwierdzanie partii końcowych (wniosek / potwierdzenie)</value>
+  </data>
+  <data name="Choose an organization." xml:space="preserve">
+    <value>Wybierz organizację.</value>
+  </data>
+  <data name="Every right needs at least one role; nobody would have: {0}." xml:space="preserve">
+    <value>Każde uprawnienie wymaga co najmniej jednej roli; nikt nie miałby: {0}.</value>
+  </data>
+  <data name="Permissions of {0} saved; they apply at once." xml:space="preserve">
+    <value>Uprawnienia roli {0} zapisane; obowiązują od razu.</value>
+  </data>
+  <data name="Capabilities of {0} saved." xml:space="preserve">
+    <value>Funkcje organizacji {0} zapisane.</value>
+  </data>
 </root>

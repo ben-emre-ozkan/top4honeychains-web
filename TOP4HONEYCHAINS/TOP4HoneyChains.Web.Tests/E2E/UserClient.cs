@@ -52,6 +52,14 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             return m.Groups[1].Value;
         }
 
+        // a form with repeated names (checkbox lists)
+        public async Task<HttpResponseMessage> PostPairsAsync(string url, IEnumerable<KeyValuePair<string, string>> pairs, string tokenFrom)
+        {
+            var list = pairs.ToList();
+            list.Add(new("__RequestVerificationToken", await TokenAsync(tokenFrom)));
+            return await _http.PostAsync(url, new FormUrlEncodedContent(list));
+        }
+
         public async Task<HttpResponseMessage> PostAsync(string url, Dictionary<string, string> form, string tokenFrom)
         {
             form["__RequestVerificationToken"] = await TokenAsync(tokenFrom);

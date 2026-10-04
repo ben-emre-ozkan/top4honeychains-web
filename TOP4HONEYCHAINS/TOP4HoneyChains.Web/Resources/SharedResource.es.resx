@@ -5046,4 +5046,100 @@
   <data name="Your role ({0}) cannot manage storefronts; roles: {1}." xml:space="preserve">
     <value>Su rol ({0}) no puede gestionar las páginas de apicultores; roles: {1}.</value>
   </data>
+  <data name="Roles and permissions" xml:space="preserve">
+    <value>Roles y permisos</value>
+  </data>
+  <data name="Who works for which organization in which role, what each role may do, and which functions each organization has. Every change is recorded in the audit log." xml:space="preserve">
+    <value>Quién trabaja para qué organización y con qué rol, qué puede hacer cada rol y qué funciones tiene cada organización. Cada cambio queda en el registro de auditoría.</value>
+  </data>
+  <data name="Fixed rules (cannot be switched off):" xml:space="preserve">
+    <value>Reglas fijas (no se pueden desactivar):</value>
+  </data>
+  <data name="Nobody approves a record they entered themselves." xml:space="preserve">
+    <value>Nadie aprueba un registro que haya introducido personalmente.</value>
+  </data>
+  <data name="Lab results are always approved by a second person." xml:space="preserve">
+    <value>Los resultados de laboratorio siempre los aprueba una segunda persona.</value>
+  </data>
+  <data name="The audit log can only be added to; nothing in it is changed or deleted." xml:space="preserve">
+    <value>Al registro de auditoría solo se añade; nada en él se modifica ni se borra.</value>
+  </data>
+  <data name="Every change on this page is recorded in the audit log." xml:space="preserve">
+    <value>Cada cambio en esta página queda en el registro de auditoría.</value>
+  </data>
+  <data name="Members" xml:space="preserve">
+    <value>Miembros</value>
+  </data>
+  <data name="Role permissions" xml:space="preserve">
+    <value>Permisos por rol</value>
+  </data>
+  <data name="Organization capabilities" xml:space="preserve">
+    <value>Capacidades de la organización</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+  <data name="Organization" xml:space="preserve">
+    <value>Organización</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Añadir</value>
+  </data>
+  <data name="Since" xml:space="preserve">
+    <value>Desde</value>
+  </data>
+  <data name="Revoke this membership?" xml:space="preserve">
+    <value>¿Revocar esta membresía?</value>
+  </data>
+  <data name="Revoke" xml:space="preserve">
+    <value>Revocar</value>
+  </data>
+  <data name="Function" xml:space="preserve">
+    <value>Función</value>
+  </data>
+  <data name="Enter" xml:space="preserve">
+    <value>Introducir</value>
+  </data>
+  <data name="Read" xml:space="preserve">
+    <value>Leer</value>
+  </data>
+  <data name="CCP enter and approve rights are the CCP responsibility matrix; the organization still needs the capability the CCP requires." xml:space="preserve">
+    <value>Los derechos de introducir y aprobar PCC son la matriz de responsabilidad de PCC; la organización sigue necesitando la capacidad que exige el PCC.</value>
+  </data>
+  <data name="A beekeeping enterprise that sells its own honey can get Packing and Retail here. Accreditation of a laboratory is recorded on the organization page." xml:space="preserve">
+    <value>Una explotación apícola que vende su propia miel puede recibir aquí Envasado y Venta minorista. La acreditación de un laboratorio se registra en la página de la organización.</value>
+  </data>
+  <data name="Area.Intake" xml:space="preserve">
+    <value>Recepción de lotes</value>
+  </data>
+  <data name="Area.Samples" xml:space="preserve">
+    <value>Muestras (tomar / recibir en el laboratorio)</value>
+  </data>
+  <data name="Area.LabResults" xml:space="preserve">
+    <value>Resultados de laboratorio</value>
+  </data>
+  <data name="Area.Shipments" xml:space="preserve">
+    <value>Envíos (enviar / confirmar recepción)</value>
+  </data>
+  <data name="Area.Storefront" xml:space="preserve">
+    <value>Páginas de apicultores (consentimiento)</value>
+  </data>
+  <data name="Area.Recall" xml:space="preserve">
+    <value>Informe de retiro</value>
+  </data>
+  <data name="Area.Finalize" xml:space="preserve">
+    <value>Finalizar partidas (solicitar / confirmar)</value>
+  </data>
+  <data name="Choose an organization." xml:space="preserve">
+    <value>Elija una organización.</value>
+  </data>
+  <data name="Every right needs at least one role; nobody would have: {0}." xml:space="preserve">
+    <value>Cada derecho necesita al menos un rol; nadie tendría: {0}.</value>
+  </data>
+  <data name="Permissions of {0} saved; they apply at once." xml:space="preserve">
+    <value>Permisos de {0} guardados; se aplican de inmediato.</value>
+  </data>
+  <data name="Capabilities of {0} saved." xml:space="preserve">
+    <value>Capacidades de {0} guardadas.</value>
+  </data>
 </root>

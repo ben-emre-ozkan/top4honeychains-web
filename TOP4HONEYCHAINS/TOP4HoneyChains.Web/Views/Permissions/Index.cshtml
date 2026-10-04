@@ -1,0 +1,153 @@
+﻿@using TOP4HoneyChains.Web.Models.Entities
+@using TOP4HoneyChains.Web.Controllers
+@{
+    ViewData["Title"] = L["Roles and permissions"].Value;
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var tab = (string)ViewBag.Tab;
+    var role = (string)ViewBag.Role;
+    string Tab(string t) => t == tab ? "nav-link active" : "nav-link";
+}
+@* D-56: members, role permissions and capabilities in one place; the fixed safety rules are shown, not editable *@
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-1">@L["Roles and permissions"]</h4>
+                <p class="card-title-desc">@L["Who works for which organization in which role, what each role may do, and which functions each organization has. Every change is recorded in the audit log."]</p>
+
+                <div class="alert alert-secondary small" id="fixed-rules">
+                    <strong>@L["Fixed rules (cannot be switched off):"]</strong>
+                    <ul class="mb-0">
+                        <li>@L["Nobody approves a record they entered themselves."]</li>
+                        <li>@L["Lab results are always approved by a second person."]</li>
+                        <li>@L["The audit log can only be added to; nothing in it is changed or deleted."]</li>
+                        <li>@L["Every change on this page is recorded in the audit log."]</li>
+                    </ul>
+                </div>
+
+                <ul class="nav nav-tabs mb-3">
+                    <li class="nav-item"><a class="@Tab("members")" href="?tab=members" id="tab-members">@L["Members"]</a></li>
+                    <li class="nav-item"><a class="@Tab("roles")" href="?tab=roles&role=@role" id="tab-roles">@L["Role permissions"]</a></li>
+                    <li class="nav-item"><a class="@Tab("capabilities")" href="?tab=capabilities" id="tab-capabilities">@L["Organization capabilities"]</a></li>
+                </ul>
+
+                @if (tab == "members")
+                {
+                    var members = (List<PermissionsController.MemberRow>)ViewBag.Members;
+                    var users = (List<string>)ViewBag.Users;
+                    <form asp-action="AddMember" method="post" class="row g-2 align-items-end mb-3" id="add-member">
+                        <div class="col-md-4">
+                            <label class="form-label" for="userName">@L["User"]</label>
+                            <input name="userName" id="userName" class="form-control" list="user-list" autocomplete="off" required />
+                            <datalist id="user-list">@foreach (var u in users) { <option value="@u"></option> }</datalist>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label" for="orgId">@L["Organization"]</label>
+                            <select name="orgId" id="orgId" class="form-select" required>
+                                <option value="">@L["-- Select --"]</option>
+                                @foreach (var o in (IEnumerable<dynamic>)ViewBag.Orgs) { <option value="@o.OrgId">@o.DisplayName</option> }
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label" for="orgRole">@L["Role"]</label>
+                            <select name="orgRole" id="orgRole" class="form-select" required>
+                                @foreach (var r in OrgRoles.All) { <option value="@r">@Ref.Role(r)</option> }
+                            </select>
+                        </div>
+                        <div class="col-md-1"><button type="submit" class="btn btn-primary w-100">@L["Add"]</button></div>
+                    </form>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered align-middle" id="members">
+                            <thead class="table-light"><tr><th>@L["User"]</th><th>@L["Organization"]</th><th>@L["Role"]</th><th>@L["Since"]</th><th></th></tr></thead>
+                            <tbody>
+                                @foreach (var m in members)
+                                {
+                                    <tr data-membership="@m.MembershipId">
+                                        <td>@m.UserName</td><td>@m.OrgName</td><td>@Ref.Role(m.OrgRole)</td><td>@m.GrantedAt.ToString("dd.MM.yyyy")</td>
+                                        <td>
+                                            <form asp-action="RevokeMember" method="post" class="d-inline" data-confirm="@L["Revoke this membership?"]" onsubmit="return confirm(this.dataset.confirm);">
+                                                <input type="hidden" name="membershipId" value="@m.MembershipId" />
+                                                <button type="submit" class="btn btn-sm btn-outline-danger">@L["Revoke"]</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else if (tab == "roles")
+                {
+                    var matrix = (List<PermissionsController.MatrixRow>)ViewBag.Matrix;
+                    <form method="get" class="row g-2 mb-3">
+                        <input type="hidden" name="tab" value="roles" />
+                        <div class="col-md-4">
+                            <label class="form-label" for="role-picker">@L["Role"]</label>
+                            <select name="role" id="role-picker" class="form-select" onchange="this.form.submit()">
+                                @foreach (var r in OrgRoles.All) { <option value="@r" selected="@(r == role)">@Ref.Role(r)</option> }
+                            </select>
+                        </div>
+                    </form>
+                    <form asp-action="SaveRole" method="post" id="role-matrix">
+                        <input type="hidden" name="role" value="@role" />
+                        <div class="table-responsive">
+                            <table class="table table-sm table-bordered align-middle">
+                                <thead class="table-light"><tr><th>@L["Function"]</th><th class="text-center">@L["Enter"]</th><th class="text-center">@L["Approve"]</th><th class="text-center">@L["Read"]</th></tr></thead>
+                                <tbody>
+                                    @foreach (var row in matrix)
+                                    {
+                                        <tr>
+                                            <td>@(row.Label.StartsWith("Area.") ? L[row.Label].Value : row.Label) <small class="text-muted">@(row.CcpId != null ? Ref.CcpTitle(row.CcpId, row.Detail) : row.Detail)</small></td>
+                                            @foreach (var cell in new[] { row.Enter, row.Approve, row.Read })
+                                            {
+                                                <td class="text-center">
+                                                    @if (cell.Available)
+                                                    {
+                                                        <input type="checkbox" class="form-check-input" name="allow" value="@cell.Key" checked="@cell.Allowed" aria-label="@cell.Key" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="text-muted">–</span>
+                                                    }
+                                                </td>
+                                            }
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="small text-muted">@L["CCP enter and approve rights are the CCP responsibility matrix; the organization still needs the capability the CCP requires."]</p>
+                        <button type="submit" class="btn btn-primary">@L["Save"]</button>
+                    </form>
+                }
+                else
+                {
+                    var caps = (List<string>)ViewBag.AllCapabilities;
+                    var rows = (List<PermissionsController.CapabilityRow>)ViewBag.CapabilityRows;
+                    <p class="small text-muted">@L["A beekeeping enterprise that sells its own honey can get Packing and Retail here. Accreditation of a laboratory is recorded on the organization page."]</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered align-middle" id="capabilities">
+                            <thead class="table-light">
+                                <tr><th>@L["Organization"]</th>@foreach (var c in caps) { <th class="text-center small">@Ref.Capability(c)</th> }<th></th></tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var o in rows)
+                                {
+                                    <tr data-org="@o.OrgId">
+                                        <td>@o.OrgName <span class="badge bg-light text-dark border">@L[o.Status]</span></td>
+                                        <form asp-action="SaveCapabilities" method="post" id="caps-@o.OrgId"><input type="hidden" name="orgId" value="@o.OrgId" /></form>
+                                        @foreach (var c in caps)
+                                        {
+                                            <td class="text-center"><input type="checkbox" class="form-check-input" form="caps-@o.OrgId" name="capabilities" value="@c" checked="@o.Capabilities.Contains(c)" aria-label="@c" /></td>
+                                        }
+                                        <td><button type="submit" form="caps-@o.OrgId" class="btn btn-sm btn-primary">@L["Save"]</button></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
