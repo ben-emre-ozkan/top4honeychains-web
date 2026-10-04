@@ -220,6 +220,14 @@ namespace TOP4HoneyChains.Web.Controllers
                 error = "Upload the report PDF before submitting.";
             else if (error == null && (report!.ReportNumber == null || report.IssuedOn == null))
                 error = "Enter the report number and the issue date before submitting.";
+            if (error == null)
+            {
+                // D-54: every required parameter needs a value before the report goes to the lab manager
+                var parameters = (await _lab.LabParametersAsync(await _lab.LabCcpIdAsync() ?? 0)).Where(p => p.IsRequired).ToList();
+                var missing = LabService.MissingRequired(report, parameters);
+                if (missing.Count > 0)
+                    error = $"Enter all required values before submitting: {parameters.Count - missing.Count} of {parameters.Count} entered.";
+            }
             if (error != null)
             {
                 TempData["Error"] = error;
