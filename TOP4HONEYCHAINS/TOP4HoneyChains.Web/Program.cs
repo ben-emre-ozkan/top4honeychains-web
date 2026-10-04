@@ -73,6 +73,7 @@ builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpS
 
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<CcpIntegrityService>();
+builder.Services.AddScoped<MessageTranslator>();
 builder.Services.AddScoped<ICurrentOrg, CurrentOrg>();
 builder.Services.AddScoped<CcpResponsibilityService>();
 builder.Services.AddScoped<OrgScope>();
@@ -96,12 +97,17 @@ builder.Services.AddControllersWithViews(options =>
     // FK/unique violations on save/delete -> friendly message instead of HTTP 500
     options.Filters.Add<DbUpdateExceptionFilter>();
 
+    // Server messages are written in English and translated at display time (English stays the fallback)
+    options.Filters.Add<TranslateModelStateFilter>();
+
     // An empty number/date field posts "" and used to show "The value '' is invalid."
     options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(_ => "This field is required.");
 
     // Decimal input must not depend on the UI language: "1.5" and "1,5" both mean 1.5 (ENG-07)
     options.ModelBinderProviders.Insert(0, new TOP4HoneyChains.Web.ModelBinding.FlexibleDecimalModelBinderProvider());
-});
+})
+// Validation attribute messages are looked up in SharedResource by their English text
+.AddDataAnnotationsLocalization(o => o.DataAnnotationLocalizerProvider = (_, factory) => factory.Create(typeof(TOP4HoneyChains.Web.SharedResource)));
 
 var app = builder.Build();
 

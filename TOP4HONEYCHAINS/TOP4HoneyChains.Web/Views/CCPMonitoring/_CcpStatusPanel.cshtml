@@ -9,13 +9,13 @@
 @if (Model.LockReason != null)
 {
     <div class="alert alert-warning">
-        <i class="mdi mdi-lock-outline me-1"></i> @Model.LockReason
+        <i class="mdi mdi-lock-outline me-1"></i> @Msg.T(Model.LockReason)
     </div>
 }
 else if (!Model.CanEnter)
 {
     <div class="alert alert-info" id="ccp-read-only">
-        <i class="mdi mdi-eye-outline me-1"></i> @L["Ccp.ReadOnly"]: @Model.EnterDeniedReason
+        <i class="mdi mdi-eye-outline me-1"></i> @L["Ccp.ReadOnly"]: @Msg.T(Model.EnterDeniedReason)
     </div>
 }
 
@@ -118,7 +118,7 @@ else if (!Model.CanEnter)
                 }
                 else if (Model.ApproveDeniedReason != null)
                 {
-                    <div class="small text-muted mt-1">@Model.ApproveDeniedReason</div>
+                    <div class="small text-muted mt-1">@Msg.T(Model.ApproveDeniedReason)</div>
                 }
             }
         </div>

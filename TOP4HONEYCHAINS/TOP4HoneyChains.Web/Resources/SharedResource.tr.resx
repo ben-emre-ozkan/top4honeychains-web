@@ -744,4 +744,556 @@
   <data name="Ccp.Approve" xml:space="preserve">
     <value>Onayla</value>
   </data>
+  <data name="Invalid password" xml:space="preserve">
+    <value>Geçersiz parola</value>
+  </data>
+  <data name="Phone number updated." xml:space="preserve">
+    <value>Telefon numarası güncellendi.</value>
+  </data>
+  <data name="Password changed." xml:space="preserve">
+    <value>Parola değiştirildi.</value>
+  </data>
+  <data name="Please select a file." xml:space="preserve">
+    <value>Lütfen bir dosya seçin.</value>
+  </data>
+  <data name="Photo uploaded." xml:space="preserve">
+    <value>Fotoğraf yüklendi.</value>
+  </data>
+  <data name="Description updated." xml:space="preserve">
+    <value>Açıklama güncellendi.</value>
+  </data>
+  <data name="Photo deleted." xml:space="preserve">
+    <value>Fotoğraf silindi.</value>
+  </data>
+  <data name="Role created successfully." xml:space="preserve">
+    <value>Rol oluşturuldu.</value>
+  </data>
+  <data name="Role updated successfully." xml:space="preserve">
+    <value>Rol güncellendi.</value>
+  </data>
+  <data name="Role deleted successfully." xml:space="preserve">
+    <value>Rol silindi.</value>
+  </data>
+  <data name="Select a valid role." xml:space="preserve">
+    <value>Geçerli bir rol seçin.</value>
+  </data>
+  <data name="Password update failed: enter the new password twice (identical)." xml:space="preserve">
+    <value>Parola güncellenemedi: yeni parolayı iki kez (aynı) girin.</value>
+  </data>
+  <data name="Password update failed: user not found." xml:space="preserve">
+    <value>Parola güncellenemedi: kullanıcı bulunamadı.</value>
+  </data>
+  <data name="Password updated successfully." xml:space="preserve">
+    <value>Parola güncellendi.</value>
+  </data>
+  <data name="Password update failed." xml:space="preserve">
+    <value>Parola güncellenemedi.</value>
+  </data>
+  <data name="A video file is required." xml:space="preserve">
+    <value>Bir video dosyası gerekli.</value>
+  </data>
+  <data name="Content deleted successfully" xml:space="preserve">
+    <value>İçerik silindi</value>
+  </data>
+  <data name="This field is required." xml:space="preserve">
+    <value>Bu alan zorunludur.</value>
+  </data>
+  <data name="Hash chain: {0}" xml:space="preserve">
+    <value>Hash zinciri: {0}</value>
+  </data>
+  <data name="All {0} rows verify." xml:space="preserve">
+    <value>{0} satırın tümü doğrulandı.</value>
+  </data>
+  <data name="The audit log is empty." xml:space="preserve">
+    <value>Denetim kaydı boş.</value>
+  </data>
+  <data name="Row {0} does not point to the previous row." xml:space="preserve">
+    <value>{0} numaralı satır önceki satıra bağlanmıyor.</value>
+  </data>
+  <data name="Row {0} was changed after it was written." xml:space="preserve">
+    <value>{0} numaralı satır yazıldıktan sonra değiştirilmiş.</value>
+  </data>
+  <data name="This CCP is not assigned to the lot." xml:space="preserve">
+    <value>Bu KKN lota atanmamış.</value>
+  </data>
+  <data name="This CCP is not assigned to the batch." xml:space="preserve">
+    <value>Bu KKN partiye atanmamış.</value>
+  </data>
+  <data name="{0} values saved." xml:space="preserve">
+    <value>{0} değerleri kaydedildi.</value>
+  </data>
+  <data name="Your role cannot record this CCP." xml:space="preserve">
+    <value>Rolünüz bu KKN için veri giremez.</value>
+  </data>
+  <data name="Your role can read this CCP but not record it." xml:space="preserve">
+    <value>Rolünüz bu KKN'yi okuyabilir ama veri giremez.</value>
+  </data>
+  <data name="This CCP already has recorded values, so it cannot be marked &quot;Not applicable&quot;. Clear the values first if the CCP really does not apply." xml:space="preserve">
+    <value>Bu KKN'de kayıtlı değerler var, bu yüzden &quot;Uygulanamaz&quot; olarak işaretlenemez. KKN gerçekten uygulanmıyorsa önce değerleri temizleyin.</value>
+  </data>
+  <data name="A reason is required to mark a CCP as &quot;Not applicable&quot;." xml:space="preserve">
+    <value>Bir KKN'yi &quot;Uygulanamaz&quot; olarak işaretlemek için gerekçe zorunludur.</value>
+  </data>
+  <data name="The reason can be at most 500 characters." xml:space="preserve">
+    <value>Gerekçe en çok 500 karakter olabilir.</value>
+  </data>
+  <data name="The CCP is marked &quot;Not applicable&quot;." xml:space="preserve">
+    <value>KKN &quot;Uygulanamaz&quot; olarak işaretlendi.</value>
+  </data>
+  <data name="Only a QualityApprover of the organization can approve." xml:space="preserve">
+    <value>Yalnızca kurumun QualityApprover rolündeki kişisi onaylayabilir.</value>
+  </data>
+  <data name="Only a submitted (or &quot;Not applicable&quot;) CCP record can be approved." xml:space="preserve">
+    <value>Yalnızca gönderilmiş (veya &quot;Uygulanamaz&quot;) bir KKN kaydı onaylanabilir.</value>
+  </data>
+  <data name="This CCP record is already approved." xml:space="preserve">
+    <value>Bu KKN kaydı zaten onaylandı.</value>
+  </data>
+  <data name="Approved under the four-eyes exemption (flagged in the audit log)." xml:space="preserve">
+    <value>Dört göz muafiyetiyle onaylandı (denetim kaydında işaretlendi).</value>
+  </data>
+  <data name="CCP record approved." xml:space="preserve">
+    <value>KKN kaydı onaylandı.</value>
+  </data>
+  <data name="Four-eyes: you recorded values of this CCP, so another person must approve it." xml:space="preserve">
+    <value>Dört göz: bu KKN'nin değerlerini siz girdiniz, başka bir kişinin onaylaması gerekir.</value>
+  </data>
+  <data name="A reason is required for a correction." xml:space="preserve">
+    <value>Düzeltme için gerekçe zorunludur.</value>
+  </data>
+  <data name="File values cannot be corrected here." xml:space="preserve">
+    <value>Dosya değerleri burada düzeltilemez.</value>
+  </data>
+  <data name="{0}: enter a number." xml:space="preserve">
+    <value>{0}: bir sayı girin.</value>
+  </data>
+  <data name="{0}: choose Yes or No." xml:space="preserve">
+    <value>{0}: Evet veya Hayır seçin.</value>
+  </data>
+  <data name="{0}: enter text." xml:space="preserve">
+    <value>{0}: metin girin.</value>
+  </data>
+  <data name="{0}: enter either a number or a text." xml:space="preserve">
+    <value>{0}: ya bir sayı ya da metin girin.</value>
+  </data>
+  <data name="The text can be at most 100 characters." xml:space="preserve">
+    <value>Metin en çok 100 karakter olabilir.</value>
+  </data>
+  <data name="Correction requested; another platform administrator must approve it." xml:space="preserve">
+    <value>Düzeltme talep edildi; başka bir platform yöneticisinin onaylaması gerekir.</value>
+  </data>
+  <data name="This correction was already decided." xml:space="preserve">
+    <value>Bu düzeltme için zaten karar verildi.</value>
+  </data>
+  <data name="Four-eyes: the person who requested a correction cannot decide it." xml:space="preserve">
+    <value>Dört göz: düzeltmeyi talep eden kişi karar veremez.</value>
+  </data>
+  <data name="A note is required to reject a correction." xml:space="preserve">
+    <value>Düzeltmeyi reddetmek için not zorunludur.</value>
+  </data>
+  <data name="Correction applied." xml:space="preserve">
+    <value>Düzeltme uygulandı.</value>
+  </data>
+  <data name="Correction rejected." xml:space="preserve">
+    <value>Düzeltme reddedildi.</value>
+  </data>
+  <data name="Choose who is responsible." xml:space="preserve">
+    <value>Sorumlu tarafı seçin.</value>
+  </data>
+  <data name="Choose at least one capability." xml:space="preserve">
+    <value>En az bir yetenek seçin.</value>
+  </data>
+  <data name="Choose at least one role that enters values." xml:space="preserve">
+    <value>Değer giren en az bir rol seçin.</value>
+  </data>
+  <data name="Choose at least one approving role, or turn approval off." xml:space="preserve">
+    <value>En az bir onaylayan rol seçin veya onayı kapatın.</value>
+  </data>
+  <data name="Saved; the change applies at once." xml:space="preserve">
+    <value>Kaydedildi; değişiklik hemen geçerli.</value>
+  </data>
+  <data name="The maximum must not be lower than the minimum." xml:space="preserve">
+    <value>En büyük değer en küçük değerden düşük olamaz.</value>
+  </data>
+  <data name="Unknown honey class." xml:space="preserve">
+    <value>Bilinmeyen bal sınıfı.</value>
+  </data>
+  <data name="Enter a minimum or a maximum." xml:space="preserve">
+    <value>En küçük veya en büyük değer girin.</value>
+  </data>
+  <data name="A condition needs both a parameter and a value." xml:space="preserve">
+    <value>Koşul için hem parametre hem değer gerekir.</value>
+  </data>
+  <data name="The note can be at most 300 characters." xml:space="preserve">
+    <value>Not en çok 300 karakter olabilir.</value>
+  </data>
+  <data name="A limit can use a sum or a ratio, not both." xml:space="preserve">
+    <value>Bir limit toplam veya oran kullanabilir, ikisini birden değil.</value>
+  </data>
+  <data name="Unknown honey type." xml:space="preserve">
+    <value>Bilinmeyen bal türü.</value>
+  </data>
+  <data name="Condition, sum and ratio parameters must be other parameters of the same CCP." xml:space="preserve">
+    <value>Koşul, toplam ve oran parametreleri aynı KKN'nin diğer parametreleri olmalıdır.</value>
+  </data>
+  <data name="Limit added." xml:space="preserve">
+    <value>Limit eklendi.</value>
+  </data>
+  <data name="Limit removed." xml:space="preserve">
+    <value>Limit kaldırıldı.</value>
+  </data>
+  <data name="This batch is locked and cannot be modified." xml:space="preserve">
+    <value>Bu parti kilitli ve değiştirilemez.</value>
+  </data>
+  <data name="With the organization model, the owning organization finalizes the batch (request and approval by two people)." xml:space="preserve">
+    <value>Kurum modelinde partiyi sahibi olan kurum kesinleştirir (iki kişi: talep ve onay).</value>
+  </data>
+  <data name="The batch cannot be finalized yet: {0}" xml:space="preserve">
+    <value>Parti henüz kesinleştirilemez: {0}</value>
+  </data>
+  <data name="Batch finalized successfully." xml:space="preserve">
+    <value>Parti kesinleştirildi.</value>
+  </data>
+  <data name="Only CCPs that apply to final batches can be assigned. Nothing was changed." xml:space="preserve">
+    <value>Yalnızca partilere uygulanan KKN'ler atanabilir. Hiçbir şey değiştirilmedi.</value>
+  </data>
+  <data name="Only CCPs that apply to raw honey lots can be assigned. Nothing was changed." xml:space="preserve">
+    <value>Yalnızca ham bal lotlarına uygulanan KKN'ler atanabilir. Hiçbir şey değiştirilmedi.</value>
+  </data>
+  <data name="Unknown organization." xml:space="preserve">
+    <value>Bilinmeyen kurum.</value>
+  </data>
+  <data name="This batch is finalized and locked. Its data, composition, CCPs and CCP values can no longer be changed." xml:space="preserve">
+    <value>Bu parti kesinleşti ve kilitlendi. Bilgileri, bileşimi, KKN'leri ve KKN değerleri artık değiştirilemez.</value>
+  </data>
+  <data name="This raw honey lot is used in the finalized batch {0} and is locked. Its data, CCPs and CCP values can no longer be changed." xml:space="preserve">
+    <value>Bu ham bal lotu kesinleşmiş {0} partisinde kullanıldığı için kilitli. Bilgileri, KKN'leri ve KKN değerleri artık değiştirilemez.</value>
+  </data>
+  <data name="The batch has no raw honey yet (total must be greater than zero)." xml:space="preserve">
+    <value>Partide henüz ham bal yok (toplam sıfırdan büyük olmalı).</value>
+  </data>
+  <data name="Batch: {0} ({1}) is not assigned." xml:space="preserve">
+    <value>Parti: {0} ({1}) atanmamış.</value>
+  </data>
+  <data name="Batch: {0} ({1}) is {2}." xml:space="preserve">
+    <value>Parti: {0} ({1}) durumu: {2}.</value>
+  </data>
+  <data name="{0}: no CCP assigned." xml:space="preserve">
+    <value>{0}: atanmış KKN yok.</value>
+  </data>
+  <data name="{0}: {1} ({2}) is {3}." xml:space="preserve">
+    <value>{0}: {1} ({2}) durumu: {3}.</value>
+  </data>
+  <data name="{0}, not approved yet" xml:space="preserve">
+    <value>{0}, henüz onaylanmadı</value>
+  </data>
+  <data name="not completed" xml:space="preserve">
+    <value>tamamlanmadı</value>
+  </data>
+  <data name="Assigned" xml:space="preserve">
+    <value>Atandı</value>
+  </data>
+  <data name="In Progress" xml:space="preserve">
+    <value>Devam ediyor</value>
+  </data>
+  <data name="Completed" xml:space="preserve">
+    <value>Tamamlandı</value>
+  </data>
+  <data name="Not applicable" xml:space="preserve">
+    <value>Uygulanamaz</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Reddedildi</value>
+  </data>
+  <data name="Submitted" xml:space="preserve">
+    <value>Gönderildi</value>
+  </data>
+  <data name="Unknown or reserved capability." xml:space="preserve">
+    <value>Bilinmeyen veya ayrılmış yetenek.</value>
+  </data>
+  <data name="This wholesaler is already linked to an organization." xml:space="preserve">
+    <value>Bu toptancı zaten bir kuruma bağlı.</value>
+  </data>
+  <data name="Organization created. It stays Pending until it is verified." xml:space="preserve">
+    <value>Kurum oluşturuldu. Doğrulanana kadar Beklemede kalır.</value>
+  </data>
+  <data name="Organization saved." xml:space="preserve">
+    <value>Kurum kaydedildi.</value>
+  </data>
+  <data name="The organization already has this capability." xml:space="preserve">
+    <value>Kurumda bu yetenek zaten var.</value>
+  </data>
+  <data name="An accredited laboratory needs an accreditation number." xml:space="preserve">
+    <value>Akredite laboratuvar için akreditasyon numarası gerekir.</value>
+  </data>
+  <data name="Capability {0} added." xml:space="preserve">
+    <value>{0} yeteneği eklendi.</value>
+  </data>
+  <data name="The platform capability cannot be removed." xml:space="preserve">
+    <value>Platform yeteneği kaldırılamaz.</value>
+  </data>
+  <data name="An organization needs at least one capability." xml:space="preserve">
+    <value>Bir kurumun en az bir yeteneği olmalıdır.</value>
+  </data>
+  <data name="Capability {0} removed." xml:space="preserve">
+    <value>{0} yeteneği kaldırıldı.</value>
+  </data>
+  <data name="Four-eyes exemption set: members may approve their own CCP records; each such approval is flagged in the audit log. It never applies to lab results." xml:space="preserve">
+    <value>Dört göz muafiyeti verildi: üyeler kendi KKN kayıtlarını onaylayabilir; her böyle onay denetim kaydında işaretlenir. Laboratuvar sonuçlarına hiçbir zaman uygulanmaz.</value>
+  </data>
+  <data name="Four-eyes exemption removed." xml:space="preserve">
+    <value>Dört göz muafiyeti kaldırıldı.</value>
+  </data>
+  <data name="Choose a document type." xml:space="preserve">
+    <value>Bir belge türü seçin.</value>
+  </data>
+  <data name="Choose a file." xml:space="preserve">
+    <value>Bir dosya seçin.</value>
+  </data>
+  <data name="Document uploaded." xml:space="preserve">
+    <value>Belge yüklendi.</value>
+  </data>
+  <data name="The platform organization cannot change status." xml:space="preserve">
+    <value>Platform kurumunun durumu değiştirilemez.</value>
+  </data>
+  <data name="Upload at least one document (licence, accreditation, registry proof) before verifying." xml:space="preserve">
+    <value>Doğrulamadan önce en az bir belge (ruhsat, akreditasyon, kayıt kanıtı) yükleyin.</value>
+  </data>
+  <data name="A reason is required to suspend." xml:space="preserve">
+    <value>Askıya almak için gerekçe zorunludur.</value>
+  </data>
+  <data name="Write which documents are requested." xml:space="preserve">
+    <value>Hangi belgelerin istendiğini yazın.</value>
+  </data>
+  <data name="{0} cannot change to {1}." xml:space="preserve">
+    <value>{0} durumundan {1} durumuna geçilemez.</value>
+  </data>
+  <data name="Documents requested." xml:space="preserve">
+    <value>Belgeler istendi.</value>
+  </data>
+  <data name="Organization is now {0}." xml:space="preserve">
+    <value>Kurumun durumu artık: {0}.</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>Beklemede</value>
+  </data>
+  <data name="Verified" xml:space="preserve">
+    <value>Doğrulandı</value>
+  </data>
+  <data name="Suspended" xml:space="preserve">
+    <value>Askıda</value>
+  </data>
+  <data name="Choose an org role." xml:space="preserve">
+    <value>Bir kurum rolü seçin.</value>
+  </data>
+  <data name="No user with this user name." xml:space="preserve">
+    <value>Bu kullanıcı adıyla kullanıcı yok.</value>
+  </data>
+  <data name="Enter an existing user name, or a new user name, e-mail and password." xml:space="preserve">
+    <value>Mevcut bir kullanıcı adı ya da yeni kullanıcı adı, e-posta ve parola girin.</value>
+  </data>
+  <data name="The user already has this role in the organization." xml:space="preserve">
+    <value>Kullanıcının kurumda bu rolü zaten var.</value>
+  </data>
+  <data name="{0} added as {1}." xml:space="preserve">
+    <value>{0}, {1} olarak eklendi.</value>
+  </data>
+  <data name="You cannot revoke your own platform membership." xml:space="preserve">
+    <value>Kendi platform üyeliğinizi iptal edemezsiniz.</value>
+  </data>
+  <data name="Membership revoked." xml:space="preserve">
+    <value>Üyelik iptal edildi.</value>
+  </data>
+  <data name="This batch is already finalized." xml:space="preserve">
+    <value>Bu parti zaten kesinleşti.</value>
+  </data>
+  <data name="Finalizing is requested by {0} of a verified organization." xml:space="preserve">
+    <value>Kesinleştirmeyi doğrulanmış bir kurumun {0} rolündeki kişisi talep eder.</value>
+  </data>
+  <data name="Finalizing requested; a QualityApprover (another person) must confirm it." xml:space="preserve">
+    <value>Kesinleştirme talep edildi; bir QualityApprover (başka bir kişi) onaylamalı.</value>
+  </data>
+  <data name="Only a {0} of a verified organization can finalize." xml:space="preserve">
+    <value>Yalnızca doğrulanmış bir kurumun {0} rolündeki kişisi kesinleştirebilir.</value>
+  </data>
+  <data name="Finalizing must be requested first." xml:space="preserve">
+    <value>Önce kesinleştirme talep edilmelidir.</value>
+  </data>
+  <data name="Four-eyes: the person who requested finalizing cannot confirm it." xml:space="preserve">
+    <value>Dört göz: kesinleştirmeyi talep eden kişi onaylayamaz.</value>
+  </data>
+  <data name="Batch finalized under the four-eyes exemption (flagged in the audit log)." xml:space="preserve">
+    <value>Parti dört göz muafiyetiyle kesinleşti (denetim kaydında işaretlendi).</value>
+  </data>
+  <data name="Batch finalized." xml:space="preserve">
+    <value>Parti kesinleşti.</value>
+  </data>
+  <data name="Choose an organization with the Association capability." xml:space="preserve">
+    <value>Birlik yeteneği olan bir kurum seçin.</value>
+  </data>
+  <data name="Association saved." xml:space="preserve">
+    <value>Birlik kaydedildi.</value>
+  </data>
+  <data name="The number must be TR, a province code 01-81 and 10 digits (e.g. TR061234567890)." xml:space="preserve">
+    <value>Numara TR, 01-81 arası il kodu ve 10 haneden oluşmalı (ör. TR061234567890).</value>
+  </data>
+  <data name="Registry number verified." xml:space="preserve">
+    <value>Kayıt numarası doğrulandı.</value>
+  </data>
+  <data name="Request rejected." xml:space="preserve">
+    <value>Talep reddedildi.</value>
+  </data>
+  <data name="A proof document is required for manual verification." xml:space="preserve">
+    <value>Elle doğrulama için kanıt belgesi zorunludur.</value>
+  </data>
+  <data name="Submitted; waiting for a platform administrator." xml:space="preserve">
+    <value>Gönderildi; platform yöneticisi bekleniyor.</value>
+  </data>
+  <data name="The request is not pending." xml:space="preserve">
+    <value>Talep beklemede değil.</value>
+  </data>
+  <data name="A reason is required to reject." xml:space="preserve">
+    <value>Reddetmek için gerekçe zorunludur.</value>
+  </data>
+  <data name="No access." xml:space="preserve">
+    <value>Erişim yok.</value>
+  </data>
+  <data name="Approvals need the organization model." xml:space="preserve">
+    <value>Onaylar kurum modeli gerektirir.</value>
+  </data>
+  <data name="Platform administrators are read-only on business data; request a correction instead." xml:space="preserve">
+    <value>Platform yöneticileri iş verisini yalnızca okuyabilir; bunun yerine düzeltme talep edin.</value>
+  </data>
+  <data name="Platform administrators do not approve CCP records." xml:space="preserve">
+    <value>Platform yöneticileri KKN kayıtlarını onaylamaz.</value>
+  </data>
+  <data name="No active membership." xml:space="preserve">
+    <value>Etkin üyelik yok.</value>
+  </data>
+  <data name="This control point is the responsibility of another organization; you can read it only." xml:space="preserve">
+    <value>Bu kontrol noktası başka bir kurumun sorumluluğunda; yalnızca okuyabilirsiniz.</value>
+  </data>
+  <data name="Your organization is {0}; only verified organizations can enter data." xml:space="preserve">
+    <value>Kurumunuzun durumu: {0}; yalnızca doğrulanmış kurumlar veri girebilir.</value>
+  </data>
+  <data name="This control point needs one of these capabilities: {0}." xml:space="preserve">
+    <value>Bu kontrol noktası şu yeteneklerden birini gerektirir: {0}.</value>
+  </data>
+  <data name="Your role ({0}) cannot enter this control point; entering roles: {1}." xml:space="preserve">
+    <value>Rolünüz ({0}) bu kontrol noktasına veri giremez; veri giren roller: {1}.</value>
+  </data>
+  <data name="Your role ({0}) cannot approve this control point; approving roles: {1}." xml:space="preserve">
+    <value>Rolünüz ({0}) bu kontrol noktasını onaylayamaz; onaylayan roller: {1}.</value>
+  </data>
+  <data name="The file is empty." xml:space="preserve">
+    <value>Dosya boş.</value>
+  </data>
+  <data name="The image is too large ({0})." xml:space="preserve">
+    <value>Görsel çok büyük ({0}).</value>
+  </data>
+  <data name="Unsupported image type ({0})." xml:space="preserve">
+    <value>Desteklenmeyen görsel türü ({0}).</value>
+  </data>
+  <data name="The file is not a valid image ({0})." xml:space="preserve">
+    <value>Dosya geçerli bir görsel değil ({0}).</value>
+  </data>
+  <data name="The image dimensions are too large (at most {0} px)." xml:space="preserve">
+    <value>Görsel boyutları çok büyük (en çok {0} px).</value>
+  </data>
+  <data name="The video is too large ({0})." xml:space="preserve">
+    <value>Video çok büyük ({0}).</value>
+  </data>
+  <data name="Unsupported video type ({0})." xml:space="preserve">
+    <value>Desteklenmeyen video türü ({0}).</value>
+  </data>
+  <data name="The file is not a valid video ({0})." xml:space="preserve">
+    <value>Dosya geçerli bir video değil ({0}).</value>
+  </data>
+  <data name="Unsupported file type ({0})." xml:space="preserve">
+    <value>Desteklenmeyen dosya türü ({0}).</value>
+  </data>
+  <data name="The file is too large ({0})." xml:space="preserve">
+    <value>Dosya çok büyük ({0}).</value>
+  </data>
+  <data name="The file is not a valid PDF ({0})." xml:space="preserve">
+    <value>Dosya geçerli bir PDF değil ({0}).</value>
+  </data>
+  <data name="JPG, PNG or WEBP, at most 8 MB" xml:space="preserve">
+    <value>JPG, PNG veya WEBP, en çok 8 MB</value>
+  </data>
+  <data name="MP4 or WEBM, at most 25 MB" xml:space="preserve">
+    <value>MP4 veya WEBM, en çok 25 MB</value>
+  </data>
+  <data name="PDF at most 10 MB, or JPG, PNG or WEBP at most 8 MB" xml:space="preserve">
+    <value>en çok 10 MB PDF veya en çok 8 MB JPG, PNG ya da WEBP</value>
+  </data>
+  <data name="Choose a data type." xml:space="preserve">
+    <value>Bir veri türü seçin.</value>
+  </data>
+  <data name="Choose a honey class." xml:space="preserve">
+    <value>Bir bal sınıfı seçin.</value>
+  </data>
+  <data name="Choose where this CCP applies." xml:space="preserve">
+    <value>Bu KKN'nin nerede uygulanacağını seçin.</value>
+  </data>
+  <data name="Password is required" xml:space="preserve">
+    <value>Parola zorunludur</value>
+  </data>
+  <data name="The amount is required." xml:space="preserve">
+    <value>Miktar zorunludur.</value>
+  </data>
+  <data name="The amount must be greater than 0." xml:space="preserve">
+    <value>Miktar 0'dan büyük olmalıdır.</value>
+  </data>
+  <data name="The apiary is required." xml:space="preserve">
+    <value>Arılık zorunludur.</value>
+  </data>
+  <data name="The beehive count must be between 1 and 10000." xml:space="preserve">
+    <value>Kovan sayısı 1 ile 10000 arasında olmalıdır.</value>
+  </data>
+  <data name="The category name is required." xml:space="preserve">
+    <value>Kategori adı zorunludur.</value>
+  </data>
+  <data name="The CCP field is required." xml:space="preserve">
+    <value>KKN alanı zorunludur.</value>
+  </data>
+  <data name="The date is required." xml:space="preserve">
+    <value>Tarih zorunludur.</value>
+  </data>
+  <data name="The end date is required." xml:space="preserve">
+    <value>Bitiş tarihi zorunludur.</value>
+  </data>
+  <data name="The honey type is required." xml:space="preserve">
+    <value>Bal türü zorunludur.</value>
+  </data>
+  <data name="The latitude must be between -90 and 90." xml:space="preserve">
+    <value>Enlem -90 ile 90 arasında olmalıdır.</value>
+  </data>
+  <data name="The longitude must be between -180 and 180." xml:space="preserve">
+    <value>Boylam -180 ile 180 arasında olmalıdır.</value>
+  </data>
+  <data name="The name is required." xml:space="preserve">
+    <value>Ad zorunludur.</value>
+  </data>
+  <data name="The production period is required." xml:space="preserve">
+    <value>Üretim dönemi zorunludur.</value>
+  </data>
+  <data name="The start date is required." xml:space="preserve">
+    <value>Başlangıç tarihi zorunludur.</value>
+  </data>
+  <data name="The title is required." xml:space="preserve">
+    <value>Başlık zorunludur.</value>
+  </data>
+  <data name="The wholesaler is required." xml:space="preserve">
+    <value>Toptancı zorunludur.</value>
+  </data>
+  <data name="This CCP is not assigned here, so no values can be recorded." xml:space="preserve">
+    <value>Bu KKN burada atanmamış, bu yüzden değer girilemez.</value>
+  </data>
+  <data name="This apiary already has a production record for the selected period and honey type." xml:space="preserve">
+    <value>Bu arılığın seçilen dönem ve bal türü için zaten bir üretim kaydı var.</value>
+  </data>
+  <data name="Batch already finalized." xml:space="preserve">
+    <value>Parti zaten kesinleşti.</value>
+  </data>
 </root>

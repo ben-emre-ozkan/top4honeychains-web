@@ -1,4 +1,4 @@
-@using TOP4HoneyChains.Web.Models.Entities
+﻿@using TOP4HoneyChains.Web.Models.Entities
 @model FinalHoneyProduction
 @{
     ViewData["Title"] = Model.FinalHoneyProductionTitle;
@@ -72,7 +72,7 @@
                         {
                             <div class="alert alert-warning" id="finalize-blockers">
                                 <strong>@L["Org.MissingBeforeFinalize"]</strong>
-                                <ul class="mb-0">@foreach (var b in blockers) { <li>@b</li> }</ul>
+                                <ul class="mb-0">@foreach (var b in blockers) { <li>@Msg.T(b)</li> }</ul>
                             </div>
                         }
                         @if (Model.FinalizeRequestedByUserId == null)
