@@ -4,6 +4,9 @@
 -- lot with an approved, accredited lab report, a finalized batch with every CCP approved, a shipment received by the retailer with
 -- its CCP 10 record, origin shares and a published beekeeper storefront.
 -- Every name starts with "[DEMO]"; remove everything with cleanup_demo.sql.
+-- Logins are not created here (no passwords in the repository): add them in the app as platform administrator
+-- under Organizations -> organization -> Add member, with user names "demo_*" and "@example.invalid" e-mails,
+-- so that cleanup_demo.sql removes them too.
 --
 -- NEVER run this against production. The script aborts unless it runs on a LocalDB instance and in the local
 -- development database TOP4HoneyChainsDb (or the test database TOP4HoneyChainsE2E).

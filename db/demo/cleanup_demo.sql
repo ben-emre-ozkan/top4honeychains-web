@@ -1,5 +1,6 @@
 ﻿-- db/demo/cleanup_demo.sql
--- Removes the fictional demo chain created by create_demo.sql (everything named "[DEMO]"; D-48).
+-- Removes the fictional demo chain created by create_demo.sql (everything named "[DEMO]"; D-48) and the demo
+-- logins added through the app (user name "demo_*" with an "@example.invalid" e-mail).
 -- NEVER run this against production. The script aborts unless it runs on a LocalDB instance and in the local
 -- development database TOP4HoneyChainsDb (or the test database TOP4HoneyChainsE2E).
 -- Run: sqlcmd -S "(localdb)\MSSQLLocalDB" -d TOP4HoneyChainsDb -I -b -f 65001 -i db\demo\cleanup_demo.sql
@@ -31,10 +32,12 @@ DECLARE @lots TABLE (id int);
 INSERT @lots SELECT RawHoneyProductionId FROM dbo.RawHoneyProductions WHERE RawHoneyProductionApiaryId IN (SELECT id FROM @ap);
 DECLARE @batches TABLE (id int);
 INSERT @batches SELECT FinalHoneyProductionId FROM dbo.FinalHoneyProductions WHERE FinalHoneyProductionTitle LIKE N'[[]DEMO]%' AND FinalHoneyProductionWholesalerId IN (SELECT id FROM @ws);
+DECLARE @users TABLE (id nvarchar(450));
+INSERT @users SELECT Id FROM dbo.AspNetUsers WHERE UserName LIKE N'demo[_]%' AND Email LIKE N'%@example.invalid';
 DECLARE @samples TABLE (id int);
 INSERT @samples SELECT SampleId FROM dbo.Samples WHERE RawHoneyProductionId IN (SELECT id FROM @lots);
 
-SELECT (SELECT COUNT(*) FROM @orgs) orgs, (SELECT COUNT(*) FROM @bk) beekeepers, (SELECT COUNT(*) FROM @lots) lots, (SELECT COUNT(*) FROM @batches) batches;
+SELECT (SELECT COUNT(*) FROM @orgs) orgs, (SELECT COUNT(*) FROM @bk) beekeepers, (SELECT COUNT(*) FROM @lots) lots, (SELECT COUNT(*) FROM @batches) batches, (SELECT COUNT(*) FROM @users) logins;
 
 DELETE v FROM dbo.HolderStorageValues v JOIN dbo.HolderStorageRecords r ON r.RecordId = v.RecordId WHERE r.FinalHoneyProductionId IN (SELECT id FROM @batches);
 DELETE FROM dbo.HolderStorageRecords WHERE FinalHoneyProductionId IN (SELECT id FROM @batches);
@@ -60,12 +63,14 @@ DELETE FROM dbo.BeekeeperRegistry WHERE BeekeeperId IN (SELECT id FROM @bk);
 DELETE FROM dbo.ApiaryPhotos WHERE ApiaryPhotoApiaryId IN (SELECT id FROM @ap);
 DELETE FROM dbo.Apiaries WHERE ApiaryId IN (SELECT id FROM @ap);
 DELETE FROM dbo.Beekeepers WHERE BeekeeperId IN (SELECT id FROM @bk);
-DELETE FROM dbo.Memberships WHERE OrgId IN (SELECT id FROM @orgs);
+DELETE FROM dbo.Memberships WHERE OrgId IN (SELECT id FROM @orgs) OR UserId IN (SELECT id FROM @users);
 DELETE FROM dbo.OrgDocuments WHERE OrgId IN (SELECT id FROM @orgs);
 DELETE FROM dbo.OrgVerificationEvents WHERE OrgId IN (SELECT id FROM @orgs);
 DELETE FROM dbo.OrgCapabilities WHERE OrgId IN (SELECT id FROM @orgs);
 DELETE FROM dbo.Organizations WHERE OrgId IN (SELECT id FROM @orgs);
 DELETE FROM dbo.Wholesalers WHERE WholesalerId IN (SELECT id FROM @ws);
+-- roles, claims, logins and tokens of the demo users go with them (cascade)
+DELETE FROM dbo.AspNetUsers WHERE Id IN (SELECT id FROM @users);
 
 COMMIT TRANSACTION;
 PRINT N'Demo chain removed.';
