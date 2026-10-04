@@ -1290,4 +1290,3013 @@
   <data name="Fhp.Back" xml:space="preserve">
     <value>Back to list</value>
   </data>
+  <data name="The value '{0}' is not valid for {1}." xml:space="preserve">
+    <value>The value '{0}' is not valid for {1}.</value>
+  </data>
+  <data name="A value for the '{0}' parameter or property was not provided." xml:space="preserve">
+    <value>A value for the '{0}' parameter or property was not provided.</value>
+  </data>
+  <data name="A value is required." xml:space="preserve">
+    <value>A value is required.</value>
+  </data>
+  <data name="A non-empty request body is required." xml:space="preserve">
+    <value>A non-empty request body is required.</value>
+  </data>
+  <data name="The value '{0}' is not valid." xml:space="preserve">
+    <value>The value '{0}' is not valid.</value>
+  </data>
+  <data name="The supplied value is invalid." xml:space="preserve">
+    <value>The supplied value is invalid.</value>
+  </data>
+  <data name="The field must be a number." xml:space="preserve">
+    <value>The field must be a number.</value>
+  </data>
+  <data name="The supplied value is invalid for {0}." xml:space="preserve">
+    <value>The supplied value is invalid for {0}.</value>
+  </data>
+  <data name="The value '{0}' is invalid." xml:space="preserve">
+    <value>The value '{0}' is invalid.</value>
+  </data>
+  <data name="The field {0} must be a number." xml:space="preserve">
+    <value>The field {0} must be a number.</value>
+  </data>
+  <data name="AccessDenied" xml:space="preserve">
+    <value>AccessDenied</value>
+  </data>
+  <data name="Access Denied" xml:space="preserve">
+    <value>Access Denied</value>
+  </data>
+  <data name="You do not have permission to access this page." xml:space="preserve">
+    <value>You do not have permission to access this page.</value>
+  </data>
+  <data name="Back to Dashboard" xml:space="preserve">
+    <value>Back to Dashboard</value>
+  </data>
+  <data name="Forgot Password" xml:space="preserve">
+    <value>Forgot Password</value>
+  </data>
+  <data name="DEV MODE:" xml:space="preserve">
+    <value>DEV MODE:</value>
+  </data>
+  <data name="Trustable and Sustainable Open Platform for Smart Honey Value Chains" xml:space="preserve">
+    <value>Trustable and Sustainable Open Platform for Smart Honey Value Chains</value>
+  </data>
+  <data name="Lock-screen" xml:space="preserve">
+    <value>Lock-screen</value>
+  </data>
+  <data name="thumbnail" xml:space="preserve">
+    <value>thumbnail</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="Manage your account information." xml:space="preserve">
+    <value>Manage your account information.</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Phone Number" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Change Password" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="Current Password" xml:space="preserve">
+    <value>Current Password</value>
+  </data>
+  <data name="New Password" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="Confirm Password" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Update Password" xml:space="preserve">
+    <value>Update Password</value>
+  </data>
+  <data name="Reset Password" xml:space="preserve">
+    <value>Reset Password</value>
+  </data>
+  <data name="Create New Password" xml:space="preserve">
+    <value>Create New Password</value>
+  </data>
+  <data name="Enter new password" xml:space="preserve">
+    <value>Enter new password</value>
+  </data>
+  <data name="Confirm password" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>Index</value>
+  </data>
+  <data name="Back to Beekeepers" xml:space="preserve">
+    <value>Back to Beekeepers</value>
+  </data>
+  <data name="Add new Apiary" xml:space="preserve">
+    <value>Add new Apiary</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="Beehives Count" xml:space="preserve">
+    <value>Beehives Count</value>
+  </data>
+  <data name="Latitude" xml:space="preserve">
+    <value>Latitude</value>
+  </data>
+  <data name="Longitude" xml:space="preserve">
+    <value>Longitude</value>
+  </data>
+  <data name="QR Code" xml:space="preserve">
+    <value>QR Code</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Inactive" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Deactivate this apiary? Photos and honey productions are kept. Apiaries are never deleted." xml:space="preserve">
+    <value>Deactivate this apiary? Photos and honey productions are kept. Apiaries are never deleted.</value>
+  </data>
+  <data name="Deactivate" xml:space="preserve">
+    <value>Deactivate</value>
+  </data>
+  <data name="Activate this apiary again?" xml:space="preserve">
+    <value>Activate this apiary again?</value>
+  </data>
+  <data name="Makes the apiary active again." xml:space="preserve">
+    <value>Makes the apiary active again.</value>
+  </data>
+  <data name="Activate" xml:space="preserve">
+    <value>Activate</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="Create apiary" xml:space="preserve">
+    <value>Create apiary</value>
+  </data>
+  <data name="Back to Apiaries" xml:space="preserve">
+    <value>Back to Apiaries</value>
+  </data>
+  <data name="Location Latitude" xml:space="preserve">
+    <value>Location Latitude</value>
+  </data>
+  <data name="Location Longitude" xml:space="preserve">
+    <value>Location Longitude</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="Edit Apiary" xml:space="preserve">
+    <value>Edit Apiary</value>
+  </data>
+  <data name="Save Changes" xml:space="preserve">
+    <value>Save Changes</value>
+  </data>
+  <data name="Apiaries" xml:space="preserve">
+    <value>Apiaries</value>
+  </data>
+  <data name="Apiaries List" xml:space="preserve">
+    <value>Apiaries List</value>
+  </data>
+  <data name="Beehives" xml:space="preserve">
+    <value>Beehives</value>
+  </data>
+  <data name="Beekeeper" xml:space="preserve">
+    <value>Beekeeper</value>
+  </data>
+  <data name="Beekeeper Business Number" xml:space="preserve">
+    <value>Beekeeper Business Number</value>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="Productions" xml:space="preserve">
+    <value>Productions</value>
+  </data>
+  <data name="Note.ApiaryDeactivation" xml:space="preserve">
+    <value>&lt;strong&gt;Apiaries are never deleted&lt;/strong&gt;, so that honey traceability is preserved. To take an apiary out of use, &lt;strong&gt;deactivate&lt;/strong&gt; it from the beekeeper's apiary list: its photos and honey productions are kept, it is shown greyed out as &lt;em&gt;Inactive&lt;/em&gt;, and it is no longer counted as active on the dashboard. &lt;strong&gt;Activate&lt;/strong&gt; restores it.</value>
+  </data>
+  <data name="Apiary Photos" xml:space="preserve">
+    <value>Apiary Photos</value>
+  </data>
+  <data name="Apiary Photo Management" xml:space="preserve">
+    <value>Apiary Photo Management</value>
+  </data>
+  <data name="Beekeeper:" xml:space="preserve">
+    <value>Beekeeper:</value>
+  </data>
+  <data name="Apiary:" xml:space="preserve">
+    <value>Apiary:</value>
+  </data>
+  <data name="Season:" xml:space="preserve">
+    <value>Season:</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Upload Photo" xml:space="preserve">
+    <value>Upload Photo</value>
+  </data>
+  <data name="Photo" xml:space="preserve">
+    <value>Photo</value>
+  </data>
+  <data name="JPG, PNG or WEBP, at most 8 MB." xml:space="preserve">
+    <value>JPG, PNG or WEBP, at most 8 MB.</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="Uploaded Photos" xml:space="preserve">
+    <value>Uploaded Photos</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="File Name" xml:space="preserve">
+    <value>File Name</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="Delete this photo?" xml:space="preserve">
+    <value>Delete this photo?</value>
+  </data>
+  <data name="Photos" xml:space="preserve">
+    <value>Photos</value>
+  </data>
+  <data name="No photos uploaded yet." xml:space="preserve">
+    <value>No photos uploaded yet.</value>
+  </data>
+  <data name="action" xml:space="preserve">
+    <value>action</value>
+  </data>
+  <data name="flag, e.g. SelfApproved" xml:space="preserve">
+    <value>flag, e.g. SelfApproved</value>
+  </data>
+  <data name="Hash" xml:space="preserve">
+    <value>Hash</value>
+  </data>
+  <data name="Create Education Level" xml:space="preserve">
+    <value>Create Education Level</value>
+  </data>
+  <data name="Create New Education Level" xml:space="preserve">
+    <value>Create New Education Level</value>
+  </data>
+  <data name="Add a new beekeeper education level to the system." xml:space="preserve">
+    <value>Add a new beekeeper education level to the system.</value>
+  </data>
+  <data name="Education Level Title" xml:space="preserve">
+    <value>Education Level Title</value>
+  </data>
+  <data name="Enter education level title" xml:space="preserve">
+    <value>Enter education level title</value>
+  </data>
+  <data name="Back to List" xml:space="preserve">
+    <value>Back to List</value>
+  </data>
+  <data name="Delete Education Level" xml:space="preserve">
+    <value>Delete Education Level</value>
+  </data>
+  <data name="Confirm Deletion" xml:space="preserve">
+    <value>Confirm Deletion</value>
+  </data>
+  <data name="Are you sure you want to delete this education level? This action cannot be undone." xml:space="preserve">
+    <value>Are you sure you want to delete this education level? This action cannot be undone.</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Edit Education Level" xml:space="preserve">
+    <value>Edit Education Level</value>
+  </data>
+  <data name="Update the selected beekeeper education level." xml:space="preserve">
+    <value>Update the selected beekeeper education level.</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="Education Levels" xml:space="preserve">
+    <value>Education Levels</value>
+  </data>
+  <data name="Beekeeper Education Levels" xml:space="preserve">
+    <value>Beekeeper Education Levels</value>
+  </data>
+  <data name="Add New Education Level" xml:space="preserve">
+    <value>Add New Education Level</value>
+  </data>
+  <data name="Create new beekeeper" xml:space="preserve">
+    <value>Create new beekeeper</value>
+  </data>
+  <data name="Profile photo (optional)" xml:space="preserve">
+    <value>Profile photo (optional)</value>
+  </data>
+  <data name="The beekeeper's photo, shown in the beekeeper list and on the public Honey Story page. JPG, PNG or WEBP, at most 8 MB." xml:space="preserve">
+    <value>The beekeeper's photo, shown in the beekeeper list and on the public Honey Story page. JPG, PNG or WEBP, at most 8 MB.</value>
+  </data>
+  <data name="First Name" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="Enter first name" xml:space="preserve">
+    <value>Enter first name</value>
+  </data>
+  <data name="Last Name" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="Enter last name" xml:space="preserve">
+    <value>Enter last name</value>
+  </data>
+  <data name="Birth Date" xml:space="preserve">
+    <value>Birth Date</value>
+  </data>
+  <data name="Experience Time" xml:space="preserve">
+    <value>Experience Time</value>
+  </data>
+  <data name="Education Level" xml:space="preserve">
+    <value>Education Level</value>
+  </data>
+  <data name="(optional)" xml:space="preserve">
+    <value>(optional)</value>
+  </data>
+  <data name="Not specified" xml:space="preserve">
+    <value>Not specified</value>
+  </data>
+  <data name="Purpose Type" xml:space="preserve">
+    <value>Purpose Type</value>
+  </data>
+  <data name="Beekeeping Type" xml:space="preserve">
+    <value>Beekeeping Type</value>
+  </data>
+  <data name="Edit Beekeeper" xml:space="preserve">
+    <value>Edit Beekeeper</value>
+  </data>
+  <data name="Change Profile Photo" xml:space="preserve">
+    <value>Change Profile Photo</value>
+  </data>
+  <data name="Optional. JPG, PNG or WEBP, at most 8 MB. Leave empty to keep the current photo." xml:space="preserve">
+    <value>Optional. JPG, PNG or WEBP, at most 8 MB. Leave empty to keep the current photo.</value>
+  </data>
+  <data name="Beekeeping Purpose Type" xml:space="preserve">
+    <value>Beekeeping Purpose Type</value>
+  </data>
+  <data name="Change the status with Deactivate / Activate in the beekeepers list (beekeepers do not sign in, so their login stays locked)." xml:space="preserve">
+    <value>Change the status with Deactivate / Activate in the beekeepers list (beekeepers do not sign in, so their login stays locked).</value>
+  </data>
+  <data name="Beekeepers List" xml:space="preserve">
+    <value>Beekeepers List</value>
+  </data>
+  <data name="Note.BeekeeperDeactivation" xml:space="preserve">
+    <value>&lt;strong&gt;Beekeepers are never deleted&lt;/strong&gt;, so that honey traceability is preserved. To take a beekeeper out of use, &lt;strong&gt;deactivate&lt;/strong&gt; them: the beekeeper's record, apiaries and honey productions are kept, the row is shown greyed out as &lt;em&gt;Inactive&lt;/em&gt;, and the beekeeper's login is locked. &lt;strong&gt;Activate&lt;/strong&gt; restores the beekeeper. Beekeepers do not sign in to the web panel, so their login stays locked either way.</value>
+  </data>
+  <data name="Add new" xml:space="preserve">
+    <value>Add new</value>
+  </data>
+  <data name="Profile Photo" xml:space="preserve">
+    <value>Profile Photo</value>
+  </data>
+  <data name="Business Number" xml:space="preserve">
+    <value>Business Number</value>
+  </data>
+  <data name="No Photo" xml:space="preserve">
+    <value>No Photo</value>
+  </data>
+  <data name="Deactivate this beekeeper? All records are kept and the login is locked. Beekeepers are never deleted." xml:space="preserve">
+    <value>Deactivate this beekeeper? All records are kept and the login is locked. Beekeepers are never deleted.</value>
+  </data>
+  <data name="Activate this beekeeper again?" xml:space="preserve">
+    <value>Activate this beekeeper again?</value>
+  </data>
+  <data name="Makes the beekeeper active again." xml:space="preserve">
+    <value>Makes the beekeeper active again.</value>
+  </data>
+  <data name="Create Purpose Type" xml:space="preserve">
+    <value>Create Purpose Type</value>
+  </data>
+  <data name="Create New Beekeeping Purpose" xml:space="preserve">
+    <value>Create New Beekeeping Purpose</value>
+  </data>
+  <data name="Add a new purpose type to the system." xml:space="preserve">
+    <value>Add a new purpose type to the system.</value>
+  </data>
+  <data name="Purpose Title" xml:space="preserve">
+    <value>Purpose Title</value>
+  </data>
+  <data name="Enter purpose title" xml:space="preserve">
+    <value>Enter purpose title</value>
+  </data>
+  <data name="Delete Purpose Type" xml:space="preserve">
+    <value>Delete Purpose Type</value>
+  </data>
+  <data name="Are you sure you want to delete this beekeeping purpose type? This action cannot be undone." xml:space="preserve">
+    <value>Are you sure you want to delete this beekeeping purpose type? This action cannot be undone.</value>
+  </data>
+  <data name="Beekeeping Purpose Type Title" xml:space="preserve">
+    <value>Beekeeping Purpose Type Title</value>
+  </data>
+  <data name="Edit Purpose Type" xml:space="preserve">
+    <value>Edit Purpose Type</value>
+  </data>
+  <data name="Edit Beekeeping Purpose" xml:space="preserve">
+    <value>Edit Beekeeping Purpose</value>
+  </data>
+  <data name="Update the selected purpose type." xml:space="preserve">
+    <value>Update the selected purpose type.</value>
+  </data>
+  <data name="Beekeeping Purpose Types" xml:space="preserve">
+    <value>Beekeeping Purpose Types</value>
+  </data>
+  <data name="Add New" xml:space="preserve">
+    <value>Add New</value>
+  </data>
+  <data name="Create Beekeeping Type" xml:space="preserve">
+    <value>Create Beekeeping Type</value>
+  </data>
+  <data name="Create New Beekeeping Type" xml:space="preserve">
+    <value>Create New Beekeeping Type</value>
+  </data>
+  <data name="Add a new beekeeping type to the system." xml:space="preserve">
+    <value>Add a new beekeeping type to the system.</value>
+  </data>
+  <data name="Type Title" xml:space="preserve">
+    <value>Type Title</value>
+  </data>
+  <data name="Enter beekeeping type title" xml:space="preserve">
+    <value>Enter beekeeping type title</value>
+  </data>
+  <data name="Delete Beekeeping Type" xml:space="preserve">
+    <value>Delete Beekeeping Type</value>
+  </data>
+  <data name="Are you sure you want to delete this beekeeping type? This action cannot be undone." xml:space="preserve">
+    <value>Are you sure you want to delete this beekeeping type? This action cannot be undone.</value>
+  </data>
+  <data name="Beekeeping Type Title" xml:space="preserve">
+    <value>Beekeeping Type Title</value>
+  </data>
+  <data name="Edit Beekeeping Type" xml:space="preserve">
+    <value>Edit Beekeeping Type</value>
+  </data>
+  <data name="Update the selected beekeeping type." xml:space="preserve">
+    <value>Update the selected beekeeping type.</value>
+  </data>
+  <data name="Beekeeping Types" xml:space="preserve">
+    <value>Beekeeping Types</value>
+  </data>
+  <data name="Final Batch CCP Monitoring" xml:space="preserve">
+    <value>Final Batch CCP Monitoring</value>
+  </data>
+  <data name="FINAL BATCH MONITORING" xml:space="preserve">
+    <value>FINAL BATCH MONITORING</value>
+  </data>
+  <data name="Batch" xml:space="preserve">
+    <value>Batch</value>
+  </data>
+  <data name="Production Date" xml:space="preserve">
+    <value>Production Date</value>
+  </data>
+  <data name="Total Amount" xml:space="preserve">
+    <value>Total Amount</value>
+  </data>
+  <data name="Wholesaler" xml:space="preserve">
+    <value>Wholesaler</value>
+  </data>
+  <data name="Source Composition" xml:space="preserve">
+    <value>Source Composition</value>
+  </data>
+  <data name="Save Monitoring Logs" xml:space="preserve">
+    <value>Save Monitoring Logs</value>
+  </data>
+  <data name="CCP Monitoring" xml:space="preserve">
+    <value>CCP Monitoring</value>
+  </data>
+  <data name="Apiary" xml:space="preserve">
+    <value>Apiary</value>
+  </data>
+  <data name="Honey Type" xml:space="preserve">
+    <value>Honey Type</value>
+  </data>
+  <data name="Not checked" xml:space="preserve">
+    <value>Not checked</value>
+  </data>
+  <data name="-- not recorded --" xml:space="preserve">
+    <value>-- not recorded --</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="remove" xml:space="preserve">
+    <value>remove</value>
+  </data>
+  <data name="Numeric Value" xml:space="preserve">
+    <value>Numeric Value</value>
+  </data>
+  <data name="Text Value" xml:space="preserve">
+    <value>Text Value</value>
+  </data>
+  <data name="Notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="Optional professional observation..." xml:space="preserve">
+    <value>Optional professional observation...</value>
+  </data>
+  <data name="to verify" xml:space="preserve">
+    <value>to verify</value>
+  </data>
+  <data name="Not assigned" xml:space="preserve">
+    <value>Not assigned</value>
+  </data>
+  <data name="Limits for honey class:" xml:space="preserve">
+    <value>Limits for honey class:</value>
+  </data>
+  <data name="Honey class unknown or mixed: only limits for every honey class apply" xml:space="preserve">
+    <value>Honey class unknown or mixed: only limits for every honey class apply</value>
+  </data>
+  <data name="Not applicable." xml:space="preserve">
+    <value>Not applicable.</value>
+  </data>
+  <data name="Remove &quot;Not applicable&quot;" xml:space="preserve">
+    <value>Remove &quot;Not applicable&quot;</value>
+  </data>
+  <data name="This CCP does not apply here (mark as &quot;Not applicable&quot;)" xml:space="preserve">
+    <value>This CCP does not apply here (mark as &quot;Not applicable&quot;)</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Reason</value>
+  </data>
+  <data name="e.g. Raw honey is not heated or pasteurized" xml:space="preserve">
+    <value>e.g. Raw honey is not heated or pasteurized</value>
+  </data>
+  <data name="Your user name and the time are recorded with the reason. It is shown as &quot;Not applicable&quot; on the public Honey Story page." xml:space="preserve">
+    <value>Your user name and the time are recorded with the reason. It is shown as &quot;Not applicable&quot; on the public Honey Story page.</value>
+  </data>
+  <data name="Mark as &quot;Not applicable&quot;" xml:space="preserve">
+    <value>Mark as &quot;Not applicable&quot;</value>
+  </data>
+  <data name="Create CCP Parameter Category" xml:space="preserve">
+    <value>Create CCP Parameter Category</value>
+  </data>
+  <data name="Create New CCP Parameter Category" xml:space="preserve">
+    <value>Create New CCP Parameter Category</value>
+  </data>
+  <data name="Define a new category for CCP monitoring parameters." xml:space="preserve">
+    <value>Define a new category for CCP monitoring parameters.</value>
+  </data>
+  <data name="Category Name" xml:space="preserve">
+    <value>Category Name</value>
+  </data>
+  <data name="Enter category name (e.g., Chemical, Physical, Microbiological)" xml:space="preserve">
+    <value>Enter category name (e.g., Chemical, Physical, Microbiological)</value>
+  </data>
+  <data name="Enter category description" xml:space="preserve">
+    <value>Enter category description</value>
+  </data>
+  <data name="Delete CCP Parameter Category" xml:space="preserve">
+    <value>Delete CCP Parameter Category</value>
+  </data>
+  <data name="Warning:" xml:space="preserve">
+    <value>Warning:</value>
+  </data>
+  <data name="This action cannot be undone." xml:space="preserve">
+    <value>This action cannot be undone.</value>
+  </data>
+  <data name="Are you sure you want to delete this category?" xml:space="preserve">
+    <value>Are you sure you want to delete this category?</value>
+  </data>
+  <data name="Edit CCP Parameter Category" xml:space="preserve">
+    <value>Edit CCP Parameter Category</value>
+  </data>
+  <data name="Update the selected parameter category details." xml:space="preserve">
+    <value>Update the selected parameter category details.</value>
+  </data>
+  <data name="Enter category name" xml:space="preserve">
+    <value>Enter category name</value>
+  </data>
+  <data name="CCP Parameter Categories" xml:space="preserve">
+    <value>CCP Parameter Categories</value>
+  </data>
+  <data name="Manage parameter categories used in critical control point monitoring." xml:space="preserve">
+    <value>Manage parameter categories used in critical control point monitoring.</value>
+  </data>
+  <data name="Add New Category" xml:space="preserve">
+    <value>Add New Category</value>
+  </data>
+  <data name="Create Parameter Content" xml:space="preserve">
+    <value>Create Parameter Content</value>
+  </data>
+  <data name="Create educational content (video + explanation) for CCP parameters." xml:space="preserve">
+    <value>Create educational content (video + explanation) for CCP parameters.</value>
+  </data>
+  <data name="Content Type" xml:space="preserve">
+    <value>Content Type</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="Video" xml:space="preserve">
+    <value>Video</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="What Is It?" xml:space="preserve">
+    <value>What Is It?</value>
+  </data>
+  <data name="Why Important?" xml:space="preserve">
+    <value>Why Important?</value>
+  </data>
+  <data name="Extra Info" xml:space="preserve">
+    <value>Extra Info</value>
+  </data>
+  <data name="Upload Video" xml:space="preserve">
+    <value>Upload Video</value>
+  </data>
+  <data name="MP4 or WEBM, at most 25 MB. This video will be shown in Honey Story." xml:space="preserve">
+    <value>MP4 or WEBM, at most 25 MB. This video will be shown in Honey Story.</value>
+  </data>
+  <data name="Sort Order" xml:space="preserve">
+    <value>Sort Order</value>
+  </data>
+  <data name="Active Content" xml:space="preserve">
+    <value>Active Content</value>
+  </data>
+  <data name="Save Content" xml:space="preserve">
+    <value>Save Content</value>
+  </data>
+  <data name="Tips" xml:space="preserve">
+    <value>Tips</value>
+  </data>
+  <data name="Keep explanations short and clear" xml:space="preserve">
+    <value>Keep explanations short and clear</value>
+  </data>
+  <data name="Use simple language for consumers" xml:space="preserve">
+    <value>Use simple language for consumers</value>
+  </data>
+  <data name="Video is optional but highly recommended" xml:space="preserve">
+    <value>Video is optional but highly recommended</value>
+  </data>
+  <data name="Sort order controls display priority" xml:space="preserve">
+    <value>Sort order controls display priority</value>
+  </data>
+  <data name="Are you sure you want to delete this?" xml:space="preserve">
+    <value>Are you sure you want to delete this?</value>
+  </data>
+  <data name="CriticalControlPointParameterContent" xml:space="preserve">
+    <value>CriticalControlPointParameterContent</value>
+  </data>
+  <data name="Edit Content" xml:space="preserve">
+    <value>Edit Content</value>
+  </data>
+  <data name="Edit Parameter Content" xml:space="preserve">
+    <value>Edit Parameter Content</value>
+  </data>
+  <data name="Update video and explanation for this parameter." xml:space="preserve">
+    <value>Update video and explanation for this parameter.</value>
+  </data>
+  <data name="Parameter" xml:space="preserve">
+    <value>Parameter</value>
+  </data>
+  <data name="Current Video" xml:space="preserve">
+    <value>Current Video</value>
+  </data>
+  <data name="Replace Video" xml:space="preserve">
+    <value>Replace Video</value>
+  </data>
+  <data name="Leave empty to keep current video. MP4 or WEBM, at most 25 MB." xml:space="preserve">
+    <value>Leave empty to keep current video. MP4 or WEBM, at most 25 MB.</value>
+  </data>
+  <data name="Update Content" xml:space="preserve">
+    <value>Update Content</value>
+  </data>
+  <data name="Editing Tips" xml:space="preserve">
+    <value>Editing Tips</value>
+  </data>
+  <data name="You can update text without changing video" xml:space="preserve">
+    <value>You can update text without changing video</value>
+  </data>
+  <data name="Uploading a new video will replace the old one" xml:space="preserve">
+    <value>Uploading a new video will replace the old one</value>
+  </data>
+  <data name="Keep explanations user-friendly" xml:space="preserve">
+    <value>Keep explanations user-friendly</value>
+  </data>
+  <data name="Check content before saving" xml:space="preserve">
+    <value>Check content before saving</value>
+  </data>
+  <data name="Parameter Contents" xml:space="preserve">
+    <value>Parameter Contents</value>
+  </data>
+  <data name="Manage educational content (video + explanations) for CCP parameters." xml:space="preserve">
+    <value>Manage educational content (video + explanations) for CCP parameters.</value>
+  </data>
+  <data name="Add Content" xml:space="preserve">
+    <value>Add Content</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="What?" xml:space="preserve">
+    <value>What?</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>Order</value>
+  </data>
+  <data name="Watch" xml:space="preserve">
+    <value>Watch</value>
+  </data>
+  <data name="No Video" xml:space="preserve">
+    <value>No Video</value>
+  </data>
+  <data name="Passive" xml:space="preserve">
+    <value>Passive</value>
+  </data>
+  <data name="Delete content?" xml:space="preserve">
+    <value>Delete content?</value>
+  </data>
+  <data name="This action cannot be undone" xml:space="preserve">
+    <value>This action cannot be undone</value>
+  </data>
+  <data name="Yes, delete" xml:space="preserve">
+    <value>Yes, delete</value>
+  </data>
+  <data name="Create CCP Parameter" xml:space="preserve">
+    <value>Create CCP Parameter</value>
+  </data>
+  <data name="Create New CCP Parameter" xml:space="preserve">
+    <value>Create New CCP Parameter</value>
+  </data>
+  <data name="Define a monitoring parameter for a selected Critical Control Point." xml:space="preserve">
+    <value>Define a monitoring parameter for a selected Critical Control Point.</value>
+  </data>
+  <data name="Critical Control Point" xml:space="preserve">
+    <value>Critical Control Point</value>
+  </data>
+  <data name="-- Select CCP --" xml:space="preserve">
+    <value>-- Select CCP --</value>
+  </data>
+  <data name="Parameter Name" xml:space="preserve">
+    <value>Parameter Name</value>
+  </data>
+  <data name="Enter parameter name" xml:space="preserve">
+    <value>Enter parameter name</value>
+  </data>
+  <data name="Parameter Category" xml:space="preserve">
+    <value>Parameter Category</value>
+  </data>
+  <data name="-- Select Category --" xml:space="preserve">
+    <value>-- Select Category --</value>
+  </data>
+  <data name="Unit" xml:space="preserve">
+    <value>Unit</value>
+  </data>
+  <data name="e.g. °C, %, ppm, CFU/g" xml:space="preserve">
+    <value>e.g. °C, %, ppm, CFU/g</value>
+  </data>
+  <data name="Critical Limit" xml:space="preserve">
+    <value>Critical Limit</value>
+  </data>
+  <data name="Enter critical threshold value" xml:space="preserve">
+    <value>Enter critical threshold value</value>
+  </data>
+  <data name="Data type" xml:space="preserve">
+    <value>Data type</value>
+  </data>
+  <data name="(not set: number or text)" xml:space="preserve">
+    <value>(not set: number or text)</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>Number</value>
+  </data>
+  <data name="Yes / No" xml:space="preserve">
+    <value>Yes / No</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="File (e.g. lab report)" xml:space="preserve">
+    <value>File (e.g. lab report)</value>
+  </data>
+  <data name="Minimum" xml:space="preserve">
+    <value>Minimum</value>
+  </data>
+  <data name="no minimum" xml:space="preserve">
+    <value>no minimum</value>
+  </data>
+  <data name="Maximum" xml:space="preserve">
+    <value>Maximum</value>
+  </data>
+  <data name="no maximum" xml:space="preserve">
+    <value>no maximum</value>
+  </data>
+  <data name="Minimum and maximum apply to every honey type. Honey-type specific and conditional limits are on the parameter's &quot;Limits&quot; page. Stored results are not recalculated when limits change." xml:space="preserve">
+    <value>Minimum and maximum apply to every honey type. Honey-type specific and conditional limits are on the parameter's &quot;Limits&quot; page. Stored results are not recalculated when limits change.</value>
+  </data>
+  <data name="Required for the CCP to be completed" xml:space="preserve">
+    <value>Required for the CCP to be completed</value>
+  </data>
+  <data name="Limit note" xml:space="preserve">
+    <value>Limit note</value>
+  </data>
+  <data name="Limit source" xml:space="preserve">
+    <value>Limit source</value>
+  </data>
+  <data name="e.g. Turkish Food Codex, honey communique" xml:space="preserve">
+    <value>e.g. Turkish Food Codex, honey communique</value>
+  </data>
+  <data name="Limits verified (shown publicly)" xml:space="preserve">
+    <value>Limits verified (shown publicly)</value>
+  </data>
+  <data name="Delete CCP Parameter" xml:space="preserve">
+    <value>Delete CCP Parameter</value>
+  </data>
+  <data name="Are you sure you want to delete this parameter?" xml:space="preserve">
+    <value>Are you sure you want to delete this parameter?</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="Edit CCP Parameter" xml:space="preserve">
+    <value>Edit CCP Parameter</value>
+  </data>
+  <data name="Update the selected monitoring parameter details." xml:space="preserve">
+    <value>Update the selected monitoring parameter details.</value>
+  </data>
+  <data name="CCP Parameters" xml:space="preserve">
+    <value>CCP Parameters</value>
+  </data>
+  <data name="Critical Control Point Parameters" xml:space="preserve">
+    <value>Critical Control Point Parameters</value>
+  </data>
+  <data name="Manage monitoring parameters assigned to critical control points." xml:space="preserve">
+    <value>Manage monitoring parameters assigned to critical control points.</value>
+  </data>
+  <data name="Add New Parameter" xml:space="preserve">
+    <value>Add New Parameter</value>
+  </data>
+  <data name="Limits" xml:space="preserve">
+    <value>Limits</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="Parameter Limits" xml:space="preserve">
+    <value>Parameter Limits</value>
+  </data>
+  <data name="Default limits (every honey type):" xml:space="preserve">
+    <value>Default limits (every honey type):</value>
+  </data>
+  <data name="none" xml:space="preserve">
+    <value>none</value>
+  </data>
+  <data name="Note.LimitsHelp" xml:space="preserve">
+    <value>(edit them on the parameter). A row below overrides the default: a row for the lot's honey type beats one for its honey class, which beats one for every class; a row whose condition is met beats one without a condition. Ratio rows are extra checks (value / other value) that must also pass.</value>
+  </data>
+  <data name="Source:" xml:space="preserve">
+    <value>Source:</value>
+  </data>
+  <data name="Honey class / type" xml:space="preserve">
+    <value>Honey class / type</value>
+  </data>
+  <data name="Condition" xml:space="preserve">
+    <value>Condition</value>
+  </data>
+  <data name="Sum / ratio with" xml:space="preserve">
+    <value>Sum / ratio with</value>
+  </data>
+  <data name="Min" xml:space="preserve">
+    <value>Min</value>
+  </data>
+  <data name="Max" xml:space="preserve">
+    <value>Max</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="No specific limits." xml:space="preserve">
+    <value>No specific limits.</value>
+  </data>
+  <data name="every class" xml:space="preserve">
+    <value>every class</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="Add a limit" xml:space="preserve">
+    <value>Add a limit</value>
+  </data>
+  <data name="Honey class" xml:space="preserve">
+    <value>Honey class</value>
+  </data>
+  <data name="or honey type" xml:space="preserve">
+    <value>or honey type</value>
+  </data>
+  <data name="(none)" xml:space="preserve">
+    <value>(none)</value>
+  </data>
+  <data name="Only if this parameter" xml:space="preserve">
+    <value>Only if this parameter</value>
+  </data>
+  <data name="(no condition)" xml:space="preserve">
+    <value>(no condition)</value>
+  </data>
+  <data name="is &lt;=" xml:space="preserve">
+    <value>is &lt;=</value>
+  </data>
+  <data name="Ratio to (extra check)" xml:space="preserve">
+    <value>Ratio to (extra check)</value>
+  </data>
+  <data name="Sum with" xml:space="preserve">
+    <value>Sum with</value>
+  </data>
+  <data name="Add limit" xml:space="preserve">
+    <value>Add limit</value>
+  </data>
+  <data name="Stored results are not recalculated when limits change." xml:space="preserve">
+    <value>Stored results are not recalculated when limits change.</value>
+  </data>
+  <data name="Create Critical Control Point" xml:space="preserve">
+    <value>Create Critical Control Point</value>
+  </data>
+  <data name="Create New Critical Control Point" xml:space="preserve">
+    <value>Create New Critical Control Point</value>
+  </data>
+  <data name="Define a new CCP to monitor quality and safety in the honey production process." xml:space="preserve">
+    <value>Define a new CCP to monitor quality and safety in the honey production process.</value>
+  </data>
+  <data name="Processing Step" xml:space="preserve">
+    <value>Processing Step</value>
+  </data>
+  <data name="Enter processing step (e.g., Mixing, Filtering)" xml:space="preserve">
+    <value>Enter processing step (e.g., Mixing, Filtering)</value>
+  </data>
+  <data name="CCP Code" xml:space="preserve">
+    <value>CCP Code</value>
+  </data>
+  <data name="Enter CCP Code (e.g., CCP1, CCP2)" xml:space="preserve">
+    <value>Enter CCP Code (e.g., CCP1, CCP2)</value>
+  </data>
+  <data name="Applies to" xml:space="preserve">
+    <value>Applies to</value>
+  </data>
+  <data name="-- Select --" xml:space="preserve">
+    <value>-- Select --</value>
+  </data>
+  <data name="Raw honey lot" xml:space="preserve">
+    <value>Raw honey lot</value>
+  </data>
+  <data name="Final batch" xml:space="preserve">
+    <value>Final batch</value>
+  </data>
+  <data name="Only lots or batches of this kind are offered this CCP." xml:space="preserve">
+    <value>Only lots or batches of this kind are offered this CCP.</value>
+  </data>
+  <data name="Show free-text values on the public Honey Story page" xml:space="preserve">
+    <value>Show free-text values on the public Honey Story page</value>
+  </data>
+  <data name="Enter title" xml:space="preserve">
+    <value>Enter title</value>
+  </data>
+  <data name="Criticality Justification" xml:space="preserve">
+    <value>Criticality Justification</value>
+  </data>
+  <data name="Explain why this step is critical..." xml:space="preserve">
+    <value>Explain why this step is critical...</value>
+  </data>
+  <data name="Delete Critical Control Point" xml:space="preserve">
+    <value>Delete Critical Control Point</value>
+  </data>
+  <data name="This action cannot be undone. Please confirm before deleting." xml:space="preserve">
+    <value>This action cannot be undone. Please confirm before deleting.</value>
+  </data>
+  <data name="Are you sure you want to delete this CCP?" xml:space="preserve">
+    <value>Are you sure you want to delete this CCP?</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="Edit Critical Control Point" xml:space="preserve">
+    <value>Edit Critical Control Point</value>
+  </data>
+  <data name="Update the details of the selected CCP." xml:space="preserve">
+    <value>Update the details of the selected CCP.</value>
+  </data>
+  <data name="Enter processing step" xml:space="preserve">
+    <value>Enter processing step</value>
+  </data>
+  <data name="Enter CCP Code" xml:space="preserve">
+    <value>Enter CCP Code</value>
+  </data>
+  <data name="Critical Control Points" xml:space="preserve">
+    <value>Critical Control Points</value>
+  </data>
+  <data name="Add New CCP" xml:space="preserve">
+    <value>Add New CCP</value>
+  </data>
+  <data name="TOP4HoneyChains Project" xml:space="preserve">
+    <value>TOP4HoneyChains Project</value>
+  </data>
+  <data name="Total Beekeepers" xml:space="preserve">
+    <value>Total Beekeepers</value>
+  </data>
+  <data name="Total Apiaries" xml:space="preserve">
+    <value>Total Apiaries</value>
+  </data>
+  <data name="Total Wholesalers" xml:space="preserve">
+    <value>Total Wholesalers</value>
+  </data>
+  <data name="Total Production" xml:space="preserve">
+    <value>Total Production</value>
+  </data>
+  <data name="Production by Honey Type" xml:space="preserve">
+    <value>Production by Honey Type</value>
+  </data>
+  <data name="Top 3 Raw Honey Wholesalers" xml:space="preserve">
+    <value>Top 3 Raw Honey Wholesalers</value>
+  </data>
+  <data name="Top 5 Most Productive Beekeepers" xml:space="preserve">
+    <value>Top 5 Most Productive Beekeepers</value>
+  </data>
+  <data name="Total Production (kg)" xml:space="preserve">
+    <value>Total Production (kg)</value>
+  </data>
+  <data name="Rank" xml:space="preserve">
+    <value>Rank</value>
+  </data>
+  <data name="Top 5 Most Productive Apiaries" xml:space="preserve">
+    <value>Top 5 Most Productive Apiaries</value>
+  </data>
+  <data name="Hives" xml:space="preserve">
+    <value>Hives</value>
+  </data>
+  <data name="Privacy Policy" xml:space="preserve">
+    <value>Privacy Policy</value>
+  </data>
+  <data name="Use this page to detail your site's privacy policy." xml:space="preserve">
+    <value>Use this page to detail your site's privacy policy.</value>
+  </data>
+  <data name="Final Batches" xml:space="preserve">
+    <value>Final Batches</value>
+  </data>
+  <data name="New Batch" xml:space="preserve">
+    <value>New Batch</value>
+  </data>
+  <data name="Total Batches" xml:space="preserve">
+    <value>Total Batches</value>
+  </data>
+  <data name="Active Status" xml:space="preserve">
+    <value>Active Status</value>
+  </data>
+  <data name="Batch Title" xml:space="preserve">
+    <value>Batch Title</value>
+  </data>
+  <data name="Total Amount (kg)" xml:space="preserve">
+    <value>Total Amount (kg)</value>
+  </data>
+  <data name="Assigned CCPs" xml:space="preserve">
+    <value>Assigned CCPs</value>
+  </data>
+  <data name="No CCP assigned yet." xml:space="preserve">
+    <value>No CCP assigned yet.</value>
+  </data>
+  <data name="Manage" xml:space="preserve">
+    <value>Manage</value>
+  </data>
+  <data name="Manage CCP" xml:space="preserve">
+    <value>Manage CCP</value>
+  </data>
+  <data name="Finalized batches cannot be edited or deleted" xml:space="preserve">
+    <value>Finalized batches cannot be edited or deleted</value>
+  </data>
+  <data name="Finalized (locked)" xml:space="preserve">
+    <value>Finalized (locked)</value>
+  </data>
+  <data name="CCP Process Overview" xml:space="preserve">
+    <value>CCP Process Overview</value>
+  </data>
+  <data name="Lifecycle &amp; Traceability Monitoring" xml:space="preserve">
+    <value>Lifecycle &amp; Traceability Monitoring</value>
+  </data>
+  <data name="Production:" xml:space="preserve">
+    <value>Production:</value>
+  </data>
+  <data name="Wholesaler:" xml:space="preserve">
+    <value>Wholesaler:</value>
+  </data>
+  <data name="Total Batch Amount" xml:space="preserve">
+    <value>Total Batch Amount</value>
+  </data>
+  <data name="Completion" xml:space="preserve">
+    <value>Completion</value>
+  </data>
+  <data name="Certified Batch" xml:space="preserve">
+    <value>Certified Batch</value>
+  </data>
+  <data name="Process End" xml:space="preserve">
+    <value>Process End</value>
+  </data>
+  <data name="Create Final Honey Batch" xml:space="preserve">
+    <value>Create Final Honey Batch</value>
+  </data>
+  <data name="Create a new blended honey production batch. QR code will be generated automatically." xml:space="preserve">
+    <value>Create a new blended honey production batch. QR code will be generated automatically.</value>
+  </data>
+  <data name="Enter batch title" xml:space="preserve">
+    <value>Enter batch title</value>
+  </data>
+  <data name="After creating the batch, you will select raw honey amounts in the next step." xml:space="preserve">
+    <value>After creating the batch, you will select raw honey amounts in the next step.</value>
+  </data>
+  <data name="Create Batch" xml:space="preserve">
+    <value>Create Batch</value>
+  </data>
+  <data name="Delete Final Honey Batch" xml:space="preserve">
+    <value>Delete Final Honey Batch</value>
+  </data>
+  <data name="This action may affect traceability records. Deleting a batch cannot be undone." xml:space="preserve">
+    <value>This action may affect traceability records. Deleting a batch cannot be undone.</value>
+  </data>
+  <data name="Are you sure you want to permanently delete this honey batch?" xml:space="preserve">
+    <value>Are you sure you want to permanently delete this honey batch?</value>
+  </data>
+  <data name="Edit Final Honey Batch" xml:space="preserve">
+    <value>Edit Final Honey Batch</value>
+  </data>
+  <data name="Update batch metadata. Composition and total amount are managed separately." xml:space="preserve">
+    <value>Update batch metadata. Composition and total amount are managed separately.</value>
+  </data>
+  <data name="Update Metadata" xml:space="preserve">
+    <value>Update Metadata</value>
+  </data>
+  <data name="Final Honey Productions" xml:space="preserve">
+    <value>Final Honey Productions</value>
+  </data>
+  <data name="Manage blended honey batches and CCP traceability records." xml:space="preserve">
+    <value>Manage blended honey batches and CCP traceability records.</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Overview</value>
+  </data>
+  <data name="CCP Overview" xml:space="preserve">
+    <value>CCP Overview</value>
+  </data>
+  <data name="Manage Batch" xml:space="preserve">
+    <value>Manage Batch</value>
+  </data>
+  <data name="Batch Info" xml:space="preserve">
+    <value>Batch Info</value>
+  </data>
+  <data name="Title:" xml:space="preserve">
+    <value>Title:</value>
+  </data>
+  <data name="Date:" xml:space="preserve">
+    <value>Date:</value>
+  </data>
+  <data name="QR:" xml:space="preserve">
+    <value>QR:</value>
+  </data>
+  <data name="Company:" xml:space="preserve">
+    <value>Company:</value>
+  </data>
+  <data name="City:" xml:space="preserve">
+    <value>City:</value>
+  </data>
+  <data name="Status:" xml:space="preserve">
+    <value>Status:</value>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>Summary</value>
+  </data>
+  <data name="Target:" xml:space="preserve">
+    <value>Target:</value>
+  </data>
+  <data name="Total Selected:" xml:space="preserve">
+    <value>Total Selected:</value>
+  </data>
+  <data name="Finalized" xml:space="preserve">
+    <value>Finalized</value>
+  </data>
+  <data name="Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="Raw Honey Sources" xml:space="preserve">
+    <value>Raw Honey Sources</value>
+  </data>
+  <data name="Note.EligibleLots" xml:space="preserve">
+    <value>Only raw honey lots of this wholesaler whose CCP checks are &lt;strong&gt;all completed or &quot;Not applicable&quot;&lt;/strong&gt; can be added to a batch.</value>
+  </data>
+  <data name="Note.SeeIneligible" xml:space="preserve">
+    <value>See &lt;a href=&quot;#not-eligible-lots&quot;&gt;Raw honey lots not yet eligible&lt;/a&gt; below for the missing CCP checks.</value>
+  </data>
+  <data name="This wholesaler has no raw honey production yet." xml:space="preserve">
+    <value>This wholesaler has no raw honey production yet.</value>
+  </data>
+  <data name="Total (kg)" xml:space="preserve">
+    <value>Total (kg)</value>
+  </data>
+  <data name="Use Amount (kg)" xml:space="preserve">
+    <value>Use Amount (kg)</value>
+  </data>
+  <data name="Available Amount" xml:space="preserve">
+    <value>Available Amount</value>
+  </data>
+  <data name="Add Amount" xml:space="preserve">
+    <value>Add Amount</value>
+  </data>
+  <data name="Back to Batches" xml:space="preserve">
+    <value>Back to Batches</value>
+  </data>
+  <data name="Save Batch Composition" xml:space="preserve">
+    <value>Save Batch Composition</value>
+  </data>
+  <data name="See what is missing below" xml:space="preserve">
+    <value>See what is missing below</value>
+  </data>
+  <data name="Finalize Batch" xml:space="preserve">
+    <value>Finalize Batch</value>
+  </data>
+  <data name="A finalized batch is permanent: its data, composition and CCPs can no longer be changed." xml:space="preserve">
+    <value>A finalized batch is permanent: its data, composition and CCPs can no longer be changed.</value>
+  </data>
+  <data name="Missing before this batch can be finalized" xml:space="preserve">
+    <value>Missing before this batch can be finalized</value>
+  </data>
+  <data name="Every final-batch CCP must be assigned and Completed or &quot;Not applicable&quot;, and every lot in the batch must have all its CCPs Completed or &quot;Not applicable&quot;." xml:space="preserve">
+    <value>Every final-batch CCP must be assigned and Completed or &quot;Not applicable&quot;, and every lot in the batch must have all its CCPs Completed or &quot;Not applicable&quot;.</value>
+  </data>
+  <data name="Manage batch CCPs" xml:space="preserve">
+    <value>Manage batch CCPs</value>
+  </data>
+  <data name="Record CCP values" xml:space="preserve">
+    <value>Record CCP values</value>
+  </data>
+  <data name="Raw honey lots not yet eligible" xml:space="preserve">
+    <value>Raw honey lots not yet eligible</value>
+  </data>
+  <data name="These lots of {0} cannot be added until all their CCP checks are completed." xml:space="preserve">
+    <value>These lots of {0} cannot be added until all their CCP checks are completed.</value>
+  </data>
+  <data name="this wholesaler" xml:space="preserve">
+    <value>this wholesaler</value>
+  </data>
+  <data name="Missing CCP checks" xml:space="preserve">
+    <value>Missing CCP checks</value>
+  </data>
+  <data name="No CCP checks assigned." xml:space="preserve">
+    <value>No CCP checks assigned.</value>
+  </data>
+  <data name="Assign CCP checks" xml:space="preserve">
+    <value>Assign CCP checks</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Finalize this batch?" xml:space="preserve">
+    <value>Finalize this batch?</value>
+  </data>
+  <data name="After finalizing, editing will be disabled." xml:space="preserve">
+    <value>After finalizing, editing will be disabled.</value>
+  </data>
+  <data name="Yes, finalize it" xml:space="preserve">
+    <value>Yes, finalize it</value>
+  </data>
+  <data name="Save batch changes?" xml:space="preserve">
+    <value>Save batch changes?</value>
+  </data>
+  <data name="This will update the batch composition." xml:space="preserve">
+    <value>This will update the batch composition.</value>
+  </data>
+  <data name="Yes, save it" xml:space="preserve">
+    <value>Yes, save it</value>
+  </data>
+  <data name="CCP Management" xml:space="preserve">
+    <value>CCP Management</value>
+  </data>
+  <data name="Final Batch CCP Assignment" xml:space="preserve">
+    <value>Final Batch CCP Assignment</value>
+  </data>
+  <data name="Assign Critical Control Points to this Final Batch." xml:space="preserve">
+    <value>Assign Critical Control Points to this Final Batch.</value>
+  </data>
+  <data name="Batch Info:" xml:space="preserve">
+    <value>Batch Info:</value>
+  </data>
+  <data name="Save Assignments" xml:space="preserve">
+    <value>Save Assignments</value>
+  </data>
+  <data name="Skip to main content" xml:space="preserve">
+    <value>Skip to main content</value>
+  </data>
+  <data name="Main navigation" xml:space="preserve">
+    <value>Main navigation</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="About Platform" xml:space="preserve">
+    <value>About Platform</value>
+  </data>
+  <data name="Features" xml:space="preserve">
+    <value>Features</value>
+  </data>
+  <data name="Partners" xml:space="preserve">
+    <value>Partners</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="Trustable and Sustainable Open Platform" xml:space="preserve">
+    <value>Trustable and Sustainable Open Platform</value>
+  </data>
+  <data name="for Smart Honey Value Chains" xml:space="preserve">
+    <value>for Smart Honey Value Chains</value>
+  </data>
+  <data name="International Research Collaboration" xml:space="preserve">
+    <value>International Research Collaboration</value>
+  </data>
+  <data name="Open Digital Platform" xml:space="preserve">
+    <value>Open Digital Platform</value>
+  </data>
+  <data name="Sustainable Beekeeping" xml:space="preserve">
+    <value>Sustainable Beekeeping</value>
+  </data>
+  <data name="Access Platform" xml:space="preserve">
+    <value>Access Platform</value>
+  </data>
+  <data name="About the Project" xml:space="preserve">
+    <value>About the Project</value>
+  </data>
+  <data name="Project Scope" xml:space="preserve">
+    <value>Project Scope</value>
+  </data>
+  <data name="Türkiye and Argentina" xml:space="preserve">
+    <value>Türkiye and Argentina</value>
+  </data>
+  <data name="Platform Features" xml:space="preserve">
+    <value>Platform Features</value>
+  </data>
+  <data name="Honey Traceability" xml:space="preserve">
+    <value>Honey Traceability</value>
+  </data>
+  <data name="Consumers can transparently see where honey was produced, how it was processed, and its quality test results." xml:space="preserve">
+    <value>Consumers can transparently see where honey was produced, how it was processed, and its quality test results.</value>
+  </data>
+  <data name="Open Data Platform" xml:space="preserve">
+    <value>Open Data Platform</value>
+  </data>
+  <data name="A microservice-based open data platform enables secure data sharing across the honey value chain." xml:space="preserve">
+    <value>A microservice-based open data platform enables secure data sharing across the honey value chain.</value>
+  </data>
+  <data name="Digital Beekeeping Tools" xml:space="preserve">
+    <value>Digital Beekeeping Tools</value>
+  </data>
+  <data name="Beekeepers can monitor production data and manage operations efficiently using digital tools." xml:space="preserve">
+    <value>Beekeepers can monitor production data and manage operations efficiently using digital tools.</value>
+  </data>
+  <data name="Quality Control" xml:space="preserve">
+    <value>Quality Control</value>
+  </data>
+  <data name="Quality test results for honey batches are recorded and accessible through the platform." xml:space="preserve">
+    <value>Quality test results for honey batches are recorded and accessible through the platform.</value>
+  </data>
+  <data name="Ontology-based Knowledge Management" xml:space="preserve">
+    <value>Ontology-based Knowledge Management</value>
+  </data>
+  <data name="Ontology-based systems enable semantic knowledge management across the honey supply chain." xml:space="preserve">
+    <value>Ontology-based systems enable semantic knowledge management across the honey supply chain.</value>
+  </data>
+  <data name="International Collaboration" xml:space="preserve">
+    <value>International Collaboration</value>
+  </data>
+  <data name="The platform is implemented in Türkiye and Argentina with potential global adoption." xml:space="preserve">
+    <value>The platform is implemented in Türkiye and Argentina with potential global adoption.</value>
+  </data>
+  <data name="Project Consortium" xml:space="preserve">
+    <value>Project Consortium</value>
+  </data>
+  <data name="Project Coordinator" xml:space="preserve">
+    <value>Project Coordinator</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="Institution" xml:space="preserve">
+    <value>Institution</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="Türkiye" xml:space="preserve">
+    <value>Türkiye</value>
+  </data>
+  <data name="Project Partners" xml:space="preserve">
+    <value>Project Partners</value>
+  </data>
+  <data name="Argentina" xml:space="preserve">
+    <value>Argentina</value>
+  </data>
+  <data name="Poland" xml:space="preserve">
+    <value>Poland</value>
+  </data>
+  <data name="Latvia" xml:space="preserve">
+    <value>Latvia</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="Useful links" xml:space="preserve">
+    <value>Useful links</value>
+  </data>
+  <data name="Contact us" xml:space="preserve">
+    <value>Contact us</value>
+  </data>
+  <data name="Phone:" xml:space="preserve">
+    <value>Phone:</value>
+  </data>
+  <data name="Email:" xml:space="preserve">
+    <value>Email:</value>
+  </data>
+  <data name="Honey Story" xml:space="preserve">
+    <value>Honey Story</value>
+  </data>
+  <data name="Scan to verify authenticity" xml:space="preserve">
+    <value>Scan to verify authenticity</value>
+  </data>
+  <data name="Honey Traceability Certificate" xml:space="preserve">
+    <value>Honey Traceability Certificate</value>
+  </data>
+  <data name="Verified lifecycle &amp; quality control record" xml:space="preserve">
+    <value>Verified lifecycle &amp; quality control record</value>
+  </data>
+  <data name="Production" xml:space="preserve">
+    <value>Production</value>
+  </data>
+  <data name="Traceable Product" xml:space="preserve">
+    <value>Traceable Product</value>
+  </data>
+  <data name="Honey Origins" xml:space="preserve">
+    <value>Honey Origins</value>
+  </data>
+  <data name="Source apiaries and photo evidence from collection stage." xml:space="preserve">
+    <value>Source apiaries and photo evidence from collection stage.</value>
+  </data>
+  <data name="Raw Honey Collection Point" xml:space="preserve">
+    <value>Raw Honey Collection Point</value>
+  </data>
+  <data name="Source Apiary" xml:space="preserve">
+    <value>Source Apiary</value>
+  </data>
+  <data name="Used Amount" xml:space="preserve">
+    <value>Used Amount</value>
+  </data>
+  <data name="Apiary Photo Gallery" xml:space="preserve">
+    <value>Apiary Photo Gallery</value>
+  </data>
+  <data name="No photos uploaded for this apiary." xml:space="preserve">
+    <value>No photos uploaded for this apiary.</value>
+  </data>
+  <data name="Honey Processing Traceability &amp; CCP Monitoring" xml:space="preserve">
+    <value>Honey Processing Traceability &amp; CCP Monitoring</value>
+  </data>
+  <data name="Critical Control Points monitored throughout honey processing and packaging stages." xml:space="preserve">
+    <value>Critical Control Points monitored throughout honey processing and packaging stages.</value>
+  </data>
+  <data name="Raw honey" xml:space="preserve">
+    <value>Raw honey</value>
+  </data>
+  <data name="Processing &amp; packaging" xml:space="preserve">
+    <value>Processing &amp; packaging</value>
+  </data>
+  <data name="Verified by" xml:space="preserve">
+    <value>Verified by</value>
+  </data>
+  <data name="TOP4HoneyChains Traceability System" xml:space="preserve">
+    <value>TOP4HoneyChains Traceability System</value>
+  </data>
+  <data name="Verified source &amp; quality information" xml:space="preserve">
+    <value>Verified source &amp; quality information</value>
+  </data>
+  <data name="Beekeeper Contribution Breakdown" xml:space="preserve">
+    <value>Beekeeper Contribution Breakdown</value>
+  </data>
+  <data name="Percentage share of honey supplied by each beekeeper in this batch" xml:space="preserve">
+    <value>Percentage share of honey supplied by each beekeeper in this batch</value>
+  </data>
+  <data name="Honey Origins Map" xml:space="preserve">
+    <value>Honey Origins Map</value>
+  </data>
+  <data name="Geographic locations of apiaries contributing to this batch" xml:space="preserve">
+    <value>Geographic locations of apiaries contributing to this batch</value>
+  </data>
+  <data name="Apiary locations are shown approximately (about 10 km) to protect the beekeepers' privacy." xml:space="preserve">
+    <value>Apiary locations are shown approximately (about 10 km) to protect the beekeepers' privacy.</value>
+  </data>
+  <data name="Apiary Source" xml:space="preserve">
+    <value>Apiary Source</value>
+  </data>
+  <data name="Contribution" xml:space="preserve">
+    <value>Contribution</value>
+  </data>
+  <data name="Apiary Evidence Photos" xml:space="preserve">
+    <value>Apiary Evidence Photos</value>
+  </data>
+  <data name="Photographic documentation from the apiary during honey collection" xml:space="preserve">
+    <value>Photographic documentation from the apiary during honey collection</value>
+  </data>
+  <data name="No photos uploaded." xml:space="preserve">
+    <value>No photos uploaded.</value>
+  </data>
+  <data name="Raw Honey Quality Control" xml:space="preserve">
+    <value>Raw Honey Quality Control</value>
+  </data>
+  <data name="Laboratory analysis performed during raw honey acceptance" xml:space="preserve">
+    <value>Laboratory analysis performed during raw honey acceptance</value>
+  </data>
+  <data name="Not recorded." xml:space="preserve">
+    <value>Not recorded.</value>
+  </data>
+  <data name="not recorded" xml:space="preserve">
+    <value>not recorded</value>
+  </data>
+  <data name="document on file" xml:space="preserve">
+    <value>document on file</value>
+  </data>
+  <data name="within limit" xml:space="preserve">
+    <value>within limit</value>
+  </data>
+  <data name="outside limit" xml:space="preserve">
+    <value>outside limit</value>
+  </data>
+  <data name="full traceability" xml:space="preserve">
+    <value>full traceability</value>
+  </data>
+  <data name="TOTAL HONEY" xml:space="preserve">
+    <value>TOTAL HONEY</value>
+  </data>
+  <data name="Honey Used:" xml:space="preserve">
+    <value>Honey Used:</value>
+  </data>
+  <data name="Approximate area" xml:space="preserve">
+    <value>Approximate area</value>
+  </data>
+  <data name="Honey Quality Parameter" xml:space="preserve">
+    <value>Honey Quality Parameter</value>
+  </data>
+  <data name="Educational explanation" xml:space="preserve">
+    <value>Educational explanation</value>
+  </data>
+  <data name="Parameter Details" xml:space="preserve">
+    <value>Parameter Details</value>
+  </data>
+  <data name="Honey quality control parameter" xml:space="preserve">
+    <value>Honey quality control parameter</value>
+  </data>
+  <data name="What is it?" xml:space="preserve">
+    <value>What is it?</value>
+  </data>
+  <data name="Why it matters?" xml:space="preserve">
+    <value>Why it matters?</value>
+  </data>
+  <data name="Additional Info" xml:space="preserve">
+    <value>Additional Info</value>
+  </data>
+  <data name="No information available for this parameter." xml:space="preserve">
+    <value>No information available for this parameter.</value>
+  </data>
+  <data name="Parameter Video" xml:space="preserve">
+    <value>Parameter Video</value>
+  </data>
+  <data name="Video not found" xml:space="preserve">
+    <value>Video not found</value>
+  </data>
+  <data name="Video not available for this parameter." xml:space="preserve">
+    <value>Video not available for this parameter.</value>
+  </data>
+  <data name="⏱ Quick explanation (30–60 sec)" xml:space="preserve">
+    <value>⏱ Quick explanation (30–60 sec)</value>
+  </data>
+  <data name="TOP4HoneyChains Educational Content" xml:space="preserve">
+    <value>TOP4HoneyChains Educational Content</value>
+  </data>
+  <data name="No values were recorded for this control point." xml:space="preserve">
+    <value>No values were recorded for this control point.</value>
+  </data>
+  <data name="What is this?" xml:space="preserve">
+    <value>What is this?</value>
+  </data>
+  <data name="Create Honey Type" xml:space="preserve">
+    <value>Create Honey Type</value>
+  </data>
+  <data name="Create New Honey Type" xml:space="preserve">
+    <value>Create New Honey Type</value>
+  </data>
+  <data name="Add a new honey type and its description." xml:space="preserve">
+    <value>Add a new honey type and its description.</value>
+  </data>
+  <data name="Honey Type Title" xml:space="preserve">
+    <value>Honey Type Title</value>
+  </data>
+  <data name="Enter honey type title" xml:space="preserve">
+    <value>Enter honey type title</value>
+  </data>
+  <data name="Enter description for this honey type" xml:space="preserve">
+    <value>Enter description for this honey type</value>
+  </data>
+  <data name="Honey class for CCP limits" xml:space="preserve">
+    <value>Honey class for CCP limits</value>
+  </data>
+  <data name="(unknown: only limits for every honey class apply)" xml:space="preserve">
+    <value>(unknown: only limits for every honey class apply)</value>
+  </data>
+  <data name="Floral (blossom)" xml:space="preserve">
+    <value>Floral (blossom)</value>
+  </data>
+  <data name="Honeydew" xml:space="preserve">
+    <value>Honeydew</value>
+  </data>
+  <data name="Pine (honeydew)" xml:space="preserve">
+    <value>Pine (honeydew)</value>
+  </data>
+  <data name="Delete Honey Type" xml:space="preserve">
+    <value>Delete Honey Type</value>
+  </data>
+  <data name="Are you sure you want to delete this honey type? This action cannot be undone." xml:space="preserve">
+    <value>Are you sure you want to delete this honey type? This action cannot be undone.</value>
+  </data>
+  <data name="No description" xml:space="preserve">
+    <value>No description</value>
+  </data>
+  <data name="Edit Honey Type" xml:space="preserve">
+    <value>Edit Honey Type</value>
+  </data>
+  <data name="Update the selected honey type." xml:space="preserve">
+    <value>Update the selected honey type.</value>
+  </data>
+  <data name="Honey Types" xml:space="preserve">
+    <value>Honey Types</value>
+  </data>
+  <data name="Class" xml:space="preserve">
+    <value>Class</value>
+  </data>
+  <data name="· SHA-256" xml:space="preserve">
+    <value>· SHA-256</value>
+  </data>
+  <data name="New organization" xml:space="preserve">
+    <value>New organization</value>
+  </data>
+  <data name="Note.OrgStartsPending" xml:space="preserve">
+    <value>The organization starts as &lt;strong&gt;Pending&lt;/strong&gt;. It can enter data only after it is verified with documents.</value>
+  </data>
+  <data name="platform" xml:space="preserve">
+    <value>platform</value>
+  </data>
+  <data name="Reinstate" xml:space="preserve">
+    <value>Reinstate</value>
+  </data>
+  <data name="Verify" xml:space="preserve">
+    <value>Verify</value>
+  </data>
+  <data name="accredited, no. {0}" xml:space="preserve">
+    <value>accredited, no. {0}</value>
+  </data>
+  <data name="not accredited" xml:space="preserve">
+    <value>not accredited</value>
+  </data>
+  <data name=", valid until {0}" xml:space="preserve">
+    <value>, valid until {0}</value>
+  </data>
+  <data name="Note.FourEyesExemption" xml:space="preserve">
+    <value>With the exemption, a member may approve a CCP record they recorded themselves (e.g. a one-person association). Every such approval is flagged &lt;code&gt;SelfApproved&lt;/code&gt; in the audit log. It never applies to lab results. Set only by platform administrators.</value>
+  </data>
+  <data name="exempt" xml:space="preserve">
+    <value>exempt</value>
+  </data>
+  <data name="not exempt" xml:space="preserve">
+    <value>not exempt</value>
+  </data>
+  <data name="Remove exemption" xml:space="preserve">
+    <value>Remove exemption</value>
+  </data>
+  <data name="Grant exemption" xml:space="preserve">
+    <value>Grant exemption</value>
+  </data>
+  <data name="Edit organization" xml:space="preserve">
+    <value>Edit organization</value>
+  </data>
+  <data name="Created from a wholesaler record" xml:space="preserve">
+    <value>Created from a wholesaler record</value>
+  </data>
+  <data name="wholesaler" xml:space="preserve">
+    <value>wholesaler</value>
+  </data>
+  <data name="yes" xml:space="preserve">
+    <value>yes</value>
+  </data>
+  <data name="no" xml:space="preserve">
+    <value>no</value>
+  </data>
+  <data name="Create Production Period" xml:space="preserve">
+    <value>Create Production Period</value>
+  </data>
+  <data name="Create New Production Period" xml:space="preserve">
+    <value>Create New Production Period</value>
+  </data>
+  <data name="Define a new raw honey production period." xml:space="preserve">
+    <value>Define a new raw honey production period.</value>
+  </data>
+  <data name="Period Title" xml:space="preserve">
+    <value>Period Title</value>
+  </data>
+  <data name="Enter production period title" xml:space="preserve">
+    <value>Enter production period title</value>
+  </data>
+  <data name="Start Date" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="End Date" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="Delete Production Period" xml:space="preserve">
+    <value>Delete Production Period</value>
+  </data>
+  <data name="Are you sure you want to delete this production period? This action cannot be undone." xml:space="preserve">
+    <value>Are you sure you want to delete this production period? This action cannot be undone.</value>
+  </data>
+  <data name="Edit Production Period" xml:space="preserve">
+    <value>Edit Production Period</value>
+  </data>
+  <data name="Update the selected raw honey production period." xml:space="preserve">
+    <value>Update the selected raw honey production period.</value>
+  </data>
+  <data name="Production Periods" xml:space="preserve">
+    <value>Production Periods</value>
+  </data>
+  <data name="Raw Honey Production Periods" xml:space="preserve">
+    <value>Raw Honey Production Periods</value>
+  </data>
+  <data name="Production Overview" xml:space="preserve">
+    <value>Production Overview</value>
+  </data>
+  <data name="Raw Honey Production Traceability" xml:space="preserve">
+    <value>Raw Honey Production Traceability</value>
+  </data>
+  <data name="Monitoring lifecycle visualization" xml:space="preserve">
+    <value>Monitoring lifecycle visualization</value>
+  </data>
+  <data name="Add Raw Honey Production" xml:space="preserve">
+    <value>Add Raw Honey Production</value>
+  </data>
+  <data name="Enter production details for the selected apiary" xml:space="preserve">
+    <value>Enter production details for the selected apiary</value>
+  </data>
+  <data name="New Entry" xml:space="preserve">
+    <value>New Entry</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="Production Period" xml:space="preserve">
+    <value>Production Period</value>
+  </data>
+  <data name="Select Period" xml:space="preserve">
+    <value>Select Period</value>
+  </data>
+  <data name="Select Honey Type" xml:space="preserve">
+    <value>Select Honey Type</value>
+  </data>
+  <data name="Select Wholesaler" xml:space="preserve">
+    <value>Select Wholesaler</value>
+  </data>
+  <data name="Production Amount (kg)" xml:space="preserve">
+    <value>Production Amount (kg)</value>
+  </data>
+  <data name="Enter amount in kilograms" xml:space="preserve">
+    <value>Enter amount in kilograms</value>
+  </data>
+  <data name="Save Production" xml:space="preserve">
+    <value>Save Production</value>
+  </data>
+  <data name="Delete Production" xml:space="preserve">
+    <value>Delete Production</value>
+  </data>
+  <data name="Are you sure you want to delete this production record?" xml:space="preserve">
+    <value>Are you sure you want to delete this production record?</value>
+  </data>
+  <data name="Amount (kg)" xml:space="preserve">
+    <value>Amount (kg)</value>
+  </data>
+  <data name="Edit Raw Honey Production" xml:space="preserve">
+    <value>Edit Raw Honey Production</value>
+  </data>
+  <data name="Update existing production record" xml:space="preserve">
+    <value>Update existing production record</value>
+  </data>
+  <data name="Editing Mode" xml:space="preserve">
+    <value>Editing Mode</value>
+  </data>
+  <data name="All Productions" xml:space="preserve">
+    <value>All Productions</value>
+  </data>
+  <data name="All Raw Honey Productions" xml:space="preserve">
+    <value>All Raw Honey Productions</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="CCP Process" xml:space="preserve">
+    <value>CCP Process</value>
+  </data>
+  <data name="Not Assigned" xml:space="preserve">
+    <value>Not Assigned</value>
+  </data>
+  <data name="CCP Assignment" xml:space="preserve">
+    <value>CCP Assignment</value>
+  </data>
+  <data name="Assign Critical Control Points to this Raw Honey Production." xml:space="preserve">
+    <value>Assign Critical Control Points to this Raw Honey Production.</value>
+  </data>
+  <data name="Production Info:" xml:space="preserve">
+    <value>Production Info:</value>
+  </data>
+  <data name="Raw Honey Productions" xml:space="preserve">
+    <value>Raw Honey Productions</value>
+  </data>
+  <data name="Add Production" xml:space="preserve">
+    <value>Add Production</value>
+  </data>
+  <data name="Back to list" xml:space="preserve">
+    <value>Back to list</value>
+  </data>
+  <data name="Locked" xml:space="preserve">
+    <value>Locked</value>
+  </data>
+  <data name="Beekeeper registry" xml:space="preserve">
+    <value>Beekeeper registry</value>
+  </data>
+  <data name="Registry number:" xml:space="preserve">
+    <value>Registry number:</value>
+  </data>
+  <data name="· Status:" xml:space="preserve">
+    <value>· Status:</value>
+  </data>
+  <data name="TR + 2 + 10 digits" xml:space="preserve">
+    <value>TR + 2 + 10 digits</value>
+  </data>
+  <data name="file" xml:space="preserve">
+    <value>file</value>
+  </data>
+  <data name="Beekeepers are records, not users: they never log in, and their association records data for them. The national registry (AKS) number is verified manually for now (document + approval)." xml:space="preserve">
+    <value>Beekeepers are records, not users: they never log in, and their association records data for them. The national registry (AKS) number is verified manually for now (document + approval).</value>
+  </data>
+  <data name="Role Management" xml:space="preserve">
+    <value>Role Management</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Roles</value>
+  </data>
+  <data name="Add Role" xml:space="preserve">
+    <value>Add Role</value>
+  </data>
+  <data name="Role Name" xml:space="preserve">
+    <value>Role Name</value>
+  </data>
+  <data name="Create Role" xml:space="preserve">
+    <value>Create Role</value>
+  </data>
+  <data name="Edit Role" xml:space="preserve">
+    <value>Edit Role</value>
+  </data>
+  <data name="Delete role?" xml:space="preserve">
+    <value>Delete role?</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Note.Footer" xml:space="preserve">
+    <value>- Developed &lt;i class=&quot;mdi mdi-heart text-danger&quot;&gt;&lt;/i&gt; by INTALA LAB.</value>
+  </data>
+  <data name="Header Avatar" xml:space="preserve">
+    <value>Header Avatar</value>
+  </data>
+  <data name="No data available in table" xml:space="preserve">
+    <value>No data available in table</value>
+  </data>
+  <data name="Showing _START_ to _END_ of _TOTAL_ entries" xml:space="preserve">
+    <value>Showing _START_ to _END_ of _TOTAL_ entries</value>
+  </data>
+  <data name="Showing 0 to 0 of 0 entries" xml:space="preserve">
+    <value>Showing 0 to 0 of 0 entries</value>
+  </data>
+  <data name="(filtered from _MAX_ total entries)" xml:space="preserve">
+    <value>(filtered from _MAX_ total entries)</value>
+  </data>
+  <data name="Show _MENU_ entries" xml:space="preserve">
+    <value>Show _MENU_ entries</value>
+  </data>
+  <data name="Loading..." xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="Processing..." xml:space="preserve">
+    <value>Processing...</value>
+  </data>
+  <data name="Search:" xml:space="preserve">
+    <value>Search:</value>
+  </data>
+  <data name="No matching records found" xml:space="preserve">
+    <value>No matching records found</value>
+  </data>
+  <data name="First" xml:space="preserve">
+    <value>First</value>
+  </data>
+  <data name="Last" xml:space="preserve">
+    <value>Last</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="Column visibility" xml:space="preserve">
+    <value>Column visibility</value>
+  </data>
+  <data name="Copy to clipboard" xml:space="preserve">
+    <value>Copy to clipboard</value>
+  </data>
+  <data name="Copied %d rows to clipboard" xml:space="preserve">
+    <value>Copied %d rows to clipboard</value>
+  </data>
+  <data name="Copied 1 row to clipboard" xml:space="preserve">
+    <value>Copied 1 row to clipboard</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Management Information System" xml:space="preserve">
+    <value>Management Information System</value>
+  </data>
+  <data name="Create User" xml:space="preserve">
+    <value>Create User</value>
+  </data>
+  <data name="Create New User" xml:space="preserve">
+    <value>Create New User</value>
+  </data>
+  <data name="User Name" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="Enter username" xml:space="preserve">
+    <value>Enter username</value>
+  </data>
+  <data name="Enter email" xml:space="preserve">
+    <value>Enter email</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Enter password" xml:space="preserve">
+    <value>Enter password</value>
+  </data>
+  <data name="Select Role" xml:space="preserve">
+    <value>Select Role</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="User Management" xml:space="preserve">
+    <value>User Management</value>
+  </data>
+  <data name="Add New User" xml:space="preserve">
+    <value>Add New User</value>
+  </data>
+  <data name="Reset User Password" xml:space="preserve">
+    <value>Reset User Password</value>
+  </data>
+  <data name="Are you sure?" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
+  <data name="Add Wholesaler" xml:space="preserve">
+    <value>Add Wholesaler</value>
+  </data>
+  <data name="Enter wholesaler company and contact information." xml:space="preserve">
+    <value>Enter wholesaler company and contact information.</value>
+  </data>
+  <data name="Company Name" xml:space="preserve">
+    <value>Company Name</value>
+  </data>
+  <data name="Enter company name" xml:space="preserve">
+    <value>Enter company name</value>
+  </data>
+  <data name="Tax Number (Optional)" xml:space="preserve">
+    <value>Tax Number (Optional)</value>
+  </data>
+  <data name="Enter tax number" xml:space="preserve">
+    <value>Enter tax number</value>
+  </data>
+  <data name="Contact Person" xml:space="preserve">
+    <value>Contact Person</value>
+  </data>
+  <data name="Enter contact person name" xml:space="preserve">
+    <value>Enter contact person name</value>
+  </data>
+  <data name="Enter phone number" xml:space="preserve">
+    <value>Enter phone number</value>
+  </data>
+  <data name="Enter email address" xml:space="preserve">
+    <value>Enter email address</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="Enter full address" xml:space="preserve">
+    <value>Enter full address</value>
+  </data>
+  <data name="Active Wholesaler" xml:space="preserve">
+    <value>Active Wholesaler</value>
+  </data>
+  <data name="Save Wholesaler" xml:space="preserve">
+    <value>Save Wholesaler</value>
+  </data>
+  <data name="Delete Wholesaler" xml:space="preserve">
+    <value>Delete Wholesaler</value>
+  </data>
+  <data name="This action will permanently remove the wholesaler record." xml:space="preserve">
+    <value>This action will permanently remove the wholesaler record.</value>
+  </data>
+  <data name="Dangerous Action" xml:space="preserve">
+    <value>Dangerous Action</value>
+  </data>
+  <data name="Wholesaler Details" xml:space="preserve">
+    <value>Wholesaler Details</value>
+  </data>
+  <data name="Please review the information before deleting this wholesaler." xml:space="preserve">
+    <value>Please review the information before deleting this wholesaler.</value>
+  </data>
+  <data name="Contact Information" xml:space="preserve">
+    <value>Contact Information</value>
+  </data>
+  <data name="Company &amp; Location" xml:space="preserve">
+    <value>Company &amp; Location</value>
+  </data>
+  <data name="Tax Number" xml:space="preserve">
+    <value>Tax Number</value>
+  </data>
+  <data name="City / Country" xml:space="preserve">
+    <value>City / Country</value>
+  </data>
+  <data name="System Information" xml:space="preserve">
+    <value>System Information</value>
+  </data>
+  <data name="Record ID" xml:space="preserve">
+    <value>Record ID</value>
+  </data>
+  <data name="Created At" xml:space="preserve">
+    <value>Created At</value>
+  </data>
+  <data name="Warning: Deleting this wholesaler may affect raw honey production traceability records." xml:space="preserve">
+    <value>Warning: Deleting this wholesaler may affect raw honey production traceability records.</value>
+  </data>
+  <data name="Delete Permanently" xml:space="preserve">
+    <value>Delete Permanently</value>
+  </data>
+  <data name="Edit Wholesaler" xml:space="preserve">
+    <value>Edit Wholesaler</value>
+  </data>
+  <data name="Update wholesaler company and contact information." xml:space="preserve">
+    <value>Update wholesaler company and contact information.</value>
+  </data>
+  <data name="Wholesalers" xml:space="preserve">
+    <value>Wholesalers</value>
+  </data>
+  <data name="Manage wholesaler companies used in raw honey production traceability." xml:space="preserve">
+    <value>Manage wholesaler companies used in raw honey production traceability.</value>
+  </data>
+  <data name="Create New Wholesaler" xml:space="preserve">
+    <value>Create New Wholesaler</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="Tax No" xml:space="preserve">
+    <value>Tax No</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Created</value>
+  </data>
+  <data name="Final Honey Productions (Batches)" xml:space="preserve">
+    <value>Final Honey Productions (Batches)</value>
+  </data>
+  <data name="Raw Honey Batches" xml:space="preserve">
+    <value>Raw Honey Batches</value>
+  </data>
+  <data name="Raw Honey Production Monitoring Panel" xml:space="preserve">
+    <value>Raw Honey Production Monitoring Panel</value>
+  </data>
+  <data name="Total Raw Honey" xml:space="preserve">
+    <value>Total Raw Honey</value>
+  </data>
+  <data name="Fully Completed" xml:space="preserve">
+    <value>Fully Completed</value>
+  </data>
+  <data name="Missing CCP" xml:space="preserve">
+    <value>Missing CCP</value>
+  </data>
+  <data name="Assigned Raw Honey Productions" xml:space="preserve">
+    <value>Assigned Raw Honey Productions</value>
+  </data>
+  <data name="Period" xml:space="preserve">
+    <value>Period</value>
+  </data>
+  <data name="CCP Progress" xml:space="preserve">
+    <value>CCP Progress</value>
+  </data>
+  <data name="No CCP Assigned" xml:space="preserve">
+    <value>No CCP Assigned</value>
+  </data>
+  <data name="← Back to Wholesalers" xml:space="preserve">
+    <value>← Back to Wholesalers</value>
+  </data>
+  <data name="Invalid password" xml:space="preserve">
+    <value>Invalid password</value>
+  </data>
+  <data name="Phone number updated." xml:space="preserve">
+    <value>Phone number updated.</value>
+  </data>
+  <data name="Password changed." xml:space="preserve">
+    <value>Password changed.</value>
+  </data>
+  <data name="Please select a file." xml:space="preserve">
+    <value>Please select a file.</value>
+  </data>
+  <data name="Photo uploaded." xml:space="preserve">
+    <value>Photo uploaded.</value>
+  </data>
+  <data name="Description updated." xml:space="preserve">
+    <value>Description updated.</value>
+  </data>
+  <data name="Photo deleted." xml:space="preserve">
+    <value>Photo deleted.</value>
+  </data>
+  <data name="Role created successfully." xml:space="preserve">
+    <value>Role created successfully.</value>
+  </data>
+  <data name="Role updated successfully." xml:space="preserve">
+    <value>Role updated successfully.</value>
+  </data>
+  <data name="Role deleted successfully." xml:space="preserve">
+    <value>Role deleted successfully.</value>
+  </data>
+  <data name="Select a valid role." xml:space="preserve">
+    <value>Select a valid role.</value>
+  </data>
+  <data name="Password update failed: enter the new password twice (identical)." xml:space="preserve">
+    <value>Password update failed: enter the new password twice (identical).</value>
+  </data>
+  <data name="Password update failed: user not found." xml:space="preserve">
+    <value>Password update failed: user not found.</value>
+  </data>
+  <data name="Password updated successfully." xml:space="preserve">
+    <value>Password updated successfully.</value>
+  </data>
+  <data name="Password update failed." xml:space="preserve">
+    <value>Password update failed.</value>
+  </data>
+  <data name="A video file is required." xml:space="preserve">
+    <value>A video file is required.</value>
+  </data>
+  <data name="Content deleted successfully" xml:space="preserve">
+    <value>Content deleted successfully</value>
+  </data>
+  <data name="This field is required." xml:space="preserve">
+    <value>This field is required.</value>
+  </data>
+  <data name="Hash chain: {0}" xml:space="preserve">
+    <value>Hash chain: {0}</value>
+  </data>
+  <data name="All {0} rows verify." xml:space="preserve">
+    <value>All {0} rows verify.</value>
+  </data>
+  <data name="The audit log is empty." xml:space="preserve">
+    <value>The audit log is empty.</value>
+  </data>
+  <data name="Row {0} does not point to the previous row." xml:space="preserve">
+    <value>Row {0} does not point to the previous row.</value>
+  </data>
+  <data name="Row {0} was changed after it was written." xml:space="preserve">
+    <value>Row {0} was changed after it was written.</value>
+  </data>
+  <data name="This CCP is not assigned to the lot." xml:space="preserve">
+    <value>This CCP is not assigned to the lot.</value>
+  </data>
+  <data name="This CCP is not assigned to the batch." xml:space="preserve">
+    <value>This CCP is not assigned to the batch.</value>
+  </data>
+  <data name="{0} values saved." xml:space="preserve">
+    <value>{0} values saved.</value>
+  </data>
+  <data name="Your role cannot record this CCP." xml:space="preserve">
+    <value>Your role cannot record this CCP.</value>
+  </data>
+  <data name="Your role can read this CCP but not record it." xml:space="preserve">
+    <value>Your role can read this CCP but not record it.</value>
+  </data>
+  <data name="This CCP already has recorded values, so it cannot be marked &quot;Not applicable&quot;. Clear the values first if the CCP really does not apply." xml:space="preserve">
+    <value>This CCP already has recorded values, so it cannot be marked &quot;Not applicable&quot;. Clear the values first if the CCP really does not apply.</value>
+  </data>
+  <data name="A reason is required to mark a CCP as &quot;Not applicable&quot;." xml:space="preserve">
+    <value>A reason is required to mark a CCP as &quot;Not applicable&quot;.</value>
+  </data>
+  <data name="The reason can be at most 500 characters." xml:space="preserve">
+    <value>The reason can be at most 500 characters.</value>
+  </data>
+  <data name="The CCP is marked &quot;Not applicable&quot;." xml:space="preserve">
+    <value>The CCP is marked &quot;Not applicable&quot;.</value>
+  </data>
+  <data name="Only a QualityApprover of the organization can approve." xml:space="preserve">
+    <value>Only a QualityApprover of the organization can approve.</value>
+  </data>
+  <data name="Only a submitted (or &quot;Not applicable&quot;) CCP record can be approved." xml:space="preserve">
+    <value>Only a submitted (or &quot;Not applicable&quot;) CCP record can be approved.</value>
+  </data>
+  <data name="This CCP record is already approved." xml:space="preserve">
+    <value>This CCP record is already approved.</value>
+  </data>
+  <data name="Approved under the four-eyes exemption (flagged in the audit log)." xml:space="preserve">
+    <value>Approved under the four-eyes exemption (flagged in the audit log).</value>
+  </data>
+  <data name="CCP record approved." xml:space="preserve">
+    <value>CCP record approved.</value>
+  </data>
+  <data name="Four-eyes: you recorded values of this CCP, so another person must approve it." xml:space="preserve">
+    <value>Four-eyes: you recorded values of this CCP, so another person must approve it.</value>
+  </data>
+  <data name="A reason is required for a correction." xml:space="preserve">
+    <value>A reason is required for a correction.</value>
+  </data>
+  <data name="File values cannot be corrected here." xml:space="preserve">
+    <value>File values cannot be corrected here.</value>
+  </data>
+  <data name="{0}: enter a number." xml:space="preserve">
+    <value>{0}: enter a number.</value>
+  </data>
+  <data name="{0}: choose Yes or No." xml:space="preserve">
+    <value>{0}: choose Yes or No.</value>
+  </data>
+  <data name="{0}: enter text." xml:space="preserve">
+    <value>{0}: enter text.</value>
+  </data>
+  <data name="{0}: enter either a number or a text." xml:space="preserve">
+    <value>{0}: enter either a number or a text.</value>
+  </data>
+  <data name="The text can be at most 100 characters." xml:space="preserve">
+    <value>The text can be at most 100 characters.</value>
+  </data>
+  <data name="Correction requested; another platform administrator must approve it." xml:space="preserve">
+    <value>Correction requested; another platform administrator must approve it.</value>
+  </data>
+  <data name="This correction was already decided." xml:space="preserve">
+    <value>This correction was already decided.</value>
+  </data>
+  <data name="Four-eyes: the person who requested a correction cannot decide it." xml:space="preserve">
+    <value>Four-eyes: the person who requested a correction cannot decide it.</value>
+  </data>
+  <data name="A note is required to reject a correction." xml:space="preserve">
+    <value>A note is required to reject a correction.</value>
+  </data>
+  <data name="Correction applied." xml:space="preserve">
+    <value>Correction applied.</value>
+  </data>
+  <data name="Correction rejected." xml:space="preserve">
+    <value>Correction rejected.</value>
+  </data>
+  <data name="Choose who is responsible." xml:space="preserve">
+    <value>Choose who is responsible.</value>
+  </data>
+  <data name="Choose at least one capability." xml:space="preserve">
+    <value>Choose at least one capability.</value>
+  </data>
+  <data name="Choose at least one role that enters values." xml:space="preserve">
+    <value>Choose at least one role that enters values.</value>
+  </data>
+  <data name="Choose at least one approving role, or turn approval off." xml:space="preserve">
+    <value>Choose at least one approving role, or turn approval off.</value>
+  </data>
+  <data name="Saved; the change applies at once." xml:space="preserve">
+    <value>Saved; the change applies at once.</value>
+  </data>
+  <data name="The maximum must not be lower than the minimum." xml:space="preserve">
+    <value>The maximum must not be lower than the minimum.</value>
+  </data>
+  <data name="Unknown honey class." xml:space="preserve">
+    <value>Unknown honey class.</value>
+  </data>
+  <data name="Enter a minimum or a maximum." xml:space="preserve">
+    <value>Enter a minimum or a maximum.</value>
+  </data>
+  <data name="A condition needs both a parameter and a value." xml:space="preserve">
+    <value>A condition needs both a parameter and a value.</value>
+  </data>
+  <data name="The note can be at most 300 characters." xml:space="preserve">
+    <value>The note can be at most 300 characters.</value>
+  </data>
+  <data name="A limit can use a sum or a ratio, not both." xml:space="preserve">
+    <value>A limit can use a sum or a ratio, not both.</value>
+  </data>
+  <data name="Unknown honey type." xml:space="preserve">
+    <value>Unknown honey type.</value>
+  </data>
+  <data name="Condition, sum and ratio parameters must be other parameters of the same CCP." xml:space="preserve">
+    <value>Condition, sum and ratio parameters must be other parameters of the same CCP.</value>
+  </data>
+  <data name="Limit added." xml:space="preserve">
+    <value>Limit added.</value>
+  </data>
+  <data name="Limit removed." xml:space="preserve">
+    <value>Limit removed.</value>
+  </data>
+  <data name="This batch is locked and cannot be modified." xml:space="preserve">
+    <value>This batch is locked and cannot be modified.</value>
+  </data>
+  <data name="With the organization model, the owning organization finalizes the batch (request and approval by two people)." xml:space="preserve">
+    <value>With the organization model, the owning organization finalizes the batch (request and approval by two people).</value>
+  </data>
+  <data name="The batch cannot be finalized yet: {0}" xml:space="preserve">
+    <value>The batch cannot be finalized yet: {0}</value>
+  </data>
+  <data name="Batch finalized successfully." xml:space="preserve">
+    <value>Batch finalized successfully.</value>
+  </data>
+  <data name="Only CCPs that apply to final batches can be assigned. Nothing was changed." xml:space="preserve">
+    <value>Only CCPs that apply to final batches can be assigned. Nothing was changed.</value>
+  </data>
+  <data name="Only CCPs that apply to raw honey lots can be assigned. Nothing was changed." xml:space="preserve">
+    <value>Only CCPs that apply to raw honey lots can be assigned. Nothing was changed.</value>
+  </data>
+  <data name="Unknown organization." xml:space="preserve">
+    <value>Unknown organization.</value>
+  </data>
+  <data name="This batch is finalized and locked. Its data, composition, CCPs and CCP values can no longer be changed." xml:space="preserve">
+    <value>This batch is finalized and locked. Its data, composition, CCPs and CCP values can no longer be changed.</value>
+  </data>
+  <data name="This raw honey lot is used in the finalized batch {0} and is locked. Its data, CCPs and CCP values can no longer be changed." xml:space="preserve">
+    <value>This raw honey lot is used in the finalized batch {0} and is locked. Its data, CCPs and CCP values can no longer be changed.</value>
+  </data>
+  <data name="The batch has no raw honey yet (total must be greater than zero)." xml:space="preserve">
+    <value>The batch has no raw honey yet (total must be greater than zero).</value>
+  </data>
+  <data name="Batch: {0} ({1}) is not assigned." xml:space="preserve">
+    <value>Batch: {0} ({1}) is not assigned.</value>
+  </data>
+  <data name="Batch: {0} ({1}) is {2}." xml:space="preserve">
+    <value>Batch: {0} ({1}) is {2}.</value>
+  </data>
+  <data name="{0}: no CCP assigned." xml:space="preserve">
+    <value>{0}: no CCP assigned.</value>
+  </data>
+  <data name="{0}: {1} ({2}) is {3}." xml:space="preserve">
+    <value>{0}: {1} ({2}) is {3}.</value>
+  </data>
+  <data name="{0}, not approved yet" xml:space="preserve">
+    <value>{0}, not approved yet</value>
+  </data>
+  <data name="not completed" xml:space="preserve">
+    <value>not completed</value>
+  </data>
+  <data name="Assigned" xml:space="preserve">
+    <value>Assigned</value>
+  </data>
+  <data name="In Progress" xml:space="preserve">
+    <value>In Progress</value>
+  </data>
+  <data name="Completed" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+  <data name="Not applicable" xml:space="preserve">
+    <value>Not applicable</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="Submitted" xml:space="preserve">
+    <value>Submitted</value>
+  </data>
+  <data name="Unknown or reserved capability." xml:space="preserve">
+    <value>Unknown or reserved capability.</value>
+  </data>
+  <data name="This wholesaler is already linked to an organization." xml:space="preserve">
+    <value>This wholesaler is already linked to an organization.</value>
+  </data>
+  <data name="Organization created. It stays Pending until it is verified." xml:space="preserve">
+    <value>Organization created. It stays Pending until it is verified.</value>
+  </data>
+  <data name="Organization saved." xml:space="preserve">
+    <value>Organization saved.</value>
+  </data>
+  <data name="The organization already has this capability." xml:space="preserve">
+    <value>The organization already has this capability.</value>
+  </data>
+  <data name="An accredited laboratory needs an accreditation number." xml:space="preserve">
+    <value>An accredited laboratory needs an accreditation number.</value>
+  </data>
+  <data name="Capability {0} added." xml:space="preserve">
+    <value>Capability {0} added.</value>
+  </data>
+  <data name="The platform capability cannot be removed." xml:space="preserve">
+    <value>The platform capability cannot be removed.</value>
+  </data>
+  <data name="An organization needs at least one capability." xml:space="preserve">
+    <value>An organization needs at least one capability.</value>
+  </data>
+  <data name="Capability {0} removed." xml:space="preserve">
+    <value>Capability {0} removed.</value>
+  </data>
+  <data name="Four-eyes exemption set: members may approve their own CCP records; each such approval is flagged in the audit log. It never applies to lab results." xml:space="preserve">
+    <value>Four-eyes exemption set: members may approve their own CCP records; each such approval is flagged in the audit log. It never applies to lab results.</value>
+  </data>
+  <data name="Four-eyes exemption removed." xml:space="preserve">
+    <value>Four-eyes exemption removed.</value>
+  </data>
+  <data name="Choose a document type." xml:space="preserve">
+    <value>Choose a document type.</value>
+  </data>
+  <data name="Choose a file." xml:space="preserve">
+    <value>Choose a file.</value>
+  </data>
+  <data name="Document uploaded." xml:space="preserve">
+    <value>Document uploaded.</value>
+  </data>
+  <data name="The platform organization cannot change status." xml:space="preserve">
+    <value>The platform organization cannot change status.</value>
+  </data>
+  <data name="Upload at least one document (licence, accreditation, registry proof) before verifying." xml:space="preserve">
+    <value>Upload at least one document (licence, accreditation, registry proof) before verifying.</value>
+  </data>
+  <data name="A reason is required to suspend." xml:space="preserve">
+    <value>A reason is required to suspend.</value>
+  </data>
+  <data name="Write which documents are requested." xml:space="preserve">
+    <value>Write which documents are requested.</value>
+  </data>
+  <data name="{0} cannot change to {1}." xml:space="preserve">
+    <value>{0} cannot change to {1}.</value>
+  </data>
+  <data name="Documents requested." xml:space="preserve">
+    <value>Documents requested.</value>
+  </data>
+  <data name="Organization is now {0}." xml:space="preserve">
+    <value>Organization is now {0}.</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="Verified" xml:space="preserve">
+    <value>Verified</value>
+  </data>
+  <data name="Suspended" xml:space="preserve">
+    <value>Suspended</value>
+  </data>
+  <data name="Choose an org role." xml:space="preserve">
+    <value>Choose an org role.</value>
+  </data>
+  <data name="No user with this user name." xml:space="preserve">
+    <value>No user with this user name.</value>
+  </data>
+  <data name="Enter an existing user name, or a new user name, e-mail and password." xml:space="preserve">
+    <value>Enter an existing user name, or a new user name, e-mail and password.</value>
+  </data>
+  <data name="The user already has this role in the organization." xml:space="preserve">
+    <value>The user already has this role in the organization.</value>
+  </data>
+  <data name="{0} added as {1}." xml:space="preserve">
+    <value>{0} added as {1}.</value>
+  </data>
+  <data name="You cannot revoke your own platform membership." xml:space="preserve">
+    <value>You cannot revoke your own platform membership.</value>
+  </data>
+  <data name="Membership revoked." xml:space="preserve">
+    <value>Membership revoked.</value>
+  </data>
+  <data name="This batch is already finalized." xml:space="preserve">
+    <value>This batch is already finalized.</value>
+  </data>
+  <data name="Finalizing is requested by {0} of a verified organization." xml:space="preserve">
+    <value>Finalizing is requested by {0} of a verified organization.</value>
+  </data>
+  <data name="Finalizing requested; a QualityApprover (another person) must confirm it." xml:space="preserve">
+    <value>Finalizing requested; a QualityApprover (another person) must confirm it.</value>
+  </data>
+  <data name="Only a {0} of a verified organization can finalize." xml:space="preserve">
+    <value>Only a {0} of a verified organization can finalize.</value>
+  </data>
+  <data name="Finalizing must be requested first." xml:space="preserve">
+    <value>Finalizing must be requested first.</value>
+  </data>
+  <data name="Four-eyes: the person who requested finalizing cannot confirm it." xml:space="preserve">
+    <value>Four-eyes: the person who requested finalizing cannot confirm it.</value>
+  </data>
+  <data name="Batch finalized under the four-eyes exemption (flagged in the audit log)." xml:space="preserve">
+    <value>Batch finalized under the four-eyes exemption (flagged in the audit log).</value>
+  </data>
+  <data name="Batch finalized." xml:space="preserve">
+    <value>Batch finalized.</value>
+  </data>
+  <data name="Choose an organization with the Association capability." xml:space="preserve">
+    <value>Choose an organization with the Association capability.</value>
+  </data>
+  <data name="Association saved." xml:space="preserve">
+    <value>Association saved.</value>
+  </data>
+  <data name="The number must be TR, a province code 01-81 and 10 digits (e.g. TR061234567890)." xml:space="preserve">
+    <value>The number must be TR, a province code 01-81 and 10 digits (e.g. TR061234567890).</value>
+  </data>
+  <data name="Registry number verified." xml:space="preserve">
+    <value>Registry number verified.</value>
+  </data>
+  <data name="Request rejected." xml:space="preserve">
+    <value>Request rejected.</value>
+  </data>
+  <data name="A proof document is required for manual verification." xml:space="preserve">
+    <value>A proof document is required for manual verification.</value>
+  </data>
+  <data name="Submitted; waiting for a platform administrator." xml:space="preserve">
+    <value>Submitted; waiting for a platform administrator.</value>
+  </data>
+  <data name="The request is not pending." xml:space="preserve">
+    <value>The request is not pending.</value>
+  </data>
+  <data name="A reason is required to reject." xml:space="preserve">
+    <value>A reason is required to reject.</value>
+  </data>
+  <data name="No access." xml:space="preserve">
+    <value>No access.</value>
+  </data>
+  <data name="Approvals need the organization model." xml:space="preserve">
+    <value>Approvals need the organization model.</value>
+  </data>
+  <data name="Platform administrators are read-only on business data; request a correction instead." xml:space="preserve">
+    <value>Platform administrators are read-only on business data; request a correction instead.</value>
+  </data>
+  <data name="Platform administrators do not approve CCP records." xml:space="preserve">
+    <value>Platform administrators do not approve CCP records.</value>
+  </data>
+  <data name="No active membership." xml:space="preserve">
+    <value>No active membership.</value>
+  </data>
+  <data name="This control point is the responsibility of another organization; you can read it only." xml:space="preserve">
+    <value>This control point is the responsibility of another organization; you can read it only.</value>
+  </data>
+  <data name="Your organization is {0}; only verified organizations can enter data." xml:space="preserve">
+    <value>Your organization is {0}; only verified organizations can enter data.</value>
+  </data>
+  <data name="This control point needs one of these capabilities: {0}." xml:space="preserve">
+    <value>This control point needs one of these capabilities: {0}.</value>
+  </data>
+  <data name="Your role ({0}) cannot enter this control point; entering roles: {1}." xml:space="preserve">
+    <value>Your role ({0}) cannot enter this control point; entering roles: {1}.</value>
+  </data>
+  <data name="Your role ({0}) cannot approve this control point; approving roles: {1}." xml:space="preserve">
+    <value>Your role ({0}) cannot approve this control point; approving roles: {1}.</value>
+  </data>
+  <data name="The file is empty." xml:space="preserve">
+    <value>The file is empty.</value>
+  </data>
+  <data name="The image is too large ({0})." xml:space="preserve">
+    <value>The image is too large ({0}).</value>
+  </data>
+  <data name="Unsupported image type ({0})." xml:space="preserve">
+    <value>Unsupported image type ({0}).</value>
+  </data>
+  <data name="The file is not a valid image ({0})." xml:space="preserve">
+    <value>The file is not a valid image ({0}).</value>
+  </data>
+  <data name="The image dimensions are too large (at most {0} px)." xml:space="preserve">
+    <value>The image dimensions are too large (at most {0} px).</value>
+  </data>
+  <data name="The video is too large ({0})." xml:space="preserve">
+    <value>The video is too large ({0}).</value>
+  </data>
+  <data name="Unsupported video type ({0})." xml:space="preserve">
+    <value>Unsupported video type ({0}).</value>
+  </data>
+  <data name="The file is not a valid video ({0})." xml:space="preserve">
+    <value>The file is not a valid video ({0}).</value>
+  </data>
+  <data name="Unsupported file type ({0})." xml:space="preserve">
+    <value>Unsupported file type ({0}).</value>
+  </data>
+  <data name="The file is too large ({0})." xml:space="preserve">
+    <value>The file is too large ({0}).</value>
+  </data>
+  <data name="The file is not a valid PDF ({0})." xml:space="preserve">
+    <value>The file is not a valid PDF ({0}).</value>
+  </data>
+  <data name="JPG, PNG or WEBP, at most 8 MB" xml:space="preserve">
+    <value>JPG, PNG or WEBP, at most 8 MB</value>
+  </data>
+  <data name="MP4 or WEBM, at most 25 MB" xml:space="preserve">
+    <value>MP4 or WEBM, at most 25 MB</value>
+  </data>
+  <data name="PDF at most 10 MB, or JPG, PNG or WEBP at most 8 MB" xml:space="preserve">
+    <value>PDF at most 10 MB, or JPG, PNG or WEBP at most 8 MB</value>
+  </data>
+  <data name="Choose a data type." xml:space="preserve">
+    <value>Choose a data type.</value>
+  </data>
+  <data name="Choose a honey class." xml:space="preserve">
+    <value>Choose a honey class.</value>
+  </data>
+  <data name="Choose where this CCP applies." xml:space="preserve">
+    <value>Choose where this CCP applies.</value>
+  </data>
+  <data name="Password is required" xml:space="preserve">
+    <value>Password is required</value>
+  </data>
+  <data name="The amount is required." xml:space="preserve">
+    <value>The amount is required.</value>
+  </data>
+  <data name="The amount must be greater than 0." xml:space="preserve">
+    <value>The amount must be greater than 0.</value>
+  </data>
+  <data name="The apiary is required." xml:space="preserve">
+    <value>The apiary is required.</value>
+  </data>
+  <data name="The beehive count must be between 1 and 10000." xml:space="preserve">
+    <value>The beehive count must be between 1 and 10000.</value>
+  </data>
+  <data name="The category name is required." xml:space="preserve">
+    <value>The category name is required.</value>
+  </data>
+  <data name="The CCP field is required." xml:space="preserve">
+    <value>The CCP field is required.</value>
+  </data>
+  <data name="The date is required." xml:space="preserve">
+    <value>The date is required.</value>
+  </data>
+  <data name="The end date is required." xml:space="preserve">
+    <value>The end date is required.</value>
+  </data>
+  <data name="The honey type is required." xml:space="preserve">
+    <value>The honey type is required.</value>
+  </data>
+  <data name="The latitude must be between -90 and 90." xml:space="preserve">
+    <value>The latitude must be between -90 and 90.</value>
+  </data>
+  <data name="The longitude must be between -180 and 180." xml:space="preserve">
+    <value>The longitude must be between -180 and 180.</value>
+  </data>
+  <data name="The name is required." xml:space="preserve">
+    <value>The name is required.</value>
+  </data>
+  <data name="The production period is required." xml:space="preserve">
+    <value>The production period is required.</value>
+  </data>
+  <data name="The start date is required." xml:space="preserve">
+    <value>The start date is required.</value>
+  </data>
+  <data name="The title is required." xml:space="preserve">
+    <value>The title is required.</value>
+  </data>
+  <data name="The wholesaler is required." xml:space="preserve">
+    <value>The wholesaler is required.</value>
+  </data>
+  <data name="This CCP is not assigned here, so no values can be recorded." xml:space="preserve">
+    <value>This CCP is not assigned here, so no values can be recorded.</value>
+  </data>
+  <data name="This apiary already has a production record for the selected period and honey type." xml:space="preserve">
+    <value>This apiary already has a production record for the selected period and honey type.</value>
+  </data>
+  <data name="Batch already finalized." xml:space="preserve">
+    <value>Batch already finalized.</value>
+  </data>
+  <data name="Only a Processing organization records deliveries." xml:space="preserve">
+    <value>Only a Processing organization records deliveries.</value>
+  </data>
+  <data name="Your role ({0}) cannot record deliveries; only a SampleAcceptanceOfficer can." xml:space="preserve">
+    <value>Your role ({0}) cannot record deliveries; only a SampleAcceptanceOfficer can.</value>
+  </data>
+  <data name="No active beekeeper with this number." xml:space="preserve">
+    <value>No active beekeeper with this number.</value>
+  </data>
+  <data name="Choose one of the beekeeper's apiaries." xml:space="preserve">
+    <value>Choose one of the beekeeper's apiaries.</value>
+  </data>
+  <data name="Enter the delivery date (not in the future)." xml:space="preserve">
+    <value>Enter the delivery date (not in the future).</value>
+  </data>
+  <data name="Enter the province and district of origin." xml:space="preserve">
+    <value>Enter the province and district of origin.</value>
+  </data>
+  <data name="Attach the photo of the signed delivery form." xml:space="preserve">
+    <value>Attach the photo of the signed delivery form.</value>
+  </data>
+  <data name="Delivery recorded as lot #{0}." xml:space="preserve">
+    <value>Delivery recorded as lot #{0}.</value>
+  </data>
+  <data name="Your role ({0}) cannot ship or receive goods; roles: {1}." xml:space="preserve">
+    <value>Your role ({0}) cannot ship or receive goods; roles: {1}.</value>
+  </data>
+  <data name="Only a finalized batch can be shipped." xml:space="preserve">
+    <value>Only a finalized batch can be shipped.</value>
+  </data>
+  <data name="Choose another verified organization as receiver." xml:space="preserve">
+    <value>Choose another verified organization as receiver.</value>
+  </data>
+  <data name="You can ship at most {0} kg of this batch." xml:space="preserve">
+    <value>You can ship at most {0} kg of this batch.</value>
+  </data>
+  <data name="Shipment created; custody moves when the receiver confirms it." xml:space="preserve">
+    <value>Shipment created; custody moves when the receiver confirms it.</value>
+  </data>
+  <data name="This shipment was already decided." xml:space="preserve">
+    <value>This shipment was already decided.</value>
+  </data>
+  <data name="A reason is required to reject a shipment." xml:space="preserve">
+    <value>A reason is required to reject a shipment.</value>
+  </data>
+  <data name="Receipt confirmed; you now hold this quantity." xml:space="preserve">
+    <value>Receipt confirmed; you now hold this quantity.</value>
+  </data>
+  <data name="Shipment rejected; the quantity stays with the sender." xml:space="preserve">
+    <value>Shipment rejected; the quantity stays with the sender.</value>
+  </data>
+  <data name="You no longer hold any quantity of this batch." xml:space="preserve">
+    <value>You no longer hold any quantity of this batch.</value>
+  </data>
+  <data name="{0}: enter a value." xml:space="preserve">
+    <value>{0}: enter a value.</value>
+  </data>
+  <data name="Storage values saved." xml:space="preserve">
+    <value>Storage values saved.</value>
+  </data>
+  <data name="Only the laboratory the sample was sent to can do this." xml:space="preserve">
+    <value>Only the laboratory the sample was sent to can do this.</value>
+  </data>
+  <data name="Only a Laboratory organization can do this." xml:space="preserve">
+    <value>Only a Laboratory organization can do this.</value>
+  </data>
+  <data name="Your role ({0}) cannot do this; roles: {1}." xml:space="preserve">
+    <value>Your role ({0}) cannot do this; roles: {1}.</value>
+  </data>
+  <data name="Only the organization that holds the lot takes its samples." xml:space="preserve">
+    <value>Only the organization that holds the lot takes its samples.</value>
+  </data>
+  <data name="Your role ({0}) cannot take samples; only a SampleAcceptanceOfficer can." xml:space="preserve">
+    <value>Your role ({0}) cannot take samples; only a SampleAcceptanceOfficer can.</value>
+  </data>
+  <data name="Choose a verified laboratory." xml:space="preserve">
+    <value>Choose a verified laboratory.</value>
+  </data>
+  <data name="Enter the seal numbers of the sample and of the counter-sample (at most 50 characters)." xml:space="preserve">
+    <value>Enter the seal numbers of the sample and of the counter-sample (at most 50 characters).</value>
+  </data>
+  <data name="The sample and the counter-sample need different seals." xml:space="preserve">
+    <value>The sample and the counter-sample need different seals.</value>
+  </data>
+  <data name="Enter where the counter-sample is kept (at most 200 characters)." xml:space="preserve">
+    <value>Enter where the counter-sample is kept (at most 200 characters).</value>
+  </data>
+  <data name="Enter until when the counter-sample is kept (a future date)." xml:space="preserve">
+    <value>Enter until when the counter-sample is kept (a future date).</value>
+  </data>
+  <data name="Sample {0} sent to the laboratory." xml:space="preserve">
+    <value>Sample {0} sent to the laboratory.</value>
+  </data>
+  <data name="This sample was already received or rejected." xml:space="preserve">
+    <value>This sample was already received or rejected.</value>
+  </data>
+  <data name="A broken seal rejects the sample: write the reason." xml:space="preserve">
+    <value>A broken seal rejects the sample: write the reason.</value>
+  </data>
+  <data name="Sample received; the seal is intact." xml:space="preserve">
+    <value>Sample received; the seal is intact.</value>
+  </data>
+  <data name="Sample rejected: the seal is broken." xml:space="preserve">
+    <value>Sample rejected: the seal is broken.</value>
+  </data>
+  <data name="Results are entered only for a received sample with an intact seal." xml:space="preserve">
+    <value>Results are entered only for a received sample with an intact seal.</value>
+  </data>
+  <data name="An approved lab report cannot be changed; request a correction instead." xml:space="preserve">
+    <value>An approved lab report cannot be changed; request a correction instead.</value>
+  </data>
+  <data name="The report is submitted; the LabManager approves it or returns it for changes." xml:space="preserve">
+    <value>The report is submitted; the LabManager approves it or returns it for changes.</value>
+  </data>
+  <data name="The report number can be at most 50 characters." xml:space="preserve">
+    <value>The report number can be at most 50 characters.</value>
+  </data>
+  <data name="The issue date cannot be in the future." xml:space="preserve">
+    <value>The issue date cannot be in the future.</value>
+  </data>
+  <data name="The lab report must be a PDF." xml:space="preserve">
+    <value>The lab report must be a PDF.</value>
+  </data>
+  <data name="Lab results saved." xml:space="preserve">
+    <value>Lab results saved.</value>
+  </data>
+  <data name="Only a draft report can be submitted." xml:space="preserve">
+    <value>Only a draft report can be submitted.</value>
+  </data>
+  <data name="Enter at least one result before submitting." xml:space="preserve">
+    <value>Enter at least one result before submitting.</value>
+  </data>
+  <data name="Upload the report PDF before submitting." xml:space="preserve">
+    <value>Upload the report PDF before submitting.</value>
+  </data>
+  <data name="Enter the report number and the issue date before submitting." xml:space="preserve">
+    <value>Enter the report number and the issue date before submitting.</value>
+  </data>
+  <data name="Report submitted; a LabManager (another person) must approve it." xml:space="preserve">
+    <value>Report submitted; a LabManager (another person) must approve it.</value>
+  </data>
+  <data name="Only a submitted report can be approved or returned." xml:space="preserve">
+    <value>Only a submitted report can be approved or returned.</value>
+  </data>
+  <data name="Four-eyes: the person who entered the results cannot approve them (no exemption for lab results)." xml:space="preserve">
+    <value>Four-eyes: the person who entered the results cannot approve them (no exemption for lab results).</value>
+  </data>
+  <data name="A reason is required to return a report." xml:space="preserve">
+    <value>A reason is required to return a report.</value>
+  </data>
+  <data name="The stored report file does not match its SHA-256 hash; upload it again." xml:space="preserve">
+    <value>The stored report file does not match its SHA-256 hash; upload it again.</value>
+  </data>
+  <data name="The lot is locked in a finalized batch; lab values can only be changed through a correction." xml:space="preserve">
+    <value>The lot is locked in a finalized batch; lab values can only be changed through a correction.</value>
+  </data>
+  <data name="Report returned to the analyst." xml:space="preserve">
+    <value>Report returned to the analyst.</value>
+  </data>
+  <data name="Lab report approved; the results are now the lot's CCP 1 values." xml:space="preserve">
+    <value>Lab report approved; the results are now the lot's CCP 1 values.</value>
+  </data>
+  <data name="Only a beekeepers' association manages storefronts." xml:space="preserve">
+    <value>Only a beekeepers' association manages storefronts.</value>
+  </data>
+  <data name="Your role ({0}) cannot manage storefronts; only the association's OrgAdmin can." xml:space="preserve">
+    <value>Your role ({0}) cannot manage storefronts; only the association's OrgAdmin can.</value>
+  </data>
+  <data name="This beekeeper already has an active consent; withdraw it first to record a new one." xml:space="preserve">
+    <value>This beekeeper already has an active consent; withdraw it first to record a new one.</value>
+  </data>
+  <data name="Confirm that the consent text was read to the beekeeper." xml:space="preserve">
+    <value>Confirm that the consent text was read to the beekeeper.</value>
+  </data>
+  <data name="Enter the date of the consent (not in the future)." xml:space="preserve">
+    <value>Enter the date of the consent (not in the future).</value>
+  </data>
+  <data name="Attach the signed consent document." xml:space="preserve">
+    <value>Attach the signed consent document.</value>
+  </data>
+  <data name="Consent recorded; the storefront is published." xml:space="preserve">
+    <value>Consent recorded; the storefront is published.</value>
+  </data>
+  <data name="Consent recorded. The storefront is published once the registry number is verified." xml:space="preserve">
+    <value>Consent recorded. The storefront is published once the registry number is verified.</value>
+  </data>
+  <data name="This consent was already withdrawn." xml:space="preserve">
+    <value>This consent was already withdrawn.</value>
+  </data>
+  <data name="Consent withdrawn; the storefront is no longer public." xml:space="preserve">
+    <value>Consent withdrawn; the storefront is no longer public.</value>
+  </data>
+  <data name="The storefront is not published." xml:space="preserve">
+    <value>The storefront is not published.</value>
+  </data>
+  <data name="Choose the country of origin." xml:space="preserve">
+    <value>Choose the country of origin.</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="Apiaries by beekeeper" xml:space="preserve">
+    <value>Apiaries by beekeeper</value>
+  </data>
+  <data name="Audit log" xml:space="preserve">
+    <value>Audit log</value>
+  </data>
+  <data name="Beekeepers" xml:space="preserve">
+    <value>Beekeepers</value>
+  </data>
+  <data name="CCP responsibilities" xml:space="preserve">
+    <value>CCP responsibilities</value>
+  </data>
+  <data name="Consent" xml:space="preserve">
+    <value>Consent</value>
+  </data>
+  <data name="Corrections" xml:space="preserve">
+    <value>Corrections</value>
+  </data>
+  <data name="Critical Control Point Parameter Categories" xml:space="preserve">
+    <value>Critical Control Point Parameter Categories</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="Final Batch" xml:space="preserve">
+    <value>Final Batch</value>
+  </data>
+  <data name="Final Honey Production Manage CCP" xml:space="preserve">
+    <value>Final Honey Production Manage CCP</value>
+  </data>
+  <data name="Flow" xml:space="preserve">
+    <value>Flow</value>
+  </data>
+  <data name="Intake" xml:space="preserve">
+    <value>Intake</value>
+  </data>
+  <data name="Lab" xml:space="preserve">
+    <value>Lab</value>
+  </data>
+  <data name="Lot" xml:space="preserve">
+    <value>Lot</value>
+  </data>
+  <data name="My Profile" xml:space="preserve">
+    <value>My Profile</value>
+  </data>
+  <data name="My organization" xml:space="preserve">
+    <value>My organization</value>
+  </data>
+  <data name="MyWork" xml:space="preserve">
+    <value>MyWork</value>
+  </data>
+  <data name="Organizations" xml:space="preserve">
+    <value>Organizations</value>
+  </data>
+  <data name="Production by Apiary" xml:space="preserve">
+    <value>Production by Apiary</value>
+  </data>
+  <data name="Productions by Wholesaler" xml:space="preserve">
+    <value>Productions by Wholesaler</value>
+  </data>
+  <data name="Raw Honey Production" xml:space="preserve">
+    <value>Raw Honey Production</value>
+  </data>
+  <data name="Raw Honey Production Manage CCP" xml:space="preserve">
+    <value>Raw Honey Production Manage CCP</value>
+  </data>
+  <data name="Recall" xml:space="preserve">
+    <value>Recall</value>
+  </data>
+  <data name="Registry" xml:space="preserve">
+    <value>Registry</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="Samples" xml:space="preserve">
+    <value>Samples</value>
+  </data>
+  <data name="Shipments" xml:space="preserve">
+    <value>Shipments</value>
+  </data>
+  <data name="Storage" xml:space="preserve">
+    <value>Storage</value>
+  </data>
+  <data name="Storefronts" xml:space="preserve">
+    <value>Storefronts</value>
+  </data>
 </root>

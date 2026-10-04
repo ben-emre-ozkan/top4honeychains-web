@@ -137,6 +137,10 @@ if (app.Environment.IsProduction())
 app.UseStaticFiles();
 
 app.UseRouting();
+{
+    var refText = app.Services.GetRequiredService<RefText>();
+    Origin.Translate = (code, name) => refText.Country(code, name);
+}
 app.UseRequestLocalization(localizationOptions);
 app.UseAuthentication();
 app.UseAuthorization();

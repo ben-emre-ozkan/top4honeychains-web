@@ -128,11 +128,11 @@ namespace TOP4HoneyChains.Web.Controllers
 
             // HoneyType select
             ViewData["RawHoneyProductionHoneyType"] =
-                new SelectList(_context.HoneyTypes, "HoneyTypeId", "HoneyTypeTitle");
+                new SelectList(_context.HoneyTypes, "HoneyTypeId", "HoneyTypeTitle").Translated(HttpContext, "HoneyType", "Title");
 
             // Period select
             ViewData["RawHoneyProductionPeriodId"] =
-                new SelectList(_context.RawHoneyProductionPeriods, "RawHoneyProductionPeriodId", "RawHoneyProductionPeriodTitle");
+                new SelectList(_context.RawHoneyProductionPeriods, "RawHoneyProductionPeriodId", "RawHoneyProductionPeriodTitle").Translated(HttpContext, "ProductionPeriod", "Title");
 
             ViewData["RawHoneyProductionWholesalerId"] = new SelectList(
            _context.Wholesalers
@@ -192,10 +192,10 @@ namespace TOP4HoneyChains.Web.Controllers
             ViewBag.ApiaryId = rawHoneyProduction.RawHoneyProductionApiaryId;
 
             ViewData["RawHoneyProductionHoneyType"] =
-                new SelectList(_context.HoneyTypes, "HoneyTypeId", "HoneyTypeTitle", rawHoneyProduction.RawHoneyProductionHoneyType);
+                new SelectList(_context.HoneyTypes, "HoneyTypeId", "HoneyTypeTitle", rawHoneyProduction.RawHoneyProductionHoneyType).Translated(HttpContext, "HoneyType", "Title");
 
             ViewData["RawHoneyProductionPeriodId"] =
-                new SelectList(_context.RawHoneyProductionPeriods, "RawHoneyProductionPeriodId", "RawHoneyProductionPeriodTitle", rawHoneyProduction.RawHoneyProductionPeriodId);
+                new SelectList(_context.RawHoneyProductionPeriods, "RawHoneyProductionPeriodId", "RawHoneyProductionPeriodTitle", rawHoneyProduction.RawHoneyProductionPeriodId).Translated(HttpContext, "ProductionPeriod", "Title");
 
             ViewData["RawHoneyProductionWholesalerId"] =
        new SelectList(
@@ -243,8 +243,8 @@ namespace TOP4HoneyChains.Web.Controllers
             ViewBag.Apiary = apiary;
 
             ViewData["RawHoneyProductionApiaryId"] = new SelectList(_context.Apiaries, "ApiaryId", "ApiaryTitle", rawHoneyProduction.RawHoneyProductionApiaryId);
-            ViewData["RawHoneyProductionHoneyType"] = new SelectList(_context.HoneyTypes, "HoneyTypeId", "HoneyTypeTitle", rawHoneyProduction.RawHoneyProductionHoneyType);
-            ViewData["RawHoneyProductionPeriodId"] = new SelectList(_context.RawHoneyProductionPeriods, "RawHoneyProductionPeriodId", "RawHoneyProductionPeriodTitle", rawHoneyProduction.RawHoneyProductionPeriodId);
+            ViewData["RawHoneyProductionHoneyType"] = new SelectList(_context.HoneyTypes, "HoneyTypeId", "HoneyTypeTitle", rawHoneyProduction.RawHoneyProductionHoneyType).Translated(HttpContext, "HoneyType", "Title");
+            ViewData["RawHoneyProductionPeriodId"] = new SelectList(_context.RawHoneyProductionPeriods, "RawHoneyProductionPeriodId", "RawHoneyProductionPeriodTitle", rawHoneyProduction.RawHoneyProductionPeriodId).Translated(HttpContext, "ProductionPeriod", "Title");
             ViewData["RawHoneyProductionWholesalerId"] =
         new SelectList(
             _context.Wholesalers.Where(w => w.WholesalerIsActive),
@@ -313,8 +313,8 @@ namespace TOP4HoneyChains.Web.Controllers
 
             }
             ViewData["RawHoneyProductionApiaryId"] = new SelectList(_context.Apiaries, "ApiaryId", "ApiaryTitle", rawHoneyProduction.RawHoneyProductionApiaryId);
-            ViewData["RawHoneyProductionHoneyType"] = new SelectList(_context.HoneyTypes, "HoneyTypeId", "HoneyTypeTitle", rawHoneyProduction.RawHoneyProductionHoneyType);
-            ViewData["RawHoneyProductionPeriodId"] = new SelectList(_context.RawHoneyProductionPeriods, "RawHoneyProductionPeriodId", "RawHoneyProductionPeriodTitle", rawHoneyProduction.RawHoneyProductionPeriodId);
+            ViewData["RawHoneyProductionHoneyType"] = new SelectList(_context.HoneyTypes, "HoneyTypeId", "HoneyTypeTitle", rawHoneyProduction.RawHoneyProductionHoneyType).Translated(HttpContext, "HoneyType", "Title");
+            ViewData["RawHoneyProductionPeriodId"] = new SelectList(_context.RawHoneyProductionPeriods, "RawHoneyProductionPeriodId", "RawHoneyProductionPeriodTitle", rawHoneyProduction.RawHoneyProductionPeriodId).Translated(HttpContext, "ProductionPeriod", "Title");
             ViewData["RawHoneyProductionWholesalerId"] = new SelectList(
                 _context.Wholesalers.Where(w => w.WholesalerIsActive),
                 "WholesalerId", "WholesalerTitle", rawHoneyProduction.RawHoneyProductionWholesalerId);
