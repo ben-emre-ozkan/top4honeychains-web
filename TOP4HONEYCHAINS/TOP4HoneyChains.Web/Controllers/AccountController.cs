@@ -93,12 +93,12 @@ namespace TOP4HoneyChains.Web.Controllers
                 if (user != null && await _userManager.IsInRoleAsync(user, PanelRole))
                 {
                     await _audit.WriteAsync("Login", "AspNetUsers", user.Id, userId: user.Id, userName: user.UserName);
-                    return RedirectToAction("Index", "Dashboard");
+                    return _currentOrg.Enabled ? RedirectToAction("Index", "MyWork") : RedirectToAction("Index", "Dashboard");
                 }
                 if (user != null && await IsMemberAsync(user.Id))
                 {
                     await _audit.WriteAsync("Login", "AspNetUsers", user.Id, userId: user.Id, userName: user.UserName);
-                    return RedirectToAction("Index", "OrgWorkspace");
+                    return RedirectToAction("Index", "MyWork");   // D-44
                 }
 
                 // Valid credentials, but no access to the panel: don't keep the session

@@ -1,0 +1,63 @@
+@using TOP4HoneyChains.Web.Services.OrgModel
+@{
+    ViewData["Title"] = L["Work.Title"];
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var items = ViewBag.Items as List<MyWorkService.Item> ?? new();
+    var active = ViewBag.Active as ActiveMembership;
+    var memberships = ViewBag.Memberships as List<MembershipOption> ?? new();
+    string KindText(string k) => L["Work.Kind." + k].Value;
+    string KindClass(string k) => k switch { "Approve" or "LabApprove" or "Finalize" => "bg-warning text-dark", "Receive" or "Confirm" => "bg-info text-dark", "Verify" or "Registry" or "Correction" => "bg-primary", _ => "bg-secondary" };
+    var order = new[] { "Approve", "LabApprove", "Finalize", "Confirm", "Receive", "Results", "Verify", "Registry", "Correction", "Enter" };
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex flex-wrap justify-content-between align-items-start gap-2">
+                        <div>
+                            <h4 class="card-title mb-1">@L["Work.Title"]</h4>
+                            @if (active != null)
+                            {
+                                <div class="text-muted small" id="work-membership">@active.OrgName · @active.OrgRole</div>
+                                @if (!active.IsVerified) { <div class="alert alert-warning mt-2 mb-0">@L["Org.NotVerifiedBanner"]</div> }
+                            }
+                        </div>
+                        @if (memberships.Count > 1)
+                        {
+                            <form asp-controller="OrgWorkspace" asp-action="Switch" method="post" class="d-flex gap-2">
+                                <select name="membershipId" class="form-select form-select-sm">
+                                    @foreach (var m in memberships) { <option value="@m.MembershipId" selected="@(m.MembershipId == active?.MembershipId)">@m.OrgName – @m.OrgRole</option> }
+                                </select>
+                                <button type="submit" class="btn btn-sm btn-outline-primary">@L["Org.Switch"]</button>
+                            </form>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            @if (!items.Any())
+            {
+                <div class="card"><div class="card-body text-muted" id="work-empty">@L["Work.Empty"]</div></div>
+            }
+            @foreach (var group in items.GroupBy(i => i.Kind).OrderBy(g => Array.IndexOf(order, g.Key)))
+            {
+                <div class="card work-group" data-kind="@group.Key">
+                    <div class="card-body">
+                        <h5 class="card-title"><span class="badge @KindClass(group.Key) me-1">@group.Count()</span> @KindText(group.Key)</h5>
+                        <div class="list-group">
+                            @foreach (var i in group.OrderBy(i => i.Since ?? DateTime.MaxValue).Take(100))
+                            {
+                                <a href="@i.Url" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center work-item">
+                                    <span><strong>@i.Title</strong> @if (i.Detail != null) { <small class="text-muted ms-1">@i.Detail</small> }</span>
+                                    <small class="text-muted text-nowrap ms-2">@i.Since?.ToLocalTime().ToString("dd.MM.yyyy")</small>
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>

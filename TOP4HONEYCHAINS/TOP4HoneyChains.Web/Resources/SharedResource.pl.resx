@@ -1158,4 +1158,55 @@
   <data name="P5.PublicNote" xml:space="preserve">
     <value>Only verified data is shown. No phone, photo, birth date or exact location.</value>
   </data>
+  <data name="Work.Title" xml:space="preserve">
+    <value>My work</value>
+  </data>
+  <data name="Work.Empty" xml:space="preserve">
+    <value>Nothing is waiting for you.</value>
+  </data>
+  <data name="Work.Kind.Approve" xml:space="preserve">
+    <value>Values to approve</value>
+  </data>
+  <data name="Work.Kind.LabApprove" xml:space="preserve">
+    <value>Lab reports to approve</value>
+  </data>
+  <data name="Work.Kind.Finalize" xml:space="preserve">
+    <value>Finalize requests</value>
+  </data>
+  <data name="Work.Kind.Confirm" xml:space="preserve">
+    <value>Shipments to confirm</value>
+  </data>
+  <data name="Work.Kind.Receive" xml:space="preserve">
+    <value>Samples to receive</value>
+  </data>
+  <data name="Work.Kind.Results" xml:space="preserve">
+    <value>Lab results to enter</value>
+  </data>
+  <data name="Work.Kind.Verify" xml:space="preserve">
+    <value>Organizations to verify</value>
+  </data>
+  <data name="Work.Kind.Registry" xml:space="preserve">
+    <value>Registry numbers to verify</value>
+  </data>
+  <data name="Work.Kind.Correction" xml:space="preserve">
+    <value>Corrections to decide</value>
+  </data>
+  <data name="Work.Kind.Enter" xml:space="preserve">
+    <value>Values to enter</value>
+  </data>
+  <data name="Flow.Title" xml:space="preserve">
+    <value>Process flow</value>
+  </data>
+  <data name="Flow.NotAssigned" xml:space="preserve">
+    <value>not assigned</value>
+  </data>
+  <data name="Flow.InProgress" xml:space="preserve">
+    <value>in progress</value>
+  </data>
+  <data name="Flow.Open" xml:space="preserve">
+    <value>open</value>
+  </data>
+  <data name="Ccp.NotApplicableShort" xml:space="preserve">
+    <value>Not applicable</value>
+  </data>
 </root>
