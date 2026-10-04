@@ -1959,4 +1959,7 @@
   <data name="Ccp.NotApplicableShort" xml:space="preserve">
     <value>Uygulanamaz</value>
   </data>
+  <data name="Mob.Camera" xml:space="preserve">
+    <value>Kamera</value>
+  </data>
 </root>

@@ -1209,4 +1209,7 @@
   <data name="Ccp.NotApplicableShort" xml:space="preserve">
     <value>Not applicable</value>
   </data>
+  <data name="Mob.Camera" xml:space="preserve">
+    <value>Camera</value>
+  </data>
 </root>

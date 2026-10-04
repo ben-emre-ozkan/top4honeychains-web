@@ -1,4 +1,4 @@
-@using TOP4HoneyChains.Web.Models.Entities
+﻿@using TOP4HoneyChains.Web.Models.Entities
 @using TOP4HoneyChains.Web.Services
 @model LabReport?
 @{
@@ -55,7 +55,7 @@
                         <div class="alert alert-secondary" id="enter-denied">@L["Ccp.ReadOnly"]: @Msg.T(enterDenied)</div>
                     }
 
-                    <form asp-action="Save" asp-route-id="@sample.SampleId" method="post" enctype="multipart/form-data" id="report-form">
+                    <form asp-action="Save" asp-route-id="@sample.SampleId" method="post" enctype="multipart/form-data" id="report-form" class="field-form">
                         <fieldset @(editable ? "" : "disabled")>
                             <div class="row">
                                 <div class="col-md-4 mb-3">
@@ -75,7 +75,7 @@
                                     }
                                 </div>
                             </div>
-                            <table class="table table-sm">
+                            <div class="table-responsive"><table class="table table-sm">
                                 <thead><tr><th>@L["Corr.Parameter"]</th><th>@L["Cust.Value"]</th><th>@L["Cust.Limit"]</th></tr></thead>
                                 <tbody>
                                     @foreach (var p in parameters)
@@ -95,7 +95,7 @@
                                         </tr>
                                     }
                                 </tbody>
-                            </table>
+                            </table></div>
                             @if (editable)
                             {
                                 <button type="submit" class="btn btn-success">@L["Org.Save"]</button>

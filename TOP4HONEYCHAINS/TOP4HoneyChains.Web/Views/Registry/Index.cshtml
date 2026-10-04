@@ -14,7 +14,7 @@
                         Beekeepers are records, not users: they never log in, and their association records data for them.
                         The national registry (AKS) number is verified manually for now (document + approval).
                     </p>
-                    <table class="table table-sm table-bordered" id="registry-table">
+                    <div class="table-responsive"><table class="table table-sm table-bordered" id="registry-table">
                         <thead><tr><th>@L["Reg.BusinessNo"]</th><th>@L["Reg.Beekeeper"]</th><th>@L["Reg.RegistryNo"]</th><th>@L["Org.Status"]</th><th>@L["Reg.Association"]</th><th></th></tr></thead>
                         <tbody>
                             @foreach (var r in Model)
@@ -29,7 +29,7 @@
                                 </tr>
                             }
                         </tbody>
-                    </table>
+                    </table></div>
                 </div>
             </div>
         </div>

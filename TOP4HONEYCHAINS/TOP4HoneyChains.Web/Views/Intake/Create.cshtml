@@ -13,17 +13,17 @@
                     <h4 class="card-title">@L["Cust.NewIntake"]</h4>
                     <p class="card-title-desc">@L["Cust.NewIntakeHelp"]</p>
 
-                    <form asp-action="Create" method="get" class="row g-2 align-items-end mb-4" id="find-beekeeper">
+                    <form asp-action="Create" method="get" class="row g-2 align-items-end mb-4 field-form" id="find-beekeeper">
                         <div class="col-md-5">
                             <label class="form-label fw-semibold" for="number">@L["Cust.BeekeeperNumber"]</label>
-                            <input name="number" id="number" class="form-control" value="@ViewBag.Number" maxlength="50" autocomplete="off" />
+                            <input name="number" id="number" class="form-control" value="@ViewBag.Number" maxlength="50" autocomplete="off" autocapitalize="characters" />
                         </div>
                         <div class="col-md-2"><button type="submit" class="btn btn-outline-primary">@L["Cust.Find"]</button></div>
                     </form>
 
                     @if (bk != null)
                     {
-                        <form asp-action="Create" method="post" enctype="multipart/form-data" id="intake-form">
+                        <form asp-action="Create" method="post" enctype="multipart/form-data" id="intake-form" class="field-form">
                             <input type="hidden" name="number" value="@ViewBag.Number" />
                             <div class="alert alert-light border" id="beekeeper-found">
                                 <strong>@bk.BeekeeperFirstName @bk.BeekeeperLastName</strong> · @bk.BeekeeperBusinessNumber
@@ -56,7 +56,7 @@
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label class="form-label required" for="quantity">@L["Org.Amount"]</label>
-                                    <input name="quantity" id="quantity" type="text" inputmode="decimal" class="form-control" />
+                                    <input name="quantity" id="quantity" type="text" inputmode="decimal" class="form-control" autocomplete="off" />
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label class="form-label required" for="province">@L["Org.Province"]</label>
@@ -68,7 +68,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label required" for="deliveryForm">@L["Cust.DeliveryFormPhoto"]</label>
-                                    <input type="file" name="deliveryForm" id="deliveryForm" class="form-control" accept=".pdf,.jpg,.jpeg,.png,.webp" />
+                                    <input type="file" name="deliveryForm" id="deliveryForm" class="form-control" accept=".pdf,.jpg,.jpeg,.png,.webp" data-camera="@L["Mob.Camera"]" />
                                     <div class="form-text">@L["Org.UploadHelp"]</div>
                                 </div>
                                 <div class="col-md-6 mb-3 d-flex align-items-center">

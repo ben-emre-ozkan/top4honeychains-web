@@ -1,4 +1,4 @@
-@using TOP4HoneyChains.Web.Models.Entities
+﻿@using TOP4HoneyChains.Web.Models.Entities
 @using TOP4HoneyChains.Web.Controllers
 @{
     ViewData["Title"] = L["Cust.Shipments"];
@@ -17,7 +17,7 @@
                 <div class="card-body">
                     <h4 class="card-title">@L["Cust.Holdings"]</h4>
                     <p class="card-title-desc">@L["Cust.HoldingsHelp"]</p>
-                    <table class="table table-sm table-bordered" id="holdings">
+                    <div class="table-responsive"><table class="table table-sm table-bordered" id="holdings">
                         <thead><tr><th>#</th><th>@L["Org.Title"]</th><th>@L["Cust.Held"]</th><th>@L["Cust.Reserved"]</th><th>@L["Cust.Available"]</th><th>@L["Cust.Storage"]</th><th></th></tr></thead>
                         <tbody>
                             @foreach (var h in holdings)
@@ -49,14 +49,14 @@
                                 <tr><td colspan="7" class="text-muted">@L["Org.None"]</td></tr>
                             }
                         </tbody>
-                    </table>
+                    </table></div>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">@L["Cust.Incoming"]</h5>
-                    <table class="table table-sm table-bordered" id="incoming">
+                    <div class="table-responsive"><table class="table table-sm table-bordered" id="incoming">
                         <thead><tr><th>#</th><th>@L["Cust.Batch"]</th><th>@L["Cust.From"]</th><th>@L["Org.Amount"]</th><th>@L["Org.Date"]</th><th>@L["Org.Status"]</th><th></th></tr></thead>
                         <tbody>
                             @foreach (var s in incoming)
@@ -86,10 +86,10 @@
                                 <tr><td colspan="7" class="text-muted">@L["Org.None"]</td></tr>
                             }
                         </tbody>
-                    </table>
+                    </table></div>
 
                     <h5 class="card-title mt-4">@L["Cust.Outgoing"]</h5>
-                    <table class="table table-sm table-bordered" id="outgoing">
+                    <div class="table-responsive"><table class="table table-sm table-bordered" id="outgoing">
                         <thead><tr><th>#</th><th>@L["Cust.Batch"]</th><th>@L["Cust.To"]</th><th>@L["Org.Amount"]</th><th>@L["Org.Date"]</th><th>@L["Org.Status"]</th></tr></thead>
                         <tbody>
                             @foreach (var s in outgoing)
@@ -108,7 +108,7 @@
                                 <tr><td colspan="6" class="text-muted">@L["Org.None"]</td></tr>
                             }
                         </tbody>
-                    </table>
+                    </table></div>
                 </div>
             </div>
             <a asp-controller="OrgWorkspace" asp-action="Index" class="btn btn-secondary">@L["Org.Back"]</a>

@@ -64,7 +64,7 @@
                                     }
                                 </form>
                             }
-                            <table class="table table-sm">
+                            <div class="table-responsive"><table class="table table-sm">
                                 <thead><tr><th>@L["Org.When"]</th><th>@L["Org.From"]</th><th>@L["Org.To"]</th><th>@L["Org.Reason"]</th></tr></thead>
                                 <tbody>
                                     @foreach (var e in Model.VerificationEvents.OrderByDescending(e => e.EventId))
@@ -76,7 +76,7 @@
                                         <tr><td colspan="4" class="text-muted">@L["Org.NoStatusChanges"]</td></tr>
                                     }
                                 </tbody>
-                            </table>
+                            </table></div>
                         </div>
                     </div>
 
@@ -84,7 +84,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">@L["Org.Documents"]</h5>
-                            <table class="table table-sm" id="documents">
+                            <div class="table-responsive"><table class="table table-sm" id="documents">
                                 <thead><tr><th>@L["Org.Type"]</th><th>@L["Org.File"]</th><th>SHA-256</th><th>@L["Org.Uploaded"]</th></tr></thead>
                                 <tbody>
                                     @foreach (var d in Model.Documents.OrderByDescending(d => d.DocumentId))
@@ -101,7 +101,7 @@
                                         <tr><td colspan="4" class="text-muted">@L["Org.NoDocuments"]</td></tr>
                                     }
                                 </tbody>
-                            </table>
+                            </table></div>
                             @if (canDocs)
                             {
                                 <form asp-action="UploadDocument" asp-route-id="@Model.OrgId" method="post" enctype="multipart/form-data" class="row g-2" id="upload-form">
@@ -190,7 +190,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">@L["Org.Members"]</h5>
-                            <table class="table table-sm" id="members">
+                            <div class="table-responsive"><table class="table table-sm" id="members">
                                 <thead><tr><th>@L["Org.User"]</th><th>@L["Org.OrgRole"]</th><th>@L["Org.Status"]</th><th></th></tr></thead>
                                 <tbody>
                                     @foreach (var m in members)
@@ -215,7 +215,7 @@
                                         <tr><td colspan="4" class="text-muted">@L["Org.NoMembers"]</td></tr>
                                     }
                                 </tbody>
-                            </table>
+                            </table></div>
                             @if (isAdmin)
                             {
                                 <form asp-action="AddMember" asp-route-id="@Model.OrgId" method="post" class="row g-2" id="add-member">

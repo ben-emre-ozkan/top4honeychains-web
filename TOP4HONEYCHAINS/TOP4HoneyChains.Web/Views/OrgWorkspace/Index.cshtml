@@ -83,7 +83,7 @@
                 <div class="card-body">
                     <h5 class="card-title">@L["Org.RawLots"]</h5>
                     <p class="small text-muted">@L["Org.RawLotsHelp"]</p>
-                    <table class="table table-sm table-bordered" id="lots">
+                    <div class="table-responsive"><table class="table table-sm table-bordered" id="lots">
                         <thead><tr><th>#</th><th>@L["Org.Apiary"]</th><th>@L["Org.HoneyType"]</th><th>@L["Org.Amount"]</th><th>@L["Org.Date"]</th><th>@L["Org.Ccps"]</th></tr></thead>
                         <tbody>
                             @foreach (var l in lots)
@@ -110,14 +110,14 @@
                                 <tr><td colspan="6" class="text-muted">@L["Org.None"]</td></tr>
                             }
                         </tbody>
-                    </table>
+                    </table></div>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">@L["Org.Batches"]</h5>
-                    <table class="table table-sm table-bordered" id="batches">
+                    <div class="table-responsive"><table class="table table-sm table-bordered" id="batches">
                         <thead><tr><th>#</th><th>@L["Org.Title"]</th><th>@L["Org.Date"]</th><th>@L["Org.Total"]</th><th>@L["Org.Status"]</th><th>@L["Org.Ccps"]</th><th></th></tr></thead>
                         <tbody>
                             @foreach (var b in batches)
@@ -145,7 +145,7 @@
                                 <tr><td colspan="7" class="text-muted">@L["Org.None"]</td></tr>
                             }
                         </tbody>
-                    </table>
+                    </table></div>
                     <div class="small text-muted">@L["Org.ChipLegend"]</div>
                 </div>
             </div>

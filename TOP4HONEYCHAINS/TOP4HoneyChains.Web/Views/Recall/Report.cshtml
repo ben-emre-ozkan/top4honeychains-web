@@ -1,4 +1,4 @@
-@model TOP4HoneyChains.Web.Controllers.RecallController.Report
+﻿@model TOP4HoneyChains.Web.Controllers.RecallController.Report
 @{
     ViewData["Title"] = L["Cust.RecallReport"];
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
@@ -31,7 +31,7 @@
                     </div>
 
                     <h5 class="mt-4">@L["Cust.Upstream"]</h5>
-                    <table class="table table-sm table-bordered" id="recall-lots">
+                    <div class="table-responsive"><table class="table table-sm table-bordered" id="recall-lots">
                         <thead><tr><th>@L["Cust.Lot"]</th><th>@L["Org.Apiary"]</th><th>@L["Org.HoneyType"]</th><th>@L["Org.Amount"]</th><th>@L["Reg.Beekeeper"]</th><th>@L["Cust.Intake"]</th></tr></thead>
                         <tbody>
                             @foreach (var l in Model.Lots)
@@ -58,12 +58,12 @@
                                 <tr><td colspan="6" class="text-muted" id="hidden-lots">@string.Format(L["Cust.HiddenLots"].Value, Model.HiddenLots)</td></tr>
                             }
                         </tbody>
-                    </table>
+                    </table></div>
 
                     @if (Model.Kind == "lot")
                     {
                         <h5 class="mt-4">@L["Org.Batches"]</h5>
-                        <table class="table table-sm table-bordered" id="recall-batches">
+                        <div class="table-responsive"><table class="table table-sm table-bordered" id="recall-batches">
                             <thead><tr><th>#</th><th>@L["Org.Title"]</th><th>@L["Cust.Owner"]</th><th>@L["Cust.UsedAmount"]</th><th>@L["Org.Date"]</th><th>@L["Org.Status"]</th></tr></thead>
                             <tbody>
                                 @foreach (var b in Model.Batches)
@@ -78,11 +78,11 @@
                                     <tr><td colspan="6" class="text-muted" id="hidden-batches">@string.Format(L["Cust.HiddenBatches"].Value, Model.HiddenBatches)</td></tr>
                                 }
                             </tbody>
-                        </table>
+                        </table></div>
                     }
 
                     <h5 class="mt-4">@L["Cust.Downstream"]</h5>
-                    <table class="table table-sm table-bordered" id="recall-shipments">
+                    <div class="table-responsive"><table class="table table-sm table-bordered" id="recall-shipments">
                         <thead><tr><th>#</th><th>@L["Cust.Batch"]</th><th>@L["Cust.From"]</th><th>@L["Cust.To"]</th><th>@L["Org.Amount"]</th><th>@L["Org.Date"]</th><th>@L["Org.Status"]</th></tr></thead>
                         <tbody>
                             @foreach (var s in Model.Shipments)
@@ -97,17 +97,17 @@
                                 <tr><td colspan="7" class="text-muted" id="hidden-shipments">@string.Format(L["Cust.HiddenShipments"].Value, Model.HiddenShipments)</td></tr>
                             }
                         </tbody>
-                    </table>
+                    </table></div>
 
                     @if (Model.Holders.Any())
                     {
                         <h5 class="mt-4">@L["Cust.Holders"]</h5>
-                        <table class="table table-sm table-bordered" id="recall-holders">
+                        <div class="table-responsive"><table class="table table-sm table-bordered" id="recall-holders">
                             <thead><tr><th>@L["Cust.Holder"]</th><th>@L["Cust.Held"]</th></tr></thead>
                             <tbody>
                                 @foreach (var h in Model.Holders) { <tr><td>@h.Org</td><td>@h.Held.ToString("0.##")</td></tr> }
                             </tbody>
-                        </table>
+                        </table></div>
                     }
                 </div>
             </div>

@@ -1,4 +1,4 @@
-@using TOP4HoneyChains.Web.Models.Entities
+﻿@using TOP4HoneyChains.Web.Models.Entities
 @{
     ViewData["Title"] = "CCP 10";
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
@@ -25,9 +25,9 @@
                     {
                         <div class="alert alert-secondary" id="storage-read-only">@L["Ccp.ReadOnly"]: @Msg.T(enterDenied)</div>
                     }
-                    <form asp-action="Storage" method="post" id="storage-form">
+                    <form asp-action="Storage" method="post" id="storage-form" class="field-form">
                         <input type="hidden" name="batchId" value="@batch?.FinalHoneyProductionId" />
-                        <table class="table table-sm">
+                        <div class="table-responsive"><table class="table table-sm">
                             <thead><tr><th>@L["Corr.Parameter"]</th><th>@L["Cust.Value"]</th><th>@L["Cust.Limit"]</th></tr></thead>
                             <tbody>
                                 @foreach (var p in parameters)
@@ -53,7 +53,7 @@
                                     </tr>
                                 }
                             </tbody>
-                        </table>
+                        </table></div>
                         @if (canEnter)
                         {
                             <button type="submit" class="btn btn-success">@L["Org.Save"]</button>

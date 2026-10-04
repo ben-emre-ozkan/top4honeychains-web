@@ -32,7 +32,7 @@
 
                     <h5 class="card-title mt-4">@L["Org.SourceLots"]</h5>
                     <p class="small text-muted">@L["Org.SourceLotsHelp"]</p>
-                    <table class="table table-sm" id="source-lots">
+                    <div class="table-responsive"><table class="table table-sm" id="source-lots">
                         <thead><tr><th>#</th><th>@L["Org.Apiary"]</th><th>@L["Org.Amount"]</th><th>@L["Org.Ccps"]</th></tr></thead>
                         <tbody>
                             @foreach (var d in Model.FinalHoneyProductionDetails)
@@ -53,7 +53,7 @@
                                 </tr>
                             }
                         </tbody>
-                    </table>
+                    </table></div>
                 </div>
             </div>
 

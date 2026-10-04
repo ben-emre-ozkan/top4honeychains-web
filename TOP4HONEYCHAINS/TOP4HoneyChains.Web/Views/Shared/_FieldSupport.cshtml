@@ -1,0 +1,37 @@
+@* Field use on phones (D-45). Only affects forms marked .field-form and file inputs marked data-camera,
+   which exist only on organization-model pages; v1.0 pages are unchanged. *@
+<style>
+    @@media (max-width: 576px) {
+        .field-form .form-control, .field-form .form-select { min-height: 44px; font-size: 16px; }
+        .field-form .btn { min-height: 44px; }
+        .field-form .form-check-input { width: 1.4em; height: 1.4em; }
+        .field-form .form-check-label { padding-top: .2em; }
+        .field-form button[type=submit] { width: 100%; }
+    }
+</style>
+<script>
+    // A "camera" button next to a photo upload: opens the phone camera directly and puts the photo into the
+    // original file input, so the form posts one file as before (the file picker stays available)
+    document.querySelectorAll('input[type=file][data-camera]').forEach(function (input) {
+        var camera = document.createElement('input');
+        camera.type = 'file';
+        camera.accept = 'image/*';
+        camera.setAttribute('capture', 'environment');
+        camera.className = 'd-none camera-input';
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'btn btn-outline-secondary mt-2 camera-button';
+        button.innerHTML = '<i class="mdi mdi-camera"></i> ' + input.getAttribute('data-camera');
+        button.addEventListener('click', function () { camera.click(); });
+        camera.addEventListener('change', function () {
+            if (!camera.files.length) return;
+            var transfer = new DataTransfer();
+            transfer.items.add(camera.files[0]);
+            input.files = transfer.files;
+            input.dispatchEvent(new Event('change', { bubbles: true }));
+            button.innerHTML = '<i class="mdi mdi-check"></i> ' + camera.files[0].name;
+        });
+        input.insertAdjacentElement('afterend', camera);
+        input.insertAdjacentElement('afterend', button);
+    });
+</script>
