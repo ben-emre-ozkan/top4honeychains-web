@@ -1,13 +1,15 @@
 ﻿# TOP4HoneyChains web panel – release notes
 
-**Version:** 1.0.0-rc3 (release candidate, not yet deployed; rc1 and rc2 were 2026-09-29)
-**Date:** 2026-10-03
+**Version:** 1.0.0-rc4 (release candidate, not yet deployed)
+**Date:** 2026-10-04
 **Audience:** project partners (LBTU test report follow-up)
 
 This release answers the LBTU partner test report. Each finding keeps its number (FB-01 … FB-34).
 In this release only administrators use the web panel; beekeeper and wholesaler logins are planned for a later release.
 
 Status legend: **fixed** = changed in this release · **deferred** = agreed to move to a later release · **needs decision** = waiting for an answer.
+
+**rc4 (2026-10-04):** the audit log is on from go-live for all users, independent of the organization model; administrators find it under User Management → Audit log.
 
 ## What is new in rc3 (2026-10-03)
 
