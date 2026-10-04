@@ -5019,4 +5019,19 @@
   <data name="Choose the province first." xml:space="preserve">
     <value>Önce ili seçin.</value>
   </data>
+  <data name="Required values entered: {0} of {1}" xml:space="preserve">
+    <value>Girilen zorunlu değer: {0} / {1}</value>
+  </data>
+  <data name="Missing:" xml:space="preserve">
+    <value>Eksik:</value>
+  </data>
+  <data name="Submitting is possible once every required value is entered." xml:space="preserve">
+    <value>Tüm zorunlu değerler girildiğinde onaya gönderilebilir.</value>
+  </data>
+  <data name="Enter all required values before submitting: {0} of {1} entered." xml:space="preserve">
+    <value>Onaya göndermeden önce tüm zorunlu değerleri girin: {0} / {1} girildi.</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>Zorunlu</value>
+  </data>
 </root>

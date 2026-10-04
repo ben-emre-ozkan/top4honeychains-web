@@ -5019,4 +5019,19 @@
   <data name="Choose the province first." xml:space="preserve">
     <value>Vispirms izvēlieties provinci.</value>
   </data>
+  <data name="Required values entered: {0} of {1}" xml:space="preserve">
+    <value>Ievadītās obligātās vērtības: {0} no {1}</value>
+  </data>
+  <data name="Missing:" xml:space="preserve">
+    <value>Trūkst:</value>
+  </data>
+  <data name="Submitting is possible once every required value is entered." xml:space="preserve">
+    <value>Iesniegt varēs, kad būs ievadītas visas obligātās vērtības.</value>
+  </data>
+  <data name="Enter all required values before submitting: {0} of {1} entered." xml:space="preserve">
+    <value>Pirms iesniegšanas ievadiet visas obligātās vērtības: ievadītas {0} no {1}.</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>Obligāts</value>
+  </data>
 </root>

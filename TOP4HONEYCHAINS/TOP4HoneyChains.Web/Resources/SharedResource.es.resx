@@ -5019,4 +5019,19 @@
   <data name="Choose the province first." xml:space="preserve">
     <value>Elija primero la provincia.</value>
   </data>
+  <data name="Required values entered: {0} of {1}" xml:space="preserve">
+    <value>Valores obligatorios introducidos: {0} de {1}</value>
+  </data>
+  <data name="Missing:" xml:space="preserve">
+    <value>Faltan:</value>
+  </data>
+  <data name="Submitting is possible once every required value is entered." xml:space="preserve">
+    <value>Se podrá enviar cuando se hayan introducido todos los valores obligatorios.</value>
+  </data>
+  <data name="Enter all required values before submitting: {0} of {1} entered." xml:space="preserve">
+    <value>Introduzca todos los valores obligatorios antes de enviar: {0} de {1} introducidos.</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>Obligatorio</value>
+  </data>
 </root>

@@ -82,7 +82,7 @@
                                     {
                                         var r = ResultOf(p.ParameterId);
                                         <tr data-parameter-id="@p.ParameterId">
-                                            <td>@Ref.T("Parameter", p.ParameterId, "Name", p.ParameterName) @(p.ParameterUnit is null or "None" ? "" : $"({p.ParameterUnit})")</td>
+                                            <td>@Ref.T("Parameter", p.ParameterId, "Name", p.ParameterName) @(p.ParameterUnit is null or "None" ? "" : $"({Ref.T("Parameter", p.ParameterId, "Unit", p.ParameterUnit)})") @if (p.IsRequired) { <span class="text-danger" title="@L["Required"]">*</span> }</td>
                                             <td style="max-width:180px">
                                                 <input name="values[@p.ParameterId]" class="form-control form-control-sm" maxlength="100"
                                                        value="@(r?.MeasuredNumericValue?.ToString("0.####", System.Globalization.CultureInfo.InvariantCulture) ?? r?.MeasuredTextValue)" />
@@ -103,10 +103,26 @@
                         </fieldset>
                     </form>
 
+                    @{
+                        // D-54: progress of the required values; submitting waits until all are entered
+                        var required = parameters.Where(p => p.IsRequired).ToList();
+                        var missing = TOP4HoneyChains.Web.Services.OrgModel.LabService.MissingRequired(Model, required);
+                    }
+                    @if (required.Count > 0)
+                    {
+                        <div class="mt-2 small" id="required-progress" data-entered="@(required.Count - missing.Count)" data-required="@required.Count">
+                            <strong>@L["Required values entered: {0} of {1}", required.Count - missing.Count, required.Count]</strong>
+                            @if (missing.Count > 0)
+                            {
+                                <span class="text-danger" id="required-missing"> · @L["Missing:"] @string.Join(", ", missing.Select(p => Ref.T("Parameter", p.ParameterId, "Name", p.ParameterName)))</span>
+                            }
+                        </div>
+                    }
                     @if (editable && Model != null)
                     {
                         <form asp-action="Submit" asp-route-id="@sample.SampleId" method="post" class="mt-2">
-                            <button type="submit" class="btn btn-primary" id="submit-report">@L["Lab.Submit"]</button>
+                            <button type="submit" class="btn btn-primary" id="submit-report" disabled="@(missing.Count > 0)"
+                                    title="@(missing.Count > 0 ? L["Submitting is possible once every required value is entered."].Value : "")">@L["Lab.Submit"]</button>
                         </form>
                     }
                     @if (Model?.Status == LabReportStatus.Submitted)

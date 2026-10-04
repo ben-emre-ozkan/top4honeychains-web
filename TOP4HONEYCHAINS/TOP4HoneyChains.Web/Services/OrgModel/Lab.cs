@@ -1,4 +1,4 @@
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using Microsoft.EntityFrameworkCore;
 using TOP4HoneyChains.Web.Data;
 using TOP4HoneyChains.Web.Models.Entities;
@@ -33,6 +33,11 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                 .Where(p => p.CCPId == ccpId && p.DataType != CcpDataType.File)
                 .Include(p => p.Limits)
                 .OrderBy(p => p.ParameterId).ToListAsync();
+
+        // D-54: required lab parameters that have no value in the report yet
+        public static List<CriticalControlPointParameter> MissingRequired(LabReport? report, IEnumerable<CriticalControlPointParameter> parameters) =>
+            parameters.Where(p => p.IsRequired && !(report?.Results.Any(r => r.ParameterId == p.ParameterId
+                && (r.MeasuredNumericValue != null || !string.IsNullOrWhiteSpace(r.MeasuredTextValue))) ?? false)).ToList();
 
         // Why the active membership may not act for a lab (null = allowed)
         public async Task<string?> LabDeniedAsync(int labOrgId, IEnumerable<string> roles)

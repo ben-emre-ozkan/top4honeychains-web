@@ -111,6 +111,11 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             Assert.Contains("seal is intact", await analyst.PostFlashAsync("/Samples/Receive", new() { ["id"] = sampleId.ToString(), ["sealIntact"] = "true" }, "/Samples/Index"));
             var ccp1 = await CcpIdAsync("CCP 1");
             var labParams = await _app.WithContextAsync(db => db.CriticalControlPointParameters.Where(p => p.CCPId == ccp1 && p.DataType != CcpDataType.File).ToListAsync());
+            // D-54: with a required value missing the report cannot be submitted
+            var partial = new Dictionary<string, string> { ["reportNumber"] = "E2E-R-1", ["issuedOn"] = DateTime.Today.ToString("yyyy-MM-dd"), [$"values[{labParams[0].ParameterId}]"] = "1" };
+            Assert.Contains("Lab results saved.", await analyst.FlashAfterAsync(await analyst.PostMultipartAsync($"/LabReports/Save/{sampleId}", partial, Pdf.File("reportFile"), $"/LabReports/Edit/{sampleId}")));
+            Assert.Contains("Enter all required values before submitting", await analyst.PostFlashAsync($"/LabReports/Submit/{sampleId}", new(), $"/LabReports/Edit/{sampleId}"));
+            Assert.Matches(@"id=""submit-report"" disabled", await analyst.HtmlAsync($"/LabReports/Edit/{sampleId}"));
             var results = new Dictionary<string, string> { ["reportNumber"] = "E2E-R-1", ["issuedOn"] = DateTime.Today.ToString("yyyy-MM-dd") };
             foreach (var p in labParams)
                 results[$"values[{p.ParameterId}]"] = p.DataType == CcpDataType.Text ? "e2e" : p.DataType == CcpDataType.YesNo ? "Yes" : "1";
