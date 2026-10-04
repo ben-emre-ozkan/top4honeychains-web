@@ -29,7 +29,7 @@
                             </div>
                         </div>
                         <div class="text-end">
-                            <span class="badge @badge fs-6" id="org-status">@Model.Status</span>
+                            <span class="badge @badge fs-6" id="org-status">@L[Model.Status ?? ""]</span>
                             @if (isAdmin)
                             {
                                 <div class="mt-2"><a asp-action="Edit" asp-route-id="@Model.OrgId" class="btn btn-sm btn-outline-primary">@L["Org.EditDetails"]</a></div>
@@ -90,7 +90,7 @@
                                     @foreach (var d in Model.Documents.OrderByDescending(d => d.DocumentId))
                                     {
                                         <tr>
-                                            <td>@d.Kind</td>
+                                            <td>@L[d.Kind ?? ""]</td>
                                             <td><a asp-action="Document" asp-route-id="@d.DocumentId" target="_blank">@d.OriginalFileName</a></td>
                                             <td><code title="@d.Sha256">@d.Sha256[..12]…</code></td>
                                             <td>@d.UploadedAt.ToString("dd.MM.yyyy HH:mm")</td>
@@ -129,7 +129,7 @@
                                 {
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                         <span>
-                                            <strong>@c.Capability</strong>
+                                            <strong>@Ref.Capability(c.Capability)</strong>
                                             @if (c.Capability == Capabilities.Laboratory)
                                             {
                                                 <small class="text-muted">@(c.IsAccredited ? L["accredited, no. {0}", c.AccreditationNumber ?? ""] : L["not accredited"]) @(c.AccreditationValidUntil != null ? L[", valid until {0}", c.AccreditationValidUntil.Value.ToString("dd.MM.yyyy")].Value : "")</small>
@@ -138,7 +138,7 @@
                                         @if (isAdmin && c.Capability != Capabilities.PlatformAdmin)
                                         {
                                             <form asp-action="RemoveCapability" asp-route-id="@Model.OrgId" method="post">
-                                                <input type="hidden" name="capability" value="@c.Capability" />
+                                                <input type="hidden" name="capability" value="@Ref.Capability(c.Capability)" />
                                                 <button type="submit" class="btn btn-sm btn-outline-danger">@L["Org.Remove"]</button>
                                             </form>
                                         }
@@ -196,8 +196,8 @@
                                     {
                                         <tr>
                                             <td>@(names.TryGetValue(m.UserId, out var n) ? n : m.UserId)</td>
-                                            <td>@m.OrgRole</td>
-                                            <td>@m.Status</td>
+                                            <td>@Ref.Role(m.OrgRole)</td>
+                                            <td>@L[m.Status ?? ""]</td>
                                             <td>
                                                 @if (isAdmin && m.Status == MembershipStatus.Active)
                                                 {

@@ -61,14 +61,14 @@
 
                         @if (p.IsInRange == true)
                         {
-                            <span class="badge bg-success ccp-range" title="@p.AppliedLimit">
-                                <i class="mdi mdi-check-circle-outline"></i> Within limit (@p.AppliedLimit)
+                            <span class="badge bg-success ccp-range" title="@Ref.Limit(p.AppliedLimit, k => L[k])">
+                                <i class="mdi mdi-check-circle-outline"></i> @L["Within limit"] (@Ref.Limit(p.AppliedLimit, k => L[k]))
                             </span>
                         }
                         else if (p.IsInRange == false)
                         {
-                            <span class="badge bg-danger ccp-range" title="@p.AppliedLimit">
-                                <i class="mdi mdi-alert-circle-outline"></i> Out of limit (@p.AppliedLimit)
+                            <span class="badge bg-danger ccp-range" title="@Ref.Limit(p.AppliedLimit, k => L[k])">
+                                <i class="mdi mdi-alert-circle-outline"></i> @L["Out of limit"] (@Ref.Limit(p.AppliedLimit, k => L[k]))
                             </span>
                         }
                         else if (hasValue && p.LimitText != null)
@@ -151,7 +151,7 @@
                         <div class="mt-3 p-2 rounded" style="background:#fff5f5; border-left:4px solid #dc3545;">
                             <small class="text-danger fw-semibold">
                                 <i class="mdi mdi-alert-circle-outline me-1"></i>
-                                Critical limit: @(p.LimitText ?? p.CriticalLimit)
+                                @L["Critical limit:"] @Ref.Limit(p.LimitText ?? p.CriticalLimit, k => L[k])
                             </small>
                             @if (p.LimitText != null && !p.LimitVerified)
                             {

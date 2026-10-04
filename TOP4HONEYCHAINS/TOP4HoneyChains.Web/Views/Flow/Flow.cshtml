@@ -79,10 +79,10 @@
                                     @foreach (var s in Model.Samples)
                                     {
                                         <li class="mb-1">
-                                            <a href="/LabReports/Edit/@s.SampleId">@s.Code</a> · @s.Lab · @s.Status
+                                            <a href="/LabReports/Edit/@s.SampleId">@s.Code</a> · @s.Lab · @L[s.Status ?? ""]
                                             @if (s.SealIntact == false) { <span class="badge bg-danger">@L["Lab.SealBroken"]</span> }
                                             @if (s.ReportCode != null) { <a href="/verify-report?code=@s.ReportCode" class="badge bg-success text-decoration-none">@s.ReportCode</a> }
-                                            else if (s.ReportStatus != null) { <span class="badge bg-light text-dark">@s.ReportStatus</span> }
+                                            else if (s.ReportStatus != null) { <span class="badge bg-light text-dark">@L[s.ReportStatus ?? ""]</span> }
                                         </li>
                                     }
                                     @if (!Model.Samples.Any()) { <li class="text-muted">–</li> }

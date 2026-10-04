@@ -17,7 +17,7 @@
                     @if (existing.Any())
                     {
                         <div class="alert alert-light border" id="existing-samples">
-                            @foreach (var s in existing) { <div>@s.SampleCode · @s.LabOrg?.DisplayName · @s.Status</div> }
+                            @foreach (var s in existing) { <div>@s.SampleCode · @s.LabOrg?.DisplayName · @L[s.Status ?? ""]</div> }
                         </div>
                     }
                     <form asp-action="Create" method="post" id="sample-form" class="field-form">

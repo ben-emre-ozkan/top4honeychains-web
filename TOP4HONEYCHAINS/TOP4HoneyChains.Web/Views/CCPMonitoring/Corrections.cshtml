@@ -37,7 +37,7 @@
                                     <td>@Val(c.NewNumericValue, c.NewTextValue)</td>
                                     <td>@c.Reason</td>
                                     <td>@Name(c.RequestedByUserId)</td>
-                                    <td class="correction-status">@c.Status @(c.DecidedByUserId != null ? "· " + Name(c.DecidedByUserId) : "") @(c.DecisionNote != null ? "· " + c.DecisionNote : "")</td>
+                                    <td class="correction-status">@L[c.Status ?? ""] @(c.DecidedByUserId != null ? "· " + Name(c.DecidedByUserId) : "") @(c.DecisionNote != null ? "· " + c.DecisionNote : "")</td>
                                     <td>
                                         @if (c.Status == CorrectionStatus.Pending)
                                         {

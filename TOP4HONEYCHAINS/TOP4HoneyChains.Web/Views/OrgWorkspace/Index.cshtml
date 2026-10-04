@@ -33,8 +33,8 @@
                             <div>
                                 <h4 class="card-title mb-1" id="active-org">@active.OrgName</h4>
                                 <div>
-                                    @L["Org.Role"]: <strong id="active-role">@active.OrgRole</strong> ·
-                                    @L["Org.Status"]: <strong id="active-status">@active.OrgStatus</strong> ·
+                                    @L["Org.Role"]: <strong id="active-role">@Ref.Role(active.OrgRole)</strong> ·
+                                    @L["Org.Status"]: <strong id="active-status">@L[active.OrgStatus ?? ""]</strong> ·
                                     @L["Org.Capabilities"]: @string.Join(", ", active.Capabilities)
                                 </div>
                                 @if (!active.IsVerified)
@@ -67,7 +67,7 @@
                                         <select name="membershipId" class="form-select">
                                             @foreach (var m in memberships)
                                             {
-                                                <option value="@m.MembershipId" selected="@(m.MembershipId == active.MembershipId)">@m.OrgName – @m.OrgRole</option>
+                                                <option value="@m.MembershipId" selected="@(m.MembershipId == active.MembershipId)">@m.OrgName – @Ref.Role(m.OrgRole)</option>
                                             }
                                         </select>
                                     </div>

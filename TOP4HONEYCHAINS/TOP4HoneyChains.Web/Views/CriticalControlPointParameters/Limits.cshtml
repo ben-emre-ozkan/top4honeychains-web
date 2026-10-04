@@ -19,7 +19,7 @@
 
                             <h4 class="card-title">@L["Limits"]: @Model.CCP?.Code / @Ref.T("Parameter", Model.ParameterId, "Name", Model.ParameterName)</h4>
                             <p class="card-title-desc">
-                                @L["Default limits (every honey type):"] <strong>@(CcpLimitEvaluator.Describe(Model.MinValue, Model.MaxValue, Model.ParameterUnit) is { Length: > 0 } d ? d : L["none"].Value)</strong>
+                                @L["Default limits (every honey type):"] <strong>@(CcpLimitEvaluator.Describe(Model.MinValue, Model.MaxValue, Model.ParameterUnit) is { Length: > 0 } d ? Ref.Limit(d, k => L[k]) : L["none"].Value)</strong>
                                 @L["Note.LimitsHelp"]
                                 @if (!string.IsNullOrEmpty(Model.LimitSource))
                                 {

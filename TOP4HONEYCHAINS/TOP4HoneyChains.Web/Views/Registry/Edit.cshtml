@@ -31,7 +31,7 @@
                                         <option value="">@L["(none)"]</option>
                                         @foreach (var a in associations)
                                         {
-                                            <option value="@a.OrgId" selected="@(link?.AssociationOrgId == a.OrgId)">@a.DisplayName (@a.Status)</option>
+                                            <option value="@a.OrgId" selected="@(link?.AssociationOrgId == a.OrgId)">@a.DisplayName (@L[a.Status ?? ""])</option>
                                         }
                                     </select>
                                 </div>
@@ -60,7 +60,7 @@
                                         <tr>
                                             <td>@r.Id</td>
                                             <td>@r.EnterpriseNumber</td>
-                                            <td>@r.Status @(r.Reason != null ? "(" + r.Reason + ")" : "")</td>
+                                            <td>@L[r.Status ?? ""] @(r.Reason != null ? "(" + r.Reason + ")" : "")</td>
                                             <td>@if (r.StoredFileName != null) { <a asp-action="Proof" asp-route-id="@r.Id" target="_blank">@L["file"]</a> }</td>
                                             <td>
                                                 @if (r.Status == RegistryStatus.Pending)

@@ -22,13 +22,13 @@
                     <div class="small text-muted mb-2">
                         @L["Cust.Lot"] #@sample.RawHoneyProductionId · @Ref.T("HoneyType", sample.RawHoneyProduction?.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeId, "Title", sample.RawHoneyProduction?.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle) ·
                         @L["Lab.Laboratory"]: @sample.LabOrg?.DisplayName · @L["Lab.SealNumber"]: @sample.SealNumber ·
-                        @L["Org.Status"]: <strong id="sample-status">@sample.Status</strong>
+                        @L["Org.Status"]: <strong id="sample-status">@L[sample.Status ?? ""]</strong>
                     </div>
                     <h6 class="mt-3">@L["Lab.Custody"]</h6>
                     <ul class="small" id="custody-events">
                         @foreach (var e in sample.Events.OrderBy(e => e.EventId))
                         {
-                            <li>@e.At.ToLocalTime().ToString("dd.MM.yyyy HH:mm") · @e.Event @(e.SealIntact == true ? "· " + L["Lab.SealIntact"].Value : e.SealIntact == false ? "· " + L["Lab.SealBroken"].Value : "") @e.Note</li>
+                            <li>@e.At.ToLocalTime().ToString("dd.MM.yyyy HH:mm") · @L[e.Event ?? ""] @(e.SealIntact == true ? "· " + L["Lab.SealIntact"].Value : e.SealIntact == false ? "· " + L["Lab.SealBroken"].Value : "") @e.Note</li>
                         }
                     </ul>
                 </div>
@@ -88,7 +88,7 @@
                                                        value="@(r?.MeasuredNumericValue?.ToString("0.####", System.Globalization.CultureInfo.InvariantCulture) ?? r?.MeasuredTextValue)" />
                                             </td>
                                             <td class="small">
-                                                @(r?.AppliedLimit ?? CcpLimitEvaluator.DescribeAll(p))
+                                                @Ref.Limit(r?.AppliedLimit ?? CcpLimitEvaluator.DescribeAll(p), k => L[k])
                                                 @if (r?.IsInRange == false) { <span class="badge bg-danger">!</span> }
                                                 @if (r?.IsInRange == true) { <span class="badge bg-success">✓</span> }
                                             </td>

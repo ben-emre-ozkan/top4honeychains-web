@@ -72,20 +72,20 @@
 
                             @if (row.Compliant == true)
                             {
-                                <span class="badge bg-success ms-1 ccp-compliance" title="Limit: @row.LimitText">
+                                <span class="badge bg-success ms-1 ccp-compliance" title="@L["Limit:"] @Ref.Limit(row.LimitText, k => L[k])">
                                     <i class="mdi mdi-check"></i> @L["within limit"]
                                 </span>
                             }
                             else if (row.Compliant == false)
                             {
-                                <span class="badge bg-danger ms-1 ccp-compliance" title="Limit: @row.LimitText">
+                                <span class="badge bg-danger ms-1 ccp-compliance" title="@L["Limit:"] @Ref.Limit(row.LimitText, k => L[k])">
                                     <i class="mdi mdi-close"></i> @L["outside limit"]
                                 </span>
                             }
                         </div>
                         @if (row.Compliant != null && row.LimitText != null)
                         {
-                            <div class="small text-muted mt-1">Limit: @row.LimitText</div>
+                            <div class="small text-muted mt-1">@L["Limit:"] @Ref.Limit(row.LimitText, k => L[k])</div>
                         }
                     </div>
                 </div>

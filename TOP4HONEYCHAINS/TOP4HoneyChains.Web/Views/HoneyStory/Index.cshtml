@@ -862,11 +862,11 @@
                                                     @value
                                                     @if (row.Compliant == true)
                                                     {
-                                                        <span class="badge bg-success ms-1 ccp-compliance" title="Limit: @row.LimitText">@L["within limit"]</span>
+                                                        <span class="badge bg-success ms-1 ccp-compliance" title="@L["Limit:"] @Ref.Limit(row.LimitText, k => L[k])">@L["within limit"]</span>
                                                     }
                                                     else if (row.Compliant == false)
                                                     {
-                                                        <span class="badge bg-danger ms-1 ccp-compliance" title="Limit: @row.LimitText">@L["outside limit"]</span>
+                                                        <span class="badge bg-danger ms-1 ccp-compliance" title="@L["Limit:"] @Ref.Limit(row.LimitText, k => L[k])">@L["outside limit"]</span>
                                                     }
                                                 </div>
                                                 @if (row.MeasurementDate != null)

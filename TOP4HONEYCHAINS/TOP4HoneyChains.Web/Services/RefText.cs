@@ -18,7 +18,68 @@ namespace TOP4HoneyChains.Web.Services
 
         public static string Culture => CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
 
-        public void Invalidate() => _table = null;
+        public void Invalidate()
+        {
+            _table = null;
+            _bases = null;
+            _limitMaps.Clear();
+        }
+
+        // base texts that appear inside composed limit descriptions (parameter names, units, honey types)
+        private volatile List<(string Entity, string Key, string Field, string Text)>? _bases;
+        private readonly ConcurrentDictionary<string, List<(System.Text.RegularExpressions.Regex Pattern, string Text)>> _limitMaps = new();
+
+        private List<(string Entity, string Key, string Field, string Text)> Bases()
+        {
+            var bases = _bases;
+            if (bases != null)
+                return bases;
+            using var scope = _scopes.CreateScope();
+            var db = scope.ServiceProvider.GetRequiredService<TOP4HoneyChainsContext>();
+            var list = new List<(string, string, string, string)>();
+            foreach (var p in db.CriticalControlPointParameters.AsNoTracking().Select(p => new { p.ParameterId, p.ParameterName, p.ParameterUnit }).ToList())
+            {
+                if (!string.IsNullOrWhiteSpace(p.ParameterName)) list.Add((RefEntity.Parameter, p.ParameterId.ToString(CultureInfo.InvariantCulture), "Name", p.ParameterName));
+                if (!string.IsNullOrWhiteSpace(p.ParameterUnit) && p.ParameterUnit != "None") list.Add((RefEntity.Parameter, p.ParameterId.ToString(CultureInfo.InvariantCulture), "Unit", p.ParameterUnit));
+            }
+            foreach (var h in db.HoneyTypes.AsNoTracking().Select(h => new { h.HoneyTypeId, h.HoneyTypeTitle }).ToList())
+                list.Add((RefEntity.HoneyType, h.HoneyTypeId.ToString(CultureInfo.InvariantCulture), "Title", h.HoneyTypeTitle));
+            _bases = list;
+            return list;
+        }
+
+        // D-51: a limit description ("min 8 DN (Schade); Pine: max 23 % (Percentage) if HMF <= 15") in the selected
+        // language. Composed and stored descriptions stay English in the database; they are translated for display.
+        public string Limit(string? text, Func<string, string> ui)
+        {
+            if (string.IsNullOrWhiteSpace(text) || Culture == "en")
+                return text ?? "";
+            var map = _limitMaps.GetOrAdd(Culture, _ =>
+            {
+                var pairs = new Dictionary<string, string>();
+                foreach (var b in Bases())
+                {
+                    var t = T(b.Entity, b.Key, b.Field, b.Text);
+                    if (t != b.Text && !pairs.ContainsKey(b.Text))
+                        pairs[b.Text] = t;
+                }
+                foreach (var c in HoneyClasses.All)
+                    pairs.TryAdd(c, ui(c));
+                return pairs.OrderByDescending(p => p.Key.Length)
+                    .Select(p => (new System.Text.RegularExpressions.Regex(@"(?<![\w])" + System.Text.RegularExpressions.Regex.Escape(p.Key) + @"(?![\w])"), p.Value))
+                    .ToList();
+            });
+            // placeholders keep replaced text from being replaced again
+            var parts = new List<string>();
+            foreach (var (pattern, value) in map)
+                text = pattern.Replace(text, _ => { parts.Add(value); return "\u0001" + (parts.Count - 1) + "\u0002"; });
+            text = System.Text.RegularExpressions.Regex.Replace(text, @"\bmin\b", ui("min"));
+            text = System.Text.RegularExpressions.Regex.Replace(text, @"\bmax\b", ui("max"));
+            text = System.Text.RegularExpressions.Regex.Replace(text, @"\bif\b", ui("if"));
+            text = text.Replace("(not checkable)", "(" + ui("not checkable") + ")");
+            text = System.Text.RegularExpressions.Regex.Replace(text, @"\bhoney type (\d+)", m => T(RefEntity.HoneyType, m.Groups[1].Value, "Title", ui("honey type") + " " + m.Groups[1].Value));
+            return System.Text.RegularExpressions.Regex.Replace(text, "\u0001(\\d+)\u0002", m => parts[int.Parse(m.Groups[1].Value)]);
+        }
 
         private Dictionary<(string, string, string, string), string> Table()
         {

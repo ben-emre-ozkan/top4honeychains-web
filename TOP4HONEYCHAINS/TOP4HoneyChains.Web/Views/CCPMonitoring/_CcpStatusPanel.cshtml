@@ -37,7 +37,7 @@ else if (!Model.CanEnter)
                 <span class="badge @badge fs-6 ms-2" id="ccp-status">@(Model.StatusName != null ? Ref.Status(Model.StatusId, Model.StatusName) : L["Not assigned"].Value)</span>
                 @if (Model.HoneyClass != null)
                 {
-                    <span class="text-muted small ms-3">@L["Limits for honey class:"] <strong>@Model.HoneyClass</strong></span>
+                    <span class="text-muted small ms-3">@L["Limits for honey class:"] <strong>@L[Model.HoneyClass ?? ""]</strong></span>
                 }
                 else
                 {
@@ -153,7 +153,7 @@ else if (!Model.CanEnter)
                     <tbody>
                         @foreach (var c in Model.Corrections)
                         {
-                            <tr><td>#@c.CorrectionId</td><td>@Ref.T("Parameter", c.Parameter?.ParameterId, "Name", c.Parameter?.ParameterName)</td><td>@(c.OldNumericValue?.ToString("0.####") ?? c.OldTextValue ?? "–") → @(c.NewNumericValue?.ToString("0.####") ?? c.NewTextValue)</td><td>@c.Reason</td><td>@c.Status</td></tr>
+                            <tr><td>#@c.CorrectionId</td><td>@Ref.T("Parameter", c.Parameter?.ParameterId, "Name", c.Parameter?.ParameterName)</td><td>@(c.OldNumericValue?.ToString("0.####") ?? c.OldTextValue ?? "–") → @(c.NewNumericValue?.ToString("0.####") ?? c.NewTextValue)</td><td>@c.Reason</td><td>@L[c.Status ?? ""]</td></tr>
                         }
                     </tbody>
                 </table>

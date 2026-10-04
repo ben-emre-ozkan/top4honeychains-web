@@ -72,7 +72,7 @@
 
                                             <td>@(item.DataType ?? "-")@(item.IsRequired ? "" : " (optional)")</td>
                                             <td>
-                                                @(TOP4HoneyChains.Web.Services.CcpLimitEvaluator.DescribeAll(item) ?? (item.CriticalLimit == "None" ? "-" : item.CriticalLimit))
+                                                @Ref.Limit(TOP4HoneyChains.Web.Services.CcpLimitEvaluator.DescribeAll(item) ?? (item.CriticalLimit == "None" ? "-" : item.CriticalLimit), k => L[k])
                                                 @if (TOP4HoneyChains.Web.Services.CcpLimitEvaluator.DescribeAll(item) != null && !item.LimitVerified)
                                                 {
                                                     <span class="badge bg-warning text-dark">@L["to verify"]</span>

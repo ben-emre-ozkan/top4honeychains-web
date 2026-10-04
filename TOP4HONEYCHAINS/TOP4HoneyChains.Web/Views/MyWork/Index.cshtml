@@ -20,7 +20,7 @@
                             <h4 class="card-title mb-1">@L["Work.Title"]</h4>
                             @if (active != null)
                             {
-                                <div class="text-muted small" id="work-membership">@active.OrgName · @active.OrgRole</div>
+                                <div class="text-muted small" id="work-membership">@active.OrgName · @Ref.Role(active.OrgRole)</div>
                                 @if (!active.IsVerified) { <div class="alert alert-warning mt-2 mb-0">@L["Org.NotVerifiedBanner"]</div> }
                             }
                         </div>
@@ -28,7 +28,7 @@
                         {
                             <form asp-controller="OrgWorkspace" asp-action="Switch" method="post" class="d-flex gap-2">
                                 <select name="membershipId" class="form-select form-select-sm">
-                                    @foreach (var m in memberships) { <option value="@m.MembershipId" selected="@(m.MembershipId == active?.MembershipId)">@m.OrgName – @m.OrgRole</option> }
+                                    @foreach (var m in memberships) { <option value="@m.MembershipId" selected="@(m.MembershipId == active?.MembershipId)">@m.OrgName – @Ref.Role(m.OrgRole)</option> }
                                 </select>
                                 <button type="submit" class="btn btn-sm btn-outline-primary">@L["Org.Switch"]</button>
                             </form>

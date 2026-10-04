@@ -22,7 +22,7 @@
                                     <td>@r.BusinessNumber</td>
                                     <td>@r.Name</td>
                                     <td>@r.RegistryNumber</td>
-                                    <td>@r.Status</td>
+                                    <td>@L[r.Status ?? ""]</td>
                                     <td>@r.Association</td>
                                     <td><a asp-action="Edit" asp-route-id="@r.BeekeeperId" class="btn btn-sm btn-primary">@L["Org.Open"]</a></td>
                                 </tr>

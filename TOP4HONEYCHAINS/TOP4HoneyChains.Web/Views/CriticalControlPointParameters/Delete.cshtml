@@ -44,7 +44,7 @@
 
                                 <dt class="col-sm-3">@L["Critical Limit"]</dt>
                                 <dd class="col-sm-9">
-                                    @Model.CriticalLimit
+                                    @Ref.Limit(Model.CriticalLimit, k => L[k])
                                 </dd>
 
                                 <dt class="col-sm-3">@L["Critical Control Point"]</dt>
