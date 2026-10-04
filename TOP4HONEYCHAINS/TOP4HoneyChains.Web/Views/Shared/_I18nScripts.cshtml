@@ -1,4 +1,4 @@
-@* D-51: third-party widgets (DataTables, Parsley) follow the selected language. Rendered after the page scripts
+﻿@* D-51: third-party widgets (DataTables, Parsley) follow the selected language. Rendered after the page scripts
    and before the page is ready, so the defaults apply to every table and form initialized on document ready. *@
 @{
     var lang = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
@@ -29,6 +29,20 @@
     (function () {
         if (window.jQuery && jQuery.fn.dataTable) {
             jQuery.extend(true, jQuery.fn.dataTable.defaults, { language: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(dt)) });
+        }
+        // D-53: client-side number checks accept a comma or a dot as decimal separator
+        if (window.jQuery && jQuery.validator) {
+            var toNumber = function (v) {
+                var s = String(v == null ? '' : v).replace(/\s/g, '');
+                var dot = s.lastIndexOf('.'), comma = s.lastIndexOf(',');
+                if (dot >= 0 && comma >= 0) s = dot > comma ? s.replace(/,/g, '') : s.replace(/\./g, '').replace(',', '.');
+                else s = s.replace(',', '.');
+                return /^[-+]?\d+(\.\d+)?$/.test(s) ? parseFloat(s) : NaN;
+            };
+            jQuery.validator.methods.number = function (value, element) { return this.optional(element) || !isNaN(toNumber(value)); };
+            jQuery.validator.methods.range = function (value, element, p) { var n = toNumber(value); return this.optional(element) || (n >= p[0] && n <= p[1]); };
+            jQuery.validator.methods.min = function (value, element, p) { return this.optional(element) || toNumber(value) >= p; };
+            jQuery.validator.methods.max = function (value, element, p) { return this.optional(element) || toNumber(value) <= p; };
         }
         if (window.Swal && Swal.mixin) {
             window.Swal = Swal.mixin({

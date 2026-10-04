@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TOP4HoneyChains.Web.Data;
@@ -395,6 +395,6 @@ namespace TOP4HoneyChains.Web.Controllers
 
         // "1.5" and "1,5" both mean 1.5 (ENG-07)
         private static decimal? ParseNumber(string raw) =>
-            decimal.TryParse(raw.Replace(',', '.'), System.Globalization.NumberStyles.Number, System.Globalization.CultureInfo.InvariantCulture, out var d) ? d : null;
+            DecimalInput.Parse(raw);
     }
 }
