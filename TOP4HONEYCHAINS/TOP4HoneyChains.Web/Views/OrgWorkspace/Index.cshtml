@@ -35,7 +35,7 @@
                                 <div>
                                     @L["Org.Role"]: <strong id="active-role">@Ref.Role(active.OrgRole)</strong> ·
                                     @L["Org.Status"]: <strong id="active-status">@L[active.OrgStatus ?? ""]</strong> ·
-                                    @L["Org.Capabilities"]: @string.Join(", ", active.Capabilities)
+                                    @L["Org.Capabilities"]: @string.Join(", ", active.Capabilities.Select(Ref.Capability))
                                 </div>
                                 @if (!active.IsVerified)
                                 {

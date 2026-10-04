@@ -74,7 +74,7 @@
                                         <td>#@lot.LotId</td>
                                         <td>@lot.Beekeeper</td>
                                         <td>@lot.Apiary</td>
-                                        <td>@lot.HoneyType</td>
+                                        <td>@Ref.Text("HoneyType", "Title", lot.HoneyType)</td>
                                         <td>@lot.ProductionDate?.ToString("dd.MM.yyyy")</td>
                                         <td>@lot.UsedAmount.ToString("0.##") kg</td>
                                         <td>@lot.CcpsDone / @lot.CcpsTotal</td>

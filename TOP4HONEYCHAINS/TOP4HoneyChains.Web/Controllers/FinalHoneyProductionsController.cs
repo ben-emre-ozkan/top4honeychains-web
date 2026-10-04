@@ -469,10 +469,10 @@ namespace TOP4HoneyChains.Web.Controllers
             var model = new CCPOverviewViewModel
             {
                 RawHoneyProductionId = id, // reuse ediyoruz
-                BeekeeperName = "Final Batch",
-                ApiaryName = "Blended Production",
-                WholesalerName = batch.FinalHoneyProductionWholesaler?.WholesalerTitle ?? "Not Assigned",
-                HoneyType = "Mixed",
+                BeekeeperName = HttpContext.RequestServices.GetRequiredService<Microsoft.Extensions.Localization.IStringLocalizer<SharedResource>>()["Final Batch"],
+                ApiaryName = HttpContext.RequestServices.GetRequiredService<Microsoft.Extensions.Localization.IStringLocalizer<SharedResource>>()["Blended Production"],
+                WholesalerName = batch.FinalHoneyProductionWholesaler?.WholesalerTitle ?? HttpContext.RequestServices.GetRequiredService<Microsoft.Extensions.Localization.IStringLocalizer<SharedResource>>()["Not Assigned"],
+                HoneyType = HttpContext.RequestServices.GetRequiredService<Microsoft.Extensions.Localization.IStringLocalizer<SharedResource>>()["Mixed"],
                 ProductionDate = batch.FinalHoneyProductionDate,
                 Amount = batch.FinalHoneyProductionTotalAmount,
                 Timeline = timeline

@@ -19,14 +19,14 @@
                 <div>
                     <h6 class="mb-1 fw-bold">
                         <i class="mdi mdi-folder-outline me-2"></i>
-                        @Model.Groups[i].CategoryName
+                        @(Model.Groups[i].CategoryId != null ? Ref.Category(Model.Groups[i].CategoryId, Model.Groups[i].CategoryName) : L[Model.Groups[i].CategoryName].Value)
                     </h6>
                     @if (!string.IsNullOrEmpty(Model.Groups[i].CategoryDescription))
                     {
-                        <small class="opacity-75">@Model.Groups[i].CategoryDescription</small>
+                        <small class="opacity-75">@Ref.CategoryDescription(Model.Groups[i].CategoryId, Model.Groups[i].CategoryDescription)</small>
                     }
                 </div>
-                <span class="badge bg-light text-dark">@Model.Groups[i].Parameters.Count Parameters</span>
+                <span class="badge bg-light text-dark">@L["{0} parameters", Model.Groups[i].Parameters.Count]</span>
             </div>
         </div>
 
@@ -55,7 +55,7 @@
                             @Ref.T("Parameter", p.ParameterId, "Name", p.ParameterName)
                             @if (!string.IsNullOrEmpty(p.Unit) && p.Unit != "None")
                             {
-                                <span class="text-muted">(@p.Unit)</span>
+                                <span class="text-muted">(@Ref.Text("Parameter", "Unit", p.Unit))</span>
                             }
                         </label>
 

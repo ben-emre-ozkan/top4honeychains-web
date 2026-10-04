@@ -56,7 +56,7 @@
                                 <div class="col-md-4">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="capabilities" value="@c.Code" id="cap_@c.Code" @(selected.Contains(c.Code) ? "checked" : "") />
-                                        <label class="form-check-label" for="cap_@c.Code"><strong>@c.Code</strong> <small class="text-muted">@c.Description</small></label>
+                                        <label class="form-check-label" for="cap_@c.Code"><strong>@Ref.Capability(c.Code)</strong> <small class="text-muted">@Ref.CapabilityDescription(c.Code, c.Description)</small></label>
                                     </div>
                                 </div>
                             }

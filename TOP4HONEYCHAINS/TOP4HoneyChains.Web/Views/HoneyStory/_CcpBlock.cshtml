@@ -63,7 +63,7 @@
                             }
                             else if (row.NumericValue != null)
                             {
-                                <span class="badge bg-primary">@row.NumericValue.Value.ToString("0.####", tr) @row.Unit</span>
+                                <span class="badge bg-primary">@row.NumericValue.Value.ToString("0.####", tr) @Ref.Text("Parameter", "Unit", row.Unit)</span>
                             }
                             else
                             {

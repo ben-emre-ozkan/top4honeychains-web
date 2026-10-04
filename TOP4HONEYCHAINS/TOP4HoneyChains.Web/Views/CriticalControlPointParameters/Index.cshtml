@@ -56,9 +56,7 @@
                                         <tr>
                                             <td>
                                                 <strong>
-                                                    @(item.ParameterName?.Length > 50
-                                                                                                    ? item.ParameterName.Substring(0, 50) + "..."
-                                                                                                    : item.ParameterName)
+                                                    @TOP4HoneyChains.Web.Services.RefText.Short(Ref.T("Parameter", item.ParameterId, "Name", item.ParameterName), 50)
                                                     
                                                     
                                                     </strong>

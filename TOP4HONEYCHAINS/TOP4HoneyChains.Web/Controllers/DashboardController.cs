@@ -52,6 +52,11 @@ namespace TOP4HoneyChains.Web.Controllers
                 .SumAsync(r => (decimal?)r.RawHoneyProductionAmount) ?? 0;
 
             // 🍯 Honey Type bazlı üretim
+            // D-51: chart labels in the selected language
+            var refText = HttpContext.RequestServices.GetRequiredService<Services.RefText>();
+            string HoneyName(string? t) => refText.Text(Models.Entities.RefEntity.HoneyType, "Title", t);
+            string PeriodName(string? t) => refText.Text(Models.Entities.RefEntity.ProductionPeriod, "Title", t);
+
             var productionByHoneyType = await _context.RawHoneyProductions
                 .Include(r => r.RawHoneyProductionHoneyTypeNavigation)
                 .GroupBy(r => r.RawHoneyProductionHoneyTypeNavigation.HoneyTypeTitle)
@@ -150,7 +155,7 @@ namespace TOP4HoneyChains.Web.Controllers
             foreach (var period in periods)
             {
                 var row = new Dictionary<string, object>();
-                row["period"] = period;
+                row["period"] = PeriodName(period);
 
                 foreach (var type in honeyTypes)
                 {
@@ -158,14 +163,14 @@ namespace TOP4HoneyChains.Web.Controllers
                         .Where(x => x.Period == period && x.HoneyType == type)
                         .Sum(x => x.TotalAmount);
 
-                    row[type] = value;
+                    row[HoneyName(type)] = value;
                 }
 
                 chartData.Add(row);
             }
 
             ViewBag.PeriodChartData = chartData;
-            ViewBag.HoneyTypes = honeyTypes;
+            ViewBag.HoneyTypes = honeyTypes.Select(HoneyName).ToList();
 
 
             var productionByWholesaler = await _context.RawHoneyProductions
@@ -192,7 +197,7 @@ namespace TOP4HoneyChains.Web.Controllers
             ViewBag.TopBeekeepers = topBeekeepers;
 
 
-            ViewBag.PeriodLabels = productionByPeriod.Select(x => x.Period).ToList();
+            ViewBag.PeriodLabels = productionByPeriod.Select(x => PeriodName(x.Period)).ToList();
             ViewBag.PeriodAmounts = productionByPeriod.Select(x => x.TotalAmount).ToList();
 
             ViewBag.TotalBeekeepers = totalBeekeepers;
@@ -200,7 +205,7 @@ namespace TOP4HoneyChains.Web.Controllers
             ViewBag.ActiveApiaries = activeApiaries;
             ViewBag.TotalProduction = totalProduction;
 
-            ViewBag.ProductionByHoneyType = productionByHoneyType;
+            ViewBag.ProductionByHoneyType = productionByHoneyType.Select(x => new { label = HoneyName(x.label), x.value }).ToList();
 
             ViewBag.Controller = "Dashboard";
             ViewBag.Action = "Index";

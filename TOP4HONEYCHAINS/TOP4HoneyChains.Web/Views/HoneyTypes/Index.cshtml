@@ -59,9 +59,7 @@
                                             <td>
                                                 @if (!string.IsNullOrEmpty(item.HoneyTypeDescription))
                                                 {
-                                                    @(item.HoneyTypeDescription.Length > 80
-                                                                                                ? item.HoneyTypeDescription.Substring(0, 80) + "..."
-                                                                                                : item.HoneyTypeDescription)
+                                                    @TOP4HoneyChains.Web.Services.RefText.Short(Ref.T("HoneyType", item.HoneyTypeId, "Description", item.HoneyTypeDescription), 80)
                                                                                         }
                                                 else
                                                 {

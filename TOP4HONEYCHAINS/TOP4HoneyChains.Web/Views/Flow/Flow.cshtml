@@ -62,7 +62,7 @@
                                             </div>
                                             <span class="small flow-state">@st.Text @(s.ApprovedAt != null ? s.ApprovedAt.Value.ToString("dd.MM.yyyy") : "") @if (s.SelfApproved) { <span class="badge bg-warning text-dark">@L["Org.SelfApproved"]</span> }</span>
                                         </div>
-                                        <div class="small text-muted">@s.Step @if (s.Responsible.Any()) { <span>· @L["Resp.Responsible"]: <span class="flow-org">@string.Join(", ", s.Responsible)</span></span> }</div>
+                                        <div class="small text-muted">@Ref.CcpStep(s.CcpId, s.Step) @if (s.Responsible.Any()) { <span>· @L["Resp.Responsible"]: <span class="flow-org">@string.Join(", ", s.Responsible)</span></span> }</div>
                                     </li>
                                 }
                             </ul>
@@ -97,7 +97,7 @@
                             <div class="card-body">
                                 <h6>@L["Org.SourceLots"]</h6>
                                 <ul class="list-unstyled small mb-0" id="flow-lots">
-                                    @foreach (var l in Model.Lots) { <li><a href="/Flow/Lot/@l.LotId">#@l.LotId</a> · @l.HoneyType · @l.Used.ToString("0.##") kg</li> }
+                                    @foreach (var l in Model.Lots) { <li><a href="/Flow/Lot/@l.LotId">#@l.LotId</a> · @Ref.Text("HoneyType", "Title", l.HoneyType) · @l.Used.ToString("0.##") kg</li> }
                                 </ul>
                             </div>
                         </div>

@@ -550,7 +550,7 @@ namespace TOP4HoneyChains.Web.Controllers
 
                 WholesalerName = production.RawHoneyProductionWholesaler != null
         ? production.RawHoneyProductionWholesaler.WholesalerTitle
-        : "Not Assigned",
+        : HttpContext.RequestServices.GetRequiredService<Microsoft.Extensions.Localization.IStringLocalizer<SharedResource>>()["Not Assigned"],
 
                 HoneyType = production.RawHoneyProductionHoneyTypeNavigation.HoneyTypeTitle,
                 ProductionDate = production.RawHoneyProductionDate.HasValue

@@ -152,7 +152,7 @@
                                         <select name="capability" class="form-select">
                                             @foreach (var c in allCaps.Where(c => c.Code != Capabilities.PlatformAdmin && Model.Capabilities.All(x => x.Capability != c.Code)))
                                             {
-                                                <option value="@c.Code">@c.Code</option>
+                                                <option value="@c.Code">@Ref.Capability(c.Code)</option>
                                             }
                                         </select>
                                     </div>
@@ -221,7 +221,7 @@
                                     <div class="col-md-4">
                                         <label class="form-label small">@L["Org.OrgRole"]</label>
                                         <select name="orgRole" class="form-select">
-                                            @foreach (var r in roles) { <option value="@r">@r</option> }
+                                            @foreach (var r in roles) { <option value="@r">@Ref.Role(r)</option> }
                                         </select>
                                     </div>
                                     <div class="col-md-8">

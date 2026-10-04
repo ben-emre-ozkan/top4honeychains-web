@@ -103,20 +103,12 @@
 
                                 <!-- 🔵 WHAT -->
                                 <td>
-                                    @(string.IsNullOrWhiteSpace(item.WhatIsIt)
-                                                                        ? "—"
-                                                                        : item.WhatIsIt.Length > 25
-                                                                        ? item.WhatIsIt.Substring(0, 25) + "..."
-                                                                        : item.WhatIsIt)
+                                    @(string.IsNullOrWhiteSpace(item.WhatIsIt) ? "—" : TOP4HoneyChains.Web.Services.RefText.Short(Ref.T("ParameterContent", item.ContentId, "WhatIsIt", item.WhatIsIt), 25))
                                                                                     </td>
 
                                 <!-- 🔵 WHY -->
                                 <td>
-                                    @(string.IsNullOrWhiteSpace(item.WhyImportant)
-                                                                        ? "—"
-                                                                        : item.WhyImportant.Length > 25
-                                                                        ? item.WhyImportant.Substring(0, 25) + "..."
-                                                                        : item.WhyImportant)
+                                    @(string.IsNullOrWhiteSpace(item.WhyImportant) ? "—" : TOP4HoneyChains.Web.Services.RefText.Short(Ref.T("ParameterContent", item.ContentId, "WhyImportant", item.WhyImportant), 25))
                                 </td>
 
                                     <!-- 🔵 VIDEO -->

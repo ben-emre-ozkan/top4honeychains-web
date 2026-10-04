@@ -58,9 +58,7 @@
                                             <td>@Ref.CcpTitle(item.Id, item.Title)</td>
                                             <td>@(item.AppliesTo == "RawLot" ? L["Raw honey lot"].Value : item.AppliesTo == "Batch" ? L["Final batch"].Value : "-")</td>
                                             <td>
-                                                @(item.CriticalityJustification?.Length > 50
-                                                                                            ? item.CriticalityJustification.Substring(0, 50) + "..."
-                                                                                            : item.CriticalityJustification)
+                                                @TOP4HoneyChains.Web.Services.RefText.Short(Ref.T("Ccp", item.Id, "CriticalityJustification", item.CriticalityJustification), 50)
                                         </td>
                                         <td>
                                             <div class="d-flex gap-2">

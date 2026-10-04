@@ -349,7 +349,7 @@
 
                                         <span class="badge bg-light text-dark border px-3 py-2">
                                             <i class="mdi mdi-water-outline me-1 text-primary"></i>
-                                            @source.HoneyType
+                                            @Ref.Text("HoneyType", "Title", source.HoneyType)
                                         </span>
 
                                     </div>
@@ -445,7 +445,7 @@
         {
             <h5 class="mt-4 mb-3">
                 <span class="badge bg-secondary me-2">@L["Raw honey"]</span>
-                @source.ApiaryName · @source.HoneyType
+                @source.ApiaryName · @Ref.Text("HoneyType", "Title", source.HoneyType)
             </h5>
             <div class="ccp-container">
                 @foreach (var block in source.CcpBlocks)

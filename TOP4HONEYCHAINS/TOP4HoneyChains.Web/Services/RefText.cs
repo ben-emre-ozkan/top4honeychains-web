@@ -1,4 +1,4 @@
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 using System.Globalization;
 using Microsoft.EntityFrameworkCore;
 using TOP4HoneyChains.Web.Data;
@@ -44,8 +44,24 @@ namespace TOP4HoneyChains.Web.Services
             }
             foreach (var h in db.HoneyTypes.AsNoTracking().Select(h => new { h.HoneyTypeId, h.HoneyTypeTitle }).ToList())
                 list.Add((RefEntity.HoneyType, h.HoneyTypeId.ToString(CultureInfo.InvariantCulture), "Title", h.HoneyTypeTitle));
+            foreach (var p in db.RawHoneyProductionPeriods.AsNoTracking().Select(p => new { p.RawHoneyProductionPeriodId, p.RawHoneyProductionPeriodTitle }).ToList())
+                if (p.RawHoneyProductionPeriodTitle != null)
+                    list.Add((RefEntity.ProductionPeriod, p.RawHoneyProductionPeriodId.ToString(CultureInfo.InvariantCulture), "Title", p.RawHoneyProductionPeriodTitle));
             _bases = list;
             return list;
+        }
+
+        // shortened text for list columns
+        public static string Short(string? text, int max) =>
+            string.IsNullOrEmpty(text) ? "" : text.Length > max ? text[..max] + "..." : text;
+
+        // translation by base text, for view models that carry only the text (honey type names, units)
+        public string Text(string entity, string field, string? baseText)
+        {
+            if (string.IsNullOrWhiteSpace(baseText))
+                return baseText ?? "";
+            var b = Bases().FirstOrDefault(x => x.Entity == entity && x.Field == field && x.Text == baseText);
+            return b.Key == null ? baseText : T(entity, b.Key, field, baseText);
         }
 
         // D-51: a limit description ("min 8 DN (Schade); Pine: max 23 % (Percentage) if HMF <= 15") in the selected

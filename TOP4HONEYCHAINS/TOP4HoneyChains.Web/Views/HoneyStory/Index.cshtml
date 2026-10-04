@@ -669,7 +669,7 @@
                                     <div class="fw-semibold">
                                         <span class="badge bg-light text-dark border px-3 py-2">
                                             <i class="mdi mdi-flower-outline me-1"></i>
-                                            @source.HoneyType
+                                            @Ref.Text("HoneyType", "Title", source.HoneyType)
                                         </span>
                                     </div>
 
@@ -847,7 +847,7 @@
                                     {
                                         var value = !row.Recorded ? L["not recorded"].Value
                                             : row.IsFile ? L["document on file"].Value
-                                            : row.NumericValue != null ? row.NumericValue.Value.ToString("N2", tr) + " " + row.Unit
+                                            : row.NumericValue != null ? row.NumericValue.Value.ToString("N2", tr) + " " + Ref.Text("Parameter", "Unit", row.Unit)
                                             : row.TextValue ?? "-";
 
                                         <div class="col-md-6 mb-3">
