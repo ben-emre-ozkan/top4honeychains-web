@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TOP4HoneyChains.Web.Data;
@@ -182,6 +182,7 @@ namespace TOP4HoneyChains.Web.Controllers
             batch.FinalHoneyProductionFinalizedDate = DateTime.UtcNow;
             batch.FinalizedByUserId = _current.UserId;
             batch.SelfFinalized = self;
+            await Origin.StoreAsync(_context, id);   // D-31: country shares by weight, a snapshot
             await _context.SaveChangesAsync();
             await _audit.WriteAsync("Finalize", "FinalHoneyProductions", id.ToString(), null, new { batch.FinalizeRequestedByUserId }, self ? "SelfApproved" : null);
             TempData["Success"] = self ? "Batch finalized under the four-eyes exemption (flagged in the audit log)." : "Batch finalized.";
