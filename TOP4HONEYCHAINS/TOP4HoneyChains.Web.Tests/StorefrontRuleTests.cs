@@ -35,6 +35,16 @@ namespace TOP4HoneyChains.Web.Tests
             Assert.Equal(codes.Count, codes.Distinct().Count());
         }
 
+        [Theory]
+        [InlineData("TR061234567890", "Ankara")]
+        [InlineData("TR810000000001", "Düzce")]
+        [InlineData("tr340000000001", "İstanbul")]
+        [InlineData("TR990000000001", null)]
+        [InlineData("DE061234567890", null)]
+        [InlineData(null, null)]
+        public void Province_comes_from_the_registry_number(string? number, string? province) =>
+            Assert.Equal(province, TOP4HoneyChains.Web.Services.Provinces.FromRegistryNumber(number));
+
         [Fact]
         public void Consent_text_hash_matches_the_text() =>
             Assert.Equal(64, ConsentText.Sha256.Length);

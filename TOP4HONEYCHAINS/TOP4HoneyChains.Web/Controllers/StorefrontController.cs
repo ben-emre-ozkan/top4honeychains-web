@@ -87,8 +87,11 @@ namespace TOP4HoneyChains.Web.Controllers
                 Code = state.Code!,
                 DisplayName = StorefrontService.DisplayName(state.Consent!.NameConsented, bk.BeekeeperFirstName, bk.BeekeeperLastName, state.Code!),
                 NameShown = state.Consent.NameConsented,
-                Province = registry?.Province,
-                District = registry?.District,
+                // PQ-12 is open: the registry's own fields if set, else the province of the verified registry
+                // number and the district recorded at intake of the beekeeper's verified lots
+                Province = registry?.Province ?? Provinces.FromRegistryNumber(registry?.RegistryNumber),
+                District = registry?.District ?? await _context.LotIntakes.AsNoTracking().Where(i => lotIds.Contains(i.RawHoneyProductionId))
+                    .GroupBy(i => i.District).OrderByDescending(g => g.Count()).Select(g => g.Key).FirstOrDefaultAsync(),
                 Association = state.AssociationName,
                 HoneyTypes = lots.Select(l => l.HoneyType).Where(t => t != null).Distinct().OrderBy(t => t).ToList()!,
                 VerifiedLots = lotIds.Count,
