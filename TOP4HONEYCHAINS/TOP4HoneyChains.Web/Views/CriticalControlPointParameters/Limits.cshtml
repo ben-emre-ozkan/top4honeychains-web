@@ -3,7 +3,7 @@
 @model CriticalControlPointParameter
 
 @{
-    ViewData["Title"] = "Parameter Limits";
+    ViewData["Title"] = L["Parameter Limits"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
     var siblings = ViewBag.Siblings as List<CriticalControlPointParameter> ?? new();
     var honeyTypes = ViewBag.HoneyTypes as List<HoneyType> ?? new();
@@ -17,53 +17,50 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">Limits: @Model.CCP?.Code / @Model.ParameterName</h4>
+                            <h4 class="card-title">@L["Limits"]: @Model.CCP?.Code / @Ref.T("Parameter", Model.ParameterId, "Name", Model.ParameterName)</h4>
                             <p class="card-title-desc">
-                                Default limits (every honey type): <strong>@(CcpLimitEvaluator.Describe(Model.MinValue, Model.MaxValue, Model.ParameterUnit) is { Length: > 0 } d ? d : "none")</strong>
-                                (edit them on the parameter).
-                                A row below overrides the default: a row for the lot's honey type beats one for its honey class,
-                                which beats one for every class; a row whose condition is met beats one without a condition.
-                                Ratio rows are extra checks (value / other value) that must also pass.
+                                @L["Default limits (every honey type):"] <strong>@(CcpLimitEvaluator.Describe(Model.MinValue, Model.MaxValue, Model.ParameterUnit) is { Length: > 0 } d ? Ref.Limit(d, k => L[k]) : L["none"].Value)</strong>
+                                @L["Note.LimitsHelp"]
                                 @if (!string.IsNullOrEmpty(Model.LimitSource))
                                 {
-                                    <br />@:Source: @Model.LimitSource
+                                    <br />@L["Source:"] @Ref.T("Parameter", Model.ParameterId, "LimitSource", Model.LimitSource)
                                 }
                                 @if (!Model.LimitVerified)
                                 {
-                                    <span class="badge bg-warning text-dark ms-1">to verify</span>
+                                    <span class="badge bg-warning text-dark ms-1">@L["to verify"]</span>
                                 }
                             </p>
 
                             <table class="table table-sm table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Honey class / type</th>
-                                        <th>Condition</th>
-                                        <th>Sum / ratio with</th>
-                                        <th>Min</th>
-                                        <th>Max</th>
-                                        <th>Note</th>
+                                        <th>@L["Honey class / type"]</th>
+                                        <th>@L["Condition"]</th>
+                                        <th>@L["Sum / ratio with"]</th>
+                                        <th>@L["Min"]</th>
+                                        <th>@L["Max"]</th>
+                                        <th>@L["Note"]</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @if (!Model.Limits.Any())
                                     {
-                                        <tr><td colspan="7" class="text-muted">No specific limits.</td></tr>
+                                        <tr><td colspan="7" class="text-muted">@L["No specific limits."]</td></tr>
                                     }
                                     @foreach (var l in Model.Limits.OrderBy(l => l.HoneyClass).ThenBy(l => l.LimitId))
                                     {
                                         <tr>
-                                            <td>@(l.HoneyType != null ? l.HoneyType.HoneyTypeTitle : l.HoneyClass ?? "every class")</td>
+                                            <td>@(l.HoneyType != null ? Ref.HoneyType(l.HoneyTypeId, l.HoneyType.HoneyTypeTitle) : l.HoneyClass != null ? L[l.HoneyClass].Value : L["every class"].Value)</td>
                                             <td>@(l.ConditionParameter != null ? $"{l.ConditionParameter.ParameterName} <= {l.ConditionMaxValue:0.####}" : "-")</td>
                                             <td>@(l.SumWithParameter != null ? "+ " + l.SumWithParameter.ParameterName : l.RatioWithParameter != null ? "/ " + l.RatioWithParameter.ParameterName : "-")</td>
                                             <td>@l.MinValue?.ToString("0.####")</td>
                                             <td>@l.MaxValue?.ToString("0.####")</td>
-                                            <td>@l.Note</td>
+                                            <td>@Ref.T("ParameterLimit", l.LimitId, "Note", l.Note)</td>
                                             <td>
                                                 <form asp-action="DeleteLimit" method="post">
                                                     <input type="hidden" name="limitId" value="@l.LimitId" />
-                                                    <button type="submit" class="btn btn-sm btn-outline-danger">Remove</button>
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger">@L["Remove"]</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -71,79 +68,79 @@
                                 </tbody>
                             </table>
 
-                            <h5 class="mt-4">Add a limit</h5>
+                            <h5 class="mt-4">@L["Add a limit"]</h5>
                             <form asp-action="AddLimit" method="post" class="row g-2">
                                 <input type="hidden" name="parameterId" value="@Model.ParameterId" />
                                 <div class="col-md-2">
-                                    <label class="form-label small">Honey class</label>
+                                    <label class="form-label small">@L["Honey Class"]</label>
                                     <select name="honeyClass" class="form-select">
-                                        <option value="">every class</option>
+                                        <option value="">@L["every class"]</option>
                                         @foreach (var c in HoneyClasses.All)
                                         {
-                                            <option value="@c">@c</option>
+                                            <option value="@c">@L[c]</option>
                                         }
                                     </select>
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="form-label small">or honey type</label>
+                                    <label class="form-label small">@L["or honey type"]</label>
                                     <select name="honeyTypeId" class="form-select">
-                                        <option value="">(none)</option>
+                                        <option value="">@L["(none)"]</option>
                                         @foreach (var h in honeyTypes)
                                         {
-                                            <option value="@h.HoneyTypeId">@h.HoneyTypeTitle</option>
+                                            <option value="@h.HoneyTypeId">@Ref.T("HoneyType", h.HoneyTypeId, "Title", h.HoneyTypeTitle)</option>
                                         }
                                     </select>
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="form-label small">Only if this parameter</label>
+                                    <label class="form-label small">@L["Only if this parameter"]</label>
                                     <select name="conditionParameterId" class="form-select">
-                                        <option value="">(no condition)</option>
+                                        <option value="">@L["(no condition)"]</option>
                                         @foreach (var s in siblings)
                                         {
-                                            <option value="@s.ParameterId">@s.ParameterName</option>
+                                            <option value="@s.ParameterId">@Ref.T("Parameter", s.ParameterId, "Name", s.ParameterName)</option>
                                         }
                                     </select>
                                 </div>
                                 <div class="col-md-1">
-                                    <label class="form-label small">is &lt;=</label>
+                                    <label class="form-label small">@L["is <="]</label>
                                     <input name="conditionMaxValue" type="text" inputmode="decimal" class="form-control" />
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="form-label small">Ratio to (extra check)</label>
+                                    <label class="form-label small">@L["Ratio to (extra check)"]</label>
                                     <select name="ratioWithParameterId" class="form-select">
-                                        <option value="">(none)</option>
+                                        <option value="">@L["(none)"]</option>
                                         @foreach (var s in siblings)
                                         {
-                                            <option value="@s.ParameterId">@s.ParameterName</option>
+                                            <option value="@s.ParameterId">@Ref.T("Parameter", s.ParameterId, "Name", s.ParameterName)</option>
                                         }
                                     </select>
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="form-label small">Sum with</label>
+                                    <label class="form-label small">@L["Sum with"]</label>
                                     <select name="sumWithParameterId" class="form-select">
-                                        <option value="">(none)</option>
+                                        <option value="">@L["(none)"]</option>
                                         @foreach (var s in siblings)
                                         {
-                                            <option value="@s.ParameterId">@s.ParameterName</option>
+                                            <option value="@s.ParameterId">@Ref.T("Parameter", s.ParameterId, "Name", s.ParameterName)</option>
                                         }
                                     </select>
                                 </div>
                                 <div class="col-md-1">
-                                    <label class="form-label small">Min</label>
+                                    <label class="form-label small">@L["Min"]</label>
                                     <input name="minValue" type="text" inputmode="decimal" class="form-control" />
                                 </div>
                                 <div class="col-md-1">
-                                    <label class="form-label small">Max</label>
+                                    <label class="form-label small">@L["Max"]</label>
                                     <input name="maxValue" type="text" inputmode="decimal" class="form-control" />
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="form-label small">Note</label>
+                                    <label class="form-label small">@L["Note"]</label>
                                     <input name="note" maxlength="300" class="form-control" />
                                 </div>
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-primary">Add limit</button>
-                                    <a asp-action="Index" class="btn btn-secondary">Back</a>
-                                    <small class="text-muted ms-2">Stored results are not recalculated when limits change.</small>
+                                    <button type="submit" class="btn btn-primary">@L["Add limit"]</button>
+                                    <a asp-action="Index" class="btn btn-secondary">@L["Back"]</a>
+                                    <small class="text-muted ms-2">@L["Stored results are not recalculated when limits change."]</small>
                                 </div>
                             </form>
 

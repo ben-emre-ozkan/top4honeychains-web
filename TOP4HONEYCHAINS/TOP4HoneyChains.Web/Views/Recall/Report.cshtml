@@ -39,7 +39,7 @@
                                 <tr data-lot-id="@l.LotId">
                                     <td>#@l.LotId</td>
                                     <td>@l.Apiary</td>
-                                    <td>@l.HoneyType</td>
+                                    <td>@Ref.Text("HoneyType", "Title", l.HoneyType)</td>
                                     <td>@((l.UsedAmount ?? l.Amount)?.ToString("0.##"))</td>
                                     <td>@l.Beekeeper <small class="text-muted">@l.BeekeeperNumber</small></td>
                                     <td>

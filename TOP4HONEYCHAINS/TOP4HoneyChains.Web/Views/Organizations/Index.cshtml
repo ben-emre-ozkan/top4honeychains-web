@@ -40,12 +40,12 @@
                             {
                                 var badge = o.Status switch { OrgStatus.Verified => "bg-success", OrgStatus.Suspended => "bg-danger", _ => "bg-warning text-dark" };
                                 <tr data-org-id="@o.OrgId">
-                                    <td>@o.DisplayName @if (o.IsPlatform) { <span class="badge bg-dark ms-1">platform</span> } @if (o.LegacyWholesalerId != null) { <span class="badge bg-light text-dark border ms-1" title="Created from a wholesaler record">wholesaler</span> }</td>
-                                    <td>@string.Join(", ", o.Capabilities.Select(c => c.Capability))</td>
-                                    <td><span class="badge @badge org-status">@o.Status</span></td>
+                                    <td>@o.DisplayName @if (o.IsPlatform) { <span class="badge bg-dark ms-1">@L["platform"]</span> } @if (o.LegacyWholesalerId != null) { <span class="badge bg-light text-dark border ms-1" title="@L["Created from a wholesaler record"]">@L["Wholesaler"]</span> }</td>
+                                    <td>@string.Join(", ", o.Capabilities.Select(c => Ref.Capability(c.Capability)))</td>
+                                    <td><span class="badge @badge org-status">@L[o.Status ?? ""]</span></td>
                                     <td>@o.Province</td>
                                     <td>@(counts.TryGetValue(o.OrgId, out var n) ? n : 0)</td>
-                                    <td>@(o.FourEyesExempt ? "yes" : "no")</td>
+                                    <td>@(o.FourEyesExempt ? L["Yes"] : L["No"])</td>
                                     <td><a asp-action="Details" asp-route-id="@o.OrgId" class="btn btn-sm btn-primary">@L["Org.Open"]</a></td>
                                 </tr>
                             }

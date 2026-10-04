@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<TOP4HoneyChains.Web.Models.Entities.Apiary>
 
 @{
-    ViewData["Title"] = "Apiaries";
+    ViewData["Title"] = L["Apiaries"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 
@@ -25,7 +25,7 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">Apiaries List</h4>
+                            <h4 class="card-title">@L["Apiaries List"]</h4>
 
                             <partial name="_DeactivationNote" />
                             <p class="card-title-desc">
@@ -38,15 +38,15 @@
 
                                 <thead>
                                     <tr>
-                                        <th>QR Code</th>
-                                        <th>Title</th>
-                                        <th>Beehives</th>
-                                        <th>Latitude</th>
-                                        <th>Longitude</th>
-                                        <th>Beekeeper</th>
-                                        <th>Beekeeper Business Number</th>
-                                        <th>Status</th>
-                                        <th>Actions</th>
+                                        <th>@L["QR Code"]</th>
+                                        <th>@L["Title"]</th>
+                                        <th>@L["Beehives"]</th>
+                                        <th>@L["Latitude"]</th>
+                                        <th>@L["Longitude"]</th>
+                                        <th>@L["Beekeeper"]</th>
+                                        <th>@L["Beekeeper Business Number"]</th>
+                                        <th>@L["Status"]</th>
+                                        <th>@L["Actions"]</th>
                                     </tr>
                                 </thead>
 
@@ -86,11 +86,11 @@
                                             <td>
                                                 @if (item.ApiaryIsActive)
                                                 {
-                                                    <span class="badge bg-success">Active</span>
+                                                    <span class="badge bg-success">@L["Active"]</span>
                                                 }
                                                 else
                                                 {
-                                                    <span class="badge bg-danger">Inactive</span>
+                                                    <span class="badge bg-danger">@L["Inactive"]</span>
                                                 }
                                             </td>
                                             <td>
@@ -98,7 +98,7 @@
                                                    asp-action="RawHoneyProductionByApiary"
                                                    asp-route-id="@item.ApiaryId"
                                                    class="btn btn-sm btn-warning">
-                                                    Productions
+                                                    @L["Productions"]
                                                 </a>
                                             </td>
 

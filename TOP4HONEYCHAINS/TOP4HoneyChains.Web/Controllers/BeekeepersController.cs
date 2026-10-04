@@ -90,9 +90,9 @@ namespace TOP4HoneyChains.Web.Controllers
 
         public IActionResult Create()
         {
-            ViewData["BeekeeperBeekeepingPurposeTypeId"] = new SelectList(_context.BeekeepingPurposeTypes, "BeekeepingPurposeTypeId", "BeekeepingPurposeTypeTitle");
-            ViewData["BeekeeperBeekeepingTypeId"] = new SelectList(_context.BeekeepingTypes, "BeekeepingTypeId", "BeekeepingTypeTitle");
-            ViewData["BeekeeperEducationLevelId"] = new SelectList(_context.BeekeeperEducationLevels, "BeekeeperEducationLevelId", "BeekeeperEducationLevelTitle");
+            ViewData["BeekeeperBeekeepingPurposeTypeId"] = new SelectList(_context.BeekeepingPurposeTypes, "BeekeepingPurposeTypeId", "BeekeepingPurposeTypeTitle").Translated(HttpContext, "BeekeepingPurposeType", "Title");
+            ViewData["BeekeeperBeekeepingTypeId"] = new SelectList(_context.BeekeepingTypes, "BeekeepingTypeId", "BeekeepingTypeTitle").Translated(HttpContext, "BeekeepingType", "Title");
+            ViewData["BeekeeperEducationLevelId"] = new SelectList(_context.BeekeeperEducationLevels, "BeekeeperEducationLevelId", "BeekeeperEducationLevelTitle").Translated(HttpContext, "EducationLevel", "Title");
 
 
             ViewBag.Controller = "Beekeepers";
@@ -184,9 +184,9 @@ namespace TOP4HoneyChains.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BeekeeperBeekeepingPurposeTypeId"] = new SelectList(_context.BeekeepingPurposeTypes, "BeekeepingPurposeTypeId", "BeekeepingPurposeTypeTitle", beekeeper.BeekeeperBeekeepingPurposeTypeId);
-            ViewData["BeekeeperBeekeepingTypeId"] = new SelectList(_context.BeekeepingTypes, "BeekeepingTypeId", "BeekeepingTypeTitle", beekeeper.BeekeeperBeekeepingTypeId);
-            ViewData["BeekeeperEducationLevelId"] = new SelectList(_context.BeekeeperEducationLevels, "BeekeeperEducationLevelId", "BeekeeperEducationLevelTitle", beekeeper.BeekeeperEducationLevelId);
+            ViewData["BeekeeperBeekeepingPurposeTypeId"] = new SelectList(_context.BeekeepingPurposeTypes, "BeekeepingPurposeTypeId", "BeekeepingPurposeTypeTitle", beekeeper.BeekeeperBeekeepingPurposeTypeId).Translated(HttpContext, "BeekeepingPurposeType", "Title");
+            ViewData["BeekeeperBeekeepingTypeId"] = new SelectList(_context.BeekeepingTypes, "BeekeepingTypeId", "BeekeepingTypeTitle", beekeeper.BeekeeperBeekeepingTypeId).Translated(HttpContext, "BeekeepingType", "Title");
+            ViewData["BeekeeperEducationLevelId"] = new SelectList(_context.BeekeeperEducationLevels, "BeekeeperEducationLevelId", "BeekeeperEducationLevelTitle", beekeeper.BeekeeperEducationLevelId).Translated(HttpContext, "EducationLevel", "Title");
 
 
             ViewBag.Controller = "Beekeepers";
@@ -207,9 +207,9 @@ namespace TOP4HoneyChains.Web.Controllers
             {
                 return NotFound();
             }
-            ViewData["BeekeeperBeekeepingPurposeTypeId"] = new SelectList(_context.BeekeepingPurposeTypes, "BeekeepingPurposeTypeId", "BeekeepingPurposeTypeTitle", beekeeper.BeekeeperBeekeepingPurposeTypeId);
-            ViewData["BeekeeperBeekeepingTypeId"] = new SelectList(_context.BeekeepingTypes, "BeekeepingTypeId", "BeekeepingTypeTitle", beekeeper.BeekeeperBeekeepingTypeId);
-            ViewData["BeekeeperEducationLevelId"] = new SelectList(_context.BeekeeperEducationLevels, "BeekeeperEducationLevelId", "BeekeeperEducationLevelTitle", beekeeper.BeekeeperEducationLevelId);
+            ViewData["BeekeeperBeekeepingPurposeTypeId"] = new SelectList(_context.BeekeepingPurposeTypes, "BeekeepingPurposeTypeId", "BeekeepingPurposeTypeTitle", beekeeper.BeekeeperBeekeepingPurposeTypeId).Translated(HttpContext, "BeekeepingPurposeType", "Title");
+            ViewData["BeekeeperBeekeepingTypeId"] = new SelectList(_context.BeekeepingTypes, "BeekeepingTypeId", "BeekeepingTypeTitle", beekeeper.BeekeeperBeekeepingTypeId).Translated(HttpContext, "BeekeepingType", "Title");
+            ViewData["BeekeeperEducationLevelId"] = new SelectList(_context.BeekeeperEducationLevels, "BeekeeperEducationLevelId", "BeekeeperEducationLevelTitle", beekeeper.BeekeeperEducationLevelId).Translated(HttpContext, "EducationLevel", "Title");
 
 
             ViewBag.Controller = "Beekeepers";
@@ -290,9 +290,9 @@ namespace TOP4HoneyChains.Web.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewData["BeekeeperBeekeepingPurposeTypeId"] = new SelectList(_context.BeekeepingPurposeTypes, "BeekeepingPurposeTypeId", "BeekeepingPurposeTypeTitle", beekeeper.BeekeeperBeekeepingPurposeTypeId);
-            ViewData["BeekeeperBeekeepingTypeId"] = new SelectList(_context.BeekeepingTypes, "BeekeepingTypeId", "BeekeepingTypeTitle", beekeeper.BeekeeperBeekeepingTypeId);
-            ViewData["BeekeeperEducationLevelId"] = new SelectList(_context.BeekeeperEducationLevels, "BeekeeperEducationLevelId", "BeekeeperEducationLevelTitle", beekeeper.BeekeeperEducationLevelId);
+            ViewData["BeekeeperBeekeepingPurposeTypeId"] = new SelectList(_context.BeekeepingPurposeTypes, "BeekeepingPurposeTypeId", "BeekeepingPurposeTypeTitle", beekeeper.BeekeeperBeekeepingPurposeTypeId).Translated(HttpContext, "BeekeepingPurposeType", "Title");
+            ViewData["BeekeeperBeekeepingTypeId"] = new SelectList(_context.BeekeepingTypes, "BeekeepingTypeId", "BeekeepingTypeTitle", beekeeper.BeekeeperBeekeepingTypeId).Translated(HttpContext, "BeekeepingType", "Title");
+            ViewData["BeekeeperEducationLevelId"] = new SelectList(_context.BeekeeperEducationLevels, "BeekeeperEducationLevelId", "BeekeeperEducationLevelTitle", beekeeper.BeekeeperEducationLevelId).Translated(HttpContext, "EducationLevel", "Title");
             ViewBag.Controller = "Beekeepers";
             ViewBag.Action = "Edit";
             return View(beekeeper);

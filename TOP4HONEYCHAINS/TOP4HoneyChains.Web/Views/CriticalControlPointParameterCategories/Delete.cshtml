@@ -1,7 +1,7 @@
 ﻿@model TOP4HoneyChains.Web.Models.Entities.CriticalControlPointParameterCategory
 
 @{
-    ViewData["Title"] = "Delete CCP Parameter Category";
+    ViewData["Title"] = L["Delete CCP Parameter Category"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 
@@ -17,27 +17,27 @@
                         <div class="card-body">
 
                             <h4 class="card-title text-danger">
-                                Delete CCP Parameter Category
+                                @L["Delete CCP Parameter Category"]
                             </h4>
 
                             <p class="card-title-desc">
-                                <strong>Warning:</strong> This action cannot be undone.
+                                <strong>@L["Warning:"]</strong> @L["This action cannot be undone."]
                             </p>
 
                             <div class="alert alert-danger">
-                                Are you sure you want to delete this category?
+                                @L["Are you sure you want to delete this category?"]
                             </div>
 
                             <dl class="row">
 
-                                <dt class="col-sm-3">Category Name</dt>
+                                <dt class="col-sm-3">@L["Category Name"]</dt>
                                 <dd class="col-sm-9">
-                                    <strong>@Model.CategoryName</strong>
+                                    <strong>@Ref.T("ParameterCategory", Model.CategoryId, "Name", Model.CategoryName)</strong>
                                 </dd>
 
-                                <dt class="col-sm-3">Description</dt>
+                                <dt class="col-sm-3">@L["Description"]</dt>
                                 <dd class="col-sm-9">
-                                    @Model.CategoryDesc
+                                    @Ref.T("ParameterCategory", Model.CategoryId, "Description", Model.CategoryDesc)
                                 </dd>
 
                             </dl>
@@ -50,12 +50,12 @@
 
                                     <button type="submit"
                                             class="btn btn-danger waves-effect waves-light">
-                                        Delete
+                                        @L["Delete"]
                                     </button>
 
                                     <a asp-action="Index"
                                        class="btn btn-secondary waves-effect">
-                                        Back to List
+                                        @L["Back to list"]
                                     </a>
 
                                 </div>

@@ -2,7 +2,7 @@
 
 @{
     ViewData["FlashHandled"] = true; // this page shows Success/Error itself (SweetAlert)
-    ViewData["Title"] = "Manage Batch";
+    ViewData["Title"] = L["Manage Batch"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 
@@ -34,10 +34,10 @@
                                 <i class="mdi mdi-information-outline float-end"></i>
                             </div>
                             <div class="text-white">
-                                <h6 class="text-uppercase mb-3 font-size-16 text-white">Batch Info</h6>
-                                <p><strong>Title:</strong> @Model.Batch.FinalHoneyProductionTitle</p>
-                                <p><strong>Date:</strong> @Model.Batch.FinalHoneyProductionDate?.ToString("dd.MM.yyyy")</p>
-                                <p><strong>QR:</strong> @Model.Batch.FinalHoneyProductionQR.ToString().Substring(0, 8)...</p>
+                                <h6 class="text-uppercase mb-3 font-size-16 text-white">@L["Batch Info"]</h6>
+                                <p><strong>@L["Title:"]</strong> @Model.Batch.FinalHoneyProductionTitle</p>
+                                <p><strong>@L["Date:"]</strong> @Model.Batch.FinalHoneyProductionDate?.ToString("dd.MM.yyyy")</p>
+                                <p><strong>@L["QR:"]</strong> @Model.Batch.FinalHoneyProductionQR.ToString().Substring(0, 8)...</p>
                             </div>
                         </div>
                     </div>
@@ -51,13 +51,13 @@
                                 <i class="mdi mdi-truck-outline float-end"></i>
                             </div>
                             <div class="text-white">
-                                <h6 class="text-uppercase mb-3 font-size-16 text-white">Wholesaler</h6>
-                                <p><strong>Company:</strong> @Model.Wholesaler?.WholesalerTitle</p>
-                                <p><strong>City:</strong> @Model.Wholesaler?.WholesalerCity</p>
+                                <h6 class="text-uppercase mb-3 font-size-16 text-white">@L["Wholesaler"]</h6>
+                                <p><strong>@L["Company:"]</strong> @Model.Wholesaler?.WholesalerTitle</p>
+                                <p><strong>@L["City:"]</strong> @Model.Wholesaler?.WholesalerCity</p>
                                 <p>
-                                    <strong>Status:</strong>
+                                    <strong>@L["Status:"]</strong>
                                     @(Model.Wholesaler?.WholesalerIsActive == true
-                                                                        ? "Active" : "Passive")
+                                                                        ? L["Active"].Value : L["Passive"].Value)
                                 </p>
                             </div>
                         </div>
@@ -72,27 +72,27 @@
                                 <i class="mdi mdi-file-table-outline float-end"></i>
                             </div>
                             <div class="text-white">
-                                <h6 class="text-uppercase mb-3 font-size-16 text-white">Summary</h6>
+                                <h6 class="text-uppercase mb-3 font-size-16 text-white">@L["Summary"]</h6>
                                 <p>
-                                    <strong>Target:</strong>
+                                    <strong>@L["Target:"]</strong>
                                     <span id="targetAmount">
                                         @Model.Batch.FinalHoneyProductionTotalAmount
                                     </span> kg
                                 </p>
 
                                 <p>
-                                    <strong>Total Selected:</strong>
+                                    <strong>@L["Total Selected:"]</strong>
                                     <span id="selectedTotal">0</span> kg
                                 </p>
                                 <p>
-                                    <strong>Status:</strong>
+                                    <strong>@L["Status:"]</strong>
                                     @if (Model.Batch.FinalHoneyProductionIsFinalized)
                                     {
-                                        <span class="badge bg-success">Finalized</span>
+                                        <span class="badge bg-success">@L["Finalized"]</span>
                                     }
                                     else
                                     {
-                                        <span class="badge bg-warning text-dark">Draft</span>
+                                        <span class="badge bg-warning text-dark">@L["Draft"]</span>
                                     }
                                 </p>
 
@@ -113,11 +113,11 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h5 class="card-title mb-3">Raw Honey Sources</h5>
+                            <h5 class="card-title mb-3">@L["Raw Honey Sources"]</h5>
 
                             <p class="text-muted mb-3">
                                 <i class="mdi mdi-information-outline me-1"></i>
-                                Only raw honey lots of this wholesaler whose CCP checks are <strong>all completed or "Not applicable"</strong> can be added to a batch.
+                                @Html.Raw(L["Note.EligibleLots"].Value)
                             </p>
 
                             @if (!Model.RawHoneyList.Any())
@@ -127,11 +127,11 @@
                                     No raw honey lot of this wholesaler is eligible yet.
                                     @if (!Model.Batch.FinalHoneyProductionIsFinalized && Model.IneligibleRawHoneyList.Any())
                                     {
-                                        <span>See <a href="#not-eligible-lots">Raw honey lots not yet eligible</a> below for the missing CCP checks.</span>
+                                        <span>@Html.Raw(L["Note.SeeIneligible"].Value)</span>
                                     }
                                     else
                                     {
-                                        <span>This wholesaler has no raw honey production yet.</span>
+                                        <span>@L["This wholesaler has no raw honey production yet."]</span>
                                     }
                                 </div>
                             }
@@ -148,13 +148,13 @@
                                         <thead class="table-dark">
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Apiary</th>
-                                                <th>Beekeeper</th>
-                                                <th>Honey Type</th>
-                                                <th>Total (kg)</th>
-                                                <th>Use Amount (kg)</th>
-                                                <th>Available Amount</th>
-                                                <th>Add Amount</th>
+                                                <th>@L["Apiary"]</th>
+                                                <th>@L["Beekeeper"]</th>
+                                                <th>@L["Honey Type"]</th>
+                                                <th>@L["Total (kg)"]</th>
+                                                <th>@L["Use Amount (kg)"]</th>
+                                                <th>@L["Available Amount"]</th>
+                                                <th>@L["Add Amount"]</th>
                                             </tr>
                                         </thead>
 
@@ -174,7 +174,7 @@
 
                                                     <td>
                                                         <span class="badge bg-warning text-dark">
-                                                            @item.RawHoney.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle
+                                                            @Ref.T("HoneyType", item.RawHoney.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeId, "Title", item.RawHoney.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle)
                                                         </span>
                                                     </td>
 
@@ -224,7 +224,7 @@
                                    asp-route-wholesalerId="@Model.Batch.FinalHoneyProductionWholesalerId"
                                    class="btn btn-outline-secondary btn-lg px-4">
                                     <i class="mdi mdi-arrow-left me-2"></i>
-                                    Back to Batches
+                                    @L["Back to Batches"]
                                 </a>
 
                                 <div class="d-flex align-items-center gap-2 flex-wrap">
@@ -241,7 +241,7 @@
                                                 class="btn btn-success btn-lg px-4 shadow-sm"
                                                 onclick="confirmSaveBatch()">
                                             <i class="mdi mdi-content-save-outline me-2"></i>
-                                            Save Batch Composition
+                                            @L["Save Batch Composition"]
                                         </button>
 
                                         @if (ViewBag.MemberFinalize == true)
@@ -256,10 +256,10 @@
                                             <input type="hidden" name="id" value="@Model.Batch.FinalHoneyProductionId" />
                                             <button type="button"
                                                     class="btn btn-danger btn-lg px-4"
-                                                    @(Model.FinalizeBlockers.Any() ? "disabled title=\"See what is missing below\"" : "")
+                                                    @(Model.FinalizeBlockers.Any() ? "disabled title=\"" + L["See what is missing below"].Value + "\"" : "")
                                                     onclick="confirmFinalize()">
                                                 <i class="mdi mdi-lock-outline me-2"></i>
-                                                Finalize Batch
+                                                @L["Finalize Batch"]
                                             </button>
                                         </form>
                                         }
@@ -268,11 +268,11 @@
                                     {
                                         <span class="badge bg-success fs-6">
                                             <i class="mdi mdi-lock-check-outline"></i>
-                                            Finalized
+                                            @L["Finalized"]
                                         </span>
 
                                         <span class="text-muted small">
-                                            A finalized batch is permanent: its data, composition and CCPs can no longer be changed.
+                                            @L["A finalized batch is permanent: its data, composition and CCPs can no longer be changed."]
                                         </span>
                                     }
 
@@ -296,10 +296,9 @@
                     <div class="col-12">
                         <div class="card border-warning">
                             <div class="card-body">
-                                <h5 class="card-title"><i class="mdi mdi-clipboard-alert-outline me-1"></i> Missing before this batch can be finalized</h5>
+                                <h5 class="card-title"><i class="mdi mdi-clipboard-alert-outline me-1"></i> @L["Missing before this batch can be finalized"]</h5>
                                 <p class="text-muted small mb-2">
-                                    Every final-batch CCP must be assigned and Completed or "Not applicable",
-                                    and every lot in the batch must have all its CCPs Completed or "Not applicable".
+                                    @L["Every final-batch CCP must be assigned and Completed or \"Not applicable\", and every lot in the batch must have all its CCPs Completed or \"Not applicable\"."]
                                 </p>
                                 <ul class="mb-2">
                                     @foreach (var b in Model.FinalizeBlockers)
@@ -307,8 +306,8 @@
                                         <li>@Msg.T(b)</li>
                                     }
                                 </ul>
-                                <a asp-action="ManageCCP" asp-route-id="@Model.Batch.FinalHoneyProductionId" class="btn btn-sm btn-dark">Manage batch CCPs</a>
-                                <a asp-action="ByWholesaler" asp-route-wholesalerId="@Model.Batch.FinalHoneyProductionWholesalerId" class="btn btn-sm btn-outline-secondary">Record CCP values</a>
+                                <a asp-action="ManageCCP" asp-route-id="@Model.Batch.FinalHoneyProductionId" class="btn btn-sm btn-dark">@L["Manage batch CCPs"]</a>
+                                <a asp-action="ByWholesaler" asp-route-wholesalerId="@Model.Batch.FinalHoneyProductionWholesalerId" class="btn btn-sm btn-outline-secondary">@L["Record CCP values"]</a>
                             </div>
                         </div>
                     </div>
@@ -323,9 +322,9 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <h5 class="card-title mb-1">Raw honey lots not yet eligible</h5>
+                                <h5 class="card-title mb-1">@L["Raw honey lots not yet eligible"]</h5>
                                 <p class="text-muted mb-3">
-                                    These lots of @(Model.Wholesaler?.WholesalerTitle ?? "this wholesaler") cannot be added until all their CCP checks are completed.
+                                    @L["These lots of {0} cannot be added until all their CCP checks are completed.", Model.Wholesaler?.WholesalerTitle ?? L["this wholesaler"].Value]
                                 </p>
 
                                 <div class="table-responsive">
@@ -333,11 +332,11 @@
                                         <thead class="table-light">
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Apiary</th>
-                                                <th>Beekeeper</th>
-                                                <th>Honey Type</th>
-                                                <th>Total (kg)</th>
-                                                <th>Missing CCP checks</th>
+                                                <th>@L["Apiary"]</th>
+                                                <th>@L["Beekeeper"]</th>
+                                                <th>@L["Honey Type"]</th>
+                                                <th>@L["Total (kg)"]</th>
+                                                <th>@L["Missing CCP checks"]</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -350,16 +349,16 @@
                                                         @item.RawHoney.RawHoneyProductionApiary?.ApiaryBeekeeper?.BeekeeperFirstName
                                                         @item.RawHoney.RawHoneyProductionApiary?.ApiaryBeekeeper?.BeekeeperLastName
                                                     </td>
-                                                    <td>@item.RawHoney.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle</td>
+                                                    <td>@Ref.T("HoneyType", item.RawHoney.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeId, "Title", item.RawHoney.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle)</td>
                                                     <td>@item.RawHoney.RawHoneyProductionAmount kg</td>
                                                     <td>
                                                         @if (item.NoChecksAssigned)
                                                         {
-                                                            <span class="text-danger">No CCP checks assigned.</span>
+                                                            <span class="text-danger">@L["No CCP checks assigned."]</span>
                                                             <a asp-controller="RawHoneyProductions"
                                                                asp-action="ManageCCP"
                                                                asp-route-id="@item.RawHoney.RawHoneyProductionId"
-                                                               class="ms-1">Assign CCP checks</a>
+                                                               class="ms-1">@L["Assign CCP checks"]</a>
                                                         }
                                                         else
                                                         {
@@ -370,8 +369,8 @@
                                                                    asp-route-rawHoneyProductionId="@item.RawHoney.RawHoneyProductionId"
                                                                    asp-route-ccpId="@check.CcpId"
                                                                    class="badge bg-warning text-dark me-1 mb-1 pending-ccp"
-                                                                   title="@check.Title">
-                                                                    @check.Code: @check.StatusName
+                                                                   title="@Ref.CcpTitle(check.CcpId, check.Title)">
+                                                                    @check.Code: @Ref.Status(check.StatusId, check.StatusName)
                                                                 </a>
                                                             }
                                                         }
@@ -466,7 +465,7 @@
                             <text>
                             Swal.fire({
                                 icon: 'success',
-                                title: 'Success',
+                                title: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Success"].Value)),
                                 text: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Msg.T(TempData["Success"] as string))),
                                 confirmButtonColor: '#28a745'
                             });
@@ -479,7 +478,7 @@
                             <text>
                             Swal.fire({
                                 icon: 'error',
-                                title: 'Error',
+                                title: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Error"].Value)),
                                 text: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Msg.T(TempData["Error"] as string))),
                                 confirmButtonColor: '#dc3545'
                             });
@@ -489,14 +488,14 @@
             // 🔒 Finalize Confirm
             function confirmFinalize() {
                 Swal.fire({
-                    title: 'Finalize this batch?',
-                    text: 'After finalizing, editing will be disabled.',
+                    title: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Finalize this batch?"].Value)),
+                    text: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["After finalizing, editing will be disabled."].Value)),
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#d33',
                     cancelButtonColor: '#6c757d',
-                    confirmButtonText: 'Yes, finalize it',
-                    cancelButtonText: 'Cancel'
+                    confirmButtonText: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Yes, finalize it"].Value)),
+                    cancelButtonText: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Cancel"].Value))
                 }).then((result) => {
                     if (result.isConfirmed) {
                         document.getElementById('finalizeForm').submit();
@@ -507,14 +506,14 @@
              function confirmSaveBatch() {
 
                 Swal.fire({
-                    title: 'Save batch changes?',
-                    text: 'This will update the batch composition.',
+                    title: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Save batch changes?"].Value)),
+                    text: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["This will update the batch composition."].Value)),
                     icon: 'question',
                     showCancelButton: true,
                     confirmButtonColor: '#28a745',
                     cancelButtonColor: '#6c757d',
-                    confirmButtonText: 'Yes, save it',
-                    cancelButtonText: 'Cancel'
+                    confirmButtonText: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Yes, save it"].Value)),
+                    cancelButtonText: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Cancel"].Value))
                 }).then((result) => {
 
                     if (result.isConfirmed) {

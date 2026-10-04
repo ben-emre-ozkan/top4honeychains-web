@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
     var names = ViewBag.UserNames as Dictionary<string, string> ?? new();
     string Name(string? id) => id == null ? "" : names.TryGetValue(id, out var n) ? n : id;
-    string Val(decimal? n, string? t) => n?.ToString("0.####") ?? t ?? "–";
+    string Val(decimal? n, string? t) => n?.ToString("0.####") ?? (t is "Yes" or "No" ? L[t].Value : t) ?? "–";
 }
 
 <body data-topbar="light" data-layout="horizontal">
@@ -32,12 +32,12 @@
                                             <a asp-action="FinalHoneyProductionManageCCP" asp-route-finalHoneyProductionId="@c.OwnerId" asp-route-ccpId="@c.CcpId">@L["Corr.Batch"] #@c.OwnerId · @c.Ccp?.Code</a>
                                         }
                                     </td>
-                                    <td>@c.Parameter?.ParameterName</td>
+                                    <td>@Ref.T("Parameter", c.Parameter?.ParameterId, "Name", c.Parameter?.ParameterName)</td>
                                     <td>@Val(c.OldNumericValue, c.OldTextValue)</td>
                                     <td>@Val(c.NewNumericValue, c.NewTextValue)</td>
                                     <td>@c.Reason</td>
                                     <td>@Name(c.RequestedByUserId)</td>
-                                    <td class="correction-status">@c.Status @(c.DecidedByUserId != null ? "· " + Name(c.DecidedByUserId) : "") @(c.DecisionNote != null ? "· " + c.DecisionNote : "")</td>
+                                    <td class="correction-status">@L[c.Status ?? ""] @(c.DecidedByUserId != null ? "· " + Name(c.DecidedByUserId) : "") @(c.DecisionNote != null ? "· " + c.DecisionNote : "")</td>
                                     <td>
                                         @if (c.Status == CorrectionStatus.Pending)
                                         {

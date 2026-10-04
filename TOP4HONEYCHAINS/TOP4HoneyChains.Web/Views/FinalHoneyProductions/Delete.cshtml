@@ -1,7 +1,7 @@
 ﻿@model TOP4HoneyChains.Web.Models.Entities.FinalHoneyProduction
 
 @{
-    ViewData["Title"] = "Delete Final Honey Batch";
+    ViewData["Title"] = L["Delete Final Honey Batch"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 
@@ -17,38 +17,37 @@
                         <div class="card-body">
 
                             <h4 class="card-title text-danger">
-                                Delete Final Honey Batch
+                                @L["Delete Final Honey Batch"]
                             </h4>
 
                             <p class="card-title-desc">
-                                <strong>Warning:</strong> This action may affect traceability records.
-                                Deleting a batch cannot be undone.
+                                <strong>@L["Warning:"]</strong> @L["This action may affect traceability records. Deleting a batch cannot be undone."]
                             </p>
 
                             <div class="alert alert-danger">
-                                Are you sure you want to permanently delete this honey batch?
+                                @L["Are you sure you want to permanently delete this honey batch?"]
                             </div>
 
                             <dl class="row">
 
-                                <dt class="col-sm-3">Batch Title</dt>
+                                <dt class="col-sm-3">@L["Batch Title"]</dt>
                                 <dd class="col-sm-9">
                                     <strong>@Model.FinalHoneyProductionTitle</strong>
                                 </dd>
 
-                                <dt class="col-sm-3">QR Code</dt>
+                                <dt class="col-sm-3">@L["QR Code"]</dt>
                                 <dd class="col-sm-9">
                                     <span class="badge bg-dark">
                                         @Model.FinalHoneyProductionQR
                                     </span>
                                 </dd>
 
-                                <dt class="col-sm-3">Production Date</dt>
+                                <dt class="col-sm-3">@L["Production Date"]</dt>
                                 <dd class="col-sm-9">
                                     @Model.FinalHoneyProductionDate?.ToString("dd.MM.yyyy")
                                 </dd>
 
-                                <dt class="col-sm-3">Total Amount</dt>
+                                <dt class="col-sm-3">@L["Total Amount"]</dt>
                                 <dd class="col-sm-9">
                                     <span class="badge bg-success">
                                         @Model.FinalHoneyProductionTotalAmount kg
@@ -66,12 +65,12 @@
 
                                     <button type="submit"
                                             class="btn btn-danger waves-effect waves-light">
-                                        Delete
+                                        @L["Delete"]
                                     </button>
 
                                     <a asp-action="Index"
                                        class="btn btn-secondary waves-effect">
-                                        Back to List
+                                        @L["Back to list"]
                                     </a>
 
                                 </div>

@@ -1,7 +1,7 @@
 ﻿@model TOP4HoneyChains.Web.Models.Entities.BeekeepingType
 
 @{
-    ViewData["Title"] = "Edit Beekeeping Type";
+    ViewData["Title"] = L["Edit Beekeeping Type"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 
@@ -16,9 +16,9 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">Edit Beekeeping Type</h4>
+                            <h4 class="card-title">@L["Edit Beekeeping Type"]</h4>
                             <p class="card-title-desc">
-                                Update the selected beekeeping type.
+                                @L["Update the selected beekeeping type."]
                             </p>
 
                             <form asp-action="Edit" class="custom-validation">
@@ -30,12 +30,12 @@
                                 <div class="mb-3">
                                     <label asp-for="BeekeepingTypeTitle"
                                            class="form-label required">
-                                        Type Title
+                                        @L["Type Title"]
                                     </label>
 
                                     <input asp-for="BeekeepingTypeTitle"
                                            class="form-control"
-                                           placeholder="Enter beekeeping type title" />
+                                           placeholder="@L["Enter beekeeping type title"]" />
 
                                     <span asp-validation-for="BeekeepingTypeTitle"
                                           class="text-danger"></span>
@@ -45,12 +45,12 @@
 
                                     <button type="submit"
                                             class="btn btn-primary waves-effect waves-light">
-                                        Update
+                                        @L["Update"]
                                     </button>
 
                                     <a asp-action="Index"
                                        class="btn btn-secondary waves-effect">
-                                        Back to List
+                                        @L["Back to list"]
                                     </a>
 
                                 </div>

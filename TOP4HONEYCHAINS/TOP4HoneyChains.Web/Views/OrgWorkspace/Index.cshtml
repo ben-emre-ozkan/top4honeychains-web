@@ -33,9 +33,9 @@
                             <div>
                                 <h4 class="card-title mb-1" id="active-org">@active.OrgName</h4>
                                 <div>
-                                    @L["Org.Role"]: <strong id="active-role">@active.OrgRole</strong> ·
-                                    @L["Org.Status"]: <strong id="active-status">@active.OrgStatus</strong> ·
-                                    @L["Org.Capabilities"]: @string.Join(", ", active.Capabilities)
+                                    @L["Org.Role"]: <strong id="active-role">@Ref.Role(active.OrgRole)</strong> ·
+                                    @L["Org.Status"]: <strong id="active-status">@L[active.OrgStatus ?? ""]</strong> ·
+                                    @L["Org.Capabilities"]: @string.Join(", ", active.Capabilities.Select(Ref.Capability))
                                 </div>
                                 @if (!active.IsVerified)
                                 {
@@ -67,7 +67,7 @@
                                         <select name="membershipId" class="form-select">
                                             @foreach (var m in memberships)
                                             {
-                                                <option value="@m.MembershipId" selected="@(m.MembershipId == active.MembershipId)">@m.OrgName – @m.OrgRole</option>
+                                                <option value="@m.MembershipId" selected="@(m.MembershipId == active.MembershipId)">@m.OrgName – @Ref.Role(m.OrgRole)</option>
                                             }
                                         </select>
                                     </div>
@@ -92,7 +92,7 @@
                                 <tr data-lot-id="@l.RawHoneyProductionId">
                                     <td>@l.RawHoneyProductionId</td>
                                     <td>@l.RawHoneyProductionApiary?.ApiaryTitle</td>
-                                    <td>@l.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle</td>
+                                    <td>@Ref.T("HoneyType", l.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeId, "Title", l.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle)</td>
                                     <td>@l.RawHoneyProductionAmount</td>
                                     <td>@l.RawHoneyProductionDate?.ToString("dd.MM.yyyy") <a asp-controller="Flow" asp-action="Lot" asp-route-id="@l.RawHoneyProductionId" class="small ms-1 flow-link">@L["Flow.Title"]</a> <a asp-controller="Recall" asp-action="Lot" asp-route-id="@l.RawHoneyProductionId" class="small ms-1">@L["Cust.Recall"]</a></td>
                                     <td>

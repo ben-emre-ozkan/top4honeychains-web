@@ -1,10 +1,10 @@
-@using TOP4HoneyChains.Web.Models.ViewModels.HoneyStory
+﻿@using TOP4HoneyChains.Web.Models.ViewModels.HoneyStory
 @model HoneyStoryCcpBlock
 
 @* One CCP on the public page: recorded values with compliance, "Not applicable" with its reason,
    or "not recorded" when nothing was recorded (D-15, D-16, D-18) *@
 @{
-    var tr = new System.Globalization.CultureInfo("tr-TR");
+    var tr = System.Globalization.CultureInfo.CurrentCulture;
     var (badgeClass, badgeText) = Model.State switch
     {
         HoneyStoryCcpBlock.Recorded => ("bg-success", "Recorded"),
@@ -19,24 +19,24 @@
     <div class="ccp-header">
         <div class="ccp-step">@Model.CCPCode</div>
         <div class="flex-grow-1">
-            <div class="ccp-title">@Model.CCPTitle</div>
-            <div class="ccp-phase">@Model.ProcessingStep</div>
+            <div class="ccp-title">@Ref.CcpTitle(Model.CCPId, Model.CCPTitle)</div>
+            <div class="ccp-phase">@Ref.T("Ccp", Model.CCPId, "ProcessingStep", Model.ProcessingStep)</div>
         </div>
-        <span class="badge @badgeClass ccp-state">@badgeText</span>
+        <span class="badge @badgeClass ccp-state">@L[badgeText]</span>
     </div>
 
     @if (Model.State == HoneyStoryCcpBlock.NotApplicable)
     {
         <div class="mt-3 text-muted small">
             <i class="mdi mdi-information-outline me-1"></i>
-            This control point does not apply to this honey. Reason: @Model.NotApplicableReason
+            @L["This control point does not apply to this honey. Reason:"] @Model.NotApplicableReason
         </div>
     }
     else if (Model.State == HoneyStoryCcpBlock.NotRecorded)
     {
         <div class="mt-3 text-muted small">
             <i class="mdi mdi-alert-outline me-1"></i>
-            No values were recorded for this control point.
+            @L["No values were recorded for this control point."]
         </div>
     }
     else
@@ -47,45 +47,45 @@
                 <div class="col-md-4 mb-3">
                     <div class="parameter-card">
                         <div class="param-name">
-                            @row.ParameterName
-                            <a href="/honeystory/parameter/@row.ParameterId" class="ccp-help ms-1" target="_blank" title="What is this?">
+                            @Ref.T("Parameter", row.ParameterId, "Name", row.ParameterName)
+                            <a href="/honeystory/parameter/@row.ParameterId" class="ccp-help ms-1" target="_blank" title="@L["What is this?"]">
                                 <i class="mdi mdi-help-circle-outline"></i>
                             </a>
                         </div>
                         <div class="param-value">
                             @if (!row.Recorded)
                             {
-                                <span class="badge bg-light text-muted border">not recorded</span>
+                                <span class="badge bg-light text-muted border">@L["Not recorded"]</span>
                             }
                             else if (row.IsFile)
                             {
-                                <span class="badge bg-info">document on file</span>
+                                <span class="badge bg-info">@L["document on file"]</span>
                             }
                             else if (row.NumericValue != null)
                             {
-                                <span class="badge bg-primary">@row.NumericValue.Value.ToString("0.####", tr) @row.Unit</span>
+                                <span class="badge bg-primary">@row.NumericValue.Value.ToString("0.####", tr) @Ref.Text("Parameter", "Unit", row.Unit)</span>
                             }
                             else
                             {
-                                <span class="badge bg-info">@row.TextValue</span>
+                                <span class="badge bg-info">@(row.TextValue is "Yes" or "No" ? L[row.TextValue!].Value : row.TextValue)</span>
                             }
 
                             @if (row.Compliant == true)
                             {
-                                <span class="badge bg-success ms-1 ccp-compliance" title="Limit: @row.LimitText">
-                                    <i class="mdi mdi-check"></i> within limit
+                                <span class="badge bg-success ms-1 ccp-compliance" title="@L["Limit:"] @Ref.Limit(row.LimitText, k => L[k])">
+                                    <i class="mdi mdi-check"></i> @L["Within limit"]
                                 </span>
                             }
                             else if (row.Compliant == false)
                             {
-                                <span class="badge bg-danger ms-1 ccp-compliance" title="Limit: @row.LimitText">
-                                    <i class="mdi mdi-close"></i> outside limit
+                                <span class="badge bg-danger ms-1 ccp-compliance" title="@L["Limit:"] @Ref.Limit(row.LimitText, k => L[k])">
+                                    <i class="mdi mdi-close"></i> @L["outside limit"]
                                 </span>
                             }
                         </div>
                         @if (row.Compliant != null && row.LimitText != null)
                         {
-                            <div class="small text-muted mt-1">Limit: @row.LimitText</div>
+                            <div class="small text-muted mt-1">@L["Limit:"] @Ref.Limit(row.LimitText, k => L[k])</div>
                         }
                     </div>
                 </div>

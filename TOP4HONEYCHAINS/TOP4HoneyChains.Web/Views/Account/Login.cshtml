@@ -1,7 +1,7 @@
 ﻿@model TOP4HoneyChains.Web.Models.ViewModels.LoginViewModel
 
 @{
-    ViewBag.Title = "Login";
+    ViewBag.Title = L["Login"].Value;
     Layout = "~/Views/Shared/_BlankLayout.cshtml";
 }
 
@@ -247,8 +247,7 @@
             <h2>TOP4HoneyChains</h2>
 
             <p>
-                Trustable and Sustainable Open Platform
-                for Smart Honey Value Chains
+                @L["Trustable and Sustainable Open Platform for Smart Honey Value Chains"]
             </p>
 
         </div>

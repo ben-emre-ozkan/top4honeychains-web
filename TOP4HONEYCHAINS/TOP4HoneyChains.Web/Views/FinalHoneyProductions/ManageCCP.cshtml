@@ -2,7 +2,7 @@
 @model ManageFinalHoneyCCPViewModel
 
 @{
-    ViewData["Title"] = "CCP Management";
+    ViewData["Title"] = L["CCP Management"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 
@@ -22,11 +22,11 @@
                         <div class="card-body">
 
                             <h4 class="card-title">
-                                Final Batch CCP Assignment
+                                @L["Final Batch CCP Assignment"]
                             </h4>
 
                             <p class="card-title-desc">
-                                Assign Critical Control Points to this Final Batch.
+                                @L["Assign Critical Control Points to this Final Batch."]
                             </p>
 
                             @if (Model.LockReason != null)
@@ -37,10 +37,10 @@
                             }
 
                             <div class="mb-4 p-3 bg-light rounded">
-                                <strong>Batch Info:</strong><br />
-                                Title: @Model.Production.FinalHoneyProductionTitle <br />
-                                Amount: @Model.Production.FinalHoneyProductionTotalAmount kg <br />
-                                Date: @Model.Production.FinalHoneyProductionDate?.ToString("dd.MM.yyyy")
+                                <strong>@L["Batch Info:"]</strong><br />
+                                @L["Title:"] @Model.Production.FinalHoneyProductionTitle <br />
+                                @L["Amount:"] @Model.Production.FinalHoneyProductionTotalAmount kg <br />
+                                @L["Date:"] @Model.Production.FinalHoneyProductionDate?.ToString("dd.MM.yyyy")
                             </div>
 
                             <form asp-action="ManageCCP" method="post">
@@ -64,7 +64,7 @@
                                                                 @ccp.Code
                                                             </h5>
                                                             <small class="text-muted">
-                                                                @ccp.Title
+                                                                @Ref.CcpTitle(ccp.Id, ccp.Title)
                                                             </small>
                                                         </div>
 
@@ -78,8 +78,8 @@
                                                                    @(Model.LockReason != null ? "disabled" : "") />
 
                                                             <label for="ccp_@ccp.Id"
-                                                                   data-on-label="Yes"
-                                                                   data-off-label="No">
+                                                                   data-on-label="@L["Yes"]"
+                                                                   data-off-label="@L["No"]">
                                                             </label>
                                                         </div>
 
@@ -88,7 +88,7 @@
                                                     <hr />
 
                                                     <small class="text-muted">
-                                                        @ccp.CriticalityJustification
+                                                        @Ref.T("Ccp", ccp.Id, "CriticalityJustification", ccp.CriticalityJustification)
                                                     </small>
 
                                                 </div>
@@ -104,14 +104,14 @@
                                     {
                                     <button type="submit"
                                             class="btn btn-success waves-effect waves-light">
-                                        Save Assignments
+                                        @L["Save Assignments"]
                                     </button>
                                     }
 
                                     <a asp-action="ByWholesaler"
                                        asp-route-wholesalerId="@Model.Production.FinalHoneyProductionWholesalerId"
                                        class="btn btn-secondary">
-                                        Back
+                                        @L["Back"]
                                     </a>
 
                                 </div>

@@ -1,4 +1,4 @@
-@using TOP4HoneyChains.Web.Models.Entities
+﻿@using TOP4HoneyChains.Web.Models.Entities
 @{
     ViewData["Title"] = L["Resp.Title"];
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
@@ -15,7 +15,7 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">@ccp.Code – @ccp.Title</h4>
+                    <h4 class="card-title">@ccp.Code – @Ref.CcpTitle(ccp.Id, ccp.Title)</h4>
                     <form asp-action="Edit" asp-route-id="@ccp.Id" method="post" id="resp-form">
                         <div class="mb-3">
                             <label class="form-label fw-semibold">@L["Resp.Responsible"]</label>
@@ -29,7 +29,7 @@
                             <div class="d-flex flex-wrap gap-3">
                                 @foreach (var c in caps)
                                 {
-                                    <label><input type="checkbox" name="capabilities" value="@c" checked="@HasCap(c)" /> @c</label>
+                                    <label><input type="checkbox" name="capabilities" value="@c" checked="@HasCap(c)" /> @Ref.Capability(c)</label>
                                 }
                             </div>
                         </div>
@@ -38,14 +38,14 @@
                                 <label class="form-label fw-semibold">@L["Resp.EnterRoles"]</label>
                                 @foreach (var r in roles)
                                 {
-                                    <div><label><input type="checkbox" name="enterRoles" value="@r" checked="@HasRole(CcpActions.Enter, r)" /> @r</label></div>
+                                    <div><label><input type="checkbox" name="enterRoles" value="@r" checked="@HasRole(CcpActions.Enter, r)" /> @Ref.Role(r)</label></div>
                                 }
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="form-label fw-semibold">@L["Resp.ApproveRoles"]</label>
                                 @foreach (var r in roles)
                                 {
-                                    <div><label><input type="checkbox" name="approveRoles" value="@r" checked="@HasRole(CcpActions.Approve, r)" /> @r</label></div>
+                                    <div><label><input type="checkbox" name="approveRoles" value="@r" checked="@HasRole(CcpActions.Approve, r)" /> @Ref.Role(r)</label></div>
                                 }
                             </div>
                         </div>

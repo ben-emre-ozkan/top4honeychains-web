@@ -1,7 +1,7 @@
 ﻿@model TOP4HoneyChains.Web.Models.Entities.HoneyType
 
 @{
-    ViewData["Title"] = "Edit Honey Type";
+    ViewData["Title"] = L["Edit Honey Type"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 
@@ -16,9 +16,9 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">Edit Honey Type</h4>
+                            <h4 class="card-title">@L["Edit Honey Type"]</h4>
                             <p class="card-title-desc">
-                                Update the selected honey type.
+                                @L["Update the selected honey type."]
                             </p>
 
                             <form asp-action="Edit" class="custom-validation">
@@ -31,12 +31,12 @@
                                 <div class="mb-3">
                                     <label asp-for="HoneyTypeTitle"
                                            class="form-label required">
-                                        Honey Type Title
+                                        @L["Honey Type Title"]
                                     </label>
 
                                     <input asp-for="HoneyTypeTitle"
                                            class="form-control"
-                                           placeholder="Enter honey type title" />
+                                           placeholder="@L["Enter honey type title"]" />
 
                                     <span asp-validation-for="HoneyTypeTitle"
                                           class="text-danger"></span>
@@ -46,13 +46,13 @@
                                 <div class="mb-3">
                                     <label asp-for="HoneyTypeDescription"
                                            class="form-label">
-                                        Description
+                                        @L["Description"]
                                     </label>
 
                                     <textarea asp-for="HoneyTypeDescription"
                                               class="form-control"
                                               rows="4"
-                                              placeholder="Enter description for this honey type">
+                                              placeholder="@L["Enter description for this honey type"]">
                                     </textarea>
 
                                     <span asp-validation-for="HoneyTypeDescription"
@@ -61,12 +61,12 @@
 
                                 <!-- Honey class (D-18) -->
                                 <div class="mb-3">
-                                    <label asp-for="HoneyClass" class="form-label">Honey class for CCP limits</label>
+                                    <label asp-for="HoneyClass" class="form-label">@L["Honey class for CCP limits"]</label>
                                     <select asp-for="HoneyClass" class="form-select">
-                                        <option value="">(unknown: only limits for every honey class apply)</option>
-                                        <option value="Floral">Floral (blossom)</option>
-                                        <option value="Honeydew">Honeydew</option>
-                                        <option value="Pine">Pine (honeydew)</option>
+                                        <option value="">@L["(unknown: only limits for every honey class apply)"]</option>
+                                        <option value="Floral">@L["Floral (blossom)"]</option>
+                                        <option value="Honeydew">@L["Honeydew"]</option>
+                                        <option value="Pine">@L["Pine (honeydew)"]</option>
                                     </select>
                                     <span asp-validation-for="HoneyClass" class="text-danger"></span>
                                 </div>
@@ -76,12 +76,12 @@
 
                                     <button type="submit"
                                             class="btn btn-primary waves-effect waves-light">
-                                        Update
+                                        @L["Update"]
                                     </button>
 
                                     <a asp-action="Index"
                                        class="btn btn-secondary waves-effect">
-                                        Back to List
+                                        @L["Back to list"]
                                     </a>
 
                                 </div>

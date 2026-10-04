@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName">
 <head>
 
     @Html.Partial("~/Views/Shared/_meta.cshtml")
@@ -55,6 +55,7 @@
 
 
     @RenderSection("scripts", required: false)
+    <partial name="~/Views/Shared/_I18nScripts.cshtml" />
 
 
 </body>

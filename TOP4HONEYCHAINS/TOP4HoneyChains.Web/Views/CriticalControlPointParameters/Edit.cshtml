@@ -1,7 +1,7 @@
 ﻿@model TOP4HoneyChains.Web.Models.Entities.CriticalControlPointParameter
 
 @{
-    ViewData["Title"] = "Edit CCP Parameter";
+    ViewData["Title"] = L["Edit CCP Parameter"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 
@@ -16,9 +16,9 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">Edit CCP Parameter</h4>
+                            <h4 class="card-title">@L["Edit CCP Parameter"]</h4>
                             <p class="card-title-desc">
-                                Update the selected monitoring parameter details.
+                                @L["Update the selected monitoring parameter details."]
                             </p>
 
                             <form asp-action="Edit" class="custom-validation">
@@ -30,13 +30,13 @@
                                 <!-- CCP Selection -->
                                 <div class="mb-3">
                                     <label asp-for="CCPId" class="form-label required">
-                                        Critical Control Point
+                                        @L["Critical Control Point"]
                                     </label>
 
                                     <select asp-for="CCPId"
                                             class="form-select"
                                             asp-items="ViewBag.CCPId">
-                                        <option value="">-- Select CCP --</option>
+                                        <option value="">@L["-- Select CCP --"]</option>
                                     </select>
 
                                     <span asp-validation-for="CCPId" class="text-danger"></span>
@@ -45,12 +45,12 @@
                                 <!-- Parameter Name -->
                                 <div class="mb-3">
                                     <label asp-for="ParameterName" class="form-label">
-                                        Parameter Name
+                                        @L["Parameter Name"]
                                     </label>
 
                                     <input asp-for="ParameterName"
                                            class="form-control"
-                                           placeholder="Enter parameter name" />
+                                           placeholder="@L["Enter parameter name"]" />
 
                                     <span asp-validation-for="ParameterName" class="text-danger"></span>
                                 </div>
@@ -58,13 +58,13 @@
                                 <!-- Parameter Category -->
                                 <div class="mb-3">
                                     <label asp-for="ParameterCategory" class="form-label">
-                                        Parameter Category
+                                        @L["Parameter Category"]
                                     </label>
 
                                     <select asp-for="ParameterCategory"
                                             class="form-select"
                                             asp-items="ViewBag.ParameterCategory">
-                                        <option value="">-- Select Category --</option>
+                                        <option value="">@L["-- Select Category --"]</option>
                                     </select>
 
                                     <span asp-validation-for="ParameterCategory" class="text-danger"></span>
@@ -73,12 +73,12 @@
                                 <!-- Parameter Unit -->
                                 <div class="mb-3">
                                     <label asp-for="ParameterUnit" class="form-label">
-                                        Unit
+                                        @L["Unit"]
                                     </label>
 
                                     <input asp-for="ParameterUnit"
                                            class="form-control"
-                                           placeholder="e.g. °C, %, ppm, CFU/g" />
+                                           placeholder="@L["e.g. °C, %, ppm, CFU/g"]" />
 
                                     <span asp-validation-for="ParameterUnit" class="text-danger"></span>
                                 </div>
@@ -86,12 +86,12 @@
                                 <!-- Critical Limit -->
                                 <div class="mb-3">
                                     <label asp-for="CriticalLimit" class="form-label">
-                                        Critical Limit
+                                        @L["Critical Limit"]
                                     </label>
 
                                     <input asp-for="CriticalLimit"
                                            class="form-control"
-                                           placeholder="Enter critical threshold value" />
+                                           placeholder="@L["Enter critical threshold value"]" />
 
                                     <span asp-validation-for="CriticalLimit" class="text-danger"></span>
                                 </div>
@@ -99,53 +99,52 @@
                                 <!-- Metadata (D-18) -->
                                 <div class="row">
                                     <div class="col-md-4 mb-3">
-                                        <label asp-for="DataType" class="form-label">Data type</label>
+                                        <label asp-for="DataType" class="form-label">@L["Data Type"]</label>
                                         <select asp-for="DataType" class="form-select">
-                                            <option value="">(not set: number or text)</option>
-                                            <option value="Number">Number</option>
-                                            <option value="YesNo">Yes / No</option>
-                                            <option value="Text">Text</option>
-                                            <option value="File">File (e.g. lab report)</option>
+                                            <option value="">@L["(not set: number or text)"]</option>
+                                            <option value="Number">@L["Number"]</option>
+                                            <option value="YesNo">@L["Yes / No"]</option>
+                                            <option value="Text">@L["Text"]</option>
+                                            <option value="File">@L["File (e.g. lab report)"]</option>
                                         </select>
                                         <span asp-validation-for="DataType" class="text-danger"></span>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <label asp-for="MinValue" class="form-label">Minimum</label>
-                                        <input asp-for="MinValue" type="text" inputmode="decimal" class="form-control" placeholder="no minimum"
+                                        <label asp-for="MinValue" class="form-label">@L["Minimum"]</label>
+                                        <input asp-for="MinValue" type="text" inputmode="decimal" class="form-control" placeholder="@L["no minimum"]"
                                                value="@Model?.MinValue?.ToString("0.####", System.Globalization.CultureInfo.InvariantCulture)" />
                                         <span asp-validation-for="MinValue" class="text-danger"></span>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <label asp-for="MaxValue" class="form-label">Maximum</label>
-                                        <input asp-for="MaxValue" type="text" inputmode="decimal" class="form-control" placeholder="no maximum"
+                                        <label asp-for="MaxValue" class="form-label">@L["Maximum"]</label>
+                                        <input asp-for="MaxValue" type="text" inputmode="decimal" class="form-control" placeholder="@L["no maximum"]"
                                                value="@Model?.MaxValue?.ToString("0.####", System.Globalization.CultureInfo.InvariantCulture)" />
                                         <span asp-validation-for="MaxValue" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <small class="text-muted d-block mb-3">
-                                    Minimum and maximum apply to every honey type. Honey-type specific and conditional limits
-                                    are on the parameter's "Limits" page. Stored results are not recalculated when limits change.
+                                    @L["Minimum and maximum apply to every honey type. Honey-type specific and conditional limits are on the parameter's \"Limits\" page. Stored results are not recalculated when limits change."]
                                 </small>
 
                                 <div class="mb-3 form-check">
                                     <input asp-for="IsRequired" class="form-check-input" />
-                                    <label asp-for="IsRequired" class="form-check-label">Required for the CCP to be completed</label>
+                                    <label asp-for="IsRequired" class="form-check-label">@L["Required for the CCP to be completed"]</label>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label asp-for="LimitNote" class="form-label">Limit note</label>
+                                    <label asp-for="LimitNote" class="form-label">@L["Limit Note"]</label>
                                     <input asp-for="LimitNote" class="form-control" maxlength="300" />
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-8 mb-3">
-                                        <label asp-for="LimitSource" class="form-label">Limit source</label>
-                                        <input asp-for="LimitSource" class="form-control" maxlength="200" placeholder="e.g. Turkish Food Codex, honey communique" />
+                                        <label asp-for="LimitSource" class="form-label">@L["Limit Source"]</label>
+                                        <input asp-for="LimitSource" class="form-control" maxlength="200" placeholder="@L["e.g. Turkish Food Codex, honey communique"]" />
                                     </div>
                                     <div class="col-md-4 mb-3 d-flex align-items-end">
                                         <div class="form-check">
                                             <input asp-for="LimitVerified" class="form-check-input" />
-                                            <label asp-for="LimitVerified" class="form-check-label">Limits verified (shown publicly)</label>
+                                            <label asp-for="LimitVerified" class="form-check-label">@L["Limits verified (shown publicly)"]</label>
                                         </div>
                                     </div>
                                 </div>
@@ -156,12 +155,12 @@
 
                                     <button type="submit"
                                             class="btn btn-primary waves-effect waves-light">
-                                        Update
+                                        @L["Update"]
                                     </button>
 
                                     <a asp-action="Index"
                                        class="btn btn-secondary waves-effect">
-                                        Back to List
+                                        @L["Back to list"]
                                     </a>
 
                                 </div>

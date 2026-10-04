@@ -1,7 +1,7 @@
 ﻿@model TOP4HoneyChains.Web.Models.Entities.Wholesaler
 
 @{
-    ViewData["Title"] = "Add Wholesaler";
+    ViewData["Title"] = L["Add Wholesaler"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 
@@ -16,9 +16,9 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">Add Wholesaler</h4>
+                            <h4 class="card-title">@L["Add Wholesaler"]</h4>
                             <p class="card-title-desc">
-                                Enter wholesaler company and contact information.
+                                @L["Enter wholesaler company and contact information."]
                             </p>
 
                             <form asp-action="Create" class="custom-validation">
@@ -30,11 +30,11 @@
                                     <!-- Company Title -->
                                     <div class="col-md-6 mb-3">
                                         <label asp-for="WholesalerTitle" class="form-label required">
-                                            Company Name
+                                            @L["Company Name"]
                                         </label>
                                         <input asp-for="WholesalerTitle"
                                                class="form-control"
-                                               placeholder="Enter company name"
+                                               placeholder="@L["Enter company name"]"
                                                required />
                                         <span asp-validation-for="WholesalerTitle" class="text-danger"></span>
                                     </div>
@@ -42,91 +42,91 @@
                                     <!-- Tax No -->
                                     <div class="col-md-6 mb-3">
                                         <label asp-for="WholesalerTaxNo" class="form-label">
-                                            Tax Number (Optional)
+                                            @L["Tax Number (Optional)"]
                                         </label>
                                         <input asp-for="WholesalerTaxNo"
                                                class="form-control"
-                                               placeholder="Enter tax number" />
+                                               placeholder="@L["Enter tax number"]" />
                                         <span asp-validation-for="WholesalerTaxNo" class="text-danger"></span>
                                     </div>
 
                                     <!-- Contact Name -->
                                     <div class="col-md-6 mb-3">
                                         <label asp-for="WholesalerContactName" class="form-label">
-                                            Contact Person
+                                            @L["Contact Person"]
                                         </label>
                                         <input asp-for="WholesalerContactName"
                                                class="form-control"
-                                               placeholder="Enter contact person name" />
+                                               placeholder="@L["Enter contact person name"]" />
                                         <span asp-validation-for="WholesalerContactName" class="text-danger"></span>
                                     </div>
 
                                     <!-- Phone -->
                                     <div class="col-md-6 mb-3">
                                         <label asp-for="WholesalerPhone" class="form-label">
-                                            Phone
+                                            @L["Phone"]
                                         </label>
                                         <input asp-for="WholesalerPhone"
                                                class="form-control"
-                                               placeholder="Enter phone number" />
+                                               placeholder="@L["Enter phone number"]" />
                                         <span asp-validation-for="WholesalerPhone" class="text-danger"></span>
                                     </div>
 
                                     <!-- Email -->
                                     <div class="col-md-6 mb-3">
                                         <label asp-for="WholesalerEmail" class="form-label">
-                                            Email
+                                            @L["Email"]
                                         </label>
                                         <input asp-for="WholesalerEmail"
                                                type="email"
                                                class="form-control"
-                                               placeholder="Enter email address" />
+                                               placeholder="@L["Enter email address"]" />
                                         <span asp-validation-for="WholesalerEmail" class="text-danger"></span>
                                     </div>
 
                                     <!-- City -->
                                     <div class="col-md-3 mb-3">
                                         <label asp-for="WholesalerCity" class="form-label">
-                                            City
+                                            @L["City"]
                                         </label>
                                         <input asp-for="WholesalerCity"
                                                class="form-control"
-                                               placeholder="City" />
+                                               placeholder="@L["City"]" />
                                         <span asp-validation-for="WholesalerCity" class="text-danger"></span>
                                     </div>
 
                                     <!-- Country -->
                                     <div class="col-md-3 mb-3">
                                         <label asp-for="WholesalerCountry" class="form-label">
-                                            Country
+                                            @L["Country"]
                                         </label>
                                         <input asp-for="WholesalerCountry"
                                                class="form-control"
-                                               placeholder="Country" />
+                                               placeholder="@L["Country"]" />
                                         <span asp-validation-for="WholesalerCountry" class="text-danger"></span>
                                     </div>
 
                                     <!-- Address -->
                                     <div class="col-md-12 mb-3">
                                         <label asp-for="WholesalerAddress" class="form-label">
-                                            Address
+                                            @L["Address"]
                                         </label>
                                         <textarea asp-for="WholesalerAddress"
                                                   class="form-control"
                                                   rows="3"
-                                                  placeholder="Enter full address"></textarea>
+                                                  placeholder="@L["Enter full address"]"></textarea>
                                         <span asp-validation-for="WholesalerAddress" class="text-danger"></span>
                                     </div>
 
                                     <!-- Active Status -->
                                     <div class="col-md-4 mb-3">
-                                        <label class="form-label d-block">Status</label>
+                                        <label class="form-label d-block">@L["Status"]</label>
                                         <div class="form-check form-switch">
                                             <input class="form-check-input"
                                                    asp-for="WholesalerIsActive"
                                                    type="checkbox" />
                                             <label class="form-check-label" for="WholesalerIsActive">
-                                                Active Wholesaler
+                                                @L["Active Wholesaler"]
                                             </label>
                                         </div>
                                     </div>
@@ -137,12 +137,12 @@
 
                                     <button type="submit"
                                             class="btn btn-primary waves-effect waves-light">
-                                        Save Wholesaler
+                                        @L["Save Wholesaler"]
                                     </button>
 
                                     <a asp-action="Index"
                                        class="btn btn-secondary waves-effect">
-                                        Back to List
+                                        @L["Back to list"]
                                     </a>
 
                                 </div>

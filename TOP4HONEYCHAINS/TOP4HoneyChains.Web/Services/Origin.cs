@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using TOP4HoneyChains.Web.Data;
 using TOP4HoneyChains.Web.Models.Entities;
 
@@ -40,8 +40,14 @@ namespace TOP4HoneyChains.Web.Services
             var c = Countries.FirstOrDefault(x => x.Code == code);
             if (c.Code == null)
                 return code;
+            // D-51: the stored translation of the selected language (ReferenceTranslations), English as fallback
+            if (culture == null && Translate != null)
+                return Translate(c.Code, c.En);
             return (culture ?? System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName) == "tr" ? c.Tr : c.En;
         }
+
+        // set at startup to RefText.Country
+        public static Func<string, string, string>? Translate { get; set; }
 
         public record Share(string Country, decimal Amount, decimal Percentage);
 

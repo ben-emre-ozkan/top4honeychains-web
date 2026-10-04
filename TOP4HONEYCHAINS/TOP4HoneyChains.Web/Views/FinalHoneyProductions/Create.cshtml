@@ -1,7 +1,7 @@
 ﻿@model TOP4HoneyChains.Web.Models.Entities.FinalHoneyProduction
 
 @{
-    ViewData["Title"] = "Create Final Honey Batch";
+    ViewData["Title"] = L["Create Final Honey Batch"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
     var wholesaler = ViewBag.Wholesaler as TOP4HoneyChains.Web.Models.Entities.Wholesaler;
 }
@@ -17,9 +17,9 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">Create Final Honey Batch</h4>
+                            <h4 class="card-title">@L["Create Final Honey Batch"]</h4>
                             <p class="card-title-desc">
-                                Create a new blended honey production batch. QR code will be generated automatically.
+                                @L["Create a new blended honey production batch. QR code will be generated automatically."]
                             </p>
 
                             <form asp-action="Create" method="post" class="custom-validation">
@@ -31,7 +31,7 @@
 
                                 <!-- Wholesaler Display -->
                                 <div class="mb-3">
-                                    <label class="form-label">Wholesaler</label>
+                                    <label class="form-label">@L["Wholesaler"]</label>
                                     <input class="form-control"
                                            value="@wholesaler?.WholesalerTitle"
                                            readonly />
@@ -40,12 +40,12 @@
                                 <!-- Batch Title -->
                                 <div class="mb-3">
                                     <label asp-for="FinalHoneyProductionTitle" class="form-label required">
-                                        Batch Title
+                                        @L["Batch Title"]
                                     </label>
 
                                     <input asp-for="FinalHoneyProductionTitle"
                                            class="form-control"
-                                           placeholder="Enter batch title"
+                                           placeholder="@L["Enter batch title"]"
                                            required />
 
                                     <span asp-validation-for="FinalHoneyProductionTitle"
@@ -55,7 +55,7 @@
                                 <!-- Production Date -->
                                 <div class="mb-3">
                                     <label asp-for="FinalHoneyProductionDate" class="form-label required">
-                                        Production Date
+                                        @L["Production Date"]
                                     </label>
 
                                     <input asp-for="FinalHoneyProductionDate"
@@ -69,8 +69,7 @@
 
                                 <!-- Info Alert -->
                                 <div class="alert alert-info mt-3">
-                                    After creating the batch, you will select raw honey amounts
-                                    in the next step.
+                                    @L["After creating the batch, you will select raw honey amounts in the next step."]
                                 </div>
 
                                 <!-- Buttons -->
@@ -79,13 +78,13 @@
                                     <button type="submit"
                                             class="btn btn-primary waves-effect waves-light">
                                         <i class="mdi mdi-content-save me-1"></i>
-                                        Create Batch
+                                        @L["Create Batch"]
                                     </button>
 
                                     <a asp-action="ByWholesaler"
                                        asp-route-wholesalerId="@Model.FinalHoneyProductionWholesalerId"
                                        class="btn btn-secondary waves-effect">
-                                        Back
+                                        @L["Back"]
                                     </a>
 
                                 </div>

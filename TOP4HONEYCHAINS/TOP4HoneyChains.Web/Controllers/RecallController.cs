@@ -1,4 +1,4 @@
-using System.Globalization;
+﻿using System.Globalization;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -175,35 +175,38 @@ namespace TOP4HoneyChains.Web.Controllers
             if (!string.Equals(format, "csv", StringComparison.OrdinalIgnoreCase))
             {
                 ViewBag.Controller = "Recall";
-                ViewBag.Action = report.Kind;
+                ViewBag.Action = "Kind." + report.Kind;
                 return View("Report", report);
             }
+            // D-51: the export follows the selected language, like the page
+            var L = HttpContext.RequestServices.GetRequiredService<Microsoft.Extensions.Localization.IStringLocalizer<SharedResource>>();
+            var refText = HttpContext.RequestServices.GetRequiredService<RefText>();
             var sb = new StringBuilder();
             void Row(params object?[] cells) => sb.AppendLine(string.Join(",", cells.Select(Csv)));
-            Row("Section", "Id", "Name", "Detail", "Quantity_kg", "Date", "Status", "Extra");
-            Row("Report", report.Id, report.Title, report.Kind, null, DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm 'UTC'"), report.Scope switch
+            Row(L["Section"].Value, "Id", L["Name"].Value, L["Detail"].Value, L["Quantity (kg)"].Value, L["Date"].Value, L["Status"].Value, L["Extra"].Value);
+            Row(L["Report"].Value, report.Id, report.Title, L["Kind." + report.Kind].Value, null, DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm 'UTC'"), report.Scope switch
             {
-                "Scope.All" => "all data (platform administrator)",
-                "Scope.Owner" => "owning organization's part",
-                "Scope.Holder" => "shipments to and from the organization",
-                _ => "association's member lot"
+                "Scope.All" => L["all data (platform administrator)"].Value,
+                "Scope.Owner" => L["owning organization's part"].Value,
+                "Scope.Holder" => L["shipments to and from the organization"].Value,
+                _ => L["association's member lot"].Value
             }, null);
             foreach (var l in report.Lots)
             {
-                Row("Lot", l.LotId, l.Apiary, l.HoneyType, l.UsedAmount ?? l.Amount, null, null, null);
-                Row("Beekeeper", l.LotId, l.Beekeeper, l.BeekeeperNumber, null, null, null, l.Origin);
+                Row(L["Lot"].Value, l.LotId, l.Apiary, refText.Text(Models.Entities.RefEntity.HoneyType, "Title", l.HoneyType), l.UsedAmount ?? l.Amount, null, null, null);
+                Row(L["Beekeeper"].Value, l.LotId, l.Beekeeper, l.BeekeeperNumber, null, null, null, l.Origin);
                 if (l.IntakeId != null)
-                    Row("Intake", l.IntakeId, l.IntakeOrg, l.Origin, l.IntakeQuantity, l.DeliveryDate?.ToString("yyyy-MM-dd"), l.SmsStatus, "form sha256 " + l.FormSha256);
+                    Row(L["Intake"].Value, l.IntakeId, l.IntakeOrg, l.Origin, l.IntakeQuantity, l.DeliveryDate?.ToString("yyyy-MM-dd"), l.SmsStatus, "SHA-256 " + l.FormSha256);
             }
-            if (report.HiddenLots > 0) Row("Lot", null, "not shown", $"{report.HiddenLots} lot(s) of another organization", null, null, null, null);
+            if (report.HiddenLots > 0) Row(L["Lot"].Value, null, L["not shown"].Value, L["{0} lot(s) of another organization", report.HiddenLots].Value, null, null, null, null);
             foreach (var b in report.Batches)
-                Row("Batch", b.BatchId, b.Title, b.Owner, b.UsedAmount, b.Date?.ToString("yyyy-MM-dd"), b.Finalized ? "Finalized" : "Draft", b.Total);
-            if (report.HiddenBatches > 0) Row("Batch", null, "not shown", $"{report.HiddenBatches} batch(es) of another organization", null, null, null, null);
+                Row(L["Batch"].Value, b.BatchId, b.Title, b.Owner, b.UsedAmount, b.Date?.ToString("yyyy-MM-dd"), b.Finalized ? L["Finalized"].Value : L["Draft"].Value, b.Total);
+            if (report.HiddenBatches > 0) Row(L["Batch"].Value, null, L["not shown"].Value, L["{0} batch(es) of another organization", report.HiddenBatches].Value, null, null, null, null);
             foreach (var s in report.Shipments)
-                Row("Shipment", s.ShipmentId, $"{s.From} -> {s.To}", $"batch {s.BatchId}", s.Quantity, s.ShippedAt.ToString("yyyy-MM-dd HH:mm"), s.Status, s.RejectReason);
-            if (report.HiddenShipments > 0) Row("Shipment", null, "not shown", $"{report.HiddenShipments} shipment(s) between other organizations", null, null, null, null);
+                Row(L["Shipment"].Value, s.ShipmentId, $"{s.From} -> {s.To}", $"{L["Kind.batch"].Value} {s.BatchId}", s.Quantity, s.ShippedAt.ToString("yyyy-MM-dd HH:mm"), L[s.Status].Value, s.RejectReason);
+            if (report.HiddenShipments > 0) Row(L["Shipment"].Value, null, L["not shown"].Value, L["{0} shipment(s) between other organizations", report.HiddenShipments].Value, null, null, null, null);
             foreach (var h in report.Holders)
-                Row("Holder", h.BatchId, h.Org, null, h.Held, null, null, null);
+                Row(L["Holder"].Value, h.BatchId, h.Org, null, h.Held, null, null, null);
             var bytes = Encoding.UTF8.GetPreamble().Concat(Encoding.UTF8.GetBytes(sb.ToString())).ToArray();
             return File(bytes, "text/csv; charset=utf-8", $"recall-{report.Kind}-{report.Id}.csv");
         }

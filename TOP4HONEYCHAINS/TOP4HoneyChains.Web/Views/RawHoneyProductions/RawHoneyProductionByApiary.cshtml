@@ -2,7 +2,7 @@
 @model IEnumerable<TOP4HoneyChains.Web.Models.Entities.RawHoneyProduction>
 
 @{
-    ViewData["Title"] = "Productions";
+    ViewData["Title"] = L["Productions"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
     var lockedLotIds = ViewBag.LockedLotIds as HashSet<int> ?? new HashSet<int>();
 
@@ -28,19 +28,19 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">Raw Honey Productions</h4>
+                            <h4 class="card-title">@L["Raw Honey Productions"]</h4>
 
                             <p class="card-title-desc">
                                 <a asp-action="Create"
                                    asp-route-apiaryId="@ViewBag.Apiary.ApiaryId"
                                    class="btn btn-primary waves-effect waves-light">
-                                    Add Production
+                                    @L["Add Production"]
                                 </a>
 
                                 <a asp-controller="Apiaries"
                                    asp-action="Index"
                                    class="btn btn-primary waves-effect waves-light">
-                                    Back to list
+                                    @L["Back to list"]
                                 </a>
                             </p>
 
@@ -50,14 +50,14 @@
 
                                 <thead>
                                     <tr>
-                                        <th>Amount (kg)</th>
-                                        <th>Production Date</th>
-                                        <th>Apiary</th>
-                                        <th>Wholesaler</th>
-                                        <th>Honey Type</th>
-                                        <th>Production Period</th>
-                                        <th>Assigned CCPs</th>
-                                        <th>Actions</th>
+                                        <th>@L["Amount (kg)"]</th>
+                                        <th>@L["Production Date"]</th>
+                                        <th>@L["Apiary"]</th>
+                                        <th>@L["Wholesaler"]</th>
+                                        <th>@L["Honey Type"]</th>
+                                        <th>@L["Production Period"]</th>
+                                        <th>@L["Assigned CCPs"]</th>
+                                        <th>@L["Actions"]</th>
                                     </tr>
                                 </thead>
 
@@ -86,16 +86,16 @@
                                                 }
                                                 else
                                                 {
-                                                    <span class="text-muted">Not Assigned</span>
+                                                    <span class="text-muted">@L["Not assigned"]</span>
                                                 }
                                             </td>
 
                                             <td>
-                                                @item.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle
+                                                @Ref.T("HoneyType", item.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeId, "Title", item.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle)
                                             </td>
 
                                             <td>
-                                                @item.RawHoneyProductionPeriod?.RawHoneyProductionPeriodTitle
+                                                @Ref.T("ProductionPeriod", item.RawHoneyProductionPeriod?.RawHoneyProductionPeriodId, "Title", item.RawHoneyProductionPeriod?.RawHoneyProductionPeriodTitle)
                                             </td>
                                             <td>
                                                 @if (item.RawHoneyCCPAssignments != null && item.RawHoneyCCPAssignments.Any())
@@ -120,7 +120,7 @@
                                                 }
                                                 else
                                                 {
-                                                    <span class="text-muted">No CCP assigned yet.</span>
+                                                    <span class="text-muted">@L["No CCP assigned yet."]</span>
                                                 }
                                             </td>
 
@@ -130,8 +130,8 @@
                                                     {
                                                         @* D-14: lots used in a finalized batch are locked *@
                                                         <span class="badge bg-success align-self-center"
-                                                              title="Used in a finalized batch; it cannot be edited or deleted">
-                                                            <i class="mdi mdi-lock-outline"></i> Locked
+                                                              title="@L["Used in a finalized batch; it cannot be edited or deleted"]">
+                                                            <i class="mdi mdi-lock-outline"></i> @L["Locked"]
                                                         </span>
                                                     }
                                                     else
@@ -139,20 +139,20 @@
                                                         <a asp-action="Edit"
                                                            asp-route-id="@item.RawHoneyProductionId"
                                                            class="btn btn-sm btn-info">
-                                                            Edit
+                                                            @L["Edit"]
                                                         </a>
 
                                                         <a asp-action="Delete"
                                                            asp-route-id="@item.RawHoneyProductionId"
                                                            class="btn btn-sm btn-danger">
-                                                            Delete
+                                                            @L["Delete"]
                                                         </a>
                                                     }
 
                                                     <a asp-action="ManageCCP"
                                                        asp-route-id="@item.RawHoneyProductionId"
                                                        class="btn btn-sm btn-warning">
-                                                        CCP Management
+                                                        @L["CCP Management"]
                                                     </a>
 
                                                     <a asp-controller="ApiaryPhotos"
@@ -160,7 +160,7 @@
                                                        asp-route-apiaryId="@item.RawHoneyProductionApiaryId"
                                                        asp-route-periodId="@item.RawHoneyProductionPeriodId"
                                                        class="btn btn-sm btn-primary">
-                                                        Photos
+                                                        @L["Photos"]
                                                     </a>
                                                 </div>
                                             </td>

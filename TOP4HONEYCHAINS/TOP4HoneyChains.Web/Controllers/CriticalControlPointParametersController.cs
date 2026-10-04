@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using TOP4HoneyChains.Web.Data;
 using TOP4HoneyChains.Web.Models.Entities;
 
+using TOP4HoneyChains.Web.Services;
+
 namespace TOP4HoneyChains.Web.Controllers
 {
     [Authorize(Roles = "Administrator")]
@@ -64,7 +66,7 @@ namespace TOP4HoneyChains.Web.Controllers
         public IActionResult Create()
         {
             ViewData["CCPId"] = new SelectList(_context.CriticalControlPoints, "Id", "Code");
-            ViewData["ParameterCategory"] = new SelectList(_context.CriticalControlPointParameterCategories, "CategoryId", "CategoryName");
+            ViewData["ParameterCategory"] = new SelectList(_context.CriticalControlPointParameterCategories, "CategoryId", "CategoryName").Translated(HttpContext, "ParameterCategory", "Name");
 
             ViewBag.Controller = "Critical Control Point Parameters";
             ViewBag.Action = "Create";
@@ -98,7 +100,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CCPId"] = new SelectList(_context.CriticalControlPoints, "Id", "Code", criticalControlPointParameter.CCPId);
-            ViewData["ParameterCategory"] = new SelectList(_context.CriticalControlPointParameterCategories, "CategoryId", "CategoryName", criticalControlPointParameter.ParameterCategory);
+            ViewData["ParameterCategory"] = new SelectList(_context.CriticalControlPointParameterCategories, "CategoryId", "CategoryName", criticalControlPointParameter.ParameterCategory).Translated(HttpContext, "ParameterCategory", "Name");
 
             ViewBag.Controller = "Critical Control Point Parameters";
             ViewBag.Action = "Create";
@@ -120,7 +122,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 return NotFound();
             }
             ViewData["CCPId"] = new SelectList(_context.CriticalControlPoints, "Id", "Code", criticalControlPointParameter.CCPId);
-            ViewData["ParameterCategory"] = new SelectList(_context.CriticalControlPointParameterCategories, "CategoryId", "CategoryName", criticalControlPointParameter.ParameterCategory);
+            ViewData["ParameterCategory"] = new SelectList(_context.CriticalControlPointParameterCategories, "CategoryId", "CategoryName", criticalControlPointParameter.ParameterCategory).Translated(HttpContext, "ParameterCategory", "Name");
 
             ViewBag.Controller = "Critical Control Point Parameters";
             ViewBag.Action = "Edit";
@@ -163,7 +165,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CCPId"] = new SelectList(_context.CriticalControlPoints, "Id", "Code", criticalControlPointParameter.CCPId);
-            ViewData["ParameterCategory"] = new SelectList(_context.CriticalControlPointParameterCategories, "CategoryId", "CategoryName", criticalControlPointParameter.ParameterCategory);
+            ViewData["ParameterCategory"] = new SelectList(_context.CriticalControlPointParameterCategories, "CategoryId", "CategoryName", criticalControlPointParameter.ParameterCategory).Translated(HttpContext, "ParameterCategory", "Name");
 
             ViewBag.Controller = "Critical Control Point Parameters";
             ViewBag.Action = "Edit";

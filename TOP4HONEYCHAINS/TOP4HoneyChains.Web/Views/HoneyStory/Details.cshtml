@@ -3,14 +3,14 @@
 
 @{
     Layout = null;
-    var tr = new System.Globalization.CultureInfo("tr-TR");
+    var tr = System.Globalization.CultureInfo.CurrentCulture;
 }
 
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName">
 <head>
     <meta charset="utf-8" />
-    <title>@(Model.BatchTitle ?? "Honey Story")</title>
+    <title>@(Model.BatchTitle ?? L["Honey Story"].Value)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
@@ -202,6 +202,7 @@
 </head>
 
 <body>
+    <partial name="~/Views/Shared/_LanguageSwitch.cshtml" />
 
     <div class="container py-5">
 
@@ -220,7 +221,7 @@
                         </div>
 
                         <div class="small mt-2 opacity-75">
-                            Scan to verify authenticity
+                            @L["Scan to verify authenticity"]
                         </div>
                     </div>
 
@@ -228,11 +229,11 @@
                     <div class="col-md-6">
                         <h2 class="fw-bold mb-2">
                             <i class="mdi mdi-shield-check-outline me-2"></i>
-                            @(Model.BatchTitle ?? "Honey Traceability Certificate")
+                            @(Model.BatchTitle ?? L["Honey Traceability Certificate"].Value)
                         </h2>
 
                         <div class="opacity-75 mb-3">
-                            Verified lifecycle & quality control record
+                            @L["Verified lifecycle & quality control record"]
                         </div>
                         @if (Model.Badges != null)
                         {
@@ -243,14 +244,14 @@
 
                             <div class="col-md-6">
                                 <div class="metric-pill">
-                                    <div class="opacity-75">Wholesaler</div>
+                                    <div class="opacity-75">@L["Wholesaler"]</div>
                                     <div class="fw-bold">@Model.WholesalerName</div>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="metric-pill">
-                                    <div class="opacity-75">Production</div>
+                                    <div class="opacity-75">@L["Production"]</div>
                                     <div class="fw-bold">
                                         @(Model.ProductionDate?.ToString("dd MMM yyyy", tr) ?? "-")
                                     </div>
@@ -268,12 +269,12 @@
                             @((Model.TotalAmount ?? 0).ToString("N2", tr)) kg
                         </div>
 
-                        <div class="opacity-75">Total Batch Amount</div>
+                        <div class="opacity-75">@L["Total Batch Amount"]</div>
 
                         <div class="mt-3">
                             <span class="badge bg-success px-3 py-2 fs-6">
                                 <i class="mdi mdi-certificate-outline me-1"></i>
-                                Traceable Product
+                                @L["Traceable Product"]
                             </span>
                         </div>
                     </div>
@@ -284,10 +285,10 @@
 
         <!-- HONEY ORIGINS -->
         <h3 class="section-title">
-            <i class="mdi mdi-map-marker-radius"></i> Honey Origins
+            <i class="mdi mdi-map-marker-radius"></i> @L["Honey Origins"]
         </h3>
         <div class="section-subtle">
-            Source apiaries and photo evidence from collection stage.
+            @L["Source apiaries and photo evidence from collection stage."]
         </div>
 
         <div class="row g-4">
@@ -309,7 +310,7 @@
                                     </h4>
 
                                     <div class="text-muted small">
-                                        Raw Honey Collection Point
+                                        @L["Raw Honey Collection Point"]
                                     </div>
 
                                 </div>
@@ -317,7 +318,7 @@
                                 <!-- RIGHT -->
                                 <span class="badge bg-dark px-3 py-2">
                                     <i class="mdi mdi-map-marker-radius me-1"></i>
-                                    Source Apiary
+                                    @L["Source Apiary"]
                                 </span>
 
                             </div>
@@ -327,7 +328,7 @@
 
                                 <div class="col-md-4">
 
-                                    <small class="text-muted">Beekeeper</small>
+                                    <small class="text-muted">@L["Beekeeper"]</small>
 
                                     <div class="fw-semibold">
                                         @source.BeekeeperName
@@ -342,13 +343,13 @@
 
                                 <div class="col-md-4">
 
-                                    <small class="text-muted">Honey Type</small>
+                                    <small class="text-muted">@L["Honey Type"]</small>
 
                                     <div class="mt-1">
 
                                         <span class="badge bg-light text-dark border px-3 py-2">
                                             <i class="mdi mdi-water-outline me-1 text-primary"></i>
-                                            @source.HoneyType
+                                            @Ref.Text("HoneyType", "Title", source.HoneyType)
                                         </span>
 
                                     </div>
@@ -358,7 +359,7 @@
 
                                 <div class="col-md-4">
 
-                                    <small class="text-muted">Used Amount</small>
+                                    <small class="text-muted">@L["Used Amount"]</small>
 
                                     <div class="fw-bold text-success fs-5">
                                         @source.UsedAmount.ToString("N2", tr) kg
@@ -373,12 +374,12 @@
                         <!-- PHOTO GALLERY -->
                         <div class="card-body">
                             <h5 class="fw-bold mb-3">
-                                <i class="mdi mdi-image-multiple-outline"></i> Apiary Photo Gallery
+                                <i class="mdi mdi-image-multiple-outline"></i> @L["Apiary Photo Gallery"]
                             </h5>
 
                             @if (source.Photos == null || source.Photos.Count == 0)
                             {
-                                <div class="alert alert-warning mb-0">No photos uploaded for this apiary.</div>
+                                <div class="alert alert-warning mb-0">@L["No photos uploaded for this apiary."]</div>
                             }
                             else
                             {
@@ -419,10 +420,10 @@
 
         <!-- HONEY JOURNEY -->
         <h3 class="section-title mt-5">
-            <i class="mdi mdi-timeline-clock-outline"></i> Honey Processing Traceability & CCP Monitoring
+            <i class="mdi mdi-timeline-clock-outline"></i> @L["Honey Processing Traceability & CCP Monitoring"]
         </h3>
         <div class="section-subtle">
-            Critical Control Points monitored throughout honey processing and packaging stages.
+            @L["Critical Control Points monitored throughout honey processing and packaging stages."]
         </div>
 
         @{
@@ -443,8 +444,8 @@
         @foreach (var source in Model.RawSources ?? new List<HoneyStoryRawSource>())
         {
             <h5 class="mt-4 mb-3">
-                <span class="badge bg-secondary me-2">Raw honey</span>
-                @source.ApiaryName · @source.HoneyType
+                <span class="badge bg-secondary me-2">@L["Raw honey"]</span>
+                @source.ApiaryName · @Ref.Text("HoneyType", "Title", source.HoneyType)
             </h5>
             <div class="ccp-container">
                 @foreach (var block in source.CcpBlocks)
@@ -455,8 +456,8 @@
         }
 
         <h5 class="mt-5 mb-3">
-            <span class="badge bg-primary me-2">Final batch</span>
-            Processing &amp; packaging
+            <span class="badge bg-primary me-2">@L["Final batch"]</span>
+            @L["Processing & packaging"]
         </h5>
         <div class="ccp-container">
             @foreach (var block in batchBlocks)
@@ -467,7 +468,7 @@
 
         <div class="text-center text-muted mt-5 small">
             <i class="mdi mdi-shield-check-outline me-1"></i>
-            Verified by <strong>TOP4HoneyChains Traceability System</strong>
+            @L["Verified by"] <strong>@L["TOP4HoneyChains Traceability System"]</strong>
         </div>
 
     </div>

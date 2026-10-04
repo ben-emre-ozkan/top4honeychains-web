@@ -1,7 +1,7 @@
 ﻿@model TOP4HoneyChains.Web.Models.Entities.CriticalControlPointParameterCategory
 
 @{
-    ViewData["Title"] = "Edit CCP Parameter Category";
+    ViewData["Title"] = L["Edit CCP Parameter Category"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 
@@ -16,9 +16,9 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">Edit CCP Parameter Category</h4>
+                            <h4 class="card-title">@L["Edit CCP Parameter Category"]</h4>
                             <p class="card-title-desc">
-                                Update the selected parameter category details.
+                                @L["Update the selected parameter category details."]
                             </p>
 
                             <form asp-action="Edit" class="custom-validation">
@@ -30,12 +30,12 @@
                                 <!-- Category Name -->
                                 <div class="mb-3">
                                     <label asp-for="CategoryName" class="form-label required">
-                                        Category Name
+                                        @L["Category Name"]
                                     </label>
 
                                     <input asp-for="CategoryName"
                                            class="form-control"
-                                           placeholder="Enter category name" />
+                                           placeholder="@L["Enter category name"]" />
 
                                     <span asp-validation-for="CategoryName" class="text-danger"></span>
                                 </div>
@@ -43,13 +43,13 @@
                                 <!-- Category Description -->
                                 <div class="mb-3">
                                     <label asp-for="CategoryDesc" class="form-label">
-                                        Description
+                                        @L["Description"]
                                     </label>
 
                                     <textarea asp-for="CategoryDesc"
                                               class="form-control"
                                               rows="3"
-                                              placeholder="Enter category description"></textarea>
+                                              placeholder="@L["Enter category description"]"></textarea>
 
                                     <span asp-validation-for="CategoryDesc" class="text-danger"></span>
                                 </div>
@@ -59,12 +59,12 @@
 
                                     <button type="submit"
                                             class="btn btn-primary waves-effect waves-light">
-                                        Update
+                                        @L["Update"]
                                     </button>
 
                                     <a asp-action="Index"
                                        class="btn btn-secondary waves-effect">
-                                        Back to List
+                                        @L["Back to list"]
                                     </a>
 
                                 </div>

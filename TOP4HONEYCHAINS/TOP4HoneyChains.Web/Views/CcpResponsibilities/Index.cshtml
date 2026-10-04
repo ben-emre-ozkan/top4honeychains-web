@@ -20,11 +20,11 @@
                             {
                                 configs.TryGetValue(c.Id, out var r);
                                 <tr data-ccp="@c.Code">
-                                    <td><strong>@c.Code</strong> <small class="text-muted">@c.Title</small></td>
+                                    <td><strong>@c.Code</strong> <small class="text-muted">@Ref.CcpTitle(c.Id, c.Title)</small></td>
                                     <td>@(r == null ? L["Resp.NotSet"] : r.OwnerRule == CcpOwnerRules.Owner ? L["Resp.RuleOwner"] : L["Resp.RuleAssociation"])</td>
-                                    <td>@(r == null ? "" : string.Join(", ", r.Capabilities.Select(x => x.Capability)))</td>
-                                    <td>@(r == null ? "" : string.Join(", ", r.Roles.Where(x => x.Action == CcpActions.Enter).Select(x => x.OrgRole)))</td>
-                                    <td>@(r == null ? "" : r.RequiresApproval ? string.Join(", ", r.Roles.Where(x => x.Action == CcpActions.Approve).Select(x => x.OrgRole)) : L["Resp.NoApproval"].Value)</td>
+                                    <td>@(r == null ? "" : string.Join(", ", r.Capabilities.Select(x => Ref.Capability(x.Capability))))</td>
+                                    <td>@(r == null ? "" : string.Join(", ", r.Roles.Where(x => x.Action == CcpActions.Enter).Select(x => Ref.Role(x.OrgRole))))</td>
+                                    <td>@(r == null ? "" : r.RequiresApproval ? string.Join(", ", r.Roles.Where(x => x.Action == CcpActions.Approve).Select(x => Ref.Role(x.OrgRole))) : L["Resp.NoApproval"].Value)</td>
                                     <td><a asp-action="Edit" asp-route-id="@c.Id" class="btn btn-sm btn-primary">@L["Org.Edit"]</a></td>
                                 </tr>
                             }

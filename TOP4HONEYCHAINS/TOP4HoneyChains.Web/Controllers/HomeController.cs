@@ -17,8 +17,12 @@ namespace TOP4HoneyChains.Web.Controllers
 
 
 
+        public static readonly string[] Languages = { "tr", "en", "es", "pl", "lv" };
+
         public IActionResult SetLanguage(string culture, string returnUrl)
         {
+            if (!Languages.Contains(culture))
+                culture = "tr";
             Response.Cookies.Append(
                 CookieRequestCultureProvider.DefaultCookieName,
                 CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),

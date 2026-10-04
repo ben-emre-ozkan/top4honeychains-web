@@ -5,7 +5,7 @@
 @model IEnumerable<ApplicationUser>
 
 @{
-    ViewData["Title"] = "Users";
+    ViewData["Title"] = L["Users"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 
@@ -30,14 +30,14 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">User Management</h4>
+                            <h4 class="card-title">@L["User Management"]</h4>
 
                             <p class="card-title-desc">
 
                                 <a asp-action="Create"
                                    class="btn btn-primary waves-effect waves-light">
 
-                                    Add New User
+                                    @L["Add New User"]
 
                                 </a>
 
@@ -51,10 +51,10 @@
 
                                     <tr>
 
-                                        <th>User Name</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
-                                        <th style="width:220px">Actions</th>
+                                        <th>@L["User Name"]</th>
+                                        <th>@L["Email"]</th>
+                                        <th>@L["Role"]</th>
+                                        <th style="width:220px">@L["Actions"]</th>
 
                                     </tr>
 
@@ -79,7 +79,7 @@
 
                                                 @foreach (var role in roles)
                                                 {
-                                                    <span class="badge badge-soft-dark mr-1"><i class="mdi mdi-shield-account"></i> @role</span>
+                                                    <span class="badge badge-soft-dark mr-1"><i class="mdi mdi-shield-account"></i> @L[role]</span>
                                                 }
 
                                             </td>
@@ -95,14 +95,14 @@
                                                             data-username="@user.UserName">
 
                                                         <i class="mdi mdi-lock-reset"></i>
-                                                        Reset Password
+                                                        @L["Reset Password"]
 
                                                     </button>
 
                                                     <button class="btn btn-sm btn-danger"
                                                             onclick="deleteUser('@user.Id')">
 
-                                                        Delete
+                                                        @L["Delete"]
 
                                                     </button>
 
@@ -142,7 +142,7 @@
                     <div class="modal-header">
 
                         <h5 class="modal-title">
-                            Reset User Password
+                            @L["Reset User Password"]
                         </h5>
 
                         <button type="button"
@@ -160,7 +160,7 @@
                         <div class="mb-3">
 
                             <label class="form-label">
-                                New Password
+                                @L["New Password"]
                             </label>
 
                             <input type="password"
@@ -173,7 +173,7 @@
                         <div class="mb-3">
 
                             <label class="form-label">
-                                Confirm Password
+                                @L["Confirm Password"]
                             </label>
 
                             <input type="password"
@@ -190,12 +190,12 @@
                         <button type="button"
                                 class="btn btn-light"
                                 data-bs-dismiss="modal">
-                            Cancel
+                            @L["Cancel"]
                         </button>
 
                         <button type="submit"
                                 class="btn btn-primary">
-                            Update Password
+                            @L["Update Password"]
                         </button>
 
                     </div>
@@ -244,13 +244,13 @@
             }
             function deleteUser(userId) {
                 Swal.fire({
-                    title: 'Are you sure?',
-                    text: "This action cannot be undone!",
+                    title: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Are you sure?"].Value)),
+                    text: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["This action cannot be undone"].Value)),
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#d33',
                     cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Yes, delete it!'
+                    confirmButtonText: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Yes, delete"].Value)), cancelButtonText: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Cancel"].Value))
                 }).then((result) => {
                     if (result.isConfirmed) {
                         var f = document.getElementById('deleteUserForm');

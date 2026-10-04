@@ -1,4 +1,4 @@
-@using TOP4HoneyChains.Web.Models.Entities
+﻿@using TOP4HoneyChains.Web.Models.Entities
 @model TOP4HoneyChains.Web.Controllers.FlowController.Model
 @{
     ViewData["Title"] = L["Flow.Title"];
@@ -7,10 +7,10 @@
         !s.Assigned ? ("flow-none", L["Flow.NotAssigned"].Value)
         : s.Status == AssignmentStatusIds.NotApplicable ? ("flow-na", L["Ccp.NotApplicableShort"].Value)
         : s.Status == AssignmentStatusIds.Completed && s.Approved ? ("flow-approved", L["Ccp.Approved"].Value)
-        : s.Status == AssignmentStatusIds.Completed ? ("flow-done", s.StatusName ?? "")
+        : s.Status == AssignmentStatusIds.Completed ? ("flow-done", Ref.Status(s.Status, s.StatusName))
         : s.Status == AssignmentStatusIds.Submitted ? ("flow-submitted", L["Lab.Submitted"].Value)
-        : s.Status == AssignmentStatusIds.InProgress ? ("flow-progress", s.StatusName ?? "")
-        : ("flow-open", s.StatusName ?? "");
+        : s.Status == AssignmentStatusIds.InProgress ? ("flow-progress", Ref.Status(s.Status, s.StatusName))
+        : ("flow-open", Ref.Status(s.Status, s.StatusName));
 }
 
 <style>
@@ -58,11 +58,11 @@
                                         <div class="d-flex flex-wrap justify-content-between gap-1">
                                             <div>
                                                 @if (s.Url != null) { <a href="@s.Url" class="fw-semibold">@s.Code</a> } else { <span class="fw-semibold">@s.Code</span> }
-                                                <span class="text-muted">@s.Title</span>
+                                                <span class="text-muted">@Ref.CcpTitle(s.CcpId, s.Title)</span>
                                             </div>
                                             <span class="small flow-state">@st.Text @(s.ApprovedAt != null ? s.ApprovedAt.Value.ToString("dd.MM.yyyy") : "") @if (s.SelfApproved) { <span class="badge bg-warning text-dark">@L["Org.SelfApproved"]</span> }</span>
                                         </div>
-                                        <div class="small text-muted">@s.Step @if (s.Responsible.Any()) { <span>· @L["Resp.Responsible"]: <span class="flow-org">@string.Join(", ", s.Responsible)</span></span> }</div>
+                                        <div class="small text-muted">@Ref.CcpStep(s.CcpId, s.Step) @if (s.Responsible.Any()) { <span>· @L["Resp.Responsible"]: <span class="flow-org">@string.Join(", ", s.Responsible)</span></span> }</div>
                                     </li>
                                 }
                             </ul>
@@ -79,10 +79,10 @@
                                     @foreach (var s in Model.Samples)
                                     {
                                         <li class="mb-1">
-                                            <a href="/LabReports/Edit/@s.SampleId">@s.Code</a> · @s.Lab · @s.Status
+                                            <a href="/LabReports/Edit/@s.SampleId">@s.Code</a> · @s.Lab · @L[s.Status ?? ""]
                                             @if (s.SealIntact == false) { <span class="badge bg-danger">@L["Lab.SealBroken"]</span> }
                                             @if (s.ReportCode != null) { <a href="/verify-report?code=@s.ReportCode" class="badge bg-success text-decoration-none">@s.ReportCode</a> }
-                                            else if (s.ReportStatus != null) { <span class="badge bg-light text-dark">@s.ReportStatus</span> }
+                                            else if (s.ReportStatus != null) { <span class="badge bg-light text-dark">@L[s.ReportStatus ?? ""]</span> }
                                         </li>
                                     }
                                     @if (!Model.Samples.Any()) { <li class="text-muted">–</li> }
@@ -97,7 +97,7 @@
                             <div class="card-body">
                                 <h6>@L["Org.SourceLots"]</h6>
                                 <ul class="list-unstyled small mb-0" id="flow-lots">
-                                    @foreach (var l in Model.Lots) { <li><a href="/Flow/Lot/@l.LotId">#@l.LotId</a> · @l.HoneyType · @l.Used.ToString("0.##") kg</li> }
+                                    @foreach (var l in Model.Lots) { <li><a href="/Flow/Lot/@l.LotId">#@l.LotId</a> · @Ref.Text("HoneyType", "Title", l.HoneyType) · @l.Used.ToString("0.##") kg</li> }
                                 </ul>
                             </div>
                         </div>

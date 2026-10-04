@@ -34,11 +34,11 @@
                                     <td>#@i.RawHoneyProductionId</td>
                                     <td>@i.DeliveryDate.ToString("dd.MM.yyyy")</td>
                                     <td>@i.RawHoneyProduction?.RawHoneyProductionApiary?.ApiaryTitle</td>
-                                    <td>@i.RawHoneyProduction?.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle</td>
+                                    <td>@Ref.T("HoneyType", i.RawHoneyProduction?.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeId, "Title", i.RawHoneyProduction?.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle)</td>
                                     <td>@i.Quantity.ToString("0.##")</td>
                                     <td>@i.Province / @i.District</td>
                                     <td><a asp-action="Form" asp-route-id="@i.IntakeId" target="_blank">@L["Org.Open"]</a> <small class="text-muted" title="SHA-256">@i.FormSha256[..12]…</small></td>
-                                    <td>@(i.SmsStatus ?? "–")</td>
+                                    <td>@(i.SmsStatus != null ? L[i.SmsStatus].Value : "–")</td>
                                     <td class="text-nowrap"><a asp-controller="Samples" asp-action="Create" asp-route-lotId="@i.RawHoneyProductionId" class="btn btn-sm btn-outline-primary">@L["Lab.Sample"]</a>
                                         <a asp-controller="Recall" asp-action="Lot" asp-route-id="@i.RawHoneyProductionId" class="btn btn-sm btn-outline-secondary">@L["Cust.Recall"]</a></td>
                                 </tr>

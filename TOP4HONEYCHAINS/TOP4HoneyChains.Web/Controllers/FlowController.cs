@@ -1,9 +1,11 @@
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TOP4HoneyChains.Web.Data;
 using TOP4HoneyChains.Web.Models.Entities;
 using TOP4HoneyChains.Web.Services.OrgModel;
+
+using TOP4HoneyChains.Web.Services;
 
 namespace TOP4HoneyChains.Web.Controllers
 {
@@ -80,7 +82,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 .FirstOrDefaultAsync(r => r.RawHoneyProductionId == id);
             if (lot == null || !await MayReadLotAsync(lot))
                 return NotFound();
-            var model = new Model { Kind = "lot", Id = id, Title = $"#{id} · {lot.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle}" };
+            var honeyType = HttpContext.RequestServices.GetRequiredService<RefText>().HoneyType(lot.RawHoneyProductionHoneyType, lot.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle);
+            var model = new Model { Kind = "lot", Id = id, Title = $"#{id} · {honeyType}" };
             model.Stages.AddRange(await StagesAsync("raw", id, CcpAppliesTo.RawLot,
                 lot.RawHoneyCCPAssignments.Select(a => (a.RawHoneyCCPAssignmentCCP, a.RawHoneyCCPAssignmentStatus, a.ApprovedAt, a.SelfApproved)).ToList()));
             var intake = await _context.LotIntakes.AsNoTracking().Include(i => i.ReceivingOrg).FirstOrDefaultAsync(i => i.RawHoneyProductionId == id);

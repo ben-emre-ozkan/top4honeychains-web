@@ -2040,4 +2040,2974 @@
   <data name="Fhp.Back" xml:space="preserve">
     <value>Listeye dön</value>
   </data>
+  <data name="Delete CCP Parameter Category" xml:space="preserve">
+    <value>KKN Parametre Kategorisini Sil</value>
+  </data>
+  <data name="outside limit" xml:space="preserve">
+    <value>limit dışında</value>
+  </data>
+  <data name="Enter amount in kilograms" xml:space="preserve">
+    <value>Miktarı kilogram olarak girin</value>
+  </data>
+  <data name="Rank" xml:space="preserve">
+    <value>Sıra</value>
+  </data>
+  <data name="Beekeepers List" xml:space="preserve">
+    <value>Arıcı Listesi</value>
+  </data>
+  <data name="A finalized batch is permanent: its data, composition and CCPs can no longer be changed." xml:space="preserve">
+    <value>Kesinleşmiş bir parti kalıcıdır: bilgileri, bileşimi ve KKN'leri artık değiştirilemez.</value>
+  </data>
+  <data name="Contact Person" xml:space="preserve">
+    <value>İlgili Kişi</value>
+  </data>
+  <data name="Features" xml:space="preserve">
+    <value>Özellikler</value>
+  </data>
+  <data name="Production by Honey Type" xml:space="preserve">
+    <value>Bal Türüne Göre Üretim</value>
+  </data>
+  <data name="Total Production (kg)" xml:space="preserve">
+    <value>Toplam Üretim (kg)</value>
+  </data>
+  <data name="Apiaries List" xml:space="preserve">
+    <value>Arılık Listesi</value>
+  </data>
+  <data name="Numeric Value" xml:space="preserve">
+    <value>Sayısal Değer</value>
+  </data>
+  <data name="Grant exemption" xml:space="preserve">
+    <value>Muafiyet ver</value>
+  </data>
+  <data name="Project Consortium" xml:space="preserve">
+    <value>Proje Konsorsiyumu</value>
+  </data>
+  <data name="Create Beekeeping Type" xml:space="preserve">
+    <value>Arıcılık Türü Oluştur</value>
+  </data>
+  <data name="Batch" xml:space="preserve">
+    <value>Parti</value>
+  </data>
+  <data name="Total Amount" xml:space="preserve">
+    <value>Toplam Miktar</value>
+  </data>
+  <data name="Only lots or batches of this kind are offered this CCP." xml:space="preserve">
+    <value>Bu KKN yalnızca bu türdeki lot veya partilere sunulur.</value>
+  </data>
+  <data name="Completion" xml:space="preserve">
+    <value>Tamamlanma</value>
+  </data>
+  <data name="Company:" xml:space="preserve">
+    <value>Firma:</value>
+  </data>
+  <data name="Limits verified (shown publicly)" xml:space="preserve">
+    <value>Limitler doğrulandı (herkese açık gösterilir)</value>
+  </data>
+  <data name="No values were recorded for this control point." xml:space="preserve">
+    <value>Bu kontrol noktası için değer kaydedilmedi.</value>
+  </data>
+  <data name="every class" xml:space="preserve">
+    <value>tüm sınıflar</value>
+  </data>
+  <data name="not accredited" xml:space="preserve">
+    <value>akredite değil</value>
+  </data>
+  <data name="Are you sure you want to delete this?" xml:space="preserve">
+    <value>Bunu silmek istediğinizden emin misiniz?</value>
+  </data>
+  <data name="Period" xml:space="preserve">
+    <value>Dönem</value>
+  </data>
+  <data name="Confirm Deletion" xml:space="preserve">
+    <value>Silmeyi Onayla</value>
+  </data>
+  <data name="Sort order controls display priority" xml:space="preserve">
+    <value>Sıralama, gösterim önceliğini belirler</value>
+  </data>
+  <data name="Class" xml:space="preserve">
+    <value>Sınıf</value>
+  </data>
+  <data name="Deactivate this beekeeper? All records are kept and the login is locked. Beekeepers are never deleted." xml:space="preserve">
+    <value>Bu arıcı pasif hale getirilsin mi? Tüm kayıtlar korunur ve girişi kilitlenir. Arıcılar hiçbir zaman silinmez.</value>
+  </data>
+  <data name="(not set: number or text)" xml:space="preserve">
+    <value>(belirtilmedi: sayı veya metin)</value>
+  </data>
+  <data name="Source:" xml:space="preserve">
+    <value>Kaynak:</value>
+  </data>
+  <data name="Note.ApiaryDeactivation" xml:space="preserve">
+    <value>Bal izlenebilirliğinin korunması için &lt;strong&gt;arılıklar hiçbir zaman silinmez&lt;/strong&gt;. Bir arılığı kullanımdan kaldırmak için arıcının arılık listesinden &lt;strong&gt;pasifleştirin&lt;/strong&gt;: fotoğrafları ve bal üretimleri korunur, gri olarak &lt;em&gt;Pasif&lt;/em&gt; şeklinde gösterilir ve panelde artık etkin olarak sayılmaz. &lt;strong&gt;Etkinleştir&lt;/strong&gt; onu geri getirir.</value>
+  </data>
+  <data name="Institution" xml:space="preserve">
+    <value>Kurum</value>
+  </data>
+  <data name="Show _MENU_ entries" xml:space="preserve">
+    <value>Sayfada _MENU_ kayıt göster</value>
+  </data>
+  <data name="Parameter" xml:space="preserve">
+    <value>Parametre</value>
+  </data>
+  <data name="Passive" xml:space="preserve">
+    <value>Pasif</value>
+  </data>
+  <data name="Header Avatar" xml:space="preserve">
+    <value>Üst Bilgi Avatarı</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Kod</value>
+  </data>
+  <data name="Create Production Period" xml:space="preserve">
+    <value>Üretim Dönemi Oluştur</value>
+  </data>
+  <data name="Digital Beekeeping Tools" xml:space="preserve">
+    <value>Dijital Arıcılık Araçları</value>
+  </data>
+  <data name="Define a monitoring parameter for a selected Critical Control Point." xml:space="preserve">
+    <value>Seçilen bir Kritik Kontrol Noktası için izleme parametresi tanımlayın.</value>
+  </data>
+  <data name="Add Raw Honey Production" xml:space="preserve">
+    <value>Ham Bal Üretimi Ekle</value>
+  </data>
+  <data name="Activate this beekeeper again?" xml:space="preserve">
+    <value>Bu arıcı yeniden etkinleştirilsin mi?</value>
+  </data>
+  <data name="Enter production period title" xml:space="preserve">
+    <value>Üretim dönemi adını girin</value>
+  </data>
+  <data name="Tax Number" xml:space="preserve">
+    <value>Vergi Numarası</value>
+  </data>
+  <data name="Record ID" xml:space="preserve">
+    <value>Kayıt No</value>
+  </data>
+  <data name="Critical Control Points monitored throughout honey processing and packaging stages." xml:space="preserve">
+    <value>Bal işleme ve paketleme aşamaları boyunca izlenen Kritik Kontrol Noktaları.</value>
+  </data>
+  <data name="Change Password" xml:space="preserve">
+    <value>Parolayı Değiştir</value>
+  </data>
+  <data name="Last" xml:space="preserve">
+    <value>Son</value>
+  </data>
+  <data name="Editing Tips" xml:space="preserve">
+    <value>Düzenleme İpuçları</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Adres</value>
+  </data>
+  <data name="(no condition)" xml:space="preserve">
+    <value>(koşul yok)</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Konum</value>
+  </data>
+  <data name="Enter category description" xml:space="preserve">
+    <value>Kategori açıklamasını girin</value>
+  </data>
+  <data name="Total Batches" xml:space="preserve">
+    <value>Toplam Parti</value>
+  </data>
+  <data name="Finalize Batch" xml:space="preserve">
+    <value>Partiyi Kesinleştir</value>
+  </data>
+  <data name="User Name" xml:space="preserve">
+    <value>Kullanıcı Adı</value>
+  </data>
+  <data name="Consent" xml:space="preserve">
+    <value>Rıza</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>İletişim</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Metin</value>
+  </data>
+  <data name="Criticality Justification" xml:space="preserve">
+    <value>Kritiklik Gerekçesi</value>
+  </data>
+  <data name="Create New User" xml:space="preserve">
+    <value>Yeni Kullanıcı Oluştur</value>
+  </data>
+  <data name="Project Partners" xml:space="preserve">
+    <value>Proje Ortakları</value>
+  </data>
+  <data name="CCP Parameter Categories" xml:space="preserve">
+    <value>KKN Parametre Kategorileri</value>
+  </data>
+  <data name="Assigned CCPs" xml:space="preserve">
+    <value>Atanmış KKN'ler</value>
+  </data>
+  <data name="Source Composition" xml:space="preserve">
+    <value>Kaynak Bileşimi</value>
+  </data>
+  <data name="Quality test results for honey batches are recorded and accessible through the platform." xml:space="preserve">
+    <value>Bal partilerinin kalite test sonuçları kaydedilir ve platform üzerinden erişilebilir.</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Kategori</value>
+  </data>
+  <data name="Verified lifecycle &amp; quality control record" xml:space="preserve">
+    <value>Doğrulanmış yaşam döngüsü ve kalite kontrol kaydı</value>
+  </data>
+  <data name="Extra Info" xml:space="preserve">
+    <value>Ek Bilgi</value>
+  </data>
+  <data name="document on file" xml:space="preserve">
+    <value>belge dosyada</value>
+  </data>
+  <data name="Enter tax number" xml:space="preserve">
+    <value>Vergi numarasını girin</value>
+  </data>
+  <data name="Add New Category" xml:space="preserve">
+    <value>Yeni Kategori Ekle</value>
+  </data>
+  <data name="Profile photo (optional)" xml:space="preserve">
+    <value>Profil fotoğrafı (isteğe bağlı)</value>
+  </data>
+  <data name="Final Honey Production Manage CCP" xml:space="preserve">
+    <value>Nihai Bal Üretimi KKN Yönetimi</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="Are you sure you want to delete this production period? This action cannot be undone." xml:space="preserve">
+    <value>Bu üretim dönemini silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.</value>
+  </data>
+  <data name="Edit organization" xml:space="preserve">
+    <value>Kurumu düzenle</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Sonraki</value>
+  </data>
+  <data name="Apiary Photo Gallery" xml:space="preserve">
+    <value>Arılık Fotoğraf Galerisi</value>
+  </data>
+  <data name="Maximum" xml:space="preserve">
+    <value>En büyük</value>
+  </data>
+  <data name="Finalized" xml:space="preserve">
+    <value>Kesinleşti</value>
+  </data>
+  <data name="Pine (honeydew)" xml:space="preserve">
+    <value>Çam balı (salgı)</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Başarılı</value>
+  </data>
+  <data name="CCP Assignment" xml:space="preserve">
+    <value>KKN Ataması</value>
+  </data>
+  <data name="User Management" xml:space="preserve">
+    <value>Kullanıcı Yönetimi</value>
+  </data>
+  <data name="Production Date" xml:space="preserve">
+    <value>Üretim Tarihi</value>
+  </data>
+  <data name="Note.FourEyesExemption" xml:space="preserve">
+    <value>Muafiyetle bir üye, kendi girdiği bir KKN kaydını onaylayabilir (ör. tek kişilik bir birlik). Her böyle onay denetim kaydında &lt;code&gt;SelfApproved&lt;/code&gt; olarak işaretlenir. Laboratuvar sonuçlarına hiçbir zaman uygulanmaz. Yalnızca platform yöneticileri tarafından verilir.</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>Sıra</value>
+  </data>
+  <data name="Yes, delete" xml:space="preserve">
+    <value>Evet, sil</value>
+  </data>
+  <data name="Sum with" xml:space="preserve">
+    <value>Şununla toplam</value>
+  </data>
+  <data name="Honey Quality Parameter" xml:space="preserve">
+    <value>Bal Kalite Parametresi</value>
+  </data>
+  <data name="Delete content?" xml:space="preserve">
+    <value>İçerik silinsin mi?</value>
+  </data>
+  <data name="-- not recorded --" xml:space="preserve">
+    <value>-- kaydedilmedi --</value>
+  </data>
+  <data name="e.g. °C, %, ppm, CFU/g" xml:space="preserve">
+    <value>ör. °C, %, ppm, CFU/g</value>
+  </data>
+  <data name="Apiary:" xml:space="preserve">
+    <value>Arılık:</value>
+  </data>
+  <data name="No information available for this parameter." xml:space="preserve">
+    <value>Bu parametre için bilgi yok.</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Firma</value>
+  </data>
+  <data name="Final Honey Productions (Batches)" xml:space="preserve">
+    <value>Nihai Bal Üretimleri (Partiler)</value>
+  </data>
+  <data name="Photographic documentation from the apiary during honey collection" xml:space="preserve">
+    <value>Bal toplama sırasında arılıktan fotoğraflı belgeler</value>
+  </data>
+  <data name="Ontology-based Knowledge Management" xml:space="preserve">
+    <value>Ontoloji Tabanlı Bilgi Yönetimi</value>
+  </data>
+  <data name="Edit Apiary" xml:space="preserve">
+    <value>Arılığı Düzenle</value>
+  </data>
+  <data name="Video not available for this parameter." xml:space="preserve">
+    <value>Bu parametre için video yok.</value>
+  </data>
+  <data name="Top 3 Raw Honey Wholesalers" xml:space="preserve">
+    <value>İlk 3 Ham Bal Toptancısı</value>
+  </data>
+  <data name="Delete Final Honey Batch" xml:space="preserve">
+    <value>Partiyi Sil</value>
+  </data>
+  <data name="Every final-batch CCP must be assigned and Completed or &quot;Not applicable&quot;, and every lot in the batch must have all its CCPs Completed or &quot;Not applicable&quot;." xml:space="preserve">
+    <value>Partiye ait her KKN atanmış ve Tamamlandı veya &quot;Uygulanamaz&quot; durumunda olmalı; partideki her lotun da tüm KKN'leri Tamamlandı veya &quot;Uygulanamaz&quot; olmalıdır.</value>
+  </data>
+  <data name="Geographic locations of apiaries contributing to this batch" xml:space="preserve">
+    <value>Bu partiye katkıda bulunan arılıkların coğrafi konumları</value>
+  </data>
+  <data name="Video is optional but highly recommended" xml:space="preserve">
+    <value>Video isteğe bağlıdır ama önemle tavsiye edilir</value>
+  </data>
+  <data name="Check content before saving" xml:space="preserve">
+    <value>Kaydetmeden önce içeriği kontrol edin</value>
+  </data>
+  <data name="Minimum" xml:space="preserve">
+    <value>En küçük</value>
+  </data>
+  <data name="First" xml:space="preserve">
+    <value>İlk</value>
+  </data>
+  <data name="Inactive" xml:space="preserve">
+    <value>Pasif</value>
+  </data>
+  <data name="Add a limit" xml:space="preserve">
+    <value>Limit ekle</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Kapat</value>
+  </data>
+  <data name="This action cannot be undone. Please confirm before deleting." xml:space="preserve">
+    <value>Bu işlem geri alınamaz. Lütfen silmeden önce onaylayın.</value>
+  </data>
+  <data name="Yes, finalize it" xml:space="preserve">
+    <value>Evet, kesinleştir</value>
+  </data>
+  <data name="e.g. Raw honey is not heated or pasteurized" xml:space="preserve">
+    <value>ör. Ham bal ısıtılmaz veya pastörize edilmez</value>
+  </data>
+  <data name="Target:" xml:space="preserve">
+    <value>Hedef:</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Oluşturulma</value>
+  </data>
+  <data name="CCP Overview" xml:space="preserve">
+    <value>KKN Genel Bakış</value>
+  </data>
+  <data name="none" xml:space="preserve">
+    <value>yok</value>
+  </data>
+  <data name="Enter full address" xml:space="preserve">
+    <value>Açık adresi girin</value>
+  </data>
+  <data name="Mark as &quot;Not applicable&quot;" xml:space="preserve">
+    <value>&quot;Uygulanamaz&quot; olarak işaretle</value>
+  </data>
+  <data name="Phone:" xml:space="preserve">
+    <value>Telefon:</value>
+  </data>
+  <data name="Apiary Source" xml:space="preserve">
+    <value>Kaynak Arılık</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Etkin</value>
+  </data>
+  <data name="System Information" xml:space="preserve">
+    <value>Sistem Bilgileri</value>
+  </data>
+  <data name="Deactivate this apiary? Photos and honey productions are kept. Apiaries are never deleted." xml:space="preserve">
+    <value>Bu arılık pasif hale getirilsin mi? Fotoğraflar ve bal üretimleri korunur. Arılıklar hiçbir zaman silinmez.</value>
+  </data>
+  <data name="Add a new beekeeping type to the system." xml:space="preserve">
+    <value>Sisteme yeni bir arıcılık türü ekleyin.</value>
+  </data>
+  <data name="Use this page to detail your site's privacy policy." xml:space="preserve">
+    <value>Sitenizin gizlilik politikasını ayrıntılı açıklamak için bu sayfayı kullanın.</value>
+  </data>
+  <data name="Draft" xml:space="preserve">
+    <value>Taslak</value>
+  </data>
+  <data name="Production Info:" xml:space="preserve">
+    <value>Üretim Bilgileri:</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Roller</value>
+  </data>
+  <data name="Add new" xml:space="preserve">
+    <value>Yeni ekle</value>
+  </data>
+  <data name="Trustable and Sustainable Open Platform for Smart Honey Value Chains" xml:space="preserve">
+    <value>Akıllı Bal Değer Zincirleri için Güvenilir ve Sürdürülebilir Açık Platform</value>
+  </data>
+  <data name="Raw honey" xml:space="preserve">
+    <value>Ham bal</value>
+  </data>
+  <data name="Hives" xml:space="preserve">
+    <value>Kovan</value>
+  </data>
+  <data name="Edit Education Level" xml:space="preserve">
+    <value>Eğitim Seviyesini Düzenle</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Önizleme</value>
+  </data>
+  <data name="Edit Purpose Type" xml:space="preserve">
+    <value>Amaç Türünü Düzenle</value>
+  </data>
+  <data name="Type Title" xml:space="preserve">
+    <value>Tür Adı</value>
+  </data>
+  <data name="Create apiary" xml:space="preserve">
+    <value>Arılık oluştur</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>Sayı</value>
+  </data>
+  <data name="Enter phone number" xml:space="preserve">
+    <value>Telefon numarasını girin</value>
+  </data>
+  <data name="Production by Apiary" xml:space="preserve">
+    <value>Arılığa Göre Üretim</value>
+  </data>
+  <data name="My Profile" xml:space="preserve">
+    <value>Profilim</value>
+  </data>
+  <data name="Update Metadata" xml:space="preserve">
+    <value>Bilgileri Güncelle</value>
+  </data>
+  <data name="Missing before this batch can be finalized" xml:space="preserve">
+    <value>Bu parti kesinleştirilmeden önce eksik olanlar</value>
+  </data>
+  <data name="Honey Origins" xml:space="preserve">
+    <value>Balın Kaynakları</value>
+  </data>
+  <data name="Enter CCP Code" xml:space="preserve">
+    <value>KKN Kodunu girin</value>
+  </data>
+  <data name="Create Education Level" xml:space="preserve">
+    <value>Eğitim Seviyesi Oluştur</value>
+  </data>
+  <data name="Raw Honey Quality Control" xml:space="preserve">
+    <value>Ham Bal Kalite Kontrolü</value>
+  </data>
+  <data name="This action will permanently remove the wholesaler record." xml:space="preserve">
+    <value>Bu işlem toptancı kaydını kalıcı olarak kaldırır.</value>
+  </data>
+  <data name="Apiary Photo Management" xml:space="preserve">
+    <value>Arılık Fotoğraf Yönetimi</value>
+  </data>
+  <data name="Showing 0 to 0 of 0 entries" xml:space="preserve">
+    <value>0 kayıttan 0 - 0 arası gösteriliyor</value>
+  </data>
+  <data name="Argentina" xml:space="preserve">
+    <value>Arjantin</value>
+  </data>
+  <data name="Enter production details for the selected apiary" xml:space="preserve">
+    <value>Seçili arılık için üretim bilgilerini girin</value>
+  </data>
+  <data name="Add a new beekeeper education level to the system." xml:space="preserve">
+    <value>Sisteme yeni bir arıcı eğitim seviyesi ekleyin.</value>
+  </data>
+  <data name="Content Type" xml:space="preserve">
+    <value>İçerik Türü</value>
+  </data>
+  <data name="Stored results are not recalculated when limits change." xml:space="preserve">
+    <value>Limitler değiştiğinde kayıtlı sonuçlar yeniden hesaplanmaz.</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Rol</value>
+  </data>
+  <data name="Select Period" xml:space="preserve">
+    <value>Dönem Seçin</value>
+  </data>
+  <data name="Not checked" xml:space="preserve">
+    <value>Kontrol edilmedi</value>
+  </data>
+  <data name="Critical Limit" xml:space="preserve">
+    <value>Kritik Limit</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Panel</value>
+  </data>
+  <data name="Used Amount" xml:space="preserve">
+    <value>Kullanılan Miktar</value>
+  </data>
+  <data name="Role Management" xml:space="preserve">
+    <value>Rol Yönetimi</value>
+  </data>
+  <data name="Please review the information before deleting this wholesaler." xml:space="preserve">
+    <value>Bu toptancıyı silmeden önce lütfen bilgileri gözden geçirin.</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Dil</value>
+  </data>
+  <data name="Delete Production" xml:space="preserve">
+    <value>Üretimi Sil</value>
+  </data>
+  <data name="Enter batch title" xml:space="preserve">
+    <value>Parti başlığını girin</value>
+  </data>
+  <data name="Delete Beekeeping Type" xml:space="preserve">
+    <value>Arıcılık Türünü Sil</value>
+  </data>
+  <data name="No specific limits." xml:space="preserve">
+    <value>Özel limit yok.</value>
+  </data>
+  <data name="Registry" xml:space="preserve">
+    <value>Kayıt</value>
+  </data>
+  <data name="No Video" xml:space="preserve">
+    <value>Video Yok</value>
+  </data>
+  <data name="Missing CCP checks" xml:space="preserve">
+    <value>Eksik KKN kontrolleri</value>
+  </data>
+  <data name="Deactivate" xml:space="preserve">
+    <value>Pasifleştir</value>
+  </data>
+  <data name="· Status:" xml:space="preserve">
+    <value>· Durum:</value>
+  </data>
+  <data name="Default limits (every honey type):" xml:space="preserve">
+    <value>Varsayılan limitler (tüm bal türleri):</value>
+  </data>
+  <data name="Copied %d rows to clipboard" xml:space="preserve">
+    <value>%d satır panoya kopyalandı</value>
+  </data>
+  <data name="⏱ Quick explanation (30–60 sec)" xml:space="preserve">
+    <value>⏱ Kısa açıklama (30–60 sn)</value>
+  </data>
+  <data name="Consumers can transparently see where honey was produced, how it was processed, and its quality test results." xml:space="preserve">
+    <value>Tüketiciler balın nerede üretildiğini, nasıl işlendiğini ve kalite test sonuçlarını şeffaf biçimde görebilir.</value>
+  </data>
+  <data name="Beehives Count" xml:space="preserve">
+    <value>Kovan Sayısı</value>
+  </data>
+  <data name="Manage batch CCPs" xml:space="preserve">
+    <value>Partinin KKN'lerini yönet</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Yazdır</value>
+  </data>
+  <data name="Poland" xml:space="preserve">
+    <value>Polonya</value>
+  </data>
+  <data name="Update video and explanation for this parameter." xml:space="preserve">
+    <value>Bu parametrenin videosunu ve açıklamasını güncelleyin.</value>
+  </data>
+  <data name="Leave empty to keep current video. MP4 or WEBM, at most 25 MB." xml:space="preserve">
+    <value>Mevcut videoyu korumak için boş bırakın. MP4 veya WEBM, en çok 25 MB.</value>
+  </data>
+  <data name="QR:" xml:space="preserve">
+    <value>QR:</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Durum</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Ülke</value>
+  </data>
+  <data name="Open Data Platform" xml:space="preserve">
+    <value>Açık Veri Platformu</value>
+  </data>
+  <data name="Active Status" xml:space="preserve">
+    <value>Etkinlik Durumu</value>
+  </data>
+  <data name="Enter processing step (e.g., Mixing, Filtering)" xml:space="preserve">
+    <value>İşlem adımını girin (ör. Karıştırma, Süzme)</value>
+  </data>
+  <data name="Define a new raw honey production period." xml:space="preserve">
+    <value>Yeni bir ham bal üretim dönemi tanımlayın.</value>
+  </data>
+  <data name="Unit" xml:space="preserve">
+    <value>Birim</value>
+  </data>
+  <data name="e.g. Turkish Food Codex, honey communique" xml:space="preserve">
+    <value>ör. Türk Gıda Kodeksi, Bal Tebliği</value>
+  </data>
+  <data name="Reinstate" xml:space="preserve">
+    <value>Yeniden etkinleştir</value>
+  </data>
+  <data name="Corrections" xml:space="preserve">
+    <value>Düzeltmeler</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Açıklama</value>
+  </data>
+  <data name="All Productions" xml:space="preserve">
+    <value>Tüm Üretimler</value>
+  </data>
+  <data name="Location Longitude" xml:space="preserve">
+    <value>Konum Boylamı</value>
+  </data>
+  <data name="Additional Info" xml:space="preserve">
+    <value>Ek Bilgi</value>
+  </data>
+  <data name="Beekeeping Types" xml:space="preserve">
+    <value>Arıcılık Türleri</value>
+  </data>
+  <data name="All Raw Honey Productions" xml:space="preserve">
+    <value>Tüm Ham Bal Üretimleri</value>
+  </data>
+  <data name="Shipments" xml:space="preserve">
+    <value>Sevkiyatlar</value>
+  </data>
+  <data name="Contact Information" xml:space="preserve">
+    <value>İletişim Bilgileri</value>
+  </data>
+  <data name="CCP Progress" xml:space="preserve">
+    <value>KKN İlerlemesi</value>
+  </data>
+  <data name="Enter purpose title" xml:space="preserve">
+    <value>Amaç adını girin</value>
+  </data>
+  <data name="Tax No" xml:space="preserve">
+    <value>Vergi No</value>
+  </data>
+  <data name="Open Digital Platform" xml:space="preserve">
+    <value>Açık Dijital Platform</value>
+  </data>
+  <data name="Define a new CCP to monitor quality and safety in the honey production process." xml:space="preserve">
+    <value>Bal üretim sürecinde kalite ve güvenliği izlemek için yeni bir KKN tanımlayın.</value>
+  </data>
+  <data name="Note.OrgStartsPending" xml:space="preserve">
+    <value>Kurum &lt;strong&gt;Beklemede&lt;/strong&gt; durumunda başlar. Ancak belgelerle doğrulandıktan sonra veri girebilir.</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-posta</value>
+  </data>
+  <data name="Honey Type Title" xml:space="preserve">
+    <value>Bal Türü Adı</value>
+  </data>
+  <data name="Enter email address" xml:space="preserve">
+    <value>E-posta adresini girin</value>
+  </data>
+  <data name="Lab" xml:space="preserve">
+    <value>Laboratuvar</value>
+  </data>
+  <data name="Ontology-based systems enable semantic knowledge management across the honey supply chain." xml:space="preserve">
+    <value>Ontoloji tabanlı sistemler, bal tedarik zinciri boyunca anlamsal bilgi yönetimi sağlar.</value>
+  </data>
+  <data name="Create New Production Period" xml:space="preserve">
+    <value>Yeni Üretim Dönemi Oluştur</value>
+  </data>
+  <data name="This action may affect traceability records. Deleting a batch cannot be undone." xml:space="preserve">
+    <value>Bu işlem izlenebilirlik kayıtlarını etkileyebilir. Parti silme işlemi geri alınamaz.</value>
+  </data>
+  <data name="CCP Management" xml:space="preserve">
+    <value>KKN Yönetimi</value>
+  </data>
+  <data name="Raw honey lots not yet eligible" xml:space="preserve">
+    <value>Henüz uygun olmayan ham bal lotları</value>
+  </data>
+  <data name="Manage wholesaler companies used in raw honey production traceability." xml:space="preserve">
+    <value>Ham bal üretimi izlenebilirliğinde kullanılan toptancı firmaları yönetin.</value>
+  </data>
+  <data name="Back to Apiaries" xml:space="preserve">
+    <value>Arılıklara Dön</value>
+  </data>
+  <data name="Batch Title" xml:space="preserve">
+    <value>Parti Başlığı</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>Liste</value>
+  </data>
+  <data name="Beekeeper:" xml:space="preserve">
+    <value>Arıcı:</value>
+  </data>
+  <data name="Active Content" xml:space="preserve">
+    <value>Etkin İçerik</value>
+  </data>
+  <data name="Create Critical Control Point" xml:space="preserve">
+    <value>Kritik Kontrol Noktası Oluştur</value>
+  </data>
+  <data name="(none)" xml:space="preserve">
+    <value>(yok)</value>
+  </data>
+  <data name="Raw Honey Production Manage CCP" xml:space="preserve">
+    <value>Ham Bal Üretimi KKN Yönetimi</value>
+  </data>
+  <data name="Create New CCP Parameter" xml:space="preserve">
+    <value>Yeni KKN Parametresi Oluştur</value>
+  </data>
+  <data name="MyWork" xml:space="preserve">
+    <value>İşlerim</value>
+  </data>
+  <data name="Samples" xml:space="preserve">
+    <value>Numuneler</value>
+  </data>
+  <data name="full traceability" xml:space="preserve">
+    <value>tam izlenebilirlik</value>
+  </data>
+  <data name="No photos uploaded." xml:space="preserve">
+    <value>Fotoğraf yüklenmedi.</value>
+  </data>
+  <data name="Business Number" xml:space="preserve">
+    <value>İşletme Numarası</value>
+  </data>
+  <data name="Add Role" xml:space="preserve">
+    <value>Rol Ekle</value>
+  </data>
+  <data name="Enter category name (e.g., Chemical, Physical, Microbiological)" xml:space="preserve">
+    <value>Kategori adını girin (ör. Kimyasal, Fiziksel, Mikrobiyolojik)</value>
+  </data>
+  <data name="No photos uploaded yet." xml:space="preserve">
+    <value>Henüz fotoğraf yüklenmedi.</value>
+  </data>
+  <data name="Search:" xml:space="preserve">
+    <value>Ara:</value>
+  </data>
+  <data name="Registry number:" xml:space="preserve">
+    <value>Kayıt numarası:</value>
+  </data>
+  <data name="Beekeeping Type Title" xml:space="preserve">
+    <value>Arıcılık Türü Adı</value>
+  </data>
+  <data name="Enter email" xml:space="preserve">
+    <value>E-posta girin</value>
+  </data>
+  <data name="Lock-screen" xml:space="preserve">
+    <value>Kilit ekranı</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Oluştur</value>
+  </data>
+  <data name="Optional professional observation..." xml:space="preserve">
+    <value>İsteğe bağlı mesleki gözlem...</value>
+  </data>
+  <data name="Laboratory analysis performed during raw honey acceptance" xml:space="preserve">
+    <value>Ham bal kabulü sırasında yapılan laboratuvar analizi</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>Hesap</value>
+  </data>
+  <data name="Education Levels" xml:space="preserve">
+    <value>Eğitim Seviyeleri</value>
+  </data>
+  <data name="Experience Time" xml:space="preserve">
+    <value>Deneyim Süresi</value>
+  </data>
+  <data name="Watch" xml:space="preserve">
+    <value>İzle</value>
+  </data>
+  <data name="Edit CCP Parameter Category" xml:space="preserve">
+    <value>KKN Parametre Kategorisini Düzenle</value>
+  </data>
+  <data name="Manage your account information." xml:space="preserve">
+    <value>Hesap bilgilerinizi yönetin.</value>
+  </data>
+  <data name="Add Production" xml:space="preserve">
+    <value>Üretim Ekle</value>
+  </data>
+  <data name="These lots of {0} cannot be added until all their CCP checks are completed." xml:space="preserve">
+    <value>Bu lotlar ({0}), tüm KKN kontrolleri tamamlanana kadar eklenemez.</value>
+  </data>
+  <data name="Certified Batch" xml:space="preserve">
+    <value>Sertifikalı Parti</value>
+  </data>
+  <data name="Condition" xml:space="preserve">
+    <value>Koşul</value>
+  </data>
+  <data name="Created from a wholesaler record" xml:space="preserve">
+    <value>Bir toptancı kaydından oluşturuldu</value>
+  </data>
+  <data name="← Back to Wholesalers" xml:space="preserve">
+    <value>← Toptancılara Dön</value>
+  </data>
+  <data name="Enter parameter name" xml:space="preserve">
+    <value>Parametre adını girin</value>
+  </data>
+  <data name="Raw Honey Production Traceability" xml:space="preserve">
+    <value>Ham Bal Üretimi İzlenebilirliği</value>
+  </data>
+  <data name="Create Final Honey Batch" xml:space="preserve">
+    <value>Parti Oluştur</value>
+  </data>
+  <data name="Birth Date" xml:space="preserve">
+    <value>Doğum Tarihi</value>
+  </data>
+  <data name="CriticalControlPointParameterContent" xml:space="preserve">
+    <value>KKN Parametre İçeriği</value>
+  </data>
+  <data name="Are you sure you want to delete this beekeeping type? This action cannot be undone." xml:space="preserve">
+    <value>Bu arıcılık türünü silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.</value>
+  </data>
+  <data name="Minimum and maximum apply to every honey type. Honey-type specific and conditional limits are on the parameter's &quot;Limits&quot; page. Stored results are not recalculated when limits change." xml:space="preserve">
+    <value>En küçük ve en büyük değerler tüm bal türleri için geçerlidir. Bal türüne özgü ve koşullu limitler parametrenin &quot;Limitler&quot; sayfasındadır. Limitler değiştiğinde kayıtlı sonuçlar yeniden hesaplanmaz.</value>
+  </data>
+  <data name="Create New Wholesaler" xml:space="preserve">
+    <value>Yeni Toptancı Oluştur</value>
+  </data>
+  <data name="Note.LimitsHelp" xml:space="preserve">
+    <value>(bunları parametrede düzenleyin). Aşağıdaki bir satır varsayılanı geçersiz kılar: lotun bal türüne ait satır, bal sınıfına ait satırdan; bal sınıfına ait satır da tüm sınıflar için olan satırdan önceliklidir; koşulu sağlanan satır, koşulsuz satırdan önceliklidir. Oran satırları, ayrıca sağlanması gereken ek kontrollerdir (değer / diğer değer).</value>
+  </data>
+  <data name="Parameter Contents" xml:space="preserve">
+    <value>Parametre İçerikleri</value>
+  </data>
+  <data name="Makes the apiary active again." xml:space="preserve">
+    <value>Arılığı yeniden etkin hale getirir.</value>
+  </data>
+  <data name="Tips" xml:space="preserve">
+    <value>İpuçları</value>
+  </data>
+  <data name="Are you sure?" xml:space="preserve">
+    <value>Emin misiniz?</value>
+  </data>
+  <data name="Are you sure you want to delete this category?" xml:space="preserve">
+    <value>Bu kategoriyi silmek istediğinizden emin misiniz?</value>
+  </data>
+  <data name="Contribution" xml:space="preserve">
+    <value>Katkı</value>
+  </data>
+  <data name="Finalized (locked)" xml:space="preserve">
+    <value>Kesinleşti (kilitli)</value>
+  </data>
+  <data name="Missing CCP" xml:space="preserve">
+    <value>Eksik KKN</value>
+  </data>
+  <data name="Audit log" xml:space="preserve">
+    <value>Denetim kaydı</value>
+  </data>
+  <data name="Raw Honey Production" xml:space="preserve">
+    <value>Ham Bal Üretimi</value>
+  </data>
+  <data name="New organization" xml:space="preserve">
+    <value>Yeni kurum</value>
+  </data>
+  <data name="Are you sure you want to permanently delete this honey batch?" xml:space="preserve">
+    <value>Bu bal partisini kalıcı olarak silmek istediğinizden emin misiniz?</value>
+  </data>
+  <data name="Edit Raw Honey Production" xml:space="preserve">
+    <value>Ham Bal Üretimini Düzenle</value>
+  </data>
+  <data name="Add New Education Level" xml:space="preserve">
+    <value>Yeni Eğitim Seviyesi Ekle</value>
+  </data>
+  <data name="Honey Types" xml:space="preserve">
+    <value>Bal Türleri</value>
+  </data>
+  <data name="Production Periods" xml:space="preserve">
+    <value>Üretim Dönemleri</value>
+  </data>
+  <data name="Total Selected:" xml:space="preserve">
+    <value>Seçilen Toplam:</value>
+  </data>
+  <data name="Create educational content (video + explanation) for CCP parameters." xml:space="preserve">
+    <value>KKN parametreleri için eğitici içerik (video + açıklama) oluşturun.</value>
+  </data>
+  <data name="Honey class for CCP limits" xml:space="preserve">
+    <value>KKN limitleri için bal sınıfı</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Hata</value>
+  </data>
+  <data name="CCP Process Overview" xml:space="preserve">
+    <value>KKN Sürecine Genel Bakış</value>
+  </data>
+  <data name="New Password" xml:space="preserve">
+    <value>Yeni Parola</value>
+  </data>
+  <data name="Delete Production Period" xml:space="preserve">
+    <value>Üretim Dönemini Sil</value>
+  </data>
+  <data name="No photos uploaded for this apiary." xml:space="preserve">
+    <value>Bu arılık için fotoğraf yüklenmedi.</value>
+  </data>
+  <data name="Edit Beekeeper" xml:space="preserve">
+    <value>Arıcıyı Düzenle</value>
+  </data>
+  <data name="Save Monitoring Logs" xml:space="preserve">
+    <value>İzleme Kayıtlarını Kaydet</value>
+  </data>
+  <data name="Add Amount" xml:space="preserve">
+    <value>Miktar Ekle</value>
+  </data>
+  <data name="(filtered from _MAX_ total entries)" xml:space="preserve">
+    <value>(toplam _MAX_ kayıt içinden filtrelendi)</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Hayır</value>
+  </data>
+  <data name="Honey Traceability" xml:space="preserve">
+    <value>Bal İzlenebilirliği</value>
+  </data>
+  <data name="Scan to verify authenticity" xml:space="preserve">
+    <value>Orijinalliği doğrulamak için tarayın</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Kaldır</value>
+  </data>
+  <data name="thumbnail" xml:space="preserve">
+    <value>küçük resim</value>
+  </data>
+  <data name="Storefronts" xml:space="preserve">
+    <value>Arıcı sayfaları</value>
+  </data>
+  <data name="Create New Critical Control Point" xml:space="preserve">
+    <value>Yeni Kritik Kontrol Noktası Oluştur</value>
+  </data>
+  <data name="Total Beekeepers" xml:space="preserve">
+    <value>Toplam Arıcı</value>
+  </data>
+  <data name="Critical Control Point Parameters" xml:space="preserve">
+    <value>Kritik Kontrol Noktası Parametreleri</value>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>Özet</value>
+  </data>
+  <data name="Create Batch" xml:space="preserve">
+    <value>Parti Oluştur</value>
+  </data>
+  <data name="Raw honey lot" xml:space="preserve">
+    <value>Ham bal lotu</value>
+  </data>
+  <data name="Total Raw Honey" xml:space="preserve">
+    <value>Toplam Ham Bal</value>
+  </data>
+  <data name="Reset Password" xml:space="preserve">
+    <value>Parolayı Sıfırla</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Vazgeç</value>
+  </data>
+  <data name="-- Select --" xml:space="preserve">
+    <value>-- Seçin --</value>
+  </data>
+  <data name="This wholesaler has no raw honey production yet." xml:space="preserve">
+    <value>Bu toptancının henüz ham bal üretimi yok.</value>
+  </data>
+  <data name="Optional. JPG, PNG or WEBP, at most 8 MB. Leave empty to keep the current photo." xml:space="preserve">
+    <value>İsteğe bağlı. JPG, PNG veya WEBP, en çok 8 MB. Mevcut fotoğrafı korumak için boş bırakın.</value>
+  </data>
+  <data name="Back to Batches" xml:space="preserve">
+    <value>Partilere Dön</value>
+  </data>
+  <data name="Parameter Limits" xml:space="preserve">
+    <value>Parametre Limitleri</value>
+  </data>
+  <data name="Back to Beekeepers" xml:space="preserve">
+    <value>Arıcılara Dön</value>
+  </data>
+  <data name="-- Select CCP --" xml:space="preserve">
+    <value>-- KKN Seçin --</value>
+  </data>
+  <data name="Apiary locations are shown approximately (about 10 km) to protect the beekeepers' privacy." xml:space="preserve">
+    <value>Arıcıların gizliliğini korumak için arılık konumları yaklaşık olarak (yaklaşık 10 km) gösterilir.</value>
+  </data>
+  <data name="First Name" xml:space="preserve">
+    <value>Ad</value>
+  </data>
+  <data name="Wholesaler" xml:space="preserve">
+    <value>Toptancı</value>
+  </data>
+  <data name="Photos" xml:space="preserve">
+    <value>Fotoğraflar</value>
+  </data>
+  <data name="Purpose Type" xml:space="preserve">
+    <value>Amaç Türü</value>
+  </data>
+  <data name="Why it matters?" xml:space="preserve">
+    <value>Neden önemli?</value>
+  </data>
+  <data name="Beekeeping Purpose Type Title" xml:space="preserve">
+    <value>Arıcılık Amaç Türü Adı</value>
+  </data>
+  <data name="Fully Completed" xml:space="preserve">
+    <value>Tamamen Tamamlandı</value>
+  </data>
+  <data name="Add a new purpose type to the system." xml:space="preserve">
+    <value>Sisteme yeni bir amaç türü ekleyin.</value>
+  </data>
+  <data name="City:" xml:space="preserve">
+    <value>Şehir:</value>
+  </data>
+  <data name="Uploaded Photos" xml:space="preserve">
+    <value>Yüklenen Fotoğraflar</value>
+  </data>
+  <data name="Finalized batches cannot be edited or deleted" xml:space="preserve">
+    <value>Kesinleşmiş partiler düzenlenemez veya silinemez</value>
+  </data>
+  <data name="Update the selected beekeeper education level." xml:space="preserve">
+    <value>Seçili arıcı eğitim seviyesini güncelleyin.</value>
+  </data>
+  <data name="Raw Honey Collection Point" xml:space="preserve">
+    <value>Ham Bal Toplama Noktası</value>
+  </data>
+  <data name="Save batch changes?" xml:space="preserve">
+    <value>Parti değişiklikleri kaydedilsin mi?</value>
+  </data>
+  <data name="City / Country" xml:space="preserve">
+    <value>Şehir / Ülke</value>
+  </data>
+  <data name="Save Content" xml:space="preserve">
+    <value>İçeriği Kaydet</value>
+  </data>
+  <data name="Create Purpose Type" xml:space="preserve">
+    <value>Amaç Türü Oluştur</value>
+  </data>
+  <data name="is &lt;=" xml:space="preserve">
+    <value>&lt;= ise</value>
+  </data>
+  <data name="Create Parameter Content" xml:space="preserve">
+    <value>Parametre İçeriği Oluştur</value>
+  </data>
+  <data name="The value '{0}' is not valid for {1}." xml:space="preserve">
+    <value>'{0}' değeri {1} için geçerli değil.</value>
+  </data>
+  <data name="Edit Beekeeping Type" xml:space="preserve">
+    <value>Arıcılık Türünü Düzenle</value>
+  </data>
+  <data name="Critical Control Point" xml:space="preserve">
+    <value>Kritik Kontrol Noktası</value>
+  </data>
+  <data name="Ratio to (extra check)" xml:space="preserve">
+    <value>Oran (ek kontrol)</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>Görünüm</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Kullanıcılar</value>
+  </data>
+  <data name="Assigned Raw Honey Productions" xml:space="preserve">
+    <value>Atanmış Ham Bal Üretimleri</value>
+  </data>
+  <data name="Start Date" xml:space="preserve">
+    <value>Başlangıç Tarihi</value>
+  </data>
+  <data name="File Name" xml:space="preserve">
+    <value>Dosya Adı</value>
+  </data>
+  <data name="TOP4HoneyChains Traceability System" xml:space="preserve">
+    <value>TOP4HoneyChains İzlenebilirlik Sistemi</value>
+  </data>
+  <data name="The supplied value is invalid for {0}." xml:space="preserve">
+    <value>Girilen değer {0} için geçersiz.</value>
+  </data>
+  <data name="Process End" xml:space="preserve">
+    <value>Süreç Sonu</value>
+  </data>
+  <data name="The field {0} must be a number." xml:space="preserve">
+    <value>{0} alanı bir sayı olmalıdır.</value>
+  </data>
+  <data name="Period Title" xml:space="preserve">
+    <value>Dönem Adı</value>
+  </data>
+  <data name="Created At" xml:space="preserve">
+    <value>Oluşturulma Tarihi</value>
+  </data>
+  <data name="Create Role" xml:space="preserve">
+    <value>Rol Oluştur</value>
+  </data>
+  <data name="this wholesaler" xml:space="preserve">
+    <value>bu toptancı</value>
+  </data>
+  <data name="Show free-text values on the public Honey Story page" xml:space="preserve">
+    <value>Serbest metin değerlerini herkese açık Bal Hikâyesi sayfasında göster</value>
+  </data>
+  <data name="CCP responsibilities" xml:space="preserve">
+    <value>KKN sorumlulukları</value>
+  </data>
+  <data name="After creating the batch, you will select raw honey amounts in the next step." xml:space="preserve">
+    <value>Partiyi oluşturduktan sonra, bir sonraki adımda ham bal miktarlarını seçeceksiniz.</value>
+  </data>
+  <data name="Sum / ratio with" xml:space="preserve">
+    <value>Toplam / oran parametresi</value>
+  </data>
+  <data name="What?" xml:space="preserve">
+    <value>Ne?</value>
+  </data>
+  <data name="Last Name" xml:space="preserve">
+    <value>Soyad</value>
+  </data>
+  <data name="Partners" xml:space="preserve">
+    <value>Ortaklar</value>
+  </data>
+  <data name="Parameter Category" xml:space="preserve">
+    <value>Parametre Kategorisi</value>
+  </data>
+  <data name="Are you sure you want to delete this production record?" xml:space="preserve">
+    <value>Bu üretim kaydını silmek istediğinizden emin misiniz?</value>
+  </data>
+  <data name="CCP Code" xml:space="preserve">
+    <value>KKN Kodu</value>
+  </data>
+  <data name="Edit Honey Type" xml:space="preserve">
+    <value>Bal Türünü Düzenle</value>
+  </data>
+  <data name="File (e.g. lab report)" xml:space="preserve">
+    <value>Dosya (ör. laboratuvar raporu)</value>
+  </data>
+  <data name="No CCP checks assigned." xml:space="preserve">
+    <value>Atanmış KKN kontrolü yok.</value>
+  </data>
+  <data name="Useful links" xml:space="preserve">
+    <value>Faydalı bağlantılar</value>
+  </data>
+  <data name="Percentage share of honey supplied by each beekeeper in this batch" xml:space="preserve">
+    <value>Bu partide her arıcının sağladığı balın yüzde payı</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Bilgi</value>
+  </data>
+  <data name="(optional)" xml:space="preserve">
+    <value>(isteğe bağlı)</value>
+  </data>
+  <data name="Remove &quot;Not applicable&quot;" xml:space="preserve">
+    <value>&quot;Uygulanamaz&quot; işaretini kaldır</value>
+  </data>
+  <data name="Enter CCP Code (e.g., CCP1, CCP2)" xml:space="preserve">
+    <value>KKN Kodunu girin (ör. CCP1, CCP2)</value>
+  </data>
+  <data name="Replace Video" xml:space="preserve">
+    <value>Videoyu Değiştir</value>
+  </data>
+  <data name="-- Select Category --" xml:space="preserve">
+    <value>-- Kategori Seçin --</value>
+  </data>
+  <data name="Platform Features" xml:space="preserve">
+    <value>Platform Özellikleri</value>
+  </data>
+  <data name="TOP4HoneyChains Educational Content" xml:space="preserve">
+    <value>TOP4HoneyChains Eğitici İçerik</value>
+  </data>
+  <data name="Manage monitoring parameters assigned to critical control points." xml:space="preserve">
+    <value>Kritik kontrol noktalarına atanmış izleme parametrelerini yönetin.</value>
+  </data>
+  <data name="Finalize this batch?" xml:space="preserve">
+    <value>Bu parti kesinleştirilsin mi?</value>
+  </data>
+  <data name="Create New Password" xml:space="preserve">
+    <value>Yeni Parola Oluştur</value>
+  </data>
+  <data name="Reset User Password" xml:space="preserve">
+    <value>Kullanıcı Parolasını Sıfırla</value>
+  </data>
+  <data name="no maximum" xml:space="preserve">
+    <value>en büyük değer yok</value>
+  </data>
+  <data name="Access Denied" xml:space="preserve">
+    <value>Erişim Reddedildi</value>
+  </data>
+  <data name="Edit Critical Control Point" xml:space="preserve">
+    <value>Kritik Kontrol Noktasını Düzenle</value>
+  </data>
+  <data name="Sort Order" xml:space="preserve">
+    <value>Sıralama</value>
+  </data>
+  <data name="Activate this apiary again?" xml:space="preserve">
+    <value>Bu arılık yeniden etkinleştirilsin mi?</value>
+  </data>
+  <data name="not exempt" xml:space="preserve">
+    <value>muaf değil</value>
+  </data>
+  <data name="Production Amount (kg)" xml:space="preserve">
+    <value>Üretim Miktarı (kg)</value>
+  </data>
+  <data name="Beekeeper Education Levels" xml:space="preserve">
+    <value>Arıcı Eğitim Seviyeleri</value>
+  </data>
+  <data name="Update Content" xml:space="preserve">
+    <value>İçeriği Güncelle</value>
+  </data>
+  <data name="Production Overview" xml:space="preserve">
+    <value>Üretime Genel Bakış</value>
+  </data>
+  <data name="TOP4HoneyChains Project" xml:space="preserve">
+    <value>TOP4HoneyChains Projesi</value>
+  </data>
+  <data name="Monitoring lifecycle visualization" xml:space="preserve">
+    <value>İzleme yaşam döngüsü görselleştirmesi</value>
+  </data>
+  <data name="Amount (kg)" xml:space="preserve">
+    <value>Miktar (kg)</value>
+  </data>
+  <data name="No CCP assigned yet." xml:space="preserve">
+    <value>Henüz KKN atanmadı.</value>
+  </data>
+  <data name="Note.EligibleLots" xml:space="preserve">
+    <value>Bir partiye yalnızca bu toptancının, KKN kontrollerinin &lt;strong&gt;tümü tamamlanmış veya &quot;Uygulanamaz&quot; olan&lt;/strong&gt; ham bal lotları eklenebilir.</value>
+  </data>
+  <data name="Loading..." xml:space="preserve">
+    <value>Yükleniyor...</value>
+  </data>
+  <data name="Add Content" xml:space="preserve">
+    <value>İçerik Ekle</value>
+  </data>
+  <data name="Enter honey type title" xml:space="preserve">
+    <value>Bal türü adını girin</value>
+  </data>
+  <data name="Not recorded." xml:space="preserve">
+    <value>Kaydedilmedi.</value>
+  </data>
+  <data name="Enter critical threshold value" xml:space="preserve">
+    <value>Kritik eşik değerini girin</value>
+  </data>
+  <data name="Add New CCP" xml:space="preserve">
+    <value>Yeni KKN Ekle</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Uyarı</value>
+  </data>
+  <data name="Türkiye and Argentina" xml:space="preserve">
+    <value>Türkiye ve Arjantin</value>
+  </data>
+  <data name="Current Password" xml:space="preserve">
+    <value>Mevcut Parola</value>
+  </data>
+  <data name="Beekeeper" xml:space="preserve">
+    <value>Arıcı</value>
+  </data>
+  <data name="Honey Type" xml:space="preserve">
+    <value>Bal Türü</value>
+  </data>
+  <data name="Update the selected purpose type." xml:space="preserve">
+    <value>Seçili amaç türünü güncelleyin.</value>
+  </data>
+  <data name="The value '{0}' is invalid." xml:space="preserve">
+    <value>'{0}' değeri geçersiz.</value>
+  </data>
+  <data name="Keep explanations short and clear" xml:space="preserve">
+    <value>Açıklamaları kısa ve net tutun</value>
+  </data>
+  <data name="Honey quality control parameter" xml:space="preserve">
+    <value>Bal kalite kontrol parametresi</value>
+  </data>
+  <data name="Add New Parameter" xml:space="preserve">
+    <value>Yeni Parametre Ekle</value>
+  </data>
+  <data name="CCP Parameters" xml:space="preserve">
+    <value>KKN Parametreleri</value>
+  </data>
+  <data name="TR + 2 + 10 digits" xml:space="preserve">
+    <value>TR + 2 + 10 hane</value>
+  </data>
+  <data name="Warning:" xml:space="preserve">
+    <value>Uyarı:</value>
+  </data>
+  <data name="This action cannot be undone" xml:space="preserve">
+    <value>Bu işlem geri alınamaz</value>
+  </data>
+  <data name="Select Role" xml:space="preserve">
+    <value>Rol Seçin</value>
+  </data>
+  <data name="No CCP Assigned" xml:space="preserve">
+    <value>KKN Atanmadı</value>
+  </data>
+  <data name="Delete Critical Control Point" xml:space="preserve">
+    <value>Kritik Kontrol Noktasını Sil</value>
+  </data>
+  <data name="Apiary Evidence Photos" xml:space="preserve">
+    <value>Arılık Kanıt Fotoğrafları</value>
+  </data>
+  <data name="· SHA-256" xml:space="preserve">
+    <value>· SHA-256</value>
+  </data>
+  <data name="Honey class unknown or mixed: only limits for every honey class apply" xml:space="preserve">
+    <value>Bal sınıfı bilinmiyor veya karışık: yalnızca tüm bal sınıfları için geçerli limitler uygulanır</value>
+  </data>
+  <data name="A value for the '{0}' parameter or property was not provided." xml:space="preserve">
+    <value>'{0}' parametresi veya özelliği için değer girilmedi.</value>
+  </data>
+  <data name="Remove exemption" xml:space="preserve">
+    <value>Muafiyeti kaldır</value>
+  </data>
+  <data name="Assign Critical Control Points to this Raw Honey Production." xml:space="preserve">
+    <value>Bu ham bal üretimine Kritik Kontrol Noktaları atayın.</value>
+  </data>
+  <data name="Final Honey Productions" xml:space="preserve">
+    <value>Nihai Bal Üretimleri</value>
+  </data>
+  <data name="My organization" xml:space="preserve">
+    <value>Kurumum</value>
+  </data>
+  <data name="FINAL BATCH MONITORING" xml:space="preserve">
+    <value>PARTİ İZLEME</value>
+  </data>
+  <data name="Available Amount" xml:space="preserve">
+    <value>Kullanılabilir Miktar</value>
+  </data>
+  <data name="Beekeepers are records, not users: they never log in, and their association records data for them. The national registry (AKS) number is verified manually for now (document + approval)." xml:space="preserve">
+    <value>Arıcılar kullanıcı değil, kayıttır: hiçbir zaman giriş yapmazlar ve verilerini birlikleri girer. Ulusal kayıt (AKS) numarası şimdilik elle doğrulanır (belge + onay).</value>
+  </data>
+  <data name="Current Video" xml:space="preserve">
+    <value>Mevcut Video</value>
+  </data>
+  <data name="Production" xml:space="preserve">
+    <value>Üretim</value>
+  </data>
+  <data name="Max" xml:space="preserve">
+    <value>En çok</value>
+  </data>
+  <data name="Role Name" xml:space="preserve">
+    <value>Rol Adı</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Parola</value>
+  </data>
+  <data name="Beehives" xml:space="preserve">
+    <value>Kovanlar</value>
+  </data>
+  <data name="Save Changes" xml:space="preserve">
+    <value>Değişiklikleri Kaydet</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Evet</value>
+  </data>
+  <data name="Showing _START_ to _END_ of _TOTAL_ entries" xml:space="preserve">
+    <value>_TOTAL_ kayıttan _START_ - _END_ arası gösteriliyor</value>
+  </data>
+  <data name="Manage Batch" xml:space="preserve">
+    <value>Partiyi Yönet</value>
+  </data>
+  <data name="Productions by Wholesaler" xml:space="preserve">
+    <value>Toptancıya Göre Üretimler</value>
+  </data>
+  <data name="AccessDenied" xml:space="preserve">
+    <value>Erişim Reddedildi</value>
+  </data>
+  <data name="What is it?" xml:space="preserve">
+    <value>Nedir?</value>
+  </data>
+  <data name="The value '{0}' is not valid." xml:space="preserve">
+    <value>'{0}' değeri geçerli değil.</value>
+  </data>
+  <data name="Edit Role" xml:space="preserve">
+    <value>Rolü Düzenle</value>
+  </data>
+  <data name="Copy to clipboard" xml:space="preserve">
+    <value>Panoya kopyala</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Gönder</value>
+  </data>
+  <data name="CCP Process" xml:space="preserve">
+    <value>KKN Süreci</value>
+  </data>
+  <data name="Production:" xml:space="preserve">
+    <value>Üretim:</value>
+  </data>
+  <data name="Hash" xml:space="preserve">
+    <value>Hash</value>
+  </data>
+  <data name="Makes the beekeeper active again." xml:space="preserve">
+    <value>Arıcıyı yeniden etkin hale getirir.</value>
+  </data>
+  <data name="Email:" xml:space="preserve">
+    <value>E-posta:</value>
+  </data>
+  <data name="Management Information System" xml:space="preserve">
+    <value>Yönetim Bilgi Sistemi</value>
+  </data>
+  <data name="Productions" xml:space="preserve">
+    <value>Üretimler</value>
+  </data>
+  <data name="No Photo" xml:space="preserve">
+    <value>Fotoğraf Yok</value>
+  </data>
+  <data name="Edit Parameter Content" xml:space="preserve">
+    <value>Parametre İçeriğini Düzenle</value>
+  </data>
+  <data name="Honey Used:" xml:space="preserve">
+    <value>Kullanılan Bal:</value>
+  </data>
+  <data name="Video" xml:space="preserve">
+    <value>Video</value>
+  </data>
+  <data name="What is this?" xml:space="preserve">
+    <value>Bu nedir?</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Güncelle</value>
+  </data>
+  <data name="Raw Honey Sources" xml:space="preserve">
+    <value>Ham Bal Kaynakları</value>
+  </data>
+  <data name="Create Honey Type" xml:space="preserve">
+    <value>Bal Türü Oluştur</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Tarih</value>
+  </data>
+  <data name="Lot" xml:space="preserve">
+    <value>Lot</value>
+  </data>
+  <data name="Not assigned" xml:space="preserve">
+    <value>Atanmadı</value>
+  </data>
+  <data name="Enter beekeeping type title" xml:space="preserve">
+    <value>Arıcılık türü adını girin</value>
+  </data>
+  <data name="Edit CCP Parameter" xml:space="preserve">
+    <value>KKN Parametresini Düzenle</value>
+  </data>
+  <data name="Add New User" xml:space="preserve">
+    <value>Yeni Kullanıcı Ekle</value>
+  </data>
+  <data name="Beekeeping Purpose Type" xml:space="preserve">
+    <value>Arıcılık Amaç Türü</value>
+  </data>
+  <data name="Organizations" xml:space="preserve">
+    <value>Kurumlar</value>
+  </data>
+  <data name="to verify" xml:space="preserve">
+    <value>doğrulanacak</value>
+  </data>
+  <data name="QR Code" xml:space="preserve">
+    <value>QR Kodu</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Sil</value>
+  </data>
+  <data name="Raw Honey Production Periods" xml:space="preserve">
+    <value>Ham Bal Üretim Dönemleri</value>
+  </data>
+  <data name="Raw Honey Batches" xml:space="preserve">
+    <value>Ham Bal Lotları</value>
+  </data>
+  <data name="Source apiaries and photo evidence from collection stage." xml:space="preserve">
+    <value>Kaynak arılıklar ve toplama aşamasına ait fotoğraf kanıtları.</value>
+  </data>
+  <data name="Delete role?" xml:space="preserve">
+    <value>Rol silinsin mi?</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Yükle</value>
+  </data>
+  <data name="Are you sure you want to delete this honey type? This action cannot be undone." xml:space="preserve">
+    <value>Bu bal türünü silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.</value>
+  </data>
+  <data name="Phone Number" xml:space="preserve">
+    <value>Telefon Numarası</value>
+  </data>
+  <data name="Verified source &amp; quality information" xml:space="preserve">
+    <value>Doğrulanmış kaynak ve kalite bilgisi</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>Rapor</value>
+  </data>
+  <data name="Beekeepers can monitor production data and manage operations efficiently using digital tools." xml:space="preserve">
+    <value>Arıcılar dijital araçlarla üretim verilerini izleyebilir ve işlerini verimli biçimde yönetebilir.</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Gerekçe</value>
+  </data>
+  <data name="Create New Beekeeping Type" xml:space="preserve">
+    <value>Yeni Arıcılık Türü Oluştur</value>
+  </data>
+  <data name="or honey type" xml:space="preserve">
+    <value>veya bal türü</value>
+  </data>
+  <data name="Privacy Policy" xml:space="preserve">
+    <value>Gizlilik Politikası</value>
+  </data>
+  <data name="Edit Final Honey Batch" xml:space="preserve">
+    <value>Partiyi Düzenle</value>
+  </data>
+  <data name="Are you sure you want to delete this education level? This action cannot be undone." xml:space="preserve">
+    <value>Bu eğitim seviyesini silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.</value>
+  </data>
+  <data name="No description" xml:space="preserve">
+    <value>Açıklama yok</value>
+  </data>
+  <data name="Update the selected monitoring parameter details." xml:space="preserve">
+    <value>Seçili izleme parametresinin bilgilerini güncelleyin.</value>
+  </data>
+  <data name="flag, e.g. SelfApproved" xml:space="preserve">
+    <value>işaret, ör. SelfApproved</value>
+  </data>
+  <data name="Total (kg)" xml:space="preserve">
+    <value>Toplam (kg)</value>
+  </data>
+  <data name="Floral (blossom)" xml:space="preserve">
+    <value>Çiçek balı</value>
+  </data>
+  <data name="End Date" xml:space="preserve">
+    <value>Bitiş Tarihi</value>
+  </data>
+  <data name="The beekeeper's photo, shown in the beekeeper list and on the public Honey Story page. JPG, PNG or WEBP, at most 8 MB." xml:space="preserve">
+    <value>Arıcının fotoğrafı; arıcı listesinde ve herkese açık Bal Hikâyesi sayfasında gösterilir. JPG, PNG veya WEBP, en çok 8 MB.</value>
+  </data>
+  <data name="Create new beekeeper" xml:space="preserve">
+    <value>Yeni arıcı oluştur</value>
+  </data>
+  <data name="Delete Honey Type" xml:space="preserve">
+    <value>Bal Türünü Sil</value>
+  </data>
+  <data name="Profile Photo" xml:space="preserve">
+    <value>Profil Fotoğrafı</value>
+  </data>
+  <data name="Manage educational content (video + explanations) for CCP parameters." xml:space="preserve">
+    <value>KKN parametreleri için eğitici içerikleri (video + açıklamalar) yönetin.</value>
+  </data>
+  <data name="Assign CCP checks" xml:space="preserve">
+    <value>KKN kontrollerini ata</value>
+  </data>
+  <data name="Processing..." xml:space="preserve">
+    <value>İşleniyor...</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Telefon</value>
+  </data>
+  <data name="Company &amp; Location" xml:space="preserve">
+    <value>Firma ve Konum</value>
+  </data>
+  <data name="Contact us" xml:space="preserve">
+    <value>Bize ulaşın</value>
+  </data>
+  <data name="Edit Production Period" xml:space="preserve">
+    <value>Üretim Dönemini Düzenle</value>
+  </data>
+  <data name="Enter last name" xml:space="preserve">
+    <value>Soyadı girin</value>
+  </data>
+  <data name="Parameter Details" xml:space="preserve">
+    <value>Parametre Ayrıntıları</value>
+  </data>
+  <data name="Verify" xml:space="preserve">
+    <value>Doğrula</value>
+  </data>
+  <data name="Longitude" xml:space="preserve">
+    <value>Boylam</value>
+  </data>
+  <data name="Beekeepers" xml:space="preserve">
+    <value>Arıcılar</value>
+  </data>
+  <data name="Change the status with Deactivate / Activate in the beekeepers list (beekeepers do not sign in, so their login stays locked)." xml:space="preserve">
+    <value>Durumu arıcı listesindeki Pasifleştir / Etkinleştir ile değiştirin (arıcılar giriş yapmaz, bu yüzden girişleri kilitli kalır).</value>
+  </data>
+  <data name="Total Amount (kg)" xml:space="preserve">
+    <value>Toplam Miktar (kg)</value>
+  </data>
+  <data name="Create New CCP Parameter Category" xml:space="preserve">
+    <value>Yeni KKN Parametre Kategorisi Oluştur</value>
+  </data>
+  <data name="Honey Story" xml:space="preserve">
+    <value>Bal Hikâyesi</value>
+  </data>
+  <data name="Honey Processing Traceability &amp; CCP Monitoring" xml:space="preserve">
+    <value>Bal İşleme İzlenebilirliği ve KKN İzleme</value>
+  </data>
+  <data name="Add new Apiary" xml:space="preserve">
+    <value>Yeni Arılık Ekle</value>
+  </data>
+  <data name="Save Wholesaler" xml:space="preserve">
+    <value>Toptancıyı Kaydet</value>
+  </data>
+  <data name="Limits" xml:space="preserve">
+    <value>Limitler</value>
+  </data>
+  <data name="New Batch" xml:space="preserve">
+    <value>Yeni Parti</value>
+  </data>
+  <data name="Skip to main content" xml:space="preserve">
+    <value>Ana içeriğe geç</value>
+  </data>
+  <data name="Production Period" xml:space="preserve">
+    <value>Üretim Dönemi</value>
+  </data>
+  <data name="Enter education level title" xml:space="preserve">
+    <value>Eğitim seviyesi adını girin</value>
+  </data>
+  <data name="Education Level" xml:space="preserve">
+    <value>Eğitim Seviyesi</value>
+  </data>
+  <data name="This CCP does not apply here (mark as &quot;Not applicable&quot;)" xml:space="preserve">
+    <value>Bu KKN burada uygulanmıyor (&quot;Uygulanamaz&quot; olarak işaretle)</value>
+  </data>
+  <data name="Location Latitude" xml:space="preserve">
+    <value>Konum Enlemi</value>
+  </data>
+  <data name="Critical Control Point Parameter Categories" xml:space="preserve">
+    <value>Kritik Kontrol Noktası Parametre Kategorileri</value>
+  </data>
+  <data name="Min" xml:space="preserve">
+    <value>En az</value>
+  </data>
+  <data name="Forgot Password" xml:space="preserve">
+    <value>Şifremi Unuttum</value>
+  </data>
+  <data name="Enter title" xml:space="preserve">
+    <value>Başlığı girin</value>
+  </data>
+  <data name="exempt" xml:space="preserve">
+    <value>muaf</value>
+  </data>
+  <data name="Beekeeper Business Number" xml:space="preserve">
+    <value>Arıcı İşletme Numarası</value>
+  </data>
+  <data name="Enter processing step" xml:space="preserve">
+    <value>İşlem adımını girin</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Başlık</value>
+  </data>
+  <data name="Delete this photo?" xml:space="preserve">
+    <value>Bu fotoğraf silinsin mi?</value>
+  </data>
+  <data name="Back to Dashboard" xml:space="preserve">
+    <value>Panele Dön</value>
+  </data>
+  <data name="Create New Honey Type" xml:space="preserve">
+    <value>Yeni Bal Türü Oluştur</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Ayrıntılar</value>
+  </data>
+  <data name="accredited, no. {0}" xml:space="preserve">
+    <value>akredite, no. {0}</value>
+  </data>
+  <data name="Create New Beekeeping Purpose" xml:space="preserve">
+    <value>Yeni Arıcılık Amacı Oluştur</value>
+  </data>
+  <data name="Delete Purpose Type" xml:space="preserve">
+    <value>Amaç Türünü Sil</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Giriş</value>
+  </data>
+  <data name="Source Apiary" xml:space="preserve">
+    <value>Kaynak Arılık</value>
+  </data>
+  <data name="Final batch" xml:space="preserve">
+    <value>Parti</value>
+  </data>
+  <data name="Manage parameter categories used in critical control point monitoring." xml:space="preserve">
+    <value>Kritik kontrol noktası izlemede kullanılan parametre kategorilerini yönetin.</value>
+  </data>
+  <data name="Create CCP Parameter Category" xml:space="preserve">
+    <value>KKN Parametre Kategorisi Oluştur</value>
+  </data>
+  <data name="This action cannot be undone." xml:space="preserve">
+    <value>Bu işlem geri alınamaz.</value>
+  </data>
+  <data name="Project Coordinator" xml:space="preserve">
+    <value>Proje Koordinatörü</value>
+  </data>
+  <data name="for Smart Honey Value Chains" xml:space="preserve">
+    <value>Akıllı Bal Değer Zincirleri için</value>
+  </data>
+  <data name="JPG, PNG or WEBP, at most 8 MB." xml:space="preserve">
+    <value>JPG, PNG veya WEBP, en çok 8 MB.</value>
+  </data>
+  <data name="Not specified" xml:space="preserve">
+    <value>Belirtilmedi</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Önceki</value>
+  </data>
+  <data name="Wholesalers" xml:space="preserve">
+    <value>Toptancılar</value>
+  </data>
+  <data name="Note.BeekeeperDeactivation" xml:space="preserve">
+    <value>Bal izlenebilirliğinin korunması için &lt;strong&gt;arıcılar hiçbir zaman silinmez&lt;/strong&gt;. Bir arıcıyı kullanımdan kaldırmak için &lt;strong&gt;pasifleştirin&lt;/strong&gt;: arıcının kaydı, arılıkları ve bal üretimleri korunur, satır gri olarak &lt;em&gt;Pasif&lt;/em&gt; şeklinde gösterilir ve arıcının girişi kilitlenir. &lt;strong&gt;Etkinleştir&lt;/strong&gt; arıcıyı geri getirir. Arıcılar web paneline giriş yapmaz, bu yüzden girişleri her durumda kilitli kalır.</value>
+  </data>
+  <data name="Enter password" xml:space="preserve">
+    <value>Parolayı girin</value>
+  </data>
+  <data name="Final Batches" xml:space="preserve">
+    <value>Partiler</value>
+  </data>
+  <data name="Are you sure you want to delete this beekeeping purpose type? This action cannot be undone." xml:space="preserve">
+    <value>Bu arıcılık amaç türünü silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.</value>
+  </data>
+  <data name="Parameter Name" xml:space="preserve">
+    <value>Parametre Adı</value>
+  </data>
+  <data name="Edit Content" xml:space="preserve">
+    <value>İçeriği Düzenle</value>
+  </data>
+  <data name="Final Batch CCP Assignment" xml:space="preserve">
+    <value>Parti KKN Ataması</value>
+  </data>
+  <data name="Required for the CCP to be completed" xml:space="preserve">
+    <value>KKN'nin tamamlanması için zorunlu</value>
+  </data>
+  <data name="Project Scope" xml:space="preserve">
+    <value>Proje Kapsamı</value>
+  </data>
+  <data name="No matching records found" xml:space="preserve">
+    <value>Eşleşen kayıt bulunamadı</value>
+  </data>
+  <data name="Activate" xml:space="preserve">
+    <value>Etkinleştir</value>
+  </data>
+  <data name="Update the selected raw honey production period." xml:space="preserve">
+    <value>Seçili ham bal üretim dönemini güncelleyin.</value>
+  </data>
+  <data name="Upload Photo" xml:space="preserve">
+    <value>Fotoğraf Yükle</value>
+  </data>
+  <data name="Edit Beekeeping Purpose" xml:space="preserve">
+    <value>Arıcılık Amacını Düzenle</value>
+  </data>
+  <data name="Beekeeping Type" xml:space="preserve">
+    <value>Arıcılık Türü</value>
+  </data>
+  <data name="Yes, save it" xml:space="preserve">
+    <value>Evet, kaydet</value>
+  </data>
+  <data name="After finalizing, editing will be disabled." xml:space="preserve">
+    <value>Kesinleştirdikten sonra düzenleme kapatılır.</value>
+  </data>
+  <data name="Update the details of the selected CCP." xml:space="preserve">
+    <value>Seçili KKN'nin bilgilerini güncelleyin.</value>
+  </data>
+  <data name="Manage CCP" xml:space="preserve">
+    <value>KKN Yönet</value>
+  </data>
+  <data name="Flow" xml:space="preserve">
+    <value>Akış</value>
+  </data>
+  <data name="Update wholesaler company and contact information." xml:space="preserve">
+    <value>Toptancının firma ve iletişim bilgilerini güncelleyin.</value>
+  </data>
+  <data name="Traceable Product" xml:space="preserve">
+    <value>İzlenebilir Ürün</value>
+  </data>
+  <data name="International Research Collaboration" xml:space="preserve">
+    <value>Uluslararası Araştırma İş Birliği</value>
+  </data>
+  <data name="Top 5 Most Productive Apiaries" xml:space="preserve">
+    <value>En Verimli 5 Arılık</value>
+  </data>
+  <data name="Create CCP Parameter" xml:space="preserve">
+    <value>KKN Parametresi Oluştur</value>
+  </data>
+  <data name="Apiary" xml:space="preserve">
+    <value>Arılık</value>
+  </data>
+  <data name="The platform is implemented in Türkiye and Argentina with potential global adoption." xml:space="preserve">
+    <value>Platform Türkiye ve Arjantin'de uygulanmakta olup küresel ölçekte benimsenme potansiyeline sahiptir.</value>
+  </data>
+  <data name="Photo" xml:space="preserve">
+    <value>Fotoğraf</value>
+  </data>
+  <data name="You do not have permission to access this page." xml:space="preserve">
+    <value>Bu sayfaya erişim yetkiniz yok.</value>
+  </data>
+  <data name="Uploading a new video will replace the old one" xml:space="preserve">
+    <value>Yeni bir video yüklemek eskisinin yerine geçer</value>
+  </data>
+  <data name="International Collaboration" xml:space="preserve">
+    <value>Uluslararası İş Birliği</value>
+  </data>
+  <data name="Recall" xml:space="preserve">
+    <value>Geri çağırma</value>
+  </data>
+  <data name="Select Honey Type" xml:space="preserve">
+    <value>Bal Türü Seçin</value>
+  </data>
+  <data name="Update the selected beekeeping type." xml:space="preserve">
+    <value>Seçili arıcılık türünü güncelleyin.</value>
+  </data>
+  <data name="Select Wholesaler" xml:space="preserve">
+    <value>Toptancı Seçin</value>
+  </data>
+  <data name="Note.SeeIneligible" xml:space="preserve">
+    <value>Eksik KKN kontrolleri için aşağıdaki &lt;a href=&quot;#not-eligible-lots&quot;&gt;Henüz uygun olmayan ham bal lotları&lt;/a&gt; bölümüne bakın.</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Genel Bakış</value>
+  </data>
+  <data name="Critical Control Points" xml:space="preserve">
+    <value>Kritik Kontrol Noktaları</value>
+  </data>
+  <data name="Delete Wholesaler" xml:space="preserve">
+    <value>Toptancıyı Sil</value>
+  </data>
+  <data name="Limits for honey class:" xml:space="preserve">
+    <value>Bal sınıfı için limitler:</value>
+  </data>
+  <data name="You can update text without changing video" xml:space="preserve">
+    <value>Videoyu değiştirmeden metni güncelleyebilirsiniz</value>
+  </data>
+  <data name="Are you sure you want to delete this parameter?" xml:space="preserve">
+    <value>Bu parametreyi silmek istediğinizden emin misiniz?</value>
+  </data>
+  <data name="Delete Permanently" xml:space="preserve">
+    <value>Kalıcı Olarak Sil</value>
+  </data>
+  <data name="About Platform" xml:space="preserve">
+    <value>Platform Hakkında</value>
+  </data>
+  <data name="Apiary Photos" xml:space="preserve">
+    <value>Arılık Fotoğrafları</value>
+  </data>
+  <data name="Create New Education Level" xml:space="preserve">
+    <value>Yeni Eğitim Seviyesi Oluştur</value>
+  </data>
+  <data name="Use simple language for consumers" xml:space="preserve">
+    <value>Tüketiciler için sade bir dil kullanın</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Düzenle</value>
+  </data>
+  <data name="Editing Mode" xml:space="preserve">
+    <value>Düzenleme Modu</value>
+  </data>
+  <data name="Total Apiaries" xml:space="preserve">
+    <value>Toplam Arılık</value>
+  </data>
+  <data name="Not applicable." xml:space="preserve">
+    <value>Uygulanamaz.</value>
+  </data>
+  <data name="(unknown: only limits for every honey class apply)" xml:space="preserve">
+    <value>(bilinmiyor: yalnızca tüm bal sınıfları için geçerli limitler uygulanır)</value>
+  </data>
+  <data name="Text Value" xml:space="preserve">
+    <value>Metin Değeri</value>
+  </data>
+  <data name="Latvia" xml:space="preserve">
+    <value>Letonya</value>
+  </data>
+  <data name="No data available in table" xml:space="preserve">
+    <value>Tabloda veri yok</value>
+  </data>
+  <data name="Company Name" xml:space="preserve">
+    <value>Firma Adı</value>
+  </data>
+  <data name=", valid until {0}" xml:space="preserve">
+    <value>, geçerlilik sonu {0}</value>
+  </data>
+  <data name="New Entry" xml:space="preserve">
+    <value>Yeni Kayıt</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Ana Sayfa</value>
+  </data>
+  <data name="Back to list" xml:space="preserve">
+    <value>Listeye dön</value>
+  </data>
+  <data name="Create User" xml:space="preserve">
+    <value>Kullanıcı Oluştur</value>
+  </data>
+  <data name="Parameter Video" xml:space="preserve">
+    <value>Parametre Videosu</value>
+  </data>
+  <data name="The field must be a number." xml:space="preserve">
+    <value>Alan bir sayı olmalıdır.</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Kopyala</value>
+  </data>
+  <data name="Delete Education Level" xml:space="preserve">
+    <value>Eğitim Seviyesini Sil</value>
+  </data>
+  <data name="Edit Wholesaler" xml:space="preserve">
+    <value>Toptancıyı Düzenle</value>
+  </data>
+  <data name="Season:" xml:space="preserve">
+    <value>Sezon:</value>
+  </data>
+  <data name="Use Amount (kg)" xml:space="preserve">
+    <value>Kullanılacak Miktar (kg)</value>
+  </data>
+  <data name="Batch Info" xml:space="preserve">
+    <value>Parti Bilgileri</value>
+  </data>
+  <data name="Main navigation" xml:space="preserve">
+    <value>Ana menü</value>
+  </data>
+  <data name="Update the selected honey type." xml:space="preserve">
+    <value>Seçili bal türünü güncelleyin.</value>
+  </data>
+  <data name="Intake" xml:space="preserve">
+    <value>Teslim</value>
+  </data>
+  <data name="Save Batch Composition" xml:space="preserve">
+    <value>Parti Bileşimini Kaydet</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Geri</value>
+  </data>
+  <data name="Honey Traceability Certificate" xml:space="preserve">
+    <value>Bal İzlenebilirlik Sertifikası</value>
+  </data>
+  <data name="Sustainable Beekeeping" xml:space="preserve">
+    <value>Sürdürülebilir Arıcılık</value>
+  </data>
+  <data name="Dangerous Action" xml:space="preserve">
+    <value>Tehlikeli İşlem</value>
+  </data>
+  <data name="Enter new password" xml:space="preserve">
+    <value>Yeni parolayı girin</value>
+  </data>
+  <data name="Update the selected parameter category details." xml:space="preserve">
+    <value>Seçili parametre kategorisinin bilgilerini güncelleyin.</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>Tamam</value>
+  </data>
+  <data name="Processing Step" xml:space="preserve">
+    <value>İşlem Adımı</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>İçerik</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="Category Name" xml:space="preserve">
+    <value>Kategori Adı</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>İşlem</value>
+  </data>
+  <data name="Title:" xml:space="preserve">
+    <value>Başlık:</value>
+  </data>
+  <data name="Update existing production record" xml:space="preserve">
+    <value>Mevcut üretim kaydını güncelleyin</value>
+  </data>
+  <data name="Manage" xml:space="preserve">
+    <value>Yönet</value>
+  </data>
+  <data name="Add limit" xml:space="preserve">
+    <value>Limit ekle</value>
+  </data>
+  <data name="Wholesaler Details" xml:space="preserve">
+    <value>Toptancı Bilgileri</value>
+  </data>
+  <data name="Honeydew" xml:space="preserve">
+    <value>Salgı balı</value>
+  </data>
+  <data name="See what is missing below" xml:space="preserve">
+    <value>Eksikleri aşağıda görün</value>
+  </data>
+  <data name="Raw Honey Productions" xml:space="preserve">
+    <value>Ham Bal Üretimleri</value>
+  </data>
+  <data name="Beekeeper registry" xml:space="preserve">
+    <value>Arıcı kaydı</value>
+  </data>
+  <data name="Latitude" xml:space="preserve">
+    <value>Enlem</value>
+  </data>
+  <data name="Storage" xml:space="preserve">
+    <value>Depolama</value>
+  </data>
+  <data name="DEV MODE:" xml:space="preserve">
+    <value>GELİŞTİRME MODU:</value>
+  </data>
+  <data name="Keep explanations user-friendly" xml:space="preserve">
+    <value>Açıklamaları kullanıcı dostu tutun</value>
+  </data>
+  <data name="Beekeeping Purpose Types" xml:space="preserve">
+    <value>Arıcılık Amaç Türleri</value>
+  </data>
+  <data name="Enter wholesaler company and contact information." xml:space="preserve">
+    <value>Toptancının firma ve iletişim bilgilerini girin.</value>
+  </data>
+  <data name="Apiaries by beekeeper" xml:space="preserve">
+    <value>Arıcıya göre arılıklar</value>
+  </data>
+  <data name="Educational explanation" xml:space="preserve">
+    <value>Eğitici açıklama</value>
+  </data>
+  <data name="Trustable and Sustainable Open Platform" xml:space="preserve">
+    <value>Güvenilir ve Sürdürülebilir Açık Platform</value>
+  </data>
+  <data name="Are you sure you want to delete this CCP?" xml:space="preserve">
+    <value>Bu KKN'yi silmek istediğinizden emin misiniz?</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Not</value>
+  </data>
+  <data name="Video not found" xml:space="preserve">
+    <value>Video bulunamadı</value>
+  </data>
+  <data name="Approximate area" xml:space="preserve">
+    <value>Yaklaşık alan</value>
+  </data>
+  <data name="Change Profile Photo" xml:space="preserve">
+    <value>Profil Fotoğrafını Değiştir</value>
+  </data>
+  <data name="Locked" xml:space="preserve">
+    <value>Kilitli</value>
+  </data>
+  <data name="Manage blended honey batches and CCP traceability records." xml:space="preserve">
+    <value>Harmanlanmış bal partilerini ve KKN izlenebilirlik kayıtlarını yönetin.</value>
+  </data>
+  <data name="Yes / No" xml:space="preserve">
+    <value>Evet / Hayır</value>
+  </data>
+  <data name="Top 5 Most Productive Beekeepers" xml:space="preserve">
+    <value>En Verimli 5 Arıcı</value>
+  </data>
+  <data name="Enter username" xml:space="preserve">
+    <value>Kullanıcı adını girin</value>
+  </data>
+  <data name="Create a new blended honey production batch. QR code will be generated automatically." xml:space="preserve">
+    <value>Yeni bir harmanlanmış bal üretim partisi oluşturun. QR kodu otomatik olarak üretilir.</value>
+  </data>
+  <data name="Note.Footer" xml:space="preserve">
+    <value>- INTALA LAB tarafından &lt;i class=&quot;mdi mdi-heart text-danger&quot;&gt;&lt;/i&gt; ile geliştirildi.</value>
+  </data>
+  <data name="Tax Number (Optional)" xml:space="preserve">
+    <value>Vergi Numarası (İsteğe Bağlı)</value>
+  </data>
+  <data name="Column visibility" xml:space="preserve">
+    <value>Sütun görünürlüğü</value>
+  </data>
+  <data name="Raw Honey Production Monitoring Panel" xml:space="preserve">
+    <value>Ham Bal Üretimi İzleme Paneli</value>
+  </data>
+  <data name="Lifecycle &amp; Traceability Monitoring" xml:space="preserve">
+    <value>Yaşam Döngüsü ve İzlenebilirlik İzleme</value>
+  </data>
+  <data name="This will update the batch composition." xml:space="preserve">
+    <value>Bu işlem parti bileşimini günceller.</value>
+  </data>
+  <data name="Define a new category for CCP monitoring parameters." xml:space="preserve">
+    <value>KKN izleme parametreleri için yeni bir kategori tanımlayın.</value>
+  </data>
+  <data name="Explain why this step is critical..." xml:space="preserve">
+    <value>Bu adımın neden kritik olduğunu açıklayın...</value>
+  </data>
+  <data name="Purpose Title" xml:space="preserve">
+    <value>Amaç Adı</value>
+  </data>
+  <data name="Honey Origins Map" xml:space="preserve">
+    <value>Bal Kaynakları Haritası</value>
+  </data>
+  <data name="Assign Critical Control Points to this Final Batch." xml:space="preserve">
+    <value>Bu partiye Kritik Kontrol Noktaları atayın.</value>
+  </data>
+  <data name="Quality Control" xml:space="preserve">
+    <value>Kalite Kontrol</value>
+  </data>
+  <data name="Add Wholesaler" xml:space="preserve">
+    <value>Toptancı Ekle</value>
+  </data>
+  <data name="Enter company name" xml:space="preserve">
+    <value>Firma adını girin</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Kullanıcı Adı</value>
+  </data>
+  <data name="Save Production" xml:space="preserve">
+    <value>Üretimi Kaydet</value>
+  </data>
+  <data name="no minimum" xml:space="preserve">
+    <value>en küçük değer yok</value>
+  </data>
+  <data name="The supplied value is invalid." xml:space="preserve">
+    <value>Girilen değer geçersiz.</value>
+  </data>
+  <data name="Copied 1 row to clipboard" xml:space="preserve">
+    <value>1 satır panoya kopyalandı</value>
+  </data>
+  <data name="Verified by" xml:space="preserve">
+    <value>Doğrulayan</value>
+  </data>
+  <data name="Türkiye" xml:space="preserve">
+    <value>Türkiye</value>
+  </data>
+  <data name="Total Wholesalers" xml:space="preserve">
+    <value>Toplam Toptancı</value>
+  </data>
+  <data name="A microservice-based open data platform enables secure data sharing across the honey value chain." xml:space="preserve">
+    <value>Mikroservis tabanlı açık veri platformu, bal değer zinciri boyunca güvenli veri paylaşımı sağlar.</value>
+  </data>
+  <data name="Total Batch Amount" xml:space="preserve">
+    <value>Toplam Parti Miktarı</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Tür</value>
+  </data>
+  <data name="Access Platform" xml:space="preserve">
+    <value>Platforma Giriş</value>
+  </data>
+  <data name="Enter description for this honey type" xml:space="preserve">
+    <value>Bu bal türü için açıklama girin</value>
+  </data>
+  <data name="A value is required." xml:space="preserve">
+    <value>Bir değer zorunludur.</value>
+  </data>
+  <data name="Warning: Deleting this wholesaler may affect raw honey production traceability records." xml:space="preserve">
+    <value>Uyarı: Bu toptancıyı silmek ham bal üretimi izlenebilirlik kayıtlarını etkileyebilir.</value>
+  </data>
+  <data name="Final Batch CCP Monitoring" xml:space="preserve">
+    <value>Parti KKN İzleme</value>
+  </data>
+  <data name="TOTAL HONEY" xml:space="preserve">
+    <value>TOPLAM BAL</value>
+  </data>
+  <data name="Batch Info:" xml:space="preserve">
+    <value>Parti Bilgileri:</value>
+  </data>
+  <data name="Delete CCP Parameter" xml:space="preserve">
+    <value>KKN Parametresini Sil</value>
+  </data>
+  <data name="MP4 or WEBM, at most 25 MB. This video will be shown in Honey Story." xml:space="preserve">
+    <value>MP4 veya WEBM, en çok 25 MB. Bu video Bal Hikâyesi'nde gösterilir.</value>
+  </data>
+  <data name="About the Project" xml:space="preserve">
+    <value>Proje Hakkında</value>
+  </data>
+  <data name="Education Level Title" xml:space="preserve">
+    <value>Eğitim Seviyesi Adı</value>
+  </data>
+  <data name="Notes" xml:space="preserve">
+    <value>Notlar</value>
+  </data>
+  <data name="Why Important?" xml:space="preserve">
+    <value>Neden Önemli?</value>
+  </data>
+  <data name="Upload Video" xml:space="preserve">
+    <value>Video Yükle</value>
+  </data>
+  <data name="Update Password" xml:space="preserve">
+    <value>Parolayı Güncelle</value>
+  </data>
+  <data name="Beekeeper Contribution Breakdown" xml:space="preserve">
+    <value>Arıcı Katkı Dağılımı</value>
+  </data>
+  <data name="platform" xml:space="preserve">
+    <value>platform</value>
+  </data>
+  <data name="Processing &amp; packaging" xml:space="preserve">
+    <value>İşleme ve paketleme</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Şehir</value>
+  </data>
+  <data name="Only if this parameter" xml:space="preserve">
+    <value>Yalnızca şu parametre</value>
+  </data>
+  <data name="Status:" xml:space="preserve">
+    <value>Durum:</value>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>İşlemler</value>
+  </data>
+  <data name="CCP Monitoring" xml:space="preserve">
+    <value>KKN İzleme</value>
+  </data>
+  <data name="Active Wholesaler" xml:space="preserve">
+    <value>Etkin Toptancı</value>
+  </data>
+  <data name="Update batch metadata. Composition and total amount are managed separately." xml:space="preserve">
+    <value>Parti bilgilerini güncelleyin. Bileşim ve toplam miktar ayrıca yönetilir.</value>
+  </data>
+  <data name="Save Assignments" xml:space="preserve">
+    <value>Atamaları Kaydet</value>
+  </data>
+  <data name="Add a new honey type and its description." xml:space="preserve">
+    <value>Yeni bir bal türü ve açıklamasını ekleyin.</value>
+  </data>
+  <data name="Enter contact person name" xml:space="preserve">
+    <value>İlgili kişinin adını girin</value>
+  </data>
+  <data name="Wholesaler:" xml:space="preserve">
+    <value>Toptancı:</value>
+  </data>
+  <data name="Apiaries" xml:space="preserve">
+    <value>Arılıklar</value>
+  </data>
+  <data name="A non-empty request body is required." xml:space="preserve">
+    <value>Boş olmayan bir istek gövdesi gereklidir.</value>
+  </data>
+  <data name="Your user name and the time are recorded with the reason. It is shown as &quot;Not applicable&quot; on the public Honey Story page." xml:space="preserve">
+    <value>Kullanıcı adınız ve zaman, gerekçeyle birlikte kaydedilir. Herkese açık Bal Hikâyesi sayfasında &quot;Uygulanamaz&quot; olarak gösterilir.</value>
+  </data>
+  <data name="Date:" xml:space="preserve">
+    <value>Tarih:</value>
+  </data>
+  <data name="Enter first name" xml:space="preserve">
+    <value>Adı girin</value>
+  </data>
+  <data name="Honey class / type" xml:space="preserve">
+    <value>Bal sınıfı / türü</value>
+  </data>
+  <data name="Record CCP values" xml:space="preserve">
+    <value>KKN değerlerini gir</value>
+  </data>
+  <data name="Enter category name" xml:space="preserve">
+    <value>Kategori adını girin</value>
+  </data>
+  <data name="Total Production" xml:space="preserve">
+    <value>Toplam Üretim</value>
+  </data>
+  <data name="Not applicable:" xml:space="preserve">
+    <value>Uygulanamaz:</value>
+  </data>
+  <data name="ApiaryPhotos" xml:space="preserve">
+    <value>Arılık fotoğrafları</value>
+  </data>
+  <data name="Honey Class" xml:space="preserve">
+    <value>Bal sınıfı</value>
+  </data>
+  <data name="{0} batch(es) of another organization" xml:space="preserve">
+    <value>başka bir kuruma ait {0} parti</value>
+  </data>
+  <data name="The {0} field is not a valid phone number." xml:space="preserve">
+    <value>{0} alanı geçerli bir telefon numarası değil.</value>
+  </data>
+  <data name="Beekeeper Phone Number" xml:space="preserve">
+    <value>Telefon numarası</value>
+  </data>
+  <data name="Quality control points recorded for this honey: {0} of {1}" xml:space="preserve">
+    <value>Bu bal için kaydedilen kalite kontrol noktaları: {0} / {1}</value>
+  </data>
+  <data name="Beekeeping Type Id" xml:space="preserve">
+    <value>Arıcılık türü</value>
+  </data>
+  <data name="Why Important" xml:space="preserve">
+    <value>Neden önemli</value>
+  </data>
+  <data name="BeekeeperRegistry" xml:space="preserve">
+    <value>Arıcı kaydı</value>
+  </data>
+  <data name="Final Honey Production Date" xml:space="preserve">
+    <value>Üretim tarihi</value>
+  </data>
+  <data name="Beekeeper Id" xml:space="preserve">
+    <value>Arıcı</value>
+  </data>
+  <data name="Shipment" xml:space="preserve">
+    <value>Sevkiyat</value>
+  </data>
+  <data name="The field {0} must be between {1} and {2}." xml:space="preserve">
+    <value>{0} alanı {1} ile {2} arasında olmalıdır.</value>
+  </data>
+  <data name="Registry verification" xml:space="preserve">
+    <value>Kayıt doğrulama</value>
+  </data>
+  <data name="Wholesaler Tax No" xml:space="preserve">
+    <value>Toptancı vergi no.</value>
+  </data>
+  <data name="District" xml:space="preserve">
+    <value>İlçe</value>
+  </data>
+  <data name="t" xml:space="preserve">
+    <value>ton</value>
+  </data>
+  <data name="Content Id" xml:space="preserve">
+    <value>İçerik (no.)</value>
+  </data>
+  <data name="CriticalControlPointMonitoringLogs" xml:space="preserve">
+    <value>Kritik kontrol noktası izleme kayıtları</value>
+  </data>
+  <data name="Data Type" xml:space="preserve">
+    <value>Veri türü</value>
+  </data>
+  <data name="Critical limit:" xml:space="preserve">
+    <value>Kritik limit:</value>
+  </data>
+  <data name="FinalHoneyProductionDetails" xml:space="preserve">
+    <value>Nihai bal üretimi ayrıntıları</value>
+  </data>
+  <data name="Apiary QR Code" xml:space="preserve">
+    <value>Arılık QR kodu</value>
+  </data>
+  <data name="Long:" xml:space="preserve">
+    <value>Boylam:</value>
+  </data>
+  <data name="Final Honey Production Title" xml:space="preserve">
+    <value>Parti adı</value>
+  </data>
+  <data name="Wholesaler Phone" xml:space="preserve">
+    <value>Toptancı telefonu</value>
+  </data>
+  <data name="BeekeeperStorefronts" xml:space="preserve">
+    <value>Arıcı sayfaları</value>
+  </data>
+  <data name="CriticalControlPoints" xml:space="preserve">
+    <value>Kritik Kontrol Noktaları</value>
+  </data>
+  <data name="all data (platform administrator)" xml:space="preserve">
+    <value>tüm veriler (platform yöneticisi)</value>
+  </data>
+  <data name="Beekeeper Experience Time" xml:space="preserve">
+    <value>Deneyim süresi</value>
+  </data>
+  <data name="Honey Type Description" xml:space="preserve">
+    <value>Bal türü açıklaması</value>
+  </data>
+  <data name="Raw Honey Production Period Title" xml:space="preserve">
+    <value>Üretim dönemi adı</value>
+  </data>
+  <data name="Limit Note" xml:space="preserve">
+    <value>Limit notu</value>
+  </data>
+  <data name="association's member lot" xml:space="preserve">
+    <value>birliğin üye lotu</value>
+  </data>
+  <data name="{0} lot(s) of another organization" xml:space="preserve">
+    <value>başka bir kuruma ait {0} lot</value>
+  </data>
+  <data name="The field {0} must be a string with a minimum length of {2} and a maximum length of {1}." xml:space="preserve">
+    <value>{0} alanı en az {2}, en çok {1} karakter olmalıdır.</value>
+  </data>
+  <data name="CcpResponsibilities" xml:space="preserve">
+    <value>KKN sorumlulukları</value>
+  </data>
+  <data name="Apiary Id" xml:space="preserve">
+    <value>Arılık</value>
+  </data>
+  <data name="OrgVerificationEvents" xml:space="preserve">
+    <value>Kurum doğrulama olayları</value>
+  </data>
+  <data name="BatchOriginShares" xml:space="preserve">
+    <value>Parti menşe payları</value>
+  </data>
+  <data name="ReferenceTranslations" xml:space="preserve">
+    <value>Referans çevirileri</value>
+  </data>
+  <data name="Out of limit" xml:space="preserve">
+    <value>Limit dışında</value>
+  </data>
+  <data name="Final Honey Production Wholesaler Id" xml:space="preserve">
+    <value>Toptancı</value>
+  </data>
+  <data name="Remove File" xml:space="preserve">
+    <value>Dosyayı kaldır</value>
+  </data>
+  <data name="CcpResponsibilityRoles" xml:space="preserve">
+    <value>KKN sorumluluk rolleri</value>
+  </data>
+  <data name="OrgRoles" xml:space="preserve">
+    <value>Kurum rolleri</value>
+  </data>
+  <data name="RawLot" xml:space="preserve">
+    <value>Ham bal lotu</value>
+  </data>
+  <data name="You requested a password reset." xml:space="preserve">
+    <value>Şifre sıfırlama talebinde bulundunuz.</value>
+  </data>
+  <data name="Public Text Values" xml:space="preserve">
+    <value>Metin değerleri herkese açık</value>
+  </data>
+  <data name="Reason:" xml:space="preserve">
+    <value>Gerekçe:</value>
+  </data>
+  <data name="Unverified" xml:space="preserve">
+    <value>Doğrulanmadı</value>
+  </data>
+  <data name="AuditEntries" xml:space="preserve">
+    <value>Denetim kayıtları</value>
+  </data>
+  <data name="Leave off when answers may contain personal data or locations (e.g. a field audit at the beekeeper). Yes/No and numbers are always shown; files never." xml:space="preserve">
+    <value>Cevaplar kişisel veri veya konum içerebiliyorsa (ör. arıcıda saha denetimi) kapalı bırakın. Evet/Hayır ve sayılar her zaman gösterilir; dosyalar hiçbir zaman.</value>
+  </data>
+  <data name="Beekeeper Education Level Title" xml:space="preserve">
+    <value>Eğitim seviyesi adı</value>
+  </data>
+  <data name="Is Required" xml:space="preserve">
+    <value>Zorunlu</value>
+  </data>
+  <data name="Hello," xml:space="preserve">
+    <value>Merhaba,</value>
+  </data>
+  <data name="Manual" xml:space="preserve">
+    <value>Elle (belge ve onay)</value>
+  </data>
+  <data name="Legal Name" xml:space="preserve">
+    <value>Resmî unvan</value>
+  </data>
+  <data name="Profile Photo File" xml:space="preserve">
+    <value>Profil fotoğrafı dosyası</value>
+  </data>
+  <data name="Wholesaler City" xml:space="preserve">
+    <value>Toptancı şehri</value>
+  </data>
+  <data name="Seeded from the Turkish Food Codex; to be verified" xml:space="preserve">
+    <value>Türk Gıda Kodeksi'nden alındı; doğrulanmalı</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>İptal edildi</value>
+  </data>
+  <data name="Category Desc" xml:space="preserve">
+    <value>Kategori açıklaması</value>
+  </data>
+  <data name="shipments to and from the organization" xml:space="preserve">
+    <value>kuruma gelen ve giden sevkiyatlar</value>
+  </data>
+  <data name="Finalize" xml:space="preserve">
+    <value>Kesinleştir</value>
+  </data>
+  <data name="Consents" xml:space="preserve">
+    <value>Rızalar</value>
+  </data>
+  <data name="Raw Honey Production Amount" xml:space="preserve">
+    <value>Ham bal miktarı</value>
+  </data>
+  <data name="Keeps photos and honey productions; greys out the apiary. Apiaries are never deleted." xml:space="preserve">
+    <value>Fotoğraflar ve bal üretimleri korunur; arılık gri gösterilir. Arılıklar hiçbir zaman silinmez.</value>
+  </data>
+  <data name="BeekeepingPurposeTypes" xml:space="preserve">
+    <value>Arıcılık amaç türleri</value>
+  </data>
+  <data name="Apiary Beekeeper Id" xml:space="preserve">
+    <value>Arılığın arıcısı</value>
+  </data>
+  <data name="Raw Honey Production Honey Type" xml:space="preserve">
+    <value>Ham bal türü</value>
+  </data>
+  <data name="SMS" xml:space="preserve">
+    <value>SMS</value>
+  </data>
+  <data name="Logged" xml:space="preserve">
+    <value>Kaydedildi</value>
+  </data>
+  <data name="Beekeeper Education Level Id" xml:space="preserve">
+    <value>Eğitim seviyesi</value>
+  </data>
+  <data name="The {0} field is not a valid e-mail address." xml:space="preserve">
+    <value>{0} alanı geçerli bir e-posta adresi değil.</value>
+  </data>
+  <data name="Pine" xml:space="preserve">
+    <value>Çam balı</value>
+  </data>
+  <data name="RawHoneyCCPAssignments" xml:space="preserve">
+    <value>Ham bal KKN atamaları</value>
+  </data>
+  <data name="Beekeeper First Name" xml:space="preserve">
+    <value>Ad</value>
+  </data>
+  <data name="Section" xml:space="preserve">
+    <value>Bölüm</value>
+  </data>
+  <data name="Apiaries of {0}" xml:space="preserve">
+    <value>{0} - arılıklar</value>
+  </data>
+  <data name="Limit Source" xml:space="preserve">
+    <value>Limit kaynağı</value>
+  </data>
+  <data name="Wholesaler Email" xml:space="preserve">
+    <value>Toptancı e-postası</value>
+  </data>
+  <data name="The {0} field is required." xml:space="preserve">
+    <value>{0} alanı zorunludur.</value>
+  </data>
+  <data name="The field {0} must match the regular expression '{1}'." xml:space="preserve">
+    <value>{0} alanı '{1}' düzenli ifadesine uymalıdır.</value>
+  </data>
+  <data name="Wholesaler Address" xml:space="preserve">
+    <value>Toptancı adresi</value>
+  </data>
+  <data name="What Is It" xml:space="preserve">
+    <value>Nedir</value>
+  </data>
+  <data name="Started:" xml:space="preserve">
+    <value>Başlangıç:</value>
+  </data>
+  <data name="Max Value" xml:space="preserve">
+    <value>En büyük değer</value>
+  </data>
+  <data name="Administrator" xml:space="preserve">
+    <value>Yönetici</value>
+  </data>
+  <data name="Raw Honey Production Period Start Date" xml:space="preserve">
+    <value>Üretim dönemi başlangıç tarihi</value>
+  </data>
+  <data name="CcpResponsibilityCapabilities" xml:space="preserve">
+    <value>KKN sorumluluk yetenekleri</value>
+  </data>
+  <data name="YesNo" xml:space="preserve">
+    <value>Evet / Hayır</value>
+  </data>
+  <data name="Used in a finalized batch; it cannot be edited or deleted" xml:space="preserve">
+    <value>Kesinleşmiş bir partide kullanıldı; düzenlenemez veya silinemez</value>
+  </data>
+  <data name="Apiary Beehives Count" xml:space="preserve">
+    <value>Kovan sayısı</value>
+  </data>
+  <data name="The field {0} must be a string with a maximum length of {1}." xml:space="preserve">
+    <value>{0} alanı en çok {1} karakter olmalıdır.</value>
+  </data>
+  <data name="OrgRoleDefinitions" xml:space="preserve">
+    <value>Kurum rolü tanımları</value>
+  </data>
+  <data name="Province" xml:space="preserve">
+    <value>İl</value>
+  </data>
+  <data name="FinalHoneyProductions" xml:space="preserve">
+    <value>Nihai bal üretimleri</value>
+  </data>
+  <data name="Raw Honey Production Period Id" xml:space="preserve">
+    <value>Üretim dönemi</value>
+  </data>
+  <data name="If you did not request this, please ignore this email." xml:space="preserve">
+    <value>Bu talepte bulunmadıysanız bu e-postayı dikkate almayın.</value>
+  </data>
+  <data name="Storefront" xml:space="preserve">
+    <value>Arıcı sayfası</value>
+  </data>
+  <data name="Is Active" xml:space="preserve">
+    <value>Etkin</value>
+  </data>
+  <data name="Floral" xml:space="preserve">
+    <value>Çiçek balı</value>
+  </data>
+  <data name="Lat:" xml:space="preserve">
+    <value>Enlem:</value>
+  </data>
+  <data name="Amount:" xml:space="preserve">
+    <value>Miktar:</value>
+  </data>
+  <data name="The field {0} must be a string or array type with a maximum length of '{1}'." xml:space="preserve">
+    <value>{0} alanının uzunluğu en çok '{1}' olmalıdır.</value>
+  </data>
+  <data name="Recorded by {0} on {1}" xml:space="preserve">
+    <value>{0} tarafından {1} tarihinde kaydedildi</value>
+  </data>
+  <data name="Licence" xml:space="preserve">
+    <value>Ruhsat</value>
+  </data>
+  <data name="Beekeeping Purpose Type Id" xml:space="preserve">
+    <value>Arıcılık amaç türü</value>
+  </data>
+  <data name="Add Parameter Content for" xml:space="preserve">
+    <value>Parametre içeriği ekle:</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Onaylandı</value>
+  </data>
+  <data name="TaxCertificate" xml:space="preserve">
+    <value>Vergi levhası</value>
+  </data>
+  <data name="AspNetUsers" xml:space="preserve">
+    <value>Kullanıcılar</value>
+  </data>
+  <data name="Detail" xml:space="preserve">
+    <value>Ayrıntı</value>
+  </data>
+  <data name="HolderStorageValues" xml:space="preserve">
+    <value>Emanetçi depolama değerleri</value>
+  </data>
+  <data name="LabReports" xml:space="preserve">
+    <value>Laboratuvar raporları</value>
+  </data>
+  <data name="Raw Honey Production Date" xml:space="preserve">
+    <value>Ham bal üretim tarihi</value>
+  </data>
+  <data name="Quantity (kg)" xml:space="preserve">
+    <value>Miktar (kg)</value>
+  </data>
+  <data name="Applied" xml:space="preserve">
+    <value>Uygulandı</value>
+  </data>
+  <data name="Reset your TOP4HoneyChains password" xml:space="preserve">
+    <value>TOP4HoneyChains şifrenizi sıfırlayın</value>
+  </data>
+  <data name="'{0}' and '{1}' do not match." xml:space="preserve">
+    <value>'{0}' ve '{1}' eşleşmiyor.</value>
+  </data>
+  <data name="Measured Numeric Value" xml:space="preserve">
+    <value>Ölçülen sayısal değer</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>Dosya</value>
+  </data>
+  <data name="CriticalControlPointParameterLimits" xml:space="preserve">
+    <value>Kritik kontrol noktası parametre limitleri</value>
+  </data>
+  <data name="owning organization's part" xml:space="preserve">
+    <value>sahip kurumun kısmı</value>
+  </data>
+  <data name="Keeps all records; greys out the beekeeper and locks their login. Beekeepers are never deleted." xml:space="preserve">
+    <value>Tüm kayıtlar korunur; arıcı gri gösterilir ve girişi kilitlenir. Arıcılar hiçbir zaman silinmez.</value>
+  </data>
+  <data name="AssignmentStatuses" xml:space="preserve">
+    <value>Atama durumları</value>
+  </data>
+  <data name="Capabilities" xml:space="preserve">
+    <value>Yetenekler</value>
+  </data>
+  <data name="LabResults" xml:space="preserve">
+    <value>Laboratuvar sonuçları</value>
+  </data>
+  <data name="Received" xml:space="preserve">
+    <value>Teslim alındı</value>
+  </data>
+  <data name="CCP Id" xml:space="preserve">
+    <value>KKN</value>
+  </data>
+  <data name="Click here to reset your password" xml:space="preserve">
+    <value>Şifrenizi sıfırlamak için buraya tıklayın</value>
+  </data>
+  <data name="{0} rows" xml:space="preserve">
+    <value>{0} satır</value>
+  </data>
+  <data name="RegistryProof" xml:space="preserve">
+    <value>Kayıt kanıtı</value>
+  </data>
+  <data name="RawHoneyProductions" xml:space="preserve">
+    <value>Ham bal üretimleri</value>
+  </data>
+  <data name="Raw sources: {0}" xml:space="preserve">
+    <value>Ham kaynaklar: {0}</value>
+  </data>
+  <data name="HolderStorageRecords" xml:space="preserve">
+    <value>Emanetçi depolama kayıtları</value>
+  </data>
+  <data name="Consumer" xml:space="preserve">
+    <value>Tüketici</value>
+  </data>
+  <data name="LotIntakes" xml:space="preserve">
+    <value>Lot teslim almaları</value>
+  </data>
+  <data name="Legacy Wholesaler Id" xml:space="preserve">
+    <value>Mevcut toptancı kaydı</value>
+  </data>
+  <data name="AspNetRoles" xml:space="preserve">
+    <value>Roller</value>
+  </data>
+  <data name="Holder" xml:space="preserve">
+    <value>Emanetçi</value>
+  </data>
+  <data name="Apiary Location Longitude" xml:space="preserve">
+    <value>Arılık konumu boylamı</value>
+  </data>
+  <data name="Limit Verified" xml:space="preserve">
+    <value>Limit doğrulandı</value>
+  </data>
+  <data name="Raw Honey Production Wholesaler Id" xml:space="preserve">
+    <value>Ham bal toptancısı</value>
+  </data>
+  <data name="Parameter Unit" xml:space="preserve">
+    <value>Parametre birimi</value>
+  </data>
+  <data name="Final Honey Production Total Amount" xml:space="preserve">
+    <value>Toplam miktar</value>
+  </data>
+  <data name="FinalHoneyCCPAssignments" xml:space="preserve">
+    <value>Parti KKN atamaları</value>
+  </data>
+  <data name="Beekeeper Last Name" xml:space="preserve">
+    <value>Soyad</value>
+  </data>
+  <data name="Final Honey Production Id" xml:space="preserve">
+    <value>Parti (no.)</value>
+  </data>
+  <data name="CriticalControlPointParameters" xml:space="preserve">
+    <value>Kritik kontrol noktası parametreleri</value>
+  </data>
+  <data name="CcpCorrections" xml:space="preserve">
+    <value>KKN düzeltmeleri</value>
+  </data>
+  <data name="Extra" xml:space="preserve">
+    <value>Ek</value>
+  </data>
+  <data name="Video Path" xml:space="preserve">
+    <value>Video yolu</value>
+  </data>
+  <data name="Raw Honey Production Period End Date" xml:space="preserve">
+    <value>Üretim dönemi bitiş tarihi</value>
+  </data>
+  <data name="OrgDocuments" xml:space="preserve">
+    <value>Kurum belgeleri</value>
+  </data>
+  <data name="The {0} field is not a valid fully-qualified http, https, or ftp URL." xml:space="preserve">
+    <value>{0} alanı geçerli ve tam bir http, https veya ftp adresi değil.</value>
+  </data>
+  <data name="The field {0} must be a string or array type with a minimum length of '{1}'." xml:space="preserve">
+    <value>{0} alanının uzunluğu en az '{1}' olmalıdır.</value>
+  </data>
+  <data name="Honey Type Id" xml:space="preserve">
+    <value>Bal türü</value>
+  </data>
+  <data name="Wholesaler Title" xml:space="preserve">
+    <value>Toptancı adı</value>
+  </data>
+  <data name="Measured Text Value" xml:space="preserve">
+    <value>Ölçülen metin değeri</value>
+  </data>
+  <data name="Raw Honey Production Id" xml:space="preserve">
+    <value>Ham bal üretimi (no.)</value>
+  </data>
+  <data name="Wholesaler Is Active" xml:space="preserve">
+    <value>Toptancı etkin</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Diğer</value>
+  </data>
+  <data name="AspNetUserRoles" xml:space="preserve">
+    <value>Kullanıcı rolleri</value>
+  </data>
+  <data name="Beekeeper Beekeeping Type Id" xml:space="preserve">
+    <value>Arıcılık türü</value>
+  </data>
+  <data name="Raw Honey Production Apiary Id" xml:space="preserve">
+    <value>Ham bal üretimi arılığı</value>
+  </data>
+  <data name="created from the wholesaler record &quot;{0}&quot;" xml:space="preserve">
+    <value>&quot;{0}&quot; toptancı kaydından oluşturuldu</value>
+  </data>
+  <data name="not shown" xml:space="preserve">
+    <value>gösterilmiyor</value>
+  </data>
+  <data name="Final Honey Production QR" xml:space="preserve">
+    <value>Parti QR kodu</value>
+  </data>
+  <data name="SampleCustodyEvents" xml:space="preserve">
+    <value>Numune gözetim olayları</value>
+  </data>
+  <data name="Parameter Id" xml:space="preserve">
+    <value>Parametre</value>
+  </data>
+  <data name="Applies To" xml:space="preserve">
+    <value>Uygulandığı yer</value>
+  </data>
+  <data name="Memberships" xml:space="preserve">
+    <value>Üyelikler</value>
+  </data>
+  <data name="{0} shipment(s) between other organizations" xml:space="preserve">
+    <value>diğer kurumlar arasındaki {0} sevkiyat</value>
+  </data>
+  <data name="Category Id" xml:space="preserve">
+    <value>Kategori</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>No.</value>
+  </data>
+  <data name="Remember Me" xml:space="preserve">
+    <value>Beni hatırla</value>
+  </data>
+  <data name="{0} apiaries" xml:space="preserve">
+    <value>{0} arılık</value>
+  </data>
+  <data name="{0} parameters" xml:space="preserve">
+    <value>{0} parametre</value>
+  </data>
+  <data name="BeekeeperEducationLevels" xml:space="preserve">
+    <value>Arıcı eğitim seviyeleri</value>
+  </data>
+  <data name="Wholesaler Contact Name" xml:space="preserve">
+    <value>İlgili kişi</value>
+  </data>
+  <data name="Within limit" xml:space="preserve">
+    <value>Limit içinde</value>
+  </data>
+  <data name="Sent" xml:space="preserve">
+    <value>Gönderildi</value>
+  </data>
+  <data name="Wholesaler Id" xml:space="preserve">
+    <value>Toptancı</value>
+  </data>
+  <data name="Completed:" xml:space="preserve">
+    <value>Tamamlanma:</value>
+  </data>
+  <data name="Beekeeper Birth Date" xml:space="preserve">
+    <value>Doğum tarihi</value>
+  </data>
+  <data name="CriticalControlPointParameterContents" xml:space="preserve">
+    <value>Kritik kontrol noktası parametre içerikleri</value>
+  </data>
+  <data name="Token" xml:space="preserve">
+    <value>Belirteç</value>
+  </data>
+  <data name="Wholesaler Country" xml:space="preserve">
+    <value>Toptancı ülkesi</value>
+  </data>
+  <data name="BeekeeperAssociations" xml:space="preserve">
+    <value>Arıcı birlikleri</value>
+  </data>
+  <data name="{0} photos" xml:space="preserve">
+    <value>{0} fotoğraf</value>
+  </data>
+  <data name="HoneyTypes" xml:space="preserve">
+    <value>Bal türleri</value>
+  </data>
+  <data name="RegistryVerifications" xml:space="preserve">
+    <value>Kayıt doğrulamaları</value>
+  </data>
+  <data name="Apiary Title" xml:space="preserve">
+    <value>Arılık adı</value>
+  </data>
+  <data name="Min Value" xml:space="preserve">
+    <value>En küçük değer</value>
+  </data>
+  <data name="Approve" xml:space="preserve">
+    <value>Onayla</value>
+  </data>
+  <data name="Display Name" xml:space="preserve">
+    <value>Görünen ad</value>
+  </data>
+  <data name="RawHoneyProductionPeriods" xml:space="preserve">
+    <value>Ham bal üretim dönemleri</value>
+  </data>
+  <data name="Limit:" xml:space="preserve">
+    <value>Limit:</value>
+  </data>
+  <data name="Apiary Location Latitude" xml:space="preserve">
+    <value>Arılık konumu enlemi</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Ad</value>
+  </data>
+  <data name="Accreditation" xml:space="preserve">
+    <value>Akreditasyon</value>
+  </data>
+  <data name="OrgCapabilities" xml:space="preserve">
+    <value>Kurum yetenekleri</value>
+  </data>
+  <data name="This control point does not apply to this honey. Reason:" xml:space="preserve">
+    <value>Bu kontrol noktası bu bal için uygulanamaz. Gerekçe:</value>
+  </data>
+  <data name="optional" xml:space="preserve">
+    <value>isteğe bağlı</value>
+  </data>
+  <data name="CriticalControlPointParameterCategories" xml:space="preserve">
+    <value>Kritik kontrol noktası parametre kategorileri</value>
+  </data>
+  <data name="Beekeeper Beekeeping Purpose Type Id" xml:space="preserve">
+    <value>Arıcılık amaç türü</value>
+  </data>
+  <data name="{0} locations" xml:space="preserve">
+    <value>{0} konum</value>
+  </data>
+  <data name="BeekeepingTypes" xml:space="preserve">
+    <value>Arıcılık türleri</value>
+  </data>
+  <data name="Translations of reference data" xml:space="preserve">
+    <value>Referans verisi çevirileri</value>
+  </data>
+  <data name="Names shown in dropdowns, tables and public pages. An empty field falls back to English, then to the base text." xml:space="preserve">
+    <value>Açılır listelerde, tablolarda ve herkese açık sayfalarda gösterilen adlar. Boş bırakılan alanda önce İngilizce, sonra temel metin gösterilir.</value>
+  </data>
+  <data name="Base text" xml:space="preserve">
+    <value>Temel metin</value>
+  </data>
+  <data name="Translations" xml:space="preserve">
+    <value>Çeviriler</value>
+  </data>
+  <data name="{0} translations saved." xml:space="preserve">
+    <value>{0} çeviri kaydedildi.</value>
+  </data>
+  <data name="RefEntity.HoneyType" xml:space="preserve">
+    <value>Bal türleri</value>
+  </data>
+  <data name="RefEntity.ProductionPeriod" xml:space="preserve">
+    <value>Üretim dönemleri</value>
+  </data>
+  <data name="RefEntity.EducationLevel" xml:space="preserve">
+    <value>Eğitim düzeyleri</value>
+  </data>
+  <data name="RefEntity.BeekeepingPurposeType" xml:space="preserve">
+    <value>Arıcılık amaçları</value>
+  </data>
+  <data name="RefEntity.BeekeepingType" xml:space="preserve">
+    <value>Arıcılık türleri</value>
+  </data>
+  <data name="RefEntity.AssignmentStatus" xml:space="preserve">
+    <value>KKN durumları</value>
+  </data>
+  <data name="RefEntity.Capability" xml:space="preserve">
+    <value>Kurum yetkinlikleri</value>
+  </data>
+  <data name="RefEntity.OrgRole" xml:space="preserve">
+    <value>Kurum rolleri</value>
+  </data>
+  <data name="RefEntity.Ccp" xml:space="preserve">
+    <value>Kritik kontrol noktaları</value>
+  </data>
+  <data name="RefEntity.ParameterCategory" xml:space="preserve">
+    <value>Parametre kategorileri</value>
+  </data>
+  <data name="RefEntity.Parameter" xml:space="preserve">
+    <value>Parametreler</value>
+  </data>
+  <data name="RefEntity.ParameterLimit" xml:space="preserve">
+    <value>Parametre limitleri</value>
+  </data>
+  <data name="RefEntity.ParameterContent" xml:space="preserve">
+    <value>Parametre açıklamaları</value>
+  </data>
+  <data name="RefEntity.Country" xml:space="preserve">
+    <value>Ülkeler</value>
+  </data>
+  <data name="RefField.Title" xml:space="preserve">
+    <value>Başlık</value>
+  </data>
+  <data name="RefField.Description" xml:space="preserve">
+    <value>Açıklama</value>
+  </data>
+  <data name="RefField.Name" xml:space="preserve">
+    <value>Ad</value>
+  </data>
+  <data name="RefField.ProcessingStep" xml:space="preserve">
+    <value>İşlem adımı</value>
+  </data>
+  <data name="RefField.CriticalityJustification" xml:space="preserve">
+    <value>Kritiklik gerekçesi</value>
+  </data>
+  <data name="RefField.Unit" xml:space="preserve">
+    <value>Birim</value>
+  </data>
+  <data name="RefField.LimitNote" xml:space="preserve">
+    <value>Limit notu</value>
+  </data>
+  <data name="RefField.LimitSource" xml:space="preserve">
+    <value>Limit kaynağı</value>
+  </data>
+  <data name="RefField.Note" xml:space="preserve">
+    <value>Not</value>
+  </data>
+  <data name="RefField.WhatIsIt" xml:space="preserve">
+    <value>Nedir?</value>
+  </data>
+  <data name="RefField.WhyImportant" xml:space="preserve">
+    <value>Neden önemli?</value>
+  </data>
+  <data name="RefField.ExtraInfo" xml:space="preserve">
+    <value>Ek bilgi</value>
+  </data>
+  <data name="Kind.batch" xml:space="preserve">
+    <value>parti</value>
+  </data>
+  <data name="Kind.lot" xml:space="preserve">
+    <value>lot</value>
+  </data>
+  <data name="Kind.storage" xml:space="preserve">
+    <value>depolama</value>
+  </data>
+  <data name="Limit.min" xml:space="preserve">
+    <value>en az</value>
+  </data>
+  <data name="Limit.max" xml:space="preserve">
+    <value>en çok</value>
+  </data>
+  <data name="Limit.if" xml:space="preserve">
+    <value>koşul:</value>
+  </data>
+  <data name="Limit.honeyType" xml:space="preserve">
+    <value>bal türü</value>
+  </data>
+  <data name="Limit.notCheckable" xml:space="preserve">
+    <value>kontrol edilemez</value>
+  </data>
+  <data name="Recorded" xml:space="preserve">
+    <value>Kaydedildi</value>
+  </data>
+  <data name="Partly recorded" xml:space="preserve">
+    <value>Kısmen kaydedildi</value>
+  </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>Kaydedilmedi</value>
+  </data>
+  <data name="Blended Production" xml:space="preserve">
+    <value>Harmanlanmış üretim</value>
+  </data>
+  <data name="Mixed" xml:space="preserve">
+    <value>Karışık</value>
+  </data>
+  <data name="NoPhoneNumber" xml:space="preserve">
+    <value>Telefon numarası yok</value>
+  </data>
+  <data name="Confirm Password" xml:space="preserve">
+    <value>Parolayı onaylayın</value>
+  </data>
 </root>

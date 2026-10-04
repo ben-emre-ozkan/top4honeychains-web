@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<TOP4HoneyChains.Web.Models.Entities.BeekeeperEducationLevel>
 
 @{
-    ViewData["Title"] = "Education Levels";
+    ViewData["Title"] = L["Education Levels"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 
@@ -25,7 +25,7 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">Beekeeper Education Levels</h4>
+                            <h4 class="card-title">@L["Beekeeper Education Levels"]</h4>
 
                           
 
@@ -36,7 +36,7 @@
 
                                 <a asp-action="Create"
                                    class="btn btn-primary waves-effect waves-light">
-                                    Add New Education Level
+                                    @L["Add New Education Level"]
                                 </a>
                             </p>
 
@@ -46,8 +46,8 @@
 
                                 <thead>
                                     <tr>
-                                        <th>Education Level Title</th>
-                                        <th>Actions</th>
+                                        <th>@L["Education Level Title"]</th>
+                                        <th>@L["Actions"]</th>
                                     </tr>
                                 </thead>
 
@@ -56,7 +56,7 @@
                                     {
                                         <tr>
                                             <td>
-                                                @item.BeekeeperEducationLevelTitle
+                                                @Ref.T("EducationLevel", item.BeekeeperEducationLevelId, "Title", item.BeekeeperEducationLevelTitle)
                                             </td>
                                             <td>
                                                 <div class="d-flex flex-wrap gap-2">
@@ -64,13 +64,13 @@
                                                     <a asp-action="Edit"
                                                        asp-route-id="@item.BeekeeperEducationLevelId"
                                                        class="btn btn-sm btn-info">
-                                                        Edit
+                                                        @L["Edit"]
                                                     </a>
 
                                                     <a asp-action="Delete"
                                                        asp-route-id="@item.BeekeeperEducationLevelId"
                                                        class="btn btn-sm btn-danger">
-                                                        Delete
+                                                        @L["Delete"]
                                                     </a>
 
                                                 </div>

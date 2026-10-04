@@ -1,0 +1,19 @@
+@* D-51: language choice on public pages and the sign-in pages (the panel has its own menu) *@
+@{
+    var current = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+    var returnUrl = Context.Request.Path + Context.Request.QueryString;
+    var languages = new[] { ("tr", "Türkçe"), ("en", "English"), ("es", "Español"), ("pl", "Polski"), ("lv", "Latviešu") };
+}
+<nav class="language-switch" aria-label="@L["Language"]" style="text-align:right;font-size:13px;padding:6px 12px;">
+    @foreach (var (code, name) in languages)
+    {
+        if (code == current)
+        {
+            <strong style="margin-left:8px;">@name</strong>
+        }
+        else
+        {
+            <a style="margin-left:8px;" href="@Url.Action("SetLanguage", "Home", new { culture = code, returnUrl })" hreflang="@code" lang="@code">@name</a>
+        }
+    }
+</nav>

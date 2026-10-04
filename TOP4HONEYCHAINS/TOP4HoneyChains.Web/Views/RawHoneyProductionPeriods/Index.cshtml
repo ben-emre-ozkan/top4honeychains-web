@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<TOP4HoneyChains.Web.Models.Entities.RawHoneyProductionPeriod>
 
 @{
-    ViewData["Title"] = "Production Periods";
+    ViewData["Title"] = L["Production Periods"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 
@@ -26,12 +26,12 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">Raw Honey Production Periods</h4>
+                            <h4 class="card-title">@L["Raw Honey Production Periods"]</h4>
 
                             <p class="card-title-desc">
                                 <a asp-action="Create"
                                    class="btn btn-primary waves-effect waves-light">
-                                    Add New
+                                    @L["Add new"]
                                 </a>
                             </p>
 
@@ -41,10 +41,10 @@
 
                                 <thead>
                                     <tr>
-                                        <th style="width:250px;">Period Title</th>
-                                        <th style="width:180px;">Start Date</th>
-                                        <th style="width:180px;">End Date</th>
-                                        <th style="width:220px;">Actions</th>
+                                        <th style="width:250px;">@L["Period Title"]</th>
+                                        <th style="width:180px;">@L["Start Date"]</th>
+                                        <th style="width:180px;">@L["End Date"]</th>
+                                        <th style="width:220px;">@L["Actions"]</th>
                                     </tr>
                                 </thead>
 
@@ -53,7 +53,7 @@
                                     {
                                         <tr>
                                             <td>
-                                                <strong>@item.RawHoneyProductionPeriodTitle</strong>
+                                                <strong>@Ref.T("ProductionPeriod", item.RawHoneyProductionPeriodId, "Title", item.RawHoneyProductionPeriodTitle)</strong>
                                             </td>
 
                                             <td>
@@ -70,13 +70,13 @@
                                                     <a asp-action="Edit"
                                                        asp-route-id="@item.RawHoneyProductionPeriodId"
                                                        class="btn btn-sm btn-info w-100">
-                                                        Edit
+                                                        @L["Edit"]
                                                     </a>
 
                                                     <a asp-action="Delete"
                                                        asp-route-id="@item.RawHoneyProductionPeriodId"
                                                        class="btn btn-sm btn-danger w-100">
-                                                        Delete
+                                                        @L["Delete"]
                                                     </a>
 
                                                 </div>

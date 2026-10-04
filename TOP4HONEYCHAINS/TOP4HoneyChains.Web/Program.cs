@@ -53,10 +53,12 @@ var supportedCultures = new[]
 };
 
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+builder.Services.AddSingleton<Microsoft.Extensions.Options.IPostConfigureOptions<Microsoft.AspNetCore.Mvc.MvcOptions>, ConfigureLocalizedMvc>();
 
 var localizationOptions = new RequestLocalizationOptions
 {
-    DefaultRequestCulture = new RequestCulture("en"),
+    // D-51: Turkish is the default language; English is only the fallback for a missing translation
+    DefaultRequestCulture = new RequestCulture("tr"),
     SupportedCultures = supportedCultures,
     SupportedUICultures = supportedCultures
 };
@@ -73,6 +75,7 @@ builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpS
 
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<CcpIntegrityService>();
+builder.Services.AddSingleton<RefText>();
 builder.Services.AddScoped<MessageTranslator>();
 builder.Services.AddScoped<ICurrentOrg, CurrentOrg>();
 builder.Services.AddScoped<CcpResponsibilityService>();
@@ -134,6 +137,10 @@ if (app.Environment.IsProduction())
 app.UseStaticFiles();
 
 app.UseRouting();
+{
+    var refText = app.Services.GetRequiredService<RefText>();
+    Origin.Translate = (code, name) => refText.Country(code, name);
+}
 app.UseRequestLocalization(localizationOptions);
 app.UseAuthentication();
 app.UseAuthorization();

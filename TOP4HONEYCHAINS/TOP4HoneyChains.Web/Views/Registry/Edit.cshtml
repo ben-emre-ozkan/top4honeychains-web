@@ -1,6 +1,6 @@
 ﻿@using TOP4HoneyChains.Web.Models.Entities
 @{
-    ViewData["Title"] = "Beekeeper registry";
+    ViewData["Title"] = L["Beekeeper registry"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
     var b = (Beekeeper)ViewBag.Beekeeper;
     var registry = ViewBag.Registry as BeekeeperRegistry;
@@ -15,7 +15,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">@b.BeekeeperFirstName @b.BeekeeperLastName <small class="text-muted">@b.BeekeeperBusinessNumber</small></h4>
-                    <div>Registry number: <strong id="registry-number">@(registry?.RegistryNumber ?? "-")</strong> · Status: <strong id="registry-status">@(registry?.Status ?? RegistryStatus.Unverified)</strong></div>
+                    <div>@L["Registry number:"] <strong id="registry-number">@(registry?.RegistryNumber ?? "-")</strong> @L["· Status:"] <strong id="registry-status">@(registry?.Status ?? RegistryStatus.Unverified)</strong></div>
                 </div>
             </div>
 
@@ -28,10 +28,10 @@
                             <form asp-action="SetAssociation" asp-route-id="@b.BeekeeperId" method="post" class="row g-2">
                                 <div class="col-md-8">
                                     <select name="associationOrgId" class="form-select" id="association">
-                                        <option value="">(none)</option>
+                                        <option value="">@L["(none)"]</option>
                                         @foreach (var a in associations)
                                         {
-                                            <option value="@a.OrgId" selected="@(link?.AssociationOrgId == a.OrgId)">@a.DisplayName (@a.Status)</option>
+                                            <option value="@a.OrgId" selected="@(link?.AssociationOrgId == a.OrgId)">@a.DisplayName (@L[a.Status ?? ""])</option>
                                         }
                                     </select>
                                 </div>
@@ -44,9 +44,9 @@
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Registry verification (@ViewBag.Method)</h5>
+                            <h5 class="card-title">@L["Registry verification"] (@L[(string?)ViewBag.Method ?? ""])</h5>
                             <form asp-action="Submit" asp-route-id="@b.BeekeeperId" method="post" enctype="multipart/form-data" class="row g-2" id="registry-submit">
-                                <div class="col-md-5"><input name="enterpriseNumber" class="form-control" placeholder="TR + 2 + 10 digits" maxlength="16" /></div>
+                                <div class="col-md-5"><input name="enterpriseNumber" class="form-control" placeholder="@L["TR + 2 + 10 digits"]" maxlength="16" /></div>
                                 <div class="col-md-5"><input type="file" name="proof" class="form-control" accept=".pdf,.jpg,.jpeg,.png,.webp" /></div>
                                 <div class="col-md-2"><button type="submit" class="btn btn-primary w-100">@L["Reg.Submit"]</button></div>
                                 <small class="text-muted">@L["Reg.FormatHelp"]</small>
@@ -60,8 +60,8 @@
                                         <tr>
                                             <td>@r.Id</td>
                                             <td>@r.EnterpriseNumber</td>
-                                            <td>@r.Status @(r.Reason != null ? "(" + r.Reason + ")" : "")</td>
-                                            <td>@if (r.StoredFileName != null) { <a asp-action="Proof" asp-route-id="@r.Id" target="_blank">file</a> }</td>
+                                            <td>@L[r.Status ?? ""] @(r.Reason != null ? "(" + r.Reason + ")" : "")</td>
+                                            <td>@if (r.StoredFileName != null) { <a asp-action="Proof" asp-route-id="@r.Id" target="_blank">@L["File"]</a> }</td>
                                             <td>
                                                 @if (r.Status == RegistryStatus.Pending)
                                                 {

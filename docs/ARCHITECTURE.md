@@ -43,7 +43,7 @@ Anything marked **unverified** could not be confirmed from the repo or the local
 | `AddDbContext<TOP4HoneyChainsContext>` | L14 | Business data, same `DefaultConnection` |
 | `AddIdentity<ApplicationUser, IdentityRole>` | L16-25 | Password: length ≥ 6, no complexity rules. No `RequireConfirmedEmail`. Default token providers. |
 | `ConfigureApplicationCookie` | L27-30 | Only sets `AccessDeniedPath = /Account/AccessDenied` |
-| Localization | L32-55 | Cultures en, tr, es, pl, lv. Resources in `Resources/SharedResource.*.resx` |
+| Localization | L32-80 | Cultures tr (default), en, es, pl, lv ([D-51](DECISIONS.md)). UI texts in `Resources/SharedResource.*.resx` (key = English text); field names and validation messages through `Services/LocalizedMetadata.cs`; reference data through `Services/RefText.cs` and the table `ReferenceTranslations`; server messages through `Services/MessageTranslator.cs`; DataTables and Parsley texts in `Views/Shared/_I18nScripts.cshtml` |
 | `Configure<SmtpSettings>("SmtpSettings")` + `IEmailService` | L58-60 | |
 | Middleware | L66-80 | `UseExceptionHandler("/Dashboard/Error")` (non-Development only) → StaticFiles → Routing → RequestLocalization → AuthN → AuthZ → `{controller=Home}/{action=Index}/{id?}` |
 | Seed (roles/admin) | – | Was fully commented out with hard-coded admin credentials; **deleted** in `fix/secrets-out-of-config` (still in git history, see GO-LIVE rotation). |

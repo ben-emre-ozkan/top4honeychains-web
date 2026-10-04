@@ -1,4 +1,4 @@
-using System.Net;
+﻿using System.Net;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
@@ -14,6 +14,8 @@ namespace TOP4HoneyChains.Web.Tests.E2E
         private UserClient(HttpClient http, string name)
         {
             _http = http;
+            // the assertions use the English texts (D-51: Turkish is the default language)
+            _http.DefaultRequestHeaders.AcceptLanguage.ParseAdd("en");
             Name = name;
         }
 

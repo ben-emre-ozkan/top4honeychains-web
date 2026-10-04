@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<TOP4HoneyChains.Web.Models.Entities.CriticalControlPointParameterCategory>
 
 @{
-    ViewData["Title"] = "CCP Parameter Categories";
+    ViewData["Title"] = L["CCP Parameter Categories"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
 }
 
@@ -23,15 +23,15 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">CCP Parameter Categories</h4>
+                            <h4 class="card-title">@L["CCP Parameter Categories"]</h4>
                             <p class="card-title-desc">
-                                Manage parameter categories used in critical control point monitoring.
+                                @L["Manage parameter categories used in critical control point monitoring."]
                             </p>
 
                             <p>
                                 <a asp-action="Create"
                                    class="btn btn-primary waves-effect waves-light">
-                                    Add New Category
+                                    @L["Add New Category"]
                                 </a>
                             </p>
 
@@ -41,9 +41,9 @@
 
                                 <thead>
                                     <tr>
-                                        <th>Category Name</th>
-                                        <th>Description</th>
-                                        <th style="width:150px;">Actions</th>
+                                        <th>@L["Category Name"]</th>
+                                        <th>@L["Description"]</th>
+                                        <th style="width:150px;">@L["Actions"]</th>
                                     </tr>
                                 </thead>
 
@@ -52,13 +52,11 @@
                                     {
                                         <tr>
                                             <td>
-                                                <strong>@item.CategoryName</strong>
+                                                <strong>@Ref.T("ParameterCategory", item.CategoryId, "Name", item.CategoryName)</strong>
                                             </td>
 
                                             <td>
-                                                @(item.CategoryDesc?.Length > 60
-                                                                                            ? item.CategoryDesc.Substring(0, 60) + "..."
-                                                                                            : item.CategoryDesc)
+                                                @TOP4HoneyChains.Web.Services.RefText.Short(Ref.T("ParameterCategory", item.CategoryId, "Description", item.CategoryDesc), 60)
                                         </td>
 
                                             <td>
@@ -67,13 +65,13 @@
                                                     <a asp-action="Edit"
                                                        asp-route-id="@item.CategoryId"
                                                        class="btn btn-sm btn-info w-100">
-                                                        Edit
+                                                        @L["Edit"]
                                                     </a>
 
                                                     <a asp-action="Delete"
                                                        asp-route-id="@item.CategoryId"
                                                        class="btn btn-sm btn-danger w-100">
-                                                        Delete
+                                                        @L["Delete"]
                                                     </a>
 
                                                 </div>

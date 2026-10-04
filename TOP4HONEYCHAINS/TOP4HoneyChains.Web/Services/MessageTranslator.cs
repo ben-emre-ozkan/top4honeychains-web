@@ -20,8 +20,13 @@ namespace TOP4HoneyChains.Web.Services
         private static readonly Regex Placeholder = new(@"\{(\d+)\}");
         private static readonly Regex SentenceBreak = new(@"(?<=\.) (?=[A-Z])");
         private readonly IStringLocalizer<SharedResource> _localizer;
+        private readonly RefText? _ref;
 
-        public MessageTranslator(IStringLocalizer<SharedResource> localizer) => _localizer = localizer;
+        public MessageTranslator(IStringLocalizer<SharedResource> localizer, RefText? refText = null)
+        {
+            _localizer = localizer;
+            _ref = refText;
+        }
 
         private (Dictionary<string, string> Exact, List<Template> Templates) Table() =>
             Cache.GetOrAdd(CultureInfo.CurrentUICulture.Name, _ =>
@@ -75,7 +80,8 @@ namespace TOP4HoneyChains.Web.Services
             var parts = SentenceBreak.Split(text);
             if (parts.Length > 1)
                 return string.Join(" ", parts.Select(p => Translate(p, depth + 1)));
-            return text;
+            // D-51: a variable part that is reference data (CCP title, status, parameter, honey type)
+            return depth > 0 ? _ref?.AnyText(text) ?? text : text;
         }
     }
 

@@ -2,7 +2,7 @@
 @{
     Layout = null;
 }
-<html lang="tr" id="html-root" class="lang-tr">
+<html lang="@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName" id="html-root" class="lang-@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName">
 
 <head>
     <meta charset="utf-8">
@@ -11,7 +11,7 @@
            data-es="TOP4HoneyChains - Plataforma Abierta Confiable y Sostenible para Cadenas de Valor Inteligentes de Miel"
            data-pl="TOP4HoneyChains - Zaufana i Zrównoważona Otwarta Platforma dla Inteligentnych Łańcuchów Wartości Miodu"
            data-lv="TOP4HoneyChains - Uzticama un Ilgtspējīga Atvērtā Platforma Viedajām Medus Vērtību Ķēdēm">
-        TOP4HoneyChains - Trustable and Sustainable Open Platform for Smart Honey Value Chains
+        TOP4HoneyChains - @L["Trustable and Sustainable Open Platform for Smart Honey Value Chains"]
     </title>
 
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -34,7 +34,7 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="TOP4HoneyChains - Trustable and Sustainable Open Platform for Smart Honey Value Chains">
+    <meta property="og:title" content="TOP4HoneyChains - @L["Trustable and Sustainable Open Platform for Smart Honey Value Chains"]">
     <meta property="og:description" content="Explore TOP4HoneyChains, an open digital platform for transparent, traceable, and sustainable smart honey value chains.">
     <meta property="og:image" content="img/flotech-honey-logo.png">
     <meta property="og:url" content="https://top4honeychains.isikun.edu.tr">
@@ -63,8 +63,9 @@
 </head>
 
 <body>
+    <partial name="~/Views/Shared/_LanguageSwitch.cshtml" />
     <!-- Skip to main content for accessibility -->
-    <a href="#main" class="skip-link">Skip to main content</a>
+    <a href="#main" class="skip-link">@L["Skip to main content"]</a>
 
     <!-- Preloader -->
     <div id="preloader"></div>
@@ -76,7 +77,7 @@
                 <h1><a href="#intro"><span>TOP4</span>HoneyChains</a></h1>
             </div>
 
-            <nav id="nav-menu-container" aria-label="Main navigation">
+            <nav id="nav-menu-container" aria-label="@L["Main navigation"]">
                 <ul class="nav-menu">
 
                     <li class="menu-active">
@@ -86,7 +87,7 @@
                            data-es="Inicio"
                            data-pl="Strona główna"
                            data-lv="Sākums">
-                            Home
+                            @L["Home"]
                         </a>
                     </li>
 
@@ -97,7 +98,7 @@
                            data-es="Sobre la Plataforma"
                            data-pl="O Platformie"
                            data-lv="Par Platformu">
-                            About Platform
+                            @L["About Platform"]
                         </a>
                     </li>
 
@@ -108,7 +109,7 @@
                            data-es="Funciones"
                            data-pl="Funkcje"
                            data-lv="Funkcijas">
-                            Features
+                            @L["Features"]
                         </a>
                     </li>
 
@@ -120,7 +121,7 @@
                            data-es="Socios"
                            data-pl="Partnerzy"
                            data-lv="Partneri">
-                            Partners
+                            @L["Partners"]
                         </a>
                     </li>
 
@@ -131,7 +132,7 @@
                            data-es="Contacto"
                            data-pl="Kontakt"
                            data-lv="Kontakti">
-                            Contact
+                            @L["Contact"]
                         </a>
                     </li>
 
@@ -198,7 +199,7 @@
                 data-es="Plataforma Abierta Confiable y Sostenible"
                 data-pl="Zaufana i Zrównoważona Otwarta Platforma"
                 data-lv="Uzticama un Ilgtspējīga Atvērtā Platforma">
-                Trustable and Sustainable Open Platform
+                @L["Trustable and Sustainable Open Platform"]
             </h1>
 
             <h1 class="mb-4 pb-0">
@@ -207,7 +208,7 @@
                       data-es="para Cadenas de Valor Inteligentes de Miel"
                       data-pl="dla Inteligentnych Łańcuchów Wartości Miodu"
                       data-lv="Viedajām Medus Vērtību Ķēdēm">
-                    for Smart Honey Value Chains
+                    @L["for Smart Honey Value Chains"]
                 </span>
             </h1>
 
@@ -224,7 +225,7 @@
                           data-es="Colaboración Internacional de Investigación"
                           data-pl="Międzynarodowa Współpraca Badawcza"
                           data-lv="Starptautiska pētniecības sadarbība">
-                        International Research Collaboration
+                        @L["International Research Collaboration"]
                     </span>
                 </div>
 
@@ -235,7 +236,7 @@
                           data-es="Plataforma Digital Abierta"
                           data-pl="Otwarta Platforma Cyfrowa"
                           data-lv="Atvērta digitālā platforma">
-                        Open Digital Platform
+                        @L["Open Digital Platform"]
                     </span>
                 </div>
 
@@ -246,7 +247,7 @@
                           data-es="Apicultura Sostenible"
                           data-pl="Zrównoważone Pszczelarstwo"
                           data-lv="Ilgtspējīga biškopība">
-                        Sustainable Beekeeping
+                        @L["Sustainable Beekeeping"]
                     </span>
                 </div>
 
@@ -270,7 +271,7 @@
               data-pl="Przejdź do Platformy"
               data-lv="Piekļūt Platformai">
 
-            Access Platform
+            @L["Access Platform"]
 
         </span>
 
@@ -290,7 +291,7 @@
                             data-pl="O Projekcie"
                             data-lv="Par Projektu">
 
-                            About the Project
+                            @L["About the Project"]
 
                         </h2>
 
@@ -328,7 +329,7 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
                             data-pl="Zakres projektu"
                             data-lv="Projekta darbības joma">
 
-                            Project Scope
+                            @L["Project Scope"]
 
                         </h3>
 
@@ -338,7 +339,7 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
                            data-pl="Turcja i Argentyna"
                            data-lv="Turcija un Argentīna">
 
-                            Türkiye and Argentina
+                            @L["Türkiye and Argentina"]
 
                         </p>
 
@@ -358,7 +359,7 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
                         data-pl="Funkcje Platformy"
                         data-lv="Platformas Funkcijas">
 
-                        Platform Features
+                        @L["Platform Features"]
 
                     </h2>
                 </div>
@@ -375,7 +376,7 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
                                 data-pl="Identyfikowalność Miodu"
                                 data-lv="Medus Izsekojamība">
 
-                                Honey Traceability
+                                @L["Honey Traceability"]
 
                             </h4>
 
@@ -385,7 +386,7 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
                                data-pl="Konsumenci mogą przejrzyście zobaczyć skąd pochodzi miód, jak został wyprodukowany i jego wyniki jakości."
                                data-lv="Patērētāji var caurspīdīgi redzēt, kur medus tika ražots un kādi ir kvalitātes testi.">
 
-                                Consumers can transparently see where honey was produced, how it was processed, and its quality test results.
+                                @L["Consumers can transparently see where honey was produced, how it was processed, and its quality test results."]
 
                             </p>
                         </div>
@@ -402,7 +403,7 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
                                 data-pl="Platforma Otwartych Danych"
                                 data-lv="Atvērto Datu Platforma">
 
-                                Open Data Platform
+                                @L["Open Data Platform"]
 
                             </h4>
 
@@ -412,7 +413,7 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
                                data-pl="Platforma oparta na mikroserwisach umożliwia bezpieczne udostępnianie danych w łańcuchu wartości miodu."
                                data-lv="Mikropakalpojumu balstīta platforma nodrošina datu koplietošanu medus vērtību ķēdē.">
 
-                                A microservice-based open data platform enables secure data sharing across the honey value chain.
+                                @L["A microservice-based open data platform enables secure data sharing across the honey value chain."]
 
                             </p>
                         </div>
@@ -429,7 +430,7 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
                                 data-pl="Cyfrowe Narzędzia Pszczelarskie"
                                 data-lv="Digitālie Biškopības Rīki">
 
-                                Digital Beekeeping Tools
+                                @L["Digital Beekeeping Tools"]
 
                             </h4>
 
@@ -439,7 +440,7 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
                                data-pl="Pszczelarze mogą monitorować produkcję i zarządzać operacjami dzięki narzędziom cyfrowym."
                                data-lv="Biškopji var sekot līdzi ražošanas datiem un pārvaldīt darbības ar digitāliem rīkiem.">
 
-                                Beekeepers can monitor production data and manage operations efficiently using digital tools.
+                                @L["Beekeepers can monitor production data and manage operations efficiently using digital tools."]
 
                             </p>
                         </div>
@@ -456,7 +457,7 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
                                 data-pl="Kontrola Jakości"
                                 data-lv="Kvalitātes Kontrole">
 
-                                Quality Control
+                                @L["Quality Control"]
 
                             </h4>
 
@@ -466,7 +467,7 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
                                data-pl="Wyniki testów jakości miodu są rejestrowane i dostępne na platformie."
                                data-lv="Medus kvalitātes testi tiek reģistrēti un pieejami platformā.">
 
-                                Quality test results for honey batches are recorded and accessible through the platform.
+                                @L["Quality test results for honey batches are recorded and accessible through the platform."]
 
                             </p>
                         </div>
@@ -483,7 +484,7 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
                                 data-pl="Zarządzanie Wiedzą oparte na Ontologiach"
                                 data-lv="Ontoloģijās balstīta zināšanu pārvaldība">
 
-                                Ontology-based Knowledge Management
+                                @L["Ontology-based Knowledge Management"]
 
                             </h4>
 
@@ -493,7 +494,7 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
                                data-pl="Systemy ontologiczne wspierają zarządzanie wiedzą w łańcuchu wartości miodu."
                                data-lv="Ontoloģijas nodrošina semantisku zināšanu pārvaldību medus ķēdē.">
 
-                                Ontology-based systems enable semantic knowledge management across the honey supply chain.
+                                @L["Ontology-based systems enable semantic knowledge management across the honey supply chain."]
 
                             </p>
                         </div>
@@ -510,7 +511,7 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
                                 data-pl="Współpraca Międzynarodowa"
                                 data-lv="Starptautiskā Sadarbība">
 
-                                International Collaboration
+                                @L["International Collaboration"]
 
                             </h4>
 
@@ -520,7 +521,7 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
                                data-pl="Platforma będzie wdrażana w Turcji i Argentynie z możliwością rozszerzenia międzynarodowego."
                                data-lv="Platforma tiek izstrādāta Turcijā un Argentīnā ar iespēju izmantot citās valstīs.">
 
-                                The platform is implemented in Türkiye and Argentina with potential global adoption.
+                                @L["The platform is implemented in Türkiye and Argentina with potential global adoption."]
 
                             </p>
                         </div>
@@ -541,7 +542,7 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
                         data-pl="Konsorcjum Projektu"
                         data-lv="Projekta Konsorcijs">
 
-                        Project Consortium
+                        @L["Project Consortium"]
 
                     </h2>
                 </div>
@@ -557,7 +558,7 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
                             data-pl="Koordynator Projektu"
                             data-lv="Projekta Koordinators">
 
-                            Project Coordinator
+                            @L["Project Coordinator"]
 
                         </h2>
 
@@ -570,7 +571,7 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
                                         data-pl="Rola"
                                         data-lv="Loma">
 
-                                        Role
+                                        @L["Role"]
 
                                     </th>
 
@@ -580,7 +581,7 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
                                         data-pl="Instytucja"
                                         data-lv="Institūcija">
 
-                                        Institution
+                                        @L["Institution"]
 
                                     </th>
 
@@ -590,7 +591,7 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
                                         data-pl="Kraj"
                                         data-lv="Valsts">
 
-                                        Country
+                                        @L["Country"]
 
                                     </th>
 
@@ -606,13 +607,13 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
                                         data-pl="Koordynator Projektu"
                                         data-lv="Projekta koordinators">
 
-                                        Project Coordinator
+                                        @L["Project Coordinator"]
 
                                     </td>
 
                                     <td>Boğaziçi University</td>
 
-                                    <td>Türkiye</td>
+                                    <td>@L["Türkiye"]</td>
 
                                 </tr>
 
@@ -635,7 +636,7 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
                             data-pl="Partnerzy Projektu"
                             data-lv="Projekta Partneri">
 
-                            Project Partners
+                            @L["Project Partners"]
 
                         </h2>
 
@@ -651,7 +652,7 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
                                         data-pl="Instytucja"
                                         data-lv="Institūcija">
 
-                                        Institution
+                                        @L["Institution"]
 
                                     </th>
 
@@ -661,7 +662,7 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
                                         data-pl="Kraj"
                                         data-lv="Valsts">
 
-                                        Country
+                                        @L["Country"]
 
                                     </th>
 
@@ -673,42 +674,42 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
 
                                 <tr>
                                     <td>Işık University</td>
-                                    <td>Türkiye</td>
+                                    <td>@L["Türkiye"]</td>
                                 </tr>
 
                                 <tr>
                                     <td>Apiculture Research Institute</td>
-                                    <td>Türkiye</td>
+                                    <td>@L["Türkiye"]</td>
                                 </tr>
 
                                 <tr>
                                     <td>Instituto Nacional de Tecnología Agropecuaria (INTA)</td>
-                                    <td>Argentina</td>
+                                    <td>@L["Argentina"]</td>
                                 </tr>
 
                                 <tr>
                                     <td>NEXCO S.A</td>
-                                    <td>Argentina</td>
+                                    <td>@L["Argentina"]</td>
                                 </tr>
 
                                 <tr>
                                     <td>CNORTEGRANDE Cooperative</td>
-                                    <td>Argentina</td>
+                                    <td>@L["Argentina"]</td>
                                 </tr>
 
                                 <tr>
                                     <td>Alimentos Naturales Natural Foods S.A.</td>
-                                    <td>Argentina</td>
+                                    <td>@L["Argentina"]</td>
                                 </tr>
 
                                 <tr>
                                     <td>University of Economics in Katowice</td>
-                                    <td>Poland</td>
+                                    <td>@L["Poland"]</td>
                                 </tr>
 
                                 <tr>
                                     <td>Latvia University of Life Sciences and Technologies</td>
-                                    <td>Latvia</td>
+                                    <td>@L["Latvia"]</td>
                                 </tr>
 
                             </tbody>
@@ -725,7 +726,7 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
         <section id="contact" class="section-bg wow fadeInUp">
             <div class="container">
                 <div class="section-header">
-                    <h2 data-tr="İletişim" data-en="Contact" data-es="Contacto" data-pl="Kontakt" data-mt="Kuntatt" data-lv="Kontakti">İletişim</h2>
+                    <h2 data-tr="İletişim" data-en="Contact" data-es="Contacto" data-pl="Kontakt" data-mt="Kuntatt" data-lv="Kontakti">@L["Contact"]</h2>
                 </div>
 
                 <div class="row contact-info">
@@ -733,7 +734,7 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
                     <div class="col-md-4">
                         <div class="contact-address">
                             <i class="ion-ios-location-outline"></i>
-                            <h3 data-tr="Adres" data-en="Address" data-es="Dirección" data-pl="Adres" data-mt="Indirizz" data-lv="Adrese">Adres</h3>
+                            <h3 data-tr="Adres" data-en="Address" data-es="Dirección" data-pl="Adres" data-mt="Indirizz" data-lv="Adrese">@L["Address"]</h3>
                             <address>
                                 Işık Üniversitesi Şile Kampüsü <br />
                                 Meşrutiyet Mahallesi, Üniversite Sokak No:2
@@ -745,7 +746,7 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
                     <div class="col-md-4">
                         <div class="contact-phone">
                             <i class="ion-ios-telephone-outline"></i>
-                            <h3 data-tr="Telefon" data-en="Phone" data-es="Teléfono" data-pl="Telefon" data-mt="Telefon" data-lv="Tālrunis">Telefon</h3>
+                            <h3 data-tr="Telefon" data-en="Phone" data-es="Teléfono" data-pl="Telefon" data-mt="Telefon" data-lv="Tālrunis">@L["Phone"]</h3>
                             <p><a href="tel:+902165288000">+90 216 528 80 00 - 7164</a></p>
                         </div>
                     </div>
@@ -753,7 +754,7 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
                     <div class="col-md-4">
                         <div class="contact-email">
                             <i class="ion-ios-email-outline"></i>
-                            <h3 data-tr="E-posta" data-en="Email" data-es="Correo electrónico" data-pl="E-mail" data-mt="Email" data-lv="E-pasts">E-posta</h3>
+                            <h3 data-tr="E-posta" data-en="Email" data-es="Correo electrónico" data-pl="E-mail" data-mt="Email" data-lv="E-pasts">@L["Email"]</h3>
                             <p><a href="mailto:intalalab@isikun.edu.tr">intalalab@isikun.edu.tr</a></p>
                         </div>
                     </div>
@@ -772,7 +773,7 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-6 footer-links">
-                        <h4 data-tr="Faydalı Bağlantılar" data-en="Useful Links" data-es="Enlaces Útiles" data-pl="Przydatne Linki" data-mt="Links Utli" data-lv="Noderīgas saites">Faydalı Bağlantılar</h4>
+                        <h4 data-tr="Faydalı Bağlantılar" data-en="Useful Links" data-es="Enlaces Útiles" data-pl="Przydatne Linki" data-mt="Links Utli" data-lv="Noderīgas saites">@L["Useful links"]</h4>
                         <ul>
                             <li>
                                 <i class="fa fa-angle-right"></i> <a href="https://www.isikun.edu.tr/" target="_blank">
@@ -793,15 +794,15 @@ Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu
                     </div>
 
                     <div class="col-lg-6 col-md-6 footer-contact">
-                        <h4 data-tr="Bizimle İletişime Geçin" data-en="Contact Us" data-es="Contáctenos" data-pl="Skontaktuj się z nami" data-mt="Ikkuntattjana" data-lv="Sazinieties ar mums">Bizimle İletişime Geçin</h4>
+                        <h4 data-tr="Bizimle İletişime Geçin" data-en="Contact Us" data-es="Contáctenos" data-pl="Skontaktuj się z nami" data-mt="Ikkuntattjana" data-lv="Sazinieties ar mums">@L["Contact us"]</h4>
                         <p>
                             Işık Üniversitesi, Şile Kampüsü<br>
                             Meşrutiyet Köyü<br />
                             Üniversite Sokak<br />
                             No: 2 <br />
                             Şile / Istanbul, Türkiye <br />
-                            <strong data-tr="Telefon:" data-en="Phone:" data-es="Teléfono:" data-pl="Telefon:" data-mt="Telefon:" data-lv="Tālrunis:">Telefon:</strong> +90 216 528 80 00<br />
-                            <strong data-tr="E-posta:" data-en="Email:" data-es="Correo electrónico:" data-pl="E-mail:" data-mt="Email:" data-lv="E-pasts:">E-posta:</strong> intalalab@isikun.edu.tr<br />
+                            <strong data-tr="Telefon:" data-en="Phone:" data-es="Teléfono:" data-pl="Telefon:" data-mt="Telefon:" data-lv="Tālrunis:">@L["Phone:"]</strong> +90 216 528 80 00<br />
+                            <strong data-tr="E-posta:" data-en="Email:" data-es="Correo electrónico:" data-pl="E-mail:" data-mt="Email:" data-lv="E-pasts:">@L["Email:"]</strong> intalalab@isikun.edu.tr<br />
                         </p>
 
                         <div class="social-links">

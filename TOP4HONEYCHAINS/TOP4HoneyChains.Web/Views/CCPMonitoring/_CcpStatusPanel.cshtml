@@ -23,7 +23,7 @@ else if (!Model.CanEnter)
     <div class="card-body">
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
             <div>
-                <span class="text-muted small text-uppercase">Status</span>
+                <span class="text-muted small text-uppercase">@L["Status"]</span>
                 @{
                     var badge = Model.StatusId switch
                     {
@@ -34,14 +34,14 @@ else if (!Model.CanEnter)
                         _ => "bg-secondary"
                     };
                 }
-                <span class="badge @badge fs-6 ms-2" id="ccp-status">@(Model.StatusName ?? "Not assigned")</span>
+                <span class="badge @badge fs-6 ms-2" id="ccp-status">@(Model.StatusName != null ? Ref.Status(Model.StatusId, Model.StatusName) : L["Not assigned"].Value)</span>
                 @if (Model.HoneyClass != null)
                 {
-                    <span class="text-muted small ms-3">Limits for honey class: <strong>@Model.HoneyClass</strong></span>
+                    <span class="text-muted small ms-3">@L["Limits for honey class:"] <strong>@L[Model.HoneyClass ?? ""]</strong></span>
                 }
                 else
                 {
-                    <span class="text-muted small ms-3">Honey class unknown or mixed: only limits for every honey class apply</span>
+                    <span class="text-muted small ms-3">@L["Honey class unknown or mixed: only limits for every honey class apply"]</span>
                 }
             </div>
         </div>
@@ -49,9 +49,9 @@ else if (!Model.CanEnter)
         @if (Model.StatusId == AssignmentStatusIds.NotApplicable)
         {
             <div class="mt-3 p-3 rounded bg-light border" id="ccp-not-applicable">
-                <strong>Not applicable.</strong> Reason: @Model.NotApplicableReason
+                <strong>@L["Not applicable."]</strong> @L["Reason:"] @Model.NotApplicableReason
                 <div class="small text-muted">
-                    Recorded by @Model.NotApplicableBy on @Model.NotApplicableAt?.ToString("dd.MM.yyyy HH:mm")
+                    @L["Recorded by {0} on {1}", Model.NotApplicableBy ?? "", Model.NotApplicableAt?.ToString("dd.MM.yyyy HH:mm") ?? ""]
                 </div>
                 @if (Model.LockReason == null)
                 {
@@ -61,7 +61,7 @@ else if (!Model.CanEnter)
                         <input type="hidden" name="ownerKind" value="@Model.OwnerKind" />
                         <input type="hidden" name="ownerId" value="@Model.OwnerId" />
                         <input type="hidden" name="ccpId" value="@Model.CCPId" />
-                        <button type="submit" class="btn btn-sm btn-outline-secondary">Remove "Not applicable"</button>
+                        <button type="submit" class="btn btn-sm btn-outline-secondary">@L["Remove \"Not applicable\""]</button>
                     </form>
                 }
                 }
@@ -70,17 +70,17 @@ else if (!Model.CanEnter)
         else if (Model.LockReason == null && !Model.HasValues && Model.CanEnter)
         {
             <details class="mt-3">
-                <summary class="text-primary" style="cursor:pointer">This CCP does not apply here (mark as "Not applicable")</summary>
+                <summary class="text-primary" style="cursor:pointer">@L["This CCP does not apply here (mark as \"Not applicable\")"]</summary>
                 <form asp-action="SetNotApplicable" method="post" class="mt-2">
                     <input type="hidden" name="ownerKind" value="@Model.OwnerKind" />
                     <input type="hidden" name="ownerId" value="@Model.OwnerId" />
                     <input type="hidden" name="ccpId" value="@Model.CCPId" />
-                    <label for="na-reason" class="form-label required">Reason</label>
+                    <label for="na-reason" class="form-label required">@L["Reason"]</label>
                     <textarea id="na-reason" name="reason" class="form-control" rows="2" maxlength="500" required
-                              placeholder="e.g. Raw honey is not heated or pasteurized"></textarea>
-                    <small class="text-muted">Your user name and the time are recorded with the reason. It is shown as "Not applicable" on the public Honey Story page.</small>
+                              placeholder="@L["e.g. Raw honey is not heated or pasteurized"]"></textarea>
+                    <small class="text-muted">@L["Your user name and the time are recorded with the reason. It is shown as \"Not applicable\" on the public Honey Story page."]</small>
                     <div class="mt-2">
-                        <button type="submit" class="btn btn-sm btn-dark">Mark as "Not applicable"</button>
+                        <button type="submit" class="btn btn-sm btn-dark">@L["Mark as \"Not applicable\""]</button>
                     </div>
                 </form>
             </details>
@@ -139,7 +139,7 @@ else if (!Model.CanEnter)
                 <input type="hidden" name="ccpId" value="@Model.CCPId" />
                 <div class="col-md-4">
                     <select name="parameterId" class="form-select form-select-sm">
-                        @foreach (var p in allParams) { <option value="@p.ParameterId">@p.ParameterName</option> }
+                        @foreach (var p in allParams) { <option value="@p.ParameterId">@Ref.T("Parameter", p.ParameterId, "Name", p.ParameterName)</option> }
                     </select>
                 </div>
                 <div class="col-md-2"><input name="newNumericValue" type="text" inputmode="decimal" class="form-control form-control-sm" placeholder="@L["Corr.Number"]" /></div>
@@ -153,7 +153,7 @@ else if (!Model.CanEnter)
                     <tbody>
                         @foreach (var c in Model.Corrections)
                         {
-                            <tr><td>#@c.CorrectionId</td><td>@c.Parameter?.ParameterName</td><td>@(c.OldNumericValue?.ToString("0.####") ?? c.OldTextValue ?? "–") → @(c.NewNumericValue?.ToString("0.####") ?? c.NewTextValue)</td><td>@c.Reason</td><td>@c.Status</td></tr>
+                            <tr><td>#@c.CorrectionId</td><td>@Ref.T("Parameter", c.Parameter?.ParameterId, "Name", c.Parameter?.ParameterName)</td><td>@(c.OldNumericValue?.ToString("0.####") ?? (c.OldTextValue is "Yes" or "No" ? L[c.OldTextValue!].Value : c.OldTextValue) ?? "–") → @(c.NewNumericValue?.ToString("0.####") ?? (c.NewTextValue is "Yes" or "No" ? L[c.NewTextValue!].Value : c.NewTextValue))</td><td>@c.Reason</td><td>@L[c.Status ?? ""]</td></tr>
                         }
                     </tbody>
                 </table>

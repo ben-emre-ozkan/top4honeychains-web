@@ -548,6 +548,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 .GroupBy(p => p.ParameterCategoryNavigation)
                 .Select(g => new CCPParameterGroup
                 {
+                    CategoryId = g.Key?.CategoryId,
                     CategoryName = g.Key?.CategoryName ?? "Other",
                     CategoryDescription = g.Key?.CategoryDesc,
                     Parameters = g.Select(p =>
