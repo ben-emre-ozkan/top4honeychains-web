@@ -277,11 +277,11 @@
 
         Swal.fire({
 
-        title: 'Delete role?',
-        text: "This action cannot be undone",
+        title: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Delete role?"].Value)),
+        text: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["This action cannot be undone"].Value)),
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: 'Yes delete'
+        confirmButtonText: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Yes, delete"].Value)), cancelButtonText: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Cancel"].Value))
 
         }).then((result)=>{
 

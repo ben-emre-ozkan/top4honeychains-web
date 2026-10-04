@@ -13,7 +13,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">@L["Org.NewOrganization"]</h4>
-                    <p class="card-title-desc">@L["The organization starts as"] <strong>@L["Pending"]</strong>@L[". It can enter data only after it is verified with documents."]</p>
+                    <p class="card-title-desc">@Html.Raw(L["Note.OrgStartsPending"].Value)</p>
 
                     <form asp-action="Create" method="post">
                         <div asp-validation-summary="All" class="text-danger"></div>

@@ -95,7 +95,7 @@
                                                         @if (item.ApiaryIsActive)
                                                         {
                                                             <form asp-action="Deactivate" asp-route-id="@item.ApiaryId" method="post" class="d-inline"
-                                                                  onsubmit="return confirm('Deactivate this apiary? Photos and honey productions are kept. Apiaries are never deleted.');">
+                                                                  data-confirm="@L["Deactivate this apiary? Photos and honey productions are kept. Apiaries are never deleted."]" onsubmit="return confirm(this.dataset.confirm);">
                                                                 <button type="submit" class="btn btn-sm btn-warning"
                                                                         title="Keeps photos and honey productions; greys out the apiary. Apiaries are never deleted.">
                                                                     @L["Deactivate"]
@@ -105,7 +105,7 @@
                                                         else
                                                         {
                                                             <form asp-action="Activate" asp-route-id="@item.ApiaryId" method="post" class="d-inline"
-                                                                  onsubmit="return confirm('Activate this apiary again?');">
+                                                                  data-confirm="@L["Activate this apiary again?"]" onsubmit="return confirm(this.dataset.confirm);">
                                                                 <button type="submit" class="btn btn-sm btn-success"
                                                                         title="@L["Makes the apiary active again."]">
                                                                     @L["Activate"]

@@ -52,7 +52,7 @@
                                     <textarea name="reason" class="form-control mb-2" rows="2" maxlength="500" placeholder="@L["Org.ReasonPlaceholder"]"></textarea>
                                     @if (Model.Status != OrgStatus.Verified)
                                     {
-                                        <button type="submit" name="toStatus" value="Verified" class="btn btn-sm btn-success">@(Model.Status == OrgStatus.Suspended ? "Reinstate" : "Verify")</button>
+                                        <button type="submit" name="toStatus" value="Verified" class="btn btn-sm btn-success">@(Model.Status == OrgStatus.Suspended ? L["Reinstate"] : L["Verify"])</button>
                                     }
                                     @if (Model.Status == OrgStatus.Pending)
                                     {
@@ -132,7 +132,7 @@
                                             <strong>@c.Capability</strong>
                                             @if (c.Capability == Capabilities.Laboratory)
                                             {
-                                                <small class="text-muted">@(c.IsAccredited ? $"accredited, no. {c.AccreditationNumber}" : "not accredited") @(c.AccreditationValidUntil != null ? $", valid until {c.AccreditationValidUntil:dd.MM.yyyy}" : "")</small>
+                                                <small class="text-muted">@(c.IsAccredited ? L["accredited, no. {0}", c.AccreditationNumber ?? ""] : L["not accredited"]) @(c.AccreditationValidUntil != null ? L[", valid until {0}", c.AccreditationValidUntil.Value.ToString("dd.MM.yyyy")].Value : "")</small>
                                             }
                                         </span>
                                         @if (isAdmin && c.Capability != Capabilities.PlatformAdmin)
@@ -172,14 +172,14 @@
                         <div class="card-body">
                             <h5 class="card-title">@L["Org.FourEyesExemption"]</h5>
                             <p class="small text-muted mb-2">
-                                @L["With the exemption, a member may approve a CCP record they recorded themselves (e.g. a one-person association). Every such approval is flagged"] <code>SelfApproved</code> @L["in the audit log. It never applies to lab results. Set only by platform administrators."]
+                                @Html.Raw(L["Note.FourEyesExemption"].Value)
                             </p>
-                            <div>@L["Org.Current"] <strong id="four-eyes">@(Model.FourEyesExempt ? "exempt" : "not exempt")</strong></div>
+                            <div>@L["Org.Current"] <strong id="four-eyes">@(Model.FourEyesExempt ? L["exempt"] : L["not exempt"])</strong></div>
                             @if (isAdmin)
                             {
                                 <form asp-action="SetFourEyesExempt" asp-route-id="@Model.OrgId" method="post" class="mt-2">
                                     <input type="hidden" name="exempt" value="@(!Model.FourEyesExempt)" />
-                                    <button type="submit" class="btn btn-sm btn-outline-warning">@(Model.FourEyesExempt ? "Remove exemption" : "Grant exemption")</button>
+                                    <button type="submit" class="btn btn-sm btn-outline-warning">@(Model.FourEyesExempt ? L["Remove exemption"] : L["Grant exemption"])</button>
                                 </form>
                             }
                         </div>

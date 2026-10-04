@@ -226,13 +226,13 @@
             function deleteContent(id){
 
                 Swal.fire({
-                    title: 'Delete content?',
-                    text: "This action cannot be undone",
+                    title: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Delete content?"].Value)),
+                    text: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["This action cannot be undone"].Value)),
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#f46a6a',
                     cancelButtonColor: '#6c757d',
-                    confirmButtonText: 'Yes delete'
+                    confirmButtonText: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Yes, delete"].Value)), cancelButtonText: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Cancel"].Value))
                 }).then((result)=>{
 
                     if(result.isConfirmed){

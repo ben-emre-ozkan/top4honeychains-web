@@ -65,7 +65,7 @@
                     <div class="card border-success h-100">
                         <div class="card-body">
                             <h6 class="text-success fw-bold">@L["Total Production (kg)"]</h6>
-                            <h3 class="fw-bold">@totalAmount.ToString("N2", new System.Globalization.CultureInfo("tr-TR"))</h3>
+                            <h3 class="fw-bold">@totalAmount.ToString("N2", System.Globalization.CultureInfo.CurrentCulture)</h3>
                         </div>
                     </div>
                 </div>
@@ -145,7 +145,7 @@
                                         <td>
                                             <span class="badge bg-light text-success border border-success fs-6 px-3 py-2 rounded-3">
                                                 <i class="mdi mdi-weight-kilogram me-1"></i>
-                                                @(item.FinalHoneyProductionTotalAmount?.ToString("N2", new System.Globalization.CultureInfo("tr-TR")) ?? "0,00") kg
+                                                @(item.FinalHoneyProductionTotalAmount?.ToString("N2", System.Globalization.CultureInfo.CurrentCulture) ?? "0,00") kg
                                             </span>
                                         </td>
 

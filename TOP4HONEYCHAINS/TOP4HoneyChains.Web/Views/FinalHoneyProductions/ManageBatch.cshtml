@@ -57,7 +57,7 @@
                                 <p>
                                     <strong>@L["Status:"]</strong>
                                     @(Model.Wholesaler?.WholesalerIsActive == true
-                                                                        ? "Active" : "Passive")
+                                                                        ? L["Active"].Value : L["Passive"].Value)
                                 </p>
                             </div>
                         </div>
@@ -117,7 +117,7 @@
 
                             <p class="text-muted mb-3">
                                 <i class="mdi mdi-information-outline me-1"></i>
-                                @L["Only raw honey lots of this wholesaler whose CCP checks are"] <strong>@L["all completed or \"Not applicable\""]</strong> @L["can be added to a batch."]
+                                @Html.Raw(L["Note.EligibleLots"].Value)
                             </p>
 
                             @if (!Model.RawHoneyList.Any())
@@ -127,7 +127,7 @@
                                     No raw honey lot of this wholesaler is eligible yet.
                                     @if (!Model.Batch.FinalHoneyProductionIsFinalized && Model.IneligibleRawHoneyList.Any())
                                     {
-                                        <span>@L["See"] <a href="#not-eligible-lots">@L["Raw honey lots not yet eligible"]</a> @L["below for the missing CCP checks."]</span>
+                                        <span>@Html.Raw(L["Note.SeeIneligible"].Value)</span>
                                     }
                                     else
                                     {
@@ -256,7 +256,7 @@
                                             <input type="hidden" name="id" value="@Model.Batch.FinalHoneyProductionId" />
                                             <button type="button"
                                                     class="btn btn-danger btn-lg px-4"
-                                                    @(Model.FinalizeBlockers.Any() ? "disabled title=\"See what is missing below\"" : "")
+                                                    @(Model.FinalizeBlockers.Any() ? "disabled title=\"" + L["See what is missing below"].Value + "\"" : "")
                                                     onclick="confirmFinalize()">
                                                 <i class="mdi mdi-lock-outline me-2"></i>
                                                 @L["Finalize Batch"]
@@ -324,7 +324,7 @@
 
                                 <h5 class="card-title mb-1">@L["Raw honey lots not yet eligible"]</h5>
                                 <p class="text-muted mb-3">
-                                    These lots of @(Model.Wholesaler?.WholesalerTitle ?? "this wholesaler") cannot be added until all their CCP checks are completed.
+                                    @L["These lots of {0} cannot be added until all their CCP checks are completed.", Model.Wholesaler?.WholesalerTitle ?? L["this wholesaler"].Value]
                                 </p>
 
                                 <div class="table-responsive">
@@ -465,7 +465,7 @@
                             <text>
                             Swal.fire({
                                 icon: 'success',
-                                title: 'Success',
+                                title: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Success"].Value)),
                                 text: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Msg.T(TempData["Success"] as string))),
                                 confirmButtonColor: '#28a745'
                             });
@@ -478,7 +478,7 @@
                             <text>
                             Swal.fire({
                                 icon: 'error',
-                                title: 'Error',
+                                title: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Error"].Value)),
                                 text: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Msg.T(TempData["Error"] as string))),
                                 confirmButtonColor: '#dc3545'
                             });
@@ -488,14 +488,14 @@
             // 🔒 Finalize Confirm
             function confirmFinalize() {
                 Swal.fire({
-                    title: 'Finalize this batch?',
-                    text: 'After finalizing, editing will be disabled.',
+                    title: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Finalize this batch?"].Value)),
+                    text: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["After finalizing, editing will be disabled."].Value)),
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#d33',
                     cancelButtonColor: '#6c757d',
-                    confirmButtonText: 'Yes, finalize it',
-                    cancelButtonText: 'Cancel'
+                    confirmButtonText: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Yes, finalize it"].Value)),
+                    cancelButtonText: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Cancel"].Value))
                 }).then((result) => {
                     if (result.isConfirmed) {
                         document.getElementById('finalizeForm').submit();
@@ -506,14 +506,14 @@
              function confirmSaveBatch() {
 
                 Swal.fire({
-                    title: 'Save batch changes?',
-                    text: 'This will update the batch composition.',
+                    title: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Save batch changes?"].Value)),
+                    text: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["This will update the batch composition."].Value)),
                     icon: 'question',
                     showCancelButton: true,
                     confirmButtonColor: '#28a745',
                     cancelButtonColor: '#6c757d',
-                    confirmButtonText: 'Yes, save it',
-                    cancelButtonText: 'Cancel'
+                    confirmButtonText: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Yes, save it"].Value)),
+                    cancelButtonText: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Cancel"].Value))
                 }).then((result) => {
 
                     if (result.isConfirmed) {

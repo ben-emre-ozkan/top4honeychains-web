@@ -45,7 +45,7 @@
                                     <td><span class="badge @badge org-status">@o.Status</span></td>
                                     <td>@o.Province</td>
                                     <td>@(counts.TryGetValue(o.OrgId, out var n) ? n : 0)</td>
-                                    <td>@(o.FourEyesExempt ? "yes" : "no")</td>
+                                    <td>@(o.FourEyesExempt ? L["yes"] : L["no"])</td>
                                     <td><a asp-action="Details" asp-route-id="@o.OrgId" class="btn btn-sm btn-primary">@L["Org.Open"]</a></td>
                                 </tr>
                             }

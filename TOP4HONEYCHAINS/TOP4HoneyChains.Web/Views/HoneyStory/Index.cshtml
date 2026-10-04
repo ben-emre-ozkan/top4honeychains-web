@@ -5,7 +5,7 @@
 
 @{
     Layout = null;
-    var tr = new System.Globalization.CultureInfo("tr-TR");
+    var tr = System.Globalization.CultureInfo.CurrentCulture;
     // Rotatable key from configuration (GoogleMaps:ApiKey); never hard-code it here
     var mapsApiKey = Configuration["GoogleMaps:ApiKey"];
 }
@@ -14,7 +14,7 @@
 <html lang="tr">
 <head>
     <meta charset="utf-8" />
-    <title>@(Model.BatchTitle ?? "Honey Story")</title>
+    <title>@(Model.BatchTitle ?? L["Honey Story"].Value)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
@@ -342,7 +342,7 @@
 
                         <h2 class="fw-bold mb-2">
                             <i class="mdi mdi-shield-check-outline me-2"></i>
-                            @(Model.BatchTitle ?? "Honey Traceability Certificate")
+                            @(Model.BatchTitle ?? L["Honey Traceability Certificate"].Value)
                         </h2>
 
                         <div class="opacity-75 mb-3">
@@ -844,8 +844,8 @@
                                 <div class="row">
                                     @foreach (var row in acceptance.Parameters.OrderBy(x => x.ParameterName))
                                     {
-                                        var value = !row.Recorded ? "not recorded"
-                                            : row.IsFile ? "document on file"
+                                        var value = !row.Recorded ? L["not recorded"].Value
+                                            : row.IsFile ? L["document on file"].Value
                                             : row.NumericValue != null ? row.NumericValue.Value.ToString("N2", tr) + " " + row.Unit
                                             : row.TextValue ?? "-";
 
@@ -949,7 +949,7 @@
             },
 
             donut: {
-                title: "@Model.TotalAmount?.ToString("N0", tr) kg\nTOTAL HONEY"
+                title: "@Model.TotalAmount?.ToString("N0", tr) kg\n" + @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["TOTAL HONEY"].Value))
             },
 
             tooltip: {
@@ -958,7 +958,7 @@
 
                         var kg = honeyKg[id];
 
-                        return kg.toLocaleString("tr-TR", {
+                        return kg.toLocaleString(@Html.Raw(System.Text.Json.JsonSerializer.Serialize(System.Globalization.CultureInfo.CurrentCulture.Name)), {
                             minimumFractionDigits: 2,
                             maximumFractionDigits: 2
                         }) + " kg (" + value.toFixed(1) + "%)";
@@ -1055,9 +1055,9 @@
                 content.style.minWidth = "220px";
                 var name = document.createElement("b"); name.textContent = a.beekeeper || "";
                 var apiaryName = document.createElement("span"); apiaryName.style.color = "#16a34a"; apiaryName.style.fontWeight = "600"; apiaryName.textContent = a.apiary || "";
-                var used = document.createElement("div"); used.textContent = "Honey Used: " + a.amount;
+                var used = document.createElement("div"); used.textContent = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Honey Used:"].Value)) + " " + a.amount;
                 var share = document.createElement("div"); share.textContent = "Contribution: " + a.percent;
-                var note = document.createElement("div"); note.style.color = "#6b7280"; note.textContent = "Approximate area";
+                var note = document.createElement("div"); note.style.color = "#6b7280"; note.textContent = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Approximate area"].Value));
                 content.append(name, document.createElement("br"), apiaryName, document.createElement("br"), used, share, note);
 
                 var infowindow = new google.maps.InfoWindow({ content: content, position: position });

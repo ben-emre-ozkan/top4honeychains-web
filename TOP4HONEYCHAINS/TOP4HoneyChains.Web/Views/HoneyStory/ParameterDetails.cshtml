@@ -144,7 +144,7 @@
 
                             <div class="text-white fw-bold">
 
-                                @(Model?.Parameter?.ParameterName ?? "Parameter Details")
+                                @(Model?.Parameter?.ParameterName ?? L["Parameter Details"].Value)
 
                                 @if (!string.IsNullOrEmpty(Model?.Parameter?.ParameterUnit))
                                 {

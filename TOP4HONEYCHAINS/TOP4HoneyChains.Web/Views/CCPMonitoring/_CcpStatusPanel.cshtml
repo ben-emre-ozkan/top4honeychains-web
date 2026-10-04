@@ -34,7 +34,7 @@ else if (!Model.CanEnter)
                         _ => "bg-secondary"
                     };
                 }
-                <span class="badge @badge fs-6 ms-2" id="ccp-status">@(Model.StatusName ?? "Not assigned")</span>
+                <span class="badge @badge fs-6 ms-2" id="ccp-status">@(Model.StatusName ?? L["Not assigned"].Value)</span>
                 @if (Model.HoneyClass != null)
                 {
                     <span class="text-muted small ms-3">@L["Limits for honey class:"] <strong>@Model.HoneyClass</strong></span>

@@ -56,7 +56,7 @@
                                                 </span>
                                             </td>
                                             <td>@item.Title</td>
-                                            <td>@(item.AppliesTo == "RawLot" ? "Raw honey lot" : item.AppliesTo == "Batch" ? "Final batch" : "-")</td>
+                                            <td>@(item.AppliesTo == "RawLot" ? L["Raw honey lot"].Value : item.AppliesTo == "Batch" ? L["Final batch"].Value : "-")</td>
                                             <td>
                                                 @(item.CriticalityJustification?.Length > 50
                                                                                             ? item.CriticalityJustification.Substring(0, 50) + "..."

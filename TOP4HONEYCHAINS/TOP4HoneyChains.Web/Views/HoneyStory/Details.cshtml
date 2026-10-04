@@ -3,14 +3,14 @@
 
 @{
     Layout = null;
-    var tr = new System.Globalization.CultureInfo("tr-TR");
+    var tr = System.Globalization.CultureInfo.CurrentCulture;
 }
 
 <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="utf-8" />
-    <title>@(Model.BatchTitle ?? "Honey Story")</title>
+    <title>@(Model.BatchTitle ?? L["Honey Story"].Value)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
@@ -228,7 +228,7 @@
                     <div class="col-md-6">
                         <h2 class="fw-bold mb-2">
                             <i class="mdi mdi-shield-check-outline me-2"></i>
-                            @(Model.BatchTitle ?? "Honey Traceability Certificate")
+                            @(Model.BatchTitle ?? L["Honey Traceability Certificate"].Value)
                         </h2>
 
                         <div class="opacity-75 mb-3">

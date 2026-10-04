@@ -244,13 +244,13 @@
             }
             function deleteUser(userId) {
                 Swal.fire({
-                    title: 'Are you sure?',
-                    text: "This action cannot be undone!",
+                    title: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Are you sure?"].Value)),
+                    text: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["This action cannot be undone"].Value)),
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#d33',
                     cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Yes, delete it!'
+                    confirmButtonText: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Yes, delete"].Value)), cancelButtonText: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Cancel"].Value))
                 }).then((result) => {
                     if (result.isConfirmed) {
                         var f = document.getElementById('deleteUserForm');

@@ -156,7 +156,7 @@
                                                             <form asp-controller="ApiaryPhotos"
                                                                   asp-action="Delete"
                                                                   method="post"
-                                                                  onsubmit="return confirm('Delete this photo?');">
+                                                                  data-confirm="@L["Delete this photo?"]" onsubmit="return confirm(this.dataset.confirm);">
 
                                                                 @Html.AntiForgeryToken()
 

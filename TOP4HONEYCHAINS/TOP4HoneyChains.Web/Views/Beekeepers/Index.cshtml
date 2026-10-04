@@ -30,7 +30,7 @@
                             <div class="alert alert-info d-flex align-items-start" role="note" id="deactivation-note">
                                 <i class="mdi mdi-information-outline me-2 font-size-18"></i>
                                 <div>
-                                    <strong>@L["Beekeepers are never deleted"]</strong>@L[", so that honey traceability is preserved. To take a beekeeper out of use,"] <strong>@L["deactivate"]</strong> @L["them: the beekeeper's record, apiaries and honey productions are kept, the row is shown greyed out as"] <em>@L["Inactive"]</em>@L[", and the beekeeper's login is locked."] <strong>@L["Activate"]</strong> @L["restores the beekeeper. Beekeepers do not sign in to the web panel, so their login stays locked either way."]
+                                    @Html.Raw(L["Note.BeekeeperDeactivation"].Value)
                                 </div>
                             </div>
                             <p class="card-title-desc">
@@ -120,7 +120,7 @@
                                                     @if (item.IsActive)
                                                     {
                                                         <form asp-action="Deactivate" asp-route-id="@item.BeekeeperId" method="post" class="d-inline"
-                                                              onsubmit="return confirm('Deactivate this beekeeper? All records are kept and the login is locked. Beekeepers are never deleted.');">
+                                                              data-confirm="@L["Deactivate this beekeeper? All records are kept and the login is locked. Beekeepers are never deleted."]" onsubmit="return confirm(this.dataset.confirm);">
                                                             <button type="submit" class="btn btn-sm btn-warning"
                                                                     title="Keeps all records; greys out the beekeeper and locks their login. Beekeepers are never deleted.">
                                                                 @L["Deactivate"]
@@ -130,7 +130,7 @@
                                                     else
                                                     {
                                                         <form asp-action="Activate" asp-route-id="@item.BeekeeperId" method="post" class="d-inline"
-                                                              onsubmit="return confirm('Activate this beekeeper again?');">
+                                                              data-confirm="@L["Activate this beekeeper again?"]" onsubmit="return confirm(this.dataset.confirm);">
                                                             <button type="submit" class="btn btn-sm btn-success"
                                                                     title="@L["Makes the beekeeper active again."]">
                                                                 @L["Activate"]

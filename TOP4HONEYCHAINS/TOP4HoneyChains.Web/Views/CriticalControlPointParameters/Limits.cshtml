@@ -17,16 +17,13 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">Limits: @Model.CCP?.Code / @Model.ParameterName</h4>
+                            <h4 class="card-title">@L["Limits"]: @Model.CCP?.Code / @Model.ParameterName</h4>
                             <p class="card-title-desc">
-                                @L["Default limits (every honey type):"] <strong>@(CcpLimitEvaluator.Describe(Model.MinValue, Model.MaxValue, Model.ParameterUnit) is { Length: > 0 } d ? d : "none")</strong>
-                                (edit them on the parameter).
-                                A row below overrides the default: a row for the lot's honey type beats one for its honey class,
-                                which beats one for every class; a row whose condition is met beats one without a condition.
-                                Ratio rows are extra checks (value / other value) that must also pass.
+                                @L["Default limits (every honey type):"] <strong>@(CcpLimitEvaluator.Describe(Model.MinValue, Model.MaxValue, Model.ParameterUnit) is { Length: > 0 } d ? d : L["none"].Value)</strong>
+                                @L["Note.LimitsHelp"]
                                 @if (!string.IsNullOrEmpty(Model.LimitSource))
                                 {
-                                    <br />@:Source: @Model.LimitSource
+                                    <br />@L["Source:"] @Model.LimitSource
                                 }
                                 @if (!Model.LimitVerified)
                                 {
@@ -54,7 +51,7 @@
                                     @foreach (var l in Model.Limits.OrderBy(l => l.HoneyClass).ThenBy(l => l.LimitId))
                                     {
                                         <tr>
-                                            <td>@(l.HoneyType != null ? l.HoneyType.HoneyTypeTitle : l.HoneyClass ?? "every class")</td>
+                                            <td>@(l.HoneyType != null ? l.HoneyType.HoneyTypeTitle : l.HoneyClass ?? L["every class"].Value)</td>
                                             <td>@(l.ConditionParameter != null ? $"{l.ConditionParameter.ParameterName} <= {l.ConditionMaxValue:0.####}" : "-")</td>
                                             <td>@(l.SumWithParameter != null ? "+ " + l.SumWithParameter.ParameterName : l.RatioWithParameter != null ? "/ " + l.RatioWithParameter.ParameterName : "-")</td>
                                             <td>@l.MinValue?.ToString("0.####")</td>

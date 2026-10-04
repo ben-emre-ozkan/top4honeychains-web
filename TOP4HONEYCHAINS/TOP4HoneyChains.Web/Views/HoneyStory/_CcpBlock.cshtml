@@ -4,7 +4,7 @@
 @* One CCP on the public page: recorded values with compliance, "Not applicable" with its reason,
    or "not recorded" when nothing was recorded (D-15, D-16, D-18) *@
 @{
-    var tr = new System.Globalization.CultureInfo("tr-TR");
+    var tr = System.Globalization.CultureInfo.CurrentCulture;
     var (badgeClass, badgeText) = Model.State switch
     {
         HoneyStoryCcpBlock.Recorded => ("bg-success", "Recorded"),
