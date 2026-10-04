@@ -45,6 +45,10 @@ public partial class TOP4HoneyChainsContext : DbContext
     public virtual DbSet<BeekeeperRegistry> BeekeeperRegistry { get; set; }
     public virtual DbSet<RegistryVerification> RegistryVerifications { get; set; }
     public virtual DbSet<AuditEntry> AuditEntries { get; set; }
+    public virtual DbSet<CcpResponsibility> CcpResponsibilities { get; set; }
+    public virtual DbSet<CcpResponsibilityCapability> CcpResponsibilityCapabilities { get; set; }
+    public virtual DbSet<CcpResponsibilityRole> CcpResponsibilityRoles { get; set; }
+    public virtual DbSet<CcpCorrection> CcpCorrections { get; set; }
     public virtual DbSet<CriticalControlPointMonitoringLog> CriticalControlPointMonitoringLogs { get; set; }
     public virtual DbSet<AssignmentStatus> AssignmentStatuses { get; set; }
     public virtual DbSet<RawHoneyCCPAssignment> RawHoneyCCPAssignments { get; set; }
@@ -250,6 +254,33 @@ public partial class TOP4HoneyChainsContext : DbContext
             entity.Property(e => e.RequestedAt).HasDefaultValueSql("SYSUTCDATETIME()");
             entity.HasOne(e => e.Beekeeper).WithMany().HasForeignKey(e => e.BeekeeperId).OnDelete(DeleteBehavior.Restrict);
         });
+        modelBuilder.Entity<CcpResponsibility>(entity =>
+        {
+            entity.ToTable("CcpResponsibilities");
+            entity.Property(e => e.CcpId).ValueGeneratedNever();
+            entity.Property(e => e.UpdatedAt).HasDefaultValueSql("SYSUTCDATETIME()");
+            entity.HasOne(e => e.Ccp).WithMany().HasForeignKey(e => e.CcpId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasMany(e => e.Capabilities).WithOne().HasForeignKey(c => c.CcpId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasMany(e => e.Roles).WithOne().HasForeignKey(c => c.CcpId).OnDelete(DeleteBehavior.Restrict);
+        });
+        modelBuilder.Entity<CcpResponsibilityCapability>(entity =>
+        {
+            entity.ToTable("CcpResponsibilityCapabilities");
+            entity.HasKey(e => new { e.CcpId, e.Capability });
+        });
+        modelBuilder.Entity<CcpResponsibilityRole>(entity =>
+        {
+            entity.ToTable("CcpResponsibilityRoles");
+            entity.HasKey(e => new { e.CcpId, e.Action, e.OrgRole });
+        });
+        modelBuilder.Entity<CcpCorrection>(entity =>
+        {
+            entity.ToTable("CcpCorrections");
+            entity.Property(e => e.RequestedAt).HasDefaultValueSql("SYSUTCDATETIME()");
+            entity.HasOne(e => e.Ccp).WithMany().HasForeignKey(e => e.CcpId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne(e => e.Parameter).WithMany().HasForeignKey(e => e.ParameterId).OnDelete(DeleteBehavior.Restrict);
+        });
+
         modelBuilder.Entity<AuditEntry>(entity =>
         {
             entity.ToTable("AuditEntries", tb => tb.HasTrigger("TR_AuditEntries_AppendOnly"));

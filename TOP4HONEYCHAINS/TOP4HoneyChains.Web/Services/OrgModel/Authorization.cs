@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using TOP4HoneyChains.Web.Data;
@@ -27,29 +27,25 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         }
     }
 
-    // Which organization owns a lot or batch, and what the active membership may see (ROLE-MODEL section 14).
-    // P1 has no custody columns yet: a lot or batch belongs to the organization created from its wholesaler
-    // (Organizations.LegacyWholesalerId); existing rows are not modified.
+    // Which organization owns a lot or batch, and which lots and batches the active membership may list
+    // (ROLE-MODEL section 14). Owner = OwnerOrgId (D-36), or the organization created from the wholesaler
+    // while none is set; existing rows are not modified.
     public class OrgScope
     {
         private readonly TOP4HoneyChainsContext _context;
         private readonly ICurrentOrg _current;
+        private readonly CcpResponsibilityService _resp;
 
-        public OrgScope(TOP4HoneyChainsContext context, ICurrentOrg current)
+        public OrgScope(TOP4HoneyChainsContext context, ICurrentOrg current, CcpResponsibilityService resp)
         {
             _context = context;
             _current = current;
+            _resp = resp;
         }
 
-        public Task<int?> LotOrgIdAsync(int rawHoneyProductionId) =>
-            _context.RawHoneyProductions.Where(r => r.RawHoneyProductionId == rawHoneyProductionId)
-                .Select(r => _context.Organizations.Where(o => o.LegacyWholesalerId == r.RawHoneyProductionWholesalerId).Select(o => (int?)o.OrgId).FirstOrDefault())
-                .FirstOrDefaultAsync();
+        public Task<int?> LotOrgIdAsync(int rawHoneyProductionId) => _resp.LotOwnerAsync(rawHoneyProductionId);
 
-        public Task<int?> BatchOrgIdAsync(int finalHoneyProductionId) =>
-            _context.FinalHoneyProductions.Where(f => f.FinalHoneyProductionId == finalHoneyProductionId)
-                .Select(f => _context.Organizations.Where(o => o.LegacyWholesalerId == f.FinalHoneyProductionWholesalerId).Select(o => (int?)o.OrgId).FirstOrDefault())
-                .FirstOrDefaultAsync();
+        public Task<int?> BatchOrgIdAsync(int finalHoneyProductionId) => _resp.BatchOwnerAsync(finalHoneyProductionId);
 
         // Administrators and public authorities read everything
         public async Task<bool> ReadsAllAsync()
@@ -60,6 +56,17 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             return active != null && active.Has(Capabilities.PublicAuthority) && active.IsVerified;
         }
 
+        private async Task<int?> LegacyWholesalerOfAsync(int orgId) =>
+            await _context.Organizations.Where(o => o.OrgId == orgId).Select(o => o.LegacyWholesalerId).FirstOrDefaultAsync();
+
+        public async Task<IQueryable<FinalHoneyProduction>> OwnedBatchesAsync(int orgId)
+        {
+            var ws = await LegacyWholesalerOfAsync(orgId);
+            return _context.FinalHoneyProductions.Where(f =>
+                f.OwnerOrgId == orgId || (f.OwnerOrgId == null && ws != null && f.FinalHoneyProductionWholesalerId == ws));
+        }
+
+        // Own lots, lots of member beekeepers (associations, CCP 0) and the lots of own batches (upstream)
         public async Task<IQueryable<RawHoneyProduction>> VisibleLotsAsync()
         {
             if (await ReadsAllAsync())
@@ -68,12 +75,14 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             if (active == null)
                 return _context.RawHoneyProductions.Where(r => false);
             var orgId = active.OrgId;
-            var wholesalerId = await _context.Organizations.Where(o => o.OrgId == orgId).Select(o => o.LegacyWholesalerId).FirstOrDefaultAsync();
-            // Own lots, plus (associations) the lots of their member beekeepers
+            var ws = await LegacyWholesalerOfAsync(orgId);
+            var ownBatchIds = (await OwnedBatchesAsync(orgId)).Select(f => f.FinalHoneyProductionId);
             return _context.RawHoneyProductions.Where(r =>
-                (wholesalerId != null && r.RawHoneyProductionWholesalerId == wholesalerId)
+                r.OwnerOrgId == orgId
+                || (r.OwnerOrgId == null && ws != null && r.RawHoneyProductionWholesalerId == ws)
                 || _context.BeekeeperAssociations.Any(a => a.AssociationOrgId == orgId && a.ValidTo == null
-                                                           && a.BeekeeperId == r.RawHoneyProductionApiary!.ApiaryBeekeeperId));
+                                                           && a.BeekeeperId == r.RawHoneyProductionApiary!.ApiaryBeekeeperId)
+                || _context.FinalHoneyProductionDetails.Any(d => d.RawHoneyProductionId == r.RawHoneyProductionId && ownBatchIds.Contains(d.FinalHoneyProductionId)));
         }
 
         public async Task<IQueryable<FinalHoneyProduction>> VisibleBatchesAsync()
@@ -81,10 +90,7 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             if (await ReadsAllAsync())
                 return _context.FinalHoneyProductions;
             var active = await _current.GetAsync();
-            if (active == null)
-                return _context.FinalHoneyProductions.Where(f => false);
-            var wholesalerId = await _context.Organizations.Where(o => o.OrgId == active.OrgId).Select(o => o.LegacyWholesalerId).FirstOrDefaultAsync();
-            return _context.FinalHoneyProductions.Where(f => wholesalerId != null && f.FinalHoneyProductionWholesalerId == wholesalerId);
+            return active == null ? _context.FinalHoneyProductions.Where(f => false) : await OwnedBatchesAsync(active.OrgId);
         }
 
         public async Task<IQueryable<Organization>> VisibleOrganizationsAsync()
@@ -167,82 +173,65 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         public static readonly OperationAuthorizationRequirement Approve = new() { Name = nameof(Approve) };
     }
 
-    // Read: the owning org (or admin / public authority). Enter: a Verified owning org and an entering role.
-    // Approve: a Verified owning org, the QualityApprover role and four-eyes (not one of the recorders),
-    // unless the org has the PlatformAdmin-set exemption (D-27). Administrators keep v1.0 access to read
-    // and enter; their approvals follow four-eyes too.
+    // Thin wrapper around CcpResponsibilityService (P2 rules); adds four-eyes on approvals: the approver
+    // must not be one of the people who recorded the values, unless the organization has the exemption
+    // set by a platform administrator (D-27). Lab results never get the exemption (P4).
     public class CcpAuthorizationHandler : AuthorizationHandler<OperationAuthorizationRequirement, CcpResource>
     {
         public const string SelfApprovalKey = "CcpSelfApproval";
 
         private readonly ICurrentOrg _current;
-        private readonly OrgScope _scope;
+        private readonly CcpResponsibilityService _resp;
         private readonly TOP4HoneyChainsContext _context;
         private readonly IHttpContextAccessor _http;
 
-        public CcpAuthorizationHandler(ICurrentOrg current, OrgScope scope, TOP4HoneyChainsContext context, IHttpContextAccessor http)
+        public CcpAuthorizationHandler(ICurrentOrg current, CcpResponsibilityService resp, TOP4HoneyChainsContext context, IHttpContextAccessor http)
         {
             _current = current;
-            _scope = scope;
+            _resp = resp;
             _context = context;
             _http = http;
         }
 
         protected override async Task HandleRequirementAsync(AuthorizationHandlerContext context, OperationAuthorizationRequirement requirement, CcpResource r)
         {
-            var admin = _current.IsPlatformAdmin;
-            var active = await _current.GetAsync();
-            var ownerOrg = r.OwnerKind == "raw" ? await _scope.LotOrgIdAsync(r.OwnerId) : await _scope.BatchOrgIdAsync(r.OwnerId);
-            var own = active != null && ownerOrg != null && active.OrgId == ownerOrg;
-
+            var access = await _resp.AccessAsync(r.OwnerKind, r.OwnerId, r.CcpId);
             switch (requirement.Name)
             {
                 case nameof(CcpOperations.Read):
-                    if (admin || own || await _scope.ReadsAllAsync() || (r.OwnerKind == "raw" && active != null && await IsAssociationOfLotAsync(active.OrgId, r.OwnerId)))
+                    if (access.Read)
                         context.Succeed(requirement);
                     break;
 
                 case nameof(CcpOperations.Enter):
-                    if (admin)
+                    if (access.Enter)
                         context.Succeed(requirement);
-                    else if (own && active!.IsVerified && OrgRoles.CcpEnter.Contains(active.OrgRole))
-                        context.Succeed(requirement);
-                    else if (active != null && !active.IsVerified)
-                        context.Fail(new AuthorizationFailureReason(this, $"Your organization is {active.OrgStatus}; only verified organizations can enter data."));
+                    else if (access.Read && access.EnterDenied != null)
+                        context.Fail(new AuthorizationFailureReason(this, access.EnterDenied));
                     break;
 
                 case nameof(CcpOperations.Approve):
-                    if (!admin && !(own && active!.IsVerified && OrgRoles.CcpApprove.Contains(active.OrgRole)))
+                    if (!access.Approve)
                     {
-                        if (active != null && !active.IsVerified)
-                            context.Fail(new AuthorizationFailureReason(this, $"Your organization is {active.OrgStatus}; only verified organizations can approve."));
+                        if (access.Read && access.ApproveDenied != null)
+                            context.Fail(new AuthorizationFailureReason(this, access.ApproveDenied));
                         break;
                     }
-                    var recorders = await RecordersAsync(r);
-                    var self = _current.UserId != null && recorders.Contains(_current.UserId);
+                    var active = await _current.GetAsync();
+                    var self = _current.UserId != null && (await RecordersAsync(r)).Contains(_current.UserId);
                     if (!self)
-                    {
                         context.Succeed(requirement);
-                    }
-                    else if (!admin && active!.FourEyesExempt)
+                    else if (active != null && active.FourEyesExempt)
                     {
-                        // Allowed under the exemption; the action is flagged in the audit log (D-27).
-                        // P1 has no lab results yet; P4 must refuse the exemption for them.
+                        // Allowed under the exemption; flagged on the record and in the audit log (D-27)
                         _http.HttpContext!.Items[SelfApprovalKey] = true;
                         context.Succeed(requirement);
                     }
                     else
-                    {
                         context.Fail(new AuthorizationFailureReason(this, "Four-eyes: you recorded values of this CCP, so another person must approve it."));
-                    }
                     break;
             }
         }
-
-        private Task<bool> IsAssociationOfLotAsync(int orgId, int rawId) =>
-            _context.RawHoneyProductions.AnyAsync(l => l.RawHoneyProductionId == rawId
-                && _context.BeekeeperAssociations.Any(a => a.AssociationOrgId == orgId && a.ValidTo == null
-                                                          && a.BeekeeperId == l.RawHoneyProductionApiary!.ApiaryBeekeeperId));
 
         private Task<List<string>> RecordersAsync(CcpResource r) =>
             (r.OwnerKind == "raw"
