@@ -32,7 +32,7 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             return await _app.WithContextAsync(async db =>
             {
                 var ccp0 = await db.CriticalControlPoints.Where(c => c.Code == "CCP 0").Select(c => c.Id).FirstAsync();
-                var parameter = await db.CriticalControlPointParameters.Where(p => p.MaxValue != null && p.MaxValue > 0 && !p.Limits.Any()).FirstAsync();
+                var parameter = await db.CriticalControlPointParameters.Where(p => p.CCP!.Code == "CCP 1" && p.MaxValue != null && p.MaxValue > 0 && !p.Limits.Any()).FirstAsync();
                 Beekeeper NewBeekeeper(string first) => new()
                 {
                     BeekeeperId = Guid.NewGuid().ToString(), BeekeeperFirstName = first, BeekeeperLastName = "Keeper", BeekeeperBirthDate = new DateOnly(1971, 3, 14),
@@ -69,6 +69,17 @@ namespace TOP4HoneyChains.Web.Tests.E2E
                 {
                     RawHoneyProductionId = own.RawHoneyProductionId, RawHoneyCCPAssignmentCCP = ccp0, RawHoneyCCPAssignmentStatus = AssignmentStatusIds.Completed,
                     RawHoneyCCPAssignmentStartDate = DateTime.Now, ApprovedAt = DateTime.UtcNow, ApprovedByUserId = "seed", ApprovedByOrgId = association
+                });
+                // the lab value as written to the lot's CCP 1 when the report is approved
+                db.RawHoneyCCPAssignments.Add(new RawHoneyCCPAssignment
+                {
+                    RawHoneyProductionId = own.RawHoneyProductionId, RawHoneyCCPAssignmentCCP = parameter.CCPId!.Value, RawHoneyCCPAssignmentStatus = AssignmentStatusIds.Completed,
+                    RawHoneyCCPAssignmentStartDate = DateTime.Now, ApprovedAt = DateTime.UtcNow, ApprovedByUserId = "seed", ApprovedByOrgId = lab
+                });
+                db.CriticalControlPointMonitoringLogs.Add(new CriticalControlPointMonitoringLog
+                {
+                    CCPId = parameter.CCPId, ParameterId = parameter.ParameterId, RawHoneyProductionId = own.RawHoneyProductionId,
+                    MeasuredNumericValue = parameter.MaxValue!.Value / 2, IsInRange = true, AppliedLimit = "max", MeasurementDate = DateTime.Now, RecordedByUserId = "seed"
                 });
 
                 var sample = new Sample
@@ -157,6 +168,30 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             Assert.DoesNotContain("sf-gallery", html);
             Assert.DoesNotContain("tel:", html);
             Assert.DoesNotContain("googleapis", html);                    // fonts are self-hosted (D-57)
+            Assert.DoesNotContain("sf-pill", html);                       // D-18: no in/out verdict for an unverified limit
+            Assert.Contains("id=\"sf-limits-pending\"", html);
+
+            // the Honey Story of the batch: same rules, beekeeper linked to the page, lab report to the verification page
+            var story = WebUtility.HtmlDecode(await visitor.HtmlAsync($"/honeystory/{seed.BatchQr}"));
+            foreach (var section in new[] { "hs-origins", "hs-map", "hs-sources", "hs-lab", "lab-report", "process" })
+                Assert.Contains($"id=\"{section}\"", story);
+            Assert.Contains($"href=\"/storefront/{seed.Code}\" class=\"storefront-link\"", story);
+            Assert.Contains("/verify-report?code=SFREP", story);
+            Assert.Contains("id=\"hs-limits-pending\"", story);
+            Assert.DoesNotContain("hs-status", story);
+            Assert.DoesNotContain("9876543", story);
+            Assert.DoesNotContain("918273", story);
+            Assert.DoesNotContain("736451", story);
+            Assert.DoesNotContain("googleapis", story);
+
+            // the parameter page shows the value of that lot only through the batch's Honey Story link
+            var lot = await _app.WithContextAsync(db => db.FinalHoneyProductionDetails.Where(d => d.FinalHoneyProduction.FinalHoneyProductionQR == seed.BatchQr && d.UsedAmount == 60).Select(d => d.RawHoneyProductionId).FirstAsync());
+            var parameterId = await _app.WithContextAsync(db => db.LabResults.Where(r => r.Report!.ReportCode.StartsWith("SFREP")).OrderByDescending(r => r.ResultId).Select(r => r.ParameterId).FirstAsync());
+            Assert.DoesNotContain("in-this-jar", await visitor.HtmlAsync($"/honeystory/parameter/{parameterId}"));
+            var jar = await visitor.HtmlAsync($"/honeystory/parameter/{parameterId}?qr={seed.BatchQr}&lot={lot}");
+            Assert.Contains("id=\"in-this-jar\"", jar);
+            Assert.DoesNotContain("hs-status", jar);                     // unverified limit: no verdict
+            Assert.DoesNotContain("in-this-jar", await visitor.HtmlAsync($"/honeystory/parameter/{parameterId}?qr={Guid.NewGuid()}&lot={lot}"));
 
             // a storefront without consent is not shown
             Assert.Equal(HttpStatusCode.NotFound, (await visitor.GetAsync($"/storefront/{seed.OtherCode}")).StatusCode);

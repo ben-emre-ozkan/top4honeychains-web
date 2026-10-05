@@ -5499,4 +5499,202 @@
   <data name="Sf.FooterNote" xml:space="preserve">
     <value>Pokazywane są tylko zweryfikowane dane. Nie publikujemy numeru telefonu, zdjęcia osoby, daty urodzenia ani dokładnej lokalizacji. Strona jest publikowana za zarejestrowaną zgodą pszczelarza, którą można w każdej chwili wycofać.</value>
   </data>
+  <data name="Hst.Title" xml:space="preserve">
+    <value>Historia miodu</value>
+  </data>
+  <data name="Hst.Untitled" xml:space="preserve">
+    <value>Partia bez nazwy</value>
+  </data>
+  <data name="Hst.UnknownBeekeeper" xml:space="preserve">
+    <value>Nieznany pszczelarz</value>
+  </data>
+  <data name="Hst.UnknownApiary" xml:space="preserve">
+    <value>Nieznana pasieka</value>
+  </data>
+  <data name="Hst.UnknownWholesaler" xml:space="preserve">
+    <value>Nieznany hurtownik</value>
+  </data>
+  <data name="Hst.Traceable" xml:space="preserve">
+    <value>Produkt identyfikowalny</value>
+  </data>
+  <data name="Hst.KgHoney" xml:space="preserve">
+    <value>kg miodu</value>
+  </data>
+  <data name="Hst.Beekeepers" xml:space="preserve">
+    <value>pszczelarzy</value>
+  </data>
+  <data name="Hst.Produced" xml:space="preserve">
+    <value>produkcja</value>
+  </data>
+  <data name="Hst.NotAvailable" xml:space="preserve">
+    <value>b.d.</value>
+  </data>
+  <data name="Hst.OriginsEyebrow" xml:space="preserve">
+    <value>Skąd pochodzi</value>
+  </data>
+  <data name="Hst.OriginsTitle" xml:space="preserve">
+    <value>Pochodzenie miodu</value>
+  </data>
+  <data name="Hst.TotalHoney" xml:space="preserve">
+    <value>RAZEM MIODU</value>
+  </data>
+  <data name="Hst.MapEyebrow" xml:space="preserve">
+    <value>Na mapie</value>
+  </data>
+  <data name="Hst.MapTitle" xml:space="preserve">
+    <value>Lokalizacje pasiek</value>
+  </data>
+  <data name="Hst.MapNote" xml:space="preserve">
+    <value>Obszary są przybliżone (ok. 10 km); dokładne położenie pasiek nigdy nie jest publikowane.</value>
+  </data>
+  <data name="Hst.SourcesEyebrow" xml:space="preserve">
+    <value>Poznaj pszczelarzy</value>
+  </data>
+  <data name="Hst.SourcesTitle" xml:space="preserve">
+    <value>Skład źródeł</value>
+  </data>
+  <data name="Hst.KgUsed" xml:space="preserve">
+    <value>Użyto {0} kg</value>
+  </data>
+  <data name="Hst.ShareOfJar" xml:space="preserve">
+    <value>{0} tego słoika</value>
+  </data>
+  <data name="Hst.LabEyebrow" xml:space="preserve">
+    <value>Wyniki badań</value>
+  </data>
+  <data name="Hst.LabTitle" xml:space="preserve">
+    <value>Jakość w skrócie</value>
+  </data>
+  <data name="Hst.LimitsPending" xml:space="preserve">
+    <value>Limity tych wartości są jeszcze weryfikowane przez laboratorium partnerskie, dlatego wartości są pokazane bez oceny „w normie / poza normą”.</value>
+  </data>
+  <data name="Hst.SourceLabel" xml:space="preserve">
+    <value>Zmierzono w miodzie z</value>
+  </data>
+  <data name="Hst.FromSource" xml:space="preserve">
+    <value>Zmierzono w miodzie z: {0}</value>
+  </data>
+  <data name="Hst.NoResults" xml:space="preserve">
+    <value>Brak jeszcze wyników badań dla tego źródła.</value>
+  </data>
+  <data name="Hst.SeeFullReport" xml:space="preserve">
+    <value>Zobacz pełny raport z badań</value>
+  </data>
+  <data name="Hst.ReportEyebrow" xml:space="preserve">
+    <value>Raport z badań</value>
+  </data>
+  <data name="Hst.ReportTitle" xml:space="preserve">
+    <value>Pełny raport z badań</value>
+  </data>
+  <data name="Hst.SourceHint" xml:space="preserve">
+    <value>Każde źródło jest badane przed zmieszaniem. Wybierz jedno, aby zobaczyć wyniki.</value>
+  </data>
+  <data name="Hst.Group.freshness" xml:space="preserve">
+    <value>Świeżość</value>
+  </data>
+  <data name="Hst.Group.maturity" xml:space="preserve">
+    <value>Dojrzałość i autentyczność</value>
+  </data>
+  <data name="Hst.Group.sugar" xml:space="preserve">
+    <value>Profil cukrów i czystość</value>
+  </data>
+  <data name="Hst.Group.residues" xml:space="preserve">
+    <value>Pozostałości</value>
+  </data>
+  <data name="Hst.Group.other" xml:space="preserve">
+    <value>Inne wartości</value>
+  </data>
+  <data name="Hst.GroupDesc.freshness" xml:space="preserve">
+    <value>Pokazuje, czy miód nie był przegrzany ani zbyt długo przechowywany.</value>
+  </data>
+  <data name="Hst.GroupDesc.maturity" xml:space="preserve">
+    <value>Pokazuje, czy miód zebrano dojrzały i czy jest autentyczny.</value>
+  </data>
+  <data name="Hst.GroupDesc.sugar" xml:space="preserve">
+    <value>Pokazuje naturalny bilans cukrów i oznaki dodatku syropu.</value>
+  </data>
+  <data name="Hst.GroupDesc.residues" xml:space="preserve">
+    <value>Ślady leków lub zanieczyszczeń.</value>
+  </data>
+  <data name="Hst.ResiduesTested" xml:space="preserve">
+    <value>Zbadano: {0}</value>
+  </data>
+  <data name="Hst.ResiduesAllClear" xml:space="preserve">
+    <value>Żadna nie przekracza limitu</value>
+  </data>
+  <data name="Hst.ResiduesOut" xml:space="preserve">
+    <value>Poza normą: {0}</value>
+  </data>
+  <data name="Hst.Within" xml:space="preserve">
+    <value>W normie</value>
+  </data>
+  <data name="Hst.Out" xml:space="preserve">
+    <value>Poza normą</value>
+  </data>
+  <data name="Hst.ProcessEyebrow" xml:space="preserve">
+    <value>Audyt produkcji</value>
+  </data>
+  <data name="Hst.ProcessTitle" xml:space="preserve">
+    <value>Kontrole procesu</value>
+  </data>
+  <data name="Hst.ProcessIntro" xml:space="preserve">
+    <value>Punkty kontrolne zapisane podczas zbioru i przetwarzania miodu.</value>
+  </data>
+  <data name="Hst.Pass" xml:space="preserve">
+    <value>Zaliczono</value>
+  </data>
+  <data name="Hst.Fail" xml:space="preserve">
+    <value>Niezaliczono</value>
+  </data>
+  <data name="Hst.BatchSteps" xml:space="preserve">
+    <value>Przetwarzanie i pakowanie partii końcowej</value>
+  </data>
+  <data name="Hst.VerifiedTitle" xml:space="preserve">
+    <value>Zweryfikowano przez TOP4HoneyChains</value>
+  </data>
+  <data name="Hst.VerifiedSub" xml:space="preserve">
+    <value>Ten produkt prześledzono w całym łańcuchu dostaw</value>
+  </data>
+  <data name="Hst.VerifiedLabel" xml:space="preserve">
+    <value>Wiarygodna i zrównoważona identyfikowalność miodu</value>
+  </data>
+  <data name="Hst.FooterNote" xml:space="preserve">
+    <value>Pokazywane są tylko zweryfikowane dane. Lokalizacje pasiek są przybliżone; numery telefonów i zdjęcia pszczelarzy nigdy nie są publikowane.</value>
+  </data>
+  <data name="Hst.Parameters" xml:space="preserve">
+    <value>Parametry</value>
+  </data>
+  <data name="Hst.BackToStory" xml:space="preserve">
+    <value>Wróć do Historii miodu</value>
+  </data>
+  <data name="Hst.Unit" xml:space="preserve">
+    <value>Jednostka: {0}</value>
+  </data>
+  <data name="Hst.InThisJar" xml:space="preserve">
+    <value>W tym słoiku</value>
+  </data>
+  <data name="Hst.EducationalVideo" xml:space="preserve">
+    <value>Film edukacyjny</value>
+  </data>
+  <data name="Hst.WhatIsIt" xml:space="preserve">
+    <value>Co to jest?</value>
+  </data>
+  <data name="Hst.WhyImportant" xml:space="preserve">
+    <value>Dlaczego jest ważne?</value>
+  </data>
+  <data name="Hst.ReferenceValues" xml:space="preserve">
+    <value>Wartości referencyjne i normy</value>
+  </data>
+  <data name="Hst.ReadTogether" xml:space="preserve">
+    <value>Czytaj razem</value>
+  </data>
+  <data name="Hst.ReadTogetherHint" xml:space="preserve">
+    <value>Te wartości mówią więcej, gdy patrzy się na nie razem.</value>
+  </data>
+  <data name="Sf.LabNoteAccreditedShort" xml:space="preserve">
+    <value>Akredytowane laboratorium {0}; raport zatwierdziła druga osoba.</value>
+  </data>
+  <data name="Sf.LabNoteShort" xml:space="preserve">
+    <value>Laboratorium {0}; raport zatwierdziła druga osoba.</value>
+  </data>
 </root>

@@ -15,7 +15,7 @@ See `docs/ARCHITECTURE.md` for background on each point.
 ### Secrets
 The values below are in git history, so rotating them is the actual fix. Removing them from files is not enough.
 - [ ] Rotate the Gmail app password (`SmtpSettings:Password`). The old one is in git history.
-- [ ] Rotate the Google Maps API key (`GoogleMaps:ApiKey`). The old one is in git history.
+- [ ] Rotate the Google Maps API key (`GoogleMaps:ApiKey`). The old one is in git history. Since D-59 no page loads Google Maps, so the old key can simply be revoked and the setting left empty.
 - [ ] Rotate the password of the admin account whose credentials were in the commented-out seed in `Program.cs` (in git history).
 - [x] Code: `appsettings.json` holds placeholders only (`SmtpSettings:UserName/Password`, `GoogleMaps:ApiKey`, `App:PublicBaseUrl` are empty). The Maps key is read from configuration (`Views/HoneyStory/Index.cshtml`; without a key the map script is not loaded). The seed with credentials is deleted from `Program.cs` (`fix/secrets-out-of-config`). Git history was not rewritten, so rotation above is required.
 - [ ] Server-side config holds the real values. Never in the repo. Use **one** of the two options:

@@ -196,14 +196,16 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                 var honey = new HoneyProfile(lot.HoneyTypeId, lot.HoneyClass);
                 var siblings = results.ToDictionary(r => r.ParameterId, r => r.MeasuredNumericValue!.Value);
                 var values = new List<LabValue>();
-                foreach (var r in results.Where(r => r.IsInRange != null).OrderBy(r => r.Parameter!.ParameterId))
+                foreach (var r in results.OrderBy(r => r.Parameter!.ParameterId))
                 {
-                    var bounds = CcpLimitEvaluator.MainBounds(r.Parameter!, siblings, honey);
+                    // D-18: in/out of limit, the limit and its bar only for parameters whose limits are verified
+                    var verified = r.Parameter!.LimitVerified;
+                    var bounds = verified ? CcpLimitEvaluator.MainBounds(r.Parameter!, siblings, honey) : null;
                     var bar = bounds == null ? null : LimitBar(r.MeasuredNumericValue!.Value, bounds.Value.Min, bounds.Value.Max);
-                    values.Add(new LabValue(r.ParameterId, r.Parameter!.ParameterName ?? "", r.Parameter.ParameterUnit, r.MeasuredNumericValue!.Value, r.IsInRange,
-                        bounds?.Min, bounds?.Max, bar?.Value ?? 0, bar?.Limit, bar?.Min));
+                    values.Add(new LabValue(r.ParameterId, r.Parameter!.ParameterName ?? "", r.Parameter.ParameterUnit, r.MeasuredNumericValue!.Value,
+                        verified ? r.IsInRange : null, bounds?.Min, bounds?.Max, bar?.Value ?? 0, bar?.Limit, bar?.Min));
                 }
-                vm.LatestReport = new ActivityReport(latest.ReportCode, values.Count(v => v.InRange == true), values.Count);
+                vm.LatestReport = new ActivityReport(latest.ReportCode, values.Count(v => v.InRange == true), values.Count(v => v.InRange != null));
                 if (values.Count > 0)
                     vm.Lab = new LabSection(latest.ReportCode, latest.Lab, latest.IsAccredited, values);
             }

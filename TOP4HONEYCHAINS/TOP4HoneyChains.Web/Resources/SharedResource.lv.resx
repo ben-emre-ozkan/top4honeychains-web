@@ -5499,4 +5499,202 @@
   <data name="Sf.FooterNote" xml:space="preserve">
     <value>Tiek rādīti tikai pārbaudīti dati. Netiek publicēts tālruņa numurs, personīgs foto, dzimšanas datums vai precīza atrašanās vieta. Lapa tiek publicēta ar reģistrētu biškopja piekrišanu, ko var jebkurā laikā atsaukt.</value>
   </data>
+  <data name="Hst.Title" xml:space="preserve">
+    <value>Medus stāsts</value>
+  </data>
+  <data name="Hst.Untitled" xml:space="preserve">
+    <value>Partija bez nosaukuma</value>
+  </data>
+  <data name="Hst.UnknownBeekeeper" xml:space="preserve">
+    <value>Nezināms biškopis</value>
+  </data>
+  <data name="Hst.UnknownApiary" xml:space="preserve">
+    <value>Nezināma drava</value>
+  </data>
+  <data name="Hst.UnknownWholesaler" xml:space="preserve">
+    <value>Nezināms vairumtirgotājs</value>
+  </data>
+  <data name="Hst.Traceable" xml:space="preserve">
+    <value>Izsekojams produkts</value>
+  </data>
+  <data name="Hst.KgHoney" xml:space="preserve">
+    <value>kg medus</value>
+  </data>
+  <data name="Hst.Beekeepers" xml:space="preserve">
+    <value>biškopji</value>
+  </data>
+  <data name="Hst.Produced" xml:space="preserve">
+    <value>ražots</value>
+  </data>
+  <data name="Hst.NotAvailable" xml:space="preserve">
+    <value>nav</value>
+  </data>
+  <data name="Hst.OriginsEyebrow" xml:space="preserve">
+    <value>No kurienes tas nāk</value>
+  </data>
+  <data name="Hst.OriginsTitle" xml:space="preserve">
+    <value>Medus izcelsme</value>
+  </data>
+  <data name="Hst.TotalHoney" xml:space="preserve">
+    <value>KOPĀ MEDUS</value>
+  </data>
+  <data name="Hst.MapEyebrow" xml:space="preserve">
+    <value>Kartē</value>
+  </data>
+  <data name="Hst.MapTitle" xml:space="preserve">
+    <value>Dravu atrašanās vietas</value>
+  </data>
+  <data name="Hst.MapNote" xml:space="preserve">
+    <value>Apgabali ir aptuveni (ap 10 km); precīza dravu atrašanās vieta nekad netiek publicēta.</value>
+  </data>
+  <data name="Hst.SourcesEyebrow" xml:space="preserve">
+    <value>Iepazīstiet biškopjus</value>
+  </data>
+  <data name="Hst.SourcesTitle" xml:space="preserve">
+    <value>Avotu sastāvs</value>
+  </data>
+  <data name="Hst.KgUsed" xml:space="preserve">
+    <value>Izmantoti {0} kg</value>
+  </data>
+  <data name="Hst.ShareOfJar" xml:space="preserve">
+    <value>{0} no šīs burciņas</value>
+  </data>
+  <data name="Hst.LabEyebrow" xml:space="preserve">
+    <value>Laboratorijas rezultāti</value>
+  </data>
+  <data name="Hst.LabTitle" xml:space="preserve">
+    <value>Kvalitāte īsumā</value>
+  </data>
+  <data name="Hst.LimitsPending" xml:space="preserve">
+    <value>Šo vērtību robežas vēl pārbauda partnerlaboratorija, tāpēc vērtības tiek rādītas bez vērtējuma “robežās / ārpus robežām”.</value>
+  </data>
+  <data name="Hst.SourceLabel" xml:space="preserve">
+    <value>Mērīts medū no</value>
+  </data>
+  <data name="Hst.FromSource" xml:space="preserve">
+    <value>Mērīts medū no: {0}</value>
+  </data>
+  <data name="Hst.NoResults" xml:space="preserve">
+    <value>Šim avotam vēl nav laboratorijas rezultātu.</value>
+  </data>
+  <data name="Hst.SeeFullReport" xml:space="preserve">
+    <value>Skatīt pilnu laboratorijas pārskatu</value>
+  </data>
+  <data name="Hst.ReportEyebrow" xml:space="preserve">
+    <value>Laboratorijas pārskats</value>
+  </data>
+  <data name="Hst.ReportTitle" xml:space="preserve">
+    <value>Pilns laboratorijas pārskats</value>
+  </data>
+  <data name="Hst.SourceHint" xml:space="preserve">
+    <value>Katrs avots tiek pārbaudīts pirms sajaukšanas. Izvēlieties vienu, lai redzētu tā vērtības.</value>
+  </data>
+  <data name="Hst.Group.freshness" xml:space="preserve">
+    <value>Svaigums</value>
+  </data>
+  <data name="Hst.Group.maturity" xml:space="preserve">
+    <value>Briedums un autentiskums</value>
+  </data>
+  <data name="Hst.Group.sugar" xml:space="preserve">
+    <value>Cukuru profils un tīrība</value>
+  </data>
+  <data name="Hst.Group.residues" xml:space="preserve">
+    <value>Atliekvielas</value>
+  </data>
+  <data name="Hst.Group.other" xml:space="preserve">
+    <value>Citas vērtības</value>
+  </data>
+  <data name="Hst.GroupDesc.freshness" xml:space="preserve">
+    <value>Parāda, vai medus nav pārkarsēts vai pārāk ilgi uzglabāts.</value>
+  </data>
+  <data name="Hst.GroupDesc.maturity" xml:space="preserve">
+    <value>Parāda, vai medus ievākts nobriedis un ir īsts.</value>
+  </data>
+  <data name="Hst.GroupDesc.sugar" xml:space="preserve">
+    <value>Parāda dabisko cukuru līdzsvaru un pievienota sīrupa pazīmes.</value>
+  </data>
+  <data name="Hst.GroupDesc.residues" xml:space="preserve">
+    <value>Ārstēšanas līdzekļu vai piesārņotāju pēdas.</value>
+  </data>
+  <data name="Hst.ResiduesTested" xml:space="preserve">
+    <value>Pārbaudītas: {0}</value>
+  </data>
+  <data name="Hst.ResiduesAllClear" xml:space="preserve">
+    <value>Neviena nepārsniedz robežu</value>
+  </data>
+  <data name="Hst.ResiduesOut" xml:space="preserve">
+    <value>Ārpus robežām: {0}</value>
+  </data>
+  <data name="Hst.Within" xml:space="preserve">
+    <value>Robežās</value>
+  </data>
+  <data name="Hst.Out" xml:space="preserve">
+    <value>Ārpus robežām</value>
+  </data>
+  <data name="Hst.ProcessEyebrow" xml:space="preserve">
+    <value>Ražošanas audits</value>
+  </data>
+  <data name="Hst.ProcessTitle" xml:space="preserve">
+    <value>Procesa pārbaudes</value>
+  </data>
+  <data name="Hst.ProcessIntro" xml:space="preserve">
+    <value>Kontroles punkti, kas reģistrēti medus ievākšanas un pārstrādes laikā.</value>
+  </data>
+  <data name="Hst.Pass" xml:space="preserve">
+    <value>Izturēts</value>
+  </data>
+  <data name="Hst.Fail" xml:space="preserve">
+    <value>Neizturēts</value>
+  </data>
+  <data name="Hst.BatchSteps" xml:space="preserve">
+    <value>Gala partijas pārstrāde un iepakošana</value>
+  </data>
+  <data name="Hst.VerifiedTitle" xml:space="preserve">
+    <value>Pārbaudījis TOP4HoneyChains</value>
+  </data>
+  <data name="Hst.VerifiedSub" xml:space="preserve">
+    <value>Šis produkts ir izsekots visā piegādes ķēdē</value>
+  </data>
+  <data name="Hst.VerifiedLabel" xml:space="preserve">
+    <value>Uzticama un ilgtspējīga medus izsekojamība</value>
+  </data>
+  <data name="Hst.FooterNote" xml:space="preserve">
+    <value>Tiek rādīti tikai pārbaudīti dati. Dravu atrašanās vietas ir aptuvenas; biškopju tālruņa numuri un personīgie foto nekad netiek publicēti.</value>
+  </data>
+  <data name="Hst.Parameters" xml:space="preserve">
+    <value>Parametri</value>
+  </data>
+  <data name="Hst.BackToStory" xml:space="preserve">
+    <value>Atpakaļ uz Medus stāstu</value>
+  </data>
+  <data name="Hst.Unit" xml:space="preserve">
+    <value>Mērvienība: {0}</value>
+  </data>
+  <data name="Hst.InThisJar" xml:space="preserve">
+    <value>Šajā burciņā</value>
+  </data>
+  <data name="Hst.EducationalVideo" xml:space="preserve">
+    <value>Izglītojošs video</value>
+  </data>
+  <data name="Hst.WhatIsIt" xml:space="preserve">
+    <value>Kas tas ir?</value>
+  </data>
+  <data name="Hst.WhyImportant" xml:space="preserve">
+    <value>Kāpēc tas ir svarīgi?</value>
+  </data>
+  <data name="Hst.ReferenceValues" xml:space="preserve">
+    <value>Atsauces vērtības un standarti</value>
+  </data>
+  <data name="Hst.ReadTogether" xml:space="preserve">
+    <value>Lasiet kopā</value>
+  </data>
+  <data name="Hst.ReadTogetherHint" xml:space="preserve">
+    <value>Šīs vērtības kopā pasaka vairāk.</value>
+  </data>
+  <data name="Sf.LabNoteAccreditedShort" xml:space="preserve">
+    <value>Akreditēta laboratorija {0}; pārskatu apstiprināja otra persona.</value>
+  </data>
+  <data name="Sf.LabNoteShort" xml:space="preserve">
+    <value>Laboratorija {0}; pārskatu apstiprināja otra persona.</value>
+  </data>
 </root>

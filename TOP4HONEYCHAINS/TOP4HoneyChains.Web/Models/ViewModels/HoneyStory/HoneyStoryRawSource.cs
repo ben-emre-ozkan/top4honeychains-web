@@ -23,5 +23,10 @@ namespace TOP4HoneyChains.Web.Models.ViewModels.HoneyStory
 
         // P5 (D-43): code of the beekeeper's published storefront, if any
         public string? StorefrontCode { get; set; }
+
+        // The approved report of a verified laboratory on this lot (organization model), for the verification page
+        public string? LabReportCode { get; set; }
+        public string? LabName { get; set; }
+        public bool LabAccredited { get; set; }
     }
 }

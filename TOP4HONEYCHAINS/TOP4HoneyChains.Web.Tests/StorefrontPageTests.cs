@@ -97,6 +97,20 @@ namespace TOP4HoneyChains.Web.Tests
         }
 
         [Theory]
+        [InlineData("% (Percentage)", "%")]
+        [InlineData("DN (Schade)", "DN")]
+        [InlineData("mg/kg", "mg/kg")]
+        [InlineData("°C (Celsius)", "°C")]
+        [InlineData("% (Yüzde)", "%")]
+        [InlineData("None", "")]
+        [InlineData(null, "")]
+        [InlineData("(note)", "(note)")]
+        public void Public_pages_show_only_the_unit_symbol(string? unit, string symbol)
+        {
+            Assert.Equal(symbol, Units.Symbol(unit));
+        }
+
+        [Theory]
         [InlineData("[DEMO] Ayşe Petek", "AP")]
         [InlineData("ayşe", "AY")]
         [InlineData("İsmail Hakkı Işık", "İI")]

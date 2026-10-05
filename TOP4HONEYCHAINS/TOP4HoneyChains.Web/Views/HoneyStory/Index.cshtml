@@ -1,1093 +1,493 @@
-﻿@using TOP4HoneyChains.Web.Models.ViewModels.HoneyStory
-@using System.Text.Json
+@using System.Globalization
+@using TOP4HoneyChains.Web.Services
+@using TOP4HoneyChains.Web.Services.OrgModel
+@using TOP4HoneyChains.Web.Models.ViewModels.HoneyStory
 @model HoneyStoryViewModel
-@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
-
 @{
+    // Public Honey Story opened from the QR code on the jar. Sections, order and wording follow the mobile app's
+    // honey story (header, origins, apiary locations, source composition, quality at a glance, lab report, process
+    // checks, verified footer); data and rules are the web's: verified data only, compliance only for verified
+    // limits (D-18), apiary areas only approximate (D-12), gaps shown as "not recorded" (D-16).
     Layout = null;
-    var tr = System.Globalization.CultureInfo.CurrentCulture;
-    // Rotatable key from configuration (GoogleMaps:ApiKey); never hard-code it here
-    var mapsApiKey = Configuration["GoogleMaps:ApiKey"];
+    var culture = CultureInfo.CurrentUICulture;
+    var sources = Model.RawSources;
+    var used = sources.Sum(s => s.UsedAmount);
+    var total = Model.TotalAmount ?? used;
+    decimal Share(HoneyStoryRawSource s) => used > 0 ? s.UsedAmount / used : 0;
+    string Kg(decimal v) => v.ToString("#,0.##", culture);
+    string Pct(decimal share) => (share * 100).ToString("0.#", culture) + "%";
+    string Num(decimal v) => v.ToString("0.##", culture);
+    string Beekeeper(HoneyStoryRawSource s) => string.IsNullOrWhiteSpace(s.BeekeeperName) ? L["Hst.UnknownBeekeeper"].Value : s.BeekeeperName!;
+    string Apiary(HoneyStoryRawSource s) => string.IsNullOrWhiteSpace(s.ApiaryName) ? L["Hst.UnknownApiary"].Value : s.ApiaryName!;
+    string Color(int i) => "hs-c" + (i % 6);
+    var biggest = sources.Count == 0 ? 0 : sources.IndexOf(sources.OrderByDescending(s => s.UsedAmount).First());
+    var badges = Model.Badges;
+    var anyLab = sources.Any(s => HoneyStoryLab.Values(s).Any());
+    var anyUnverified = sources.SelectMany(HoneyStoryLab.Values).Any(v => v.Compliant == null);
+    var paramQuery = $"?qr={Model.BatchQR}";
 }
-
-<!DOCTYPE html>
-<html lang="@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName">
+<!doctype html>
+<html lang="@culture.TwoLetterISOLanguageName">
 <head>
-    <meta charset="utf-8" />
-    <title>@(Model.BatchTitle ?? L["Honey Story"].Value)</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/assets/css/icons.min.css" rel="stylesheet" />
-    <link href="~/assets/css/app.min.css" rel="stylesheet" />
-    <link href="~/assets/libs/c3/c3.min.css" rel="stylesheet" />
-
-    <style>
-
-        body {
-            background: radial-gradient(circle at 20% 20%,rgba(44,83,100,.05),transparent 40%), radial-gradient(circle at 80% 10%,rgba(15,32,39,.04),transparent 40%), linear-gradient(180deg,#f6f9fc,#eef2f7);
-        }
-
-        .container {
-            max-width: 1200px;
-        }
-
-        .soft-shadow {
-            box-shadow: 0 10px 35px rgba(0,0,0,.08);
-        }
-
-        .hero-wrap {
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: 0 12px 40px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.08);
-        }
-
-        .qr-frame {
-            width: 128px;
-            height: 128px;
-            background: #fff;
-            padding: 8px;
-            margin: auto;
-            border-radius: 14px;
-            border: 1px solid rgba(0,0,0,.08);
-            box-shadow: 0 10px 28px rgba(0,0,0,.20);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .metric-pill {
-            background: rgba(255,255,255,.10);
-            border: 1px solid rgba(255,255,255,.18);
-            border-radius: 12px;
-            padding: 8px 12px;
-        }
-
-            .metric-pill .value {
-                font-weight: 600;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-
-        .section-header {
-            padding: 16px 20px;
-            border-radius: 12px;
-            background: linear-gradient(135deg,#134e4a,#166534,#14532d);
-        }
-
-        .section-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            background: rgba(255,255,255,0.15);
-            color: white;
-        }
-
-        .section-divider {
-            height: 2px;
-            border: none;
-            background: linear-gradient(90deg,#16a34a,transparent);
-            margin-top: 14px;
-            margin-bottom: 20px;
-        }
-
-        .origin-card {
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all .25s ease;
-        }
-
-            .origin-card:hover {
-                transform: translateY(-4px);
-                box-shadow: 0 14px 35px rgba(0,0,0,.12);
-            }
-
-        .origin-header {
-            background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-            border-bottom: 1px solid rgba(255,255,255,.10);
-        }
-
-        .origin-divider {
-            border-color: rgba(255,255,255,.20);
-        }
-
-        .carousel-item img {
-            height: 420px;
-            object-fit: cover;
-            border-radius: 14px;
-        }
-
-        .legend-card {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 14px 16px;
-            border-radius: 14px;
-            background: #f8fafc;
-            border: 1px solid rgba(0,0,0,.06);
-            transition: all .2s ease;
-        }
-
-            .legend-card:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 8px 20px rgba(0,0,0,.08);
-            }
-
-        .legend-color {
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-        }
-
-        .legend-percent {
-            font-weight: 700;
-            font-size: 16px;
-        }
-
-        .legend-name {
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .legend-weight {
-            font-size: 12px;
-            color: #6c757d;
-        }
-
-        .ccp-param-name {
-            font-size: 13px;
-            font-weight: 600;
-            color: #6b7280;
-            text-transform: uppercase;
-            letter-spacing: .4px;
-        }
-
-        .ccp-param-box {
-            background: #f0fdf4;
-            border: 1px solid #bbf7d0;
-            border-radius: 10px;
-            padding: 16px 18px;
-            transition: all .2s ease;
-            position: relative;
-        }
-
-            .ccp-param-box:hover {
-                background: #ecfdf5;
-                border-color: #86efac;
-            }
-
-        .ccp-param-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 12px;
-            font-weight: 600;
-            color: #065f46;
-            text-transform: uppercase;
-            letter-spacing: .4px;
-        }
-
-            .ccp-param-header i {
-                font-size: 18px;
-                color: #16a34a;
-            }
-
-        .ccp-param-value {
-            font-size: 26px;
-            font-weight: 700;
-            color: #064e3b;
-            margin-top: 6px;
-        }
-
-        .ccp-param-date {
-            margin-top: 4px;
-            font-size: 12px;
-            color: #6b7280;
-        }
-
-        .ccp-info-link {
-            position: absolute;
-            bottom: 10px;
-            right: 14px;
-            font-size: 12px;
-            font-weight: 600;
-            color: #15803d;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-            .ccp-info-link:hover {
-                color: #065f46;
-                text-decoration: underline;
-            }
-
-        .contribution-bar {
-            height: 6px;
-            background: #e5e7eb;
-            border-radius: 6px;
-            margin-top: 6px;
-            overflow: hidden;
-        }
-
-        .contribution-fill {
-            height: 100%;
-            background: linear-gradient(90deg,#16a34a,#4ade80);
-        }
-
-        .ccp-metric-card {
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 14px;
-            padding: 18px 20px;
-            position: relative;
-            transition: all .25s ease;
-        }
-
-            .ccp-metric-card:hover {
-                transform: translateY(-3px);
-                box-shadow: 0 12px 28px rgba(0,0,0,.08);
-                border-color: #bbf7d0;
-            }
-
-        .ccp-metric-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 6px;
-        }
-
-        .ccp-metric-name {
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: .4px;
-            color: #6b7280;
-            text-transform: uppercase;
-        }
-
-        .ccp-metric-value {
-            font-size: 28px;
-            font-weight: 800;
-            color: #065f46;
-            line-height: 1.2;
-        }
-
-        .ccp-metric-date {
-            margin-top: 6px;
-            font-size: 12px;
-            color: #6b7280;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .ccp-help {
-            font-size: 18px;
-            color: #16a34a;
-            text-decoration: none;
-        }
-
-            .ccp-help:hover {
-                color: #065f46;
-            }
-
-        .beekeeper-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid rgba(255,255,255,.3);
-            box-shadow: 0 4px 10px rgba(0,0,0,.2);
-        }
-
-    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@(Model.BatchTitle ?? L["Hst.Untitled"].Value) · @L["Hst.Title"]</title>
+    <script>document.documentElement.classList.add('js');</script>
+    <link href="~/css/storefront.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/css/honeystory.css" rel="stylesheet" asp-append-version="true">
 </head>
+<body class="sf-body">
+<div class="sf hs" id="honeystory" data-qr="@Model.BatchQR">
 
-<body>
-    <partial name="~/Views/Shared/_LanguageSwitch.cshtml" />
+<partial name="_PublicTopBar" model="@(L["Hst.Title"].Value)" />
 
-    <div class="container py-5">
+<main id="top" class="sf-main">
 
-        <!-- HERO -->
-        <!-- HERO -->
-        <div class="card mb-5 border-0 shadow-lg hero-wrap">
-
-            <div class="card-body text-white p-4"
-                 style="background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);">
-
-                <div class="row align-items-center g-4">
-
-                    <!-- QR -->
-                    <div class="col-md-2 text-center">
-
-                        <div class="qr-frame">
-                            <img src="@Url.Action("BatchQRCode", "HoneyStory", new { code = Model.BatchQR.ToString() })"
-                                 style="width:100%;height:100%;object-fit:contain;border-radius:10px;" />
-                        </div>
-
-                        <div class="small mt-2 opacity-75">
-                            @L["Scan to verify authenticity"]
-                        </div>
-
-                    </div>
-
-
-                    <!-- CENTER -->
-                    <div class="col-md-6">
-
-                        <h2 class="fw-bold mb-2">
-                            <i class="mdi mdi-shield-check-outline me-2"></i>
-                            @(Model.BatchTitle ?? L["Honey Traceability Certificate"].Value)
-                        </h2>
-
-                        <div class="opacity-75 mb-3">
-                            @L["Verified source & quality information"]
-                        </div>
-                        @if (Model.Badges != null)
-                        {
-                            <partial name="_Badges" model="Model.Badges" />
-                        }
-
-
-                        <!-- METRICS -->
-                        <div class="row small g-2">
-
-                            <div class="col-md-4">
-                                <div class="metric-pill">
-                                    <div class="opacity-75">@L["Wholesaler"]</div>
-
-                                    <div class="value"
-                                         title="@Model.WholesalerName">
-                                        @Model.WholesalerName
-                                    </div>
-
-                                </div>
-                            </div>
-
-
-                            <div class="col-md-4">
-                                <div class="metric-pill">
-                                    <div class="opacity-75">@L["Production"]</div>
-
-                                    <div class="value">
-                                        @(Model.ProductionDate?.ToString("dd MMM yyyy", tr) ?? "-")
-                                    </div>
-
-                                </div>
-                            </div>
-
-
-                            <div class="col-md-4">
-                                <div class="metric-pill">
-                                    <div class="opacity-75">@L["Apiaries"]</div>
-
-                                    <div class="value">
-                                        @Model.RawSources.Count
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- RIGHT -->
-                    <div class="col-md-4 text-md-end">
-
-                        <div class="display-6 fw-bold">
-                            @((Model.TotalAmount ?? 0).ToString("N2", tr)) kg
-                        </div>
-
-                        <div class="opacity-75">
-                            @L["Total Batch Amount"]
-                        </div>
-
-
-                        <div class="mt-3">
-
-                            <span class="badge bg-success px-3 py-2 fs-6">
-
-                                <i class="mdi mdi-certificate-outline me-1"></i>
-
-                                @L["Traceable Product"]
-
-                            </span>
-
-                        </div>
-
-                    </div>
-
+    @{
+        // Razor helpers: section header and one lab value tile
+        void Head(string icon, string eyebrow, string title)
+        {
+            <div class="hs-head">
+                <div class="hs-head-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">@Html.Raw(icon)</svg></div>
+                <div>
+                    <div class="hs-eyebrow">@eyebrow</div>
+                    <h2 class="hs-title">@title</h2>
                 </div>
-
             </div>
-
-        </div>
-
-        @{
-            var donutData = (Model.RawSources ?? new List<HoneyStoryRawSource>())
-            .Select(s => new
-            {
-                Label = s.BeekeeperName,
-                Value = Model.TotalAmount > 0
-            ? Math.Round((s.UsedAmount / Model.TotalAmount.Value) * 100, 2)
-            : 0
-            })
-            .ToList();
         }
-
-
-        <div class="row mb-4">
-
-            <div class="col-lg-12">
-
-                <div class="card border-0 soft-shadow">
-
-                    <div class="card-body">
-
-                        <div class="section-header mb-4 d-flex justify-content-between align-items-center flex-wrap">
-
-                            <div class="d-flex align-items-center">
-
-                                <div class="section-icon me-3">
-                                    <i class="mdi mdi-chart-donut"></i>
-                                </div>
-
-                                <div>
-                                    <h5 class="mb-0 fw-bold text-white">
-                                        @L["Beekeeper Contribution Breakdown"]
-                                    </h5>
-
-                                    <div class="small text-white opacity-75">
-                                        @L["Percentage share of honey supplied by each beekeeper in this batch"]
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="badge bg-light text-success px-3 py-2">
-                                <i class="mdi mdi-beehive-outline me-1"></i>
-                                @L["{0} apiaries", Model.RawSources.Count]
-                            </div>
-
-                        </div>
-
-                        <hr class="section-divider">
-
-                        <!-- DONUT CHART -->
-                        <div id="honey-donut-chart">
-                        </div>
-
-                        <!-- LEGEND -->
-                        <div class="row text-center mt-4">
-
-                            <div class="row mt-4">
-
-                                @{
-                                    var colorIndex = 0;
-
-                                    var chartColors = new[]
-                                    {
-                                                                "#134e4a",
-                                                                "#166534",
-                                                                "#15803d",
-                                                                "#22c55e",
-                                                                "#4ade80",
-                                                                "#86efac"
-                                                                };
-                                }
-
-                                @foreach (var s in Model.RawSources)
-                                {
-                                    var percent = Model.TotalAmount > 0
-                                    ? (s.UsedAmount / Model.TotalAmount.Value) * 100
-                                    : 0;
-
-                                    var color = chartColors[colorIndex % chartColors.Length];
-                                    colorIndex++;
-
-                                    <div class="col-md-4 mb-3">
-
-                                        <div class="legend-card">
-
-                                            <div class="legend-color"
-                                                 style="background:@color">
-                                            </div>
-
-                                            <div class="legend-content">
-
-                                                <div class="legend-percent">
-                                                    @percent.ToString("N1", tr) %
-                                                </div>
-
-                                                <div class="legend-name">
-                                                    @s.BeekeeperName
-                                                </div>
-
-                                                <div class="legend-weight">
-                                                    @s.UsedAmount.ToString("N1", tr) kg
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                }
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="row mb-5">
-
-            <div class="col-lg-12">
-
-                <div class="card border-0 soft-shadow">
-
-                    <div class="card-body">
-
-                        <div class="section-header mb-4 d-flex justify-content-between align-items-center flex-wrap">
-
-                            <div class="d-flex align-items-center">
-
-                                <div class="section-icon me-3">
-                                    <i class="mdi mdi-earth"></i>
-                                </div>
-
-                                <div>
-                                    <h5 class="mb-0 fw-bold text-white">
-                                        @L["Honey Origins Map"]
-                                    </h5>
-
-                                    <div class="small text-white opacity-75">
-                                        @L["Geographic locations of apiaries contributing to this batch"]
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="badge bg-light text-success px-3 py-2">
-                                <i class="mdi mdi-map-marker-outline me-1"></i>
-                                @L["{0} locations", Model.RawSources.Count]
-                            </div>
-
-                        </div>
-
-                        <hr class="section-divider">
-
-                        <p class="small text-muted mb-2" id="approximate-location-note"><i class="mdi mdi-information-outline me-1"></i>@L["Apiary locations are shown approximately (about 10 km) to protect the beekeepers' privacy."]</p>
-                        <div id="apiary-map"
-                             style="height:450px;border-radius:14px;">
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="row g-4">
-
-            @foreach (var source in Model.RawSources ?? new List<HoneyStoryRawSource>())
-            {
-
-                <div class="col-12">
-
-                    <div class="card border-0 soft-shadow origin-card">
-
-                        <!-- HEADER -->
-
-                        <div class="p-4 origin-header">
-
-                            <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
-
-                                <!-- LEFT -->
-                                <div>
-
-                                    <h4 class="fw-bold mb-1 text-white">
-                                        <i class="mdi mdi-hive-outline me-2"></i>
-                                        @source.ApiaryName
-                                    </h4>
-
-                                    <div class="d-flex align-items-center gap-3 mt-2">
-
-                                        <div class="beekeeper-avatar d-flex align-items-center justify-content-center bg-light text-dark">
-                                                <i class="mdi mdi-account"></i>
-                                            </div>
-
-                                        <div class="small text-white opacity-75">
-                                            <i class="mdi mdi-account-outline me-1"></i>
-                                            @L["Beekeeper:"] <strong>@source.BeekeeperName</strong>
-                                            @if (source.StorefrontCode != null)
-                                            {
-                                                <a href="/storefront/@source.StorefrontCode" class="badge bg-light text-dark ms-1 storefront-link">@L["P5.BeekeeperPage"]</a>
-                                            }
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                                <!-- BADGE -->
-                                <span class="badge bg-light text-success px-3 py-2">
-                                    <i class="mdi mdi-map-marker-radius me-1"></i>
-                                    @L["Apiary Source"]
-                                </span>
-
-                            </div>
-
-                            <hr class="origin-divider my-3">
-
-                            <!-- META -->
-                            <div class="row g-3 text-white">
-
-                                <div class="col-md-4">
-
-                                    <div class="small opacity-75">@L["Honey Type"]</div>
-
-                                    <div class="fw-semibold">
-                                        <span class="badge bg-light text-dark border px-3 py-2">
-                                            <i class="mdi mdi-flower-outline me-1"></i>
-                                            @Ref.Text("HoneyType", "Title", source.HoneyType)
-                                        </span>
-                                    </div>
-
-                                </div>
-
-                                <div class="col-md-4">
-
-                                    <div class="small opacity-75">@L["Used Amount"]</div>
-
-                                    <div class="fw-bold fs-5">
-                                        @source.UsedAmount.ToString("N2", tr) kg
-                                    </div>
-
-                                </div>
-
-                                <div class="col-md-4">
-
-                                    <div class="small opacity-75">@L["Contribution"]</div>
-
-                                    @{
-                                        var percent = Model.TotalAmount > 0
-                                        ? (source.UsedAmount / Model.TotalAmount.Value) * 100
-                                        : 0;
-                                    }
-
-                                    <div class="fw-bold">
-                                        @percent.ToString("N1", tr) %
-                                    </div>
-                                    <div class="contribution-bar">
-                                        <div class="contribution-fill" style="width:@percent%"></div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- PHOTOS -->
-
-                        <div class="card-body">
-
-                            <div class="section-header mb-4 d-flex justify-content-between align-items-center flex-wrap">
-
-                                <div class="d-flex align-items-center">
-
-                                    <div class="section-icon me-3">
-                                        <i class="mdi mdi-image-multiple-outline"></i>
-                                    </div>
-
-                                    <div>
-
-                                        <h5 class="mb-0 fw-bold text-white">
-                                            @L["Apiary Evidence Photos"]
-                                        </h5>
-
-                                        <div class="small text-white opacity-75">
-                                            @L["Photographic documentation from the apiary during honey collection"]
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="badge bg-light text-success px-3 py-2">
-                                    <i class="mdi mdi-camera-outline me-1"></i>
-                                    @L["{0} photos", source.Photos.Count]
-                                </div>
-
-                            </div>
-                            <hr class="section-divider">
-
-                            @if (source.Photos == null || source.Photos.Count == 0)
-                            {
-                                <div class="alert alert-warning">@L["No photos uploaded."]</div>
-                            }
-                            else
-                            {
-                                var carouselId = $"carousel_{source.RawHoneyProductionId}";
-
-                                <div id="@carouselId" class="carousel slide">
-
-                                    <div class="carousel-inner">
-
-                                        @{
-                                            var first = true;
-                                            foreach (var p in source.Photos)
-                                            {
-                                                <div class="carousel-item @(first ? "active" : "")">
-                                                    <img src="@Url.Action("Image", "HoneyStory", new { id = p.ApiaryPhotoId })"
-                                                         class="d-block w-100" />
-                                                </div>
-                                                first = false;
-                                            }
-                                        }
-
-                                    </div>
-
-                                    @if (source.Photos.Count > 1)
-                                    {
-                                        <button class="carousel-control-prev" type="button"
-                                                data-bs-target="#@carouselId" data-bs-slide="prev">
-                                            <span class="carousel-control-prev-icon"></span>
-                                        </button>
-
-                                        <button class="carousel-control-next" type="button"
-                                                data-bs-target="#@carouselId" data-bs-slide="next">
-                                            <span class="carousel-control-next-icon"></span>
-                                        </button>
-                                    }
-
-                                </div>
-                            }
-
-                        </div>
-
-
-
-                        <!-- QUALITY CONTROL SECTION -->
-
-                        <div class="card-body pt-0">
-
-                            <div class="section-header mb-4 d-flex justify-content-between align-items-center flex-wrap">
-
-                                <div class="d-flex align-items-center">
-
-                                    <div class="section-icon me-3">
-                                        <i class="mdi mdi-flask-outline"></i>
-                                    </div>
-
-                                    <div>
-
-                                        <h5 class="mb-0 fw-bold text-white">
-                                            @L["Raw Honey Quality Control"]
-                                        </h5>
-
-                                        <div class="small text-white opacity-75">
-                                            @L["Laboratory analysis performed during raw honey acceptance"]
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="badge bg-light text-success px-3 py-2">
-                                    <i class="mdi mdi-lab-flask-outline me-1"></i>
-                                    CCP 1
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <hr class="section-divider">
-
-                        <!-- CCP 1 (raw honey acceptance analysis); missing values are shown, not hidden (D-16) -->
-                        @{
-                            var acceptance = source.CcpBlocks.FirstOrDefault(b => (b.CCPCode ?? "").Replace(" ", "") == "CCP1");
-                            var recordedChecks = source.CcpBlocks.Count(b => b.State == HoneyStoryCcpBlock.Recorded || b.State == HoneyStoryCcpBlock.NotApplicable);
-                        }
-
-                        <div class="card-body pt-0">
-                            @if (acceptance == null || acceptance.State == HoneyStoryCcpBlock.NotRecorded)
-                            {
-                                <div class="text-muted small ccp-not-recorded"><i class="mdi mdi-alert-outline me-1"></i> @L["Not recorded."]</div>
-                            }
-                            else if (acceptance.State == HoneyStoryCcpBlock.NotApplicable)
-                            {
-                                <div class="text-muted small">@L["Not applicable:"] @acceptance.NotApplicableReason</div>
-                            }
-                            else
-                            {
-                                <div class="row">
-                                    @foreach (var row in acceptance.Parameters.OrderBy(x => x.ParameterName))
-                                    {
-                                        var value = !row.Recorded ? L["Not recorded"].Value
-                                            : row.IsFile ? L["document on file"].Value
-                                            : row.NumericValue != null ? row.NumericValue.Value.ToString("N2", tr) + " " + Ref.Text("Parameter", "Unit", row.Unit)
-                                            : (row.TextValue is "Yes" or "No" ? L[row.TextValue!].Value : row.TextValue) ?? "-";
-
-                                        <div class="col-md-6 mb-3">
-                                            <div class="ccp-metric-card">
-                                                <div class="ccp-metric-header">
-                                                    <span class="ccp-metric-name">@Ref.T("Parameter", row.ParameterId, "Name", row.ParameterName)</span>
-                                                    <a href="/honeystory/parameter/@row.ParameterId" class="ccp-help" target="_blank">
-                                                        <i class="mdi mdi-help-circle-outline"></i>
-                                                    </a>
-                                                </div>
-                                                <div class="ccp-metric-value @(row.Recorded ? "" : "text-muted")">
-                                                    @value
-                                                    @if (row.Compliant == true)
-                                                    {
-                                                        <span class="badge bg-success ms-1 ccp-compliance" title="@L["Limit:"] @Ref.Limit(row.LimitText, k => L[k])">@L["Within limit"]</span>
-                                                    }
-                                                    else if (row.Compliant == false)
-                                                    {
-                                                        <span class="badge bg-danger ms-1 ccp-compliance" title="@L["Limit:"] @Ref.Limit(row.LimitText, k => L[k])">@L["outside limit"]</span>
-                                                    }
-                                                </div>
-                                                @if (row.MeasurementDate != null)
-                                                {
-                                                    <div class="ccp-metric-date">
-                                                        <i class="mdi mdi-calendar-outline"></i>
-                                                        @row.MeasurementDate?.ToString("dd MMM yyyy", tr)
-                                                    </div>
-                                                }
-                                            </div>
-                                        </div>
-                                    }
-                                </div>
-                            }
-                            <div class="small text-muted mt-2">
-                                @L["Quality control points recorded for this honey: {0} of {1}", recordedChecks, source.CcpBlocks.Count]
-                                (<a href="/honeystory/details/@Model.BatchQR">@L["full traceability"]</a>)
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            }
-
-        </div>
-
-
-        <div class="text-center text-muted mt-5 small">
-            <i class="mdi mdi-shield-check-outline me-1"></i>
-            @L["Verified by"] <strong>@L["TOP4HoneyChains Traceability System"]</strong>
-        </div>
-
-    </div>
-
-    <!--C3 Chart-->
-    <script src="~/assets/libs/d3/d3.min.js"></script>
-    <script src="~/assets/libs/c3/c3.min.js"></script>
-
-    <!-- Init js -->
-    <script src="~/assets/js/pages/c3-chart.init.js"></script>
-
-    <script src="~/assets/libs/jquery/jquery.min.js"></script>
-
-    <script src="~/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-
-        var honeyData = @Html.Raw(
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                JsonSerializer.Serialize(
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Model.RawSources.GroupBy(s => s.BeekeeperName ?? "").Select(g => new object[]
-            {
-                g.Key,
-                Model.TotalAmount > 0 ? (g.Sum(s => s.UsedAmount) / Model.TotalAmount.Value) * 100 : 0
-            })
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                )
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                );
-
-        var honeyKg = @Html.Raw(
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                JsonSerializer.Serialize(
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Model.RawSources.GroupBy(s => s.BeekeeperName ?? "").ToDictionary(g => g.Key, g => g.Sum(s => s.UsedAmount))
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                )
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                );
-
-    </script>
-
-    <script>
-
-        var chart = c3.generate({
-
-            bindto: '#honey-donut-chart',
-
-            data: {
-                columns: honeyData,
-                type: 'donut',
-
-                onclick: function (d) {
-                    console.log("clicked", d);
-                }
-            },
-
-            donut: {
-                title: "@Model.TotalAmount?.ToString("N0", tr) kg\n" + @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["TOTAL HONEY"].Value))
-            },
-
-            tooltip: {
-                format: {
-                    value: function (value, ratio, id) {
-
-                        var kg = honeyKg[id];
-
-                        return kg.toLocaleString(@Html.Raw(System.Text.Json.JsonSerializer.Serialize(System.Globalization.CultureInfo.CurrentCulture.Name)), {
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2
-                        }) + " kg (" + value.toFixed(1) + "%)";
-                    }
-                }
-            },
-
-            color: {
-                pattern: [
-                    "#134e4a",
-                    "#166534",
-                    "#15803d",
-                    "#16a34a",
-                    "#22c55e",
-                    "#4ade80"
-                ]
-            },
-
-            legend: {
-                position: 'right'
-            },
-
-            padding: {
-                top: 10,
-                bottom: 10
-            }
-
-        });
-
-    </script>
-
-    <script>
-
-        var apiaries = @Html.Raw(
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                System.Text.Json.JsonSerializer.Serialize(
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Model.RawSources
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .Where(s => s.Latitude != null && s.Longitude != null)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .Select(s => new
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                lat = s.Latitude,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                lng = s.Longitude,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                beekeeper = s.BeekeeperName,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                apiary = s.ApiaryName,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                amount = s.UsedAmount.ToString("N1", tr) + " kg",
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                percent = (Model.TotalAmount > 0
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ? (s.UsedAmount / Model.TotalAmount.Value) * 100
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                : 0).ToString("N1", tr) + "%"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                })
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                )
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                );
-
-    </script>
-
-    <script>
-
-        function initMap() {
-
-            var center = { lat: 39.0, lng: 35.0 };
-
-            var map = new google.maps.Map(
-                document.getElementById("apiary-map"),
+        void Tile(HoneyStoryCCPRow v, HoneyStoryRawSource s)
+        {
+            var unit = Ref.Unit(v.ParameterId, v.Unit);
+            var bar = HoneyStoryLab.Bar(v);
+            <a class="hs-tile" href="/honeystory/parameter/@v.ParameterId@(paramQuery)&amp;lot=@s.RawHoneyProductionId" data-parameter="@v.ParameterName">
+                <div class="hs-tile-name">@Ref.Parameter(v.ParameterId, v.ParameterName)</div>
+                <div class="hs-tile-value">@Num(v.NumericValue!.Value) <small title="@unit">@Units.Symbol(unit)</small></div>
+                @if (v.Compliant == true)
                 {
-                    zoom: 6,
-                    center: center,
-                    styles: [
-                        {
-                            featureType: "poi",
-                            stylers: [{ visibility: "off" }]
-                        }
-                    ]
+                    <span class="hs-status is-ok">✓ @L["Hst.Within"]</span>
                 }
-            );
+                else if (v.Compliant == false)
+                {
+                    <span class="hs-status is-out">! @L["Hst.Out"]</span>
+                }
+                @if (bar != null)
+                {
+                    <div class="hs-bar" aria-hidden="true">
+                        <div class="hs-bar-zone" style="left: @bar.Value.ZoneStart.ToString(CultureInfo.InvariantCulture)%; right: @((100 - bar.Value.ZoneEnd).ToString(CultureInfo.InvariantCulture))%"></div>
+                        <div class="hs-bar-dot@(v.Compliant == false ? " is-out" : "")" style="left: @bar.Value.Value.ToString(CultureInfo.InvariantCulture)%"></div>
+                    </div>
+                }
+                @if (v.Compliant != null && v.LimitText != null)
+                {
+                    <div class="hs-limit">@L["Limit:"] @Ref.Limit(v.LimitText, k => L[k])</div>
+                }
+            </a>
+        }
+        void Chips()
+        {
+            if (sources.Count > 1)
+            {
+                <div class="hs-chips" role="group" aria-label="@L["Hst.SourceLabel"]">
+                    @for (var i = 0; i < sources.Count; i++)
+                    {
+                        <button type="button" class="hs-chip @Color(i)@(i == biggest ? " is-on" : "")" data-src="@i" aria-pressed="@(i == biggest ? "true" : "false")">
+                            <span class="hs-dot"></span>@Apiary(sources[i]) · @Pct(Share(sources[i]))
+                        </button>
+                    }
+                </div>
+            }
+        }
+    }
 
-            var bounds = new google.maps.LatLngBounds();
+    @* ===== 1. header card ===== *@
+    <section class="hs-hero">
+        <svg class="hs-hero-hex" viewBox="0 0 100 100" aria-hidden="true"><polygon points="50,3 93,27 93,73 50,97 7,73 7,27" fill="none" stroke="#E8B931" stroke-width="5"></polygon></svg>
+        <div class="hs-hero-row">
+            <div class="hs-jar"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1B2A4A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4h10M8 4v2a4 4 0 0 1-2 3.5V19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V9.5A4 4 0 0 1 16 6V4"></path><path d="M6 13h12M6 16.5h12"></path></svg></div>
+            <div>
+                <span class="hs-traceable">✓ @L["Hst.Traceable"]</span>
+                <h1 class="hs-batch">@(Model.BatchTitle ?? L["Hst.Untitled"].Value)</h1>
+                <div class="hs-maker">@(Model.WholesalerName ?? L["Hst.UnknownWholesaler"].Value)</div>
+            </div>
+        </div>
+        <div class="hs-stats">
+            <div class="hs-stat"><b>@Kg(total)</b><span>@L["Hst.KgHoney"]</span></div>
+            <div class="hs-stat"><b>@sources.Count</b><span>@L["Hst.Beekeepers"]</span></div>
+            <div class="hs-stat"><b>@(Model.ProductionDate?.ToString("d MMM yyyy", culture) ?? L["Hst.NotAvailable"].Value)</b><span>@L["Hst.Produced"]</span></div>
+        </div>
+        @if (badges != null)
+        {
+            <div class="hs-badges" id="honeystory-badges">
+                @if (badges.AccreditedLab)
+                {
+                    <span class="hs-badge is-ok" id="badge-accredited">✓ @L["Hs.AccreditedLab"]@if (badges.AccreditationNumbers.Any()) {<small>(@string.Join(", ", badges.AccreditationNumbers))</small>}</span>
+                }
+                @if (badges.InHouseLab)
+                {
+                    <span class="hs-badge" id="badge-inhouse">@L["Hs.InHouseLab"]</span>
+                }
+                @if (badges.AllCcpsApproved)
+                {
+                    <span class="hs-badge is-ok" id="badge-approved">✓ @L["Hs.AllCcpsApproved"]</span>
+                }
+                @if (badges.LimitsCompliant)
+                {
+                    <span class="hs-badge is-ok" id="badge-limits">✓ @L["Hs.LimitsCompliant"]</span>
+                }
+                @if (badges.Origins.Any())
+                {
+                    <span class="hs-badge" id="badge-origin">@L["P5.Origin"]: @string.Join(", ", badges.Origins.Select(o => $"{o.Country} {o.Percentage.ToString("0.##", culture)}%"))</span>
+                }
+                @foreach (var code in badges.ReportCodes)
+                {
+                    <a class="hs-badge report-code" href="/verify-report?code=@code">@L["Hs.LabReport"] @code</a>
+                }
+            </div>
+        }
+    </section>
 
-            apiaries.forEach(function(a) {
+    @if (sources.Any())
+    {
+        @* ===== 2. honey origins ===== *@
+        <section class="hs-section" id="hs-origins">
+            @{ Head("<path d=\"M21 12a9 9 0 1 1-9-9v9z\"></path><path d=\"M12 3a9 9 0 0 1 9 9h-9z\"></path>", L["Hst.OriginsEyebrow"].Value, L["Hst.OriginsTitle"].Value); }
+            <div class="hs-card hs-origins">
+                <div class="hs-donut">
+                    <svg viewBox="0 0 180 180" aria-hidden="true">
+                        @{
+                            const double r = 75;
+                            var circumference = 2 * Math.PI * r;
+                            double offset = 0;
+                            for (var i = 0; i < sources.Count; i++)
+                            {
+                                var dash = (double)Share(sources[i]) * circumference;
+                                <circle class="@Color(i)" cx="90" cy="90" r="75" stroke-dasharray="@dash.ToString("0.##", CultureInfo.InvariantCulture) @((circumference - dash).ToString("0.##", CultureInfo.InvariantCulture))" stroke-dashoffset="@((-offset).ToString("0.##", CultureInfo.InvariantCulture))"></circle>
+                                offset += dash;
+                            }
+                        }
+                    </svg>
+                    <div class="hs-donut-center"><b>@Kg(used) kg</b><span>@L["Hst.TotalHoney"]</span></div>
+                </div>
+                <div class="hs-legend">
+                    @for (var i = 0; i < sources.Count; i++)
+                    {
+                        var s = sources[i];
+                        <div class="hs-legend-item @Color(i)">
+                            <div class="hs-legend-top">
+                                <span class="hs-dot"></span>
+                                <span class="hs-legend-name">@Beekeeper(s)</span>
+                                <span class="hs-legend-kg">@Kg(s.UsedAmount) kg</span>
+                                <span class="hs-legend-pct">@Pct(Share(s))</span>
+                            </div>
+                            <div class="hs-track"><div class="hs-fill" style="width: @((Share(s) * 100).ToString("0.##", CultureInfo.InvariantCulture))%"></div></div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
 
-                var position = { lat: a.lat, lng: a.lng };
+        @* ===== 3. apiary locations (approximate areas only, D-12) ===== *@
+        var located = sources.Select((s, i) => (s, i)).Where(x => x.s.Latitude != null && x.s.Longitude != null).ToList();
+        <section class="hs-section" id="hs-map">
+            @{ Head("<path d=\"M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z\"></path><circle cx=\"12\" cy=\"9.5\" r=\"2.5\"></circle>", L["Hst.MapEyebrow"].Value, L["Hst.MapTitle"].Value); }
+            @if (located.Any())
+            {
+                <div class="hs-card hs-map">
+                    <svg viewBox="0 0 640 300" role="img" aria-label="@L["Hst.MapTitle"]">
+                        <partial name="~/Views/Storefront/_TurkeyOutline.cshtml" />
+                        @foreach (var (s, i) in located)
+                        {
+                            var (x, y) = ProvinceMap.ToMap((double)s.Latitude!.Value, (double)s.Longitude!.Value);
+                            <g class="@Color(i)">
+                                <circle class="hs-map-area" cx="@x.ToString(CultureInfo.InvariantCulture)" cy="@y.ToString(CultureInfo.InvariantCulture)" r="11"></circle>
+                                <text class="hs-map-num" x="@x.ToString(CultureInfo.InvariantCulture)" y="@((y + 4).ToString(CultureInfo.InvariantCulture))" text-anchor="middle">@(i + 1)</text>
+                            </g>
+                        }
+                    </svg>
+                </div>
+                <p class="hs-note">@L["Hst.MapNote"]</p>
+            }
+            <div class="hs-places">
+                @for (var i = 0; i < sources.Count; i++)
+                {
+                    var s = sources[i];
+                    <div class="hs-card hs-place @Color(i)">
+                        <div class="hs-pin">@(i + 1)</div>
+                        <div class="hs-place-body"><b>@Apiary(s)</b><span>@Beekeeper(s)</span></div>
+                        <div class="hs-amount"><b>@Kg(s.UsedAmount) kg</b><span>@Pct(Share(s))</span></div>
+                    </div>
+                }
+            </div>
+        </section>
 
-                // D-12: an area of about 10 km instead of an exact pin
-                var area = new google.maps.Circle({
-                    map: map,
-                    center: position,
-                    radius: 7000,
-                    strokeColor: "#16a34a",
-                    strokeOpacity: 0.8,
-                    strokeWeight: 2,
-                    fillColor: "#16a34a",
-                    fillOpacity: 0.25
-                });
+        @* ===== 4. source composition ===== *@
+        <section class="hs-section" id="hs-sources">
+            @{ Head("<path d=\"M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2\"></path><circle cx=\"10\" cy=\"7\" r=\"4\"></circle><path d=\"M21 21v-2a4 4 0 0 0-3-3.9\"></path>", L["Hst.SourcesEyebrow"].Value, L["Hst.SourcesTitle"].Value); }
+            <div class="hs-stack" aria-hidden="true">
+                @for (var i = 0; i < sources.Count; i++)
+                {
+                    <span class="@Color(i)" style="flex: @((Share(sources[i]) * 1000).ToString("0", CultureInfo.InvariantCulture))"></span>
+                }
+            </div>
+            <div class="hs-sources">
+                @for (var i = 0; i < sources.Count; i++)
+                {
+                    var s = sources[i];
+                    <div class="hs-card @Color(i)" data-lot="@s.RawHoneyProductionId">
+                        <div class="hs-source-head">
+                            <div class="hs-avatar">@StorefrontPage.Initials(Beekeeper(s))</div>
+                            <div class="hs-source-name">
+                                <b>@if (s.StorefrontCode != null) {<a href="/storefront/@s.StorefrontCode" class="storefront-link">@Beekeeper(s)</a>} else {<text>@Beekeeper(s)</text>}</b>
+                                <span>@Apiary(s)</span>
+                            </div>
+                            @if (s.HoneyType != null)
+                            {
+                                <span class="hs-type">@Ref.Text("HoneyType", "Title", s.HoneyType)</span>
+                            }
+                        </div>
+                        <div class="hs-used">
+                            <span>⚖ @L["Hst.KgUsed", Kg(s.UsedAmount)]</span>
+                            <span class="hs-share-pill">@L["Hst.ShareOfJar", Pct(Share(s))]</span>
+                        </div>
+                        @if (s.StorefrontCode != null)
+                        {
+                            <a class="hs-sf-link" href="/storefront/@s.StorefrontCode">@L["P5.BeekeeperPage"] →</a>
+                        }
+                        @if (s.Photos.Any())
+                        {
+                            <div class="hs-photos">
+                                @foreach (var p in s.Photos)
+                                {
+                                    <img src="@Url.Action("Image", "HoneyStory", new { id = p.ApiaryPhotoId })" alt="@(p.Description ?? Apiary(s))" loading="lazy">
+                                }
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </section>
 
-                // Built from text nodes, so names cannot inject HTML
-                var content = document.createElement("div");
-                content.style.minWidth = "220px";
-                var name = document.createElement("b"); name.textContent = a.beekeeper || "";
-                var apiaryName = document.createElement("span"); apiaryName.style.color = "#16a34a"; apiaryName.style.fontWeight = "600"; apiaryName.textContent = a.apiary || "";
-                var used = document.createElement("div"); used.textContent = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Honey Used:"].Value)) + " " + a.amount;
-                var share = document.createElement("div"); share.textContent = "Contribution: " + a.percent;
-                var note = document.createElement("div"); note.style.color = "#6b7280"; note.textContent = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Approximate area"].Value));
-                content.append(name, document.createElement("br"), apiaryName, document.createElement("br"), used, share, note);
+        @* ===== 5. quality at a glance ===== *@
+        <section class="hs-section" id="hs-lab">
+            @{ Head("<path d=\"M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3\"></path>", L["Hst.LabEyebrow"].Value, L["Hst.LabTitle"].Value); }
+            @if (anyLab && anyUnverified)
+            {
+                <div class="hs-pending" id="hs-limits-pending">ⓘ <span>@L["Hst.LimitsPending"]</span></div>
+            }
+            @{ Chips(); }
+            @for (var i = 0; i < sources.Count; i++)
+            {
+                var s = sources[i];
+                var highlights = HoneyStoryLab.HighlightValues(s);
+                <div class="hs-panel@(i == biggest ? " is-on" : "")" data-src="@i">
+                    @if (sources.Count > 1)
+                    {
+                        <p class="hs-panel-title">@L["Hst.FromSource", Apiary(s)]</p>
+                    }
+                    @if (highlights.Any())
+                    {
+                        <div class="hs-tiles">
+                            @foreach (var v in highlights) { Tile(v, s); }
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="hs-note">@L["Hst.NoResults"]</p>
+                    }
+                </div>
+            }
+            @if (anyLab)
+            {
+                <a class="hs-report-link" href="#lab-report">
+                    <span class="hs-report-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFD54F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6M8 13h8M8 17h5"></path></svg></span>
+                    <span class="grow">@L["Hst.SeeFullReport"]</span><span aria-hidden="true">›</span>
+                </a>
+            }
+        </section>
 
-                var infowindow = new google.maps.InfoWindow({ content: content, position: position });
-
-                area.addListener("click", function() {
-                    infowindow.open(map);
-                });
-
-                bounds.extend(position);
-
-            });
-
-            if (apiaries.length > 0)
-                map.fitBounds(bounds);
-
-            // Never zoom in closer than the approximate area (D-12)
-            google.maps.event.addListenerOnce(map, "idle", function () {
-                if (map.getZoom() > 10) map.setZoom(10);
-            });
-
+        @* ===== 6. full lab report ===== *@
+        @if (anyLab)
+        {
+            <section class="hs-section" id="lab-report">
+                @{ Head("<path d=\"M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z\"></path><path d=\"M14 3v6h6\"></path>", L["Hst.ReportEyebrow"].Value, L["Hst.ReportTitle"].Value); }
+                @if (sources.Count > 1)
+                {
+                    <p class="hs-intro">@L["Hst.SourceHint"]</p>
+                }
+                @{ Chips(); }
+                @for (var i = 0; i < sources.Count; i++)
+                {
+                    var s = sources[i];
+                    var values = HoneyStoryLab.Values(s);
+                    <div class="hs-panel@(i == biggest ? " is-on" : "")" data-src="@i">
+                        <p class="hs-panel-title">@L["Hst.FromSource", Apiary(s)]@if (s.LabName != null) {<text> · @s.LabName</text>}</p>
+                        @if (s.LabReportCode != null)
+                        {
+                            <a class="hs-report-link" href="/verify-report?code=@s.LabReportCode">
+                                <span class="hs-report-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFD54F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"></path><path d="m9 12 2 2 4-4"></path></svg></span>
+                                <span class="grow">@L["Sf.VerifyReportCode", s.LabReportCode]</span><span aria-hidden="true">›</span>
+                            </a>
+                        }
+                        @if (!values.Any())
+                        {
+                            <p class="hs-note">@L["Hst.NoResults"]</p>
+                        }
+                        @foreach (var group in HoneyStoryLab.Groups)
+                        {
+                            var rows = values.Where(v => HoneyStoryLab.GroupOfParameter(v.ParameterName) == group).ToList();
+                            if (!rows.Any())
+                            {
+                                continue;
+                            }
+                            if (group == HoneyStoryLab.Residues)
+                            {
+                                var outCount = rows.Count(v => v.Compliant == false);
+                                var verified = rows.Count(v => v.Compliant != null);
+                                <details class="hs-fold" data-group="@group">
+                                    <summary>
+                                        <span class="hs-head-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"></path><circle cx="12" cy="11" r="3"></circle></svg></span>
+                                        <span class="grow"><b>@L["Hst.Group." + group]</b>
+                                            <span>@L["Hst.ResiduesTested", rows.Count]@if (verified > 0) {<text> · @(outCount == 0 ? L["Hst.ResiduesAllClear"] : L["Hst.ResiduesOut", outCount])</text>}</span></span>
+                                        <span class="hs-chev" aria-hidden="true">⌄</span>
+                                    </summary>
+                                    <div class="hs-fold-body">
+                                        <p class="hs-note">@L["Hst.GroupDesc." + group]</p>
+                                        @foreach (var v in rows)
+                                        {
+                                            var unit = Ref.Unit(v.ParameterId, v.Unit);
+                                            <div class="hs-row">
+                                                <div class="hs-row-body"><b><a href="/honeystory/parameter/@v.ParameterId@(paramQuery)&amp;lot=@s.RawHoneyProductionId">@Ref.Parameter(v.ParameterId, v.ParameterName)</a></b>
+                                                    @if (v.Compliant != null && v.LimitText != null) {<span>@L["Limit:"] @Ref.Limit(v.LimitText, k => L[k])</span>}</div>
+                                                <div class="hs-row-value"><b>@Num(v.NumericValue!.Value) <small title="@unit">@Units.Symbol(unit)</small></b>
+                                                    @if (v.Compliant == true) {<span class="is-ok">@L["Hst.Within"]</span>} else if (v.Compliant == false) {<span class="is-out">@L["Hst.Out"]</span>}</div>
+                                            </div>
+                                        }
+                                    </div>
+                                </details>
+                            }
+                            else
+                            {
+                                <div class="hs-group" data-group="@group">
+                                    <h3>@L["Hst.Group." + group]</h3>
+                                    @if (group != HoneyStoryLab.Other)
+                                    {
+                                        <p>@L["Hst.GroupDesc." + group]</p>
+                                    }
+                                    <div class="hs-tiles">
+                                        @foreach (var v in rows) { Tile(v, s); }
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                }
+            </section>
         }
 
-    </script>
-
-    @if (!string.IsNullOrWhiteSpace(mapsApiKey))
-    {
-        <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=@Uri.EscapeDataString(mapsApiKey)&callback=initMap">
-        </script>
+        @* ===== 7. process checks: every CCP of the lots (except the lab, CCP 1) and of the batch ===== *@
+        <section class="hs-section" id="process">
+            @{ Head("<rect x=\"5\" y=\"4\" width=\"14\" height=\"17\" rx=\"2\"></rect><path d=\"M9 4V3h6v1M9 13l2 2 4-4\"></path>", L["Hst.ProcessEyebrow"].Value, L["Hst.ProcessTitle"].Value); }
+            <p class="hs-intro">@L["Hst.ProcessIntro"]</p>
+            @{
+                void Block(HoneyStoryCcpBlock b)
+                {
+                    var (cls, text) = b.State switch
+                    {
+                        HoneyStoryCcpBlock.Recorded => ("is-ok", "Recorded"),
+                        HoneyStoryCcpBlock.Incomplete => ("", "Partly recorded"),
+                        HoneyStoryCcpBlock.NotApplicable => ("", "Not applicable"),
+                        _ => ("", "Not recorded")
+                    };
+                    <details class="hs-fold ccp-card" data-ccp="@b.CCPCode" data-state="@b.State">
+                        <summary>
+                            <span class="hs-head-icon hs-code">@b.CCPCode?.Replace("CCP ", "")</span>
+                            <span class="grow"><b>@b.CCPCode · @Ref.CcpTitle(b.CCPId, b.CCPTitle)</b><span>@Ref.T("Ccp", b.CCPId, "ProcessingStep", b.ProcessingStep)</span></span>
+                            <span class="hs-state @cls">@L[text]</span>
+                        </summary>
+                        <div class="hs-fold-body">
+                            @if (b.State == HoneyStoryCcpBlock.NotApplicable)
+                            {
+                                <p class="hs-note">@L["This control point does not apply to this honey. Reason:"] @b.NotApplicableReason</p>
+                            }
+                            else if (b.State == HoneyStoryCcpBlock.NotRecorded)
+                            {
+                                <p class="hs-note">@L["No values were recorded for this control point."]</p>
+                            }
+                            else
+                            {
+                                foreach (var row in b.Parameters)
+                                {
+                                    var unit = Ref.Unit(row.ParameterId, row.Unit);
+                                    var (vcls, vtext) = !row.Recorded ? ("is-info", L["Not recorded"].Value)
+                                        : row.Compliant == true ? ("is-ok", L["Hst.Pass"].Value)
+                                        : row.Compliant == false ? ("is-out", L["Hst.Fail"].Value)
+                                        : ("is-info", L["Recorded"].Value);
+                                    <div class="hs-row">
+                                        <span class="hs-row-icon" aria-hidden="true">@(row.Compliant == true ? "✅" : row.Compliant == false ? "⚠️" : "ⓘ")</span>
+                                        <div class="hs-row-body"><b>@Ref.Parameter(row.ParameterId, row.ParameterName)</b>
+                                            @if (row.Compliant != null && row.LimitText != null) {<span>@L["Limit:"] @Ref.Limit(row.LimitText, k => L[k])</span>}</div>
+                                        <div class="hs-row-value">
+                                            @if (row.Recorded)
+                                            {
+                                                <b>@if (row.IsFile) {<text>@L["document on file"]</text>} else if (row.NumericValue != null) {<text>@Num(row.NumericValue.Value) <small title="@unit">@Units.Symbol(unit)</small></text>} else {<text>@(row.TextValue is "Yes" or "No" ? L[row.TextValue!].Value : row.TextValue)</text>}</b>
+                                            }
+                                            <span class="@vcls">@vtext</span>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </details>
+                }
+            }
+            @foreach (var s in sources)
+            {
+                var blocks = s.CcpBlocks.Where(b => b.CCPCode != HoneyStoryLab.LabCcp).ToList();
+                if (!blocks.Any())
+                {
+                    continue;
+                }
+                <h3 class="hs-subhead">@Apiary(s) · @Beekeeper(s)</h3>
+                foreach (var b in blocks) { Block(b); }
+            }
+            @if (Model.BatchCcpBlocks.Any())
+            {
+                <h3 class="hs-subhead">@L["Hst.BatchSteps"]</h3>
+                foreach (var b in Model.BatchCcpBlocks) { Block(b); }
+            }
+        </section>
     }
+
+    @* ===== 8. verified footer ===== *@
+    <section class="hs-verified">
+        <div class="hs-verified-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"></path><path d="m9 12 2 2 4-4"></path></svg></div>
+        <h2>@L["Hst.VerifiedTitle"]</h2>
+        <p>@L["Hst.VerifiedSub"]</p>
+        <hr>
+        <small>🐝 @L["Hst.VerifiedLabel"]</small>
+    </section>
+    <a class="hs-action" href="/verify-report">@L["Sf.VerifyReport"]</a>
+
+</main>
+
+<footer class="sf-footer">
+    <span>TOP4HoneyChains · @L["Sf.FooterTag"]</span>
+    <span>@L["Hst.FooterNote"]</span>
+</footer>
+</div>
+<script>
+    // source chips: show the values of one source in both lab sections
+    document.querySelectorAll('.hs-chip').forEach(function (chip) {
+        chip.addEventListener('click', function () {
+            var src = chip.getAttribute('data-src');
+            document.querySelectorAll('.hs-chip').forEach(function (c) {
+                var on = c.getAttribute('data-src') === src;
+                c.classList.toggle('is-on', on);
+                c.setAttribute('aria-pressed', on ? 'true' : 'false');
+            });
+            document.querySelectorAll('.hs-panel').forEach(function (p) { p.classList.toggle('is-on', p.getAttribute('data-src') === src); });
+        });
+    });
+</script>
 </body>
 </html>
