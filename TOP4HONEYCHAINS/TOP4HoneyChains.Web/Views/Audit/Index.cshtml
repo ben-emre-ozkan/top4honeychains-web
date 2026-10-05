@@ -37,7 +37,7 @@
 
                     <div class="small text-muted mb-1">@L["{0} rows", total]</div>
                     <div class="table-responsive"><table class="table table-sm table-bordered small" id="audit-table">
-                        <thead><tr><th>#</th><th>UTC</th><th>@L["Org.User"]</th><th>@L["Org.OrgRole"]</th><th>@L["Audit.Action"]</th><th>@L["Audit.Entity"]</th><th>@L["Audit.Key"]</th><th>@L["Audit.Flags"]</th><th>@L["Audit.Old"]</th><th>@L["Audit.New"]</th><th>@L["Hash"]</th></tr></thead>
+                        <thead><tr><th>#</th><th>UTC</th><th>@L["Org.User"]</th><th>@L["Audit.Org"]</th><th>@L["Audit.Action"]</th><th>@L["Audit.Entity"]</th><th>@L["Audit.Key"]</th><th>@L["Audit.Flags"]</th><th>@L["Audit.Old"]</th><th>@L["Audit.New"]</th><th>@L["Hash"]</th></tr></thead>
                         <tbody>
                             @foreach (var a in Model)
                             {
@@ -49,7 +49,7 @@
                                     <td>@L[a.Action]</td>
                                     <td>@L[a.Entity]</td>
                                     <td>@a.EntityKey</td>
-                                    <td>@if (a.Flags != null) { <span class="badge bg-warning text-dark">@a.Flags</span> }</td>
+                                    <td>@if (a.Flags != null) { <span class="badge bg-warning text-dark">@string.Join(", ", a.Flags.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).Select(f => L[f].Value))</span> }</td>
                                     <td style="max-width:260px; word-break:break-all">@a.OldValues</td>
                                     <td style="max-width:260px; word-break:break-all">@a.NewValues</td>
                                     <td><code title="@a.Hash">@a.Hash[..10]…</code></td>

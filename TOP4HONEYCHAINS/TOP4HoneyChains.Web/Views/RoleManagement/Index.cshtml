@@ -65,7 +65,7 @@
                                             <td>
 
                                                 <span class="badge bg-primary fs-6">
-                                                    @L[role.Name ?? ""]
+                                                    @(L[role.Name ?? ""].ResourceNotFound ? Ref.Role(role.Name) : L[role.Name ?? ""].Value)
                                                 </span>
 
                                             </td>

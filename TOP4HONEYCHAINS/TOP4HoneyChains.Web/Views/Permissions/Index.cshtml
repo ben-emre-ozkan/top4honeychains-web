@@ -104,7 +104,7 @@
                                                 <td class="text-center">
                                                     @if (cell.Available)
                                                     {
-                                                        <input type="checkbox" class="form-check-input" name="allow" value="@cell.Key" checked="@cell.Allowed" aria-label="@cell.Key" />
+                                                        <input type="checkbox" class="form-check-input" name="allow" value="@cell.Key" checked="@cell.Allowed" aria-label="@(row.Label.StartsWith("Area.") ? L[row.Label].Value : row.Label) · @L[cell.Key.Split(':').Last()]" />
                                                     }
                                                     else
                                                     {
@@ -139,7 +139,7 @@
                                         <form asp-action="SaveCapabilities" method="post" id="caps-@o.OrgId"><input type="hidden" name="orgId" value="@o.OrgId" /></form>
                                         @foreach (var c in caps)
                                         {
-                                            <td class="text-center"><input type="checkbox" class="form-check-input" form="caps-@o.OrgId" name="capabilities" value="@c" checked="@o.Capabilities.Contains(c)" aria-label="@c" /></td>
+                                            <td class="text-center"><input type="checkbox" class="form-check-input" form="caps-@o.OrgId" name="capabilities" value="@c" checked="@o.Capabilities.Contains(c)" aria-label="@Ref.Capability(c)" /></td>
                                         }
                                         <td><button type="submit" form="caps-@o.OrgId" class="btn btn-sm btn-primary">@L["Save"]</button></td>
                                     </tr>

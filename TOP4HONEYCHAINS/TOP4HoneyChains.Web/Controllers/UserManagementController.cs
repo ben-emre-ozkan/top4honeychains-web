@@ -12,14 +12,28 @@ namespace TOP4HoneyChains.Web.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly Services.OrgModel.FeatureFlags _flags;
+
+        // A global role that was found in the received database and is used nowhere in the code (an organization role
+        // of the same name exists, given per organization); not offered for new users
+        public const string RetiredSampleAcceptanceRole = "SampleAcceptanceOfficer";
 
         public UserManagementController(
             UserManager<ApplicationUser> userManager,
-            RoleManager<IdentityRole> roleManager)
+            RoleManager<IdentityRole> roleManager,
+            Microsoft.Extensions.Options.IOptions<Services.OrgModel.FeatureFlags> flags)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            _flags = flags.Value;
         }
+
+        // With the organization model only the platform administrator is a global role; organization roles are
+        // memberships (Organizations -> Add member) and beekeepers and consumers do not log in (D-22, D-23).
+        // In admin mode (flag off) the stored roles are offered, without the retired one.
+        private List<string> AllowedRoles() => _flags.OrgRoleModel
+            ? new List<string> { Services.OrgModel.CurrentOrg.AdminRole }
+            : _roleManager.Roles.Select(r => r.Name!).Where(n => n != RetiredSampleAcceptanceRole).ToList();
 
         // USER LIST
         public IActionResult Index()
@@ -33,19 +47,19 @@ namespace TOP4HoneyChains.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
-        {
-            ViewBag.Roles = _roleManager.Roles.Select(r => r.Name).ToList();
-            ViewBag.Controller = "User Management";
-            ViewBag.Action = "Create New User";
-            return View();
-        }
+        public IActionResult Create() => CreateView(new RegisterViewModel());
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(RegisterViewModel model)
         {
-            if (!string.IsNullOrEmpty(model.Role) && !await _roleManager.RoleExistsAsync(model.Role))
+            if (string.IsNullOrEmpty(model.Role))
+            {
+                // a user without a global role gets access only through organization memberships
+                if (!_flags.OrgRoleModel)
+                    ModelState.AddModelError(nameof(model.Role), "Select a valid role.");
+            }
+            else if (!AllowedRoles().Contains(model.Role) || !await _roleManager.RoleExistsAsync(model.Role))
                 ModelState.AddModelError(nameof(model.Role), "Select a valid role.");
 
             if (!ModelState.IsValid)
@@ -61,7 +75,18 @@ namespace TOP4HoneyChains.Web.Controllers
 
             if (result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(user, model.Role);
+                if (!string.IsNullOrEmpty(model.Role))
+                {
+                    var roleResult = await _userManager.AddToRoleAsync(user, model.Role);
+                    if (!roleResult.Succeeded)
+                    {
+                        foreach (var error in roleResult.Errors)
+                            ModelState.AddModelError("", error.Description);
+                        return CreateView(model);
+                    }
+                }
+                else
+                    TempData["Success"] = "User created without a global role. Give the organization role under Organizations → Add member.";
                 return RedirectToAction("Index");
             }
 
@@ -74,7 +99,8 @@ namespace TOP4HoneyChains.Web.Controllers
         // The role dropdown must be reloaded whenever the form is shown again
         private IActionResult CreateView(RegisterViewModel model)
         {
-            ViewBag.Roles = _roleManager.Roles.Select(r => r.Name).ToList();
+            ViewBag.Roles = AllowedRoles();
+            ViewBag.OrgModel = _flags.OrgRoleModel;
             ViewBag.Controller = "User Management";
             ViewBag.Action = "Create New User";
             return View(model);

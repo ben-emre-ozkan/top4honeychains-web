@@ -69,7 +69,7 @@
                                 <tbody>
                                     @foreach (var e in Model.VerificationEvents.OrderByDescending(e => e.EventId))
                                     {
-                                        <tr><td>@e.At.ToString("dd.MM.yyyy HH:mm")</td><td>@e.FromStatus</td><td>@e.ToStatus</td><td>@e.Reason</td></tr>
+                                        <tr><td>@e.At.ToString("dd.MM.yyyy HH:mm")</td><td>@(e.FromStatus == null ? "-" : L[e.FromStatus].Value)</td><td>@(e.ToStatus == null ? "-" : L[e.ToStatus].Value)</td><td>@e.Reason</td></tr>
                                     }
                                     @if (!Model.VerificationEvents.Any())
                                     {

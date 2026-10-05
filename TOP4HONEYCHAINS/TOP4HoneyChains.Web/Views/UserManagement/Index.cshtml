@@ -79,7 +79,7 @@
 
                                                 @foreach (var role in roles)
                                                 {
-                                                    <span class="badge badge-soft-dark mr-1"><i class="mdi mdi-shield-account"></i> @L[role]</span>
+                                                    <span class="badge badge-soft-dark mr-1"><i class="mdi mdi-shield-account"></i> @(L[role].ResourceNotFound ? Ref.Role(role) : L[role].Value)</span>
                                                 }
 
                                             </td>

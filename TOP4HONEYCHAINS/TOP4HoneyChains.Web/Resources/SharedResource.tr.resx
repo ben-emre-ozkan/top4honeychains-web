@@ -310,7 +310,7 @@
     <value>Yetenekler</value>
   </data>
   <data name="Org.NotVerifiedBanner" xml:space="preserve">
-    <value>Kurumunuz henüz doğrulanmadı. Verileri okuyabilir ve (OrgAdmin olarak) belge yükleyebilirsiniz; doğrulanana kadar kimse veri giremez.</value>
+    <value>Kurumunuz henüz doğrulanmadı. Verileri okuyabilir ve (kurum yöneticisi olarak) belge yükleyebilirsiniz; doğrulanana kadar kimse veri giremez.</value>
   </data>
   <data name="Org.OrganizationPage" xml:space="preserve">
     <value>Kurum sayfası</value>
@@ -379,7 +379,7 @@
     <value>Kesinleştirme</value>
   </data>
   <data name="Org.FinalizeHelp" xml:space="preserve">
-    <value>Partinin ve lotlarının tüm kontrol noktaları onaylanmış olmalıdır. Bir kişi talep eder, başka bir kişi (QualityApprover) onaylar. Kesinleşen parti değiştirilemez.</value>
+    <value>Partinin ve lotlarının tüm kontrol noktaları onaylanmış olmalıdır. Bir kişi talep eder, başka bir kişi (kalite onaylayıcı) onaylar. Kesinleşen parti değiştirilemez.</value>
   </data>
   <data name="Org.SelfApproved" xml:space="preserve">
     <value>kendi onayı (muafiyet)</value>
@@ -841,7 +841,7 @@
     <value>KKN &quot;Uygulanamaz&quot; olarak işaretlendi.</value>
   </data>
   <data name="Only a QualityApprover of the organization can approve." xml:space="preserve">
-    <value>Yalnızca kurumun QualityApprover rolündeki kişisi onaylayabilir.</value>
+    <value>Yalnızca kurumun kalite onaylayıcısı onaylayabilir.</value>
   </data>
   <data name="Only a submitted (or &quot;Not applicable&quot;) CCP record can be approved." xml:space="preserve">
     <value>Yalnızca gönderilmiş (veya &quot;Uygulanamaz&quot;) bir KKN kaydı onaylanabilir.</value>
@@ -1111,7 +1111,7 @@
     <value>Kesinleştirmeyi doğrulanmış bir kurumun {0} rolündeki kişisi talep eder.</value>
   </data>
   <data name="Finalizing requested; a QualityApprover (another person) must confirm it." xml:space="preserve">
-    <value>Kesinleştirme talep edildi; bir QualityApprover (başka bir kişi) onaylamalı.</value>
+    <value>Kesinleştirme talep edildi; bir kalite onaylayıcı (başka bir kişi) onaylamalı.</value>
   </data>
   <data name="Only a {0} of a verified organization can finalize." xml:space="preserve">
     <value>Yalnızca doğrulanmış bir kurumun {0} rolündeki kişisi kesinleştirebilir.</value>
@@ -1468,10 +1468,10 @@
     <value>Sizin kısmınız: üyenizin lotu</value>
   </data>
   <data name="Only a Processing organization records deliveries." xml:space="preserve">
-    <value>Teslimleri yalnızca işleme (Processing) kurumu kaydeder.</value>
+    <value>Teslimleri yalnızca işleme yeteneği olan kurum kaydeder.</value>
   </data>
   <data name="Your role ({0}) cannot record deliveries; only a SampleAcceptanceOfficer can." xml:space="preserve">
-    <value>Rolünüz ({0}) teslim kaydedemez; yalnızca SampleAcceptanceOfficer kaydedebilir.</value>
+    <value>Rolünüz ({0}) teslim kaydedemez; yalnızca numune kabul sorumlusu kaydedebilir.</value>
   </data>
   <data name="No active beekeeper with this number." xml:space="preserve">
     <value>Bu numarayla etkin bir arıcı yok.</value>
@@ -1612,7 +1612,7 @@
     <value>Rapor kodu</value>
   </data>
   <data name="Lab.Returned" xml:space="preserve">
-    <value>LabManager tarafından geri gönderildi</value>
+    <value>Laboratuvar müdürü tarafından geri gönderildi</value>
   </data>
   <data name="Lab.ReportNumber" xml:space="preserve">
     <value>Rapor numarası</value>
@@ -1699,7 +1699,7 @@
     <value>Numuneyi yalnızca lotun bulunduğu kurum alır.</value>
   </data>
   <data name="Your role ({0}) cannot take samples; only a SampleAcceptanceOfficer can." xml:space="preserve">
-    <value>Rolünüz ({0}) numune alamaz; yalnızca SampleAcceptanceOfficer alabilir.</value>
+    <value>Rolünüz ({0}) numune alamaz; yalnızca numune kabul sorumlusu alabilir.</value>
   </data>
   <data name="Choose a verified laboratory." xml:space="preserve">
     <value>Doğrulanmış bir laboratuvar seçin.</value>
@@ -1738,7 +1738,7 @@
     <value>Onaylı laboratuvar raporu değiştirilemez; bunun yerine düzeltme talep edin.</value>
   </data>
   <data name="The report is submitted; the LabManager approves it or returns it for changes." xml:space="preserve">
-    <value>Rapor onaya gönderildi; LabManager onaylar ya da değişiklik için geri gönderir.</value>
+    <value>Rapor onaya gönderildi; laboratuvar müdürü onaylar ya da değişiklik için geri gönderir.</value>
   </data>
   <data name="The report number can be at most 50 characters." xml:space="preserve">
     <value>Rapor numarası en çok 50 karakter olabilir.</value>
@@ -1765,7 +1765,7 @@
     <value>Göndermeden önce rapor numarasını ve düzenleme tarihini girin.</value>
   </data>
   <data name="Report submitted; a LabManager (another person) must approve it." xml:space="preserve">
-    <value>Rapor onaya gönderildi; bir LabManager (başka bir kişi) onaylamalı.</value>
+    <value>Rapor onaya gönderildi; bir laboratuvar müdürü (başka bir kişi) onaylamalı.</value>
   </data>
   <data name="Only a submitted report can be approved or returned." xml:space="preserve">
     <value>Yalnızca onaya gönderilmiş rapor onaylanabilir veya geri gönderilebilir.</value>
@@ -1876,7 +1876,7 @@
     <value>Arıcı sayfalarını yalnızca arıcı birliği yönetir.</value>
   </data>
   <data name="Your role ({0}) cannot manage storefronts; only the association's OrgAdmin can." xml:space="preserve">
-    <value>Rolünüz ({0}) arıcı sayfalarını yönetemez; yalnızca birliğin OrgAdmin'i yönetebilir.</value>
+    <value>Rolünüz ({0}) arıcı sayfalarını yönetemez; yalnızca birliğin kurum yöneticisi yönetebilir.</value>
   </data>
   <data name="This beekeeper already has an active consent; withdraw it first to record a new one." xml:space="preserve">
     <value>Bu arıcının etkin bir rızası var; yenisini kaydetmek için önce geri çekin.</value>
@@ -5696,5 +5696,35 @@
   </data>
   <data name="Sf.LabNoteShort" xml:space="preserve">
     <value>Laboratuvar: {0}; raporu ikinci bir kişi onayladı.</value>
+  </data>
+  <data name="UM.GlobalRole" xml:space="preserve">
+    <value>Genel rol</value>
+  </data>
+  <data name="UM.NoGlobalRole" xml:space="preserve">
+    <value>Genel rol yok (kurum üyesi)</value>
+  </data>
+  <data name="UM.PlatformAdmin" xml:space="preserve">
+    <value>Platform yöneticisi</value>
+  </data>
+  <data name="UM.OrgRoleNote" xml:space="preserve">
+    <value>Kurum rolleri (numune kabul, analist, kalite onaylayıcı ve diğerleri) kurum bazında verilir; arıcılar ve tüketiciler sisteme giriş yapmaz. Rolleri şuradan verin:</value>
+  </data>
+  <data name="User created without a global role. Give the organization role under Organizations → Add member." xml:space="preserve">
+    <value>Kullanıcı genel rol olmadan oluşturuldu. Kurum rolünü Kurumlar → Üye ekle bölümünden verin.</value>
+  </data>
+  <data name="Msg.Or" xml:space="preserve">
+    <value>veya</value>
+  </data>
+  <data name="Audit.Org" xml:space="preserve">
+    <value>Kurum</value>
+  </data>
+  <data name="SelfApproved" xml:space="preserve">
+    <value>Kendi onayladı</value>
+  </data>
+  <data name="SelfFinalized" xml:space="preserve">
+    <value>Kendi kesinleştirdi</value>
+  </data>
+  <data name="RolePermissions" xml:space="preserve">
+    <value>Rol yetkileri</value>
   </data>
 </root>

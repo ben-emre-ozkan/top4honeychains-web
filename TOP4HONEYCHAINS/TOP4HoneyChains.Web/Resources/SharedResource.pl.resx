@@ -310,7 +310,7 @@
     <value>Funkcje</value>
   </data>
   <data name="Org.NotVerifiedBanner" xml:space="preserve">
-    <value>Twoja organizacja nie jest jeszcze zweryfikowana. Możesz przeglądać jej dane i (jako OrgAdmin) przesyłać dokumenty, ale nikt nie może wprowadzać danych do czasu weryfikacji.</value>
+    <value>Twoja organizacja nie jest jeszcze zweryfikowana. Możesz przeglądać jej dane i (jako administrator organizacji) przesyłać dokumenty, ale nikt nie może wprowadzać danych do czasu weryfikacji.</value>
   </data>
   <data name="Org.OrganizationPage" xml:space="preserve">
     <value>Strona organizacji</value>
@@ -379,7 +379,7 @@
     <value>Zatwierdź ostatecznie</value>
   </data>
   <data name="Org.FinalizeHelp" xml:space="preserve">
-    <value>Wszystkie punkty kontrolne partii końcowej i jej partii muszą być zatwierdzone. Jedna osoba składa wniosek, druga osoba (QualityApprover) go potwierdza. Partii końcowej zatwierdzonej ostatecznie nie można zmienić.</value>
+    <value>Wszystkie punkty kontrolne partii końcowej i jej partii muszą być zatwierdzone. Jedna osoba składa wniosek, druga osoba (zatwierdzający jakość) go potwierdza. Partii końcowej zatwierdzonej ostatecznie nie można zmienić.</value>
   </data>
   <data name="Org.SelfApproved" xml:space="preserve">
     <value>zatwierdzone samodzielnie (wyjątek)</value>
@@ -1000,7 +1000,7 @@
     <value>Kod raportu</value>
   </data>
   <data name="Lab.Returned" xml:space="preserve">
-    <value>Zwrócone przez LabManager</value>
+    <value>Zwrócone przez kierownika laboratorium</value>
   </data>
   <data name="Lab.ReportNumber" xml:space="preserve">
     <value>Numer raportu</value>
@@ -1594,7 +1594,7 @@
     <value>Parametry krytycznych punktów kontroli</value>
   </data>
   <data name="Your role ({0}) cannot take samples; only a SampleAcceptanceOfficer can." xml:space="preserve">
-    <value>Twoja rola ({0}) nie może pobierać próbek; może to robić tylko SampleAcceptanceOfficer.</value>
+    <value>Twoja rola ({0}) nie może pobierać próbek; może to robić tylko pracownik przyjmujący próbki.</value>
   </data>
   <data name="Back to Batches" xml:space="preserve">
     <value>Wróć do partii końcowych</value>
@@ -1831,7 +1831,7 @@
     <value>Koordynator projektu</value>
   </data>
   <data name="Your role ({0}) cannot manage storefronts; only the association's OrgAdmin can." xml:space="preserve">
-    <value>Twoja rola ({0}) nie może zarządzać stronami pszczelarzy; może to robić tylko OrgAdmin stowarzyszenia.</value>
+    <value>Twoja rola ({0}) nie może zarządzać stronami pszczelarzy; może to robić tylko administrator organizacji stowarzyszenia.</value>
   </data>
   <data name="for Smart Honey Value Chains" xml:space="preserve">
     <value>dla inteligentnych łańcuchów wartości miodu</value>
@@ -1840,7 +1840,7 @@
     <value>Nie określono</value>
   </data>
   <data name="Finalizing requested; a QualityApprover (another person) must confirm it." xml:space="preserve">
-    <value>Złożono wniosek o ostateczne zatwierdzenie; musi go potwierdzić QualityApprover (inna osoba).</value>
+    <value>Złożono wniosek o ostateczne zatwierdzenie; musi go potwierdzić zatwierdzający jakość (inna osoba).</value>
   </data>
   <data name="Yes, save it" xml:space="preserve">
     <value>Tak, zapisz</value>
@@ -1876,7 +1876,7 @@
     <value>Wróć do listy</value>
   </data>
   <data name="Choose an organization with the Association capability." xml:space="preserve">
-    <value>Wybierz organizację z funkcją Association.</value>
+    <value>Wybierz organizację z funkcją stowarzyszenie.</value>
   </data>
   <data name="Edit Wholesaler" xml:space="preserve">
     <value>Edytuj hurtownika</value>
@@ -2005,7 +2005,7 @@
     <value>Firma:</value>
   </data>
   <data name="Only a Laboratory organization can do this." xml:space="preserve">
-    <value>Może to zrobić tylko organizacja z funkcją Laboratory.</value>
+    <value>Może to zrobić tylko organizacja z funkcją laboratorium.</value>
   </data>
   <data name="Limits verified (shown publicly)" xml:space="preserve">
     <value>Limity zweryfikowane (wyświetlane publicznie)</value>
@@ -3100,7 +3100,7 @@
     <value>Wiersz {0} nie wskazuje na poprzedni wiersz.</value>
   </data>
   <data name="The report is submitted; the LabManager approves it or returns it for changes." xml:space="preserve">
-    <value>Raport został przesłany; LabManager go zatwierdzi lub zwróci do poprawy.</value>
+    <value>Raport został przesłany; kierownik laboratorium go zatwierdzi lub zwróci do poprawy.</value>
   </data>
   <data name="New Password" xml:space="preserve">
     <value>Nowe hasło</value>
@@ -3406,7 +3406,7 @@
     <value>Zarządzaj KPK</value>
   </data>
   <data name="Report submitted; a LabManager (another person) must approve it." xml:space="preserve">
-    <value>Raport został przesłany; musi go zatwierdzić LabManager (inna osoba).</value>
+    <value>Raport został przesłany; musi go zatwierdzić kierownik laboratorium (inna osoba).</value>
   </data>
   <data name="Update the selected beekeeping type." xml:space="preserve">
     <value>Zaktualizuj wybrany typ pszczelarstwa.</value>
@@ -3781,7 +3781,7 @@
     <value>Zarządzaj danymi swojego konta.</value>
   </data>
   <data name="Only a Processing organization records deliveries." xml:space="preserve">
-    <value>Dostawy rejestruje tylko organizacja z funkcją Processing.</value>
+    <value>Dostawy rejestruje tylko organizacja z funkcją przetwarzanie.</value>
   </data>
   <data name="CriticalControlPointParameterContent" xml:space="preserve">
     <value>Treść parametru KPK</value>
@@ -3865,7 +3865,7 @@
     <value>Data rozpoczęcia</value>
   </data>
   <data name="Your role ({0}) cannot record deliveries; only a SampleAcceptanceOfficer can." xml:space="preserve">
-    <value>Twoja rola ({0}) nie może rejestrować dostaw; może to robić tylko SampleAcceptanceOfficer.</value>
+    <value>Twoja rola ({0}) nie może rejestrować dostaw; może to robić tylko pracownik przyjmujący próbki.</value>
   </data>
   <data name="The supplied value is invalid for {0}." xml:space="preserve">
     <value>Podana wartość jest nieprawidłowa dla pola {0}.</value>
@@ -4183,7 +4183,7 @@
     <value>Czy na pewno chcesz usunąć ten KPK?</value>
   </data>
   <data name="Only a QualityApprover of the organization can approve." xml:space="preserve">
-    <value>Zatwierdzać może tylko QualityApprover organizacji.</value>
+    <value>Zatwierdzać może tylko zatwierdzający jakość organizacji.</value>
   </data>
   <data name="Top 5 Most Productive Beekeepers" xml:space="preserve">
     <value>5 najbardziej wydajnych pszczelarzy</value>
@@ -5696,5 +5696,35 @@
   </data>
   <data name="Sf.LabNoteShort" xml:space="preserve">
     <value>Laboratorium {0}; raport zatwierdziła druga osoba.</value>
+  </data>
+  <data name="UM.GlobalRole" xml:space="preserve">
+    <value>Rola globalna</value>
+  </data>
+  <data name="UM.NoGlobalRole" xml:space="preserve">
+    <value>Bez roli globalnej (członek organizacji)</value>
+  </data>
+  <data name="UM.PlatformAdmin" xml:space="preserve">
+    <value>Administrator platformy</value>
+  </data>
+  <data name="UM.OrgRoleNote" xml:space="preserve">
+    <value>Role w organizacji (przyjmowanie próbek, analityk, zatwierdzający jakość i inne) nadaje się w ramach organizacji; pszczelarze i konsumenci się nie logują. Nadaj je w:</value>
+  </data>
+  <data name="User created without a global role. Give the organization role under Organizations → Add member." xml:space="preserve">
+    <value>Użytkownik utworzony bez roli globalnej. Nadaj rolę w organizacji w Organizacje → Dodaj członka.</value>
+  </data>
+  <data name="Msg.Or" xml:space="preserve">
+    <value>lub</value>
+  </data>
+  <data name="Audit.Org" xml:space="preserve">
+    <value>Organizacja</value>
+  </data>
+  <data name="SelfApproved" xml:space="preserve">
+    <value>Zatwierdzone samodzielnie</value>
+  </data>
+  <data name="SelfFinalized" xml:space="preserve">
+    <value>Zamknięte samodzielnie</value>
+  </data>
+  <data name="RolePermissions" xml:space="preserve">
+    <value>Uprawnienia ról</value>
   </data>
 </root>
