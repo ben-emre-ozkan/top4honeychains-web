@@ -11,10 +11,9 @@ using TOP4HoneyChains.Web.Services.OrgModel;
 
 namespace TOP4HoneyChains.Web.Controllers
 {
-    // Public beekeeper storefront (D-30, D-43): only verified data, only with an active consent. Shows a
-    // display name (or the neutral code), province/district, honey types, verified lots, approved lab
-    // results, the batches with the beekeeper's honey and the association. Never a phone, photo, birth
-    // date or exact location.
+    // Public beekeeper storefront (D-30, D-43): only verified data, only with an active consent. The page
+    // (design docs/design/beekeeper-page) is built by StorefrontPage. Never a phone, personal photo, birth date
+    // or exact location; contact goes through the association.
     // Public pages (D-47)
     [Microsoft.AspNetCore.Authorization.AllowAnonymous]
     [RequireOrgModel]
@@ -23,28 +22,13 @@ namespace TOP4HoneyChains.Web.Controllers
     {
         private readonly TOP4HoneyChainsContext _context;
         private readonly StorefrontService _storefronts;
+        private readonly StorefrontPage _page;
 
-        public StorefrontController(TOP4HoneyChainsContext context, StorefrontService storefronts)
+        public StorefrontController(TOP4HoneyChainsContext context, StorefrontService storefronts, StorefrontPage page)
         {
             _context = context;
             _storefronts = storefronts;
-        }
-
-        public record BatchLink(Guid Qr, string? Title, DateTime? Date);
-        public record LabBadge(string Code, bool Accredited, string? AccreditationNumber, string Laboratory, bool InHouse);
-
-        public class Page
-        {
-            public string Code { get; set; } = "";
-            public string DisplayName { get; set; } = "";
-            public bool NameShown { get; set; }
-            public string? Province { get; set; }
-            public string? District { get; set; }
-            public string? Association { get; set; }
-            public List<string> HoneyTypes { get; set; } = new();
-            public int VerifiedLots { get; set; }
-            public List<LabBadge> LabReports { get; set; } = new();
-            public List<BatchLink> Batches { get; set; } = new();
+            _page = page;
         }
 
         private async Task<(StorefrontService.State State, Beekeeper Beekeeper)?> PublishedAsync(string code)
@@ -63,46 +47,7 @@ namespace TOP4HoneyChains.Web.Controllers
         {
             if (await PublishedAsync(code) is not var (state, bk))
                 return NotFound();
-            var registry = await _context.BeekeeperRegistry.AsNoTracking().FirstOrDefaultAsync(r => r.BeekeeperId == bk.BeekeeperId);
-
-            // Verified lots: lots of the beekeeper used in a finalized (published) batch
-            var lots = await _context.FinalHoneyProductionDetails.AsNoTracking()
-                .Where(d => d.FinalHoneyProduction.FinalHoneyProductionIsFinalized
-                            && d.RawHoneyProduction.RawHoneyProductionApiary!.ApiaryBeekeeperId == bk.BeekeeperId)
-                .Select(d => new
-                {
-                    d.RawHoneyProductionId,
-                    HoneyType = d.RawHoneyProduction.RawHoneyProductionHoneyTypeNavigation!.HoneyTypeTitle,
-                    d.FinalHoneyProduction.FinalHoneyProductionQR,
-                    d.FinalHoneyProduction.FinalHoneyProductionTitle,
-                    d.FinalHoneyProduction.FinalHoneyProductionDate
-                })
-                .ToListAsync();
-            var lotIds = lots.Select(l => l.RawHoneyProductionId).Distinct().ToList();
-            var reports = await _context.LabReports.AsNoTracking()
-                .Where(r => r.Status == LabReportStatus.Approved && lotIds.Contains(r.Sample!.RawHoneyProductionId) && r.LabOrg!.Status == OrgStatus.Verified)
-                .Select(r => new LabBadge(r.ReportCode, r.IsAccredited, r.AccreditationNumber, r.LabOrg!.DisplayName, r.InHouse))
-                .ToListAsync();
-
-            var page = new Page
-            {
-                Code = state.Code!,
-                DisplayName = StorefrontService.DisplayName(state.Consent!.NameConsented, bk.BeekeeperFirstName, bk.BeekeeperLastName, state.Code!),
-                NameShown = state.Consent.NameConsented,
-                // PQ-12 is open: the registry's own fields if set, else the province of the verified registry
-                // number and the district recorded at intake of the beekeeper's verified lots
-                Province = registry?.Province ?? Provinces.FromRegistryNumber(registry?.RegistryNumber),
-                District = registry?.District ?? await _context.LotIntakes.AsNoTracking().Where(i => lotIds.Contains(i.RawHoneyProductionId))
-                    .GroupBy(i => i.District).OrderByDescending(g => g.Count()).Select(g => g.Key).FirstOrDefaultAsync(),
-                Association = state.AssociationName,
-                HoneyTypes = lots.Select(l => l.HoneyType).Where(t => t != null).Distinct().OrderBy(t => t).ToList()!,
-                VerifiedLots = lotIds.Count,
-                LabReports = reports,
-                Batches = lots.GroupBy(l => l.FinalHoneyProductionQR)
-                    .Select(g => new BatchLink(g.Key, g.First().FinalHoneyProductionTitle, g.First().FinalHoneyProductionDate))
-                    .OrderByDescending(b => b.Date).ToList()
-            };
-            return View(page);
+            return View(await _page.BuildAsync(state, bk));
         }
 
         // The QR code of a published storefront (holds its full public address)

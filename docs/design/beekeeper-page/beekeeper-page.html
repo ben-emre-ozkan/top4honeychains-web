@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ayşe Petek · Beekeeper page (demo)</title>
+<!-- Static design for the public beekeeper page (Storefront). Sample data only; see README.md. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&amp;family=Instrument+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FBF8F2}
+a{color:#1F5B43}a:hover{color:#123B2B}
+</style>
+</head>
+<body>
+<div style="font-family: 'Instrument Sans', system-ui, sans-serif; color: #1D1A15; background: #FBF8F2; min-height: 100vh">
+
+<!-- top bar -->
+<header style="background: #FFFFFF; border-bottom: 1px solid #E9E2D4">
+<div style="max-width: 1200px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px">
+<a href="#top" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #1D1A15">
+<svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><polygon points="15,2 26,8.5 26,21.5 15,28 4,21.5 4,8.5" fill="#D9930D"></polygon><polygon points="15,8 20.2,11 20.2,17 15,20 9.8,17 9.8,11" fill="#FFFFFF"></polygon></svg>
+<span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -0.2px">TOP4HoneyChains</span>
+<span style="font-size: 13px; color: #5E574C; padding-left: 10px; border-left: 1px solid #E9E2D4">Beekeeper page</span>
+</a>
+<nav aria-label="Language and tools" style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px">
+<a href="#top" style="font-size: 13px; font-weight: 600; text-decoration: none; min-height: 44px; min-width: 44px; box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; padding: 0 10px; border-radius: 10px; background: #1D1A15; color: #FFFFFF">EN</a>
+<a href="#top" style="font-size: 13px; font-weight: 600; text-decoration: none; min-height: 44px; min-width: 44px; box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; padding: 0 10px; border-radius: 10px; color: #5E574C">TR</a>
+<a href="#top" style="font-size: 13px; font-weight: 600; text-decoration: none; min-height: 44px; min-width: 44px; box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; padding: 0 10px; border-radius: 10px; color: #5E574C">ES</a>
+<a href="#top" style="font-size: 13px; font-weight: 600; text-decoration: none; min-height: 44px; min-width: 44px; box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; padding: 0 10px; border-radius: 10px; color: #5E574C">PL</a>
+<a href="#top" style="font-size: 13px; font-weight: 600; text-decoration: none; min-height: 44px; min-width: 44px; box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; padding: 0 10px; border-radius: 10px; color: #5E574C">LV</a>
+<a href="#verify" style="font-size: 14px; font-weight: 600; text-decoration: none; margin-left: 8px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; padding: 0 16px; border-radius: 10px; border: 1px solid #1F5B43; color: #1F5B43">Verify a jar</a>
+</nav>
+</div>
+</header>
+
+<!-- demo ribbon -->
+<div style="background: #FCEFD2; color: #5A3D00; font-size: 13px; text-align: center; padding: 8px 16px">Demo profile with sample data, prepared for presentation. A real page shows only verified data and is published with the beekeeper's consent.</div>
+
+<main id="top" style="max-width: 1200px; margin: 0 auto; padding: 40px 24px 0">
+
+<!-- hero -->
+<section style="display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start">
+<div style="flex: 999 1 560px; min-width: 0">
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<span style="font-size: 13px; font-weight: 600; padding: 7px 14px; border-radius: 999px; background: #FCEFD2; color: #6B4700">Chestnut honey</span>
+<span style="font-size: 13px; font-weight: 600; padding: 7px 14px; border-radius: 999px; background: #FCEFD2; color: #6B4700">Flower honey</span>
+<span style="font-size: 13px; font-weight: 600; padding: 7px 14px; border-radius: 999px; background: #FCEFD2; color: #6B4700">Linden honey</span>
+<span style="font-size: 13px; font-weight: 600; padding: 7px 14px; border-radius: 999px; background: #E3F0E9; color: #1F5B43">Western Black Sea</span>
+</div>
+<h1 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 64px; line-height: 1.02; letter-spacing: -1.5px; margin: 22px 0 14px">Ayşe Petek</h1>
+<p style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 500; font-size: 26px; line-height: 1.3; margin: 0; color: #3B352C; max-width: 640px">Chestnut and wildflower honey from the forested hills above Akçakoca, harvested and traced lot by lot.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 22px; font-size: 15px; color: #3B352C">
+<span style="display: flex; align-items: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F5B43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>Akçakoca, Düzce (district level)</span>
+<span style="display: flex; align-items: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F5B43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path><circle cx="10" cy="7" r="4"></circle><path d="M21 21v-2a4 4 0 0 0-3-3.9"></path></svg>Member of Demo Beekeepers' Association</span>
+<span style="display: flex; align-items: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F5B43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>On the platform since 2024</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px">
+<span style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; padding: 10px 14px; border-radius: 12px; background: #FFFFFF; border: 1px solid #CFE3D7; color: #1F5B43"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F5B43" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Registry verified (AKS)</span>
+<span style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; padding: 10px 14px; border-radius: 12px; background: #FFFFFF; border: 1px solid #CFE3D7; color: #1F5B43"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F5B43" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"></path></svg>Tested by an accredited lab</span>
+<span style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; padding: 10px 14px; border-radius: 12px; background: #FFFFFF; border: 1px solid #CFE3D7; color: #1F5B43"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F5B43" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"></path><path d="m9 12 2 2 4-4"></path></svg>All control points approved</span>
+</div>
+<div style="margin-top: 34px">
+<div style="font-size: 14px; font-weight: 700; color: #3B352C">Recent activity on the platform</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 12px">
+<div style="background: #FFFFFF; border: 1px solid #E9E2D4; border-radius: 16px; padding: 16px">
+<div style="font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #8A5A00">Latest batch</div>
+<div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 19px; margin-top: 8px">Yayla Balı 2026</div>
+<div style="font-size: 13px; color: #5E574C; margin-top: 4px">Finalised on 27 Sep 2026</div>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #E9E2D4; border-radius: 16px; padding: 16px">
+<div style="font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #8A5A00">Latest lab report</div>
+<div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 19px; margin-top: 8px">6 of 6 within limit</div>
+<div style="font-size: 13px; color: #5E574C; margin-top: 4px">Report DEMOREPORT26</div>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #E9E2D4; border-radius: 16px; padding: 16px">
+<div style="font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #8A5A00">Hygiene audit · CCP0</div>
+<div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 19px; margin-top: 8px">Passed</div>
+<div style="font-size: 13px; color: #5E574C; margin-top: 4px">2026 season, by the association</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- profile card -->
+<aside style="flex: 1 1 320px; max-width: 380px; min-width: 280px; background: #FFFFFF; border: 1px solid #E9E2D4; border-radius: 24px; padding: 28px; box-shadow: 0 18px 40px rgba(60, 40, 0, 0.08)">
+<div style="display: flex; justify-content: center">
+<svg width="132" height="132" viewBox="0 0 132 132" role="img" aria-label="Profile mark of Ayşe Petek">
+<polygon points="66,4 120,35 120,97 66,128 12,97 12,35" fill="#1F5B43"></polygon>
+<polygon points="66,16 110,41 110,91 66,116 22,91 22,41" fill="none" stroke="#D9930D" stroke-width="2"></polygon>
+<text x="66" y="80" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="40" fill="#FFFFFF">AP</text>
+</svg>
+</div>
+<div style="text-align: center; margin-top: 14px">
+<div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px">Ayşe Petek</div>
+<div style="font-size: 14px; color: #5E574C; margin-top: 4px">Beekeeper · Akçakoca, Düzce</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 22px">
+<div style="background: #FBF8F2; border-radius: 14px; padding: 12px"><div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px">12</div><div style="font-size: 13px; color: #5E574C">verified lots</div></div>
+<div style="background: #FBF8F2; border-radius: 14px; padding: 12px"><div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px">5</div><div style="font-size: 13px; color: #5E574C">batches on sale</div></div>
+<div style="background: #FBF8F2; border-radius: 14px; padding: 12px"><div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px">9</div><div style="font-size: 13px; color: #5E574C">lab reports</div></div>
+<div style="background: #FBF8F2; border-radius: 14px; padding: 12px"><div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px">1,240 kg</div><div style="font-size: 13px; color: #5E574C">honey traced</div></div>
+</div>
+<a href="#batches" style="display: block; text-align: center; margin-top: 20px; padding: 15px 16px; border-radius: 14px; background: #D9930D; color: #1D1A15; font-weight: 700; font-size: 16px; text-decoration: none">Where to buy this honey</a>
+<a href="#contact" style="display: block; text-align: center; margin-top: 10px; padding: 14px 16px; border-radius: 14px; border: 1px solid #E9E2D4; color: #1D1A15; font-weight: 600; font-size: 15px; text-decoration: none">Contact through the association</a>
+<div style="display: flex; align-items: center; gap: 14px; margin-top: 20px; padding-top: 18px; border-top: 1px solid #E9E2D4">
+<svg width="64" height="64" viewBox="0 0 21 21" role="img" aria-label="QR code placeholder for this page" shape-rendering="crispEdges"><rect width="21" height="21" fill="#FFFFFF"></rect><path d="M0 0h7v7H0zM2 2v3h3V2zM14 0h7v7h-7zM16 2v3h3V2zM0 14h7v7H0zM2 16v3h3v-3zM9 1h2v2H9zM10 4h2v3h-2zM8 8h3v2H8zM13 9h2v2h-2zM16 8h2v3h-2zM19 12h2v2h-2zM9 12h2v3H9zM12 13h3v2h-3zM15 16h2v2h-2zM18 15h3v2h-3zM10 17h2v4h-2zM13 18h2v3h-2zM17 19h2v2h-2zM8 10h1v1H8zM3 8h2v2H3zM0 10h2v2H0zM5 11h2v2H5z" fill="#1D1A15"></path></svg>
+<div style="font-size: 13px; color: #5E574C; line-height: 1.45">Scan to open this page, or share the link printed on the beekeeper's card.</div>
+</div>
+</aside>
+</section>
+
+<!-- story + gallery -->
+<section style="margin-top: 72px; display: flex; flex-wrap: wrap; gap: 40px">
+<div style="flex: 1 1 420px; min-width: 0">
+<div style="font-size: 13px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: #8A5A00">About the apiary</div>
+<h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 38px; letter-spacing: -0.6px; line-height: 1.1; margin: 10px 0 18px">Hives under chestnut trees, a short walk from the Black Sea</h2>
+<p style="font-size: 17px; line-height: 1.7; color: #3B352C; margin: 0 0 14px">[Story written by the association with the beekeeper's consent.] Ayşe keeps her colonies in the chestnut and linden forests above Akçakoca. Each harvest is delivered to the processing organisation with a signed delivery form, sampled under seal and tested by an accredited laboratory before it becomes part of a batch.</p>
+<p style="font-size: 17px; line-height: 1.7; color: #3B352C; margin: 0">Because every lot is traced, buyers can see exactly which batches contain her honey and how each of them passed its control points.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px">
+<div style="flex: 1 1 160px; background: #FFFFFF; border: 1px solid #E9E2D4; border-radius: 16px; padding: 16px"><div style="font-weight: 700; font-size: 15px">Forest flora</div><div style="font-size: 14px; color: #5E574C; margin-top: 4px; line-height: 1.5">Chestnut, linden and wild flowers</div></div>
+<div style="flex: 1 1 160px; background: #FFFFFF; border: 1px solid #E9E2D4; border-radius: 16px; padding: 16px"><div style="font-weight: 700; font-size: 15px">Harvest season</div><div style="font-size: 14px; color: #5E574C; margin-top: 4px; line-height: 1.5">June to August</div></div>
+<div style="flex: 1 1 160px; background: #FFFFFF; border: 1px solid #E9E2D4; border-radius: 16px; padding: 16px"><div style="font-weight: 700; font-size: 15px">Hygiene audit</div><div style="font-size: 14px; color: #5E574C; margin-top: 4px; line-height: 1.5">CCP0 passed every season</div></div>
+</div>
+</div>
+<div style="flex: 1 1 420px; min-width: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<div style="grid-column: span 2; height: 290px; border-radius: 20px; background: #E3F0E9; display: flex; flex-direction: column; justify-content: flex-end; padding: 14px; box-sizing: border-box; position: relative; overflow: hidden">
+<img src="images/apiary.jpg" alt="Hives in a row under chestnut trees on a forested slope" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 60%">
+<span style="position: relative; font-size: 13px; font-weight: 600; color: #1D1A15; background: #FFFFFF; padding: 6px 10px; border-radius: 8px; align-self: flex-start">Apiary · added with consent</span>
+</div>
+<div style="height: 200px; border-radius: 20px; background: #E3F0E9; display: flex; flex-direction: column; justify-content: flex-end; padding: 14px; box-sizing: border-box; position: relative; overflow: hidden">
+<img src="images/harvest.jpg" alt="Beekeeper in a protective suit lifting a frame from a hive" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 45% center">
+<span style="position: relative; font-size: 13px; font-weight: 600; color: #1D1A15; background: #FFFFFF; padding: 6px 10px; border-radius: 8px; align-self: flex-start">Harvest</span>
+</div>
+<div style="height: 200px; border-radius: 20px; background: #E3F0E9; display: flex; flex-direction: column; justify-content: flex-end; padding: 14px; box-sizing: border-box; position: relative; overflow: hidden">
+<img src="images/comb.jpg" alt="Gloved hands holding a capped honeycomb frame with bees" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 40% center">
+<span style="position: relative; font-size: 13px; font-weight: 600; color: #1D1A15; background: #FFFFFF; padding: 6px 10px; border-radius: 8px; align-self: flex-start">Capped comb</span>
+</div>
+</div>
+</section>
+
+<!-- map + season -->
+<section style="margin-top: 72px; background: #FFFFFF; border: 1px solid #E9E2D4; border-radius: 28px; padding: 32px; display: flex; flex-wrap: wrap; gap: 32px">
+<div style="flex: 999 1 560px; min-width: 0">
+<div style="font-size: 13px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: #8A5A00">Origin</div>
+<h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 34px; letter-spacing: -0.5px; margin: 8px 0 18px">Where the honey comes from</h2>
+<svg viewBox="0 0 640 300" width="100%" role="img" aria-label="Map of Türkiye with the approximate area of Akçakoca, Düzce highlighted" style="display: block">
+<path d="M19.7,103.6L12.2,104.9L10,103.6L12.3,101.1L16.6,99.5L18,99.3L19.9,101.8ZM522.9,44.5L525,45.3L529.1,46.5L531.6,47.8L533,48.2L536.3,45.4L541.3,45.5L545.6,45.9L547.8,46.3L550.5,47.2L553.9,47.9L555.2,46.5L557.1,42.7L557.8,42.2L558.4,41.8L560.9,41.5L563.2,41.8L564.3,42.5L565.3,45.6L568.1,46.7L573,51.6L575.9,53.6L576.6,54.4L575.7,55.4L576,56.6L577.8,58.2L580.1,58.8L582.8,58.6L584.2,59.2L585.1,60.1L585.4,61.4L585.4,62.2L585.8,64L587.9,66.6L590.3,68.1L591.5,69.8L593.6,75.6L594.6,78.8L594.2,81.9L592.7,85L589.6,88.9L590.4,90.5L591.1,92.7L590.8,94.3L593,99.2L594.1,102.3L593.3,103.1L592.7,104L596.8,106.4L601.6,108.4L603.7,108.8L609.3,107.8L612.9,107.7L616.5,109.5L621.6,114.1L627.2,120.1L628.4,121.9L628.8,122.7L630,124.1L628.8,124.1L627,122.8L622.5,119.1L620.2,120.7L618.2,123.4L616.1,133.7L614.4,134.8L611.2,134.7L607.5,134.4L604.9,134.9L604.2,135.6L604.6,136.7L605.4,138.4L605.9,140.5L606.1,142.2L607.4,143.8L609.3,145.3L609.4,146.8L609,149L608.7,150.6L608.2,151.5L609,154.1L611,157L612.3,158.1L611.8,163.7L612.5,166.3L613.1,169.7L612.9,175.4L613.2,176.8L613.8,177.3L615.7,177.5L617.4,178L618.1,178.9L618,179.6L615.8,182.2L615.5,184.1L614.8,186.7L614.1,188.2L612.2,191.1L610.9,194.1L610.3,196.5L610.8,197.6L614.4,198L616.4,199.7L621.6,203.2L622.5,204.6L621.1,206.7L621.1,207.6L621.8,208.7L622.2,210.7L622.1,212.9L622.1,215.8L623,216.3L626.6,219L629.2,221.7L629.3,222.6L628,224.7L628.4,227.2L628.3,227.7L627.2,226.8L625.2,226.5L623.1,226.4L621.8,227.1L619.5,229L616.5,231.1L614,233.1L612.6,234.4L611.5,234.2L610.5,233L610.1,231.4L610.2,225.3L609.7,223.4L608.6,222L607.2,221.2L605.6,220.8L603.9,220.7L601.6,222.6L598.2,224.4L593,224.3L589.6,223.9L587.8,223.6L581,220.7L579.6,220.7L577.1,219.5L574.2,218.6L569,220.3L566.8,219.9L563.8,218.4L562.7,218.8L559.4,223.4L553.5,228.3L550.4,229.1L548.9,224.2L547.5,222.3L546.8,222L545.3,221.5L544.2,221.8L540.7,225.1L535.1,227.2L530.5,228.4L523,229.9L517.4,230.6L515,230.7L509.7,230.1L505,229.1L500.4,229.1L496.9,229.6L488.6,233.2L474.5,240.5L463.8,244.1L457.8,245.6L453.2,246.4L445.1,246.4L438.6,245.9L434.1,245.9L431.5,245L428,242.1L423.6,239.1L421.7,238.4L419.1,237.8L415.4,237.5L406.2,241.8L403.3,243L400.1,243.9L393.8,246.5L390.9,248L387.4,247.8L382.9,247.4L379,247.6L376.4,245.5L375,243.3L369.6,241.9L365.8,241.5L364.8,242.5L363.8,245.6L362.1,253.4L361.9,255.5L365.3,263.2L365.1,264.4L362.7,264.8L359.9,265L358.1,265.7L356.7,266.9L355.7,273.7L352.6,274.9L350.9,276.3L349.4,280.5L348.6,280.5L343.4,277.4L341,277.1L343,273.9L340.8,267.4L338.4,261.4L340.7,257.5L345.5,252.8L350.6,247.3L350.6,243.9L350.2,241.3L348.8,239.6L346.1,237.2L341.4,239.7L338,242.5L335.9,243.1L333.5,244.7L332.3,247.6L329.5,249.8L324.8,250.7L317.8,248.3L310.3,244.6L306,241.7L302.5,241L299.2,242.2L289.4,249.5L280.4,260.1L278.2,262L269.8,266.5L264.2,268L261.7,267.7L250.6,269.7L245,270L240.7,272.3L232.3,269.8L227.2,266.4L224.1,263.1L219.2,255.7L215.6,252.3L207.8,249.2L193.9,241.6L190.3,240.8L181,239.6L171.1,238.9L169,241.7L168.3,252.7L166.5,255.7L165.8,261.3L164.7,263L162.7,264L159.8,262.2L157.7,261.5L152.9,263.8L143.3,267L140.1,267.5L129.1,263.4L125,260.8L122.5,257.8L121.6,252.9L119.9,250.1L119.7,248.1L119.1,245.9L116.9,245L114.4,246.7L111.9,246.6L108.7,245.6L101.2,241.5L95.3,241.1L91.8,246.2L89,247.8L86.1,248.3L85.9,246.9L88.2,243.6L79.1,244.2L74.3,246.6L70.6,246.3L67.8,245.2L68.2,243.8L71.1,243.3L73.5,242.2L83.3,241.2L85.7,240.3L88.1,236.8L92.8,233.7L93.3,232.3L89.7,232.3L74.7,233.2L64.3,232.7L63.2,234.2L61.5,234.5L61.2,230.3L62.8,228.4L65,228.6L70.4,226.9L69.9,223.4L66.1,221L65.3,219.7L62.5,219.3L60.1,217.7L59.7,213.5L57.9,208.9L55.2,206.7L55.6,205.5L60.4,204L61.3,197.6L60.6,193.6L58.3,193.3L51.3,190.1L49.2,190.4L46.8,187L42.8,184.6L40.8,185.4L39.5,186.6L37.6,186.1L34.6,183.9L31.4,182.7L30,181.3L31.8,177.5L34.1,177.5L34.6,174.5L32.7,169.5L33,166.9L34.9,166.3L37.3,166.7L39.7,169.7L40.4,172.7L40,175.5L41.5,178.2L42.5,178.9L43.2,176L44.3,175.5L45.7,176.7L48.6,177.3L56.3,175.6L57.7,174.1L52.1,174.2L50.1,172.9L47.8,169.7L46.5,166.8L46.1,165.5L45.4,163.4L46.3,162.3L50.1,160.6L53.5,156L52.1,154.7L50.4,154.1L48.7,154.5L47.1,152.9L46.8,150.8L48.2,148.9L48.3,146.5L43.9,140.5L42.8,139.2L43.7,137.1L47.1,133.9L50.2,129.7L49.7,128.3L47.4,127.8L36.3,129.6L32,131.1L24.3,131.8L23.8,129.6L24,127.5L25.7,123.9L25.5,114.7L26.6,109.8L30.9,108.3L36.1,101L44.6,92.4L53.5,92.6L57,90.2L62.2,90L63.3,91.8L63.9,93.4L68.5,95.8L76.7,95.5L78.7,94.5L80.5,93.2L76.8,89L78,87.7L81.3,87.6L85.1,88.6L85.3,89.6L84.3,90.9L83.1,93.3L84.3,93.7L94.7,92.3L105.8,93.4L109.3,92.8L118.1,92.8L119.6,91.4L117,89.6L114.4,88.9L112.7,88L110.9,86.7L116.4,82.6L119.6,81.8L134.3,79.3L145.2,78L145.3,77.1L143.7,77.1L129.6,75L126.2,73.3L121.6,69.5L120.5,68.4L119.3,66.5L120,62.4L120.9,59.2L122.6,57.3L128.2,57L147.5,60.3L161.4,58.3L176.5,63.1L190.8,62.2L193.8,60L197.4,53.1L217.7,41.4L224.8,35.3L232.5,31.9L245.6,28.2L256.5,23.3L259.7,22.8L285.9,25.2L304,25.5L312.2,20.8L317.1,22.4L316.7,24L315.7,25.5L316.1,28.3L318.9,32.5L321.7,35.3L330.2,39.5L341.9,36L343.7,36.4L346.2,37.4L350.2,48.4L353.5,52.3L357.6,55L361,55.5L363.4,52.8L365.4,51.6L369.6,51.2L376.6,54.9L379,58.9L390.8,61.9L401.7,63.4L406.3,66.7L421.6,70L427.3,69.5L436.9,66L455.4,62.2L467.7,67.5L471.1,68.2L474,67.8L478.1,69.3L482.5,68.4L496.2,62.2L500.5,58.6L505,57.7L509,55.5L519.7,48.6ZM85.9,24.9L85.1,29.8L87,35.3L91.8,42.9L96.6,46.7L116.1,56.1L119.7,56.9L118.9,60.8L117.7,64.2L116.4,66.4L110.7,67.9L95,63.7L91,63.3L88.2,64.2L83,67.2L77.3,66.2L69.2,67.9L67,73.6L61.4,80.2L52.2,85.4L45.7,88.2L35.9,98.3L31.3,104.2L29.5,105.3L27.3,106.2L28,103.3L29.1,100.8L28.9,98.9L28.9,96.1L32.1,92.8L35.2,90.5L44,86.2L46.4,82.8L39.4,82.8L32.4,83.7L28,83.1L24.1,83.4L22.8,80.3L21.9,78.5L22.9,77.9L24.2,77.5L26.4,74.2L28.5,71.8L31.4,68.7L32.1,66.9L32.1,65.2L31.4,64L31.3,62.6L31.2,60.6L31.4,56.5L38.1,52L40.2,51.6L40.9,49.5L40.4,44.7L39.5,40.9L38.3,40.6L36.7,39.5L35.6,38.2L34,36.8L31.1,35.9L31,34.7L31.3,33.5L32.4,32.2L37.3,31.1L37.9,30.2L38.4,28L39.5,25.8L40.7,25.1L42.6,25.2L46.6,24.6L49.3,23.9L52.1,22.4L53.5,21L59.3,20.2L60.9,19.5L62.6,20.1L64.8,22.4L68.4,25.8L70.4,27L71.9,26.5L74.5,25.2L77,25.2L79,25.5L80.1,24.4L81.6,24.2Z" fill="#F4EBDA" stroke="#C9B48C" stroke-width="1.2" stroke-linejoin="round"></path>
+<circle cx="116.8" cy="66.4" r="3" fill="#5E574C"></circle>
+<text x="110" y="52" font-family="Instrument Sans, sans-serif" font-size="11" fill="#5E574C" text-anchor="end">İstanbul</text>
+<circle cx="242.5" cy="112.3" r="3" fill="#5E574C"></circle>
+<text x="250" y="116" font-family="Instrument Sans, sans-serif" font-size="11" fill="#5E574C">Ankara</text>
+<circle cx="187" cy="66" r="26" fill="#D9930D" fill-opacity="0.18"></circle>
+<circle cx="187" cy="66" r="14" fill="#D9930D" fill-opacity="0.32"></circle>
+<circle cx="187" cy="66" r="5" fill="#D9930D" stroke="#FFFFFF" stroke-width="2"></circle>
+<text x="220" y="62" font-family="Bricolage Grotesque, sans-serif" font-weight="700" font-size="14" fill="#1D1A15">Akçakoca, Düzce</text>
+<text x="220" y="78" font-family="Instrument Sans, sans-serif" font-size="11" fill="#5E574C">approximate area</text>
+</svg>
+<p style="font-size: 14px; color: #5E574C; margin: 10px 0 0">Shown at district level. Exact apiary locations are never published.</p>
+</div>
+<div style="flex: 1 1 300px; min-width: 0">
+<h3 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px; margin: 0 0 6px">Flowering and harvest</h3>
+<p style="font-size: 14px; color: #5E574C; margin: 0 0 16px">When the main sources bloom around the apiary</p>
+<div style="display: grid; grid-template-columns: 80px repeat(12, minmax(0, 1fr)); gap: 4px; align-items: center; font-size: 11px; color: #5E574C">
+<span></span>
+<span style="text-align: center">J</span><span style="text-align: center">F</span><span style="text-align: center">M</span><span style="text-align: center">A</span><span style="text-align: center">M</span><span style="text-align: center">J</span><span style="text-align: center">J</span><span style="text-align: center">A</span><span style="text-align: center">S</span><span style="text-align: center">O</span><span style="text-align: center">N</span><span style="text-align: center">D</span>
+</div>
+
+<div style="display: grid; grid-template-columns: 80px repeat(12, minmax(0, 1fr)); gap: 4px; align-items: center; margin-top: 8px">
+<span style="font-size: 13px; font-weight: 600">Chestnut</span>
+<span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #D9930D"></span><span style="height: 18px; border-radius: 5px; background: #D9930D"></span><span style="height: 18px; border-radius: 5px; background: #1F5B43"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span>
+</div>
+
+<div style="display: grid; grid-template-columns: 80px repeat(12, minmax(0, 1fr)); gap: 4px; align-items: center; margin-top: 8px">
+<span style="font-size: 13px; font-weight: 600">Linden</span>
+<span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #D9930D"></span><span style="height: 18px; border-radius: 5px; background: #1F5B43"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span>
+</div>
+
+<div style="display: grid; grid-template-columns: 80px repeat(12, minmax(0, 1fr)); gap: 4px; align-items: center; margin-top: 8px">
+<span style="font-size: 13px; font-weight: 600">Wildflower</span>
+<span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #D9930D"></span><span style="height: 18px; border-radius: 5px; background: #D9930D"></span><span style="height: 18px; border-radius: 5px; background: #D9930D"></span><span style="height: 18px; border-radius: 5px; background: #1F5B43"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span>
+</div>
+
+<div style="display: grid; grid-template-columns: 80px repeat(12, minmax(0, 1fr)); gap: 4px; align-items: center; margin-top: 8px">
+<span style="font-size: 13px; font-weight: 600">Heather</span>
+<span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #D9930D"></span><span style="height: 18px; border-radius: 5px; background: #D9930D"></span><span style="height: 18px; border-radius: 5px; background: #1F5B43"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span><span style="height: 18px; border-radius: 5px; background: #F1E9DA"></span>
+</div>
+
+<div style="display: flex; gap: 16px; margin-top: 16px; font-size: 12px; color: #5E574C">
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 14px; height: 14px; border-radius: 4px; background: #D9930D"></span>Flowering</span>
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 14px; height: 14px; border-radius: 4px; background: #1F5B43"></span>Harvest</span>
+</div>
+</div>
+</section>
+
+<!-- lab results -->
+<section id="verify" style="margin-top: 72px">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px">
+<div>
+<div style="font-size: 13px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: #8A5A00">Quality</div>
+<h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 34px; letter-spacing: -0.5px; margin: 8px 0 0">Latest verified lab results</h2>
+</div>
+<a href="#verify" style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; text-decoration: none; min-height: 44px; box-sizing: border-box; padding: 12px 16px; border-radius: 12px; background: #E3F0E9; color: #1F5B43"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F5B43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6M9 15l2 2 4-4"></path></svg>Verify report DEMOREPORT26</a>
+</div>
+<p style="font-size: 15px; color: #5E574C; margin: 12px 0 0; max-width: 760px">Accredited laboratory, report approved by a second person. Bars show the measured value against the legal limit of the Turkish Food Codex.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; margin-top: 22px">
+
+<div style="background: #FFFFFF; border: 1px solid #E9E2D4; border-radius: 18px; padding: 18px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px">
+<span style="font-weight: 700; font-size: 15px">Moisture</span>
+<span style="font-size: 12px; font-weight: 700; color: #1F5B43; background: #E3F0E9; padding: 4px 8px; border-radius: 999px">Within limit</span>
+</div>
+<div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 30px; margin-top: 10px">17.2 <span style="font-family: 'Instrument Sans', sans-serif; font-weight: 500; font-size: 14px; color: #5E574C">%</span></div>
+<div style="position: relative; height: 8px; background: #F1E9DA; border-radius: 999px; margin-top: 12px">
+<div style="position: absolute; left: 0; top: 0; bottom: 0; width: 69%; background: #1F5B43; border-radius: 999px"></div>
+<div style="position: absolute; top: -4px; bottom: -4px; width: 2px; left: 80%; background: #8A5A00"></div>
+</div>
+<div style="font-size: 13px; color: #5E574C; margin-top: 8px">Legal limit: max 20 %</div>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #E9E2D4; border-radius: 18px; padding: 18px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px">
+<span style="font-weight: 700; font-size: 15px">HMF</span>
+<span style="font-size: 12px; font-weight: 700; color: #1F5B43; background: #E3F0E9; padding: 4px 8px; border-radius: 999px">Within limit</span>
+</div>
+<div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 30px; margin-top: 10px">10 <span style="font-family: 'Instrument Sans', sans-serif; font-weight: 500; font-size: 14px; color: #5E574C">mg/kg</span></div>
+<div style="position: relative; height: 8px; background: #F1E9DA; border-radius: 999px; margin-top: 12px">
+<div style="position: absolute; left: 0; top: 0; bottom: 0; width: 20%; background: #1F5B43; border-radius: 999px"></div>
+<div style="position: absolute; top: -4px; bottom: -4px; width: 2px; left: 80%; background: #8A5A00"></div>
+</div>
+<div style="font-size: 13px; color: #5E574C; margin-top: 8px">Legal limit: max 40 mg/kg</div>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #E9E2D4; border-radius: 18px; padding: 18px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px">
+<span style="font-weight: 700; font-size: 15px">Diastase</span>
+<span style="font-size: 12px; font-weight: 700; color: #1F5B43; background: #E3F0E9; padding: 4px 8px; border-radius: 999px">Within limit</span>
+</div>
+<div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 30px; margin-top: 10px">12 <span style="font-family: 'Instrument Sans', sans-serif; font-weight: 500; font-size: 14px; color: #5E574C">DN</span></div>
+<div style="position: relative; height: 8px; background: #F1E9DA; border-radius: 999px; margin-top: 12px">
+<div style="position: absolute; left: 0; top: 0; bottom: 0; width: 60%; background: #1F5B43; border-radius: 999px"></div>
+<div style="position: absolute; top: -4px; bottom: -4px; width: 2px; left: 40%; background: #8A5A00"></div>
+</div>
+<div style="font-size: 13px; color: #5E574C; margin-top: 8px">Legal limit: min 8 DN</div>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #E9E2D4; border-radius: 18px; padding: 18px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px">
+<span style="font-weight: 700; font-size: 15px">Proline</span>
+<span style="font-size: 12px; font-weight: 700; color: #1F5B43; background: #E3F0E9; padding: 4px 8px; border-radius: 999px">Within limit</span>
+</div>
+<div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 30px; margin-top: 10px">450 <span style="font-family: 'Instrument Sans', sans-serif; font-weight: 500; font-size: 14px; color: #5E574C">mg/kg</span></div>
+<div style="position: relative; height: 8px; background: #F1E9DA; border-radius: 999px; margin-top: 12px">
+<div style="position: absolute; left: 0; top: 0; bottom: 0; width: 75%; background: #1F5B43; border-radius: 999px"></div>
+<div style="position: absolute; top: -4px; bottom: -4px; width: 2px; left: 50%; background: #8A5A00"></div>
+</div>
+<div style="font-size: 13px; color: #5E574C; margin-top: 8px">Legal limit: min 300 mg/kg</div>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #E9E2D4; border-radius: 18px; padding: 18px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px">
+<span style="font-weight: 700; font-size: 15px">Sucrose</span>
+<span style="font-size: 12px; font-weight: 700; color: #1F5B43; background: #E3F0E9; padding: 4px 8px; border-radius: 999px">Within limit</span>
+</div>
+<div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 30px; margin-top: 10px">2 <span style="font-family: 'Instrument Sans', sans-serif; font-weight: 500; font-size: 14px; color: #5E574C">g/100 g</span></div>
+<div style="position: relative; height: 8px; background: #F1E9DA; border-radius: 999px; margin-top: 12px">
+<div style="position: absolute; left: 0; top: 0; bottom: 0; width: 32%; background: #1F5B43; border-radius: 999px"></div>
+<div style="position: absolute; top: -4px; bottom: -4px; width: 2px; left: 80%; background: #8A5A00"></div>
+</div>
+<div style="font-size: 13px; color: #5E574C; margin-top: 8px">Legal limit: max 5 g/100 g</div>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #E9E2D4; border-radius: 18px; padding: 18px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px">
+<span style="font-weight: 700; font-size: 15px">Free acidity</span>
+<span style="font-size: 12px; font-weight: 700; color: #1F5B43; background: #E3F0E9; padding: 4px 8px; border-radius: 999px">Within limit</span>
+</div>
+<div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 30px; margin-top: 10px">20 <span style="font-family: 'Instrument Sans', sans-serif; font-weight: 500; font-size: 14px; color: #5E574C">meq/kg</span></div>
+<div style="position: relative; height: 8px; background: #F1E9DA; border-radius: 999px; margin-top: 12px">
+<div style="position: absolute; left: 0; top: 0; bottom: 0; width: 32%; background: #1F5B43; border-radius: 999px"></div>
+<div style="position: absolute; top: -4px; bottom: -4px; width: 2px; left: 80%; background: #8A5A00"></div>
+</div>
+<div style="font-size: 13px; color: #5E574C; margin-top: 8px">Legal limit: max 50 meq/kg</div>
+</div>
+
+</div>
+</section>
+
+<!-- batches -->
+<section id="batches" style="margin-top: 72px">
+<div style="font-size: 13px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: #8A5A00">Traceability</div>
+<h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 34px; letter-spacing: -0.5px; margin: 8px 0 6px">Batches with Ayşe's honey</h2>
+<p style="font-size: 15px; color: #5E574C; margin: 0 0 22px">Every jar of these batches carries a QR code that opens its Honey Story.</p>
+<div style="display: flex; flex-direction: column; gap: 12px">
+
+<div style="background: #FFFFFF; border: 1px solid #E9E2D4; border-radius: 18px; padding: 18px 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 18px">
+<div style="flex: 1 1 260px; min-width: 0">
+<div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px">Yayla Balı 2026</div>
+<div style="font-size: 14px; color: #5E574C; margin-top: 4px">27 Sep 2026 · packed by Demo Processing Co. · origin Türkiye 100%</div>
+</div>
+<div style="flex: 1 1 220px; min-width: 0">
+<div style="display: flex; justify-content: space-between; font-size: 13px; color: #5E574C"><span>Share of Ayşe's honey</span><span style="font-weight: 700; color: #1D1A15">67%</span></div>
+<div style="height: 8px; background: #F1E9DA; border-radius: 999px; margin-top: 6px"><div style="height: 8px; width: 67%; background: #D9930D; border-radius: 999px"></div></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<span style="font-size: 12px; font-weight: 700; color: #1F5B43; background: #E3F0E9; padding: 6px 10px; border-radius: 999px">All CCPs approved</span>
+</div>
+<a href="#batches" style="font-size: 14px; font-weight: 700; text-decoration: none; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; padding: 0 16px; border-radius: 12px; border: 1px solid #E9E2D4; color: #1D1A15">Open Honey Story</a>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #E9E2D4; border-radius: 18px; padding: 18px 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 18px">
+<div style="flex: 1 1 260px; min-width: 0">
+<div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px">Kestane Hasadı 2025</div>
+<div style="font-size: 14px; color: #5E574C; margin-top: 4px">14 Aug 2025 · packed by Demo Processing Co. · origin Türkiye 100%</div>
+</div>
+<div style="flex: 1 1 220px; min-width: 0">
+<div style="display: flex; justify-content: space-between; font-size: 13px; color: #5E574C"><span>Share of Ayşe's honey</span><span style="font-weight: 700; color: #1D1A15">40%</span></div>
+<div style="height: 8px; background: #F1E9DA; border-radius: 999px; margin-top: 6px"><div style="height: 8px; width: 40%; background: #D9930D; border-radius: 999px"></div></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<span style="font-size: 12px; font-weight: 700; color: #1F5B43; background: #E3F0E9; padding: 6px 10px; border-radius: 999px">Accredited lab tested</span>
+</div>
+<a href="#batches" style="font-size: 14px; font-weight: 700; text-decoration: none; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; padding: 0 16px; border-radius: 12px; border: 1px solid #E9E2D4; color: #1D1A15">Open Honey Story</a>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #E9E2D4; border-radius: 18px; padding: 18px 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 18px">
+<div style="flex: 1 1 260px; min-width: 0">
+<div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px">Karadeniz Çiçek Balı 2025</div>
+<div style="font-size: 14px; color: #5E574C; margin-top: 4px">2 Jul 2025 · packed by Demo Processing Co. · origin Türkiye 100%</div>
+</div>
+<div style="flex: 1 1 220px; min-width: 0">
+<div style="display: flex; justify-content: space-between; font-size: 13px; color: #5E574C"><span>Share of Ayşe's honey</span><span style="font-weight: 700; color: #1D1A15">25%</span></div>
+<div style="height: 8px; background: #F1E9DA; border-radius: 999px; margin-top: 6px"><div style="height: 8px; width: 25%; background: #D9930D; border-radius: 999px"></div></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<span style="font-size: 12px; font-weight: 700; color: #1F5B43; background: #E3F0E9; padding: 6px 10px; border-radius: 999px">Accredited lab tested</span>
+</div>
+<a href="#batches" style="font-size: 14px; font-weight: 700; text-decoration: none; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; padding: 0 16px; border-radius: 12px; border: 1px solid #E9E2D4; color: #1D1A15">Open Honey Story</a>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #E9E2D4; border-radius: 18px; padding: 18px 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 18px">
+<div style="flex: 1 1 260px; min-width: 0">
+<div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px">Akçakoca Ihlamur 2024</div>
+<div style="font-size: 14px; color: #5E574C; margin-top: 4px">20 Jul 2024 · packed by Demo Processing Co. · origin Türkiye 100%</div>
+</div>
+<div style="flex: 1 1 220px; min-width: 0">
+<div style="display: flex; justify-content: space-between; font-size: 13px; color: #5E574C"><span>Share of Ayşe's honey</span><span style="font-weight: 700; color: #1D1A15">55%</span></div>
+<div style="height: 8px; background: #F1E9DA; border-radius: 999px; margin-top: 6px"><div style="height: 8px; width: 55%; background: #D9930D; border-radius: 999px"></div></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<span style="font-size: 12px; font-weight: 700; color: #1F5B43; background: #E3F0E9; padding: 6px 10px; border-radius: 999px">All CCPs approved</span>
+</div>
+<a href="#batches" style="font-size: 14px; font-weight: 700; text-decoration: none; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; padding: 0 16px; border-radius: 12px; border: 1px solid #E9E2D4; color: #1D1A15">Open Honey Story</a>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #E9E2D4; border-radius: 18px; padding: 18px 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 18px">
+<div style="flex: 1 1 260px; min-width: 0">
+<div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px">Orman Balı 2024</div>
+<div style="font-size: 14px; color: #5E574C; margin-top: 4px">5 Sep 2024 · packed by Demo Processing Co. · origin Türkiye 100%</div>
+</div>
+<div style="flex: 1 1 220px; min-width: 0">
+<div style="display: flex; justify-content: space-between; font-size: 13px; color: #5E574C"><span>Share of Ayşe's honey</span><span style="font-weight: 700; color: #1D1A15">30%</span></div>
+<div style="height: 8px; background: #F1E9DA; border-radius: 999px; margin-top: 6px"><div style="height: 8px; width: 30%; background: #D9930D; border-radius: 999px"></div></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<span style="font-size: 12px; font-weight: 700; color: #1F5B43; background: #E3F0E9; padding: 6px 10px; border-radius: 999px">Accredited lab tested</span>
+</div>
+<a href="#batches" style="font-size: 14px; font-weight: 700; text-decoration: none; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; padding: 0 16px; border-radius: 12px; border: 1px solid #E9E2D4; color: #1D1A15">Open Honey Story</a>
+</div>
+
+</div>
+</section>
+
+<!-- references -->
+<section style="margin-top: 72px; display: flex; flex-wrap: wrap; gap: 24px">
+<div style="flex: 999 1 560px; min-width: 0">
+<div style="font-size: 13px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: #8A5A00">References</div>
+<h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 34px; letter-spacing: -0.5px; margin: 8px 0 6px">Trusted along the chain</h2>
+<p style="font-size: 15px; color: #5E574C; margin: 0 0 20px">Every reference below comes from a recorded and verified relationship on the platform.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px">
+<div style="background: #FFFFFF; border: 1px solid #E9E2D4; border-radius: 18px; padding: 18px; display: flex; gap: 14px; align-items: flex-start">
+<svg width="48" height="48" viewBox="0 0 48 48" aria-hidden="true" style="flex-shrink: 0"><polygon points="24,2 44,13.5 44,34.5 24,46 4,34.5 4,13.5" fill="#FCEFD2"></polygon><g transform="translate(12 12)" fill="none" stroke="#6B4700" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 19h12"></path><path d="M7 19c-1-2-1.5-4-1.5-6a6.5 6.5 0 0 1 13 0c0 2-.5 4-1.5 6"></path><path d="M6 13h12M7.2 9.5h9.6M6.4 16h11.2"></path><path d="M11 19v-1.5a1 1 0 0 1 2 0V19"></path></g></svg>
+<div style="min-width: 0">
+<div style="font-weight: 700; font-size: 15px">Demo Beekeepers' Association</div>
+<div style="font-size: 13px; color: #1F5B43; font-weight: 600; margin-top: 2px">Association</div>
+<div style="font-size: 14px; color: #5E574C; margin-top: 6px; line-height: 1.5">Member since 2014; records every delivery and the yearly hygiene audit.</div>
+</div>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #E9E2D4; border-radius: 18px; padding: 18px; display: flex; gap: 14px; align-items: flex-start">
+<svg width="48" height="48" viewBox="0 0 48 48" aria-hidden="true" style="flex-shrink: 0"><polygon points="24,2 44,13.5 44,34.5 24,46 4,34.5 4,13.5" fill="#FCEFD2"></polygon><g transform="translate(12 12)" fill="none" stroke="#6B4700" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"></path><path d="M4 20V9l5 3V9l5 3V9l5 3v8"></path><path d="M15 5h3v6"></path><path d="M8 16h1M12 16h1M16 16h1"></path></g></svg>
+<div style="min-width: 0">
+<div style="font-weight: 700; font-size: 15px">Demo Processing Co.</div>
+<div style="font-size: 13px; color: #1F5B43; font-weight: 600; margin-top: 2px">Processor and packer</div>
+<div style="font-size: 14px; color: #5E574C; margin-top: 6px; line-height: 1.5">Has processed 12 of her lots into 5 batches.</div>
+</div>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #E9E2D4; border-radius: 18px; padding: 18px; display: flex; gap: 14px; align-items: flex-start">
+<svg width="48" height="48" viewBox="0 0 48 48" aria-hidden="true" style="flex-shrink: 0"><polygon points="24,2 44,13.5 44,34.5 24,46 4,34.5 4,13.5" fill="#FCEFD2"></polygon><g transform="translate(12 12)" fill="none" stroke="#6B4700" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 3h5"></path><path d="M10.5 3v6L5 19a1.5 1.5 0 0 0 1.3 2h11.4a1.5 1.5 0 0 0 1.3-2l-5.5-10V3"></path><path d="M7.5 15h9"></path></g></svg>
+<div style="min-width: 0">
+<div style="font-weight: 700; font-size: 15px">Demo Analysis Laboratory</div>
+<div style="font-size: 13px; color: #1F5B43; font-weight: 600; margin-top: 2px">Accredited laboratory</div>
+<div style="font-size: 14px; color: #5E574C; margin-top: 6px; line-height: 1.5">Tested 9 sealed samples; every report approved by a second person.</div>
+</div>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #E9E2D4; border-radius: 18px; padding: 18px; display: flex; gap: 14px; align-items: flex-start">
+<svg width="48" height="48" viewBox="0 0 48 48" aria-hidden="true" style="flex-shrink: 0"><polygon points="24,2 44,13.5 44,34.5 24,46 4,34.5 4,13.5" fill="#FCEFD2"></polygon><g transform="translate(12 12)" fill="none" stroke="#6B4700" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v10h16V10"></path><path d="M3 10l2-6h14l2 6z"></path><path d="M10 20v-5h4v5"></path></g></svg>
+<div style="min-width: 0">
+<div style="font-weight: 700; font-size: 15px">Demo City Market</div>
+<div style="font-size: 13px; color: #1F5B43; font-weight: 600; margin-top: 2px">Retailer</div>
+<div style="font-size: 14px; color: #5E574C; margin-top: 6px; line-height: 1.5">Sells 3 batches that contain her honey.</div>
+</div>
+</div>
+</div>
+</div>
+<figure style="flex: 1 1 320px; min-width: 0; margin: 0; background: #1F5B43; color: #FFFFFF; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box">
+<svg width="34" height="28" viewBox="0 0 34 28" aria-hidden="true"><path d="M0 28V16C0 7 5 1 14 0v6c-4 1-6 4-6 9h6v13zm20 0V16c0-9 5-15 14-16v6c-4 1-6 4-6 9h6v13z" fill="#D9930D"></path></svg>
+<blockquote style="margin: 18px 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 500; font-size: 22px; line-height: 1.4">[Demo text] Every lot Ayşe delivered came with a signed delivery form and a complete hygiene audit.</blockquote>
+<figcaption style="font-size: 14px; color: #D7E8DE">Recommendation from the association · demo content</figcaption>
+</figure>
+</section>
+
+<!-- contact / buy -->
+<section id="contact" style="margin-top: 72px; background: #1D1A15; color: #FFFFFF; border-radius: 28px; padding: 40px; display: flex; flex-wrap: wrap; gap: 28px; align-items: center; justify-content: space-between">
+<div style="flex: 1 1 480px; min-width: 0">
+<h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 36px; letter-spacing: -0.5px; margin: 0 0 10px">Looking for Ayşe's honey?</h2>
+<p style="font-size: 16px; line-height: 1.6; color: #E4DCCB; margin: 0">Buy it from the shops that hold her batches, or send a request through the association. The beekeeper's phone number is never shown on this page.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 12px">
+<a href="#batches" style="padding: 16px 20px; border-radius: 14px; background: #D9930D; color: #1D1A15; font-weight: 700; font-size: 16px; text-decoration: none">See shops and batches</a>
+<a href="#contact" style="padding: 16px 20px; border-radius: 14px; border: 1px solid #5E574C; color: #FFFFFF; font-weight: 600; font-size: 16px; text-decoration: none">Request via the association</a>
+</div>
+</section>
+
+</main>
+
+<footer style="max-width: 1200px; margin: 0 auto; padding: 40px 24px 48px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; font-size: 13px; color: #5E574C">
+<span>TOP4HoneyChains · Trustable and sustainable open platform for smart honey value chains</span>
+<span style="max-width: 560px">Only verified data is shown. No phone number, personal photo, birth date or exact location is published. The page is published with the beekeeper's recorded consent, which can be withdrawn at any time.</span>
+</footer>
+</div>
+</body>
+</html>

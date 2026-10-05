@@ -121,6 +121,20 @@ namespace TOP4HoneyChains.Web.Tests
                 Assert.True(Resources.Value[lang].ContainsKey(value), $"{lang}: missing \"{value}\"");
         }
 
+        // Keys the beekeeper page builds at run time: regions, reference kinds, and the demo keys of StorefrontPage
+        [Fact]
+        public void Storefront_keys_built_at_run_time_exist()
+        {
+            var keys = Services.ProvinceMap.Regions.All.Select(r => "Region." + r)
+                .Concat(typeof(Models.ViewModels.Storefront.ReferenceKinds).GetFields(BindingFlags.Public | BindingFlags.Static).Select(f => "Sf.Kind" + f.GetValue(null)))
+                .Concat(Regex.Matches(File.ReadAllText(Path.Combine(WebRoot.Value, "Services", "OrgModel", "StorefrontPage.cs")), @"""(Sf\.[A-Za-z.]+)""").Select(m => m.Groups[1].Value))
+                .Distinct().ToList();
+            Assert.True(keys.Count > 20);
+            foreach (var lang in Languages)
+                foreach (var key in keys)
+                    Assert.True(Resources.Value[lang].TryGetValue(key, out var text) && text.Length > 0, $"{lang}: missing \"{key}\"");
+        }
+
         // The capabilities page explains every capability with the key "Cap.Uses.<code>" (built at run time)
         [Fact]
         public void Every_capability_has_an_explanation()

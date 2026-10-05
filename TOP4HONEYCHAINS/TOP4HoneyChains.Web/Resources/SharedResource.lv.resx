@@ -5199,4 +5199,304 @@
   <data name="Cap.Uses.PlatformAdmin" xml:space="preserve">
     <value>Organizācija, kas uztur platformu: organizācijas, pamatdati un iestatījumi. KKP vērtības un apstiprinājumus tikai lasa.</value>
   </data>
+  <data name="Sf.VerifyReport" xml:space="preserve">
+    <value>Pārbaudīt pārskatu</value>
+  </data>
+  <data name="Sf.DemoRibbon" xml:space="preserve">
+    <value>Demonstrācijas profils ar parauga datiem, sagatavots prezentācijai. Īstā lapā redzami tikai pārbaudīti dati, un tā tiek publicēta ar biškopja piekrišanu.</value>
+  </data>
+  <data name="Region.Marmara" xml:space="preserve">
+    <value>Marmaras reģions</value>
+  </data>
+  <data name="Region.Aegean" xml:space="preserve">
+    <value>Egejas reģions</value>
+  </data>
+  <data name="Region.Mediterranean" xml:space="preserve">
+    <value>Vidusjūras reģions</value>
+  </data>
+  <data name="Region.CentralAnatolia" xml:space="preserve">
+    <value>Centrālā Anatolija</value>
+  </data>
+  <data name="Region.BlackSea" xml:space="preserve">
+    <value>Melnās jūras reģions</value>
+  </data>
+  <data name="Region.EasternAnatolia" xml:space="preserve">
+    <value>Austrumanatolija</value>
+  </data>
+  <data name="Region.SoutheasternAnatolia" xml:space="preserve">
+    <value>Dienvidaustrumu Anatolija</value>
+  </data>
+  <data name="Sf.Demo.Tagline" xml:space="preserve">
+    <value>Kastaņu un pļavu ziedu medus no mežainajiem pakalniem virs Akčakodžas, ievākts un izsekots pa partijām.</value>
+  </data>
+  <data name="Sf.MemberOf" xml:space="preserve">
+    <value>Biedrs: {0}</value>
+  </data>
+  <data name="Sf.OnPlatformSince" xml:space="preserve">
+    <value>Platformā kopš {0}</value>
+  </data>
+  <data name="Sf.BadgeRegistry" xml:space="preserve">
+    <value>Reģistrs pārbaudīts (AKS)</value>
+  </data>
+  <data name="Sf.RecentActivity" xml:space="preserve">
+    <value>Jaunākās darbības platformā</value>
+  </data>
+  <data name="Sf.LatestBatch" xml:space="preserve">
+    <value>Jaunākā gala partija</value>
+  </data>
+  <data name="Sf.FinalisedOn" xml:space="preserve">
+    <value>Pabeigta {0}</value>
+  </data>
+  <data name="Sf.LatestReport" xml:space="preserve">
+    <value>Jaunākais laboratorijas pārskats</value>
+  </data>
+  <data name="Sf.WithinLimitCount" xml:space="preserve">
+    <value>{0} no {1} robežās</value>
+  </data>
+  <data name="Sf.ReportCode" xml:space="preserve">
+    <value>Pārskats {0}</value>
+  </data>
+  <data name="Sf.HygieneAudit" xml:space="preserve">
+    <value>Higiēnas audits · KKP 0</value>
+  </data>
+  <data name="Sf.Passed" xml:space="preserve">
+    <value>Izturēts</value>
+  </data>
+  <data name="Sf.SeasonByAssociation" xml:space="preserve">
+    <value>{0}. gada sezona, biedrība</value>
+  </data>
+  <data name="Sf.ProfileMark" xml:space="preserve">
+    <value>Profila zīme: {0}</value>
+  </data>
+  <data name="Sf.Beekeeper" xml:space="preserve">
+    <value>Biškopis</value>
+  </data>
+  <data name="Sf.StatBatches" xml:space="preserve">
+    <value>gala partijas</value>
+  </data>
+  <data name="Sf.StatReports" xml:space="preserve">
+    <value>laboratorijas pārskati</value>
+  </data>
+  <data name="Sf.StatKg" xml:space="preserve">
+    <value>izsekotais medus</value>
+  </data>
+  <data name="Sf.WhereToBuy" xml:space="preserve">
+    <value>Kur nopirkt šo medu</value>
+  </data>
+  <data name="Sf.ContactViaAssociation" xml:space="preserve">
+    <value>Saziņa ar biedrības starpniecību</value>
+  </data>
+  <data name="Sf.QrAlt" xml:space="preserve">
+    <value>Šīs lapas QR kods</value>
+  </data>
+  <data name="Sf.QrHint" xml:space="preserve">
+    <value>Noskenējiet, lai atvērtu šo lapu, vai kopīgojiet saiti, kas iespiesta biškopja kartītē.</value>
+  </data>
+  <data name="Sf.About" xml:space="preserve">
+    <value>Par dravu</value>
+  </data>
+  <data name="Sf.Demo.StoryTitle" xml:space="preserve">
+    <value>Stropi zem kastaņkokiem, nelielā attālumā no Melnās jūras</value>
+  </data>
+  <data name="Sf.Demo.Story1" xml:space="preserve">
+    <value>[Parauga teksts demonstrācijai; īstā lapā to raksta biedrība ar biškopja piekrišanu.] Ayşe tur savas saimes kastaņu un liepu mežos virs Akčakodžas. Katra raža tiek nodota pārstrādes organizācijai ar parakstītu piegādes veidlapu, no tās tiek ņemts aizzīmogots paraugs, un to pārbauda akreditēta laboratorija, pirms tā kļūst par gala partijas daļu.</value>
+  </data>
+  <data name="Sf.Demo.Story2" xml:space="preserve">
+    <value>Tā kā katra partija tiek izsekota, pircēji var precīzi redzēt, kurās gala partijās ir viņas medus un kā katra no tām izturēja kontroles punktus.</value>
+  </data>
+  <data name="Sf.FeatureHarvest" xml:space="preserve">
+    <value>Ražas sezona</value>
+  </data>
+  <data name="Sf.MonthRange" xml:space="preserve">
+    <value>No {0} līdz {1}</value>
+  </data>
+  <data name="Sf.FeatureHygiene" xml:space="preserve">
+    <value>Higiēnas audits</value>
+  </data>
+  <data name="Sf.Ccp0AllLots" xml:space="preserve">
+    <value>KKP 0 izturēts katrai pārbaudītajai partijai</value>
+  </data>
+  <data name="Sf.Demo.PhotoApiary" xml:space="preserve">
+    <value>Drava · pievienots ar piekrišanu</value>
+  </data>
+  <data name="Sf.Demo.PhotoApiaryAlt" xml:space="preserve">
+    <value>Stropi rindā zem kastaņkokiem mežainā nogāzē</value>
+  </data>
+  <data name="Sf.Demo.PhotoHarvest" xml:space="preserve">
+    <value>Raža</value>
+  </data>
+  <data name="Sf.Demo.PhotoHarvestAlt" xml:space="preserve">
+    <value>Biškopis aizsargtērpā izceļ rāmi no stropa</value>
+  </data>
+  <data name="Sf.Demo.PhotoComb" xml:space="preserve">
+    <value>Aizvākota šūna</value>
+  </data>
+  <data name="Sf.Demo.PhotoCombAlt" xml:space="preserve">
+    <value>Rokas cimdos tur aizvākotu šūnu rāmi ar bitēm</value>
+  </data>
+  <data name="Sf.Origin" xml:space="preserve">
+    <value>Izcelsme</value>
+  </data>
+  <data name="Sf.WhereFrom" xml:space="preserve">
+    <value>No kurienes nāk medus</value>
+  </data>
+  <data name="Sf.MapLabel" xml:space="preserve">
+    <value>Turcijas karte ar atzīmētu aptuvenu apgabalu: {0}</value>
+  </data>
+  <data name="Sf.ApproxArea" xml:space="preserve">
+    <value>aptuvens apgabals</value>
+  </data>
+  <data name="Sf.MapNote" xml:space="preserve">
+    <value>Atzīmēts provinces centrā. Precīza dravu atrašanās vieta nekad netiek publicēta.</value>
+  </data>
+  <data name="Sf.Calendar" xml:space="preserve">
+    <value>Ziedēšana un raža</value>
+  </data>
+  <data name="Sf.HarvestCalendar" xml:space="preserve">
+    <value>Ražas kalendārs</value>
+  </data>
+  <data name="Sf.CalendarHelpDemo" xml:space="preserve">
+    <value>Kad zied galvenie medus avoti ap dravu (parauga dati)</value>
+  </data>
+  <data name="Sf.CalendarHelp" xml:space="preserve">
+    <value>Mēneši, kuros ievāktas pārbaudītās partijas</value>
+  </data>
+  <data name="Sf.Flowering" xml:space="preserve">
+    <value>Ziedēšana</value>
+  </data>
+  <data name="Sf.Harvest" xml:space="preserve">
+    <value>Raža</value>
+  </data>
+  <data name="Sf.Demo.FloraChestnut" xml:space="preserve">
+    <value>Kastanis</value>
+  </data>
+  <data name="Sf.Demo.FloraLinden" xml:space="preserve">
+    <value>Liepa</value>
+  </data>
+  <data name="Sf.Demo.FloraWildflower" xml:space="preserve">
+    <value>Pļavu ziedi</value>
+  </data>
+  <data name="Sf.Demo.FloraHeather" xml:space="preserve">
+    <value>Virši</value>
+  </data>
+  <data name="Sf.Quality" xml:space="preserve">
+    <value>Kvalitāte</value>
+  </data>
+  <data name="Sf.LatestResults" xml:space="preserve">
+    <value>Jaunākie pārbaudītie laboratorijas rezultāti</value>
+  </data>
+  <data name="Sf.VerifyReportCode" xml:space="preserve">
+    <value>Pārbaudīt pārskatu {0}</value>
+  </data>
+  <data name="Sf.LabNoteAccredited" xml:space="preserve">
+    <value>Akreditēta laboratorija {0}; pārskatu apstiprināja otra persona. Joslas rāda izmērīto vērtību attiecībā pret piemēroto robežu.</value>
+  </data>
+  <data name="Sf.LabNote" xml:space="preserve">
+    <value>Laboratorija {0}; pārskatu apstiprināja otra persona. Joslas rāda izmērīto vērtību attiecībā pret piemēroto robežu.</value>
+  </data>
+  <data name="Sf.WithinLimit" xml:space="preserve">
+    <value>Robežās</value>
+  </data>
+  <data name="Sf.OutOfLimit" xml:space="preserve">
+    <value>Ārpus robežām</value>
+  </data>
+  <data name="Sf.Limit" xml:space="preserve">
+    <value>Robeža: {0}</value>
+  </data>
+  <data name="Sf.Traceability" xml:space="preserve">
+    <value>Izsekojamība</value>
+  </data>
+  <data name="Sf.BatchesWith" xml:space="preserve">
+    <value>Gala partijas ar šī biškopja medu</value>
+  </data>
+  <data name="Sf.BatchesHelp" xml:space="preserve">
+    <value>Katrai šo partiju burciņai ir QR kods, kas atver tās Medus stāstu.</value>
+  </data>
+  <data name="Sf.PackedBy" xml:space="preserve">
+    <value>iepakoja: {0}</value>
+  </data>
+  <data name="Sf.OriginShort" xml:space="preserve">
+    <value>izcelsme: {0}</value>
+  </data>
+  <data name="Sf.ShareOf" xml:space="preserve">
+    <value>Šī biškopja medus daļa</value>
+  </data>
+  <data name="Sf.AccreditedTested" xml:space="preserve">
+    <value>Testēts akreditētā laboratorijā</value>
+  </data>
+  <data name="Sf.OpenHoneyStory" xml:space="preserve">
+    <value>Atvērt Medus stāstu</value>
+  </data>
+  <data name="Sf.References" xml:space="preserve">
+    <value>Atsauces</value>
+  </data>
+  <data name="Sf.TrustedChain" xml:space="preserve">
+    <value>Uzticams visā ķēdē</value>
+  </data>
+  <data name="Sf.RefHelp" xml:space="preserve">
+    <value>Katra atsauce izriet no platformā reģistrētām un pārbaudītām attiecībām.</value>
+  </data>
+  <data name="Sf.RefMemberSince" xml:space="preserve">
+    <value>Biedrs kopš {0}.</value>
+  </data>
+  <data name="Sf.RefAssociation" xml:space="preserve">
+    <value>Biškopja biedrība; tā reģistrēja piekrišanu šai lapai.</value>
+  </data>
+  <data name="Sf.RefProcessed" xml:space="preserve">
+    <value>Pārstrādātās partijas: {0} · gala partijas: {1}</value>
+  </data>
+  <data name="Sf.RefTested" xml:space="preserve">
+    <value>Apstiprināti pārskati: {0} · katru apstiprinājusi otra persona</value>
+  </data>
+  <data name="Sf.RefHolds" xml:space="preserve">
+    <value>Gala partijas ar šo medu: {0}</value>
+  </data>
+  <data name="Sf.KindAssociation" xml:space="preserve">
+    <value>Biedrība</value>
+  </data>
+  <data name="Sf.KindProcessor" xml:space="preserve">
+    <value>Pārstrādātājs</value>
+  </data>
+  <data name="Sf.KindPacker" xml:space="preserve">
+    <value>Iepakotājs</value>
+  </data>
+  <data name="Sf.KindProcessorAndPacker" xml:space="preserve">
+    <value>Pārstrādātājs un iepakotājs</value>
+  </data>
+  <data name="Sf.KindLaboratory" xml:space="preserve">
+    <value>Laboratorija</value>
+  </data>
+  <data name="Sf.KindAccreditedLaboratory" xml:space="preserve">
+    <value>Akreditēta laboratorija</value>
+  </data>
+  <data name="Sf.KindWholesaler" xml:space="preserve">
+    <value>Vairumtirgotājs</value>
+  </data>
+  <data name="Sf.KindRetailer" xml:space="preserve">
+    <value>Mazumtirgotājs</value>
+  </data>
+  <data name="Sf.Demo.Quote" xml:space="preserve">
+    <value>[Demonstrācijas teksts] Katra Ayşe piegādātā partija bija ar parakstītu piegādes veidlapu un pilnu higiēnas auditu.</value>
+  </data>
+  <data name="Sf.Demo.QuoteCaption" xml:space="preserve">
+    <value>Biedrības ieteikums · demonstrācijas saturs</value>
+  </data>
+  <data name="Sf.LookingFor" xml:space="preserve">
+    <value>Meklējat šo medu?</value>
+  </data>
+  <data name="Sf.ContactText" xml:space="preserve">
+    <value>Pērciet to veikalos, kuros ir tā partijas, vai nosūtiet pieprasījumu ar {0} starpniecību. Biškopja tālruņa numurs šajā lapā nekad netiek rādīts.</value>
+  </data>
+  <data name="Sf.SeeShops" xml:space="preserve">
+    <value>Skatīt veikalus un partijas</value>
+  </data>
+  <data name="Sf.RequestViaAssociation" xml:space="preserve">
+    <value>Pieprasīt ar biedrības starpniecību</value>
+  </data>
+  <data name="Sf.FooterTag" xml:space="preserve">
+    <value>Uzticama un ilgtspējīga atvērtā platforma viedām medus vērtību ķēdēm</value>
+  </data>
+  <data name="Sf.FooterNote" xml:space="preserve">
+    <value>Tiek rādīti tikai pārbaudīti dati. Netiek publicēts tālruņa numurs, personīgs foto, dzimšanas datums vai precīza atrašanās vieta. Lapa tiek publicēta ar reģistrētu biškopja piekrišanu, ko var jebkurā laikā atsaukt.</value>
+  </data>
 </root>

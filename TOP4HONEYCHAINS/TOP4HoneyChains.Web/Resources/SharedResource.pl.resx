@@ -5199,4 +5199,304 @@
   <data name="Cap.Uses.PlatformAdmin" xml:space="preserve">
     <value>Organizacja prowadząca platformę: organizacje, dane podstawowe i ustawienia. Tylko odczyt wartości i zatwierdzeń KPK.</value>
   </data>
+  <data name="Sf.VerifyReport" xml:space="preserve">
+    <value>Sprawdź raport</value>
+  </data>
+  <data name="Sf.DemoRibbon" xml:space="preserve">
+    <value>Profil demonstracyjny z przykładowymi danymi, przygotowany do prezentacji. Prawdziwa strona pokazuje tylko zweryfikowane dane i jest publikowana za zgodą pszczelarza.</value>
+  </data>
+  <data name="Region.Marmara" xml:space="preserve">
+    <value>Marmara</value>
+  </data>
+  <data name="Region.Aegean" xml:space="preserve">
+    <value>Region Egejski</value>
+  </data>
+  <data name="Region.Mediterranean" xml:space="preserve">
+    <value>Region Śródziemnomorski</value>
+  </data>
+  <data name="Region.CentralAnatolia" xml:space="preserve">
+    <value>Anatolia Środkowa</value>
+  </data>
+  <data name="Region.BlackSea" xml:space="preserve">
+    <value>Region Czarnomorski</value>
+  </data>
+  <data name="Region.EasternAnatolia" xml:space="preserve">
+    <value>Anatolia Wschodnia</value>
+  </data>
+  <data name="Region.SoutheasternAnatolia" xml:space="preserve">
+    <value>Anatolia Południowo-Wschodnia</value>
+  </data>
+  <data name="Sf.Demo.Tagline" xml:space="preserve">
+    <value>Miód kasztanowy i wielokwiatowy z zalesionych wzgórz nad Akçakocą, zbierany i śledzony partia po partii.</value>
+  </data>
+  <data name="Sf.MemberOf" xml:space="preserve">
+    <value>Członek: {0}</value>
+  </data>
+  <data name="Sf.OnPlatformSince" xml:space="preserve">
+    <value>Na platformie od {0}</value>
+  </data>
+  <data name="Sf.BadgeRegistry" xml:space="preserve">
+    <value>Rejestr zweryfikowany (AKS)</value>
+  </data>
+  <data name="Sf.RecentActivity" xml:space="preserve">
+    <value>Ostatnia aktywność na platformie</value>
+  </data>
+  <data name="Sf.LatestBatch" xml:space="preserve">
+    <value>Ostatnia partia końcowa</value>
+  </data>
+  <data name="Sf.FinalisedOn" xml:space="preserve">
+    <value>Zamknięta {0}</value>
+  </data>
+  <data name="Sf.LatestReport" xml:space="preserve">
+    <value>Ostatni raport laboratoryjny</value>
+  </data>
+  <data name="Sf.WithinLimitCount" xml:space="preserve">
+    <value>{0} z {1} w granicach limitu</value>
+  </data>
+  <data name="Sf.ReportCode" xml:space="preserve">
+    <value>Raport {0}</value>
+  </data>
+  <data name="Sf.HygieneAudit" xml:space="preserve">
+    <value>Audyt higieny · KPK 0</value>
+  </data>
+  <data name="Sf.Passed" xml:space="preserve">
+    <value>Zaliczony</value>
+  </data>
+  <data name="Sf.SeasonByAssociation" xml:space="preserve">
+    <value>Sezon {0}, przez stowarzyszenie</value>
+  </data>
+  <data name="Sf.ProfileMark" xml:space="preserve">
+    <value>Znak profilu: {0}</value>
+  </data>
+  <data name="Sf.Beekeeper" xml:space="preserve">
+    <value>Pszczelarz</value>
+  </data>
+  <data name="Sf.StatBatches" xml:space="preserve">
+    <value>partie końcowe</value>
+  </data>
+  <data name="Sf.StatReports" xml:space="preserve">
+    <value>raporty laboratoryjne</value>
+  </data>
+  <data name="Sf.StatKg" xml:space="preserve">
+    <value>prześledzony miód</value>
+  </data>
+  <data name="Sf.WhereToBuy" xml:space="preserve">
+    <value>Gdzie kupić ten miód</value>
+  </data>
+  <data name="Sf.ContactViaAssociation" xml:space="preserve">
+    <value>Kontakt przez stowarzyszenie</value>
+  </data>
+  <data name="Sf.QrAlt" xml:space="preserve">
+    <value>Kod QR tej strony</value>
+  </data>
+  <data name="Sf.QrHint" xml:space="preserve">
+    <value>Zeskanuj, aby otworzyć tę stronę, albo udostępnij link wydrukowany na karcie pszczelarza.</value>
+  </data>
+  <data name="Sf.About" xml:space="preserve">
+    <value>O pasiece</value>
+  </data>
+  <data name="Sf.Demo.StoryTitle" xml:space="preserve">
+    <value>Ule pod kasztanowcami, kilka kroków od Morza Czarnego</value>
+  </data>
+  <data name="Sf.Demo.Story1" xml:space="preserve">
+    <value>[Przykładowy tekst do demonstracji; na prawdziwej stronie pisze go stowarzyszenie za zgodą pszczelarza.] Ayşe trzyma swoje rodziny w lasach kasztanowych i lipowych nad Akçakocą. Każdy zbiór trafia do organizacji przetwórczej z podpisanym formularzem dostawy, jest próbkowany pod plombą i badany przez akredytowane laboratorium, zanim stanie się częścią partii końcowej.</value>
+  </data>
+  <data name="Sf.Demo.Story2" xml:space="preserve">
+    <value>Ponieważ każda partia jest śledzona, kupujący widzą dokładnie, które partie końcowe zawierają jej miód i jak każda z nich przeszła punkty kontrolne.</value>
+  </data>
+  <data name="Sf.FeatureHarvest" xml:space="preserve">
+    <value>Okres zbioru</value>
+  </data>
+  <data name="Sf.MonthRange" xml:space="preserve">
+    <value>Od {0} do {1}</value>
+  </data>
+  <data name="Sf.FeatureHygiene" xml:space="preserve">
+    <value>Audyt higieny</value>
+  </data>
+  <data name="Sf.Ccp0AllLots" xml:space="preserve">
+    <value>KPK 0 zaliczony dla każdej zweryfikowanej partii</value>
+  </data>
+  <data name="Sf.Demo.PhotoApiary" xml:space="preserve">
+    <value>Pasieka · dodane za zgodą</value>
+  </data>
+  <data name="Sf.Demo.PhotoApiaryAlt" xml:space="preserve">
+    <value>Ule w rzędzie pod kasztanowcami na zalesionym zboczu</value>
+  </data>
+  <data name="Sf.Demo.PhotoHarvest" xml:space="preserve">
+    <value>Zbiór</value>
+  </data>
+  <data name="Sf.Demo.PhotoHarvestAlt" xml:space="preserve">
+    <value>Pszczelarz w kombinezonie ochronnym wyjmuje ramkę z ula</value>
+  </data>
+  <data name="Sf.Demo.PhotoComb" xml:space="preserve">
+    <value>Zasklepiony plaster</value>
+  </data>
+  <data name="Sf.Demo.PhotoCombAlt" xml:space="preserve">
+    <value>Dłonie w rękawicach trzymają ramkę z zasklepionym plastrem i pszczołami</value>
+  </data>
+  <data name="Sf.Origin" xml:space="preserve">
+    <value>Pochodzenie</value>
+  </data>
+  <data name="Sf.WhereFrom" xml:space="preserve">
+    <value>Skąd pochodzi miód</value>
+  </data>
+  <data name="Sf.MapLabel" xml:space="preserve">
+    <value>Mapa Turcji z zaznaczonym przybliżonym obszarem: {0}</value>
+  </data>
+  <data name="Sf.ApproxArea" xml:space="preserve">
+    <value>przybliżony obszar</value>
+  </data>
+  <data name="Sf.MapNote" xml:space="preserve">
+    <value>Zaznaczono w centrum prowincji. Dokładne położenie pasiek nigdy nie jest publikowane.</value>
+  </data>
+  <data name="Sf.Calendar" xml:space="preserve">
+    <value>Kwitnienie i zbiór</value>
+  </data>
+  <data name="Sf.HarvestCalendar" xml:space="preserve">
+    <value>Kalendarz zbiorów</value>
+  </data>
+  <data name="Sf.CalendarHelpDemo" xml:space="preserve">
+    <value>Kiedy kwitną główne pożytki wokół pasieki (dane przykładowe)</value>
+  </data>
+  <data name="Sf.CalendarHelp" xml:space="preserve">
+    <value>Miesiące, w których zebrano zweryfikowane partie</value>
+  </data>
+  <data name="Sf.Flowering" xml:space="preserve">
+    <value>Kwitnienie</value>
+  </data>
+  <data name="Sf.Harvest" xml:space="preserve">
+    <value>Zbiór</value>
+  </data>
+  <data name="Sf.Demo.FloraChestnut" xml:space="preserve">
+    <value>Kasztan</value>
+  </data>
+  <data name="Sf.Demo.FloraLinden" xml:space="preserve">
+    <value>Lipa</value>
+  </data>
+  <data name="Sf.Demo.FloraWildflower" xml:space="preserve">
+    <value>Kwiaty polne</value>
+  </data>
+  <data name="Sf.Demo.FloraHeather" xml:space="preserve">
+    <value>Wrzos</value>
+  </data>
+  <data name="Sf.Quality" xml:space="preserve">
+    <value>Jakość</value>
+  </data>
+  <data name="Sf.LatestResults" xml:space="preserve">
+    <value>Najnowsze zweryfikowane wyniki laboratoryjne</value>
+  </data>
+  <data name="Sf.VerifyReportCode" xml:space="preserve">
+    <value>Sprawdź raport {0}</value>
+  </data>
+  <data name="Sf.LabNoteAccredited" xml:space="preserve">
+    <value>Akredytowane laboratorium {0}; raport zatwierdziła druga osoba. Paski pokazują zmierzoną wartość na tle zastosowanego limitu.</value>
+  </data>
+  <data name="Sf.LabNote" xml:space="preserve">
+    <value>Laboratorium {0}; raport zatwierdziła druga osoba. Paski pokazują zmierzoną wartość na tle zastosowanego limitu.</value>
+  </data>
+  <data name="Sf.WithinLimit" xml:space="preserve">
+    <value>W granicach limitu</value>
+  </data>
+  <data name="Sf.OutOfLimit" xml:space="preserve">
+    <value>Poza limitem</value>
+  </data>
+  <data name="Sf.Limit" xml:space="preserve">
+    <value>Limit: {0}</value>
+  </data>
+  <data name="Sf.Traceability" xml:space="preserve">
+    <value>Identyfikowalność</value>
+  </data>
+  <data name="Sf.BatchesWith" xml:space="preserve">
+    <value>Partie końcowe z miodem tego pszczelarza</value>
+  </data>
+  <data name="Sf.BatchesHelp" xml:space="preserve">
+    <value>Każdy słoik z tych partii ma kod QR, który otwiera jego Historię miodu.</value>
+  </data>
+  <data name="Sf.PackedBy" xml:space="preserve">
+    <value>pakowane przez: {0}</value>
+  </data>
+  <data name="Sf.OriginShort" xml:space="preserve">
+    <value>pochodzenie: {0}</value>
+  </data>
+  <data name="Sf.ShareOf" xml:space="preserve">
+    <value>Udział miodu tego pszczelarza</value>
+  </data>
+  <data name="Sf.AccreditedTested" xml:space="preserve">
+    <value>Zbadane w akredytowanym laboratorium</value>
+  </data>
+  <data name="Sf.OpenHoneyStory" xml:space="preserve">
+    <value>Otwórz Historię miodu</value>
+  </data>
+  <data name="Sf.References" xml:space="preserve">
+    <value>Referencje</value>
+  </data>
+  <data name="Sf.TrustedChain" xml:space="preserve">
+    <value>Zaufanie w całym łańcuchu</value>
+  </data>
+  <data name="Sf.RefHelp" xml:space="preserve">
+    <value>Każda poniższa referencja pochodzi z zarejestrowanej i zweryfikowanej relacji na platformie.</value>
+  </data>
+  <data name="Sf.RefMemberSince" xml:space="preserve">
+    <value>Członek od {0}.</value>
+  </data>
+  <data name="Sf.RefAssociation" xml:space="preserve">
+    <value>Stowarzyszenie pszczelarza; zarejestrowało zgodę na tę stronę.</value>
+  </data>
+  <data name="Sf.RefProcessed" xml:space="preserve">
+    <value>Przetworzone partie: {0} · partie końcowe: {1}</value>
+  </data>
+  <data name="Sf.RefTested" xml:space="preserve">
+    <value>Zatwierdzone raporty: {0} · każdy zatwierdzony przez drugą osobę</value>
+  </data>
+  <data name="Sf.RefHolds" xml:space="preserve">
+    <value>Partie końcowe z tym miodem: {0}</value>
+  </data>
+  <data name="Sf.KindAssociation" xml:space="preserve">
+    <value>Stowarzyszenie</value>
+  </data>
+  <data name="Sf.KindProcessor" xml:space="preserve">
+    <value>Przetwórca</value>
+  </data>
+  <data name="Sf.KindPacker" xml:space="preserve">
+    <value>Pakujący</value>
+  </data>
+  <data name="Sf.KindProcessorAndPacker" xml:space="preserve">
+    <value>Przetwórca i pakujący</value>
+  </data>
+  <data name="Sf.KindLaboratory" xml:space="preserve">
+    <value>Laboratorium</value>
+  </data>
+  <data name="Sf.KindAccreditedLaboratory" xml:space="preserve">
+    <value>Akredytowane laboratorium</value>
+  </data>
+  <data name="Sf.KindWholesaler" xml:space="preserve">
+    <value>Hurtownik</value>
+  </data>
+  <data name="Sf.KindRetailer" xml:space="preserve">
+    <value>Detalista</value>
+  </data>
+  <data name="Sf.Demo.Quote" xml:space="preserve">
+    <value>[Tekst demonstracyjny] Każda partia dostarczona przez Ayşe miała podpisany formularz dostawy i pełny audyt higieny.</value>
+  </data>
+  <data name="Sf.Demo.QuoteCaption" xml:space="preserve">
+    <value>Rekomendacja stowarzyszenia · treść demonstracyjna</value>
+  </data>
+  <data name="Sf.LookingFor" xml:space="preserve">
+    <value>Szukasz tego miodu?</value>
+  </data>
+  <data name="Sf.ContactText" xml:space="preserve">
+    <value>Kup go w sklepach, które mają jego partie, albo wyślij zapytanie przez {0}. Numer telefonu pszczelarza nigdy nie jest pokazywany na tej stronie.</value>
+  </data>
+  <data name="Sf.SeeShops" xml:space="preserve">
+    <value>Zobacz sklepy i partie</value>
+  </data>
+  <data name="Sf.RequestViaAssociation" xml:space="preserve">
+    <value>Zapytanie przez stowarzyszenie</value>
+  </data>
+  <data name="Sf.FooterTag" xml:space="preserve">
+    <value>Wiarygodna i zrównoważona otwarta platforma dla inteligentnych łańcuchów wartości miodu</value>
+  </data>
+  <data name="Sf.FooterNote" xml:space="preserve">
+    <value>Pokazywane są tylko zweryfikowane dane. Nie publikujemy numeru telefonu, zdjęcia osoby, daty urodzenia ani dokładnej lokalizacji. Strona jest publikowana za zarejestrowaną zgodą pszczelarza, którą można w każdej chwili wycofać.</value>
+  </data>
 </root>

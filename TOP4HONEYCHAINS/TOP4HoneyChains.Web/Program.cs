@@ -85,6 +85,7 @@ builder.Services.AddScoped<OrgScope>();
 builder.Services.AddScoped<CustodyService>();
 builder.Services.AddScoped<LabService>();
 builder.Services.AddScoped<StorefrontService>();
+builder.Services.AddScoped<StorefrontPage>();
 builder.Services.AddScoped<MyWorkService>();
 builder.Services.AddScoped<ISmsSender, LoggingSmsSender>();
 builder.Services.AddScoped<AuditWriter>();

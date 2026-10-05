@@ -18,6 +18,16 @@ namespace TOP4HoneyChains.Web.Services
 
         public static string? ByPlate(int plate) => plate is >= 1 and <= 81 ? Names[plate - 1] : null;
 
+        // "Düzce" -> 81 (Turkish casing rules); 0 when unknown
+        public static int PlateOf(string? name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+                return 0;
+            var tr = System.Globalization.CultureInfo.GetCultureInfo("tr-TR");
+            var i = Array.FindIndex(Names, n => string.Compare(n, name.Trim(), tr, System.Globalization.CompareOptions.IgnoreCase) == 0);
+            return i + 1;
+        }
+
         // "TR061234567890" -> "Ankara"; null when the number does not have the TR + 2 digits form
         public static string? FromRegistryNumber(string? number)
         {
