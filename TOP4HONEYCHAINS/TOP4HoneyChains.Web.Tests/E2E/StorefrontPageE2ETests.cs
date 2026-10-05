@@ -156,6 +156,7 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             Assert.DoesNotContain("storefront-demo", html);
             Assert.DoesNotContain("sf-gallery", html);
             Assert.DoesNotContain("tel:", html);
+            Assert.DoesNotContain("googleapis", html);                    // fonts are self-hosted (D-57)
 
             // a storefront without consent is not shown
             Assert.Equal(HttpStatusCode.NotFound, (await visitor.GetAsync($"/storefront/{seed.OtherCode}")).StatusCode);
