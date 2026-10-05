@@ -5727,4 +5727,7 @@
   <data name="RolePermissions" xml:space="preserve">
     <value>Role permissions</value>
   </data>
+  <data name="CCP 0 (primary audit) of this lot is not completed yet; lab results are entered and approved only after it." xml:space="preserve">
+    <value>CCP 0 (primary audit) of this lot is not completed yet; lab results are entered and approved only after it.</value>
+  </data>
 </root>

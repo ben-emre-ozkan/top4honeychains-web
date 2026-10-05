@@ -67,9 +67,11 @@ namespace TOP4HoneyChains.Web.Controllers
             var ccpId = await _lab.LabCcpIdAsync() ?? 0;
             ViewBag.Sample = sample;
             ViewBag.Parameters = await _lab.LabParametersAsync(ccpId);
+            var ccp0 = await _lab.Ccp0PendingAsync(sample.RawHoneyProductionId);
             ViewBag.EnterDenied = sample.Status != SampleStatus.Received ? "Results are entered only for a received sample with an intact seal."
-                : await _lab.LabDeniedAsync(sample.LabOrgId, EnterRoles);
+                : await _lab.LabDeniedAsync(sample.LabOrgId, EnterRoles) ?? ccp0;
             ViewBag.ApproveDenied = await _lab.LabDeniedAsync(sample.LabOrgId, ApproveRoles);
+            ViewBag.Ccp0Pending = ccp0;
             ViewBag.UserId = _current.UserId;
             ViewBag.Controller = "Lab";
             ViewBag.Action = "Report";
@@ -88,7 +90,7 @@ namespace TOP4HoneyChains.Web.Controllers
             if (sample == null)
                 return NotFound();
             string? error = sample.Status != SampleStatus.Received ? "Results are entered only for a received sample with an intact seal."
-                : await _lab.LabDeniedAsync(sample.LabOrgId, EnterRoles);
+                : await _lab.LabDeniedAsync(sample.LabOrgId, EnterRoles) ?? await _lab.Ccp0PendingAsync(sample.RawHoneyProductionId);
             var report = sample.Report;
             if (error == null && report != null && report.Status != LabReportStatus.Draft)
                 error = report.Status == LabReportStatus.Approved
@@ -214,7 +216,7 @@ namespace TOP4HoneyChains.Web.Controllers
             if (sample == null)
                 return NotFound();
             var report = sample.Report;
-            string? error = await _lab.LabDeniedAsync(sample.LabOrgId, EnterRoles);
+            string? error = await _lab.LabDeniedAsync(sample.LabOrgId, EnterRoles) ?? await _lab.Ccp0PendingAsync(sample.RawHoneyProductionId);
             if (error == null && (report == null || report.Status != LabReportStatus.Draft))
                 error = "Only a draft report can be submitted.";
             else if (error == null && report!.Results.Count == 0)
@@ -253,7 +255,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 return NotFound();
             var report = sample.Report;
             reason = string.IsNullOrWhiteSpace(reason) ? null : reason.Trim();
-            string? error = await _lab.LabDeniedAsync(sample.LabOrgId, ApproveRoles);
+            // returning a report is always possible; approving waits for the lot's CCP 0 (D-61)
+            string? error = await _lab.LabDeniedAsync(sample.LabOrgId, ApproveRoles) ?? (approve ? await _lab.Ccp0PendingAsync(sample.RawHoneyProductionId) : null);
             if (error == null && (report == null || report.Status != LabReportStatus.Submitted))
                 error = "Only a submitted report can be approved or returned.";
             // D-27: four-eyes is never waived for lab results

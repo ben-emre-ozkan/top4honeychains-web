@@ -9,8 +9,9 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
     // same rules that allow the action (so the list never offers something the user cannot do)
     public class MyWorkService
     {
-        // TitleKind: a record kind ("RawLot", "Batch") the view translates and adds to the title
-        public record Item(string Kind, string Title, string? Detail, string Url, DateTime? Since, string? TitleKind = null);
+        // TitleKind: a record kind ("RawLot", "Batch") the view translates and adds to the title;
+        // Waiting: why the item cannot be done yet (a message the view translates), e.g. CCP 0 before the lab test
+        public record Item(string Kind, string Title, string? Detail, string Url, DateTime? Since, string? TitleKind = null, string? Waiting = null);
 
         private readonly TOP4HoneyChainsContext _context;
         private readonly ICurrentOrg _current;
@@ -19,10 +20,12 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         private readonly CustodyService _custody;
         private readonly IConfiguration _config;
         private readonly Permissions _perm;
+        private readonly LabService _lab;
 
         public MyWorkService(TOP4HoneyChainsContext context, ICurrentOrg current, OrgScope scope, CcpResponsibilityService resp,
-            CustodyService custody, IConfiguration config, Permissions perm)
+            CustodyService custody, IConfiguration config, Permissions perm, LabService lab)
         {
+            _lab = lab;
             _perm = perm;
             _context = context;
             _current = current;
@@ -101,13 +104,23 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                 foreach (var s in await _context.Samples.AsNoTracking().Where(s => s.LabOrgId == active.OrgId && s.Status == SampleStatus.Sent).ToListAsync())
                     items.Add(new Item("Receive", s.SampleCode, s.SealNumber, "/Samples/Index", s.TakenAt));
             if (_perm.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.LabResults, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Enter, active.OrgRole))
-                foreach (var s in await _context.Samples.AsNoTracking().Include(s => s.Report)
-                             .Where(s => s.LabOrgId == active.OrgId && s.Status == SampleStatus.Received && (s.Report == null || s.Report.Status == LabReportStatus.Draft)).ToListAsync())
-                    items.Add(new Item("Results", s.SampleCode, s.Report?.ReturnReason, $"/LabReports/Edit/{s.SampleId}", s.ReceivedAt));
+            {
+                var samples = await _context.Samples.AsNoTracking().Include(s => s.Report)
+                    .Where(s => s.LabOrgId == active.OrgId && s.Status == SampleStatus.Received && (s.Report == null || s.Report.Status == LabReportStatus.Draft)).ToListAsync();
+                var waiting = await _lab.LotsWaitingForCcp0Async(samples.Select(s => s.RawHoneyProductionId));
+                foreach (var s in samples)
+                    items.Add(new Item("Results", s.SampleCode, s.Report?.ReturnReason, $"/LabReports/Edit/{s.SampleId}", s.ReceivedAt,
+                        Waiting: waiting.Contains(s.RawHoneyProductionId) ? LabService.Ccp0Pending : null));
+            }
             if (_perm.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.LabResults, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Approve, active.OrgRole))
-                foreach (var r in await _context.LabReports.AsNoTracking().Include(r => r.Sample)
-                             .Where(r => r.LabOrgId == active.OrgId && r.Status == LabReportStatus.Submitted).ToListAsync())
-                    items.Add(new Item("LabApprove", r.Sample!.SampleCode, r.ReportNumber, $"/LabReports/Edit/{r.SampleId}", r.SubmittedAt));
+            {
+                var reports = await _context.LabReports.AsNoTracking().Include(r => r.Sample)
+                    .Where(r => r.LabOrgId == active.OrgId && r.Status == LabReportStatus.Submitted).ToListAsync();
+                var waiting = await _lab.LotsWaitingForCcp0Async(reports.Select(r => r.Sample!.RawHoneyProductionId));
+                foreach (var r in reports)
+                    items.Add(new Item("LabApprove", r.Sample!.SampleCode, r.ReportNumber, $"/LabReports/Edit/{r.SampleId}", r.SubmittedAt,
+                        Waiting: waiting.Contains(r.Sample.RawHoneyProductionId) ? LabService.Ccp0Pending : null));
+            }
         }
 
         private async Task CustodyItemsAsync(ActiveMembership active, List<Item> items)

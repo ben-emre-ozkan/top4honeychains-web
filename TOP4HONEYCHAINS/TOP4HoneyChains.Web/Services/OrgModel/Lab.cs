@@ -39,6 +39,27 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             parameters.Where(p => p.IsRequired && !(report?.Results.Any(r => r.ParameterId == p.ParameterId
                 && (r.MeasuredNumericValue != null || !string.IsNullOrWhiteSpace(r.MeasuredTextValue))) ?? false)).ToList();
 
+        // D-61: the lot's CCP 0 (primary audit, by the association's field inspector or whoever the CCP responsibility
+        // matrix names) comes before the lab test. Results are entered and approved only when it is done (approved, or
+        // not applicable); a lot without a CCP 0 assignment is not held.
+        public const string Ccp0Code = "CCP 0";
+        public const string Ccp0Pending = "CCP 0 (primary audit) of this lot is not completed yet; lab results are entered and approved only after it.";
+
+        public async Task<HashSet<int>> LotsWaitingForCcp0Async(IEnumerable<int> lotIds)
+        {
+            var ids = lotIds.Distinct().ToList();
+            var done = await _ccp.DonePredicateAsync();
+            var assignments = await _context.RawHoneyCCPAssignments.AsNoTracking()
+                .Where(a => ids.Contains(a.RawHoneyProductionId) && a.CCP!.Code == Ccp0Code)
+                .Select(a => new { a.RawHoneyProductionId, a.RawHoneyCCPAssignmentStatus, a.ApprovedAt, a.RawHoneyCCPAssignmentCCP })
+                .ToListAsync();
+            return assignments.Where(a => !done(a.RawHoneyCCPAssignmentStatus, a.ApprovedAt, a.RawHoneyCCPAssignmentCCP))
+                .Select(a => a.RawHoneyProductionId).ToHashSet();
+        }
+
+        public async Task<string?> Ccp0PendingAsync(int lotId) =>
+            (await LotsWaitingForCcp0Async(new[] { lotId })).Count > 0 ? Ccp0Pending : null;
+
         // Why the active membership may not act for a lab (null = allowed)
         public async Task<string?> LabDeniedAsync(int labOrgId, IEnumerable<string> roles)
         {
