@@ -1,0 +1,30 @@
+@model string
+@* Top bar of the public pages (beekeeper page, Honey Story, parameter page): brand, page name, language switch,
+   report verification. Styles in wwwroot/css/storefront.css. *@
+@{
+    var current = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+    var returnUrl = Context.Request.Path + Context.Request.QueryString;
+}
+<header class="sf-top">
+    <div class="sf-top-in">
+        <a href="#top" class="sf-brand">
+            <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><polygon points="15,2 26,8.5 26,21.5 15,28 4,21.5 4,8.5" fill="#D9930D"></polygon><polygon points="15,8 20.2,11 20.2,17 15,20 9.8,17 9.8,11" fill="#FFFFFF"></polygon></svg>
+            <span class="sf-brand-name">TOP4HoneyChains</span>
+            <span class="sf-brand-sub">@Model</span>
+        </a>
+        <nav class="sf-nav" aria-label="@L["Language"]">
+            @foreach (var code in new[] { "tr", "en", "es", "pl", "lv" })
+            {
+                if (code == current)
+                {
+                    <span class="sf-lang is-current" lang="@code" aria-current="true">@code.ToUpperInvariant()</span>
+                }
+                else
+                {
+                    <a class="sf-lang" href="@Url.Action("SetLanguage", "Home", new { culture = code, returnUrl })" hreflang="@code" lang="@code">@code.ToUpperInvariant()</a>
+                }
+            }
+            <a class="sf-verify-btn" href="/verify-report">@L["Sf.VerifyReport"]</a>
+        </nav>
+    </div>
+</header>

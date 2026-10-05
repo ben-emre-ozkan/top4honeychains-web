@@ -42,8 +42,16 @@ namespace TOP4HoneyChains.Web.Controllers
             var reports = await _context.LabReports.AsNoTracking()
                 .Where(r => r.Status == LabReportStatus.Approved && rawIds.Contains(r.Sample!.RawHoneyProductionId)
                             && r.LabOrg!.Status == OrgStatus.Verified)
-                .Select(r => new { r.Sample!.RawHoneyProductionId, r.IsAccredited, r.AccreditationNumber, r.InHouse, r.ReportCode })
+                .Select(r => new { r.Sample!.RawHoneyProductionId, r.IsAccredited, r.AccreditationNumber, r.InHouse, r.ReportCode, Lab = r.LabOrg!.DisplayName, r.ApprovedAt })
                 .ToListAsync();
+            // the latest approved report of each lot, linked to the verification page
+            foreach (var source in vm.RawSources)
+            {
+                var report = reports.Where(r => r.RawHoneyProductionId == source.RawHoneyProductionId).OrderByDescending(r => r.ApprovedAt).FirstOrDefault();
+                source.LabReportCode = report?.ReportCode;
+                source.LabName = report?.Lab;
+                source.LabAccredited = report?.IsAccredited == true;
+            }
             var rows = vm.RawSources.SelectMany(s => s.CcpBlocks).Concat(vm.BatchCcpBlocks).SelectMany(b => b.Parameters)
                 .Where(r => r.Compliant != null).ToList();
             vm.Badges = new HoneyStoryBadges
@@ -77,26 +85,70 @@ namespace TOP4HoneyChains.Web.Controllers
 
 
         [HttpGet("parameter/{id}")]
-        public async Task<IActionResult> ParameterDetails(int id)
+        public async Task<IActionResult> ParameterDetails(int id, Guid? qr, int? lot)
         {
-            var parameter = await _context.CriticalControlPointParameters
+            var parameter = await _context.CriticalControlPointParameters.AsNoTracking()
                 .Include(p => p.CCP)
-                .Include(p => p.CriticalControlPointParameterContents
-                    .Where(c => c.IsActive))
+                .Include(p => p.ParameterCategoryNavigation)
+                .Include(p => p.Limits)
+                .Include(p => p.CriticalControlPointParameterContents.Where(c => c.IsActive))
                 .FirstOrDefaultAsync(p => p.ParameterId == id);
-
             if (parameter == null)
                 return NotFound();
 
-            var content = parameter.CriticalControlPointParameterContents
-                .OrderBy(c => c.SortOrder)
-                .FirstOrDefault();
+            var vm = new HoneyStoryParameterViewModel
+            {
+                Parameter = parameter,
+                Content = parameter.CriticalControlPointParameterContents.OrderBy(c => c.SortOrder).FirstOrDefault()
+            };
 
-            return View(content);
+            // "Read together" (mobile): the paired parameter of the same CCP
+            var pair = HoneyStoryLab.Pairs.Where(x => string.Equals(x.A, parameter.ParameterName, StringComparison.OrdinalIgnoreCase)
+                                                      || string.Equals(x.B, parameter.ParameterName, StringComparison.OrdinalIgnoreCase))
+                .Select(x => string.Equals(x.A, parameter.ParameterName, StringComparison.OrdinalIgnoreCase) ? x.B : x.A).ToList();
+            if (pair.Count > 0)
+                vm.Related = await _context.CriticalControlPointParameters.AsNoTracking()
+                    .Where(p => p.CCPId == parameter.CCPId && pair.Contains(p.ParameterName!)).ToListAsync();
+
+            // "In this jar": the value of one lot of a published batch, only through its Honey Story link (D-12)
+            if (qr != null && lot != null)
+            {
+                var inBatch = await _context.FinalHoneyProductionDetails.AsNoTracking()
+                    .Where(d => d.FinalHoneyProduction.FinalHoneyProductionQR == qr && d.FinalHoneyProduction.FinalHoneyProductionIsFinalized
+                                && d.RawHoneyProductionId == lot)
+                    .Select(d => new { d.RawHoneyProduction.RawHoneyProductionHoneyType, d.RawHoneyProduction.RawHoneyProductionHoneyTypeNavigation!.HoneyClass,
+                                       Apiary = d.RawHoneyProduction.RawHoneyProductionApiary!.ApiaryTitle })
+                    .FirstOrDefaultAsync();
+                if (inBatch != null)
+                {
+                    vm.Qr = qr;
+                    vm.Lot = lot;
+                    vm.JarSource = inBatch.Apiary;
+                    var logs = await _context.CriticalControlPointMonitoringLogs.AsNoTracking()
+                        .Where(l => l.RawHoneyProductionId == lot && l.CCPId == parameter.CCPId).ToListAsync();
+                    var log = logs.FirstOrDefault(l => l.ParameterId == id);
+                    if (log?.MeasuredNumericValue != null)
+                    {
+                        var row = new HoneyStoryCCPRow { ParameterId = id, ParameterName = parameter.ParameterName, Unit = parameter.ParameterUnit, NumericValue = log.MeasuredNumericValue };
+                        if (parameter.LimitVerified)
+                        {
+                            var siblings = logs.Where(l => l.ParameterId != null && l.MeasuredNumericValue != null)
+                                .GroupBy(l => l.ParameterId!.Value).ToDictionary(g => g.Key, g => g.First().MeasuredNumericValue!.Value);
+                            var honey = new HoneyProfile(inBatch.RawHoneyProductionHoneyType, inBatch.HoneyClass);
+                            var result = log.IsInRange != null ? new CcpLimitEvaluator.Result(log.IsInRange, log.AppliedLimit)
+                                : CcpLimitEvaluator.Evaluate(parameter, log.MeasuredNumericValue, siblings, honey);
+                            var bounds = CcpLimitEvaluator.MainBounds(parameter, siblings, honey);
+                            row.Compliant = result.IsInRange;
+                            row.LimitText = result.AppliedLimit;
+                            row.LimitMin = bounds?.Min;
+                            row.LimitMax = bounds?.Max;
+                        }
+                        vm.InJar = row;
+                    }
+                }
+            }
+            return View(vm);
         }
-
-
-
 
         [HttpGet("{qr}")]
         public async Task<IActionResult> Index(Guid qr)
@@ -474,6 +526,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 }
                 bool? compliant = null;
                 string? limitText = null;
+                (decimal? Min, decimal? Max)? bounds = null;
                 if (log != null && p.LimitVerified)
                 {
                     // The result stored at entry time; values recorded before limits existed are checked now
@@ -482,6 +535,7 @@ namespace TOP4HoneyChains.Web.Controllers
                         : CcpLimitEvaluator.Evaluate(p, log.MeasuredNumericValue, siblings, honey);
                     compliant = result.IsInRange;
                     limitText = result.AppliedLimit;
+                    bounds = CcpLimitEvaluator.MainBounds(p, siblings, honey);
                 }
 
                 var isFile = p.DataType == CcpDataType.File;
@@ -499,7 +553,9 @@ namespace TOP4HoneyChains.Web.Controllers
                     MeasurementDate = log?.MeasurementDate,
                     Recorded = log != null,
                     Compliant = compliant,
-                    LimitText = limitText
+                    LimitText = limitText,
+                    LimitMin = bounds?.Min,
+                    LimitMax = bounds?.Max
                 });
             }
             return block;

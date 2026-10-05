@@ -7,19 +7,16 @@
     // Every section is hidden when it has no data. Sample texts and photos only on the demo storefront.
     Layout = null;
     var culture = CultureInfo.CurrentUICulture;
-    var current = culture.TwoLetterISOLanguageName;
-    var returnUrl = Context.Request.Path + Context.Request.QueryString;
-    var languages = new[] { "tr", "en", "es", "pl", "lv" };
     string Month(int m) => culture.DateTimeFormat.GetMonthName(m);
     string MonthInitial(int m) => culture.TextInfo.ToUpper(culture.DateTimeFormat.AbbreviatedMonthNames[m - 1].Substring(0, 1));
     string Date(DateTime? d) => d?.ToString("d MMM yyyy", culture) ?? "";
     string Num(decimal v) => v.ToString("0.##", culture);
-    string Unit(LabValue v) => string.IsNullOrWhiteSpace(v.Unit) || v.Unit == "None" ? "" : Ref.Unit(v.ParameterId, v.Unit);
+    string Unit(LabValue v) => Units.IsNone(v.Unit) ? "" : Ref.Unit(v.ParameterId, v.Unit);
     var hasBatches = Model.Batches.Any();
     var name = Model.DisplayName;
 }
 <!doctype html>
-<html lang="@current">
+<html lang="@culture.TwoLetterISOLanguageName">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,29 +26,7 @@
 <body class="sf-body">
 <div class="sf" id="storefront" data-code="@Model.Code">
 
-<header class="sf-top">
-    <div class="sf-top-in">
-        <a href="#top" class="sf-brand">
-            <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><polygon points="15,2 26,8.5 26,21.5 15,28 4,21.5 4,8.5" fill="#D9930D"></polygon><polygon points="15,8 20.2,11 20.2,17 15,20 9.8,17 9.8,11" fill="#FFFFFF"></polygon></svg>
-            <span class="sf-brand-name">TOP4HoneyChains</span>
-            <span class="sf-brand-sub">@L["P5.BeekeeperPage"]</span>
-        </a>
-        <nav class="sf-nav" aria-label="@L["Language"]">
-            @foreach (var code in languages)
-            {
-                if (code == current)
-                {
-                    <span class="sf-lang is-current" lang="@code" aria-current="true">@code.ToUpperInvariant()</span>
-                }
-                else
-                {
-                    <a class="sf-lang" href="@Url.Action("SetLanguage", "Home", new { culture = code, returnUrl })" hreflang="@code" lang="@code">@code.ToUpperInvariant()</a>
-                }
-            }
-            <a class="sf-verify-btn" href="/verify-report">@L["Sf.VerifyReport"]</a>
-        </nav>
-    </div>
-</header>
+<partial name="_PublicTopBar" model="@(L["P5.BeekeeperPage"].Value)" />
 
 @if (Model.IsDemo)
 {
@@ -334,7 +309,16 @@
                 </div>
                 <a class="sf-lab-link" href="/verify-report?code=@Model.Lab.ReportCode"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F5B43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6M9 15l2 2 4-4"></path></svg>@L["Sf.VerifyReportCode", Model.Lab.ReportCode]</a>
             </div>
-            <p class="sf-lead">@(Model.Lab.Accredited ? L["Sf.LabNoteAccredited", Model.Lab.Laboratory] : L["Sf.LabNote", Model.Lab.Laboratory])</p>
+            @{ var anyVerified = Model.Lab.Values.Any(v => v.InRange != null); }
+            @if (anyVerified)
+            {
+                <p class="sf-lead">@(Model.Lab.Accredited ? L["Sf.LabNoteAccredited", Model.Lab.Laboratory] : L["Sf.LabNote", Model.Lab.Laboratory])</p>
+            }
+            else
+            {
+                <p class="sf-lead">@(Model.Lab.Accredited ? L["Sf.LabNoteAccreditedShort", Model.Lab.Laboratory] : L["Sf.LabNoteShort", Model.Lab.Laboratory])</p>
+                <p class="sf-lead" id="sf-limits-pending">@L["Hst.LimitsPending"]</p>
+            }
             <div class="sf-lab-grid" id="sf-lab">
                 @foreach (var v in Model.Lab.Values)
                 {
@@ -343,9 +327,12 @@
                     <div class="sf-lab-card">
                         <div class="sf-lab-top">
                             <b>@Ref.Parameter(v.ParameterId, v.Name)</b>
-                            <span class="sf-pill@(outOfLimit ? " is-out" : "")">@(outOfLimit ? L["Sf.OutOfLimit"] : L["Sf.WithinLimit"])</span>
+                            @if (v.InRange != null)
+                            {
+                                <span class="sf-pill@(outOfLimit ? " is-out" : "")">@(outOfLimit ? L["Sf.OutOfLimit"] : L["Sf.WithinLimit"])</span>
+                            }
                         </div>
-                        <div class="sf-lab-value">@Num(v.Value) <small>@unit</small></div>
+                        <div class="sf-lab-value">@Num(v.Value) <small title="@unit">@Units.Symbol(unit)</small></div>
                         @if (v.LimitPercent != null)
                         {
                             <div class="sf-bar">
@@ -359,7 +346,7 @@
                         }
                         @if (v.Min != null || v.Max != null)
                         {
-                            <div class="sf-lab-limit">@L["Sf.Limit", CcpLimitEvaluator.Describe(v.Min, v.Max, unit)]</div>
+                            <div class="sf-lab-limit">@L["Sf.Limit", CcpLimitEvaluator.Describe(v.Min, v.Max, Units.Symbol(unit))]</div>
                         }
                     </div>
                 }

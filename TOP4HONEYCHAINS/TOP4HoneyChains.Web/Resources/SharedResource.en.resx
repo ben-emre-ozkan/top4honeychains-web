@@ -5499,4 +5499,202 @@
   <data name="Sf.FooterNote" xml:space="preserve">
     <value>Only verified data is shown. No phone number, personal photo, birth date or exact location is published. The page is published with the beekeeper's recorded consent, which can be withdrawn at any time.</value>
   </data>
+  <data name="Hst.Title" xml:space="preserve">
+    <value>Honey Story</value>
+  </data>
+  <data name="Hst.Untitled" xml:space="preserve">
+    <value>Untitled batch</value>
+  </data>
+  <data name="Hst.UnknownBeekeeper" xml:space="preserve">
+    <value>Unknown beekeeper</value>
+  </data>
+  <data name="Hst.UnknownApiary" xml:space="preserve">
+    <value>Unknown apiary</value>
+  </data>
+  <data name="Hst.UnknownWholesaler" xml:space="preserve">
+    <value>Unknown wholesaler</value>
+  </data>
+  <data name="Hst.Traceable" xml:space="preserve">
+    <value>Traceable Product</value>
+  </data>
+  <data name="Hst.KgHoney" xml:space="preserve">
+    <value>kg honey</value>
+  </data>
+  <data name="Hst.Beekeepers" xml:space="preserve">
+    <value>beekeepers</value>
+  </data>
+  <data name="Hst.Produced" xml:space="preserve">
+    <value>produced</value>
+  </data>
+  <data name="Hst.NotAvailable" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="Hst.OriginsEyebrow" xml:space="preserve">
+    <value>Where it comes from</value>
+  </data>
+  <data name="Hst.OriginsTitle" xml:space="preserve">
+    <value>Honey Origins</value>
+  </data>
+  <data name="Hst.TotalHoney" xml:space="preserve">
+    <value>TOTAL HONEY</value>
+  </data>
+  <data name="Hst.MapEyebrow" xml:space="preserve">
+    <value>On the map</value>
+  </data>
+  <data name="Hst.MapTitle" xml:space="preserve">
+    <value>Apiary Locations</value>
+  </data>
+  <data name="Hst.MapNote" xml:space="preserve">
+    <value>Areas are approximate (about 10 km); exact apiary locations are never published.</value>
+  </data>
+  <data name="Hst.SourcesEyebrow" xml:space="preserve">
+    <value>Meet the beekeepers</value>
+  </data>
+  <data name="Hst.SourcesTitle" xml:space="preserve">
+    <value>Source Composition</value>
+  </data>
+  <data name="Hst.KgUsed" xml:space="preserve">
+    <value>{0} kg used</value>
+  </data>
+  <data name="Hst.ShareOfJar" xml:space="preserve">
+    <value>{0} of this jar</value>
+  </data>
+  <data name="Hst.LabEyebrow" xml:space="preserve">
+    <value>Lab results</value>
+  </data>
+  <data name="Hst.LabTitle" xml:space="preserve">
+    <value>Quality at a glance</value>
+  </data>
+  <data name="Hst.LimitsPending" xml:space="preserve">
+    <value>The limits for these values are still being checked by a partner laboratory, so the values are shown without a within/outside verdict.</value>
+  </data>
+  <data name="Hst.SourceLabel" xml:space="preserve">
+    <value>Measured on honey from</value>
+  </data>
+  <data name="Hst.FromSource" xml:space="preserve">
+    <value>Measured on honey from {0}</value>
+  </data>
+  <data name="Hst.NoResults" xml:space="preserve">
+    <value>No lab results for this source yet.</value>
+  </data>
+  <data name="Hst.SeeFullReport" xml:space="preserve">
+    <value>See full lab report</value>
+  </data>
+  <data name="Hst.ReportEyebrow" xml:space="preserve">
+    <value>Lab report</value>
+  </data>
+  <data name="Hst.ReportTitle" xml:space="preserve">
+    <value>Full lab report</value>
+  </data>
+  <data name="Hst.SourceHint" xml:space="preserve">
+    <value>Each source is tested before blending. Pick one to see its values.</value>
+  </data>
+  <data name="Hst.Group.freshness" xml:space="preserve">
+    <value>Freshness</value>
+  </data>
+  <data name="Hst.Group.maturity" xml:space="preserve">
+    <value>Maturity &amp; authenticity</value>
+  </data>
+  <data name="Hst.Group.sugar" xml:space="preserve">
+    <value>Sugar profile &amp; purity</value>
+  </data>
+  <data name="Hst.Group.residues" xml:space="preserve">
+    <value>Residues</value>
+  </data>
+  <data name="Hst.Group.other" xml:space="preserve">
+    <value>Other values</value>
+  </data>
+  <data name="Hst.GroupDesc.freshness" xml:space="preserve">
+    <value>Shows whether the honey was overheated or stored too long.</value>
+  </data>
+  <data name="Hst.GroupDesc.maturity" xml:space="preserve">
+    <value>Shows whether the honey was harvested ripe and is genuine.</value>
+  </data>
+  <data name="Hst.GroupDesc.sugar" xml:space="preserve">
+    <value>Shows the natural sugar balance and signs of added syrup.</value>
+  </data>
+  <data name="Hst.GroupDesc.residues" xml:space="preserve">
+    <value>Traces of treatments or contaminants.</value>
+  </data>
+  <data name="Hst.ResiduesTested" xml:space="preserve">
+    <value>{0} tested</value>
+  </data>
+  <data name="Hst.ResiduesAllClear" xml:space="preserve">
+    <value>None over a limit</value>
+  </data>
+  <data name="Hst.ResiduesOut" xml:space="preserve">
+    <value>{0} out of range</value>
+  </data>
+  <data name="Hst.Within" xml:space="preserve">
+    <value>Within range</value>
+  </data>
+  <data name="Hst.Out" xml:space="preserve">
+    <value>Out of range</value>
+  </data>
+  <data name="Hst.ProcessEyebrow" xml:space="preserve">
+    <value>Production audit</value>
+  </data>
+  <data name="Hst.ProcessTitle" xml:space="preserve">
+    <value>Process checks</value>
+  </data>
+  <data name="Hst.ProcessIntro" xml:space="preserve">
+    <value>Checkpoints recorded while the honey was harvested and processed.</value>
+  </data>
+  <data name="Hst.Pass" xml:space="preserve">
+    <value>Passed</value>
+  </data>
+  <data name="Hst.Fail" xml:space="preserve">
+    <value>Failed</value>
+  </data>
+  <data name="Hst.BatchSteps" xml:space="preserve">
+    <value>Processing and packing of the batch</value>
+  </data>
+  <data name="Hst.VerifiedTitle" xml:space="preserve">
+    <value>Verified by TOP4HoneyChains</value>
+  </data>
+  <data name="Hst.VerifiedSub" xml:space="preserve">
+    <value>This product has been traced through the entire supply chain</value>
+  </data>
+  <data name="Hst.VerifiedLabel" xml:space="preserve">
+    <value>Trustable &amp; Sustainable Honey Traceability</value>
+  </data>
+  <data name="Hst.FooterNote" xml:space="preserve">
+    <value>Only verified data is shown. Apiary locations are approximate; beekeepers' phone numbers and personal photos are never published.</value>
+  </data>
+  <data name="Hst.Parameters" xml:space="preserve">
+    <value>Parameters</value>
+  </data>
+  <data name="Hst.BackToStory" xml:space="preserve">
+    <value>Back to the Honey Story</value>
+  </data>
+  <data name="Hst.Unit" xml:space="preserve">
+    <value>Unit: {0}</value>
+  </data>
+  <data name="Hst.InThisJar" xml:space="preserve">
+    <value>In this jar</value>
+  </data>
+  <data name="Hst.EducationalVideo" xml:space="preserve">
+    <value>Educational Video</value>
+  </data>
+  <data name="Hst.WhatIsIt" xml:space="preserve">
+    <value>What is it?</value>
+  </data>
+  <data name="Hst.WhyImportant" xml:space="preserve">
+    <value>Why is it important?</value>
+  </data>
+  <data name="Hst.ReferenceValues" xml:space="preserve">
+    <value>Reference Values &amp; Standards</value>
+  </data>
+  <data name="Hst.ReadTogether" xml:space="preserve">
+    <value>Read together</value>
+  </data>
+  <data name="Hst.ReadTogetherHint" xml:space="preserve">
+    <value>These values tell more side by side.</value>
+  </data>
+  <data name="Sf.LabNoteAccreditedShort" xml:space="preserve">
+    <value>Accredited laboratory {0}; a second person approved the report.</value>
+  </data>
+  <data name="Sf.LabNoteShort" xml:space="preserve">
+    <value>Laboratory {0}; a second person approved the report.</value>
+  </data>
 </root>

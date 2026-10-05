@@ -5499,4 +5499,202 @@
   <data name="Sf.FooterNote" xml:space="preserve">
     <value>Solo se muestran datos verificados. No se publica ningún número de teléfono, foto personal, fecha de nacimiento ni ubicación exacta. La página se publica con el consentimiento registrado del apicultor, que puede retirarse en cualquier momento.</value>
   </data>
+  <data name="Hst.Title" xml:space="preserve">
+    <value>Historia de la miel</value>
+  </data>
+  <data name="Hst.Untitled" xml:space="preserve">
+    <value>Partida sin título</value>
+  </data>
+  <data name="Hst.UnknownBeekeeper" xml:space="preserve">
+    <value>Apicultor desconocido</value>
+  </data>
+  <data name="Hst.UnknownApiary" xml:space="preserve">
+    <value>Colmenar desconocido</value>
+  </data>
+  <data name="Hst.UnknownWholesaler" xml:space="preserve">
+    <value>Mayorista desconocido</value>
+  </data>
+  <data name="Hst.Traceable" xml:space="preserve">
+    <value>Producto trazable</value>
+  </data>
+  <data name="Hst.KgHoney" xml:space="preserve">
+    <value>kg de miel</value>
+  </data>
+  <data name="Hst.Beekeepers" xml:space="preserve">
+    <value>apicultores</value>
+  </data>
+  <data name="Hst.Produced" xml:space="preserve">
+    <value>producción</value>
+  </data>
+  <data name="Hst.NotAvailable" xml:space="preserve">
+    <value>N/D</value>
+  </data>
+  <data name="Hst.OriginsEyebrow" xml:space="preserve">
+    <value>De dónde viene</value>
+  </data>
+  <data name="Hst.OriginsTitle" xml:space="preserve">
+    <value>Origen de la miel</value>
+  </data>
+  <data name="Hst.TotalHoney" xml:space="preserve">
+    <value>MIEL TOTAL</value>
+  </data>
+  <data name="Hst.MapEyebrow" xml:space="preserve">
+    <value>En el mapa</value>
+  </data>
+  <data name="Hst.MapTitle" xml:space="preserve">
+    <value>Ubicación de los colmenares</value>
+  </data>
+  <data name="Hst.MapNote" xml:space="preserve">
+    <value>Las zonas son aproximadas (unos 10 km); la ubicación exacta de los colmenares nunca se publica.</value>
+  </data>
+  <data name="Hst.SourcesEyebrow" xml:space="preserve">
+    <value>Conoce a los apicultores</value>
+  </data>
+  <data name="Hst.SourcesTitle" xml:space="preserve">
+    <value>Composición por origen</value>
+  </data>
+  <data name="Hst.KgUsed" xml:space="preserve">
+    <value>{0} kg utilizados</value>
+  </data>
+  <data name="Hst.ShareOfJar" xml:space="preserve">
+    <value>{0} de este tarro</value>
+  </data>
+  <data name="Hst.LabEyebrow" xml:space="preserve">
+    <value>Resultados de laboratorio</value>
+  </data>
+  <data name="Hst.LabTitle" xml:space="preserve">
+    <value>La calidad de un vistazo</value>
+  </data>
+  <data name="Hst.LimitsPending" xml:space="preserve">
+    <value>Un laboratorio asociado todavía está verificando los límites de estos valores; por eso se muestran sin veredicto dentro/fuera.</value>
+  </data>
+  <data name="Hst.SourceLabel" xml:space="preserve">
+    <value>Medido en la miel de</value>
+  </data>
+  <data name="Hst.FromSource" xml:space="preserve">
+    <value>Medido en la miel de {0}</value>
+  </data>
+  <data name="Hst.NoResults" xml:space="preserve">
+    <value>Todavía no hay resultados de laboratorio para este origen.</value>
+  </data>
+  <data name="Hst.SeeFullReport" xml:space="preserve">
+    <value>Ver informe de laboratorio completo</value>
+  </data>
+  <data name="Hst.ReportEyebrow" xml:space="preserve">
+    <value>Informe de laboratorio</value>
+  </data>
+  <data name="Hst.ReportTitle" xml:space="preserve">
+    <value>Informe de laboratorio completo</value>
+  </data>
+  <data name="Hst.SourceHint" xml:space="preserve">
+    <value>Cada origen se analiza antes de mezclarse. Elige uno para ver sus valores.</value>
+  </data>
+  <data name="Hst.Group.freshness" xml:space="preserve">
+    <value>Frescura</value>
+  </data>
+  <data name="Hst.Group.maturity" xml:space="preserve">
+    <value>Madurez y autenticidad</value>
+  </data>
+  <data name="Hst.Group.sugar" xml:space="preserve">
+    <value>Perfil de azúcares y pureza</value>
+  </data>
+  <data name="Hst.Group.residues" xml:space="preserve">
+    <value>Residuos</value>
+  </data>
+  <data name="Hst.Group.other" xml:space="preserve">
+    <value>Otros valores</value>
+  </data>
+  <data name="Hst.GroupDesc.freshness" xml:space="preserve">
+    <value>Indica si la miel se ha sobrecalentado o almacenado demasiado tiempo.</value>
+  </data>
+  <data name="Hst.GroupDesc.maturity" xml:space="preserve">
+    <value>Indica si la miel se cosechó madura y si es auténtica.</value>
+  </data>
+  <data name="Hst.GroupDesc.sugar" xml:space="preserve">
+    <value>Muestra el equilibrio natural de azúcares y señales de jarabe añadido.</value>
+  </data>
+  <data name="Hst.GroupDesc.residues" xml:space="preserve">
+    <value>Trazas de tratamientos o contaminantes.</value>
+  </data>
+  <data name="Hst.ResiduesTested" xml:space="preserve">
+    <value>{0} analizados</value>
+  </data>
+  <data name="Hst.ResiduesAllClear" xml:space="preserve">
+    <value>Ninguno supera el límite</value>
+  </data>
+  <data name="Hst.ResiduesOut" xml:space="preserve">
+    <value>{0} fuera de rango</value>
+  </data>
+  <data name="Hst.Within" xml:space="preserve">
+    <value>Dentro del rango</value>
+  </data>
+  <data name="Hst.Out" xml:space="preserve">
+    <value>Fuera de rango</value>
+  </data>
+  <data name="Hst.ProcessEyebrow" xml:space="preserve">
+    <value>Auditoría de producción</value>
+  </data>
+  <data name="Hst.ProcessTitle" xml:space="preserve">
+    <value>Controles de proceso</value>
+  </data>
+  <data name="Hst.ProcessIntro" xml:space="preserve">
+    <value>Puntos de control registrados durante la cosecha y el procesado de la miel.</value>
+  </data>
+  <data name="Hst.Pass" xml:space="preserve">
+    <value>Superado</value>
+  </data>
+  <data name="Hst.Fail" xml:space="preserve">
+    <value>No superado</value>
+  </data>
+  <data name="Hst.BatchSteps" xml:space="preserve">
+    <value>Procesado y envasado de la partida</value>
+  </data>
+  <data name="Hst.VerifiedTitle" xml:space="preserve">
+    <value>Verificado por TOP4HoneyChains</value>
+  </data>
+  <data name="Hst.VerifiedSub" xml:space="preserve">
+    <value>Este producto ha sido rastreado a lo largo de toda la cadena de suministro</value>
+  </data>
+  <data name="Hst.VerifiedLabel" xml:space="preserve">
+    <value>Trazabilidad de la miel fiable y sostenible</value>
+  </data>
+  <data name="Hst.FooterNote" xml:space="preserve">
+    <value>Solo se muestran datos verificados. La ubicación de los colmenares es aproximada; nunca se publican teléfonos ni fotos personales de los apicultores.</value>
+  </data>
+  <data name="Hst.Parameters" xml:space="preserve">
+    <value>Parámetros</value>
+  </data>
+  <data name="Hst.BackToStory" xml:space="preserve">
+    <value>Volver a la Historia de la miel</value>
+  </data>
+  <data name="Hst.Unit" xml:space="preserve">
+    <value>Unidad: {0}</value>
+  </data>
+  <data name="Hst.InThisJar" xml:space="preserve">
+    <value>En este tarro</value>
+  </data>
+  <data name="Hst.EducationalVideo" xml:space="preserve">
+    <value>Vídeo educativo</value>
+  </data>
+  <data name="Hst.WhatIsIt" xml:space="preserve">
+    <value>¿Qué es?</value>
+  </data>
+  <data name="Hst.WhyImportant" xml:space="preserve">
+    <value>¿Por qué es importante?</value>
+  </data>
+  <data name="Hst.ReferenceValues" xml:space="preserve">
+    <value>Valores de referencia y estándares</value>
+  </data>
+  <data name="Hst.ReadTogether" xml:space="preserve">
+    <value>Léelos juntos</value>
+  </data>
+  <data name="Hst.ReadTogetherHint" xml:space="preserve">
+    <value>Estos valores dicen más vistos uno junto al otro.</value>
+  </data>
+  <data name="Sf.LabNoteAccreditedShort" xml:space="preserve">
+    <value>Laboratorio acreditado {0}; una segunda persona aprobó el informe.</value>
+  </data>
+  <data name="Sf.LabNoteShort" xml:space="preserve">
+    <value>Laboratorio {0}; una segunda persona aprobó el informe.</value>
+  </data>
 </root>

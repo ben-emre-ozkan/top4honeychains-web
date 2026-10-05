@@ -135,6 +135,18 @@ namespace TOP4HoneyChains.Web.Tests
                     Assert.True(Resources.Value[lang].TryGetValue(key, out var text) && text.Length > 0, $"{lang}: missing \"{key}\"");
         }
 
+        // The Honey Story builds its lab group headings at run time ("Hst.Group.<group>", "Hst.GroupDesc.<group>")
+        [Fact]
+        public void Honey_story_group_keys_exist()
+        {
+            var groups = Models.ViewModels.HoneyStory.HoneyStoryLab.Groups;
+            var keys = groups.Select(g => "Hst.Group." + g)
+                .Concat(groups.Where(g => g != Models.ViewModels.HoneyStory.HoneyStoryLab.Other).Select(g => "Hst.GroupDesc." + g));
+            foreach (var lang in Languages)
+                foreach (var key in keys)
+                    Assert.True(Resources.Value[lang].TryGetValue(key, out var text) && text.Length > 0, $"{lang}: missing \"{key}\"");
+        }
+
         // The capabilities page explains every capability with the key "Cap.Uses.<code>" (built at run time)
         [Fact]
         public void Every_capability_has_an_explanation()

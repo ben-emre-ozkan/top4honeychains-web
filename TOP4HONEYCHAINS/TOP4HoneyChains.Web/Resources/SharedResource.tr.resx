@@ -5499,4 +5499,202 @@
   <data name="Sf.FooterNote" xml:space="preserve">
     <value>Yalnızca doğrulanmış veriler gösterilir. Telefon numarası, kişisel fotoğraf, doğum tarihi veya kesin konum yayımlanmaz. Sayfa, arıcının kayıtlı rızasıyla yayımlanır; rıza her zaman geri çekilebilir.</value>
   </data>
+  <data name="Hst.Title" xml:space="preserve">
+    <value>Bal Hikâyesi</value>
+  </data>
+  <data name="Hst.Untitled" xml:space="preserve">
+    <value>Adsız parti</value>
+  </data>
+  <data name="Hst.UnknownBeekeeper" xml:space="preserve">
+    <value>Bilinmeyen arıcı</value>
+  </data>
+  <data name="Hst.UnknownApiary" xml:space="preserve">
+    <value>Bilinmeyen arılık</value>
+  </data>
+  <data name="Hst.UnknownWholesaler" xml:space="preserve">
+    <value>Bilinmeyen toptancı</value>
+  </data>
+  <data name="Hst.Traceable" xml:space="preserve">
+    <value>İzlenebilir Ürün</value>
+  </data>
+  <data name="Hst.KgHoney" xml:space="preserve">
+    <value>kg bal</value>
+  </data>
+  <data name="Hst.Beekeepers" xml:space="preserve">
+    <value>arıcı</value>
+  </data>
+  <data name="Hst.Produced" xml:space="preserve">
+    <value>üretim</value>
+  </data>
+  <data name="Hst.NotAvailable" xml:space="preserve">
+    <value>Yok</value>
+  </data>
+  <data name="Hst.OriginsEyebrow" xml:space="preserve">
+    <value>Nereden geliyor</value>
+  </data>
+  <data name="Hst.OriginsTitle" xml:space="preserve">
+    <value>Balın Menşei</value>
+  </data>
+  <data name="Hst.TotalHoney" xml:space="preserve">
+    <value>TOPLAM BAL</value>
+  </data>
+  <data name="Hst.MapEyebrow" xml:space="preserve">
+    <value>Haritada</value>
+  </data>
+  <data name="Hst.MapTitle" xml:space="preserve">
+    <value>Arılık Konumları</value>
+  </data>
+  <data name="Hst.MapNote" xml:space="preserve">
+    <value>Alanlar yaklaşıktır (yaklaşık 10 km); arılıkların kesin konumu hiçbir zaman yayımlanmaz.</value>
+  </data>
+  <data name="Hst.SourcesEyebrow" xml:space="preserve">
+    <value>Arıcılarla tanışın</value>
+  </data>
+  <data name="Hst.SourcesTitle" xml:space="preserve">
+    <value>Kaynak Dağılımı</value>
+  </data>
+  <data name="Hst.KgUsed" xml:space="preserve">
+    <value>{0} kg kullanıldı</value>
+  </data>
+  <data name="Hst.ShareOfJar" xml:space="preserve">
+    <value>Bu kavanozun {0} kadarı</value>
+  </data>
+  <data name="Hst.LabEyebrow" xml:space="preserve">
+    <value>Laboratuvar sonuçları</value>
+  </data>
+  <data name="Hst.LabTitle" xml:space="preserve">
+    <value>Bir bakışta kalite</value>
+  </data>
+  <data name="Hst.LimitsPending" xml:space="preserve">
+    <value>Bu değerlerin sınırları henüz ortak laboratuvar tarafından doğrulanıyor; bu nedenle değerler sınır içi/dışı yorumu olmadan gösterilir.</value>
+  </data>
+  <data name="Hst.SourceLabel" xml:space="preserve">
+    <value>Ölçüm yapılan bal</value>
+  </data>
+  <data name="Hst.FromSource" xml:space="preserve">
+    <value>{0} balında ölçüldü</value>
+  </data>
+  <data name="Hst.NoResults" xml:space="preserve">
+    <value>Bu kaynak için henüz laboratuvar sonucu yok.</value>
+  </data>
+  <data name="Hst.SeeFullReport" xml:space="preserve">
+    <value>Tüm laboratuvar raporunu gör</value>
+  </data>
+  <data name="Hst.ReportEyebrow" xml:space="preserve">
+    <value>Laboratuvar raporu</value>
+  </data>
+  <data name="Hst.ReportTitle" xml:space="preserve">
+    <value>Laboratuvar raporunun tamamı</value>
+  </data>
+  <data name="Hst.SourceHint" xml:space="preserve">
+    <value>Her kaynak harmanlanmadan önce test edilir. Değerlerini görmek için birini seçin.</value>
+  </data>
+  <data name="Hst.Group.freshness" xml:space="preserve">
+    <value>Tazelik</value>
+  </data>
+  <data name="Hst.Group.maturity" xml:space="preserve">
+    <value>Olgunluk ve doğallık</value>
+  </data>
+  <data name="Hst.Group.sugar" xml:space="preserve">
+    <value>Şeker profili ve saflık</value>
+  </data>
+  <data name="Hst.Group.residues" xml:space="preserve">
+    <value>Kalıntılar</value>
+  </data>
+  <data name="Hst.Group.other" xml:space="preserve">
+    <value>Diğer değerler</value>
+  </data>
+  <data name="Hst.GroupDesc.freshness" xml:space="preserve">
+    <value>Balın aşırı ısıtılıp ısıtılmadığını veya çok uzun depolanıp depolanmadığını gösterir.</value>
+  </data>
+  <data name="Hst.GroupDesc.maturity" xml:space="preserve">
+    <value>Balın olgunlaşmış hâlde hasat edildiğini ve gerçek olduğunu gösterir.</value>
+  </data>
+  <data name="Hst.GroupDesc.sugar" xml:space="preserve">
+    <value>Doğal şeker dengesini ve şurup katkısı belirtilerini gösterir.</value>
+  </data>
+  <data name="Hst.GroupDesc.residues" xml:space="preserve">
+    <value>İlaç veya kirletici izleri.</value>
+  </data>
+  <data name="Hst.ResiduesTested" xml:space="preserve">
+    <value>{0} test</value>
+  </data>
+  <data name="Hst.ResiduesAllClear" xml:space="preserve">
+    <value>Hiçbiri sınırı aşmıyor</value>
+  </data>
+  <data name="Hst.ResiduesOut" xml:space="preserve">
+    <value>{0} sınır dışında</value>
+  </data>
+  <data name="Hst.Within" xml:space="preserve">
+    <value>Sınır içinde</value>
+  </data>
+  <data name="Hst.Out" xml:space="preserve">
+    <value>Sınır dışında</value>
+  </data>
+  <data name="Hst.ProcessEyebrow" xml:space="preserve">
+    <value>Üretim denetimi</value>
+  </data>
+  <data name="Hst.ProcessTitle" xml:space="preserve">
+    <value>Süreç kontrolleri</value>
+  </data>
+  <data name="Hst.ProcessIntro" xml:space="preserve">
+    <value>Bal hasat edilip işlenirken kaydedilen kontrol noktaları.</value>
+  </data>
+  <data name="Hst.Pass" xml:space="preserve">
+    <value>Geçti</value>
+  </data>
+  <data name="Hst.Fail" xml:space="preserve">
+    <value>Kaldı</value>
+  </data>
+  <data name="Hst.BatchSteps" xml:space="preserve">
+    <value>Partinin işlenmesi ve paketlenmesi</value>
+  </data>
+  <data name="Hst.VerifiedTitle" xml:space="preserve">
+    <value>TOP4HoneyChains tarafından doğrulandı</value>
+  </data>
+  <data name="Hst.VerifiedSub" xml:space="preserve">
+    <value>Bu ürün tüm tedarik zinciri boyunca izlendi</value>
+  </data>
+  <data name="Hst.VerifiedLabel" xml:space="preserve">
+    <value>Güvenilir ve Sürdürülebilir Bal İzlenebilirliği</value>
+  </data>
+  <data name="Hst.FooterNote" xml:space="preserve">
+    <value>Yalnızca doğrulanmış veriler gösterilir. Arılık konumları yaklaşıktır; arıcıların telefon numaraları ve kişisel fotoğrafları asla yayımlanmaz.</value>
+  </data>
+  <data name="Hst.Parameters" xml:space="preserve">
+    <value>Parametreler</value>
+  </data>
+  <data name="Hst.BackToStory" xml:space="preserve">
+    <value>Bal Hikâyesi'ne dön</value>
+  </data>
+  <data name="Hst.Unit" xml:space="preserve">
+    <value>Birim: {0}</value>
+  </data>
+  <data name="Hst.InThisJar" xml:space="preserve">
+    <value>Bu kavanozda</value>
+  </data>
+  <data name="Hst.EducationalVideo" xml:space="preserve">
+    <value>Eğitim Videosu</value>
+  </data>
+  <data name="Hst.WhatIsIt" xml:space="preserve">
+    <value>Nedir?</value>
+  </data>
+  <data name="Hst.WhyImportant" xml:space="preserve">
+    <value>Neden önemlidir?</value>
+  </data>
+  <data name="Hst.ReferenceValues" xml:space="preserve">
+    <value>Referans Değerler ve Standartlar</value>
+  </data>
+  <data name="Hst.ReadTogether" xml:space="preserve">
+    <value>Birlikte okuyun</value>
+  </data>
+  <data name="Hst.ReadTogetherHint" xml:space="preserve">
+    <value>Bu değerler yan yana daha çok şey anlatır.</value>
+  </data>
+  <data name="Sf.LabNoteAccreditedShort" xml:space="preserve">
+    <value>Akredite laboratuvar: {0}; raporu ikinci bir kişi onayladı.</value>
+  </data>
+  <data name="Sf.LabNoteShort" xml:space="preserve">
+    <value>Laboratuvar: {0}; raporu ikinci bir kişi onayladı.</value>
+  </data>
 </root>

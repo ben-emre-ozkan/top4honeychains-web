@@ -1,276 +1,146 @@
-﻿@model TOP4HoneyChains.Web.Models.Entities.CriticalControlPointParameterContent
-
+@using System.Globalization
+@using TOP4HoneyChains.Web.Services
+@using TOP4HoneyChains.Web.Models.ViewModels.HoneyStory
+@model HoneyStoryParameterViewModel
 @{
+    // Public parameter page (mobile: parameter detail). Limits and compliance only when the limit is verified (D-18).
     Layout = null;
+    var culture = CultureInfo.CurrentUICulture;
+    var p = Model.Parameter;
+    var c = Model.Content;
+    var name = Ref.Parameter(p.ParameterId, p.ParameterName);
+    var unit = Ref.Unit(p.ParameterId, p.ParameterUnit);
+    var symbol = Units.Symbol(unit);
+    var jar = Model.InJar;
+    var bar = jar == null ? null : HoneyStoryLab.Bar(jar);
+    var back = Model.Qr != null ? $"/honeystory/{Model.Qr}#lab-report" : null;
+    var query = Model.Qr != null ? $"?qr={Model.Qr}&lot={Model.Lot}" : "";
 }
-
-<!DOCTYPE html>
-<html lang="@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName">
-
+<!doctype html>
+<html lang="@culture.TwoLetterISOLanguageName">
 <head>
-
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/assets/css/icons.min.css" rel="stylesheet" />
-    <link href="~/assets/css/app.min.css" rel="stylesheet" />
-
-    <style>
-        body {
-            background: radial-gradient(circle at 20% 20%,rgba(44,83,100,.05),transparent 40%), radial-gradient(circle at 80% 10%,rgba(15,32,39,.04),transparent 40%), linear-gradient(180deg,#f6f9fc,#eef2f7);
-        }
-
-        .container {
-            max-width: 1100px;
-        }
-
-        .hero-wrap {
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: 0 12px 40px rgba(0,0,0,.25);
-        }
-
-        .hero-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 12px;
-            background: rgba(255,255,255,.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-        }
-
-        .section-header {
-            padding: 16px 20px;
-            border-radius: 12px;
-            background: linear-gradient(135deg,#134e4a,#166534,#14532d);
-        }
-
-        .section-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            background: rgba(255,255,255,.15);
-            color: white;
-        }
-
-        .section-divider {
-            height: 2px;
-            border: none;
-            background: linear-gradient(90deg,#16a34a,transparent);
-            margin-top: 14px;
-            margin-bottom: 20px;
-        }
-
-        .soft-shadow {
-            box-shadow: 0 10px 35px rgba(0,0,0,.08);
-        }
-
-        .video-frame {
-            border-radius: 14px;
-            overflow: hidden;
-        }
-
-        .video-sticky {
-            position: sticky;
-            top: 100px;
-        }
-
-        .content-text p {
-            font-size: 15px;
-            line-height: 1.7;
-            color: #444;
-        }
-
-        @@media (max-width: 991px) {
-            .video-sticky {
-                position: relative;
-                top: 0;
-            }
-        }
-    </style>
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@name · @L["Hst.Parameters"]</title>
+    <link href="~/css/storefront.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/css/honeystory.css" rel="stylesheet" asp-append-version="true">
 </head>
+<body class="sf-body">
+<div class="sf hs" id="parameter" data-parameter="@p.ParameterId">
 
-<body>
-    <partial name="~/Views/Shared/_LanguageSwitch.cshtml" />
+<partial name="_PublicTopBar" model="@(L["Hst.Parameters"].Value)" />
 
-    <div class="container py-5">
+<main id="top" class="sf-main hs-stack-cards">
+    @if (back != null)
+    {
+        <a class="hs-back" href="@back">← @L["Hst.BackToStory"]</a>
+    }
 
-        <!-- HERO -->
-        <div class="card border-0 hero-wrap mb-5">
-            <div class="card-body text-white p-4"
-                 style="background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);">
-
-                <div class="d-flex align-items-center">
-
-                    <div class="me-3 hero-icon">
-                        <i class="mdi mdi-flask-outline"></i>
-                    </div>
-
-                    <div>
-                        <h3 class="fw-bold mb-1">
-                            @L["Honey Quality Parameter"]
-                        </h3>
-
-                        <div class="opacity-75">
-                            @L["Educational explanation"]
-                        </div>
-                    </div>
-
-                </div>
-
+    <section class="hs-hero">
+        <svg class="hs-hero-hex" viewBox="0 0 100 100" aria-hidden="true"><polygon points="50,3 93,27 93,73 50,97 7,73 7,27" fill="none" stroke="#E8B931" stroke-width="5"></polygon></svg>
+        <div class="hs-hero-row hs-param-hero">
+            <div class="hs-param-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"></path><path d="M7.5 15h9"></path></svg></div>
+            <div>
+                <h1 class="hs-batch">@name</h1>
+                <div class="hs-param-sub">@p.CCP?.Code · @Ref.CcpTitle(p.CCP?.Id, p.CCP?.Title)</div>
+                @if (symbol.Length > 0)
+                {
+                    <div class="hs-maker">@L["Hst.Unit", symbol]</div>
+                }
             </div>
         </div>
-
-        <!-- MAIN GRID -->
-        <div class="row g-5 align-items-start">
-
-            <!-- LEFT TEXT -->
-            <div class="col-lg-5">
-
-                <div class="card border-0 soft-shadow">
-                    <div class="card-body">
-
-                        <div class="section-header mb-3 d-flex align-items-center">
-                            <div class="section-icon me-3">
-                                <i class="mdi mdi-information-outline"></i>
-                            </div>
-
-                            <div class="text-white fw-bold">
-
-                                @(Model?.Parameter?.ParameterName ?? L["Parameter Details"].Value)
-
-                                @if (!string.IsNullOrEmpty(Model?.Parameter?.ParameterUnit))
-                                {
-                                    <span class="ms-2 badge bg-light text-dark">
-                                        @Ref.T("Parameter", Model.Parameter.ParameterId, "Unit", Model.Parameter.ParameterUnit)
-                                    </span>
-                                    <span class="badge bg-success ms-2">
-                                        @Model.Parameter?.CCP?.Code
-                                    </span>
-                                }
-                                <small class="text-white-50 d-block mt-1">
-                                    @L["Honey quality control parameter"]
-                                </small>
-
-
-
-                            </div>
-                        </div>
-
-                        <hr class="section-divider">
-
-                        <div class="content-text">
-
-                            @if (!string.IsNullOrEmpty(Model?.WhatIsIt))
-                            {
-                                <p>
-                                    <strong>@L["What is it?"]</strong><br>
-                                    @Ref.T("ParameterContent", Model.ContentId, "WhatIsIt", Model.WhatIsIt)
-                                </p>
-                            }
-
-                            @if (!string.IsNullOrEmpty(Model?.WhyImportant))
-                            {
-                                <p>
-                                    <strong>@L["Why it matters?"]</strong><br>
-                                    @Ref.T("ParameterContent", Model.ContentId, "WhyImportant", Model.WhyImportant)
-                                </p>
-                            }
-
-                            @if (!string.IsNullOrEmpty(Model?.ExtraInfo))
-                            {
-                                <p>
-                                    <strong>@L["Additional Info"]</strong><br>
-                                    @Ref.T("ParameterContent", Model.ContentId, "ExtraInfo", Model.ExtraInfo)
-                                </p>
-                            }
-
-                            @if (Model == null)
-                            {
-                                <div class="alert alert-warning">
-                                    @L["No information available for this parameter."]
-                                </div>
-                            }
-
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- RIGHT VIDEO -->
-            <div class="col-lg-7">
-
-                <div class="video-sticky">
-
-                    <div class="card border-0 soft-shadow">
-                        <div class="card-body">
-
-                            <div class="section-header mb-4 d-flex align-items-center">
-                                <div class="section-icon me-3">
-                                    <i class="mdi mdi-play-circle-outline"></i>
-                                </div>
-
-                                <div class="text-white fw-bold">
-                                    @L["Parameter Video"]
-                                </div>
-                            </div>
-
-                            <hr class="section-divider">
-
-                            <div class="video-frame">
-
-                                @if (!string.IsNullOrEmpty(Model?.VideoPath))
-                                {
-                                    <video controls preload="metadata"
-                                           style="width:100%;border-radius:14px"
-                                           onerror="this.outerHTML='<div class=&quot;alert alert-warning&quot;>@L["Video not found"]</div>'">
-
-                                        <source src="@Model.VideoPath" type="video/mp4">
-
-                                    </video>
-                                }
-                                else
-                                {
-                                    <div class="alert alert-warning">
-                                        @L["Video not available for this parameter."]
-                                    </div>
-                                }
-
-                            </div>
-
-                            <small class="text-muted d-block mt-2">
-                                @L["⏱ Quick explanation (30–60 sec)"]
-                            </small>
-
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
+        <div class="hs-badges">
+            @if (p.ParameterCategoryNavigation != null)
+            {
+                <span class="hs-tag">@Ref.Category(p.ParameterCategoryNavigation.CategoryId, p.ParameterCategoryNavigation.CategoryName)</span>
+            }
+            @if (p.LimitVerified && (p.MinValue != null || p.MaxValue != null))
+            {
+                <span class="hs-tag is-limit">⚠ @CcpLimitEvaluator.Describe(p.MinValue, p.MaxValue, symbol)</span>
+            }
         </div>
+    </section>
 
-        <!-- FOOTER -->
-        <div class="text-center text-muted mt-5 small">
-            <i class="mdi mdi-shield-check-outline me-1"></i>
-            @L["TOP4HoneyChains Educational Content"]
-        </div>
+    @if (jar != null)
+    {
+        <section class="hs-card" id="in-this-jar">
+            <h2 class="hs-title">@L["Hst.InThisJar"]</h2>
+            <div class="hs-jar-value">
+                <b>@jar.NumericValue!.Value.ToString("0.##", culture) <small title="@unit">@symbol</small></b>
+                @if (jar.Compliant == true)
+                {
+                    <span class="hs-status is-ok">✓ @L["Hst.Within"]</span>
+                }
+                else if (jar.Compliant == false)
+                {
+                    <span class="hs-status is-out">! @L["Hst.Out"]</span>
+                }
+            </div>
+            @if (Model.JarSource != null)
+            {
+                <p class="hs-note">@L["Hst.FromSource", Model.JarSource]</p>
+            }
+            @if (bar != null)
+            {
+                <div class="hs-bar" aria-hidden="true">
+                    <div class="hs-bar-zone" style="left: @bar.Value.ZoneStart.ToString(CultureInfo.InvariantCulture)%; right: @((100 - bar.Value.ZoneEnd).ToString(CultureInfo.InvariantCulture))%"></div>
+                    <div class="hs-bar-dot@(jar.Compliant == false ? " is-out" : "")" style="left: @bar.Value.Value.ToString(CultureInfo.InvariantCulture)%"></div>
+                </div>
+            }
+            @if (jar.Compliant != null && jar.LimitText != null)
+            {
+                <div class="hs-limit">@L["Limit:"] @Ref.Limit(jar.LimitText, k => L[k])</div>
+            }
+            else
+            {
+                <div class="hs-pending">ⓘ <span>@L["Hst.LimitsPending"]</span></div>
+            }
+        </section>
+    }
 
-    </div>
+    @if (!string.IsNullOrWhiteSpace(c?.VideoPath))
+    {
+        <section class="hs-card hs-text">
+            <h2>▶ @L["Hst.EducationalVideo"]</h2>
+            <video class="hs-video" controls preload="metadata"><source src="@c!.VideoPath" type="video/mp4"></video>
+        </section>
+    }
+    @if (!string.IsNullOrWhiteSpace(c?.WhatIsIt))
+    {
+        <section class="hs-card hs-text"><h2>ⓘ @L["Hst.WhatIsIt"]</h2><p>@Ref.T("ParameterContent", c!.ContentId, "WhatIsIt", c.WhatIsIt)</p></section>
+    }
+    @if (!string.IsNullOrWhiteSpace(c?.WhyImportant))
+    {
+        <section class="hs-card hs-text"><h2>! @L["Hst.WhyImportant"]</h2><p>@Ref.T("ParameterContent", c!.ContentId, "WhyImportant", c.WhyImportant)</p></section>
+    }
+    @if (!string.IsNullOrWhiteSpace(c?.ExtraInfo))
+    {
+        <section class="hs-card hs-text"><h2>📊 @L["Hst.ReferenceValues"]</h2><p>@Ref.T("ParameterContent", c!.ContentId, "ExtraInfo", c.ExtraInfo)</p></section>
+    }
+    @if (string.IsNullOrWhiteSpace(c?.WhatIsIt) && string.IsNullOrWhiteSpace(c?.WhyImportant) && string.IsNullOrWhiteSpace(c?.ExtraInfo) && string.IsNullOrWhiteSpace(c?.VideoPath))
+    {
+        <section class="hs-card hs-text"><p>@L["No information available for this parameter."]</p></section>
+    }
 
-    <script src="~/assets/libs/jquery/jquery.min.js"></script>
-    <script src="~/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    @if (Model.Related.Any())
+    {
+        <section class="hs-card hs-text">
+            <h2>🔗 @L["Hst.ReadTogether"]</h2>
+            <p class="hs-note">@L["Hst.ReadTogetherHint"]</p>
+            @foreach (var r in Model.Related)
+            {
+                <a class="hs-related" href="/honeystory/parameter/@r.ParameterId@(query)">
+                    <span class="grow"><b>@Ref.Parameter(r.ParameterId, r.ParameterName)</b></span><span aria-hidden="true">›</span>
+                </a>
+            }
+        </section>
+    }
+</main>
 
+<footer class="sf-footer">
+    <span>TOP4HoneyChains · @L["Sf.FooterTag"]</span>
+    <span>@L["Hst.FooterNote"]</span>
+</footer>
+</div>
 </body>
 </html>
