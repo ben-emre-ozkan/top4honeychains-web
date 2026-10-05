@@ -5142,4 +5142,61 @@
   <data name="Capabilities of {0} saved." xml:space="preserve">
     <value>{0} yetkinlikleri kaydedildi.</value>
   </data>
+  <data name="Cap.Intro" xml:space="preserve">
+    <value>Yetenek, bir kurumun bal zincirinde hangi işi yapabileceğini belirler. İşi kurumda hangi üyenin yapacağını roller belirler (KKN sorumluluk matrisi ve rol yetkileri).</value>
+  </data>
+  <data name="Cap.Enables" xml:space="preserve">
+    <value>Neyi sağlar</value>
+  </data>
+  <data name="Cap.CcpsNeedingIt" xml:space="preserve">
+    <value>Bu yeteneği isteyen KKN'ler</value>
+  </data>
+  <data name="Cap.OrganizationCount" xml:space="preserve">
+    <value>{0} kurum, {1} doğrulanmış</value>
+  </data>
+  <data name="Cap.NoOrganizations" xml:space="preserve">
+    <value>Henüz bu yeteneğe sahip kurum yok.</value>
+  </data>
+  <data name="Cap.WhereToChange" xml:space="preserve">
+    <value>Nereden değiştirilir</value>
+  </data>
+  <data name="Cap.AssignHint" xml:space="preserve">
+    <value>Bir kuruma yetenek verme veya kaldırma: kurumun sayfasında ya da Roller ve yetkiler, Kurum yetenekleri sekmesinde:</value>
+  </data>
+  <data name="Cap.CcpHint" xml:space="preserve">
+    <value>Bir KKN'nin hangi yetenekleri istediği ve hangi rollerin girip onayladığı:</value>
+  </data>
+  <data name="Cap.FixedHint" xml:space="preserve">
+    <value>Yetenek listesinin kendisi sabittir: yeni bir yetenek için veritabanı betiği ve kod değişikliği gerekir.</value>
+  </data>
+  <data name="Cap.Uses.Beekeeping" xml:space="preserve">
+    <value>Arıcının işletmesi. Sisteme giriş yapmaz; doğrulanmış kayıt numarası lotları arıcıya bağlar ve ili gösterir.</value>
+  </data>
+  <data name="Cap.Uses.Association" xml:space="preserve">
+    <value>Üye arıcıları için KKN 0'ı (ön denetim) kaydeder, rızalarını kaydedip arıcı sayfalarını yayımlar ve geri çağırma raporlarında üyelerinin lotlarını görür.</value>
+  </data>
+  <data name="Cap.Uses.CentralAssociation" xml:space="preserve">
+    <value>Birlik doğrulayıcısı olarak ayarlandığında doğruladığı birlikleri görür ve listeler.</value>
+  </data>
+  <data name="Cap.Uses.Processing" xml:space="preserve">
+    <value>Balı teslim alır: lot kabulü, laboratuvar için mühürlü numune ve işleme KKN'leri.</value>
+  </data>
+  <data name="Cap.Uses.Packing" xml:space="preserve">
+    <value>Partilerin dolumu, etiketlenmesi ve ambalajlanması (paketleme KKN'leri).</value>
+  </data>
+  <data name="Cap.Uses.Laboratory" xml:space="preserve">
+    <value>Mühürlü numuneleri alır ve analiz sonuçlarını girer; raporu her zaman ikinci bir kişi onaylar. Akreditasyon numarası bu yetenekte tutulur.</value>
+  </data>
+  <data name="Cap.Uses.Wholesale" xml:space="preserve">
+    <value>Teslim aldığı partileri elinde tutar, elindeki miktar için KKN 10 depolama kaydını girer ve sevk edebilir.</value>
+  </data>
+  <data name="Cap.Uses.Retail" xml:space="preserve">
+    <value>Satış için sevkiyat alır, elindeki miktar için KKN 10 depolama kaydını girer ve sevk edebilir.</value>
+  </data>
+  <data name="Cap.Uses.PublicAuthority" xml:space="preserve">
+    <value>Doğrulandıktan sonra tüm kayıtları okur; hiçbir şey girmez.</value>
+  </data>
+  <data name="Cap.Uses.PlatformAdmin" xml:space="preserve">
+    <value>Platformu yöneten kurum: kurumlar, ana veriler ve ayarlar. KKN değerleri ve onaylarında yalnızca okur.</value>
+  </data>
 </root>

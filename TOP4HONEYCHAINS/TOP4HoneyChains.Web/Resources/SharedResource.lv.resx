@@ -5142,4 +5142,61 @@
   <data name="Capabilities of {0} saved." xml:space="preserve">
     <value>Organizācijas {0} kompetences saglabātas.</value>
   </data>
+  <data name="Cap.Intro" xml:space="preserve">
+    <value>Kompetence nosaka, kādu darbu organizācija drīkst veikt medus ķēdē. To, kurš dalībnieks darbu veic, nosaka lomas (KKP atbildības matrica un lomu atļaujas).</value>
+  </data>
+  <data name="Cap.Enables" xml:space="preserve">
+    <value>Ko tā ļauj</value>
+  </data>
+  <data name="Cap.CcpsNeedingIt" xml:space="preserve">
+    <value>KKP, kam tā nepieciešama</value>
+  </data>
+  <data name="Cap.OrganizationCount" xml:space="preserve">
+    <value>Organizācijas: {0}, pārbaudītas: {1}</value>
+  </data>
+  <data name="Cap.NoOrganizations" xml:space="preserve">
+    <value>Pagaidām nevienai organizācijai tās nav.</value>
+  </data>
+  <data name="Cap.WhereToChange" xml:space="preserve">
+    <value>Kur mainīt</value>
+  </data>
+  <data name="Cap.AssignHint" xml:space="preserve">
+    <value>Piešķirt vai noņemt organizācijai kompetenci: tās lapā vai sadaļā Lomas un atļaujas, cilnē Organizācijas kompetences:</value>
+  </data>
+  <data name="Cap.CcpHint" xml:space="preserve">
+    <value>Kādas kompetences nepieciešamas KKP un kuras lomas to ievada un apstiprina:</value>
+  </data>
+  <data name="Cap.FixedHint" xml:space="preserve">
+    <value>Pats kompetenču saraksts ir nemainīgs: jaunai kompetencei vajag datubāzes skriptu un koda izmaiņas.</value>
+  </data>
+  <data name="Cap.Uses.Beekeeping" xml:space="preserve">
+    <value>Biškopja saimniecība. Tā nepiesakās; tās pārbaudītais reģistra numurs sasaista partijas ar biškopi un norāda provinci.</value>
+  </data>
+  <data name="Cap.Uses.Association" xml:space="preserve">
+    <value>Reģistrē KKP 0 (sākotnējo auditu) saviem biedriem biškopjiem, reģistrē viņu piekrišanu un publicē biškopju lapas, kā arī redz biedru partijas atsaukšanas pārskatos.</value>
+  </data>
+  <data name="Cap.Uses.CentralAssociation" xml:space="preserve">
+    <value>Ja tā iestatīta kā biedrību pārbaudītāja, tā redz un uzskaita biedrības, kuras pārbauda.</value>
+  </data>
+  <data name="Cap.Uses.Processing" xml:space="preserve">
+    <value>Pieņem medu: partiju pieņemšana, aizzīmogoti paraugi laboratorijai un apstrādes KKP.</value>
+  </data>
+  <data name="Cap.Uses.Packing" xml:space="preserve">
+    <value>Partiju pildīšana, marķēšana un iepakošana (iepakošanas KKP).</value>
+  </data>
+  <data name="Cap.Uses.Laboratory" xml:space="preserve">
+    <value>Pieņem aizzīmogotus paraugus un ievada rezultātus; pārskatu vienmēr apstiprina otra persona. Akreditācijas numurs tiek glabāts pie šīs kompetences.</value>
+  </data>
+  <data name="Cap.Uses.Wholesale" xml:space="preserve">
+    <value>Glabā saņemtās partijas, reģistrē KKP 10 uzglabāšanu savam daudzumam un var sūtīt tālāk.</value>
+  </data>
+  <data name="Cap.Uses.Retail" xml:space="preserve">
+    <value>Saņem sūtījumus pārdošanai, reģistrē KKP 10 uzglabāšanu savam daudzumam un var sūtīt tālāk.</value>
+  </data>
+  <data name="Cap.Uses.PublicAuthority" xml:space="preserve">
+    <value>Pēc pārbaudes lasa visus ierakstus; neko neievada.</value>
+  </data>
+  <data name="Cap.Uses.PlatformAdmin" xml:space="preserve">
+    <value>Organizācija, kas uztur platformu: organizācijas, pamatdati un iestatījumi. KKP vērtības un apstiprinājumus tikai lasa.</value>
+  </data>
 </root>

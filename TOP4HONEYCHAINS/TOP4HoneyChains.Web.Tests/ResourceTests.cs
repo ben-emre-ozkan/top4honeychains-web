@@ -120,5 +120,16 @@ namespace TOP4HoneyChains.Web.Tests
             foreach (var lang in Languages)
                 Assert.True(Resources.Value[lang].ContainsKey(value), $"{lang}: missing \"{value}\"");
         }
+
+        // The capabilities page explains every capability with the key "Cap.Uses.<code>" (built at run time)
+        [Fact]
+        public void Every_capability_has_an_explanation()
+        {
+            var codes = typeof(Capabilities).GetFields(BindingFlags.Public | BindingFlags.Static).Select(f => (string)f.GetValue(null)!).ToList();
+            Assert.NotEmpty(codes);
+            foreach (var lang in Languages)
+                foreach (var code in codes)
+                    Assert.True(Resources.Value[lang].TryGetValue("Cap.Uses." + code, out var text) && text.Length > 0, $"{lang}: missing \"Cap.Uses.{code}\"");
+        }
     }
 }

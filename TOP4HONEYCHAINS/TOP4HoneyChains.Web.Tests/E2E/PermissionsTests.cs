@@ -129,5 +129,25 @@ namespace TOP4HoneyChains.Web.Tests.E2E
                 await SaveAsync(admin, OrgRoles.SampleAcceptanceOfficer, saoRights);
             }
         }
+
+        // The capabilities page: every capability with its CCPs, read-only, for the platform administrator only
+        [Fact]
+        public async Task The_capabilities_page_lists_every_capability_for_administrators_only()
+        {
+            await _app.CreateUserAsync("e2e_cap_admin", "Administrator");
+            var admin = await UserClient.LoginAsync(_app, "e2e_cap_admin");
+            var html = await admin.HtmlAsync("/Capabilities/Index");
+            foreach (var code in typeof(Capabilities).GetFields().Select(f => (string)f.GetValue(null)!))
+                Assert.Contains($"data-capability=\"{code}\"", html);
+            var association = html[html.IndexOf("data-capability=\"Association\"")..html.IndexOf("data-capability=\"CentralAssociation\"")];
+            Assert.Contains(">CCP 0<", association);
+            Assert.DoesNotContain("<form", html[html.IndexOf("id=\"capabilities\"")..]);
+
+            var org = await _app.CreateOrgAsync("CAP Processor", null, (Capabilities.Processing, null));
+            await _app.AddMemberAsync(org, await _app.CreateUserAsync("e2e_cap_staff"), OrgRoles.OrgAdmin);
+            var member = await UserClient.LoginAsync(_app, "e2e_cap_staff");
+            Assert.NotEqual(HttpStatusCode.OK, (await member.GetAsync("/Capabilities/Index")).StatusCode);
+            Assert.NotEqual(HttpStatusCode.OK, (await UserClient.Anonymous(_app).GetAsync("/Capabilities/Index")).StatusCode);
+        }
     }
 }

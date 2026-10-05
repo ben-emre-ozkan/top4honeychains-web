@@ -5142,4 +5142,61 @@
   <data name="Capabilities of {0} saved." xml:space="preserve">
     <value>Capabilities of {0} saved.</value>
   </data>
+  <data name="Cap.Intro" xml:space="preserve">
+    <value>A capability says which work an organization may do in the honey chain. Which member does the work is set by the roles (CCP responsibility matrix and role permissions).</value>
+  </data>
+  <data name="Cap.Enables" xml:space="preserve">
+    <value>What it enables</value>
+  </data>
+  <data name="Cap.CcpsNeedingIt" xml:space="preserve">
+    <value>CCPs that need it</value>
+  </data>
+  <data name="Cap.OrganizationCount" xml:space="preserve">
+    <value>{0} organizations, {1} verified</value>
+  </data>
+  <data name="Cap.NoOrganizations" xml:space="preserve">
+    <value>No organization has it yet.</value>
+  </data>
+  <data name="Cap.WhereToChange" xml:space="preserve">
+    <value>Where to change</value>
+  </data>
+  <data name="Cap.AssignHint" xml:space="preserve">
+    <value>Give or remove a capability for an organization on its page or in Roles and permissions, tab Organization capabilities:</value>
+  </data>
+  <data name="Cap.CcpHint" xml:space="preserve">
+    <value>Which capabilities a CCP needs and which roles enter and approve it:</value>
+  </data>
+  <data name="Cap.FixedHint" xml:space="preserve">
+    <value>The list of capabilities itself is fixed: a new capability needs a database script and a code change.</value>
+  </data>
+  <data name="Cap.Uses.Beekeeping" xml:space="preserve">
+    <value>The beekeeper's enterprise. It does not sign in; its verified registry number links the lots to the beekeeper and tells the province.</value>
+  </data>
+  <data name="Cap.Uses.Association" xml:space="preserve">
+    <value>Records CCP 0 (primary audit) for its member beekeepers, records their consent and publishes their beekeeper pages, and sees its members' lots in recall reports.</value>
+  </data>
+  <data name="Cap.Uses.CentralAssociation" xml:space="preserve">
+    <value>When it is set as the association verifier, it reads and lists the associations it verifies.</value>
+  </data>
+  <data name="Cap.Uses.Processing" xml:space="preserve">
+    <value>Receives the honey: lot intake, sealed samples for the laboratory and the processing CCPs.</value>
+  </data>
+  <data name="Cap.Uses.Packing" xml:space="preserve">
+    <value>Filling, labelling and packaging of batches (the packing CCPs).</value>
+  </data>
+  <data name="Cap.Uses.Laboratory" xml:space="preserve">
+    <value>Receives sealed samples and enters lab results; a second person always approves the report. The accreditation number is kept on this capability.</value>
+  </data>
+  <data name="Cap.Uses.Wholesale" xml:space="preserve">
+    <value>Holds batches it has received, records CCP 10 storage for the quantity it holds and can ship on.</value>
+  </data>
+  <data name="Cap.Uses.Retail" xml:space="preserve">
+    <value>Receives shipments for sale, records CCP 10 storage for the quantity it holds and can ship on.</value>
+  </data>
+  <data name="Cap.Uses.PublicAuthority" xml:space="preserve">
+    <value>Once verified, reads all records; it enters nothing.</value>
+  </data>
+  <data name="Cap.Uses.PlatformAdmin" xml:space="preserve">
+    <value>The organization that runs the platform: organizations, master data and settings. Read-only on CCP values and approvals.</value>
+  </data>
 </root>

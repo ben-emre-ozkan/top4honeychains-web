@@ -5142,4 +5142,61 @@
   <data name="Capabilities of {0} saved." xml:space="preserve">
     <value>Capacidades de {0} guardadas.</value>
   </data>
+  <data name="Cap.Intro" xml:space="preserve">
+    <value>Una capacidad indica qué trabajo puede hacer una organización en la cadena de la miel. Qué miembro lo hace lo fijan los roles (matriz de responsabilidades de PCC y permisos de rol).</value>
+  </data>
+  <data name="Cap.Enables" xml:space="preserve">
+    <value>Qué permite</value>
+  </data>
+  <data name="Cap.CcpsNeedingIt" xml:space="preserve">
+    <value>PCC que la requieren</value>
+  </data>
+  <data name="Cap.OrganizationCount" xml:space="preserve">
+    <value>{0} organizaciones, {1} verificadas</value>
+  </data>
+  <data name="Cap.NoOrganizations" xml:space="preserve">
+    <value>Ninguna organización la tiene todavía.</value>
+  </data>
+  <data name="Cap.WhereToChange" xml:space="preserve">
+    <value>Dónde se cambia</value>
+  </data>
+  <data name="Cap.AssignHint" xml:space="preserve">
+    <value>Asignar o quitar una capacidad a una organización: en su página o en Roles y permisos, pestaña Capacidades de la organización:</value>
+  </data>
+  <data name="Cap.CcpHint" xml:space="preserve">
+    <value>Qué capacidades requiere un PCC y qué roles lo ingresan y aprueban:</value>
+  </data>
+  <data name="Cap.FixedHint" xml:space="preserve">
+    <value>La lista de capacidades es fija: una capacidad nueva requiere un script de base de datos y un cambio de código.</value>
+  </data>
+  <data name="Cap.Uses.Beekeeping" xml:space="preserve">
+    <value>La explotación apícola. No inicia sesión; su número de registro verificado vincula los lotes con el apicultor e indica la provincia.</value>
+  </data>
+  <data name="Cap.Uses.Association" xml:space="preserve">
+    <value>Registra el PCC 0 (auditoría primaria) de sus apicultores miembros, registra su consentimiento y publica sus páginas de apicultor, y ve los lotes de sus miembros en los informes de retirada.</value>
+  </data>
+  <data name="Cap.Uses.CentralAssociation" xml:space="preserve">
+    <value>Cuando está configurada como verificadora de asociaciones, ve y lista las asociaciones que verifica.</value>
+  </data>
+  <data name="Cap.Uses.Processing" xml:space="preserve">
+    <value>Recibe la miel: entrada de lotes, muestras precintadas para el laboratorio y los PCC de procesamiento.</value>
+  </data>
+  <data name="Cap.Uses.Packing" xml:space="preserve">
+    <value>Envasado, etiquetado y embalaje de los lotes de producción (los PCC de envasado).</value>
+  </data>
+  <data name="Cap.Uses.Laboratory" xml:space="preserve">
+    <value>Recibe muestras precintadas e ingresa los resultados; una segunda persona siempre aprueba el informe. El número de acreditación se guarda en esta capacidad.</value>
+  </data>
+  <data name="Cap.Uses.Wholesale" xml:space="preserve">
+    <value>Custodia los lotes recibidos, registra el almacenamiento PCC 10 de la cantidad que tiene y puede reenviarlos.</value>
+  </data>
+  <data name="Cap.Uses.Retail" xml:space="preserve">
+    <value>Recibe envíos para la venta, registra el almacenamiento PCC 10 de la cantidad que tiene y puede reenviarlos.</value>
+  </data>
+  <data name="Cap.Uses.PublicAuthority" xml:space="preserve">
+    <value>Una vez verificada, lee todos los registros; no ingresa nada.</value>
+  </data>
+  <data name="Cap.Uses.PlatformAdmin" xml:space="preserve">
+    <value>La organización que gestiona la plataforma: organizaciones, datos maestros y ajustes. Solo lectura en valores y aprobaciones de PCC.</value>
+  </data>
 </root>

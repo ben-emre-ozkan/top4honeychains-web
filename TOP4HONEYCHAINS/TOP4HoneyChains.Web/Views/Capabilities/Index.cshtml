@@ -1,0 +1,84 @@
+@model List<TOP4HoneyChains.Web.Controllers.CapabilitiesController.Row>
+@{
+    ViewData["Title"] = L["Org.Capabilities"];
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+}
+@* Read-only overview of the capabilities; they are assigned on the organization page and in Roles and permissions *@
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-1">@L["Org.Capabilities"]</h4>
+                    <p class="text-muted mb-0">@L["Cap.Intro"]</p>
+                </div>
+            </div>
+
+            <div class="row" id="capabilities">
+                @foreach (var c in Model)
+                {
+                    <div class="col-xl-4 col-md-6 d-flex">
+                        <div class="card w-100" data-capability="@c.Code">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start gap-2">
+                                    <h5 class="mb-1">@Ref.Capability(c.Code)</h5>
+                                    <code class="small">@c.Code</code>
+                                </div>
+                                <p class="text-muted small mb-3">@Ref.CapabilityDescription(c.Code, c.Description)</p>
+
+                                <h6 class="small text-uppercase text-muted mb-1">@L["Cap.Enables"]</h6>
+                                <p class="mb-3">@L["Cap.Uses." + c.Code]</p>
+
+                                @if (c.Ccps.Any())
+                                {
+                                    <h6 class="small text-uppercase text-muted mb-1">@L["Cap.CcpsNeedingIt"]</h6>
+                                    <div class="mb-3">
+                                        @foreach (var ccp in c.Ccps)
+                                        {
+                                            <span class="badge bg-light text-dark border me-1 mb-1" title="@Ref.CcpTitle(ccp.Id, ccp.Title)">@ccp.Code</span>
+                                        }
+                                    </div>
+                                    <dl class="row small mb-3">
+                                        @if (c.EnterRoles.Any())
+                                        {
+                                            <dt class="col-5">@L["Resp.EnterRoles"]</dt>
+                                            <dd class="col-7">@string.Join(", ", c.EnterRoles.Select(r => Ref.Role(r)))</dd>
+                                        }
+                                        @if (c.ApproveRoles.Any())
+                                        {
+                                            <dt class="col-5">@L["Resp.ApproveRoles"]</dt>
+                                            <dd class="col-7">@string.Join(", ", c.ApproveRoles.Select(r => Ref.Role(r)))</dd>
+                                        }
+                                    </dl>
+                                }
+
+                                <div class="small cap-orgs">
+                                    <i class="mdi mdi-domain"></i>
+                                    @if (c.Organizations == 0)
+                                    {
+                                        <span class="text-muted">@L["Cap.NoOrganizations"]</span>
+                                    }
+                                    else
+                                    {
+                                        @L["Cap.OrganizationCount", c.Organizations, c.VerifiedOrganizations]
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="mb-2">@L["Cap.WhereToChange"]</h6>
+                    <ul class="mb-0">
+                        <li>@L["Cap.AssignHint"] <a href="/Organizations/Index">@L["Org.Organizations"]</a> · <a href="/Permissions/Index?tab=capabilities">@L["Roles and permissions"]</a></li>
+                        <li>@L["Cap.CcpHint"] <a href="/CcpResponsibilities/Index">@L["Resp.Title"]</a></li>
+                        <li>@L["Cap.FixedHint"]</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
