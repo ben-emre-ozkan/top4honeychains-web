@@ -40,4 +40,4 @@ Desktop images are 1440x900 (full-page where the page is longer); images 07 and 
 | 32 | 32_final_production_details.png | Production details: source lots, batch CCPs and approved lab reports. | Platform admin |
 
 Known cosmetic issues visible in the images: breadcrumbs show some raw route names (e.g. "Manage", "Index");
-the native file input uses the browser language ("Dosya Seç"); on 25 and 32 the top of the content sits under the menu bar.
+the native file input uses the browser language ("Dosya Seç"). Images 25 and 32 were retaken after the layout fix.
