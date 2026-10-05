@@ -1,6 +1,6 @@
 ﻿# TOP4HoneyChains web panel – release notes
 
-**Version:** 1.0.0-rc6 (release candidate, not yet deployed)
+**Version:** 1.0.0-rc7 (release candidate, not yet deployed)
 **Date:** 2026-10-04
 **Audience:** project partners (LBTU test report follow-up)
 
@@ -14,6 +14,8 @@ Status legend: **fixed** = changed in this release · **deferred** = agreed to m
 **rc5 (2026-10-04):** the public Honey Story page no longer fails for a batch with several lots of the same beekeeper; server messages are shown in Turkish (English stays the fallback).
 
 **rc6 (2026-10-04):** the final production details page works again and shows the full record only for productions that completed all required tests; the data model now declares the real database column types (audit log, document hashes, dates); every page states who may open it.
+
+**rc7 (2026-10-05):** the whole panel and the public pages follow the selected language (Turkish by default; English, Spanish, Polish, Latvian), numbers accept a comma or a dot, beekeeper and apiary names keep Turkish letters, and province and district are chosen from lists.
 
 ## What is new in rc3 (2026-10-03)
 
