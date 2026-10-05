@@ -5727,4 +5727,7 @@
   <data name="RolePermissions" xml:space="preserve">
     <value>Uprawnienia ról</value>
   </data>
+  <data name="CCP 0 (primary audit) of this lot is not completed yet; lab results are entered and approved only after it." xml:space="preserve">
+    <value>KPK 0 (audyt wstępny) tej partii nie jest jeszcze zakończony; wyniki badań wprowadza się i zatwierdza dopiero po nim.</value>
+  </data>
 </root>

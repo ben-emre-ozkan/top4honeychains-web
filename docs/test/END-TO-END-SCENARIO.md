@@ -18,9 +18,12 @@ Local LocalDB only, `Features:OrgRoleModel` on, demo organisations from `db/demo
 | 8 | demo_lab_analist | Laboratory analyst | [DEMO] Analiz Laboratuvarı | Laboratory (accredited) | Analyst | Receives the sample (seal check), enters report data, PDF and values |
 | 9 | demo_lab_mudur | Laboratory manager | [DEMO] Analiz Laboratuvarı | Laboratory (accredited) | LabManager | Approves or returns the report |
 | 10 | demo_market | Shop or warehouse manager | [DEMO] Şehir Marketi | Retail (CCP10) | Staff | Confirms or rejects the shipment, enters CCP10 storage |
+| 10b | demo_market_onay | Shop manager's deputy | [DEMO] Şehir Marketi | Retail (CCP10) | QualityApprover | Approves CCP10 storage (four-eyes) |
 | 11 | – (no login) | Consumer | – | – | – | Opens the Honey Story from the QR code, the beekeeper page, report verification |
 
-The market has one person: either grant it the four-eyes exemption or add a second market user as QualityApprover, so CCP10 can be approved.
+The market has a second user (10b) as QualityApprover, so CCP10 can be approved without the four-eyes exemption.
+
+CCP0 comes before the lab test (D-61): the lab can receive the sample, but enters and approves results only after the lot's CCP0 is approved. Without a field inspector, the platform administrator can make the role passive: CCP responsibilities → CCP 0 → "the organization that owns the lot", capability Processing, entered by SampleAcceptanceOfficer (the reception officer then does CCP0 at delivery). One person can also hold both roles through two memberships.
 
 ## Preparation (admin)
 
@@ -37,13 +40,14 @@ Expected results marked **must block** are negative checks: the system has to re
 | Step | Who | Action | Screen | Expected |
 |---|---|---|---|---|
 | 1 | 1 Admin | Link the beekeeper to the association, enter and verify the AKS number | Registry | Beekeeper verified |
-| 2 | 3 FieldInspector | Enter CCP0 for the beekeeper's apiary | My work → CCP | CCP0 submitted |
-| 3 | 3 FieldInspector | Try to approve own CCP0 | CCP | **must block** (four-eyes) |
-| 4 | 4 Association approver | Approve CCP0 | My work → CCP | CCP0 approved |
-| 5 | 2 Beekeeper + 4 OrgAdmin | Beekeeper signs consent; OrgAdmin uploads it and records consent | Storefronts → Consent | Beekeeper page published |
-| 6 | 2 Beekeeper + 5 Reception | Find beekeeper by AKS number, record delivery and photo of the signed form | Intake | Raw lot created, owned by the processor |
-| 7 | 5 Reception | Seal sample and counter-sample, seal numbers, storage place, choose lab, send | Samples | Sample sent |
-| 8 | 8 Analyst | Receive sample, seal intact, enter report data, PDF and values | My work → Lab results | Out-of-limit values flagged; cannot submit with required values missing |
+| 2 | 2 Beekeeper + 4 OrgAdmin | Beekeeper signs consent; OrgAdmin uploads it and records consent | Storefronts → Consent | Beekeeper page published |
+| 3 | 2 Beekeeper + 5 Reception | Find beekeeper by AKS number, record delivery and photo of the signed form | Intake | Raw lot created, owned by the processor |
+| 4 | 5 Reception | Seal sample and counter-sample, seal numbers, storage place, choose lab, send | Samples | Sample sent |
+| 5 | 8 Analyst | Receive sample (seal intact); try to enter results | My work → Lab results | **must block** until CCP0 is approved ("waiting for CCP 0") |
+| 6 | 3 FieldInspector | Enter CCP0 for the new lot (all required answers) | My work → CCP | CCP0 submitted |
+| 7 | 3 FieldInspector | Try to approve own CCP0 | CCP | **must block** (four-eyes) |
+| 8 | 4 Association approver | Approve CCP0 | My work → CCP | CCP0 approved; the lab's task is open |
+| 8b | 8 Analyst | Enter report data, PDF and values | My work → Lab results | Out-of-limit values flagged; cannot submit with required values missing |
 | 9 | 8 Analyst | Try to approve own report | Lab results | **must block** |
 | 10 | 9 Lab manager | Approve the report | My work → Lab results | Values written to the lot's CCP1 and locked |
 | 11 | 6 Staff | Enter CCP2–6; mark a step not applicable with a reason | CCP | Values flagged against limits |

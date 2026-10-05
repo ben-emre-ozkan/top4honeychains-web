@@ -111,8 +111,21 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             Assert.Contains("seal is intact", await analyst.PostFlashAsync("/Samples/Receive", new() { ["id"] = sampleId.ToString(), ["sealIntact"] = "true" }, "/Samples/Index"));
             var ccp1 = await CcpIdAsync("CCP 1");
             var labParams = await _app.WithContextAsync(db => db.CriticalControlPointParameters.Where(p => p.CCPId == ccp1 && p.DataType != CcpDataType.File).ToListAsync());
-            // D-54: with a required value missing the report cannot be submitted
             var partial = new Dictionary<string, string> { ["reportNumber"] = "E2E-R-1", ["issuedOn"] = DateTime.Today.ToString("yyyy-MM-dd"), [$"values[{labParams[0].ParameterId}]"] = "1" };
+
+            // D-61: no lab test before the lot's CCP 0 (field inspector, approved by the association) is done
+            Assert.Contains("work-waiting", await analyst.HtmlAsync("/MyWork/Index"));
+            Assert.Contains("CCP 0 (primary audit) of this lot is not completed yet", await analyst.FlashAfterAsync(
+                await analyst.PostMultipartAsync($"/LabReports/Save/{sampleId}", new Dictionary<string, string>(partial), Pdf.File("reportFile"), $"/LabReports/Edit/{sampleId}")));
+            var fi = await UserClient.LoginAsync(_app, "e2e_fi");
+            var assocQa = await UserClient.LoginAsync(_app, "e2e_aqa");
+            var ccp0 = await CcpIdAsync("CCP 0");
+            Assert.Contains("values saved", await SaveCcpAsync(fi, "raw", lot, ccp0));
+            Assert.Contains($"ccpId={ccp0}", await assocQa.HtmlAsync("/MyWork/Index"));   // the approver gets the task
+            Assert.Contains("approved", await ApproveCcpAsync(assocQa, "raw", lot, ccp0));
+            Assert.DoesNotContain("work-waiting", await analyst.HtmlAsync("/MyWork/Index"));
+
+            // D-54: with a required value missing the report cannot be submitted
             Assert.Contains("Lab results saved.", await analyst.FlashAfterAsync(await analyst.PostMultipartAsync($"/LabReports/Save/{sampleId}", partial, Pdf.File("reportFile"), $"/LabReports/Edit/{sampleId}")));
             Assert.Contains("Enter all required values before submitting", await analyst.PostFlashAsync($"/LabReports/Submit/{sampleId}", new(), $"/LabReports/Edit/{sampleId}"));
             Assert.Matches(@"id=""submit-report"" disabled", await analyst.HtmlAsync($"/LabReports/Edit/{sampleId}"));
@@ -128,14 +141,9 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             Assert.Equal(AssignmentStatusIds.Completed, ccp1State.RawHoneyCCPAssignmentStatus);
             Assert.NotNull(ccp1State.ApprovedAt);
 
-            // ---- 4. CCP entry and approval: association (CCP 0), processor (CCP 2, CCP 3)
-            var fi = await UserClient.LoginAsync(_app, "e2e_fi");
-            var assocQa = await UserClient.LoginAsync(_app, "e2e_aqa");
+            // ---- 4. CCP entry and approval: processor (CCP 2, CCP 3); CCP 0 was done before the lab test
             var staff = await UserClient.LoginAsync(_app, "e2e_staff");
             var qa = await UserClient.LoginAsync(_app, "e2e_qa");
-            var ccp0 = await CcpIdAsync("CCP 0");
-            Assert.Contains("values saved", await SaveCcpAsync(fi, "raw", lot, ccp0));
-            Assert.Contains("approved", await ApproveCcpAsync(assocQa, "raw", lot, ccp0));
             foreach (var ccpCode in new[] { "CCP 2", "CCP 3" })
             {
                 var id = await CcpIdAsync(ccpCode);
