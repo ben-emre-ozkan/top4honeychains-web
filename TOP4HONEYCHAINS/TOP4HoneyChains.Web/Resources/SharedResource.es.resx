@@ -5199,4 +5199,304 @@
   <data name="Cap.Uses.PlatformAdmin" xml:space="preserve">
     <value>La organización que gestiona la plataforma: organizaciones, datos maestros y ajustes. Solo lectura en valores y aprobaciones de PCC.</value>
   </data>
+  <data name="Sf.VerifyReport" xml:space="preserve">
+    <value>Verificar un informe</value>
+  </data>
+  <data name="Sf.DemoRibbon" xml:space="preserve">
+    <value>Perfil de demostración con datos de ejemplo, preparado para una presentación. Una página real muestra solo datos verificados y se publica con el consentimiento del apicultor.</value>
+  </data>
+  <data name="Region.Marmara" xml:space="preserve">
+    <value>Mármara</value>
+  </data>
+  <data name="Region.Aegean" xml:space="preserve">
+    <value>Egeo</value>
+  </data>
+  <data name="Region.Mediterranean" xml:space="preserve">
+    <value>Mediterráneo</value>
+  </data>
+  <data name="Region.CentralAnatolia" xml:space="preserve">
+    <value>Anatolia Central</value>
+  </data>
+  <data name="Region.BlackSea" xml:space="preserve">
+    <value>Mar Negro</value>
+  </data>
+  <data name="Region.EasternAnatolia" xml:space="preserve">
+    <value>Anatolia Oriental</value>
+  </data>
+  <data name="Region.SoutheasternAnatolia" xml:space="preserve">
+    <value>Anatolia Suroriental</value>
+  </data>
+  <data name="Sf.Demo.Tagline" xml:space="preserve">
+    <value>Miel de castaño y de flores silvestres de las colinas boscosas sobre Akçakoca, cosechada y trazada lote a lote.</value>
+  </data>
+  <data name="Sf.MemberOf" xml:space="preserve">
+    <value>Miembro de {0}</value>
+  </data>
+  <data name="Sf.OnPlatformSince" xml:space="preserve">
+    <value>En la plataforma desde {0}</value>
+  </data>
+  <data name="Sf.BadgeRegistry" xml:space="preserve">
+    <value>Registro verificado (AKS)</value>
+  </data>
+  <data name="Sf.RecentActivity" xml:space="preserve">
+    <value>Actividad reciente en la plataforma</value>
+  </data>
+  <data name="Sf.LatestBatch" xml:space="preserve">
+    <value>Última partida</value>
+  </data>
+  <data name="Sf.FinalisedOn" xml:space="preserve">
+    <value>Finalizada el {0}</value>
+  </data>
+  <data name="Sf.LatestReport" xml:space="preserve">
+    <value>Último informe de laboratorio</value>
+  </data>
+  <data name="Sf.WithinLimitCount" xml:space="preserve">
+    <value>{0} de {1} dentro del límite</value>
+  </data>
+  <data name="Sf.ReportCode" xml:space="preserve">
+    <value>Informe {0}</value>
+  </data>
+  <data name="Sf.HygieneAudit" xml:space="preserve">
+    <value>Auditoría de higiene · PCC 0</value>
+  </data>
+  <data name="Sf.Passed" xml:space="preserve">
+    <value>Superada</value>
+  </data>
+  <data name="Sf.SeasonByAssociation" xml:space="preserve">
+    <value>Temporada {0}, por la asociación</value>
+  </data>
+  <data name="Sf.ProfileMark" xml:space="preserve">
+    <value>Distintivo de perfil de {0}</value>
+  </data>
+  <data name="Sf.Beekeeper" xml:space="preserve">
+    <value>Apicultor</value>
+  </data>
+  <data name="Sf.StatBatches" xml:space="preserve">
+    <value>partidas</value>
+  </data>
+  <data name="Sf.StatReports" xml:space="preserve">
+    <value>informes de laboratorio</value>
+  </data>
+  <data name="Sf.StatKg" xml:space="preserve">
+    <value>miel trazada</value>
+  </data>
+  <data name="Sf.WhereToBuy" xml:space="preserve">
+    <value>Dónde comprar esta miel</value>
+  </data>
+  <data name="Sf.ContactViaAssociation" xml:space="preserve">
+    <value>Contacto a través de la asociación</value>
+  </data>
+  <data name="Sf.QrAlt" xml:space="preserve">
+    <value>Código QR de esta página</value>
+  </data>
+  <data name="Sf.QrHint" xml:space="preserve">
+    <value>Escanee para abrir esta página o comparta el enlace impreso en la tarjeta del apicultor.</value>
+  </data>
+  <data name="Sf.About" xml:space="preserve">
+    <value>Sobre el colmenar</value>
+  </data>
+  <data name="Sf.Demo.StoryTitle" xml:space="preserve">
+    <value>Colmenas bajo castaños, a un corto paseo del mar Negro</value>
+  </data>
+  <data name="Sf.Demo.Story1" xml:space="preserve">
+    <value>[Texto de ejemplo para la demostración; en una página real lo escribe la asociación con el consentimiento del apicultor.] Ayşe tiene sus colonias en los bosques de castaños y tilos sobre Akçakoca. Cada cosecha se entrega a la organización de procesamiento con un formulario de entrega firmado, se muestrea con precinto y la analiza un laboratorio acreditado antes de formar parte de una partida.</value>
+  </data>
+  <data name="Sf.Demo.Story2" xml:space="preserve">
+    <value>Como cada lote se traza, los compradores pueden ver exactamente qué partidas contienen su miel y cómo superó cada una sus puntos de control.</value>
+  </data>
+  <data name="Sf.FeatureHarvest" xml:space="preserve">
+    <value>Temporada de cosecha</value>
+  </data>
+  <data name="Sf.MonthRange" xml:space="preserve">
+    <value>De {0} a {1}</value>
+  </data>
+  <data name="Sf.FeatureHygiene" xml:space="preserve">
+    <value>Auditoría de higiene</value>
+  </data>
+  <data name="Sf.Ccp0AllLots" xml:space="preserve">
+    <value>PCC 0 superado en todos los lotes verificados</value>
+  </data>
+  <data name="Sf.Demo.PhotoApiary" xml:space="preserve">
+    <value>Colmenar · añadido con consentimiento</value>
+  </data>
+  <data name="Sf.Demo.PhotoApiaryAlt" xml:space="preserve">
+    <value>Colmenas en fila bajo castaños en una ladera boscosa</value>
+  </data>
+  <data name="Sf.Demo.PhotoHarvest" xml:space="preserve">
+    <value>Cosecha</value>
+  </data>
+  <data name="Sf.Demo.PhotoHarvestAlt" xml:space="preserve">
+    <value>Apicultor con traje protector sacando un cuadro de una colmena</value>
+  </data>
+  <data name="Sf.Demo.PhotoComb" xml:space="preserve">
+    <value>Panal operculado</value>
+  </data>
+  <data name="Sf.Demo.PhotoCombAlt" xml:space="preserve">
+    <value>Manos con guantes sujetan un cuadro de panal operculado con abejas</value>
+  </data>
+  <data name="Sf.Origin" xml:space="preserve">
+    <value>Origen</value>
+  </data>
+  <data name="Sf.WhereFrom" xml:space="preserve">
+    <value>De dónde viene la miel</value>
+  </data>
+  <data name="Sf.MapLabel" xml:space="preserve">
+    <value>Mapa de Türkiye con la zona aproximada de {0} marcada</value>
+  </data>
+  <data name="Sf.ApproxArea" xml:space="preserve">
+    <value>zona aproximada</value>
+  </data>
+  <data name="Sf.MapNote" xml:space="preserve">
+    <value>Marcado en el centro de la provincia. La ubicación exacta de los colmenares nunca se publica.</value>
+  </data>
+  <data name="Sf.Calendar" xml:space="preserve">
+    <value>Floración y cosecha</value>
+  </data>
+  <data name="Sf.HarvestCalendar" xml:space="preserve">
+    <value>Calendario de cosecha</value>
+  </data>
+  <data name="Sf.CalendarHelpDemo" xml:space="preserve">
+    <value>Cuándo florecen las principales fuentes alrededor del colmenar (datos de ejemplo)</value>
+  </data>
+  <data name="Sf.CalendarHelp" xml:space="preserve">
+    <value>Meses en los que se cosecharon los lotes verificados</value>
+  </data>
+  <data name="Sf.Flowering" xml:space="preserve">
+    <value>Floración</value>
+  </data>
+  <data name="Sf.Harvest" xml:space="preserve">
+    <value>Cosecha</value>
+  </data>
+  <data name="Sf.Demo.FloraChestnut" xml:space="preserve">
+    <value>Castaño</value>
+  </data>
+  <data name="Sf.Demo.FloraLinden" xml:space="preserve">
+    <value>Tilo</value>
+  </data>
+  <data name="Sf.Demo.FloraWildflower" xml:space="preserve">
+    <value>Flores silvestres</value>
+  </data>
+  <data name="Sf.Demo.FloraHeather" xml:space="preserve">
+    <value>Brezo</value>
+  </data>
+  <data name="Sf.Quality" xml:space="preserve">
+    <value>Calidad</value>
+  </data>
+  <data name="Sf.LatestResults" xml:space="preserve">
+    <value>Últimos resultados de laboratorio verificados</value>
+  </data>
+  <data name="Sf.VerifyReportCode" xml:space="preserve">
+    <value>Verificar el informe {0}</value>
+  </data>
+  <data name="Sf.LabNoteAccredited" xml:space="preserve">
+    <value>Laboratorio acreditado {0}; una segunda persona aprobó el informe. Las barras comparan el valor medido con el límite aplicado.</value>
+  </data>
+  <data name="Sf.LabNote" xml:space="preserve">
+    <value>Laboratorio {0}; una segunda persona aprobó el informe. Las barras comparan el valor medido con el límite aplicado.</value>
+  </data>
+  <data name="Sf.WithinLimit" xml:space="preserve">
+    <value>Dentro del límite</value>
+  </data>
+  <data name="Sf.OutOfLimit" xml:space="preserve">
+    <value>Fuera del límite</value>
+  </data>
+  <data name="Sf.Limit" xml:space="preserve">
+    <value>Límite: {0}</value>
+  </data>
+  <data name="Sf.Traceability" xml:space="preserve">
+    <value>Trazabilidad</value>
+  </data>
+  <data name="Sf.BatchesWith" xml:space="preserve">
+    <value>Partidas con miel de este apicultor</value>
+  </data>
+  <data name="Sf.BatchesHelp" xml:space="preserve">
+    <value>Cada tarro de estas partidas lleva un código QR que abre su Historia de la miel.</value>
+  </data>
+  <data name="Sf.PackedBy" xml:space="preserve">
+    <value>envasado por {0}</value>
+  </data>
+  <data name="Sf.OriginShort" xml:space="preserve">
+    <value>origen: {0}</value>
+  </data>
+  <data name="Sf.ShareOf" xml:space="preserve">
+    <value>Proporción de miel de este apicultor</value>
+  </data>
+  <data name="Sf.AccreditedTested" xml:space="preserve">
+    <value>Analizado en laboratorio acreditado</value>
+  </data>
+  <data name="Sf.OpenHoneyStory" xml:space="preserve">
+    <value>Abrir la Historia de la miel</value>
+  </data>
+  <data name="Sf.References" xml:space="preserve">
+    <value>Referencias</value>
+  </data>
+  <data name="Sf.TrustedChain" xml:space="preserve">
+    <value>De confianza a lo largo de la cadena</value>
+  </data>
+  <data name="Sf.RefHelp" xml:space="preserve">
+    <value>Cada referencia procede de una relación registrada y verificada en la plataforma.</value>
+  </data>
+  <data name="Sf.RefMemberSince" xml:space="preserve">
+    <value>Miembro desde {0}.</value>
+  </data>
+  <data name="Sf.RefAssociation" xml:space="preserve">
+    <value>La asociación del apicultor; registró el consentimiento para esta página.</value>
+  </data>
+  <data name="Sf.RefProcessed" xml:space="preserve">
+    <value>Lotes procesados: {0} · partidas: {1}</value>
+  </data>
+  <data name="Sf.RefTested" xml:space="preserve">
+    <value>Informes aprobados: {0} · cada uno aprobado por una segunda persona</value>
+  </data>
+  <data name="Sf.RefHolds" xml:space="preserve">
+    <value>Partidas con esta miel: {0}</value>
+  </data>
+  <data name="Sf.KindAssociation" xml:space="preserve">
+    <value>Asociación</value>
+  </data>
+  <data name="Sf.KindProcessor" xml:space="preserve">
+    <value>Procesador</value>
+  </data>
+  <data name="Sf.KindPacker" xml:space="preserve">
+    <value>Envasador</value>
+  </data>
+  <data name="Sf.KindProcessorAndPacker" xml:space="preserve">
+    <value>Procesador y envasador</value>
+  </data>
+  <data name="Sf.KindLaboratory" xml:space="preserve">
+    <value>Laboratorio</value>
+  </data>
+  <data name="Sf.KindAccreditedLaboratory" xml:space="preserve">
+    <value>Laboratorio acreditado</value>
+  </data>
+  <data name="Sf.KindWholesaler" xml:space="preserve">
+    <value>Mayorista</value>
+  </data>
+  <data name="Sf.KindRetailer" xml:space="preserve">
+    <value>Minorista</value>
+  </data>
+  <data name="Sf.Demo.Quote" xml:space="preserve">
+    <value>[Texto de demostración] Cada lote que entregó Ayşe llegó con un formulario de entrega firmado y una auditoría de higiene completa.</value>
+  </data>
+  <data name="Sf.Demo.QuoteCaption" xml:space="preserve">
+    <value>Recomendación de la asociación · contenido de demostración</value>
+  </data>
+  <data name="Sf.LookingFor" xml:space="preserve">
+    <value>¿Busca esta miel?</value>
+  </data>
+  <data name="Sf.ContactText" xml:space="preserve">
+    <value>Cómprela en las tiendas que tienen sus partidas o envíe una solicitud a través de {0}. El teléfono del apicultor nunca se muestra en esta página.</value>
+  </data>
+  <data name="Sf.SeeShops" xml:space="preserve">
+    <value>Ver tiendas y partidas</value>
+  </data>
+  <data name="Sf.RequestViaAssociation" xml:space="preserve">
+    <value>Solicitar a través de la asociación</value>
+  </data>
+  <data name="Sf.FooterTag" xml:space="preserve">
+    <value>Plataforma abierta, fiable y sostenible para cadenas de valor inteligentes de la miel</value>
+  </data>
+  <data name="Sf.FooterNote" xml:space="preserve">
+    <value>Solo se muestran datos verificados. No se publica ningún número de teléfono, foto personal, fecha de nacimiento ni ubicación exacta. La página se publica con el consentimiento registrado del apicultor, que puede retirarse en cualquier momento.</value>
+  </data>
 </root>

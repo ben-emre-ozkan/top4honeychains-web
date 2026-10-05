@@ -5199,4 +5199,304 @@
   <data name="Cap.Uses.PlatformAdmin" xml:space="preserve">
     <value>The organization that runs the platform: organizations, master data and settings. Read-only on CCP values and approvals.</value>
   </data>
+  <data name="Sf.VerifyReport" xml:space="preserve">
+    <value>Verify a report</value>
+  </data>
+  <data name="Sf.DemoRibbon" xml:space="preserve">
+    <value>Demo profile with sample data, prepared for presentation. A real page shows only verified data and is published with the beekeeper's consent.</value>
+  </data>
+  <data name="Region.Marmara" xml:space="preserve">
+    <value>Marmara</value>
+  </data>
+  <data name="Region.Aegean" xml:space="preserve">
+    <value>Aegean</value>
+  </data>
+  <data name="Region.Mediterranean" xml:space="preserve">
+    <value>Mediterranean</value>
+  </data>
+  <data name="Region.CentralAnatolia" xml:space="preserve">
+    <value>Central Anatolia</value>
+  </data>
+  <data name="Region.BlackSea" xml:space="preserve">
+    <value>Black Sea</value>
+  </data>
+  <data name="Region.EasternAnatolia" xml:space="preserve">
+    <value>Eastern Anatolia</value>
+  </data>
+  <data name="Region.SoutheasternAnatolia" xml:space="preserve">
+    <value>Southeastern Anatolia</value>
+  </data>
+  <data name="Sf.Demo.Tagline" xml:space="preserve">
+    <value>Chestnut and wildflower honey from the forested hills above Akçakoca, harvested and traced lot by lot.</value>
+  </data>
+  <data name="Sf.MemberOf" xml:space="preserve">
+    <value>Member of {0}</value>
+  </data>
+  <data name="Sf.OnPlatformSince" xml:space="preserve">
+    <value>On the platform since {0}</value>
+  </data>
+  <data name="Sf.BadgeRegistry" xml:space="preserve">
+    <value>Registry verified (AKS)</value>
+  </data>
+  <data name="Sf.RecentActivity" xml:space="preserve">
+    <value>Recent activity on the platform</value>
+  </data>
+  <data name="Sf.LatestBatch" xml:space="preserve">
+    <value>Latest batch</value>
+  </data>
+  <data name="Sf.FinalisedOn" xml:space="preserve">
+    <value>Finalised on {0}</value>
+  </data>
+  <data name="Sf.LatestReport" xml:space="preserve">
+    <value>Latest lab report</value>
+  </data>
+  <data name="Sf.WithinLimitCount" xml:space="preserve">
+    <value>{0} of {1} within limit</value>
+  </data>
+  <data name="Sf.ReportCode" xml:space="preserve">
+    <value>Report {0}</value>
+  </data>
+  <data name="Sf.HygieneAudit" xml:space="preserve">
+    <value>Hygiene audit · CCP 0</value>
+  </data>
+  <data name="Sf.Passed" xml:space="preserve">
+    <value>Passed</value>
+  </data>
+  <data name="Sf.SeasonByAssociation" xml:space="preserve">
+    <value>{0} season, by the association</value>
+  </data>
+  <data name="Sf.ProfileMark" xml:space="preserve">
+    <value>Profile mark of {0}</value>
+  </data>
+  <data name="Sf.Beekeeper" xml:space="preserve">
+    <value>Beekeeper</value>
+  </data>
+  <data name="Sf.StatBatches" xml:space="preserve">
+    <value>batches</value>
+  </data>
+  <data name="Sf.StatReports" xml:space="preserve">
+    <value>lab reports</value>
+  </data>
+  <data name="Sf.StatKg" xml:space="preserve">
+    <value>honey traced</value>
+  </data>
+  <data name="Sf.WhereToBuy" xml:space="preserve">
+    <value>Where to buy this honey</value>
+  </data>
+  <data name="Sf.ContactViaAssociation" xml:space="preserve">
+    <value>Contact through the association</value>
+  </data>
+  <data name="Sf.QrAlt" xml:space="preserve">
+    <value>QR code of this page</value>
+  </data>
+  <data name="Sf.QrHint" xml:space="preserve">
+    <value>Scan to open this page, or share the link printed on the beekeeper's card.</value>
+  </data>
+  <data name="Sf.About" xml:space="preserve">
+    <value>About the apiary</value>
+  </data>
+  <data name="Sf.Demo.StoryTitle" xml:space="preserve">
+    <value>Hives under chestnut trees, a short walk from the Black Sea</value>
+  </data>
+  <data name="Sf.Demo.Story1" xml:space="preserve">
+    <value>[Sample text for the demo; on a real page the association writes it with the beekeeper's consent.] Ayşe keeps her colonies in the chestnut and linden forests above Akçakoca. Each harvest is delivered to the processing organisation with a signed delivery form, sampled under seal and tested by an accredited laboratory before it becomes part of a batch.</value>
+  </data>
+  <data name="Sf.Demo.Story2" xml:space="preserve">
+    <value>Because every lot is traced, buyers can see exactly which batches contain her honey and how each of them passed its control points.</value>
+  </data>
+  <data name="Sf.FeatureHarvest" xml:space="preserve">
+    <value>Harvest season</value>
+  </data>
+  <data name="Sf.MonthRange" xml:space="preserve">
+    <value>{0} to {1}</value>
+  </data>
+  <data name="Sf.FeatureHygiene" xml:space="preserve">
+    <value>Hygiene audit</value>
+  </data>
+  <data name="Sf.Ccp0AllLots" xml:space="preserve">
+    <value>CCP 0 passed for every verified lot</value>
+  </data>
+  <data name="Sf.Demo.PhotoApiary" xml:space="preserve">
+    <value>Apiary · added with consent</value>
+  </data>
+  <data name="Sf.Demo.PhotoApiaryAlt" xml:space="preserve">
+    <value>Hives in a row under chestnut trees on a forested slope</value>
+  </data>
+  <data name="Sf.Demo.PhotoHarvest" xml:space="preserve">
+    <value>Harvest</value>
+  </data>
+  <data name="Sf.Demo.PhotoHarvestAlt" xml:space="preserve">
+    <value>Beekeeper in a protective suit lifting a frame from a hive</value>
+  </data>
+  <data name="Sf.Demo.PhotoComb" xml:space="preserve">
+    <value>Capped comb</value>
+  </data>
+  <data name="Sf.Demo.PhotoCombAlt" xml:space="preserve">
+    <value>Gloved hands holding a capped honeycomb frame with bees</value>
+  </data>
+  <data name="Sf.Origin" xml:space="preserve">
+    <value>Origin</value>
+  </data>
+  <data name="Sf.WhereFrom" xml:space="preserve">
+    <value>Where the honey comes from</value>
+  </data>
+  <data name="Sf.MapLabel" xml:space="preserve">
+    <value>Map of Türkiye with the approximate area of {0} marked</value>
+  </data>
+  <data name="Sf.ApproxArea" xml:space="preserve">
+    <value>approximate area</value>
+  </data>
+  <data name="Sf.MapNote" xml:space="preserve">
+    <value>Marked at the centre of the province. Exact apiary locations are never published.</value>
+  </data>
+  <data name="Sf.Calendar" xml:space="preserve">
+    <value>Flowering and harvest</value>
+  </data>
+  <data name="Sf.HarvestCalendar" xml:space="preserve">
+    <value>Harvest calendar</value>
+  </data>
+  <data name="Sf.CalendarHelpDemo" xml:space="preserve">
+    <value>When the main sources bloom around the apiary (sample data)</value>
+  </data>
+  <data name="Sf.CalendarHelp" xml:space="preserve">
+    <value>Months in which the verified lots were harvested</value>
+  </data>
+  <data name="Sf.Flowering" xml:space="preserve">
+    <value>Flowering</value>
+  </data>
+  <data name="Sf.Harvest" xml:space="preserve">
+    <value>Harvest</value>
+  </data>
+  <data name="Sf.Demo.FloraChestnut" xml:space="preserve">
+    <value>Chestnut</value>
+  </data>
+  <data name="Sf.Demo.FloraLinden" xml:space="preserve">
+    <value>Linden</value>
+  </data>
+  <data name="Sf.Demo.FloraWildflower" xml:space="preserve">
+    <value>Wildflower</value>
+  </data>
+  <data name="Sf.Demo.FloraHeather" xml:space="preserve">
+    <value>Heather</value>
+  </data>
+  <data name="Sf.Quality" xml:space="preserve">
+    <value>Quality</value>
+  </data>
+  <data name="Sf.LatestResults" xml:space="preserve">
+    <value>Latest verified lab results</value>
+  </data>
+  <data name="Sf.VerifyReportCode" xml:space="preserve">
+    <value>Verify report {0}</value>
+  </data>
+  <data name="Sf.LabNoteAccredited" xml:space="preserve">
+    <value>Accredited laboratory {0}; a second person approved the report. Bars show the measured value against the limit that applied.</value>
+  </data>
+  <data name="Sf.LabNote" xml:space="preserve">
+    <value>Laboratory {0}; a second person approved the report. Bars show the measured value against the limit that applied.</value>
+  </data>
+  <data name="Sf.WithinLimit" xml:space="preserve">
+    <value>Within limit</value>
+  </data>
+  <data name="Sf.OutOfLimit" xml:space="preserve">
+    <value>Outside the limit</value>
+  </data>
+  <data name="Sf.Limit" xml:space="preserve">
+    <value>Limit: {0}</value>
+  </data>
+  <data name="Sf.Traceability" xml:space="preserve">
+    <value>Traceability</value>
+  </data>
+  <data name="Sf.BatchesWith" xml:space="preserve">
+    <value>Batches with this beekeeper's honey</value>
+  </data>
+  <data name="Sf.BatchesHelp" xml:space="preserve">
+    <value>Every jar of these batches carries a QR code that opens its Honey Story.</value>
+  </data>
+  <data name="Sf.PackedBy" xml:space="preserve">
+    <value>packed by {0}</value>
+  </data>
+  <data name="Sf.OriginShort" xml:space="preserve">
+    <value>origin {0}</value>
+  </data>
+  <data name="Sf.ShareOf" xml:space="preserve">
+    <value>Share of this beekeeper's honey</value>
+  </data>
+  <data name="Sf.AccreditedTested" xml:space="preserve">
+    <value>Accredited lab tested</value>
+  </data>
+  <data name="Sf.OpenHoneyStory" xml:space="preserve">
+    <value>Open Honey Story</value>
+  </data>
+  <data name="Sf.References" xml:space="preserve">
+    <value>References</value>
+  </data>
+  <data name="Sf.TrustedChain" xml:space="preserve">
+    <value>Trusted along the chain</value>
+  </data>
+  <data name="Sf.RefHelp" xml:space="preserve">
+    <value>Every reference below comes from a recorded and verified relationship on the platform.</value>
+  </data>
+  <data name="Sf.RefMemberSince" xml:space="preserve">
+    <value>Member since {0}.</value>
+  </data>
+  <data name="Sf.RefAssociation" xml:space="preserve">
+    <value>The beekeeper's association; it recorded the consent for this page.</value>
+  </data>
+  <data name="Sf.RefProcessed" xml:space="preserve">
+    <value>Lots processed: {0} · batches: {1}</value>
+  </data>
+  <data name="Sf.RefTested" xml:space="preserve">
+    <value>Approved reports: {0} · each approved by a second person</value>
+  </data>
+  <data name="Sf.RefHolds" xml:space="preserve">
+    <value>Batches with this honey: {0}</value>
+  </data>
+  <data name="Sf.KindAssociation" xml:space="preserve">
+    <value>Association</value>
+  </data>
+  <data name="Sf.KindProcessor" xml:space="preserve">
+    <value>Processor</value>
+  </data>
+  <data name="Sf.KindPacker" xml:space="preserve">
+    <value>Packer</value>
+  </data>
+  <data name="Sf.KindProcessorAndPacker" xml:space="preserve">
+    <value>Processor and packer</value>
+  </data>
+  <data name="Sf.KindLaboratory" xml:space="preserve">
+    <value>Laboratory</value>
+  </data>
+  <data name="Sf.KindAccreditedLaboratory" xml:space="preserve">
+    <value>Accredited laboratory</value>
+  </data>
+  <data name="Sf.KindWholesaler" xml:space="preserve">
+    <value>Wholesaler</value>
+  </data>
+  <data name="Sf.KindRetailer" xml:space="preserve">
+    <value>Retailer</value>
+  </data>
+  <data name="Sf.Demo.Quote" xml:space="preserve">
+    <value>[Demo text] Every lot Ayşe delivered came with a signed delivery form and a complete hygiene audit.</value>
+  </data>
+  <data name="Sf.Demo.QuoteCaption" xml:space="preserve">
+    <value>Recommendation from the association · demo content</value>
+  </data>
+  <data name="Sf.LookingFor" xml:space="preserve">
+    <value>Looking for this honey?</value>
+  </data>
+  <data name="Sf.ContactText" xml:space="preserve">
+    <value>Buy it from the shops that hold its batches, or send a request through {0}. The beekeeper's phone number is never shown on this page.</value>
+  </data>
+  <data name="Sf.SeeShops" xml:space="preserve">
+    <value>See shops and batches</value>
+  </data>
+  <data name="Sf.RequestViaAssociation" xml:space="preserve">
+    <value>Request via the association</value>
+  </data>
+  <data name="Sf.FooterTag" xml:space="preserve">
+    <value>Trustable and sustainable open platform for smart honey value chains</value>
+  </data>
+  <data name="Sf.FooterNote" xml:space="preserve">
+    <value>Only verified data is shown. No phone number, personal photo, birth date or exact location is published. The page is published with the beekeeper's recorded consent, which can be withdrawn at any time.</value>
+  </data>
 </root>

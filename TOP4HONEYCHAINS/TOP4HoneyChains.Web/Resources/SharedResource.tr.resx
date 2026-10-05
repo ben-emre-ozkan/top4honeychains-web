@@ -5199,4 +5199,304 @@
   <data name="Cap.Uses.PlatformAdmin" xml:space="preserve">
     <value>Platformu yöneten kurum: kurumlar, ana veriler ve ayarlar. KKN değerleri ve onaylarında yalnızca okur.</value>
   </data>
+  <data name="Sf.VerifyReport" xml:space="preserve">
+    <value>Rapor doğrula</value>
+  </data>
+  <data name="Sf.DemoRibbon" xml:space="preserve">
+    <value>Sunum için örnek verilerle hazırlanmış demo profil. Gerçek bir sayfa yalnızca doğrulanmış verileri gösterir ve arıcının rızasıyla yayımlanır.</value>
+  </data>
+  <data name="Region.Marmara" xml:space="preserve">
+    <value>Marmara</value>
+  </data>
+  <data name="Region.Aegean" xml:space="preserve">
+    <value>Ege</value>
+  </data>
+  <data name="Region.Mediterranean" xml:space="preserve">
+    <value>Akdeniz</value>
+  </data>
+  <data name="Region.CentralAnatolia" xml:space="preserve">
+    <value>İç Anadolu</value>
+  </data>
+  <data name="Region.BlackSea" xml:space="preserve">
+    <value>Karadeniz</value>
+  </data>
+  <data name="Region.EasternAnatolia" xml:space="preserve">
+    <value>Doğu Anadolu</value>
+  </data>
+  <data name="Region.SoutheasternAnatolia" xml:space="preserve">
+    <value>Güneydoğu Anadolu</value>
+  </data>
+  <data name="Sf.Demo.Tagline" xml:space="preserve">
+    <value>Akçakoca'nın ormanlık tepelerinden kestane ve kır çiçeği balı; lot lot hasat edilir ve izlenir.</value>
+  </data>
+  <data name="Sf.MemberOf" xml:space="preserve">
+    <value>{0} üyesi</value>
+  </data>
+  <data name="Sf.OnPlatformSince" xml:space="preserve">
+    <value>{0} yılından beri platformda</value>
+  </data>
+  <data name="Sf.BadgeRegistry" xml:space="preserve">
+    <value>Kaydı doğrulandı (AKS)</value>
+  </data>
+  <data name="Sf.RecentActivity" xml:space="preserve">
+    <value>Platformdaki son etkinlikler</value>
+  </data>
+  <data name="Sf.LatestBatch" xml:space="preserve">
+    <value>Son parti</value>
+  </data>
+  <data name="Sf.FinalisedOn" xml:space="preserve">
+    <value>{0} tarihinde tamamlandı</value>
+  </data>
+  <data name="Sf.LatestReport" xml:space="preserve">
+    <value>Son laboratuvar raporu</value>
+  </data>
+  <data name="Sf.WithinLimitCount" xml:space="preserve">
+    <value>{1} değerden {0} tanesi sınır içinde</value>
+  </data>
+  <data name="Sf.ReportCode" xml:space="preserve">
+    <value>Rapor {0}</value>
+  </data>
+  <data name="Sf.HygieneAudit" xml:space="preserve">
+    <value>Hijyen denetimi · KKN 0</value>
+  </data>
+  <data name="Sf.Passed" xml:space="preserve">
+    <value>Geçti</value>
+  </data>
+  <data name="Sf.SeasonByAssociation" xml:space="preserve">
+    <value>{0} sezonu, birlik tarafından</value>
+  </data>
+  <data name="Sf.ProfileMark" xml:space="preserve">
+    <value>{0} profil simgesi</value>
+  </data>
+  <data name="Sf.Beekeeper" xml:space="preserve">
+    <value>Arıcı</value>
+  </data>
+  <data name="Sf.StatBatches" xml:space="preserve">
+    <value>parti</value>
+  </data>
+  <data name="Sf.StatReports" xml:space="preserve">
+    <value>laboratuvar raporu</value>
+  </data>
+  <data name="Sf.StatKg" xml:space="preserve">
+    <value>izlenen bal</value>
+  </data>
+  <data name="Sf.WhereToBuy" xml:space="preserve">
+    <value>Bu bal nereden alınır</value>
+  </data>
+  <data name="Sf.ContactViaAssociation" xml:space="preserve">
+    <value>Birlik aracılığıyla iletişim</value>
+  </data>
+  <data name="Sf.QrAlt" xml:space="preserve">
+    <value>Bu sayfanın QR kodu</value>
+  </data>
+  <data name="Sf.QrHint" xml:space="preserve">
+    <value>Bu sayfayı açmak için tarayın veya arıcı kartındaki bağlantıyı paylaşın.</value>
+  </data>
+  <data name="Sf.About" xml:space="preserve">
+    <value>Arılık hakkında</value>
+  </data>
+  <data name="Sf.Demo.StoryTitle" xml:space="preserve">
+    <value>Kestane ağaçlarının altında, Karadeniz'e birkaç adım uzaklıkta kovanlar</value>
+  </data>
+  <data name="Sf.Demo.Story1" xml:space="preserve">
+    <value>[Demo için örnek metin; gerçek bir sayfada bu metni birlik, arıcının rızasıyla yazar.] Ayşe kolonilerini Akçakoca'nın üzerindeki kestane ve ıhlamur ormanlarında tutuyor. Her hasat imzalı bir teslim formuyla işleme kurumuna teslim edilir, mühürlü numune alınır ve bir partiye girmeden önce akredite bir laboratuvarda test edilir.</value>
+  </data>
+  <data name="Sf.Demo.Story2" xml:space="preserve">
+    <value>Her lot izlendiği için alıcılar onun balının hangi partilerde bulunduğunu ve her partinin kontrol noktalarından nasıl geçtiğini tam olarak görebilir.</value>
+  </data>
+  <data name="Sf.FeatureHarvest" xml:space="preserve">
+    <value>Hasat dönemi</value>
+  </data>
+  <data name="Sf.MonthRange" xml:space="preserve">
+    <value>{0} – {1}</value>
+  </data>
+  <data name="Sf.FeatureHygiene" xml:space="preserve">
+    <value>Hijyen denetimi</value>
+  </data>
+  <data name="Sf.Ccp0AllLots" xml:space="preserve">
+    <value>Doğrulanmış her lot için KKN 0 geçti</value>
+  </data>
+  <data name="Sf.Demo.PhotoApiary" xml:space="preserve">
+    <value>Arılık · rızayla eklendi</value>
+  </data>
+  <data name="Sf.Demo.PhotoApiaryAlt" xml:space="preserve">
+    <value>Ormanlık bir yamaçta kestane ağaçları altında sıralanmış kovanlar</value>
+  </data>
+  <data name="Sf.Demo.PhotoHarvest" xml:space="preserve">
+    <value>Hasat</value>
+  </data>
+  <data name="Sf.Demo.PhotoHarvestAlt" xml:space="preserve">
+    <value>Koruyucu giysili bir arıcı kovandan çerçeve çıkarıyor</value>
+  </data>
+  <data name="Sf.Demo.PhotoComb" xml:space="preserve">
+    <value>Sırlı petek</value>
+  </data>
+  <data name="Sf.Demo.PhotoCombAlt" xml:space="preserve">
+    <value>Eldivenli eller arılarla dolu sırlı bir petek çerçevesini tutuyor</value>
+  </data>
+  <data name="Sf.Origin" xml:space="preserve">
+    <value>Köken</value>
+  </data>
+  <data name="Sf.WhereFrom" xml:space="preserve">
+    <value>Bal nereden geliyor</value>
+  </data>
+  <data name="Sf.MapLabel" xml:space="preserve">
+    <value>Türkiye haritası; {0} çevresi yaklaşık olarak işaretli</value>
+  </data>
+  <data name="Sf.ApproxArea" xml:space="preserve">
+    <value>yaklaşık bölge</value>
+  </data>
+  <data name="Sf.MapNote" xml:space="preserve">
+    <value>İl merkezinde işaretlenmiştir. Arılıkların kesin konumu hiçbir zaman yayımlanmaz.</value>
+  </data>
+  <data name="Sf.Calendar" xml:space="preserve">
+    <value>Çiçeklenme ve hasat</value>
+  </data>
+  <data name="Sf.HarvestCalendar" xml:space="preserve">
+    <value>Hasat takvimi</value>
+  </data>
+  <data name="Sf.CalendarHelpDemo" xml:space="preserve">
+    <value>Arılık çevresindeki ana kaynakların çiçeklendiği aylar (örnek veri)</value>
+  </data>
+  <data name="Sf.CalendarHelp" xml:space="preserve">
+    <value>Doğrulanmış lotların hasat edildiği aylar</value>
+  </data>
+  <data name="Sf.Flowering" xml:space="preserve">
+    <value>Çiçeklenme</value>
+  </data>
+  <data name="Sf.Harvest" xml:space="preserve">
+    <value>Hasat</value>
+  </data>
+  <data name="Sf.Demo.FloraChestnut" xml:space="preserve">
+    <value>Kestane</value>
+  </data>
+  <data name="Sf.Demo.FloraLinden" xml:space="preserve">
+    <value>Ihlamur</value>
+  </data>
+  <data name="Sf.Demo.FloraWildflower" xml:space="preserve">
+    <value>Kır çiçeği</value>
+  </data>
+  <data name="Sf.Demo.FloraHeather" xml:space="preserve">
+    <value>Funda</value>
+  </data>
+  <data name="Sf.Quality" xml:space="preserve">
+    <value>Kalite</value>
+  </data>
+  <data name="Sf.LatestResults" xml:space="preserve">
+    <value>Son doğrulanmış laboratuvar sonuçları</value>
+  </data>
+  <data name="Sf.VerifyReportCode" xml:space="preserve">
+    <value>{0} raporunu doğrula</value>
+  </data>
+  <data name="Sf.LabNoteAccredited" xml:space="preserve">
+    <value>Akredite laboratuvar: {0}; raporu ikinci bir kişi onayladı. Çubuklar ölçülen değeri uygulanan sınırla karşılaştırır.</value>
+  </data>
+  <data name="Sf.LabNote" xml:space="preserve">
+    <value>Laboratuvar: {0}; raporu ikinci bir kişi onayladı. Çubuklar ölçülen değeri uygulanan sınırla karşılaştırır.</value>
+  </data>
+  <data name="Sf.WithinLimit" xml:space="preserve">
+    <value>Sınır içinde</value>
+  </data>
+  <data name="Sf.OutOfLimit" xml:space="preserve">
+    <value>Sınır dışında</value>
+  </data>
+  <data name="Sf.Limit" xml:space="preserve">
+    <value>Sınır: {0}</value>
+  </data>
+  <data name="Sf.Traceability" xml:space="preserve">
+    <value>İzlenebilirlik</value>
+  </data>
+  <data name="Sf.BatchesWith" xml:space="preserve">
+    <value>Bu arıcının balını içeren partiler</value>
+  </data>
+  <data name="Sf.BatchesHelp" xml:space="preserve">
+    <value>Bu partilerin her kavanozunda Bal Hikâyesi'ni açan bir QR kod bulunur.</value>
+  </data>
+  <data name="Sf.PackedBy" xml:space="preserve">
+    <value>paketleyen: {0}</value>
+  </data>
+  <data name="Sf.OriginShort" xml:space="preserve">
+    <value>köken: {0}</value>
+  </data>
+  <data name="Sf.ShareOf" xml:space="preserve">
+    <value>Bu arıcının balının payı</value>
+  </data>
+  <data name="Sf.AccreditedTested" xml:space="preserve">
+    <value>Akredite laboratuvarda test edildi</value>
+  </data>
+  <data name="Sf.OpenHoneyStory" xml:space="preserve">
+    <value>Bal Hikâyesi'ni aç</value>
+  </data>
+  <data name="Sf.References" xml:space="preserve">
+    <value>Referanslar</value>
+  </data>
+  <data name="Sf.TrustedChain" xml:space="preserve">
+    <value>Zincir boyunca güvenilen</value>
+  </data>
+  <data name="Sf.RefHelp" xml:space="preserve">
+    <value>Aşağıdaki her referans platformda kayıtlı ve doğrulanmış bir ilişkiden gelir.</value>
+  </data>
+  <data name="Sf.RefMemberSince" xml:space="preserve">
+    <value>{0} yılından beri üye.</value>
+  </data>
+  <data name="Sf.RefAssociation" xml:space="preserve">
+    <value>Arıcının birliği; bu sayfa için rızayı kaydetti.</value>
+  </data>
+  <data name="Sf.RefProcessed" xml:space="preserve">
+    <value>İşlenen lot: {0} · parti: {1}</value>
+  </data>
+  <data name="Sf.RefTested" xml:space="preserve">
+    <value>Onaylı rapor: {0} · her biri ikinci bir kişi tarafından onaylandı</value>
+  </data>
+  <data name="Sf.RefHolds" xml:space="preserve">
+    <value>Bu balı içeren parti: {0}</value>
+  </data>
+  <data name="Sf.KindAssociation" xml:space="preserve">
+    <value>Birlik</value>
+  </data>
+  <data name="Sf.KindProcessor" xml:space="preserve">
+    <value>İşleyici</value>
+  </data>
+  <data name="Sf.KindPacker" xml:space="preserve">
+    <value>Paketleyici</value>
+  </data>
+  <data name="Sf.KindProcessorAndPacker" xml:space="preserve">
+    <value>İşleyici ve paketleyici</value>
+  </data>
+  <data name="Sf.KindLaboratory" xml:space="preserve">
+    <value>Laboratuvar</value>
+  </data>
+  <data name="Sf.KindAccreditedLaboratory" xml:space="preserve">
+    <value>Akredite laboratuvar</value>
+  </data>
+  <data name="Sf.KindWholesaler" xml:space="preserve">
+    <value>Toptancı</value>
+  </data>
+  <data name="Sf.KindRetailer" xml:space="preserve">
+    <value>Perakendeci</value>
+  </data>
+  <data name="Sf.Demo.Quote" xml:space="preserve">
+    <value>[Demo metni] Ayşe'nin teslim ettiği her lot imzalı bir teslim formu ve eksiksiz bir hijyen denetimiyle geldi.</value>
+  </data>
+  <data name="Sf.Demo.QuoteCaption" xml:space="preserve">
+    <value>Birliğin tavsiyesi · demo içerik</value>
+  </data>
+  <data name="Sf.LookingFor" xml:space="preserve">
+    <value>Bu balı mı arıyorsunuz?</value>
+  </data>
+  <data name="Sf.ContactText" xml:space="preserve">
+    <value>Partilerini bulunduran satış noktalarından alın ya da {0} aracılığıyla talep gönderin. Arıcının telefon numarası bu sayfada asla gösterilmez.</value>
+  </data>
+  <data name="Sf.SeeShops" xml:space="preserve">
+    <value>Satış noktaları ve partiler</value>
+  </data>
+  <data name="Sf.RequestViaAssociation" xml:space="preserve">
+    <value>Birlik aracılığıyla talep</value>
+  </data>
+  <data name="Sf.FooterTag" xml:space="preserve">
+    <value>Akıllı bal değer zincirleri için güvenilir ve sürdürülebilir açık platform</value>
+  </data>
+  <data name="Sf.FooterNote" xml:space="preserve">
+    <value>Yalnızca doğrulanmış veriler gösterilir. Telefon numarası, kişisel fotoğraf, doğum tarihi veya kesin konum yayımlanmaz. Sayfa, arıcının kayıtlı rızasıyla yayımlanır; rıza her zaman geri çekilebilir.</value>
+  </data>
 </root>

@@ -51,15 +51,32 @@ namespace TOP4HoneyChains.Web.Services
             return new Result(inRange, Truncate(string.Join("; ", checks.Select(c => c.label)), 200));
         }
 
-        private static (bool? ok, string label)? MainCheck(CriticalControlPointParameter parameter, decimal value,
-            IReadOnlyDictionary<int, decimal> siblingValues, HoneyProfile honey)
-        {
-            var row = Matching(parameter, siblingValues, honey)
+        private static CriticalControlPointParameterLimit? MainRow(CriticalControlPointParameter parameter,
+            IReadOnlyDictionary<int, decimal> siblingValues, HoneyProfile honey) =>
+            Matching(parameter, siblingValues, honey)
                 .Where(l => l.RatioWithParameterId == null)
                 .OrderByDescending(l => l.HoneyTypeId != null)
                 .ThenByDescending(l => l.HoneyClass != null)
                 .ThenByDescending(l => l.ConditionParameterId != null)
                 .FirstOrDefault();
+
+        // The min/max of the main limit that applies to the value itself (for a bar chart); null when there is
+        // none or the limit applies to a sum with another parameter
+        public static (decimal? Min, decimal? Max)? MainBounds(CriticalControlPointParameter parameter,
+            IReadOnlyDictionary<int, decimal> siblingValues, HoneyProfile honey)
+        {
+            var row = MainRow(parameter, siblingValues, honey);
+            if (row == null)
+                return parameter.MinValue == null && parameter.MaxValue == null ? null : (parameter.MinValue, parameter.MaxValue);
+            if (row.SumWithParameterId != null || (row.MinValue == null && row.MaxValue == null))
+                return null;
+            return (row.MinValue, row.MaxValue);
+        }
+
+        private static (bool? ok, string label)? MainCheck(CriticalControlPointParameter parameter, decimal value,
+            IReadOnlyDictionary<int, decimal> siblingValues, HoneyProfile honey)
+        {
+            var row = MainRow(parameter, siblingValues, honey);
 
             if (row == null)
             {
