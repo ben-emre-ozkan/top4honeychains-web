@@ -35,7 +35,7 @@
 
                                         <span>
                                             <strong>@L["Season:"]</strong>
-                                            @ViewBag.PeriodTitle
+                                            @Ref.Period((int?)ViewBag.PeriodId, (string?)ViewBag.PeriodTitle)
                                         </span>
 
                                     </div>

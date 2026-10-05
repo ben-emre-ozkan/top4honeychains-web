@@ -19,6 +19,7 @@ namespace TOP4HoneyChains.Web.Services
         private static readonly ConcurrentDictionary<string, (Dictionary<string, string> Exact, List<Template> Templates)> Cache = new();
         private static readonly Regex Placeholder = new(@"\{(\d+)\}");
         private static readonly Regex SentenceBreak = new(@"(?<=\.) (?=[A-Z])");
+        private static readonly Regex ListSeparator = new("(, | or )");
         private readonly IStringLocalizer<SharedResource> _localizer;
         private readonly RefText? _ref;
 
@@ -80,8 +81,26 @@ namespace TOP4HoneyChains.Web.Services
             var parts = SentenceBreak.Split(text);
             if (parts.Length > 1)
                 return string.Join(" ", parts.Select(p => Translate(p, depth + 1)));
-            // D-51: a variable part that is reference data (CCP title, status, parameter, honey type)
-            return depth > 0 ? _ref?.AnyText(text) ?? text : text;
+            // D-51: a variable part that is reference data (CCP title, status, parameter, honey type, org role, capability)
+            if (depth == 0 || _ref == null)
+                return text;
+            if (_ref.AnyText(text) is string single)
+                return single;
+            // a list of them ("Staff or OrgAdmin", "Packing, Retail"): translated only when every item is reference data
+            var items = ListSeparator.Split(text);
+            if (items.Length < 3)
+                return text;
+            var listParts = new string[items.Length];
+            for (var i = 0; i < items.Length; i++)
+            {
+                if (i % 2 == 1)
+                    listParts[i] = items[i] == " or " ? " " + _localizer["Msg.Or"].Value + " " : items[i];
+                else if (_ref.AnyText(items[i]) is string t)
+                    listParts[i] = t;
+                else
+                    return text;
+            }
+            return string.Concat(listParts);
         }
     }
 

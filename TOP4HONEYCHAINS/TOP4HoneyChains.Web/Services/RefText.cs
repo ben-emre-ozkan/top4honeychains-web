@@ -52,6 +52,11 @@ namespace TOP4HoneyChains.Web.Services
             foreach (var p in db.RawHoneyProductionPeriods.AsNoTracking().Select(p => new { p.RawHoneyProductionPeriodId, p.RawHoneyProductionPeriodTitle }).ToList())
                 if (p.RawHoneyProductionPeriodTitle != null)
                     list.Add((RefEntity.ProductionPeriod, p.RawHoneyProductionPeriodId.ToString(CultureInfo.InvariantCulture), "Title", p.RawHoneyProductionPeriodTitle));
+            // organization roles and capabilities are named by their code in server messages
+            foreach (var code in db.OrgRoleDefinitions.AsNoTracking().Select(r => r.Code).ToList())
+                list.Add((RefEntity.OrgRole, code, "Name", code));
+            foreach (var code in db.Capabilities.AsNoTracking().Select(c => c.Code).ToList())
+                list.Add((RefEntity.Capability, code, "Name", code));
             _bases = list;
             return list;
         }

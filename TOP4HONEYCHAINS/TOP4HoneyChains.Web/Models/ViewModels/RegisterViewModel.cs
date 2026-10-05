@@ -20,7 +20,7 @@ namespace TOP4HoneyChains.Web.Models.ViewModels
         [Compare("Password")]
         public string? ConfirmPassword { get; set; }
 
-        [Required]
+        // Required in admin mode; with the organization model empty means "no global role" (checked in the controller)
         public string? Role { get; set; }
     }
 }

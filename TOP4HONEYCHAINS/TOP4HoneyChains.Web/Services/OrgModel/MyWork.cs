@@ -9,7 +9,8 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
     // same rules that allow the action (so the list never offers something the user cannot do)
     public class MyWorkService
     {
-        public record Item(string Kind, string Title, string? Detail, string Url, DateTime? Since);
+        // TitleKind: a record kind ("RawLot", "Batch") the view translates and adds to the title
+        public record Item(string Kind, string Title, string? Detail, string Url, DateTime? Since, string? TitleKind = null);
 
         private readonly TOP4HoneyChainsContext _context;
         private readonly ICurrentOrg _current;
@@ -131,7 +132,7 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                 items.Add(new Item("Registry", r.EnterpriseNumber, null, $"/Registry/Edit/{r.BeekeeperId}", r.RequestedAt));
             foreach (var c in await _context.CcpCorrections.AsNoTracking().Include(c => c.Ccp)
                          .Where(c => c.Status == CorrectionStatus.Pending && c.RequestedByUserId != _current.UserId).ToListAsync())
-                items.Add(new Item("Correction", $"{c.Ccp?.Code} · {c.OwnerKind} #{c.OwnerId}", c.Reason, "/CCPMonitoring/Corrections", c.RequestedAt));
+                items.Add(new Item("Correction", $"{c.Ccp?.Code} #{c.OwnerId}", c.Reason, "/CCPMonitoring/Corrections", c.RequestedAt, c.OwnerKind));
         }
 
         // Pending organizations that uploaded at least one document

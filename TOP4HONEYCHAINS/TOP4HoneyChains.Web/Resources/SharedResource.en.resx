@@ -5697,4 +5697,34 @@
   <data name="Sf.LabNoteShort" xml:space="preserve">
     <value>Laboratory {0}; a second person approved the report.</value>
   </data>
+  <data name="UM.GlobalRole" xml:space="preserve">
+    <value>Global role</value>
+  </data>
+  <data name="UM.NoGlobalRole" xml:space="preserve">
+    <value>No global role (organization member)</value>
+  </data>
+  <data name="UM.PlatformAdmin" xml:space="preserve">
+    <value>Platform administrator</value>
+  </data>
+  <data name="UM.OrgRoleNote" xml:space="preserve">
+    <value>Organization roles (sample acceptance, analyst, quality approver and others) are given per organization; beekeepers and consumers do not sign in. Give them under</value>
+  </data>
+  <data name="User created without a global role. Give the organization role under Organizations → Add member." xml:space="preserve">
+    <value>User created without a global role. Give the organization role under Organizations → Add member.</value>
+  </data>
+  <data name="Msg.Or" xml:space="preserve">
+    <value>or</value>
+  </data>
+  <data name="Audit.Org" xml:space="preserve">
+    <value>Organization</value>
+  </data>
+  <data name="SelfApproved" xml:space="preserve">
+    <value>Self-approved</value>
+  </data>
+  <data name="SelfFinalized" xml:space="preserve">
+    <value>Self-finalized</value>
+  </data>
+  <data name="RolePermissions" xml:space="preserve">
+    <value>Role permissions</value>
+  </data>
 </root>

@@ -310,7 +310,7 @@
     <value>Kompetences</value>
   </data>
   <data name="Org.NotVerifiedBanner" xml:space="preserve">
-    <value>Jūsu organizācija vēl nav pārbaudīta. Jūs varat skatīt tās datus un (kā OrgAdmin) augšupielādēt dokumentus, taču neviens nevar ievadīt datus, kamēr tā nav pārbaudīta.</value>
+    <value>Jūsu organizācija vēl nav pārbaudīta. Jūs varat skatīt tās datus un (kā organizācijas administrators) augšupielādēt dokumentus, taču neviens nevar ievadīt datus, kamēr tā nav pārbaudīta.</value>
   </data>
   <data name="Org.OrganizationPage" xml:space="preserve">
     <value>Organizācijas lapa</value>
@@ -379,7 +379,7 @@
     <value>Pabeigt (fiksēt)</value>
   </data>
   <data name="Org.FinalizeHelp" xml:space="preserve">
-    <value>Visiem gala partijas un tās partiju kontroles punktiem jābūt apstiprinātiem. Viena persona pieprasa, cita persona (QualityApprover) apstiprina. Pabeigtu (fiksētu) gala partiju nevar mainīt.</value>
+    <value>Visiem gala partijas un tās partiju kontroles punktiem jābūt apstiprinātiem. Viena persona pieprasa, cita persona (kvalitātes apstiprinātājs) apstiprina. Pabeigtu (fiksētu) gala partiju nevar mainīt.</value>
   </data>
   <data name="Org.SelfApproved" xml:space="preserve">
     <value>pašapstiprināts (izņēmums)</value>
@@ -1000,7 +1000,7 @@
     <value>Pārskata kods</value>
   </data>
   <data name="Lab.Returned" xml:space="preserve">
-    <value>LabManager atgrieza</value>
+    <value>laboratorijas vadītājs atgrieza</value>
   </data>
   <data name="Lab.ReportNumber" xml:space="preserve">
     <value>Pārskata numurs</value>
@@ -1558,7 +1558,7 @@
     <value>Gala partija: {0} ({1}) nav piešķirts.</value>
   </data>
   <data name="Your role ({0}) cannot take samples; only a SampleAcceptanceOfficer can." xml:space="preserve">
-    <value>Jūsu loma ({0}) nevar ņemt paraugus; to var tikai SampleAcceptanceOfficer.</value>
+    <value>Jūsu loma ({0}) nevar ņemt paraugus; to var tikai paraugu pieņemšanas speciālists.</value>
   </data>
   <data name="Consent recorded. The storefront is published once the registry number is verified." xml:space="preserve">
     <value>Piekrišana reģistrēta. Publiskā lapa tiks publicēta, kad reģistrācijas numurs būs pārbaudīts.</value>
@@ -1594,7 +1594,7 @@
     <value>Platformas organizācijas statusu nevar mainīt.</value>
   </data>
   <data name="Only a QualityApprover of the organization can approve." xml:space="preserve">
-    <value>Apstiprināt var tikai organizācijas QualityApprover.</value>
+    <value>Apstiprināt var tikai organizācijas kvalitātes apstiprinātājs.</value>
   </data>
   <data name="Profile Photo" xml:space="preserve">
     <value>Profila fotoattēls</value>
@@ -1921,7 +1921,7 @@
     <value>Atjauniniet izvēlēto neapstrādāta medus ražošanas periodu.</value>
   </data>
   <data name="The report is submitted; the LabManager approves it or returns it for changes." xml:space="preserve">
-    <value>Pārskats ir iesniegts; LabManager to apstiprina vai atgriež labošanai.</value>
+    <value>Pārskats ir iesniegts; laboratorijas vadītājs to apstiprina vai atgriež labošanai.</value>
   </data>
   <data name="Show _MENU_ entries" xml:space="preserve">
     <value>Rādīt _MENU_ ierakstus</value>
@@ -2722,7 +2722,7 @@
     <value>Dzēst medus veidu</value>
   </data>
   <data name="Finalizing requested; a QualityApprover (another person) must confirm it." xml:space="preserve">
-    <value>Pabeigšana (fiksēšana) pieprasīta; tā jāapstiprina QualityApprover (citai personai).</value>
+    <value>Pabeigšana (fiksēšana) pieprasīta; tā jāapstiprina kvalitātes apstiprinātājs (citai personai).</value>
   </data>
   <data name="Action" xml:space="preserve">
     <value>Darbība</value>
@@ -2941,7 +2941,7 @@
     <value>Attiecība pret (papildu pārbaude)</value>
   </data>
   <data name="Report submitted; a LabManager (another person) must approve it." xml:space="preserve">
-    <value>Pārskats iesniegts; tas jāapstiprina LabManager (citai personai).</value>
+    <value>Pārskats iesniegts; tas jāapstiprina laboratorijas vadītājs (citai personai).</value>
   </data>
   <data name="Company Name" xml:space="preserve">
     <value>Uzņēmuma nosaukums</value>
@@ -3631,7 +3631,7 @@
     <value>Vairumtirgotāji</value>
   </data>
   <data name="Your role ({0}) cannot manage storefronts; only the association's OrgAdmin can." xml:space="preserve">
-    <value>Jūsu loma ({0}) nevar pārvaldīt biškopju publiskās lapas; to var tikai biedrības OrgAdmin.</value>
+    <value>Jūsu loma ({0}) nevar pārvaldīt biškopju publiskās lapas; to var tikai biedrības organizācijas administrators.</value>
   </data>
   <data name="The stored report file does not match its SHA-256 hash; upload it again." xml:space="preserve">
     <value>Saglabātais pārskata fails neatbilst tā SHA-256 jaucējvērtībai; augšupielādējiet to vēlreiz.</value>
@@ -3664,7 +3664,7 @@
     <value>Pirms pārbaudes augšupielādējiet vismaz vienu dokumentu (licenci, akreditāciju, reģistrācijas apliecinājumu).</value>
   </data>
   <data name="Your role ({0}) cannot record deliveries; only a SampleAcceptanceOfficer can." xml:space="preserve">
-    <value>Jūsu loma ({0}) nevar reģistrēt piegādes; to var tikai SampleAcceptanceOfficer.</value>
+    <value>Jūsu loma ({0}) nevar reģistrēt piegādes; to var tikai paraugu pieņemšanas speciālists.</value>
   </data>
   <data name="TOP4HoneyChains Educational Content" xml:space="preserve">
     <value>TOP4HoneyChains izglītojošais saturs</value>
@@ -5696,5 +5696,35 @@
   </data>
   <data name="Sf.LabNoteShort" xml:space="preserve">
     <value>Laboratorija {0}; pārskatu apstiprināja otra persona.</value>
+  </data>
+  <data name="UM.GlobalRole" xml:space="preserve">
+    <value>Globālā loma</value>
+  </data>
+  <data name="UM.NoGlobalRole" xml:space="preserve">
+    <value>Bez globālās lomas (organizācijas dalībnieks)</value>
+  </data>
+  <data name="UM.PlatformAdmin" xml:space="preserve">
+    <value>Platformas administrators</value>
+  </data>
+  <data name="UM.OrgRoleNote" xml:space="preserve">
+    <value>Organizācijas lomas (paraugu pieņemšana, analītiķis, kvalitātes apstiprinātājs u. c.) piešķir katrā organizācijā; biškopji un patērētāji nepiesakās. Piešķiriet tās šeit:</value>
+  </data>
+  <data name="User created without a global role. Give the organization role under Organizations → Add member." xml:space="preserve">
+    <value>Lietotājs izveidots bez globālās lomas. Piešķiriet organizācijas lomu sadaļā Organizācijas → Pievienot dalībnieku.</value>
+  </data>
+  <data name="Msg.Or" xml:space="preserve">
+    <value>vai</value>
+  </data>
+  <data name="Audit.Org" xml:space="preserve">
+    <value>Organizācija</value>
+  </data>
+  <data name="SelfApproved" xml:space="preserve">
+    <value>Pašapstiprināts</value>
+  </data>
+  <data name="SelfFinalized" xml:space="preserve">
+    <value>Pašpabeigts</value>
+  </data>
+  <data name="RolePermissions" xml:space="preserve">
+    <value>Lomu atļaujas</value>
   </data>
 </root>

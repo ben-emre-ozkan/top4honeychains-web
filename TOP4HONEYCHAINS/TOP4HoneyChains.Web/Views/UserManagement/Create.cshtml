@@ -83,18 +83,32 @@
 
                                 <div class="mb-3">
 
-                                    <label class="form-label required">@L["Role"]</label>
-
-                                    <select asp-for="Role" class="form-select">
-
-                                        <option value="">@L["Select Role"]</option>
-
-                                        @foreach (var role in ViewBag.Roles)
-                                        {
-                                            <option value="@role">@L[(string)role]</option>
-                                        }
-
-                                    </select>
+                                    @if (ViewBag.OrgModel == true)
+                                    {
+                                        @* D-22: organization roles are memberships; the only global role is the platform administrator *@
+                                        <label class="form-label">@L["UM.GlobalRole"]</label>
+                                        <select asp-for="Role" class="form-select" id="role-select">
+                                            <option value="">@L["UM.NoGlobalRole"]</option>
+                                            @foreach (var role in ViewBag.Roles)
+                                            {
+                                                <option value="@role">@L["UM.PlatformAdmin"]</option>
+                                            }
+                                        </select>
+                                        <div class="form-text" id="role-note">
+                                            @L["UM.OrgRoleNote"] <a href="/Organizations/Index">@L["Org.Organizations"] → @L["Org.AddMember"]</a>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <label class="form-label required">@L["Role"]</label>
+                                        <select asp-for="Role" class="form-select" id="role-select">
+                                            <option value="">@L["Select Role"]</option>
+                                            @foreach (var role in ViewBag.Roles)
+                                            {
+                                                <option value="@role">@L[(string)role]</option>
+                                            }
+                                        </select>
+                                    }
 
                                     <span asp-validation-for="Role" class="text-danger"></span>
 

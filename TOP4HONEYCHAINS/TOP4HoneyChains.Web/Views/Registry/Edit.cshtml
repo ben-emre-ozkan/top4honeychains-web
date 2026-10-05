@@ -15,7 +15,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">@b.BeekeeperFirstName @b.BeekeeperLastName <small class="text-muted">@b.BeekeeperBusinessNumber</small></h4>
-                    <div>@L["Registry number:"] <strong id="registry-number">@(registry?.RegistryNumber ?? "-")</strong> @L["· Status:"] <strong id="registry-status">@(registry?.Status ?? RegistryStatus.Unverified)</strong></div>
+                    <div>@L["Registry number:"] <strong id="registry-number">@(registry?.RegistryNumber ?? "-")</strong> @L["· Status:"] <strong id="registry-status">@L[registry?.Status ?? RegistryStatus.Unverified]</strong></div>
                 </div>
             </div>
 

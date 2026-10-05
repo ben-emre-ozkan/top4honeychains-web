@@ -310,7 +310,7 @@
     <value>Capacidades</value>
   </data>
   <data name="Org.NotVerifiedBanner" xml:space="preserve">
-    <value>Su organización aún no está verificada. Puede consultar sus datos y (como OrgAdmin) subir documentos, pero nadie puede ingresar datos hasta que sea verificada.</value>
+    <value>Su organización aún no está verificada. Puede consultar sus datos y (como administrador de la organización) subir documentos, pero nadie puede ingresar datos hasta que sea verificada.</value>
   </data>
   <data name="Org.OrganizationPage" xml:space="preserve">
     <value>Página de la organización</value>
@@ -379,7 +379,7 @@
     <value>Finalización</value>
   </data>
   <data name="Org.FinalizeHelp" xml:space="preserve">
-    <value>Todos los puntos de control de la partida y de sus lotes deben estar aprobados. Una persona lo solicita y otra persona (QualityApprover) lo confirma. Una partida finalizada no se puede modificar.</value>
+    <value>Todos los puntos de control de la partida y de sus lotes deben estar aprobados. Una persona lo solicita y otra persona (aprobador de calidad) lo confirma. Una partida finalizada no se puede modificar.</value>
   </data>
   <data name="Org.SelfApproved" xml:space="preserve">
     <value>autoaprobado (exención)</value>
@@ -1000,7 +1000,7 @@
     <value>Código del informe</value>
   </data>
   <data name="Lab.Returned" xml:space="preserve">
-    <value>Devuelto por el LabManager</value>
+    <value>Devuelto por el responsable de laboratorio</value>
   </data>
   <data name="Lab.ReportNumber" xml:space="preserve">
     <value>Número del informe</value>
@@ -1594,7 +1594,7 @@
     <value>Parámetros de puntos críticos de control</value>
   </data>
   <data name="Your role ({0}) cannot take samples; only a SampleAcceptanceOfficer can." xml:space="preserve">
-    <value>Su rol ({0}) no puede tomar muestras; solo puede hacerlo un SampleAcceptanceOfficer.</value>
+    <value>Su rol ({0}) no puede tomar muestras; solo puede hacerlo un responsable de recepción de muestras.</value>
   </data>
   <data name="Back to Batches" xml:space="preserve">
     <value>Volver a partidas</value>
@@ -1831,7 +1831,7 @@
     <value>Coordinador del proyecto</value>
   </data>
   <data name="Your role ({0}) cannot manage storefronts; only the association's OrgAdmin can." xml:space="preserve">
-    <value>Su rol ({0}) no puede gestionar páginas públicas; solo puede hacerlo el OrgAdmin de la asociación.</value>
+    <value>Su rol ({0}) no puede gestionar páginas públicas; solo puede hacerlo el administrador de la organización de la asociación.</value>
   </data>
   <data name="for Smart Honey Value Chains" xml:space="preserve">
     <value>para cadenas de valor inteligentes de la miel</value>
@@ -1840,7 +1840,7 @@
     <value>No especificado</value>
   </data>
   <data name="Finalizing requested; a QualityApprover (another person) must confirm it." xml:space="preserve">
-    <value>Finalización solicitada; un QualityApprover (otra persona) debe confirmarla.</value>
+    <value>Finalización solicitada; un aprobador de calidad (otra persona) debe confirmarla.</value>
   </data>
   <data name="Yes, save it" xml:space="preserve">
     <value>Sí, guardar</value>
@@ -3100,7 +3100,7 @@
     <value>La fila {0} no apunta a la fila anterior.</value>
   </data>
   <data name="The report is submitted; the LabManager approves it or returns it for changes." xml:space="preserve">
-    <value>El informe se envió; el LabManager lo aprueba o lo devuelve para modificaciones.</value>
+    <value>El informe se envió; el responsable de laboratorio lo aprueba o lo devuelve para modificaciones.</value>
   </data>
   <data name="New Password" xml:space="preserve">
     <value>Nueva contraseña</value>
@@ -3406,7 +3406,7 @@
     <value>Gestionar PCC</value>
   </data>
   <data name="Report submitted; a LabManager (another person) must approve it." xml:space="preserve">
-    <value>Informe enviado; un LabManager (otra persona) debe aprobarlo.</value>
+    <value>Informe enviado; un responsable de laboratorio (otra persona) debe aprobarlo.</value>
   </data>
   <data name="Update the selected beekeeping type." xml:space="preserve">
     <value>Actualice el tipo de apicultura seleccionado.</value>
@@ -3865,7 +3865,7 @@
     <value>Fecha de inicio</value>
   </data>
   <data name="Your role ({0}) cannot record deliveries; only a SampleAcceptanceOfficer can." xml:space="preserve">
-    <value>Su rol ({0}) no puede registrar entregas; solo puede hacerlo un SampleAcceptanceOfficer.</value>
+    <value>Su rol ({0}) no puede registrar entregas; solo puede hacerlo un responsable de recepción de muestras.</value>
   </data>
   <data name="The supplied value is invalid for {0}." xml:space="preserve">
     <value>El valor proporcionado no es válido para {0}.</value>
@@ -4183,7 +4183,7 @@
     <value>¿Está seguro de que desea eliminar este PCC?</value>
   </data>
   <data name="Only a QualityApprover of the organization can approve." xml:space="preserve">
-    <value>Solo un QualityApprover de la organización puede aprobar.</value>
+    <value>Solo un aprobador de calidad de la organización puede aprobar.</value>
   </data>
   <data name="Top 5 Most Productive Beekeepers" xml:space="preserve">
     <value>Los 5 apicultores más productivos</value>
@@ -5696,5 +5696,35 @@
   </data>
   <data name="Sf.LabNoteShort" xml:space="preserve">
     <value>Laboratorio {0}; una segunda persona aprobó el informe.</value>
+  </data>
+  <data name="UM.GlobalRole" xml:space="preserve">
+    <value>Rol global</value>
+  </data>
+  <data name="UM.NoGlobalRole" xml:space="preserve">
+    <value>Sin rol global (miembro de una organización)</value>
+  </data>
+  <data name="UM.PlatformAdmin" xml:space="preserve">
+    <value>Administrador de la plataforma</value>
+  </data>
+  <data name="UM.OrgRoleNote" xml:space="preserve">
+    <value>Los roles de organización (recepción de muestras, analista, aprobador de calidad y otros) se asignan por organización; los apicultores y consumidores no inician sesión. Asígnelos en</value>
+  </data>
+  <data name="User created without a global role. Give the organization role under Organizations → Add member." xml:space="preserve">
+    <value>Usuario creado sin rol global. Asigne el rol de organización en Organizaciones → Añadir miembro.</value>
+  </data>
+  <data name="Msg.Or" xml:space="preserve">
+    <value>o</value>
+  </data>
+  <data name="Audit.Org" xml:space="preserve">
+    <value>Organización</value>
+  </data>
+  <data name="SelfApproved" xml:space="preserve">
+    <value>Autoaprobado</value>
+  </data>
+  <data name="SelfFinalized" xml:space="preserve">
+    <value>Autofinalizado</value>
+  </data>
+  <data name="RolePermissions" xml:space="preserve">
+    <value>Permisos de rol</value>
   </data>
 </root>

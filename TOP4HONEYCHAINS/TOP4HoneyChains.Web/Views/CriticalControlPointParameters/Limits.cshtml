@@ -52,8 +52,8 @@
                                     {
                                         <tr>
                                             <td>@(l.HoneyType != null ? Ref.HoneyType(l.HoneyTypeId, l.HoneyType.HoneyTypeTitle) : l.HoneyClass != null ? L[l.HoneyClass].Value : L["every class"].Value)</td>
-                                            <td>@(l.ConditionParameter != null ? $"{l.ConditionParameter.ParameterName} <= {l.ConditionMaxValue:0.####}" : "-")</td>
-                                            <td>@(l.SumWithParameter != null ? "+ " + l.SumWithParameter.ParameterName : l.RatioWithParameter != null ? "/ " + l.RatioWithParameter.ParameterName : "-")</td>
+                                            <td>@(l.ConditionParameter != null ? $"{Ref.Parameter(l.ConditionParameter.ParameterId, l.ConditionParameter.ParameterName)} <= {l.ConditionMaxValue:0.####}" : "-")</td>
+                                            <td>@(l.SumWithParameter != null ? "+ " + Ref.Parameter(l.SumWithParameter.ParameterId, l.SumWithParameter.ParameterName) : l.RatioWithParameter != null ? "/ " + Ref.Parameter(l.RatioWithParameter.ParameterId, l.RatioWithParameter.ParameterName) : "-")</td>
                                             <td>@l.MinValue?.ToString("0.####")</td>
                                             <td>@l.MaxValue?.ToString("0.####")</td>
                                             <td>@Ref.T("ParameterLimit", l.LimitId, "Note", l.Note)</td>
