@@ -5142,4 +5142,61 @@
   <data name="Capabilities of {0} saved." xml:space="preserve">
     <value>Funkcje organizacji {0} zapisane.</value>
   </data>
+  <data name="Cap.Intro" xml:space="preserve">
+    <value>Funkcja określa, jaką pracę organizacja może wykonywać w łańcuchu miodu. To, który członek ją wykonuje, określają role (macierz odpowiedzialności za KPK i uprawnienia ról).</value>
+  </data>
+  <data name="Cap.Enables" xml:space="preserve">
+    <value>Co umożliwia</value>
+  </data>
+  <data name="Cap.CcpsNeedingIt" xml:space="preserve">
+    <value>KPK, które jej wymagają</value>
+  </data>
+  <data name="Cap.OrganizationCount" xml:space="preserve">
+    <value>Organizacje: {0}, zweryfikowane: {1}</value>
+  </data>
+  <data name="Cap.NoOrganizations" xml:space="preserve">
+    <value>Żadna organizacja jeszcze jej nie ma.</value>
+  </data>
+  <data name="Cap.WhereToChange" xml:space="preserve">
+    <value>Gdzie zmienić</value>
+  </data>
+  <data name="Cap.AssignHint" xml:space="preserve">
+    <value>Nadanie lub odebranie funkcji organizacji: na jej stronie lub w Role i uprawnienia, karta Funkcje organizacji:</value>
+  </data>
+  <data name="Cap.CcpHint" xml:space="preserve">
+    <value>Jakich funkcji wymaga KPK i które role je wprowadzają i zatwierdzają:</value>
+  </data>
+  <data name="Cap.FixedHint" xml:space="preserve">
+    <value>Sama lista funkcji jest stała: nowa funkcja wymaga skryptu bazy danych i zmiany kodu.</value>
+  </data>
+  <data name="Cap.Uses.Beekeeping" xml:space="preserve">
+    <value>Gospodarstwo pszczelarskie. Nie loguje się; jego zweryfikowany numer rejestrowy łączy partie z pszczelarzem i wskazuje prowincję.</value>
+  </data>
+  <data name="Cap.Uses.Association" xml:space="preserve">
+    <value>Rejestruje KPK 0 (audyt wstępny) dla swoich pszczelarzy, rejestruje ich zgodę i publikuje ich strony pszczelarzy oraz widzi partie członków w raportach wycofania.</value>
+  </data>
+  <data name="Cap.Uses.CentralAssociation" xml:space="preserve">
+    <value>Gdy jest ustawiona jako weryfikator stowarzyszeń, widzi i wyświetla stowarzyszenia, które weryfikuje.</value>
+  </data>
+  <data name="Cap.Uses.Processing" xml:space="preserve">
+    <value>Przyjmuje miód: przyjęcie partii, zaplombowane próbki dla laboratorium i KPK przetwarzania.</value>
+  </data>
+  <data name="Cap.Uses.Packing" xml:space="preserve">
+    <value>Rozlew, etykietowanie i pakowanie partii (KPK pakowania).</value>
+  </data>
+  <data name="Cap.Uses.Laboratory" xml:space="preserve">
+    <value>Przyjmuje zaplombowane próbki i wprowadza wyniki; raport zawsze zatwierdza druga osoba. Numer akredytacji jest przechowywany przy tej funkcji.</value>
+  </data>
+  <data name="Cap.Uses.Wholesale" xml:space="preserve">
+    <value>Przechowuje otrzymane partie, rejestruje przechowywanie KPK 10 dla posiadanej ilości i może wysyłać dalej.</value>
+  </data>
+  <data name="Cap.Uses.Retail" xml:space="preserve">
+    <value>Przyjmuje przesyłki do sprzedaży, rejestruje przechowywanie KPK 10 dla posiadanej ilości i może wysyłać dalej.</value>
+  </data>
+  <data name="Cap.Uses.PublicAuthority" xml:space="preserve">
+    <value>Po weryfikacji czyta wszystkie zapisy; niczego nie wprowadza.</value>
+  </data>
+  <data name="Cap.Uses.PlatformAdmin" xml:space="preserve">
+    <value>Organizacja prowadząca platformę: organizacje, dane podstawowe i ustawienia. Tylko odczyt wartości i zatwierdzeń KPK.</value>
+  </data>
 </root>
