@@ -5173,13 +5173,13 @@
     <value>La explotación apícola. No inicia sesión; su número de registro verificado vincula los lotes con el apicultor e indica la provincia.</value>
   </data>
   <data name="Cap.Uses.Association" xml:space="preserve">
-    <value>Registra el PCC 0 (auditoría primaria) de sus apicultores miembros, registra su consentimiento y publica sus páginas de apicultor, y ve los lotes de sus miembros en los informes de retirada.</value>
+    <value>Vincula a sus apicultores miembros, registra su consentimiento y publica sus páginas, y ve los lotes de sus miembros en los informes de retirada; su inspector de campo puede hacer el PCC 0 si un administrador lo asigna.</value>
   </data>
   <data name="Cap.Uses.CentralAssociation" xml:space="preserve">
     <value>Cuando está configurada como verificadora de asociaciones, ve y lista las asociaciones que verifica.</value>
   </data>
   <data name="Cap.Uses.Processing" xml:space="preserve">
-    <value>Recibe la miel: entrada de lotes, muestras precintadas para el laboratorio y los PCC de procesamiento.</value>
+    <value>Recibe la miel: entrada de lotes, PCC 0 en la entrega (responsable de recepción de muestras, aprobado por un aprobador de calidad), muestras precintadas para el laboratorio y los PCC de procesamiento.</value>
   </data>
   <data name="Cap.Uses.Packing" xml:space="preserve">
     <value>Envasado, etiquetado y embalaje de los lotes de producción (los PCC de envasado).</value>
@@ -5263,7 +5263,7 @@
     <value>Superada</value>
   </data>
   <data name="Sf.SeasonByAssociation" xml:space="preserve">
-    <value>Temporada {0}, por la asociación</value>
+    <value>Temporada {0}</value>
   </data>
   <data name="Sf.ProfileMark" xml:space="preserve">
     <value>Distintivo de perfil de {0}</value>
