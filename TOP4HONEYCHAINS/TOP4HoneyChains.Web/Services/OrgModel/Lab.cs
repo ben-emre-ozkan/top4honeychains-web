@@ -157,7 +157,8 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             }
             var allParameters = await _context.CriticalControlPointParameters.AsNoTracking().Where(p => p.CCPId == ccpId).ToListAsync();
             var filled = logs.Where(l => l.ParameterId != null).Select(l => l.ParameterId!.Value).ToHashSet();
-            var complete = allParameters.Where(p => p.IsRequired).All(p => filled.Contains(p.ParameterId)) && filled.Count > 0;
+            var answers = CcpRequirement.Answers(logs);
+            var complete = allParameters.Where(p => CcpRequirement.IsRequired(p, answers)).All(p => filled.Contains(p.ParameterId)) && filled.Count > 0;
             var allFromLab = logs.All(l => l.LabReportId != null);
             assignment.ApprovedByUserId = null;
             assignment.ApprovedByOrgId = null;

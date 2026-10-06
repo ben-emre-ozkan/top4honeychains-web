@@ -109,6 +109,12 @@ namespace TOP4HoneyChains.Web.Controllers
         }
 
         // GET: CriticalControlPointParameters/Edit/5
+        // the yes/no questions of the same CCP a parameter's requirement can depend on (D-62)
+        private SelectList RequiredIfOptions(CriticalControlPointParameter p) =>
+            new SelectList(_context.CriticalControlPointParameters.AsNoTracking()
+                .Where(x => x.CCPId == p.CCPId && x.ParameterId != p.ParameterId && x.DataType == CcpDataType.YesNo)
+                .OrderBy(x => x.ParameterId).ToList(), "ParameterId", "ParameterName", p.RequiredIfParameterId).Translated(HttpContext, "Parameter", "Name");
+
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -123,6 +129,7 @@ namespace TOP4HoneyChains.Web.Controllers
             }
             ViewData["CCPId"] = new SelectList(_context.CriticalControlPoints, "Id", "Code", criticalControlPointParameter.CCPId);
             ViewData["ParameterCategory"] = new SelectList(_context.CriticalControlPointParameterCategories, "CategoryId", "CategoryName", criticalControlPointParameter.ParameterCategory).Translated(HttpContext, "ParameterCategory", "Name");
+            ViewData["RequiredIfParameterId"] = RequiredIfOptions(criticalControlPointParameter);
 
             ViewBag.Controller = "Critical Control Point Parameters";
             ViewBag.Action = "Edit";
@@ -135,12 +142,24 @@ namespace TOP4HoneyChains.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ParameterId,CCPId,ParameterName,ParameterCategory,ParameterUnit,CriticalLimit,DataType,MinValue,MaxValue,IsRequired,LimitNote,LimitSource,LimitVerified")] CriticalControlPointParameter criticalControlPointParameter)
+        public async Task<IActionResult> Edit(int id, [Bind("ParameterId,CCPId,ParameterName,ParameterCategory,ParameterUnit,CriticalLimit,DataType,MinValue,MaxValue,IsRequired,LimitNote,LimitSource,LimitVerified,RequiredIfParameterId,RequiredIfValue")] CriticalControlPointParameter criticalControlPointParameter)
         {
             if (id != criticalControlPointParameter.ParameterId)
             {
                 return NotFound();
             }
+
+            // D-62: the condition must be another yes/no parameter of the same CCP, with an answer
+            if (criticalControlPointParameter.RequiredIfParameterId is int conditionId)
+            {
+                var condition = await _context.CriticalControlPointParameters.AsNoTracking().FirstOrDefaultAsync(p => p.ParameterId == conditionId);
+                if (conditionId == id || condition == null || condition.CCPId != criticalControlPointParameter.CCPId || condition.DataType != CcpDataType.YesNo)
+                    ModelState.AddModelError(nameof(criticalControlPointParameter.RequiredIfParameterId), "Choose a yes/no question of the same CCP.");
+                else if (criticalControlPointParameter.RequiredIfValue is not ("Yes" or "No"))
+                    ModelState.AddModelError(nameof(criticalControlPointParameter.RequiredIfValue), "Choose the answer that makes this parameter required.");
+            }
+            else
+                criticalControlPointParameter.RequiredIfValue = null;
 
             ValidateLimits(criticalControlPointParameter.MinValue, criticalControlPointParameter.MaxValue);
 
@@ -166,6 +185,7 @@ namespace TOP4HoneyChains.Web.Controllers
             }
             ViewData["CCPId"] = new SelectList(_context.CriticalControlPoints, "Id", "Code", criticalControlPointParameter.CCPId);
             ViewData["ParameterCategory"] = new SelectList(_context.CriticalControlPointParameterCategories, "CategoryId", "CategoryName", criticalControlPointParameter.ParameterCategory).Translated(HttpContext, "ParameterCategory", "Name");
+            ViewData["RequiredIfParameterId"] = RequiredIfOptions(criticalControlPointParameter);
 
             ViewBag.Controller = "Critical Control Point Parameters";
             ViewBag.Action = "Edit";

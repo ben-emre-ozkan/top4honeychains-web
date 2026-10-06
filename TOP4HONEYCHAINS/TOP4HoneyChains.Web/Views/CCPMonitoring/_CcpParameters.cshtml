@@ -57,6 +57,13 @@
                             {
                                 <span class="text-muted">(@Ref.Text("Parameter", "Unit", p.Unit))</span>
                             }
+                            @if (p.IsRequired && p.RequiredIfParameterId != null)
+                            {
+                                var parent = Model.Groups.SelectMany(g => g.Parameters).FirstOrDefault(x => x.ParameterId == p.RequiredIfParameterId);
+                                <span class="d-block small fw-normal text-muted required-if" data-required-if="@p.RequiredIfParameterId">
+                                    @L["Required only when “{0}” is answered {1}.", parent == null ? "" : Ref.T("Parameter", parent.ParameterId, "Name", parent.ParameterName), L[p.RequiredIfValue ?? ""].Value]
+                                </span>
+                            }
                         </label>
 
                         @if (p.IsInRange == true)
