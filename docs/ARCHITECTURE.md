@@ -63,7 +63,7 @@ Missing from the pipeline: `UseHttpsRedirection`, `UseHsts`, `UseStatusCodePages
 | `Services/EmailService.cs` | The only service |
 | `Migrations/` | Identity migration only |
 | `Views/` | One folder per controller. Shared layouts: `HorizontalLayout` (admin), `_BlankLayout` (auth pages). HoneyStory and Home use `Layout = null`. |
-| `wwwroot/` | `assets/` (admin theme + vendored libs), `landingassets/` (landing page) |
+| `wwwroot/` | `assets/` (admin theme + vendored libs), `css/brand.css` (shared brand tokens and fonts, D-65), `css/landing.css` + `js/honeycomb.js` + `js/landing.js` (landing), `css/auth.css` (sign-in pages), `img/landing/` and `img/partners/` (landing images); `landingassets/` is no longer used by the landing page |
 
 ### 2.3 Data access
 - Two DbContexts on one connection string. Identity tables are managed by EF migrations. Business tables are db-first (see §4).

@@ -1,137 +1,22 @@
-/* Self-hosted fonts of the beekeeper page (D-57): Bricolage Grotesque and Instrument Sans, SIL Open Font License 1.1
-   (licence: OFL.txt next to each font under wwwroot/fonts); woff2 from the Fontsource npm packages 5.3.0, latin and latin-ext subsets only. */
-@font-face {
-  font-family: 'Bricolage Grotesque';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 500;
-  src: url(../fonts/bricolage-grotesque/bricolage-grotesque-latin-ext-500-normal.woff2) format('woff2');
-  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
-}
-@font-face {
-  font-family: 'Bricolage Grotesque';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 500;
-  src: url(../fonts/bricolage-grotesque/bricolage-grotesque-latin-500-normal.woff2) format('woff2');
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
-}
-@font-face {
-  font-family: 'Bricolage Grotesque';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 700;
-  src: url(../fonts/bricolage-grotesque/bricolage-grotesque-latin-ext-700-normal.woff2) format('woff2');
-  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
-}
-@font-face {
-  font-family: 'Bricolage Grotesque';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 700;
-  src: url(../fonts/bricolage-grotesque/bricolage-grotesque-latin-700-normal.woff2) format('woff2');
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
-}
-@font-face {
-  font-family: 'Bricolage Grotesque';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 800;
-  src: url(../fonts/bricolage-grotesque/bricolage-grotesque-latin-ext-800-normal.woff2) format('woff2');
-  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
-}
-@font-face {
-  font-family: 'Bricolage Grotesque';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 800;
-  src: url(../fonts/bricolage-grotesque/bricolage-grotesque-latin-800-normal.woff2) format('woff2');
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
-}
-@font-face {
-  font-family: 'Instrument Sans';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 400;
-  src: url(../fonts/instrument-sans/instrument-sans-latin-ext-400-normal.woff2) format('woff2');
-  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
-}
-@font-face {
-  font-family: 'Instrument Sans';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 400;
-  src: url(../fonts/instrument-sans/instrument-sans-latin-400-normal.woff2) format('woff2');
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
-}
-@font-face {
-  font-family: 'Instrument Sans';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 500;
-  src: url(../fonts/instrument-sans/instrument-sans-latin-ext-500-normal.woff2) format('woff2');
-  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
-}
-@font-face {
-  font-family: 'Instrument Sans';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 500;
-  src: url(../fonts/instrument-sans/instrument-sans-latin-500-normal.woff2) format('woff2');
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
-}
-@font-face {
-  font-family: 'Instrument Sans';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 600;
-  src: url(../fonts/instrument-sans/instrument-sans-latin-ext-600-normal.woff2) format('woff2');
-  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
-}
-@font-face {
-  font-family: 'Instrument Sans';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 600;
-  src: url(../fonts/instrument-sans/instrument-sans-latin-600-normal.woff2) format('woff2');
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
-}
-@font-face {
-  font-family: 'Instrument Sans';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 700;
-  src: url(../fonts/instrument-sans/instrument-sans-latin-ext-700-normal.woff2) format('woff2');
-  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
-}
-@font-face {
-  font-family: 'Instrument Sans';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 700;
-  src: url(../fonts/instrument-sans/instrument-sans-latin-700-normal.woff2) format('woff2');
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
-}
-
-/* Public beekeeper page (Views/Storefront/Index.cshtml); design: docs/design/beekeeper-page/beekeeper-page.html */
+/* Public beekeeper page (Views/Storefront/Index.cshtml); fonts and colours come from brand.css (load it first); design: docs/design/beekeeper-page/beekeeper-page.html */
 :root {
-    --sf-ink: #1D1A15;
-    --sf-ink-2: #3B352C;
-    --sf-muted: #5E574C;
-    --sf-bg: #FBF8F2;
-    --sf-card: #FFFFFF;
-    --sf-line: #E9E2D4;
-    --sf-honey: #D9930D;
-    --sf-honey-soft: #FCEFD2;
-    --sf-honey-ink: #6B4700;
-    --sf-kicker: #8A5A00;
-    --sf-green: #1F5B43;
-    --sf-green-dark: #123B2B;
-    --sf-green-soft: #E3F0E9;
-    --sf-green-line: #CFE3D7;
-    --sf-track: #F1E9DA;
-    --sf-display: 'Bricolage Grotesque', system-ui, sans-serif;
-    --sf-text: 'Instrument Sans', system-ui, sans-serif;
+    --sf-ink: var(--b-ink);
+    --sf-ink-2: var(--b-ink-2);
+    --sf-muted: var(--b-muted);
+    --sf-bg: var(--b-paper);
+    --sf-card: var(--b-card);
+    --sf-line: var(--b-line);
+    --sf-honey: var(--b-honey);
+    --sf-honey-soft: var(--b-honey-soft);
+    --sf-honey-ink: var(--b-honey-ink);
+    --sf-kicker: var(--b-kicker);
+    --sf-green: var(--b-green);
+    --sf-green-dark: var(--b-green-dark);
+    --sf-green-soft: var(--b-green-soft);
+    --sf-green-line: var(--b-green-line);
+    --sf-track: var(--b-track);
+    --sf-display: var(--b-display);
+    --sf-text: var(--b-text);
 }
 
 body.sf-body { margin: 0; background: var(--sf-bg); }

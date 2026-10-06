@@ -5778,4 +5778,232 @@
   <data name="The record has values outside their limits; confirm them to approve." xml:space="preserve">
     <value>El registro tiene valores fuera de sus límites; confírmelos para aprobar.</value>
   </data>
+  <data name="Land.MetaDescription" xml:space="preserve">
+    <value>Cada tarro de miel con toda su historia: colmenar, entrega, laboratorio acreditado, procesamiento y estantería; cada paso lo registra una persona y lo aprueba otra.</value>
+  </data>
+  <data name="Land.SkipToContent" xml:space="preserve">
+    <value>Saltar al contenido</value>
+  </data>
+  <data name="Land.Nav.Chain" xml:space="preserve">
+    <value>Cómo funciona</value>
+  </data>
+  <data name="Land.Nav.Trust" xml:space="preserve">
+    <value>Confianza</value>
+  </data>
+  <data name="Land.Nav.ForWhom" xml:space="preserve">
+    <value>Para quién</value>
+  </data>
+  <data name="Land.Nav.Story" xml:space="preserve">
+    <value>Historia de la miel</value>
+  </data>
+  <data name="Land.SignIn" xml:space="preserve">
+    <value>Iniciar sesión</value>
+  </data>
+  <data name="Land.VerifyReport" xml:space="preserve">
+    <value>Verificar un informe de laboratorio</value>
+  </data>
+  <data name="Land.HeroKicker" xml:space="preserve">
+    <value>Trazabilidad de la miel, de la colmena a la estantería</value>
+  </data>
+  <data name="Land.HeroLead" xml:space="preserve">
+    <value>Un registro común de cada paso que da un tarro de miel, llevado por quienes hacen el trabajo y comprobado por otra persona.</value>
+  </data>
+  <data name="Land.Consumer" xml:space="preserve">
+    <value>¿Tiene un tarro? Escanee el código QR de su etiqueta.</value>
+  </data>
+  <data name="Land.ScrollHint" xml:space="preserve">
+    <value>Ver la cadena</value>
+  </data>
+  <data name="Land.Station.Apiary" xml:space="preserve">
+    <value>Colmenar</value>
+  </data>
+  <data name="Land.Station.Delivery" xml:space="preserve">
+    <value>Entrega</value>
+  </data>
+  <data name="Land.Station.Lab" xml:space="preserve">
+    <value>Laboratorio</value>
+  </data>
+  <data name="Land.Station.Processing" xml:space="preserve">
+    <value>Procesamiento</value>
+  </data>
+  <data name="Land.Station.Shelf" xml:space="preserve">
+    <value>Estantería</value>
+  </data>
+  <data name="Land.Stats.Title" xml:space="preserve">
+    <value>Hasta ahora en la plataforma</value>
+  </data>
+  <data name="Land.Stats.Batches" xml:space="preserve">
+    <value>partidas finalizadas</value>
+  </data>
+  <data name="Land.Stats.Orgs" xml:space="preserve">
+    <value>organizaciones verificadas</value>
+  </data>
+  <data name="Land.Stats.Reports" xml:space="preserve">
+    <value>informes de laboratorio aprobados</value>
+  </data>
+  <data name="Land.Chain.Kicker" xml:space="preserve">
+    <value>La cadena</value>
+  </data>
+  <data name="Land.Chain.Title" xml:space="preserve">
+    <value>Cinco pasos, un registro</value>
+  </data>
+  <data name="Land.Chain.Lead" xml:space="preserve">
+    <value>Cada paso añade su parte al mismo registro, y el siguiente empieza solo cuando el anterior está aprobado.</value>
+  </data>
+  <data name="Land.StepN" xml:space="preserve">
+    <value>Paso {0}</value>
+  </data>
+  <data name="Land.Step1.Title" xml:space="preserve">
+    <value>Colmenar y apicultor</value>
+  </data>
+  <data name="Land.Step1.Tag" xml:space="preserve">
+    <value>Registro · consentimiento</value>
+  </data>
+  <data name="Land.Step1.Text" xml:space="preserve">
+    <value>El apicultor se comprueba en el registro nacional y da su consentimiento por escrito antes de que su nombre aparezca en una página pública.</value>
+  </data>
+  <data name="Land.Step2.Title" xml:space="preserve">
+    <value>Entrega, PCC 0 y muestra precintada</value>
+  </data>
+  <data name="Land.Step2.Tag" xml:space="preserve">
+    <value>PCC 0</value>
+  </data>
+  <data name="Land.Step2.Text" xml:space="preserve">
+    <value>En la entrega, el responsable de recepción registra el lote, completa la auditoría primaria y precinta una muestra y una contramuestra.</value>
+  </data>
+  <data name="Land.Step3.Title" xml:space="preserve">
+    <value>Laboratorio acreditado</value>
+  </data>
+  <data name="Land.Step3.Tag" xml:space="preserve">
+    <value>PCC 1</value>
+  </data>
+  <data name="Land.Step3.Text" xml:space="preserve">
+    <value>El laboratorio comprueba el precinto, introduce los resultados con el informe firmado y una segunda persona los aprueba.</value>
+  </data>
+  <data name="Land.Step4.Title" xml:space="preserve">
+    <value>Procesamiento, envasado y cierre de la partida</value>
+  </data>
+  <data name="Land.Step4.Tag" xml:space="preserve">
+    <value>PCC 2–9</value>
+  </data>
+  <data name="Land.Step4.Text" xml:space="preserve">
+    <value>Cada punto de control, del filtrado al etiquetado, lo introduce una persona y lo aprueba otra antes de cerrar la partida.</value>
+  </data>
+  <data name="Land.Step5.Title" xml:space="preserve">
+    <value>Estantería e Historia de la miel</value>
+  </data>
+  <data name="Land.Step5.Tag" xml:space="preserve">
+    <value>PCC 10</value>
+  </data>
+  <data name="Land.Step5.Text" xml:space="preserve">
+    <value>El minorista confirma lo que llega y registra las condiciones de almacenamiento; el código QR del tarro abre toda la historia de la miel.</value>
+  </data>
+  <data name="Land.ImagePending" xml:space="preserve">
+    <value>Foto próximamente</value>
+  </data>
+  <data name="Land.Trust.Kicker" xml:space="preserve">
+    <value>Por qué puede confiar</value>
+  </data>
+  <data name="Land.Trust.Title" xml:space="preserve">
+    <value>Hecho para que nadie revise su propio trabajo</value>
+  </data>
+  <data name="Land.Trust.FourEyes.Title" xml:space="preserve">
+    <value>Dos personas para cada registro</value>
+  </data>
+  <data name="Land.Trust.FourEyes.Text" xml:space="preserve">
+    <value>Cada registro lo introduce una persona y lo aprueba otra. Toda excepción queda marcada y visible.</value>
+  </data>
+  <data name="Land.Trust.Audit.Title" xml:space="preserve">
+    <value>Un registro de auditoría que no se puede reescribir</value>
+  </data>
+  <data name="Land.Trust.Audit.Text" xml:space="preserve">
+    <value>Cada cambio se añade a un registro cuyas entradas están enlazadas por una cadena de hashes, así que una entrada borrada o alterada se nota.</value>
+  </data>
+  <data name="Land.Trust.Orgs.Title" xml:space="preserve">
+    <value>Solo organizaciones verificadas</value>
+  </data>
+  <data name="Land.Trust.Orgs.Text" xml:space="preserve">
+    <value>Procesadores, laboratorios y minoristas se verifican antes de que su personal pueda registrar nada.</value>
+  </data>
+  <data name="Land.Trust.Verify.Title" xml:space="preserve">
+    <value>Informes de laboratorio que cualquiera puede verificar</value>
+  </data>
+  <data name="Land.Trust.Verify.Text" xml:space="preserve">
+    <value>Introduzca el código impreso en un informe de laboratorio para ver su estado de aprobación y su huella digital.</value>
+  </data>
+  <data name="Land.Who.Kicker" xml:space="preserve">
+    <value>Para quién</value>
+  </data>
+  <data name="Land.Who.Title" xml:space="preserve">
+    <value>Un registro, cinco tipos de usuarios</value>
+  </data>
+  <data name="Land.Who.Beekeepers.Title" xml:space="preserve">
+    <value>Apicultores y asociaciones</value>
+  </data>
+  <data name="Land.Who.Beekeepers.Text" xml:space="preserve">
+    <value>Una página pública del apicultor, prueba de origen de cada entrega y los lotes de los socios en una sola vista.</value>
+  </data>
+  <data name="Land.Who.Processors.Title" xml:space="preserve">
+    <value>Procesadores y envasadores</value>
+  </data>
+  <data name="Land.Who.Processors.Text" xml:space="preserve">
+    <value>Recepción, muestras precintadas, puntos de control y cierre de la partida en un solo lugar, con aprobación por dos personas integrada.</value>
+  </data>
+  <data name="Land.Who.Labs.Title" xml:space="preserve">
+    <value>Laboratorios</value>
+  </data>
+  <data name="Land.Who.Labs.Text" xml:space="preserve">
+    <value>Custodia de muestras con control del precinto, resultados ligados al informe firmado e informes que cualquiera puede verificar.</value>
+  </data>
+  <data name="Land.Who.Retailers.Title" xml:space="preserve">
+    <value>Minoristas</value>
+  </data>
+  <data name="Land.Who.Retailers.Text" xml:space="preserve">
+    <value>Confirme lo que llega, registre las condiciones de almacenamiento y ofrezca a sus clientes una historia que pueden comprobar.</value>
+  </data>
+  <data name="Land.Who.Consumers.Title" xml:space="preserve">
+    <value>Consumidores</value>
+  </data>
+  <data name="Land.Who.Consumers.Text" xml:space="preserve">
+    <value>Escanee el tarro para ver de dónde viene la miel, quién la manipuló y qué encontró el laboratorio.</value>
+  </data>
+  <data name="Land.Story.Kicker" xml:space="preserve">
+    <value>Historia de la miel</value>
+  </data>
+  <data name="Land.Story.Title" xml:space="preserve">
+    <value>Lo que abre el código QR del tarro</value>
+  </data>
+  <data name="Land.Story.Text" xml:space="preserve">
+    <value>La página pública de una partida: origen, cada punto de control, resultados de laboratorio y los apicultores que hay detrás, en cinco idiomas.</value>
+  </data>
+  <data name="Land.Story.Cta" xml:space="preserve">
+    <value>Abrir la partida de demostración</value>
+  </data>
+  <data name="Land.Story.FrameTitle" xml:space="preserve">
+    <value>Historia de la miel de la partida de demostración</value>
+  </data>
+  <data name="Land.Story.Points" xml:space="preserve">
+    <value>Origen y apicultores|Cada punto de control, aprobado|Resultados de laboratorio con sus límites</value>
+  </data>
+  <data name="Land.Footer.Partners" xml:space="preserve">
+    <value>Socios del proyecto</value>
+  </data>
+  <data name="Land.Footer.Rights" xml:space="preserve">
+    <value>© {0} TOP4HoneyChains</value>
+  </data>
+  <data name="Auth.Point1" xml:space="preserve">
+    <value>Cada registro lo introduce una persona y lo aprueba otra.</value>
+  </data>
+  <data name="Auth.Point2" xml:space="preserve">
+    <value>Un registro de auditoría de solo adición con cadena de hashes.</value>
+  </data>
+  <data name="Auth.Point3" xml:space="preserve">
+    <value>Solo participan organizaciones verificadas.</value>
+  </data>
+  <data name="Auth.BackHome" xml:space="preserve">
+    <value>Volver a la página de inicio</value>
+  </data>
+  <data name="Auth.SignedInAs" xml:space="preserve">
+    <value>Sesión iniciada como {0}</value>
+  </data>
 </root>

@@ -1,7 +1,9 @@
-﻿using Azure;
-using Microsoft.AspNetCore.Localization;
+﻿using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Options;
+using TOP4HoneyChains.Web.Models.ViewModels;
+using TOP4HoneyChains.Web.Services;
+using TOP4HoneyChains.Web.Services.OrgModel;
 
 namespace TOP4HoneyChains.Web.Controllers
 {
@@ -9,13 +11,37 @@ namespace TOP4HoneyChains.Web.Controllers
     [Microsoft.AspNetCore.Authorization.AllowAnonymous]
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public static readonly string[] StepImages = { "step-1-apiary", "step-2-delivery", "step-3-lab", "step-4-processing", "step-5-shelf" };
+
+        private readonly LandingStatsService _stats;
+        private readonly IWebHostEnvironment _env;
+        private readonly IConfiguration _config;
+        private readonly FeatureFlags _flags;
+
+        public HomeController(LandingStatsService stats, IWebHostEnvironment env, IConfiguration config, IOptions<FeatureFlags> flags)
         {
-            return View();
+            _stats = stats;
+            _env = env;
+            _config = config;
+            _flags = flags.Value;
         }
 
-
-
+        // Landing page (D-65)
+        public async Task<IActionResult> Index()
+        {
+            var demoQr = Guid.TryParse(_config["Landing:DemoHoneyStoryQr"], out var qr) ? qr : (Guid?)null;
+            var stats = await _stats.GetAsync(demoQr);
+            return View(new LandingViewModel
+            {
+                Stats = stats,
+                OrgModel = _flags.OrgRoleModel,
+                DemoQr = stats.DemoStoryAvailable ? demoQr : null,
+                Steps = StepImages.Select(name => LandingImages.Find(_env, name)).ToList(),
+                OgImage = LandingImages.Find(_env, "og-image"),
+                PublicBaseUrl = PublicUrl.Build(HttpContext, ""),
+                PartnerLogos = LandingImages.PartnerLogos(_env)
+            });
+        }
 
         public static readonly string[] Languages = { "tr", "en", "es", "pl", "lv" };
 

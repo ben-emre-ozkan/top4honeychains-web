@@ -38,6 +38,7 @@ The values below are in git history, so rotating them is the actual fix. Removin
 - [ ] Restrict the Maps key to our domain (HTTP referrer) and to the Maps JavaScript API only.
 - [ ] Set `App:PublicBaseUrl` to the public site URL (e.g. `https://<domain>`) in server-side config. Password-reset links are built from it; without it, production refuses to send reset e-mails.
 - [ ] Set `AllowedHosts` to the production host name(s) instead of `*`.
+- [ ] Landing page ([D-65](DECISIONS.md)): add the photos `step-1-apiary.jpg` … `step-5-shelf.jpg` and `og-image.jpg` (1200×630) to `wwwroot/img/landing/`, run `python scripts/landing-images.py` (WebP variants) and deploy them with the app; until then the page shows placeholders. Partner logos go to `wwwroot/img/partners/`. Optional: `Landing:DemoHoneyStoryQr` = QR id of a finalized batch shown in the phone preview (empty: the preview shows a sketch). Open Graph image URLs and the canonical link use `App:PublicBaseUrl`.
 
 ### Accounts and access
 - [x] Public self-registration: **closed** ([D-02](DECISIONS.md)). Removed in `fix/account-flows`.
