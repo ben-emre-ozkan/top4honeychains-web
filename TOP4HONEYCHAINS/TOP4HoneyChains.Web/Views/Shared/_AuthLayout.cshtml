@@ -78,7 +78,8 @@
         </main>
     </div>
 
-    @* validation is server-side (ModelState), as before: wwwroot/lib with the jQuery validation scripts does not exist *@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <partial name="~/Views/Shared/_ValidationScriptsPartial.cshtml" />
     @RenderSection("scripts", required: false)
     <script src="~/js/honeycomb.js" asp-append-version="true" defer></script>
     <script>

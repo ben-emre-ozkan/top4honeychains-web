@@ -1,2 +1,7 @@
-﻿<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+@* Client-side validation (D-66): self-hosted under wwwroot/lib (MIT licences next to each library). Loaded by
+   HorizontalLayout and _AuthLayout after jQuery. The number and range rules accept both decimal separators, like the
+   server (D-53); fields without a message element get one (wwwroot/js/validation.js). *@
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/js/validation.js" asp-append-version="true"></script>
+<style>.input-validation-error { border-color: #B42318 !important; } .input-validation-error:focus { box-shadow: 0 0 0 .2rem rgba(180, 35, 24, .2) !important; }</style>
