@@ -25,11 +25,13 @@ else if (!Model.CanEnter)
             <div>
                 <span class="text-muted small text-uppercase">@L["Status"]</span>
                 @* D-66: one status pill style *@
-                <partial name="_StatusPill" model="@(new TOP4HoneyChains.Web.Models.ViewModels.StatusPill(TOP4HoneyChains.Web.Models.ViewModels.StatusPill.ForAssignment(Model.StatusId, Model.ApprovedAt != null), Model.StatusName != null ? Ref.Status(Model.StatusId, Model.StatusName) : L["Not assigned"].Value, "ccp-status"))" />
+                @{ var justApproved = TempData["JustApproved"] as bool? == true; }
+                <partial name="_StatusPill" model="@(new TOP4HoneyChains.Web.Models.ViewModels.StatusPill(TOP4HoneyChains.Web.Models.ViewModels.StatusPill.ForAssignment(Model.StatusId, Model.ApprovedAt != null), Model.StatusName != null ? Ref.Status(Model.StatusId, Model.StatusName) : L["Not assigned"].Value, "ccp-status", Fresh: justApproved))" />
                 @if (Model.LockReason != null)
                 {
                     <partial name="_StatusPill" model="@(new TOP4HoneyChains.Web.Models.ViewModels.StatusPill(TOP4HoneyChains.Web.Models.ViewModels.StatusPill.Locked, L["Locked"].Value))" />
                 }
+                <partial name="_RecordStrip" model="@(new TOP4HoneyChains.Web.Models.ViewModels.RecordStrip(Model.EnteredBy, Model.EnteredAt, Model.ApprovedBy, Model.ApprovedAt, Model.SelfApproved))" />
                 @if (Model.HoneyClass != null)
                 {
                     <span class="text-muted small ms-3">@L["Limits for honey class:"] <strong>@L[Model.HoneyClass ?? ""]</strong></span>
@@ -115,7 +117,7 @@ else if (!Model.CanEnter)
                         // D-64: the values outside their limits, confirmed in-page before approving
                         var outOfLimit = Model.Groups.SelectMany(g => g.Parameters).Where(p => p.IsInRange == false)
                             .Select(p => new TOP4HoneyChains.Web.Models.ViewModels.OutOfLimitItem(p.ParameterId, p.ParameterName, p.MeasuredNumericValue, p.MeasuredTextValue,
-                                p.Unit, p.AppliedLimit, p.LimitVerified)).ToList();
+                                p.Unit, p.Definition != null ? Limits.Describe(p.Definition, new TOP4HoneyChains.Web.Services.HoneyProfile(null, Model.HoneyClass)) : Ref.Limit(p.AppliedLimit, k => L[k]), p.LimitVerified)).ToList();
                     <partial name="_OutOfLimitConfirm" model="@(new TOP4HoneyChains.Web.Models.ViewModels.OutOfLimitConfirm("approve-form", "approve-button", outOfLimit))" />
                 }
                 else if (Model.ApproveDeniedReason != null)

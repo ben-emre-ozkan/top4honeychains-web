@@ -230,7 +230,11 @@ namespace TOP4HoneyChains.Web.Controllers
                 .FirstOrDefaultAsync(r => r.FinalHoneyProductionId == batchId && r.HolderOrgId == orgId && r.CcpId == ccpId);
             var parameters = await _context.CriticalControlPointParameters.AsNoTracking()
                 .Where(p => p.CCPId == ccpId && p.DataType != CcpDataType.File)
-                .Include(p => p.Limits).OrderBy(p => p.ParameterId).ToListAsync();
+                .Include(p => p.Limits).ThenInclude(l => l.ConditionParameter)
+                .Include(p => p.Limits).ThenInclude(l => l.SumWithParameter)
+                .Include(p => p.Limits).ThenInclude(l => l.RatioWithParameter)
+                .Include(p => p.Limits).ThenInclude(l => l.HoneyType)
+                .OrderBy(p => p.ParameterId).ToListAsync();
             return (record, parameters, ccpId);
         }
 
@@ -396,6 +400,7 @@ namespace TOP4HoneyChains.Web.Controllers
             if (self)
                 await _audit.WriteAsync("Approve", "HolderStorageRecords", record.RecordId.ToString(), null, null, "SelfApproved");
             TempData["Success"] = self ? "Approved under the four-eyes exemption (flagged in the audit log)." : "CCP record approved.";
+            TempData["JustApproved"] = true;   // D-67: the status pill draws its check mark once
             return RedirectToAction(nameof(Storage), new { batchId });
         }
 

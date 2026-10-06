@@ -473,7 +473,7 @@
                                 icon: 'success',
                                 title: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Success"].Value)),
                                 text: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Msg.T(TempData["Success"] as string))),
-                                confirmButtonColor: '#28a745'
+                                confirmButtonColor: '#1F5B43'
                             });
                             </text>
             }
@@ -486,7 +486,7 @@
                                 icon: 'error',
                                 title: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Error"].Value)),
                                 text: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Msg.T(TempData["Error"] as string))),
-                                confirmButtonColor: '#dc3545'
+                                confirmButtonColor: '#B42318'
                             });
                             </text>
             }
@@ -498,8 +498,8 @@
                     text: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["After finalizing, editing will be disabled."].Value)),
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#6c757d',
+                    confirmButtonColor: '#B42318',
+                    cancelButtonColor: '#5E574C',
                     confirmButtonText: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Yes, finalize it"].Value)),
                     cancelButtonText: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Cancel"].Value))
                 }).then((result) => {
@@ -516,8 +516,8 @@
                     text: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["This will update the batch composition."].Value)),
                     icon: 'question',
                     showCancelButton: true,
-                    confirmButtonColor: '#28a745',
-                    cancelButtonColor: '#6c757d',
+                    confirmButtonColor: '#1F5B43',
+                    cancelButtonColor: '#5E574C',
                     confirmButtonText: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Yes, save it"].Value)),
                     cancelButtonText: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(L["Cancel"].Value))
                 }).then((result) => {

@@ -3,7 +3,8 @@ using TOP4HoneyChains.Web.Models.Entities;
 namespace TOP4HoneyChains.Web.Models.ViewModels
 {
     // One status pill style everywhere (D-66): an icon and a text, never colour alone (Views/Shared/_StatusPill.cshtml)
-    public record StatusPill(string Kind, string Text, string? Id = null, string? Title = null)
+    // Fresh: the record was approved just now; the pill draws its check mark once (D-67)
+    public record StatusPill(string Kind, string Text, string? Id = null, string? Title = null, bool Fresh = false)
     {
         public const string Draft = "draft", Submitted = "submitted", Approved = "approved", Returned = "returned", Locked = "locked",
             NotApplicable = "na", OutOfLimit = "outlimit", InLimit = "inlimit", Pending = "pending";

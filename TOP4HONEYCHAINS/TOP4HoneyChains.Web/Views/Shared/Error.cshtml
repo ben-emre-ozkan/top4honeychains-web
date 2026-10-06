@@ -1,27 +1,6 @@
 @model ErrorViewModel
 @{
-    // _BlankLayout works for anonymous users and needs no menu or user data
-    Layout = "~/Views/Shared/_BlankLayout.cshtml";
-    ViewData["Title"] = L["Error.Title"];
+    // D-67: 404 / 500 (Dashboard.Error and Dashboard.Status); the page is complete without a layout
+    Layout = null;
 }
-
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8 col-lg-6">
-            <div class="card mt-5">
-                <div class="card-body p-4 text-center">
-                    <i class="mdi mdi-alert-circle-outline text-danger" style="font-size: 3rem;"></i>
-                    <h4 class="mt-2">@L["Error.Title"]</h4>
-                    <p class="text-muted">@L["Error.Message"]</p>
-
-                    @if (Model.ShowRequestId)
-                    {
-                        <p><code>@Model.RequestId</code></p>
-                    }
-
-                    <a href="~/" class="btn btn-primary mt-2">@L["Error.BackHome"]</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<partial name="_ErrorPage" model="Model" />

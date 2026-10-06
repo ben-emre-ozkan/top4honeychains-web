@@ -40,6 +40,21 @@
     string Cur(string group) => groups.TryGetValue(group, out var c) && current.Any(x => c.Contains(x, StringComparer.OrdinalIgnoreCase)) ? "is-current" : "";
     string? Aria(string group) => Cur(group).Length > 0 ? "page" : null;
 
+    // D-67: breadcrumb from the localised menu section and the page title (no controller or action names)
+    var sectionNames = new Dictionary<string, (string Text, string? Url)>
+    {
+        ["work"] = (L["Work.Title"].Value, "/MyWork/Index"), ["org"] = (L["Org.MyOrganization"].Value, "/OrgWorkspace/Index"),
+        ["intake"] = (L["Cust.Intakes"].Value, "/Intake/Index"), ["samples"] = (L["Lab.Samples"].Value, "/Samples/Index"),
+        ["shipments"] = (L["Cust.Shipments"].Value, "/Shipments/Index"), ["storefronts"] = (L["P5.Storefronts"].Value, "/Storefronts/Index"),
+        ["dashboard"] = (L["Menu.Dashboard"].Value, "/Dashboard/Index"), ["beekeepers"] = (L["Menu.Beekeepers"].Value, null),
+        ["raw"] = (L["Menu.RawHoneyProduction"].Value, null), ["wholesalers"] = (L["Menu.Wholesalers"].Value, "/Wholesalers/Index"),
+        ["final"] = (L["Menu.FinalHoneyProductions"].Value, "/FinalHoneyProductions/Index"), ["ccp"] = (L["Menu.CriticalControlPoints"].Value, null),
+        ["users"] = (L["Menu.UserManagement"].Value, null), ["orgs"] = (L["Org.Organizations"].Value, null)
+    };
+    var crumbSection = groups.Keys.Where(g => Cur(g).Length > 0).Select(g => sectionNames.TryGetValue(g, out var n) ? n : default).FirstOrDefault();
+    var pageTitle = (ViewData["Title"] ?? ViewBag.Title)?.ToString();
+    var homeUrl = memberMenu ? "/MyWork/Index" : isPanelAdmin && !orgModelOn ? "/Dashboard/Index" : orgModelOn ? "/MyWork/Index" : "/Dashboard/Index";
+
     // My work badge (wwwroot/js/app-shell.js): counts per user and active membership
     var workScope = $"{MenuCurrentOrg.UserId}:{(isPanelAdmin ? "admin" : menuActive?.MembershipId.ToString() ?? "none")}";
     var userName = User.Identity?.Name ?? "";
@@ -253,12 +268,19 @@
 
 <div class="app-pagehead">
     <div class="container-fluid">
-        <p class="app-tagline">@L["Trustable and Sustainable Open Platform for Smart Honey Value Chains"]</p>
-        <ol class="breadcrumb m-0" aria-label="@L["Breadcrumb"]">
-            <li class="breadcrumb-item">TOP4HoneyChains</li>
-            <li class="breadcrumb-item">@(ViewBag.Controller is string crumb && crumb.Length > 0 ? L[crumb].Value : "")</li>
-            <li class="breadcrumb-item active" aria-current="page">@(ViewBag.Action is string step && step.Length > 0 ? L[step].Value : "")</li>
-        </ol>
+        <nav aria-label="@L["Breadcrumb"]">
+            <ol class="breadcrumb m-0" id="app-breadcrumb">
+                <li class="breadcrumb-item"><a href="@homeUrl">TOP4HoneyChains</a></li>
+                @if (crumbSection.Text != null && !string.Equals(crumbSection.Text, pageTitle, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    <li class="breadcrumb-item">@if (crumbSection.Url != null) { <a href="@crumbSection.Url">@crumbSection.Text</a> } else { @crumbSection.Text }</li>
+                }
+                @if (!string.IsNullOrWhiteSpace(pageTitle))
+                {
+                    <li class="breadcrumb-item active" aria-current="page">@pageTitle</li>
+                }
+            </ol>
+        </nav>
     </div>
 </div>
 <div id="work-live" class="visually-hidden" aria-live="polite" aria-atomic="true"

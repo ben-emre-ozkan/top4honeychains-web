@@ -12,6 +12,11 @@
     var editable = enterDenied == null && (Model == null || Model.Status == LabReportStatus.Draft);
     LabResult? ResultOf(int id) => Model?.Results.FirstOrDefault(r => r.ParameterId == id);
     string StatusText(string s) => s switch { "Draft" => L["Org.Draft"], "Submitted" => L["Lab.Submitted"], "Approved" => L["Ccp.Approved"], _ => s };
+    // D-67: limits for the lot's honey, in the selected language; values as text once the report cannot be edited
+    var honeyType = sample.RawHoneyProduction?.RawHoneyProductionHoneyTypeNavigation;
+    var honey = new HoneyProfile(honeyType?.HoneyTypeId, honeyType?.HoneyClass);
+    string ValueText(LabResult? r) => r == null ? "–" : r.MeasuredNumericValue?.ToString("0.####", System.Globalization.CultureInfo.CurrentCulture)
+        ?? (r.MeasuredTextValue is "Yes" or "No" ? L[r.MeasuredTextValue].Value : r.MeasuredTextValue) ?? "–";
 }
 
 <body data-topbar="light" data-layout="horizontal">
@@ -23,7 +28,11 @@
                     <div class="small text-muted mb-2">
                         @L["Cust.Lot"] #@sample.RawHoneyProductionId · @Ref.T("HoneyType", sample.RawHoneyProduction?.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeId, "Title", sample.RawHoneyProduction?.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle) ·
                         @L["Lab.Laboratory"]: @sample.LabOrg?.DisplayName · @L["Lab.SealNumber"]: @sample.SealNumber ·
-                        @L["Org.Status"]: <strong id="sample-status">@L[sample.Status ?? ""]</strong>
+                        @L["Sample status"]: <strong id="sample-status">@L[sample.Status ?? ""]</strong>
+                        @if (Model != null)
+                        {
+                            <text>· @L["Report status"]:</text> <partial name="_StatusPill" model="@(new TOP4HoneyChains.Web.Models.ViewModels.StatusPill(TOP4HoneyChains.Web.Models.ViewModels.StatusPill.ForReport(Model.Status, Model.ReturnReason != null), StatusText(Model.Status)))" />
+                        }
                     </div>
                     <h6 class="mt-3">@L["Lab.Custody"]</h6>
                     <ul class="small" id="custody-events">
@@ -42,11 +51,16 @@
                         @if (Model != null)
                         {
                             <div>
-                                <partial name="_StatusPill" model="@(new TOP4HoneyChains.Web.Models.ViewModels.StatusPill(TOP4HoneyChains.Web.Models.ViewModels.StatusPill.ForReport(Model.Status, Model.ReturnReason != null), StatusText(Model.Status), "report-status"))" />
+                                <partial name="_StatusPill" model="@(new TOP4HoneyChains.Web.Models.ViewModels.StatusPill(TOP4HoneyChains.Web.Models.ViewModels.StatusPill.ForReport(Model.Status, Model.ReturnReason != null), StatusText(Model.Status), "report-status", Fresh: TempData["JustApproved"] as bool? == true))" />
                                 <span class="small text-muted ms-2">@L["Lab.ReportCode"]: <strong id="report-code">@Model.ReportCode</strong></span>
+                                <button type="button" class="btn btn-outline-secondary btn-sm ms-2 no-print" onclick="window.print()"><i class="mdi mdi-printer" aria-hidden="true"></i>@L["Cust.Print"]</button>
                             </div>
                         }
                     </div>
+                    @if (Model != null)
+                    {
+                        <partial name="_RecordStrip" model="@(new TOP4HoneyChains.Web.Models.ViewModels.RecordStrip(Model.EnteredByUserId, Model.SubmittedAt ?? Model.CreatedAt, Model.Status == LabReportStatus.Approved ? Model.ApprovedByUserId : null, Model.ApprovedAt, IdsNotNames: true, TimesAreUtc: true))" />
+                    }
                     @if (Model?.ReturnReason != null)
                     {
                         <div class="alert alert-warning" id="return-reason">@L["Lab.Returned"]: @Model.ReturnReason</div>
@@ -56,8 +70,38 @@
                         <div class="alert alert-secondary" id="enter-denied">@L["Ccp.ReadOnly"]: @Msg.T(enterDenied)</div>
                     }
 
+                    @if (!editable)
+                    {
+                        @* D-67: once the report cannot be edited, its fields and values are text, not input boxes *@
+                        <dl class="app-facts" id="report-readonly">
+                            <div><dt>@L["Lab.ReportNumber"]</dt><dd>@(Model?.ReportNumber ?? "–")</dd></div>
+                            <div><dt>@L["Lab.IssuedOn"]</dt><dd>@(Model?.IssuedOn?.ToString("dd.MM.yyyy") ?? "–")</dd></div>
+                            <div><dt>@L["Lab.ReportPdf"]</dt><dd>@if (Model?.Sha256 != null) { <partial name="_ReportFile" model="@((sample.SampleId, Model))" /> } else { <text>–</text> }</dd></div>
+                        </dl>
+                        <div class="table-responsive"><table class="table table-sm" id="report-values">
+                            <thead><tr><th>@L["Corr.Parameter"]</th><th class="num">@L["Cust.Value"]</th><th>@L["Cust.Limit"]</th></tr></thead>
+                            <tbody>
+                                @foreach (var p in parameters)
+                                {
+                                    var r = ResultOf(p.ParameterId);
+                                    var unit = Limits.UnitSymbol(p);
+                                    <tr data-parameter-id="@p.ParameterId">
+                                        <td>@Limits.Name(p.ParameterId, p.ParameterName)</td>
+                                        <td class="num">@ValueText(r)@(r?.MeasuredNumericValue != null && unit.Length > 0 ? " " + unit : "")</td>
+                                        <td class="small">
+                                            @Limits.Describe(p, honey)
+                                            @if (r?.IsInRange == false) { <span class="st-pill st-outlimit"><i class="mdi mdi-alert-outline" aria-hidden="true"></i><span>@L["Out of limit"]</span></span> }
+                                            @if (r?.IsInRange == true) { <span class="st-pill st-inlimit"><i class="mdi mdi-check" aria-hidden="true"></i><span>@L["Within limit"]</span></span> }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table></div>
+                    }
+                    else
+                    {
                     <form asp-action="Save" asp-route-id="@sample.SampleId" method="post" enctype="multipart/form-data" id="report-form" class="field-form">
-                        <fieldset @(editable ? "" : "disabled")>
+                        <fieldset>
                             <div class="row">
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label" for="reportNumber">@L["Lab.ReportNumber"]</label>
@@ -69,10 +113,15 @@
                                 </div>
                                 <div class="col-md-5 mb-3">
                                     <label class="form-label" for="reportFile">@L["Lab.ReportPdf"]</label>
-                                    <input type="file" name="reportFile" id="reportFile" class="form-control" accept=".pdf" />
+                                    @* D-67: a styled, localised file picker over the native input (kept for keyboard and screen readers) *@
+                                    <div class="app-file">
+                                        <input type="file" name="reportFile" id="reportFile" class="app-file-input" accept=".pdf" />
+                                        <label for="reportFile" class="btn btn-outline-secondary app-file-btn"><i class="mdi mdi-paperclip" aria-hidden="true"></i>@L["Choose PDF"]</label>
+                                        <span class="app-file-name" data-empty="@L["No file chosen"]" aria-live="polite">@L["No file chosen"]</span>
+                                    </div>
                                     @if (Model?.Sha256 != null)
                                     {
-                                        <div class="small mt-1"><a asp-action="Pdf" asp-route-id="@sample.SampleId" target="_blank">@Model.OriginalFileName</a> @L["· SHA-256"] <code id="report-sha">@Model.Sha256</code></div>
+                                        <partial name="_ReportFile" model="@((sample.SampleId, Model))" />
                                     }
                                 </div>
                             </div>
@@ -83,13 +132,13 @@
                                     {
                                         var r = ResultOf(p.ParameterId);
                                         <tr data-parameter-id="@p.ParameterId">
-                                            <td>@Ref.T("Parameter", p.ParameterId, "Name", p.ParameterName) @(p.ParameterUnit is null or "None" ? "" : $"({Ref.T("Parameter", p.ParameterId, "Unit", p.ParameterUnit)})") @if (p.IsRequired) { <span class="text-danger" title="@L["Required"]">*</span> }</td>
+                                            <td><label for="value-@p.ParameterId" class="mb-0 fw-normal">@Limits.Label(p)</label> @if (p.IsRequired) { <span class="text-danger" title="@L["Required"]">*</span> }</td>
                                             <td style="max-width:180px">
-                                                <input name="values[@p.ParameterId]" class="form-control form-control-sm" maxlength="100"
+                                                <input name="values[@p.ParameterId]" id="value-@p.ParameterId" class="form-control form-control-sm" maxlength="100"
                                                        value="@(r?.MeasuredNumericValue?.ToString("0.####", System.Globalization.CultureInfo.InvariantCulture) ?? r?.MeasuredTextValue)" />
                                             </td>
                                             <td class="small">
-                                                @Ref.Limit(r?.AppliedLimit ?? CcpLimitEvaluator.DescribeAll(p), k => L[k])
+                                                @Limits.Describe(p, honey)
                                                 @if (r?.IsInRange == false) { <span class="st-pill st-outlimit"><i class="mdi mdi-alert-outline" aria-hidden="true"></i><span>@L["Out of limit"]</span></span> }
                                                 @if (r?.IsInRange == true) { <span class="st-pill st-inlimit"><i class="mdi mdi-check" aria-hidden="true"></i><span>@L["Within limit"]</span></span> }
                                             </td>
@@ -103,6 +152,7 @@
                             }
                         </fieldset>
                     </form>
+                    }
 
                     @{
                         // D-54: progress of the required values; submitting waits until all are entered
@@ -144,7 +194,7 @@
                                     var outOfLimit = Model!.Results.Where(r => r.IsInRange == false)
                                         .Select(r => (Result: r, Parameter: parameters.FirstOrDefault(p => p.ParameterId == r.ParameterId)))
                                         .Select(x => new TOP4HoneyChains.Web.Models.ViewModels.OutOfLimitItem(x.Result.ParameterId, x.Parameter?.ParameterName, x.Result.MeasuredNumericValue,
-                                            x.Result.MeasuredTextValue, x.Parameter?.ParameterUnit, x.Result.AppliedLimit, x.Parameter?.LimitVerified == true))
+                                            x.Result.MeasuredTextValue, x.Parameter?.ParameterUnit, x.Parameter != null ? Limits.Describe(x.Parameter, honey) : x.Result.AppliedLimit, x.Parameter?.LimitVerified == true))
                                         .ToList();
                                 <partial name="_OutOfLimitConfirm" model="@(new TOP4HoneyChains.Web.Models.ViewModels.OutOfLimitConfirm("decide-form", "approve-report", outOfLimit))" />
                                 @if (ccp0Pending != null)
@@ -170,7 +220,7 @@
                     }
                 </div>
             </div>
-            <a asp-controller="Samples" asp-action="Index" class="btn btn-secondary">@L["Org.Back"]</a>
+            <a asp-controller="Samples" asp-action="Index" class="btn btn-link app-back"><i class="mdi mdi-arrow-left" aria-hidden="true"></i> @L["Org.Back"]</a>
         </div>
     </div>
 </body>

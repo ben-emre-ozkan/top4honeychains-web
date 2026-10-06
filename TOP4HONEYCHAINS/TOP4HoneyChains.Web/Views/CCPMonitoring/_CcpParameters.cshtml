@@ -13,8 +13,7 @@
 {
     <div class="card mb-4 border-0 shadow-sm">
 
-        <div class="card-header border-0 text-white"
-             style="background: linear-gradient(135deg,#2c3e50,#4ca1af);">
+        <div class="card-header border-0 app-band">
             <div class="d-flex justify-content-between align-items-start">
                 <div>
                     <h2 class="h6 mb-1 fw-bold">
@@ -35,7 +34,9 @@
             {
                 var p = Model.Groups[i].Parameters[j];
                 var hasValue = p.MeasuredNumericValue != null || !string.IsNullOrEmpty(p.MeasuredTextValue);
-                var border = p.IsInRange == true ? "#198754" : p.IsInRange == false ? "#dc3545" : "transparent";
+                var state = p.IsInRange == true ? "is-in" : p.IsInRange == false ? "is-out" : "";
+                // D-67: the limit in the selected language, for this honey class
+                var limitText = p.Definition != null ? Limits.Describe(p.Definition, new TOP4HoneyChains.Web.Services.HoneyProfile(null, Model.HoneyClass)) : Ref.Limit(p.LimitText, k => L[k]);
 
                 <input type="hidden" asp-for="Groups[i].Parameters[j].ParameterId" />
 
@@ -43,8 +44,7 @@
                 {
                     @:<fieldset disabled class="lab-value">
                 }
-                <div class="mb-4 p-4 rounded shadow-sm ccp-param" data-parameter-id="@p.ParameterId"
-                     style="background:#f8fafc; border-left:5px solid @border;">
+                <div class="mb-4 p-4 rounded ccp-param @state" data-parameter-id="@p.ParameterId">
                     @if (p.LabReportId != null)
                     {
                         <span class="badge bg-info text-dark mb-2 lab-badge"><i class="mdi mdi-flask-outline"></i> @L["Lab.ValueFromReport"]</span>
@@ -57,7 +57,7 @@
                             @Ref.T("Parameter", p.ParameterId, "Name", p.ParameterName)
                             @if (!string.IsNullOrEmpty(p.Unit) && p.Unit != "None")
                             {
-                                <span class="text-muted">(@Ref.Text("Parameter", "Unit", p.Unit))</span>
+                                <span class="text-muted">(@TOP4HoneyChains.Web.Services.Units.Symbol(Ref.Text("Parameter", "Unit", p.Unit)))</span>
                             }
                             @if (p.IsRequired && p.RequiredIfParameterId != null)
                             {
@@ -70,14 +70,14 @@
 
                         @if (p.IsInRange == true)
                         {
-                            <span class="st-pill st-inlimit ccp-range" title="@Ref.Limit(p.AppliedLimit, k => L[k])">
-                                <i class="mdi mdi-check-circle-outline" aria-hidden="true"></i> @L["Within limit"] (@Ref.Limit(p.AppliedLimit, k => L[k]))
+                            <span class="st-pill st-inlimit ccp-range" title="@limitText">
+                                <i class="mdi mdi-check-circle-outline" aria-hidden="true"></i> @L["Within limit"] (@limitText)
                             </span>
                         }
                         else if (p.IsInRange == false)
                         {
-                            <span class="st-pill st-outlimit ccp-range" title="@Ref.Limit(p.AppliedLimit, k => L[k])">
-                                <i class="mdi mdi-alert-circle-outline" aria-hidden="true"></i> @L["Out of limit"] (@Ref.Limit(p.AppliedLimit, k => L[k]))
+                            <span class="st-pill st-outlimit ccp-range" title="@limitText">
+                                <i class="mdi mdi-alert-circle-outline" aria-hidden="true"></i> @L["Out of limit"] (@limitText)
                             </span>
                         }
                         else if (hasValue && p.LimitText != null)
@@ -92,7 +92,7 @@
                             case CcpDataType.Number:
                                 <div class="col-md-6">
                                     <input type="text" inputmode="decimal" autocomplete="off" class="form-control shadow-sm"
-                                           asp-for="Groups[i].Parameters[j].MeasuredNumericValue" />
+                                           asp-for="Groups[i].Parameters[j].MeasuredNumericValue" asp-format="{0:0.####}" />
                                 </div>
                                 break;
                             case CcpDataType.YesNo:
@@ -135,7 +135,7 @@
                                 <div class="col-md-6">
                                     <label class="form-label small text-muted">@L["Numeric Value"]</label>
                                     <input type="text" inputmode="decimal" autocomplete="off" class="form-control shadow-sm"
-                                           asp-for="Groups[i].Parameters[j].MeasuredNumericValue" />
+                                           asp-for="Groups[i].Parameters[j].MeasuredNumericValue" asp-format="{0:0.####}" />
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label small text-muted">@L["Text Value"]</label>
@@ -157,10 +157,10 @@
 
                     @if (p.LimitText != null || (!string.IsNullOrEmpty(p.CriticalLimit) && p.CriticalLimit != "None"))
                     {
-                        <div class="mt-3 p-2 rounded" style="background:#fff5f5; border-left:4px solid #dc3545;">
-                            <small class="text-danger fw-semibold">
+                        <div class="mt-3 p-2 rounded ccp-limit-note">
+                            <small class="fw-semibold">
                                 <i class="mdi mdi-alert-circle-outline me-1"></i>
-                                @L["Critical limit:"] @Ref.Limit(p.LimitText ?? p.CriticalLimit, k => L[k])
+                                @L["Critical limit:"] @(limitText ?? Ref.Limit(p.CriticalLimit, k => L[k]))
                             </small>
                             @if (p.LimitText != null && !p.LimitVerified)
                             {

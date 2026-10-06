@@ -1,0 +1,14 @@
+/* Branded error pages (Views/Shared/_ErrorPage.cshtml, D-67). Tokens from brand.css. */
+*, *::before, *::after { box-sizing: border-box; }
+body.err { margin: 0; min-height: 100vh; min-height: 100dvh; display: grid; place-items: center; padding: 24px 16px; font-family: var(--b-text); color: var(--b-ink);
+    background: radial-gradient(60% 50% at 80% 0%, rgba(242, 179, 61, 0.18), transparent 70%), var(--b-paper); }
+.err-card { width: min(520px, 100%); text-align: center; background: var(--b-card); border: 1px solid var(--b-line); border-radius: var(--b-radius-l); box-shadow: var(--b-shadow); padding: 28px 24px 30px; }
+.err-brand { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; color: var(--b-ink); text-decoration: none; font-family: var(--b-display); font-weight: 800; font-size: 18px; }
+.err .bee-art { display: block; margin: 8px auto 0; max-width: 100%; height: auto; }
+.err-code { margin: 6px 0 0; font-size: 13px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: var(--b-kicker); }
+.err-title { margin: 6px 0 8px; font-family: var(--b-display); font-weight: 800; font-size: clamp(24px, 4vw, 30px); line-height: 1.15; }
+.err-text { margin: 0 auto; max-width: 400px; color: var(--b-muted); line-height: 1.55; }
+.err-ref { margin: 14px 0 0; color: var(--b-muted); font-size: 14px; }
+.err-ref code { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: 15px; color: var(--b-ink); background: var(--b-paper-2); border: 1px solid var(--b-line); padding: 3px 8px; border-radius: 8px; user-select: all; }
+.err-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 22px; }
+.err :focus-visible { outline: 3px solid var(--b-focus); outline-offset: 3px; }

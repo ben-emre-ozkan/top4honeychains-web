@@ -15,9 +15,7 @@
                             <h4 class="card-title">@L["Create new beekeeper"]</h4>
                             <p class="card-title-desc">
                                 <a asp-action="Index"
-                                   class="btn btn-secondary waves-effect waves-light">
-                                    @L["Back to list"]
-                                </a>
+                                   class="btn btn-link app-back"><i class="mdi mdi-arrow-left" aria-hidden="true"></i> @L["Back to list"]</a>
                             </p>
                             <form class="custom-validation" asp-action="Create" enctype="multipart/form-data">
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>

@@ -1,0 +1,50 @@
+@model ErrorViewModel
+@inject Microsoft.Extensions.Options.IOptions<TOP4HoneyChains.Web.Services.OrgModel.FeatureFlags> ErrorFlags
+@* Branded error pages (D-67): 403, 404 and 500 with the bee, a way back and, for 500, the reference written to the log.
+   A whole page (no layout): it must render for anonymous users and when the app shell itself fails. *@
+@{
+    var lang = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+    var code = Model.Code;
+    var kind = code switch { 403 => "403", 404 => "404", >= 500 => "500", _ => "Other" };
+    var signedIn = User.Identity?.IsAuthenticated == true;
+    var (homeUrl, homeText) = !signedIn ? ("/", L["Err.Home"].Value)
+        : User.IsInRole("Administrator") && !ErrorFlags.Value.OrgRoleModel ? ("/Dashboard/Index", L["Menu.Dashboard"].Value)
+        : ErrorFlags.Value.OrgRoleModel ? ("/MyWork/Index", L["Work.Title"].Value) : ("/Dashboard/Index", L["Menu.Dashboard"].Value);
+}
+<!doctype html>
+<html lang="@lang">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#FBF8F2">
+    <title>@L["Err." + kind + ".Title"] | TOP4HoneyChains</title>
+    <partial name="~/Views/Shared/_Favicons.cshtml" />
+    <link href="~/css/brand.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/css/error-page.css" rel="stylesheet" asp-append-version="true">
+</head>
+<body class="err">
+    <main class="err-card" id="error-page" data-code="@code">
+        <a class="err-brand" href="/">
+            <svg width="28" height="28" viewBox="0 0 30 30" aria-hidden="true"><polygon points="15,2 26,8.5 26,21.5 15,28 4,21.5 4,8.5" fill="#D9930D"></polygon><polygon points="15,8 20.2,11 20.2,17 15,20 9.8,17 9.8,11" fill="#FFFFFF"></polygon></svg>
+            <span>TOP4HoneyChains</span>
+        </a>
+        <partial name="_BeeArt" model="@L["Work.EmptyArt"].Value" />
+        <p class="err-code">@string.Format(L["Err.Code"].Value, code)</p>
+        <h1 class="err-title">@L["Err." + kind + ".Title"]</h1>
+        <p class="err-text">@L["Err." + kind + ".Text"]</p>
+        @if (code >= 500 && Model.ShowRequestId)
+        {
+            <p class="err-ref">@L["Err.Reference"] <code id="error-reference">@Model.RequestId</code></p>
+        }
+        <div class="err-actions">
+            <a class="b-btn b-btn-honey" href="@homeUrl">@homeText</a>
+            <a class="b-btn b-btn-ghost" href="javascript:history.back()" id="error-back">@L["Err.Back"]</a>
+        </div>
+    </main>
+    <script>
+        // "Go back" only when there is somewhere to go back to
+        if (window.history.length <= 1) { var b = document.getElementById('error-back'); if (b) b.remove(); }
+    </script>
+</body>
+</html>

@@ -34,7 +34,7 @@
                                 {
                                     var v = ValueOf(p.ParameterId);
                                     <tr>
-                                        <td>@Ref.T("Parameter", p.ParameterId, "Name", p.ParameterName) @(TOP4HoneyChains.Web.Services.Units.IsNone(p.ParameterUnit) ? "" : $"({Ref.Unit(p.ParameterId, p.ParameterUnit)})")</td>
+                                        <td>@Limits.Label(p)</td>
                                         <td>
                                             @if (p.DataType == CcpDataType.YesNo)
                                             {
@@ -49,7 +49,7 @@
                                                 <input name="values[@p.ParameterId]" class="form-control form-control-sm" value="@(v?.MeasuredNumericValue?.ToString("0.####", System.Globalization.CultureInfo.InvariantCulture) ?? v?.MeasuredTextValue)" readonly="@(!canEnter)" maxlength="100" />
                                             }
                                         </td>
-                                        <td class="small">@Ref.Limit(v?.AppliedLimit, k => L[k]) @if (v?.IsInRange == false) { <span class="st-pill st-outlimit"><i class="mdi mdi-alert-outline" aria-hidden="true"></i><span>@L["Out of limit"]</span></span> }</td>
+                                        <td class="small">@Limits.Describe(p) @if (v?.IsInRange == false) { <span class="st-pill st-outlimit"><i class="mdi mdi-alert-outline" aria-hidden="true"></i><span>@L["Out of limit"]</span></span> }</td>
                                     </tr>
                                 }
                             </tbody>
@@ -64,11 +64,14 @@
 
             <div class="card" id="storage-approval">
                 <div class="card-body">
-                    <h6>@L["Ccp.ApprovalTitle"]</h6>
+                    <h2 class="h6">@L["Ccp.ApprovalTitle"]</h2>
+                    @if (record != null)
+                    {
+                        <partial name="_RecordStrip" model="@(new TOP4HoneyChains.Web.Models.ViewModels.RecordStrip(record.RecordedByUserId, record.RecordedAt, record.ApprovedByUserId, record.ApprovedAt, record.SelfApproved, IdsNotNames: true, TimesAreUtc: true))" />
+                    }
                     @if (record?.ApprovedAt != null)
                     {
-                        <span class="badge bg-success" id="storage-approved">@L["Ccp.Approved"]</span> @record.ApprovedAt?.ToLocalTime().ToString("dd.MM.yyyy HH:mm")
-                        @if (record.SelfApproved) { <span class="badge bg-warning text-dark">@L["Org.SelfApproved"]</span> }
+                        <partial name="_StatusPill" model="@(new TOP4HoneyChains.Web.Models.ViewModels.StatusPill(TOP4HoneyChains.Web.Models.ViewModels.StatusPill.Approved, L["Ccp.Approved"].Value, "storage-approved", Fresh: TempData["JustApproved"] as bool? == true))" />
                     }
                     else
                     {
@@ -85,7 +88,7 @@
                                 var outOfLimit = record!.Values.Where(v => v.IsInRange == false)
                                     .Select(v => (Value: v, Parameter: parameters.FirstOrDefault(p => p.ParameterId == v.ParameterId)))
                                     .Select(x => new TOP4HoneyChains.Web.Models.ViewModels.OutOfLimitItem(x.Value.ParameterId, x.Parameter?.ParameterName, x.Value.MeasuredNumericValue,
-                                        x.Value.MeasuredTextValue, x.Parameter?.ParameterUnit, x.Value.AppliedLimit, x.Parameter?.LimitVerified == true)).ToList();
+                                        x.Value.MeasuredTextValue, x.Parameter?.ParameterUnit, x.Parameter != null ? Limits.Describe(x.Parameter) : x.Value.AppliedLimit, x.Parameter?.LimitVerified == true)).ToList();
                             <partial name="_OutOfLimitConfirm" model="@(new TOP4HoneyChains.Web.Models.ViewModels.OutOfLimitConfirm("storage-approve-form", "approve-storage", outOfLimit))" />
                         }
                         else if (!canApprove && approveDenied != null)
@@ -95,7 +98,7 @@
                     }
                 </div>
             </div>
-            <a asp-action="Index" class="btn btn-secondary">@L["Org.Back"]</a>
+            <a asp-action="Index" class="btn btn-link app-back"><i class="mdi mdi-arrow-left" aria-hidden="true"></i> @L["Org.Back"]</a>
         </div>
     </div>
 </body>

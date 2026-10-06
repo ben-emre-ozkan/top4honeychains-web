@@ -19,7 +19,10 @@
     };
     var order = new[] { "Approve", "LabApprove", "Finalize", "Confirm", "Receive", "Results", "Verify", "Registry", "Correction", "Enter" };
     var groups = items.GroupBy(i => i.Kind).OrderBy(g => Array.IndexOf(order, g.Key)).ToList();
-    var userName = User.Identity?.Name ?? "";
+    // D-67: the person's full name when the account has one (name claims), otherwise the user name
+    var fullName = User.FindFirst("full_name")?.Value
+        ?? string.Join(" ", new[] { User.FindFirst(System.Security.Claims.ClaimTypes.GivenName)?.Value, User.FindFirst(System.Security.Claims.ClaimTypes.Surname)?.Value }.Where(x => !string.IsNullOrWhiteSpace(x)));
+    var userName = !string.IsNullOrWhiteSpace(fullName) ? fullName : User.Identity?.Name ?? "";
 
     // how long an item has been waiting: whole days, the exact date in the tooltip; more than 3 days gets an amber mark
     (string Text, string Exact, bool Old)? Age(DateTime? since)
@@ -87,29 +90,7 @@
             {
                 <section class="card work-empty" id="work-empty">
                     <div class="card-body">
-                        <svg class="work-empty-art" viewBox="0 0 220 150" width="220" height="150" role="img" aria-label="@L["Work.EmptyArt"]">
-                            <g fill="none" stroke="#E9C77A" stroke-width="2">
-                                <path d="M40 92 l18-10 18 10 v21 l-18 10 -18-10z" fill="#FCEFD2" />
-                                <path d="M76 92 l18-10 18 10 v21 l-18 10 -18-10z" fill="#FCEFD2" />
-                                <path d="M112 92 l18-10 18 10 v21 l-18 10 -18-10z" fill="#F7DFA6" />
-                                <path d="M148 92 l18-10 18 10 v21 l-18 10 -18-10z" fill="#FCEFD2" />
-                                <path d="M58 123 l18-10 18 10 v21" />
-                                <path d="M94 123 l18-10 18 10 v21" />
-                                <path d="M130 123 l18-10 18 10 v21" />
-                            </g>
-                            <g transform="translate(112 62)">
-                                <ellipse cx="-8" cy="-14" rx="12" ry="8" fill="#FFFFFF" stroke="#C9BBA3" stroke-width="1.5" transform="rotate(-25 -8 -14)" />
-                                <ellipse cx="8" cy="-15" rx="12" ry="8" fill="#FFFFFF" stroke="#C9BBA3" stroke-width="1.5" transform="rotate(20 8 -15)" />
-                                <ellipse cx="0" cy="0" rx="18" ry="12" fill="#F2B33D" stroke="#3B352C" stroke-width="1.8" />
-                                <path d="M-6 -11 v22 M4 -11.5 v23" stroke="#3B352C" stroke-width="3.2" />
-                                <circle cx="19" cy="-3" r="6.5" fill="#3B352C" />
-                                <path d="M23 -8 q5 -7 9 -5 M21 -9 q2 -8 7 -8" fill="none" stroke="#3B352C" stroke-width="1.4" stroke-linecap="round" />
-                                <path d="M-18 0 l-6 2" stroke="#3B352C" stroke-width="1.8" stroke-linecap="round" />
-                                <path d="M-6 12 v6 M4 12 v6" stroke="#3B352C" stroke-width="1.6" stroke-linecap="round" />
-                            </g>
-                            <text x="140" y="40" font-family="Bricolage Grotesque, system-ui" font-size="14" fill="#8A5A00">z</text>
-                            <text x="150" y="30" font-family="Bricolage Grotesque, system-ui" font-size="11" fill="#8A5A00">z</text>
-                        </svg>
+                        <partial name="_BeeArt" model="@L["Work.EmptyArt"].Value" />
                         <p class="work-empty-text">@L["Work.Empty"]</p>
                         @if (links.Any())
                         {

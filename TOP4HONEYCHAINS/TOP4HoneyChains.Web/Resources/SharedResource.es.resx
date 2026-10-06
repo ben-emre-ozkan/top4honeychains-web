@@ -6072,4 +6072,82 @@
   <data name="Work.WaitingDays" xml:space="preserve">
     <value>esperando {0} días</value>
   </data>
+  <data name="Err.Code" xml:space="preserve">
+    <value>Error {0}</value>
+  </data>
+  <data name="Err.403.Title" xml:space="preserve">
+    <value>No puede abrir esta página</value>
+  </data>
+  <data name="Err.403.Text" xml:space="preserve">
+    <value>Su rol no permite esta página. Si la necesita, pregunte al administrador de su organización.</value>
+  </data>
+  <data name="Err.404.Title" xml:space="preserve">
+    <value>Esta página no existe</value>
+  </data>
+  <data name="Err.404.Text" xml:space="preserve">
+    <value>Puede que la dirección esté mal escrita o que la página se haya movido.</value>
+  </data>
+  <data name="Err.500.Title" xml:space="preserve">
+    <value>Algo ha fallado por nuestra parte</value>
+  </data>
+  <data name="Err.500.Text" xml:space="preserve">
+    <value>El error ha quedado registrado. Si vuelve a ocurrir, envíenos esta referencia:</value>
+  </data>
+  <data name="Err.Other.Title" xml:space="preserve">
+    <value>Algo ha fallado</value>
+  </data>
+  <data name="Err.Other.Text" xml:space="preserve">
+    <value>No se pudo completar la solicitud.</value>
+  </data>
+  <data name="Err.Reference" xml:space="preserve">
+    <value>Referencia</value>
+  </data>
+  <data name="Err.Back" xml:space="preserve">
+    <value>Volver</value>
+  </data>
+  <data name="Err.Home" xml:space="preserve">
+    <value>Página de inicio</value>
+  </data>
+  <data name="Sample status" xml:space="preserve">
+    <value>Estado de la muestra</value>
+  </data>
+  <data name="Report status" xml:space="preserve">
+    <value>Estado del informe</value>
+  </data>
+  <data name="Choose PDF" xml:space="preserve">
+    <value>Elegir PDF</value>
+  </data>
+  <data name="No file chosen" xml:space="preserve">
+    <value>Ningún archivo seleccionado</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>Copiado</value>
+  </data>
+  <data name="Limit.When" xml:space="preserve">
+    <value>cuando {0}</value>
+  </data>
+  <data name="Entered by" xml:space="preserve">
+    <value>Introducido por</value>
+  </data>
+  <data name="Approved by" xml:space="preserve">
+    <value>Aprobado por</value>
+  </data>
+  <data name="Not approved yet" xml:space="preserve">
+    <value>Aún no aprobado</value>
+  </data>
+  <data name="Sealed" xml:space="preserve">
+    <value>Sellado</value>
+  </data>
+  <data name="Open the Honey Story" xml:space="preserve">
+    <value>Abrir la Historia de la miel</value>
+  </data>
+  <data name="Download QR" xml:space="preserve">
+    <value>Descargar QR</value>
+  </data>
+  <data name="QR code of the Honey Story" xml:space="preserve">
+    <value>Código QR de la Historia de la miel</value>
+  </data>
+  <data name="Printed on {0}" xml:space="preserve">
+    <value>Impreso el {0}</value>
+  </data>
 </root>

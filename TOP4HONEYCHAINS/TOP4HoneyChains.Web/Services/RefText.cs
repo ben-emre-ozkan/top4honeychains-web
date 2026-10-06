@@ -71,7 +71,7 @@ namespace TOP4HoneyChains.Web.Services
             var b = Bases().FirstOrDefault(x => x.Text == text);
             if (b.Key == null)
                 return null;
-            var t = T(b.Entity, b.Key, b.Field, text);
+            var t = T(b.Entity, b.Key, b.Field, b.Entity == RefEntity.OrgRole ? RoleEnglish(text) : text);
             return t == text ? null : t;
         }
 
@@ -173,7 +173,25 @@ namespace TOP4HoneyChains.Web.Services
         public string LimitSource(int? id, string? text) => T(RefEntity.Parameter, id, "LimitSource", text);
         public string Capability(string? code) => T(RefEntity.Capability, code, "Name", code);
         public string CapabilityDescription(string? code, string? text) => T(RefEntity.Capability, code, "Description", text);
-        public string Role(string? code) => T(RefEntity.OrgRole, code, "Name", code);
+        // D-67: English has no translation rows for the organization roles; show a readable name instead of the code
+        public string Role(string? code) => T(RefEntity.OrgRole, code, "Name", RoleEnglish(code));
+
+        private static readonly Dictionary<string, string> RoleNames = new(StringComparer.OrdinalIgnoreCase)
+        {
+            ["Analyst"] = "Analyst", ["FieldInspector"] = "Field inspector", ["LabManager"] = "Lab manager", ["OrgAdmin"] = "Organisation admin",
+            ["QualityApprover"] = "Quality approver", ["SampleAcceptanceOfficer"] = "Sample acceptance officer", ["Staff"] = "Staff"
+        };
+
+        // a known role's English name, otherwise the code split at its capitals ("LabManager" -> "Lab manager")
+        public static string? RoleEnglish(string? code)
+        {
+            if (string.IsNullOrEmpty(code))
+                return code;
+            if (RoleNames.TryGetValue(code, out var name))
+                return name;
+            var words = System.Text.RegularExpressions.Regex.Split(code, "(?<=[a-z])(?=[A-Z])");
+            return string.Join(" ", words.Select((w, i) => i == 0 ? w : w.ToLowerInvariant()));
+        }
         public string Country(string? code, string? name) => T(RefEntity.Country, code, "Name", name ?? code);
     }
 }

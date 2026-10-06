@@ -14,7 +14,7 @@
                 <li data-parameter-id="@i.ParameterId">
                     <strong>@Ref.Parameter(i.ParameterId, i.Name)</strong>:
                     @(i.Number?.ToString("0.####", culture) ?? (i.Text is "Yes" or "No" ? L[i.Text].Value : i.Text)) @unit
-                    <span class="text-muted">· @L["Limit:"] @(i.AppliedLimit == null ? "-" : Ref.Limit(i.AppliedLimit, k => L[k]))</span>
+                    <span class="text-muted">· @L["Limit:"] @(string.IsNullOrEmpty(i.AppliedLimit) ? "-" : i.AppliedLimit)</span>
                     @if (!i.LimitVerified)
                     {
                         <span class="badge bg-warning text-dark oolc-unverified">@L["limit not verified yet"]</span>

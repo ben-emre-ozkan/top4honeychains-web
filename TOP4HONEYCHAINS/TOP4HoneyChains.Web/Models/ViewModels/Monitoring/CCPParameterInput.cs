@@ -24,6 +24,11 @@
         public int? RequiredIfParameterId { get; set; }
         public string? RequiredIfValue { get; set; }
 
+        // D-67: the parameter with its limit rows, for the localised limit text (display only, never bound)
+        [Microsoft.AspNetCore.Mvc.ModelBinding.BindNever]
+        [Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidateNever]
+        public TOP4HoneyChains.Web.Models.Entities.CriticalControlPointParameter? Definition { get; set; }
+
         // All limits of the parameter as text, and whether they are verified
         public string? LimitText { get; set; }
         public bool LimitVerified { get; set; }

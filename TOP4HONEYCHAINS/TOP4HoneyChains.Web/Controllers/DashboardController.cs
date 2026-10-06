@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using TOP4HoneyChains.Web.Data;
 using TOP4HoneyChains.Web.Models;
+using TOP4HoneyChains.Web.Services;
 
 namespace TOP4HoneyChains.Web.Controllers
 {
@@ -223,17 +224,24 @@ namespace TOP4HoneyChains.Web.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            var requestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
+            // D-67: the same short reference as UnhandledExceptionLoggingMiddleware wrote next to the exception
+            var reference = ErrorReference.Of(HttpContext);
             var failure = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
             if (failure != null)
-            {
-                // ExceptionHandlerMiddleware already logs the full exception; this line links it
-                // to the reference shown to the user
-                _logger.LogError("Error page shown for {ExceptionType} on {Path} (reference {RequestId})",
-                    failure.Error.GetType().Name, failure.Path, requestId);
-            }
+                _logger.LogError("Error page shown for {ExceptionType} on {Path} (reference {Reference})", failure.Error.GetType().Name, failure.Path, reference);
+            Response.StatusCode = StatusCodes.Status500InternalServerError;
+            return View("Error", new ErrorViewModel { Code = 500, RequestId = reference });
+        }
 
-            return View(new ErrorViewModel { RequestId = requestId });
+        // D-67: branded page for status codes without a body (404 and others), re-executed by UseStatusCodePagesWithReExecute
+        [AllowAnonymous]
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Status(int code)
+        {
+            if (code < 400 || code > 599)
+                code = 404;
+            Response.StatusCode = code;
+            return View("Error", new ErrorViewModel { Code = code, RequestId = code >= 500 ? ErrorReference.Of(HttpContext) : null });
         }
     }
 }

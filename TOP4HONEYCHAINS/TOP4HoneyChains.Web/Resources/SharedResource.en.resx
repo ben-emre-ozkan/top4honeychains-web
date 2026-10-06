@@ -310,7 +310,7 @@
     <value>Capabilities</value>
   </data>
   <data name="Org.NotVerifiedBanner" xml:space="preserve">
-    <value>Your organization is not verified yet. You can read its data and (as OrgAdmin) upload documents, but nobody can enter data until it is verified.</value>
+    <value>Your organization is not verified yet. You can read its data and (as organisation admin) upload documents, but nobody can enter data until it is verified.</value>
   </data>
   <data name="Org.OrganizationPage" xml:space="preserve">
     <value>Organization page</value>
@@ -379,7 +379,7 @@
     <value>Finalize</value>
   </data>
   <data name="Org.FinalizeHelp" xml:space="preserve">
-    <value>All control points of the batch and its lots must be approved. One person requests, another person (QualityApprover) confirms. A finalized batch cannot be changed.</value>
+    <value>All control points of the batch and its lots must be approved. One person requests, another person (quality approver) confirms. A finalized batch cannot be changed.</value>
   </data>
   <data name="Org.SelfApproved" xml:space="preserve">
     <value>self-approved (exemption)</value>
@@ -1000,7 +1000,7 @@
     <value>Report code</value>
   </data>
   <data name="Lab.Returned" xml:space="preserve">
-    <value>Returned by the LabManager</value>
+    <value>Returned by the lab manager</value>
   </data>
   <data name="Lab.ReportNumber" xml:space="preserve">
     <value>Report number</value>
@@ -3496,7 +3496,7 @@
     <value>The CCP is marked &quot;Not applicable&quot;.</value>
   </data>
   <data name="Only a QualityApprover of the organization can approve." xml:space="preserve">
-    <value>Only a QualityApprover of the organization can approve.</value>
+    <value>Only a quality approver of the organization can approve.</value>
   </data>
   <data name="Only a submitted (or &quot;Not applicable&quot;) CCP record can be approved." xml:space="preserve">
     <value>Only a submitted (or &quot;Not applicable&quot;) CCP record can be approved.</value>
@@ -3766,7 +3766,7 @@
     <value>Finalizing is requested by {0} of a verified organization.</value>
   </data>
   <data name="Finalizing requested; a QualityApprover (another person) must confirm it." xml:space="preserve">
-    <value>Finalizing requested; a QualityApprover (another person) must confirm it.</value>
+    <value>Finalizing requested; a quality approver (another person) must confirm it.</value>
   </data>
   <data name="Only a {0} of a verified organization can finalize." xml:space="preserve">
     <value>Only a {0} of a verified organization can finalize.</value>
@@ -4063,7 +4063,7 @@
     <value>An approved lab report cannot be changed; request a correction instead.</value>
   </data>
   <data name="The report is submitted; the LabManager approves it or returns it for changes." xml:space="preserve">
-    <value>The report is submitted; the LabManager approves it or returns it for changes.</value>
+    <value>The report is submitted; the lab manager approves it or returns it for changes.</value>
   </data>
   <data name="The report number can be at most 50 characters." xml:space="preserve">
     <value>The report number can be at most 50 characters.</value>
@@ -4090,7 +4090,7 @@
     <value>Enter the report number and the issue date before submitting.</value>
   </data>
   <data name="Report submitted; a LabManager (another person) must approve it." xml:space="preserve">
-    <value>Report submitted; a LabManager (another person) must approve it.</value>
+    <value>Report submitted; a lab manager (another person) must approve it.</value>
   </data>
   <data name="Only a submitted report can be approved or returned." xml:space="preserve">
     <value>Only a submitted report can be approved or returned.</value>
@@ -6071,5 +6071,83 @@
   </data>
   <data name="Work.WaitingDays" xml:space="preserve">
     <value>waiting {0} days</value>
+  </data>
+  <data name="Err.Code" xml:space="preserve">
+    <value>Error {0}</value>
+  </data>
+  <data name="Err.403.Title" xml:space="preserve">
+    <value>You can't open this page</value>
+  </data>
+  <data name="Err.403.Text" xml:space="preserve">
+    <value>Your role does not allow this page. Ask your organisation's admin if you need it.</value>
+  </data>
+  <data name="Err.404.Title" xml:space="preserve">
+    <value>This page isn't here</value>
+  </data>
+  <data name="Err.404.Text" xml:space="preserve">
+    <value>The address may be mistyped, or the page has moved.</value>
+  </data>
+  <data name="Err.500.Title" xml:space="preserve">
+    <value>Something went wrong on our side</value>
+  </data>
+  <data name="Err.500.Text" xml:space="preserve">
+    <value>The error has been recorded. If it happens again, send us this reference:</value>
+  </data>
+  <data name="Err.Other.Title" xml:space="preserve">
+    <value>Something went wrong</value>
+  </data>
+  <data name="Err.Other.Text" xml:space="preserve">
+    <value>The request could not be completed.</value>
+  </data>
+  <data name="Err.Reference" xml:space="preserve">
+    <value>Reference</value>
+  </data>
+  <data name="Err.Back" xml:space="preserve">
+    <value>Go back</value>
+  </data>
+  <data name="Err.Home" xml:space="preserve">
+    <value>Home page</value>
+  </data>
+  <data name="Sample status" xml:space="preserve">
+    <value>Sample status</value>
+  </data>
+  <data name="Report status" xml:space="preserve">
+    <value>Report status</value>
+  </data>
+  <data name="Choose PDF" xml:space="preserve">
+    <value>Choose PDF</value>
+  </data>
+  <data name="No file chosen" xml:space="preserve">
+    <value>No file chosen</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>Copied</value>
+  </data>
+  <data name="Limit.When" xml:space="preserve">
+    <value>when {0}</value>
+  </data>
+  <data name="Entered by" xml:space="preserve">
+    <value>Entered by</value>
+  </data>
+  <data name="Approved by" xml:space="preserve">
+    <value>Approved by</value>
+  </data>
+  <data name="Not approved yet" xml:space="preserve">
+    <value>Not approved yet</value>
+  </data>
+  <data name="Sealed" xml:space="preserve">
+    <value>Sealed</value>
+  </data>
+  <data name="Open the Honey Story" xml:space="preserve">
+    <value>Open the Honey Story</value>
+  </data>
+  <data name="Download QR" xml:space="preserve">
+    <value>Download QR</value>
+  </data>
+  <data name="QR code of the Honey Story" xml:space="preserve">
+    <value>QR code of the Honey Story</value>
+  </data>
+  <data name="Printed on {0}" xml:space="preserve">
+    <value>Printed on {0}</value>
   </data>
 </root>
