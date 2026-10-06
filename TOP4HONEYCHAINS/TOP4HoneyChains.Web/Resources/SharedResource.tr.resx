@@ -6006,4 +6006,70 @@
   <data name="Auth.SignedInAs" xml:space="preserve">
     <value>{0} olarak oturum açık</value>
   </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menü</value>
+  </data>
+  <data name="Full screen" xml:space="preserve">
+    <value>Tam ekran</value>
+  </data>
+  <data name="Breadcrumb" xml:space="preserve">
+    <value>Sayfa yolu</value>
+  </data>
+  <data name="Active role" xml:space="preserve">
+    <value>Etkin rol</value>
+  </data>
+  <data name="Your roles" xml:space="preserve">
+    <value>Rolleriniz</value>
+  </data>
+  <data name="Verified organisation" xml:space="preserve">
+    <value>Doğrulanmış kurum</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>Doğrulanmadı</value>
+  </data>
+  <data name="You have one role." xml:space="preserve">
+    <value>Tek bir rolünüz var.</value>
+  </data>
+  <data name="Work.NewOne" xml:space="preserve">
+    <value>{0} yeni iş geldi.</value>
+  </data>
+  <data name="Work.NewMany" xml:space="preserve">
+    <value>{0} yeni iş geldi.</value>
+  </data>
+  <data name="Work.WaitingCount" xml:space="preserve">
+    <value>{0} iş bekliyor</value>
+  </data>
+  <data name="Work.Greeting" xml:space="preserve">
+    <value>Merhaba, {0}</value>
+  </data>
+  <data name="Work.SummaryNone" xml:space="preserve">
+    <value>Şu anda sizi bekleyen bir iş yok.</value>
+  </data>
+  <data name="Work.SummaryOne" xml:space="preserve">
+    <value>Sizi bekleyen bir iş var.</value>
+  </data>
+  <data name="Work.SummaryMany" xml:space="preserve">
+    <value>Sizi bekleyen {0} iş var.</value>
+  </data>
+  <data name="Work.Groups" xml:space="preserve">
+    <value>İş grupları</value>
+  </data>
+  <data name="Work.EmptyArt" xml:space="preserve">
+    <value>Petek üzerinde dinlenen bir arı</value>
+  </data>
+  <data name="Work.YouCanOpen" xml:space="preserve">
+    <value>Açabileceğiniz sayfalar:</value>
+  </data>
+  <data name="Work.New" xml:space="preserve">
+    <value>Yeni</value>
+  </data>
+  <data name="Work.WaitingToday" xml:space="preserve">
+    <value>bugünden beri</value>
+  </data>
+  <data name="Work.WaitingOneDay" xml:space="preserve">
+    <value>1 gündür bekliyor</value>
+  </data>
+  <data name="Work.WaitingDays" xml:space="preserve">
+    <value>{0} gündür bekliyor</value>
+  </data>
 </root>

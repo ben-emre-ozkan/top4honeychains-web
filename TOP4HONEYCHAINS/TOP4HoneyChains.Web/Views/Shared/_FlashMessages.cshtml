@@ -1,38 +1,45 @@
-﻿@using TOP4HoneyChains.Web.Filters
+@using TOP4HoneyChains.Web.Filters
 @*
-    One place for flash messages (ENG-02). Controllers set TempData["Success"] / TempData["Error"]
-    (older code uses lower-case keys); the DbUpdateExceptionFilter sets its own key.
+    One place for flash messages (ENG-02), shown as corner toasts (D-66). Controllers set TempData["Success"] / TempData["Error"]
+    (older code uses lower-case keys) or TempData["Info"]; the DbUpdateExceptionFilter sets its own key.
     A view that shows Success/Error itself sets ViewData["FlashHandled"] = true.
+    Success and info close by themselves after about 8 s unless hovered or focused (wwwroot/js/app-shell.js); errors and
+    messages that carry a reference (a lot number, a sample or report code) or a link stay until closed.
 *@
 @{
     var dbError = TempData[DbUpdateExceptionFilter.TempDataKey] as string;
     var handled = ViewData["FlashHandled"] as bool? == true;
     var error = handled ? null : (TempData["Error"] ?? TempData["error"]) as string;
     var success = handled ? null : (TempData["Success"] ?? TempData["success"]) as string;
+    var info = handled ? null : TempData["Info"] as string;
+    static bool HasReference(string text) =>
+        System.Text.RegularExpressions.Regex.IsMatch(text, @"#\d+|\b[A-Z]{1,4}-\d+(-\d+)?\b|\b(?=[A-Z0-9]*\d)(?=[A-Z0-9]*[A-Z])[A-Z0-9]{8,}\b|https?://|www\.");
 }
-@if (!string.IsNullOrEmpty(dbError) || !string.IsNullOrEmpty(error) || !string.IsNullOrEmpty(success))
-{
-    <div class="position-fixed end-0 me-3" style="top: 90px; z-index: 1100; max-width: 420px;">
-        @if (!string.IsNullOrEmpty(dbError))
-        {
-            <div class="alert alert-danger alert-dismissible fade show shadow" role="alert" id="db-update-error">
-                <i class="mdi mdi-alert-circle-outline me-1"></i>@dbError
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="@L["Close"]"></button>
-            </div>
-        }
-        @if (!string.IsNullOrEmpty(error))
-        {
-            <div class="alert alert-danger alert-dismissible fade show shadow" role="alert" id="flash-error">
-                <i class="mdi mdi-alert-circle-outline me-1"></i>@Msg.T(error)
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="@L["Close"]"></button>
-            </div>
-        }
-        @if (!string.IsNullOrEmpty(success))
-        {
-            <div class="alert alert-success alert-dismissible fade show shadow" role="alert" id="flash-success">
-                <i class="mdi mdi-check-circle-outline me-1"></i>@Msg.T(success)
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="@L["Close"]"></button>
-            </div>
-        }
-    </div>
-}
+<div class="app-toasts" id="app-toasts" data-close="@L["Close"]">
+    @if (!string.IsNullOrEmpty(dbError))
+    {
+        <div class="app-toast app-toast-error" role="alert" id="db-update-error" data-persist="true">
+            <span class="app-toast-icon" aria-hidden="true"><i class="mdi mdi-alert-circle-outline"></i></span><div class="app-toast-text">@dbError</div><button type="button" class="app-toast-close" aria-label="@L["Close"]"><i class="mdi mdi-close" aria-hidden="true"></i></button>
+        </div>
+    }
+    @if (!string.IsNullOrEmpty(error))
+    {
+        <div class="app-toast app-toast-error" role="alert" id="flash-error" data-persist="true">
+            <span class="app-toast-icon" aria-hidden="true"><i class="mdi mdi-alert-circle-outline"></i></span><div class="app-toast-text">@Msg.T(error)</div><button type="button" class="app-toast-close" aria-label="@L["Close"]"><i class="mdi mdi-close" aria-hidden="true"></i></button>
+        </div>
+    }
+    @if (!string.IsNullOrEmpty(success))
+    {
+        var text = Msg.T(success);
+        <div class="app-toast app-toast-success" role="status" id="flash-success" data-persist="@(HasReference(text) ? "true" : "false")">
+            <span class="app-toast-icon" aria-hidden="true"><i class="mdi mdi-check-circle-outline"></i></span><div class="app-toast-text">@text</div><button type="button" class="app-toast-close" aria-label="@L["Close"]"><i class="mdi mdi-close" aria-hidden="true"></i></button>
+        </div>
+    }
+    @if (!string.IsNullOrEmpty(info))
+    {
+        var text = Msg.T(info);
+        <div class="app-toast app-toast-info" role="status" id="flash-info" data-persist="@(HasReference(text) ? "true" : "false")">
+            <span class="app-toast-icon" aria-hidden="true"><i class="mdi mdi-information-outline"></i></span><div class="app-toast-text">@text</div><button type="button" class="app-toast-close" aria-label="@L["Close"]"><i class="mdi mdi-close" aria-hidden="true"></i></button>
+        </div>
+    }
+</div>

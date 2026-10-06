@@ -1,0 +1,43 @@
+@model TOP4HoneyChains.Web.Models.ViewModels.RoleChipModel
+@* Role chip (D-66): active organization · role with its verification mark; the list switches the membership through
+   the existing OrgWorkspace/Switch post (anti-forgery token from the form tag helper). Used by the top bar and My work. *@
+@{
+    var a = Model.Active;
+    var others = Model.Memberships.Count;
+}
+<div class="dropdown role-chip-wrap">
+    <button type="button" class="role-chip @(a.IsVerified ? "is-verified" : "is-pending")" data-bs-toggle="dropdown" aria-expanded="false"
+            aria-label="@L["Active role"]: @a.OrgName · @Ref.Role(a.OrgRole)@(a.IsVerified ? ", " + L["Verified organisation"].Value : ", " + L["Not verified"].Value)">
+        @if (a.IsVerified)
+        {
+            <svg class="role-chip-mark" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 2l8.7 5v10L12 22l-8.7-5V7z" fill="currentColor"/><path d="M8.4 12.2l2.4 2.4 4.8-5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        }
+        else
+        {
+            <svg class="role-chip-mark" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 2l8.7 5v10L12 22l-8.7-5V7z" fill="currentColor"/><path d="M12 7.5v6M12 16.5v.01" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>
+        }
+        <span class="role-chip-org">@a.OrgName</span>
+        <span class="role-chip-sep" aria-hidden="true">·</span>
+        <span class="role-chip-role">@Ref.Role(a.OrgRole)</span>
+        <span class="mdi mdi-chevron-down" aria-hidden="true"></span>
+    </button>
+    <div class="dropdown-menu dropdown-menu-end role-chip-menu">
+        <div class="dropdown-header">@L["Your roles"]</div>
+        @foreach (var m in Model.Memberships)
+        {
+            var isCurrent = m.MembershipId == a.MembershipId;
+            <form asp-controller="OrgWorkspace" asp-action="Switch" method="post" class="m-0 role-switch-form">
+                <input type="hidden" name="membershipId" value="@m.MembershipId" />
+                <button type="submit" class="dropdown-item role-option @(isCurrent ? "is-current" : "")" aria-current="@(isCurrent ? "true" : null)" disabled="@isCurrent">
+                    <span class="role-option-org">@m.OrgName</span>
+                    <span class="role-option-role">@Ref.Role(m.OrgRole)@if (m.OrgStatus != TOP4HoneyChains.Web.Models.Entities.OrgStatus.Verified) {<text> · @L["Not verified"]</text>}</span>
+                    @if (isCurrent) { <span class="mdi mdi-check role-option-check" aria-hidden="true"></span> }
+                </button>
+            </form>
+        }
+        @if (others <= 1)
+        {
+            <div class="dropdown-item-text small text-muted">@L["You have one role."]</div>
+        }
+    </div>
+</div>

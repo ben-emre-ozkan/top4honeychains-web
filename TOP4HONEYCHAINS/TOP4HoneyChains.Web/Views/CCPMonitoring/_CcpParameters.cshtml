@@ -17,10 +17,10 @@
              style="background: linear-gradient(135deg,#2c3e50,#4ca1af);">
             <div class="d-flex justify-content-between align-items-start">
                 <div>
-                    <h6 class="mb-1 fw-bold">
+                    <h2 class="h6 mb-1 fw-bold">
                         <i class="mdi mdi-folder-outline me-2"></i>
                         @(Model.Groups[i].CategoryId != null ? Ref.Category(Model.Groups[i].CategoryId, Model.Groups[i].CategoryName) : L[Model.Groups[i].CategoryName].Value)
-                    </h6>
+                    </h2>
                     @if (!string.IsNullOrEmpty(Model.Groups[i].CategoryDescription))
                     {
                         <small class="opacity-75">@Ref.CategoryDescription(Model.Groups[i].CategoryId, Model.Groups[i].CategoryDescription)</small>
@@ -51,7 +51,9 @@
                     }
 
                     <div class="d-flex flex-wrap justify-content-between align-items-start gap-2">
-                        <label class="form-label fw-bold fs-6 @(p.IsRequired ? "required" : "")">
+                        @* D-66: the label names its input (number: the numeric value; yes/no and text: the text value) *@
+                        <label class="form-label fw-bold fs-6 @(p.IsRequired ? "required" : "")"
+                               for="@(p.DataType == CcpDataType.Number ? Html.IdFor(m => m.Groups[i].Parameters[j].MeasuredNumericValue) : p.DataType is CcpDataType.YesNo or CcpDataType.Text ? Html.IdFor(m => m.Groups[i].Parameters[j].MeasuredTextValue) : null)">
                             @Ref.T("Parameter", p.ParameterId, "Name", p.ParameterName)
                             @if (!string.IsNullOrEmpty(p.Unit) && p.Unit != "None")
                             {
@@ -68,19 +70,19 @@
 
                         @if (p.IsInRange == true)
                         {
-                            <span class="badge bg-success ccp-range" title="@Ref.Limit(p.AppliedLimit, k => L[k])">
-                                <i class="mdi mdi-check-circle-outline"></i> @L["Within limit"] (@Ref.Limit(p.AppliedLimit, k => L[k]))
+                            <span class="st-pill st-inlimit ccp-range" title="@Ref.Limit(p.AppliedLimit, k => L[k])">
+                                <i class="mdi mdi-check-circle-outline" aria-hidden="true"></i> @L["Within limit"] (@Ref.Limit(p.AppliedLimit, k => L[k]))
                             </span>
                         }
                         else if (p.IsInRange == false)
                         {
-                            <span class="badge bg-danger ccp-range" title="@Ref.Limit(p.AppliedLimit, k => L[k])">
-                                <i class="mdi mdi-alert-circle-outline"></i> @L["Out of limit"] (@Ref.Limit(p.AppliedLimit, k => L[k]))
+                            <span class="st-pill st-outlimit ccp-range" title="@Ref.Limit(p.AppliedLimit, k => L[k])">
+                                <i class="mdi mdi-alert-circle-outline" aria-hidden="true"></i> @L["Out of limit"] (@Ref.Limit(p.AppliedLimit, k => L[k]))
                             </span>
                         }
                         else if (hasValue && p.LimitText != null)
                         {
-                            <span class="badge bg-secondary ccp-range">@L["Not checked"]</span>
+                            <span class="st-pill st-na ccp-range"><i class="mdi mdi-minus-circle-outline" aria-hidden="true"></i><span>@L["Not checked"]</span></span>
                         }
                     </div>
 

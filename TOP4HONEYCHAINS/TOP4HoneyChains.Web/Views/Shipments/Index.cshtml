@@ -67,7 +67,7 @@
                                     <td>@s.FromOrg?.DisplayName</td>
                                     <td>@s.Quantity.ToString("0.##")</td>
                                     <td>@s.ShippedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</td>
-                                    <td class="shipment-status">@StatusText(s.Status) @s.RejectReason</td>
+                                    <td class="shipment-status"><partial name="_StatusPill" model="@(new TOP4HoneyChains.Web.Models.ViewModels.StatusPill(TOP4HoneyChains.Web.Models.ViewModels.StatusPill.ForShipment(s.Status), StatusText(s.Status)))" /> @s.RejectReason</td>
                                     <td>
                                         @if (s.Status == ShipmentStatus.Pending && canShip)
                                         {
@@ -100,7 +100,7 @@
                                     <td>@s.ToOrg?.DisplayName</td>
                                     <td>@s.Quantity.ToString("0.##")</td>
                                     <td>@s.ShippedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</td>
-                                    <td class="shipment-status">@StatusText(s.Status) @s.RejectReason</td>
+                                    <td class="shipment-status"><partial name="_StatusPill" model="@(new TOP4HoneyChains.Web.Models.ViewModels.StatusPill(TOP4HoneyChains.Web.Models.ViewModels.StatusPill.ForShipment(s.Status), StatusText(s.Status)))" /> @s.RejectReason</td>
                                 </tr>
                             }
                             @if (!outgoing.Any())
