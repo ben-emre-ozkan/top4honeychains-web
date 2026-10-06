@@ -103,6 +103,8 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             var intake = await sao.PostMultipartAsync("/Intake/Create", IntakeForm("Akçakoca"), Pdf.File("deliveryForm"), "/Intake/Create?number=E2E-BEE-0001");
             var location = intake.Headers.Location?.ToString() ?? "";
             Assert.True(location.Contains("lotId="), "intake did not redirect to the sample form: " + await sao.FlashAfterAsync(intake));
+            // D-63: right after the delivery the reception officer has the lot's CCP 0 in My work
+            Assert.Contains($"ccpId={(await CcpIdAsync("CCP 0"))}", await sao.HtmlAsync("/MyWork/Index"));
             var lot = int.Parse(Regex.Match(location, @"lotId=(\d+)").Groups[1].Value);
 
             // ---- 2. sample sent to the laboratory
@@ -124,21 +126,21 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             Assert.Contains("work-waiting", await analyst.HtmlAsync("/MyWork/Index"));
             Assert.Contains("CCP 0 (primary audit) of this lot is not completed yet", await analyst.FlashAfterAsync(
                 await analyst.PostMultipartAsync($"/LabReports/Save/{sampleId}", new Dictionary<string, string>(partial), Pdf.File("reportFile"), $"/LabReports/Edit/{sampleId}")));
-            var fi = await UserClient.LoginAsync(_app, "e2e_fi");
-            var assocQa = await UserClient.LoginAsync(_app, "e2e_aqa");
+            // D-63: the reception officer who recorded the delivery does CCP 0; a quality approver of the lot owner approves
+            var qa = await UserClient.LoginAsync(_app, "e2e_qa");
             var ccp0 = await CcpIdAsync("CCP 0");
             // D-62: the follow-up question is required only when its yes/no question is answered "Yes"
             var followUp = await _app.WithContextAsync(db => db.CriticalControlPointParameters.Where(p => p.CCPId == ccp0 && p.RequiredIfParameterId != null)
                 .Select(p => new { p.ParameterId, Condition = p.RequiredIfParameterId!.Value }).FirstAsync());
             async Task<int> Ccp0StatusAsync() => await _app.WithContextAsync(db => db.RawHoneyCCPAssignments
                 .Where(a => a.RawHoneyProductionId == lot && a.RawHoneyCCPAssignmentCCP == ccp0).Select(a => a.RawHoneyCCPAssignmentStatus).FirstAsync());
-            Assert.Contains("values saved", await SaveCcpAsync(fi, "raw", lot, ccp0, answer: p => p.ParameterId == followUp.ParameterId ? "" : null));
+            Assert.Contains("values saved", await SaveCcpAsync(sao, "raw", lot, ccp0, answer: p => p.ParameterId == followUp.ParameterId ? "" : null));
             Assert.Equal(AssignmentStatusIds.InProgress, await Ccp0StatusAsync());   // "Yes" without the follow-up: not complete
-            Assert.Contains("values saved", await SaveCcpAsync(fi, "raw", lot, ccp0,
+            Assert.Contains("values saved", await SaveCcpAsync(sao, "raw", lot, ccp0,
                 answer: p => p.ParameterId == followUp.ParameterId ? "" : p.ParameterId == followUp.Condition ? "No" : null));
             Assert.Equal(AssignmentStatusIds.Submitted, await Ccp0StatusAsync());    // "No": complete without it
-            Assert.Contains($"ccpId={ccp0}", await assocQa.HtmlAsync("/MyWork/Index"));   // the approver gets the task
-            Assert.Contains("approved", await ApproveCcpAsync(assocQa, "raw", lot, ccp0));
+            Assert.Contains($"ccpId={ccp0}", await qa.HtmlAsync("/MyWork/Index"));   // the approver gets the task
+            Assert.Contains("approved", await ApproveCcpAsync(qa, "raw", lot, ccp0));
             Assert.DoesNotContain("work-waiting", await analyst.HtmlAsync("/MyWork/Index"));
 
             // D-54: with a required value missing the report cannot be submitted
@@ -159,7 +161,6 @@ namespace TOP4HoneyChains.Web.Tests.E2E
 
             // ---- 4. CCP entry and approval: processor (CCP 2, CCP 3); CCP 0 was done before the lab test
             var staff = await UserClient.LoginAsync(_app, "e2e_staff");
-            var qa = await UserClient.LoginAsync(_app, "e2e_qa");
             foreach (var ccpCode in new[] { "CCP 2", "CCP 3" })
             {
                 var id = await CcpIdAsync(ccpCode);

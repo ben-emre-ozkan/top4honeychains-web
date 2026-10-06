@@ -5173,13 +5173,13 @@
     <value>The beekeeper's enterprise. It does not sign in; its verified registry number links the lots to the beekeeper and tells the province.</value>
   </data>
   <data name="Cap.Uses.Association" xml:space="preserve">
-    <value>Records CCP 0 (primary audit) for its member beekeepers, records their consent and publishes their beekeeper pages, and sees its members' lots in recall reports.</value>
+    <value>Links its member beekeepers, records their consent and publishes their beekeeper pages, and sees its members' lots in recall reports; its field inspector can do CCP 0 when an administrator assigns it.</value>
   </data>
   <data name="Cap.Uses.CentralAssociation" xml:space="preserve">
     <value>When it is set as the association verifier, it reads and lists the associations it verifies.</value>
   </data>
   <data name="Cap.Uses.Processing" xml:space="preserve">
-    <value>Receives the honey: lot intake, sealed samples for the laboratory and the processing CCPs.</value>
+    <value>Receives the honey: lot intake, CCP 0 at delivery (sample acceptance officer, approved by a quality approver), sealed samples for the laboratory and the processing CCPs.</value>
   </data>
   <data name="Cap.Uses.Packing" xml:space="preserve">
     <value>Filling, labelling and packaging of batches (the packing CCPs).</value>
@@ -5263,7 +5263,7 @@
     <value>Passed</value>
   </data>
   <data name="Sf.SeasonByAssociation" xml:space="preserve">
-    <value>{0} season, by the association</value>
+    <value>{0} season</value>
   </data>
   <data name="Sf.ProfileMark" xml:space="preserve">
     <value>Profile mark of {0}</value>

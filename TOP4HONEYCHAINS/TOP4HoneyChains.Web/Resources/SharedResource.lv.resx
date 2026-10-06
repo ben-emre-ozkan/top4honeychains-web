@@ -5173,13 +5173,13 @@
     <value>Biškopja saimniecība. Tā nepiesakās; tās pārbaudītais reģistra numurs sasaista partijas ar biškopi un norāda provinci.</value>
   </data>
   <data name="Cap.Uses.Association" xml:space="preserve">
-    <value>Reģistrē KKP 0 (sākotnējo auditu) saviem biedriem biškopjiem, reģistrē viņu piekrišanu un publicē biškopju lapas, kā arī redz biedru partijas atsaukšanas pārskatos.</value>
+    <value>Sasaista savus biedrus biškopjus, reģistrē viņu piekrišanu un publicē biškopju lapas, kā arī redz biedru partijas atsaukšanas pārskatos; tās lauka inspektors var veikt KKP 0, ja administrators to piešķir.</value>
   </data>
   <data name="Cap.Uses.CentralAssociation" xml:space="preserve">
     <value>Ja tā iestatīta kā biedrību pārbaudītāja, tā redz un uzskaita biedrības, kuras pārbauda.</value>
   </data>
   <data name="Cap.Uses.Processing" xml:space="preserve">
-    <value>Pieņem medu: partiju pieņemšana, aizzīmogoti paraugi laboratorijai un apstrādes KKP.</value>
+    <value>Pieņem medu: partiju pieņemšana, KKP 0 piegādes brīdī (paraugu pieņemšanas speciālists, apstiprina kvalitātes apstiprinātājs), aizzīmogoti paraugi laboratorijai un apstrādes KKP.</value>
   </data>
   <data name="Cap.Uses.Packing" xml:space="preserve">
     <value>Partiju pildīšana, marķēšana un iepakošana (iepakošanas KKP).</value>
@@ -5263,7 +5263,7 @@
     <value>Izturēts</value>
   </data>
   <data name="Sf.SeasonByAssociation" xml:space="preserve">
-    <value>{0}. gada sezona, biedrība</value>
+    <value>{0}. gada sezona</value>
   </data>
   <data name="Sf.ProfileMark" xml:space="preserve">
     <value>Profila zīme: {0}</value>

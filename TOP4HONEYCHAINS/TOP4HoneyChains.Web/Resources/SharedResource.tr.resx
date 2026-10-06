@@ -5173,13 +5173,13 @@
     <value>Arıcının işletmesi. Sisteme giriş yapmaz; doğrulanmış kayıt numarası lotları arıcıya bağlar ve ili gösterir.</value>
   </data>
   <data name="Cap.Uses.Association" xml:space="preserve">
-    <value>Üye arıcıları için KKN 0'ı (ön denetim) kaydeder, rızalarını kaydedip arıcı sayfalarını yayımlar ve geri çağırma raporlarında üyelerinin lotlarını görür.</value>
+    <value>Üye arıcılarını bağlar, rızalarını kaydedip arıcı sayfalarını yayımlar ve geri çağırma raporlarında üyelerinin lotlarını görür; yönetici atarsa saha denetçisi KKN 0'ı yapabilir.</value>
   </data>
   <data name="Cap.Uses.CentralAssociation" xml:space="preserve">
     <value>Birlik doğrulayıcısı olarak ayarlandığında doğruladığı birlikleri görür ve listeler.</value>
   </data>
   <data name="Cap.Uses.Processing" xml:space="preserve">
-    <value>Balı teslim alır: lot kabulü, laboratuvar için mühürlü numune ve işleme KKN'leri.</value>
+    <value>Balı teslim alır: lot kabulü, teslimde KKN 0 (numune kabul sorumlusu, kalite onaylayıcı onaylar), laboratuvar için mühürlü numune ve işleme KKN'leri.</value>
   </data>
   <data name="Cap.Uses.Packing" xml:space="preserve">
     <value>Partilerin dolumu, etiketlenmesi ve ambalajlanması (paketleme KKN'leri).</value>
@@ -5263,7 +5263,7 @@
     <value>Geçti</value>
   </data>
   <data name="Sf.SeasonByAssociation" xml:space="preserve">
-    <value>{0} sezonu, birlik tarafından</value>
+    <value>{0} sezonu</value>
   </data>
   <data name="Sf.ProfileMark" xml:space="preserve">
     <value>{0} profil simgesi</value>

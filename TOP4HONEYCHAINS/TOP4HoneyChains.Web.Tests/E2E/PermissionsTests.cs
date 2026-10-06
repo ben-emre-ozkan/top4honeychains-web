@@ -139,8 +139,9 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             var html = await admin.HtmlAsync("/Capabilities/Index");
             foreach (var code in typeof(Capabilities).GetFields().Select(f => (string)f.GetValue(null)!))
                 Assert.Contains($"data-capability=\"{code}\"", html);
-            var association = html[html.IndexOf("data-capability=\"Association\"")..html.IndexOf("data-capability=\"CentralAssociation\"")];
-            Assert.Contains(">CCP 0<", association);
+            // D-63: CCP 0 is done by the organization that owns the lot (Processing)
+            var processing = html[html.IndexOf("data-capability=\"Processing\"")..html.IndexOf("data-capability=\"Packing\"")];
+            Assert.Contains(">CCP 0<", processing);
             Assert.DoesNotContain("<form", html[html.IndexOf("id=\"capabilities\"")..]);
 
             var org = await _app.CreateOrgAsync("CAP Processor", null, (Capabilities.Processing, null));
