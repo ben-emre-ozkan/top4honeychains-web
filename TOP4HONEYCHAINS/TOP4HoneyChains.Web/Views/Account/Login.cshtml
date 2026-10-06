@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = L["Login"].Value;
     Layout = "~/Views/Shared/_AuthLayout.cshtml";
-    // the return URL in the query (if any) stays on the form's address; authentication itself is unchanged
+    // the return URL in the query (if any) stays on the form's address; after sign-in it is followed when it is local
     var returnUrl = Context.Request.Query["ReturnUrl"].ToString();
 }
 @section AddToHead {

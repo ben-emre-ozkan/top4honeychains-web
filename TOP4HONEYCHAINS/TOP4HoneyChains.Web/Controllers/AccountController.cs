@@ -76,7 +76,7 @@ namespace TOP4HoneyChains.Web.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel model, string? returnUrl = null)
         {
             if (!ModelState.IsValid)
                 return View(model);
@@ -93,11 +93,15 @@ namespace TOP4HoneyChains.Web.Controllers
                 if (user != null && await _userManager.IsInRoleAsync(user, PanelRole))
                 {
                     await _audit.WriteAsync("Login", "AspNetUsers", user.Id, userId: user.Id, userName: user.UserName);
+                    if (Url.IsLocalUrl(returnUrl))
+                        return LocalRedirect(returnUrl!);   // only within the site; anything else goes to the start page
                     return _currentOrg.Enabled ? RedirectToAction("Index", "MyWork") : RedirectToAction("Index", "Dashboard");
                 }
                 if (user != null && await IsMemberAsync(user.Id))
                 {
                     await _audit.WriteAsync("Login", "AspNetUsers", user.Id, userId: user.Id, userName: user.UserName);
+                    if (Url.IsLocalUrl(returnUrl))
+                        return LocalRedirect(returnUrl!);
                     return RedirectToAction("Index", "MyWork");   // D-44
                 }
 

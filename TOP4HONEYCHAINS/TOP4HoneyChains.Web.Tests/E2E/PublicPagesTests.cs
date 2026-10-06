@@ -94,5 +94,20 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             // the return URL in the query stays on the form's address
             Assert.Contains("action=\"/Account/Login?ReturnUrl=%2FMyWork\"", await GetAsync("/Account/Login?ReturnUrl=%2FMyWork"));
         }
+
+        // after sign-in a local return URL is followed; an external one falls back to the start page
+        [Theory]
+        [InlineData("e2e_ret_local", "%2FShipments%2FIndex", "/Shipments/Index")]
+        [InlineData("e2e_ret_external", "https%3A%2F%2Fzz-test.example.invalid%2Fphish", "/MyWork")]
+        [InlineData("e2e_ret_protocol", "%2F%2Fzz-test.example.invalid%2Fphish", "/MyWork")]
+        public async Task Sign_in_follows_only_a_local_return_url(string name, string returnUrl, string expected)
+        {
+            await _app.CreateUserAsync(name, "Administrator");
+            var client = UserClient.Anonymous(_app);
+            var url = "/Account/Login?ReturnUrl=" + returnUrl;
+            var response = await client.PostAsync(url, new() { ["UserName"] = name, ["Password"] = E2EApp.Password }, url);
+            Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
+            Assert.Equal(expected, response.Headers.Location?.ToString());
+        }
     }
 }
