@@ -5730,4 +5730,28 @@
   <data name="CCP 0 (primary audit) of this lot is not completed yet; lab results are entered and approved only after it." xml:space="preserve">
     <value>Bu lotun KKN 0 (ön denetim) aşaması henüz tamamlanmadı; laboratuvar sonuçları ancak bundan sonra girilip onaylanabilir.</value>
   </data>
+  <data name="Required only when “{0}” is answered {1}." xml:space="preserve">
+    <value>Yalnızca “{0}” sorusu {1} yanıtlanırsa zorunludur.</value>
+  </data>
+  <data name="Required only when this question…" xml:space="preserve">
+    <value>Yalnızca şu soru…</value>
+  </data>
+  <data name="…is answered" xml:space="preserve">
+    <value>…şöyle yanıtlanırsa</value>
+  </data>
+  <data name="(always, when required)" xml:space="preserve">
+    <value>(her zaman, zorunluysa)</value>
+  </data>
+  <data name="Choose a yes/no question of the same CCP." xml:space="preserve">
+    <value>Aynı KKN'nin evet/hayır sorularından birini seçin.</value>
+  </data>
+  <data name="Choose the answer that makes this parameter required." xml:space="preserve">
+    <value>Bu parametreyi zorunlu yapan yanıtı seçin.</value>
+  </data>
+  <data name="Required If Parameter Id" xml:space="preserve">
+    <value>Koşul sorusu</value>
+  </data>
+  <data name="Required If Value" xml:space="preserve">
+    <value>Zorunlu yapan yanıt</value>
+  </data>
 </root>

@@ -20,6 +20,10 @@
         public string? DataType { get; set; }
         public bool IsRequired { get; set; }
 
+        // D-62: required only when another parameter of the record has this answer
+        public int? RequiredIfParameterId { get; set; }
+        public string? RequiredIfValue { get; set; }
+
         // All limits of the parameter as text, and whether they are verified
         public string? LimitText { get; set; }
         public bool LimitVerified { get; set; }

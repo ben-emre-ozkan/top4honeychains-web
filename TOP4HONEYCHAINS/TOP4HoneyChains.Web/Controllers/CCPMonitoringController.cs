@@ -562,6 +562,8 @@ namespace TOP4HoneyChains.Web.Controllers
                             CriticalLimit = p.CriticalLimit,
                             DataType = p.DataType,
                             IsRequired = p.IsRequired,
+                            RequiredIfParameterId = p.RequiredIfParameterId,
+                            RequiredIfValue = p.RequiredIfValue,
                             LimitText = CcpLimitEvaluator.DescribeAll(p),
                             LimitVerified = p.LimitVerified,
                             MeasuredNumericValue = log?.MeasuredNumericValue,
@@ -850,7 +852,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 // a complete record is Submitted until another person approves it (D-27); a save without
                 // changes keeps an existing approval.
                 var filled = logs.Where(l => l.ParameterId != null).Select(l => l.ParameterId!.Value).ToHashSet();
-                var required = parameters.Values.Where(p => p.IsRequired).Select(p => p.ParameterId).ToList();
+                var answers = CcpRequirement.Answers(logs);
+                var required = parameters.Values.Where(p => CcpRequirement.IsRequired(p, answers)).Select(p => p.ParameterId).ToList();
                 var complete = parameters.Count > 0 && required.All(filled.Contains) && (required.Count > 0 || filled.Count > 0);
                 if (changed)
                     assignment.ClearApproval();

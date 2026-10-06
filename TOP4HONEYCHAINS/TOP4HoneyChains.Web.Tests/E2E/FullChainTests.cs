@@ -19,7 +19,9 @@ namespace TOP4HoneyChains.Web.Tests.E2E
 
         public FullChainTests(E2EApp app) => _app = app;
 
-        private async Task<string> SaveCcpAsync(UserClient user, string kind, int ownerId, int ccpId, string number = "1")
+        // answer: a text answer for a parameter ("" = leave it empty, null = the default answer)
+        private async Task<string> SaveCcpAsync(UserClient user, string kind, int ownerId, int ccpId, string number = "1",
+            Func<CriticalControlPointParameter, string?>? answer = null)
         {
             var parameters = await _app.WithContextAsync(db => db.CriticalControlPointParameters.AsNoTracking()
                 .Where(p => p.CCPId == ccpId && p.DataType != CcpDataType.File).OrderBy(p => p.ParameterId).ToListAsync());
@@ -30,7 +32,12 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             {
                 var p = parameters[i];
                 form[$"Groups[0].Parameters[{i}].ParameterId"] = p.ParameterId.ToString();
-                if (p.DataType == CcpDataType.YesNo) form[$"Groups[0].Parameters[{i}].MeasuredTextValue"] = "Yes";
+                if (answer?.Invoke(p) is string given)
+                {
+                    if (given.Length > 0)
+                        form[$"Groups[0].Parameters[{i}].MeasuredTextValue"] = given;
+                }
+                else if (p.DataType == CcpDataType.YesNo) form[$"Groups[0].Parameters[{i}].MeasuredTextValue"] = "Yes";
                 else if (p.DataType == CcpDataType.Text) form[$"Groups[0].Parameters[{i}].MeasuredTextValue"] = "e2e";
                 else form[$"Groups[0].Parameters[{i}].MeasuredNumericValue"] = number;
             }
@@ -120,7 +127,16 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             var fi = await UserClient.LoginAsync(_app, "e2e_fi");
             var assocQa = await UserClient.LoginAsync(_app, "e2e_aqa");
             var ccp0 = await CcpIdAsync("CCP 0");
-            Assert.Contains("values saved", await SaveCcpAsync(fi, "raw", lot, ccp0));
+            // D-62: the follow-up question is required only when its yes/no question is answered "Yes"
+            var followUp = await _app.WithContextAsync(db => db.CriticalControlPointParameters.Where(p => p.CCPId == ccp0 && p.RequiredIfParameterId != null)
+                .Select(p => new { p.ParameterId, Condition = p.RequiredIfParameterId!.Value }).FirstAsync());
+            async Task<int> Ccp0StatusAsync() => await _app.WithContextAsync(db => db.RawHoneyCCPAssignments
+                .Where(a => a.RawHoneyProductionId == lot && a.RawHoneyCCPAssignmentCCP == ccp0).Select(a => a.RawHoneyCCPAssignmentStatus).FirstAsync());
+            Assert.Contains("values saved", await SaveCcpAsync(fi, "raw", lot, ccp0, answer: p => p.ParameterId == followUp.ParameterId ? "" : null));
+            Assert.Equal(AssignmentStatusIds.InProgress, await Ccp0StatusAsync());   // "Yes" without the follow-up: not complete
+            Assert.Contains("values saved", await SaveCcpAsync(fi, "raw", lot, ccp0,
+                answer: p => p.ParameterId == followUp.ParameterId ? "" : p.ParameterId == followUp.Condition ? "No" : null));
+            Assert.Equal(AssignmentStatusIds.Submitted, await Ccp0StatusAsync());    // "No": complete without it
             Assert.Contains($"ccpId={ccp0}", await assocQa.HtmlAsync("/MyWork/Index"));   // the approver gets the task
             Assert.Contains("approved", await ApproveCcpAsync(assocQa, "raw", lot, ccp0));
             Assert.DoesNotContain("work-waiting", await analyst.HtmlAsync("/MyWork/Index"));

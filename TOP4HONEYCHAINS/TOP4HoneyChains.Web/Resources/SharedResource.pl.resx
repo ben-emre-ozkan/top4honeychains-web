@@ -5730,4 +5730,28 @@
   <data name="CCP 0 (primary audit) of this lot is not completed yet; lab results are entered and approved only after it." xml:space="preserve">
     <value>KPK 0 (audyt wstępny) tej partii nie jest jeszcze zakończony; wyniki badań wprowadza się i zatwierdza dopiero po nim.</value>
   </data>
+  <data name="Required only when “{0}” is answered {1}." xml:space="preserve">
+    <value>Wymagane tylko, gdy na „{0}” odpowiedziano {1}.</value>
+  </data>
+  <data name="Required only when this question…" xml:space="preserve">
+    <value>Wymagane tylko, gdy to pytanie…</value>
+  </data>
+  <data name="…is answered" xml:space="preserve">
+    <value>…ma odpowiedź</value>
+  </data>
+  <data name="(always, when required)" xml:space="preserve">
+    <value>(zawsze, jeśli wymagane)</value>
+  </data>
+  <data name="Choose a yes/no question of the same CCP." xml:space="preserve">
+    <value>Wybierz pytanie tak/nie z tego samego KPK.</value>
+  </data>
+  <data name="Choose the answer that makes this parameter required." xml:space="preserve">
+    <value>Wybierz odpowiedź, przy której ten parametr jest wymagany.</value>
+  </data>
+  <data name="Required If Parameter Id" xml:space="preserve">
+    <value>Pytanie warunkowe</value>
+  </data>
+  <data name="Required If Value" xml:space="preserve">
+    <value>Odpowiedź, przy której jest wymagane</value>
+  </data>
 </root>

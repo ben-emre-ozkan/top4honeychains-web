@@ -130,6 +130,24 @@
                                     <input asp-for="IsRequired" class="form-check-input" />
                                     <label asp-for="IsRequired" class="form-check-label">@L["Required for the CCP to be completed"]</label>
                                 </div>
+                                @* D-62: required only when another yes/no question has a given answer *@
+                                <div class="row g-2 mb-3" id="required-if">
+                                    <div class="col-md-8">
+                                        <label asp-for="RequiredIfParameterId" class="form-label">@L["Required only when this question…"]</label>
+                                        <select asp-for="RequiredIfParameterId" asp-items="ViewBag.RequiredIfParameterId" class="form-select">
+                                            <option value="">@L["(always, when required)"]</option>
+                                        </select>
+                                        <span asp-validation-for="RequiredIfParameterId" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label asp-for="RequiredIfValue" class="form-label">@L["…is answered"]</label>
+                                        <select asp-for="RequiredIfValue" class="form-select">
+                                            <option value="Yes">@L["Yes"]</option>
+                                            <option value="No">@L["No"]</option>
+                                        </select>
+                                        <span asp-validation-for="RequiredIfValue" class="text-danger"></span>
+                                    </div>
+                                </div>
 
                                 <div class="mb-3">
                                     <label asp-for="LimitNote" class="form-label">@L["Limit Note"]</label>

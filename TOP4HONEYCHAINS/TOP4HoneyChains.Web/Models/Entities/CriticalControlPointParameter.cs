@@ -46,6 +46,12 @@ namespace TOP4HoneyChains.Web.Models.Entities
         // False while the limits are unverified seeds; only verified limits are shown publicly
         public bool LimitVerified { get; set; }
 
+        // D-62: required only when the parameter RequiredIfParameterId (same CCP) has the answer RequiredIfValue
+        public int? RequiredIfParameterId { get; set; }
+
+        [StringLength(50)]
+        public string? RequiredIfValue { get; set; }
+
         [ForeignKey(nameof(CCPId))]
         public virtual CriticalControlPoint? CCP { get; set; }
 
