@@ -1,0 +1,57 @@
+@model TOP4HoneyChains.Web.Models.ViewModels.OutOfLimitConfirm
+@* D-64: in-page confirmation before approving values outside their limits (no browser alert). Rendered after the
+   approval form; without JavaScript the server refuses the approval until confirmOutOfLimit is sent. *@
+@if (Model.Items.Any())
+{
+    var culture = System.Globalization.CultureInfo.CurrentCulture;
+    <dialog class="oolc" id="oolc-@Model.FormId" aria-labelledby="oolc-title-@Model.FormId">
+        <h5 id="oolc-title-@Model.FormId" class="mb-2">@L["Values outside their limits"]</h5>
+        <p class="mb-2">@L["This record has values outside their limits:"]</p>
+        <ul class="oolc-list mb-3">
+            @foreach (var i in Model.Items)
+            {
+                var unit = TOP4HoneyChains.Web.Services.Units.IsNone(i.Unit) ? "" : TOP4HoneyChains.Web.Services.Units.Symbol(Ref.Unit(i.ParameterId, i.Unit));
+                <li data-parameter-id="@i.ParameterId">
+                    <strong>@Ref.Parameter(i.ParameterId, i.Name)</strong>:
+                    @(i.Number?.ToString("0.####", culture) ?? (i.Text is "Yes" or "No" ? L[i.Text].Value : i.Text)) @unit
+                    <span class="text-muted">· @L["Limit:"] @(i.AppliedLimit == null ? "-" : Ref.Limit(i.AppliedLimit, k => L[k]))</span>
+                    @if (!i.LimitVerified)
+                    {
+                        <span class="badge bg-warning text-dark oolc-unverified">@L["limit not verified yet"]</span>
+                    }
+                </li>
+            }
+        </ul>
+        <p class="mb-3">@L["Approve these values? Approval confirms that they are recorded correctly, not that the honey complies; they stay flagged as outside the limit."]</p>
+        <div class="d-flex gap-2 justify-content-end">
+            <button type="button" class="btn btn-outline-secondary oolc-cancel">@L["Cancel"]</button>
+            <button type="button" class="btn btn-danger oolc-confirm">@L["Approve anyway"]</button>
+        </div>
+    </dialog>
+    <script>
+        (function () {
+            var dialog = document.getElementById('oolc-@Model.FormId');
+            var form = document.getElementById('@Model.FormId');
+            var button = document.getElementById('@Model.ButtonId');
+            if (!dialog || !form || !button || !dialog.showModal) return;
+            var confirmField = form.querySelector('input[name="confirmOutOfLimit"]');
+            button.addEventListener('click', function (e) {
+                if (confirmField && confirmField.value === 'true') return;
+                e.preventDefault();
+                dialog.showModal();
+            });
+            dialog.querySelector('.oolc-cancel').addEventListener('click', function () { dialog.close(); });
+            dialog.querySelector('.oolc-confirm').addEventListener('click', function () {
+                if (confirmField) confirmField.value = 'true';
+                dialog.close();
+                if (form.requestSubmit) form.requestSubmit(button); else button.click();
+            });
+        })();
+    </script>
+    <style>
+        dialog.oolc { border: 0; border-radius: 12px; padding: 20px; max-width: 560px; width: calc(100% - 32px); box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25); }
+        dialog.oolc::backdrop { background: rgba(20, 24, 33, 0.45); }
+        .oolc-list { padding-left: 18px; }
+        .oolc-list li { margin-bottom: 6px; }
+    </style>
+}

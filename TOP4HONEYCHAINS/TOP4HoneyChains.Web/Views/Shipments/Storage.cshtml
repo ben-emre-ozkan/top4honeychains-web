@@ -75,10 +75,18 @@
                         <div class="text-muted" id="storage-state">@(record?.Status == AssignmentStatusIds.Submitted ? L["Cust.Submitted"] : L["Ccp.NotApproved"])</div>
                         @if (canApprove && record?.Status == AssignmentStatusIds.Submitted)
                         {
-                            <form asp-action="ApproveStorage" method="post" class="mt-2">
+                            <form asp-action="ApproveStorage" method="post" class="mt-2" id="storage-approve-form">
                                 <input type="hidden" name="batchId" value="@batch?.FinalHoneyProductionId" />
+                                <input type="hidden" name="confirmOutOfLimit" value="false" />
                                 <button type="submit" class="btn btn-sm btn-success" id="approve-storage">@L["Ccp.Approve"]</button>
+                                <small class="text-muted ms-2 approve-note">@L["Ccp.ApproveNote"]</small>
                             </form>
+                                // D-64: the values outside their limits, confirmed in-page before approving
+                                var outOfLimit = record!.Values.Where(v => v.IsInRange == false)
+                                    .Select(v => (Value: v, Parameter: parameters.FirstOrDefault(p => p.ParameterId == v.ParameterId)))
+                                    .Select(x => new TOP4HoneyChains.Web.Models.ViewModels.OutOfLimitItem(x.Value.ParameterId, x.Parameter?.ParameterName, x.Value.MeasuredNumericValue,
+                                        x.Value.MeasuredTextValue, x.Parameter?.ParameterUnit, x.Value.AppliedLimit, x.Parameter?.LimitVerified == true)).ToList();
+                            <partial name="_OutOfLimitConfirm" model="@(new TOP4HoneyChains.Web.Models.ViewModels.OutOfLimitConfirm("storage-approve-form", "approve-storage", outOfLimit))" />
                         }
                         else if (!canApprove && approveDenied != null)
                         {

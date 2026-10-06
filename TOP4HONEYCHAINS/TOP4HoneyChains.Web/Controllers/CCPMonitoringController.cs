@@ -222,7 +222,7 @@ namespace TOP4HoneyChains.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Approve(string ownerKind, int ownerId, int ccpId)
+        public async Task<IActionResult> Approve(string ownerKind, int ownerId, int ccpId, bool confirmOutOfLimit = false)
         {
             var owner = ParseOwner(ownerKind);
             if (!_current.Enabled || owner == null)
@@ -239,6 +239,15 @@ namespace TOP4HoneyChains.Web.Controllers
                 error = "Only a submitted (or \"Not applicable\") CCP record can be approved.";
             if (error == null && assignment.ApprovedAt != null)
                 error = "This CCP record is already approved.";
+            // D-64: values outside their limits are approved only when confirmed explicitly
+            if (error == null && !confirmOutOfLimit)
+            {
+                var rawId = owner.Value == Owner.RawLot ? ownerId : (int?)null;
+                var batchId = owner.Value == Owner.RawLot ? (int?)null : ownerId;
+                if (await _context.CriticalControlPointMonitoringLogs.AnyAsync(l => l.CCPId == ccpId && l.IsInRange == false
+                        && (rawId != null ? l.RawHoneyProductionId == rawId : l.FinalHoneyProductionId == batchId)))
+                    error = "The record has values outside their limits; confirm them to approve.";
+            }
 
             if (error != null)
             {

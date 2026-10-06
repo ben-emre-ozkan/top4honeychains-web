@@ -49,7 +49,7 @@ Expected results marked **must block** are negative checks: the system has to re
 | 8 | 7 Quality approver | Approve CCP0 | My work → CCP | CCP0 approved; the lab's task is open |
 | 8b | 8 Analyst | Enter report data, PDF and values | My work → Lab results | Out-of-limit values flagged; cannot submit with required values missing |
 | 9 | 8 Analyst | Try to approve own report | Lab results | **must block** |
-| 10 | 9 Lab manager | Approve the report | My work → Lab results | Values written to the lot's CCP1 and locked |
+| 10 | 9 Lab manager | Approve the report; with out-of-limit values a confirmation lists them (Cancel keeps it unapproved, D-64) | My work → Lab results | Values written to the lot's CCP1 and locked; out-of-limit values stay flagged |
 | 11 | 6 Staff | Enter CCP2–6; mark a step not applicable with a reason | CCP | Values flagged against limits |
 | 12 | 7 Quality approver | Approve CCP2–6 | My work → CCP | All approved |
 | 13 | 6 Staff → 7 | Create a batch from the lot, enter CCP7–9; approver approves | Final productions → CCP | Batch CCPs approved |

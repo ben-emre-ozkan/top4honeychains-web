@@ -5754,4 +5754,28 @@
   <data name="Required If Value" xml:space="preserve">
     <value>Zorunlu yapan yanıt</value>
   </data>
+  <data name="Lab.ApproveNote" xml:space="preserve">
+    <value>Onay, raporun doğru kaydedildiğini teyit eder; balın uygun olduğunu değil. Sınır dışındaki değerler lotta işaretli kalır.</value>
+  </data>
+  <data name="Ccp.ApproveNote" xml:space="preserve">
+    <value>Onay, değerlerin doğru kaydedildiğini teyit eder; sınırlar içinde olduklarını değil. Sınır dışındaki değerler işaretli kalır.</value>
+  </data>
+  <data name="Values outside their limits" xml:space="preserve">
+    <value>Sınır dışındaki değerler</value>
+  </data>
+  <data name="This record has values outside their limits:" xml:space="preserve">
+    <value>Bu kayıtta sınır dışında değerler var:</value>
+  </data>
+  <data name="limit not verified yet" xml:space="preserve">
+    <value>sınır henüz doğrulanmadı</value>
+  </data>
+  <data name="Approve these values? Approval confirms that they are recorded correctly, not that the honey complies; they stay flagged as outside the limit." xml:space="preserve">
+    <value>Bu değerler onaylansın mı? Onay, doğru kaydedildiklerini teyit eder, balın uygun olduğunu değil; sınır dışı olarak işaretli kalırlar.</value>
+  </data>
+  <data name="Approve anyway" xml:space="preserve">
+    <value>Yine de onayla</value>
+  </data>
+  <data name="The record has values outside their limits; confirm them to approve." xml:space="preserve">
+    <value>Kayıtta sınır dışında değerler var; onaylamak için bunları teyit edin.</value>
+  </data>
 </root>

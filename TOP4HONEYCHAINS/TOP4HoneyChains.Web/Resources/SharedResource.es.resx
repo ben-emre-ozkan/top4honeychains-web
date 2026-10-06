@@ -5754,4 +5754,28 @@
   <data name="Required If Value" xml:space="preserve">
     <value>Respuesta que lo hace obligatorio</value>
   </data>
+  <data name="Lab.ApproveNote" xml:space="preserve">
+    <value>Aprobar confirma que el informe está registrado correctamente, no que la miel cumpla. Los valores fuera de sus límites siguen marcados en el lote.</value>
+  </data>
+  <data name="Ccp.ApproveNote" xml:space="preserve">
+    <value>Aprobar confirma que los valores están registrados correctamente, no que estén dentro de sus límites. Los valores fuera de sus límites siguen marcados.</value>
+  </data>
+  <data name="Values outside their limits" xml:space="preserve">
+    <value>Valores fuera de sus límites</value>
+  </data>
+  <data name="This record has values outside their limits:" xml:space="preserve">
+    <value>Este registro tiene valores fuera de sus límites:</value>
+  </data>
+  <data name="limit not verified yet" xml:space="preserve">
+    <value>límite aún no verificado</value>
+  </data>
+  <data name="Approve these values? Approval confirms that they are recorded correctly, not that the honey complies; they stay flagged as outside the limit." xml:space="preserve">
+    <value>¿Aprobar estos valores? La aprobación confirma que están registrados correctamente, no que la miel cumpla; siguen marcados como fuera del límite.</value>
+  </data>
+  <data name="Approve anyway" xml:space="preserve">
+    <value>Aprobar de todos modos</value>
+  </data>
+  <data name="The record has values outside their limits; confirm them to approve." xml:space="preserve">
+    <value>El registro tiene valores fuera de sus límites; confírmelos para aprobar.</value>
+  </data>
 </root>

@@ -131,13 +131,22 @@
                         <div class="mt-3" id="approval">
                             @if (approveDenied == null)
                             {
-                                <form asp-action="Decide" asp-route-id="@sample.SampleId" method="post">
+                                <form asp-action="Decide" asp-route-id="@sample.SampleId" method="post" id="decide-form">
+                                    <input type="hidden" name="confirmOutOfLimit" value="false" />
                                     <textarea name="reason" id="return-reason" class="form-control mb-2" rows="3" maxlength="500" placeholder="@L["Lab.ReturnReason"]"></textarea>
-                                    <div class="d-flex gap-2">
+                                    <div class="d-flex flex-wrap align-items-center gap-2">
                                         <button type="submit" name="approve" value="true" class="btn btn-success" id="approve-report" disabled="@(ccp0Pending != null)">@L["Ccp.Approve"]</button>
                                         <button type="submit" name="approve" value="false" class="btn btn-outline-warning">@L["Lab.Return"]</button>
+                                        <small class="text-muted approve-note" id="approve-note">@L["Lab.ApproveNote"]</small>
                                     </div>
                                 </form>
+                                    // D-64: the values outside their limits, confirmed in-page before approving
+                                    var outOfLimit = Model!.Results.Where(r => r.IsInRange == false)
+                                        .Select(r => (Result: r, Parameter: parameters.FirstOrDefault(p => p.ParameterId == r.ParameterId)))
+                                        .Select(x => new TOP4HoneyChains.Web.Models.ViewModels.OutOfLimitItem(x.Result.ParameterId, x.Parameter?.ParameterName, x.Result.MeasuredNumericValue,
+                                            x.Result.MeasuredTextValue, x.Parameter?.ParameterUnit, x.Result.AppliedLimit, x.Parameter?.LimitVerified == true))
+                                        .ToList();
+                                <partial name="_OutOfLimitConfirm" model="@(new TOP4HoneyChains.Web.Models.ViewModels.OutOfLimitConfirm("decide-form", "approve-report", outOfLimit))" />
                                 @if (ccp0Pending != null)
                                 {
                                     <div class="small text-warning mt-1" id="ccp0-pending">@Msg.T(ccp0Pending)</div>
