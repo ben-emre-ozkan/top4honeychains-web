@@ -40,14 +40,16 @@ namespace TOP4HoneyChains.Web.Services
                 foreach (var s in all)
                 {
                     // UI keys (Org.Title, Corr.Help…) are not messages
-                    if (s.Name == s.Value || Regex.IsMatch(s.Name, @"^[A-Za-z]+\.[A-Za-z]+$"))
+                    if (Regex.IsMatch(s.Name, @"^[A-Za-z]+\.[A-Za-z]+$"))
                         continue;
+                    // D-67: templates are kept even when the text is unchanged (English), so their placeholders
+                    // (organization roles, capabilities) are still shown by name instead of by code
                     if (Placeholder.IsMatch(s.Name))
                     {
                         var pattern = "^" + Placeholder.Replace(Regex.Escape(s.Name).Replace(@"\{", "{"), m => $@"(?<p{m.Groups[1].Value}>(?:(?!\. [A-Z]).)+?)") + "$";
                         templates.Add(new Template(new Regex(pattern, RegexOptions.Singleline), s.Value, Placeholder.Replace(s.Name, "").Length));
                     }
-                    else
+                    else if (s.Name != s.Value)
                         exact[s.Name] = s.Value;
                 }
                 // most specific (longest fixed text) first

@@ -188,6 +188,7 @@ namespace TOP4HoneyChains.Web.Controllers
             await _context.SaveChangesAsync();
             await _audit.WriteAsync("Finalize", "FinalHoneyProductions", id.ToString(), null, new { batch.FinalizeRequestedByUserId }, self ? "SelfApproved" : null);
             TempData["Success"] = self ? "Batch finalized under the four-eyes exemption (flagged in the audit log)." : "Batch finalized.";
+            TempData["Sealed"] = true;   // D-67: the batch page shows the seal moment once
             return RedirectToAction(nameof(Batch), new { id });
         }
     }

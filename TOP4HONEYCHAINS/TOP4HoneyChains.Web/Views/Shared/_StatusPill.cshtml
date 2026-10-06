@@ -15,4 +15,11 @@
         _ => "mdi-circle-small"
     };
 }
-<span class="st-pill st-@Model.Kind" id="@Model.Id" title="@Model.Title"><i class="mdi @icon" aria-hidden="true"></i><span>@Model.Text</span></span>
+@if (Model.Fresh && Model.Kind == "approved")
+{
+    <span class="st-pill st-approved is-fresh" id="@Model.Id" title="@Model.Title"><svg class="st-check" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><circle cx="8" cy="8" r="6.6" /><path d="M4.8 8.3l2.1 2.1 4.3-4.6" /></svg><span>@Model.Text</span></span>
+}
+else
+{
+    <span class="st-pill st-@Model.Kind" id="@Model.Id" title="@Model.Title"><i class="mdi @icon" aria-hidden="true"></i><span>@Model.Text</span></span>
+}

@@ -310,6 +310,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 new { report.ReportCode, report.Sha256, report.IsAccredited, report.InHouse });
             await transaction.CommitAsync();
             TempData["Success"] = "Lab report approved; the results are now the lot's CCP 1 values.";
+            TempData["JustApproved"] = true;   // D-67: the status pill draws its check mark once
             return RedirectToAction(nameof(Edit), new { id });
         }
 

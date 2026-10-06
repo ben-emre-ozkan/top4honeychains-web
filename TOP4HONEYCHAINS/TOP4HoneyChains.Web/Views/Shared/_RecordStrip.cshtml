@@ -1,0 +1,39 @@
+@model TOP4HoneyChains.Web.Models.ViewModels.RecordStrip
+@inject Microsoft.AspNetCore.Identity.UserManager<TOP4HoneyChains.Web.Models.Identity.ApplicationUser> StripUsers
+@* Record strip (D-67): who entered and who approved, initials in hexagons, with the times *@
+@{
+    async Task<string?> NameOf(string? value) => value == null || !Model.IdsNotNames ? value : (await StripUsers.FindByIdAsync(value))?.UserName ?? value;
+    var entered = await NameOf(Model.EnteredBy);
+    var approved = await NameOf(Model.ApprovedBy);
+    static string Initials(string name)
+    {
+        var parts = name.Split(new[] { ' ', '_', '.', '-' }, StringSplitOptions.RemoveEmptyEntries);
+        var letters = parts.Length >= 2 ? $"{parts[^2][0]}{parts[^1][0]}" : name.Length > 1 ? name[..2] : name;
+        return letters.ToUpperInvariant();
+    }
+    string When(DateTime? at) => at == null ? "" : (Model.TimesAreUtc ? at.Value.ToLocalTime() : at.Value).ToString("dd.MM.yyyy HH:mm");
+}
+@if (entered != null || approved != null)
+{
+    <div class="record-strip" id="record-strip">
+        @if (entered != null)
+        {
+            <span class="record-who">
+                <span class="record-hex" aria-hidden="true">@Initials(entered)</span>
+                <span><span class="record-role">@L["Entered by"]</span> <strong>@entered</strong>@if (Model.EnteredAt != null) {<text> · <time>@When(Model.EnteredAt)</time></text>}</span>
+            </span>
+        }
+        @if (approved != null)
+        {
+            <span class="record-who is-approver">
+                <span class="record-hex" aria-hidden="true">@Initials(approved)</span>
+                <span><span class="record-role">@L["Approved by"]</span> <strong>@approved</strong>@if (Model.ApprovedAt != null) {<text> · <time>@When(Model.ApprovedAt)</time></text>}</span>
+                @if (Model.SelfApproved) { <span class="st-pill st-pending"><i class="mdi mdi-alert-outline" aria-hidden="true"></i><span>@L["Org.SelfApproved"]</span></span> }
+            </span>
+        }
+        else if (entered != null)
+        {
+            <span class="record-who is-waiting"><span class="record-hex is-empty" aria-hidden="true">?</span><span class="record-role">@L["Not approved yet"]</span></span>
+        }
+    </div>
+}

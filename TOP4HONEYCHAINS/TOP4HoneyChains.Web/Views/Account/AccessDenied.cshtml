@@ -1,9 +1,5 @@
 @{
-    ViewBag.Title = L["AccessDenied"].Value;
-    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+    // D-67: the branded 403 page
+    Layout = null;
 }
-
-<p class="au-code" aria-hidden="true">403</p>
-<h1 class="au-title">@L["Access Denied"]</h1>
-<p class="au-sub">@L["You do not have permission to access this page."]</p>
-<a class="b-btn b-btn-honey au-submit" href="/Dashboard">@L["Back to Dashboard"]</a>
+<partial name="_ErrorPage" model="@(new ErrorViewModel { Code = 403 })" />

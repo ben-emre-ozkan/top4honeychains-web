@@ -6072,4 +6072,82 @@
   <data name="Work.WaitingDays" xml:space="preserve">
     <value>{0} gündür bekliyor</value>
   </data>
+  <data name="Err.Code" xml:space="preserve">
+    <value>Hata {0}</value>
+  </data>
+  <data name="Err.403.Title" xml:space="preserve">
+    <value>Bu sayfayı açamazsınız</value>
+  </data>
+  <data name="Err.403.Text" xml:space="preserve">
+    <value>Rolünüz bu sayfaya izin vermiyor. Gerekirse kurumunuzun yöneticisine başvurun.</value>
+  </data>
+  <data name="Err.404.Title" xml:space="preserve">
+    <value>Bu sayfa bulunamadı</value>
+  </data>
+  <data name="Err.404.Text" xml:space="preserve">
+    <value>Adres yanlış yazılmış ya da sayfa taşınmış olabilir.</value>
+  </data>
+  <data name="Err.500.Title" xml:space="preserve">
+    <value>Bizim tarafımızda bir sorun oluştu</value>
+  </data>
+  <data name="Err.500.Text" xml:space="preserve">
+    <value>Hata kaydedildi. Yeniden olursa bize bu referansı gönderin:</value>
+  </data>
+  <data name="Err.Other.Title" xml:space="preserve">
+    <value>Bir sorun oluştu</value>
+  </data>
+  <data name="Err.Other.Text" xml:space="preserve">
+    <value>İstek tamamlanamadı.</value>
+  </data>
+  <data name="Err.Reference" xml:space="preserve">
+    <value>Referans</value>
+  </data>
+  <data name="Err.Back" xml:space="preserve">
+    <value>Geri dön</value>
+  </data>
+  <data name="Err.Home" xml:space="preserve">
+    <value>Ana sayfa</value>
+  </data>
+  <data name="Sample status" xml:space="preserve">
+    <value>Numune durumu</value>
+  </data>
+  <data name="Report status" xml:space="preserve">
+    <value>Rapor durumu</value>
+  </data>
+  <data name="Choose PDF" xml:space="preserve">
+    <value>PDF seç</value>
+  </data>
+  <data name="No file chosen" xml:space="preserve">
+    <value>Dosya seçilmedi</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>Kopyalandı</value>
+  </data>
+  <data name="Limit.When" xml:space="preserve">
+    <value>{0} olduğunda</value>
+  </data>
+  <data name="Entered by" xml:space="preserve">
+    <value>Giren</value>
+  </data>
+  <data name="Approved by" xml:space="preserve">
+    <value>Onaylayan</value>
+  </data>
+  <data name="Not approved yet" xml:space="preserve">
+    <value>Henüz onaylanmadı</value>
+  </data>
+  <data name="Sealed" xml:space="preserve">
+    <value>Mühürlendi</value>
+  </data>
+  <data name="Open the Honey Story" xml:space="preserve">
+    <value>Bal Hikâyesini aç</value>
+  </data>
+  <data name="Download QR" xml:space="preserve">
+    <value>QR'ı indir</value>
+  </data>
+  <data name="QR code of the Honey Story" xml:space="preserve">
+    <value>Bal Hikâyesinin QR kodu</value>
+  </data>
+  <data name="Printed on {0}" xml:space="preserve">
+    <value>Yazdırma: {0}</value>
+  </data>
 </root>

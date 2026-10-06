@@ -77,6 +77,7 @@ builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<CcpIntegrityService>();
 builder.Services.AddMemoryCache();
 builder.Services.AddScoped<LandingStatsService>();
+builder.Services.AddScoped<LimitFormatter>();
 builder.Services.AddSingleton<RefText>();
 builder.Services.AddSingleton<Places>();
 builder.Services.AddSingleton<TOP4HoneyChains.Web.Services.OrgModel.Permissions>();
@@ -125,12 +126,18 @@ builder.Services.AddControllersWithViews(options =>
 // Validation attribute messages are looked up in SharedResource by their English text
 .AddDataAnnotationsLocalization(o => o.DataAnnotationLocalizerProvider = (_, factory) => factory.Create(typeof(TOP4HoneyChains.Web.SharedResource)));
 
+// D-67: errors also go to App_Data/logs, with the reference the error page shows
+builder.Logging.AddProvider(new ErrorFileLoggerProvider(Path.Combine(builder.Environment.ContentRootPath, "App_Data", "logs")));
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Dashboard/Error");
 }
+// D-67: branded pages for 404 and other status codes without a body; unhandled exceptions are logged with a reference
+app.UseStatusCodePagesWithReExecute("/Dashboard/Status", "?code={0}");
+app.UseMiddleware<UnhandledExceptionLoggingMiddleware>();
 // D-13: TLS ends at IIS (certificate and binding by the university IT); the app redirects HTTP to HTTPS
 // and sends HSTS in Production only. Under IIS the HTTPS port comes from the binding (ANCM_HTTPS_PORT).
 if (app.Environment.IsProduction())

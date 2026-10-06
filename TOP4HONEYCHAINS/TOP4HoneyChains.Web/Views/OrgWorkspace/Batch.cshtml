@@ -63,8 +63,38 @@
                     <p class="small text-muted">@L["Org.FinalizeHelp"]</p>
                     @if (Model.FinalHoneyProductionIsFinalized)
                     {
-                        <div class="alert alert-success mb-0">@L["Org.Finalized"] · @Model.FinalHoneyProductionFinalizedDate?.ToString("dd.MM.yyyy HH:mm")
-                            @if (Model.SelfFinalized) { <span class="badge bg-warning text-dark ms-1">@L["Org.SelfApproved"]</span> }</div>
+                        @* D-67: the seal; it presses in once right after the approval, then the Honey Story and the QR appear *@
+                        var fresh = TempData["Sealed"] as bool? == true;
+                        var sealedAt = Model.FinalHoneyProductionFinalizedDate?.ToLocalTime();
+                        var qr = Model.FinalHoneyProductionQR.ToString().ToUpperInvariant();
+                        <div class="seal @(fresh ? "is-fresh" : "")" id="batch-seal">
+                            <div class="seal-stamp" role="img" aria-label="@L["Sealed"] · #@Model.FinalHoneyProductionId · @sealedAt?.ToString("dd.MM.yyyy")">
+                                <svg viewBox="0 0 160 160" width="150" height="150" aria-hidden="true">
+                                    <defs>
+                                        <radialGradient id="seal-wax" cx="40%" cy="35%" r="70%">
+                                            <stop offset="0" stop-color="#E9A43A" />
+                                            <stop offset="0.55" stop-color="#C77A12" />
+                                            <stop offset="1" stop-color="#8A4E06" />
+                                        </radialGradient>
+                                    </defs>
+                                    <path d="M80 6 L144 43 L144 117 L80 154 L16 117 L16 43 Z" fill="url(#seal-wax)" />
+                                    <path d="M80 20 L132 50 L132 110 L80 140 L28 110 L28 50 Z" fill="none" stroke="#FFE4A8" stroke-opacity="0.55" stroke-width="2" stroke-dasharray="3 4" />
+                                    <path class="seal-check" d="M62 74 l12 12 l24 -26" fill="none" stroke="#FFF6DD" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+                                    <text x="80" y="108" text-anchor="middle" font-family="Bricolage Grotesque, system-ui, sans-serif" font-weight="800" font-size="17" fill="#FFF6DD">#@Model.FinalHoneyProductionId</text>
+                                    <text x="80" y="126" text-anchor="middle" font-family="Instrument Sans, system-ui, sans-serif" font-weight="600" font-size="11" fill="#FFE4A8">@sealedAt?.ToString("dd.MM.yyyy")</text>
+                                </svg>
+                            </div>
+                            <div class="seal-info">
+                                <p class="seal-title">@L["Sealed"]</p>
+                                <p class="seal-sub">@L["Org.Finalized"] · @sealedAt?.ToString("dd.MM.yyyy HH:mm")
+                                    @if (Model.SelfFinalized) { <span class="st-pill st-pending ms-1"><i class="mdi mdi-alert-outline" aria-hidden="true"></i><span>@L["Org.SelfApproved"]</span></span> }</p>
+                                <div class="seal-actions">
+                                    <a class="btn btn-primary" href="/honeystory/@qr" target="_blank" id="seal-story"><i class="mdi mdi-book-open-page-variant-outline" aria-hidden="true"></i>@L["Open the Honey Story"]</a>
+                                    <a class="btn btn-outline-secondary" href="/honeystory/qrcode?code=@qr" download="honeystory-@(Model.FinalHoneyProductionId).png" id="seal-download"><i class="mdi mdi-download" aria-hidden="true"></i>@L["Download QR"]</a>
+                                </div>
+                            </div>
+                            <img class="seal-qr" src="/honeystory/qrcode?code=@qr" alt="@L["QR code of the Honey Story"]" width="120" height="120" loading="lazy" />
+                        </div>
                     }
                     else
                     {
@@ -97,7 +127,7 @@
                     }
                 </div>
             </div>
-            <a asp-action="Index" class="btn btn-secondary">@L["Org.Back"]</a>
+            <a asp-action="Index" class="btn btn-link app-back"><i class="mdi mdi-arrow-left" aria-hidden="true"></i> @L["Org.Back"]</a>
             <a asp-controller="Recall" asp-action="Batch" asp-route-id="@Model.FinalHoneyProductionId" class="btn btn-outline-secondary">@L["Cust.RecallReport"]</a>
             <a asp-controller="Flow" asp-action="Batch" asp-route-id="@Model.FinalHoneyProductionId" class="btn btn-outline-secondary">@L["Flow.Title"]</a>
         </div>

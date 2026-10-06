@@ -178,6 +178,35 @@
         store.set(seenKey, keys);
     }
 
+    // ------------------------------------------------------------------ file pickers and copy buttons (D-67)
+    Array.prototype.forEach.call(document.querySelectorAll('.app-file-input'), function (input) {
+        var name = input.parentElement.querySelector('.app-file-name');
+        if (!name) return;
+        input.addEventListener('change', function () {
+            name.textContent = input.files && input.files.length ? input.files[0].name : name.getAttribute('data-empty');
+            name.classList.toggle('has-file', !!(input.files && input.files.length));
+        });
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('.app-copy[data-copy]'), function (button) {
+        var label = button.querySelector('span');
+        var original = label ? label.textContent : '';
+        button.addEventListener('click', function () {
+            var text = button.getAttribute('data-copy');
+            var done = function () {
+                if (label) label.textContent = button.getAttribute('data-copied') || original;
+                button.classList.add('is-copied');
+                setTimeout(function () { if (label) label.textContent = original; button.classList.remove('is-copied'); }, 2000);
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, function () { });
+            else {
+                var area = document.createElement('textarea');
+                area.value = text; document.body.appendChild(area); area.select();
+                try { document.execCommand('copy'); done(); } catch (e) { /* not available */ }
+                document.body.removeChild(area);
+            }
+        });
+    });
+
     // ------------------------------------------------------------------ sticky offsets
     var topbar = document.getElementById('page-topbar');
     function topOffset() { if (topbar) document.documentElement.style.setProperty('--app-top-h', topbar.offsetHeight + 'px'); }

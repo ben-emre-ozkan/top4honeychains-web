@@ -6072,4 +6072,82 @@
   <data name="Work.WaitingDays" xml:space="preserve">
     <value>gaida dienas: {0}</value>
   </data>
+  <data name="Err.Code" xml:space="preserve">
+    <value>Kļūda {0}</value>
+  </data>
+  <data name="Err.403.Title" xml:space="preserve">
+    <value>Jūs nevarat atvērt šo lapu</value>
+  </data>
+  <data name="Err.403.Text" xml:space="preserve">
+    <value>Jūsu loma neļauj atvērt šo lapu. Ja tā ir vajadzīga, jautājiet savas organizācijas administratoram.</value>
+  </data>
+  <data name="Err.404.Title" xml:space="preserve">
+    <value>Šīs lapas šeit nav</value>
+  </data>
+  <data name="Err.404.Text" xml:space="preserve">
+    <value>Iespējams, adrese ir uzrakstīta kļūdaini vai lapa ir pārvietota.</value>
+  </data>
+  <data name="Err.500.Title" xml:space="preserve">
+    <value>Mūsu pusē radās kļūda</value>
+  </data>
+  <data name="Err.500.Text" xml:space="preserve">
+    <value>Kļūda ir reģistrēta. Ja tā atkārtojas, nosūtiet mums šo atsauci:</value>
+  </data>
+  <data name="Err.Other.Title" xml:space="preserve">
+    <value>Radās kļūda</value>
+  </data>
+  <data name="Err.Other.Text" xml:space="preserve">
+    <value>Pieprasījumu neizdevās izpildīt.</value>
+  </data>
+  <data name="Err.Reference" xml:space="preserve">
+    <value>Atsauce</value>
+  </data>
+  <data name="Err.Back" xml:space="preserve">
+    <value>Atpakaļ</value>
+  </data>
+  <data name="Err.Home" xml:space="preserve">
+    <value>Sākumlapa</value>
+  </data>
+  <data name="Sample status" xml:space="preserve">
+    <value>Parauga statuss</value>
+  </data>
+  <data name="Report status" xml:space="preserve">
+    <value>Pārskata statuss</value>
+  </data>
+  <data name="Choose PDF" xml:space="preserve">
+    <value>Izvēlēties PDF</value>
+  </data>
+  <data name="No file chosen" xml:space="preserve">
+    <value>Fails nav izvēlēts</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>Nokopēts</value>
+  </data>
+  <data name="Limit.When" xml:space="preserve">
+    <value>ja {0}</value>
+  </data>
+  <data name="Entered by" xml:space="preserve">
+    <value>Ievadīja</value>
+  </data>
+  <data name="Approved by" xml:space="preserve">
+    <value>Apstiprināja</value>
+  </data>
+  <data name="Not approved yet" xml:space="preserve">
+    <value>Vēl nav apstiprināts</value>
+  </data>
+  <data name="Sealed" xml:space="preserve">
+    <value>Aizzīmogots</value>
+  </data>
+  <data name="Open the Honey Story" xml:space="preserve">
+    <value>Atvērt medus stāstu</value>
+  </data>
+  <data name="Download QR" xml:space="preserve">
+    <value>Lejupielādēt QR</value>
+  </data>
+  <data name="QR code of the Honey Story" xml:space="preserve">
+    <value>Medus stāsta QR kods</value>
+  </data>
+  <data name="Printed on {0}" xml:space="preserve">
+    <value>Izdrukāts {0}</value>
+  </data>
 </root>

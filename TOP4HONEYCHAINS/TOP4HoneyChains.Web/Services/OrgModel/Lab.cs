@@ -31,7 +31,10 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         public Task<List<CriticalControlPointParameter>> LabParametersAsync(int ccpId) =>
             _context.CriticalControlPointParameters.AsNoTracking()
                 .Where(p => p.CCPId == ccpId && p.DataType != CcpDataType.File)
-                .Include(p => p.Limits)
+                .Include(p => p.Limits).ThenInclude(l => l.ConditionParameter)
+                .Include(p => p.Limits).ThenInclude(l => l.SumWithParameter)
+                .Include(p => p.Limits).ThenInclude(l => l.RatioWithParameter)
+                .Include(p => p.Limits).ThenInclude(l => l.HoneyType)   // D-67: the related parameters name the limits
                 .OrderBy(p => p.ParameterId).ToListAsync();
 
         // D-54: required lab parameters that have no value in the report yet

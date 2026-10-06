@@ -30,6 +30,15 @@
 
             <partial name="~/Views/Shared/_FlashMessages.cshtml" />
 
+            @* D-67: shown only on paper (lab report, recall report) *@
+            <div class="print-head" aria-hidden="true">
+                <span class="print-head-brand">
+                    <svg width="22" height="22" viewBox="0 0 30 30"><polygon points="15,2 26,8.5 26,21.5 15,28 4,21.5 4,8.5" fill="#D9930D"></polygon><polygon points="15,8 20.2,11 20.2,17 15,20 9.8,17 9.8,11" fill="#FFFFFF"></polygon></svg>
+                    TOP4HoneyChains
+                </span>
+                <span class="print-head-meta">@ViewData["Title"]<br>@L["Printed on {0}", DateTime.Now.ToString("dd.MM.yyyy HH:mm")]</span>
+            </div>
+
             @RenderBody()
 
             @Html.Partial("~/Views/Shared/_Footer.cshtml")

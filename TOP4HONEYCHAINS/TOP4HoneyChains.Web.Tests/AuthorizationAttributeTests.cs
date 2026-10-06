@@ -13,7 +13,7 @@ namespace TOP4HoneyChains.Web.Tests
         private static readonly HashSet<string> PublicActions = new()
         {
             "Account.Login", "Account.ForgotPassword", "Account.ResetPassword", "Account.AccessDenied",
-            "Dashboard.Error", "Home.Index", "Home.SetLanguage",
+            "Dashboard.Error", "Dashboard.Status", "Home.Index", "Home.SetLanguage",
             "HoneyStory.ParameterDetails", "HoneyStory.Index", "HoneyStory.BatchQRCode", "HoneyStory.Image", "HoneyStory.Details",
             "Storefront.Index", "Storefront.Qr", "Verify.Index"
         };

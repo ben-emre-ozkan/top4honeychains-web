@@ -38,6 +38,10 @@
         public bool CanApprove { get; set; }
         public string? ApproveDeniedReason { get; set; }
         public string? ApprovedBy { get; set; }
+
+        // D-67: the record strip ("Entered by … · Approved by …"), from the latest value log
+        public string? EnteredBy { get; set; }
+        public DateTime? EnteredAt { get; set; }
         public DateTime? ApprovedAt { get; set; }
         public bool SelfApproved { get; set; }
 

@@ -67,7 +67,6 @@ namespace TOP4HoneyChains.Web.Tests.E2E
         [Theory]
         [InlineData("/Account/Login")]
         [InlineData("/Account/ForgotPassword")]
-        [InlineData("/Account/AccessDenied")]
         [InlineData("/Account/ResetPassword?token=zz_test&email=zz.test%40example.invalid")]
         public async Task The_sign_in_pages_share_the_new_look(string url)
         {
@@ -75,6 +74,37 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             Assert.Contains("class=\"au-panel\"", html);
             Assert.Contains("data-honeycomb", html);
             AssertNoExternalRequests(html);
+        }
+
+        // D-67: branded error pages with a way back; the 500 page shows a short reference
+        [Theory]
+        [InlineData("/zz-test-no-such-page", 404, "This page isn't here")]
+        [InlineData("/Account/AccessDenied", 403, "You can't open this page")]
+        [InlineData("/Dashboard/Status?code=500", 500, "Something went wrong on our side")]
+        public async Task Error_pages_are_branded(string url, int code, string title)
+        {
+            // unknown addresses need sign-in first (deny by default, D-47), so the 404 page is checked signed in
+            HttpResponseMessage response;
+            if (code == 404)
+            {
+                const string name = "e2e_err_admin";
+                await _app.CreateUserAsync(name, "Administrator");
+                response = await (await UserClient.LoginAsync(_app, name)).GetAsync(url);
+            }
+            else
+            {
+                var client = _app.CreateClient(new WebApplicationFactoryClientOptions { AllowAutoRedirect = false });
+                client.DefaultRequestHeaders.AcceptLanguage.ParseAdd("en");
+                response = await client.GetAsync(url);
+            }
+            Assert.Equal(code == 403 ? HttpStatusCode.OK : (HttpStatusCode)code, response.StatusCode);
+            var html = WebUtility.HtmlDecode(await response.Content.ReadAsStringAsync());
+            Assert.Contains($"data-code=\"{code}\"", html);
+            Assert.Contains(title, html);
+            Assert.Contains("class=\"bee-art\"", html);
+            AssertNoExternalRequests(html);
+            if (code == 500)
+                Assert.Matches("id=\"error-reference\">E-[A-Z2-9]{8}<", html);
         }
 
         [Fact]

@@ -267,6 +267,7 @@ namespace TOP4HoneyChains.Web.Controllers
             await _audit.WriteAsync("Approve", owner == Owner.RawLot ? "RawHoneyCCPAssignments" : "FinalHoneyCCPAssignments",
                 $"{ownerId}/{ccpId}", null, new { Status = assignment.Status }, self ? "SelfApproved" : null);
             TempData["Success"] = self ? "Approved under the four-eyes exemption (flagged in the audit log)." : "CCP record approved.";
+            TempData["JustApproved"] = true;   // D-67: the status pill draws its check mark once
             return RedirectToMonitoring(owner.Value, ownerId, ccpId);
         }
 
@@ -574,6 +575,7 @@ namespace TOP4HoneyChains.Web.Controllers
                             RequiredIfParameterId = p.RequiredIfParameterId,
                             RequiredIfValue = p.RequiredIfValue,
                             LimitText = CcpLimitEvaluator.DescribeAll(p),
+                            Definition = p,
                             LimitVerified = p.LimitVerified,
                             MeasuredNumericValue = log?.MeasuredNumericValue,
                             MeasuredTextValue = log?.MeasuredTextValue,
@@ -620,6 +622,13 @@ namespace TOP4HoneyChains.Web.Controllers
                 HttpContext.Items.Remove(CcpAuthorizationHandler.SelfApprovalKey);
             }
             model.HoneyClass = (await HoneyProfileAsync(owner, ownerId)).HoneyClass;
+            // D-67: the person who last entered values, for the record strip
+            var lastLog = logs.Where(l => l.RecordedByUserId != null).OrderByDescending(l => l.MeasurementDate ?? DateTime.MinValue).ThenByDescending(l => l.LogId).FirstOrDefault();
+            if (lastLog != null)
+            {
+                model.EnteredBy = (await _userManager.FindByIdAsync(lastLog.RecordedByUserId!))?.UserName ?? lastLog.RecordedByUserId;
+                model.EnteredAt = lastLog.MeasurementDate;
+            }
             return true;
         }
 

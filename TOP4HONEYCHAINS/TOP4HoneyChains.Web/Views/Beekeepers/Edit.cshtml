@@ -12,9 +12,7 @@
 
                     <h4 class="card-title">@L["Edit Beekeeper"]</h4>
                     <a asp-action="Index"
-                       class="btn btn-secondary waves-effect waves-light">
-                        @L["Back to list"]
-                    </a>
+                       class="btn btn-link app-back"><i class="mdi mdi-arrow-left" aria-hidden="true"></i> @L["Back to list"]</a>
 
                     <form asp-action="Edit" enctype="multipart/form-data">
                         <input type="hidden" asp-for="BeekeeperId" />
