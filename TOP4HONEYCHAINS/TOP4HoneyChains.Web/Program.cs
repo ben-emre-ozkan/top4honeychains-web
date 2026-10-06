@@ -75,6 +75,8 @@ builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpS
 
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<CcpIntegrityService>();
+builder.Services.AddMemoryCache();
+builder.Services.AddScoped<LandingStatsService>();
 builder.Services.AddSingleton<RefText>();
 builder.Services.AddSingleton<Places>();
 builder.Services.AddSingleton<TOP4HoneyChains.Web.Services.OrgModel.Permissions>();

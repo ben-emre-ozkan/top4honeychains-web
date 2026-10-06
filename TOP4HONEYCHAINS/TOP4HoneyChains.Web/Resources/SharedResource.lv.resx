@@ -5778,4 +5778,232 @@
   <data name="The record has values outside their limits; confirm them to approve." xml:space="preserve">
     <value>Ierakstam ir vērtības ārpus robežām; apstipriniet tās, lai apstiprinātu.</value>
   </data>
+  <data name="Land.MetaDescription" xml:space="preserve">
+    <value>Katra medus burka ar visu tās stāstu: drava, piegāde, akreditēta laboratorija, apstrāde un plaukts; katru soli reģistrē viena persona un apstiprina cita.</value>
+  </data>
+  <data name="Land.SkipToContent" xml:space="preserve">
+    <value>Pāriet uz saturu</value>
+  </data>
+  <data name="Land.Nav.Chain" xml:space="preserve">
+    <value>Kā tas darbojas</value>
+  </data>
+  <data name="Land.Nav.Trust" xml:space="preserve">
+    <value>Uzticamība</value>
+  </data>
+  <data name="Land.Nav.ForWhom" xml:space="preserve">
+    <value>Kam</value>
+  </data>
+  <data name="Land.Nav.Story" xml:space="preserve">
+    <value>Medus stāsts</value>
+  </data>
+  <data name="Land.SignIn" xml:space="preserve">
+    <value>Pieteikties</value>
+  </data>
+  <data name="Land.VerifyReport" xml:space="preserve">
+    <value>Pārbaudīt laboratorijas pārskatu</value>
+  </data>
+  <data name="Land.HeroKicker" xml:space="preserve">
+    <value>Medus izsekojamība no stropa līdz plauktam</value>
+  </data>
+  <data name="Land.HeroLead" xml:space="preserve">
+    <value>Viens kopīgs ieraksts par katru medus burkas soli, ko veic tie, kas dara darbu, un pārbauda kāds cits.</value>
+  </data>
+  <data name="Land.Consumer" xml:space="preserve">
+    <value>Jums ir burka? Noskenējiet QR kodu uz tās etiķetes.</value>
+  </data>
+  <data name="Land.ScrollHint" xml:space="preserve">
+    <value>Apskatīt ķēdi</value>
+  </data>
+  <data name="Land.Station.Apiary" xml:space="preserve">
+    <value>Drava</value>
+  </data>
+  <data name="Land.Station.Delivery" xml:space="preserve">
+    <value>Piegāde</value>
+  </data>
+  <data name="Land.Station.Lab" xml:space="preserve">
+    <value>Laboratorija</value>
+  </data>
+  <data name="Land.Station.Processing" xml:space="preserve">
+    <value>Apstrāde</value>
+  </data>
+  <data name="Land.Station.Shelf" xml:space="preserve">
+    <value>Plaukts</value>
+  </data>
+  <data name="Land.Stats.Title" xml:space="preserve">
+    <value>Līdz šim platformā</value>
+  </data>
+  <data name="Land.Stats.Batches" xml:space="preserve">
+    <value>pabeigtas gala partijas</value>
+  </data>
+  <data name="Land.Stats.Orgs" xml:space="preserve">
+    <value>pārbaudītas organizācijas</value>
+  </data>
+  <data name="Land.Stats.Reports" xml:space="preserve">
+    <value>apstiprināti laboratorijas pārskati</value>
+  </data>
+  <data name="Land.Chain.Kicker" xml:space="preserve">
+    <value>Ķēde</value>
+  </data>
+  <data name="Land.Chain.Title" xml:space="preserve">
+    <value>Pieci soļi, viens ieraksts</value>
+  </data>
+  <data name="Land.Chain.Lead" xml:space="preserve">
+    <value>Katrs solis papildina to pašu ierakstu, un nākamais sākas tikai tad, kad iepriekšējais ir apstiprināts.</value>
+  </data>
+  <data name="Land.StepN" xml:space="preserve">
+    <value>{0}. solis</value>
+  </data>
+  <data name="Land.Step1.Title" xml:space="preserve">
+    <value>Drava un biškopis</value>
+  </data>
+  <data name="Land.Step1.Tag" xml:space="preserve">
+    <value>Reģistrs · piekrišana</value>
+  </data>
+  <data name="Land.Step1.Text" xml:space="preserve">
+    <value>Biškopis tiek pārbaudīts valsts reģistrā un sniedz rakstisku piekrišanu, pirms viņa vārds parādās kādā publiskā lapā.</value>
+  </data>
+  <data name="Land.Step2.Title" xml:space="preserve">
+    <value>Piegāde, KKP 0 un aizzīmogots paraugs</value>
+  </data>
+  <data name="Land.Step2.Tag" xml:space="preserve">
+    <value>KKP 0</value>
+  </data>
+  <data name="Land.Step2.Text" xml:space="preserve">
+    <value>Piegādes brīdī pieņemšanas speciālists reģistrē partiju, veic primāro auditu un aizzīmogo paraugu un kontrolparaugu.</value>
+  </data>
+  <data name="Land.Step3.Title" xml:space="preserve">
+    <value>Akreditēta laboratorija</value>
+  </data>
+  <data name="Land.Step3.Tag" xml:space="preserve">
+    <value>KKP 1</value>
+  </data>
+  <data name="Land.Step3.Text" xml:space="preserve">
+    <value>Laboratorija pārbauda zīmogu, ievada rezultātus kopā ar parakstītu pārskatu, un otra persona tos apstiprina.</value>
+  </data>
+  <data name="Land.Step4.Title" xml:space="preserve">
+    <value>Apstrāde, iepakošana un gala partijas pabeigšana</value>
+  </data>
+  <data name="Land.Step4.Tag" xml:space="preserve">
+    <value>KKP 2–9</value>
+  </data>
+  <data name="Land.Step4.Text" xml:space="preserve">
+    <value>Katru kontrolpunktu no filtrēšanas līdz marķēšanai ievada viena persona un apstiprina cita, pirms gala partija tiek pabeigta.</value>
+  </data>
+  <data name="Land.Step5.Title" xml:space="preserve">
+    <value>Plaukts un Medus stāsts</value>
+  </data>
+  <data name="Land.Step5.Tag" xml:space="preserve">
+    <value>KKP 10</value>
+  </data>
+  <data name="Land.Step5.Text" xml:space="preserve">
+    <value>Mazumtirgotājs apstiprina saņemto un reģistrē uzglabāšanas apstākļus; QR kods uz burkas atver visu medus stāstu.</value>
+  </data>
+  <data name="Land.ImagePending" xml:space="preserve">
+    <value>Fotogrāfija drīzumā</value>
+  </data>
+  <data name="Land.Trust.Kicker" xml:space="preserve">
+    <value>Kāpēc tam var uzticēties</value>
+  </data>
+  <data name="Land.Trust.Title" xml:space="preserve">
+    <value>Veidots tā, lai neviens nepārbaudītu pats savu darbu</value>
+  </data>
+  <data name="Land.Trust.FourEyes.Title" xml:space="preserve">
+    <value>Divas personas katram ierakstam</value>
+  </data>
+  <data name="Land.Trust.FourEyes.Text" xml:space="preserve">
+    <value>Katru ierakstu ievada viena persona un apstiprina cita. Katrs izņēmums tiek atzīmēts un paliek redzams.</value>
+  </data>
+  <data name="Land.Trust.Audit.Title" xml:space="preserve">
+    <value>Audita žurnāls, ko nevar pārrakstīt</value>
+  </data>
+  <data name="Land.Trust.Audit.Text" xml:space="preserve">
+    <value>Katras izmaiņas tiek pievienotas žurnālam, kura ierakstus saista jaucējkodu ķēde, tāpēc dzēsts vai mainīts ieraksts ir pamanāms.</value>
+  </data>
+  <data name="Land.Trust.Orgs.Title" xml:space="preserve">
+    <value>Tikai pārbaudītas organizācijas</value>
+  </data>
+  <data name="Land.Trust.Orgs.Text" xml:space="preserve">
+    <value>Pārstrādātāji, laboratorijas un mazumtirgotāji tiek pārbaudīti, pirms to darbinieki var kaut ko reģistrēt.</value>
+  </data>
+  <data name="Land.Trust.Verify.Title" xml:space="preserve">
+    <value>Laboratorijas pārskati, ko var pārbaudīt ikviens</value>
+  </data>
+  <data name="Land.Trust.Verify.Text" xml:space="preserve">
+    <value>Ievadiet laboratorijas pārskatā uzdrukāto kodu, lai redzētu tā apstiprinājuma statusu un digitālo nospiedumu.</value>
+  </data>
+  <data name="Land.Who.Kicker" xml:space="preserve">
+    <value>Kam</value>
+  </data>
+  <data name="Land.Who.Title" xml:space="preserve">
+    <value>Viens ieraksts, pieci lietotāju veidi</value>
+  </data>
+  <data name="Land.Who.Beekeepers.Title" xml:space="preserve">
+    <value>Biškopji un biedrības</value>
+  </data>
+  <data name="Land.Who.Beekeepers.Text" xml:space="preserve">
+    <value>Publiska biškopja lapa, izcelsmes pierādījums katrai piegādei un biedru partijas vienā skatā.</value>
+  </data>
+  <data name="Land.Who.Processors.Title" xml:space="preserve">
+    <value>Pārstrādātāji un iepakotāji</value>
+  </data>
+  <data name="Land.Who.Processors.Text" xml:space="preserve">
+    <value>Pieņemšana, aizzīmogoti paraugi, kontrolpunkti un gala partijas pabeigšana vienuviet, ar iebūvētu divu personu apstiprināšanu.</value>
+  </data>
+  <data name="Land.Who.Labs.Title" xml:space="preserve">
+    <value>Laboratorijas</value>
+  </data>
+  <data name="Land.Who.Labs.Text" xml:space="preserve">
+    <value>Paraugu uzraudzība ar zīmoga pārbaudi, rezultāti, kas saistīti ar parakstīto pārskatu, un pārskati, ko var pārbaudīt ikviens.</value>
+  </data>
+  <data name="Land.Who.Retailers.Title" xml:space="preserve">
+    <value>Mazumtirgotāji</value>
+  </data>
+  <data name="Land.Who.Retailers.Text" xml:space="preserve">
+    <value>Apstipriniet saņemto, reģistrējiet uzglabāšanas apstākļus un dodiet klientiem stāstu, ko viņi var pārbaudīt.</value>
+  </data>
+  <data name="Land.Who.Consumers.Title" xml:space="preserve">
+    <value>Patērētāji</value>
+  </data>
+  <data name="Land.Who.Consumers.Text" xml:space="preserve">
+    <value>Noskenējiet burku, lai redzētu, no kurienes nāk medus, kas ar to strādāja un ko atklāja laboratorija.</value>
+  </data>
+  <data name="Land.Story.Kicker" xml:space="preserve">
+    <value>Medus stāsts</value>
+  </data>
+  <data name="Land.Story.Title" xml:space="preserve">
+    <value>Ko atver QR kods uz burkas</value>
+  </data>
+  <data name="Land.Story.Text" xml:space="preserve">
+    <value>Gala partijas publiskā lapa: izcelsme, katrs kontrolpunkts, laboratorijas rezultāti un biškopji, piecās valodās.</value>
+  </data>
+  <data name="Land.Story.Cta" xml:space="preserve">
+    <value>Atvērt demonstrācijas partiju</value>
+  </data>
+  <data name="Land.Story.FrameTitle" xml:space="preserve">
+    <value>Demonstrācijas partijas medus stāsts</value>
+  </data>
+  <data name="Land.Story.Points" xml:space="preserve">
+    <value>Izcelsme un biškopji|Katrs kontrolpunkts apstiprināts|Laboratorijas rezultāti ar robežām</value>
+  </data>
+  <data name="Land.Footer.Partners" xml:space="preserve">
+    <value>Projekta partneri</value>
+  </data>
+  <data name="Land.Footer.Rights" xml:space="preserve">
+    <value>© {0} TOP4HoneyChains</value>
+  </data>
+  <data name="Auth.Point1" xml:space="preserve">
+    <value>Katru ierakstu ievada viena persona un apstiprina cita.</value>
+  </data>
+  <data name="Auth.Point2" xml:space="preserve">
+    <value>Tikai papildināms audita žurnāls ar jaucējkodu ķēdi.</value>
+  </data>
+  <data name="Auth.Point3" xml:space="preserve">
+    <value>Piedalās tikai pārbaudītas organizācijas.</value>
+  </data>
+  <data name="Auth.BackHome" xml:space="preserve">
+    <value>Atpakaļ uz sākumlapu</value>
+  </data>
+  <data name="Auth.SignedInAs" xml:space="preserve">
+    <value>Pieteicies kā {0}</value>
+  </data>
 </root>

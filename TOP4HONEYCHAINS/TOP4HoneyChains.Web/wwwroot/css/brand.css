@@ -1,0 +1,194 @@
+/* TOP4HoneyChains brand tokens (D-65): one source for the public pages (landing, sign-in, beekeeper page, Honey Story)
+   and, later, the app shell. Load this file first; page styles use only these variables.
+   Fonts: Bricolage Grotesque (display) and Instrument Sans (text), self-hosted, SIL Open Font License 1.1
+   (licence: OFL.txt next to each font under wwwroot/fonts); woff2 from the Fontsource npm packages 5.3.0, latin and latin-ext subsets only. */
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src: url(../fonts/bricolage-grotesque/bricolage-grotesque-latin-ext-500-normal.woff2) format('woff2');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src: url(../fonts/bricolage-grotesque/bricolage-grotesque-latin-500-normal.woff2) format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url(../fonts/bricolage-grotesque/bricolage-grotesque-latin-ext-700-normal.woff2) format('woff2');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url(../fonts/bricolage-grotesque/bricolage-grotesque-latin-700-normal.woff2) format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 800;
+  src: url(../fonts/bricolage-grotesque/bricolage-grotesque-latin-ext-800-normal.woff2) format('woff2');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 800;
+  src: url(../fonts/bricolage-grotesque/bricolage-grotesque-latin-800-normal.woff2) format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(../fonts/instrument-sans/instrument-sans-latin-ext-400-normal.woff2) format('woff2');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(../fonts/instrument-sans/instrument-sans-latin-400-normal.woff2) format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src: url(../fonts/instrument-sans/instrument-sans-latin-ext-500-normal.woff2) format('woff2');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src: url(../fonts/instrument-sans/instrument-sans-latin-500-normal.woff2) format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url(../fonts/instrument-sans/instrument-sans-latin-ext-600-normal.woff2) format('woff2');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url(../fonts/instrument-sans/instrument-sans-latin-600-normal.woff2) format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url(../fonts/instrument-sans/instrument-sans-latin-ext-700-normal.woff2) format('woff2');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url(../fonts/instrument-sans/instrument-sans-latin-700-normal.woff2) format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+:root {
+    /* colours: paper and ink */
+    --b-ink: #1D1A15;
+    --b-ink-2: #3B352C;
+    --b-muted: #5E574C;          /* 6.7:1 on paper */
+    --b-paper: #FBF8F2;
+    --b-paper-2: #F5EFE3;
+    --b-card: #FFFFFF;
+    --b-line: #E9E2D4;
+    --b-track: #F1E9DA;
+    /* honey: --b-honey is for fills and lines, never for small text; text uses --b-honey-ink or --b-kicker */
+    --b-honey: #D9930D;
+    --b-honey-hi: #F2B33D;
+    --b-honey-glow: #FFC95C;
+    --b-honey-soft: #FCEFD2;
+    --b-honey-ink: #6B4700;      /* 8.4:1 on paper */
+    --b-kicker: #8A5A00;         /* 5.6:1 on paper */
+    /* green: verified, approved */
+    --b-green: #1F5B43;
+    --b-green-dark: #123B2B;
+    --b-green-soft: #E3F0E9;
+    --b-green-line: #CFE3D7;
+    /* night: the dark sections */
+    --b-night: #15120D;
+    --b-night-2: #221C13;
+    --b-night-line: rgba(255, 233, 196, 0.14);
+    --b-night-text: #F6EEDF;     /* 15:1 on night */
+    --b-night-muted: #C9BBA3;    /* 9.9:1 on night */
+    --b-focus: #1A5FD0;
+
+    /* type */
+    --b-display: 'Bricolage Grotesque', system-ui, sans-serif;
+    --b-text: 'Instrument Sans', system-ui, sans-serif;
+
+    /* shape */
+    --b-radius-s: 10px;
+    --b-radius: 16px;
+    --b-radius-l: 24px;
+    --b-radius-pill: 999px;
+    --b-shadow-s: 0 2px 6px rgba(29, 26, 21, 0.06);
+    --b-shadow: 0 10px 28px rgba(29, 26, 21, 0.10);
+    --b-shadow-l: 0 24px 60px rgba(29, 26, 21, 0.18);
+    --b-glow: 0 0 0 1px rgba(242, 179, 61, 0.35), 0 18px 60px rgba(242, 179, 61, 0.22);
+
+    /* motion */
+    --b-ease: cubic-bezier(.2, .7, .2, 1);
+    --b-fast: 160ms;
+    --b-mid: 320ms;
+    --b-slow: 700ms;
+    --b-touch: 44px;             /* minimum touch target */
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :root { --b-fast: 0ms; --b-mid: 0ms; --b-slow: 0ms; }
+}
+
+/* shared helpers */
+.b-focus:focus-visible, .b-btn:focus-visible, .b-link:focus-visible {
+    outline: 3px solid var(--b-focus);
+    outline-offset: 3px;
+}
+.b-visually-hidden {
+    position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+.b-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: var(--b-touch); padding: 0 22px; border-radius: var(--b-radius-pill); border: 1px solid transparent;
+    font-family: var(--b-text); font-weight: 600; font-size: 16px; line-height: 1; text-decoration: none; cursor: pointer;
+    transition: transform var(--b-fast) var(--b-ease), background-color var(--b-fast) var(--b-ease), box-shadow var(--b-fast) var(--b-ease);
+}
+.b-btn:hover { transform: translateY(-1px); }
+.b-btn-honey { background: var(--b-honey-hi); color: var(--b-ink); box-shadow: 0 8px 22px rgba(217, 147, 13, 0.30); }
+.b-btn-honey:hover { background: var(--b-honey-glow); color: var(--b-ink); }
+.b-btn-ghost { background: transparent; color: var(--b-ink); border-color: rgba(29, 26, 21, 0.28); }
+.b-btn-ghost:hover { background: rgba(29, 26, 21, 0.05); color: var(--b-ink); }
+.b-btn-ink { background: var(--b-ink); color: #FFFFFF; }
+.b-btn-ink:hover { background: var(--b-ink-2); color: #FFFFFF; }

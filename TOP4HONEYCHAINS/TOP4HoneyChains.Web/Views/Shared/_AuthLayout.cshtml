@@ -1,0 +1,88 @@
+@* Sign-in pages (D-65): Login, ForgotPassword, ResetPassword, LockScreen, AccessDenied.
+   Brand panel with the slow honeycomb on the left, the form on the right; on phones the panel is a short header.
+   Styles: wwwroot/css/brand.css + auth.css. No external requests. *@
+@{
+    var lang = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+    var returnUrl = Context.Request.Path + Context.Request.QueryString;
+    var languages = new[] { ("tr", "Türkçe"), ("en", "English"), ("es", "Español"), ("pl", "Polski"), ("lv", "Latviešu") };
+    var error = (TempData["Error"] ?? TempData["error"]) as string;
+    var success = (TempData["Success"] ?? TempData["success"]) as string;
+}
+<!doctype html>
+<html lang="@lang">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title | @L["Management Information System"]</title>
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#15120D">
+    <link rel="icon" href="~/assets/images/favicon.ico">
+    <link rel="preload" href="~/fonts/bricolage-grotesque/bricolage-grotesque-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="~/fonts/instrument-sans/instrument-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link href="~/css/brand.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/css/auth.css" rel="stylesheet" asp-append-version="true">
+    @RenderSection("AddToHead", required: false)
+</head>
+<body class="au">
+    <div class="au-page">
+        <aside class="au-panel">
+            <canvas class="au-comb" data-honeycomb data-theme="dark" data-speed="0.45" aria-hidden="true"
+                    data-path="0.10,0.86 0.30,0.70 0.52,0.84 0.72,0.66 0.92,0.80" data-path-wide="0.10,0.86 0.30,0.70 0.52,0.84 0.72,0.66 0.92,0.80"></canvas>
+            <div class="au-panel-in">
+                <a class="au-brand b-link" href="/">
+                    <svg width="34" height="34" viewBox="0 0 30 30" aria-hidden="true"><polygon points="15,2 26,8.5 26,21.5 15,28 4,21.5 4,8.5" fill="#F2B33D"></polygon><polygon points="15,8 20.2,11 20.2,17 15,20 9.8,17 9.8,11" fill="#15120D"></polygon></svg>
+                    <span>TOP4HoneyChains</span>
+                </a>
+                <p class="au-tagline">@L["Trustable and Sustainable Open Platform for Smart Honey Value Chains"]</p>
+                <ul class="au-points">
+                    <li><span class="au-point-icon" aria-hidden="true"><partial name="_LandingIcon" model="@("foureyes")" /></span>@L["Auth.Point1"]</li>
+                    <li><span class="au-point-icon" aria-hidden="true"><partial name="_LandingIcon" model="@("chain")" /></span>@L["Auth.Point2"]</li>
+                    <li><span class="au-point-icon" aria-hidden="true"><partial name="_LandingIcon" model="@("verified")" /></span>@L["Auth.Point3"]</li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="au-main" id="main">
+            <div class="au-top">
+                <a class="au-home b-link" href="/" aria-label="@L["Auth.BackHome"]">
+                    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    <span class="au-home-text">@L["Auth.BackHome"]</span>
+                </a>
+                <nav class="language-switch au-langs" aria-label="@L["Language"]">
+                    @foreach (var (code, name) in languages)
+                    {
+                        if (code == lang)
+                        {
+                            <span class="au-lang is-current" lang="@code" title="@name" aria-current="true">@code.ToUpperInvariant()</span>
+                        }
+                        else
+                        {
+                            <a class="au-lang b-link" href="@Url.Action("SetLanguage", "Home", new { culture = code, returnUrl })" hreflang="@code" lang="@code" title="@name">@code.ToUpperInvariant()</a>
+                        }
+                    }
+                </nav>
+            </div>
+
+            <div class="au-card">
+                @if (!string.IsNullOrEmpty(error))
+                {
+                    <div class="au-alert au-alert-error" role="alert" id="flash-error">@Msg.T(error)<button type="button" class="au-alert-close" aria-label="@L["Close"]">×</button></div>
+                }
+                @if (!string.IsNullOrEmpty(success))
+                {
+                    <div class="au-alert au-alert-ok" role="status" id="flash-success">@Msg.T(success)<button type="button" class="au-alert-close" aria-label="@L["Close"]">×</button></div>
+                }
+                @RenderBody()
+            </div>
+            <p class="au-foot">@string.Format(L["Land.Footer.Rights"].Value, DateTime.Now.Year)</p>
+        </main>
+    </div>
+
+    @* validation is server-side (ModelState), as before: wwwroot/lib with the jQuery validation scripts does not exist *@
+    @RenderSection("scripts", required: false)
+    <script src="~/js/honeycomb.js" asp-append-version="true" defer></script>
+    <script>
+        document.querySelectorAll('.au-alert-close').forEach(function (b) { b.addEventListener('click', function () { b.parentElement.remove(); }); });
+    </script>
+</body>
+</html>

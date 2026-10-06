@@ -5778,4 +5778,232 @@
   <data name="The record has values outside their limits; confirm them to approve." xml:space="preserve">
     <value>The record has values outside their limits; confirm them to approve.</value>
   </data>
+  <data name="Land.MetaDescription" xml:space="preserve">
+    <value>Every jar of honey with its full story: apiary, delivery, accredited laboratory, processing and shelf, each step recorded by one person and approved by another.</value>
+  </data>
+  <data name="Land.SkipToContent" xml:space="preserve">
+    <value>Skip to content</value>
+  </data>
+  <data name="Land.Nav.Chain" xml:space="preserve">
+    <value>How it works</value>
+  </data>
+  <data name="Land.Nav.Trust" xml:space="preserve">
+    <value>Trust</value>
+  </data>
+  <data name="Land.Nav.ForWhom" xml:space="preserve">
+    <value>For whom</value>
+  </data>
+  <data name="Land.Nav.Story" xml:space="preserve">
+    <value>Honey Story</value>
+  </data>
+  <data name="Land.SignIn" xml:space="preserve">
+    <value>Sign in</value>
+  </data>
+  <data name="Land.VerifyReport" xml:space="preserve">
+    <value>Verify a lab report</value>
+  </data>
+  <data name="Land.HeroKicker" xml:space="preserve">
+    <value>Honey traceability, from hive to shelf</value>
+  </data>
+  <data name="Land.HeroLead" xml:space="preserve">
+    <value>One shared record of every step a jar of honey takes, kept by the people who do the work and checked by someone else.</value>
+  </data>
+  <data name="Land.Consumer" xml:space="preserve">
+    <value>Have a jar? Scan the QR code on its label.</value>
+  </data>
+  <data name="Land.ScrollHint" xml:space="preserve">
+    <value>See the chain</value>
+  </data>
+  <data name="Land.Station.Apiary" xml:space="preserve">
+    <value>Apiary</value>
+  </data>
+  <data name="Land.Station.Delivery" xml:space="preserve">
+    <value>Delivery</value>
+  </data>
+  <data name="Land.Station.Lab" xml:space="preserve">
+    <value>Lab</value>
+  </data>
+  <data name="Land.Station.Processing" xml:space="preserve">
+    <value>Processing</value>
+  </data>
+  <data name="Land.Station.Shelf" xml:space="preserve">
+    <value>Shelf</value>
+  </data>
+  <data name="Land.Stats.Title" xml:space="preserve">
+    <value>On the platform so far</value>
+  </data>
+  <data name="Land.Stats.Batches" xml:space="preserve">
+    <value>finalised batches</value>
+  </data>
+  <data name="Land.Stats.Orgs" xml:space="preserve">
+    <value>verified organisations</value>
+  </data>
+  <data name="Land.Stats.Reports" xml:space="preserve">
+    <value>approved lab reports</value>
+  </data>
+  <data name="Land.Chain.Kicker" xml:space="preserve">
+    <value>The chain</value>
+  </data>
+  <data name="Land.Chain.Title" xml:space="preserve">
+    <value>Five steps, one record</value>
+  </data>
+  <data name="Land.Chain.Lead" xml:space="preserve">
+    <value>Each step adds its part to the same record, and the next step starts only when the one before it is approved.</value>
+  </data>
+  <data name="Land.StepN" xml:space="preserve">
+    <value>Step {0}</value>
+  </data>
+  <data name="Land.Step1.Title" xml:space="preserve">
+    <value>Apiary and beekeeper</value>
+  </data>
+  <data name="Land.Step1.Tag" xml:space="preserve">
+    <value>Registry · consent</value>
+  </data>
+  <data name="Land.Step1.Text" xml:space="preserve">
+    <value>The beekeeper is checked against the national registry and gives written consent before their name appears on any public page.</value>
+  </data>
+  <data name="Land.Step2.Title" xml:space="preserve">
+    <value>Delivery, CCP 0 and sealed sample</value>
+  </data>
+  <data name="Land.Step2.Tag" xml:space="preserve">
+    <value>CCP 0</value>
+  </data>
+  <data name="Land.Step2.Text" xml:space="preserve">
+    <value>At delivery the reception officer records the lot, completes the primary audit and seals a sample and a counter-sample.</value>
+  </data>
+  <data name="Land.Step3.Title" xml:space="preserve">
+    <value>Accredited laboratory</value>
+  </data>
+  <data name="Land.Step3.Tag" xml:space="preserve">
+    <value>CCP 1</value>
+  </data>
+  <data name="Land.Step3.Text" xml:space="preserve">
+    <value>The laboratory checks the seal, enters the results with the signed report, and a second person approves them.</value>
+  </data>
+  <data name="Land.Step4.Title" xml:space="preserve">
+    <value>Processing, packing and batch finalisation</value>
+  </data>
+  <data name="Land.Step4.Tag" xml:space="preserve">
+    <value>CCP 2–9</value>
+  </data>
+  <data name="Land.Step4.Text" xml:space="preserve">
+    <value>Every control point from filtering to labelling is entered by one person and approved by another before the batch is finalised.</value>
+  </data>
+  <data name="Land.Step5.Title" xml:space="preserve">
+    <value>Shelf and Honey Story</value>
+  </data>
+  <data name="Land.Step5.Tag" xml:space="preserve">
+    <value>CCP 10</value>
+  </data>
+  <data name="Land.Step5.Text" xml:space="preserve">
+    <value>The retailer confirms what arrives and records storage conditions; the QR code on the jar opens the honey's full story.</value>
+  </data>
+  <data name="Land.ImagePending" xml:space="preserve">
+    <value>Photo coming soon</value>
+  </data>
+  <data name="Land.Trust.Kicker" xml:space="preserve">
+    <value>Why you can trust it</value>
+  </data>
+  <data name="Land.Trust.Title" xml:space="preserve">
+    <value>Built so that no one checks their own work</value>
+  </data>
+  <data name="Land.Trust.FourEyes.Title" xml:space="preserve">
+    <value>Two people for every record</value>
+  </data>
+  <data name="Land.Trust.FourEyes.Text" xml:space="preserve">
+    <value>Each record is entered by one person and approved by another. Any exception is flagged and stays visible.</value>
+  </data>
+  <data name="Land.Trust.Audit.Title" xml:space="preserve">
+    <value>An audit log that can't be rewritten</value>
+  </data>
+  <data name="Land.Trust.Audit.Text" xml:space="preserve">
+    <value>Every change is appended to a log whose entries are linked by a hash chain, so a removed or altered entry shows.</value>
+  </data>
+  <data name="Land.Trust.Orgs.Title" xml:space="preserve">
+    <value>Verified organisations only</value>
+  </data>
+  <data name="Land.Trust.Orgs.Text" xml:space="preserve">
+    <value>Processors, laboratories and retailers are checked before their people can record anything.</value>
+  </data>
+  <data name="Land.Trust.Verify.Title" xml:space="preserve">
+    <value>Lab reports anyone can verify</value>
+  </data>
+  <data name="Land.Trust.Verify.Text" xml:space="preserve">
+    <value>Enter the code printed on a lab report to see its approval status and its digital fingerprint.</value>
+  </data>
+  <data name="Land.Who.Kicker" xml:space="preserve">
+    <value>For whom</value>
+  </data>
+  <data name="Land.Who.Title" xml:space="preserve">
+    <value>One record, five kinds of users</value>
+  </data>
+  <data name="Land.Who.Beekeepers.Title" xml:space="preserve">
+    <value>Beekeepers and associations</value>
+  </data>
+  <data name="Land.Who.Beekeepers.Text" xml:space="preserve">
+    <value>A public beekeeper page, proof of origin for every delivery, and the members' lots in one view.</value>
+  </data>
+  <data name="Land.Who.Processors.Title" xml:space="preserve">
+    <value>Processors and packers</value>
+  </data>
+  <data name="Land.Who.Processors.Text" xml:space="preserve">
+    <value>Intake, sealed samples, control points and batch finalisation in one place, with two-person approval built in.</value>
+  </data>
+  <data name="Land.Who.Labs.Title" xml:space="preserve">
+    <value>Laboratories</value>
+  </data>
+  <data name="Land.Who.Labs.Text" xml:space="preserve">
+    <value>Sample custody with seal checks, results tied to the signed report, and reports anyone can verify.</value>
+  </data>
+  <data name="Land.Who.Retailers.Title" xml:space="preserve">
+    <value>Retailers</value>
+  </data>
+  <data name="Land.Who.Retailers.Text" xml:space="preserve">
+    <value>Confirm what arrives, record storage conditions, and give customers a story they can check.</value>
+  </data>
+  <data name="Land.Who.Consumers.Title" xml:space="preserve">
+    <value>Consumers</value>
+  </data>
+  <data name="Land.Who.Consumers.Text" xml:space="preserve">
+    <value>Scan the jar to see where the honey comes from, who handled it and what the laboratory found.</value>
+  </data>
+  <data name="Land.Story.Kicker" xml:space="preserve">
+    <value>Honey Story</value>
+  </data>
+  <data name="Land.Story.Title" xml:space="preserve">
+    <value>What the QR code on the jar opens</value>
+  </data>
+  <data name="Land.Story.Text" xml:space="preserve">
+    <value>The public page of a batch: origin, every control point, laboratory results and the beekeepers behind it, in five languages.</value>
+  </data>
+  <data name="Land.Story.Cta" xml:space="preserve">
+    <value>Open the demo batch</value>
+  </data>
+  <data name="Land.Story.FrameTitle" xml:space="preserve">
+    <value>Honey Story of the demo batch</value>
+  </data>
+  <data name="Land.Story.Points" xml:space="preserve">
+    <value>Origin and beekeepers|Every control point, approved|Laboratory results with their limits</value>
+  </data>
+  <data name="Land.Footer.Partners" xml:space="preserve">
+    <value>Project partners</value>
+  </data>
+  <data name="Land.Footer.Rights" xml:space="preserve">
+    <value>© {0} TOP4HoneyChains</value>
+  </data>
+  <data name="Auth.Point1" xml:space="preserve">
+    <value>Every record entered by one person and approved by another.</value>
+  </data>
+  <data name="Auth.Point2" xml:space="preserve">
+    <value>An append-only audit log with a hash chain.</value>
+  </data>
+  <data name="Auth.Point3" xml:space="preserve">
+    <value>Only verified organisations take part.</value>
+  </data>
+  <data name="Auth.BackHome" xml:space="preserve">
+    <value>Back to the home page</value>
+  </data>
+  <data name="Auth.SignedInAs" xml:space="preserve">
+    <value>Signed in as {0}</value>
+  </data>
 </root>

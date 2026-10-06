@@ -5778,4 +5778,232 @@
   <data name="The record has values outside their limits; confirm them to approve." xml:space="preserve">
     <value>Kayıtta sınır dışında değerler var; onaylamak için bunları teyit edin.</value>
   </data>
+  <data name="Land.MetaDescription" xml:space="preserve">
+    <value>Her kavanoz balın tüm hikâyesi: arılık, teslim, akredite laboratuvar, işleme ve raf; her adımı bir kişi kaydeder, başka biri onaylar.</value>
+  </data>
+  <data name="Land.SkipToContent" xml:space="preserve">
+    <value>İçeriğe geç</value>
+  </data>
+  <data name="Land.Nav.Chain" xml:space="preserve">
+    <value>Nasıl çalışır</value>
+  </data>
+  <data name="Land.Nav.Trust" xml:space="preserve">
+    <value>Güven</value>
+  </data>
+  <data name="Land.Nav.ForWhom" xml:space="preserve">
+    <value>Kimler için</value>
+  </data>
+  <data name="Land.Nav.Story" xml:space="preserve">
+    <value>Bal Hikâyesi</value>
+  </data>
+  <data name="Land.SignIn" xml:space="preserve">
+    <value>Giriş yap</value>
+  </data>
+  <data name="Land.VerifyReport" xml:space="preserve">
+    <value>Laboratuvar raporu doğrula</value>
+  </data>
+  <data name="Land.HeroKicker" xml:space="preserve">
+    <value>Kovandan rafa bal izlenebilirliği</value>
+  </data>
+  <data name="Land.HeroLead" xml:space="preserve">
+    <value>Bir kavanoz balın attığı her adımın tek ve ortak kaydı: işi yapanlar tutar, başka biri kontrol eder.</value>
+  </data>
+  <data name="Land.Consumer" xml:space="preserve">
+    <value>Elinizde kavanoz mu var? Etiketindeki QR kodu okutun.</value>
+  </data>
+  <data name="Land.ScrollHint" xml:space="preserve">
+    <value>Zinciri görün</value>
+  </data>
+  <data name="Land.Station.Apiary" xml:space="preserve">
+    <value>Arılık</value>
+  </data>
+  <data name="Land.Station.Delivery" xml:space="preserve">
+    <value>Teslim</value>
+  </data>
+  <data name="Land.Station.Lab" xml:space="preserve">
+    <value>Laboratuvar</value>
+  </data>
+  <data name="Land.Station.Processing" xml:space="preserve">
+    <value>İşleme</value>
+  </data>
+  <data name="Land.Station.Shelf" xml:space="preserve">
+    <value>Raf</value>
+  </data>
+  <data name="Land.Stats.Title" xml:space="preserve">
+    <value>Şu ana kadar platformda</value>
+  </data>
+  <data name="Land.Stats.Batches" xml:space="preserve">
+    <value>kesinleşmiş parti</value>
+  </data>
+  <data name="Land.Stats.Orgs" xml:space="preserve">
+    <value>doğrulanmış kurum</value>
+  </data>
+  <data name="Land.Stats.Reports" xml:space="preserve">
+    <value>onaylı laboratuvar raporu</value>
+  </data>
+  <data name="Land.Chain.Kicker" xml:space="preserve">
+    <value>Zincir</value>
+  </data>
+  <data name="Land.Chain.Title" xml:space="preserve">
+    <value>Beş adım, tek kayıt</value>
+  </data>
+  <data name="Land.Chain.Lead" xml:space="preserve">
+    <value>Her adım aynı kayda kendi payını ekler; bir sonraki adım ancak önceki onaylandığında başlar.</value>
+  </data>
+  <data name="Land.StepN" xml:space="preserve">
+    <value>{0}. adım</value>
+  </data>
+  <data name="Land.Step1.Title" xml:space="preserve">
+    <value>Arılık ve arıcı</value>
+  </data>
+  <data name="Land.Step1.Tag" xml:space="preserve">
+    <value>Kayıt · rıza</value>
+  </data>
+  <data name="Land.Step1.Text" xml:space="preserve">
+    <value>Arıcı ulusal kayıtla doğrulanır ve adı herhangi bir herkese açık sayfada görünmeden önce yazılı rıza verir.</value>
+  </data>
+  <data name="Land.Step2.Title" xml:space="preserve">
+    <value>Teslim, KKN 0 ve mühürlü numune</value>
+  </data>
+  <data name="Land.Step2.Tag" xml:space="preserve">
+    <value>KKN 0</value>
+  </data>
+  <data name="Land.Step2.Text" xml:space="preserve">
+    <value>Teslimde numune kabul sorumlusu lotu kaydeder, birincil denetimi tamamlar ve numune ile şahit numuneyi mühürler.</value>
+  </data>
+  <data name="Land.Step3.Title" xml:space="preserve">
+    <value>Akredite laboratuvar</value>
+  </data>
+  <data name="Land.Step3.Tag" xml:space="preserve">
+    <value>KKN 1</value>
+  </data>
+  <data name="Land.Step3.Text" xml:space="preserve">
+    <value>Laboratuvar mührü kontrol eder, sonuçları imzalı raporla birlikte girer ve ikinci bir kişi onaylar.</value>
+  </data>
+  <data name="Land.Step4.Title" xml:space="preserve">
+    <value>İşleme, paketleme ve partinin kesinleşmesi</value>
+  </data>
+  <data name="Land.Step4.Tag" xml:space="preserve">
+    <value>KKN 2–9</value>
+  </data>
+  <data name="Land.Step4.Text" xml:space="preserve">
+    <value>Süzmeden etiketlemeye her kontrol noktasını bir kişi girer, başka biri onaylar; parti ancak ondan sonra kesinleşir.</value>
+  </data>
+  <data name="Land.Step5.Title" xml:space="preserve">
+    <value>Raf ve Bal Hikâyesi</value>
+  </data>
+  <data name="Land.Step5.Tag" xml:space="preserve">
+    <value>KKN 10</value>
+  </data>
+  <data name="Land.Step5.Text" xml:space="preserve">
+    <value>Perakendeci gelen ürünü onaylar ve depolama koşullarını kaydeder; kavanozdaki QR kod balın tüm hikâyesini açar.</value>
+  </data>
+  <data name="Land.ImagePending" xml:space="preserve">
+    <value>Fotoğraf yakında</value>
+  </data>
+  <data name="Land.Trust.Kicker" xml:space="preserve">
+    <value>Neden güvenebilirsiniz</value>
+  </data>
+  <data name="Land.Trust.Title" xml:space="preserve">
+    <value>Kimse kendi işini kontrol etmesin diye tasarlandı</value>
+  </data>
+  <data name="Land.Trust.FourEyes.Title" xml:space="preserve">
+    <value>Her kayıt için iki kişi</value>
+  </data>
+  <data name="Land.Trust.FourEyes.Text" xml:space="preserve">
+    <value>Her kaydı bir kişi girer, başka biri onaylar. Her istisna işaretlenir ve görünür kalır.</value>
+  </data>
+  <data name="Land.Trust.Audit.Title" xml:space="preserve">
+    <value>Değiştirilemeyen bir denetim kaydı</value>
+  </data>
+  <data name="Land.Trust.Audit.Text" xml:space="preserve">
+    <value>Her değişiklik, girdileri özet (hash) zinciriyle bağlı bir kayda eklenir; silinen ya da değiştirilen bir girdi fark edilir.</value>
+  </data>
+  <data name="Land.Trust.Orgs.Title" xml:space="preserve">
+    <value>Yalnızca doğrulanmış kurumlar</value>
+  </data>
+  <data name="Land.Trust.Orgs.Text" xml:space="preserve">
+    <value>İşletmeler, laboratuvarlar ve perakendeciler, çalışanları herhangi bir kayıt yapmadan önce doğrulanır.</value>
+  </data>
+  <data name="Land.Trust.Verify.Title" xml:space="preserve">
+    <value>Herkesin doğrulayabildiği laboratuvar raporları</value>
+  </data>
+  <data name="Land.Trust.Verify.Text" xml:space="preserve">
+    <value>Laboratuvar raporunda basılı kodu girin; onay durumunu ve dijital parmak izini görün.</value>
+  </data>
+  <data name="Land.Who.Kicker" xml:space="preserve">
+    <value>Kimler için</value>
+  </data>
+  <data name="Land.Who.Title" xml:space="preserve">
+    <value>Tek kayıt, beş tür kullanıcı</value>
+  </data>
+  <data name="Land.Who.Beekeepers.Title" xml:space="preserve">
+    <value>Arıcılar ve birlikler</value>
+  </data>
+  <data name="Land.Who.Beekeepers.Text" xml:space="preserve">
+    <value>Herkese açık bir arıcı sayfası, her teslim için menşe kanıtı ve üyelerin lotları tek ekranda.</value>
+  </data>
+  <data name="Land.Who.Processors.Title" xml:space="preserve">
+    <value>İşleme ve paketleme işletmeleri</value>
+  </data>
+  <data name="Land.Who.Processors.Text" xml:space="preserve">
+    <value>Kabul, mühürlü numuneler, kontrol noktaları ve partinin kesinleşmesi tek yerde; iki kişilik onay yerleşik.</value>
+  </data>
+  <data name="Land.Who.Labs.Title" xml:space="preserve">
+    <value>Laboratuvarlar</value>
+  </data>
+  <data name="Land.Who.Labs.Text" xml:space="preserve">
+    <value>Mühür kontrollü numune takibi, imzalı rapora bağlı sonuçlar ve herkesin doğrulayabildiği raporlar.</value>
+  </data>
+  <data name="Land.Who.Retailers.Title" xml:space="preserve">
+    <value>Perakendeciler</value>
+  </data>
+  <data name="Land.Who.Retailers.Text" xml:space="preserve">
+    <value>Geleni onaylayın, depolama koşullarını kaydedin ve müşterilere kontrol edebilecekleri bir hikâye sunun.</value>
+  </data>
+  <data name="Land.Who.Consumers.Title" xml:space="preserve">
+    <value>Tüketiciler</value>
+  </data>
+  <data name="Land.Who.Consumers.Text" xml:space="preserve">
+    <value>Kavanozu okutun; balın nereden geldiğini, kimlerin elinden geçtiğini ve laboratuvarın ne bulduğunu görün.</value>
+  </data>
+  <data name="Land.Story.Kicker" xml:space="preserve">
+    <value>Bal Hikâyesi</value>
+  </data>
+  <data name="Land.Story.Title" xml:space="preserve">
+    <value>Kavanozdaki QR kodun açtığı sayfa</value>
+  </data>
+  <data name="Land.Story.Text" xml:space="preserve">
+    <value>Bir partinin herkese açık sayfası: menşe, her kontrol noktası, laboratuvar sonuçları ve arkasındaki arıcılar; beş dilde.</value>
+  </data>
+  <data name="Land.Story.Cta" xml:space="preserve">
+    <value>Demo partiyi aç</value>
+  </data>
+  <data name="Land.Story.FrameTitle" xml:space="preserve">
+    <value>Demo partinin Bal Hikâyesi</value>
+  </data>
+  <data name="Land.Story.Points" xml:space="preserve">
+    <value>Menşe ve arıcılar|Onaylanmış her kontrol noktası|Sınırlarıyla laboratuvar sonuçları</value>
+  </data>
+  <data name="Land.Footer.Partners" xml:space="preserve">
+    <value>Proje ortakları</value>
+  </data>
+  <data name="Land.Footer.Rights" xml:space="preserve">
+    <value>© {0} TOP4HoneyChains</value>
+  </data>
+  <data name="Auth.Point1" xml:space="preserve">
+    <value>Her kaydı bir kişi girer, başka biri onaylar.</value>
+  </data>
+  <data name="Auth.Point2" xml:space="preserve">
+    <value>Hash zinciriyle korunan, yalnızca eklenebilen denetim kaydı.</value>
+  </data>
+  <data name="Auth.Point3" xml:space="preserve">
+    <value>Yalnızca doğrulanmış kurumlar yer alır.</value>
+  </data>
+  <data name="Auth.BackHome" xml:space="preserve">
+    <value>Ana sayfaya dön</value>
+  </data>
+  <data name="Auth.SignedInAs" xml:space="preserve">
+    <value>{0} olarak oturum açık</value>
+  </data>
 </root>

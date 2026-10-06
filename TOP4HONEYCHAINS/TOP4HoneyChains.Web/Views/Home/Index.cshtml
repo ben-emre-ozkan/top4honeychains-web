@@ -1,859 +1,354 @@
-﻿<!DOCTYPE html>
+@model TOP4HoneyChains.Web.Models.ViewModels.LandingViewModel
+@using TOP4HoneyChains.Web.Services
 @{
+    // Public landing page (D-65). Styles: wwwroot/css/brand.css + landing.css; motion: wwwroot/js/honeycomb.js + landing.js.
+    // No external requests: fonts, scripts and images are served by the app. Counters are aggregates only (no personal data).
     Layout = null;
+    var culture = System.Globalization.CultureInfo.CurrentUICulture;
+    var lang = culture.TwoLetterISOLanguageName;
+    var returnUrl = Context.Request.Path + Context.Request.QueryString;
+    var languages = new[] { ("tr", "Türkçe"), ("en", "English"), ("es", "Español"), ("pl", "Polski"), ("lv", "Latviešu") };
+    var tagline = L["Trustable and Sustainable Open Platform for Smart Honey Value Chains"].Value;
+    var description = L["Land.MetaDescription"].Value;
+    var baseUrl = Model.PublicBaseUrl?.TrimEnd('/');
+    var stations = new[] { L["Land.Station.Apiary"].Value, L["Land.Station.Delivery"].Value, L["Land.Station.Lab"].Value, L["Land.Station.Processing"].Value, L["Land.Station.Shelf"].Value };
+    var steps = new[]
+    {
+        (Title: L["Land.Step1.Title"].Value, Tag: L["Land.Step1.Tag"].Value, Text: L["Land.Step1.Text"].Value, Icon: "apiary"),
+        (Title: L["Land.Step2.Title"].Value, Tag: L["Land.Step2.Tag"].Value, Text: L["Land.Step2.Text"].Value, Icon: "delivery"),
+        (Title: L["Land.Step3.Title"].Value, Tag: L["Land.Step3.Tag"].Value, Text: L["Land.Step3.Text"].Value, Icon: "lab"),
+        (Title: L["Land.Step4.Title"].Value, Tag: L["Land.Step4.Tag"].Value, Text: L["Land.Step4.Text"].Value, Icon: "processing"),
+        (Title: L["Land.Step5.Title"].Value, Tag: L["Land.Step5.Tag"].Value, Text: L["Land.Step5.Text"].Value, Icon: "shelf")
+    };
+    var trust = new[]
+    {
+        (Title: L["Land.Trust.FourEyes.Title"].Value, Text: L["Land.Trust.FourEyes.Text"].Value, Icon: "foureyes"),
+        (Title: L["Land.Trust.Audit.Title"].Value, Text: L["Land.Trust.Audit.Text"].Value, Icon: "chain"),
+        (Title: L["Land.Trust.Orgs.Title"].Value, Text: L["Land.Trust.Orgs.Text"].Value, Icon: "verified"),
+        (Title: L["Land.Trust.Verify.Title"].Value, Text: L["Land.Trust.Verify.Text"].Value, Icon: "report")
+    };
+    var audiences = new[]
+    {
+        (Title: L["Land.Who.Beekeepers.Title"].Value, Text: L["Land.Who.Beekeepers.Text"].Value, Icon: "apiary"),
+        (Title: L["Land.Who.Processors.Title"].Value, Text: L["Land.Who.Processors.Text"].Value, Icon: "processing"),
+        (Title: L["Land.Who.Labs.Title"].Value, Text: L["Land.Who.Labs.Text"].Value, Icon: "lab"),
+        (Title: L["Land.Who.Retailers.Title"].Value, Text: L["Land.Who.Retailers.Text"].Value, Icon: "shelf"),
+        (Title: L["Land.Who.Consumers.Title"].Value, Text: L["Land.Who.Consumers.Text"].Value, Icon: "qr")
+    };
+    var partners = new[]
+    {
+        ("Boğaziçi University", L["Türkiye"].Value), ("Işık University", L["Türkiye"].Value), ("Apiculture Research Institute", L["Türkiye"].Value),
+        ("Instituto Nacional de Tecnología Agropecuaria (INTA)", L["Argentina"].Value), ("NEXCO S.A", L["Argentina"].Value),
+        ("CNORTEGRANDE Cooperative", L["Argentina"].Value), ("Alimentos Naturales Natural Foods S.A.", L["Argentina"].Value),
+        ("University of Economics in Katowice", L["Poland"].Value), ("Latvia University of Life Sciences and Technologies", L["Latvia"].Value)
+    };
+    var storyUrl = Model.DemoQr != null ? $"/honeystory/{Model.DemoQr.Value.ToString().ToUpperInvariant()}" : null;
 }
-<html lang="@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName" id="html-root" class="lang-@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName">
-
+<!DOCTYPE html>
+<html lang="@lang">
 <head>
     <meta charset="utf-8">
-    <title data-en="TOP4HoneyChains - Trustable and Sustainable Open Platform for Smart Honey Value Chains"
-           data-tr="TOP4HoneyChains - Akıllı Bal Değer Zincirleri için Güvenilir ve Sürdürülebilir Açık Platform"
-           data-es="TOP4HoneyChains - Plataforma Abierta Confiable y Sostenible para Cadenas de Valor Inteligentes de Miel"
-           data-pl="TOP4HoneyChains - Zaufana i Zrównoważona Otwarta Platforma dla Inteligentnych Łańcuchów Wartości Miodu"
-           data-lv="TOP4HoneyChains - Uzticama un Ilgtspējīga Atvērtā Platforma Viedajām Medus Vērtību Ķēdēm">
-        TOP4HoneyChains - @L["Trustable and Sustainable Open Platform for Smart Honey Value Chains"]
-    </title>
-
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-    <meta name="keywords"
-          content="TOP4HoneyChains, smart honey value chains, honey traceability, sustainable beekeeping, open data platform, honey quality control, digital beekeeping, microservice architecture, ontology-based information systems"
-          data-en="TOP4HoneyChains, smart honey value chains, honey traceability, sustainable beekeeping, open data platform, honey quality control, digital beekeeping, microservice architecture, ontology-based information systems"
-          data-tr="TOP4HoneyChains, akıllı bal değer zincirleri, bal izlenebilirliği, sürdürülebilir arıcılık, açık veri platformu, bal kalite kontrolü, dijital arıcılık, mikroservis mimarisi, ontoloji tabanlı bilgi sistemleri"
-          data-es="TOP4HoneyChains, cadenas de valor inteligentes de miel, trazabilidad de la miel, apicultura sostenible, plataforma de datos abiertos, control de calidad de la miel, apicultura digital, arquitectura de microservicios, sistemas de información basados en ontologías"
-          data-pl="TOP4HoneyChains, inteligentne łańcuchy wartości miodu, identyfikowalność miodu, zrównoważone pszczelarstwo, platforma otwartych danych, kontrola jakości miodu, cyfrowe pszczelarstwo, architektura mikroserwisów, systemy informacyjne oparte na ontologiach"
-          data-lv="TOP4HoneyChains, viedās medus vērtību ķēdes, medus izsekojamība, ilgtspējīga biškopība, atvērto datu platforma, medus kvalitātes kontrole, digitālā biškopība, mikropakalpojumu arhitektūra, uz ontoloģijām balstītas informācijas sistēmas">
-
-    <meta name="description"
-          content="TOP4HoneyChains is a trustable and sustainable open platform designed for smart honey value chains, improving transparency, traceability, quality control, and digital collaboration among stakeholders."
-          data-en="TOP4HoneyChains is a trustable and sustainable open platform designed for smart honey value chains, improving transparency, traceability, quality control, and digital collaboration among stakeholders."
-          data-tr="TOP4HoneyChains, akıllı bal değer zincirleri için tasarlanmış; şeffaflığı, izlenebilirliği, kalite kontrolünü ve paydaşlar arası dijital iş birliğini geliştiren güvenilir ve sürdürülebilir bir açık platformdur."
-          data-es="TOP4HoneyChains es una plataforma abierta confiable y sostenible diseñada para cadenas de valor inteligentes de miel, mejorando la transparencia, la trazabilidad, el control de calidad y la colaboración digital entre las partes interesadas."
-          data-pl="TOP4HoneyChains to zaufana i zrównoważona otwarta platforma zaprojektowana dla inteligentnych łańcuchów wartości miodu, poprawiająca przejrzystość, identyfikowalność, kontrolę jakości oraz cyfrową współpracę między interesariuszami."
-          data-lv="TOP4HoneyChains ir uzticama un ilgtspējīga atvērtā platforma, kas paredzēta viedajām medus vērtību ķēdēm, uzlabojot pārredzamību, izsekojamību, kvalitātes kontroli un digitālo sadarbību starp iesaistītajām pusēm.">
-
-    <!-- Open Graph / Facebook -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TOP4HoneyChains · @tagline</title>
+    <meta name="description" content="@description">
+    <meta name="theme-color" content="#FBF8F2">
+    @if (baseUrl != null)
+    {
+        <link rel="canonical" href="@baseUrl/">
+        <meta property="og:url" content="@baseUrl/">
+    }
     <meta property="og:type" content="website">
-    <meta property="og:title" content="TOP4HoneyChains - @L["Trustable and Sustainable Open Platform for Smart Honey Value Chains"]">
-    <meta property="og:description" content="Explore TOP4HoneyChains, an open digital platform for transparent, traceable, and sustainable smart honey value chains.">
-    <meta property="og:image" content="img/flotech-honey-logo.png">
-    <meta property="og:url" content="https://top4honeychains.isikun.edu.tr">
-    <meta property="og:locale" content="en_US">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="TOP4HoneyChains - Smart Honey Value Chains Platform">
-    <meta name="twitter:description" content="A trustable and sustainable open platform for traceable, transparent, and smart honey value chains.">
-    <meta name="twitter:image" content="img/flotech-honey-logo.png">
-
-    <!-- Additional SEO -->
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="INTALA LAB - Işık University">
-    <link rel="canonical" href="https://top4honeychains.isikun.edu.tr">
-
-    <link href="~/assets/images/favicon.ico" rel="icon">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
-    <link href="~/landingassets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="~/landingassets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="~/landingassets/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="~/landingassets/lib/venobox/venobox.css" rel="stylesheet">
-    <link href="~/landingassets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="~/landingassets/css/style.css" rel="stylesheet">
-    <link href="~/landingassets/css/languagecss.css" rel="stylesheet" />
+    <meta property="og:site_name" content="TOP4HoneyChains">
+    <meta property="og:title" content="TOP4HoneyChains · @tagline">
+    <meta property="og:description" content="@description">
+    <meta property="og:locale" content="@culture.Name.Replace('-', '_')">
+    @if (Model.OgImage?.Jpeg != null)
+    {
+        <meta property="og:image" content="@(baseUrl + Model.OgImage.Jpeg)">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+        <meta property="og:image:alt" content="@tagline">
+        <meta name="twitter:card" content="summary_large_image">
+    }
+    <link rel="icon" href="~/assets/images/favicon.ico">
+    <link rel="preload" href="~/fonts/bricolage-grotesque/bricolage-grotesque-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="~/fonts/instrument-sans/instrument-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link href="~/css/brand.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/css/landing.css" rel="stylesheet" asp-append-version="true">
+    <script>document.documentElement.classList.add('js');</script>
 </head>
+<body class="ld">
+    <a class="ld-skip b-btn b-btn-ink" href="#main">@L["Land.SkipToContent"]</a>
 
-<body>
-    <partial name="~/Views/Shared/_LanguageSwitch.cshtml" />
-    <!-- Skip to main content for accessibility -->
-    <a href="#main" class="skip-link">@L["Skip to main content"]</a>
-
-    <!-- Preloader -->
-    <div id="preloader"></div>
-
-    <header id="header">
-        <div class="container">
-
-            <div id="logo" class="pull-left">
-                <h1><a href="#intro"><span>TOP4</span>HoneyChains</a></h1>
-            </div>
-
-            <nav id="nav-menu-container" aria-label="@L["Main navigation"]">
-                <ul class="nav-menu">
-
-                    <li class="menu-active">
-                        <a href="#intro" aria-current="page"
-                           data-en="Home"
-                           data-tr="Ana Sayfa"
-                           data-es="Inicio"
-                           data-pl="Strona główna"
-                           data-lv="Sākums">
-                            @L["Home"]
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#about"
-                           data-en="About Platform"
-                           data-tr="Platform Hakkında"
-                           data-es="Sobre la Plataforma"
-                           data-pl="O Platformie"
-                           data-lv="Par Platformu">
-                            @L["About Platform"]
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#features"
-                           data-en="Features"
-                           data-tr="Özellikler"
-                           data-es="Funciones"
-                           data-pl="Funkcje"
-                           data-lv="Funkcijas">
-                            @L["Features"]
-                        </a>
-                    </li>
-
-
-                    <li>
-                        <a href="#partners"
-                           data-en="Partners"
-                           data-tr="Ortaklar"
-                           data-es="Socios"
-                           data-pl="Partnerzy"
-                           data-lv="Partneri">
-                            @L["Partners"]
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#contact"
-                           data-en="Contact"
-                           data-tr="İletişim"
-                           data-es="Contacto"
-                           data-pl="Kontakt"
-                           data-lv="Kontakti">
-                            @L["Contact"]
-                        </a>
-                    </li>
-
-                    <li class="language-switch">
-
-                        <button class="language-btn" onclick="toggleLanguageMenu(event)">
-                            <span class="flag flag-en" id="current-flag"></span>
-                            <span id="current-lang">EN</span>
-                            <span class="arrow">▼</span>
-                        </button>
-
-                        <div class="language-dropdown" id="language-menu">
-
-                            <div class="language-option" onclick="switchLanguage('en')">
-                                <span class="flag flag-en"></span>
-                                <span>English</span>
-                            </div>
-
-                            <div class="language-option" onclick="switchLanguage('tr')">
-                                <span class="flag flag-tr"></span>
-                                <span>Türkçe</span>
-                            </div>
-
-                            <div class="language-option" onclick="switchLanguage('es')">
-                                <span class="flag flag-es"></span>
-                                <span>Español</span>
-                            </div>
-
-                            <div class="language-option" onclick="switchLanguage('pl')">
-                                <span class="flag flag-pl"></span>
-                                <span>Polski</span>
-                            </div>
-
-                            <div class="language-option" onclick="switchLanguage('lv')">
-                                <span class="flag flag-lv"></span>
-                                <span>Latviešu</span>
-                            </div>
-
-                        </div>
-
-                    </li>
-
-                </ul>
+    <header class="ld-top" id="top">
+        <div class="ld-wrap ld-top-in">
+            <a class="ld-brand b-link" href="/" aria-label="TOP4HoneyChains">
+                <svg width="34" height="34" viewBox="0 0 30 30" aria-hidden="true"><polygon points="15,2 26,8.5 26,21.5 15,28 4,21.5 4,8.5" fill="#D9930D"></polygon><polygon points="15,8 20.2,11 20.2,17 15,20 9.8,17 9.8,11" fill="#FFFFFF"></polygon></svg>
+                <span>TOP4HoneyChains</span>
+            </a>
+            <nav class="ld-nav" aria-label="TOP4HoneyChains">
+                <a class="b-link" href="#chain">@L["Land.Nav.Chain"]</a>
+                <a class="b-link" href="#trust">@L["Land.Nav.Trust"]</a>
+                <a class="b-link" href="#for-whom">@L["Land.Nav.ForWhom"]</a>
+                <a class="b-link" href="#story">@L["Land.Nav.Story"]</a>
             </nav>
-
+            <nav class="ld-langs" aria-label="@L["Language"]">
+                @foreach (var (code, _) in languages)
+                {
+                    if (code == lang)
+                    {
+                        <span class="ld-lang is-current" lang="@code" aria-current="true">@code.ToUpperInvariant()</span>
+                    }
+                    else
+                    {
+                        <a class="ld-lang b-link" href="@Url.Action("SetLanguage", "Home", new { culture = code, returnUrl })" hreflang="@code" lang="@code">@code.ToUpperInvariant()</a>
+                    }
+                }
+            </nav>
+            <a class="b-btn b-btn-ink ld-top-signin" href="/Account/Login">@L["Land.SignIn"]</a>
         </div>
     </header>
 
-
-
-    <section id="intro">
-
-        <video autoplay muted loop playsinline id="intro-video">
-            <source src="~/landingassets/videos/261844.mp4" type="video/mp4">
-        </video>
-
-        <div class="intro-container wow fadeIn">
-
-            <h1 class="mb-4 pb-0">TOP4HoneyChains</h1>
-
-            <h1 class="mb-4 pb-0"
-                data-en="Trustable and Sustainable Open Platform"
-                data-tr="Güvenilir ve Sürdürülebilir Açık Platform"
-                data-es="Plataforma Abierta Confiable y Sostenible"
-                data-pl="Zaufana i Zrównoważona Otwarta Platforma"
-                data-lv="Uzticama un Ilgtspējīga Atvērtā Platforma">
-                @L["Trustable and Sustainable Open Platform"]
-            </h1>
-
-            <h1 class="mb-4 pb-0">
-                <span data-en="for Smart Honey Value Chains"
-                      data-tr="Akıllı Bal Değer Zincirleri için"
-                      data-es="para Cadenas de Valor Inteligentes de Miel"
-                      data-pl="dla Inteligentnych Łańcuchów Wartości Miodu"
-                      data-lv="Viedajām Medus Vērtību Ķēdēm">
-                    @L["for Smart Honey Value Chains"]
-                </span>
-            </h1>
-
-
-
-            <!-- Quick Highlights -->
-
-            <div class="workshop-highlights">
-
-                <div class="highlight-item">
-                    <i class="fa fa-globe"></i>
-                    <span data-en="International Research Collaboration"
-                          data-tr="Uluslararası Araştırma İşbirliği"
-                          data-es="Colaboración Internacional de Investigación"
-                          data-pl="Międzynarodowa Współpraca Badawcza"
-                          data-lv="Starptautiska pētniecības sadarbība">
-                        @L["International Research Collaboration"]
-                    </span>
-                </div>
-
-                <div class="highlight-item">
-                    <i class="fa fa-database"></i>
-                    <span data-en="Open Digital Platform"
-                          data-tr="Açık Dijital Platform"
-                          data-es="Plataforma Digital Abierta"
-                          data-pl="Otwarta Platforma Cyfrowa"
-                          data-lv="Atvērta digitālā platforma">
-                        @L["Open Digital Platform"]
-                    </span>
-                </div>
-
-                <div class="highlight-item">
-                    <i class="fa fa-leaf"></i>
-                    <span data-en="Sustainable Beekeeping"
-                          data-tr="Sürdürülebilir Arıcılık"
-                          data-es="Apicultura Sostenible"
-                          data-pl="Zrównoważone Pszczelarstwo"
-                          data-lv="Ilgtspējīga biškopība">
-                        @L["Sustainable Beekeeping"]
-                    </span>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- Floating Submit Button -->
-    <a href="javascript:void(0)"
-       class="floating-submit-btn"
-       id="submitBtn"
-       onclick="goToPlatform()">
-
-        <i class="fa fa-sign-in"></i>
-
-        <span data-en="Access Platform"
-              data-tr="Platforma Gidin"
-              data-es="Acceder a la Plataforma"
-              data-pl="Przejdź do Platformy"
-              data-lv="Piekļūt Platformai">
-
-            @L["Access Platform"]
-
-        </span>
-
-    </a>
-
     <main id="main">
-
-        <section id="about">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-lg-6">
-
-                        <h2 data-tr="Proje Hakkında"
-                            data-en="About the Project"
-                            data-es="Sobre el Proyecto"
-                            data-pl="O Projekcie"
-                            data-lv="Par Projektu">
-
-                            @L["About the Project"]
-
-                        </h2>
-
-                        <p style="text-align: justify;"
-                           data-tr="🍯 TOP4HoneyChains (Trustable and Sustainable Open Platform for Smart Honey Value Chains) projesi, akıllı bal değer zincirleri için güvenilir ve sürdürülebilir bir açık platform geliştirmeyi amaçlamaktadır. Arılar, çiçekli bitkilerin döllenmesinde hayati bir rol oynar ve insan gıdasının yaklaşık üçte biri doğrudan veya dolaylı olarak arılara bağlıdır. Ancak bal sektörü, iklim değişikliği, artan rekabet, değişen tüketici beklentileri ve bal sahteciliği gibi önemli sürdürülebilirlik sorunlarıyla karşı karşıyadır.
-
-TOP4HoneyChains projesi; Türkiye ve Arjantin’de veri odaklı dijital hizmetlerle desteklenen, şeffaflığı ve izlenebilirliği artıran akıllı bal değer zincirleri oluşturmayı hedeflemektedir. Proje kapsamında geliştirilecek açık platform sayesinde arıcılar üretim süreçlerini daha iyi yönetebilecek, bal partilerinin kalite testlerine erişebilecek ve üretim verilerini izleyebilecektir.
-
-Aynı zamanda tüketiciler de balın hangi üreticiden geldiğini, üretim koşullarını ve kalite test sonuçlarını şeffaf bir şekilde görüntüleyebilecektir. Böylece güvenilir ve sürdürülebilir bir bal ekosistemi oluşturulması hedeflenmektedir."
-                           data-en="🍯 TOP4HoneyChains (Trustable and Sustainable Open Platform for Smart Honey Value Chains) aims to develop a reliable and sustainable open platform for smart honey value chains. Honey bees play a crucial role in pollinating flowering plants, and nearly one-third of human food production depends directly or indirectly on bees. However, the honey sector faces major sustainability challenges such as climate change, increasing competition, evolving consumer expectations, and honey adulteration.
-
-The TOP4HoneyChains project aims to establish smart honey value chains supported by data-driven digital services in Türkiye and Argentina. The platform will enhance transparency and traceability across the honey production chain.
-
-Through the developed open platform, beekeepers will be able to access quality test results of their honey batches, monitor production information, and manage their operations more efficiently. At the same time, consumers will be able to transparently see where honey was produced, how it was processed, and the quality test results associated with it, strengthening trust across the honey value chain."
-                           data-es="🍯 TOP4HoneyChains (Plataforma Abierta Confiable y Sostenible para Cadenas de Valor Inteligentes de Miel) tiene como objetivo desarrollar una plataforma abierta confiable y sostenible para cadenas de valor inteligentes de miel. Las abejas desempeñan un papel fundamental en la polinización de plantas con flores y aproximadamente un tercio de la producción mundial de alimentos depende directa o indirectamente de ellas.
-
-El proyecto TOP4HoneyChains busca establecer cadenas de valor de miel inteligentes respaldadas por servicios digitales basados en datos en Turquía y Argentina, mejorando la transparencia y la trazabilidad en toda la cadena de producción de miel."
-                           data-pl="🍯 Projekt TOP4HoneyChains (Zaufana i Zrównoważona Otwarta Platforma dla Inteligentnych Łańcuchów Wartości Miodu) ma na celu opracowanie niezawodnej i zrównoważonej otwartej platformy dla inteligentnych łańcuchów wartości miodu. Pszczoły odgrywają kluczową rolę w zapylaniu roślin, a znaczna część światowej produkcji żywności zależy od ich działalności.
-
-Projekt koncentruje się na tworzeniu inteligentnych łańcuchów wartości miodu wspieranych przez cyfrowe usługi oparte na danych, zwiększając przejrzystość i identyfikowalność produkcji miodu."
-                           data-lv="🍯 TOP4HoneyChains projekta mērķis ir izstrādāt uzticamu un ilgtspējīgu atvērtu platformu viedām medus vērtību ķēdēm. Bites ir būtiskas ziedošo augu apputeksnēšanai, un liela daļa pasaules pārtikas ražošanas ir tieši vai netieši atkarīga no bitēm.
-
-Projekts veido datu balstītas digitālās sistēmas, kas uzlabo caurspīdīgumu un izsekojamību medus piegādes ķēdē, nodrošinot uzticamu informāciju gan ražotājiem, gan patērētājiem.">
-
-                        </p>
-
-                    </div>
-
-
-                    <div class="col-lg-6">
-
-                        <h3 data-tr="Proje Alanı"
-                            data-en="Project Scope"
-                            data-es="Alcance del Proyecto"
-                            data-pl="Zakres projektu"
-                            data-lv="Projekta darbības joma">
-
-                            @L["Project Scope"]
-
-                        </h3>
-
-                        <p data-tr="Türkiye ve Arjantin"
-                           data-en="Türkiye and Argentina"
-                           data-es="Turquía y Argentina"
-                           data-pl="Turcja i Argentyna"
-                           data-lv="Turcija un Argentīna">
-
-                            @L["Türkiye and Argentina"]
-
-                        </p>
-
-                    </div>
-
+        @* 1. hero: honeycomb with the chain's stations lighting up in turn *@
+        <section class="ld-hero" aria-labelledby="hero-title">
+            <div class="ld-hero-rays" aria-hidden="true"></div>
+            <canvas class="ld-hero-comb" data-honeycomb data-theme="light" data-speed="1" data-labels="@string.Join("|", stations)"
+                    data-path="0.07,0.70 0.29,0.38 0.50,0.66 0.71,0.34 0.93,0.60" data-path-wide="0.66,0.18 0.86,0.33 0.68,0.50 0.88,0.66 0.72,0.84" aria-hidden="true"></canvas>
+            <div class="ld-wrap ld-hero-in">
+                <p class="ld-kicker">@L["Land.HeroKicker"]</p>
+                <h1 id="hero-title" class="ld-hero-title">TOP4HoneyChains</h1>
+                <p class="ld-hero-tagline">@tagline</p>
+                <p class="ld-hero-lead">@L["Land.HeroLead"]</p>
+                <div class="ld-hero-actions">
+                    <a class="b-btn b-btn-honey" href="/Account/Login">@L["Land.SignIn"]</a>
+                    @if (Model.OrgModel)
+                    {
+                        <a class="b-btn b-btn-ghost" href="/verify-report">@L["Land.VerifyReport"]</a>
+                    }
                 </div>
+                <p class="ld-consumer">
+                    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M6 6h1v1H6zM17 6h1v1h-1zM6 17h1v1H6zM14 14h3v3h-3zM18 18h3v3h-3zM18 14h3M14 18v3" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+                    <span>@L["Land.Consumer"]</span>
+                </p>
+            </div>
+            <a class="ld-scroll b-link" href="#chain"><span>@L["Land.ScrollHint"]</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+        </section>
+
+        @if (Model.Stats.Any)
+        {
+            <section class="ld-stats" aria-label="@L["Land.Stats.Title"]">
+                <div class="ld-wrap ld-stats-in">
+                    <p class="ld-kicker">@L["Land.Stats.Title"]</p>
+                    <dl class="ld-stats-list">
+                        @foreach (var (count, label, id) in new[] { (Model.Stats.FinalizedBatches, L["Land.Stats.Batches"].Value, "batches"), (Model.Stats.VerifiedOrganizations, L["Land.Stats.Orgs"].Value, "orgs"), (Model.Stats.ApprovedLabReports, L["Land.Stats.Reports"].Value, "reports") })
+                        {
+                            if (count > 0)
+                            {
+                                <div class="ld-stat" id="stat-@id">
+                                    <dt>@label</dt>
+                                    <dd>@count.ToString("N0", culture)</dd>
+                                </div>
+                            }
+                        }
+                    </dl>
+                </div>
+            </section>
+        }
+
+        @* 2. the chain, revealed on scroll; the honey line draws itself along the steps *@
+        <section class="ld-section ld-chain" id="chain" aria-labelledby="chain-title">
+            <div class="ld-wrap">
+                <header class="ld-head ld-reveal">
+                    <p class="ld-kicker">@L["Land.Chain.Kicker"]</p>
+                    <h2 id="chain-title" class="ld-title">@L["Land.Chain.Title"]</h2>
+                    <p class="ld-lead">@L["Land.Chain.Lead"]</p>
+                </header>
+                <ol class="ld-steps" data-honey-line>
+                    <li class="ld-spine" aria-hidden="true"><span class="ld-spine-fill"></span></li>
+                    @for (var i = 0; i < steps.Length; i++)
+                    {
+                        var s = steps[i];
+                        var image = Model.Steps.Count > i ? Model.Steps[i] : null;
+                        <li class="ld-step ld-reveal @(i % 2 == 1 ? "is-flip" : "")">
+                            <span class="ld-node" aria-hidden="true"><partial name="_LandingIcon" model="@s.Icon" /></span>
+                            <figure class="ld-step-media">
+                                @if (image?.Exists == true)
+                                {
+                                    <picture>
+                                        @if (image.WebP.Count > 0)
+                                        {
+                                            <source type="image/webp" srcset="@image.WebPSrcSet" sizes="(min-width: 960px) 520px, calc(100vw - 72px)">
+                                        }
+                                        <img src="@image.Jpeg" alt="@s.Title" width="960" height="640" loading="lazy" decoding="async">
+                                    </picture>
+                                }
+                                else
+                                {
+                                    <div class="ld-placeholder" role="img" aria-label="@L["Land.ImagePending"]"><partial name="_LandingIcon" model="@s.Icon" /></div>
+                                }
+                            </figure>
+                            <div class="ld-step-body">
+                                <p class="ld-step-meta"><span>@string.Format(L["Land.StepN"].Value, i + 1)</span><span class="ld-chip">@s.Tag</span></p>
+                                <h3 class="ld-step-title">@s.Title</h3>
+                                <p>@s.Text</p>
+                            </div>
+                        </li>
+                    }
+                </ol>
             </div>
         </section>
 
-        <section id="features" class="section-with-bg">
-            <div class="container wow fadeInUp">
-
-                <div class="section-header">
-                    <h2 data-tr="Platform Özellikleri"
-                        data-en="Platform Features"
-                        data-es="Características de la Plataforma"
-                        data-pl="Funkcje Platformy"
-                        data-lv="Platformas Funkcijas">
-
-                        @L["Platform Features"]
-
-                    </h2>
-                </div>
-
-                <div class="row">
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="feature-box">
-                            <i class="fa fa-link"></i>
-
-                            <h4 data-tr="Bal İzlenebilirliği"
-                                data-en="Honey Traceability"
-                                data-es="Trazabilidad de la Miel"
-                                data-pl="Identyfikowalność Miodu"
-                                data-lv="Medus Izsekojamība">
-
-                                @L["Honey Traceability"]
-
-                            </h4>
-
-                            <p data-tr="Tüketiciler balın hangi arıcıdan geldiğini, üretim koşullarını ve kalite test sonuçlarını şeffaf bir şekilde görebilir."
-                               data-en="Consumers can transparently see where honey was produced, how it was processed, and its quality test results."
-                               data-es="Los consumidores pueden ver de forma transparente dónde se produjo la miel, cómo se procesó y sus resultados de calidad."
-                               data-pl="Konsumenci mogą przejrzyście zobaczyć skąd pochodzi miód, jak został wyprodukowany i jego wyniki jakości."
-                               data-lv="Patērētāji var caurspīdīgi redzēt, kur medus tika ražots un kādi ir kvalitātes testi.">
-
-                                @L["Consumers can transparently see where honey was produced, how it was processed, and its quality test results."]
-
-                            </p>
-                        </div>
-                    </div>
-
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="feature-box">
-                            <i class="fa fa-database"></i>
-
-                            <h4 data-tr="Açık Veri Platformu"
-                                data-en="Open Data Platform"
-                                data-es="Plataforma de Datos Abiertos"
-                                data-pl="Platforma Otwartych Danych"
-                                data-lv="Atvērto Datu Platforma">
-
-                                @L["Open Data Platform"]
-
-                            </h4>
-
-                            <p data-tr="Bal değer zinciri boyunca veri paylaşımı için mikroservis tabanlı bir açık veri platformu geliştirilmiştir."
-                               data-en="A microservice-based open data platform enables secure data sharing across the honey value chain."
-                               data-es="Una plataforma abierta basada en microservicios permite compartir datos a lo largo de la cadena de valor de la miel."
-                               data-pl="Platforma oparta na mikroserwisach umożliwia bezpieczne udostępnianie danych w łańcuchu wartości miodu."
-                               data-lv="Mikropakalpojumu balstīta platforma nodrošina datu koplietošanu medus vērtību ķēdē.">
-
-                                @L["A microservice-based open data platform enables secure data sharing across the honey value chain."]
-
-                            </p>
-                        </div>
-                    </div>
-
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="feature-box">
-                            <i class="fa fa-mobile"></i>
-
-                            <h4 data-tr="Dijital Arıcılık Araçları"
-                                data-en="Digital Beekeeping Tools"
-                                data-es="Herramientas Digitales de Apicultura"
-                                data-pl="Cyfrowe Narzędzia Pszczelarskie"
-                                data-lv="Digitālie Biškopības Rīki">
-
-                                @L["Digital Beekeeping Tools"]
-
-                            </h4>
-
-                            <p data-tr="Arıcılar mobil uygulamalar ve dijital araçlar ile üretim verilerini takip edebilir ve operasyonlarını daha verimli yönetebilir."
-                               data-en="Beekeepers can monitor production data and manage operations efficiently using digital tools and mobile applications."
-                               data-es="Los apicultores pueden gestionar sus operaciones y monitorear datos de producción mediante herramientas digitales."
-                               data-pl="Pszczelarze mogą monitorować produkcję i zarządzać operacjami dzięki narzędziom cyfrowym."
-                               data-lv="Biškopji var sekot līdzi ražošanas datiem un pārvaldīt darbības ar digitāliem rīkiem.">
-
-                                @L["Beekeepers can monitor production data and manage operations efficiently using digital tools."]
-
-                            </p>
-                        </div>
-                    </div>
-
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="feature-box">
-                            <i class="fa fa-check-circle"></i>
-
-                            <h4 data-tr="Kalite Kontrol"
-                                data-en="Quality Control"
-                                data-es="Control de Calidad"
-                                data-pl="Kontrola Jakości"
-                                data-lv="Kvalitātes Kontrole">
-
-                                @L["Quality Control"]
-
-                            </h4>
-
-                            <p data-tr="Bal partileri için kalite test sonuçları platform üzerinden kayıt altına alınır ve izlenebilir."
-                               data-en="Quality test results for honey batches are recorded and accessible through the platform."
-                               data-es="Los resultados de calidad de los lotes de miel se registran y se pueden consultar en la plataforma."
-                               data-pl="Wyniki testów jakości miodu są rejestrowane i dostępne na platformie."
-                               data-lv="Medus kvalitātes testi tiek reģistrēti un pieejami platformā.">
-
-                                @L["Quality test results for honey batches are recorded and accessible through the platform."]
-
-                            </p>
-                        </div>
-                    </div>
-
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="feature-box">
-                            <i class="fa fa-project-diagram"></i>
-
-                            <h4 data-tr="Ontoloji Tabanlı Bilgi Yönetimi"
-                                data-en="Ontology-based Knowledge Management"
-                                data-es="Gestión del Conocimiento basada en Ontologías"
-                                data-pl="Zarządzanie Wiedzą oparte na Ontologiach"
-                                data-lv="Ontoloģijās balstīta zināšanu pārvaldība">
-
-                                @L["Ontology-based Knowledge Management"]
-
-                            </h4>
-
-                            <p data-tr="Bal üretim zinciri boyunca semantik veri yönetimi sağlayan ontoloji tabanlı bilgi sistemleri geliştirilmiştir."
-                               data-en="Ontology-based systems enable semantic knowledge management across the honey supply chain."
-                               data-es="Los sistemas basados en ontologías permiten gestionar el conocimiento a lo largo de la cadena de valor."
-                               data-pl="Systemy ontologiczne wspierają zarządzanie wiedzą w łańcuchu wartości miodu."
-                               data-lv="Ontoloģijas nodrošina semantisku zināšanu pārvaldību medus ķēdē.">
-
-                                @L["Ontology-based systems enable semantic knowledge management across the honey supply chain."]
-
-                            </p>
-                        </div>
-                    </div>
-
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="feature-box">
-                            <i class="fa fa-globe"></i>
-
-                            <h4 data-tr="Uluslararası İş Birliği"
-                                data-en="International Collaboration"
-                                data-es="Colaboración Internacional"
-                                data-pl="Współpraca Międzynarodowa"
-                                data-lv="Starptautiskā Sadarbība">
-
-                                @L["International Collaboration"]
-
-                            </h4>
-
-                            <p data-tr="Platform Türkiye ve Arjantin’de uygulanacak ve diğer ülkelerde de kullanılabilecek şekilde tasarlanmıştır."
-                               data-en="The platform is implemented in Türkiye and Argentina and designed for international scalability."
-                               data-es="La plataforma se implementará en Turquía y Argentina con potencial de expansión internacional."
-                               data-pl="Platforma będzie wdrażana w Turcji i Argentynie z możliwością rozszerzenia międzynarodowego."
-                               data-lv="Platforma tiek izstrādāta Turcijā un Argentīnā ar iespēju izmantot citās valstīs.">
-
-                                @L["The platform is implemented in Türkiye and Argentina with potential global adoption."]
-
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
+        @* 3. trust: the one dark section *@
+        <section class="ld-section ld-night" id="trust" aria-labelledby="trust-title">
+            <div class="ld-night-rays" aria-hidden="true"></div>
+            <div class="ld-wrap">
+                <header class="ld-head ld-reveal">
+                    <p class="ld-kicker">@L["Land.Trust.Kicker"]</p>
+                    <h2 id="trust-title" class="ld-title">@L["Land.Trust.Title"]</h2>
+                </header>
+                <ul class="ld-trust">
+                    @foreach (var t in trust)
+                    {
+                        <li class="ld-trust-card ld-reveal">
+                            <span class="ld-hex-icon" aria-hidden="true"><partial name="_LandingIcon" model="@t.Icon" /></span>
+                            <h3>@t.Title</h3>
+                            <p>@t.Text</p>
+                        </li>
+                    }
+                </ul>
+                @if (Model.OrgModel)
+                {
+                    <p class="ld-night-cta ld-reveal"><a class="b-btn b-btn-honey" href="/verify-report">@L["Land.VerifyReport"]</a></p>
+                }
             </div>
         </section>
 
-        <section id="partners" class="wow fadeInUp">
-
-            <div class="container">
-
-                <div class="section-header">
-                    <h2 data-tr="Proje Ortakları"
-                        data-en="Project Consortium"
-                        data-es="Consorcio del Proyecto"
-                        data-pl="Konsorcjum Projektu"
-                        data-lv="Projekta Konsorcijs">
-
-                        @L["Project Consortium"]
-
-                    </h2>
-                </div>
-
-
-                <div class="row">
-
-                    <section class="editorial-board-table">
-
-                        <h2 data-tr="Koordinatör Kurum"
-                            data-en="Project Coordinator"
-                            data-es="Coordinador del Proyecto"
-                            data-pl="Koordynator Projektu"
-                            data-lv="Projekta Koordinators">
-
-                            @L["Project Coordinator"]
-
-                        </h2>
-
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th data-tr="Rol"
-                                        data-en="Role"
-                                        data-es="Rol"
-                                        data-pl="Rola"
-                                        data-lv="Loma">
-
-                                        @L["Role"]
-
-                                    </th>
-
-                                    <th data-tr="Kurum"
-                                        data-en="Institution"
-                                        data-es="Institución"
-                                        data-pl="Instytucja"
-                                        data-lv="Institūcija">
-
-                                        @L["Institution"]
-
-                                    </th>
-
-                                    <th data-tr="Ülke"
-                                        data-en="Country"
-                                        data-es="País"
-                                        data-pl="Kraj"
-                                        data-lv="Valsts">
-
-                                        @L["Country"]
-
-                                    </th>
-
-                                </tr>
-                            </thead>
-
-                            <tbody>
-
-                                <tr>
-                                    <td data-tr="Proje Koordinatörü"
-                                        data-en="Project Coordinator"
-                                        data-es="Coordinador del Proyecto"
-                                        data-pl="Koordynator Projektu"
-                                        data-lv="Projekta koordinators">
-
-                                        @L["Project Coordinator"]
-
-                                    </td>
-
-                                    <td>Boğaziçi University</td>
-
-                                    <td>@L["Türkiye"]</td>
-
-                                </tr>
-
-                            </tbody>
-
-                        </table>
-
-                    </section>
-
-                </div>
-
-
-                <div class="row">
-
-                    <section class="editorial-board-table">
-
-                        <h2 data-tr="Proje Ortakları"
-                            data-en="Project Partners"
-                            data-es="Socios del Proyecto"
-                            data-pl="Partnerzy Projektu"
-                            data-lv="Projekta Partneri">
-
-                            @L["Project Partners"]
-
-                        </h2>
-
-                        <table>
-
-                            <thead>
-
-                                <tr>
-
-                                    <th data-tr="Kurum"
-                                        data-en="Institution"
-                                        data-es="Institución"
-                                        data-pl="Instytucja"
-                                        data-lv="Institūcija">
-
-                                        @L["Institution"]
-
-                                    </th>
-
-                                    <th data-tr="Ülke"
-                                        data-en="Country"
-                                        data-es="País"
-                                        data-pl="Kraj"
-                                        data-lv="Valsts">
-
-                                        @L["Country"]
-
-                                    </th>
-
-                                </tr>
-
-                            </thead>
-
-                            <tbody>
-
-                                <tr>
-                                    <td>Işık University</td>
-                                    <td>@L["Türkiye"]</td>
-                                </tr>
-
-                                <tr>
-                                    <td>Apiculture Research Institute</td>
-                                    <td>@L["Türkiye"]</td>
-                                </tr>
-
-                                <tr>
-                                    <td>Instituto Nacional de Tecnología Agropecuaria (INTA)</td>
-                                    <td>@L["Argentina"]</td>
-                                </tr>
-
-                                <tr>
-                                    <td>NEXCO S.A</td>
-                                    <td>@L["Argentina"]</td>
-                                </tr>
-
-                                <tr>
-                                    <td>CNORTEGRANDE Cooperative</td>
-                                    <td>@L["Argentina"]</td>
-                                </tr>
-
-                                <tr>
-                                    <td>Alimentos Naturales Natural Foods S.A.</td>
-                                    <td>@L["Argentina"]</td>
-                                </tr>
-
-                                <tr>
-                                    <td>University of Economics in Katowice</td>
-                                    <td>@L["Poland"]</td>
-                                </tr>
-
-                                <tr>
-                                    <td>Latvia University of Life Sciences and Technologies</td>
-                                    <td>@L["Latvia"]</td>
-                                </tr>
-
-                            </tbody>
-
-                        </table>
-
-                    </section>
-
-                </div>
-
+        @* 4. for whom *@
+        <section class="ld-section" id="for-whom" aria-labelledby="who-title">
+            <div class="ld-wrap">
+                <header class="ld-head ld-reveal">
+                    <p class="ld-kicker">@L["Land.Who.Kicker"]</p>
+                    <h2 id="who-title" class="ld-title">@L["Land.Who.Title"]</h2>
+                </header>
+                <ul class="ld-who">
+                    @foreach (var a in audiences)
+                    {
+                        <li class="ld-who-card ld-reveal">
+                            <span class="ld-hex-icon" aria-hidden="true"><partial name="_LandingIcon" model="@a.Icon" /></span>
+                            <h3>@a.Title</h3>
+                            <p>@a.Text</p>
+                        </li>
+                    }
+                </ul>
             </div>
-
         </section>
-        <section id="contact" class="section-bg wow fadeInUp">
-            <div class="container">
-                <div class="section-header">
-                    <h2 data-tr="İletişim" data-en="Contact" data-es="Contacto" data-pl="Kontakt" data-mt="Kuntatt" data-lv="Kontakti">@L["Contact"]</h2>
+
+        @* 5. Honey Story preview: the real page of the demo batch in a phone frame *@
+        <section class="ld-section ld-story" id="story" aria-labelledby="story-title">
+            <div class="ld-wrap ld-story-in">
+                <div class="ld-story-text ld-reveal">
+                    <p class="ld-kicker">@L["Land.Story.Kicker"]</p>
+                    <h2 id="story-title" class="ld-title">@L["Land.Story.Title"]</h2>
+                    <p class="ld-lead">@L["Land.Story.Text"]</p>
+                    <ul class="ld-checks">
+                        @foreach (var point in L["Land.Story.Points"].Value.Split('|'))
+                        {
+                            <li>@point</li>
+                        }
+                    </ul>
+                    @if (storyUrl != null)
+                    {
+                        <a class="b-btn b-btn-honey" href="@storyUrl" id="demo-story-link">@L["Land.Story.Cta"]</a>
+                    }
+                    else
+                    {
+                        <p class="ld-consumer"><span>@L["Land.Consumer"]</span></p>
+                    }
                 </div>
-
-                <div class="row contact-info">
-
-                    <div class="col-md-4">
-                        <div class="contact-address">
-                            <i class="ion-ios-location-outline"></i>
-                            <h3 data-tr="Adres" data-en="Address" data-es="Dirección" data-pl="Adres" data-mt="Indirizz" data-lv="Adrese">@L["Address"]</h3>
-                            <address>
-                                Işık Üniversitesi Şile Kampüsü <br />
-                                Meşrutiyet Mahallesi, Üniversite Sokak No:2
-                                Şile / İstanbul
-                            </address>
-                        </div>
+                <div class="ld-phone ld-reveal" aria-hidden="@(storyUrl == null ? "true" : "false")">
+                    <div class="ld-phone-screen">
+                        @if (storyUrl != null)
+                        {
+                            <iframe src="@(storyUrl)?culture=@lang" title="@L["Land.Story.FrameTitle"]" loading="lazy" tabindex="-1" scrolling="no" referrerpolicy="same-origin"></iframe>
+                        }
+                        else
+                        {
+                            <div class="ld-phone-mock">
+                                <div class="ld-mock-hero"><span class="ld-mock-jar"></span><span>@L["Land.Nav.Story"]</span></div>
+                                @foreach (var station in stations)
+                                {
+                                    <div class="ld-mock-row"><span class="ld-mock-dot"></span><span>@station</span></div>
+                                }
+                            </div>
+                        }
                     </div>
-
-                    <div class="col-md-4">
-                        <div class="contact-phone">
-                            <i class="ion-ios-telephone-outline"></i>
-                            <h3 data-tr="Telefon" data-en="Phone" data-es="Teléfono" data-pl="Telefon" data-mt="Telefon" data-lv="Tālrunis">@L["Phone"]</h3>
-                            <p><a href="tel:+902165288000">+90 216 528 80 00 - 7164</a></p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="contact-email">
-                            <i class="ion-ios-email-outline"></i>
-                            <h3 data-tr="E-posta" data-en="Email" data-es="Correo electrónico" data-pl="E-mail" data-mt="Email" data-lv="E-pasts">@L["Email"]</h3>
-                            <p><a href="mailto:intalalab@isikun.edu.tr">intalalab@isikun.edu.tr</a></p>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </section>
     </main>
 
-
-    <!--==========================
-      Footer
-    ============================-->
-    <footer id="footer">
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 footer-links">
-                        <h4 data-tr="Faydalı Bağlantılar" data-en="Useful Links" data-es="Enlaces Útiles" data-pl="Przydatne Linki" data-mt="Links Utli" data-lv="Noderīgas saites">@L["Useful links"]</h4>
-                        <ul>
-                            <li>
-                                <i class="fa fa-angle-right"></i> <a href="https://www.isikun.edu.tr/" target="_blank">
-                                    <span data-tr="Işık Üniversitesi" data-en="Işık University" data-es="Universidad Işık" data-pl="Uniwersytet Işık" data-mt="Università Işık" data-lv="Išikas Universitāte">Işık Üniversitesi</span>
-                                </a>
-                            </li>
-                            <li>
-                                <i class="fa fa-angle-right"></i> <a href="https://intalalab.isikun.edu.tr/" target="_blank">
-                                    <span data-tr="INTALA LAB" data-en="INTALA LAB">INTALA LAB</span>
-                                </a>
-                            </li>
-                            <li>
-                                <i class="fa fa-angle-right"></i><a href="https://top4honeychains.isikun.edu.tr/" target="_blank">
-                                    <span data-tr="TOP4HONEYCHAINS" data-en="TOP4HONEYCHAINS">TOP4HONEYCHAINS</span>
-                                </a>
-                            </li>
+    @* 6. footer: language switch, partners (logos from wwwroot/img/partners when added), contact *@
+    <footer class="ld-footer">
+        <div class="ld-wrap">
+            <div class="ld-footer-grid">
+                <div>
+                    <a class="ld-brand b-link" href="#top">
+                        <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><polygon points="15,2 26,8.5 26,21.5 15,28 4,21.5 4,8.5" fill="#F2B33D"></polygon><polygon points="15,8 20.2,11 20.2,17 15,20 9.8,17 9.8,11" fill="#15120D"></polygon></svg>
+                        <span>TOP4HoneyChains</span>
+                    </a>
+                    <p class="ld-footer-tag">@tagline</p>
+                    <h2 class="ld-footer-h">@L["Contact"]</h2>
+                    <p class="ld-footer-contact">
+                        <a class="b-link" href="mailto:intalalab@isikun.edu.tr">intalalab@isikun.edu.tr</a><br>
+                        <a class="b-link" href="tel:+902165288000">+90 216 528 80 00</a>
+                    </p>
+                </div>
+                <div>
+                    <h2 class="ld-footer-h">@L["Land.Footer.Partners"]</h2>
+                    @if (Model.PartnerLogos.Count > 0)
+                    {
+                        <ul class="ld-logos">
+                            @foreach (var logo in Model.PartnerLogos)
+                            {
+                                <li><img src="@logo" alt="@System.IO.Path.GetFileNameWithoutExtension(logo)" loading="lazy" height="48"></li>
+                            }
                         </ul>
-                    </div>
-
-                    <div class="col-lg-6 col-md-6 footer-contact">
-                        <h4 data-tr="Bizimle İletişime Geçin" data-en="Contact Us" data-es="Contáctenos" data-pl="Skontaktuj się z nami" data-mt="Ikkuntattjana" data-lv="Sazinieties ar mums">@L["Contact us"]</h4>
-                        <p>
-                            Işık Üniversitesi, Şile Kampüsü<br>
-                            Meşrutiyet Köyü<br />
-                            Üniversite Sokak<br />
-                            No: 2 <br />
-                            Şile / Istanbul, Türkiye <br />
-                            <strong data-tr="Telefon:" data-en="Phone:" data-es="Teléfono:" data-pl="Telefon:" data-mt="Telefon:" data-lv="Tālrunis:">@L["Phone:"]</strong> +90 216 528 80 00<br />
-                            <strong data-tr="E-posta:" data-en="Email:" data-es="Correo electrónico:" data-pl="E-mail:" data-mt="Email:" data-lv="E-pasts:">@L["Email:"]</strong> intalalab@isikun.edu.tr<br />
-                        </p>
-
-                        <div class="social-links">
-                            <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-                            <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-                            <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-                            <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-                            <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
-                        </div>
-
-                    </div>
+                    }
+                    else
+                    {
+                        <ul class="ld-partners" id="partner-list">
+                            @foreach (var (name, country) in partners)
+                            {
+                                <li><span>@name</span> <span class="ld-country">@country</span></li>
+                            }
+                        </ul>
+                    }
+                </div>
+                <div>
+                    <h2 class="ld-footer-h">@L["Language"]</h2>
+                    <ul class="ld-footer-langs">
+                        @foreach (var (code, name) in languages)
+                        {
+                            <li>
+                                @if (code == lang)
+                                {
+                                    <span class="ld-lang-full is-current" lang="@code" aria-current="true">@name</span>
+                                }
+                                else
+                                {
+                                    <a class="ld-lang-full b-link" href="@Url.Action("SetLanguage", "Home", new { culture = code, returnUrl })" hreflang="@code" lang="@code">@name</a>
+                                }
+                            </li>
+                        }
+                    </ul>
                 </div>
             </div>
+            <p class="ld-footer-rights">@string.Format(L["Land.Footer.Rights"].Value, DateTime.Now.Year)</p>
         </div>
     </footer>
 
-
-    <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
-
-    <!-- JavaScript Libraries -->
-    <script src="~/landingassets/lib/jquery/jquery.min.js"></script>
-    <script src="~/landingassets/lib/jquery/jquery-migrate.min.js"></script>
-    <script src="~/landingassets/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="~/landingassets/lib/easing/easing.min.js"></script>
-    <script src="~/landingassets/lib/superfish/hoverIntent.js"></script>
-    <script src="~/landingassets/lib/superfish/superfish.min.js"></script>
-    <script src="~/landingassets/lib/wow/wow.min.js"></script>
-    <script src="~/landingassets/lib/venobox/venobox.min.js"></script>
-    <script src="~/landingassets/lib/owlcarousel/owl.carousel.min.js"></script>
-
-    <!-- Contact Form JavaScript File -->
-    <script src="~/landingassets/contactform/contactform.js"></script>
-
-    <!-- Template Main Javascript File -->
-    <script src="~/landingassets/js/main.js"></script>
-
-    <script>
-        
-        function goToPlatform() {
-
-            let lang = "en";
-
-            if (document.documentElement.classList.contains("lang-tr")) lang = "tr";
-            if (document.documentElement.classList.contains("lang-es")) lang = "es";
-            if (document.documentElement.classList.contains("lang-pl")) lang = "pl";
-            if (document.documentElement.classList.contains("lang-lv")) lang = "lv";
-
-            window.location.href =
-                "/Home/SetLanguage?culture=" + lang + "&returnUrl=/Account/Login";
-        }
-    </script>
+    <script src="~/js/honeycomb.js" asp-append-version="true" defer></script>
+    <script src="~/js/landing.js" asp-append-version="true" defer></script>
 </body>
-
 </html>
