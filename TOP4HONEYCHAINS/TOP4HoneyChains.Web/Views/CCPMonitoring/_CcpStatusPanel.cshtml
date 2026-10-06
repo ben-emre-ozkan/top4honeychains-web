@@ -109,12 +109,19 @@ else if (!Model.CanEnter)
                 <div id="approval-state" class="text-muted">@L["Ccp.NotApproved"]</div>
                 @if (Model.CanApprove && Model.LockReason == null && (Model.StatusId == AssignmentStatusIds.Submitted || Model.StatusId == AssignmentStatusIds.Completed || Model.StatusId == AssignmentStatusIds.NotApplicable))
                 {
-                    <form asp-action="Approve" method="post" class="mt-2">
+                    <form asp-action="Approve" method="post" class="mt-2" id="approve-form">
                         <input type="hidden" name="ownerKind" value="@Model.OwnerKind" />
                         <input type="hidden" name="ownerId" value="@Model.OwnerId" />
                         <input type="hidden" name="ccpId" value="@Model.CCPId" />
+                        <input type="hidden" name="confirmOutOfLimit" value="false" />
                         <button type="submit" class="btn btn-sm btn-success" id="approve-button">@L["Ccp.Approve"]</button>
+                        <small class="text-muted ms-2 approve-note" id="approve-note">@L["Ccp.ApproveNote"]</small>
                     </form>
+                        // D-64: the values outside their limits, confirmed in-page before approving
+                        var outOfLimit = Model.Groups.SelectMany(g => g.Parameters).Where(p => p.IsInRange == false)
+                            .Select(p => new TOP4HoneyChains.Web.Models.ViewModels.OutOfLimitItem(p.ParameterId, p.ParameterName, p.MeasuredNumericValue, p.MeasuredTextValue,
+                                p.Unit, p.AppliedLimit, p.LimitVerified)).ToList();
+                    <partial name="_OutOfLimitConfirm" model="@(new TOP4HoneyChains.Web.Models.ViewModels.OutOfLimitConfirm("approve-form", "approve-button", outOfLimit))" />
                 }
                 else if (Model.ApproveDeniedReason != null)
                 {

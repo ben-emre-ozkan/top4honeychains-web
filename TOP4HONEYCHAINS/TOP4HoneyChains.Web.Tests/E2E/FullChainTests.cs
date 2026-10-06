@@ -45,12 +45,38 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             return await user.PostFlashAsync($"/CCPMonitoring/{page}", form, from);
         }
 
-        private static async Task<string> ApproveCcpAsync(UserClient user, string kind, int ownerId, int ccpId)
+        private static async Task<string> ApproveCcpAsync(UserClient user, string kind, int ownerId, int ccpId, bool confirmOutOfLimit = false)
         {
             var from = kind == "raw"
                 ? $"/CCPMonitoring/RawHoneyProductionManageCCP?rawHoneyProductionId={ownerId}&ccpId={ccpId}"
                 : $"/CCPMonitoring/FinalHoneyProductionManageCCP?finalHoneyProductionId={ownerId}&ccpId={ccpId}";
-            return await user.PostFlashAsync("/CCPMonitoring/Approve", new() { ["ownerKind"] = kind, ["ownerId"] = ownerId.ToString(), ["ccpId"] = ccpId.ToString() }, from);
+            var form = new Dictionary<string, string> { ["ownerKind"] = kind, ["ownerId"] = ownerId.ToString(), ["ccpId"] = ccpId.ToString() };
+            if (confirmOutOfLimit)
+                form["confirmOutOfLimit"] = "true";
+            return await user.PostFlashAsync("/CCPMonitoring/Approve", form, from);
+        }
+
+        // D-64: with values outside their limits the approval needs the in-page confirmation; returns whether it was needed
+        private async Task<bool> ApproveCcpConfirmingAsync(UserClient user, string kind, int ownerId, int ccpId)
+        {
+            var outOfLimit = await _app.WithContextAsync(db => db.CriticalControlPointMonitoringLogs.Where(l => l.CCPId == ccpId && l.IsInRange == false
+                && (kind == "raw" ? l.RawHoneyProductionId == ownerId : l.FinalHoneyProductionId == ownerId)).Select(l => l.ParameterId).ToListAsync());
+            if (outOfLimit.Count > 0)
+            {
+                var page = await user.HtmlAsync(kind == "raw"
+                    ? $"/CCPMonitoring/RawHoneyProductionManageCCP?rawHoneyProductionId={ownerId}&ccpId={ccpId}"
+                    : $"/CCPMonitoring/FinalHoneyProductionManageCCP?finalHoneyProductionId={ownerId}&ccpId={ccpId}");
+                Assert.Contains("id=\"approve-note\"", page);
+                Assert.Contains("id=\"oolc-approve-form\"", page);
+                foreach (var id in outOfLimit)
+                    Assert.Contains($"data-parameter-id=\"{id}\"", page);
+                Assert.Contains("The record has values outside their limits; confirm them to approve.", await ApproveCcpAsync(user, kind, ownerId, ccpId));
+                Assert.Null(await _app.WithContextAsync(db => kind == "raw"
+                    ? db.RawHoneyCCPAssignments.Where(a => a.RawHoneyProductionId == ownerId && a.RawHoneyCCPAssignmentCCP == ccpId).Select(a => a.ApprovedAt).FirstAsync()
+                    : db.FinalHoneyCCPAssignments.Where(a => a.FinalHoneyProductionId == ownerId && a.FinalHoneyCCPAssignmentCCP == ccpId).Select(a => a.ApprovedAt).FirstAsync()));
+            }
+            Assert.Contains("approved", await ApproveCcpAsync(user, kind, ownerId, ccpId, outOfLimit.Count > 0));
+            return outOfLimit.Count > 0;
         }
 
         private Task<int> CcpIdAsync(string code) => _app.WithContextAsync(db => db.CriticalControlPoints.Where(c => c.Code == code).Select(c => c.Id).FirstAsync());
@@ -122,7 +148,7 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             var labParams = await _app.WithContextAsync(db => db.CriticalControlPointParameters.Where(p => p.CCPId == ccp1 && p.DataType != CcpDataType.File).ToListAsync());
             var partial = new Dictionary<string, string> { ["reportNumber"] = "E2E-R-1", ["issuedOn"] = DateTime.Today.ToString("yyyy-MM-dd"), [$"values[{labParams[0].ParameterId}]"] = "1" };
 
-            // D-61: no lab test before the lot's CCP 0 (field inspector, approved by the association) is done
+            // D-61: no lab test before the lot's CCP 0 (reception officer, approved by the quality approver; D-63) is done
             Assert.Contains("work-waiting", await analyst.HtmlAsync("/MyWork/Index"));
             Assert.Contains("CCP 0 (primary audit) of this lot is not completed yet", await analyst.FlashAfterAsync(
                 await analyst.PostMultipartAsync($"/LabReports/Save/{sampleId}", new Dictionary<string, string>(partial), Pdf.File("reportFile"), $"/LabReports/Edit/{sampleId}")));
@@ -150,10 +176,24 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             var results = new Dictionary<string, string> { ["reportNumber"] = "E2E-R-1", ["issuedOn"] = DateTime.Today.ToString("yyyy-MM-dd") };
             foreach (var p in labParams)
                 results[$"values[{p.ParameterId}]"] = p.DataType == CcpDataType.Text ? "e2e" : p.DataType == CcpDataType.YesNo ? "Yes" : "1";
+            var tooHigh = labParams.First(p => p.DataType == CcpDataType.Number && p.MaxValue != null);   // D-64: one value outside its limit
+            results[$"values[{tooHigh.ParameterId}]"] = (tooHigh.MaxValue!.Value + 1000).ToString(System.Globalization.CultureInfo.InvariantCulture);
             Assert.Contains("Lab results saved.", await analyst.FlashAfterAsync(await analyst.PostMultipartAsync($"/LabReports/Save/{sampleId}", results, Pdf.File("reportFile"), $"/LabReports/Edit/{sampleId}")));
             Assert.Contains("Report submitted", await analyst.PostFlashAsync($"/LabReports/Submit/{sampleId}", new(), $"/LabReports/Edit/{sampleId}"));
             var labManager = await UserClient.LoginAsync(_app, "e2e_labmgr");
-            Assert.Contains("Lab report approved", await labManager.PostFlashAsync($"/LabReports/Decide/{sampleId}", new() { ["approve"] = "true" }, $"/LabReports/Edit/{sampleId}"));
+            // D-64: the manager sees the note and the confirmation listing the value; without confirming, the report stays unapproved
+            var decidePage = System.Net.WebUtility.HtmlDecode(await labManager.HtmlAsync($"/LabReports/Edit/{sampleId}"));
+            Assert.Contains("not that the honey complies", decidePage);
+            Assert.Contains("id=\"oolc-decide-form\"", decidePage);
+            Assert.Contains($"data-parameter-id=\"{tooHigh.ParameterId}\"", decidePage);
+            if (!tooHigh.LimitVerified)
+                Assert.Contains("limit not verified yet", decidePage);
+            Assert.Contains("The record has values outside their limits; confirm them to approve.", await labManager.PostFlashAsync($"/LabReports/Decide/{sampleId}", new() { ["approve"] = "true" }, $"/LabReports/Edit/{sampleId}"));
+            Assert.Equal(LabReportStatus.Submitted, await _app.WithContextAsync(db => db.LabReports.Where(r => r.SampleId == sampleId).Select(r => r.Status).FirstAsync()));
+            Assert.Contains("Lab report approved", await labManager.PostFlashAsync($"/LabReports/Decide/{sampleId}",
+                new() { ["approve"] = "true", ["confirmOutOfLimit"] = "true" }, $"/LabReports/Edit/{sampleId}"));
+            Assert.True(await _app.WithContextAsync(db => db.LabReports.Where(r => r.SampleId == sampleId)
+                .AnyAsync(r => r.Results.Any(x => x.ParameterId == tooHigh.ParameterId && x.IsInRange == false))));   // stays flagged
             var ccp1State = await _app.WithContextAsync(db => db.RawHoneyCCPAssignments.Where(a => a.RawHoneyProductionId == lot && a.RawHoneyCCPAssignmentCCP == ccp1)
                 .Select(a => new { a.RawHoneyCCPAssignmentStatus, a.ApprovedAt }).FirstAsync());
             Assert.Equal(AssignmentStatusIds.Completed, ccp1State.RawHoneyCCPAssignmentStatus);
@@ -165,7 +205,9 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             {
                 var id = await CcpIdAsync(ccpCode);
                 Assert.Contains("values saved", await SaveCcpAsync(staff, "raw", lot, id));
-                Assert.Contains("approved", await ApproveCcpAsync(qa, "raw", lot, id));
+                var needed = await ApproveCcpConfirmingAsync(qa, "raw", lot, id);
+                if (ccpCode == "CCP 2")
+                    Assert.True(needed, "CCP 2 with \"1\" is below its minimums and needs the confirmation");
             }
 
             // ---- 5. batch (administrator master data) with every batch CCP
@@ -189,7 +231,7 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             foreach (var id in batchCcps)
             {
                 Assert.Contains("values saved", await SaveCcpAsync(staff, "batch", batch, id));
-                Assert.Contains("approved", await ApproveCcpAsync(qa, "batch", batch, id));
+                await ApproveCcpConfirmingAsync(qa, "batch", batch, id);
             }
 
             // ---- 6. finalize: request (Staff) and confirmation (QualityApprover)
@@ -210,11 +252,19 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             // ---- 8. CCP 10 by the receiver, approved by its QualityApprover
             var ccp10 = await CcpIdAsync("CCP 10");
             var storage = new Dictionary<string, string> { ["batchId"] = batch.ToString() };
-            foreach (var p in await _app.WithContextAsync(db => db.CriticalControlPointParameters.Where(p => p.CCPId == ccp10).ToListAsync()))
+            var ccp10Params = await _app.WithContextAsync(db => db.CriticalControlPointParameters.Where(p => p.CCPId == ccp10).ToListAsync());
+            foreach (var p in ccp10Params)
                 storage[$"values[{p.ParameterId}]"] = p.DataType == CcpDataType.Number ? "18" : "e2e";
+            var tooWarm = ccp10Params.First(p => p.DataType == CcpDataType.Number && p.MaxValue != null);   // D-64: one value outside its limit
+            storage[$"values[{tooWarm.ParameterId}]"] = (tooWarm.MaxValue!.Value + 5).ToString(System.Globalization.CultureInfo.InvariantCulture);
             Assert.Contains("Storage values saved.", await receiverStaff.PostFlashAsync("/Shipments/Storage", storage, $"/Shipments/Storage?batchId={batch}"));
             var receiverQa = await UserClient.LoginAsync(_app, "e2e_wqa");
-            Assert.Contains("CCP record approved.", await receiverQa.PostFlashAsync("/Shipments/ApproveStorage", new() { ["batchId"] = batch.ToString() }, $"/Shipments/Storage?batchId={batch}"));
+            var storagePage = await receiverQa.HtmlAsync($"/Shipments/Storage?batchId={batch}");
+            Assert.Contains("id=\"oolc-storage-approve-form\"", storagePage);
+            Assert.Contains($"data-parameter-id=\"{tooWarm.ParameterId}\"", storagePage);
+            Assert.Contains("The record has values outside their limits; confirm them to approve.", await receiverQa.PostFlashAsync("/Shipments/ApproveStorage", new() { ["batchId"] = batch.ToString() }, $"/Shipments/Storage?batchId={batch}"));
+            Assert.Contains("CCP record approved.", await receiverQa.PostFlashAsync("/Shipments/ApproveStorage",
+                new() { ["batchId"] = batch.ToString(), ["confirmOutOfLimit"] = "true" }, $"/Shipments/Storage?batchId={batch}"));
 
             // ---- 9. Honey Story badges (public)
             var qr = await _app.WithContextAsync(db => db.FinalHoneyProductions.Where(f => f.FinalHoneyProductionId == batch).Select(f => f.FinalHoneyProductionQR).FirstAsync());

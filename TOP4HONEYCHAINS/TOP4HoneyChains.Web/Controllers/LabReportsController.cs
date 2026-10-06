@@ -248,7 +248,7 @@ namespace TOP4HoneyChains.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Decide(int id, bool approve, string? reason)
+        public async Task<IActionResult> Decide(int id, bool approve, string? reason, bool confirmOutOfLimit = false)
         {
             var sample = await ReadableSampleAsync(id);
             if (sample == null)
@@ -259,6 +259,9 @@ namespace TOP4HoneyChains.Web.Controllers
             string? error = await _lab.LabDeniedAsync(sample.LabOrgId, ApproveRoles) ?? (approve ? await _lab.Ccp0PendingAsync(sample.RawHoneyProductionId) : null);
             if (error == null && (report == null || report.Status != LabReportStatus.Submitted))
                 error = "Only a submitted report can be approved or returned.";
+            // D-64: values outside their limits are approved only when confirmed explicitly
+            else if (error == null && approve && !confirmOutOfLimit && report!.Results.Any(r => r.IsInRange == false))
+                error = "The record has values outside their limits; confirm them to approve.";
             // D-27: four-eyes is never waived for lab results
             else if (error == null && report!.EnteredByUserId == _current.UserId)
                 error = "Four-eyes: the person who entered the results cannot approve them (no exemption for lab results).";

@@ -364,7 +364,7 @@ namespace TOP4HoneyChains.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ApproveStorage(int batchId)
+        public async Task<IActionResult> ApproveStorage(int batchId, bool confirmOutOfLimit = false)
         {
             var ccpId = await _custody.StorageCcpIdAsync() ?? 0;
             var access = await StorageAccessAsync(batchId, ccpId);
@@ -380,6 +380,9 @@ namespace TOP4HoneyChains.Web.Controllers
                 error = "Only a submitted (or \"Not applicable\") CCP record can be approved.";
             else if (self && !active.FourEyesExempt)
                 error = "Four-eyes: you recorded values of this CCP, so another person must approve it.";
+            // D-64: values outside their limits are approved only when confirmed explicitly
+            else if (!confirmOutOfLimit && record.Values.Any(v => v.IsInRange == false))
+                error = "The record has values outside their limits; confirm them to approve.";
             if (error != null)
             {
                 TempData["Error"] = error;
