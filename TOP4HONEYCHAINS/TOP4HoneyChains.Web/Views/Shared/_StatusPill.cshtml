@@ -1,0 +1,18 @@
+@model TOP4HoneyChains.Web.Models.ViewModels.StatusPill
+@* One status pill style everywhere (D-66): icon + text, colours from app-skin.css (.st-pill.st-<kind>) *@
+@{
+    var icon = Model.Kind switch
+    {
+        "draft" => "mdi-pencil-outline",
+        "submitted" => "mdi-send-outline",
+        "approved" => "mdi-check-circle-outline",
+        "returned" => "mdi-undo-variant",
+        "locked" => "mdi-lock-outline",
+        "na" => "mdi-minus-circle-outline",
+        "outlimit" => "mdi-alert-outline",
+        "inlimit" => "mdi-check",
+        "pending" => "mdi-timer-sand",
+        _ => "mdi-circle-small"
+    };
+}
+<span class="st-pill st-@Model.Kind" id="@Model.Id" title="@Model.Title"><i class="mdi @icon" aria-hidden="true"></i><span>@Model.Text</span></span>

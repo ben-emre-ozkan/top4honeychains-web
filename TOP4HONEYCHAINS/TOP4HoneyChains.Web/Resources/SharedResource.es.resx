@@ -6006,4 +6006,70 @@
   <data name="Auth.SignedInAs" xml:space="preserve">
     <value>Sesión iniciada como {0}</value>
   </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menú</value>
+  </data>
+  <data name="Full screen" xml:space="preserve">
+    <value>Pantalla completa</value>
+  </data>
+  <data name="Breadcrumb" xml:space="preserve">
+    <value>Ruta de navegación</value>
+  </data>
+  <data name="Active role" xml:space="preserve">
+    <value>Rol activo</value>
+  </data>
+  <data name="Your roles" xml:space="preserve">
+    <value>Sus roles</value>
+  </data>
+  <data name="Verified organisation" xml:space="preserve">
+    <value>Organización verificada</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>No verificada</value>
+  </data>
+  <data name="You have one role." xml:space="preserve">
+    <value>Tiene un solo rol.</value>
+  </data>
+  <data name="Work.NewOne" xml:space="preserve">
+    <value>Ha llegado {0} tarea nueva.</value>
+  </data>
+  <data name="Work.NewMany" xml:space="preserve">
+    <value>Han llegado {0} tareas nuevas.</value>
+  </data>
+  <data name="Work.WaitingCount" xml:space="preserve">
+    <value>{0} tareas pendientes</value>
+  </data>
+  <data name="Work.Greeting" xml:space="preserve">
+    <value>Hola, {0}</value>
+  </data>
+  <data name="Work.SummaryNone" xml:space="preserve">
+    <value>Ahora mismo no tiene nada pendiente.</value>
+  </data>
+  <data name="Work.SummaryOne" xml:space="preserve">
+    <value>Tiene una tarea pendiente.</value>
+  </data>
+  <data name="Work.SummaryMany" xml:space="preserve">
+    <value>Tiene {0} tareas pendientes.</value>
+  </data>
+  <data name="Work.Groups" xml:space="preserve">
+    <value>Grupos de tareas</value>
+  </data>
+  <data name="Work.EmptyArt" xml:space="preserve">
+    <value>Una abeja descansando sobre un panal</value>
+  </data>
+  <data name="Work.YouCanOpen" xml:space="preserve">
+    <value>Puede abrir:</value>
+  </data>
+  <data name="Work.New" xml:space="preserve">
+    <value>Nuevo</value>
+  </data>
+  <data name="Work.WaitingToday" xml:space="preserve">
+    <value>desde hoy</value>
+  </data>
+  <data name="Work.WaitingOneDay" xml:space="preserve">
+    <value>esperando 1 día</value>
+  </data>
+  <data name="Work.WaitingDays" xml:space="preserve">
+    <value>esperando {0} días</value>
+  </data>
 </root>

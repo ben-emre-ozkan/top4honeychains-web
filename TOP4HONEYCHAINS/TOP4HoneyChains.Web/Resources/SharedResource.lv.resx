@@ -6006,4 +6006,70 @@
   <data name="Auth.SignedInAs" xml:space="preserve">
     <value>Pieteicies kā {0}</value>
   </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Izvēlne</value>
+  </data>
+  <data name="Full screen" xml:space="preserve">
+    <value>Pilnekrāna režīms</value>
+  </data>
+  <data name="Breadcrumb" xml:space="preserve">
+    <value>Navigācijas ceļš</value>
+  </data>
+  <data name="Active role" xml:space="preserve">
+    <value>Aktīvā loma</value>
+  </data>
+  <data name="Your roles" xml:space="preserve">
+    <value>Jūsu lomas</value>
+  </data>
+  <data name="Verified organisation" xml:space="preserve">
+    <value>Pārbaudīta organizācija</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>Nav pārbaudīta</value>
+  </data>
+  <data name="You have one role." xml:space="preserve">
+    <value>Jums ir viena loma.</value>
+  </data>
+  <data name="Work.NewOne" xml:space="preserve">
+    <value>Ienācis jauns uzdevums: {0}.</value>
+  </data>
+  <data name="Work.NewMany" xml:space="preserve">
+    <value>Ienākuši jauni uzdevumi: {0}.</value>
+  </data>
+  <data name="Work.WaitingCount" xml:space="preserve">
+    <value>Gaida uzdevumi: {0}</value>
+  </data>
+  <data name="Work.Greeting" xml:space="preserve">
+    <value>Sveiki, {0}</value>
+  </data>
+  <data name="Work.SummaryNone" xml:space="preserve">
+    <value>Pašlaik jums nekas negaida.</value>
+  </data>
+  <data name="Work.SummaryOne" xml:space="preserve">
+    <value>Jūs gaida viens uzdevums.</value>
+  </data>
+  <data name="Work.SummaryMany" xml:space="preserve">
+    <value>Jūs gaida uzdevumi: {0}.</value>
+  </data>
+  <data name="Work.Groups" xml:space="preserve">
+    <value>Uzdevumu grupas</value>
+  </data>
+  <data name="Work.EmptyArt" xml:space="preserve">
+    <value>Bite atpūšas uz medus šūnām</value>
+  </data>
+  <data name="Work.YouCanOpen" xml:space="preserve">
+    <value>Varat atvērt:</value>
+  </data>
+  <data name="Work.New" xml:space="preserve">
+    <value>Jauns</value>
+  </data>
+  <data name="Work.WaitingToday" xml:space="preserve">
+    <value>kopš šodienas</value>
+  </data>
+  <data name="Work.WaitingOneDay" xml:space="preserve">
+    <value>gaida 1 dienu</value>
+  </data>
+  <data name="Work.WaitingDays" xml:space="preserve">
+    <value>gaida dienas: {0}</value>
+  </data>
 </root>

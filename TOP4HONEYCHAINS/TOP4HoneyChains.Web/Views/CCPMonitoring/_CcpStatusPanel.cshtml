@@ -24,17 +24,12 @@ else if (!Model.CanEnter)
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
             <div>
                 <span class="text-muted small text-uppercase">@L["Status"]</span>
-                @{
-                    var badge = Model.StatusId switch
-                    {
-                        AssignmentStatusIds.Completed => "bg-success",
-                        AssignmentStatusIds.NotApplicable => "bg-dark",
-                        AssignmentStatusIds.InProgress => "bg-warning text-dark",
-                        AssignmentStatusIds.Submitted => "bg-info text-dark",
-                        _ => "bg-secondary"
-                    };
+                @* D-66: one status pill style *@
+                <partial name="_StatusPill" model="@(new TOP4HoneyChains.Web.Models.ViewModels.StatusPill(TOP4HoneyChains.Web.Models.ViewModels.StatusPill.ForAssignment(Model.StatusId, Model.ApprovedAt != null), Model.StatusName != null ? Ref.Status(Model.StatusId, Model.StatusName) : L["Not assigned"].Value, "ccp-status"))" />
+                @if (Model.LockReason != null)
+                {
+                    <partial name="_StatusPill" model="@(new TOP4HoneyChains.Web.Models.ViewModels.StatusPill(TOP4HoneyChains.Web.Models.ViewModels.StatusPill.Locked, L["Locked"].Value))" />
                 }
-                <span class="badge @badge fs-6 ms-2" id="ccp-status">@(Model.StatusName != null ? Ref.Status(Model.StatusId, Model.StatusName) : L["Not assigned"].Value)</span>
                 @if (Model.HoneyClass != null)
                 {
                     <span class="text-muted small ms-3">@L["Limits for honey class:"] <strong>@L[Model.HoneyClass ?? ""]</strong></span>
@@ -93,14 +88,14 @@ else if (!Model.CanEnter)
     @* Four-eyes approval of the CCP record (D-27) *@
     <div class="card mb-4 border-0 shadow-sm" id="ccp-approval">
         <div class="card-body">
-            <h6 class="mb-2">@L["Ccp.ApprovalTitle"]</h6>
+            <h2 class="h6 mb-2">@L["Ccp.ApprovalTitle"]</h2>
             @if (Model.ApprovedAt != null)
             {
                 <div id="approval-state">
-                    <span class="badge bg-success">@L["Ccp.Approved"]</span> @Model.ApprovedBy · @Model.ApprovedAt?.ToString("dd.MM.yyyy HH:mm")
+                    <partial name="_StatusPill" model="@(new TOP4HoneyChains.Web.Models.ViewModels.StatusPill(TOP4HoneyChains.Web.Models.ViewModels.StatusPill.Approved, L["Ccp.Approved"].Value))" /> @Model.ApprovedBy · @Model.ApprovedAt?.ToString("dd.MM.yyyy HH:mm")
                     @if (Model.SelfApproved)
                     {
-                        <span class="badge bg-warning text-dark ms-1">@L["Org.SelfApproved"]</span>
+                        <span class="st-pill st-pending ms-1"><i class="mdi mdi-alert-outline" aria-hidden="true"></i><span>@L["Org.SelfApproved"]</span></span>
                     }
                 </div>
             }
@@ -138,7 +133,7 @@ else if (!Model.CanEnter)
     var allParams = Model.Groups.SelectMany(g => g.Parameters).Where(p => p.DataType != CcpDataType.File).ToList();
     <div class="card mb-4 border-0 shadow-sm" id="ccp-corrections">
         <div class="card-body">
-            <h6 class="mb-1">@L["Corr.Title"]</h6>
+            <h2 class="h6 mb-1">@L["Corr.Title"]</h2>
             <p class="small text-muted">@L["Corr.FormHelp"]</p>
             <form asp-action="RequestCorrection" method="post" class="row g-2" id="correction-form">
                 <input type="hidden" name="ownerKind" value="@Model.OwnerKind" />

@@ -11,11 +11,14 @@
     }
 
     @Html.Partial("~/Views/Shared/_HeadCSS.cshtml")
+    <link rel="preload" href="~/fonts/bricolage-grotesque/bricolage-grotesque-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="~/fonts/instrument-sans/instrument-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 
 </head>
 
-<body>
+<body class="app-skin">
 
+    <a class="app-skip" href="#app-main">@L["Land.SkipToContent"]</a>
     <!-- Begin page -->
     <div id="layout-wrapper">
 
@@ -23,7 +26,7 @@
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
-        <div class="main-content">
+        <div class="main-content" id="app-main" tabindex="-1">
 
             <partial name="~/Views/Shared/_FlashMessages.cshtml" />
 
@@ -51,6 +54,7 @@
     <partial name="~/Views/Shared/_FieldSupport.cshtml" />
     <partial name="~/Views/Shared/_ValidationScriptsPartial.cshtml" />
 
+    <script src="~/js/app-shell.js" asp-append-version="true"></script>
     @RenderSection("scripts", required: false)
     <partial name="~/Views/Shared/_I18nScripts.cshtml" />
 </body>

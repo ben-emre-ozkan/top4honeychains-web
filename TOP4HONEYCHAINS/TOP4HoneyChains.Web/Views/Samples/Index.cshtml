@@ -26,7 +26,7 @@
                                     <td>@s.LabOrg?.DisplayName</td>
                                     <td>@s.SealNumber</td>
                                     <td>@s.CounterSealNumber · @s.CounterLocation · @s.RetainUntil.ToString("dd.MM.yyyy")</td>
-                                    <td class="sample-status">@StatusText(s) @if (s.SealIntact == false) { <span class="badge bg-danger">@L["Lab.SealBroken"]</span> } @s.RejectReason</td>
+                                    <td class="sample-status"><partial name="_StatusPill" model="@(new TOP4HoneyChains.Web.Models.ViewModels.StatusPill(TOP4HoneyChains.Web.Models.ViewModels.StatusPill.ForSample(s.Status), StatusText(s)))" /> @if (s.SealIntact == false) { <span class="st-pill st-outlimit"><i class="mdi mdi-alert-outline" aria-hidden="true"></i><span>@L["Lab.SealBroken"]</span></span> } @s.RejectReason</td>
                                     <td><a asp-controller="LabReports" asp-action="Edit" asp-route-id="@s.SampleId">@ReportText(s)</a></td>
                                 </tr>
                             }
@@ -54,7 +54,7 @@
                                         <td>@s.SampleCode</td>
                                         <td>@s.TakingOrg?.DisplayName <a href="/Flow/Lot/@s.RawHoneyProductionId" class="small flow-link">@L["Flow.Title"]</a></td>
                                         <td>@s.SealNumber</td>
-                                        <td class="sample-status">@StatusText(s) @if (s.SealIntact == false) { <span class="badge bg-danger">@L["Lab.SealBroken"]</span> } @s.RejectReason</td>
+                                        <td class="sample-status"><partial name="_StatusPill" model="@(new TOP4HoneyChains.Web.Models.ViewModels.StatusPill(TOP4HoneyChains.Web.Models.ViewModels.StatusPill.ForSample(s.Status), StatusText(s)))" /> @if (s.SealIntact == false) { <span class="st-pill st-outlimit"><i class="mdi mdi-alert-outline" aria-hidden="true"></i><span>@L["Lab.SealBroken"]</span></span> } @s.RejectReason</td>
                                         <td><a asp-controller="LabReports" asp-action="Edit" asp-route-id="@s.SampleId" class="report-link">@ReportText(s)</a></td>
                                         <td>
                                             @if (s.Status == SampleStatus.Sent && canReceive)

@@ -88,11 +88,11 @@
                                     <strong>@L["Status:"]</strong>
                                     @if (Model.Batch.FinalHoneyProductionIsFinalized)
                                     {
-                                        <span class="badge bg-success">@L["Finalized"]</span>
+                                        <partial name="_StatusPill" model="@(new TOP4HoneyChains.Web.Models.ViewModels.StatusPill(TOP4HoneyChains.Web.Models.ViewModels.StatusPill.Locked, L["Finalized"].Value))" />
                                     }
                                     else
                                     {
-                                        <span class="badge bg-warning text-dark">@L["Draft"]</span>
+                                        <partial name="_StatusPill" model="@(new TOP4HoneyChains.Web.Models.ViewModels.StatusPill(TOP4HoneyChains.Web.Models.ViewModels.StatusPill.Draft, L["Draft"].Value))" />
                                     }
                                 </p>
 

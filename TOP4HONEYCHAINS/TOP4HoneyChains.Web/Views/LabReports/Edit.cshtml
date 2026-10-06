@@ -42,7 +42,7 @@
                         @if (Model != null)
                         {
                             <div>
-                                <span class="badge bg-light text-dark border" id="report-status">@StatusText(Model.Status)</span>
+                                <partial name="_StatusPill" model="@(new TOP4HoneyChains.Web.Models.ViewModels.StatusPill(TOP4HoneyChains.Web.Models.ViewModels.StatusPill.ForReport(Model.Status, Model.ReturnReason != null), StatusText(Model.Status), "report-status"))" />
                                 <span class="small text-muted ms-2">@L["Lab.ReportCode"]: <strong id="report-code">@Model.ReportCode</strong></span>
                             </div>
                         }
@@ -90,8 +90,8 @@
                                             </td>
                                             <td class="small">
                                                 @Ref.Limit(r?.AppliedLimit ?? CcpLimitEvaluator.DescribeAll(p), k => L[k])
-                                                @if (r?.IsInRange == false) { <span class="badge bg-danger">!</span> }
-                                                @if (r?.IsInRange == true) { <span class="badge bg-success">✓</span> }
+                                                @if (r?.IsInRange == false) { <span class="st-pill st-outlimit"><i class="mdi mdi-alert-outline" aria-hidden="true"></i><span>@L["Out of limit"]</span></span> }
+                                                @if (r?.IsInRange == true) { <span class="st-pill st-inlimit"><i class="mdi mdi-check" aria-hidden="true"></i><span>@L["Within limit"]</span></span> }
                                             </td>
                                         </tr>
                                     }
