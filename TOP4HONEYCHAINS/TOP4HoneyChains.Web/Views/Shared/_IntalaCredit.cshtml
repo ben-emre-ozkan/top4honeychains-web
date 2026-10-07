@@ -1,0 +1,14 @@
+@inject Microsoft.Extensions.Configuration.IConfiguration IntalaConfig
+@* D-70: "Developed by" with the Intala Lab logo: one caramel tone, full colour on hover and focus. Linked when
+   Branding:IntalaLabUrl is configured. *@
+@{
+    var intalaUrl = IntalaConfig["Branding:IntalaLabUrl"];
+    var credit = L["Footer.DevelopedBy"].Value;
+    var at = credit.IndexOf("{0}", StringComparison.Ordinal);
+    var before = at < 0 ? credit + " " : credit[..at];
+    var after = at < 0 ? "" : credit[(at + 3)..];
+}
+<span class="intala-credit">@before@if (!string.IsNullOrWhiteSpace(intalaUrl))
+{<a class="intala-logo" href="@intalaUrl" target="_blank" rel="noopener"><img class="intala-mono" src="~/img/brand/intala-lab-mono.svg" alt="Intala Lab" width="84" height="30"><img class="intala-color" src="~/img/brand/intala-lab.svg" alt="" aria-hidden="true" width="84" height="30"></a>}
+else
+{<span class="intala-logo"><img class="intala-mono" src="~/img/brand/intala-lab-mono.svg" alt="Intala Lab" width="84" height="30"><img class="intala-color" src="~/img/brand/intala-lab.svg" alt="" aria-hidden="true" width="84" height="30"></span>}@after</span>

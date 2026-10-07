@@ -6150,4 +6150,43 @@
   <data name="Printed on {0}" xml:space="preserve">
     <value>Wydrukowano {0}</value>
   </data>
+  <data name="Land.Step1.Alt" xml:space="preserve">
+    <value>Ramka pełna pszczół wyjmowana z ula w pasiece na zboczu o zachodzie słońca.</value>
+  </data>
+  <data name="Land.Step2.Alt" xml:space="preserve">
+    <value>Dłonie w rękawiczkach zakładają numerowaną żółtą plombę na słoik miodu obok wagi.</value>
+  </data>
+  <data name="Land.Step3.Alt" xml:space="preserve">
+    <value>W laboratorium kropla miodu trafia na refraktometr obok próbek miodu w fiolkach.</value>
+  </data>
+  <data name="Land.Step4.Alt" xml:space="preserve">
+    <value>Słoiki miodu przesuwają się linią rozlewniczą pod zakręcarką.</value>
+  </data>
+  <data name="Land.Step5.Alt" xml:space="preserve">
+    <value>W sklepie słoik miodu z kodem QR na etykiecie trzymany obok telefonu.</value>
+  </data>
+  <data name="Land.OgImageAlt" xml:space="preserve">
+    <value>Logo TOP4HoneyChains obok plastra miodu z pszczołami</value>
+  </data>
+  <data name="Loader.Loading" xml:space="preserve">
+    <value>Wczytywanie…</value>
+  </data>
+  <data name="Loader.Saving" xml:space="preserve">
+    <value>Zapisywanie…</value>
+  </data>
+  <data name="Loader.Upload" xml:space="preserve">
+    <value>Przesyłanie pliku PDF…</value>
+  </data>
+  <data name="Loader.Report" xml:space="preserve">
+    <value>Wysyłanie raportu…</value>
+  </data>
+  <data name="Loader.Seal" xml:space="preserve">
+    <value>Pieczętowanie partii…</value>
+  </data>
+  <data name="Loader.Pdf" xml:space="preserve">
+    <value>Przygotowywanie pliku PDF…</value>
+  </data>
+  <data name="Footer.DevelopedBy" xml:space="preserve">
+    <value>Opracowanie: {0}</value>
+  </data>
 </root>

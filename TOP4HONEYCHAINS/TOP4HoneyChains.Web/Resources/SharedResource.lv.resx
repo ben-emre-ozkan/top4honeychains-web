@@ -6150,4 +6150,43 @@
   <data name="Printed on {0}" xml:space="preserve">
     <value>Izdrukāts {0}</value>
   </data>
+  <data name="Land.Step1.Alt" xml:space="preserve">
+    <value>Saulrietā kalna nogāzes dravā no stropa izceļ rāmi, pilnu ar bitēm.</value>
+  </data>
+  <data name="Land.Step2.Alt" xml:space="preserve">
+    <value>Rokas cimdos uzliek numurētu dzeltenu plombu medus burkai blakus svariem.</value>
+  </data>
+  <data name="Land.Step3.Alt" xml:space="preserve">
+    <value>Laboratorijā medus pilienu uzpilina uz refraktometra, blakus medus paraugi flakonos.</value>
+  </data>
+  <data name="Land.Step4.Alt" xml:space="preserve">
+    <value>Medus burkas virzās pa pildīšanas līniju zem vāciņu uzskrūvēšanas iekārtas.</value>
+  </data>
+  <data name="Land.Step5.Alt" xml:space="preserve">
+    <value>Veikalā medus burku ar QR kodu uz etiķetes tur blakus tālrunim.</value>
+  </data>
+  <data name="Land.OgImageAlt" xml:space="preserve">
+    <value>TOP4HoneyChains logotips blakus medus kārei ar bitēm</value>
+  </data>
+  <data name="Loader.Loading" xml:space="preserve">
+    <value>Ielādē…</value>
+  </data>
+  <data name="Loader.Saving" xml:space="preserve">
+    <value>Saglabā…</value>
+  </data>
+  <data name="Loader.Upload" xml:space="preserve">
+    <value>Augšupielādē PDF…</value>
+  </data>
+  <data name="Loader.Report" xml:space="preserve">
+    <value>Iesniedz pārskatu…</value>
+  </data>
+  <data name="Loader.Seal" xml:space="preserve">
+    <value>Aizzīmogo partiju…</value>
+  </data>
+  <data name="Loader.Pdf" xml:space="preserve">
+    <value>Sagatavo PDF…</value>
+  </data>
+  <data name="Footer.DevelopedBy" xml:space="preserve">
+    <value>Izstrādāja {0}</value>
+  </data>
 </root>

@@ -1,0 +1,11 @@
+@* D-70: the page loader. honey-mark.js shows it when a page load or form post takes longer than 400 ms, at once for long
+   actions; the visible line repeats the message of the polite live region, which stays in the accessibility tree. *@
+<p id="app-loader-live" class="b-visually-hidden" role="status" aria-live="polite" aria-atomic="true"></p>
+<div id="app-loader" class="hm-loader" hidden aria-hidden="true"
+     data-msg-default="@L["Loader.Loading"]" data-msg-save="@L["Loader.Saving"]" data-msg-upload="@L["Loader.Upload"]"
+     data-msg-report="@L["Loader.Report"]" data-msg-seal="@L["Loader.Seal"]" data-msg-pdf="@L["Loader.Pdf"]">
+    <div class="hm-loader-in">
+        <honey-mark mode="loop" size="112" />
+        <p class="hm-loader-text"></p>
+    </div>
+</div>

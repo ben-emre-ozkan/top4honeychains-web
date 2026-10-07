@@ -100,7 +100,7 @@
                     }
                     else
                     {
-                    <form asp-action="Save" asp-route-id="@sample.SampleId" method="post" enctype="multipart/form-data" id="report-form" class="field-form">
+                    <form asp-action="Save" asp-route-id="@sample.SampleId" method="post" enctype="multipart/form-data" id="report-form" class="field-form" data-loader="upload">
                         <fieldset>
                             <div class="row">
                                 <div class="col-md-4 mb-3">
@@ -171,7 +171,7 @@
                     }
                     @if (editable && Model != null)
                     {
-                        <form asp-action="Submit" asp-route-id="@sample.SampleId" method="post" class="mt-2">
+                        <form asp-action="Submit" asp-route-id="@sample.SampleId" method="post" class="mt-2" data-loader="report">
                             <button type="submit" class="btn btn-primary" id="submit-report" disabled="@(missing.Count > 0)"
                                     title="@(missing.Count > 0 ? L["Submitting is possible once every required value is entered."].Value : "")">@L["Lab.Submit"]</button>
                         </form>

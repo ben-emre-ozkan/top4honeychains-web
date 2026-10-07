@@ -21,15 +21,16 @@
     <link rel="preload" href="~/fonts/instrument-sans/instrument-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link href="~/css/brand.css" rel="stylesheet" asp-append-version="true">
     <link href="~/css/auth.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/css/honey-mark.css" rel="stylesheet" asp-append-version="true">
     @RenderSection("AddToHead", required: false)
 </head>
-<body class="au">
+<body class="au" data-hm-intro-reset>
     <div class="au-page">
         <aside class="au-panel">
             <canvas class="au-comb" data-honeycomb data-theme="light" data-speed="0.45" aria-hidden="true"
                     data-path="0.10,0.86 0.30,0.70 0.52,0.84 0.72,0.66 0.92,0.80" data-path-wide="0.10,0.86 0.30,0.70 0.52,0.84 0.72,0.66 0.92,0.80"></canvas>
             <div class="au-panel-in">
-                <a class="au-brand b-link" href="/"><img class="b-logo" src="~/img/brand/top4-logo-stacked.svg" alt="TOP4HoneyChains" width="158" height="180"></a>
+                <a class="au-brand b-link th-logo-trigger" href="/" aria-label="TOP4HoneyChains"><honey-mark mode="once" size="136" /><img class="b-logo au-brand-word" src="~/img/brand/top4-wordmark-w2.svg" alt="" width="158" height="66"></a>
                 <p class="au-tagline">@L["Trustable and Sustainable Open Platform for Smart Honey Value Chains"]</p>
                 <ul class="au-points">
                     <li><span class="au-point-icon" aria-hidden="true"><partial name="_LandingIcon" model="@("foureyes")" /></span>@L["Auth.Point1"]</li>
@@ -61,7 +62,7 @@
             </div>
 
             <div class="au-card">
-                <a class="au-form-logo b-link" href="/"><img class="b-logo" src="~/img/brand/top4-logo-w3.svg" alt="TOP4HoneyChains" width="172" height="40"></a>
+                <a class="au-form-logo b-link th-logo-trigger" href="/" aria-label="TOP4HoneyChains"><honey-mark size="40" class="b-brand-mark" data-hm-once="(max-width: 860px)" /><img class="b-logo b-brand-word" src="~/img/brand/top4-wordmark-w3.svg" alt="" width="177" height="13"></a>
                 @if (!string.IsNullOrEmpty(error))
                 {
                     <div class="au-alert au-alert-error" role="alert" id="flash-error">@Msg.T(error)<button type="button" class="au-alert-close" aria-label="@L["Close"]">×</button></div>
@@ -72,14 +73,16 @@
                 }
                 @RenderBody()
             </div>
-            <p class="au-foot">@string.Format(L["Land.Footer.Rights"].Value, DateTime.Now.Year)</p>
+            <p class="au-foot">@string.Format(L["Land.Footer.Rights"].Value, DateTime.Now.Year) <span aria-hidden="true">·</span> <partial name="_IntalaCredit" /></p>
         </main>
     </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <partial name="~/Views/Shared/_ValidationScriptsPartial.cshtml" />
     @RenderSection("scripts", required: false)
+    <partial name="_Loader" />
     <script src="~/js/honeycomb.js" asp-append-version="true" defer></script>
+    <script src="~/js/honey-mark.js" asp-append-version="true" defer></script>
     <script>
         document.querySelectorAll('.au-alert-close').forEach(function (b) { b.addEventListener('click', function () { b.parentElement.remove(); }); });
     </script>

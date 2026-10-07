@@ -6150,4 +6150,43 @@
   <data name="Printed on {0}" xml:space="preserve">
     <value>Yazdırma: {0}</value>
   </data>
+  <data name="Land.Step1.Alt" xml:space="preserve">
+    <value>Gün batımında yamaçtaki bir arılıkta kovandan arılarla dolu bir çerçeve çıkarılıyor.</value>
+  </data>
+  <data name="Land.Step2.Alt" xml:space="preserve">
+    <value>Eldivenli eller, terazinin yanındaki bal kavanozuna numaralı sarı bir mühür takıyor.</value>
+  </data>
+  <data name="Land.Step3.Alt" xml:space="preserve">
+    <value>Laboratuvarda bir damla bal refraktometreye konuyor; yanında şişelerde bal numuneleri var.</value>
+  </data>
+  <data name="Land.Step4.Alt" xml:space="preserve">
+    <value>Bal kavanozları dolum hattında kapak kapatma makinesinin altından geçiyor.</value>
+  </data>
+  <data name="Land.Step5.Alt" xml:space="preserve">
+    <value>Mağazada, etiketinde QR kod olan bir bal kavanozu telefonun yanında tutuluyor.</value>
+  </data>
+  <data name="Land.OgImageAlt" xml:space="preserve">
+    <value>Arıların üzerinde gezindiği bir peteğin yanında TOP4HoneyChains logosu</value>
+  </data>
+  <data name="Loader.Loading" xml:space="preserve">
+    <value>Yükleniyor…</value>
+  </data>
+  <data name="Loader.Saving" xml:space="preserve">
+    <value>Kaydediliyor…</value>
+  </data>
+  <data name="Loader.Upload" xml:space="preserve">
+    <value>PDF yükleniyor…</value>
+  </data>
+  <data name="Loader.Report" xml:space="preserve">
+    <value>Rapor gönderiliyor…</value>
+  </data>
+  <data name="Loader.Seal" xml:space="preserve">
+    <value>Parti mühürleniyor…</value>
+  </data>
+  <data name="Loader.Pdf" xml:space="preserve">
+    <value>PDF hazırlanıyor…</value>
+  </data>
+  <data name="Footer.DevelopedBy" xml:space="preserve">
+    <value>{0} tarafından geliştirildi</value>
+  </data>
 </root>

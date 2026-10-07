@@ -38,7 +38,7 @@ body.au { margin: 0; font-family: var(--b-text); font-size: 16px; line-height: 1
 .au-field { display: grid; gap: 6px; }
 .au-field label { font-weight: 600; font-size: 15px; color: var(--b-ink-2); }
 .au-field input { width: 100%; min-height: 50px; padding: 0 16px; font: inherit; font-size: 16px; color: var(--b-ink); background: var(--b-card); border: 1.5px solid #A88456; border-radius: 14px;
-    transition: border-color var(--b-fast) var(--b-ease), box-shadow var(--b-fast) var(--b-ease); }
+    transition: none; }
 .au-field input::placeholder { color: #8F6F4C; }
 .au-field input:hover { border-color: #8C6A40; }
 .au-field input:focus { outline: none; border-color: var(--b-honey); box-shadow: 0 0 0 4px rgba(255, 181, 71, 0.28); }
@@ -83,6 +83,8 @@ body.au { margin: 0; font-family: var(--b-text); font-size: 16px; line-height: 1
 }
 
 /* D-69: the stacked logo in the panel, the W3 logo above the form (on phones only the W3 logo; the panel is a short strip) */
-.au-brand .b-logo { width: 158px; height: 180px; }
-.au-form-logo { display: inline-flex; align-items: center; min-height: var(--b-touch); margin-bottom: 18px; }
-.au-form-logo .b-logo { width: 172px; height: 40px; }
+/* D-70: the animated mark above the W2 wordmark in the panel; mark + W3 wordmark above the form */
+.au-panel .au-brand { flex-direction: column; align-items: center; gap: 10px; }
+.au-brand .honey-mark { width: 156px; height: auto; }
+.au-brand-word { width: 158px; height: 66px; }
+.au-form-logo { display: inline-flex; align-items: center; gap: 8px; min-height: var(--b-touch); margin-bottom: 18px; }
