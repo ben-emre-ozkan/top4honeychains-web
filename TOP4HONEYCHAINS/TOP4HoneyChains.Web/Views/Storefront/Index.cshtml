@@ -22,7 +22,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@name · @L["P5.BeekeeperPage"]</title>
     <partial name="~/Views/Shared/_Favicons.cshtml" />
-    <meta name="theme-color" content="#FBF8F2">
+    <meta name="theme-color" content="#FFFFFF">
     <link href="~/css/brand.css" rel="stylesheet" asp-append-version="true">
     <link href="~/css/storefront.css" rel="stylesheet" asp-append-version="true">
 </head>
@@ -62,15 +62,15 @@
             <div class="sf-facts">
                 @if (Model.Place.Length > 0)
                 {
-                    <span class="sf-fact" id="sf-place"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F5B43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>@Model.Place</span>
+                    <span class="sf-fact" id="sf-place"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B7A75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>@Model.Place</span>
                 }
                 @if (Model.Association != null)
                 {
-                    <span class="sf-fact" id="sf-association"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F5B43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path><circle cx="10" cy="7" r="4"></circle><path d="M21 21v-2a4 4 0 0 0-3-3.9"></path></svg>@L["Sf.MemberOf", Model.Association]</span>
+                    <span class="sf-fact" id="sf-association"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B7A75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path><circle cx="10" cy="7" r="4"></circle><path d="M21 21v-2a4 4 0 0 0-3-3.9"></path></svg>@L["Sf.MemberOf", Model.Association]</span>
                 }
                 @if (Model.MemberSinceYear != null)
                 {
-                    <span class="sf-fact"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F5B43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>@L["Sf.OnPlatformSince", Model.MemberSinceYear]</span>
+                    <span class="sf-fact"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B7A75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>@L["Sf.OnPlatformSince", Model.MemberSinceYear]</span>
                 }
             </div>
             @if (Model.RegistryVerified || Model.AccreditedLab || Model.AllCcpsApproved)
@@ -78,15 +78,15 @@
                 <div class="sf-badges" id="sf-badges">
                     @if (Model.RegistryVerified)
                     {
-                        <span class="sf-badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F5B43" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>@L["Sf.BadgeRegistry"]</span>
+                        <span class="sf-badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B7A75" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>@L["Sf.BadgeRegistry"]</span>
                     }
                     @if (Model.AccreditedLab)
                     {
-                        <span class="sf-badge" id="sf-badge-lab"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F5B43" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"></path></svg>@L["Hs.AccreditedLab"]</span>
+                        <span class="sf-badge" id="sf-badge-lab"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B7A75" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"></path></svg>@L["Hs.AccreditedLab"]</span>
                     }
                     @if (Model.AllCcpsApproved)
                     {
-                        <span class="sf-badge" id="sf-badge-ccp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F5B43" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"></path><path d="m9 12 2 2 4-4"></path></svg>@L["Hs.AllCcpsApproved"]</span>
+                        <span class="sf-badge" id="sf-badge-ccp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B7A75" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"></path><path d="m9 12 2 2 4-4"></path></svg>@L["Hs.AllCcpsApproved"]</span>
                     }
                 </div>
             }
@@ -134,8 +134,8 @@
         <aside class="sf-profile">
             <div class="sf-profile-mark">
                 <svg width="132" height="132" viewBox="0 0 132 132" role="img" aria-label="@L["Sf.ProfileMark", name]">
-                    <polygon points="66,4 120,35 120,97 66,128 12,97 12,35" fill="#1F5B43"></polygon>
-                    <polygon points="66,16 110,41 110,91 66,116 22,91 22,41" fill="none" stroke="#D9930D" stroke-width="2"></polygon>
+                    <polygon points="66,4 120,35 120,97 66,128 12,97 12,35" fill="#0B7A75"></polygon>
+                    <polygon points="66,16 110,41 110,91 66,116 22,91 22,41" fill="none" stroke="#FFB547" stroke-width="2"></polygon>
                     <text x="66" y="80" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="40" fill="#FFFFFF">@Model.Initials</text>
                 </svg>
             </div>
@@ -310,7 +310,7 @@
                     <div class="sf-kicker">@L["Sf.Quality"]</div>
                     <h2 class="sf-h2">@L["Sf.LatestResults"]</h2>
                 </div>
-                <a class="sf-lab-link" href="/verify-report?code=@Model.Lab.ReportCode"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F5B43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6M9 15l2 2 4-4"></path></svg>@L["Sf.VerifyReportCode", Model.Lab.ReportCode]</a>
+                <a class="sf-lab-link" href="/verify-report?code=@Model.Lab.ReportCode"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B7A75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6M9 15l2 2 4-4"></path></svg>@L["Sf.VerifyReportCode", Model.Lab.ReportCode]</a>
             </div>
             @{ var anyVerified = Model.Lab.Values.Any(v => v.InRange != null); }
             @if (anyVerified)
@@ -419,8 +419,8 @@
                             _ => L["Sf.RefProcessed", r.Lots, r.Batches].Value
                         };
                         <div class="sf-ref" id="@(r.Kind == ReferenceKinds.Association ? "ref-association" : null)" data-kind="@r.Kind">
-                            <svg width="48" height="48" viewBox="0 0 48 48" aria-hidden="true"><polygon points="24,2 44,13.5 44,34.5 24,46 4,34.5 4,13.5" fill="#FCEFD2"></polygon>
-                                <g transform="translate(12 12)" fill="none" stroke="#6B4700" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="48" height="48" viewBox="0 0 48 48" aria-hidden="true"><polygon points="24,2 44,13.5 44,34.5 24,46 4,34.5 4,13.5" fill="#FFF4D6"></polygon>
+                                <g transform="translate(12 12)" fill="none" stroke="#8C5E2E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                                     @switch (r.Kind)
                                     {
                                         case ReferenceKinds.Association:
@@ -452,7 +452,7 @@
             @if (Model.IsDemo)
             {
                 <figure class="sf-quote">
-                    <svg width="34" height="28" viewBox="0 0 34 28" aria-hidden="true"><path d="M0 28V16C0 7 5 1 14 0v6c-4 1-6 4-6 9h6v13zm20 0V16c0-9 5-15 14-16v6c-4 1-6 4-6 9h6v13z" fill="#D9930D"></path></svg>
+                    <svg width="34" height="28" viewBox="0 0 34 28" aria-hidden="true"><path d="M0 28V16C0 7 5 1 14 0v6c-4 1-6 4-6 9h6v13zm20 0V16c0-9 5-15 14-16v6c-4 1-6 4-6 9h6v13z" fill="#FFB547"></path></svg>
                     <blockquote>@L["Sf.Demo.Quote"]</blockquote>
                     <figcaption>@L["Sf.Demo.QuoteCaption"]</figcaption>
                 </figure>

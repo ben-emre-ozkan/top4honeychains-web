@@ -1,7 +1,7 @@
 @model (int SampleId, TOP4HoneyChains.Web.Models.Entities.LabReport Report)
 @* The report PDF link and its SHA-256 (D-67): muted monospace with a copy button *@
 <div class="app-report-file">
-    <a asp-controller="LabReports" asp-action="Pdf" asp-route-id="@Model.SampleId" target="_blank"><i class="mdi mdi-file-pdf-box" aria-hidden="true"></i> @Model.Report.OriginalFileName</a>
+    <a class="app-tap" asp-controller="LabReports" asp-action="Pdf" asp-route-id="@Model.SampleId" target="_blank"><i class="mdi mdi-file-pdf-box" aria-hidden="true"></i> @Model.Report.OriginalFileName</a>
     <div class="app-hash-row">
         <span class="app-hash-label">SHA-256</span>
         <code class="app-hash" id="report-sha">@Model.Report.Sha256</code>
