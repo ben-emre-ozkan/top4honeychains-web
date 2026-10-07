@@ -1,4 +1,5 @@
-/* Landing page motion (D-65): scroll reveals, the honey line along the chain's steps, the header's shadow.
+/* Landing page motion (D-65, D-70): scroll reveals, the honey line along the chain's steps, the header's shadow,
+   pausing the decorative loops off screen, the trust section's background video.
    Without JavaScript, or with prefers-reduced-motion, everything is shown at once and the line is fully drawn. */
 (function () {
     'use strict';
@@ -47,6 +48,40 @@
         // compute only while the steps are near the screen
         new IntersectionObserver(function (entries) { lineVisible = entries[0].isIntersecting; if (lineVisible) onScroll(); }, { rootMargin: '25% 0px' }).observe(list);
     }
+    // D-70: decorative loops pause off screen and in a hidden tab
+    function onVisibility() { root.classList.toggle('is-hidden-tab', document.hidden); }
+    document.addEventListener('visibilitychange', onVisibility);
+    var sections = document.querySelectorAll('.ld-hero, .ld-night');
+    if ('IntersectionObserver' in window) {
+        var offscreen = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) { e.target.classList.toggle('is-offscreen', !e.isIntersecting); });
+        });
+        for (var s = 0; s < sections.length; s++) offscreen.observe(sections[s]);
+    }
+
+    // D-70: the trust section's background video: muted, inline, plays only while on screen and the tab is visible;
+    // with reduced motion (or without IntersectionObserver) only the poster is shown
+    var video = document.querySelector('.ld-night-video');
+    if (video) {
+        video.muted = true;
+        if (reduce || !('IntersectionObserver' in window)) {
+            video.preload = 'none';
+            video.removeAttribute('autoplay');
+        } else {
+            var onScreen = false;
+            var sync = function () {
+                if (onScreen && !document.hidden) {
+                    var p = video.play();
+                    if (p && p.catch) p.catch(function () { /* autoplay refused: the poster stays */ });
+                } else {
+                    video.pause();
+                }
+            };
+            new IntersectionObserver(function (entries) { onScreen = entries[0].isIntersecting; sync(); }, { threshold: 0.15 }).observe(video);
+            document.addEventListener('visibilitychange', sync);
+        }
+    }
+
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll, { passive: true });
     draw();

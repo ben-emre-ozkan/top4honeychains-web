@@ -6150,4 +6150,43 @@
   <data name="Printed on {0}" xml:space="preserve">
     <value>Printed on {0}</value>
   </data>
+  <data name="Land.Step1.Alt" xml:space="preserve">
+    <value>A frame full of bees is lifted from a hive in a hillside apiary at sunset.</value>
+  </data>
+  <data name="Land.Step2.Alt" xml:space="preserve">
+    <value>Gloved hands fit a numbered yellow seal to a jar of honey beside a scale.</value>
+  </data>
+  <data name="Land.Step3.Alt" xml:space="preserve">
+    <value>In the lab, a drop of honey goes onto a refractometer next to honey samples in vials.</value>
+  </data>
+  <data name="Land.Step4.Alt" xml:space="preserve">
+    <value>Jars of honey move along a filling line under a capping machine.</value>
+  </data>
+  <data name="Land.Step5.Alt" xml:space="preserve">
+    <value>In a shop, a honey jar with a QR code on its label is held up next to a phone.</value>
+  </data>
+  <data name="Land.OgImageAlt" xml:space="preserve">
+    <value>TOP4HoneyChains logo beside a honeycomb with bees</value>
+  </data>
+  <data name="Loader.Loading" xml:space="preserve">
+    <value>Loading…</value>
+  </data>
+  <data name="Loader.Saving" xml:space="preserve">
+    <value>Saving…</value>
+  </data>
+  <data name="Loader.Upload" xml:space="preserve">
+    <value>Uploading the PDF…</value>
+  </data>
+  <data name="Loader.Report" xml:space="preserve">
+    <value>Submitting the report…</value>
+  </data>
+  <data name="Loader.Seal" xml:space="preserve">
+    <value>Sealing the batch…</value>
+  </data>
+  <data name="Loader.Pdf" xml:space="preserve">
+    <value>Preparing the PDF…</value>
+  </data>
+  <data name="Footer.DevelopedBy" xml:space="preserve">
+    <value>Developed by {0}</value>
+  </data>
 </root>

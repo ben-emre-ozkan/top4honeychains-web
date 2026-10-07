@@ -206,7 +206,7 @@
     display: inline-flex; align-items: center; justify-content: center; gap: 8px;
     min-height: var(--b-touch); padding: 0 22px; border-radius: var(--b-radius-pill); border: 1px solid transparent;
     font-family: var(--b-text); font-weight: 600; font-size: 16px; line-height: 1; text-decoration: none; cursor: pointer;
-    transition: transform var(--b-fast) var(--b-ease), background var(--b-fast) var(--b-ease), box-shadow var(--b-fast) var(--b-ease);
+    transition: transform var(--b-fast) var(--b-ease);   /* D-70: only transform and opacity move */
 }
 .b-btn:hover { transform: translateY(-1px); }
 .b-btn-honey { background: var(--b-honey-grad); color: var(--b-on-honey); border-color: #FFC45E; box-shadow: 0 8px 22px rgba(255, 162, 58, 0.30); }
@@ -219,3 +219,16 @@
 
 /* logo images from the brand kit (docs/brand, D-69): never recoloured or redrawn, exempt from text contrast */
 .b-logo { display: block; height: auto; max-width: 100%; }
+
+/* D-70: animated mark + W3 wordmark (top bars, sign-in form); sizes of the <honey-mark> and the wordmark image */
+.b-brand-mark .honey-mark { width: 46px; height: 40px; }
+.b-brand-word { width: 177px; height: 13px; }
+
+/* D-70: "Developed by" Intala Lab: one caramel tone, full colour on hover and focus (opacity only) */
+.intala-credit { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.intala-logo { display: inline-grid; align-items: center; min-height: 44px; vertical-align: middle; }
+.intala-logo img { grid-area: 1 / 1; display: block; width: 84px; height: 30px; transition: opacity 200ms ease; }
+.intala-logo .intala-color { opacity: 0; }
+.intala-logo:hover .intala-color, .intala-logo:focus-visible .intala-color { opacity: 1; }
+.intala-logo:hover .intala-mono, .intala-logo:focus-visible .intala-mono { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .intala-logo img { transition: none; } }

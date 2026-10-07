@@ -6,7 +6,6 @@ Website: https://themesbrand.com/
 Contact: themesbrand@gmail.com
 File: Main Css File
 */
-@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600");
 [data-theme-mode=default] {
   --bs-danger: #ef6767 !important;
   --bs-danger-rgb: 239,103,103 !important;

@@ -1,0 +1,79 @@
+/* The animated brand mark (D-70). Markup: <honey-mark> tag helper (TagHelpers/HoneyMarkTagHelper.cs), which inlines
+   docs/brand/top4-mark-animated.svg; these rules are the master's own <style>, written once instead of per copy,
+   plus the loop modes and the page loader. Only transform and opacity are animated (docs/brand/MOTION.md).
+   States:
+   - hover (pointer devices), .is-active (honey-mark.js plays it once), .th-logo-trigger:focus-visible: the master's
+     moment: the bee lifts, wings flutter, halo and glow appear, one light sweep, pollen rises;
+   - .is-looping: wings flutter, the bee bobs, the halo breathes, the sweep repeats about every 3 s;
+   - .is-looping.is-slow: the same, calmer (empty states, error pages);
+   - prefers-reduced-motion: the static mark everywhere. */
+.hm { display: inline-flex; line-height: 0; flex-shrink: 0; }
+.honey-mark { display: block; overflow: visible; isolation: isolate; --th-duration: 620ms; --th-ease: cubic-bezier(.2, .8, .2, 1); }
+.honey-mark .th-lift { transition: transform var(--th-duration) var(--th-ease); transform: translateY(0); }
+.honey-mark .th-halo, .honey-mark .th-aura, .honey-mark .th-core-glow { opacity: 0; transition: opacity 550ms ease; }
+.honey-mark .th-shine { opacity: 0; transform: translateX(-480px); }
+.honey-mark .th-pollen { opacity: 0; }
+.honey-mark .th-wing-left { transform-origin: 243px 187px; }
+.honey-mark .th-wing-right { transform-origin: 269px 187px; }
+.honey-mark .th-wing { transition: transform var(--th-duration) var(--th-ease); }
+
+/* the moment: hover, played once, keyboard focus on the link around it */
+@media (hover: hover) {
+    .honey-mark:hover .th-lift, .th-logo-trigger:hover .honey-mark .th-lift { transform: translateY(-18px); }
+    .honey-mark:hover .th-halo, .th-logo-trigger:hover .honey-mark .th-halo { opacity: 1; }
+    .honey-mark:hover .th-aura, .th-logo-trigger:hover .honey-mark .th-aura { opacity: .6; }
+    .honey-mark:hover .th-core-glow, .th-logo-trigger:hover .honey-mark .th-core-glow { opacity: .75; }
+    .honey-mark:hover .th-wing-left, .th-logo-trigger:hover .honey-mark .th-wing-left { animation: th-flutter-left 240ms ease-in-out infinite alternate; }
+    .honey-mark:hover .th-wing-right, .th-logo-trigger:hover .honey-mark .th-wing-right { animation: th-flutter-right 240ms ease-in-out infinite alternate; }
+    .honey-mark:hover .th-shine, .th-logo-trigger:hover .honey-mark .th-shine { animation: th-sweep 1350ms 100ms ease-out both; }
+    .honey-mark:hover .th-pollen, .th-logo-trigger:hover .honey-mark .th-pollen { animation: th-pollen 1600ms var(--th-delay, 0ms) ease-out both; }
+}
+.honey-mark.is-active .th-lift, .th-logo-trigger:focus-visible .honey-mark .th-lift { transform: translateY(-18px); }
+.honey-mark.is-active .th-halo, .th-logo-trigger:focus-visible .honey-mark .th-halo { opacity: 1; }
+.honey-mark.is-active .th-aura, .th-logo-trigger:focus-visible .honey-mark .th-aura { opacity: .6; }
+.honey-mark.is-active .th-core-glow, .th-logo-trigger:focus-visible .honey-mark .th-core-glow { opacity: .75; }
+.honey-mark.is-active .th-wing-left, .th-logo-trigger:focus-visible .honey-mark .th-wing-left { animation: th-flutter-left 240ms ease-in-out infinite alternate; }
+.honey-mark.is-active .th-wing-right, .th-logo-trigger:focus-visible .honey-mark .th-wing-right { animation: th-flutter-right 240ms ease-in-out infinite alternate; }
+.honey-mark.is-active .th-shine, .th-logo-trigger:focus-visible .honey-mark .th-shine { animation: th-sweep 1350ms 100ms ease-out both; }
+.honey-mark.is-active .th-pollen, .th-logo-trigger:focus-visible .honey-mark .th-pollen { animation: th-pollen 1600ms var(--th-delay, 0ms) ease-out both; }
+
+@keyframes th-flutter-left { from { transform: rotate(-1.5deg) scaleY(1); } to { transform: rotate(-6deg) scaleY(.91); } }
+@keyframes th-flutter-right { from { transform: rotate(1.5deg) scaleY(1); } to { transform: rotate(6deg) scaleY(.91); } }
+@keyframes th-sweep { 0% { opacity: 0; transform: translateX(-480px); } 15% { opacity: .7; } 80% { opacity: .7; } 100% { opacity: 0; transform: translateX(460px); } }
+@keyframes th-pollen { 0% { opacity: 0; transform: translateY(8px); } 30% { opacity: .75; } 100% { opacity: 0; transform: translateY(-28px); } }
+
+/* loop mode: continuous, for the loader; the slow variant for empty states and error pages */
+.honey-mark.is-looping { --hm-wing: 240ms; --hm-bob: 2.4s; --hm-breathe: 3s; --hm-sweep: 3s; }
+.honey-mark.is-looping.is-slow { --hm-wing: 420ms; --hm-bob: 4.2s; --hm-breathe: 5s; --hm-sweep: 5.4s; }
+.honey-mark.is-looping .th-lift { transition: none; animation: hm-bob var(--hm-bob) ease-in-out infinite; }
+.honey-mark.is-looping .th-wing-left { animation: th-flutter-left var(--hm-wing) ease-in-out infinite alternate; }
+.honey-mark.is-looping .th-wing-right { animation: th-flutter-right var(--hm-wing) ease-in-out infinite alternate; }
+.honey-mark.is-looping .th-halo { transition: none; animation: hm-breathe var(--hm-breathe) ease-in-out infinite; }
+.honey-mark.is-looping .th-core-glow { transition: none; opacity: .55; }
+.honey-mark.is-looping .th-shine { animation: hm-sweep var(--hm-sweep) ease-out infinite; }
+.honey-mark.is-looping .th-pollen { animation: hm-pollen var(--hm-sweep) var(--th-delay, 0ms) ease-out infinite; }
+@keyframes hm-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes hm-breathe { 0%, 100% { opacity: .35; } 50% { opacity: .95; } }
+@keyframes hm-sweep { 0% { opacity: 0; transform: translateX(-480px); } 6% { opacity: .7; } 38% { opacity: .7; } 45% { opacity: 0; transform: translateX(460px); } 100% { opacity: 0; transform: translateX(460px); } }
+@keyframes hm-pollen { 0% { opacity: 0; transform: translateY(8px); } 15% { opacity: .7; } 50% { opacity: 0; transform: translateY(-28px); } 100% { opacity: 0; transform: translateY(-28px); } }
+
+/* paused off screen, in a hidden tab and while someone types (honey-mark.js sets the classes) */
+.honey-mark.hm-paused *, html.is-hidden-tab .honey-mark *, html.is-typing .honey-mark.is-looping * { animation-play-state: paused !important; }
+
+/* reduced motion: the static mark */
+@media (prefers-reduced-motion: reduce) {
+    .honey-mark *, .honey-mark.is-looping * { animation: none !important; transition: none !important; }
+    .honey-mark .th-lift, .honey-mark .th-wing { transform: none !important; }
+    .honey-mark .th-shine, .honey-mark .th-pollen, .honey-mark .th-halo, .honey-mark .th-aura, .honey-mark .th-core-glow { opacity: 0 !important; }
+}
+
+/* ------------------------------------------------------------------ page loader (_Loader partial, honey-mark.js) */
+.hm-loader { position: fixed; inset: 0; z-index: 3000; display: grid; place-items: center; padding: 24px;
+    background: radial-gradient(42% 38% at 50% 46%, rgba(255, 210, 90, 0.40), transparent 70%), radial-gradient(70% 60% at 50% 50%, rgba(255, 231, 174, 0.55), transparent 75%), var(--b-cream, #FFF4D6);
+    opacity: 0; transition: opacity 200ms ease; }
+.hm-loader[hidden] { display: none; }
+.hm-loader.is-on { opacity: 1; }
+.hm-loader-in { display: grid; justify-items: center; gap: 18px; text-align: center; }
+.hm-loader-text { margin: 0; min-height: 1.5em; color: var(--b-ink, #574A40); font-family: var(--b-text, system-ui, sans-serif); font-weight: 600; font-size: 17px; }
+@media (prefers-reduced-motion: reduce) { .hm-loader { transition: none; } }
+@media print { .hm-loader { display: none !important; } }

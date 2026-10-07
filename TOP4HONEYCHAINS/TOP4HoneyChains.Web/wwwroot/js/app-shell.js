@@ -100,7 +100,7 @@
             clearTimeout(pulseTimer);
             pulseTimer = setTimeout(function () {
                 Array.prototype.forEach.call(glowing, function (l) { l.classList.remove('work-pulse'); });
-            }, 4200);
+            }, 1300);   // the glow rises once (D-70)
         }
         if (rose || /^\(\d+\+?\) /.test(document.title)) document.title = count.total > 0 ? '(' + count.total + ') ' + baseTitle : baseTitle;
         if (rose && live) live.textContent = text(newCount === 1 ? live.getAttribute('data-one') : live.getAttribute('data-many'), newCount);

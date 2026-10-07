@@ -5,7 +5,7 @@ step-1-apiary.jpg ... step-5-shelf.jpg (and og-image.jpg, 1200x630, used as is f
 
     python scripts/landing-images.py
 
-It writes <name>-480.webp, <name>-960.webp and <name>-1440.webp next to each step image (never larger than the
+It writes <name>-480/-960/-1440.webp and the same widths as .avif next to each step image (never larger than the
 original) and resizes a step JPEG wider than 1440 px down to 1440 px. The page picks the variants up by itself.
 Needs Pillow (pip install Pillow). Re-running overwrites the variants.
 """
@@ -33,13 +33,16 @@ def main():
             image = image.resize((WIDTHS[-1], round(image.height * WIDTHS[-1] / image.width)), Image.LANCZOS)
             image.save(source, 'JPEG', quality=84, optimize=True, progressive=True)
         for width in WIDTHS:
-            target = FOLDER / f'{name}-{width}.webp'
+            webp = FOLDER / f'{name}-{width}.webp'
+            avif = FOLDER / f'{name}-{width}.avif'   # D-70: AVIF first in the srcset, WebP as the fallback
             if width > image.width:
-                target.unlink(missing_ok=True)
+                webp.unlink(missing_ok=True)
+                avif.unlink(missing_ok=True)
                 continue
             variant = image.resize((width, round(image.height * width / image.width)), Image.LANCZOS) if width < image.width else image
-            variant.save(target, 'WEBP', quality=80, method=6)
-            print(f'wrote    {target.name} ({target.stat().st_size // 1024} KB)')
+            variant.save(webp, 'WEBP', quality=80, method=6)
+            variant.save(avif, 'AVIF', quality=60, speed=4)
+            print(f'wrote    {webp.name} ({webp.stat().st_size // 1024} KB), {avif.name} ({avif.stat().st_size // 1024} KB)')
     og = FOLDER / 'og-image.jpg'
     print(('found    ' if og.exists() else 'missing  ') + og.name + ' (Open Graph image, 1200x630)')
     return 0 if found else 1

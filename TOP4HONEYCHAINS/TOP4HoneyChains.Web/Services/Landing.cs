@@ -47,12 +47,13 @@ namespace TOP4HoneyChains.Web.Services
         }
     }
 
-    // Landing images live in wwwroot/img/landing as <name>.jpg; scripts/landing-images.py adds <name>-<width>.webp.
-    // Until the JPEG exists the page shows a patterned placeholder.
-    public record LandingImage(string Name, string? Jpeg, IReadOnlyList<(string Url, int Width)> WebP)
+    // Landing images live in wwwroot/img/landing as <name>.jpg; scripts/landing-images.py adds <name>-<width>.avif and
+    // .webp (D-70). Until the JPEG exists the page shows a patterned placeholder.
+    public record LandingImage(string Name, string? Jpeg, IReadOnlyList<(string Url, int Width)> WebP, IReadOnlyList<(string Url, int Width)>? Avif = null)
     {
         public bool Exists => Jpeg != null;
         public string WebPSrcSet => string.Join(", ", WebP.Select(w => $"{w.Url} {w.Width}w"));
+        public string AvifSrcSet => string.Join(", ", (Avif ?? Array.Empty<(string, int)>()).Select(w => $"{w.Item1} {w.Item2}w"));
     }
 
     public static class LandingImages
@@ -66,7 +67,11 @@ namespace TOP4HoneyChains.Web.Services
             var jpeg = files.GetFileInfo($"{Folder}/{name}.jpg").Exists ? $"/{Folder}/{name}.jpg" : null;
             var webp = Widths.Where(w => files.GetFileInfo($"{Folder}/{name}-{w}.webp").Exists)
                 .Select(w => ($"/{Folder}/{name}-{w}.webp", w)).ToList();
-            return new LandingImage(name, jpeg, jpeg == null ? Array.Empty<(string, int)>() : webp);
+            var avif = Widths.Where(w => files.GetFileInfo($"{Folder}/{name}-{w}.avif").Exists)
+                .Select(w => ($"/{Folder}/{name}-{w}.avif", w)).ToList();
+            return jpeg == null
+                ? new LandingImage(name, null, Array.Empty<(string, int)>(), Array.Empty<(string, int)>())
+                : new LandingImage(name, jpeg, webp, avif);
         }
 
         // partner logos: any image in wwwroot/img/partners (empty for now)

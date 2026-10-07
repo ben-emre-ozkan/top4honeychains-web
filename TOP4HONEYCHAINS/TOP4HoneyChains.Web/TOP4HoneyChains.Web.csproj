@@ -241,4 +241,8 @@
     <PackageReference Include="SixLabors.ImageSharp" Version="3.1.12" />
   </ItemGroup>
 
+  <!-- D-70: the animated mark is inlined by TagHelpers/HoneyMarkTagHelper.cs; embedded so it does not depend on the web root -->
+  <ItemGroup>
+    <EmbeddedResource Include="wwwroot\img\brand\top4-mark-animated.svg" LogicalName="TOP4HoneyChains.Web.top4-mark-animated.svg" />
+  </ItemGroup>
 </Project>

@@ -22,10 +22,10 @@
     <partial name="~/Views/Shared/_Favicons.cshtml" />
     <link href="~/css/brand.css" rel="stylesheet" asp-append-version="true">
     <link href="~/css/error-page.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/css/honey-mark.css" rel="stylesheet" asp-append-version="true">
 </head>
 <body class="err">
     <main class="err-card" id="error-page" data-code="@code">
-        <a class="err-brand" href="/"><img class="b-logo" src="~/img/brand/top4-mark.svg" alt="TOP4HoneyChains" width="74" height="64"></a>
         <partial name="_BeeArt" model="@L["Work.EmptyArt"].Value" />
         <p class="err-code">@string.Format(L["Err.Code"].Value, code)</p>
         <h1 class="err-title">@L["Err." + kind + ".Title"]</h1>
@@ -43,5 +43,6 @@
         // "Go back" only when there is somewhere to go back to
         if (window.history.length <= 1) { var b = document.getElementById('error-back'); if (b) b.remove(); }
     </script>
+    <script src="~/js/honey-mark.js" asp-append-version="true" defer></script>
 </body>
 </html>

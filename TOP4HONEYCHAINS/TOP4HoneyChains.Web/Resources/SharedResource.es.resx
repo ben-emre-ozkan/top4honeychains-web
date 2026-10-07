@@ -6150,4 +6150,43 @@
   <data name="Printed on {0}" xml:space="preserve">
     <value>Impreso el {0}</value>
   </data>
+  <data name="Land.Step1.Alt" xml:space="preserve">
+    <value>Se saca de la colmena un cuadro lleno de abejas en un colmenar de ladera al atardecer.</value>
+  </data>
+  <data name="Land.Step2.Alt" xml:space="preserve">
+    <value>Unas manos con guantes colocan un precinto amarillo numerado en un tarro de miel junto a una báscula.</value>
+  </data>
+  <data name="Land.Step3.Alt" xml:space="preserve">
+    <value>En el laboratorio, una gota de miel se coloca en un refractómetro junto a muestras de miel en viales.</value>
+  </data>
+  <data name="Land.Step4.Alt" xml:space="preserve">
+    <value>Tarros de miel avanzan por una línea de llenado bajo una máquina taponadora.</value>
+  </data>
+  <data name="Land.Step5.Alt" xml:space="preserve">
+    <value>En una tienda, un tarro de miel con un código QR en la etiqueta se sostiene junto a un teléfono.</value>
+  </data>
+  <data name="Land.OgImageAlt" xml:space="preserve">
+    <value>Logotipo de TOP4HoneyChains junto a un panal con abejas</value>
+  </data>
+  <data name="Loader.Loading" xml:space="preserve">
+    <value>Cargando…</value>
+  </data>
+  <data name="Loader.Saving" xml:space="preserve">
+    <value>Guardando…</value>
+  </data>
+  <data name="Loader.Upload" xml:space="preserve">
+    <value>Subiendo el PDF…</value>
+  </data>
+  <data name="Loader.Report" xml:space="preserve">
+    <value>Enviando el informe…</value>
+  </data>
+  <data name="Loader.Seal" xml:space="preserve">
+    <value>Sellando el lote…</value>
+  </data>
+  <data name="Loader.Pdf" xml:space="preserve">
+    <value>Preparando el PDF…</value>
+  </data>
+  <data name="Footer.DevelopedBy" xml:space="preserve">
+    <value>Desarrollado por {0}</value>
+  </data>
 </root>

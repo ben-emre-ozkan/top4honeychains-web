@@ -146,7 +146,12 @@ if (app.Environment.IsProduction())
     app.UseHttpsRedirection();
 }
 
-app.UseStaticFiles();
+// D-70: AVIF landing images are not in the default content-type map; without it they fall through to the sign-in redirect
+{
+    var staticTypes = new Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider();
+    staticTypes.Mappings[".avif"] = "image/avif";
+    app.UseStaticFiles(new StaticFileOptions { ContentTypeProvider = staticTypes });
+}
 
 app.UseRouting();
 {

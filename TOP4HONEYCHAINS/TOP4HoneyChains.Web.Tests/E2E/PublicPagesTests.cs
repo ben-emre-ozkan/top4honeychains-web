@@ -101,7 +101,7 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             var html = WebUtility.HtmlDecode(await response.Content.ReadAsStringAsync());
             Assert.Contains($"data-code=\"{code}\"", html);
             Assert.Contains(title, html);
-            Assert.Contains("class=\"bee-art\"", html);
+            Assert.Contains("class=\"honey-mark is-looping is-slow\"", html);   // D-70: the animated mark, slow loop
             AssertNoExternalRequests(html);
             if (code == 500)
                 Assert.Matches("id=\"error-reference\">E-[A-Z2-9]{8}<", html);
