@@ -40,6 +40,12 @@
         (function (el) { setTimeout(function () { play(el); }, 300); })(once[i]);
     }
 
+    // [data-hm-click]: a button around a mark plays it on click (hover and keyboard focus are handled in CSS)
+    document.addEventListener('click', function (e) {
+        var trigger = e.target.closest && e.target.closest('[data-hm-click]');
+        if (trigger) play(trigger, 2200);
+    });
+
     // top bar: once per session after sign-in, and on success moments
     if (document.body && document.body.hasAttribute('data-hm-intro-reset')) store('remove', 'hm-intro');
     var intro = document.querySelector('[data-hm-intro]');

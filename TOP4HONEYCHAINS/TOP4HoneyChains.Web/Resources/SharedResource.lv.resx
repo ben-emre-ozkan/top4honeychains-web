@@ -6189,4 +6189,28 @@
   <data name="Footer.DevelopedBy" xml:space="preserve">
     <value>Izstrādāja {0}</value>
   </data>
+  <data name="Land.Hero.Line1" xml:space="preserve">
+    <value>Reģistrs un piekrišana</value>
+  </data>
+  <data name="Land.Hero.Line2" xml:space="preserve">
+    <value>KKP 0, aizzīmogots paraugs</value>
+  </data>
+  <data name="Land.Hero.Line3" xml:space="preserve">
+    <value>KKP 1, divu personu apstiprinājums</value>
+  </data>
+  <data name="Land.Hero.Line4" xml:space="preserve">
+    <value>KKP 2–9, partija aizzīmogota</value>
+  </data>
+  <data name="Land.Hero.Line5" xml:space="preserve">
+    <value>KKP 10, Medus stāsts</value>
+  </data>
+  <data name="Land.Hero.ChainLabel" xml:space="preserve">
+    <value>Ķēdes pieci posmi</value>
+  </data>
+  <data name="Land.PlayBee" xml:space="preserve">
+    <value>Atskaņot bites animāciju</value>
+  </data>
+  <data name="Land.Lang.Current" xml:space="preserve">
+    <value>Valoda: {0}</value>
+  </data>
 </root>

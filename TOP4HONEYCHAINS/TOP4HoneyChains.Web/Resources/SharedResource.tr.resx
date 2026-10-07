@@ -6189,4 +6189,28 @@
   <data name="Footer.DevelopedBy" xml:space="preserve">
     <value>{0} tarafından geliştirildi</value>
   </data>
+  <data name="Land.Hero.Line1" xml:space="preserve">
+    <value>Kayıt ve rıza</value>
+  </data>
+  <data name="Land.Hero.Line2" xml:space="preserve">
+    <value>KKN 0, mühürlü numune</value>
+  </data>
+  <data name="Land.Hero.Line3" xml:space="preserve">
+    <value>KKN 1, dört göz onayı</value>
+  </data>
+  <data name="Land.Hero.Line4" xml:space="preserve">
+    <value>KKN 2–9, parti mühürlenir</value>
+  </data>
+  <data name="Land.Hero.Line5" xml:space="preserve">
+    <value>KKN 10, Bal Hikâyesi</value>
+  </data>
+  <data name="Land.Hero.ChainLabel" xml:space="preserve">
+    <value>Zincirin beş adımı</value>
+  </data>
+  <data name="Land.PlayBee" xml:space="preserve">
+    <value>Arı animasyonunu oynat</value>
+  </data>
+  <data name="Land.Lang.Current" xml:space="preserve">
+    <value>Dil: {0}</value>
+  </data>
 </root>

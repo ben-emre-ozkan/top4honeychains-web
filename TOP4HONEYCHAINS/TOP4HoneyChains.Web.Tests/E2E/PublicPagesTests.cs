@@ -55,7 +55,7 @@ namespace TOP4HoneyChains.Web.Tests.E2E
         {
             var html = await GetAsync("/");
             AssertNoExternalRequests(html);
-            foreach (var id in new[] { "id=\"chain\"", "id=\"trust\"", "id=\"for-whom\"", "id=\"story\"", "data-honeycomb", "data-honey-line", "href=\"/Account/Login\"", "href=\"/verify-report\"" })
+            foreach (var id in new[] { "id=\"chain\"", "id=\"trust\"", "id=\"for-whom\"", "id=\"story\"", "data-hero-comb", "data-honey-line", "href=\"/Account/Login\"", "href=\"/verify-report\"" })
                 Assert.Contains(id, html);
             Assert.Equal(5, Regex.Matches(html, "class=\"ld-step ").Count);
             Assert.Contains("property=\"og:title\"", html);

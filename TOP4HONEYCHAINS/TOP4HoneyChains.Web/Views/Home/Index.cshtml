@@ -1,7 +1,8 @@
 @model TOP4HoneyChains.Web.Models.ViewModels.LandingViewModel
 @using TOP4HoneyChains.Web.Services
 @{
-    // Public landing page (D-65). Styles: wwwroot/css/brand.css + landing.css; motion: wwwroot/js/honeycomb.js + landing.js.
+    // Public landing page (D-65, D-71). Styles: wwwroot/css/brand.css + landing.css + honey-mark.css; motion: wwwroot/js/hero-comb.js
+    // (the hero honeycomb), landing.js (language switch, reveals, counters, phone) and honey-mark.js; rules in docs/brand/MOTION.md.
     // No external requests: fonts, scripts and images are served by the app. Counters are aggregates only (no personal data).
     Layout = null;
     var culture = System.Globalization.CultureInfo.CurrentUICulture;
@@ -42,6 +43,9 @@
         ("CNORTEGRANDE Cooperative", L["Argentina"].Value), ("Alimentos Naturales Natural Foods S.A.", L["Argentina"].Value),
         ("University of Economics in Katowice", L["Poland"].Value), ("Latvia University of Life Sciences and Technologies", L["Latvia"].Value)
     };
+    var heroLines = new[] { L["Land.Hero.Line1"].Value, L["Land.Hero.Line2"].Value, L["Land.Hero.Line3"].Value, L["Land.Hero.Line4"].Value, L["Land.Hero.Line5"].Value };
+    var heroSpots = new[] { (16, 76), (33, 26), (50, 76), (67, 26), (84, 76) };   // medallion centres (% of the chain area) on wide screens
+    var currentName = languages.First(l => l.Item1 == lang).Item2;
     var storyUrl = Model.DemoQr != null ? $"/honeystory/{Model.DemoQr.Value.ToString().ToUpperInvariant()}" : null;
 }
 <!DOCTYPE html>
@@ -76,7 +80,7 @@
         <meta name="twitter:image:alt" content="@L["Land.OgImageAlt"]">
     }
     <partial name="~/Views/Shared/_Favicons.cshtml" />
-    <link rel="preload" href="~/fonts/bricolage-grotesque/bricolage-grotesque-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="~/fonts/bricolage-grotesque/bricolage-grotesque-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="~/fonts/instrument-sans/instrument-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link href="~/css/brand.css" rel="stylesheet" asp-append-version="true">
     <link href="~/css/landing.css" rel="stylesheet" asp-append-version="true">
@@ -97,47 +101,86 @@
                 <a class="b-link" href="#for-whom">@L["Land.Nav.ForWhom"]</a>
                 <a class="b-link" href="#story">@L["Land.Nav.Story"]</a>
             </nav>
-            <nav class="ld-langs" aria-label="@L["Language"]">
-                @foreach (var (code, _) in languages)
+            <nav class="ld-lang" aria-label="@L["Language"]" data-lang-switch>
+                <span class="ld-lang-thumb" aria-hidden="true"></span>
+                <span class="ld-lang-globe"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.8 3 2.8 15 0 18M12 3c-2.8 3-2.8 15 0 18"/></svg></span>
+                @foreach (var (code, name) in languages)
                 {
-                    if (code == lang)
-                    {
-                        <span class="ld-lang is-current" lang="@code" aria-current="true">@code.ToUpperInvariant()</span>
-                    }
-                    else
-                    {
-                        <a class="ld-lang b-link" href="@Url.Action("SetLanguage", "Home", new { culture = code, returnUrl })" hreflang="@code" lang="@code">@code.ToUpperInvariant()</a>
-                    }
+                    <a class="ld-lang-opt" href="@Url.Action("SetLanguage", "Home", new { culture = code, returnUrl })" lang="@code" hreflang="@code" aria-label="@name" data-name="@name" aria-current="@(code == lang ? "true" : null)">@code.ToUpperInvariant()</a>
                 }
             </nav>
-            <a class="b-btn b-btn-ink ld-top-signin" href="/Account/Login">@L["Land.SignIn"]</a>
+            <div class="ld-lang-mini" data-lang-mini>
+                <button type="button" class="ld-lang-btn" aria-expanded="false" aria-controls="lang-pop" aria-label="@string.Format(L["Land.Lang.Current"].Value, currentName)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.8 3 2.8 15 0 18M12 3c-2.8 3-2.8 15 0 18"/></svg><span>@lang.ToUpperInvariant()</span></button>
+                <div class="ld-lang-pop" id="lang-pop" hidden>
+                    @foreach (var (code, name) in languages)
+                    {
+                        <a href="@Url.Action("SetLanguage", "Home", new { culture = code, returnUrl })" lang="@code" hreflang="@code" aria-current="@(code == lang ? "true" : null)"><span class="ld-lang-hex" aria-hidden="true">@code.ToUpperInvariant()</span>@name</a>
+                    }
+                </div>
+            </div>
+            <a class="b-btn b-btn-honey ld-top-signin ld-shine" href="/Account/Login">@L["Land.SignIn"]</a>
         </div>
     </header>
 
     <main id="main">
-        @* 1. hero: honeycomb with the chain's stations lighting up in turn *@
-        <section class="ld-hero" aria-labelledby="hero-title">
+        @* 1. hero: the live honeycomb behind the copy and the five-step chain (hero-comb.js) *@
+        <section class="ld-hero" data-hero aria-labelledby="hero-title">
             <div class="ld-hero-rays" aria-hidden="true"></div>
-            <canvas class="ld-hero-comb" data-honeycomb data-theme="light" data-speed="1" data-labels="@string.Join("|", stations)"
-                    data-path="0.07,0.70 0.29,0.38 0.50,0.66 0.71,0.34 0.93,0.60" data-path-wide="0.66,0.18 0.86,0.33 0.68,0.50 0.88,0.66 0.72,0.84" aria-hidden="true"></canvas>
+            <canvas class="ld-hcomb" data-hero-comb aria-hidden="true"></canvas>
             <div class="ld-wrap ld-hero-in">
-                <p class="ld-kicker">@L["Land.HeroKicker"]</p>
-                <h1 id="hero-title" class="ld-hero-title"><span class="b-visually-hidden">TOP4HoneyChains</span><honey-mark mode="once" size="96" class="ld-hero-mark" /><img class="ld-hero-wordmark" src="~/img/brand/top4-wordmark-w3.svg" alt="" aria-hidden="true" width="620" height="46"></h1>
-                <p class="ld-hero-tagline">@tagline</p>
-                <p class="ld-hero-lead">@L["Land.HeroLead"]</p>
-                <div class="ld-hero-actions">
-                    <a class="b-btn b-btn-honey" href="/Account/Login">@L["Land.SignIn"]</a>
-                    @if (Model.OrgModel)
-                    {
-                        <a class="b-btn b-btn-ghost" href="/verify-report">@L["Land.VerifyReport"]</a>
-                    }
+                <div class="ld-hcopy">
+                    <p class="ld-kicker" data-comb-calm>@L["Land.HeroKicker"]</p>
+                    <div class="ld-title-row">
+                        <button type="button" class="ld-hero-mark th-logo-trigger" data-hm-click aria-label="@L["Land.PlayBee"]"><honey-mark mode="once" size="110" /></button>
+                        <h1 id="hero-title" class="ld-hero-title" data-comb-calm><span class="b-visually-hidden">TOP4HoneyChains</span><span class="ld-wm" aria-hidden="true"><img src="~/img/brand/top4-wordmark-w3.svg" alt="" width="620" height="46"><span class="ld-wm-sweep"><i></i></span></span></h1>
+                    </div>
+                    <p class="ld-hero-tagline" data-comb-calm>@tagline</p>
+                    <p class="ld-hero-lead" data-comb-calm>@L["Land.HeroLead"]</p>
+                    <div class="ld-hero-actions">
+                        <a class="b-btn b-btn-honey ld-shine" href="/Account/Login">@L["Land.SignIn"]</a>
+                        @if (Model.OrgModel)
+                        {
+                            <a class="b-btn b-btn-ghost ld-arrow" href="/verify-report">@L["Land.VerifyReport"]<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                        }
+                    </div>
+                    <p class="ld-consumer" data-comb-calm>
+                        <span class="ld-qr-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 8V4h4M16 4h4v4M20 16v4h-4M8 20H4v-4"/><rect x="8" y="8" width="3" height="3"/><rect x="13" y="8" width="3" height="3"/><rect x="8" y="13" width="3" height="3"/><path d="M13 13h3v3"/></svg><i></i></span>
+                        <span>@L["Land.Consumer"]</span>
+                    </p>
                 </div>
-                <p class="ld-consumer">
-                    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M6 6h1v1H6zM17 6h1v1h-1zM6 17h1v1H6zM14 14h3v3h-3zM18 18h3v3h-3zM18 14h3M14 18v3" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
-                    <span>@L["Land.Consumer"]</span>
-                </p>
+                <ol class="ld-hchain" aria-label="@L["Land.Hero.ChainLabel"]">
+                    @for (var i = 0; i < 5; i++)
+                    {
+                        var image = Model.Steps.Count > i ? Model.Steps[i] : null;
+                        <li class="ld-hnode @(i % 2 == 1 ? "is-up" : "")" style="--x: @(heroSpots[i].Item1)%; --y: @(heroSpots[i].Item2)%">
+                            <div class="ld-hx">
+                                <span class="ld-hglow" aria-hidden="true"></span>
+                                @if (image?.Exists == true)
+                                {
+                                    <picture>
+                                        @if (image.Avif?.Count > 0)
+                                        {
+                                            <source type="image/avif" srcset="@image.AvifSrcSet" sizes="128px">
+                                        }
+                                        @if (image.WebP.Count > 0)
+                                        {
+                                            <source type="image/webp" srcset="@image.WebPSrcSet" sizes="128px">
+                                        }
+                                        <img src="@image.Jpeg" alt="" width="128" height="148" loading="lazy" decoding="async">
+                                    </picture>
+                                }
+                                else
+                                {
+                                    <span class="ld-hx-icon" aria-hidden="true"><partial name="_LandingIcon" model="@steps[i].Icon" /></span>
+                                }
+                                <span class="ld-hno" aria-hidden="true">@(i + 1)</span>
+                            </div>
+                            <p class="ld-hcap"><b>@stations[i]</b><small>@heroLines[i]</small></p>
+                        </li>
+                    }
+                </ol>
             </div>
-            <a class="ld-scroll b-link" href="#chain"><span>@L["Land.ScrollHint"]</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+            <a class="ld-scroll b-link" href="#chain"><img class="ld-scroll-bee" src="~/img/brand/top4-mark-small.svg" alt="" width="34" height="30"><span>@L["Land.ScrollHint"]</span></a>
         </section>
 
         @if (Model.Stats.Any)
@@ -152,7 +195,7 @@
                             {
                                 <div class="ld-stat" id="stat-@id">
                                     <dt>@label</dt>
-                                    <dd>@count.ToString("N0", culture)</dd>
+                                    <dd data-count="@count" style="min-width: @(count.ToString("N0", culture).Length)ch">@count.ToString("N0", culture)</dd>
                                 </div>
                             }
                         }
@@ -178,6 +221,7 @@
                         <li class="ld-step ld-reveal @(i % 2 == 1 ? "is-flip" : "")">
                             <span class="ld-node" aria-hidden="true"><partial name="_LandingIcon" model="@s.Icon" /></span>
                             <figure class="ld-step-media">
+                                <span class="ld-hexmask" aria-hidden="true"></span>
                                 @if (image?.Exists == true)
                                 {
                                     <picture>
@@ -208,10 +252,11 @@
             </div>
         </section>
 
-        @* 3. trust: the one dark section *@
+        <div class="ld-divider" aria-hidden="true"></div>
+        @* 3. trust: light honey-glow section with the background video *@
         <section class="ld-section ld-night" id="trust" aria-labelledby="trust-title">
             <div class="ld-night-media" aria-hidden="true">
-                <video class="ld-night-video" muted loop playsinline preload="metadata" poster="/media/honey-loop-poster.jpg" tabindex="-1" disablepictureinpicture disableremoteplayback>
+                <video class="ld-night-video" muted loop playsinline preload="none" poster="/media/honey-loop-poster.jpg" tabindex="-1" disablepictureinpicture disableremoteplayback>
                     <source src="/media/honey-loop-720.webm" type="video/webm">
                     <source src="/media/honey-loop-720.mp4" type="video/mp4">
                 </video>
@@ -225,7 +270,7 @@
                 <ul class="ld-trust">
                     @foreach (var t in trust)
                     {
-                        <li class="ld-trust-card ld-reveal">
+                        <li class="ld-trust-card ld-card ld-reveal">
                             <span class="ld-hex-icon" aria-hidden="true"><partial name="_LandingIcon" model="@t.Icon" /></span>
                             <h3>@t.Title</h3>
                             <p>@t.Text</p>
@@ -239,6 +284,7 @@
             </div>
         </section>
 
+        <div class="ld-divider" aria-hidden="true"></div>
         @* 4. for whom *@
         <section class="ld-section" id="for-whom" aria-labelledby="who-title">
             <div class="ld-wrap">
@@ -249,7 +295,7 @@
                 <ul class="ld-who">
                     @foreach (var a in audiences)
                     {
-                        <li class="ld-who-card ld-reveal">
+                        <li class="ld-who-card ld-card ld-reveal">
                             <span class="ld-hex-icon" aria-hidden="true"><partial name="_LandingIcon" model="@a.Icon" /></span>
                             <h3>@a.Title</h3>
                             <p>@a.Text</p>
@@ -259,7 +305,8 @@
             </div>
         </section>
 
-        @* 5. Honey Story preview: the real page of the demo batch in a phone frame *@
+        <div class="ld-divider" aria-hidden="true"></div>
+        @* 5. Honey Story preview: the real page of the demo batch in a phone frame (float, tilt, slow scroll) *@
         <section class="ld-section ld-story" id="story" aria-labelledby="story-title">
             <div class="ld-wrap ld-story-in">
                 <div class="ld-story-text ld-reveal">
@@ -281,11 +328,12 @@
                         <p class="ld-consumer"><span>@L["Land.Consumer"]</span></p>
                     }
                 </div>
-                <div class="ld-phone ld-reveal" aria-hidden="@(storyUrl == null ? "true" : "false")">
+                <div class="ld-phone-stage ld-reveal">
+                <div class="ld-phone" data-tilt aria-hidden="@(storyUrl == null ? "true" : "false")">
                     <div class="ld-phone-screen">
                         @if (storyUrl != null)
                         {
-                            <iframe src="@(storyUrl)?culture=@lang" title="@L["Land.Story.FrameTitle"]" loading="lazy" tabindex="-1" scrolling="no" referrerpolicy="same-origin"></iframe>
+                            <div class="ld-phone-scroll"><iframe src="@(storyUrl)?culture=@lang" title="@L["Land.Story.FrameTitle"]" loading="lazy" tabindex="-1" scrolling="no" referrerpolicy="same-origin"></iframe></div>
                         }
                         else
                         {
@@ -299,8 +347,10 @@
                         }
                     </div>
                 </div>
+                </div>
             </div>
         </section>
+        <div class="ld-divider" aria-hidden="true"></div>
     </main>
 
     @* 6. footer: language switch, partners (logos from wwwroot/img/partners when added), contact *@
@@ -309,7 +359,7 @@
             <div class="ld-footer-grid">
                 <div>
                     <a class="ld-brand b-link" href="#top">
-                        <img class="b-logo" src="~/img/brand/top4-logo-w2.svg" alt="TOP4HoneyChains" width="115" height="48">
+                        <img class="b-logo" src="~/img/brand/top4-logo-w2.svg" alt="TOP4HoneyChains" width="115" height="48" loading="lazy" decoding="async">
                     </a>
                     <p class="ld-footer-tag">@tagline</p>
                     <h2 class="ld-footer-h">@L["Contact"]</h2>
@@ -334,7 +384,7 @@
                         <ul class="ld-partners" id="partner-list">
                             @foreach (var (name, country) in partners)
                             {
-                                <li><span>@name</span> <span class="ld-country">@country</span></li>
+                                <li><span class="ld-partner">@name</span> <span class="ld-country">@country</span></li>
                             }
                         </ul>
                     }
@@ -362,7 +412,7 @@
         </div>
     </footer>
 
-    <script src="~/js/honeycomb.js" asp-append-version="true" defer></script>
+    <script src="~/js/hero-comb.js" asp-append-version="true" defer></script>
     <script src="~/js/landing.js" asp-append-version="true" defer></script>
     <script src="~/js/honey-mark.js" asp-append-version="true" defer></script>
 </body>
