@@ -514,7 +514,10 @@ body.app-skin a.app-tap { display: inline-flex; align-items: center; gap: 4px; m
 /* D-69: logo in the top bar (W3, the small mark on phones), footer logo */
 .app-brand { gap: 8px; }
 @media (max-width: 575.98px) { .app-brand .b-brand-word { display: none; } }
-body.app-skin .app-foot-logo { display: inline-block; vertical-align: middle; width: 77px; height: 32px; margin-right: 8px; }
+/* footer row: logo, copyright and the Intala credit centred on one line (wraps on phones) */
+body.app-skin .app-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 4px 10px; }
+body.app-skin .app-foot-logo { display: block; width: 77px; height: 32px; }
+@media (max-width: 575.98px) { body.app-skin .app-foot-sep { display: none; } }
 @media print { .print-head-brand img { width: 55px; height: 48px; } }
 
 /* ------------------------------------------------------------------ D-70 motion system (docs/brand/MOTION.md)
