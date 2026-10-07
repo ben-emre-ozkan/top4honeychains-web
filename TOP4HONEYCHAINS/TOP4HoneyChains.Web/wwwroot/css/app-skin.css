@@ -526,3 +526,6 @@ body.app-skin .app-foot-logo { display: block; width: 77px; height: 32px; }
 body.app-skin :is(.nav-link, .dropdown-item, .page-link, .form-check-input, .list-group-item, .accordion-button, .form-control, .form-select) { transition: none; }
 body.app-skin .collapsing { transition: none !important; }
 html.is-typing .work-pulse::before, html.is-typing .work-pulse .work-badge, html.is-hidden-tab .work-pulse::before, html.is-hidden-tab .work-pulse .work-badge { animation: none !important; }
+/* DataTables pagination wraps on phones instead of widening the page */
+body.app-skin .dataTables_paginate .pagination { flex-wrap: wrap; justify-content: center; row-gap: 4px; }
+@media (max-width: 575.98px) { body.app-skin .dataTables_paginate .pagination .page-link { padding-left: 10px; padding-right: 10px; } }
