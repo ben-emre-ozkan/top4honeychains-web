@@ -76,8 +76,13 @@ body.au { margin: 0; font-family: var(--b-text); font-size: 16px; line-height: 1
     .au-home { min-width: var(--b-touch); justify-content: center; }
     .au-home-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
     .au-points { display: none; }
-    .au-brand { font-size: 19px; }
+    .au-brand { display: none; }
     .au-main { padding-top: 8px; }
     .au-card { margin: 0; padding-top: 20px; }
     .au-title { font-size: 28px; }
 }
+
+/* D-69: the stacked logo in the panel, the W3 logo above the form (on phones only the W3 logo; the panel is a short strip) */
+.au-brand .b-logo { width: 158px; height: 180px; }
+.au-form-logo { display: inline-flex; align-items: center; min-height: var(--b-touch); margin-bottom: 18px; }
+.au-form-logo .b-logo { width: 172px; height: 40px; }

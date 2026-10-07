@@ -203,3 +203,11 @@ html.js:not(.ld-static) .ld-reveal.is-in { opacity: 1; transform: none; }
     .ld-hero-rays, .ld-night-rays, .ld-scroll svg { animation: none; }
     .ld-who-card, .ld-who-card:hover, .b-btn:hover { transition: none; transform: none; }
 }
+
+/* D-69: the logo; the hero title is the W3 wordmark image (the h1 keeps the name as text for screen readers and search) */
+.ld-brand .b-logo-full { width: 172px; height: 40px; }
+.ld-brand .b-logo-mark { display: none; width: 46px; height: 40px; }
+@media (max-width: 575.98px) { .ld-brand .b-logo-full { display: none; } .ld-brand .b-logo-mark { display: block; } }
+.ld-hero-in > .ld-hero-title { white-space: normal; line-height: 1; }
+.ld-hero-wordmark { display: block; width: min(100%, 640px); height: auto; }
+.ld-footer .ld-brand .b-logo { width: 115px; height: 48px; }
