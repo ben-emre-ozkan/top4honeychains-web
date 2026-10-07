@@ -95,7 +95,7 @@
                                     <td>@l.RawHoneyProductionApiary?.ApiaryTitle</td>
                                     <td>@Ref.T("HoneyType", l.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeId, "Title", l.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle)</td>
                                     <td>@l.RawHoneyProductionAmount</td>
-                                    <td>@l.RawHoneyProductionDate?.ToString("dd.MM.yyyy") <a asp-controller="Flow" asp-action="Lot" asp-route-id="@l.RawHoneyProductionId" class="small ms-1 flow-link">@L["Flow.Title"]</a> <a asp-controller="Recall" asp-action="Lot" asp-route-id="@l.RawHoneyProductionId" class="small ms-1">@L["Cust.Recall"]</a></td>
+                                    <td>@l.RawHoneyProductionDate?.ToString("dd.MM.yyyy") @if (can.Count > 0 || l.OwnerOrgId == active?.OrgId) { <a asp-controller="Flow" asp-action="Lot" asp-route-id="@l.RawHoneyProductionId" class="small ms-1 flow-link">@L["Flow.Title"]</a> } <a asp-controller="Recall" asp-action="Lot" asp-route-id="@l.RawHoneyProductionId" class="small ms-1">@L["Cust.Recall"]</a></td>
                                     <td>
                                         @foreach (var a in l.RawHoneyCCPAssignments.Where(a => can.Contains(a.RawHoneyCCPAssignmentCCP)).OrderBy(a => a.RawHoneyCCPAssignmentCCP))
                                         {
