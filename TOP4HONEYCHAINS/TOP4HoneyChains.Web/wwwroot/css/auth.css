@@ -88,3 +88,4 @@ body.au { margin: 0; font-family: var(--b-text); font-size: 16px; line-height: 1
 .au-brand .honey-mark { width: 156px; height: auto; }
 .au-brand-word { width: 158px; height: 66px; }
 .au-form-logo { display: inline-flex; align-items: center; gap: 8px; min-height: var(--b-touch); margin-bottom: 18px; }
+.au-foot.b-credit-row { justify-content: center; }
