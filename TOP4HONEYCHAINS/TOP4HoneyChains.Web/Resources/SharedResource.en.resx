@@ -6189,4 +6189,28 @@
   <data name="Footer.DevelopedBy" xml:space="preserve">
     <value>Developed by {0}</value>
   </data>
+  <data name="Land.Hero.Line1" xml:space="preserve">
+    <value>Registry and consent</value>
+  </data>
+  <data name="Land.Hero.Line2" xml:space="preserve">
+    <value>CCP 0, sealed sample</value>
+  </data>
+  <data name="Land.Hero.Line3" xml:space="preserve">
+    <value>CCP 1, four-eyes approval</value>
+  </data>
+  <data name="Land.Hero.Line4" xml:space="preserve">
+    <value>CCP 2–9, batch sealed</value>
+  </data>
+  <data name="Land.Hero.Line5" xml:space="preserve">
+    <value>CCP 10, Honey Story</value>
+  </data>
+  <data name="Land.Hero.ChainLabel" xml:space="preserve">
+    <value>The five steps of the chain</value>
+  </data>
+  <data name="Land.PlayBee" xml:space="preserve">
+    <value>Play the bee animation</value>
+  </data>
+  <data name="Land.Lang.Current" xml:space="preserve">
+    <value>Language: {0}</value>
+  </data>
 </root>

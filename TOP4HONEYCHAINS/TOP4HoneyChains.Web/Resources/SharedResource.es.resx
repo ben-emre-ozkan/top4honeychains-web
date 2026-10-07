@@ -6189,4 +6189,28 @@
   <data name="Footer.DevelopedBy" xml:space="preserve">
     <value>Desarrollado por {0}</value>
   </data>
+  <data name="Land.Hero.Line1" xml:space="preserve">
+    <value>Registro y consentimiento</value>
+  </data>
+  <data name="Land.Hero.Line2" xml:space="preserve">
+    <value>PCC 0, muestra precintada</value>
+  </data>
+  <data name="Land.Hero.Line3" xml:space="preserve">
+    <value>PCC 1, doble aprobación</value>
+  </data>
+  <data name="Land.Hero.Line4" xml:space="preserve">
+    <value>PCC 2–9, lote sellado</value>
+  </data>
+  <data name="Land.Hero.Line5" xml:space="preserve">
+    <value>PCC 10, Historia de la miel</value>
+  </data>
+  <data name="Land.Hero.ChainLabel" xml:space="preserve">
+    <value>Los cinco pasos de la cadena</value>
+  </data>
+  <data name="Land.PlayBee" xml:space="preserve">
+    <value>Reproducir la animación de la abeja</value>
+  </data>
+  <data name="Land.Lang.Current" xml:space="preserve">
+    <value>Idioma: {0}</value>
+  </data>
 </root>

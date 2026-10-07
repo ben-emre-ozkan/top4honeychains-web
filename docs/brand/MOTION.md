@@ -40,6 +40,14 @@ The top-bar mark (`data-hm-intro`) plays once per browser session after sign-in 
 - `aria-busy="true"` on the body while it shows, and the line in a polite live region;
 - not for new tabs, downloads (`download`, `data-no-loader`), hash links, menus, or a submit that client validation stopped; hidden again on back and forward navigation.
 
+## Canvas animations (D-71, the landing hero)
+
+- Draw what does not change once (an offscreen canvas) and copy it each frame; look cells up through a grid, never by searching every cell.
+- Build after `load`, in idle time, and split layout reads from heavy drawing so no task exceeds 50 ms (check with 4× CPU throttling).
+- Cap the device pixel ratio at 2; no `shadowBlur` per frame (draw a wide soft stroke under the core stroke instead).
+- Pointer effects for mouse and pen only; touch gets the tap effect. Stop the loop off screen and in a hidden tab; reduced motion draws one static frame.
+- Text over a canvas keeps its contrast: damp the effect behind the copy, or give the text a light plate.
+
 ## Checklist for new screens
 
 - Is it a data-entry screen? Then add no motion.
