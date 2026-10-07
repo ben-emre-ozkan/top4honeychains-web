@@ -83,19 +83,20 @@ html.js .ld-lang.is-ready .ld-lang-opt[aria-current="true"] { background: transp
     -webkit-mask-image: radial-gradient(circle, #000 8%, rgba(0, 0, 0, 0.35) 30%, transparent 56%); mask-image: radial-gradient(circle, #000 8%, rgba(0, 0, 0, 0.35) 30%, transparent 56%);
     animation: ld-spin 140s linear infinite; }
 @keyframes ld-spin { to { transform: rotate(360deg); } }
-.ld-hero-in { position: relative; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 24px; align-items: center;
+.ld-hero .ld-wrap { max-width: 1360px; }
+.ld-hero-in { position: relative; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(24px, 3vw, 48px); align-items: center;
     padding-top: clamp(48px, 7vw, 88px); padding-bottom: clamp(72px, 8vw, 104px); }
 .ld-hcopy { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
 .ld-title-row { display: flex; align-items: center; gap: clamp(10px, 1.6vw, 18px); }
-.ld-hero-mark { width: clamp(84px, 9vw, 118px); min-height: var(--b-touch); flex-shrink: 0; padding: 0; border: 0; background: none; cursor: pointer; line-height: 0; border-radius: 16px; }
+.ld-hero-mark { width: clamp(96px, 10vw, 132px); min-height: var(--b-touch); flex-shrink: 0; padding: 0; border: 0; background: none; cursor: pointer; line-height: 0; border-radius: 16px; }
 .ld-hero-mark .hm, .ld-hero-mark .honey-mark { width: 100%; height: auto; }
-.ld-hero-title { flex: 1 1 0; min-width: 0; max-width: 560px; line-height: 0; }
+.ld-hero-title { flex: 0 1 auto; min-width: 0; width: clamp(180px, 19vw, 250px); line-height: 0; }
 .ld-wm { position: relative; display: block; }
 .ld-wm img { width: 100%; height: auto; }
 /* the light sweep passes over the wordmark once: a band moves (transform) under a wordmark-shaped mask */
 .ld-wm-sweep { position: absolute; inset: 0; overflow: hidden; pointer-events: none;
-    -webkit-mask: url("/img/brand/top4-wordmark-w3.svg") center / 100% 100% no-repeat; mask: url("/img/brand/top4-wordmark-w3.svg") center / 100% 100% no-repeat; }
-.ld-wm-sweep i { position: absolute; top: 0; bottom: 0; left: 0; width: 40%; background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.95) 50%, transparent);
+    -webkit-mask: url("/img/brand/top4-wordmark-w2.svg") center / 100% 100% no-repeat; mask: url("/img/brand/top4-wordmark-w2.svg") center / 100% 100% no-repeat; }
+.ld-wm-sweep i { position: absolute; top: 0; bottom: 0; left: 0; width: 55%; background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.95) 50%, transparent);
     transform: translateX(-110%); animation: ld-sweep 2.4s 500ms var(--b-ease) both; }
 @keyframes ld-sweep { to { transform: translateX(260%); } }
 .ld-hero-tagline { font-family: var(--b-display); font-weight: 700; font-size: clamp(22px, 2.4vw, 30px); line-height: 1.2; color: var(--b-heading); letter-spacing: -0.01em; max-width: 24ch; text-wrap: balance; }
@@ -111,19 +112,19 @@ html.js .ld-lang.is-ready .ld-lang-opt[aria-current="true"] { background: transp
 @keyframes ld-scan { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(18px); } }
 
 /* the five-step chain: hex medallions; captions above the top row and below the bottom row */
-.ld-hchain { position: relative; min-height: 540px; }
+.ld-hchain { position: relative; min-height: 640px; }
 .ld-hnode { position: absolute; left: var(--x); top: var(--y); width: 168px; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
 .ld-hnode.is-up { flex-direction: column-reverse; }
-.ld-hx { position: relative; width: 128px; aspect-ratio: 0.866; flex-shrink: 0; transition: transform 500ms var(--b-ease); }
+.ld-hx { position: relative; width: 140px; aspect-ratio: 0.866; flex-shrink: 0; transition: transform 700ms var(--b-ease); }
 .ld-hx::before, .ld-hx::after { content: ""; position: absolute; inset: 0; clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); }
 .ld-hx::before { background: linear-gradient(140deg, #F3E1BC, #E8CFA0); }
-.ld-hx::after { background: linear-gradient(140deg, #FFE27A, #FFA23A); opacity: 0; transition: opacity 500ms ease; }
-.ld-hglow { position: absolute; inset: -30%; z-index: -1; border-radius: 50%; background: radial-gradient(closest-side, rgba(255, 180, 50, 0.55), rgba(255, 180, 50, 0) 70%); opacity: 0; transition: opacity 500ms ease; }
+.ld-hx::after { background: linear-gradient(140deg, #FFE27A, #FFA23A); opacity: 0; transition: opacity 700ms ease-in-out; }
+.ld-hglow { position: absolute; inset: -30%; z-index: -1; border-radius: 50%; background: radial-gradient(closest-side, rgba(255, 180, 50, 0.55), rgba(255, 180, 50, 0) 70%); opacity: 0; transition: opacity 900ms ease-in-out; }
 .ld-hx picture, .ld-hx-icon { position: absolute; inset: 6px; z-index: 1; clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); }
 .ld-hx img { width: 100%; height: 100%; object-fit: cover; }
 .ld-hx-icon { display: grid; place-items: center; background: var(--b-cream); color: var(--b-honey-ink); }
 .ld-hno { position: absolute; z-index: 2; right: 2px; top: 14px; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
-    background: #FFFFFF; color: var(--b-heading); font: 700 13px/1 var(--b-display); box-shadow: 0 0 0 2px var(--b-line); transition: transform 240ms var(--b-ease); }
+    background: #FFFFFF; color: var(--b-heading); font: 700 13px/1 var(--b-display); box-shadow: 0 0 0 2px var(--b-line); transition: transform 420ms var(--b-ease); }
 .ld-hcap { display: flex; flex-direction: column; gap: 2px; padding: 4px 10px 5px; border-radius: 12px; background: rgba(255, 255, 255, 0.88); }
 .ld-hcap b { font: 700 15px/1.2 var(--b-display); color: var(--b-heading); }
 .ld-hcap small { font-size: 12.5px; line-height: 1.35; color: var(--b-muted); }
@@ -147,6 +148,8 @@ html.js .ld-lang.is-ready .ld-lang-opt[aria-current="true"] { background: transp
 }
 @media (max-width: 575.98px) {
     .ld-hero-actions .b-btn { flex: 1 1 auto; justify-content: center; }
+    .ld-hchain { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ld-hnode:last-child:nth-child(odd) { grid-column: 1 / -1; }
     .ld-hero-lead { font-size: 16.5px; }
     .ld-consumer { border-radius: 18px; }
 }
