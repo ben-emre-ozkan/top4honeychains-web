@@ -11,9 +11,10 @@ namespace TOP4HoneyChains.Web.Models.ViewModels.HoneyStory
         public string? BeekeeperName { get; set; }
         public string? HoneyType { get; set; }
         public decimal UsedAmount { get; set; }
-        // Approximate (rounded to 0.1°, D-12), never the exact apiary position
-        public decimal? Latitude { get; set; }
-        public decimal? Longitude { get; set; }
+        public DateOnly? HarvestedOn { get; set; }
+
+        // D-72: plate code of the province (0 when unknown); the only place information on the public page
+        public int ProvincePlate { get; set; }
 
         // Photos for that apiary
         public List<HoneyStoryPhoto> Photos { get; set; } = new();
@@ -28,5 +29,6 @@ namespace TOP4HoneyChains.Web.Models.ViewModels.HoneyStory
         public string? LabReportCode { get; set; }
         public string? LabName { get; set; }
         public bool LabAccredited { get; set; }
+        public DateTime? LabApprovedAt { get; set; }
     }
 }

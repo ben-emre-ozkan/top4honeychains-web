@@ -154,7 +154,8 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             Assert.Contains("id=\"sf-badge-lab\"", html);
             var centre = ProvinceMap.ByPlate(81)!;
             var (x, y) = ProvinceMap.ToMap(centre.Latitude, centre.Longitude);
-            Assert.Contains($"class=\"sf-map-dot\" cx=\"{x.ToString(CultureInfo.InvariantCulture)}\" cy=\"{y.ToString(CultureInfo.InvariantCulture)}\"", html);
+            Assert.Contains($"class=\"tmap-mark-dot\" cx=\"{x.ToString(CultureInfo.InvariantCulture)}\" cy=\"{y.ToString(CultureInfo.InvariantCulture)}\"", html);
+            Assert.Contains("id=\"sf-map-p81\"", html);                    // D-72: the shared map marks the province
 
             // never: phone number, exact location, birth date, sample content of the demo
             Assert.DoesNotContain("9876543", html);
@@ -173,8 +174,15 @@ namespace TOP4HoneyChains.Web.Tests.E2E
 
             // the Honey Story of the batch: same rules, beekeeper linked to the page, lab report to the verification page
             var story = WebUtility.HtmlDecode(await visitor.HtmlAsync($"/honeystory/{seed.BatchQr}"));
-            foreach (var section in new[] { "hs-origins", "hs-map", "hs-sources", "hs-lab", "lab-report", "process" })
+            foreach (var section in new[] { "hs-journey", "hs-origins", "hs-map", "hs-sources", "hs-lab", "lab-report", "process" })
                 Assert.Contains($"id=\"{section}\"", story);
+            // D-72: origins by province on the shared map, computed on the server; no coordinate of the apiary is sent
+            var plate = TurkeyMap.PlateAt((double)Latitude, (double)Longitude);
+            Assert.InRange(plate, 1, 81);
+            Assert.Contains($"id=\"hs-tmap-p{plate}\"", story);
+            Assert.Contains($"<b>{Provinces.ByPlate(plate)}</b>", story);
+            Assert.DoesNotContain("hs-map-area", story);
+            Assert.Contains("data-step", story);
             Assert.Contains($"href=\"/storefront/{seed.Code}\" class=\"storefront-link\"", story);
             Assert.Contains("/verify-report?code=SFREP", story);
             Assert.Contains("id=\"hs-limits-pending\"", story);

@@ -1,15 +1,229 @@
-﻿@{
+﻿@using System.Globalization
+@using TOP4HoneyChains.Web.Services
+@using TOP4HoneyChains.Web.Models.ViewModels
+@model AdminHomeViewModel
+@{
     ViewBag.Title = L["TOP4HoneyChains Project"].Value;
     ViewBag.subTitle = "TOP4HoneyChains";
     ViewBag.pageTitle = "TOP4HoneyChains";
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+
+    // D-72: the admin home. Styles: wwwroot/css/admin-home.css and tmap.css; motion: admin-home.js (count-up), hero-comb.js
+    // (the chain strip) and tmap.js; rules in docs/brand/MOTION.md. Figures are real data (cached 5 minutes), never invented.
+    var culture = CultureInfo.CurrentUICulture;
+    var f = Model.Figures;
+    var hour = DateTime.Now.Hour;
+    var greeting = hour < 12 ? L["Home.Greeting.Morning", Model.UserName] : hour < 18 ? L["Home.Greeting.Afternoon", Model.UserName] : L["Home.Greeting.Evening", Model.UserName];
+    var stations = new[] { ("apiary", L["Land.Station.Apiary"].Value), ("delivery", L["Land.Station.Delivery"].Value), ("lab", L["Land.Station.Lab"].Value), ("processing", L["Land.Station.Processing"].Value), ("shelf", L["Land.Station.Shelf"].Value) };
+    var kpis = new (string Key, string Icon, int? Value, string? Url)[]
+    {
+        ("Lots", "apiary", f.Kpis.LotsThisMonth, "/RawHoneyProductions/Index"),
+        ("Batches", "processing", f.Kpis.BatchesFinalized, "/FinalHoneyProductions/Index"),
+        ("Reports", "lab", f.Kpis.ApprovedLabReports, Model.OrgModel ? "/Samples/Index" : null),
+        ("Waiting", "foureyes", f.Kpis.ApprovalsWaiting, Model.OrgModel ? "#ah-waiting" : null),
+        ("Orgs", "verified", f.Kpis.VerifiedOrganizations, Model.OrgModel ? "/Organizations/Index" : null)
+    };
+    var mapAreas = f.Provinces.Select(p => new TurkeyMapArea(p.Plate, p.Apiaries > 0 ? p.Apiaries : 0.5, L["Home.Map.Tip", p.Beekeepers, p.Apiaries].Value)).ToList();
+    var maxApiaries = f.Provinces.Count == 0 ? 0 : f.Provinces.Max(p => p.Apiaries);
+    string When(DateTime? at) => at?.ToString(at.Value.Date == DateTime.Today ? "HH:mm" : "d MMM, HH:mm", culture) ?? "";
+    string Iso(DateTime? at) => at?.ToString("yyyy-MM-ddTHH:mm", CultureInfo.InvariantCulture) ?? "";
 }
 
+@section AddToHead {
+    <link href="~/css/tmap.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/css/admin-home.css" rel="stylesheet" asp-append-version="true" />
+}
 
 <body data-topbar="light" data-layout="horizontal">
 
     <div class="page-content">
         <div class="container-fluid">
+
+            <section class="ah" aria-labelledby="ah-title">
+                @* welcome band: greeting, the small animated bee, a soft banner from the landing step photos (decorative) *@
+                <div class="ah-welcome ah-in" style="--i: 0">
+                    <div class="ah-banner" aria-hidden="true">
+                        @foreach (var img in Model.Steps.Where(s => s.Exists))
+                        {
+                            var webp = img.WebP.FirstOrDefault();
+                            <picture>
+                                @if (img.Avif?.Count > 0)
+                                {
+                                    <source type="image/avif" srcset="@img.Avif[0].Url">
+                                }
+                                @if (webp.Url != null)
+                                {
+                                    <source type="image/webp" srcset="@webp.Url">
+                                }
+                                <img src="@img.Jpeg" alt="" width="480" height="320" loading="lazy" decoding="async">
+                            </picture>
+                        }
+                    </div>
+                    <div class="ah-welcome-copy">
+                        <button type="button" class="ah-bee th-logo-trigger" data-hm-click aria-label="@L["Land.PlayBee"]"><honey-mark mode="once" size="58" /></button>
+                        <div>
+                            <p class="ah-kicker">@L["Home.Kicker"] · <time datetime="@DateTime.Today.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)">@DateTime.Today.ToString("D", culture)</time></p>
+                            <h1 class="ah-title" id="ah-title">@greeting</h1>
+                            <p class="ah-lead">@L["Home.Lead"]</p>
+                        </div>
+                    </div>
+                </div>
+
+                @* figures: count up once when visible; a tile without data shows an empty state, never an invented number *@
+                <ul class="ah-kpis" aria-label="@L["Home.Kpi.Title"]">
+                    @for (var i = 0; i < kpis.Length; i++)
+                    {
+                        var k = kpis[i];
+                        var empty = k.Value is null or 0;
+                        <li class="ah-kpi ah-in@(empty ? " is-empty" : "")" style="--i: @(i + 1)" id="kpi-@k.Key.ToLowerInvariant()">
+                            <span class="ah-kpi-icon" aria-hidden="true"><partial name="_LandingIcon" model="@k.Icon" /></span>
+                            <span class="ah-kpi-label">@L["Home.Kpi." + k.Key]</span>
+                            @if (!empty)
+                            {
+                                var text = k.Value!.Value.ToString("N0", culture);
+                                <b class="ah-kpi-value" data-count="@k.Value" style="min-width: @(text.Length)ch">@text</b>
+                                @if (k.Url != null)
+                                {
+                                    <a class="ah-kpi-link stretched-link" href="@k.Url"><span class="visually-hidden">@L["Home.Kpi." + k.Key]: </span>@L["Home.Open"]</a>
+                                }
+                            }
+                            else
+                            {
+                                <span class="ah-kpi-empty">@(k.Value == null ? L["Home.Kpi.Off"] : L["Home.Kpi.Empty." + k.Key])</span>
+                            }
+                        </li>
+                    }
+                </ul>
+                <p class="ah-cached">@L["Home.Kpi.Cached"]</p>
+
+                @* the chain strip: the landing's five steps as hexagons, with what is waiting at each step; the light path
+                   is the landing hero's engine at a smaller scale (hero-comb.js, data-comb-r) *@
+                <div class="ah-card ah-chain ah-in" style="--i: 6" data-hero data-comb-r="10" data-comb-node=".ah-node" data-comb-hex=".ah-hx">
+                    <canvas class="ah-chain-comb" data-hero-comb aria-hidden="true"></canvas>
+                    <div class="ah-chain-head">
+                        <h2 class="ah-h2">@L["Home.Chain.Title"]</h2>
+                        <p class="ah-sub">@L["Home.Chain.Help"]</p>
+                    </div>
+                    <ol class="ah-nodes">
+                        @for (var i = 0; i < f.Chain.Count; i++)
+                        {
+                            var step = f.Chain[i];
+                            var name = stations.First(s => s.Item1 == step.Key).Item2;
+                            var count = step.Waiting == null ? L["Home.Chain.Off"].Value : step.Waiting == 0 ? L["Home.Chain.None"].Value : L["Home.Chain.Waiting", step.Waiting.Value.ToString("N0", culture)].Value;
+                            <li class="ah-node@(step.Waiting > 0 ? " has-items" : "")" id="chain-@step.Key">
+                                <a class="ah-node-link" href="@step.Url">
+                                    <span class="ah-hx" aria-hidden="true"><span class="ah-hx-icon"><partial name="_LandingIcon" model="@step.Key" /></span><span class="ah-hno">@(i + 1)</span></span>
+                                    <span class="ah-node-name">@name</span>
+                                    <span class="ah-node-count">@count</span>
+                                </a>
+                            </li>
+                        }
+                    </ol>
+                </div>
+
+                <div class="ah-grid">
+                    @* map: beekeepers and apiaries per province (the province is computed on the server; no coordinate is sent) *@
+                    <div class="ah-card ah-map ah-in" style="--i: 7" id="ah-map">
+                        <h2 class="ah-h2">@L["Home.Map.Title"]</h2>
+                        @if (mapAreas.Any())
+                        {
+                            <partial name="_TurkeyMap" model="@(new TurkeyMapModel { Id = "ah-tmap", Label = L["Home.Map.Label"].Value, Areas = mapAreas, LegendTitle = L["Home.Map.Legend"].Value, LegendLow = "1", LegendHigh = maxApiaries.ToString("N0", culture) })" />
+                            <p class="ah-note">@L["Home.Map.Note"]@if (f.UnlocatedApiaries > 0) {<text> @L["Home.Map.Unlocated", f.UnlocatedApiaries]</text>}</p>
+                        }
+                        else
+                        {
+                            <div class="ah-empty-state"><honey-mark mode="slow" size="44" /><p>@L["Home.Map.Empty"]</p></div>
+                        }
+                    </div>
+
+                    <div class="ah-side">
+                        @* waiting for approval: the oldest first, with links *@
+                        <div class="ah-card ah-waiting ah-in" style="--i: 8" id="ah-waiting">
+                            <h2 class="ah-h2">@L["Home.Wait.Title"]@if (Model.WaitingTotal > 0) {<span class="ah-badge">@Model.WaitingTotal</span>}</h2>
+                            @if (Model.Waiting.Any())
+                            {
+                                <ul class="ah-list">
+                                    @foreach (var w in Model.Waiting)
+                                    {
+                                        <li><a href="@w.Url"><span class="ah-list-kind">@L["Home.Wait.Kind." + w.Kind]</span><b>@w.Title</b>@if (w.Since != null) {<time datetime="@Iso(w.Since)">@When(w.Since)</time>}</a></li>
+                                    }
+                                </ul>
+                                @if (Model.WaitingTotal > Model.Waiting.Count)
+                                {
+                                    <p class="ah-note">@L["Home.Wait.More", Model.WaitingTotal - Model.Waiting.Count]</p>
+                                }
+                            }
+                            else
+                            {
+                                <div class="ah-empty-state is-small"><span class="ah-empty-icon" aria-hidden="true"><partial name="_LandingIcon" model="@("foureyes")" /></span><p>@(Model.OrgModel ? L["Home.Wait.Empty"] : L["Home.Wait.Off"])</p></div>
+                            }
+                        </div>
+
+                        @* quick actions *@
+                        <div class="ah-card ah-quick ah-in" style="--i: 9">
+                            <h2 class="ah-h2">@L["Home.Quick.Title"]</h2>
+                            <div class="ah-actions">
+                                <a class="ah-action" href="/Beekeepers/Create" id="qa-beekeeper"><span aria-hidden="true"><partial name="_LandingIcon" model="@("apiary")" /></span><b>@L["Home.Quick.Beekeeper"]</b></a>
+                                <a class="ah-action" href="/Wholesalers/Index" id="qa-batch"><span aria-hidden="true"><partial name="_LandingIcon" model="@("processing")" /></span><b>@L["Home.Quick.Batch"]</b><small>@L["Home.Quick.BatchHint"]</small></a>
+                                @if (Model.OrgModel)
+                                {
+                                    <a class="ah-action" href="/Registry/Index" id="qa-registry"><span aria-hidden="true"><partial name="_LandingIcon" model="@("verified")" /></span><b>@L["Home.Quick.Registry"]</b></a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @* recent activity from the audit log: who entered, who approved, when; a pair of the same record is one entry *@
+                <div class="ah-card ah-activity ah-in" style="--i: 10" id="ah-activity">
+                    <h2 class="ah-h2">@L["Home.Act.Title"]</h2>
+                    @if (Model.Activity.Any())
+                    {
+                        <ol class="ah-timeline">
+                            @foreach (var a in Model.Activity)
+                            {
+                                var (first, second) = a.Kind switch
+                                {
+                                    "finalize" => ("Home.Act.Requested", "Home.Act.Finalized"),
+                                    "shipment" => ("Home.Act.Sent", "Home.Act.Received"),
+                                    "intake" => ("Home.Act.Entered", "Home.Act.Delivered"),
+                                    "org" or "registry" => ("Home.Act.Entered", "Home.Act.Verified"),
+                                    _ => ("Home.Act.Entered", "Home.Act.Approved")
+                                };
+                                <li class="ah-event is-@a.Kind@(a.SecondAt != null ? " is-done" : "")">
+                                    <span class="ah-event-dot" aria-hidden="true"></span>
+                                    <div class="ah-event-body">
+                                        <div class="ah-event-head">
+                                            <span class="ah-list-kind">@L["Home.Act.Kind." + a.Kind]</span>
+                                            @if (a.Url != null) {<a href="@a.Url" class="ah-event-subject">@a.Subject</a>} else {<b class="ah-event-subject">@a.Subject</b>}
+                                            @if (a.SelfApproved) {<span class="ah-flag">@L["Home.Act.Self"]</span>}
+                                        </div>
+                                        <div class="ah-event-steps">
+                                            @if (a.FirstAt != null)
+                                            {
+                                                <span class="ah-step">@L[first, a.FirstBy ?? "—"] <time datetime="@Iso(a.FirstAt)">@When(a.FirstAt)</time></span>
+                                            }
+                                            @if (a.SecondAt != null)
+                                            {
+                                                <span class="ah-step is-second">✓ @L[second, a.SecondBy ?? "—"] <time datetime="@Iso(a.SecondAt)">@When(a.SecondAt)</time></span>
+                                            }
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        </ol>
+                        <a class="ah-more" href="/Audit">@L["Home.Act.All"] →</a>
+                    }
+                    else
+                    {
+                        <div class="ah-empty-state"><honey-mark mode="slow" size="44" /><p>@L["Home.Act.Empty"]</p></div>
+                    }
+                </div>
+
+                <h2 class="ah-h2 ah-overview">@L["Home.Overview"]</h2>
+            </section>
+
+
 
             <div class="row">
                 <div class="col-xl-3 col-sm-6">
@@ -406,6 +620,9 @@
 
         <!-- App js -->
         <script src="~/assets/js/app.js"></script>
+        <script src="~/js/tmap.js" asp-append-version="true"></script>
+        <script src="~/js/hero-comb.js" asp-append-version="true"></script>
+        <script src="~/js/admin-home.js" asp-append-version="true"></script>
     }
 
 </body>

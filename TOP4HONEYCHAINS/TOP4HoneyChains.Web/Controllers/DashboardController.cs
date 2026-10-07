@@ -15,12 +15,16 @@ namespace TOP4HoneyChains.Web.Controllers
     {
         private readonly TOP4HoneyChainsContext _context;
         private readonly ILogger<DashboardController> _logger;
+        private readonly AdminHomeService _home;
+        private readonly IWebHostEnvironment _env;
 
-        public DashboardController(TOP4HoneyChainsContext context, ILogger<DashboardController> logger)
+        public DashboardController(TOP4HoneyChainsContext context, ILogger<DashboardController> logger, AdminHomeService home, IWebHostEnvironment env)
         {
 
             _context = context;
             _logger = logger;
+            _home = home;
+            _env = env;
         }
 
 
@@ -211,7 +215,18 @@ namespace TOP4HoneyChains.Web.Controllers
             ViewBag.Controller = "Dashboard";
             ViewBag.Action = "Index";
 
-            return View();
+            // D-72: welcome band, figures, chain strip, province map, recent activity and waiting approvals
+            var waiting = await _home.WaitingAsync();
+            return View(new Models.ViewModels.AdminHomeViewModel
+            {
+                UserName = User.Identity?.Name ?? "",
+                OrgModel = _home.OrgModel,
+                Figures = await _home.FiguresAsync(),
+                Activity = await _home.ActivityAsync(),
+                Waiting = waiting.Take(6).ToList(),
+                WaitingTotal = waiting.Count,
+                Steps = new[] { "step-1-apiary", "step-2-delivery", "step-3-lab", "step-4-processing", "step-5-shelf" }.Select(n => LandingImages.Find(_env, n)).ToList()
+            });
         }
 
         public IActionResult Privacy()

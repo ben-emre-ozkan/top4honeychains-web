@@ -1,0 +1,101 @@
+@using System.Globalization
+@using TOP4HoneyChains.Web.Services
+@model TOP4HoneyChains.Web.Models.ViewModels.TurkeyMapModel
+@{
+    // D-72: the shared Türkiye map (province choropleth or one marker). Styles: wwwroot/css/tmap.css; behaviour: wwwroot/js/tmap.js.
+    // Cream land with a soft inner shadow and thin white borders; provinces with data in honey shades, focusable, with a
+    // tooltip; honey dots at their centroids; the outline draws itself once. Provinces only, never a coordinate.
+    var id = Model.Id;
+    string F(double v) => v.ToString("0.#", CultureInfo.InvariantCulture);
+    var areas = Model.Areas.Where(a => TurkeyMap.ByPlate(a.Plate) != null).OrderBy(a => a.Plate).ToList();
+    var marked = Model.Marker != null ? TurkeyMap.ByPlate(Model.Marker.Plate) : null;
+}
+<figure class="tmap@(Model.Marker != null ? " tmap-has-marker" : "")@(Model.FillIn ? " tmap-fill-in" : "")@(Model.CssClass != null ? " " + Model.CssClass : "")" id="@id" data-tmap>
+    <div class="tmap-stage">
+        <svg class="tmap-svg" viewBox="@TurkeyMap.ViewBox" role="group" aria-label="@Model.Label">
+            <defs>
+                <filter id="@id-inner" x="-2%" y="-4%" width="104%" height="108%">
+                    <feComponentTransfer in="SourceAlpha"><feFuncA type="table" tableValues="1 0"></feFuncA></feComponentTransfer>
+                    <feGaussianBlur stdDeviation="5"></feGaussianBlur>
+                    <feOffset dy="2" result="edge"></feOffset>
+                    <feFlood flood-color="#C8924F" flood-opacity="0.32"></feFlood>
+                    <feComposite in2="edge" operator="in"></feComposite>
+                    <feComposite in2="SourceAlpha" operator="in"></feComposite>
+                </filter>
+                <filter id="@id-glow" x="-40%" y="-40%" width="180%" height="180%">
+                    <feFlood flood-color="#FFB547" flood-opacity="0.85"></feFlood>
+                    <feComposite in2="SourceAlpha" operator="in"></feComposite>
+                    <feGaussianBlur stdDeviation="6"></feGaussianBlur>
+                </filter>
+            </defs>
+            <path class="tmap-land" d="@TurkeyMap.Outline"></path>
+            <g class="tmap-provinces">
+                @foreach (var p in TurkeyMap.Provinces)
+                {
+                    var area = areas.FirstOrDefault(a => a.Plate == p.Plate);
+                    if (area != null)
+                    {
+                        var i = areas.IndexOf(area);
+                        <path class="tmap-p is-data tm-v@(Model.Level(area.Value))" id="@id-p@(p.Plate)" d="@p.Path" tabindex="0" role="img"
+                              aria-label="@p.Name: @area.Tip" data-name="@p.Name" data-tip="@area.Tip" data-cx="@F(p.Cx)" data-cy="@F(p.Cy)" style="--i: @i"></path>
+                    }
+                    else if (marked?.Plate == p.Plate)
+                    {
+                        <path class="tmap-p is-marked" id="@id-p@(p.Plate)" d="@p.Path"></path>
+                    }
+                    else
+                    {
+                        <path class="tmap-p" d="@p.Path"></path>
+                    }
+                }
+            </g>
+            <path class="tmap-shade" d="@TurkeyMap.Outline" filter="url(#@id-inner)" aria-hidden="true"></path>
+            <path class="tmap-outline" d="@TurkeyMap.Outline" pathLength="1" aria-hidden="true"></path>
+            <g class="tmap-hover" aria-hidden="true">
+                <use class="tmap-glow" filter="url(#@id-glow)"></use>
+                <use class="tmap-lift"></use>
+                <path class="tmap-ring"></path>
+            </g>
+            @if (areas.Any())
+            {
+                <g class="tmap-dots" aria-hidden="true">
+                    @foreach (var a in areas)
+                    {
+                        var p = TurkeyMap.ByPlate(a.Plate)!;
+                        <g class="tmap-dot" style="--d: @((areas.IndexOf(a) % 7) * 370)ms">
+                            <circle class="tmap-dot-halo" cx="@F(p.Cx)" cy="@F(p.Cy)" r="5"></circle>
+                            <circle class="tmap-dot-core" cx="@F(p.Cx)" cy="@F(p.Cy)" r="3"></circle>
+                        </g>
+                    }
+                </g>
+            }
+            @if (Model.Marker is { } m)
+            {
+                var right = m.X > 470;
+                var x = F(m.X);
+                var y = F(m.Y);
+                var lx = F(right ? m.X - 33 : m.X + 33);
+                var anchor = right ? "end" : "start";
+                <g class="tmap-mark">
+                    <circle class="tmap-mark-halo" cx="@x" cy="@y" r="22"></circle>
+                    <circle class="tmap-mark-ring" cx="@x" cy="@y" r="12"></circle>
+                    <circle class="tmap-mark-dot" cx="@x" cy="@y" r="5"></circle>
+                    <text class="tmap-mark-label" x="@lx" y="@F(m.Y - 4)" text-anchor="@anchor">@m.Label</text>
+                    @if (m.Sub != null)
+                    {
+                        <g><text class="tmap-mark-sub" x="@lx" y="@F(m.Y + 12)" text-anchor="@anchor">@m.Sub</text></g>
+                    }
+                </g>
+            }
+        </svg>
+        <div class="tmap-tip" aria-hidden="true" hidden><b></b><span></span></div>
+    </div>
+    @if (areas.Any() && Model.LegendTitle != null)
+    {
+        <figcaption class="tmap-legend">
+            <span class="tmap-legend-title">@Model.LegendTitle</span>
+            <span class="tmap-scale" aria-hidden="true">@for (var l = 1; l <= 5; l++) {<i class="tm-v@(l)"></i>}</span>
+            <span class="tmap-legend-ends"><span>@Model.LegendLow</span><span>@Model.LegendHigh</span></span>
+        </figcaption>
+    }
+</figure>

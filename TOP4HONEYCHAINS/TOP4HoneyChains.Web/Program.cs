@@ -77,6 +77,7 @@ builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<CcpIntegrityService>();
 builder.Services.AddMemoryCache();
 builder.Services.AddScoped<LandingStatsService>();
+builder.Services.AddScoped<AdminHomeService>();   // D-72: the admin home
 builder.Services.AddScoped<LimitFormatter>();
 builder.Services.AddSingleton<RefText>();
 builder.Services.AddSingleton<Places>();

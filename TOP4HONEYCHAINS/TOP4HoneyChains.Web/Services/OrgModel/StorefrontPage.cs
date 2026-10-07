@@ -127,17 +127,23 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             var ccp0Passed = lotCcps.Where(a => a.Code == "CCP 0" && Passed(a.RawHoneyCCPAssignmentStatus, a.ApprovedAt, a.RawHoneyCCPAssignmentCCP))
                 .Select(a => a.RawHoneyProductionId).ToHashSet();
 
+            // PQ-12 is open: the registry's own fields if set, else the province of the verified registry number and the
+            // district recorded most often at intake of the verified lots in that province (never a district of another province)
+            var placeProvince = registry?.Province ?? Provinces.FromRegistryNumber(registry?.RegistryNumber);
+            var placeDistrict = registry?.District;
+            if (placeDistrict == null && placeProvince != null)
+                placeDistrict = (await _context.LotIntakes.AsNoTracking().Where(i => lotIds.Contains(i.RawHoneyProductionId))
+                        .Select(i => new { i.Province, i.District }).ToListAsync())
+                    .Where(i => Provinces.PlateOf(i.Province) == Provinces.PlateOf(placeProvince))
+                    .GroupBy(i => i.District).OrderByDescending(g => g.Count()).Select(g => g.Key).FirstOrDefault();
             var vm = new StorefrontPageViewModel
             {
                 Code = state.Code!,
                 DisplayName = displayName,
                 Initials = state.Consent.NameConsented ? Initials(displayName) : "BK",
                 IsDemo = IsDemo(state.Code, state.AssociationName),
-                // PQ-12 is open: the registry's own fields if set, else the province of the verified registry number
-                // and the district recorded most often at intake of the verified lots
-                Province = registry?.Province ?? Provinces.FromRegistryNumber(registry?.RegistryNumber),
-                District = registry?.District ?? await _context.LotIntakes.AsNoTracking().Where(i => lotIds.Contains(i.RawHoneyProductionId))
-                    .GroupBy(i => i.District).OrderByDescending(g => g.Count()).Select(g => g.Key).FirstOrDefaultAsync(),
+                Province = placeProvince,
+                District = placeDistrict,
                 Association = state.AssociationName,
                 MemberSinceYear = state.AssociationOrgId == null ? null : await _context.BeekeeperAssociations.AsNoTracking()
                     .Where(a => a.BeekeeperId == bkId && a.AssociationOrgId == state.AssociationOrgId)
