@@ -5542,10 +5542,10 @@
     <value>Kartē</value>
   </data>
   <data name="Hst.MapTitle" xml:space="preserve">
-    <value>Dravu atrašanās vietas</value>
+    <value>Izcelsme pa provincēm</value>
   </data>
   <data name="Hst.MapNote" xml:space="preserve">
-    <value>Apgabali ir aptuveni (ap 10 km); precīza dravu atrašanās vieta nekad netiek publicēta.</value>
+    <value>Tikai pa provincēm; precīza dravu atrašanās vieta nekad netiek publicēta.</value>
   </data>
   <data name="Hst.SourcesEyebrow" xml:space="preserve">
     <value>Iepazīstiet biškopjus</value>
@@ -6212,5 +6212,275 @@
   </data>
   <data name="Land.Lang.Current" xml:space="preserve">
     <value>Valoda: {0}</value>
+  </data>
+  <data name="Home.Kicker" xml:space="preserve">
+    <value>Administratora sākums</value>
+  </data>
+  <data name="Home.Greeting.Morning" xml:space="preserve">
+    <value>Labrīt, {0}</value>
+  </data>
+  <data name="Home.Greeting.Afternoon" xml:space="preserve">
+    <value>Labdien, {0}</value>
+  </data>
+  <data name="Home.Greeting.Evening" xml:space="preserve">
+    <value>Labvakar, {0}</value>
+  </data>
+  <data name="Home.Lead" xml:space="preserve">
+    <value>Lūk, kas šobrīd notiek medus ķēdē.</value>
+  </data>
+  <data name="Home.Kpi.Title" xml:space="preserve">
+    <value>Galvenie rādītāji</value>
+  </data>
+  <data name="Home.Kpi.Lots" xml:space="preserve">
+    <value>Neapstrādāta medus partijas šomēnes</value>
+  </data>
+  <data name="Home.Kpi.Batches" xml:space="preserve">
+    <value>Pabeigtas gala partijas</value>
+  </data>
+  <data name="Home.Kpi.Reports" xml:space="preserve">
+    <value>Apstiprināti laboratorijas pārskati</value>
+  </data>
+  <data name="Home.Kpi.Waiting" xml:space="preserve">
+    <value>Gaida apstiprinājumu</value>
+  </data>
+  <data name="Home.Kpi.Orgs" xml:space="preserve">
+    <value>Pārbaudītas organizācijas</value>
+  </data>
+  <data name="Home.Kpi.Empty.Lots" xml:space="preserve">
+    <value>Šomēnes vēl nav reģistrēta neviena partija.</value>
+  </data>
+  <data name="Home.Kpi.Empty.Batches" xml:space="preserve">
+    <value>Vēl nav pabeigta neviena partija.</value>
+  </data>
+  <data name="Home.Kpi.Empty.Reports" xml:space="preserve">
+    <value>Vēl nav apstiprināts neviens laboratorijas pārskats.</value>
+  </data>
+  <data name="Home.Kpi.Empty.Waiting" xml:space="preserve">
+    <value>Nekas negaida: viss ir izdarīts.</value>
+  </data>
+  <data name="Home.Kpi.Empty.Orgs" xml:space="preserve">
+    <value>Vēl nav pārbaudīta neviena organizācija.</value>
+  </data>
+  <data name="Home.Kpi.Off" xml:space="preserve">
+    <value>Pieejams ar organizāciju modeli.</value>
+  </data>
+  <data name="Home.Kpi.Cached" xml:space="preserve">
+    <value>Rādītāji atjaunojas ik pēc 5 minūtēm.</value>
+  </data>
+  <data name="Home.Open" xml:space="preserve">
+    <value>Atvērt</value>
+  </data>
+  <data name="Home.Chain.Title" xml:space="preserve">
+    <value>Ķēde šobrīd</value>
+  </data>
+  <data name="Home.Chain.Help" xml:space="preserve">
+    <value>Kas gaida katrā solī. Atveriet soli, lai redzētu tā sarakstu.</value>
+  </data>
+  <data name="Home.Chain.Waiting" xml:space="preserve">
+    <value>Gaida: {0}</value>
+  </data>
+  <data name="Home.Chain.None" xml:space="preserve">
+    <value>Nekas negaida</value>
+  </data>
+  <data name="Home.Chain.Off" xml:space="preserve">
+    <value>Šajā režīmā netiek izsekots</value>
+  </data>
+  <data name="Home.Map.Title" xml:space="preserve">
+    <value>Biškopji un dravas pa provincēm</value>
+  </data>
+  <data name="Home.Map.Label" xml:space="preserve">
+    <value>Turcijas karte: biškopji un dravas katrā provincē</value>
+  </data>
+  <data name="Home.Map.Tip" xml:space="preserve">
+    <value>Biškopji: {0} · dravas: {1}</value>
+  </data>
+  <data name="Home.Map.Legend" xml:space="preserve">
+    <value>Dravas provincē</value>
+  </data>
+  <data name="Home.Map.Note" xml:space="preserve">
+    <value>Tikai pa provincēm; dravu atrašanās vietas nekad netiek rādītas.</value>
+  </data>
+  <data name="Home.Map.Unlocated" xml:space="preserve">
+    <value>Dravas bez atrašanās vietas (nav kartē): {0}.</value>
+  </data>
+  <data name="Home.Map.Empty" xml:space="preserve">
+    <value>Nevienai dravai vēl nav atrašanās vietas; karte vēl ir tukša.</value>
+  </data>
+  <data name="Home.Wait.Title" xml:space="preserve">
+    <value>Gaida apstiprinājumu</value>
+  </data>
+  <data name="Home.Wait.Kind.ccp" xml:space="preserve">
+    <value>Kontrolpunkts</value>
+  </data>
+  <data name="Home.Wait.Kind.report" xml:space="preserve">
+    <value>Laboratorijas pārskats</value>
+  </data>
+  <data name="Home.Wait.Kind.storage" xml:space="preserve">
+    <value>Uzglabāšanas vērtības</value>
+  </data>
+  <data name="Home.Wait.Kind.finalize" xml:space="preserve">
+    <value>Partijas pabeigšana</value>
+  </data>
+  <data name="Home.Wait.Kind.org" xml:space="preserve">
+    <value>Organizācija</value>
+  </data>
+  <data name="Home.Wait.Kind.registry" xml:space="preserve">
+    <value>Reģistra numurs</value>
+  </data>
+  <data name="Home.Wait.Kind.correction" xml:space="preserve">
+    <value>Labojums</value>
+  </data>
+  <data name="Home.Wait.More" xml:space="preserve">
+    <value>Un vēl {0}.</value>
+  </data>
+  <data name="Home.Wait.Empty" xml:space="preserve">
+    <value>Nekas negaida apstiprinājumu.</value>
+  </data>
+  <data name="Home.Wait.Off" xml:space="preserve">
+    <value>Apstiprinājumi ir organizāciju modeļa daļa; šajā režīmā nekas negaida.</value>
+  </data>
+  <data name="Home.Quick.Title" xml:space="preserve">
+    <value>Ātrās darbības</value>
+  </data>
+  <data name="Home.Quick.Beekeeper" xml:space="preserve">
+    <value>Jauns biškopis</value>
+  </data>
+  <data name="Home.Quick.Batch" xml:space="preserve">
+    <value>Jauna partija</value>
+  </data>
+  <data name="Home.Quick.BatchHint" xml:space="preserve">
+    <value>Vispirms izvēlieties vairumtirgotāju</value>
+  </data>
+  <data name="Home.Quick.Registry" xml:space="preserve">
+    <value>Reģistrs</value>
+  </data>
+  <data name="Home.Act.Title" xml:space="preserve">
+    <value>Pēdējās darbības</value>
+  </data>
+  <data name="Home.Act.Kind.ccp" xml:space="preserve">
+    <value>Kontrolpunkts</value>
+  </data>
+  <data name="Home.Act.Kind.report" xml:space="preserve">
+    <value>Laboratorijas pārskats</value>
+  </data>
+  <data name="Home.Act.Kind.storage" xml:space="preserve">
+    <value>Uzglabāšanas vērtības</value>
+  </data>
+  <data name="Home.Act.Kind.finalize" xml:space="preserve">
+    <value>Partija</value>
+  </data>
+  <data name="Home.Act.Kind.shipment" xml:space="preserve">
+    <value>Sūtījums</value>
+  </data>
+  <data name="Home.Act.Kind.intake" xml:space="preserve">
+    <value>Partijas piegāde</value>
+  </data>
+  <data name="Home.Act.Kind.org" xml:space="preserve">
+    <value>Organizācija</value>
+  </data>
+  <data name="Home.Act.Kind.registry" xml:space="preserve">
+    <value>Reģistra numurs</value>
+  </data>
+  <data name="Home.Act.Entered" xml:space="preserve">
+    <value>ievadīja {0}</value>
+  </data>
+  <data name="Home.Act.Approved" xml:space="preserve">
+    <value>apstiprināja {0}</value>
+  </data>
+  <data name="Home.Act.Requested" xml:space="preserve">
+    <value>pabeigšanu pieprasīja {0}</value>
+  </data>
+  <data name="Home.Act.Finalized" xml:space="preserve">
+    <value>apzīmogoja {0}</value>
+  </data>
+  <data name="Home.Act.Sent" xml:space="preserve">
+    <value>nosūtīja {0}</value>
+  </data>
+  <data name="Home.Act.Received" xml:space="preserve">
+    <value>saņēma {0}</value>
+  </data>
+  <data name="Home.Act.Delivered" xml:space="preserve">
+    <value>saņēma {0}</value>
+  </data>
+  <data name="Home.Act.Verified" xml:space="preserve">
+    <value>pārbaudīja {0}</value>
+  </data>
+  <data name="Home.Act.Self" xml:space="preserve">
+    <value>Četru acu izņēmums</value>
+  </data>
+  <data name="Home.Act.All" xml:space="preserve">
+    <value>Pilnais audita žurnāls</value>
+  </data>
+  <data name="Home.Act.Empty" xml:space="preserve">
+    <value>Vēl nav reģistrētu darbību.</value>
+  </data>
+  <data name="Home.Overview" xml:space="preserve">
+    <value>Ražošanas pārskats</value>
+  </data>
+  <data name="Hst.J.Eyebrow" xml:space="preserve">
+    <value>Soli pa solim</value>
+  </data>
+  <data name="Hst.J.Title" xml:space="preserve">
+    <value>Šī medus ceļš</value>
+  </data>
+  <data name="Hst.J.Apiary" xml:space="preserve">
+    <value>Biškopji: {0} · dravas: {1}</value>
+  </data>
+  <data name="Hst.J.NoSources" xml:space="preserve">
+    <value>Šīs partijas izcelsme nav reģistrēta.</value>
+  </data>
+  <data name="Hst.J.Harvest" xml:space="preserve">
+    <value>Ievākts {0}</value>
+  </data>
+  <data name="Hst.J.HarvestRange" xml:space="preserve">
+    <value>Ievākts {0} – {1}</value>
+  </data>
+  <data name="Hst.J.Delivery" xml:space="preserve">
+    <value>Saņemtās piegādes: {0} · {1}</value>
+  </data>
+  <data name="Hst.J.NoDelivery" xml:space="preserve">
+    <value>Šai partijai nav piegādes ieraksta.</value>
+  </data>
+  <data name="Hst.J.Lab" xml:space="preserve">
+    <value>Apstiprināti laboratorijas pārskati: {0} · {1}</value>
+  </data>
+  <data name="Hst.J.LabValues" xml:space="preserve">
+    <value>Laboratorijas vērtības ir reģistrētas.</value>
+  </data>
+  <data name="Hst.J.NoLab" xml:space="preserve">
+    <value>Vēl nav apstiprināta laboratorijas pārskata.</value>
+  </data>
+  <data name="Hst.J.Process" xml:space="preserve">
+    <value>Reģistrēti kontrolpunkti: {0} no {1}</value>
+  </data>
+  <data name="Hst.J.NoProcess" xml:space="preserve">
+    <value>Nav reģistrēta neviena kontrolpunkta.</value>
+  </data>
+  <data name="Hst.J.Sealed" xml:space="preserve">
+    <value>Apzīmogota {0}</value>
+  </data>
+  <data name="Hst.J.Shelf" xml:space="preserve">
+    <value>Saņēma {0}</value>
+  </data>
+  <data name="Hst.J.NoShelf" xml:space="preserve">
+    <value>Neviens veikals vēl nav apstiprinājis saņemšanu.</value>
+  </data>
+  <data name="Hst.J.Details" xml:space="preserve">
+    <value>Skatīt sīkāk</value>
+  </data>
+  <data name="Hst.J.Illustration" xml:space="preserve">
+    <value>Fona attēli ilustrē katru soli; tie nav šīs partijas fotoattēli.</value>
+  </data>
+  <data name="Hst.MapTip" xml:space="preserve">
+    <value>{0} no šīs burkas · biškopji: {1}</value>
+  </data>
+  <data name="Hst.MapLegend" xml:space="preserve">
+    <value>Daļa burkā pa provincēm</value>
+  </data>
+  <data name="Hst.MapUnplaced" xml:space="preserve">
+    <value>Province nav reģistrēta</value>
+  </data>
+  <data name="Hst.MapEmpty" xml:space="preserve">
+    <value>Šī medus provinces vēl nav reģistrētas.</value>
   </data>
 </root>

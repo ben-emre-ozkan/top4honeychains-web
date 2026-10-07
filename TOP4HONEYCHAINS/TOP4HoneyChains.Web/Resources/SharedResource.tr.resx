@@ -5542,10 +5542,10 @@
     <value>Haritada</value>
   </data>
   <data name="Hst.MapTitle" xml:space="preserve">
-    <value>Arılık Konumları</value>
+    <value>İllere göre köken</value>
   </data>
   <data name="Hst.MapNote" xml:space="preserve">
-    <value>Alanlar yaklaşıktır (yaklaşık 10 km); arılıkların kesin konumu hiçbir zaman yayımlanmaz.</value>
+    <value>Yalnızca il düzeyinde gösterilir; arılıkların kesin konumu hiçbir zaman yayımlanmaz.</value>
   </data>
   <data name="Hst.SourcesEyebrow" xml:space="preserve">
     <value>Arıcılarla tanışın</value>
@@ -6212,5 +6212,275 @@
   </data>
   <data name="Land.Lang.Current" xml:space="preserve">
     <value>Dil: {0}</value>
+  </data>
+  <data name="Home.Kicker" xml:space="preserve">
+    <value>Yönetim ana sayfası</value>
+  </data>
+  <data name="Home.Greeting.Morning" xml:space="preserve">
+    <value>Günaydın, {0}</value>
+  </data>
+  <data name="Home.Greeting.Afternoon" xml:space="preserve">
+    <value>İyi günler, {0}</value>
+  </data>
+  <data name="Home.Greeting.Evening" xml:space="preserve">
+    <value>İyi akşamlar, {0}</value>
+  </data>
+  <data name="Home.Lead" xml:space="preserve">
+    <value>Bal zincirinde şu anda olup bitenler burada.</value>
+  </data>
+  <data name="Home.Kpi.Title" xml:space="preserve">
+    <value>Temel göstergeler</value>
+  </data>
+  <data name="Home.Kpi.Lots" xml:space="preserve">
+    <value>Bu ayki ham bal lotları</value>
+  </data>
+  <data name="Home.Kpi.Batches" xml:space="preserve">
+    <value>Kesinleşmiş partiler</value>
+  </data>
+  <data name="Home.Kpi.Reports" xml:space="preserve">
+    <value>Onaylı laboratuvar raporları</value>
+  </data>
+  <data name="Home.Kpi.Waiting" xml:space="preserve">
+    <value>Onay bekleyenler</value>
+  </data>
+  <data name="Home.Kpi.Orgs" xml:space="preserve">
+    <value>Doğrulanmış kurumlar</value>
+  </data>
+  <data name="Home.Kpi.Empty.Lots" xml:space="preserve">
+    <value>Bu ay henüz ham bal lotu kaydedilmedi.</value>
+  </data>
+  <data name="Home.Kpi.Empty.Batches" xml:space="preserve">
+    <value>Henüz kesinleşmiş parti yok.</value>
+  </data>
+  <data name="Home.Kpi.Empty.Reports" xml:space="preserve">
+    <value>Henüz onaylanmış laboratuvar raporu yok.</value>
+  </data>
+  <data name="Home.Kpi.Empty.Waiting" xml:space="preserve">
+    <value>Bekleyen iş yok, her şey güncel.</value>
+  </data>
+  <data name="Home.Kpi.Empty.Orgs" xml:space="preserve">
+    <value>Henüz doğrulanmış kurum yok.</value>
+  </data>
+  <data name="Home.Kpi.Off" xml:space="preserve">
+    <value>Kurum modeliyle birlikte gelir.</value>
+  </data>
+  <data name="Home.Kpi.Cached" xml:space="preserve">
+    <value>Göstergeler 5 dakikada bir yenilenir.</value>
+  </data>
+  <data name="Home.Open" xml:space="preserve">
+    <value>Aç</value>
+  </data>
+  <data name="Home.Chain.Title" xml:space="preserve">
+    <value>Zincir şu anda</value>
+  </data>
+  <data name="Home.Chain.Help" xml:space="preserve">
+    <value>Her adımda bekleyenler. Listesini görmek için bir adımı açın.</value>
+  </data>
+  <data name="Home.Chain.Waiting" xml:space="preserve">
+    <value>Bekleyen: {0}</value>
+  </data>
+  <data name="Home.Chain.None" xml:space="preserve">
+    <value>Bekleyen yok</value>
+  </data>
+  <data name="Home.Chain.Off" xml:space="preserve">
+    <value>Bu modda izlenmiyor</value>
+  </data>
+  <data name="Home.Map.Title" xml:space="preserve">
+    <value>İllere göre arıcılar ve arılıklar</value>
+  </data>
+  <data name="Home.Map.Label" xml:space="preserve">
+    <value>Türkiye haritası: il başına arıcılar ve arılıklar</value>
+  </data>
+  <data name="Home.Map.Tip" xml:space="preserve">
+    <value>Arıcı: {0} · arılık: {1}</value>
+  </data>
+  <data name="Home.Map.Legend" xml:space="preserve">
+    <value>İl başına arılık</value>
+  </data>
+  <data name="Home.Map.Note" xml:space="preserve">
+    <value>Yalnızca il düzeyinde gösterilir; arılık konumları hiçbir zaman gösterilmez.</value>
+  </data>
+  <data name="Home.Map.Unlocated" xml:space="preserve">
+    <value>Konumu olmayan arılıklar (haritada yok): {0}.</value>
+  </data>
+  <data name="Home.Map.Empty" xml:space="preserve">
+    <value>Henüz konumu olan arılık yok; harita şimdilik boş.</value>
+  </data>
+  <data name="Home.Wait.Title" xml:space="preserve">
+    <value>Onay bekleyenler</value>
+  </data>
+  <data name="Home.Wait.Kind.ccp" xml:space="preserve">
+    <value>Kontrol noktası</value>
+  </data>
+  <data name="Home.Wait.Kind.report" xml:space="preserve">
+    <value>Laboratuvar raporu</value>
+  </data>
+  <data name="Home.Wait.Kind.storage" xml:space="preserve">
+    <value>Depolama değerleri</value>
+  </data>
+  <data name="Home.Wait.Kind.finalize" xml:space="preserve">
+    <value>Parti kesinleştirme</value>
+  </data>
+  <data name="Home.Wait.Kind.org" xml:space="preserve">
+    <value>Kurum</value>
+  </data>
+  <data name="Home.Wait.Kind.registry" xml:space="preserve">
+    <value>İşletme kayıt numarası</value>
+  </data>
+  <data name="Home.Wait.Kind.correction" xml:space="preserve">
+    <value>Düzeltme</value>
+  </data>
+  <data name="Home.Wait.More" xml:space="preserve">
+    <value>ve {0} tane daha.</value>
+  </data>
+  <data name="Home.Wait.Empty" xml:space="preserve">
+    <value>Onay bekleyen bir şey yok.</value>
+  </data>
+  <data name="Home.Wait.Off" xml:space="preserve">
+    <value>Onaylar kurum modeline aittir; bu modda bekleyen bir şey olmaz.</value>
+  </data>
+  <data name="Home.Quick.Title" xml:space="preserve">
+    <value>Hızlı işlemler</value>
+  </data>
+  <data name="Home.Quick.Beekeeper" xml:space="preserve">
+    <value>Yeni arıcı</value>
+  </data>
+  <data name="Home.Quick.Batch" xml:space="preserve">
+    <value>Yeni parti</value>
+  </data>
+  <data name="Home.Quick.BatchHint" xml:space="preserve">
+    <value>Önce toptancıyı seçin</value>
+  </data>
+  <data name="Home.Quick.Registry" xml:space="preserve">
+    <value>İşletme kaydı</value>
+  </data>
+  <data name="Home.Act.Title" xml:space="preserve">
+    <value>Son hareketler</value>
+  </data>
+  <data name="Home.Act.Kind.ccp" xml:space="preserve">
+    <value>Kontrol noktası</value>
+  </data>
+  <data name="Home.Act.Kind.report" xml:space="preserve">
+    <value>Laboratuvar raporu</value>
+  </data>
+  <data name="Home.Act.Kind.storage" xml:space="preserve">
+    <value>Depolama değerleri</value>
+  </data>
+  <data name="Home.Act.Kind.finalize" xml:space="preserve">
+    <value>Parti</value>
+  </data>
+  <data name="Home.Act.Kind.shipment" xml:space="preserve">
+    <value>Sevkiyat</value>
+  </data>
+  <data name="Home.Act.Kind.intake" xml:space="preserve">
+    <value>Lot teslimi</value>
+  </data>
+  <data name="Home.Act.Kind.org" xml:space="preserve">
+    <value>Kurum</value>
+  </data>
+  <data name="Home.Act.Kind.registry" xml:space="preserve">
+    <value>İşletme kayıt numarası</value>
+  </data>
+  <data name="Home.Act.Entered" xml:space="preserve">
+    <value>giren: {0}</value>
+  </data>
+  <data name="Home.Act.Approved" xml:space="preserve">
+    <value>onaylayan: {0}</value>
+  </data>
+  <data name="Home.Act.Requested" xml:space="preserve">
+    <value>kesinleştirmeyi isteyen: {0}</value>
+  </data>
+  <data name="Home.Act.Finalized" xml:space="preserve">
+    <value>mühürleyen: {0}</value>
+  </data>
+  <data name="Home.Act.Sent" xml:space="preserve">
+    <value>gönderen: {0}</value>
+  </data>
+  <data name="Home.Act.Received" xml:space="preserve">
+    <value>teslim alan: {0}</value>
+  </data>
+  <data name="Home.Act.Delivered" xml:space="preserve">
+    <value>teslim alan: {0}</value>
+  </data>
+  <data name="Home.Act.Verified" xml:space="preserve">
+    <value>doğrulayan: {0}</value>
+  </data>
+  <data name="Home.Act.Self" xml:space="preserve">
+    <value>Dört göz istisnası</value>
+  </data>
+  <data name="Home.Act.All" xml:space="preserve">
+    <value>Denetim kaydının tamamı</value>
+  </data>
+  <data name="Home.Act.Empty" xml:space="preserve">
+    <value>Henüz kaydedilmiş bir hareket yok.</value>
+  </data>
+  <data name="Home.Overview" xml:space="preserve">
+    <value>Üretim özeti</value>
+  </data>
+  <data name="Hst.J.Eyebrow" xml:space="preserve">
+    <value>Adım adım</value>
+  </data>
+  <data name="Hst.J.Title" xml:space="preserve">
+    <value>Bu balın yolculuğu</value>
+  </data>
+  <data name="Hst.J.Apiary" xml:space="preserve">
+    <value>Arıcı: {0} · arılık: {1}</value>
+  </data>
+  <data name="Hst.J.NoSources" xml:space="preserve">
+    <value>Bu partinin kaynakları kayıtlı değil.</value>
+  </data>
+  <data name="Hst.J.Harvest" xml:space="preserve">
+    <value>Hasat: {0}</value>
+  </data>
+  <data name="Hst.J.HarvestRange" xml:space="preserve">
+    <value>Hasat: {0} – {1}</value>
+  </data>
+  <data name="Hst.J.Delivery" xml:space="preserve">
+    <value>Teslim alınan: {0} · {1}</value>
+  </data>
+  <data name="Hst.J.NoDelivery" xml:space="preserve">
+    <value>Bu parti için teslim kaydı yok.</value>
+  </data>
+  <data name="Hst.J.Lab" xml:space="preserve">
+    <value>Onaylı laboratuvar raporu: {0} · {1}</value>
+  </data>
+  <data name="Hst.J.LabValues" xml:space="preserve">
+    <value>Laboratuvar değerleri kayıtlı.</value>
+  </data>
+  <data name="Hst.J.NoLab" xml:space="preserve">
+    <value>Henüz onaylı laboratuvar raporu yok.</value>
+  </data>
+  <data name="Hst.J.Process" xml:space="preserve">
+    <value>Kayıtlı kontrol noktası: {0} / {1}</value>
+  </data>
+  <data name="Hst.J.NoProcess" xml:space="preserve">
+    <value>Kayıtlı kontrol noktası yok.</value>
+  </data>
+  <data name="Hst.J.Sealed" xml:space="preserve">
+    <value>Mühürlendi: {0}</value>
+  </data>
+  <data name="Hst.J.Shelf" xml:space="preserve">
+    <value>Teslim alan: {0}</value>
+  </data>
+  <data name="Hst.J.NoShelf" xml:space="preserve">
+    <value>Henüz teslim alındığını onaylayan bir satış noktası yok.</value>
+  </data>
+  <data name="Hst.J.Details" xml:space="preserve">
+    <value>Ayrıntıları görün</value>
+  </data>
+  <data name="Hst.J.Illustration" xml:space="preserve">
+    <value>Arka plandaki resimler her adımı temsil eder; bu partinin fotoğrafları değildir.</value>
+  </data>
+  <data name="Hst.MapTip" xml:space="preserve">
+    <value>Bu kavanozun {0} kadarı · arıcı: {1}</value>
+  </data>
+  <data name="Hst.MapLegend" xml:space="preserve">
+    <value>İllere göre kavanozdaki pay</value>
+  </data>
+  <data name="Hst.MapUnplaced" xml:space="preserve">
+    <value>İli kayıtlı değil</value>
+  </data>
+  <data name="Hst.MapEmpty" xml:space="preserve">
+    <value>Bu balın geldiği iller henüz kayıtlı değil.</value>
   </data>
 </root>

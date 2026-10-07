@@ -245,4 +245,10 @@
   <ItemGroup>
     <EmbeddedResource Include="wwwroot\img\brand\top4-mark-animated.svg" LogicalName="TOP4HoneyChains.Web.top4-mark-animated.svg" />
   </ItemGroup>
+
+  <!-- D-72: the province map (Data/Geo/README.md), read by Services/TurkeyMap.cs; embedded, not published as a content file -->
+  <ItemGroup>
+    <Content Remove="Data\Geo\turkey-provinces.json" />
+    <EmbeddedResource Include="Data\Geo\turkey-provinces.json" LogicalName="TOP4HoneyChains.Web.turkey-provinces.json" />
+  </ItemGroup>
 </Project>

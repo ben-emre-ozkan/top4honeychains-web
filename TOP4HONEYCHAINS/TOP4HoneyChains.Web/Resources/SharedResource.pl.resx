@@ -5542,10 +5542,10 @@
     <value>Na mapie</value>
   </data>
   <data name="Hst.MapTitle" xml:space="preserve">
-    <value>Lokalizacje pasiek</value>
+    <value>Pochodzenie według prowincji</value>
   </data>
   <data name="Hst.MapNote" xml:space="preserve">
-    <value>Obszary są przybliżone (ok. 10 km); dokładne położenie pasiek nigdy nie jest publikowane.</value>
+    <value>Tylko według prowincji; dokładne położenie pasiek nigdy nie jest publikowane.</value>
   </data>
   <data name="Hst.SourcesEyebrow" xml:space="preserve">
     <value>Poznaj pszczelarzy</value>
@@ -6212,5 +6212,275 @@
   </data>
   <data name="Land.Lang.Current" xml:space="preserve">
     <value>Język: {0}</value>
+  </data>
+  <data name="Home.Kicker" xml:space="preserve">
+    <value>Strona główna administratora</value>
+  </data>
+  <data name="Home.Greeting.Morning" xml:space="preserve">
+    <value>Dzień dobry, {0}</value>
+  </data>
+  <data name="Home.Greeting.Afternoon" xml:space="preserve">
+    <value>Dzień dobry, {0}</value>
+  </data>
+  <data name="Home.Greeting.Evening" xml:space="preserve">
+    <value>Dobry wieczór, {0}</value>
+  </data>
+  <data name="Home.Lead" xml:space="preserve">
+    <value>Oto co dzieje się teraz w łańcuchu miodu.</value>
+  </data>
+  <data name="Home.Kpi.Title" xml:space="preserve">
+    <value>Kluczowe dane</value>
+  </data>
+  <data name="Home.Kpi.Lots" xml:space="preserve">
+    <value>Partie surowego miodu w tym miesiącu</value>
+  </data>
+  <data name="Home.Kpi.Batches" xml:space="preserve">
+    <value>Zamknięte partie końcowe</value>
+  </data>
+  <data name="Home.Kpi.Reports" xml:space="preserve">
+    <value>Zatwierdzone raporty laboratoryjne</value>
+  </data>
+  <data name="Home.Kpi.Waiting" xml:space="preserve">
+    <value>Oczekujące zatwierdzenia</value>
+  </data>
+  <data name="Home.Kpi.Orgs" xml:space="preserve">
+    <value>Zweryfikowane organizacje</value>
+  </data>
+  <data name="Home.Kpi.Empty.Lots" xml:space="preserve">
+    <value>W tym miesiącu nie zarejestrowano jeszcze żadnej partii.</value>
+  </data>
+  <data name="Home.Kpi.Empty.Batches" xml:space="preserve">
+    <value>Nie zamknięto jeszcze żadnej partii.</value>
+  </data>
+  <data name="Home.Kpi.Empty.Reports" xml:space="preserve">
+    <value>Nie zatwierdzono jeszcze żadnego raportu laboratoryjnego.</value>
+  </data>
+  <data name="Home.Kpi.Empty.Waiting" xml:space="preserve">
+    <value>Nic nie czeka: wszystko na bieżąco.</value>
+  </data>
+  <data name="Home.Kpi.Empty.Orgs" xml:space="preserve">
+    <value>Nie zweryfikowano jeszcze żadnej organizacji.</value>
+  </data>
+  <data name="Home.Kpi.Off" xml:space="preserve">
+    <value>Dostępne z modelem organizacji.</value>
+  </data>
+  <data name="Home.Kpi.Cached" xml:space="preserve">
+    <value>Dane odświeżają się co 5 minut.</value>
+  </data>
+  <data name="Home.Open" xml:space="preserve">
+    <value>Otwórz</value>
+  </data>
+  <data name="Home.Chain.Title" xml:space="preserve">
+    <value>Łańcuch w tej chwili</value>
+  </data>
+  <data name="Home.Chain.Help" xml:space="preserve">
+    <value>Co czeka na każdym etapie. Otwórz etap, aby zobaczyć listę.</value>
+  </data>
+  <data name="Home.Chain.Waiting" xml:space="preserve">
+    <value>Czeka: {0}</value>
+  </data>
+  <data name="Home.Chain.None" xml:space="preserve">
+    <value>Nic nie czeka</value>
+  </data>
+  <data name="Home.Chain.Off" xml:space="preserve">
+    <value>Nieśledzone w tym trybie</value>
+  </data>
+  <data name="Home.Map.Title" xml:space="preserve">
+    <value>Pszczelarze i pasieki według prowincji</value>
+  </data>
+  <data name="Home.Map.Label" xml:space="preserve">
+    <value>Mapa Turcji: pszczelarze i pasieki w prowincjach</value>
+  </data>
+  <data name="Home.Map.Tip" xml:space="preserve">
+    <value>Pszczelarze: {0} · pasieki: {1}</value>
+  </data>
+  <data name="Home.Map.Legend" xml:space="preserve">
+    <value>Pasieki w prowincji</value>
+  </data>
+  <data name="Home.Map.Note" xml:space="preserve">
+    <value>Tylko według prowincji; położenie pasiek nigdy nie jest pokazywane.</value>
+  </data>
+  <data name="Home.Map.Unlocated" xml:space="preserve">
+    <value>Pasieki bez lokalizacji (poza mapą): {0}.</value>
+  </data>
+  <data name="Home.Map.Empty" xml:space="preserve">
+    <value>Żadna pasieka nie ma jeszcze lokalizacji; mapa jest pusta.</value>
+  </data>
+  <data name="Home.Wait.Title" xml:space="preserve">
+    <value>Oczekuje na zatwierdzenie</value>
+  </data>
+  <data name="Home.Wait.Kind.ccp" xml:space="preserve">
+    <value>Punkt kontrolny</value>
+  </data>
+  <data name="Home.Wait.Kind.report" xml:space="preserve">
+    <value>Raport laboratoryjny</value>
+  </data>
+  <data name="Home.Wait.Kind.storage" xml:space="preserve">
+    <value>Wartości przechowywania</value>
+  </data>
+  <data name="Home.Wait.Kind.finalize" xml:space="preserve">
+    <value>Zamknięcie partii</value>
+  </data>
+  <data name="Home.Wait.Kind.org" xml:space="preserve">
+    <value>Organizacja</value>
+  </data>
+  <data name="Home.Wait.Kind.registry" xml:space="preserve">
+    <value>Numer rejestrowy</value>
+  </data>
+  <data name="Home.Wait.Kind.correction" xml:space="preserve">
+    <value>Korekta</value>
+  </data>
+  <data name="Home.Wait.More" xml:space="preserve">
+    <value>I jeszcze {0}.</value>
+  </data>
+  <data name="Home.Wait.Empty" xml:space="preserve">
+    <value>Nic nie czeka na zatwierdzenie.</value>
+  </data>
+  <data name="Home.Wait.Off" xml:space="preserve">
+    <value>Zatwierdzenia należą do modelu organizacji; w tym trybie nic nie czeka.</value>
+  </data>
+  <data name="Home.Quick.Title" xml:space="preserve">
+    <value>Szybkie działania</value>
+  </data>
+  <data name="Home.Quick.Beekeeper" xml:space="preserve">
+    <value>Nowy pszczelarz</value>
+  </data>
+  <data name="Home.Quick.Batch" xml:space="preserve">
+    <value>Nowa partia</value>
+  </data>
+  <data name="Home.Quick.BatchHint" xml:space="preserve">
+    <value>Najpierw wybierz hurtownika</value>
+  </data>
+  <data name="Home.Quick.Registry" xml:space="preserve">
+    <value>Rejestr</value>
+  </data>
+  <data name="Home.Act.Title" xml:space="preserve">
+    <value>Ostatnia aktywność</value>
+  </data>
+  <data name="Home.Act.Kind.ccp" xml:space="preserve">
+    <value>Punkt kontrolny</value>
+  </data>
+  <data name="Home.Act.Kind.report" xml:space="preserve">
+    <value>Raport laboratoryjny</value>
+  </data>
+  <data name="Home.Act.Kind.storage" xml:space="preserve">
+    <value>Wartości przechowywania</value>
+  </data>
+  <data name="Home.Act.Kind.finalize" xml:space="preserve">
+    <value>Partia</value>
+  </data>
+  <data name="Home.Act.Kind.shipment" xml:space="preserve">
+    <value>Wysyłka</value>
+  </data>
+  <data name="Home.Act.Kind.intake" xml:space="preserve">
+    <value>Dostawa partii</value>
+  </data>
+  <data name="Home.Act.Kind.org" xml:space="preserve">
+    <value>Organizacja</value>
+  </data>
+  <data name="Home.Act.Kind.registry" xml:space="preserve">
+    <value>Numer rejestrowy</value>
+  </data>
+  <data name="Home.Act.Entered" xml:space="preserve">
+    <value>wprowadził(a): {0}</value>
+  </data>
+  <data name="Home.Act.Approved" xml:space="preserve">
+    <value>zatwierdził(a): {0}</value>
+  </data>
+  <data name="Home.Act.Requested" xml:space="preserve">
+    <value>zamknięcia zażądał(a): {0}</value>
+  </data>
+  <data name="Home.Act.Finalized" xml:space="preserve">
+    <value>zapieczętował(a): {0}</value>
+  </data>
+  <data name="Home.Act.Sent" xml:space="preserve">
+    <value>wysłał(a): {0}</value>
+  </data>
+  <data name="Home.Act.Received" xml:space="preserve">
+    <value>przyjął(ęła): {0}</value>
+  </data>
+  <data name="Home.Act.Delivered" xml:space="preserve">
+    <value>przyjął(ęła): {0}</value>
+  </data>
+  <data name="Home.Act.Verified" xml:space="preserve">
+    <value>zweryfikował(a): {0}</value>
+  </data>
+  <data name="Home.Act.Self" xml:space="preserve">
+    <value>Wyjątek od zasady czterech oczu</value>
+  </data>
+  <data name="Home.Act.All" xml:space="preserve">
+    <value>Pełny dziennik audytu</value>
+  </data>
+  <data name="Home.Act.Empty" xml:space="preserve">
+    <value>Nie zarejestrowano jeszcze żadnej aktywności.</value>
+  </data>
+  <data name="Home.Overview" xml:space="preserve">
+    <value>Przegląd produkcji</value>
+  </data>
+  <data name="Hst.J.Eyebrow" xml:space="preserve">
+    <value>Krok po kroku</value>
+  </data>
+  <data name="Hst.J.Title" xml:space="preserve">
+    <value>Droga tego miodu</value>
+  </data>
+  <data name="Hst.J.Apiary" xml:space="preserve">
+    <value>Pszczelarze: {0} · pasieki: {1}</value>
+  </data>
+  <data name="Hst.J.NoSources" xml:space="preserve">
+    <value>Źródła tej partii nie są zarejestrowane.</value>
+  </data>
+  <data name="Hst.J.Harvest" xml:space="preserve">
+    <value>Zebrany {0}</value>
+  </data>
+  <data name="Hst.J.HarvestRange" xml:space="preserve">
+    <value>Zebrany {0} – {1}</value>
+  </data>
+  <data name="Hst.J.Delivery" xml:space="preserve">
+    <value>Przyjęte dostawy: {0} · {1}</value>
+  </data>
+  <data name="Hst.J.NoDelivery" xml:space="preserve">
+    <value>Brak zapisu dostawy dla tej partii.</value>
+  </data>
+  <data name="Hst.J.Lab" xml:space="preserve">
+    <value>Zatwierdzone raporty laboratoryjne: {0} · {1}</value>
+  </data>
+  <data name="Hst.J.LabValues" xml:space="preserve">
+    <value>Wartości laboratoryjne są zarejestrowane.</value>
+  </data>
+  <data name="Hst.J.NoLab" xml:space="preserve">
+    <value>Brak jeszcze zatwierdzonego raportu laboratoryjnego.</value>
+  </data>
+  <data name="Hst.J.Process" xml:space="preserve">
+    <value>Zarejestrowane punkty kontrolne: {0} z {1}</value>
+  </data>
+  <data name="Hst.J.NoProcess" xml:space="preserve">
+    <value>Brak zarejestrowanych punktów kontrolnych.</value>
+  </data>
+  <data name="Hst.J.Sealed" xml:space="preserve">
+    <value>Zapieczętowana {0}</value>
+  </data>
+  <data name="Hst.J.Shelf" xml:space="preserve">
+    <value>Przyjęta przez: {0}</value>
+  </data>
+  <data name="Hst.J.NoShelf" xml:space="preserve">
+    <value>Żaden sklep nie potwierdził jeszcze odbioru.</value>
+  </data>
+  <data name="Hst.J.Details" xml:space="preserve">
+    <value>Zobacz szczegóły</value>
+  </data>
+  <data name="Hst.J.Illustration" xml:space="preserve">
+    <value>Zdjęcia w tle ilustrują każdy etap; nie są zdjęciami tej partii.</value>
+  </data>
+  <data name="Hst.MapTip" xml:space="preserve">
+    <value>{0} tego słoika · pszczelarze: {1}</value>
+  </data>
+  <data name="Hst.MapLegend" xml:space="preserve">
+    <value>Udział w słoiku według prowincji</value>
+  </data>
+  <data name="Hst.MapUnplaced" xml:space="preserve">
+    <value>Prowincja niezarejestrowana</value>
+  </data>
+  <data name="Hst.MapEmpty" xml:space="preserve">
+    <value>Prowincje pochodzenia tego miodu nie są jeszcze zarejestrowane.</value>
   </data>
 </root>

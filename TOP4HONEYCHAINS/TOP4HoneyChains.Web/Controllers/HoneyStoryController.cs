@@ -51,6 +51,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 source.LabReportCode = report?.ReportCode;
                 source.LabName = report?.Lab;
                 source.LabAccredited = report?.IsAccredited == true;
+                source.LabApprovedAt = report?.ApprovedAt;
             }
             var rows = vm.RawSources.SelectMany(s => s.CcpBlocks).Concat(vm.BatchCcpBlocks).SelectMany(b => b.Parameters)
                 .Where(r => r.Compliant != null).ToList();
@@ -231,10 +232,10 @@ namespace TOP4HoneyChains.Web.Controllers
                     BeekeeperName = (beekeeper?.BeekeeperFirstName + " " + beekeeper?.BeekeeperLastName)?.Trim(),
                     HoneyType = raw.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle,
                     UsedAmount = d.UsedAmount,
-                    // D-12: only an approximate location leaves the server (0.1° ≈ 10 km, district level);
+                    HarvestedOn = raw.RawHoneyProductionDate,
+                    // D-12, D-72: only the province leaves the server, computed here from the apiary's position;
                     // the beekeeper's photo and phone are not shown publicly
-                    Latitude = ApproximateCoordinate(apiary?.ApiaryLocationLatitude),
-                    Longitude = ApproximateCoordinate(apiary?.ApiaryLocationLongitude)
+                    ProvincePlate = apiary == null ? 0 : TurkeyMap.PlateAt((double)apiary.ApiaryLocationLatitude, (double)apiary.ApiaryLocationLongitude)
                 };
 
                 // Photos
@@ -256,6 +257,7 @@ namespace TOP4HoneyChains.Web.Controllers
 
             await FillCcpBlocksAsync(vm);
             await FillBadgesAsync(vm);
+            await FillJourneyAsync(vm, batch);
 
             return View(vm);
         }
@@ -561,7 +563,58 @@ namespace TOP4HoneyChains.Web.Controllers
             return block;
         }
 
-        private static decimal? ApproximateCoordinate(decimal? value) =>
-            value.HasValue ? Math.Round(value.Value, 1, MidpointRounding.AwayFromZero) : null;
+        // D-72: the batch's real steps for the journey (harvest, delivery, laboratory, processing, shelf) and the province of
+        // each source: the province declared at delivery, else the apiary's (computed above), else the enterprise registry's.
+        // Deliveries, laboratory reports and the shelf exist only with the organization model; without it they show empty states.
+        private async Task FillJourneyAsync(HoneyStoryViewModel vm, FinalHoneyProduction batch)
+        {
+            var j = vm.Journey;
+            var sources = vm.RawSources;
+            var harvested = sources.Where(s => s.HarvestedOn != null).Select(s => s.HarvestedOn!.Value).ToList();
+            j.HarvestFrom = harvested.Count > 0 ? harvested.Min() : null;
+            j.HarvestTo = harvested.Count > 0 ? harvested.Max() : null;
+            var blocks = sources.SelectMany(s => s.CcpBlocks.Where(b => b.CCPCode != HoneyStoryLab.LabCcp)).Concat(vm.BatchCcpBlocks)
+                .Where(b => b.State != HoneyStoryCcpBlock.NotApplicable).ToList();
+            j.ControlPointsTotal = blocks.Count;
+            j.ControlPointsRecorded = blocks.Count(b => b.State == HoneyStoryCcpBlock.Recorded);
+            j.FinalizedAt = batch.FinalHoneyProductionFinalizedDate;
+            j.LabValuesRecorded = sources.Any(s => s.CcpBlocks.Any(b => b.CCPCode == HoneyStoryLab.LabCcp && b.State != HoneyStoryCcpBlock.NotRecorded));
+            j.Labs = sources.Where(s => s.LabReportCode != null).Select(s => s.LabName).OfType<string>().Distinct().ToList();
+            j.ApprovedReports = sources.Select(s => s.LabReportCode).OfType<string>().Distinct().Count();
+            j.LabApprovedAt = sources.Max(s => s.LabApprovedAt);
+
+            if (!_flags.Value.OrgRoleModel)
+                return;
+            j.Tracked = true;
+            var rawIds = sources.Select(s => s.RawHoneyProductionId).ToList();
+            var intakes = await _context.LotIntakes.AsNoTracking().Where(i => rawIds.Contains(i.RawHoneyProductionId))
+                .Select(i => new { i.RawHoneyProductionId, i.DeliveryDate, i.Province, Receiver = i.ReceivingOrg!.DisplayName }).ToListAsync();
+            j.Deliveries = intakes.Count;
+            j.DeliveredOn = intakes.Count > 0 ? intakes.Max(i => i.DeliveryDate) : null;
+            j.Receivers = intakes.Select(i => i.Receiver).Distinct().ToList();
+            var shelf = await _context.Shipments.AsNoTracking()
+                .Where(s => s.FinalHoneyProductionId == vm.FinalHoneyProductionId && s.Status == ShipmentStatus.Received)
+                .Select(s => new { Retailer = s.ToOrg!.DisplayName, s.DecidedAt }).ToListAsync();
+            j.Retailers = shelf.Select(s => s.Retailer).Distinct().ToList();
+            j.OnShelfSince = shelf.Count > 0 ? shelf.Min(s => s.DecidedAt) : null;
+
+            var owners = await _context.RawHoneyProductions.AsNoTracking().Where(r => rawIds.Contains(r.RawHoneyProductionId) && r.RawHoneyProductionApiary != null)
+                .Select(r => new { r.RawHoneyProductionId, r.RawHoneyProductionApiary!.ApiaryBeekeeperId }).ToListAsync();
+            var ownerIds = owners.Select(o => o.ApiaryBeekeeperId).ToList();
+            var registry = await _context.BeekeeperRegistry.AsNoTracking().Where(r => ownerIds.Contains(r.BeekeeperId))
+                .Select(r => new { r.BeekeeperId, r.Province, r.RegistryNumber }).ToListAsync();
+            foreach (var s in sources)
+            {
+                var declared = Provinces.PlateOf(intakes.FirstOrDefault(i => i.RawHoneyProductionId == s.RawHoneyProductionId)?.Province);
+                if (declared > 0)
+                    s.ProvincePlate = declared;
+                else if (s.ProvincePlate == 0)
+                {
+                    var owner = owners.FirstOrDefault(o => o.RawHoneyProductionId == s.RawHoneyProductionId)?.ApiaryBeekeeperId;
+                    var r = registry.FirstOrDefault(x => x.BeekeeperId == owner);
+                    s.ProvincePlate = r == null ? 0 : Provinces.PlateOf(r.Province ?? Provinces.FromRegistryNumber(r.RegistryNumber));
+                }
+            }
+        }
     }
 }

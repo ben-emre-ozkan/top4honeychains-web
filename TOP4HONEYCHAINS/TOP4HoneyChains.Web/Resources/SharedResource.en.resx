@@ -5542,10 +5542,10 @@
     <value>On the map</value>
   </data>
   <data name="Hst.MapTitle" xml:space="preserve">
-    <value>Apiary Locations</value>
+    <value>Origins by province</value>
   </data>
   <data name="Hst.MapNote" xml:space="preserve">
-    <value>Areas are approximate (about 10 km); exact apiary locations are never published.</value>
+    <value>Shown by province only; exact apiary locations are never published.</value>
   </data>
   <data name="Hst.SourcesEyebrow" xml:space="preserve">
     <value>Meet the beekeepers</value>
@@ -6212,5 +6212,275 @@
   </data>
   <data name="Land.Lang.Current" xml:space="preserve">
     <value>Language: {0}</value>
+  </data>
+  <data name="Home.Kicker" xml:space="preserve">
+    <value>Admin home</value>
+  </data>
+  <data name="Home.Greeting.Morning" xml:space="preserve">
+    <value>Good morning, {0}</value>
+  </data>
+  <data name="Home.Greeting.Afternoon" xml:space="preserve">
+    <value>Good afternoon, {0}</value>
+  </data>
+  <data name="Home.Greeting.Evening" xml:space="preserve">
+    <value>Good evening, {0}</value>
+  </data>
+  <data name="Home.Lead" xml:space="preserve">
+    <value>Here is what is moving through the honey chain right now.</value>
+  </data>
+  <data name="Home.Kpi.Title" xml:space="preserve">
+    <value>Key figures</value>
+  </data>
+  <data name="Home.Kpi.Lots" xml:space="preserve">
+    <value>Raw lots this month</value>
+  </data>
+  <data name="Home.Kpi.Batches" xml:space="preserve">
+    <value>Batches finalised</value>
+  </data>
+  <data name="Home.Kpi.Reports" xml:space="preserve">
+    <value>Approved lab reports</value>
+  </data>
+  <data name="Home.Kpi.Waiting" xml:space="preserve">
+    <value>Approvals waiting</value>
+  </data>
+  <data name="Home.Kpi.Orgs" xml:space="preserve">
+    <value>Verified organisations</value>
+  </data>
+  <data name="Home.Kpi.Empty.Lots" xml:space="preserve">
+    <value>No raw lot registered this month yet.</value>
+  </data>
+  <data name="Home.Kpi.Empty.Batches" xml:space="preserve">
+    <value>No batch has been finalised yet.</value>
+  </data>
+  <data name="Home.Kpi.Empty.Reports" xml:space="preserve">
+    <value>No lab report has been approved yet.</value>
+  </data>
+  <data name="Home.Kpi.Empty.Waiting" xml:space="preserve">
+    <value>Nothing is waiting: all caught up.</value>
+  </data>
+  <data name="Home.Kpi.Empty.Orgs" xml:space="preserve">
+    <value>No organisation has been verified yet.</value>
+  </data>
+  <data name="Home.Kpi.Off" xml:space="preserve">
+    <value>Comes with the organisation model.</value>
+  </data>
+  <data name="Home.Kpi.Cached" xml:space="preserve">
+    <value>Figures refresh every 5 minutes.</value>
+  </data>
+  <data name="Home.Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="Home.Chain.Title" xml:space="preserve">
+    <value>The chain right now</value>
+  </data>
+  <data name="Home.Chain.Help" xml:space="preserve">
+    <value>What is waiting at each step. Open a step to see its list.</value>
+  </data>
+  <data name="Home.Chain.Waiting" xml:space="preserve">
+    <value>Waiting: {0}</value>
+  </data>
+  <data name="Home.Chain.None" xml:space="preserve">
+    <value>Nothing waiting</value>
+  </data>
+  <data name="Home.Chain.Off" xml:space="preserve">
+    <value>Not tracked in this mode</value>
+  </data>
+  <data name="Home.Map.Title" xml:space="preserve">
+    <value>Beekeepers and apiaries by province</value>
+  </data>
+  <data name="Home.Map.Label" xml:space="preserve">
+    <value>Map of Türkiye: beekeepers and apiaries per province</value>
+  </data>
+  <data name="Home.Map.Tip" xml:space="preserve">
+    <value>Beekeepers: {0} · apiaries: {1}</value>
+  </data>
+  <data name="Home.Map.Legend" xml:space="preserve">
+    <value>Apiaries per province</value>
+  </data>
+  <data name="Home.Map.Note" xml:space="preserve">
+    <value>Shown by province only; apiary locations are never shown.</value>
+  </data>
+  <data name="Home.Map.Unlocated" xml:space="preserve">
+    <value>Apiaries without a location (not on the map): {0}.</value>
+  </data>
+  <data name="Home.Map.Empty" xml:space="preserve">
+    <value>No apiary has a location yet, so the map is still empty.</value>
+  </data>
+  <data name="Home.Wait.Title" xml:space="preserve">
+    <value>Waiting for approval</value>
+  </data>
+  <data name="Home.Wait.Kind.ccp" xml:space="preserve">
+    <value>Control point</value>
+  </data>
+  <data name="Home.Wait.Kind.report" xml:space="preserve">
+    <value>Lab report</value>
+  </data>
+  <data name="Home.Wait.Kind.storage" xml:space="preserve">
+    <value>Storage values</value>
+  </data>
+  <data name="Home.Wait.Kind.finalize" xml:space="preserve">
+    <value>Batch finalisation</value>
+  </data>
+  <data name="Home.Wait.Kind.org" xml:space="preserve">
+    <value>Organisation</value>
+  </data>
+  <data name="Home.Wait.Kind.registry" xml:space="preserve">
+    <value>Registry number</value>
+  </data>
+  <data name="Home.Wait.Kind.correction" xml:space="preserve">
+    <value>Correction</value>
+  </data>
+  <data name="Home.Wait.More" xml:space="preserve">
+    <value>And {0} more.</value>
+  </data>
+  <data name="Home.Wait.Empty" xml:space="preserve">
+    <value>Nothing is waiting for approval.</value>
+  </data>
+  <data name="Home.Wait.Off" xml:space="preserve">
+    <value>Approvals belong to the organisation model; nothing waits in this mode.</value>
+  </data>
+  <data name="Home.Quick.Title" xml:space="preserve">
+    <value>Quick actions</value>
+  </data>
+  <data name="Home.Quick.Beekeeper" xml:space="preserve">
+    <value>New beekeeper</value>
+  </data>
+  <data name="Home.Quick.Batch" xml:space="preserve">
+    <value>New batch</value>
+  </data>
+  <data name="Home.Quick.BatchHint" xml:space="preserve">
+    <value>Choose the wholesaler first</value>
+  </data>
+  <data name="Home.Quick.Registry" xml:space="preserve">
+    <value>Registry</value>
+  </data>
+  <data name="Home.Act.Title" xml:space="preserve">
+    <value>Recent activity</value>
+  </data>
+  <data name="Home.Act.Kind.ccp" xml:space="preserve">
+    <value>Control point</value>
+  </data>
+  <data name="Home.Act.Kind.report" xml:space="preserve">
+    <value>Lab report</value>
+  </data>
+  <data name="Home.Act.Kind.storage" xml:space="preserve">
+    <value>Storage values</value>
+  </data>
+  <data name="Home.Act.Kind.finalize" xml:space="preserve">
+    <value>Batch</value>
+  </data>
+  <data name="Home.Act.Kind.shipment" xml:space="preserve">
+    <value>Shipment</value>
+  </data>
+  <data name="Home.Act.Kind.intake" xml:space="preserve">
+    <value>Delivery of lot</value>
+  </data>
+  <data name="Home.Act.Kind.org" xml:space="preserve">
+    <value>Organisation</value>
+  </data>
+  <data name="Home.Act.Kind.registry" xml:space="preserve">
+    <value>Registry number</value>
+  </data>
+  <data name="Home.Act.Entered" xml:space="preserve">
+    <value>entered by {0}</value>
+  </data>
+  <data name="Home.Act.Approved" xml:space="preserve">
+    <value>approved by {0}</value>
+  </data>
+  <data name="Home.Act.Requested" xml:space="preserve">
+    <value>finalisation requested by {0}</value>
+  </data>
+  <data name="Home.Act.Finalized" xml:space="preserve">
+    <value>sealed by {0}</value>
+  </data>
+  <data name="Home.Act.Sent" xml:space="preserve">
+    <value>sent by {0}</value>
+  </data>
+  <data name="Home.Act.Received" xml:space="preserve">
+    <value>received by {0}</value>
+  </data>
+  <data name="Home.Act.Delivered" xml:space="preserve">
+    <value>received by {0}</value>
+  </data>
+  <data name="Home.Act.Verified" xml:space="preserve">
+    <value>verified by {0}</value>
+  </data>
+  <data name="Home.Act.Self" xml:space="preserve">
+    <value>Four-eyes exemption</value>
+  </data>
+  <data name="Home.Act.All" xml:space="preserve">
+    <value>The full audit log</value>
+  </data>
+  <data name="Home.Act.Empty" xml:space="preserve">
+    <value>No activity has been recorded yet.</value>
+  </data>
+  <data name="Home.Overview" xml:space="preserve">
+    <value>Production overview</value>
+  </data>
+  <data name="Hst.J.Eyebrow" xml:space="preserve">
+    <value>Step by step</value>
+  </data>
+  <data name="Hst.J.Title" xml:space="preserve">
+    <value>The journey of this honey</value>
+  </data>
+  <data name="Hst.J.Apiary" xml:space="preserve">
+    <value>Beekeepers: {0} · apiaries: {1}</value>
+  </data>
+  <data name="Hst.J.NoSources" xml:space="preserve">
+    <value>The sources of this batch are not on record.</value>
+  </data>
+  <data name="Hst.J.Harvest" xml:space="preserve">
+    <value>Harvested {0}</value>
+  </data>
+  <data name="Hst.J.HarvestRange" xml:space="preserve">
+    <value>Harvested {0} – {1}</value>
+  </data>
+  <data name="Hst.J.Delivery" xml:space="preserve">
+    <value>Deliveries received: {0} · {1}</value>
+  </data>
+  <data name="Hst.J.NoDelivery" xml:space="preserve">
+    <value>No delivery record for this batch.</value>
+  </data>
+  <data name="Hst.J.Lab" xml:space="preserve">
+    <value>Approved lab reports: {0} · {1}</value>
+  </data>
+  <data name="Hst.J.LabValues" xml:space="preserve">
+    <value>Laboratory values are on record.</value>
+  </data>
+  <data name="Hst.J.NoLab" xml:space="preserve">
+    <value>No approved lab report yet.</value>
+  </data>
+  <data name="Hst.J.Process" xml:space="preserve">
+    <value>Control points recorded: {0} of {1}</value>
+  </data>
+  <data name="Hst.J.NoProcess" xml:space="preserve">
+    <value>No control point is on record.</value>
+  </data>
+  <data name="Hst.J.Sealed" xml:space="preserve">
+    <value>Sealed on {0}</value>
+  </data>
+  <data name="Hst.J.Shelf" xml:space="preserve">
+    <value>Received by {0}</value>
+  </data>
+  <data name="Hst.J.NoShelf" xml:space="preserve">
+    <value>No shop has confirmed receipt yet.</value>
+  </data>
+  <data name="Hst.J.Details" xml:space="preserve">
+    <value>See the details</value>
+  </data>
+  <data name="Hst.J.Illustration" xml:space="preserve">
+    <value>The background pictures illustrate each step; they are not photos of this batch.</value>
+  </data>
+  <data name="Hst.MapTip" xml:space="preserve">
+    <value>{0} of this jar · beekeepers: {1}</value>
+  </data>
+  <data name="Hst.MapLegend" xml:space="preserve">
+    <value>Share of the jar by province</value>
+  </data>
+  <data name="Hst.MapUnplaced" xml:space="preserve">
+    <value>Province not on record</value>
+  </data>
+  <data name="Hst.MapEmpty" xml:space="preserve">
+    <value>The provinces of this honey are not on record yet.</value>
   </data>
 </root>

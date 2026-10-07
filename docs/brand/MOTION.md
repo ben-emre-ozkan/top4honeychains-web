@@ -48,6 +48,18 @@ The top-bar mark (`data-hm-intro`) plays once per browser session after sign-in 
 - Pointer effects for mouse and pen only; touch gets the tap effect. Stop the loop off screen and in a hidden tab; reduced motion draws one static frame.
 - Text over a canvas keeps its contrast: damp the effect behind the copy, or give the text a light plate.
 
+## The map, the admin home and the Honey Story (D-72)
+
+- **Türkiye map** (`_TurkeyMap`, `tmap.css`, `tmap.js`): the outline draws once when the map first scrolls into view (stroke-dashoffset, the one
+  exception to rule 1; it runs once), a Honey Story map fills in its provinces by opacity; hover, tap or keyboard focus fades in a lifted copy
+  of the province over a fixed glow (opacity and transform); the honey dots pulse with transform and opacity and pause off screen, in a hidden
+  tab and while typing.
+- **Admin home**: cards rise once from a visible resting state (opacity 0.55, 10 px; CSS only, so nothing can stay hidden); figures count up
+  once when visible (the final value is in the HTML); the chain strip runs the landing hero engine at a smaller scale (`data-comb-r`).
+- **Honey Story**: the bee plays once, the hero glow fades in once; journey steps light up as they scroll in and the light path grows with them;
+  meters and share bars move to their values once; the verified band stamps its seal once. Step photos are decorative backgrounds only.
+- Reduced motion: all of it is shown at rest (the page is not armed).
+
 ## Checklist for new screens
 
 - Is it a data-entry screen? Then add no motion.

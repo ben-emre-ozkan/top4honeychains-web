@@ -25,6 +25,7 @@
     <meta name="theme-color" content="#FFFFFF">
     <link href="~/css/brand.css" rel="stylesheet" asp-append-version="true">
     <link href="~/css/storefront.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/css/tmap.css" rel="stylesheet" asp-append-version="true">
 </head>
 <body class="sf-body">
 <div class="sf" id="storefront" data-code="@Model.Code">
@@ -233,35 +234,12 @@
                 <div class="sf-origin-map">
                     <div class="sf-kicker">@L["Sf.Origin"]</div>
                     <h2 class="sf-h2">@L["Sf.WhereFrom"]</h2>
-                    <svg viewBox="0 0 640 300" role="img" aria-label="@L["Sf.MapLabel", m.Label]" id="sf-map">
-                        <partial name="_TurkeyOutline" />
-                        @foreach (var plate in new[] { 34, 6 })
-                        {
-                            var c = ProvinceMap.ByPlate(plate)!;
-                            var (cx, cy) = ProvinceMap.ToMap(c.Latitude, c.Longitude);
-                            if (Math.Abs(cx - m.X) < 40 && Math.Abs(cy - m.Y) < 30)
-                            {
-                                continue;
-                            }
-                            // İstanbul's label goes to the upper left, out of the way of a marker in the north-west (as in the design)
-                            var west = plate == 34;
-                            <g class="sf-map-ref">
-                                <circle class="sf-map-city" cx="@cx.ToString(CultureInfo.InvariantCulture)" cy="@cy.ToString(CultureInfo.InvariantCulture)" r="3"></circle>
-                                <text class="sf-map-city-label" x="@((west ? cx - 6 : cx + 7).ToString(CultureInfo.InvariantCulture))" y="@((west ? cy - 14 : cy + 4).ToString(CultureInfo.InvariantCulture))" text-anchor="@(west ? "end" : "start")">@Provinces.ByPlate(plate)</text>
-                            </g>
-                        }
-                        @{
-                            var x = m.X.ToString(CultureInfo.InvariantCulture);
-                            var y = m.Y.ToString(CultureInfo.InvariantCulture);
-                            var lx = (right ? m.X - 33 : m.X + 33).ToString(CultureInfo.InvariantCulture);
-                            var anchor = right ? "end" : "start";
-                        }
-                        <circle class="sf-map-halo-1" cx="@x" cy="@y" r="26"></circle>
-                        <circle class="sf-map-halo-2" cx="@x" cy="@y" r="14"></circle>
-                        <circle class="sf-map-dot" cx="@x" cy="@y" r="5"></circle>
-                        <text class="sf-map-label" x="@lx" y="@((m.Y - 4).ToString(CultureInfo.InvariantCulture))" text-anchor="@anchor">@m.Label</text>
-                        <text class="sf-map-sub" x="@lx" y="@((m.Y + 12).ToString(CultureInfo.InvariantCulture))" text-anchor="@anchor">@L["Sf.ApproxArea"]</text>
-                    </svg>
+                    <partial name="~/Views/Shared/_TurkeyMap.cshtml" model="@(new TOP4HoneyChains.Web.Models.ViewModels.TurkeyMapModel
+                    {
+                        Id = "sf-map",
+                        Label = L["Sf.MapLabel", m.Label].Value,
+                        Marker = new TOP4HoneyChains.Web.Models.ViewModels.TurkeyMapMarker(Provinces.PlateOf(Model.Province), m.X, m.Y, m.Label, L["Sf.ApproxArea"].Value)
+                    })" />
                     <p class="sf-origin-note">@L["Sf.MapNote"]</p>
                 </div>
             }
@@ -485,5 +463,6 @@
     <span>@L["Sf.FooterNote"]</span>
 </footer>
 </div>
+<script src="~/js/tmap.js" asp-append-version="true" defer></script>
 </body>
 </html>

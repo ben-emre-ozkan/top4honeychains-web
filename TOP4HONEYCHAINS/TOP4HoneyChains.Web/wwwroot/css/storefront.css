@@ -188,14 +188,6 @@ body.sf-body { margin: 0; background: var(--sf-bg); }
     .sf-profile { max-width: none; }
     .sf-cal-row { grid-template-columns: 72px repeat(12, minmax(0, 1fr)); gap: 3px; }
 }
-.sf-map-land { fill: #F4EBDA; stroke: #C9B48C; stroke-width: 1.2; stroke-linejoin: round; }
-.sf-map-city { fill: var(--sf-muted); }
-.sf-map-city-label { font-family: var(--sf-text); font-size: 11px; fill: var(--sf-muted); }
-.sf-map-halo-1 { fill: var(--sf-honey); fill-opacity: 0.18; }
-.sf-map-halo-2 { fill: var(--sf-honey); fill-opacity: 0.32; }
-.sf-map-dot { fill: var(--sf-honey); stroke: #FFFFFF; stroke-width: 2; }
-.sf-map-label { font-family: var(--sf-display); font-weight: 700; font-size: 14px; fill: var(--sf-ink); }
-.sf-map-sub { font-family: var(--sf-text); font-size: 11px; fill: var(--sf-muted); }
 .sf-flower { fill: var(--sf-honey); }
 .sf-legend i.is-flower { background: var(--sf-honey); }
 .sf-legend i.is-harvest { background: var(--b-honey-grad); }

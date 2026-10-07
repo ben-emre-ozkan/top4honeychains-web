@@ -18,6 +18,29 @@
 
         // P4 badges; null when the organization model is off (D-42)
         public HoneyStoryBadges? Badges { get; set; }
+
+        // D-72: the batch's real steps for the journey section
+        public HoneyStoryJourney Journey { get; set; } = new();
+    }
+
+    // D-72: what is on record for each step; Tracked = the organization model is on (deliveries, reports and the shelf exist)
+    public class HoneyStoryJourney
+    {
+        public bool Tracked { get; set; }
+        public DateOnly? HarvestFrom { get; set; }
+        public DateOnly? HarvestTo { get; set; }
+        public int Deliveries { get; set; }
+        public DateOnly? DeliveredOn { get; set; }
+        public List<string> Receivers { get; set; } = new();
+        public int ApprovedReports { get; set; }
+        public List<string> Labs { get; set; } = new();
+        public DateTime? LabApprovedAt { get; set; }
+        public bool LabValuesRecorded { get; set; }
+        public int ControlPointsRecorded { get; set; }
+        public int ControlPointsTotal { get; set; }
+        public DateTime? FinalizedAt { get; set; }
+        public List<string> Retailers { get; set; } = new();
+        public DateTime? OnShelfSince { get; set; }
     }
 
     // Badges from approved, verified data only (D-42)

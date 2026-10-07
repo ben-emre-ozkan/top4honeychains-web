@@ -1,0 +1,74 @@
+/* D-72: the shared Türkiye map (Views/Shared/_TurkeyMap.cshtml, wwwroot/js/tmap.js). Motion follows docs/brand/MOTION.md:
+   the lift and glow fade with opacity and transform; the dots pulse with transform and opacity and pause off screen, in a
+   hidden tab and while someone types; the outline draws once; reduced motion shows everything at rest. */
+.tmap { --tm-land: #FFF6E0; --tm-border: #FFFFFF; --tm-ink: var(--b-ink, #574A40); --tm-muted: var(--b-muted, #7B6A5C);
+    position: relative; margin: 0; }
+.tmap-stage { position: relative; }
+.tmap-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.tmap-land { fill: var(--tm-land); }
+.tmap-p { fill: transparent; stroke: var(--tm-border); stroke-width: 0.9; stroke-linejoin: round; }
+/* the lifted copy carries the focus ring (a teal stroke); the box outline of the app skin would frame the bounding box */
+body .tmap .tmap-p.is-data:focus, body .tmap .tmap-p.is-data:focus-visible { outline: none !important; box-shadow: none !important; }
+.tmap-p.is-data { cursor: pointer; transition: opacity 600ms ease-out; transition-delay: calc(var(--i, 0) * 70ms); }
+.tmap-p.is-marked { fill: #FFD98A; }
+.tm-v1 { fill: #FFE9B8; } .tm-v2 { fill: #FFD889; } .tm-v3 { fill: #FFC25E; } .tm-v4 { fill: #F5A53C; } .tm-v5 { fill: #DC8625; }
+.tmap-shade { fill: #000000; pointer-events: none; }
+.tmap-outline { fill: none; stroke: #D9B98A; stroke-width: 1.1; stroke-linejoin: round; pointer-events: none; }
+
+/* hover and keyboard focus: a lifted copy of the province over a warm glow (both only change opacity and transform) */
+.tmap-hover { pointer-events: none; opacity: 0; transition: opacity 180ms ease-out; }
+.tmap.is-hot .tmap-hover { opacity: 1; }
+.tmap-lift { stroke: #FFFFFF; stroke-width: 1.4; transform-box: view-box; transform: translateY(0) scale(1); transition: transform 200ms var(--b-ease, ease-out); }
+.tmap.is-hot .tmap-lift { transform: translateY(-3px) scale(1.035); }
+/* keyboard focus: a teal ring on the lifted province (a path copied from it; the lifted copy keeps the province's own border) */
+.tmap-ring { fill: none; stroke: none; transform-box: view-box; transition: transform 200ms var(--b-ease, ease-out); }
+.tmap.is-hot .tmap-ring { transform: translateY(-3px) scale(1.035); }
+.tmap.is-focus .tmap-ring { stroke: var(--b-focus, #0B7A75); stroke-width: 2.2; stroke-linejoin: round; }
+
+/* honey dots at the centroids of the provinces with data */
+.tmap-dots { pointer-events: none; }
+.tmap-dot-core { fill: #FFB547; stroke: #FFFFFF; stroke-width: 1.4; }
+.tmap-dot-halo { fill: #FFB547; opacity: 0; transform-box: fill-box; transform-origin: center; }
+.tmap.is-live .tmap-dot-halo { animation: tmap-pulse 2.8s ease-out infinite; animation-delay: var(--d, 0ms); }
+@keyframes tmap-pulse { 0% { opacity: 0.55; transform: scale(1); } 80%, 100% { opacity: 0; transform: scale(2.8); } }
+html.is-hidden-tab .tmap-dot-halo, html.is-typing .tmap-dot-halo, .tmap-mark-halo { animation-play-state: paused; }
+
+/* marker mode (the beekeeper page): the area of the beekeeper, never an apiary */
+.tmap-mark-halo { fill: #FFB547; fill-opacity: 0.18; }
+.tmap-mark-ring { fill: #FFB547; fill-opacity: 0.32; }
+.tmap-mark-dot { fill: #FFB547; stroke: #FFFFFF; stroke-width: 2; }
+.tmap-mark-label { font-family: var(--b-display, system-ui); font-weight: 700; font-size: 14px; fill: var(--tm-ink); paint-order: stroke; stroke: rgba(255, 255, 255, 0.85); stroke-width: 3px; }
+.tmap-mark-sub { font-family: var(--b-text, system-ui); font-size: 11px; fill: var(--tm-muted); paint-order: stroke; stroke: rgba(255, 255, 255, 0.85); stroke-width: 3px; }
+
+/* first view (tmap.js arms the map, then marks it drawn when it scrolls into view) */
+.tmap.is-armed:not(.is-drawn) .tmap-outline { stroke-dashoffset: 1; }
+.tmap.is-armed .tmap-outline { stroke-dasharray: 1 1; transition: stroke-dashoffset 1.6s var(--b-ease, ease-out); }
+.tmap.is-armed.tmap-fill-in:not(.is-drawn) .tmap-p.is-data, .tmap.is-armed.tmap-fill-in:not(.is-drawn) .tmap-dots { opacity: 0; }
+.tmap.tmap-fill-in .tmap-dots { transition: opacity 500ms ease-out 900ms; }
+
+/* tooltip: province name and counts */
+.tmap-tip { position: absolute; left: 0; top: 0; z-index: 3; min-width: 120px; max-width: 220px; padding: 7px 11px 8px; border-radius: 12px; pointer-events: none;
+    background: #FFFFFF; box-shadow: 0 0 0 1px var(--b-line, #F2E3C6), 0 10px 26px rgba(200, 146, 79, 0.22); color: var(--tm-ink); font-size: 13px; line-height: 1.35;
+    transform: translate(-50%, calc(-100% - 12px)); opacity: 0; transition: opacity 160ms ease-out; }
+.tmap-tip.is-on { opacity: 1; }
+.tmap-tip b { display: block; font-family: var(--b-display, system-ui); font-size: 14px; color: var(--b-heading, #8C5E2E); }
+.tmap-tip span { display: block; color: var(--tm-muted); }
+
+/* legend: the honey scale with its two ends */
+.tmap-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin-top: 10px; font-size: 12.5px; color: var(--tm-muted); }
+.tmap-legend-title { font-weight: 600; color: var(--tm-ink); }
+.tmap-scale { display: inline-flex; border-radius: 6px; overflow: hidden; box-shadow: 0 0 0 1px var(--b-line, #F2E3C6); }
+.tmap-scale i { width: 22px; height: 10px; }
+.tmap-scale .tm-v1 { background: #FFE9B8; } .tmap-scale .tm-v2 { background: #FFD889; } .tmap-scale .tm-v3 { background: #FFC25E; }
+.tmap-scale .tm-v4 { background: #F5A53C; } .tmap-scale .tm-v5 { background: #DC8625; }
+.tmap-legend-ends { display: inline-flex; gap: 8px; }
+.tmap-legend-ends span + span::before { content: "→ "; }
+
+@media (prefers-reduced-motion: reduce) {
+    .tmap-p.is-data, .tmap-hover, .tmap-lift, .tmap-tip, .tmap.is-armed .tmap-outline, .tmap.tmap-fill-in .tmap-dots { transition: none !important; }
+    .tmap.is-live .tmap-dot-halo { animation: none; }
+    .tmap.is-hot .tmap-lift, .tmap.is-hot .tmap-ring { transform: none; }
+    .tmap-ring { transition: none; }
+    .tmap.is-armed:not(.is-drawn) .tmap-outline { stroke-dashoffset: 0; }
+    .tmap.is-armed.tmap-fill-in:not(.is-drawn) .tmap-p.is-data, .tmap.is-armed.tmap-fill-in:not(.is-drawn) .tmap-dots { opacity: 1; }
+}
