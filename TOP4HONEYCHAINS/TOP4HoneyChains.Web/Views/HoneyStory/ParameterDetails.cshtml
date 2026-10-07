@@ -23,7 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@name · @L["Hst.Parameters"]</title>
     <partial name="~/Views/Shared/_Favicons.cshtml" />
-    <meta name="theme-color" content="#FBF8F2">
+    <meta name="theme-color" content="#FFFBF0">
     <link href="~/css/brand.css" rel="stylesheet" asp-append-version="true">
     <link href="~/css/storefront.css" rel="stylesheet" asp-append-version="true">
     <link href="~/css/honeystory.css" rel="stylesheet" asp-append-version="true">
@@ -40,9 +40,9 @@
     }
 
     <section class="hs-hero">
-        <svg class="hs-hero-hex" viewBox="0 0 100 100" aria-hidden="true"><polygon points="50,3 93,27 93,73 50,97 7,73 7,27" fill="none" stroke="#E8B931" stroke-width="5"></polygon></svg>
+        <svg class="hs-hero-hex" viewBox="0 0 100 100" aria-hidden="true"><polygon points="50,3 93,27 93,73 50,97 7,73 7,27" fill="none" stroke="#FFB547" stroke-width="5"></polygon></svg>
         <div class="hs-hero-row hs-param-hero">
-            <div class="hs-param-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"></path><path d="M7.5 15h9"></path></svg></div>
+            <div class="hs-param-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#A2450B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"></path><path d="M7.5 15h9"></path></svg></div>
             <div>
                 <h1 class="hs-batch">@name</h1>
                 <div class="hs-param-sub">@p.CCP?.Code · @Ref.CcpTitle(p.CCP?.Id, p.CCP?.Title)</div>
@@ -141,7 +141,7 @@
 </main>
 
 <footer class="sf-footer">
-    <span>TOP4HoneyChains · @L["Sf.FooterTag"]</span>
+    <span class="sf-foot-brand"><img class="b-logo" src="~/img/brand/top4-logo-w2.svg" alt="TOP4HoneyChains" width="96" height="40"><span>@L["Sf.FooterTag"]</span></span>
     <span>@L["Hst.FooterNote"]</span>
 </footer>
 </div>

@@ -497,3 +497,6 @@ TOP4HONEYCHAINS/TOP4HoneyChains.Web/wwwroot/assets/videos/parameters/*
 
 # CCP file values (lab reports etc.) uploaded locally; kept on the server only (D-19)
 TOP4HONEYCHAINS/TOP4HoneyChains.Web/App_Data/
+
+# local test accounts (never commit)
+kullanicilar.txt

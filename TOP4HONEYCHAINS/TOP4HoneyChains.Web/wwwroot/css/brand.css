@@ -165,10 +165,6 @@
     --b-night-muted: #574A40;
     --b-focus: #0B7A75;
 
-    /* wordmark (until the logo arrives). Requested #C8924F → #B07838 and #F5A30C → #E07010; every end fell below
-       3:1 on the strongest honey glow, so each was darkened just enough (≥ 3:1 on the glow, ≥ 4:1 on white) */
-    --b-wm-caramel: linear-gradient(135deg, #A77A42, #AE7637);
-    --b-wm-honey: linear-gradient(135deg, #B27608, #CB650E);
 
     /* type */
     --b-display: 'Bricolage Grotesque', system-ui, sans-serif;
@@ -221,9 +217,5 @@
 .b-btn-ink { background: var(--b-white); color: var(--b-heading); border-color: var(--b-input-line); }
 .b-btn-ink:hover { background: var(--b-foam); color: var(--b-heading); }
 
-/* wordmark "TOP4HoneyChains" until the logo arrives: TOP4 and Chains in caramel, Honey in honey (D-68) */
-.b-wordmark { font-family: var(--b-display); font-weight: 800; letter-spacing: -0.02em; white-space: nowrap; }
-.b-wordmark .b-wm-a, .b-wordmark .b-wm-h { -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: #AE7637; }
-.b-wordmark .b-wm-a { background-image: var(--b-wm-caramel); }
-.b-wordmark .b-wm-h { background-image: var(--b-wm-honey); color: #CB650E; }
-@media (forced-colors: active) { .b-wordmark .b-wm-a, .b-wordmark .b-wm-h { -webkit-text-fill-color: currentColor; background: none; } }
+/* logo images from the brand kit (docs/brand, D-69): never recoloured or redrawn, exempt from text contrast */
+.b-logo { display: block; height: auto; max-width: 100%; }

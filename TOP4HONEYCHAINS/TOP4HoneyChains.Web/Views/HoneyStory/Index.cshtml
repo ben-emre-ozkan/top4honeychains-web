@@ -34,7 +34,7 @@
     <title>@(Model.BatchTitle ?? L["Hst.Untitled"].Value) · @L["Hst.Title"]</title>
     <script>document.documentElement.classList.add('js');</script>
     <partial name="~/Views/Shared/_Favicons.cshtml" />
-    <meta name="theme-color" content="#FBF8F2">
+    <meta name="theme-color" content="#FFFBF0">
     <link href="~/css/brand.css" rel="stylesheet" asp-append-version="true">
     <link href="~/css/storefront.css" rel="stylesheet" asp-append-version="true">
     <link href="~/css/honeystory.css" rel="stylesheet" asp-append-version="true">
@@ -51,7 +51,7 @@
         void Head(string icon, string eyebrow, string title)
         {
             <div class="hs-head">
-                <div class="hs-head-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">@Html.Raw(icon)</svg></div>
+                <div class="hs-head-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#A2450B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">@Html.Raw(icon)</svg></div>
                 <div>
                     <div class="hs-eyebrow">@eyebrow</div>
                     <h2 class="hs-title">@title</h2>
@@ -104,9 +104,9 @@
 
     @* ===== 1. header card ===== *@
     <section class="hs-hero">
-        <svg class="hs-hero-hex" viewBox="0 0 100 100" aria-hidden="true"><polygon points="50,3 93,27 93,73 50,97 7,73 7,27" fill="none" stroke="#E8B931" stroke-width="5"></polygon></svg>
+        <svg class="hs-hero-hex" viewBox="0 0 100 100" aria-hidden="true"><polygon points="50,3 93,27 93,73 50,97 7,73 7,27" fill="none" stroke="#FFB547" stroke-width="5"></polygon></svg>
         <div class="hs-hero-row">
-            <div class="hs-jar"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1B2A4A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4h10M8 4v2a4 4 0 0 1-2 3.5V19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V9.5A4 4 0 0 1 16 6V4"></path><path d="M6 13h12M6 16.5h12"></path></svg></div>
+            <div class="hs-jar"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4A3F36" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4h10M8 4v2a4 4 0 0 1-2 3.5V19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V9.5A4 4 0 0 1 16 6V4"></path><path d="M6 13h12M6 16.5h12"></path></svg></div>
             <div>
                 <span class="hs-traceable">✓ @L["Hst.Traceable"]</span>
                 <h1 class="hs-batch">@(Model.BatchTitle ?? L["Hst.Untitled"].Value)</h1>
@@ -302,7 +302,7 @@
             @if (anyLab)
             {
                 <a class="hs-report-link" href="#lab-report">
-                    <span class="hs-report-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFD54F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6M8 13h8M8 17h5"></path></svg></span>
+                    <span class="hs-report-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8C5E2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6M8 13h8M8 17h5"></path></svg></span>
                     <span class="grow">@L["Hst.SeeFullReport"]</span><span aria-hidden="true">›</span>
                 </a>
             }
@@ -327,7 +327,7 @@
                         @if (s.LabReportCode != null)
                         {
                             <a class="hs-report-link" href="/verify-report?code=@s.LabReportCode">
-                                <span class="hs-report-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFD54F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"></path><path d="m9 12 2 2 4-4"></path></svg></span>
+                                <span class="hs-report-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8C5E2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"></path><path d="m9 12 2 2 4-4"></path></svg></span>
                                 <span class="grow">@L["Sf.VerifyReportCode", s.LabReportCode]</span><span aria-hidden="true">›</span>
                             </a>
                         }
@@ -348,7 +348,7 @@
                                 var verified = rows.Count(v => v.Compliant != null);
                                 <details class="hs-fold" data-group="@group">
                                     <summary>
-                                        <span class="hs-head-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"></path><circle cx="12" cy="11" r="3"></circle></svg></span>
+                                        <span class="hs-head-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#A2450B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"></path><circle cx="12" cy="11" r="3"></circle></svg></span>
                                         <span class="grow"><b>@L["Hst.Group." + group]</b>
                                             <span>@L["Hst.ResiduesTested", rows.Count]@if (verified > 0) {<text> · @(outCount == 0 ? L["Hst.ResiduesAllClear"] : L["Hst.ResiduesOut", outCount])</text>}</span></span>
                                         <span class="hs-chev" aria-hidden="true">⌄</span>
@@ -463,7 +463,7 @@
 
     @* ===== 8. verified footer ===== *@
     <section class="hs-verified">
-        <div class="hs-verified-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"></path><path d="m9 12 2 2 4-4"></path></svg></div>
+        <div class="hs-verified-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#2BC4BC" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"></path><path d="m9 12 2 2 4-4"></path></svg></div>
         <h2>@L["Hst.VerifiedTitle"]</h2>
         <p>@L["Hst.VerifiedSub"]</p>
         <hr>
@@ -474,7 +474,7 @@
 </main>
 
 <footer class="sf-footer">
-    <span>TOP4HoneyChains · @L["Sf.FooterTag"]</span>
+    <span class="sf-foot-brand"><img class="b-logo" src="~/img/brand/top4-logo-w2.svg" alt="TOP4HoneyChains" width="96" height="40"><span>@L["Sf.FooterTag"]</span></span>
     <span>@L["Hst.FooterNote"]</span>
 </footer>
 </div>

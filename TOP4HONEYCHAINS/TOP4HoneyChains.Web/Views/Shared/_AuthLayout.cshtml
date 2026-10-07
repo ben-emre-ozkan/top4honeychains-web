@@ -29,10 +29,7 @@
             <canvas class="au-comb" data-honeycomb data-theme="light" data-speed="0.45" aria-hidden="true"
                     data-path="0.10,0.86 0.30,0.70 0.52,0.84 0.72,0.66 0.92,0.80" data-path-wide="0.10,0.86 0.30,0.70 0.52,0.84 0.72,0.66 0.92,0.80"></canvas>
             <div class="au-panel-in">
-                <a class="au-brand b-link" href="/">
-                    <svg width="34" height="34" viewBox="0 0 30 30" aria-hidden="true"><polygon points="15,2 26,8.5 26,21.5 15,28 4,21.5 4,8.5" fill="#FFB547"></polygon><polygon points="15,8 20.2,11 20.2,17 15,20 9.8,17 9.8,11" fill="#FFFFFF"></polygon></svg>
-                    <partial name="_Wordmark" />
-                </a>
+                <a class="au-brand b-link" href="/"><img class="b-logo" src="~/img/brand/top4-logo-stacked.svg" alt="TOP4HoneyChains" width="158" height="180"></a>
                 <p class="au-tagline">@L["Trustable and Sustainable Open Platform for Smart Honey Value Chains"]</p>
                 <ul class="au-points">
                     <li><span class="au-point-icon" aria-hidden="true"><partial name="_LandingIcon" model="@("foureyes")" /></span>@L["Auth.Point1"]</li>
@@ -64,6 +61,7 @@
             </div>
 
             <div class="au-card">
+                <a class="au-form-logo b-link" href="/"><img class="b-logo" src="~/img/brand/top4-logo-w3.svg" alt="TOP4HoneyChains" width="172" height="40"></a>
                 @if (!string.IsNullOrEmpty(error))
                 {
                     <div class="au-alert au-alert-error" role="alert" id="flash-error">@Msg.T(error)<button type="button" class="au-alert-close" aria-label="@L["Close"]">×</button></div>

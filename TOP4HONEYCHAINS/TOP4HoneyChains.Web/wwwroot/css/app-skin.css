@@ -419,7 +419,6 @@ body.app-skin .footer { position: static; height: auto; padding: 18px 16px; back
 @media (max-width: 575.98px) {
     body.app-skin { font-size: 15px; }
     body.app-skin .app-top-row.navbar-header { height: 56px; padding: 0 8px; gap: 4px; }
-    .app-brand span { display: none; }
     .role-chip { max-width: 52vw; padding: 0 8px 0 8px; font-size: 13px; gap: 5px; }
     .role-chip-org { max-width: 18vw; }
     .app-user-btn { padding: 0 5px; }
@@ -514,3 +513,10 @@ body.app-skin .bg-light { background-color: var(--b-foam) !important; }
 body.app-skin .bg-white { background-color: #FFFFFF !important; }
 /* links that stand alone get a 44 px touch target */
 body.app-skin a.app-tap { display: inline-flex; align-items: center; gap: 4px; min-height: 44px; }
+
+/* D-69: logo in the top bar (W3, the small mark on phones), footer logo */
+.app-brand .b-logo-full { width: 172px; height: 40px; }
+.app-brand .b-logo-mark { display: none; width: 46px; height: 40px; }
+@media (max-width: 575.98px) { .app-brand .b-logo-full { display: none; } .app-brand .b-logo-mark { display: block; } }
+body.app-skin .app-foot-logo { display: inline-block; vertical-align: middle; width: 77px; height: 32px; margin-right: 8px; }
+@media print { .print-head-brand img { width: 55px; height: 48px; } }
