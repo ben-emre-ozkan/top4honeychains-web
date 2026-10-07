@@ -9,15 +9,16 @@ body.au { margin: 0; font-family: var(--b-text); font-size: 16px; line-height: 1
 .au-page { display: grid; grid-template-columns: minmax(360px, 44%) 1fr; min-height: 100vh; min-height: 100dvh; }
 
 /* brand panel */
-.au-panel { position: relative; overflow: hidden; isolation: isolate; color: var(--b-night-text);
-    background: radial-gradient(60% 50% at 85% 8%, rgba(242, 179, 61, 0.28), transparent 70%), radial-gradient(50% 50% at 0% 100%, rgba(242, 179, 61, 0.12), transparent 70%), var(--b-night); }
+.au-panel { position: relative; overflow: hidden; isolation: isolate; color: var(--b-ink);
+    background: radial-gradient(70% 60% at 85% 5%, rgba(255, 210, 90, 0.45), transparent 70%), radial-gradient(60% 60% at 0% 100%, rgba(255, 231, 174, 0.75), transparent 70%), linear-gradient(180deg, #FFFFFF, var(--b-cream));
+    border-right: 1px solid var(--b-line); }
 .au-comb { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; }
 .au-panel-in { position: relative; display: flex; flex-direction: column; height: 100%; padding: clamp(28px, 5vw, 56px); }
-.au-brand { display: inline-flex; align-items: center; gap: 12px; min-height: var(--b-touch); color: var(--b-night-text); text-decoration: none; font-family: var(--b-display); font-weight: 800; font-size: 22px; letter-spacing: -0.3px; align-self: flex-start; }
-.au-tagline { font-family: var(--b-display); font-weight: 700; font-size: clamp(26px, 2.6vw, 36px); line-height: 1.15; letter-spacing: -0.4px; margin-top: clamp(40px, 10vh, 120px) !important; max-width: 460px; }
+.au-brand { display: inline-flex; align-items: center; gap: 12px; min-height: var(--b-touch); color: var(--b-heading); text-decoration: none; font-family: var(--b-display); font-weight: 800; font-size: 22px; letter-spacing: -0.3px; align-self: flex-start; }
+.au-tagline { color: var(--b-heading); font-family: var(--b-display); font-weight: 700; font-size: clamp(26px, 2.6vw, 36px); line-height: 1.15; letter-spacing: -0.4px; margin-top: clamp(40px, 10vh, 120px) !important; max-width: 460px; }
 .au-points { list-style: none; margin: 32px 0 0; padding: 0; display: grid; gap: 16px; max-width: 440px; }
-.au-points li { display: flex; align-items: center; gap: 14px; color: var(--b-night-muted); font-size: 16px; }
-.au-point-icon { width: 42px; height: 46px; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; color: var(--b-honey-glow); background: rgba(242, 179, 61, 0.16);
+.au-points li { display: flex; align-items: center; gap: 14px; color: var(--b-ink); font-size: 16px; }
+.au-point-icon { width: 42px; height: 46px; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; color: var(--b-on-honey); background: var(--b-honey-grad);
     clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); }
 .au-point-icon svg { width: 20px; height: 20px; }
 
@@ -28,19 +29,19 @@ body.au { margin: 0; font-family: var(--b-text); font-size: 16px; line-height: 1
 .au-home:hover { color: var(--b-ink); }
 .au-langs { display: flex; }
 .au-lang { display: inline-flex; align-items: center; justify-content: center; min-width: 40px; min-height: var(--b-touch); border-radius: var(--b-radius-pill); color: var(--b-ink-2); text-decoration: none; font-weight: 600; font-size: 13px; letter-spacing: 0.6px; }
-.au-lang:hover { background: rgba(29, 26, 21, 0.06); }
+.au-lang:hover { background: rgba(200, 146, 79, 0.06); }
 .au-lang.is-current { color: var(--b-honey-ink); background: var(--b-honey-soft); }
 .au-card { width: 100%; max-width: 440px; margin: auto 0; padding: clamp(28px, 5vh, 48px) 0; }
-.au-title { font-family: var(--b-display); font-weight: 800; font-size: clamp(30px, 3vw, 38px); line-height: 1.1; letter-spacing: -0.6px; }
+.au-title { color: var(--b-heading); font-family: var(--b-display); font-weight: 800; font-size: clamp(30px, 3vw, 38px); line-height: 1.1; letter-spacing: -0.6px; }
 .au-sub { color: var(--b-muted); margin-top: 8px !important; }
 .au-form { margin-top: 28px; display: grid; gap: 18px; }
 .au-field { display: grid; gap: 6px; }
 .au-field label { font-weight: 600; font-size: 15px; color: var(--b-ink-2); }
-.au-field input { width: 100%; min-height: 50px; padding: 0 16px; font: inherit; font-size: 16px; color: var(--b-ink); background: var(--b-card); border: 1.5px solid #9B907C; border-radius: 14px;
+.au-field input { width: 100%; min-height: 50px; padding: 0 16px; font: inherit; font-size: 16px; color: var(--b-ink); background: var(--b-card); border: 1.5px solid #A88456; border-radius: 14px;
     transition: border-color var(--b-fast) var(--b-ease), box-shadow var(--b-fast) var(--b-ease); }
-.au-field input::placeholder { color: #6F675A; }
-.au-field input:hover { border-color: #7D735F; }
-.au-field input:focus { outline: none; border-color: var(--b-honey); box-shadow: 0 0 0 4px rgba(242, 179, 61, 0.28); }
+.au-field input::placeholder { color: #8F6F4C; }
+.au-field input:hover { border-color: #8C6A40; }
+.au-field input:focus { outline: none; border-color: var(--b-honey); box-shadow: 0 0 0 4px rgba(255, 181, 71, 0.28); }
 .au-field input:focus-visible { outline: 3px solid var(--b-focus); outline-offset: 2px; }
 .au-field input.input-validation-error { border-color: #B42318; }
 .au-field-error { color: #B42318; font-size: 14px; font-weight: 600; }
@@ -48,19 +49,19 @@ body.au { margin: 0; font-family: var(--b-text); font-size: 16px; line-height: 1
 .au-row { display: flex; align-items: center; justify-content: space-between; gap: 8px 16px; flex-wrap: wrap; }
 .au-check { display: inline-flex; align-items: center; gap: 10px; min-height: var(--b-touch); cursor: pointer; font-size: 15px; color: var(--b-ink-2); }
 .au-check input { width: 20px; height: 20px; accent-color: var(--b-honey); margin: 0; }
-.au-link { display: inline-flex; align-items: center; min-height: var(--b-touch); color: var(--b-green); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(31, 91, 67, 0.35); overflow-wrap: anywhere; }
+.au-link { display: inline-flex; align-items: center; min-height: var(--b-touch); color: var(--b-green); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(11, 122, 117, 0.35); overflow-wrap: anywhere; }
 .au-link:hover { color: var(--b-green-dark); text-decoration-color: currentColor; }
 .au-submit { width: 100%; min-height: 52px; font-size: 17px; margin-top: 4px; }
 .au-alt { margin-top: 22px !important; color: var(--b-muted); font-size: 15px; }
 .au-alert { position: relative; padding: 12px 40px 12px 14px; border-radius: 12px; font-size: 15px; font-weight: 500; }
 .au-alert-error { background: #FBE3E3; color: #8A1C12; border: 1px solid #F1C4C0; }
 .au-alert-ok { background: var(--b-green-soft); color: var(--b-green-dark); border: 1px solid var(--b-green-line); }
-.au-alert-warn { background: var(--b-honey-soft); color: var(--b-honey-ink); border: 1px solid #F0D9A6; }
+.au-alert-warn { background: var(--b-honey-soft); color: var(--b-honey-ink); border: 1px solid #F6DFA8; }
 .au-form > .au-alert, .au-card > .au-alert { padding-right: 14px; }
 .au-card > .au-alert { margin-bottom: 18px; padding-right: 44px; }
 .au-alert-close { position: absolute; top: 2px; right: 2px; width: var(--b-touch); height: var(--b-touch); border: 0; background: transparent; color: inherit; font-size: 22px; line-height: 1; cursor: pointer; border-radius: 10px; }
 .au-who { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 18px; font-weight: 600; color: var(--b-ink-2); }
-.au-who-hex { width: 44px; height: 48px; display: inline-flex; align-items: center; justify-content: center; background: var(--b-honey-hi); color: var(--b-ink); font-family: var(--b-display); font-weight: 800; font-size: 20px;
+.au-who-hex { width: 44px; height: 48px; display: inline-flex; align-items: center; justify-content: center; background: var(--b-honey-grad); color: var(--b-on-honey); font-family: var(--b-display); font-weight: 800; font-size: 20px;
     clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); }
 .au-code { font-family: var(--b-display); font-weight: 800; font-size: 72px; line-height: 1; color: var(--b-kicker); margin-bottom: 8px !important; }
 .au-card > .au-submit { margin-top: 28px; }

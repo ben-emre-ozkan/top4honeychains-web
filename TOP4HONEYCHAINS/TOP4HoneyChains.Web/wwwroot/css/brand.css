@@ -116,48 +116,74 @@
 }
 
 :root {
-    /* colours: paper and ink */
-    --b-ink: #1D1A15;
-    --b-ink-2: #3B352C;
-    --b-muted: #5E574C;          /* 6.7:1 on paper */
-    --b-paper: #FBF8F2;
-    --b-paper-2: #F5EFE3;
+    /* Palette v2 "honey foam" (D-68). White is the dominant surface; foam and cream are soft tints only.
+       No black and no dark brown anywhere, shadows included. Ratios are against white unless noted. */
+    --b-white: #FFFFFF;
+    --b-foam: #FFFBF0;
+    --b-cream: #FFF4D6;
+    --b-honey-light: #FFE7AE;    /* glow bands: body text only on it (7.0:1), not muted */
+
+    /* text */
+    --b-ink: #574A40;            /* body, 8.5:1 */
+    --b-ink-2: #574A40;
+    --b-heading: #8C5E2E;        /* headings, 5.6:1; 5.1:1 on cream */
+    --b-muted: #7B6A5C;          /* 5.2:1; 4.7:1 on cream */
+
+    /* surfaces and lines */
+    --b-paper: #FFFFFF;
+    --b-paper-2: #FFFBF0;
     --b-card: #FFFFFF;
-    --b-line: #E9E2D4;
-    --b-track: #F1E9DA;
-    /* honey: --b-honey is for fills and lines, never for small text; text uses --b-honey-ink or --b-kicker */
-    --b-honey: #D9930D;
-    --b-honey-hi: #F2B33D;
-    --b-honey-glow: #FFC95C;
-    --b-honey-soft: #FCEFD2;
-    --b-honey-ink: #6B4700;      /* 8.4:1 on paper */
-    --b-kicker: #8A5A00;         /* 5.6:1 on paper */
-    /* green: verified, approved */
-    --b-green: #1F5B43;
-    --b-green-dark: #123B2B;
-    --b-green-soft: #E3F0E9;
-    --b-green-line: #CFE3D7;
-    /* night: the dark sections */
-    --b-night: #15120D;
-    --b-night-2: #221C13;
-    --b-night-line: rgba(255, 233, 196, 0.14);
-    --b-night-text: #F6EEDF;     /* 15:1 on night */
-    --b-night-muted: #C9BBA3;    /* 9.9:1 on night */
-    --b-focus: #1A5FD0;
+    --b-line: #F2E3C6;
+    --b-track: #FFF4D6;
+    --b-input-line: #A88456;     /* form borders, 3.4:1 */
+    --b-placeholder: #8F6F4C;    /* 4.6:1 */
+
+    /* honey: fills, badges, highlights; text on the gradient is --b-on-honey (5.1:1 at the darkest end) */
+    --b-honey-grad: linear-gradient(135deg, #FFD25A 0%, #FFB547 55%, #FFA23A 100%);
+    --b-honey-grad-hover: linear-gradient(135deg, #FFDB78 0%, #FFC062 55%, #FFAE52 100%);
+    --b-on-honey: #4A3F36;
+    --b-honey: #FFB547;
+    --b-honey-hi: #FFD25A;
+    --b-honey-glow: #FFE7AE;
+    --b-honey-soft: #FFF4D6;
+    --b-honey-ink: #8C5E2E;      /* text on cream, 5.1:1 */
+    --b-kicker: #8C5E2E;
+
+    /* trust: #0B7A75 for text (5.2:1), #2BC4BC for details only (icons, dots, underlines, focus glow), never text */
+    --b-trust: #0B7A75;
+    --b-trust-accent: #2BC4BC;
+    --b-green: #0B7A75;
+    --b-green-dark: #08605C;
+    --b-green-soft: #E8F8F7;
+    --b-green-line: #BDEBE8;
+
+    /* the former dark zones are light honey-glow sections now (names kept for the stylesheets) */
+    --b-night: #FFF8E8;
+    --b-night-2: #FFF4D6;
+    --b-night-line: rgba(200, 146, 79, 0.25);
+    --b-night-text: #8C5E2E;
+    --b-night-muted: #574A40;
+    --b-focus: #0B7A75;
+
+    /* wordmark (until the logo arrives). Requested #C8924F → #B07838 and #F5A30C → #E07010; every end fell below
+       3:1 on the strongest honey glow, so each was darkened just enough (≥ 3:1 on the glow, ≥ 4:1 on white) */
+    --b-wm-caramel: linear-gradient(135deg, #A77A42, #AE7637);
+    --b-wm-honey: linear-gradient(135deg, #B27608, #CB650E);
 
     /* type */
     --b-display: 'Bricolage Grotesque', system-ui, sans-serif;
     --b-text: 'Instrument Sans', system-ui, sans-serif;
 
-    /* shape */
+    /* shape; warm, very soft shadows */
     --b-radius-s: 10px;
     --b-radius: 16px;
     --b-radius-l: 24px;
     --b-radius-pill: 999px;
-    --b-shadow-s: 0 2px 6px rgba(29, 26, 21, 0.06);
-    --b-shadow: 0 10px 28px rgba(29, 26, 21, 0.10);
-    --b-shadow-l: 0 24px 60px rgba(29, 26, 21, 0.18);
-    --b-glow: 0 0 0 1px rgba(242, 179, 61, 0.35), 0 18px 60px rgba(242, 179, 61, 0.22);
+    --b-shadow-s: 0 2px 8px rgba(200, 146, 79, 0.10);
+    --b-shadow: 0 10px 28px rgba(200, 146, 79, 0.14);
+    --b-shadow-l: 0 24px 60px rgba(200, 146, 79, 0.18);
+    --b-glow: 0 0 0 1px rgba(255, 181, 71, 0.45), 0 18px 50px rgba(255, 170, 60, 0.28);
+    --b-focus-ring: 0 0 0 3px #FFFFFF, 0 0 0 5px #0B7A75, 0 0 0 9px rgba(43, 196, 188, 0.30);
 
     /* motion */
     --b-ease: cubic-bezier(.2, .7, .2, 1);
@@ -175,6 +201,7 @@
 .b-focus:focus-visible, .b-btn:focus-visible, .b-link:focus-visible {
     outline: 3px solid var(--b-focus);
     outline-offset: 3px;
+    box-shadow: 0 0 0 8px rgba(43, 196, 188, 0.25);
 }
 .b-visually-hidden {
     position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
@@ -183,12 +210,20 @@
     display: inline-flex; align-items: center; justify-content: center; gap: 8px;
     min-height: var(--b-touch); padding: 0 22px; border-radius: var(--b-radius-pill); border: 1px solid transparent;
     font-family: var(--b-text); font-weight: 600; font-size: 16px; line-height: 1; text-decoration: none; cursor: pointer;
-    transition: transform var(--b-fast) var(--b-ease), background-color var(--b-fast) var(--b-ease), box-shadow var(--b-fast) var(--b-ease);
+    transition: transform var(--b-fast) var(--b-ease), background var(--b-fast) var(--b-ease), box-shadow var(--b-fast) var(--b-ease);
 }
 .b-btn:hover { transform: translateY(-1px); }
-.b-btn-honey { background: var(--b-honey-hi); color: var(--b-ink); box-shadow: 0 8px 22px rgba(217, 147, 13, 0.30); }
-.b-btn-honey:hover { background: var(--b-honey-glow); color: var(--b-ink); }
-.b-btn-ghost { background: transparent; color: var(--b-ink); border-color: rgba(29, 26, 21, 0.28); }
-.b-btn-ghost:hover { background: rgba(29, 26, 21, 0.05); color: var(--b-ink); }
-.b-btn-ink { background: var(--b-ink); color: #FFFFFF; }
-.b-btn-ink:hover { background: var(--b-ink-2); color: #FFFFFF; }
+.b-btn-honey { background: var(--b-honey-grad); color: var(--b-on-honey); border-color: #FFC45E; box-shadow: 0 8px 22px rgba(255, 162, 58, 0.30); }
+.b-btn-honey:hover { background: var(--b-honey-grad-hover); color: var(--b-on-honey); }
+.b-btn-ghost { background: var(--b-white); color: var(--b-heading); border-color: var(--b-input-line); }
+.b-btn-ghost:hover { background: var(--b-foam); color: var(--b-heading); }
+/* formerly a dark button; now a light outline in the heading colour */
+.b-btn-ink { background: var(--b-white); color: var(--b-heading); border-color: var(--b-input-line); }
+.b-btn-ink:hover { background: var(--b-foam); color: var(--b-heading); }
+
+/* wordmark "TOP4HoneyChains" until the logo arrives: TOP4 and Chains in caramel, Honey in honey (D-68) */
+.b-wordmark { font-family: var(--b-display); font-weight: 800; letter-spacing: -0.02em; white-space: nowrap; }
+.b-wordmark .b-wm-a, .b-wordmark .b-wm-h { -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: #AE7637; }
+.b-wordmark .b-wm-a { background-image: var(--b-wm-caramel); }
+.b-wordmark .b-wm-h { background-image: var(--b-wm-honey); color: #CB650E; }
+@media (forced-colors: active) { .b-wordmark .b-wm-a, .b-wordmark .b-wm-h { -webkit-text-fill-color: currentColor; background: none; } }

@@ -1,7 +1,7 @@
 /* Honeycomb canvas of the landing hero and the sign-in panel (D-65).
    A faint hex grid; cells light up one after another along a path through five stations
    (apiary → delivery → lab → processing → shelf), with a few drifting pollen motes.
-   <canvas data-honeycomb data-theme="light|dark" data-speed="1" data-labels="a|b|c|d|e" data-path="x,y x,y …" data-path-wide="x,y …">
+   <canvas data-honeycomb data-theme="light" data-speed="1" data-labels="a|b|c|d|e" data-path="x,y x,y …" data-path-wide="x,y …">
    (path points are fractions of the canvas; data-path-wide is used when the canvas is at least 1000 px wide)
    - draws only while the canvas is on screen and the tab is visible;
    - with prefers-reduced-motion (or data-speed="0") it draws one static frame with the whole path lit.
@@ -12,10 +12,10 @@
     var SQ3 = Math.sqrt(3);
     var reduceQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
 
-    function themeColors(theme) {
-        return theme === 'dark'
-            ? { grid: 'rgba(255, 201, 92, 0.10)', fill: '255, 179, 61', station: '#F2B33D', stationInk: '#15120D', label: 'rgba(246, 238, 223, 0.92)', labelBg: 'rgba(21, 18, 13, 0.72)', mote: '255, 214, 130', glow: 18 }
-            : { grid: 'rgba(217, 147, 13, 0.17)', fill: '242, 179, 61', station: '#D9930D', stationInk: '#FFFFFF', label: '#3B352C', labelBg: 'rgba(251, 248, 242, 0.92)', mote: '217, 147, 13', glow: 0 };
+    // D-68 "honey foam": one light palette (the former dark theme of the sign-in panel is light too);
+    // light honey grid, lit cells glow warm amber, station numbers in the on-honey ink
+    function themeColors() {
+        return { grid: 'rgba(240, 170, 70, 0.22)', fill: '255, 181, 71', station: '#FFB547', stationInk: '#FFFFFF', label: '#574A40', labelBg: 'rgba(255, 255, 255, 0.92)', mote: '255, 162, 58', glow: 16 };
     }
 
     // pointy-top axial hex helpers
@@ -190,7 +190,7 @@
             ctx.fill();
             ctx.shadowBlur = 0;
             hexPath(ctx, st.x, st.y, size * 0.42);
-            ctx.fillStyle = on ? col.stationInk : 'rgba(255,255,255,0.6)';
+            ctx.fillStyle = on ? col.stationInk : 'rgba(140, 94, 46, 0.55)';
             ctx.fill();
             if (showLabels && on) {
                 var text = this.labels[i], tw = ctx.measureText(text).width + 16, ty = st.y - size * 1.75;

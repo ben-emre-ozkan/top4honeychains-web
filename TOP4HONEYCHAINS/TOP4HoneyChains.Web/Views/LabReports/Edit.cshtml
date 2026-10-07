@@ -215,7 +215,7 @@
                             @L["Ccp.Approved"] · @Model.ApprovedAt?.ToLocalTime().ToString("dd.MM.yyyy HH:mm")
                             @if (Model.IsAccredited) { <span class="badge bg-success ms-1">@L["Org.Accredited"] @Model.AccreditationNumber</span> }
                             @if (Model.InHouse) { <span class="badge bg-warning text-dark ms-1">@L["Hs.InHouseLab"]</span> }
-                            · <a href="/verify-report?code=@Model.ReportCode" target="_blank">@L["Lab.VerifyPage"]</a>
+                            · <a class="app-tap" href="/verify-report?code=@Model.ReportCode" target="_blank">@L["Lab.VerifyPage"]</a>
                         </div>
                     }
                 </div>
