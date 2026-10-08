@@ -122,7 +122,7 @@
                                 <li>
                                     <a href="@i.Url" class="work-item @(age?.Old == true ? "is-old" : "")" data-key="@(i.Kind)|@(i.Url)">
                                         <span class="work-item-main">
-                                            <span class="work-item-title">@i.Title@if (i.TitleKind != null) {<text> · @L[i.TitleKind]</text>}</span>
+                                            <span class="work-item-title">@Ref.Code(i.Title)@if (i.TitleKind != null) {<text> · @L[i.TitleKind]</text>}</span>
                                             <span class="work-new" hidden>@L["Work.New"]</span>
                                             @if (i.Detail != null) { <span class="work-item-detail">@(i.Detail is "lot" or "batch" or "storage" ? L["Kind." + i.Detail].Value : i.Detail)</span> }
                                             @if (i.Waiting != null) { <span class="work-waiting"><i class="mdi mdi-timer-sand" aria-hidden="true"></i> @Msg.T(i.Waiting)</span> }

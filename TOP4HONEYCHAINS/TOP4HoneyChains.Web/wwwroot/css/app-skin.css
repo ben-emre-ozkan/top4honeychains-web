@@ -526,6 +526,22 @@ body.app-skin .app-foot-logo { display: block; width: 77px; height: 32px; }
 body.app-skin :is(.nav-link, .dropdown-item, .page-link, .form-check-input, .list-group-item, .accordion-button, .form-control, .form-select) { transition: none; }
 body.app-skin .collapsing { transition: none !important; }
 html.is-typing .work-pulse::before, html.is-typing .work-pulse .work-badge, html.is-hidden-tab .work-pulse::before, html.is-hidden-tab .work-pulse .work-badge { animation: none !important; }
+/* D-73: readable audit log */
+body.app-skin .audit-changes ul { list-style: none; margin: 0; padding: 0; }
+body.app-skin .audit-changes li { margin: 0 0 2px; overflow-wrap: anywhere; }
+body.app-skin .audit-field { color: var(--b-muted); font-weight: 600; }
+body.app-skin .audit-old { color: #A2450B; text-decoration: line-through; text-decoration-color: rgba(162, 69, 11, 0.45); }
+body.app-skin .audit-arrow { color: var(--b-muted); margin: 0 2px; }
+body.app-skin .audit-new { color: var(--b-ink); font-weight: 600; }
+body.app-skin .audit-raw { margin-top: 4px; }
+body.app-skin .audit-raw summary { cursor: pointer; color: var(--b-trust); font-weight: 600; }
+body.app-skin .audit-raw pre { max-width: 520px; margin: 4px 0 6px; padding: 6px 8px; white-space: pre-wrap; word-break: break-all; font-size: 11.5px; background: var(--b-foam); border-radius: 8px; }
+
+/* D-73: beekeeper list: thumbnail or initials */
+body.app-skin .bk-thumb { object-fit: cover; background: var(--b-cream); }
+body.app-skin .bk-initials { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--b-cream);
+    color: var(--b-honey-ink); font: 700 14px/1 var(--b-display); box-shadow: inset 0 0 0 1px var(--b-line); }
+
 /* DataTables pagination wraps on phones instead of widening the page */
 body.app-skin .dataTables_paginate .pagination { flex-wrap: wrap; justify-content: center; row-gap: 4px; }
 @media (max-width: 575.98px) { body.app-skin .dataTables_paginate .pagination .page-link { padding-left: 10px; padding-right: 10px; } }

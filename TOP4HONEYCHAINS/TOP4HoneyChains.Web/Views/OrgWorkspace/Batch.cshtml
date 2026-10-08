@@ -27,7 +27,7 @@
                     {
                         <a asp-controller="CCPMonitoring" asp-action="FinalHoneyProductionManageCCP"
                            asp-route-finalHoneyProductionId="@Model.FinalHoneyProductionId" asp-route-ccpId="@a.FinalHoneyCCPAssignmentCCP"
-                           class="btn btn-sm @(done(a.FinalHoneyCCPAssignmentStatus, a.ApprovedAt, a.FinalHoneyCCPAssignmentCCP) ? "btn-success" : "btn-secondary") me-1 mb-1">@a.CCP?.Code</a>
+                           class="btn btn-sm @(done(a.FinalHoneyCCPAssignmentStatus, a.ApprovedAt, a.FinalHoneyCCPAssignmentCCP) ? "btn-success" : "btn-secondary") me-1 mb-1">@Ref.Code(a.CCP?.Code)</a>
                     }
 
                     <h5 class="card-title mt-4">@L["Org.SourceLots"]</h5>
@@ -47,7 +47,7 @@
                                         {
                                             <a asp-controller="CCPMonitoring" asp-action="RawHoneyProductionManageCCP"
                                                asp-route-rawHoneyProductionId="@d.RawHoneyProductionId" asp-route-ccpId="@a.RawHoneyCCPAssignmentCCP"
-                                               class="btn btn-sm @(done(a.RawHoneyCCPAssignmentStatus, a.ApprovedAt, a.RawHoneyCCPAssignmentCCP) ? "btn-success" : "btn-secondary") me-1 mb-1">@a.CCP?.Code</a>
+                                               class="btn btn-sm @(done(a.RawHoneyCCPAssignmentStatus, a.ApprovedAt, a.RawHoneyCCPAssignmentCCP) ? "btn-success" : "btn-secondary") me-1 mb-1">@Ref.Code(a.CCP?.Code)</a>
                                         }
                                     </td>
                                 </tr>

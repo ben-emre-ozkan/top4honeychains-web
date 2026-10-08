@@ -78,6 +78,20 @@ builder.Services.AddScoped<CcpIntegrityService>();
 builder.Services.AddMemoryCache();
 builder.Services.AddScoped<LandingStatsService>();
 builder.Services.AddScoped<AdminHomeService>();   // D-72: the admin home
+// D-73: warm the EF models, the first connections and the reference texts in the background after start-up
+builder.Services.AddHostedService<StartupWarmup>();
+builder.Services.AddScoped<TOP4HoneyChains.Web.Services.OrgModel.AuditReadable>();   // D-73: readable audit log
+// D-73: compress the static text assets (CSS, JavaScript, SVG). HTML pages stay uncompressed: they carry antiforgery
+// tokens next to user input (BREACH); IIS may compress them separately if the university IT enables it.
+builder.Services.AddResponseCompression(o =>
+{
+    o.EnableForHttps = true;
+    o.Providers.Add<Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProvider>();
+    o.Providers.Add<Microsoft.AspNetCore.ResponseCompression.GzipCompressionProvider>();
+    o.MimeTypes = new[] { "text/css", "text/javascript", "application/javascript", "image/svg+xml" };
+});
+builder.Services.Configure<Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProviderOptions>(o => o.Level = System.IO.Compression.CompressionLevel.Fastest);
+builder.Services.Configure<Microsoft.AspNetCore.ResponseCompression.GzipCompressionProviderOptions>(o => o.Level = System.IO.Compression.CompressionLevel.Fastest);
 builder.Services.AddScoped<LimitFormatter>();
 builder.Services.AddSingleton<RefText>();
 builder.Services.AddSingleton<Places>();
@@ -146,6 +160,8 @@ if (app.Environment.IsProduction())
     app.UseHsts();
     app.UseHttpsRedirection();
 }
+
+app.UseResponseCompression();
 
 // D-70: AVIF landing images are not in the default content-type map; without it they fall through to the sign-in redirect
 {

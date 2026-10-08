@@ -249,6 +249,18 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             var shipmentId = await _app.WithContextAsync(db => db.Shipments.Where(s => s.FinalHoneyProductionId == batch).Select(s => s.ShipmentId).FirstAsync());
             Assert.Contains("Receipt confirmed", await receiverStaff.PostFlashAsync("/Shipments/Decide", new() { ["id"] = shipmentId.ToString(), ["confirm"] = "true" }, "/Shipments/Index"));
 
+            // D-73: the receiver reads the processor's control points of the batch and of its lots, read-only
+            foreach (var url in new[] { $"/CCPMonitoring/RawHoneyProductionManageCCP?rawHoneyProductionId={lot}&ccpId={ccp0}",
+                                        $"/CCPMonitoring/FinalHoneyProductionManageCCP?finalHoneyProductionId={batch}&ccpId={batchCcps.Min()}" })
+            {
+                var response = await receiverStaff.GetAsync(url);
+                Assert.Equal(System.Net.HttpStatusCode.OK, response.StatusCode);
+                var page = await response.Content.ReadAsStringAsync();
+                Assert.Contains("<fieldset disabled", page);
+                Assert.DoesNotContain("id=\"approve-form\"", page);
+                Assert.DoesNotContain("btn btn-success px-5 shadow", page);   // no save button
+            }
+
             // ---- 8. CCP 10 by the receiver, approved by its QualityApprover
             var ccp10 = await CcpIdAsync("CCP 10");
             var storage = new Dictionary<string, string> { ["batchId"] = batch.ToString() };

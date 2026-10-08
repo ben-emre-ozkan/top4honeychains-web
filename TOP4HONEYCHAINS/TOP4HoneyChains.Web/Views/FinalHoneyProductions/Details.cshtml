@@ -95,7 +95,7 @@
                                 @foreach (var ccp in Model.Ccps)
                                 {
                                     <tr>
-                                        <td><strong>@ccp.Code</strong> @Ref.CcpTitle(ccp.CcpId, ccp.Title)</td>
+                                        <td><strong>@Ref.Code(ccp.Code)</strong> @Ref.CcpTitle(ccp.CcpId, ccp.Title)</td>
                                         <td>@(ccp.Status == AssignmentStatusIds.NotApplicable ? L["Ccp.NotApplicableShort"].Value : Ref.Status(ccp.Status, ccp.StatusName))</td>
                                         <td>@ccp.ApprovedAt?.ToString("dd.MM.yyyy HH:mm")</td>
                                     </tr>

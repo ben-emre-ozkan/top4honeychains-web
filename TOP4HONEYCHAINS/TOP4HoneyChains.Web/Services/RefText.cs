@@ -18,6 +18,18 @@ namespace TOP4HoneyChains.Web.Services
 
         public static string Culture => CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
 
+        // D-73: each language shows its own abbreviation for a critical control point (Turkish KKN, Spanish PCC, Polish KPK,
+        // Latvian KKP, English CCP). Display only: the codes in the data stay "CCP n"; a code written without a space
+        // (an input example such as "CCP1") is left as it is.
+        private static readonly System.Text.RegularExpressions.Regex CcpWord = new(@"\bCCP(?=s?\b)", System.Text.RegularExpressions.RegexOptions.Compiled);
+        private static readonly Dictionary<string, string> CcpAbbreviation = new() { ["tr"] = "KKN", ["es"] = "PCC", ["pl"] = "KPK", ["lv"] = "KKP" };
+
+        public static string CcpText(string? text) =>
+            string.IsNullOrEmpty(text) || !CcpAbbreviation.TryGetValue(Culture, out var abbreviation) ? text ?? "" : CcpWord.Replace(text, abbreviation);
+
+        // "CCP 4" -> "KKN 4" in Turkish; also for composed titles ("CCP 0 · #20070")
+        public string Code(string? text) => CcpText(text);
+
         public void Invalidate()
         {
             _table = null;
@@ -151,7 +163,7 @@ namespace TOP4HoneyChains.Web.Services
             var k = Convert.ToString(key, CultureInfo.InvariantCulture) ?? "";
             var table = Table();
             if (table.TryGetValue((entity, k, field, Culture), out var value) && value.Length > 0)
-                return value;
+                return CcpText(value);
             if (table.TryGetValue((entity, k, field, "en"), out value) && value.Length > 0)
                 return value;
             return fallback ?? "";

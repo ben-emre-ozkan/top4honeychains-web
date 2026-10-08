@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats.Jpeg;
 using SixLabors.ImageSharp.Processing;
@@ -53,12 +54,58 @@ namespace TOP4HoneyChains.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var tOP4HoneyChainsContext = _context.Beekeepers.Include(b => b.BeekeeperBeekeepingPurposeType).Include(b => b.BeekeeperBeekeepingType).Include(b => b.BeekeeperEducationLevel);
+            // D-73: the list never loads the photos; it shows a small cached thumbnail (Thumb) or the initials
+            var beekeepers = await _context.Beekeepers.AsNoTracking().Select(b => new Beekeeper
+            {
+                BeekeeperId = b.BeekeeperId, BeekeeperFirstName = b.BeekeeperFirstName, BeekeeperLastName = b.BeekeeperLastName,
+                BeekeeperBirthDate = b.BeekeeperBirthDate, BeekeeperExperienceTime = b.BeekeeperExperienceTime,
+                BeekeeperPhoneNumber = b.BeekeeperPhoneNumber, BeekeeperBusinessNumber = b.BeekeeperBusinessNumber,
+                BeekeeperEducationLevelId = b.BeekeeperEducationLevelId, BeekeeperBeekeepingPurposeTypeId = b.BeekeeperBeekeepingPurposeTypeId,
+                BeekeeperBeekeepingTypeId = b.BeekeeperBeekeepingTypeId, IsActive = b.IsActive, DeactivatedAt = b.DeactivatedAt,
+                BeekeeperBeekeepingPurposeType = b.BeekeeperBeekeepingPurposeType, BeekeeperBeekeepingType = b.BeekeeperBeekeepingType,
+                BeekeeperEducationLevel = b.BeekeeperEducationLevel
+            }).ToListAsync();
+            // photo size per beekeeper: tells which ones have a photo and versions the thumbnail URL (a new photo, a new URL)
+            ViewBag.PhotoVersions = await _context.Beekeepers.AsNoTracking().Where(b => b.BeekeeperProfilePhoto != null)
+                .Select(b => new { b.BeekeeperId, Size = EF.Functions.DataLength(b.BeekeeperProfilePhoto) })
+                .ToDictionaryAsync(b => b.BeekeeperId!, b => b.Size ?? 0);
 
             ViewBag.Controller = "Beekeepers";
             ViewBag.Action = "Index";
 
-            return View(await tOP4HoneyChainsContext.ToListAsync());
+            return View(beekeepers);
+        }
+
+        // D-73: a 96 px thumbnail of the profile photo, cached on the server and in the browser (private: personal data)
+        [HttpGet]
+        public async Task<IActionResult> Thumb(string id, int v, [FromServices] Microsoft.Extensions.Caching.Memory.IMemoryCache cache)
+        {
+            var key = $"bk-thumb:{id}:{v}";
+            if (!cache.TryGetValue(key, out byte[]? thumb))
+            {
+                var photo = await _context.Beekeepers.AsNoTracking().Where(b => b.BeekeeperId == id).Select(b => b.BeekeeperProfilePhoto).FirstOrDefaultAsync();
+                if (photo == null || photo.Length == 0)
+                    return NotFound();
+                try
+                {
+                    using var image = SixLabors.ImageSharp.Image.Load(photo);
+                    image.Mutate(x => x.AutoOrient().Resize(new SixLabors.ImageSharp.Processing.ResizeOptions
+                    {
+                        Size = new SixLabors.ImageSharp.Size(96, 96),
+                        Mode = SixLabors.ImageSharp.Processing.ResizeMode.Crop
+                    }));
+                    using var output = new MemoryStream();
+                    await image.SaveAsJpegAsync(output, new SixLabors.ImageSharp.Formats.Jpeg.JpegEncoder { Quality = 80 });
+                    thumb = output.ToArray();
+                }
+                catch (SixLabors.ImageSharp.ImageFormatException)
+                {
+                    return NotFound();
+                }
+                cache.Set(key, thumb, new Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions { SlidingExpiration = TimeSpan.FromHours(6), Size = thumb.Length });
+            }
+            Response.Headers.CacheControl = "private, max-age=86400";
+            return File(thumb!, "image/jpeg");
         }
 
 

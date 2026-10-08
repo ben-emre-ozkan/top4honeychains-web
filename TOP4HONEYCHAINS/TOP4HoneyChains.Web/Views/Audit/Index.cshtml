@@ -1,4 +1,4 @@
-﻿@model List<TOP4HoneyChains.Web.Models.Entities.AuditEntry>
+﻿@model List<TOP4HoneyChains.Web.Services.OrgModel.AuditRow>
 @{
     ViewData["Title"] = L["Audit.Title"];
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
@@ -36,22 +36,41 @@
                     </form>
 
                     <div class="small text-muted mb-1">@L["{0} rows", total]</div>
-                    <div class="table-responsive"><table class="table table-sm table-bordered small" id="audit-table">
-                        <thead><tr><th>#</th><th>UTC</th><th>@L["Org.User"]</th><th>@L["Audit.Org"]</th><th>@L["Audit.Action"]</th><th>@L["Audit.Entity"]</th><th>@L["Audit.Key"]</th><th>@L["Audit.Flags"]</th><th>@L["Audit.Old"]</th><th>@L["Audit.New"]</th><th>@L["Hash"]</th></tr></thead>
+                    @* D-73: who, when, which record and the changed fields as "old → new"; the stored JSON behind "Show raw" *@
+                    <div class="table-responsive"><table class="table table-sm table-bordered small audit-table" id="audit-table">
+                        <thead><tr><th>#</th><th>@L["Audit.When"]</th><th>@L["Audit.Who"]</th><th>@L["Audit.Action"]</th><th>@L["Audit.Record"]</th><th>@L["Audit.Changes"]</th><th>@L["Hash"]</th></tr></thead>
                         <tbody>
                             @foreach (var a in Model)
                             {
-                                <tr>
-                                    <td>@a.AuditId</td>
-                                    <td>@a.At.ToString("dd.MM.yyyy HH:mm:ss")</td>
-                                    <td>@a.UserName</td>
-                                    <td>@a.OrgId</td>
-                                    <td>@L[a.Action]</td>
-                                    <td>@L[a.Entity]</td>
-                                    <td>@a.EntityKey</td>
-                                    <td>@if (a.Flags != null) { <span class="badge bg-warning text-dark">@string.Join(", ", a.Flags.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).Select(f => L[f].Value))</span> }</td>
-                                    <td style="max-width:260px; word-break:break-all">@a.OldValues</td>
-                                    <td style="max-width:260px; word-break:break-all">@a.NewValues</td>
+                                <tr data-audit-id="@a.Id">
+                                    <td>@a.Id</td>
+                                    <td class="text-nowrap"><time datetime="@a.AtUtc.ToString("yyyy-MM-ddTHH:mm:ssZ", System.Globalization.CultureInfo.InvariantCulture)" title="UTC @a.AtUtc.ToString("dd.MM.yyyy HH:mm:ss")">@a.AtLocal.ToString("dd.MM.yyyy HH:mm:ss")</time></td>
+                                    <td><b>@(a.UserName ?? "—")</b>@if (a.OrgName != null) {<div class="text-muted">@a.OrgName</div>}</td>
+                                    <td>@L[a.Action]@if (a.Flags != null) { <div><span class="badge bg-warning text-dark">@string.Join(", ", a.Flags.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).Select(f => L[f].Value))</span></div> }</td>
+                                    <td>@L[a.Entity]@if (a.Key != null) {<text> · </text>@if (a.RecordUrl != null) {<a href="@a.RecordUrl">#@a.Key</a>} else {<span>#@a.Key</span>}}</td>
+                                    <td class="audit-changes">
+                                        @if (a.Changes.Any())
+                                        {
+                                            <ul>
+                                                @foreach (var c in a.Changes)
+                                                {
+                                                    <li><span class="audit-field">@c.Label:</span> @if (c.Old != null) {<span class="audit-old">@c.Old</span> <span class="audit-arrow" aria-label="@L["Audit.ChangedTo"]">→</span> }<span class="audit-new">@(c.New ?? "—")</span></li>
+                                                }
+                                            </ul>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted">@L["Audit.NoFields"]</span>
+                                        }
+                                        @if (a.OldJson != null || a.NewJson != null)
+                                        {
+                                            <details class="audit-raw">
+                                                <summary>@L["Audit.ShowRaw"]</summary>
+                                                @if (a.OldJson != null) {<div><b>@L["Audit.Old"]</b><pre>@a.OldJson</pre></div>}
+                                                @if (a.NewJson != null) {<div><b>@L["Audit.New"]</b><pre>@a.NewJson</pre></div>}
+                                            </details>
+                                        }
+                                    </td>
                                     <td><code title="@a.Hash">@a.Hash[..10]…</code></td>
                                 </tr>
                             }

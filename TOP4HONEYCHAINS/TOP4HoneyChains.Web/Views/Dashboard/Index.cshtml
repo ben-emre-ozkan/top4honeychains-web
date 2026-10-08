@@ -145,7 +145,7 @@
                                 <ul class="ah-list">
                                     @foreach (var w in Model.Waiting)
                                     {
-                                        <li><a href="@w.Url"><span class="ah-list-kind">@L["Home.Wait.Kind." + w.Kind]</span><b>@w.Title</b>@if (w.Since != null) {<time datetime="@Iso(w.Since)">@When(w.Since)</time>}</a></li>
+                                        <li><a href="@w.Url"><span class="ah-list-kind">@L["Home.Wait.Kind." + w.Kind]</span><b>@Ref.Code(w.Title)</b>@if (w.Since != null) {<time datetime="@Iso(w.Since)">@When(w.Since)</time>}</a></li>
                                     }
                                 </ul>
                                 @if (Model.WaitingTotal > Model.Waiting.Count)
@@ -195,7 +195,7 @@
                                     <div class="ah-event-body">
                                         <div class="ah-event-head">
                                             <span class="ah-list-kind">@L["Home.Act.Kind." + a.Kind]</span>
-                                            @if (a.Url != null) {<a href="@a.Url" class="ah-event-subject">@a.Subject</a>} else {<b class="ah-event-subject">@a.Subject</b>}
+                                            @if (a.Url != null) {<a href="@a.Url" class="ah-event-subject">@Ref.Code(a.Subject)</a>} else {<b class="ah-event-subject">@Ref.Code(a.Subject)</b>}
                                             @if (a.SelfApproved) {<span class="ah-flag">@L["Home.Act.Self"]</span>}
                                         </div>
                                         <div class="ah-event-steps">

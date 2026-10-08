@@ -84,6 +84,21 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             : _context.FinalHoneyCCPAssignments.Where(a => a.FinalHoneyProductionId == ownerId).Select(a => a.FinalHoneyCCPAssignmentCCP).ToListAsync();
 
         // The lot is in a batch owned by the org: the whole lot is upstream of its item
+        // D-73: an organization holds a batch when it received a shipment of it or keeps its storage record (CCP 10)
+        private async Task<bool> HoldsAsync(int batchId, int orgId) =>
+            await _context.Shipments.AnyAsync(s => s.FinalHoneyProductionId == batchId && s.ToOrgId == orgId && s.Status == ShipmentStatus.Received)
+            || await _context.HolderStorageRecords.AnyAsync(r => r.FinalHoneyProductionId == batchId && r.HolderOrgId == orgId);
+
+        private async Task<bool> LotInHeldBatchAsync(int rawId, int orgId)
+        {
+            var batchIds = await _context.FinalHoneyProductionDetails.Where(d => d.RawHoneyProductionId == rawId)
+                .Select(d => d.FinalHoneyProductionId).Distinct().ToListAsync();
+            foreach (var b in batchIds)
+                if (await HoldsAsync(b, orgId))
+                    return true;
+            return false;
+        }
+
         private async Task<bool> LotInOwnedBatchAsync(int rawId, int orgId)
         {
             var batchIds = await _context.FinalHoneyProductionDetails.Where(d => d.RawHoneyProductionId == rawId)
@@ -126,10 +141,10 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                     if ((await ResponsibleOrgsAsync(kind, ownerId, other)).Contains(active.OrgId)) { read = true; break; }
             }
             if (!read && kind == "raw")
-                read = await LotInOwnedBatchAsync(ownerId, active.OrgId);
-            // Later holders of a batch read its records (D-26, D-41)
+                read = await LotInOwnedBatchAsync(ownerId, active.OrgId) || await LotInHeldBatchAsync(ownerId, active.OrgId);
+            // Later holders of a batch read its records, and those of its lots, read-only (D-26, D-41, D-73)
             if (!read && kind == "batch")
-                read = await _context.Shipments.AnyAsync(s => s.FinalHoneyProductionId == ownerId && s.ToOrgId == active.OrgId && s.Status == ShipmentStatus.Received);
+                read = await HoldsAsync(ownerId, active.OrgId);
             // D-56: the role must also hold the read right for this CCP (default: every role)
             if (read && _perm != null && !_perm.CcpRead(ccpId, active.OrgRole))
                 read = false;
