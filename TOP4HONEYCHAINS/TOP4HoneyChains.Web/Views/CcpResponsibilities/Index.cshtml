@@ -20,7 +20,7 @@
                             {
                                 configs.TryGetValue(c.Id, out var r);
                                 <tr data-ccp="@c.Code">
-                                    <td><strong>@c.Code</strong> <small class="text-muted">@Ref.CcpTitle(c.Id, c.Title)</small></td>
+                                    <td><strong>@Ref.Code(c.Code)</strong> <small class="text-muted">@Ref.CcpTitle(c.Id, c.Title)</small></td>
                                     <td>@(r == null ? L["Resp.NotSet"] : r.OwnerRule == CcpOwnerRules.Owner ? L["Resp.RuleOwner"] : L["Resp.RuleAssociation"])</td>
                                     <td>@(r == null ? "" : string.Join(", ", r.Capabilities.Select(x => Ref.Capability(x.Capability))))</td>
                                     <td>@(r == null ? "" : string.Join(", ", r.Roles.Where(x => x.Action == CcpActions.Enter).Select(x => Ref.Role(x.OrgRole))))</td>

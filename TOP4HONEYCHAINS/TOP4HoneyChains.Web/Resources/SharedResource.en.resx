@@ -6483,4 +6483,478 @@
   <data name="Hst.MapEmpty" xml:space="preserve">
     <value>The provinces of this honey are not on record yet.</value>
   </data>
+  <data name="Audit.When" xml:space="preserve">
+    <value>When</value>
+  </data>
+  <data name="Audit.Who" xml:space="preserve">
+    <value>Who</value>
+  </data>
+  <data name="Audit.Record" xml:space="preserve">
+    <value>Record</value>
+  </data>
+  <data name="Audit.Changes" xml:space="preserve">
+    <value>Changes</value>
+  </data>
+  <data name="Audit.ChangedTo" xml:space="preserve">
+    <value>changed to</value>
+  </data>
+  <data name="Audit.NoFields" xml:space="preserve">
+    <value>No field values recorded</value>
+  </data>
+  <data name="Audit.ShowRaw" xml:space="preserve">
+    <value>Show raw</value>
+  </data>
+  <data name="Audit.F.AccreditationNumber" xml:space="preserve">
+    <value>Accreditation number</value>
+  </data>
+  <data name="Audit.F.AccreditationValidUntil" xml:space="preserve">
+    <value>Accreditation valid until</value>
+  </data>
+  <data name="Audit.F.AddedAt" xml:space="preserve">
+    <value>Added</value>
+  </data>
+  <data name="Audit.F.AddedByUserId" xml:space="preserve">
+    <value>Added by</value>
+  </data>
+  <data name="Audit.F.Amount" xml:space="preserve">
+    <value>Amount (kg)</value>
+  </data>
+  <data name="Audit.F.ApiaryId" xml:space="preserve">
+    <value>Apiary</value>
+  </data>
+  <data name="Audit.F.AppliedLimit" xml:space="preserve">
+    <value>Applied limit</value>
+  </data>
+  <data name="Audit.F.Approved" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="Audit.F.ApprovedAt" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="Audit.F.ApprovedByOrgId" xml:space="preserve">
+    <value>Approving organisation</value>
+  </data>
+  <data name="Audit.F.ApprovedByUserId" xml:space="preserve">
+    <value>Approved by</value>
+  </data>
+  <data name="Audit.F.AssociationOrgId" xml:space="preserve">
+    <value>Association</value>
+  </data>
+  <data name="Audit.F.At" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="Audit.F.BeehivesCount" xml:space="preserve">
+    <value>Number of hives</value>
+  </data>
+  <data name="Audit.F.BeekeeperId" xml:space="preserve">
+    <value>Beekeeper</value>
+  </data>
+  <data name="Audit.F.BeekeepingPurposeTypeId" xml:space="preserve">
+    <value>Beekeeping purpose</value>
+  </data>
+  <data name="Audit.F.BeekeepingTypeId" xml:space="preserve">
+    <value>Beekeeping type</value>
+  </data>
+  <data name="Audit.F.BirthDate" xml:space="preserve">
+    <value>Birth date</value>
+  </data>
+  <data name="Audit.F.BusinessNumber" xml:space="preserve">
+    <value>Business number</value>
+  </data>
+  <data name="Audit.F.Capability" xml:space="preserve">
+    <value>Capability</value>
+  </data>
+  <data name="Audit.F.CcpId" xml:space="preserve">
+    <value>CCP</value>
+  </data>
+  <data name="Audit.F.Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="Audit.F.ComputedAt" xml:space="preserve">
+    <value>Computed</value>
+  </data>
+  <data name="Audit.F.CounterLocation" xml:space="preserve">
+    <value>Counter-sample location</value>
+  </data>
+  <data name="Audit.F.CounterSealNumber" xml:space="preserve">
+    <value>Counter-sample seal number</value>
+  </data>
+  <data name="Audit.F.CountryCode" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="Audit.F.CreatedAt" xml:space="preserve">
+    <value>Created</value>
+  </data>
+  <data name="Audit.F.CreatedByUserId" xml:space="preserve">
+    <value>Created by</value>
+  </data>
+  <data name="Audit.F.Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Audit.F.DeactivatedAt" xml:space="preserve">
+    <value>Deactivated</value>
+  </data>
+  <data name="Audit.F.DecidedAt" xml:space="preserve">
+    <value>Decided</value>
+  </data>
+  <data name="Audit.F.DecidedByUserId" xml:space="preserve">
+    <value>Decided by</value>
+  </data>
+  <data name="Audit.F.DeliveryDate" xml:space="preserve">
+    <value>Delivery date</value>
+  </data>
+  <data name="Audit.F.District" xml:space="preserve">
+    <value>District</value>
+  </data>
+  <data name="Audit.F.DocumentOriginalFileName" xml:space="preserve">
+    <value>Document file name</value>
+  </data>
+  <data name="Audit.F.DocumentSha256" xml:space="preserve">
+    <value>Document fingerprint (SHA-256)</value>
+  </data>
+  <data name="Audit.F.DocumentStoredFileName" xml:space="preserve">
+    <value>Stored document</value>
+  </data>
+  <data name="Audit.F.EducationLevelId" xml:space="preserve">
+    <value>Education level</value>
+  </data>
+  <data name="Audit.F.Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="Audit.F.EndDate" xml:space="preserve">
+    <value>End</value>
+  </data>
+  <data name="Audit.F.EnteredByUserId" xml:space="preserve">
+    <value>Entered by</value>
+  </data>
+  <data name="Audit.F.EnterpriseNumber" xml:space="preserve">
+    <value>Enterprise registry number</value>
+  </data>
+  <data name="Audit.F.Event" xml:space="preserve">
+    <value>Event</value>
+  </data>
+  <data name="Audit.F.ExperienceTime" xml:space="preserve">
+    <value>Experience (years)</value>
+  </data>
+  <data name="Audit.F.FinalHoneyProductionId" xml:space="preserve">
+    <value>Batch</value>
+  </data>
+  <data name="Audit.F.FinalizeRequestedAt" xml:space="preserve">
+    <value>Finalisation requested</value>
+  </data>
+  <data name="Audit.F.FinalizeRequestedByUserId" xml:space="preserve">
+    <value>Finalisation requested by</value>
+  </data>
+  <data name="Audit.F.FinalizedByUserId" xml:space="preserve">
+    <value>Finalised by</value>
+  </data>
+  <data name="Audit.F.FinalizedDate" xml:space="preserve">
+    <value>Finalised</value>
+  </data>
+  <data name="Audit.F.FirstName" xml:space="preserve">
+    <value>First name</value>
+  </data>
+  <data name="Audit.F.FormOriginalFileName" xml:space="preserve">
+    <value>Form file name</value>
+  </data>
+  <data name="Audit.F.FormSha256" xml:space="preserve">
+    <value>Form fingerprint (SHA-256)</value>
+  </data>
+  <data name="Audit.F.FormStoredFileName" xml:space="preserve">
+    <value>Stored form</value>
+  </data>
+  <data name="Audit.F.FromOrgId" xml:space="preserve">
+    <value>From organisation</value>
+  </data>
+  <data name="Audit.F.GivenOn" xml:space="preserve">
+    <value>Given on</value>
+  </data>
+  <data name="Audit.F.GrantedAt" xml:space="preserve">
+    <value>Granted</value>
+  </data>
+  <data name="Audit.F.GrantedByUserId" xml:space="preserve">
+    <value>Granted by</value>
+  </data>
+  <data name="Audit.F.HeldQuantity" xml:space="preserve">
+    <value>Quantity held (kg)</value>
+  </data>
+  <data name="Audit.F.HolderOrgId" xml:space="preserve">
+    <value>Holder</value>
+  </data>
+  <data name="Audit.F.HoneyType" xml:space="preserve">
+    <value>Honey type</value>
+  </data>
+  <data name="Audit.F.InHouse" xml:space="preserve">
+    <value>In-house laboratory</value>
+  </data>
+  <data name="Audit.F.IsAccredited" xml:space="preserve">
+    <value>Accredited</value>
+  </data>
+  <data name="Audit.F.IsActive" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Audit.F.IsFinalized" xml:space="preserve">
+    <value>Finalised</value>
+  </data>
+  <data name="Audit.F.IsInRange" xml:space="preserve">
+    <value>Within limits</value>
+  </data>
+  <data name="Audit.F.IssuedOn" xml:space="preserve">
+    <value>Issued on</value>
+  </data>
+  <data name="Audit.F.LabOrgId" xml:space="preserve">
+    <value>Laboratory</value>
+  </data>
+  <data name="Audit.F.LabReportId" xml:space="preserve">
+    <value>Lab report</value>
+  </data>
+  <data name="Audit.F.LastName" xml:space="preserve">
+    <value>Last name</value>
+  </data>
+  <data name="Audit.F.LegalName" xml:space="preserve">
+    <value>Legal name</value>
+  </data>
+  <data name="Audit.F.LocationLatitude" xml:space="preserve">
+    <value>Latitude</value>
+  </data>
+  <data name="Audit.F.LocationLongitude" xml:space="preserve">
+    <value>Longitude</value>
+  </data>
+  <data name="Audit.F.MeasuredAt" xml:space="preserve">
+    <value>Measured</value>
+  </data>
+  <data name="Audit.F.MeasuredNumericValue" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="Audit.F.MeasuredTextValue" xml:space="preserve">
+    <value>Value (text)</value>
+  </data>
+  <data name="Audit.F.MeasurementDate" xml:space="preserve">
+    <value>Measurement date</value>
+  </data>
+  <data name="Audit.F.Method" xml:space="preserve">
+    <value>Method</value>
+  </data>
+  <data name="Audit.F.NameConsented" xml:space="preserve">
+    <value>Name may be shown</value>
+  </data>
+  <data name="Audit.F.NotApplicableAt" xml:space="preserve">
+    <value>Marked not applicable</value>
+  </data>
+  <data name="Audit.F.NotApplicableBy" xml:space="preserve">
+    <value>Marked not applicable by</value>
+  </data>
+  <data name="Audit.F.NotApplicableReason" xml:space="preserve">
+    <value>Reason not applicable</value>
+  </data>
+  <data name="Audit.F.Note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="Audit.F.Notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="Audit.F.OrgId" xml:space="preserve">
+    <value>Organisation</value>
+  </data>
+  <data name="Audit.F.OrgRole" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="Audit.F.OriginCountry" xml:space="preserve">
+    <value>Country of origin</value>
+  </data>
+  <data name="Audit.F.OriginalFileName" xml:space="preserve">
+    <value>File name</value>
+  </data>
+  <data name="Audit.F.OwnerOrgId" xml:space="preserve">
+    <value>Owner</value>
+  </data>
+  <data name="Audit.F.ParameterId" xml:space="preserve">
+    <value>Parameter</value>
+  </data>
+  <data name="Audit.F.Percentage" xml:space="preserve">
+    <value>Share (%)</value>
+  </data>
+  <data name="Audit.F.PeriodId" xml:space="preserve">
+    <value>Production period</value>
+  </data>
+  <data name="Audit.F.PhoneNumber" xml:space="preserve">
+    <value>Phone number</value>
+  </data>
+  <data name="Audit.F.ProfilePhoto" xml:space="preserve">
+    <value>Profile photo</value>
+  </data>
+  <data name="Audit.F.Province" xml:space="preserve">
+    <value>Province</value>
+  </data>
+  <data name="Audit.F.Purpose" xml:space="preserve">
+    <value>Purpose</value>
+  </data>
+  <data name="Audit.F.QRCode" xml:space="preserve">
+    <value>QR code</value>
+  </data>
+  <data name="Audit.F.Quantity" xml:space="preserve">
+    <value>Quantity (kg)</value>
+  </data>
+  <data name="Audit.F.RawHoneyProductionId" xml:space="preserve">
+    <value>Raw honey lot</value>
+  </data>
+  <data name="Audit.F.Reason" xml:space="preserve">
+    <value>Reason</value>
+  </data>
+  <data name="Audit.F.ReceivedAt" xml:space="preserve">
+    <value>Received</value>
+  </data>
+  <data name="Audit.F.ReceivedByUserId" xml:space="preserve">
+    <value>Received by</value>
+  </data>
+  <data name="Audit.F.ReceivingOrgId" xml:space="preserve">
+    <value>Receiving organisation</value>
+  </data>
+  <data name="Audit.F.RecordId" xml:space="preserve">
+    <value>Record</value>
+  </data>
+  <data name="Audit.F.RecordedAt" xml:space="preserve">
+    <value>Recorded</value>
+  </data>
+  <data name="Audit.F.RecordedByOrgId" xml:space="preserve">
+    <value>Recording organisation</value>
+  </data>
+  <data name="Audit.F.RecordedByUserId" xml:space="preserve">
+    <value>Recorded by</value>
+  </data>
+  <data name="Audit.F.RegistryNumber" xml:space="preserve">
+    <value>Registry number</value>
+  </data>
+  <data name="Audit.F.RejectReason" xml:space="preserve">
+    <value>Reason for rejection</value>
+  </data>
+  <data name="Audit.F.ReportCode" xml:space="preserve">
+    <value>Report code</value>
+  </data>
+  <data name="Audit.F.ReportId" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="Audit.F.ReportNumber" xml:space="preserve">
+    <value>Report number</value>
+  </data>
+  <data name="Audit.F.RequestedAt" xml:space="preserve">
+    <value>Requested</value>
+  </data>
+  <data name="Audit.F.RequestedByUserId" xml:space="preserve">
+    <value>Requested by</value>
+  </data>
+  <data name="Audit.F.RetainUntil" xml:space="preserve">
+    <value>Retain until</value>
+  </data>
+  <data name="Audit.F.ReturnReason" xml:space="preserve">
+    <value>Reason for return</value>
+  </data>
+  <data name="Audit.F.RevokedAt" xml:space="preserve">
+    <value>Revoked</value>
+  </data>
+  <data name="Audit.F.RevokedByUserId" xml:space="preserve">
+    <value>Revoked by</value>
+  </data>
+  <data name="Audit.F.SampleCode" xml:space="preserve">
+    <value>Sample code</value>
+  </data>
+  <data name="Audit.F.SampleId" xml:space="preserve">
+    <value>Sample</value>
+  </data>
+  <data name="Audit.F.SealIntact" xml:space="preserve">
+    <value>Seal intact</value>
+  </data>
+  <data name="Audit.F.SealNumber" xml:space="preserve">
+    <value>Seal number</value>
+  </data>
+  <data name="Audit.F.SelfApproved" xml:space="preserve">
+    <value>Four-eyes exemption</value>
+  </data>
+  <data name="Audit.F.SelfFinalized" xml:space="preserve">
+    <value>Finalised under the four-eyes exemption</value>
+  </data>
+  <data name="Audit.F.Sha256" xml:space="preserve">
+    <value>Fingerprint (SHA-256)</value>
+  </data>
+  <data name="Audit.F.ShippedAt" xml:space="preserve">
+    <value>Shipped</value>
+  </data>
+  <data name="Audit.F.ShippedByUserId" xml:space="preserve">
+    <value>Shipped by</value>
+  </data>
+  <data name="Audit.F.SmsAt" xml:space="preserve">
+    <value>SMS sent</value>
+  </data>
+  <data name="Audit.F.SmsStatus" xml:space="preserve">
+    <value>SMS status</value>
+  </data>
+  <data name="Audit.F.StartDate" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Audit.F.Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Audit.F.StoredFileName" xml:space="preserve">
+    <value>Stored file</value>
+  </data>
+  <data name="Audit.F.SubmittedAt" xml:space="preserve">
+    <value>Submitted</value>
+  </data>
+  <data name="Audit.F.TakenAt" xml:space="preserve">
+    <value>Taken</value>
+  </data>
+  <data name="Audit.F.TakenByUserId" xml:space="preserve">
+    <value>Taken by</value>
+  </data>
+  <data name="Audit.F.TakingOrgId" xml:space="preserve">
+    <value>Sampling organisation</value>
+  </data>
+  <data name="Audit.F.TextSha256" xml:space="preserve">
+    <value>Text fingerprint (SHA-256)</value>
+  </data>
+  <data name="Audit.F.TextVersion" xml:space="preserve">
+    <value>Text version</value>
+  </data>
+  <data name="Audit.F.Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="Audit.F.ToOrgId" xml:space="preserve">
+    <value>To organisation</value>
+  </data>
+  <data name="Audit.F.TotalAmount" xml:space="preserve">
+    <value>Total amount (kg)</value>
+  </data>
+  <data name="Audit.F.UsedAmount" xml:space="preserve">
+    <value>Used amount (kg)</value>
+  </data>
+  <data name="Audit.F.UserId" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="Audit.F.UserName" xml:space="preserve">
+    <value>User name</value>
+  </data>
+  <data name="Audit.F.ValidFrom" xml:space="preserve">
+    <value>Valid from</value>
+  </data>
+  <data name="Audit.F.ValidTo" xml:space="preserve">
+    <value>Valid to</value>
+  </data>
+  <data name="Audit.F.VerifiedAt" xml:space="preserve">
+    <value>Verified</value>
+  </data>
+  <data name="Audit.F.VerifiedByUserId" xml:space="preserve">
+    <value>Verified by</value>
+  </data>
+  <data name="Audit.F.WholesalerId" xml:space="preserve">
+    <value>Wholesaler</value>
+  </data>
+  <data name="Audit.F.WithdrawReason" xml:space="preserve">
+    <value>Reason for withdrawal</value>
+  </data>
+  <data name="Audit.F.WithdrawnAt" xml:space="preserve">
+    <value>Withdrawn</value>
+  </data>
+  <data name="Audit.F.WithdrawnByUserId" xml:space="preserve">
+    <value>Withdrawn by</value>
+  </data>
 </root>

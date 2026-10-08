@@ -45,7 +45,7 @@
             <div class="hs-param-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#A2450B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"></path><path d="M7.5 15h9"></path></svg></div>
             <div>
                 <h1 class="hs-batch">@name</h1>
-                <div class="hs-param-sub">@p.CCP?.Code · @Ref.CcpTitle(p.CCP?.Id, p.CCP?.Title)</div>
+                <div class="hs-param-sub">@Ref.Code(p.CCP?.Code) · @Ref.CcpTitle(p.CCP?.Id, p.CCP?.Title)</div>
                 @if (symbol.Length > 0)
                 {
                     <div class="hs-maker">@L["Hst.Unit", symbol]</div>

@@ -57,7 +57,8 @@ namespace TOP4HoneyChains.Web.Services
                 return (exact, templates);
             });
 
-        public string T(string? message) => message == null ? "" : Translate(message, 0);
+        // D-73: CCP codes inside messages ("CCP 10 is not approved") in the language's own abbreviation
+        public string T(string? message) => message == null ? "" : RefText.CcpText(Translate(message, 0));
 
         private string Translate(string text, int depth)
         {

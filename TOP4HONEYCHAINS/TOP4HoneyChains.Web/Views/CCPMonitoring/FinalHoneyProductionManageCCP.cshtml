@@ -19,7 +19,7 @@
                         <div>
                             <h3 class="fw-bold mb-1">
                                 <i class="mdi mdi-shield-check-outline me-2"></i>
-                                @Model.CCPCode - @Ref.CcpTitle(Model.CCPId, Model.CCPTitle)
+                                @Ref.Code(Model.CCPCode) - @Ref.CcpTitle(Model.CCPId, Model.CCPTitle)
                             </h3>
                             <small class="opacity-75">
                                 @Ref.T("Ccp", Model.CCPId, "ProcessingStep", Model.ProcessingStep)

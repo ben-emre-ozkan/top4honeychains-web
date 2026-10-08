@@ -17,7 +17,7 @@
 <div class="ccp-card" data-ccp="@Model.CCPCode" data-state="@Model.State">
 
     <div class="ccp-header">
-        <div class="ccp-step">@Model.CCPCode</div>
+        <div class="ccp-step">@Ref.Code(Model.CCPCode)</div>
         <div class="flex-grow-1">
             <div class="ccp-title">@Ref.CcpTitle(Model.CCPId, Model.CCPTitle)</div>
             <div class="ccp-phase">@Ref.T("Ccp", Model.CCPId, "ProcessingStep", Model.ProcessingStep)</div>

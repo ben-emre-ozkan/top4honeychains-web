@@ -35,7 +35,7 @@
                                     <div class="mb-3">
                                         @foreach (var ccp in c.Ccps)
                                         {
-                                            <span class="badge bg-light text-dark border me-1 mb-1" title="@Ref.CcpTitle(ccp.Id, ccp.Title)">@ccp.Code</span>
+                                            <span class="badge bg-light text-dark border me-1 mb-1" title="@Ref.CcpTitle(ccp.Id, ccp.Title)">@Ref.Code(ccp.Code)</span>
                                         }
                                     </div>
                                     <dl class="row small mb-3">

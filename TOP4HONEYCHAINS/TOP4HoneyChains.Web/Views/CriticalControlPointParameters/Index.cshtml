@@ -44,7 +44,7 @@
                                         <th>@L["Unit"]</th>
                                         <th>@L["Type"]</th>
                                         <th>@L["Limits"]</th>
-                                        <th>CCP</th>
+                                        <th>@Ref.Code("CCP")</th>
                                         <th>@L["Category"]</th>
                                         <th style="width:150px;">@L["Actions"]</th>
                                     </tr>
@@ -79,7 +79,7 @@
 
                                             <td>
                                                 <span class="badge bg-info">
-                                                    @item.CCP?.Code
+                                                    @Ref.Code(item.CCP?.Code)
                                                 </span>
                                             </td>
 

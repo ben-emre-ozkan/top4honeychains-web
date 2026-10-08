@@ -1786,7 +1786,7 @@
     <value>Rapor analiste geri gönderildi.</value>
   </data>
   <data name="Lab report approved; the results are now the lot's CCP 1 values." xml:space="preserve">
-    <value>Laboratuvar raporu onaylandı; sonuçlar artık lotun CCP 1 değerleri.</value>
+    <value>Laboratuvar raporu onaylandı; sonuçlar artık lotun KKN 1 değerleri.</value>
   </data>
   <data name="P5.OriginCountry" xml:space="preserve">
     <value>Menşe ülke</value>
@@ -6482,5 +6482,479 @@
   </data>
   <data name="Hst.MapEmpty" xml:space="preserve">
     <value>Bu balın geldiği iller henüz kayıtlı değil.</value>
+  </data>
+  <data name="Audit.When" xml:space="preserve">
+    <value>Ne zaman</value>
+  </data>
+  <data name="Audit.Who" xml:space="preserve">
+    <value>Kim</value>
+  </data>
+  <data name="Audit.Record" xml:space="preserve">
+    <value>Kayıt</value>
+  </data>
+  <data name="Audit.Changes" xml:space="preserve">
+    <value>Değişiklikler</value>
+  </data>
+  <data name="Audit.ChangedTo" xml:space="preserve">
+    <value>değişti:</value>
+  </data>
+  <data name="Audit.NoFields" xml:space="preserve">
+    <value>Alan değeri kaydedilmedi</value>
+  </data>
+  <data name="Audit.ShowRaw" xml:space="preserve">
+    <value>Ham veriyi göster</value>
+  </data>
+  <data name="Audit.F.AccreditationNumber" xml:space="preserve">
+    <value>Akreditasyon numarası</value>
+  </data>
+  <data name="Audit.F.AccreditationValidUntil" xml:space="preserve">
+    <value>Akreditasyon geçerlilik sonu</value>
+  </data>
+  <data name="Audit.F.AddedAt" xml:space="preserve">
+    <value>Eklenme</value>
+  </data>
+  <data name="Audit.F.AddedByUserId" xml:space="preserve">
+    <value>Ekleyen</value>
+  </data>
+  <data name="Audit.F.Amount" xml:space="preserve">
+    <value>Miktar (kg)</value>
+  </data>
+  <data name="Audit.F.ApiaryId" xml:space="preserve">
+    <value>Arılık</value>
+  </data>
+  <data name="Audit.F.AppliedLimit" xml:space="preserve">
+    <value>Uygulanan sınır</value>
+  </data>
+  <data name="Audit.F.Approved" xml:space="preserve">
+    <value>Onaylandı</value>
+  </data>
+  <data name="Audit.F.ApprovedAt" xml:space="preserve">
+    <value>Onay zamanı</value>
+  </data>
+  <data name="Audit.F.ApprovedByOrgId" xml:space="preserve">
+    <value>Onaylayan kurum</value>
+  </data>
+  <data name="Audit.F.ApprovedByUserId" xml:space="preserve">
+    <value>Onaylayan</value>
+  </data>
+  <data name="Audit.F.AssociationOrgId" xml:space="preserve">
+    <value>Birlik</value>
+  </data>
+  <data name="Audit.F.At" xml:space="preserve">
+    <value>Zaman</value>
+  </data>
+  <data name="Audit.F.BeehivesCount" xml:space="preserve">
+    <value>Kovan sayısı</value>
+  </data>
+  <data name="Audit.F.BeekeeperId" xml:space="preserve">
+    <value>Arıcı</value>
+  </data>
+  <data name="Audit.F.BeekeepingPurposeTypeId" xml:space="preserve">
+    <value>Arıcılık amacı</value>
+  </data>
+  <data name="Audit.F.BeekeepingTypeId" xml:space="preserve">
+    <value>Arıcılık türü</value>
+  </data>
+  <data name="Audit.F.BirthDate" xml:space="preserve">
+    <value>Doğum tarihi</value>
+  </data>
+  <data name="Audit.F.BusinessNumber" xml:space="preserve">
+    <value>İşletme numarası</value>
+  </data>
+  <data name="Audit.F.Capability" xml:space="preserve">
+    <value>Yetkinlik</value>
+  </data>
+  <data name="Audit.F.CcpId" xml:space="preserve">
+    <value>KKN</value>
+  </data>
+  <data name="Audit.F.Code" xml:space="preserve">
+    <value>Kod</value>
+  </data>
+  <data name="Audit.F.ComputedAt" xml:space="preserve">
+    <value>Hesaplanma</value>
+  </data>
+  <data name="Audit.F.CounterLocation" xml:space="preserve">
+    <value>Şahit numune yeri</value>
+  </data>
+  <data name="Audit.F.CounterSealNumber" xml:space="preserve">
+    <value>Şahit numune mühür numarası</value>
+  </data>
+  <data name="Audit.F.CountryCode" xml:space="preserve">
+    <value>Ülke</value>
+  </data>
+  <data name="Audit.F.CreatedAt" xml:space="preserve">
+    <value>Oluşturulma</value>
+  </data>
+  <data name="Audit.F.CreatedByUserId" xml:space="preserve">
+    <value>Oluşturan</value>
+  </data>
+  <data name="Audit.F.Date" xml:space="preserve">
+    <value>Tarih</value>
+  </data>
+  <data name="Audit.F.DeactivatedAt" xml:space="preserve">
+    <value>Pasifleştirilme</value>
+  </data>
+  <data name="Audit.F.DecidedAt" xml:space="preserve">
+    <value>Karar zamanı</value>
+  </data>
+  <data name="Audit.F.DecidedByUserId" xml:space="preserve">
+    <value>Karar veren</value>
+  </data>
+  <data name="Audit.F.DeliveryDate" xml:space="preserve">
+    <value>Teslim tarihi</value>
+  </data>
+  <data name="Audit.F.District" xml:space="preserve">
+    <value>İlçe</value>
+  </data>
+  <data name="Audit.F.DocumentOriginalFileName" xml:space="preserve">
+    <value>Belge dosya adı</value>
+  </data>
+  <data name="Audit.F.DocumentSha256" xml:space="preserve">
+    <value>Belge parmak izi (SHA-256)</value>
+  </data>
+  <data name="Audit.F.DocumentStoredFileName" xml:space="preserve">
+    <value>Saklanan belge</value>
+  </data>
+  <data name="Audit.F.EducationLevelId" xml:space="preserve">
+    <value>Eğitim düzeyi</value>
+  </data>
+  <data name="Audit.F.Email" xml:space="preserve">
+    <value>E-posta</value>
+  </data>
+  <data name="Audit.F.EndDate" xml:space="preserve">
+    <value>Bitiş</value>
+  </data>
+  <data name="Audit.F.EnteredByUserId" xml:space="preserve">
+    <value>Giren</value>
+  </data>
+  <data name="Audit.F.EnterpriseNumber" xml:space="preserve">
+    <value>İşletme kayıt numarası</value>
+  </data>
+  <data name="Audit.F.Event" xml:space="preserve">
+    <value>Olay</value>
+  </data>
+  <data name="Audit.F.ExperienceTime" xml:space="preserve">
+    <value>Deneyim (yıl)</value>
+  </data>
+  <data name="Audit.F.FinalHoneyProductionId" xml:space="preserve">
+    <value>Parti</value>
+  </data>
+  <data name="Audit.F.FinalizeRequestedAt" xml:space="preserve">
+    <value>Kesinleştirme istendi</value>
+  </data>
+  <data name="Audit.F.FinalizeRequestedByUserId" xml:space="preserve">
+    <value>Kesinleştirmeyi isteyen</value>
+  </data>
+  <data name="Audit.F.FinalizedByUserId" xml:space="preserve">
+    <value>Kesinleştiren</value>
+  </data>
+  <data name="Audit.F.FinalizedDate" xml:space="preserve">
+    <value>Kesinleşme tarihi</value>
+  </data>
+  <data name="Audit.F.FirstName" xml:space="preserve">
+    <value>Ad</value>
+  </data>
+  <data name="Audit.F.FormOriginalFileName" xml:space="preserve">
+    <value>Form dosya adı</value>
+  </data>
+  <data name="Audit.F.FormSha256" xml:space="preserve">
+    <value>Form parmak izi (SHA-256)</value>
+  </data>
+  <data name="Audit.F.FormStoredFileName" xml:space="preserve">
+    <value>Saklanan form</value>
+  </data>
+  <data name="Audit.F.FromOrgId" xml:space="preserve">
+    <value>Gönderen kurum</value>
+  </data>
+  <data name="Audit.F.GivenOn" xml:space="preserve">
+    <value>Verilme tarihi</value>
+  </data>
+  <data name="Audit.F.GrantedAt" xml:space="preserve">
+    <value>Verilme zamanı</value>
+  </data>
+  <data name="Audit.F.GrantedByUserId" xml:space="preserve">
+    <value>Veren</value>
+  </data>
+  <data name="Audit.F.HeldQuantity" xml:space="preserve">
+    <value>Elde tutulan miktar (kg)</value>
+  </data>
+  <data name="Audit.F.HolderOrgId" xml:space="preserve">
+    <value>Elinde tutan kurum</value>
+  </data>
+  <data name="Audit.F.HoneyType" xml:space="preserve">
+    <value>Bal türü</value>
+  </data>
+  <data name="Audit.F.InHouse" xml:space="preserve">
+    <value>Kurum içi laboratuvar</value>
+  </data>
+  <data name="Audit.F.IsAccredited" xml:space="preserve">
+    <value>Akredite</value>
+  </data>
+  <data name="Audit.F.IsActive" xml:space="preserve">
+    <value>Aktif</value>
+  </data>
+  <data name="Audit.F.IsFinalized" xml:space="preserve">
+    <value>Kesinleşti</value>
+  </data>
+  <data name="Audit.F.IsInRange" xml:space="preserve">
+    <value>Sınırlar içinde</value>
+  </data>
+  <data name="Audit.F.IssuedOn" xml:space="preserve">
+    <value>Düzenlenme tarihi</value>
+  </data>
+  <data name="Audit.F.LabOrgId" xml:space="preserve">
+    <value>Laboratuvar</value>
+  </data>
+  <data name="Audit.F.LabReportId" xml:space="preserve">
+    <value>Laboratuvar raporu</value>
+  </data>
+  <data name="Audit.F.LastName" xml:space="preserve">
+    <value>Soyad</value>
+  </data>
+  <data name="Audit.F.LegalName" xml:space="preserve">
+    <value>Resmî ad</value>
+  </data>
+  <data name="Audit.F.LocationLatitude" xml:space="preserve">
+    <value>Enlem</value>
+  </data>
+  <data name="Audit.F.LocationLongitude" xml:space="preserve">
+    <value>Boylam</value>
+  </data>
+  <data name="Audit.F.MeasuredAt" xml:space="preserve">
+    <value>Ölçüm zamanı</value>
+  </data>
+  <data name="Audit.F.MeasuredNumericValue" xml:space="preserve">
+    <value>Değer</value>
+  </data>
+  <data name="Audit.F.MeasuredTextValue" xml:space="preserve">
+    <value>Değer (metin)</value>
+  </data>
+  <data name="Audit.F.MeasurementDate" xml:space="preserve">
+    <value>Ölçüm tarihi</value>
+  </data>
+  <data name="Audit.F.Method" xml:space="preserve">
+    <value>Yöntem</value>
+  </data>
+  <data name="Audit.F.NameConsented" xml:space="preserve">
+    <value>Ad gösterilebilir</value>
+  </data>
+  <data name="Audit.F.NotApplicableAt" xml:space="preserve">
+    <value>Uygulanamaz işaretlenme</value>
+  </data>
+  <data name="Audit.F.NotApplicableBy" xml:space="preserve">
+    <value>Uygulanamaz işaretleyen</value>
+  </data>
+  <data name="Audit.F.NotApplicableReason" xml:space="preserve">
+    <value>Uygulanamaz gerekçesi</value>
+  </data>
+  <data name="Audit.F.Note" xml:space="preserve">
+    <value>Not</value>
+  </data>
+  <data name="Audit.F.Notes" xml:space="preserve">
+    <value>Notlar</value>
+  </data>
+  <data name="Audit.F.OrgId" xml:space="preserve">
+    <value>Kurum</value>
+  </data>
+  <data name="Audit.F.OrgRole" xml:space="preserve">
+    <value>Rol</value>
+  </data>
+  <data name="Audit.F.OriginCountry" xml:space="preserve">
+    <value>Menşe ülke</value>
+  </data>
+  <data name="Audit.F.OriginalFileName" xml:space="preserve">
+    <value>Dosya adı</value>
+  </data>
+  <data name="Audit.F.OwnerOrgId" xml:space="preserve">
+    <value>Sahip kurum</value>
+  </data>
+  <data name="Audit.F.ParameterId" xml:space="preserve">
+    <value>Parametre</value>
+  </data>
+  <data name="Audit.F.Percentage" xml:space="preserve">
+    <value>Pay (%)</value>
+  </data>
+  <data name="Audit.F.PeriodId" xml:space="preserve">
+    <value>Üretim dönemi</value>
+  </data>
+  <data name="Audit.F.PhoneNumber" xml:space="preserve">
+    <value>Telefon numarası</value>
+  </data>
+  <data name="Audit.F.ProfilePhoto" xml:space="preserve">
+    <value>Profil fotoğrafı</value>
+  </data>
+  <data name="Audit.F.Province" xml:space="preserve">
+    <value>İl</value>
+  </data>
+  <data name="Audit.F.Purpose" xml:space="preserve">
+    <value>Amaç</value>
+  </data>
+  <data name="Audit.F.QRCode" xml:space="preserve">
+    <value>QR kodu</value>
+  </data>
+  <data name="Audit.F.Quantity" xml:space="preserve">
+    <value>Miktar (kg)</value>
+  </data>
+  <data name="Audit.F.RawHoneyProductionId" xml:space="preserve">
+    <value>Ham bal lotu</value>
+  </data>
+  <data name="Audit.F.Reason" xml:space="preserve">
+    <value>Gerekçe</value>
+  </data>
+  <data name="Audit.F.ReceivedAt" xml:space="preserve">
+    <value>Teslim alınma</value>
+  </data>
+  <data name="Audit.F.ReceivedByUserId" xml:space="preserve">
+    <value>Teslim alan</value>
+  </data>
+  <data name="Audit.F.ReceivingOrgId" xml:space="preserve">
+    <value>Teslim alan kurum</value>
+  </data>
+  <data name="Audit.F.RecordId" xml:space="preserve">
+    <value>Kayıt</value>
+  </data>
+  <data name="Audit.F.RecordedAt" xml:space="preserve">
+    <value>Kayıt zamanı</value>
+  </data>
+  <data name="Audit.F.RecordedByOrgId" xml:space="preserve">
+    <value>Kaydeden kurum</value>
+  </data>
+  <data name="Audit.F.RecordedByUserId" xml:space="preserve">
+    <value>Kaydeden</value>
+  </data>
+  <data name="Audit.F.RegistryNumber" xml:space="preserve">
+    <value>Kayıt numarası</value>
+  </data>
+  <data name="Audit.F.RejectReason" xml:space="preserve">
+    <value>Ret gerekçesi</value>
+  </data>
+  <data name="Audit.F.ReportCode" xml:space="preserve">
+    <value>Rapor kodu</value>
+  </data>
+  <data name="Audit.F.ReportId" xml:space="preserve">
+    <value>Rapor</value>
+  </data>
+  <data name="Audit.F.ReportNumber" xml:space="preserve">
+    <value>Rapor numarası</value>
+  </data>
+  <data name="Audit.F.RequestedAt" xml:space="preserve">
+    <value>İstenme</value>
+  </data>
+  <data name="Audit.F.RequestedByUserId" xml:space="preserve">
+    <value>İsteyen</value>
+  </data>
+  <data name="Audit.F.RetainUntil" xml:space="preserve">
+    <value>Saklama sonu</value>
+  </data>
+  <data name="Audit.F.ReturnReason" xml:space="preserve">
+    <value>İade gerekçesi</value>
+  </data>
+  <data name="Audit.F.RevokedAt" xml:space="preserve">
+    <value>Geri alınma</value>
+  </data>
+  <data name="Audit.F.RevokedByUserId" xml:space="preserve">
+    <value>Geri alan</value>
+  </data>
+  <data name="Audit.F.SampleCode" xml:space="preserve">
+    <value>Numune kodu</value>
+  </data>
+  <data name="Audit.F.SampleId" xml:space="preserve">
+    <value>Numune</value>
+  </data>
+  <data name="Audit.F.SealIntact" xml:space="preserve">
+    <value>Mühür sağlam</value>
+  </data>
+  <data name="Audit.F.SealNumber" xml:space="preserve">
+    <value>Mühür numarası</value>
+  </data>
+  <data name="Audit.F.SelfApproved" xml:space="preserve">
+    <value>Dört göz istisnası</value>
+  </data>
+  <data name="Audit.F.SelfFinalized" xml:space="preserve">
+    <value>Dört göz istisnasıyla kesinleşti</value>
+  </data>
+  <data name="Audit.F.Sha256" xml:space="preserve">
+    <value>Parmak izi (SHA-256)</value>
+  </data>
+  <data name="Audit.F.ShippedAt" xml:space="preserve">
+    <value>Gönderilme</value>
+  </data>
+  <data name="Audit.F.ShippedByUserId" xml:space="preserve">
+    <value>Gönderen</value>
+  </data>
+  <data name="Audit.F.SmsAt" xml:space="preserve">
+    <value>SMS gönderimi</value>
+  </data>
+  <data name="Audit.F.SmsStatus" xml:space="preserve">
+    <value>SMS durumu</value>
+  </data>
+  <data name="Audit.F.StartDate" xml:space="preserve">
+    <value>Başlangıç</value>
+  </data>
+  <data name="Audit.F.Status" xml:space="preserve">
+    <value>Durum</value>
+  </data>
+  <data name="Audit.F.StoredFileName" xml:space="preserve">
+    <value>Saklanan dosya</value>
+  </data>
+  <data name="Audit.F.SubmittedAt" xml:space="preserve">
+    <value>Gönderilme</value>
+  </data>
+  <data name="Audit.F.TakenAt" xml:space="preserve">
+    <value>Alınma</value>
+  </data>
+  <data name="Audit.F.TakenByUserId" xml:space="preserve">
+    <value>Alan</value>
+  </data>
+  <data name="Audit.F.TakingOrgId" xml:space="preserve">
+    <value>Numuneyi alan kurum</value>
+  </data>
+  <data name="Audit.F.TextSha256" xml:space="preserve">
+    <value>Metin parmak izi (SHA-256)</value>
+  </data>
+  <data name="Audit.F.TextVersion" xml:space="preserve">
+    <value>Metin sürümü</value>
+  </data>
+  <data name="Audit.F.Title" xml:space="preserve">
+    <value>Başlık</value>
+  </data>
+  <data name="Audit.F.ToOrgId" xml:space="preserve">
+    <value>Alıcı kurum</value>
+  </data>
+  <data name="Audit.F.TotalAmount" xml:space="preserve">
+    <value>Toplam miktar (kg)</value>
+  </data>
+  <data name="Audit.F.UsedAmount" xml:space="preserve">
+    <value>Kullanılan miktar (kg)</value>
+  </data>
+  <data name="Audit.F.UserId" xml:space="preserve">
+    <value>Kullanıcı</value>
+  </data>
+  <data name="Audit.F.UserName" xml:space="preserve">
+    <value>Kullanıcı adı</value>
+  </data>
+  <data name="Audit.F.ValidFrom" xml:space="preserve">
+    <value>Geçerlilik başlangıcı</value>
+  </data>
+  <data name="Audit.F.ValidTo" xml:space="preserve">
+    <value>Geçerlilik sonu</value>
+  </data>
+  <data name="Audit.F.VerifiedAt" xml:space="preserve">
+    <value>Doğrulanma</value>
+  </data>
+  <data name="Audit.F.VerifiedByUserId" xml:space="preserve">
+    <value>Doğrulayan</value>
+  </data>
+  <data name="Audit.F.WholesalerId" xml:space="preserve">
+    <value>Toptancı</value>
+  </data>
+  <data name="Audit.F.WithdrawReason" xml:space="preserve">
+    <value>Geri çekme gerekçesi</value>
+  </data>
+  <data name="Audit.F.WithdrawnAt" xml:space="preserve">
+    <value>Geri çekilme</value>
+  </data>
+  <data name="Audit.F.WithdrawnByUserId" xml:space="preserve">
+    <value>Geri çeken</value>
   </data>
 </root>

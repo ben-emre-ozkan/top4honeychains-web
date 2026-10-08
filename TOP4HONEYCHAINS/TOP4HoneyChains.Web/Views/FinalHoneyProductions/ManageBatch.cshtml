@@ -367,7 +367,7 @@
                                                                    asp-route-ccpId="@check.CcpId"
                                                                    class="badge bg-warning text-dark me-1 mb-1 pending-ccp"
                                                                    title="@Ref.CcpTitle(check.CcpId, check.Title)">
-                                                                    @check.Code: @Ref.Status(check.StatusId, check.StatusName)
+                                                                    @Ref.Code(check.Code): @Ref.Status(check.StatusId, check.StatusName)
                                                                 </a>
                                                             }
                                                         }

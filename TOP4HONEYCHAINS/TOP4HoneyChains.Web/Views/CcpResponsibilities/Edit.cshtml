@@ -15,7 +15,7 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">@ccp.Code – @Ref.CcpTitle(ccp.Id, ccp.Title)</h4>
+                    <h4 class="card-title">@Ref.Code(ccp.Code) – @Ref.CcpTitle(ccp.Id, ccp.Title)</h4>
                     <form asp-action="Edit" asp-route-id="@ccp.Id" method="post" id="resp-form">
                         <div class="mb-3">
                             <label class="form-label fw-semibold">@L["Resp.Responsible"]</label>

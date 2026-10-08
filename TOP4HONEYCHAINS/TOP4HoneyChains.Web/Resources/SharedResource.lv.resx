@@ -6483,4 +6483,478 @@
   <data name="Hst.MapEmpty" xml:space="preserve">
     <value>Šī medus provinces vēl nav reģistrētas.</value>
   </data>
+  <data name="Audit.When" xml:space="preserve">
+    <value>Kad</value>
+  </data>
+  <data name="Audit.Who" xml:space="preserve">
+    <value>Kas</value>
+  </data>
+  <data name="Audit.Record" xml:space="preserve">
+    <value>Ieraksts</value>
+  </data>
+  <data name="Audit.Changes" xml:space="preserve">
+    <value>Izmaiņas</value>
+  </data>
+  <data name="Audit.ChangedTo" xml:space="preserve">
+    <value>mainīts uz</value>
+  </data>
+  <data name="Audit.NoFields" xml:space="preserve">
+    <value>Lauku vērtības nav reģistrētas</value>
+  </data>
+  <data name="Audit.ShowRaw" xml:space="preserve">
+    <value>Rādīt neapstrādātus datus</value>
+  </data>
+  <data name="Audit.F.AccreditationNumber" xml:space="preserve">
+    <value>Akreditācijas numurs</value>
+  </data>
+  <data name="Audit.F.AccreditationValidUntil" xml:space="preserve">
+    <value>Akreditācija derīga līdz</value>
+  </data>
+  <data name="Audit.F.AddedAt" xml:space="preserve">
+    <value>Pievienots</value>
+  </data>
+  <data name="Audit.F.AddedByUserId" xml:space="preserve">
+    <value>Pievienoja</value>
+  </data>
+  <data name="Audit.F.Amount" xml:space="preserve">
+    <value>Daudzums (kg)</value>
+  </data>
+  <data name="Audit.F.ApiaryId" xml:space="preserve">
+    <value>Drava</value>
+  </data>
+  <data name="Audit.F.AppliedLimit" xml:space="preserve">
+    <value>Piemērotā robeža</value>
+  </data>
+  <data name="Audit.F.Approved" xml:space="preserve">
+    <value>Apstiprināts</value>
+  </data>
+  <data name="Audit.F.ApprovedAt" xml:space="preserve">
+    <value>Apstiprināts</value>
+  </data>
+  <data name="Audit.F.ApprovedByOrgId" xml:space="preserve">
+    <value>Apstiprinātāja organizācija</value>
+  </data>
+  <data name="Audit.F.ApprovedByUserId" xml:space="preserve">
+    <value>Apstiprināja</value>
+  </data>
+  <data name="Audit.F.AssociationOrgId" xml:space="preserve">
+    <value>Biedrība</value>
+  </data>
+  <data name="Audit.F.At" xml:space="preserve">
+    <value>Laiks</value>
+  </data>
+  <data name="Audit.F.BeehivesCount" xml:space="preserve">
+    <value>Stropu skaits</value>
+  </data>
+  <data name="Audit.F.BeekeeperId" xml:space="preserve">
+    <value>Biškopis</value>
+  </data>
+  <data name="Audit.F.BeekeepingPurposeTypeId" xml:space="preserve">
+    <value>Biškopības mērķis</value>
+  </data>
+  <data name="Audit.F.BeekeepingTypeId" xml:space="preserve">
+    <value>Biškopības veids</value>
+  </data>
+  <data name="Audit.F.BirthDate" xml:space="preserve">
+    <value>Dzimšanas datums</value>
+  </data>
+  <data name="Audit.F.BusinessNumber" xml:space="preserve">
+    <value>Saimniecības numurs</value>
+  </data>
+  <data name="Audit.F.Capability" xml:space="preserve">
+    <value>Spēja</value>
+  </data>
+  <data name="Audit.F.CcpId" xml:space="preserve">
+    <value>KKP</value>
+  </data>
+  <data name="Audit.F.Code" xml:space="preserve">
+    <value>Kods</value>
+  </data>
+  <data name="Audit.F.ComputedAt" xml:space="preserve">
+    <value>Aprēķināts</value>
+  </data>
+  <data name="Audit.F.CounterLocation" xml:space="preserve">
+    <value>Kontrolparauga vieta</value>
+  </data>
+  <data name="Audit.F.CounterSealNumber" xml:space="preserve">
+    <value>Kontrolparauga plombas numurs</value>
+  </data>
+  <data name="Audit.F.CountryCode" xml:space="preserve">
+    <value>Valsts</value>
+  </data>
+  <data name="Audit.F.CreatedAt" xml:space="preserve">
+    <value>Izveidots</value>
+  </data>
+  <data name="Audit.F.CreatedByUserId" xml:space="preserve">
+    <value>Izveidoja</value>
+  </data>
+  <data name="Audit.F.Date" xml:space="preserve">
+    <value>Datums</value>
+  </data>
+  <data name="Audit.F.DeactivatedAt" xml:space="preserve">
+    <value>Deaktivizēts</value>
+  </data>
+  <data name="Audit.F.DecidedAt" xml:space="preserve">
+    <value>Izlemts</value>
+  </data>
+  <data name="Audit.F.DecidedByUserId" xml:space="preserve">
+    <value>Izlēma</value>
+  </data>
+  <data name="Audit.F.DeliveryDate" xml:space="preserve">
+    <value>Piegādes datums</value>
+  </data>
+  <data name="Audit.F.District" xml:space="preserve">
+    <value>Novads</value>
+  </data>
+  <data name="Audit.F.DocumentOriginalFileName" xml:space="preserve">
+    <value>Dokumenta faila nosaukums</value>
+  </data>
+  <data name="Audit.F.DocumentSha256" xml:space="preserve">
+    <value>Dokumenta nospiedums (SHA-256)</value>
+  </data>
+  <data name="Audit.F.DocumentStoredFileName" xml:space="preserve">
+    <value>Saglabātais dokuments</value>
+  </data>
+  <data name="Audit.F.EducationLevelId" xml:space="preserve">
+    <value>Izglītības līmenis</value>
+  </data>
+  <data name="Audit.F.Email" xml:space="preserve">
+    <value>E-pasts</value>
+  </data>
+  <data name="Audit.F.EndDate" xml:space="preserve">
+    <value>Beigas</value>
+  </data>
+  <data name="Audit.F.EnteredByUserId" xml:space="preserve">
+    <value>Ievadīja</value>
+  </data>
+  <data name="Audit.F.EnterpriseNumber" xml:space="preserve">
+    <value>Saimniecības reģistra numurs</value>
+  </data>
+  <data name="Audit.F.Event" xml:space="preserve">
+    <value>Notikums</value>
+  </data>
+  <data name="Audit.F.ExperienceTime" xml:space="preserve">
+    <value>Pieredze (gadi)</value>
+  </data>
+  <data name="Audit.F.FinalHoneyProductionId" xml:space="preserve">
+    <value>Partija</value>
+  </data>
+  <data name="Audit.F.FinalizeRequestedAt" xml:space="preserve">
+    <value>Pabeigšana pieprasīta</value>
+  </data>
+  <data name="Audit.F.FinalizeRequestedByUserId" xml:space="preserve">
+    <value>Pabeigšanu pieprasīja</value>
+  </data>
+  <data name="Audit.F.FinalizedByUserId" xml:space="preserve">
+    <value>Pabeidza</value>
+  </data>
+  <data name="Audit.F.FinalizedDate" xml:space="preserve">
+    <value>Pabeigts</value>
+  </data>
+  <data name="Audit.F.FirstName" xml:space="preserve">
+    <value>Vārds</value>
+  </data>
+  <data name="Audit.F.FormOriginalFileName" xml:space="preserve">
+    <value>Veidlapas faila nosaukums</value>
+  </data>
+  <data name="Audit.F.FormSha256" xml:space="preserve">
+    <value>Veidlapas nospiedums (SHA-256)</value>
+  </data>
+  <data name="Audit.F.FormStoredFileName" xml:space="preserve">
+    <value>Saglabātā veidlapa</value>
+  </data>
+  <data name="Audit.F.FromOrgId" xml:space="preserve">
+    <value>Sūtītāja organizācija</value>
+  </data>
+  <data name="Audit.F.GivenOn" xml:space="preserve">
+    <value>Dots</value>
+  </data>
+  <data name="Audit.F.GrantedAt" xml:space="preserve">
+    <value>Piešķirts</value>
+  </data>
+  <data name="Audit.F.GrantedByUserId" xml:space="preserve">
+    <value>Piešķīra</value>
+  </data>
+  <data name="Audit.F.HeldQuantity" xml:space="preserve">
+    <value>Turētais daudzums (kg)</value>
+  </data>
+  <data name="Audit.F.HolderOrgId" xml:space="preserve">
+    <value>Turētājs</value>
+  </data>
+  <data name="Audit.F.HoneyType" xml:space="preserve">
+    <value>Medus veids</value>
+  </data>
+  <data name="Audit.F.InHouse" xml:space="preserve">
+    <value>Iekšējā laboratorija</value>
+  </data>
+  <data name="Audit.F.IsAccredited" xml:space="preserve">
+    <value>Akreditēts</value>
+  </data>
+  <data name="Audit.F.IsActive" xml:space="preserve">
+    <value>Aktīvs</value>
+  </data>
+  <data name="Audit.F.IsFinalized" xml:space="preserve">
+    <value>Pabeigta</value>
+  </data>
+  <data name="Audit.F.IsInRange" xml:space="preserve">
+    <value>Robežās</value>
+  </data>
+  <data name="Audit.F.IssuedOn" xml:space="preserve">
+    <value>Izdots</value>
+  </data>
+  <data name="Audit.F.LabOrgId" xml:space="preserve">
+    <value>Laboratorija</value>
+  </data>
+  <data name="Audit.F.LabReportId" xml:space="preserve">
+    <value>Laboratorijas pārskats</value>
+  </data>
+  <data name="Audit.F.LastName" xml:space="preserve">
+    <value>Uzvārds</value>
+  </data>
+  <data name="Audit.F.LegalName" xml:space="preserve">
+    <value>Juridiskais nosaukums</value>
+  </data>
+  <data name="Audit.F.LocationLatitude" xml:space="preserve">
+    <value>Platums</value>
+  </data>
+  <data name="Audit.F.LocationLongitude" xml:space="preserve">
+    <value>Garums</value>
+  </data>
+  <data name="Audit.F.MeasuredAt" xml:space="preserve">
+    <value>Izmērīts</value>
+  </data>
+  <data name="Audit.F.MeasuredNumericValue" xml:space="preserve">
+    <value>Vērtība</value>
+  </data>
+  <data name="Audit.F.MeasuredTextValue" xml:space="preserve">
+    <value>Vērtība (teksts)</value>
+  </data>
+  <data name="Audit.F.MeasurementDate" xml:space="preserve">
+    <value>Mērījuma datums</value>
+  </data>
+  <data name="Audit.F.Method" xml:space="preserve">
+    <value>Metode</value>
+  </data>
+  <data name="Audit.F.NameConsented" xml:space="preserve">
+    <value>Vārdu drīkst rādīt</value>
+  </data>
+  <data name="Audit.F.NotApplicableAt" xml:space="preserve">
+    <value>Atzīmēts kā neattiecināms</value>
+  </data>
+  <data name="Audit.F.NotApplicableBy" xml:space="preserve">
+    <value>Atzīmēja kā neattiecināmu</value>
+  </data>
+  <data name="Audit.F.NotApplicableReason" xml:space="preserve">
+    <value>Neattiecināmības iemesls</value>
+  </data>
+  <data name="Audit.F.Note" xml:space="preserve">
+    <value>Piezīme</value>
+  </data>
+  <data name="Audit.F.Notes" xml:space="preserve">
+    <value>Piezīmes</value>
+  </data>
+  <data name="Audit.F.OrgId" xml:space="preserve">
+    <value>Organizācija</value>
+  </data>
+  <data name="Audit.F.OrgRole" xml:space="preserve">
+    <value>Loma</value>
+  </data>
+  <data name="Audit.F.OriginCountry" xml:space="preserve">
+    <value>Izcelsmes valsts</value>
+  </data>
+  <data name="Audit.F.OriginalFileName" xml:space="preserve">
+    <value>Faila nosaukums</value>
+  </data>
+  <data name="Audit.F.OwnerOrgId" xml:space="preserve">
+    <value>Īpašnieks</value>
+  </data>
+  <data name="Audit.F.ParameterId" xml:space="preserve">
+    <value>Parametrs</value>
+  </data>
+  <data name="Audit.F.Percentage" xml:space="preserve">
+    <value>Daļa (%)</value>
+  </data>
+  <data name="Audit.F.PeriodId" xml:space="preserve">
+    <value>Ražošanas periods</value>
+  </data>
+  <data name="Audit.F.PhoneNumber" xml:space="preserve">
+    <value>Tālruņa numurs</value>
+  </data>
+  <data name="Audit.F.ProfilePhoto" xml:space="preserve">
+    <value>Profila foto</value>
+  </data>
+  <data name="Audit.F.Province" xml:space="preserve">
+    <value>Province</value>
+  </data>
+  <data name="Audit.F.Purpose" xml:space="preserve">
+    <value>Mērķis</value>
+  </data>
+  <data name="Audit.F.QRCode" xml:space="preserve">
+    <value>QR kods</value>
+  </data>
+  <data name="Audit.F.Quantity" xml:space="preserve">
+    <value>Daudzums (kg)</value>
+  </data>
+  <data name="Audit.F.RawHoneyProductionId" xml:space="preserve">
+    <value>Neapstrādāta medus partija</value>
+  </data>
+  <data name="Audit.F.Reason" xml:space="preserve">
+    <value>Iemesls</value>
+  </data>
+  <data name="Audit.F.ReceivedAt" xml:space="preserve">
+    <value>Saņemts</value>
+  </data>
+  <data name="Audit.F.ReceivedByUserId" xml:space="preserve">
+    <value>Saņēma</value>
+  </data>
+  <data name="Audit.F.ReceivingOrgId" xml:space="preserve">
+    <value>Saņēmēja organizācija</value>
+  </data>
+  <data name="Audit.F.RecordId" xml:space="preserve">
+    <value>Ieraksts</value>
+  </data>
+  <data name="Audit.F.RecordedAt" xml:space="preserve">
+    <value>Reģistrēts</value>
+  </data>
+  <data name="Audit.F.RecordedByOrgId" xml:space="preserve">
+    <value>Reģistrētāja organizācija</value>
+  </data>
+  <data name="Audit.F.RecordedByUserId" xml:space="preserve">
+    <value>Reģistrēja</value>
+  </data>
+  <data name="Audit.F.RegistryNumber" xml:space="preserve">
+    <value>Reģistra numurs</value>
+  </data>
+  <data name="Audit.F.RejectReason" xml:space="preserve">
+    <value>Noraidījuma iemesls</value>
+  </data>
+  <data name="Audit.F.ReportCode" xml:space="preserve">
+    <value>Pārskata kods</value>
+  </data>
+  <data name="Audit.F.ReportId" xml:space="preserve">
+    <value>Pārskats</value>
+  </data>
+  <data name="Audit.F.ReportNumber" xml:space="preserve">
+    <value>Pārskata numurs</value>
+  </data>
+  <data name="Audit.F.RequestedAt" xml:space="preserve">
+    <value>Pieprasīts</value>
+  </data>
+  <data name="Audit.F.RequestedByUserId" xml:space="preserve">
+    <value>Pieprasīja</value>
+  </data>
+  <data name="Audit.F.RetainUntil" xml:space="preserve">
+    <value>Glabāt līdz</value>
+  </data>
+  <data name="Audit.F.ReturnReason" xml:space="preserve">
+    <value>Atgriešanas iemesls</value>
+  </data>
+  <data name="Audit.F.RevokedAt" xml:space="preserve">
+    <value>Atsaukts</value>
+  </data>
+  <data name="Audit.F.RevokedByUserId" xml:space="preserve">
+    <value>Atsauca</value>
+  </data>
+  <data name="Audit.F.SampleCode" xml:space="preserve">
+    <value>Parauga kods</value>
+  </data>
+  <data name="Audit.F.SampleId" xml:space="preserve">
+    <value>Paraugs</value>
+  </data>
+  <data name="Audit.F.SealIntact" xml:space="preserve">
+    <value>Plomba neskarta</value>
+  </data>
+  <data name="Audit.F.SealNumber" xml:space="preserve">
+    <value>Plombas numurs</value>
+  </data>
+  <data name="Audit.F.SelfApproved" xml:space="preserve">
+    <value>Četru acu izņēmums</value>
+  </data>
+  <data name="Audit.F.SelfFinalized" xml:space="preserve">
+    <value>Pabeigts ar četru acu izņēmumu</value>
+  </data>
+  <data name="Audit.F.Sha256" xml:space="preserve">
+    <value>Nospiedums (SHA-256)</value>
+  </data>
+  <data name="Audit.F.ShippedAt" xml:space="preserve">
+    <value>Nosūtīts</value>
+  </data>
+  <data name="Audit.F.ShippedByUserId" xml:space="preserve">
+    <value>Nosūtīja</value>
+  </data>
+  <data name="Audit.F.SmsAt" xml:space="preserve">
+    <value>SMS nosūtīta</value>
+  </data>
+  <data name="Audit.F.SmsStatus" xml:space="preserve">
+    <value>SMS statuss</value>
+  </data>
+  <data name="Audit.F.StartDate" xml:space="preserve">
+    <value>Sākums</value>
+  </data>
+  <data name="Audit.F.Status" xml:space="preserve">
+    <value>Statuss</value>
+  </data>
+  <data name="Audit.F.StoredFileName" xml:space="preserve">
+    <value>Saglabātais fails</value>
+  </data>
+  <data name="Audit.F.SubmittedAt" xml:space="preserve">
+    <value>Iesniegts</value>
+  </data>
+  <data name="Audit.F.TakenAt" xml:space="preserve">
+    <value>Paņemts</value>
+  </data>
+  <data name="Audit.F.TakenByUserId" xml:space="preserve">
+    <value>Paņēma</value>
+  </data>
+  <data name="Audit.F.TakingOrgId" xml:space="preserve">
+    <value>Paraugu ņēmēja organizācija</value>
+  </data>
+  <data name="Audit.F.TextSha256" xml:space="preserve">
+    <value>Teksta nospiedums (SHA-256)</value>
+  </data>
+  <data name="Audit.F.TextVersion" xml:space="preserve">
+    <value>Teksta versija</value>
+  </data>
+  <data name="Audit.F.Title" xml:space="preserve">
+    <value>Nosaukums</value>
+  </data>
+  <data name="Audit.F.ToOrgId" xml:space="preserve">
+    <value>Saņēmēja organizācija</value>
+  </data>
+  <data name="Audit.F.TotalAmount" xml:space="preserve">
+    <value>Kopējais daudzums (kg)</value>
+  </data>
+  <data name="Audit.F.UsedAmount" xml:space="preserve">
+    <value>Izmantotais daudzums (kg)</value>
+  </data>
+  <data name="Audit.F.UserId" xml:space="preserve">
+    <value>Lietotājs</value>
+  </data>
+  <data name="Audit.F.UserName" xml:space="preserve">
+    <value>Lietotājvārds</value>
+  </data>
+  <data name="Audit.F.ValidFrom" xml:space="preserve">
+    <value>Derīgs no</value>
+  </data>
+  <data name="Audit.F.ValidTo" xml:space="preserve">
+    <value>Derīgs līdz</value>
+  </data>
+  <data name="Audit.F.VerifiedAt" xml:space="preserve">
+    <value>Pārbaudīts</value>
+  </data>
+  <data name="Audit.F.VerifiedByUserId" xml:space="preserve">
+    <value>Pārbaudīja</value>
+  </data>
+  <data name="Audit.F.WholesalerId" xml:space="preserve">
+    <value>Vairumtirgotājs</value>
+  </data>
+  <data name="Audit.F.WithdrawReason" xml:space="preserve">
+    <value>Atsaukšanas iemesls</value>
+  </data>
+  <data name="Audit.F.WithdrawnAt" xml:space="preserve">
+    <value>Atsaukts</value>
+  </data>
+  <data name="Audit.F.WithdrawnByUserId" xml:space="preserve">
+    <value>Atsauca</value>
+  </data>
 </root>

@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = L["Index"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var photoVersions = ViewBag.PhotoVersions as Dictionary<string, int> ?? new();
 }
 
 
@@ -60,18 +61,14 @@
                                     {
                                         <tr class="@(item.IsActive ? "" : "table-light text-muted")">
                                             <td>
-                                                @if (item.BeekeeperProfilePhoto != null)
+                                                @* D-73: a small cached thumbnail, loaded lazily, or the initials *@
+                                                @if (photoVersions.TryGetValue(item.BeekeeperId ?? "", out var version))
                                                 {
-                                                    var base64 = Convert.ToBase64String(item.BeekeeperProfilePhoto);
-                                                    <img src="data:image/jpeg;base64,@base64"
-                                                         class="rounded-circle"
-                                                         width="60"
-                                                         height="60"
-                                                         style="object-fit:cover;" />
+                                                    <img src="/Beekeepers/Thumb/@item.BeekeeperId?v=@version" alt="" class="rounded-circle bk-thumb" width="44" height="44" loading="lazy" decoding="async" />
                                                 }
                                                 else
                                                 {
-                                                    <span class="text-muted">@L["No Photo"]</span>
+                                                    <span class="bk-initials" aria-hidden="true">@TOP4HoneyChains.Web.Services.OrgModel.StorefrontPage.Initials(item.BeekeeperFirstName + " " + item.BeekeeperLastName)</span>
                                                 }
                                             </td>
                                             <td>

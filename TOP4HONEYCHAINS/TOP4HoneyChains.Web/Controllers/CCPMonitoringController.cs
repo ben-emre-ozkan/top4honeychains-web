@@ -54,6 +54,9 @@ namespace TOP4HoneyChains.Web.Controllers
         private static string? ReasonOf(AuthorizationResult r) =>
             r.Failure?.FailureReasons.Select(x => x.Message).FirstOrDefault();
 
+        // D-73: the branded 403 page (status code pages re-execute Dashboard/Status)
+        private IActionResult Forbidden() => StatusCode(StatusCodes.Status403Forbidden);
+
         // Members have no access to the admin lists: send them back to their workspace
         private IActionResult BackToList(string controller, string action, object routeValues) =>
             User.IsInRole(CurrentOrg.AdminRole) ? RedirectToAction(action, controller, routeValues) : RedirectToAction("Index", "OrgWorkspace");
@@ -64,7 +67,7 @@ namespace TOP4HoneyChains.Web.Controllers
         {
             // Another organization's record answers 404, so its existence is not revealed
             if (!(await AuthorizeAsync(Owner.RawLot, rawHoneyProductionId, ccpId, CcpOperations.Read)).Succeeded)
-                return NotFound();
+                return Forbidden();
             var model = await BuildRawModelAsync(rawHoneyProductionId, ccpId);
             if (model == null)
                 return NotFound();
@@ -84,7 +87,7 @@ namespace TOP4HoneyChains.Web.Controllers
         public async Task<IActionResult> RawHoneyProductionManageCCP(CCPMonitoringViewModelForRawHoney model)
         {
             if (!(await AuthorizeAsync(Owner.RawLot, model.RawHoneyProductionId, model.CCPId, CcpOperations.Read)).Succeeded)
-                return NotFound();
+                return Forbidden();
             var display = await BuildRawModelAsync(model.RawHoneyProductionId, model.CCPId);
             if (display == null)
                 return NotFound();
@@ -104,7 +107,7 @@ namespace TOP4HoneyChains.Web.Controllers
         public async Task<IActionResult> FinalHoneyProductionManageCCP(int finalHoneyProductionId, int ccpId)
         {
             if (!(await AuthorizeAsync(Owner.Batch, finalHoneyProductionId, ccpId, CcpOperations.Read)).Succeeded)
-                return NotFound();
+                return Forbidden();
             var model = await BuildBatchModelAsync(finalHoneyProductionId, ccpId);
             if (model == null)
                 return NotFound();
@@ -124,7 +127,7 @@ namespace TOP4HoneyChains.Web.Controllers
         public async Task<IActionResult> FinalHoneyProductionManageCCP(CCPMonitoringViewModelForFinalBatch model)
         {
             if (!(await AuthorizeAsync(Owner.Batch, model.FinalHoneyProductionId, model.CCPId, CcpOperations.Read)).Succeeded)
-                return NotFound();
+                return Forbidden();
             var display = await BuildBatchModelAsync(model.FinalHoneyProductionId, model.CCPId);
             if (display == null)
                 return NotFound();
@@ -151,7 +154,7 @@ namespace TOP4HoneyChains.Web.Controllers
 
             var assignment = await FindAssignmentAsync(owner.Value, ownerId, ccpId);
             if (assignment == null || !(await AuthorizeAsync(owner.Value, ownerId, ccpId, CcpOperations.Read)).Succeeded)
-                return NotFound();
+                return assignment == null ? NotFound() : Forbidden();
 
             reason = reason?.Trim();
             string? error = await LockReasonAsync(owner.Value, ownerId);
@@ -193,7 +196,7 @@ namespace TOP4HoneyChains.Web.Controllers
 
             var assignment = await FindAssignmentAsync(owner.Value, ownerId, ccpId);
             if (assignment == null || !(await AuthorizeAsync(owner.Value, ownerId, ccpId, CcpOperations.Read)).Succeeded)
-                return NotFound();
+                return assignment == null ? NotFound() : Forbidden();
 
             var enter = await AuthorizeAsync(owner.Value, ownerId, ccpId, CcpOperations.Enter);
             if (await LockReasonAsync(owner.Value, ownerId) is string lockReason)
@@ -229,7 +232,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 return NotFound();
             var assignment = await FindAssignmentAsync(owner.Value, ownerId, ccpId);
             if (assignment == null || !(await AuthorizeAsync(owner.Value, ownerId, ccpId, CcpOperations.Read)).Succeeded)
-                return NotFound();
+                return assignment == null ? NotFound() : Forbidden();
 
             var result = await AuthorizeAsync(owner.Value, ownerId, ccpId, CcpOperations.Approve);
             string? error = await LockReasonAsync(owner.Value, ownerId);
@@ -404,7 +407,7 @@ namespace TOP4HoneyChains.Web.Controllers
             var owner = log.RawHoneyProductionId != null ? Owner.RawLot : Owner.Batch;
             var ownerId = log.RawHoneyProductionId ?? log.FinalHoneyProductionId!.Value;
             if (!(await AuthorizeAsync(owner, ownerId, log.CCPId.Value, CcpOperations.Read)).Succeeded)
-                return NotFound();
+                return Forbidden();
 
             var path = Path.Combine(_env.ContentRootPath, FileFolder, Path.GetFileName(log.StoredFileName));
             if (!System.IO.File.Exists(path))

@@ -169,7 +169,7 @@
                                                        asp-route-ccpId="@assignment.FinalHoneyCCPAssignmentCCP"
                                                        class="btn btn-sm @btnClass me-1 mb-1">
 
-                                                        @assignment.CCP?.Code
+                                                        @Ref.Code(assignment.CCP?.Code)
                                                     </a>
                                                 }
                                             }

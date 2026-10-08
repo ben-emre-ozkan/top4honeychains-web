@@ -487,7 +487,7 @@
                     <details class="hs-fold ccp-card" data-ccp="@b.CCPCode" data-state="@b.State">
                         <summary>
                             <span class="hs-head-icon hs-code">@b.CCPCode?.Replace("CCP ", "")</span>
-                            <span class="grow"><b>@b.CCPCode · @Ref.CcpTitle(b.CCPId, b.CCPTitle)</b><span>@Ref.T("Ccp", b.CCPId, "ProcessingStep", b.ProcessingStep)</span></span>
+                            <span class="grow"><b>@Ref.Code(b.CCPCode) · @Ref.CcpTitle(b.CCPId, b.CCPTitle)</b><span>@Ref.T("Ccp", b.CCPId, "ProcessingStep", b.ProcessingStep)</span></span>
                             <span class="hs-state @cls">@L[text]</span>
                         </summary>
                         <div class="hs-fold-body">

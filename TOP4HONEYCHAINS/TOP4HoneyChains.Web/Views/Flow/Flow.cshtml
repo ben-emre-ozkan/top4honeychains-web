@@ -57,7 +57,7 @@
                                         <span class="dot"></span>
                                         <div class="d-flex flex-wrap justify-content-between gap-1">
                                             <div>
-                                                @if (s.Url != null) { <a href="@s.Url" class="fw-semibold">@s.Code</a> } else { <span class="fw-semibold">@s.Code</span> }
+                                                @if (s.Url != null) { <a href="@s.Url" class="fw-semibold">@Ref.Code(s.Code)</a> } else { <span class="fw-semibold">@Ref.Code(s.Code)</span> }
                                                 <span class="text-muted">@Ref.CcpTitle(s.CcpId, s.Title)</span>
                                             </div>
                                             <span class="small flow-state">@st.Text @(s.ApprovedAt != null ? s.ApprovedAt.Value.ToString("dd.MM.yyyy") : "") @if (s.SelfApproved) { <span class="badge bg-warning text-dark">@L["Org.SelfApproved"]</span> }</span>

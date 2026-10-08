@@ -113,7 +113,7 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             {
                 var response = await users[role].GetAsync(url);
                 var location = response.Headers.Location?.ToString() ?? "";
-                var ok = response.StatusCode == HttpStatusCode.NotFound
+                var ok = response.StatusCode is HttpStatusCode.NotFound or HttpStatusCode.Forbidden   // D-73: a refused CCP read answers 403
                          || (response.StatusCode == HttpStatusCode.Redirect && (location.Contains("AccessDenied") || location.Contains("/Index") || location.EndsWith("/Samples") || location.EndsWith("/Storefronts")));
                 if (!ok)
                     leaks.Add($"{role} GET {url} -> {(int)response.StatusCode} {location}");
