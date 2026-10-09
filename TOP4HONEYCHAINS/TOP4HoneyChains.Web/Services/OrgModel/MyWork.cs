@@ -56,34 +56,50 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             return items;
         }
 
-        // Values to approve and to enter on the lots and batches the organization works on
+        // Values to approve and to enter on the lots and batches the organization works on. D-75: a record waits for
+        // approval when it is Submitted, or Completed / "Not applicable" without an approval while its CCP requires one;
+        // an approval is offered only when the four-eyes rule would allow it (not to whoever recorded or marked it).
         private async Task CcpItemsAsync(ActiveMembership active, List<Item> items)
         {
             var lots = await (await _scope.VisibleLotsAsync())
-                .SelectMany(r => r.RawHoneyCCPAssignments.Select(a => new { r.RawHoneyProductionId, a.RawHoneyCCPAssignmentCCP, a.RawHoneyCCPAssignmentStatus, a.CCP!.Code, a.RawHoneyCCPAssignmentStartDate }))
-                .Where(a => a.RawHoneyCCPAssignmentStatus != AssignmentStatusIds.Completed && a.RawHoneyCCPAssignmentStatus != AssignmentStatusIds.NotApplicable)
+                .SelectMany(r => r.RawHoneyCCPAssignments.Select(a => new { r.RawHoneyProductionId, a.RawHoneyCCPAssignmentCCP, a.RawHoneyCCPAssignmentStatus, a.ApprovedAt, a.CCP!.Code, a.RawHoneyCCPAssignmentStartDate }))
+                .Where(a => (a.RawHoneyCCPAssignmentStatus != AssignmentStatusIds.Completed && a.RawHoneyCCPAssignmentStatus != AssignmentStatusIds.NotApplicable) || a.ApprovedAt == null)
                 .Take(400).ToListAsync();
             foreach (var a in lots)
             {
+                var status = a.RawHoneyCCPAssignmentStatus;
+                var done = status is AssignmentStatusIds.Completed or AssignmentStatusIds.NotApplicable;
+                if (done && !await _resp.RequiresApprovalAsync(a.RawHoneyCCPAssignmentCCP))
+                    continue;
                 var access = await _resp.AccessAsync("raw", a.RawHoneyProductionId, a.RawHoneyCCPAssignmentCCP);
                 var url = $"/CCPMonitoring/RawHoneyProductionManageCCP?rawHoneyProductionId={a.RawHoneyProductionId}&ccpId={a.RawHoneyCCPAssignmentCCP}";
-                if (a.RawHoneyCCPAssignmentStatus == AssignmentStatusIds.Submitted && access.Approve)
-                    items.Add(new Item("Approve", $"{a.Code} · #{a.RawHoneyProductionId}", "lot", url, a.RawHoneyCCPAssignmentStartDate));
-                else if (a.RawHoneyCCPAssignmentStatus != AssignmentStatusIds.Submitted && access.Enter)
+                if (status == AssignmentStatusIds.Submitted || done)
+                {
+                    if (access.Approve && await MayApproveAsync(active, "raw", a.RawHoneyProductionId, a.RawHoneyCCPAssignmentCCP))
+                        items.Add(new Item("Approve", $"{a.Code} · #{a.RawHoneyProductionId}", "lot", url, a.RawHoneyCCPAssignmentStartDate));
+                }
+                else if (access.Enter)
                     items.Add(new Item("Enter", $"{a.Code} · #{a.RawHoneyProductionId}", "lot", url, a.RawHoneyCCPAssignmentStartDate));
             }
             var batches = await (await _scope.VisibleBatchesAsync())
                 .Where(f => !f.FinalHoneyProductionIsFinalized)
-                .SelectMany(f => f.FinalHoneyCCPAssignments.Select(a => new { f.FinalHoneyProductionId, f.FinalHoneyProductionTitle, a.FinalHoneyCCPAssignmentCCP, a.FinalHoneyCCPAssignmentStatus, a.CCP!.Code, a.FinalHoneyCCPAssignmentStartDate }))
-                .Where(a => a.FinalHoneyCCPAssignmentStatus != AssignmentStatusIds.Completed && a.FinalHoneyCCPAssignmentStatus != AssignmentStatusIds.NotApplicable)
+                .SelectMany(f => f.FinalHoneyCCPAssignments.Select(a => new { f.FinalHoneyProductionId, f.FinalHoneyProductionTitle, a.FinalHoneyCCPAssignmentCCP, a.FinalHoneyCCPAssignmentStatus, a.ApprovedAt, a.CCP!.Code, a.FinalHoneyCCPAssignmentStartDate }))
+                .Where(a => (a.FinalHoneyCCPAssignmentStatus != AssignmentStatusIds.Completed && a.FinalHoneyCCPAssignmentStatus != AssignmentStatusIds.NotApplicable) || a.ApprovedAt == null)
                 .Take(400).ToListAsync();
             foreach (var a in batches)
             {
+                var status = a.FinalHoneyCCPAssignmentStatus;
+                var done = status is AssignmentStatusIds.Completed or AssignmentStatusIds.NotApplicable;
+                if (done && !await _resp.RequiresApprovalAsync(a.FinalHoneyCCPAssignmentCCP))
+                    continue;
                 var access = await _resp.AccessAsync("batch", a.FinalHoneyProductionId, a.FinalHoneyCCPAssignmentCCP);
                 var url = $"/CCPMonitoring/FinalHoneyProductionManageCCP?finalHoneyProductionId={a.FinalHoneyProductionId}&ccpId={a.FinalHoneyCCPAssignmentCCP}";
-                if (a.FinalHoneyCCPAssignmentStatus == AssignmentStatusIds.Submitted && access.Approve)
-                    items.Add(new Item("Approve", $"{a.Code} · {a.FinalHoneyProductionTitle}", "batch", url, a.FinalHoneyCCPAssignmentStartDate));
-                else if (a.FinalHoneyCCPAssignmentStatus != AssignmentStatusIds.Submitted && access.Enter)
+                if (status == AssignmentStatusIds.Submitted || done)
+                {
+                    if (access.Approve && await MayApproveAsync(active, "batch", a.FinalHoneyProductionId, a.FinalHoneyCCPAssignmentCCP))
+                        items.Add(new Item("Approve", $"{a.Code} · {a.FinalHoneyProductionTitle}", "batch", url, a.FinalHoneyCCPAssignmentStartDate));
+                }
+                else if (access.Enter)
                     items.Add(new Item("Enter", $"{a.Code} · {a.FinalHoneyProductionTitle}", "batch", url, a.FinalHoneyCCPAssignmentStartDate));
             }
 
@@ -95,6 +111,10 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                     items.Add(new Item("Finalize", b.FinalHoneyProductionTitle ?? $"#{b.FinalHoneyProductionId}", null, $"/OrgWorkspace/Batch/{b.FinalHoneyProductionId}", b.FinalizeRequestedAt));
             }
         }
+
+        // the four-eyes rule of the approve action (CcpAuthorizationHandler): not the person who recorded or marked the record, unless exempt
+        private async Task<bool> MayApproveAsync(ActiveMembership active, string kind, int ownerId, int ccpId) =>
+            active.FourEyesExempt || await CcpRecorders.OfAsync(_context, kind, ownerId, ccpId, _current.UserId, _current.UserName) == CcpRecorders.Self.None;
 
         private async Task LabItemsAsync(ActiveMembership active, List<Item> items)
         {
@@ -132,7 +152,8 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             var storageCcp = await _custody.StorageCcpIdAsync();
             if (storageCcp != null && (await _resp.ConfigsAsync()).TryGetValue(storageCcp.Value, out var cfg) && cfg.ApproveRoles.Contains(active.OrgRole))
                 foreach (var r in await _context.HolderStorageRecords.AsNoTracking().Include(r => r.Batch)
-                             .Where(r => r.HolderOrgId == active.OrgId && r.Status == AssignmentStatusIds.Submitted).ToListAsync())
+                             .Where(r => r.HolderOrgId == active.OrgId && r.Status == AssignmentStatusIds.Submitted
+                                         && (active.FourEyesExempt || r.RecordedByUserId != _current.UserId)).ToListAsync())   // D-75: four-eyes
                     items.Add(new Item("Approve", $"CCP 10 · {r.Batch?.FinalHoneyProductionTitle}", "storage", $"/Shipments/Storage?batchId={r.FinalHoneyProductionId}", r.RecordedAt));
         }
 
@@ -145,7 +166,8 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                 items.Add(new Item("Registry", r.EnterpriseNumber, null, $"/Registry/Edit/{r.BeekeeperId}", r.RequestedAt));
             foreach (var c in await _context.CcpCorrections.AsNoTracking().Include(c => c.Ccp)
                          .Where(c => c.Status == CorrectionStatus.Pending && c.RequestedByUserId != _current.UserId).ToListAsync())
-                items.Add(new Item("Correction", $"{c.Ccp?.Code} #{c.OwnerId}", c.Reason, "/CCPMonitoring/Corrections", c.RequestedAt, c.OwnerKind));
+                items.Add(new Item("Correction", $"{c.Ccp?.Code} #{c.OwnerId}", c.Reason, "/CCPMonitoring/Corrections", c.RequestedAt,
+                    c.OwnerKind == "raw" ? "Kind.lot" : "Kind.batch"));   // D-75: a translated record kind
         }
 
         // Pending organizations that uploaded at least one document

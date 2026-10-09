@@ -27,7 +27,7 @@ Menu administracyjne:
 
 1. **Organizacje** → **Nowa organizacja**.
 2. Wpisz nazwę, nazwę prawną, numer podatkowy, prowincję i powiat.
-3. Jeśli organizacja jest hurtownikiem, który już istnieje na platformie, wybierz go w polu istniejącego hurtownika. **Zakład przetwórczy musi być powiązany ze swoim rekordem hurtownika**: przyjmowane przez niego partie są przypisywane do tego hurtownika, a partia końcowa może korzystać wyłącznie z partii własnego hurtownika.
+3. Jeśli organizacja jest hurtownikiem, który już istnieje na platformie, wybierz go w polu istniejącego hurtownika. **Zakład przetwórczy musi być powiązany ze swoim rekordem hurtownika**: przyjmowane przez niego partie są przypisywane do tego hurtownika, a partia końcowa może korzystać wyłącznie z partii własnego hurtownika. Powiązanie można też ustawić później na stronie **Edytuj** organizacji. Partie, które zakład otrzymał przed powiązaniem, mogą być użyte w partiach końcowych hurtownika, z którym zakład został powiązany.
 4. Zaznacz co najmniej jedną funkcję i kliknij **Utwórz**.
 
 Organizacja otrzymuje początkowo status **Oczekująca**: „Organizacja została utworzona. Pozostaje w stanie Oczekująca do czasu weryfikacji.”
@@ -68,9 +68,12 @@ Małe organizacje, w których za jakość odpowiada jedna osoba, mogą otrzymać
 
 - **Dodaj nowego użytkownika** tworzy konto. W modelu organizacji pozostaw pole **Rola globalna** puste dla członków organizacji i nadaj im członkostwo na stronie organizacji; opcję **Administrator platformy** wybieraj tylko dla administratorów.
 - **Zresetuj hasło** ustawia nowe hasło dla użytkownika.
-- **Usuń** usuwa konto (używaj ostrożnie; tej operacji nie można cofnąć).
+- **Odblokuj** pojawia się przy koncie ze statusem **Zablokowana** i natychmiast kończy blokadę („Konto zostało odblokowane.”). Bez tego blokada wygasa samoczynnie po 15 minutach.
+- **Usuń** usuwa konto (używaj ostrożnie; tej operacji nie można cofnąć). Nie możesz usunąć własnego konta. Każde usunięcie i każde odblokowanie jest zapisywane w dzienniku audytu.
 
-Hasło musi mieć co najmniej 6 znaków. Po 5 nieudanych próbach logowania konto zostaje zablokowane na 15 minut. Nie ma przycisku odblokowania; blokada wygasa samoczynnie.
+Hasło musi mieć co najmniej 6 znaków. Po 5 nieudanych próbach logowania konto zostaje zablokowane na 15 minut.
+
+**Zarządzanie Użytkownikami** → **Role** zawiera listę ról globalnych. Role, na których opiera się platforma (**Administrator** i **Pszczelarz**), są oznaczone jako **Chroniona** i nie można zmieniać ich nazw ani ich usuwać.
 
 ## Role i uprawnienia {#admin-permissions}
 
@@ -116,9 +119,9 @@ Strona **Tłumaczenia danych referencyjnych** zawiera nazwy wyświetlane na list
 
 1. **Hurtownicy** → hurtownik → **Końcowe produkcje miodu (partie końcowe)** → **Nowa partia końcowa**.
 2. Wpisz **Tytuł partii** i **Data produkcji**, a następnie kliknij **Utwórz partię**. Kod QR zostaje wygenerowany.
-3. Na stronie **Zarządzaj partią** wpisz ilość, która ma zostać użyta z każdej kwalifikującej się partii (partie tego hurtownika, których wszystkie KPK są zatwierdzone), i kliknij **Zapisz skład partii**. Ilości przekraczające dostępną ilość są pomijane.
+3. Na stronie **Zarządzaj partią** wpisz ilość, która ma zostać użyta z każdej kwalifikującej się partii (partie tego hurtownika, których wszystkie KPK są zatwierdzone), i kliknij **Zapisz skład partii**: „Zapisano skład partii końcowej: łącznie … kg.” Jeśli ilość jest zbyt duża lub partii nie można użyć, strona wymienia każdy problem (na przykład „Partia #…: dostępne jest najwyżej … kg.”) i niczego nie zapisuje. Jeśli zakład ma partie, których żadna partia końcowa nie może użyć, ponieważ nie jest on powiązany z rekordem hurtownika, strona podaje jego nazwę wraz z odnośnikiem do jego strony **Edytuj**.
 4. Użyj opcji **Edytuj**, aby ustawić organizację będącą właścicielem partii końcowej (zakład).
-5. **Zarządzaj KPK**: zaznacz od KPK 4 do KPK 10 i kliknij **Zapisz przypisania**.
+5. **Zarządzaj KPK**: zaznacz od KPK 4 do KPK 10 i kliknij **Zapisz przypisania**: „Zapisano przypisania KPK: dodano …, usunięto ….”
 
 Następnie zakład wprowadza KPK partii końcowej i zatwierdza ją ostatecznie. Administratorzy nie mogą zatwierdzać ostatecznie: „W modelu organizacji partię końcową zatwierdza ostatecznie organizacja będąca jej właścicielem (wniosek i zatwierdzenie przez dwie osoby).”
 

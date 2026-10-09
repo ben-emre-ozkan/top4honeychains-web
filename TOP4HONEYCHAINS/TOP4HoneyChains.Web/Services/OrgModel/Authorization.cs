@@ -228,8 +228,8 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                         break;
                     }
                     var active = await _current.GetAsync();
-                    var self = _current.UserId != null && (await RecordersAsync(r)).Contains(_current.UserId);
-                    if (!self)
+                    var self = await CcpRecorders.OfAsync(_context, r.OwnerKind, r.OwnerId, r.CcpId, _current.UserId, _current.UserName);
+                    if (self == CcpRecorders.Self.None)
                         context.Succeed(requirement);
                     else if (active != null && active.FourEyesExempt)
                     {
@@ -238,18 +238,37 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                         context.Succeed(requirement);
                     }
                     else
-                        context.Fail(new AuthorizationFailureReason(this, "Four-eyes: you recorded values of this CCP, so another person must approve it."));
+                        context.Fail(new AuthorizationFailureReason(this, self == CcpRecorders.Self.NotApplicable
+                            ? "Four-eyes: you marked this CCP \"Not applicable\", so another person must approve it."
+                            : "Four-eyes: you recorded values of this CCP, so another person must approve it."));
                     break;
             }
         }
+    }
 
-        private Task<List<string>> RecordersAsync(CcpResource r) =>
-            (r.OwnerKind == "raw"
-                ? _context.CriticalControlPointMonitoringLogs.Where(l => l.RawHoneyProductionId == r.OwnerId && l.CCPId == r.CcpId)
-                : _context.CriticalControlPointMonitoringLogs.Where(l => l.FinalHoneyProductionId == r.OwnerId && l.CCPId == r.CcpId))
-            .Where(l => l.RecordedByUserId != null)
-            .Select(l => l.RecordedByUserId!)
-            .Distinct()
-            .ToListAsync();
+    // Who recorded a CCP record (four-eyes, D-27): any user who recorded one of its values, and (D-75) the user who marked
+    // it "Not applicable" (stored by user name). Used by the approve rule and by My work, so My work offers only what
+    // the rule allows.
+    public static class CcpRecorders
+    {
+        public enum Self { None, Values, NotApplicable }
+
+        public static async Task<Self> OfAsync(TOP4HoneyChainsContext context, string ownerKind, int ownerId, int ccpId, string? userId, string? userName)
+        {
+            var raw = ownerKind == "raw";
+            if (userId != null && await (raw
+                    ? context.CriticalControlPointMonitoringLogs.Where(l => l.RawHoneyProductionId == ownerId && l.CCPId == ccpId)
+                    : context.CriticalControlPointMonitoringLogs.Where(l => l.FinalHoneyProductionId == ownerId && l.CCPId == ccpId))
+                .AnyAsync(l => l.RecordedByUserId == userId))
+                return Self.Values;
+            if (string.IsNullOrEmpty(userName))
+                return Self.None;
+            var markedNotApplicable = raw
+                ? await context.RawHoneyCCPAssignments.AnyAsync(a => a.RawHoneyProductionId == ownerId && a.RawHoneyCCPAssignmentCCP == ccpId
+                    && a.RawHoneyCCPAssignmentStatus == AssignmentStatusIds.NotApplicable && a.NotApplicableBy == userName)
+                : await context.FinalHoneyCCPAssignments.AnyAsync(a => a.FinalHoneyProductionId == ownerId && a.FinalHoneyCCPAssignmentCCP == ccpId
+                    && a.FinalHoneyCCPAssignmentStatus == AssignmentStatusIds.NotApplicable && a.NotApplicableBy == userName);
+            return markedNotApplicable ? Self.NotApplicable : Self.None;
+        }
     }
 }

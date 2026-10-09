@@ -344,7 +344,7 @@
                             <div class="hs-photos">
                                 @foreach (var p in s.Photos)
                                 {
-                                    <img src="@Url.Action("Image", "HoneyStory", new { id = p.ApiaryPhotoId })" alt="@(p.Description ?? Apiary(s))" loading="lazy">
+                                    <img src="@Url.Action("Image", "HoneyStory", new { id = p.ApiaryPhotoId, qr = Model.BatchQR })" alt="@(p.Description ?? Apiary(s))" loading="lazy">
                                 }
                             </div>
                         }

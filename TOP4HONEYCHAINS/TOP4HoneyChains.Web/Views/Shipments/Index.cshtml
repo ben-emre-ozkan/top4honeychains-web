@@ -31,7 +31,7 @@
                                     <td>
                                         @if (!h.Owner)
                                         {
-                                            <a asp-action="Storage" asp-route-batchId="@h.Batch.FinalHoneyProductionId" class="storage-link">CCP 10</a>
+                                            <a asp-action="Storage" asp-route-batchId="@h.Batch.FinalHoneyProductionId" class="storage-link">@Ref.Code("CCP 10")</a>
                                             <span class="small text-muted">@(h.Storage == null ? "–" : h.Storage.ApprovedAt != null ? "✓" : h.Storage.Status == AssignmentStatusIds.Submitted ? L["Cust.Pending"].Value : "…")</span>
                                         }
                                     </td>
@@ -40,6 +40,8 @@
                                         {
                                             <a asp-action="Create" asp-route-batchId="@h.Batch.FinalHoneyProductionId" class="btn btn-sm btn-primary ship-link">@L["Cust.Ship"]</a>
                                         }
+                                        @* D-75: the producer's control points of a held batch, read-only, through its process flow *@
+                                        <a asp-controller="Flow" asp-action="Batch" asp-route-id="@h.Batch.FinalHoneyProductionId" class="btn btn-sm btn-outline-secondary flow-link">@L["Flow.Title"]</a>
                                         <a asp-controller="Recall" asp-action="Batch" asp-route-id="@h.Batch.FinalHoneyProductionId" class="btn btn-sm btn-outline-secondary">@L["Cust.Recall"]</a>
                                     </td>
                                 </tr>

@@ -40,7 +40,7 @@
                                 </div>
                                 @if (!active.IsVerified)
                                 {
-                                    <div class="alert alert-warning mt-2 mb-0" id="not-verified">@L["Org.NotVerifiedBanner"]</div>
+                                    <div class="alert alert-warning mt-2 mb-0" id="not-verified">@(active.OrgStatus == OrgStatus.Suspended ? L["Org.SuspendedBanner"] : L["Org.NotVerifiedBanner"])</div>
                                 }
                                 <a asp-controller="Organizations" asp-action="Details" asp-route-id="@active.OrgId" class="btn btn-sm btn-outline-primary mt-2">@L["Org.OrganizationPage"]</a>
                                 @if (TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Shipments(active, MenuPermissions))

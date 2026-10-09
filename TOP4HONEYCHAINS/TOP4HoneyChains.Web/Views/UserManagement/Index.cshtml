@@ -71,7 +71,7 @@
 
                                            
 
-                                            <td>@user.UserName</td>
+                                            <td>@user.UserName @if (user.LockoutEnd != null && user.LockoutEnd > DateTimeOffset.UtcNow) {<span class="badge bg-danger-subtle text-danger border ms-1 user-locked" title="@user.LockoutEnd.Value.ToLocalTime().ToString("dd.MM.yyyy HH:mm")"><i class="mdi mdi-lock-outline"></i> @L["Locked"]</span>}</td>
 
                                             <td>@user.Email</td>
 
@@ -99,6 +99,12 @@
 
                                                     </button>
 
+                                                    @if (user.LockoutEnd != null && user.LockoutEnd > DateTimeOffset.UtcNow)
+                                                    {
+                                                        <form asp-action="Unlock" asp-route-id="@user.Id" method="post" class="m-0">
+                                                            <button type="submit" class="btn btn-sm btn-outline-success unlock-user"><i class="mdi mdi-lock-open-variant-outline"></i> @L["Unlock"]</button>
+                                                        </form>
+                                                    }
                                                     <button class="btn btn-sm btn-danger"
                                                             onclick="deleteUser('@user.Id')">
 

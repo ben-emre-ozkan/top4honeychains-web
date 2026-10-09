@@ -97,7 +97,7 @@ Piezīmes:
 
 Šie noteikumi ir iestrādāti platformā:
 
-- **Četru acu princips KKP ierakstiem**: neviens nevar apstiprināt KKP ierakstu, kurā pats ir reģistrējis vērtības. Izņēmums: platformas administrators var piešķirt organizācijai izņēmumu (**Četru acu principa izņēmums**); tad dalībnieki drīkst apstiprināt savus KKP ierakstus, un katrs šāds apstiprinājums tiek atzīmēts audita žurnālā.
+- **Četru acu princips KKP ierakstiem**: neviens nevar apstiprināt KKP ierakstu, kurā pats ir reģistrējis vērtības vai kuru pats ir atzīmējis kā "Nav piemērojams". Izņēmums: platformas administrators var piešķirt organizācijai izņēmumu (**Četru acu principa izņēmums**); tad dalībnieki drīkst apstiprināt savus KKP ierakstus, un katrs šāds apstiprinājums tiek atzīmēts audita žurnālā.
 - **Četru acu princips laboratorijas rezultātiem – vienmēr**: persona, kas ievadīja rezultātus, nevar tos apstiprināt. Izņēmumu nav.
 - **Četru acu princips pabeigšanai (fiksēšanai)**: persona, kas pieprasīja pabeigšanu (fiksēšanu), nevar to apstiprināt (ja vien organizācijai nav piešķirts izņēmums).
 - **Datus ievada tikai pārbaudītas organizācijas.**

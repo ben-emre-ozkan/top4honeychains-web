@@ -95,14 +95,14 @@ Atsevišķas iesniegšanas pogas nav. Kad katram obligātajam parametram ir vēr
 2. Laukā **Iemesls** ierakstiet iemeslu, piemēram, "neapstrādāts medus netiek karsēts vai pasterizēts".
 3. Noklikšķiniet uz **Atzīmēt kā "Nav piemērojams"**. Iemesls, jūsu lietotājvārds un laiks tiek reģistrēti, un publiskajā Medus stāstā tiek parādīts "Nav piemērojams".
 
-Lai to atceltu, noklikšķiniet uz **Noņemt atzīmi "Nav piemērojams"**. Arī nepiemērojams KKP ir jāapstiprina.
+Lai to atceltu, noklikšķiniet uz **Noņemt atzīmi "Nav piemērojams"**. Arī nepiemērojams KKP ir jāapstiprina, turklāt citai personai, nevis tai, kas to atzīmēja.
 
 **Biežākās kļūdas**
 
 | Paziņojums | Nozīme |
 |---|---|
 | "…: ievadiet skaitli." / "…: izvēlieties Jā vai Nē." | Vērtībai ir nepareizs veids. |
-| "This CCP is marked "Not applicable". Remove that mark first to record values." (Šis KKP ir atzīmēts kā "Nav piemērojams". Lai reģistrētu vērtības, vispirms noņemiet šo atzīmi.) | Pirms vērtību ievadīšanas noņemiet atzīmi. |
+| "Šis KKP ir atzīmēts kā "Nav piemērojams". Lai reģistrētu vērtības, vispirms noņemiet šo atzīmi." | Pirms vērtību ievadīšanas noņemiet atzīmi. |
 | "Par šo kontroles punktu atbild cita organizācija; jūs to varat tikai skatīt." | Jūs šo KKP redzat tikai lasīšanas režīmā. |
 | "Jūsu loma (…) nevar ievadīt šo kontroles punktu; ievadīt drīkst lomas: …" | Šo KKP ievada cita loma. |
 | "Jūsu organizācijas statuss ir Gaida; datus var ievadīt tikai pārbaudītas organizācijas." | Gaidiet pārbaudi. |

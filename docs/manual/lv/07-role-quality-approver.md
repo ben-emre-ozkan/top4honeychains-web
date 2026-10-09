@@ -25,13 +25,14 @@ Paziņojums "KKP ieraksts apstiprināts." to apstiprina; statusa žetonā redzam
 
 <!-- SHOT: out-of-limit-dialog -->
 
-**Nepiemērojami ieraksti.** Arī KKP, kas atzīmēts kā "Nav piemērojams", ir jāapstiprina. Pirms apstiprināšanas izlasiet iemeslu.
+**Nepiemērojami ieraksti.** Arī KKP, kas atzīmēts kā "Nav piemērojams", ir jāapstiprina; tas parādās sadaļā **Apstiprināmās vērtības** tiem apstiprinātājiem, kuri to nav atzīmējuši. Pirms apstiprināšanas izlasiet iemeslu.
 
 **Biežākās kļūdas**
 
 | Paziņojums | Nozīme |
 |---|---|
 | "Četru acu princips: jūs reģistrējāt šī KKP vērtības, tāpēc tas jāapstiprina citai personai." | Jūs esat ievadījis vērtības šajā ierakstā. Tas jāapstiprina citam apstiprinātājam. |
+| "Četru acu princips: jūs atzīmējāt šo KKP kā "Nav piemērojams", tāpēc tas jāapstiprina citai personai." | Jūs atzīmējāt šo ierakstu kā "Nav piemērojams". Tas jāapstiprina citam apstiprinātājam. |
 | "Apstiprināt var tikai iesniegtu (vai kā "Nav piemērojams" atzīmētu) KKP ierakstu." | Vēl trūkst obligāto vērtību. |
 | "Šis KKP ieraksts jau ir apstiprināts." | Nekas nav jādara. |
 | "Jūsu loma (…) nevar apstiprināt šo kontroles punktu; apstiprināt drīkst lomas: …" | Šo KKP apstiprina cita loma. |

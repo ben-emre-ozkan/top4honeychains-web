@@ -35,9 +35,9 @@
 ## Preguntas frecuentes y solución de problemas {#faq}
 
 **No puedo iniciar sesión: "Nombre de usuario o contraseña no válidos. …"**
-Revise el nombre de usuario (no el correo electrónico) y la contraseña. Tras 5 intentos fallidos, la cuenta se bloquea durante 15 minutos; espere y, si es necesario, use **¿Olvidaste tu contraseña?**.
+Revise el nombre de usuario (no el correo electrónico) y la contraseña. Tras 5 intentos fallidos, la cuenta se bloquea durante 15 minutos; espere o pida a un administrador de la plataforma que la desbloquee con **Desbloquear** y, si es necesario, use **¿Olvidaste tu contraseña?**.
 
-**"Esta cuenta no tiene acceso al panel web."**
+**"Esta cuenta todavía no tiene acceso al panel: no es miembro de ninguna organización."**
 Su cuenta no tiene ninguna membresía activa. Pida a un administrador de la plataforma que lo agregue a su organización con el rol adecuado.
 
 **Veo "No puede abrir esta página" (403).**
@@ -65,7 +65,7 @@ Lea la lista "Falta antes de finalizar:". Todos los PCC de la partida, incluido 
 Es lo previsto: cualquier cambio requiere una nueva aprobación.
 
 **El lote no aparece en "Gestionar partida".**
-Un lote solo aparece cuando todos sus PCC están completados o son no aplicables y están aprobados, y solo para el mayorista de la partida. Una planta de procesamiento debe estar vinculada a su registro de mayorista.
+Un lote solo aparece cuando todos sus PCC están completados o son no aplicables y están aprobados, y solo para el mayorista de la partida. Una planta de procesamiento debe estar vinculada a su registro de mayorista (organización → **Editar**); la página nombra las plantas que no lo están.
 
 **Un valor está aprobado, pero es incorrecto.**
 Pida una corrección a un administrador de la plataforma; un segundo administrador la aprueba.

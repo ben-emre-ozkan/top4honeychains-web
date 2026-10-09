@@ -180,5 +180,5 @@
 </fieldset>
 
 @functions {
-    private string UploadValidatorRule => "Allowed: " + TOP4HoneyChains.Web.Services.UploadValidator.DocumentRule;
+    private string UploadValidatorRule => L["Allowed: {0}", L[TOP4HoneyChains.Web.Services.UploadValidator.DocumentRule].Value].Value;   // D-75: translated
 }

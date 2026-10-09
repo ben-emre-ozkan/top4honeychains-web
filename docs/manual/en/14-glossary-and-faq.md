@@ -35,9 +35,9 @@
 ## FAQ and troubleshooting {#faq}
 
 **I cannot sign in: "Invalid user name or password. …"**
-Check the user name (not the e-mail) and the password. After 5 failed attempts the account is locked for 15 minutes; wait, then use **Forgot your password?** if needed.
+Check the user name (not the e-mail) and the password. After 5 failed attempts the account is locked for 15 minutes; wait, or ask a platform administrator to **Unlock** it, then use **Forgot your password?** if needed.
 
-**"This account does not have access to the web panel."**
+**"This account has no access to the panel yet: it is not a member of any organization."**
 Your account has no active membership. Ask a platform administrator to add you to your organization in the right role.
 
 **I see "You can't open this page" (403).**
@@ -65,7 +65,7 @@ Read the list "Missing before finalizing:". Every batch CCP, including CCP 10 at
 That is intended: any change needs a new approval.
 
 **The lot does not appear on "Manage Batch".**
-A lot appears only when all its CCPs are completed or not applicable and approved, and only for the batch's wholesaler. A processing plant must be linked to its wholesaler record.
+A lot appears only when all its CCPs are completed or not applicable and approved, and only for the batch's wholesaler. A processing plant must be linked to its wholesaler record (organization → **Edit**); the page names plants that are not.
 
 **A value was approved but is wrong.**
 Ask a platform administrator for a correction; a second administrator approves it.

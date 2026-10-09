@@ -25,13 +25,14 @@ El mensaje "Registro de PCC aprobado." lo confirma; la etiqueta de estado muestr
 
 <!-- SHOT: out-of-limit-dialog -->
 
-**Registros no aplicables.** Un PCC marcado como "No aplicable" también debe aprobarse. Lea el motivo antes de aprobarlo.
+**Registros no aplicables.** Un PCC marcado como "No aplicable" también debe aprobarse, y aparece en **Valores por aprobar** para los aprobadores que no lo marcaron. Lea el motivo antes de aprobarlo.
 
 **Errores frecuentes**
 
 | Mensaje | Significado |
 |---|---|
 | "Cuatro ojos: usted registró valores de este PCC, por lo que otra persona debe aprobarlo." | Usted ingresó valores en este registro. Debe aprobarlo otro aprobador. |
+| "Cuatro ojos: usted marcó este PCC como "No aplicable", así que otra persona debe aprobarlo." | Usted marcó este registro como "No aplicable". Debe aprobarlo otro aprobador. |
 | "Solo se puede aprobar un registro de PCC enviado (o "No aplicable")." | Todavía faltan valores obligatorios. |
 | "Este registro de PCC ya está aprobado." | No hay nada que hacer. |
 | "Su rol (…) no puede aprobar este punto de control; roles que aprueban: …" | Otro rol aprueba este PCC. |

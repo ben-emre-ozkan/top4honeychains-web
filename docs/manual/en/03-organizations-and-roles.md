@@ -97,7 +97,7 @@ Notes:
 
 These rules are built into the platform:
 
-- **Four-eyes on CCP records**: nobody approves a CCP record in which they recorded values. Exception: a platform administrator can grant an organization the **Four-eyes exemption**; members may then approve their own CCP records, and every such approval is flagged in the audit log.
+- **Four-eyes on CCP records**: nobody approves a CCP record in which they recorded values, or that they marked "Not applicable". Exception: a platform administrator can grant an organization the **Four-eyes exemption**; members may then approve their own CCP records, and every such approval is flagged in the audit log.
 - **Four-eyes on lab results, always**: the person who entered the results cannot approve them. There is no exemption.
 - **Four-eyes on finalizing**: the person who requested finalizing cannot confirm it (unless the organization has the exemption).
 - **Only verified organizations enter data.**

@@ -53,3 +53,4 @@ Onaya gönderdikten sonra rapor, laboratuvar müdürü geri göndermedikçe art�
 | "Laboratuvar raporu PDF olmalıdır." | Rapor için yalnızca PDF dosyaları kabul edilir. |
 | "Rapor onaya gönderildi; laboratuvar müdürü onaylar ya da değişiklik için geri gönderir." | Laboratuvar müdürünü bekleyin. |
 | "Onaylı laboratuvar raporu değiştirilemez; bunun yerine düzeltme talep edin." | Bir platform yöneticisinden düzeltme isteyin. |
+| "Lot kesinleşmiş bir partide kilitli; laboratuvar değerleri yalnızca düzeltmeyle değişebilir." | Lot bir partide mühürlendi; taslak artık kaydedilemez veya gönderilemez. Bir platform yöneticisine başvurun. |

@@ -64,7 +64,7 @@
                         <div class="work-head-chip" id="work-membership">
                             <partial name="_RoleChip" model="@(new TOP4HoneyChains.Web.Models.ViewModels.RoleChipModel(active, memberships))" />
                         </div>
-                        @if (!active.IsVerified) { <div class="alert alert-warning mt-3 mb-0">@L["Org.NotVerifiedBanner"]</div> }
+                        @if (!active.IsVerified) { <div class="alert alert-warning mt-3 mb-0">@(active.OrgStatus == TOP4HoneyChains.Web.Models.Entities.OrgStatus.Suspended ? L["Org.SuspendedBanner"] : L["Org.NotVerifiedBanner"])</div> }
                     }
                     @if (items.Count > 0)
                     {

@@ -13,6 +13,7 @@ namespace TOP4HoneyChains.Web.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly Services.OrgModel.FeatureFlags _flags;
+        private readonly Services.OrgModel.AuditWriter _audit;
 
         // A global role that was found in the received database and is used nowhere in the code (an organization role
         // of the same name exists, given per organization); not offered for new users
@@ -21,11 +22,13 @@ namespace TOP4HoneyChains.Web.Controllers
         public UserManagementController(
             UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager,
-            Microsoft.Extensions.Options.IOptions<Services.OrgModel.FeatureFlags> flags)
+            Microsoft.Extensions.Options.IOptions<Services.OrgModel.FeatureFlags> flags,
+            Services.OrgModel.AuditWriter audit)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _flags = flags.Value;
+            _audit = audit;
         }
 
         // With the organization model only the platform administrator is a global role; organization roles are
@@ -112,9 +115,41 @@ namespace TOP4HoneyChains.Web.Controllers
         {
             var user = await _userManager.FindByIdAsync(id);
 
+            // D-75: never your own account; every deletion is in the audit log
+            if (user != null && user.Id == _userManager.GetUserId(User))
+            {
+                TempData["error"] = "You cannot delete your own account.";
+                return RedirectToAction("Index");
+            }
             if (user != null)
-                await _userManager.DeleteAsync(user);
+            {
+                var roles = await _userManager.GetRolesAsync(user);
+                var result = await _userManager.DeleteAsync(user);
+                if (result.Succeeded)
+                {
+                    await _audit.WriteAsync("Delete", "AspNetUsers", user.Id, new { user.UserName, user.Email, Roles = string.Join(", ", roles) });
+                    TempData["success"] = "User deleted.";
+                }
+                else
+                    TempData["error"] = "The user could not be deleted.";
+            }
 
+            return RedirectToAction("Index");
+        }
+
+        // D-75: ends a lockout (after too many failed sign-ins) and resets the failed-attempt counter; audited
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Unlock(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+                return NotFound();
+            var lockedUntil = user.LockoutEnd;
+            await _userManager.SetLockoutEndDateAsync(user, null);
+            await _userManager.ResetAccessFailedCountAsync(user);
+            await _audit.WriteAsync("Unlock", "AspNetUsers", user.Id, new { user.UserName, LockoutEnd = lockedUntil }, new { LockoutEnd = (DateTimeOffset?)null });
+            TempData["success"] = "Account unlocked.";
             return RedirectToAction("Index");
         }
 

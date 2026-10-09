@@ -45,6 +45,8 @@ The public pages (Honey Story, beekeeper page, report verification) show only ap
 - **Values**: laboratory and control point values; a within/out-of-limit verdict only for **verified limits**. Free-text answers and files are not published unless an administrator has explicitly allowed it for a CCP whose answers contain no personal data.
 - **Reports**: the report code, laboratory, accreditation, date and fingerprint, never the lot or the beekeeper.
 
+- **Photos**: only photos of the apiaries that supplied the batch, served without their metadata (no GPS position or camera data).
+
 A Honey Story exists only for finalized batches; a beekeeper page only while the consent is active.
 
 <!-- SHOT: public-map -->

@@ -57,7 +57,7 @@ Wysłać można tylko partię końcową zatwierdzoną ostatecznie.
 
 1. Otwórz **Wysyłki i zapasy**. Tabela **Posiadane partie końcowe** pokazuje dla każdej partii końcowej posiadaną ilość, ilość zarezerwowaną przez oczekujące wysyłki oraz ilość dostępną.
 2. Kliknij **Wyślij** przy partii końcowej.
-3. W polu **To** (odbiorca) wybierz organizację odbierającą (dowolną inną zweryfikowaną organizację), wpisz **Ilość (kg)** i opcjonalnie **Uwaga**.
+3. W polu **Odbiorca** wybierz organizację odbierającą (dowolną inną zweryfikowaną organizację), wpisz **Ilość (kg)** i opcjonalnie **Uwaga**.
 4. Potwierdź przyciskiem **Wyślij**. Ilość zostaje od razu zarezerwowana: „Utworzono wysyłkę; piecza przechodzi na odbiorcę po jej potwierdzeniu.”
 
 <!-- SHOT: shipment-create -->
@@ -76,7 +76,7 @@ Błędy: „Wysłać można tylko partię końcową zatwierdzoną ostatecznie.�
 
 Po przyjęciu partii końcowej:
 
-1. Na stronie **Wysyłki i zapasy** kliknij odnośnik w kolumnie **Przechowywanie** przy partii końcowej (strona „KPK 10 – Przechowywanie”).
+1. Na stronie **Wysyłki i zapasy** w kolumnie **Przechowywanie** przy partii końcowej kliknij **KPK 10** (strona „KPK 10 – Przechowywanie”).
 2. Wprowadź jednorazowo wszystkie wymagane wartości przechowywania (na przykład temperaturę i wilgotność).
 3. Kliknij **Zapisz**: „Zapisano wartości przechowywania.” Rekord otrzymuje status **Przesłany**, a zatwierdzający jakość Twojej organizacji widzi go w grupie **Wartości do zatwierdzenia**.
 
@@ -84,9 +84,9 @@ Po przyjęciu partii końcowej:
 
 ## Przeglądanie zapisów producenta {#staff-read-only}
 
-Jeśli Twoja organizacja posiada partię końcową lub ją otrzymała, możesz otwierać punkty kontrolne producenta dotyczące tej partii końcowej i jej partii **tylko do odczytu**: widzisz wartości i osoby, które je zatwierdziły, ale nie ma przycisków zapisu ani zatwierdzenia. Strona wyświetla oznaczenie **Tylko do odczytu** z komunikatem „Za ten punkt kontrolny odpowiada inna organizacja; możesz go tylko odczytywać.” W przypadku partii końcowej, której Twoja organizacja nigdy nie otrzymała, platforma wyświetla stronę „Nie możesz otworzyć tej strony”.
+Jeśli Twoja organizacja posiada partię końcową lub ją otrzymała, możesz otwierać punkty kontrolne producenta dotyczące tej partii końcowej i jej partii **tylko do odczytu**: widzisz wartości i osoby, które je zatwierdziły, ale nie ma przycisków zapisu ani zatwierdzenia. Imiona i nazwiska pszczelarzy oraz nazwy pasiek są wyświetlane jako „nie wyświetlono”, tak jak w raporcie z wycofania. Strona wyświetla oznaczenie **Tylko do odczytu** z komunikatem „Za ten punkt kontrolny odpowiada inna organizacja; możesz go tylko odczytywać.” W przypadku partii końcowej, której Twoja organizacja nigdy nie otrzymała, platforma wyświetla stronę „Nie możesz otworzyć tej strony”.
 
-> W obecnej wersji strona **Wysyłki i zapasy** nie zawiera bezpośredniego odnośnika do stron KPK producenta. Otwórz je ze strony **Przebieg procesu** partii końcowej lub za pomocą adresu strony KPK udostępnionego przez producenta.
+Aby je otworzyć, przejdź do strony **Wysyłki i zapasy**, kliknij **Przebieg procesu** przy posiadanej partii końcowej, a następnie kliknij etap przebiegu.
 
 ## Raport z wycofania {#staff-recall}
 

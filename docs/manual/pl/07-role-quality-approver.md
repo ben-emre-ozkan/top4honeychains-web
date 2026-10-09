@@ -25,13 +25,14 @@ Komunikat „Rekord KPK został zatwierdzony.” potwierdza zatwierdzenie; etyki
 
 <!-- SHOT: out-of-limit-dialog -->
 
-**Rekordy oznaczone jako nie dotyczy.** KPK oznaczony jako „Nie dotyczy” również wymaga zatwierdzenia. Przed zatwierdzeniem przeczytaj podany powód.
+**Rekordy oznaczone jako nie dotyczy.** KPK oznaczony jako „Nie dotyczy” również wymaga zatwierdzenia i pojawia się w sekcji **Wartości do zatwierdzenia** u zatwierdzających, którzy go nie oznaczyli. Przed zatwierdzeniem przeczytaj podany powód.
 
 **Częste błędy**
 
 | Komunikat | Znaczenie |
 |---|---|
 | „Zasada czterech oczu: wartości tego KPK zostały zarejestrowane przez Ciebie, więc musi je zatwierdzić inna osoba.” | Wprowadziłeś wartości w tym rekordzie. Musi go zatwierdzić inny zatwierdzający. |
+| „Zasada czterech oczu: to Ty oznaczyłeś ten KPK jako „Nie dotyczy”, więc musi go zatwierdzić inna osoba.” | Oznaczyłeś ten rekord jako „Nie dotyczy”. Musi go zatwierdzić inny zatwierdzający. |
 | „Zatwierdzić można tylko przesłany (lub oznaczony jako "Nie dotyczy") rekord KPK.” | Nadal brakuje wymaganych wartości. |
 | „Ten rekord KPK jest już zatwierdzony.” | Nie trzeba nic robić. |
 | „Twoja rola (…) nie może zatwierdzać tego punktu kontrolnego; role zatwierdzające: ….” | Ten KPK zatwierdza inna rola. |

@@ -36,6 +36,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
 })
 .AddEntityFrameworkStores<ApplicationDbContext>()
+.AddErrorDescriber<LocalizedIdentityErrors>()   // D-75: account errors in the user's language
 .AddDefaultTokenProviders();
 
 builder.Services.ConfigureApplicationCookie(options =>

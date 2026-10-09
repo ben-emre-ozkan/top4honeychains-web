@@ -97,7 +97,7 @@ Notlar:
 
 Bu kurallar platforma yerleşiktir:
 
-- **KKN kayıtlarında dört göz**: kimse değer girdiği bir KKN kaydını onaylayamaz. İstisna: bir platform yöneticisi bir kuruma **Dört göz muafiyeti** tanıyabilir; bu durumda üyeler kendi KKN kayıtlarını onaylayabilir ve bu tür her onay denetim kaydında işaretlenir.
+- **KKN kayıtlarında dört göz**: kimse değer girdiği veya "Uygulanamaz" olarak işaretlediği bir KKN kaydını onaylayamaz. İstisna: bir platform yöneticisi bir kuruma **Dört göz muafiyeti** tanıyabilir; bu durumda üyeler kendi KKN kayıtlarını onaylayabilir ve bu tür her onay denetim kaydında işaretlenir.
 - **Laboratuvar sonuçlarında dört göz, her zaman**: sonuçları giren kişi bu sonuçları onaylayamaz. Muafiyet yoktur.
 - **Kesinleştirmede dört göz**: kesinleştirmeyi talep eden kişi talebi onaylayamaz (kurumun muafiyeti yoksa).
 - **Yalnızca doğrulanmış kurumlar veri girer.**

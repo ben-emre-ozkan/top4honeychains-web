@@ -76,7 +76,7 @@ Hatalar: "Yalnızca kesinleşmiş bir parti sevk edilebilir.", "Bu partiden en �
 
 Bir partiyi teslim aldıktan sonra:
 
-1. **Sevkiyatlar ve stok** sayfasında partinin yanındaki **Depolama** düğmesine tıklayın ("KKN 10 – Depolama" sayfası).
+1. **Sevkiyatlar ve stok** sayfasında partinin **Depolama** sütunundaki **KKN 10** bağlantısına tıklayın ("KKN 10 – Depolama" sayfası).
 2. Tüm zorunlu depolama değerlerini tek seferde girin (örneğin sıcaklık ve nem).
 3. **Kaydet** düğmesine tıklayın: "Depolama değerleri kaydedildi." Kayıt **Gönderildi** durumuna geçer ve kalite onaylayıcınız kaydı **Onaylanacak değerler** altında görür.
 
@@ -84,9 +84,9 @@ Bir partiyi teslim aldıktan sonra:
 
 ## Üreticinin kayıtlarını okuma {#staff-read-only}
 
-Kurumunuz bir partiyi elinde tutuyor veya teslim almışsa, o partinin ve lotlarının üreticiye ait kontrol noktalarını **salt okunur** olarak açabilirsiniz: değerleri ve onaylayanları görürsünüz, ancak kaydetme veya onaylama düğmeleri yoktur. Sayfada **Salt okunur** ve "Bu kontrol noktası başka bir kurumun sorumluluğunda; yalnızca okuyabilirsiniz." yazar. Kurumunuzun hiç teslim almadığı bir parti için platform "Bu sayfayı açamazsınız" sayfasını gösterir.
+Kurumunuz bir partiyi elinde tutuyor veya teslim almışsa, o partinin ve lotlarının üreticiye ait kontrol noktalarını **salt okunur** olarak açabilirsiniz: değerleri ve onaylayanları görürsünüz, ancak kaydetme veya onaylama düğmeleri yoktur. Arıcı ve arılık adları, geri çağırma raporunda olduğu gibi "gösterilmiyor" olarak görünür. Sayfada **Salt okunur** ve "Bu kontrol noktası başka bir kurumun sorumluluğunda; yalnızca okuyabilirsiniz." yazar. Kurumunuzun hiç teslim almadığı bir parti için platform "Bu sayfayı açamazsınız" sayfasını gösterir.
 
-> Mevcut sürümde **Sevkiyatlar ve stok** sayfasında üreticinin KKN sayfalarına doğrudan bağlantı yoktur. Bu sayfaları partinin **Süreç akışı** sayfasından veya üreticinin sizinle paylaştığı KKN sayfası adresiyle açın.
+Bu sayfaları açmak için **Sevkiyatlar ve stok** sayfasında elinizdeki partinin yanındaki **Süreç akışı** düğmesine, ardından akıştaki bir aşamaya tıklayın.
 
 ## Geri çağırma raporu {#staff-recall}
 

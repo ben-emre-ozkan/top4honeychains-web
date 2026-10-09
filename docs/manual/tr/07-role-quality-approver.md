@@ -25,13 +25,14 @@ Görevleriniz **İşlerim** sayfasında **Onaylanacak değerler** ve **Kesinleş
 
 <!-- SHOT: out-of-limit-dialog -->
 
-**Uygulanamaz kayıtlar.** "Uygulanamaz" olarak işaretlenmiş bir KKN'nin de onaylanması gerekir. Onaylamadan önce gerekçeyi okuyun.
+**Uygulanamaz kayıtlar.** "Uygulanamaz" olarak işaretlenmiş bir KKN'nin de onaylanması gerekir; bu kayıt, onu işaretlemeyen onaylayıcıların **Onaylanacak değerler** listesinde görünür. Onaylamadan önce gerekçeyi okuyun.
 
 **Sık karşılaşılan hatalar**
 
 | Mesaj | Anlamı |
 |---|---|
 | "Dört göz: bu KKN'nin değerlerini siz girdiniz, başka bir kişinin onaylaması gerekir." | Bu kayda siz değer girdiniz. Kaydı başka bir onaylayıcı onaylamalıdır. |
+| "Dört göz: bu KKN'yi "Uygulanamaz" olarak siz işaretlediniz; onu başka bir kişi onaylamalıdır." | Bu kaydı siz "Uygulanamaz" olarak işaretlediniz. Kaydı başka bir onaylayıcı onaylamalıdır. |
 | "Yalnızca gönderilmiş (veya "Uygulanamaz") bir KKN kaydı onaylanabilir." | Zorunlu değerler hâlâ eksik. |
 | "Bu KKN kaydı zaten onaylandı." | Yapılacak bir şey yok. |
 | "Rolünüz (…) bu kontrol noktasını onaylayamaz; onaylayan roller: …" | Bu KKN'yi başka bir rol onaylar. |

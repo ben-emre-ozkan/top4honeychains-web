@@ -35,9 +35,9 @@
 ## SSS ve sorun giderme {#faq}
 
 **Oturum açamıyorum: "Kullanıcı adı veya şifre hatalı. …"**
-Kullanıcı adını (e-posta adresini değil) ve şifreyi kontrol edin. 5 başarısız denemeden sonra hesap 15 dakika kilitlenir; bekleyin, gerekirse **Şifrenizi mi unuttunuz?** bağlantısını kullanın.
+Kullanıcı adını (e-posta adresini değil) ve şifreyi kontrol edin. 5 başarısız denemeden sonra hesap 15 dakika kilitlenir; bekleyin ya da bir platform yöneticisinden hesabı **Kilidi aç** ile açmasını isteyin, ardından gerekirse **Şifrenizi mi unuttunuz?** bağlantısını kullanın.
 
-**"Bu hesabın web paneline erişimi yok."**
+**"Bu hesabın henüz panele erişimi yok: hiçbir kurumun üyesi değil."**
 Hesabınızın etkin bir üyeliği yok. Bir platform yöneticisinden sizi doğru rolle kurumunuza eklemesini isteyin.
 
 **"Bu sayfayı açamazsınız" (403) sayfasını görüyorum.**
@@ -65,7 +65,7 @@ Kaydı başka bir onaylayıcı onaylamalıdır. Kurumunuzda tek bir kalite sorum
 Bu bilinçli bir davranıştır: her değişiklik yeni bir onay gerektirir.
 
 **Lot "Partiyi Yönet" sayfasında görünmüyor.**
-Bir lot yalnızca tüm KKN'leri tamamlandığında veya uygulanamaz olarak işaretlendiğinde ve onaylandığında, ayrıca yalnızca partinin toptancısı için görünür. Bir işleme tesisi kendi toptancı kaydına bağlı olmalıdır.
+Bir lot yalnızca tüm KKN'leri tamamlandığında veya uygulanamaz olarak işaretlendiğinde ve onaylandığında, ayrıca yalnızca partinin toptancısı için görünür. Bir işleme tesisi kendi toptancı kaydına bağlı olmalıdır (kurum → **Düzenle**); sayfa, bağlı olmayan tesislerin adını verir.
 
 **Bir değer onaylandı ama yanlış.**
 Bir platform yöneticisinden düzeltme isteyin; düzeltmeyi ikinci bir yönetici onaylar.

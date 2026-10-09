@@ -16,7 +16,7 @@ Pēc pieteikšanās tiek atvērta lapa **Mans darbs** – jūs gaidošo uzdevumu
 **Biežākie paziņojumi**
 
 - "Nepareizs lietotājvārds vai parole. Pēc pārāk daudziem neveiksmīgiem mēģinājumiem konts uz laiku tiek bloķēts." Lietotājvārds vai parole ir nepareiza, vai arī konts ir bloķēts. Pēc **5 neveiksmīgiem mēģinājumiem konts tiek bloķēts uz 15 minūtēm**. Uzgaidiet un mēģiniet vēlreiz vai izmantojiet **Aizmirsāt paroli?**.
-- "Šim kontam nav piekļuves tīmekļa panelim. …" Jūsu kontam nav aktīvas dalības. Lūdziet platformas administratoru pievienot jūs jūsu organizācijai.
+- "Šim kontam vēl nav piekļuves panelim: tas nav nevienas organizācijas dalībnieks. …" Jūsu kontam nav aktīvas dalības. Lūdziet platformas administratoru pievienot jūs jūsu organizācijai.
 
 Lai izrakstītos, atveriet izvēlni zem sava avatāra (augšējā labajā stūrī) un izvēlieties **Izrakstīties**.
 
@@ -28,7 +28,7 @@ Lai izrakstītos, atveriet izvēlni zem sava avatāra (augšējā labajā stūr�
 4. Atveriet e-pastu "Atiestatiet savu TOP4HoneyChains paroli" un noklikšķiniet uz saites. Saite ir derīga vienu dienu.
 5. Divreiz ievadiet jauno paroli (**Jaunā parole**) un apstipriniet. Jūs tiekat novirzīts atpakaļ uz pieteikšanās lapu.
 
-Parolei jābūt vismaz 6 rakstzīmes garai. Ja e-pasts nepienāk, pārbaudiet surogātpasta mapi un pēc tam vērsieties pie platformas administratora, kurš var iestatīt jums jaunu paroli (skatīt [Lietotāji](#admin-users)).
+Parolei jābūt vismaz 6 rakstzīmes garai; ja kāda prasība nav izpildīta, lapa to norāda jūsu valodā, bet, ja saite ir par vecu, tā parāda "Saite nav derīga vai tai ir beidzies termiņš. Pieprasiet jaunu paroles atiestatīšanu." Ja e-pasts nepienāk, pārbaudiet surogātpasta mapi un pēc tam vērsieties pie platformas administratora, kurš var iestatīt jums jaunu paroli (skatīt [Lietotāji](#admin-users)).
 
 <!-- SHOT: forgot-password -->
 
@@ -40,7 +40,7 @@ Atveriet avatāra izvēlni un izvēlieties **Profils**.
 - Lauku **Tālruņa numurs** var mainīt. Noklikšķiniet uz **Saglabāt**.
 - **Mainīt paroli** atver dialoglodziņu: aizpildiet laukus **Pašreizējā parole**, **Jaunā parole** un **Apstipriniet paroli**, pēc tam noklikšķiniet uz **Atjaunināt paroli**.
 
-Avatāra izvēlnē ir arī vienums **Bloķēt Ekrānu**, kas paslēpj lapu, līdz atkārtoti ievadāt paroli. Tas ir tikai privātuma ekrāns; tas jūs neizraksta.
+Atstājot koplietošanas datoru, izmantojiet **Izrakstīties**; ekrāna bloķēšanas nav.
 
 <!-- SHOT: profile -->
 
@@ -62,11 +62,11 @@ Augšējā joslā no kreisās uz labo pusi redzams:
 - **organizācijas · lomas žetons**: organizācija un loma, kurā pašlaik strādājat;
 - valodas poga;
 - pilnekrāna režīma poga;
-- jūsu avatārs ar vienumiem **Profils**, **Bloķēt Ekrānu** un **Izrakstīties**.
+- jūsu avatārs ar vienumiem **Profils** un **Izrakstīties**.
 
 <!-- SHOT: top-bar-role-chip -->
 
-Žetonā redzama ķeksīša zīme, ja jūsu organizācija ir pārbaudīta, un izsaukuma zīme, ja nav. Kamēr organizācija nav pārbaudīta, tās dalībnieki var skatīt tās datus un organizācijas administrators var augšupielādēt dokumentus, taču **neviens nevar ievadīt datus**. Reklāmjoslā redzams paziņojums: "Jūsu organizācija vēl nav pārbaudīta. …"
+Žetonā redzama ķeksīša zīme, ja jūsu organizācija ir pārbaudīta, izsaukuma zīme, kamēr tā gaida pārbaudi, un apturēšanas zīme uz sarkana fona, ja tā ir apturēta. Kamēr organizācija nav pārbaudīta, tās dalībnieki var skatīt tās datus un organizācijas administrators var augšupielādēt dokumentus, taču **neviens nevar ievadīt datus**. Reklāmjoslā redzams paziņojums: "Jūsu organizācija vēl nav pārbaudīta. …", bet apturētai organizācijai – "Jūsu organizācija ir apturēta. Jūs varat skatīt tās datus, taču neviens nevar ievadīt datus, kamēr platformas administrators to neatjauno."
 
 ### Vairākas dalības {#memberships}
 
@@ -90,7 +90,7 @@ Izvēlne, uzdevumi sadaļā **Mans darbs**, redzamie ieraksti un atļautās darb
 | Grupa | Ko tā nozīmē | Kas to saņem |
 |---|---|---|
 | **Ievadāmās vērtības** | Partijas vai gala partijas kontroles punktam (KKP) jāievada vērtības | Lomas, kas ievada šo KKP |
-| **Apstiprināmās vērtības** | KKP ieraksts vai KKP 10 uzglabāšanas ieraksts ir iesniegts, un to jāapstiprina otrai personai | Lomas, kas apstiprina šo KKP |
+| **Apstiprināmās vērtības** | KKP ieraksts vai KKP 10 uzglabāšanas ieraksts ir iesniegts vai bez apstiprinājuma pabeigts vai atzīmēts kā "Nav piemērojams", un to jāapstiprina otrai personai. Ierakstus, kurus pats ievadījāt vai atzīmējāt, jūs nekad neredzat. | Lomas, kas apstiprina šo KKP |
 | **Pabeigšanas (fiksēšanas) pieprasījumi** | Kāds ir pieprasījis gala partijas pabeigšanu (fiksēšanu) | Gala partijas īpašnieka kvalitātes apstiprinātājs |
 | **Saņemamie paraugi** | Uz jūsu laboratoriju ir nosūtīts paraugs | Analītiķis, laboratorijas vadītājs |
 | **Ievadāmie laboratorijas rezultāti** | Saņemtam paraugam vēl nav pārskata, vai pārskats ir atgriezts | Analītiķis |

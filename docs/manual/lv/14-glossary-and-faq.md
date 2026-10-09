@@ -35,9 +35,9 @@
 ## Bieži uzdotie jautājumi un problēmu novēršana {#faq}
 
 **Nevaru pieteikties: "Nepareizs lietotājvārds vai parole. …"**
-Pārbaudiet lietotājvārdu (nevis e-pasta adresi) un paroli. Pēc 5 neveiksmīgiem mēģinājumiem konts tiek bloķēts uz 15 minūtēm; uzgaidiet un, ja nepieciešams, izmantojiet **Aizmirsāt paroli?**.
+Pārbaudiet lietotājvārdu (nevis e-pasta adresi) un paroli. Pēc 5 neveiksmīgiem mēģinājumiem konts tiek bloķēts uz 15 minūtēm; uzgaidiet vai lūdziet platformas administratoru kontu atbloķēt (**Atbloķēt**), un pēc tam, ja nepieciešams, izmantojiet **Aizmirsāt paroli?**.
 
-**"Šim kontam nav piekļuves tīmekļa panelim."**
+**"Šim kontam vēl nav piekļuves panelim: tas nav nevienas organizācijas dalībnieks."**
 Jūsu kontam nav aktīvas dalības. Lūdziet platformas administratoru pievienot jūs jūsu organizācijai ar pareizo lomu.
 
 **Redzu "Jūs nevarat atvērt šo lapu" (403).**
@@ -65,7 +65,7 @@ Izlasiet sarakstu "Trūkst pirms pabeigšanas (fiksēšanas):". Katram gala part
 Tā tas ir paredzēts: jebkurām izmaiņām nepieciešams jauns apstiprinājums.
 
 **Partija neparādās lapā "Pārvaldīt gala partiju".**
-Partija parādās tikai tad, ja visi tās KKP ir pabeigti vai nav piemērojami un ir apstiprināti, un tikai gala partijas vairumtirgotājam. Pārstrādes uzņēmumam jābūt piesaistītam savam vairumtirgotāja ierakstam.
+Partija parādās tikai tad, ja visi tās KKP ir pabeigti vai nav piemērojami un ir apstiprināti, un tikai gala partijas vairumtirgotājam. Pārstrādes uzņēmumam jābūt piesaistītam savam vairumtirgotāja ierakstam (organizācija → **Rediģēt**); lapā nosaukti uzņēmumi, kas nav piesaistīti.
 
 **Vērtība ir apstiprināta, bet ir nepareiza.**
 Lūdziet platformas administratoram veikt labojumu; to apstiprina otrs administrators.

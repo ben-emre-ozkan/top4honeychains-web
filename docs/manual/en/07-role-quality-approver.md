@@ -25,13 +25,14 @@ The message "CCP record approved." confirms it; the status pill shows **Approved
 
 <!-- SHOT: out-of-limit-dialog -->
 
-**Not applicable records.** A CCP marked "Not applicable" must be approved as well. Read the reason before you approve.
+**Not applicable records.** A CCP marked "Not applicable" must be approved as well, and appears in **Values to approve** for the approvers who did not mark it. Read the reason before you approve.
 
 **Common errors**
 
 | Message | Meaning |
 |---|---|
 | "Four-eyes: you recorded values of this CCP, so another person must approve it." | You entered values in this record. Another approver must approve it. |
+| "Four-eyes: you marked this CCP "Not applicable", so another person must approve it." | You marked this record "Not applicable". Another approver must approve it. |
 | "Only a submitted (or "Not applicable") CCP record can be approved." | Required values are still missing. |
 | "This CCP record is already approved." | Nothing to do. |
 | "Your role (…) cannot approve this control point; approving roles: …" | Another role approves this CCP. |

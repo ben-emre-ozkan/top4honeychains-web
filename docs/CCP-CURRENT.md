@@ -1,9 +1,21 @@
-﻿# CCPs in the current system (as-is)
+﻿# CCPs in the system
 
-Status: read-only investigation on 2026-10-03 against `main` (`b41127b`) and the local DB copy of production.
-No code or data was changed. Usage numbers are aggregates only.
+Paths are relative to `TOP4HONEYCHAINS/TOP4HoneyChains.Web/` unless noted.
 
-> **Update 2026-10-03:** the integrity gaps described here (locks, lost values, no "not applicable", finalize rule, applicability, parameter metadata and limits) were fixed in `fix/ccp-integrity`; see [FEEDBACK.md](FEEDBACK.md) (CCP-01 to CCP-06) and [DECISIONS.md](DECISIONS.md) (D-14 to D-19). Ownership per organization (§3, §6) is still open. Paths are relative to `TOP4HONEYCHAINS/TOP4HoneyChains.Web/` unless noted.
+## Current state (2026-10-09)
+
+With `Features:OrgRoleModel = true` (the live setting):
+
+- **Integrity** gaps of the snapshot below are fixed (D-14 to D-19, `fix/ccp-integrity`): finalized batches and their lots are locked, assignments with values cannot be removed, "Not applicable" with a reason exists, parameters have data types, required flags and limits. **Unfinalize was removed** (D-14).
+- **Side split:** `CriticalControlPoints.AppliesTo` decides the side: lot CCP 0–3, batch CCP 4–10. The assignment pages and Honey Story filter on it. Every batch CCP, including CCP 10 storage at the plant, must be completed (or not applicable) and approved before finalizing (`CcpIntegrityService.GetFinalizeBlockersAsync`).
+- **Ownership per organization** is implemented: the responsibility matrix of migration 005 (`CcpResponsibilities` with capabilities, enter and approve roles), changed for CCP 0 by 015, applied by `Services/OrgModel/Responsibility.cs`. CCP 0 is entered by the lot owner's SampleAcceptanceOfficer and approved by its QualityApprover; CCP 1 is written from the approved lab report; CCP 2–10 are entered by Staff and approved by a QualityApprover of the lot or batch owner (Processing for CCP 0–6, Packing for 7–9, Wholesale/Retail/Packing for 10). Details: [ROLE-MODEL.md](ROLE-MODEL.md) §5.
+- **Access:** the CCP pages (`CCPMonitoringController`, policy `PanelUser`) are open to organization members, checked per record (read, enter, approve, four-eyes). Platform administrators are **read-only** on CCP data (D-35) and change values only through correction records decided by a second administrator; members enter. Holders of a batch read its CCPs and those of its lots read-only, without beekeeper and apiary names (D-73, D-75). A refused read answers 403.
+- **Samples, lab reports and uploads** exist (migration 007, `SamplesController`, `LabReportsController`): sealed samples with counter-samples, lab results approved by the lab manager, report PDFs stored with SHA-256; file values on CCP parameters (D-19). Lab results wait for the lot's approved CCP 0 (D-61).
+- Who records each CCP is stored (`RecordedByUserId` / `RecordedByOrgId`, D-38), approvals are stored on the assignment, and every change is in the audit log.
+
+---
+
+**Everything below is the historical snapshot of 2026-10-03** (read-only investigation against `main` `b41127b` and the local DB copy of production; no code or data was changed; usage numbers are aggregates only). It describes the system *before* the changes listed above and is kept for reference.
 
 ---
 

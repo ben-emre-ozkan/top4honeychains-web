@@ -45,6 +45,8 @@ Strony publiczne (Historia miodu, strona pszczelarza, weryfikacja raportu) pokaz
 - **Wartości**: wartości laboratoryjne i wartości punktów kontrolnych; ocena „w granicach limitu / poza limitem” tylko dla **zweryfikowanych limitów**. Odpowiedzi tekstowe i pliki nie są publikowane, chyba że administrator wyraźnie na to zezwolił dla KPK, którego odpowiedzi nie zawierają danych osobowych.
 - **Raporty**: kod raportu, laboratorium, akredytacja, data i odcisk; nigdy partia ani pszczelarz.
 
+- **Zdjęcia**: tylko zdjęcia pasiek, które dostarczyły miód do partii końcowej, udostępniane bez metadanych (bez pozycji GPS i danych aparatu).
+
 Historia miodu istnieje tylko dla partii końcowych zatwierdzonych ostatecznie, a strona pszczelarza tylko dopóty, dopóki zgoda jest aktywna.
 
 <!-- SHOT: public-map -->

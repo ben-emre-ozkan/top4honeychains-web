@@ -500,6 +500,7 @@ namespace TOP4HoneyChains.Web.Controllers
             _context.RawHoneyCCPAssignments.RemoveRange(toRemove);
 
             await _context.SaveChangesAsync();
+            TempData["Success"] = $"CCP assignments saved: {toAdd.Count()} added, {toRemove.Count()} removed.";   // D-75
 
             var production = await _context.RawHoneyProductions
                 .FirstOrDefaultAsync(r => r.RawHoneyProductionId == model.RawHoneyProductionId);

@@ -246,35 +246,10 @@ namespace TOP4HoneyChains.Web.Controllers
             return View();
         }
 
+        // D-75: the lock screen was removed: it hid the page but did not lock the session. Old links go to My work.
         [Authorize(Policy = AuthPolicies.SignedIn)]
         [HttpGet]
-        public IActionResult LockScreen()
-        {
-            return View(new UnlockViewModel());
-        }
-
-        [Authorize(Policy = AuthPolicies.SignedIn)]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Unlock(UnlockViewModel model)
-        {
-            if (!ModelState.IsValid)
-                return View("LockScreen", model);
-
-            var user = await _userManager.GetUserAsync(User);
-
-            if (user == null)
-                return RedirectToAction("Login");
-
-            var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, lockoutOnFailure: true);
-
-            if (result.Succeeded)
-                return RedirectToAction("Index", "Dashboard");
-
-            ModelState.AddModelError("", "Invalid password");
-
-            return View("LockScreen", model);
-        }
+        public IActionResult LockScreen() => LocalRedirect("/MyWork/Index");
 
         [Authorize(Policy = AuthPolicies.SignedIn)]
         public async Task<IActionResult> Profile()

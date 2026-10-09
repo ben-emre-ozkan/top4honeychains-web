@@ -76,7 +76,7 @@ Errors: "Only a finalized batch can be shipped.", "You can ship at most … kg o
 
 After you have received a batch:
 
-1. In **Shipments and stock**, click **Storage** next to the batch (page "CCP 10 – Storage").
+1. In **Shipments and stock**, in the **Storage** column of the batch, click **CCP 10** (page "CCP 10 – Storage").
 2. Enter all required storage values in one go (for example temperature and humidity).
 3. Click **Save**: "Storage values saved." The record is **Submitted** and your quality approver sees it under **Values to approve**.
 
@@ -84,9 +84,9 @@ After you have received a batch:
 
 ## Read the producer's records {#staff-read-only}
 
-When your organization holds or has received a batch, you can open the producer's control points of that batch and of its lots **read-only**: you see the values and who approved them, but no save or approve buttons. The page shows **Read only** with "This control point is the responsibility of another organization; you can read it only." For a batch your organization never received, the platform shows "You can't open this page".
+When your organization holds or has received a batch, you can open the producer's control points of that batch and of its lots **read-only**: you see the values and who approved them, but no save or approve buttons. The beekeeper and apiary names are shown as "not shown", as in the recall report. The page shows **Read only** with "This control point is the responsibility of another organization; you can read it only." For a batch your organization never received, the platform shows "You can't open this page".
 
-> In the current version, **Shipments and stock** has no direct link to the producer's CCP pages. Open them from the **Process flow** page of the batch or with the CCP page address the producer shares with you.
+To open them, go to **Shipments and stock**, click **Process flow** next to the batch you hold, and click a stage of the flow.
 
 ## Recall report {#staff-recall}
 

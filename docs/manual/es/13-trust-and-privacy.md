@@ -45,6 +45,8 @@ Las páginas públicas (Historia de la miel, página del apicultor, verificació
 - **Valores**: los valores de laboratorio y de los puntos de control; un veredicto dentro/fuera del límite solo para los **límites verificados**. Las respuestas de texto libre y los archivos no se publican, salvo que un administrador lo haya permitido expresamente para un PCC cuyas respuestas no contengan datos personales.
 - **Informes**: el código del informe, el laboratorio, la acreditación, la fecha y la huella; nunca el lote ni el apicultor.
 
+- **Fotos**: solo fotos de los apiarios que suministraron la partida, servidas sin sus metadatos (sin posición GPS ni datos de la cámara).
+
 Solo existe una Historia de la miel para las partidas finalizadas, y una página del apicultor solo mientras el consentimiento esté activo.
 
 <!-- SHOT: public-map -->

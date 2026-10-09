@@ -53,3 +53,4 @@ Una vez enviado, el informe ya no se puede editar, salvo que el responsable de l
 | "El informe de laboratorio debe ser un PDF." | Para el informe solo se aceptan archivos PDF. |
 | "El informe se envió; el responsable de laboratorio lo aprueba o lo devuelve para modificaciones." | Espere al responsable de laboratorio. |
 | "Un informe de laboratorio aprobado no se puede modificar; solicite una corrección en su lugar." | Pida una corrección a un administrador de la plataforma. |
+| "El lote está bloqueado en una partida finalizada; los valores de laboratorio solo se pueden modificar mediante una corrección." | El lote quedó sellado en una partida; ya no se puede guardar ni enviar un borrador. Consulte a un administrador de la plataforma. |

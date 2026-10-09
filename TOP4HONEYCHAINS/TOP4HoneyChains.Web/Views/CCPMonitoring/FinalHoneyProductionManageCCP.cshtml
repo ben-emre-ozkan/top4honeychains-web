@@ -102,7 +102,7 @@
                             <div class="col-md-4 mb-3">
                                 <div class="p-3 border rounded shadow-sm bg-light h-100">
 
-                                    <div class="fw-bold">@source.ApiaryName</div>
+                                    <div class="fw-bold">@(source.ApiaryName ?? L["not shown"].Value)</div>
 
                                     <small class="text-muted">
                                         @source.BeekeeperName

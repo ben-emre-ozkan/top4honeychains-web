@@ -27,7 +27,7 @@ Administrēšanas izvēlne:
 
 1. **Organizācijas** → **Jauna organizācija**.
 2. Ievadiet nosaukumu, juridisko nosaukumu, nodokļu maksātāja numuru, provinci un rajonu.
-3. Ja organizācija ir vairumtirgotājs, kas jau ir platformā, izvēlieties to esošā vairumtirgotāja laukā. **Pārstrādes uzņēmumam jābūt piesaistītam savam vairumtirgotāja ierakstam**: tā saņemtās partijas tiek reģistrētas šī vairumtirgotāja vārdā, un gala partijā var izmantot tikai sava vairumtirgotāja partijas.
+3. Ja organizācija ir vairumtirgotājs, kas jau ir platformā, izvēlieties to esošā vairumtirgotāja laukā. **Pārstrādes uzņēmumam jābūt piesaistītam savam vairumtirgotāja ierakstam**: tā saņemtās partijas tiek reģistrētas šī vairumtirgotāja vārdā, un gala partijā var izmantot tikai sava vairumtirgotāja partijas. Saiti var iestatīt arī vēlāk organizācijas lapā **Rediģēt**. Partijas, ko uzņēmums saņēma pirms piesaistes, izmanto tā vairumtirgotāja gala partijas, kuram uzņēmums ir piesaistīts.
 4. Atzīmējiet vismaz vienu kompetenci un noklikšķiniet uz **Izveidot**.
 
 Organizācijai sākotnēji ir statuss **Gaida**: "Organizācija izveidota. Tās statuss paliek "Gaida", līdz tā tiek pārbaudīta."
@@ -68,9 +68,12 @@ Sadaļā **Lietotāju Pārvaldība** → **Lietotāji** uzskaitīti konti.
 
 - **Pievienot jaunu lietotāju** izveido kontu. Organizāciju modelī atstājiet lauku **Globālā loma** tukšu organizāciju dalībniekiem un piešķiriet viņiem dalību organizācijas lapā; vērtību **Platformas administrators** izvēlieties tikai administratoriem.
 - **Atiestatīt paroli** iestata lietotājam jaunu paroli.
-- **Dzēst** noņem kontu (lietojiet piesardzīgi; darbību nevar atsaukt).
+- **Atbloķēt** parādās blakus kontam ar statusu **Bloķēts** un uzreiz beidz bloķēšanu ("Konts atbloķēts."). Bez tā bloķēšana beidzas pati pēc 15 minūtēm.
+- **Dzēst** noņem kontu (lietojiet piesardzīgi; darbību nevar atsaukt). Savu kontu dzēst nevar. Katra dzēšana un katra atbloķēšana tiek ierakstīta audita žurnālā.
 
-Parolei jābūt vismaz 6 rakstzīmes garai. Pēc 5 neveiksmīgiem pieteikšanās mēģinājumiem konts tiek bloķēts uz 15 minūtēm. Atbloķēšanas pogas nav; bloķēšana beidzas pati.
+Parolei jābūt vismaz 6 rakstzīmes garai. Pēc 5 neveiksmīgiem pieteikšanās mēģinājumiem konts tiek bloķēts uz 15 minūtēm.
+
+Sadaļā **Lietotāju Pārvaldība** → **Lomas** uzskaitītas globālās lomas. Lomas, uz kurām balstās platforma (**Administrators** un **Biškopis**), ir atzīmētas kā **Aizsargāta**, un tās nevar pārdēvēt vai dzēst.
 
 ## Lomas un atļaujas {#admin-permissions}
 
@@ -116,9 +119,9 @@ Lapā **Atsauces datu tulkojumi** glabājas nosaukumi, kas sarakstos, tabulās u
 
 1. **Vairumtirgotāji** → vairumtirgotājs → **Gala medus ražošana (gala partijas)** → **Jauna gala partija**.
 2. Aizpildiet laukus **Gala partijas nosaukums** un **Ražošanas datums** un noklikšķiniet uz **Izveidot gala partiju**. Tiek ģenerēts QR kods.
-3. Lapā **Pārvaldīt gala partiju** ievadiet daudzumu, kas jāizmanto no katras piemērotās partijas (šī vairumtirgotāja partijas, kuru visi KKP ir apstiprināti), un noklikšķiniet uz **Saglabāt gala partijas sastāvu**. Daudzumi, kas pārsniedz pieejamo daudzumu, tiek ignorēti.
+3. Lapā **Pārvaldīt gala partiju** ievadiet daudzumu, kas jāizmanto no katras piemērotās partijas (šī vairumtirgotāja partijas, kuru visi KKP ir apstiprināti), un noklikšķiniet uz **Saglabāt gala partijas sastāvu**: "Gala partijas sastāvs saglabāts: kopā … kg." Ja daudzums ir pārāk liels vai partiju nevar izmantot, lapa uzskaita katru problēmu (piemēram, "Partija #…: pieejami ne vairāk kā … kg.") un neko nesaglabā. Ja uzņēmumam ir partijas, kuras nevar izmantot neviena gala partija, jo uzņēmums nav piesaistīts vairumtirgotāja ierakstam, lapa to nosauc un sniedz saiti uz tā lapu **Rediģēt**.
 4. Ar **Rediģēt** gala partijai nosakiet īpašnieci organizāciju (uzņēmumu).
-5. **Pārvaldīt KKP**: atzīmējiet no KKP 4 līdz KKP 10 un noklikšķiniet uz **Saglabāt piešķīrumus**.
+5. **Pārvaldīt KKP**: atzīmējiet no KKP 4 līdz KKP 10 un noklikšķiniet uz **Saglabāt piešķīrumus**: "KKP piešķīrumi saglabāti: pievienoti …, noņemti …."
 
 Pēc tam uzņēmums ievada gala partijas KKP un pabeidz (fiksē) gala partiju. Administratori nevar pabeigt gala partiju: "Organizāciju modelī gala partiju pabeidz (fiksē) īpašniece organizācija (pieprasījums un apstiprinājums, ko veic divas personas)."
 
