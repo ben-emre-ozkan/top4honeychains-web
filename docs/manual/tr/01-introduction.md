@@ -6,7 +6,7 @@ Bu kılavuz, platformu bugün çalıştığı haliyle, kurum modeli etkinken anl
 
 ## Bu kılavuz nasıl okunur {#how-to-read}
 
-- **Bölüm 1–4** platformu, oturum açmayı, kurumları ve rolleri ve bir bal partisinin baştan sona yolculuğunu anlatır. Önce bu bölümleri okuyun.
+- **Bölüm 1–4** platformu, yetenekleri, kurumları ve rolleri, oturum açmayı ve bir bal partisinin baştan sona yolculuğunu anlatır. Önce bu bölümleri okuyun.
 - **Bölüm 5–11** her rol için ayrı bir bölümdür. Her bölüm "Günlük işiniz" ile başlar, ardından her görevi adım adım açıklar. Kendi rolünüzün bölümünü okuyun.
 - **Bölüm 12** platform yöneticileri içindir.
 - **Bölüm 13** denetim kaydını ve kamuya açık bilgileri açıklar.

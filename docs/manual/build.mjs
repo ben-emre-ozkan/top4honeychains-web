@@ -1,7 +1,7 @@
 // Builds the TOP4HoneyChains user manual: docs/manual/<lang>/*.md (in file-name order) -> one branded PDF and one HTML
 // file per language in docs/manual/dist/. Usage: npm install, then `node build.mjs [lang ...]` (default: all five).
 // - Headings carry explicit anchors (`## Sign-in {#sign-in}`) so every language has the same ids.
-// - `<!-- SHOT: <id> -->` lines become figures when img/<lang>/<id>.png exists (pass 2), and nothing otherwise.
+// - `<!-- SHOT: <id> -->` lines become figures when img/<lang>/<id>.png exists (captured by capture.mjs), and nothing otherwise.
 // - Brand: honey-foam palette and fonts from the app (wwwroot/css/brand.css, wwwroot/fonts), W3 logo from docs/brand.
 // - PDF through Playwright with the installed Chrome (or Chromium); if that fails the HTML is still written.
 import fs from 'node:fs';
@@ -15,13 +15,14 @@ const fonts = path.join(repo, 'TOP4HONEYCHAINS', 'TOP4HoneyChains.Web', 'wwwroot
 const logo = path.join(repo, 'docs', 'brand', 'top4-logo-w3.svg');
 const dist = path.join(here, 'dist');
 const LANGS = {
-    en: { name: 'English', title: 'User manual', draft: null, toc: 'Contents', version: 'Version', page: 'Page' },
-    tr: { name: 'Türkçe', title: 'Kullanım kılavuzu', draft: null, toc: 'İçindekiler', version: 'Sürüm', page: 'Sayfa' },
-    es: { name: 'Español', title: 'Manual de usuario', draft: 'Borrador, para revisión de los socios', toc: 'Índice', version: 'Versión', page: 'Página' },
-    pl: { name: 'Polski', title: 'Podręcznik użytkownika', draft: 'Wersja robocza do przeglądu przez partnerów', toc: 'Spis treści', version: 'Wersja', page: 'Strona' },
-    lv: { name: 'Latviešu', title: 'Lietotāja rokasgrāmata', draft: 'Melnraksts partneru pārskatīšanai', toc: 'Saturs', version: 'Versija', page: 'Lapa' },
+    en: { name: 'English', title: 'User manual', draft: null, toc: 'Contents', version: 'Version', page: 'Page', month: 'October 2026' },
+    tr: { name: 'Türkçe', title: 'Kullanım kılavuzu', draft: null, toc: 'İçindekiler', version: 'Sürüm', page: 'Sayfa', month: 'Ekim 2026' },
+    es: { name: 'Español', title: 'Manual de usuario', draft: 'Borrador, para revisión de los socios', toc: 'Índice', version: 'Versión', page: 'Página', month: 'Octubre de 2026' },
+    pl: { name: 'Polski', title: 'Podręcznik użytkownika', draft: 'Wersja robocza do przeglądu przez partnerów', toc: 'Spis treści', version: 'Wersja', page: 'Strona', month: 'Październik 2026' },
+    lv: { name: 'Latviešu', title: 'Lietotāja rokasgrāmata', draft: 'Melnraksts partneru pārskatīšanai', toc: 'Saturs', version: 'Versija', page: 'Lapa', month: '2026. gada oktobris' },
 };
-const version = process.env.MANUAL_DATE || new Date().toISOString().slice(0, 10);
+// the edition shown on the cover and in the footer: the month of the release in each language (MANUAL_MONTH overrides it)
+const edition = lang => process.env.MANUAL_MONTH || LANGS[lang].month;
 
 // ---- markdown: explicit heading anchors {#id}, tables, plain links
 const md = new MarkdownIt({ html: true, linkify: false, typographer: false });
@@ -50,7 +51,11 @@ function render(lang) {
         const img = path.join(here, 'img', lang, `${id}.png`);
         if (!fs.existsSync(img)) return '';
         present++;
-        return `<figure class="shot"><img src="${pathToFileURL(img).href}" alt=""></figure>`;
+        // phone captures (390 px at scale 2 = 780 px wide) print narrow and tall; desktop captures use the page width
+        const width = fs.readFileSync(img).readUInt32BE(16);
+        // a blank line after the figure ends the HTML block, so a heading or table right below it is still Markdown
+        return `<figure class="shot${width <= 800 ? ' phone' : ''}"><img src="${pathToFileURL(img).href}" alt=""></figure>
+`;
     });
     // wide tables (eight columns or more, such as the permission matrix) get a compact style
     // the Markdown table of contents of the language folder (<lang>/README.md), from the H1 and H2 headings
@@ -115,11 +120,13 @@ tbody tr:nth-child(even) td { background: #FFFDF7; }
 blockquote { margin: 8pt 0 10pt; padding: 8pt 12pt; background: var(--foam); border-left: 4px solid var(--honey); border-radius: 0 8px 8px 0; }
 blockquote p:last-child { margin: 0; }
 figure.shot { margin: 8pt 0 12pt; break-inside: avoid; }
-figure.shot img { max-width: 100%; max-height: 150mm; border: 1px solid var(--line); border-radius: 8px; }
+figure.shot img { max-width: 100%; max-height: 235mm; border: 1px solid var(--line); border-radius: 8px; }
+figure.shot.phone { text-align: center; }
+figure.shot.phone img { max-width: 78mm; }
 .cover { height: 297mm; padding: 34mm 24mm 24mm; display: flex; flex-direction: column; background: radial-gradient(70% 55% at 100% 0%, rgba(255, 210, 90, 0.45), transparent 70%), radial-gradient(60% 50% at 0% 100%, rgba(255, 231, 174, 0.7), transparent 70%), linear-gradient(180deg, #FFFFFF, var(--foam)); break-after: page; }
 .cover .logo svg { width: 120mm; height: auto; }
 .cover .project { margin-top: 26mm; font: 700 13pt 'Bricolage Grotesque', sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: var(--heading); }
-.cover .title { margin: 6mm 0 0; font: 800 34pt/1.05 'Bricolage Grotesque', sans-serif; color: #4A3F36; border: 0; padding: 0; }
+.cover .title { break-before: avoid; margin: 6mm 0 0; font: 800 34pt/1.05 'Bricolage Grotesque', sans-serif; color: #4A3F36; border: 0; padding: 0; }
 .cover .lang { margin-top: 6mm; font-size: 14pt; color: var(--ink); }
 .cover .draft { display: inline-block; margin-top: 8mm; padding: 3mm 6mm; border-radius: 999px; background: #FFF0E0; color: #A2450B; font-weight: 600; border: 1px solid #F3C9A0; }
 .cover .meta { margin-top: auto; font-size: 10pt; color: var(--muted); border-top: 1px solid var(--line); padding-top: 5mm; }
@@ -138,7 +145,7 @@ nav.toc a { color: inherit; }
   <h1 class="title">TOP4HoneyChains<br>${L.title}</h1>
   <div class="lang">${L.name}</div>
   ${L.draft ? `<div><span class="draft">${L.draft}</span></div>` : ''}
-  <div class="meta">${L.version} ${version}</div>
+  <div class="meta">${edition(lang)}</div>
 </section>
 <nav class="toc"><h1 id="contents">${L.toc}</h1><ul>
 ${toc}
@@ -166,7 +173,7 @@ async function pdf(htmlFile, pdfFile, lang) {
             path: pdfFile, format: 'A4', printBackground: true, preferCSSPageSize: true, displayHeaderFooter: true,
             headerTemplate: '<span></span>',
             footerTemplate: `<div style="width:100%;font:8px 'Segoe UI',sans-serif;color:#7B6A5C;padding:0 18mm;display:flex;justify-content:space-between">
-                <span>TOP4HoneyChains · ${L.title} · ${L.name} · ${version}</span><span>${L.page} <span class="pageNumber"></span> / <span class="totalPages"></span></span></div>`,
+                <span>TOP4HoneyChains · ${L.title} · ${L.name} · ${edition(lang)}</span><span>${L.page} <span class="pageNumber"></span> / <span class="totalPages"></span></span></div>`,
         });
     } finally {
         await browser.close();

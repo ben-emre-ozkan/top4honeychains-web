@@ -8,7 +8,7 @@ TOP4HoneyChains ir tīmekļa platforma, kas izseko medu no biškopja dravas līd
 
 ## Kā lietot šo rokasgrāmatu {#how-to-read}
 
-- **1.–4. nodaļā** aprakstīta platforma, pieteikšanās, organizācijas un lomas, kā arī viss medus gala partijas ceļš. Izlasiet tās vispirms.
+- **1.–4. nodaļā** aprakstīta platforma, kompetences, organizācijas un lomas, pieteikšanās, kā arī viss medus gala partijas ceļš. Izlasiet tās vispirms.
 - **5.–11. nodaļā** katrai lomai ir sava nodaļa. Katra sākas ar sadaļu "Jūsu ikdienas darbs", pēc tam soli pa solim aprakstīts katrs uzdevums. Izlasiet savas lomas nodaļu.
 - **12. nodaļa** paredzēta platformas administratoriem.
 - **13. nodaļā** aprakstīts audita žurnāls un tas, ko redz sabiedrība.

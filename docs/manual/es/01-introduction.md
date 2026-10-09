@@ -8,7 +8,7 @@ Este manual describe la plataforma tal como funciona hoy, con el modelo de organ
 
 ## Cómo leer este manual {#how-to-read}
 
-- **Capítulos 1–4**: explican la plataforma, el inicio de sesión, las organizaciones y los roles, y el recorrido completo de una partida de miel. Léalos primero.
+- **Capítulos 1–4**: explican la plataforma, las capacidades, las organizaciones y los roles, el inicio de sesión y el recorrido completo de una partida de miel. Léalos primero.
 - **Capítulos 5–11**: un capítulo por rol. Cada uno empieza con "su trabajo diario" y luego explica cada tarea paso a paso. Lea el capítulo de su propio rol.
 - **Capítulo 12**: para los administradores de la plataforma.
 - **Capítulo 13**: explica el registro de auditoría y lo que ve el público.
