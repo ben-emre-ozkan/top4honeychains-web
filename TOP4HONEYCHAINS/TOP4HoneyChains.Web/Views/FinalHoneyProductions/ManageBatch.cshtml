@@ -119,6 +119,14 @@
                                 <i class="mdi mdi-information-outline me-1"></i>
                                 @Html.Raw(L["Note.EligibleLots"].Value)
                             </p>
+                            @* D-75: lots that no batch can take until their organization is linked to its wholesaler record *@
+                            @foreach (var u in ViewBag.UnlinkedLotOwners as List<TOP4HoneyChains.Web.Controllers.FinalHoneyProductionsController.UnlinkedLotOwner> ?? new())
+                            {
+                                <div class="alert alert-warning unlinked-owner" data-org="@u.OrgId">
+                                    @L["{0} has {1} raw honey lot(s) without a wholesaler: no batch can take them until the organization is linked to its wholesaler record.", u.Name, u.Lots]
+                                    <a asp-controller="Organizations" asp-action="Edit" asp-route-id="@u.OrgId" class="alert-link ms-1">@L["Link it to a wholesaler record"]</a>
+                                </div>
+                            }
 
                             @if (!Model.RawHoneyList.Any())
                             {

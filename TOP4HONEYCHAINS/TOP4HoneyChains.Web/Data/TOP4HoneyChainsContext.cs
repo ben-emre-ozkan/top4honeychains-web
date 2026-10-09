@@ -134,6 +134,9 @@ public partial class TOP4HoneyChainsContext : DbContext
 
             entity.HasOne(d => d.RawHoneyProductionPeriod).WithMany(p => p.RawHoneyProductions).HasConstraintName("FK_HoneyProductions_ProductionPeriods");
            
+            // D-75: the column allows NULL in the database (a delivery to a plant not linked to a wholesaler record); [Required] on the
+            // property is for the admin form only, so EF must not treat the column as NOT NULL (it would drop "IS NULL" filters)
+            entity.Property(e => e.RawHoneyProductionWholesalerId).IsRequired(false);
             entity.HasOne(d => d.RawHoneyProductionWholesaler)
             .WithMany(p => p.RawHoneyProductions)
             .HasForeignKey(d => d.RawHoneyProductionWholesalerId)

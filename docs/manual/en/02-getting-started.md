@@ -16,7 +16,7 @@ After signing in you land on **My work**, the list of tasks waiting for you.
 **Common messages**
 
 - "Invalid user name or password. After too many failed attempts the account is locked for a while." The user name or password is wrong, or the account is locked. After **5 failed attempts the account is locked for 15 minutes**. Wait and try again, or use **Forgot your password?**.
-- "This account does not have access to the web panel. …" Your account has no active membership. Ask a platform administrator to add you to your organization.
+- "This account has no access to the panel yet: it is not a member of any organization. …" Your account has no active membership. Ask a platform administrator to add you to your organization.
 
 To sign out, open the menu under your avatar (top right) and choose **Logout**.
 
@@ -28,7 +28,7 @@ To sign out, open the menu under your avatar (top right) and choose **Logout**.
 4. Open the e-mail "Reset your TOP4HoneyChains password" and click the link. The link is valid for one day.
 5. Enter the **New Password** twice and confirm. You are sent back to the sign-in page.
 
-Passwords need at least 6 characters. If the e-mail does not arrive, check the spam folder, then ask a platform administrator, who can set a new password for you (see [Users](#admin-users)).
+Passwords need at least 6 characters; the page says so in your language if a rule is not met, and "The link is invalid or has expired. Request a new password reset." if the link is too old. If the e-mail does not arrive, check the spam folder, then ask a platform administrator, who can set a new password for you (see [Users](#admin-users)).
 
 <!-- SHOT: forgot-password -->
 
@@ -40,7 +40,7 @@ Open the avatar menu and choose **Profile**.
 - **Phone Number** can be changed. Click **Save**.
 - **Change Password** opens a dialog: enter the **Current Password**, the **New Password** and **Confirm Password**, then click **Update Password**.
 
-The avatar menu also has **Lock Screen**, which hides the page until you enter your password again. It is a privacy screen only; it does not sign you out.
+To leave a shared computer, use **Logout**; there is no lock screen.
 
 <!-- SHOT: profile -->
 
@@ -62,11 +62,11 @@ The top bar shows, from left to right:
 - the **organization · role chip**: the organization and the role you are working in now;
 - the language button;
 - a full-screen button;
-- your avatar, with **Profile**, **Lock Screen** and **Logout**.
+- your avatar, with **Profile** and **Logout**.
 
 <!-- SHOT: top-bar-role-chip -->
 
-The chip shows a check mark when your organization is verified and an exclamation mark when it is not. While an organization is not verified, its members can read its data, and its organisation admin can upload documents, but **nobody can enter data**. A banner says: "Your organization is not verified yet. …"
+The chip shows a check mark when your organization is verified, an exclamation mark while it is waiting for verification, and a stop mark on a red background when it is suspended. While an organization is not verified, its members can read its data, and its organisation admin can upload documents, but **nobody can enter data**. A banner says: "Your organization is not verified yet. …", or for a suspended organization "Your organization is suspended. You can read its data, but nobody can enter data until a platform administrator reinstates it."
 
 ### Several memberships {#memberships}
 
@@ -90,7 +90,7 @@ The menu, the tasks in **My work**, the records you can see and the actions you 
 | Group | What it means | Who gets it |
 |---|---|---|
 | **Values to enter** | A control point (CCP) of a lot or batch needs values | The roles that enter that CCP |
-| **Values to approve** | A CCP record, or a CCP 10 storage record, was submitted and needs a second person | The roles that approve that CCP |
+| **Values to approve** | A CCP record or a CCP 10 storage record was submitted, or completed or marked "Not applicable" without an approval, and needs a second person. You never see records you entered or marked yourself. | The roles that approve that CCP |
 | **Finalize requests** | Someone requested finalizing a batch | Quality approver of the batch owner |
 | **Samples to receive** | A sample was sent to your laboratory | Analyst, Lab manager |
 | **Lab results to enter** | A received sample has no report yet, or the report was returned | Analyst |

@@ -7,6 +7,13 @@ namespace TOP4HoneyChains.Web.Controllers
     [Authorize(Roles = "Administrator")]
     public class RoleManagementController : Controller
     {
+        // D-75: global roles the code relies on: the platform administrator (every admin page) and Beekeeper (beekeeper
+        // accounts without the organization model). Renaming or deleting them would lock administrators out.
+        public static readonly IReadOnlySet<string> Protected = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+            { Services.OrgModel.CurrentOrg.AdminRole, "Beekeeper" };
+
+        public static bool IsProtected(string? name) => name != null && Protected.Contains(name);
+
         private readonly RoleManager<IdentityRole> _roleManager;
 
         public RoleManagementController(RoleManager<IdentityRole> roleManager)
@@ -43,7 +50,12 @@ namespace TOP4HoneyChains.Web.Controllers
         {
             var role = await _roleManager.FindByIdAsync(id);
 
-            if (role != null)
+            if (role != null && (IsProtected(role.Name) || IsProtected(roleName)))
+            {
+                TempData["error"] = "This role is used by the platform and cannot be renamed or deleted.";
+                return RedirectToAction("Index");
+            }
+            if (role != null && !string.IsNullOrWhiteSpace(roleName))
             {
                 role.Name = roleName;
                 await _roleManager.UpdateAsync(role);
@@ -59,6 +71,11 @@ namespace TOP4HoneyChains.Web.Controllers
         {
             var role = await _roleManager.FindByIdAsync(id);
 
+            if (role != null && IsProtected(role.Name))
+            {
+                TempData["error"] = "This role is used by the platform and cannot be renamed or deleted.";
+                return RedirectToAction("Index");
+            }
             if (role != null)
             {
                 await _roleManager.DeleteAsync(role);

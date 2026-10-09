@@ -283,7 +283,7 @@
     <value>Kullanıcı adı veya şifre hatalı. Çok sayıda başarısız denemeden sonra hesap bir süre kilitlenir.</value>
   </data>
   <data name="Login.NoPanelAccess" xml:space="preserve">
-    <value>Bu hesabın web paneline erişimi yok. Yalnızca yöneticiler giriş yapabilir. Lütfen bir yöneticiyle iletişime geçin.</value>
+    <value>Bu hesabın henüz panele erişimi yok: hiçbir kurumun üyesi değil. Lütfen bir platform yöneticisinden sizi kurumunuza eklemesini isteyin.</value>
   </data>
   <data name="ForgotPassword.Sent" xml:space="preserve">
     <value>Bu e-posta adresine ait bir hesap varsa, şifre sıfırlama talimatları gönderildi.</value>
@@ -6956,5 +6956,143 @@
   </data>
   <data name="Audit.F.WithdrawnByUserId" xml:space="preserve">
     <value>Geri çeken</value>
+  </data>
+  <data name="&quot;Not applicable&quot; was removed; values can be recorded again." xml:space="preserve">
+    <value>"Uygulanamaz" işareti kaldırıldı; değerler yeniden kaydedilebilir.</value>
+  </data>
+  <data name="This CCP is marked &quot;Not applicable&quot;. Remove that mark first to record values." xml:space="preserve">
+    <value>Bu KKN "Uygulanamaz" olarak işaretli. Değer kaydetmek için önce bu işareti kaldırın.</value>
+  </data>
+  <data name="{0}: enter text, not a number." xml:space="preserve">
+    <value>{0}: sayı değil, metin girin.</value>
+  </data>
+  <data name="{0}: enter either a number or a text, not both." xml:space="preserve">
+    <value>{0}: ya sayı ya da metin girin, ikisini birden değil.</value>
+  </data>
+  <data name="{0}: the text can be at most 100 characters." xml:space="preserve">
+    <value>{0}: metin en çok 100 karakter olabilir.</value>
+  </data>
+  <data name="{0}: the notes can be at most 500 characters." xml:space="preserve">
+    <value>{0}: notlar en çok 500 karakter olabilir.</value>
+  </data>
+  <data name="Lot {0} / {1} (#{2})" xml:space="preserve">
+    <value>Lot {0} / {1} (#{2})</value>
+  </data>
+  <data name="The note can be at most 500 characters." xml:space="preserve">
+    <value>Not en çok 500 karakter olabilir.</value>
+  </data>
+  <data name="{0} cannot be removed because values or a &quot;Not applicable&quot; record exist for this batch. Nothing was changed." xml:space="preserve">
+    <value>{0} kaldırılamaz, çünkü bu parti için değerler veya bir "Uygulanamaz" kaydı var. Hiçbir şey değiştirilmedi.</value>
+  </data>
+  <data name="{0} cannot be removed because values or a &quot;Not applicable&quot; record exist for this lot. Nothing was changed." xml:space="preserve">
+    <value>{0} kaldırılamaz, çünkü bu lot için değerler veya bir "Uygulanamaz" kaydı var. Hiçbir şey değiştirilmedi.</value>
+  </data>
+  <data name="{0} Allowed: {1}." xml:space="preserve">
+    <value>{0} İzin verilenler: {1}.</value>
+  </data>
+  <data name="Allowed: {0}" xml:space="preserve">
+    <value>İzin verilenler: {0}</value>
+  </data>
+  <data name="Four-eyes: you marked this CCP &quot;Not applicable&quot;, so another person must approve it." xml:space="preserve">
+    <value>Dört göz: bu KKN'yi "Uygulanamaz" olarak siz işaretlediniz; onu başka bir kişi onaylamalıdır.</value>
+  </data>
+  <data name="This role is used by the platform and cannot be renamed or deleted." xml:space="preserve">
+    <value>Bu rol platform tarafından kullanılıyor; yeniden adlandırılamaz veya silinemez.</value>
+  </data>
+  <data name="Protected" xml:space="preserve">
+    <value>Korumalı</value>
+  </data>
+  <data name="You cannot delete your own account." xml:space="preserve">
+    <value>Kendi hesabınızı silemezsiniz.</value>
+  </data>
+  <data name="User deleted." xml:space="preserve">
+    <value>Kullanıcı silindi.</value>
+  </data>
+  <data name="The user could not be deleted." xml:space="preserve">
+    <value>Kullanıcı silinemedi.</value>
+  </data>
+  <data name="Account unlocked." xml:space="preserve">
+    <value>Hesabın kilidi açıldı.</value>
+  </data>
+  <data name="Unlock" xml:space="preserve">
+    <value>Kilidi aç</value>
+  </data>
+  <data name="Lot #{0} cannot be used in this batch: it belongs to another wholesaler or not all its CCPs are completed and approved." xml:space="preserve">
+    <value>Lot #{0} bu partide kullanılamaz: başka bir toptancıya ait veya tüm KKN'leri tamamlanıp onaylanmamış.</value>
+  </data>
+  <data name="Lot #{0}: at most {1} kg is available." xml:space="preserve">
+    <value>Lot #{0}: en çok {1} kg kullanılabilir.</value>
+  </data>
+  <data name="Nothing was saved." xml:space="preserve">
+    <value>Hiçbir şey kaydedilmedi.</value>
+  </data>
+  <data name="Batch composition saved: {0} kg in total." xml:space="preserve">
+    <value>Parti bileşimi kaydedildi: toplam {0} kg.</value>
+  </data>
+  <data name="CCP assignments saved: {0} added, {1} removed." xml:space="preserve">
+    <value>KKN atamaları kaydedildi: {0} eklendi, {1} kaldırıldı.</value>
+  </data>
+  <data name="Suspended organisation" xml:space="preserve">
+    <value>Askıya alınmış kurum</value>
+  </data>
+  <data name="Org.SuspendedBanner" xml:space="preserve">
+    <value>Kurumunuz askıya alındı. Verilerini okuyabilirsiniz, ancak bir platform yöneticisi yeniden etkinleştirene kadar kimse veri giremez.</value>
+  </data>
+  <data name="{0} has {1} raw honey lot(s) without a wholesaler: no batch can take them until the organization is linked to its wholesaler record." xml:space="preserve">
+    <value>{0} kurumunun toptancısı olmayan {1} ham bal lotu var: kurum toptancı kaydına bağlanana kadar bu lotlar hiçbir partiye alınamaz.</value>
+  </data>
+  <data name="Link it to a wholesaler record" xml:space="preserve">
+    <value>Toptancı kaydına bağla</value>
+  </data>
+  <data name="Correct" xml:space="preserve">
+    <value>Düzeltme uygulandı</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>Reddet</value>
+  </data>
+  <data name="Correction" xml:space="preserve">
+    <value>Düzeltme</value>
+  </data>
+  <data name="An unknown error has occurred." xml:space="preserve">
+    <value>Bilinmeyen bir hata oluştu.</value>
+  </data>
+  <data name="The record was changed by someone else; reload the page and try again." xml:space="preserve">
+    <value>Kayıt başka biri tarafından değiştirildi; sayfayı yenileyip tekrar deneyin.</value>
+  </data>
+  <data name="Incorrect password." xml:space="preserve">
+    <value>Şifre yanlış.</value>
+  </data>
+  <data name="The link is invalid or has expired. Request a new password reset." xml:space="preserve">
+    <value>Bağlantı geçersiz veya süresi dolmuş. Yeni bir şifre sıfırlama isteyin.</value>
+  </data>
+  <data name="The user name {0} is invalid: use letters, digits and - . _ @ + only." xml:space="preserve">
+    <value>{0} kullanıcı adı geçersiz: yalnızca harf, rakam ve - . _ @ + kullanın.</value>
+  </data>
+  <data name="The e-mail address {0} is invalid." xml:space="preserve">
+    <value>{0} e-posta adresi geçersiz.</value>
+  </data>
+  <data name="The user name {0} is already taken." xml:space="preserve">
+    <value>{0} kullanıcı adı zaten kullanılıyor.</value>
+  </data>
+  <data name="The e-mail address {0} is already used." xml:space="preserve">
+    <value>{0} e-posta adresi zaten kullanılıyor.</value>
+  </data>
+  <data name="The password must be at least {0} characters long." xml:space="preserve">
+    <value>Şifre en az {0} karakter olmalıdır.</value>
+  </data>
+  <data name="The password must contain at least one symbol." xml:space="preserve">
+    <value>Şifre en az bir sembol içermelidir.</value>
+  </data>
+  <data name="The password must contain at least one digit." xml:space="preserve">
+    <value>Şifre en az bir rakam içermelidir.</value>
+  </data>
+  <data name="The password must contain at least one lowercase letter." xml:space="preserve">
+    <value>Şifre en az bir küçük harf içermelidir.</value>
+  </data>
+  <data name="The password must contain at least one uppercase letter." xml:space="preserve">
+    <value>Şifre en az bir büyük harf içermelidir.</value>
+  </data>
+  <data name="The password must contain at least {0} different characters." xml:space="preserve">
+    <value>Şifre en az {0} farklı karakter içermelidir.</value>
   </data>
 </root>

@@ -133,28 +133,43 @@ namespace TOP4HoneyChains.Web.Controllers
             var org = await LoadAsync(id);
             if (org == null)
                 return NotFound();
+            await FillWholesalersAsync(org.OrgId);
             ViewBag.Controller = "Organizations";
             ViewBag.Action = "Edit";
             return View(org);
         }
 
+        // D-75: the wholesaler records an organization can be linked to: those not linked to another organization
+        private async Task FillWholesalersAsync(int orgId)
+        {
+            var linked = await _context.Organizations.Where(o => o.LegacyWholesalerId != null && o.OrgId != orgId).Select(o => o.LegacyWholesalerId).ToListAsync();
+            ViewBag.Wholesalers = new SelectList(await _context.Wholesalers.Where(w => !linked.Contains(w.WholesalerId)).OrderBy(w => w.WholesalerTitle).ToListAsync(),
+                "WholesalerId", "WholesalerTitle");
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Policy = AuthPolicies.PlatformAdmin)]
-        public async Task<IActionResult> Edit(int id, [Bind("DisplayName,LegalName,TaxNo,Province,District")] Organization posted)
+        public async Task<IActionResult> Edit(int id, [Bind("DisplayName,LegalName,TaxNo,Province,District,LegacyWholesalerId")] Organization posted)
         {
             var org = await LoadAsync(id);
             if (org == null)
                 return NotFound();
             CheckPlace(posted.Province, posted.District, org.Province, org.District);
+            if (posted.LegacyWholesalerId != null && await _context.Organizations.AnyAsync(o => o.LegacyWholesalerId == posted.LegacyWholesalerId && o.OrgId != id))
+                ModelState.AddModelError("LegacyWholesalerId", "This wholesaler is already linked to an organization.");
             if (!ModelState.IsValid)
+            {
+                await FillWholesalersAsync(id);
                 return View(org);
+            }
 
             org.DisplayName = posted.DisplayName;
             org.LegalName = posted.LegalName;
             org.TaxNo = posted.TaxNo;
             org.Province = posted.Province;
             org.District = posted.District;
+            org.LegacyWholesalerId = posted.LegacyWholesalerId;
             await _context.SaveChangesAsync();
             TempData["Success"] = "Organization saved.";
             return RedirectToAction(nameof(Details), new { id });

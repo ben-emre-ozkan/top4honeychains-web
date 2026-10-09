@@ -45,6 +45,8 @@ Herkese açık sayfalar (Bal Hikâyesi, arıcı sayfası, rapor doğrulama) yaln
 - **Değerler**: laboratuvar ve kontrol noktası değerleri; limit içinde/limit dışında değerlendirmesi yalnızca **doğrulanmış limitler** için. Serbest metin yanıtlar ve dosyalar, bir yönetici yanıtları kişisel veri içermeyen bir KKN için buna açıkça izin vermedikçe yayımlanmaz.
 - **Raporlar**: rapor kodu, laboratuvar, akreditasyon, tarih ve parmak izi; lot veya arıcı hiçbir zaman gösterilmez.
 
+- **Fotoğraflar**: yalnızca partiye bal sağlayan arılıkların fotoğrafları, meta verileri olmadan (GPS konumu veya kamera bilgisi olmadan) sunulur.
+
 Bal Hikâyesi yalnızca kesinleşmiş partiler için vardır; arıcı sayfası ise yalnızca rıza geçerli olduğu sürece yayındadır.
 
 <!-- SHOT: public-map -->

@@ -283,7 +283,7 @@
     <value>Nepareizs lietotājvārds vai parole. Pēc pārāk daudziem neveiksmīgiem mēģinājumiem konts uz laiku tiek bloķēts.</value>
   </data>
   <data name="Login.NoPanelAccess" xml:space="preserve">
-    <value>Šim kontam nav piekļuves tīmekļa panelim. Pieteikties var tikai administratori. Lūdzu, sazinieties ar administratoru.</value>
+    <value>Šim kontam vēl nav piekļuves panelim: tas nav nevienas organizācijas dalībnieks. Lūdziet platformas administratoru pievienot jūs jūsu organizācijai.</value>
   </data>
   <data name="ForgotPassword.Sent" xml:space="preserve">
     <value>Ja ar šo e-pasta adresi ir saistīts konts, uz to ir nosūtītas paroles atiestatīšanas instrukcijas.</value>
@@ -559,7 +559,7 @@
     <value>No</value>
   </data>
   <data name="Org.To" xml:space="preserve">
-    <value>To</value>
+    <value>Uz</value>
   </data>
   <data name="Org.Reason" xml:space="preserve">
     <value>Iemesls</value>
@@ -838,7 +838,7 @@
     <value>No</value>
   </data>
   <data name="Cust.To" xml:space="preserve">
-    <value>To</value>
+    <value>Saņēmējs</value>
   </data>
   <data name="Cust.Pending" xml:space="preserve">
     <value>Gaida</value>
@@ -6956,5 +6956,143 @@
   </data>
   <data name="Audit.F.WithdrawnByUserId" xml:space="preserve">
     <value>Atsauca</value>
+  </data>
+  <data name="&quot;Not applicable&quot; was removed; values can be recorded again." xml:space="preserve">
+    <value>Atzīme "Nav piemērojams" ir noņemta; vērtības atkal var reģistrēt.</value>
+  </data>
+  <data name="This CCP is marked &quot;Not applicable&quot;. Remove that mark first to record values." xml:space="preserve">
+    <value>Šis KKP ir atzīmēts kā "Nav piemērojams". Lai reģistrētu vērtības, vispirms noņemiet šo atzīmi.</value>
+  </data>
+  <data name="{0}: enter text, not a number." xml:space="preserve">
+    <value>{0}: ievadiet tekstu, nevis skaitli.</value>
+  </data>
+  <data name="{0}: enter either a number or a text, not both." xml:space="preserve">
+    <value>{0}: ievadiet vai nu skaitli, vai tekstu, ne abus.</value>
+  </data>
+  <data name="{0}: the text can be at most 100 characters." xml:space="preserve">
+    <value>{0}: teksts drīkst būt ne garāks par 100 rakstzīmēm.</value>
+  </data>
+  <data name="{0}: the notes can be at most 500 characters." xml:space="preserve">
+    <value>{0}: piezīmes drīkst būt ne garākas par 500 rakstzīmēm.</value>
+  </data>
+  <data name="Lot {0} / {1} (#{2})" xml:space="preserve">
+    <value>Partija {0} / {1} (#{2})</value>
+  </data>
+  <data name="The note can be at most 500 characters." xml:space="preserve">
+    <value>Piezīme drīkst būt ne garāka par 500 rakstzīmēm.</value>
+  </data>
+  <data name="{0} cannot be removed because values or a &quot;Not applicable&quot; record exist for this batch. Nothing was changed." xml:space="preserve">
+    <value>{0} nevar noņemt, jo šai gala partijai ir vērtības vai ieraksts "Nav piemērojams". Nekas netika mainīts.</value>
+  </data>
+  <data name="{0} cannot be removed because values or a &quot;Not applicable&quot; record exist for this lot. Nothing was changed." xml:space="preserve">
+    <value>{0} nevar noņemt, jo šai partijai ir vērtības vai ieraksts "Nav piemērojams". Nekas netika mainīts.</value>
+  </data>
+  <data name="{0} Allowed: {1}." xml:space="preserve">
+    <value>{0} Atļauts: {1}.</value>
+  </data>
+  <data name="Allowed: {0}" xml:space="preserve">
+    <value>Atļauts: {0}</value>
+  </data>
+  <data name="Four-eyes: you marked this CCP &quot;Not applicable&quot;, so another person must approve it." xml:space="preserve">
+    <value>Četru acu princips: jūs atzīmējāt šo KKP kā "Nav piemērojams", tāpēc tas jāapstiprina citai personai.</value>
+  </data>
+  <data name="This role is used by the platform and cannot be renamed or deleted." xml:space="preserve">
+    <value>Šo lomu izmanto platforma, un to nevar pārdēvēt vai dzēst.</value>
+  </data>
+  <data name="Protected" xml:space="preserve">
+    <value>Aizsargāta</value>
+  </data>
+  <data name="You cannot delete your own account." xml:space="preserve">
+    <value>Jūs nevarat dzēst savu kontu.</value>
+  </data>
+  <data name="User deleted." xml:space="preserve">
+    <value>Lietotājs dzēsts.</value>
+  </data>
+  <data name="The user could not be deleted." xml:space="preserve">
+    <value>Lietotāju neizdevās dzēst.</value>
+  </data>
+  <data name="Account unlocked." xml:space="preserve">
+    <value>Konts atbloķēts.</value>
+  </data>
+  <data name="Unlock" xml:space="preserve">
+    <value>Atbloķēt</value>
+  </data>
+  <data name="Lot #{0} cannot be used in this batch: it belongs to another wholesaler or not all its CCPs are completed and approved." xml:space="preserve">
+    <value>Partiju #{0} nevar izmantot šajā gala partijā: tā pieder citam vairumtirgotājam, vai ne visi tās KKP ir pabeigti un apstiprināti.</value>
+  </data>
+  <data name="Lot #{0}: at most {1} kg is available." xml:space="preserve">
+    <value>Partija #{0}: pieejami ne vairāk kā {1} kg.</value>
+  </data>
+  <data name="Nothing was saved." xml:space="preserve">
+    <value>Nekas netika saglabāts.</value>
+  </data>
+  <data name="Batch composition saved: {0} kg in total." xml:space="preserve">
+    <value>Gala partijas sastāvs saglabāts: kopā {0} kg.</value>
+  </data>
+  <data name="CCP assignments saved: {0} added, {1} removed." xml:space="preserve">
+    <value>KKP piešķīrumi saglabāti: pievienoti {0}, noņemti {1}.</value>
+  </data>
+  <data name="Suspended organisation" xml:space="preserve">
+    <value>Apturēta organizācija</value>
+  </data>
+  <data name="Org.SuspendedBanner" xml:space="preserve">
+    <value>Jūsu organizācija ir apturēta. Jūs varat skatīt tās datus, taču neviens nevar ievadīt datus, kamēr platformas administrators to neatjauno.</value>
+  </data>
+  <data name="{0} has {1} raw honey lot(s) without a wholesaler: no batch can take them until the organization is linked to its wholesaler record." xml:space="preserve">
+    <value>Organizācijai {0} ir {1} neapstrādāta medus partija(-s) bez vairumtirgotāja: neviena gala partija tās nevar iekļaut, kamēr organizācija nav sasaistīta ar savu vairumtirgotāja ierakstu.</value>
+  </data>
+  <data name="Link it to a wholesaler record" xml:space="preserve">
+    <value>Sasaistīt ar vairumtirgotāja ierakstu</value>
+  </data>
+  <data name="Correct" xml:space="preserve">
+    <value>Labojums piemērots</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>Noraidīt</value>
+  </data>
+  <data name="Correction" xml:space="preserve">
+    <value>Labojums</value>
+  </data>
+  <data name="An unknown error has occurred." xml:space="preserve">
+    <value>Radās nezināma kļūda.</value>
+  </data>
+  <data name="The record was changed by someone else; reload the page and try again." xml:space="preserve">
+    <value>Ierakstu mainīja kāds cits; pārlādējiet lapu un mēģiniet vēlreiz.</value>
+  </data>
+  <data name="Incorrect password." xml:space="preserve">
+    <value>Nepareiza parole.</value>
+  </data>
+  <data name="The link is invalid or has expired. Request a new password reset." xml:space="preserve">
+    <value>Saite nav derīga vai tai ir beidzies termiņš. Pieprasiet jaunu paroles atiestatīšanu.</value>
+  </data>
+  <data name="The user name {0} is invalid: use letters, digits and - . _ @ + only." xml:space="preserve">
+    <value>Lietotājvārds {0} nav derīgs: izmantojiet tikai burtus, ciparus un - . _ @ +.</value>
+  </data>
+  <data name="The e-mail address {0} is invalid." xml:space="preserve">
+    <value>E-pasta adrese {0} nav derīga.</value>
+  </data>
+  <data name="The user name {0} is already taken." xml:space="preserve">
+    <value>Lietotājvārds {0} jau ir aizņemts.</value>
+  </data>
+  <data name="The e-mail address {0} is already used." xml:space="preserve">
+    <value>E-pasta adrese {0} jau tiek izmantota.</value>
+  </data>
+  <data name="The password must be at least {0} characters long." xml:space="preserve">
+    <value>Parolei jābūt vismaz {0} rakstzīmes garai.</value>
+  </data>
+  <data name="The password must contain at least one symbol." xml:space="preserve">
+    <value>Parolē jābūt vismaz vienam simbolam.</value>
+  </data>
+  <data name="The password must contain at least one digit." xml:space="preserve">
+    <value>Parolē jābūt vismaz vienam ciparam.</value>
+  </data>
+  <data name="The password must contain at least one lowercase letter." xml:space="preserve">
+    <value>Parolē jābūt vismaz vienam mazajam burtam.</value>
+  </data>
+  <data name="The password must contain at least one uppercase letter." xml:space="preserve">
+    <value>Parolē jābūt vismaz vienam lielajam burtam.</value>
+  </data>
+  <data name="The password must contain at least {0} different characters." xml:space="preserve">
+    <value>Parolē jābūt vismaz {0} dažādām rakstzīmēm.</value>
   </data>
 </root>

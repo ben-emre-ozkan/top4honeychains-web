@@ -95,14 +95,14 @@ No hay un botón de envío aparte. Cuando todos los parámetros obligatorios tie
 2. Escriba el **Motivo**, por ejemplo "La miel cruda no se calienta ni se pasteuriza".
 3. Haga clic en **Marcar como "No aplicable"**. El motivo, su nombre de usuario y la hora quedan registrados, y en la Historia de la miel pública aparece "No aplicable".
 
-Para deshacerlo, haga clic en **Quitar "No aplicable"**. Un PCC no aplicable también necesita aprobación.
+Para deshacerlo, haga clic en **Quitar "No aplicable"**. Un PCC no aplicable también necesita aprobación, por una persona distinta de la que lo marcó.
 
 **Errores frecuentes**
 
 | Mensaje | Significado |
 |---|---|
 | "…: introduzca un número." / "…: elija Sí o No." | Un valor tiene un tipo incorrecto. |
-| "This CCP is marked "Not applicable". Remove that mark first to record values." (Este PCC está marcado como "No aplicable". Quite primero esa marca para registrar valores). | Quite la marca antes de ingresar valores. |
+| "Este PCC está marcado como "No aplicable". Quite primero esa marca para registrar valores." | Quite la marca antes de ingresar valores. |
 | "Este punto de control es responsabilidad de otra organización; solo puede consultarlo." | Usted ve este PCC en modo de solo lectura. |
 | "Su rol (…) no puede ingresar datos en este punto de control; roles que ingresan: …" | Otro rol ingresa este PCC. |
 | "Su organización está en estado Pendiente; solo las organizaciones verificadas pueden ingresar datos." | Espere la verificación. |

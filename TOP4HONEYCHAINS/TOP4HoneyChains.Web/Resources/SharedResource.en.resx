@@ -283,7 +283,7 @@
     <value>Invalid user name or password. After too many failed attempts the account is locked for a while.</value>
   </data>
   <data name="Login.NoPanelAccess" xml:space="preserve">
-    <value>This account does not have access to the web panel. Only administrators can sign in. Please contact an administrator.</value>
+    <value>This account has no access to the panel yet: it is not a member of any organization. Please ask a platform administrator to add you to your organization.</value>
   </data>
   <data name="ForgotPassword.Sent" xml:space="preserve">
     <value>If an account with this e-mail address exists, password reset instructions have been sent to it.</value>
@@ -6956,5 +6956,143 @@
   </data>
   <data name="Audit.F.WithdrawnByUserId" xml:space="preserve">
     <value>Withdrawn by</value>
+  </data>
+  <data name="&quot;Not applicable&quot; was removed; values can be recorded again." xml:space="preserve">
+    <value>"Not applicable" was removed; values can be recorded again.</value>
+  </data>
+  <data name="This CCP is marked &quot;Not applicable&quot;. Remove that mark first to record values." xml:space="preserve">
+    <value>This CCP is marked "Not applicable". Remove that mark first to record values.</value>
+  </data>
+  <data name="{0}: enter text, not a number." xml:space="preserve">
+    <value>{0}: enter text, not a number.</value>
+  </data>
+  <data name="{0}: enter either a number or a text, not both." xml:space="preserve">
+    <value>{0}: enter either a number or a text, not both.</value>
+  </data>
+  <data name="{0}: the text can be at most 100 characters." xml:space="preserve">
+    <value>{0}: the text can be at most 100 characters.</value>
+  </data>
+  <data name="{0}: the notes can be at most 500 characters." xml:space="preserve">
+    <value>{0}: the notes can be at most 500 characters.</value>
+  </data>
+  <data name="Lot {0} / {1} (#{2})" xml:space="preserve">
+    <value>Lot {0} / {1} (#{2})</value>
+  </data>
+  <data name="The note can be at most 500 characters." xml:space="preserve">
+    <value>The note can be at most 500 characters.</value>
+  </data>
+  <data name="{0} cannot be removed because values or a &quot;Not applicable&quot; record exist for this batch. Nothing was changed." xml:space="preserve">
+    <value>{0} cannot be removed because values or a "Not applicable" record exist for this batch. Nothing was changed.</value>
+  </data>
+  <data name="{0} cannot be removed because values or a &quot;Not applicable&quot; record exist for this lot. Nothing was changed." xml:space="preserve">
+    <value>{0} cannot be removed because values or a "Not applicable" record exist for this lot. Nothing was changed.</value>
+  </data>
+  <data name="{0} Allowed: {1}." xml:space="preserve">
+    <value>{0} Allowed: {1}.</value>
+  </data>
+  <data name="Allowed: {0}" xml:space="preserve">
+    <value>Allowed: {0}</value>
+  </data>
+  <data name="Four-eyes: you marked this CCP &quot;Not applicable&quot;, so another person must approve it." xml:space="preserve">
+    <value>Four-eyes: you marked this CCP "Not applicable", so another person must approve it.</value>
+  </data>
+  <data name="This role is used by the platform and cannot be renamed or deleted." xml:space="preserve">
+    <value>This role is used by the platform and cannot be renamed or deleted.</value>
+  </data>
+  <data name="Protected" xml:space="preserve">
+    <value>Protected</value>
+  </data>
+  <data name="You cannot delete your own account." xml:space="preserve">
+    <value>You cannot delete your own account.</value>
+  </data>
+  <data name="User deleted." xml:space="preserve">
+    <value>User deleted.</value>
+  </data>
+  <data name="The user could not be deleted." xml:space="preserve">
+    <value>The user could not be deleted.</value>
+  </data>
+  <data name="Account unlocked." xml:space="preserve">
+    <value>Account unlocked.</value>
+  </data>
+  <data name="Unlock" xml:space="preserve">
+    <value>Unlock</value>
+  </data>
+  <data name="Lot #{0} cannot be used in this batch: it belongs to another wholesaler or not all its CCPs are completed and approved." xml:space="preserve">
+    <value>Lot #{0} cannot be used in this batch: it belongs to another wholesaler or not all its CCPs are completed and approved.</value>
+  </data>
+  <data name="Lot #{0}: at most {1} kg is available." xml:space="preserve">
+    <value>Lot #{0}: at most {1} kg is available.</value>
+  </data>
+  <data name="Nothing was saved." xml:space="preserve">
+    <value>Nothing was saved.</value>
+  </data>
+  <data name="Batch composition saved: {0} kg in total." xml:space="preserve">
+    <value>Batch composition saved: {0} kg in total.</value>
+  </data>
+  <data name="CCP assignments saved: {0} added, {1} removed." xml:space="preserve">
+    <value>CCP assignments saved: {0} added, {1} removed.</value>
+  </data>
+  <data name="Suspended organisation" xml:space="preserve">
+    <value>Suspended organisation</value>
+  </data>
+  <data name="Org.SuspendedBanner" xml:space="preserve">
+    <value>Your organization is suspended. You can read its data, but nobody can enter data until a platform administrator reinstates it.</value>
+  </data>
+  <data name="{0} has {1} raw honey lot(s) without a wholesaler: no batch can take them until the organization is linked to its wholesaler record." xml:space="preserve">
+    <value>{0} has {1} raw honey lot(s) without a wholesaler: no batch can take them until the organization is linked to its wholesaler record.</value>
+  </data>
+  <data name="Link it to a wholesaler record" xml:space="preserve">
+    <value>Link it to a wholesaler record</value>
+  </data>
+  <data name="Correct" xml:space="preserve">
+    <value>Correct</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>Reject</value>
+  </data>
+  <data name="Correction" xml:space="preserve">
+    <value>Correction</value>
+  </data>
+  <data name="An unknown error has occurred." xml:space="preserve">
+    <value>An unknown error has occurred.</value>
+  </data>
+  <data name="The record was changed by someone else; reload the page and try again." xml:space="preserve">
+    <value>The record was changed by someone else; reload the page and try again.</value>
+  </data>
+  <data name="Incorrect password." xml:space="preserve">
+    <value>Incorrect password.</value>
+  </data>
+  <data name="The link is invalid or has expired. Request a new password reset." xml:space="preserve">
+    <value>The link is invalid or has expired. Request a new password reset.</value>
+  </data>
+  <data name="The user name {0} is invalid: use letters, digits and - . _ @ + only." xml:space="preserve">
+    <value>The user name {0} is invalid: use letters, digits and - . _ @ + only.</value>
+  </data>
+  <data name="The e-mail address {0} is invalid." xml:space="preserve">
+    <value>The e-mail address {0} is invalid.</value>
+  </data>
+  <data name="The user name {0} is already taken." xml:space="preserve">
+    <value>The user name {0} is already taken.</value>
+  </data>
+  <data name="The e-mail address {0} is already used." xml:space="preserve">
+    <value>The e-mail address {0} is already used.</value>
+  </data>
+  <data name="The password must be at least {0} characters long." xml:space="preserve">
+    <value>The password must be at least {0} characters long.</value>
+  </data>
+  <data name="The password must contain at least one symbol." xml:space="preserve">
+    <value>The password must contain at least one symbol.</value>
+  </data>
+  <data name="The password must contain at least one digit." xml:space="preserve">
+    <value>The password must contain at least one digit.</value>
+  </data>
+  <data name="The password must contain at least one lowercase letter." xml:space="preserve">
+    <value>The password must contain at least one lowercase letter.</value>
+  </data>
+  <data name="The password must contain at least one uppercase letter." xml:space="preserve">
+    <value>The password must contain at least one uppercase letter.</value>
+  </data>
+  <data name="The password must contain at least {0} different characters." xml:space="preserve">
+    <value>The password must contain at least {0} different characters.</value>
   </data>
 </root>

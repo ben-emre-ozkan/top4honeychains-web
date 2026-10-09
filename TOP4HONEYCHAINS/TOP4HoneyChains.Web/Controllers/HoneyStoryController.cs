@@ -293,25 +293,51 @@ namespace TOP4HoneyChains.Web.Controllers
         }
 
 
-        [HttpGet]
+        // D-12, D-75: an apiary photo for the public Honey Story of one finalized batch: only photos of that batch's source
+        // apiaries (the photos the page shows), and re-encoded without metadata, so no GPS position or camera data leaves
+        // the server. Any other photo answers 404.
+        [HttpGet("photo/{id:int}")]
         [ResponseCache(Duration = 3600, Location = ResponseCacheLocation.Client)]
-        public async Task<IActionResult> Image(int id)
+        public async Task<IActionResult> Image(int id, Guid qr, [FromServices] Microsoft.Extensions.Caching.Memory.IMemoryCache cache)
         {
-            var photo = await _context.ApiaryPhotos.AsNoTracking()
-                .FirstOrDefaultAsync(x => x.ApiaryPhotoId == id);
-
-            if (photo?.ApiaryPhotoData == null || string.IsNullOrEmpty(photo.ApiaryPhotoContentType))
+            var apiaryId = await _context.ApiaryPhotos.AsNoTracking().Where(x => x.ApiaryPhotoId == id)
+                .Select(x => (int?)x.ApiaryPhotoApiaryId).FirstOrDefaultAsync();
+            if (apiaryId == null || qr == Guid.Empty)
                 return NotFound();
-
-            // D-12: public only for apiaries that supplied a finalized batch (ids are sequential,
-            // so without this check every apiary photo could be downloaded)
-            var isPublic = await _context.FinalHoneyProductionDetails.AnyAsync(d =>
+            var isSource = await _context.FinalHoneyProductionDetails.AnyAsync(d =>
+                d.FinalHoneyProduction.FinalHoneyProductionQR == qr &&
                 d.FinalHoneyProduction.FinalHoneyProductionIsFinalized &&
-                d.RawHoneyProduction.RawHoneyProductionApiaryId == photo.ApiaryPhotoApiaryId);
-            if (!isPublic)
+                d.RawHoneyProduction.RawHoneyProductionApiaryId == apiaryId);
+            if (!isSource)
                 return NotFound();
 
-            return File(photo.ApiaryPhotoData, photo.ApiaryPhotoContentType);
+            var clean = await Microsoft.Extensions.Caching.Memory.CacheExtensions.GetOrCreateAsync(cache, $"hs-photo:{id}", async entry =>
+            {
+                entry.SlidingExpiration = TimeSpan.FromHours(6);
+                var data = await _context.ApiaryPhotos.AsNoTracking().Where(x => x.ApiaryPhotoId == id).Select(x => x.ApiaryPhotoData).FirstOrDefaultAsync();
+                return data == null ? null : PublicPhoto(data);
+            });
+            return clean == null ? NotFound() : File(clean, "image/jpeg");
+        }
+
+        // a JPEG copy without EXIF, IPTC, XMP or ICC data; null when the stored bytes are not an image
+        public static byte[]? PublicPhoto(byte[] data)
+        {
+            try
+            {
+                using var image = SixLabors.ImageSharp.Image.Load(data);
+                image.Metadata.ExifProfile = null;
+                image.Metadata.IptcProfile = null;
+                image.Metadata.XmpProfile = null;
+                image.Metadata.IccProfile = null;
+                using var output = new MemoryStream();
+                SixLabors.ImageSharp.ImageExtensions.SaveAsJpeg(image, output, new SixLabors.ImageSharp.Formats.Jpeg.JpegEncoder { Quality = 85 });
+                return output.ToArray();
+            }
+            catch (SixLabors.ImageSharp.ImageFormatException)
+            {
+                return null;
+            }
         }
 
 

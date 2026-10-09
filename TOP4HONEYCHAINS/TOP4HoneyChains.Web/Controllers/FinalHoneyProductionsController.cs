@@ -89,8 +89,8 @@ namespace TOP4HoneyChains.Web.Controllers
 
             // 🔐 CCP süreci tamamlanmış raw honey’ler
             // At least one CCP, all Completed or Not applicable (D-05, D-15)
-            var rawHoneys = await (await _ccp.EligibleRawLotsAsync(_context.RawHoneyProductions
-                .Where(r => r.RawHoneyProductionWholesalerId == batch.FinalHoneyProductionWholesalerId)))
+            var lotsOfWholesaler = await LotsOfWholesalerAsync(batch.FinalHoneyProductionWholesalerId);
+            var rawHoneys = await (await _ccp.EligibleRawLotsAsync(lotsOfWholesaler))
                 .Include(r => r.RawHoneyProductionApiary)
                     .ThenInclude(a => a.ApiaryBeekeeper)
                 .Include(r => r.RawHoneyProductionHoneyTypeNavigation)
@@ -129,9 +129,8 @@ namespace TOP4HoneyChains.Web.Controllers
             // Lots of the same wholesaler that are not eligible yet, and which CCP checks are missing (D-05)
             var eligibleIds = rawHoneys.Select(r => r.RawHoneyProductionId).ToList();
             var done = await _ccp.DonePredicateAsync();
-            var ineligibleRawHoneys = await _context.RawHoneyProductions
-                .Where(r => r.RawHoneyProductionWholesalerId == batch.FinalHoneyProductionWholesalerId
-                            && !eligibleIds.Contains(r.RawHoneyProductionId))
+            var ineligibleRawHoneys = await lotsOfWholesaler
+                .Where(r => !eligibleIds.Contains(r.RawHoneyProductionId))
                 .Include(r => r.RawHoneyProductionApiary)
                     .ThenInclude(a => a!.ApiaryBeekeeper)
                 .Include(r => r.RawHoneyProductionHoneyTypeNavigation)
@@ -166,6 +165,13 @@ namespace TOP4HoneyChains.Web.Controllers
             if (!batch.FinalHoneyProductionIsFinalized)
                 model.FinalizeBlockers = await _ccp.GetFinalizeBlockersAsync(batch.FinalHoneyProductionId);
             ViewBag.MemberFinalize = _flags.OrgRoleModel;
+            // D-75: organizations whose delivered lots have no wholesaler (not linked to a wholesaler record): name them and where to link
+            ViewBag.UnlinkedLotOwners = _flags.OrgRoleModel
+                ? (await _context.Organizations.AsNoTracking()
+                    .Where(o => !o.IsPlatform && o.LegacyWholesalerId == null)
+                    .Select(o => new { o.OrgId, o.DisplayName, Lots = _context.RawHoneyProductions.Count(r => r.OwnerOrgId == o.OrgId && r.RawHoneyProductionWholesalerId == null) })
+                    .Where(o => o.Lots > 0).ToListAsync()).Select(o => new UnlinkedLotOwner(o.OrgId, o.DisplayName, o.Lots)).ToList()
+                : new List<UnlinkedLotOwner>();
 
             ViewBag.Controller = "Final Honey Productions";
             ViewBag.Action = "Manage Batch";
@@ -195,6 +201,29 @@ namespace TOP4HoneyChains.Web.Controllers
                 return RedirectToAction("ManageBatch", new { id = batchId });
             }
 
+            // D-75: every amount is checked first; one invalid amount saves nothing and every problem is listed
+            var problems = new List<string>();
+            foreach (var item in usedAmounts.Where(i => i.Value > 0))
+            {
+                var raw = await (await LotsOfWholesalerAsync(batch.FinalHoneyProductionWholesalerId))
+                    .Include(r => r.FinalHoneyProductionDetails)
+                    .FirstOrDefaultAsync(r => r.RawHoneyProductionId == item.Key);
+                // Same rule as the list: a lot without any CCP is not eligible either
+                if (raw == null || !await (await _ccp.EligibleRawLotsAsync(_context.RawHoneyProductions.Where(r => r.RawHoneyProductionId == item.Key))).AnyAsync())
+                {
+                    problems.Add($"Lot #{item.Key} cannot be used in this batch: it belongs to another wholesaler or not all its CCPs are completed and approved.");
+                    continue;
+                }
+                var available = raw.RawHoneyProductionAmount - raw.FinalHoneyProductionDetails.Where(d => d.FinalHoneyProductionId != batchId).Sum(d => d.UsedAmount);
+                if (item.Value > available)
+                    problems.Add($"Lot #{item.Key}: at most {available:0.##} kg is available.");
+            }
+            if (problems.Count > 0)
+            {
+                TempData["Error"] = string.Join(" ", problems) + " Nothing was saved.";
+                return RedirectToAction("ManageBatch", new { id = batchId });
+            }
+
             foreach (var item in usedAmounts)
             {
                 var rawId = item.Key;
@@ -210,28 +239,6 @@ namespace TOP4HoneyChains.Web.Controllers
 
                     continue;
                 }
-
-                var raw = await _context.RawHoneyProductions
-                    .Include(r => r.FinalHoneyProductionDetails)
-                    .FirstOrDefaultAsync(r =>
-                        r.RawHoneyProductionId == rawId &&
-                        r.RawHoneyProductionWholesalerId == batch.FinalHoneyProductionWholesalerId);
-
-                if (raw == null)
-                    continue;
-
-                // Same rule as the list: a lot without any CCP is not eligible either
-                if (!await (await _ccp.EligibleRawLotsAsync(_context.RawHoneyProductions.Where(r => r.RawHoneyProductionId == rawId))).AnyAsync())
-                    continue;
-
-                var totalUsed = raw.FinalHoneyProductionDetails
-                    .Where(d => d.FinalHoneyProductionId != batchId)
-                    .Sum(d => d.UsedAmount);
-
-                var available = raw.RawHoneyProductionAmount - totalUsed;
-
-                if (requestedAmount > available)
-                    continue;
 
                 var existingDetail = batch.FinalHoneyProductionDetails
                     .FirstOrDefault(d => d.RawHoneyProductionId == rawId);
@@ -259,6 +266,7 @@ namespace TOP4HoneyChains.Web.Controllers
                     .SumAsync(d => d.UsedAmount);
 
             await _context.SaveChangesAsync();
+            TempData["Success"] = $"Batch composition saved: {batch.FinalHoneyProductionTotalAmount ?? 0:0.##} kg in total.";
 
 
             ViewBag.Controller = "Final Honey Productions";
@@ -268,6 +276,18 @@ namespace TOP4HoneyChains.Web.Controllers
         }
 
 
+
+        public record UnlinkedLotOwner(int OrgId, string Name, int Lots);
+
+        // D-75: a batch takes the lots of its wholesaler: lots filed under that wholesaler, and lots without a wholesaler that
+        // belong to the organization linked to it (lots delivered before the organization was linked to its wholesaler record)
+        private async Task<IQueryable<RawHoneyProduction>> LotsOfWholesalerAsync(int? wholesalerId)
+        {
+            var linkedOrgId = wholesalerId == null ? null : await _context.Organizations
+                .Where(o => o.LegacyWholesalerId == wholesalerId).Select(o => (int?)o.OrgId).FirstOrDefaultAsync();
+            return _context.RawHoneyProductions.Where(r => r.RawHoneyProductionWholesalerId == wholesalerId
+                || (linkedOrgId != null && r.RawHoneyProductionWholesalerId == null && r.OwnerOrgId == linkedOrgId));
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -429,6 +449,7 @@ namespace TOP4HoneyChains.Web.Controllers
             }
 
             await _context.SaveChangesAsync();
+            TempData["Success"] = $"CCP assignments saved: {toAdd.Count()} added, {toRemove.Count()} removed.";   // D-75
 
             //ByWholesaler?wholesalerId=1
 

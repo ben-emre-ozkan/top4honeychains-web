@@ -45,6 +45,8 @@ Publiskajās lapās (Medus stāsts, biškopja lapa, pārskata pārbaude) redzama
 - **Vērtības**: laboratorijas un kontroles punktu vērtības; spriedums "robežās / ārpus robežām" tikai **pārbaudītām robežvērtībām**. Brīva teksta atbildes un faili netiek publicēti, ja vien administrators to nav skaidri atļāvis KKP, kura atbildēs nav personas datu.
 - **Pārskati**: pārskata kods, laboratorija, akreditācija, datums un nospiedums, nekad – partija vai biškopis.
 
+- **Fotoattēli**: tikai to dravu fotoattēli, kas piegādāja medu gala partijai, un bez metadatiem (bez GPS atrašanās vietas vai kameras datiem).
+
 Medus stāsts pastāv tikai pabeigtām (fiksētām) gala partijām; biškopja lapa – tikai tik ilgi, kamēr piekrišana ir spēkā.
 
 <!-- SHOT: public-map -->

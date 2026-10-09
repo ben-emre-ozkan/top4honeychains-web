@@ -97,7 +97,7 @@ Uwagi:
 
 Poniższe zasady są wbudowane w platformę:
 
-- **Zasada czterech oczu dla rekordów KPK**: nikt nie zatwierdza rekordu KPK, w którym sam zarejestrował wartości. Wyjątek: administrator platformy może przyznać organizacji **Wyjątek od zasady czterech oczu**; jej członkowie mogą wtedy zatwierdzać własne rekordy KPK, a każde takie zatwierdzenie jest oznaczane w dzienniku audytu.
+- **Zasada czterech oczu dla rekordów KPK**: nikt nie zatwierdza rekordu KPK, w którym sam zarejestrował wartości lub który sam oznaczył jako „Nie dotyczy”. Wyjątek: administrator platformy może przyznać organizacji **Wyjątek od zasady czterech oczu**; jej członkowie mogą wtedy zatwierdzać własne rekordy KPK, a każde takie zatwierdzenie jest oznaczane w dzienniku audytu.
 - **Zasada czterech oczu dla wyników laboratoryjnych, zawsze**: osoba, która wprowadziła wyniki, nie może ich zatwierdzić. Nie ma od tego wyjątku.
 - **Zasada czterech oczu przy ostatecznym zatwierdzeniu**: osoba, która złożyła wniosek o ostateczne zatwierdzenie, nie może go potwierdzić (chyba że organizacja ma wyjątek).
 - **Dane wprowadzają tylko zweryfikowane organizacje.**

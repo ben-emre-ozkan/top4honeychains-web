@@ -95,14 +95,14 @@ Ayrı bir gönderme düğmesi yoktur. Tüm zorunlu parametrelerin değeri girild
 2. **Gerekçe** alanını doldurun, örneğin "Ham bal ısıtılmaz veya pastörize edilmez".
 3. **"Uygulanamaz" olarak işaretle** düğmesine tıklayın. Gerekçe, kullanıcı adınız ve zaman kaydedilir; herkese açık Bal Hikâyesi'nde "Uygulanamaz" olarak gösterilir.
 
-Geri almak için **"Uygulanamaz" işaretini kaldır** düğmesine tıklayın. Uygulanamaz olarak işaretlenen bir KKN'nin de onaylanması gerekir.
+Geri almak için **"Uygulanamaz" işaretini kaldır** düğmesine tıklayın. Uygulanamaz olarak işaretlenen bir KKN'nin de onaylanması gerekir; onayı, işareti koyan kişiden başka biri verir.
 
 **Sık karşılaşılan hatalar**
 
 | Mesaj | Anlamı |
 |---|---|
 | "…: bir sayı girin." / "…: Evet veya Hayır seçin." | Bir değerin türü yanlış. |
-| "This KKN is marked "Not applicable". Remove that mark first to record values." (Bu KKN "Uygulanamaz" olarak işaretli; değer girmek için önce bu işareti kaldırın.) | Değer girmeden önce işareti kaldırın. |
+| "Bu KKN "Uygulanamaz" olarak işaretli. Değer kaydetmek için önce bu işareti kaldırın." | Değer girmeden önce işareti kaldırın. |
 | "Bu kontrol noktası başka bir kurumun sorumluluğunda; yalnızca okuyabilirsiniz." | Bu KKN'yi salt okunur görürsünüz. |
 | "Rolünüz (…) bu kontrol noktasına veri giremez; veri giren roller: …" | Bu KKN'ye başka bir rol veri girer. |
 | "Kurumunuzun durumu: Beklemede; yalnızca doğrulanmış kurumlar veri girebilir." | Kurumun doğrulanmasını bekleyin. |

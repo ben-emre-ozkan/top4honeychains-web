@@ -95,14 +95,14 @@ Nie ma osobnego przycisku przesyłania. Gdy każdy wymagany parametr ma wartoś�
 2. Wpisz **Powód**, na przykład „Surowy miód nie jest podgrzewany ani pasteryzowany”.
 3. Kliknij **Oznacz jako „Nie dotyczy”**. Powód, Twoja nazwa użytkownika i czas zostają zapisane, a w publicznej Historii miodu KPK jest wyświetlany jako „Nie dotyczy”.
 
-Aby cofnąć to oznaczenie, kliknij **Usuń „Nie dotyczy”**. KPK oznaczony jako nie dotyczy nadal wymaga zatwierdzenia.
+Aby cofnąć to oznaczenie, kliknij **Usuń „Nie dotyczy”**. KPK oznaczony jako nie dotyczy nadal wymaga zatwierdzenia, i to przez inną osobę niż ta, która go oznaczyła.
 
 **Częste błędy**
 
 | Komunikat | Znaczenie |
 |---|---|
 | „…: wprowadź liczbę.” / „…: wybierz Tak lub Nie.” | Wartość ma nieprawidłowy typ. |
-| „This KPK is marked "Not applicable". Remove that mark first to record values.” (Ten KPK jest oznaczony jako „Nie dotyczy”. Aby zarejestrować wartości, najpierw usuń to oznaczenie). | Przed wprowadzeniem wartości usuń oznaczenie. |
+| „Ten KPK jest oznaczony jako „Nie dotyczy”. Aby rejestrować wartości, najpierw usuń to oznaczenie.” | Przed wprowadzeniem wartości usuń oznaczenie. |
 | „Za ten punkt kontrolny odpowiada inna organizacja; możesz go tylko odczytywać.” | Ten KPK jest dla Ciebie dostępny tylko do odczytu. |
 | „Twoja rola (…) nie może wprowadzać danych w tym punkcie kontrolnym; role wprowadzające: ….” | Dane tego KPK wprowadza inna rola. |
 | „Twoja organizacja ma status Oczekująca; dane mogą wprowadzać tylko zweryfikowane organizacje.” | Poczekaj na weryfikację. |

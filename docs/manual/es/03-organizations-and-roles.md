@@ -97,7 +97,7 @@ Notas:
 
 Estas reglas forman parte de la plataforma:
 
-- **Doble verificación en los registros de PCC**: nadie aprueba un registro de PCC en el que haya registrado valores. Excepción: un administrador de la plataforma puede conceder a una organización la **Exención de la doble verificación (cuatro ojos)**; entonces sus miembros pueden aprobar sus propios registros de PCC, y cada una de esas aprobaciones queda marcada en el registro de auditoría.
+- **Doble verificación en los registros de PCC**: nadie aprueba un registro de PCC en el que haya registrado valores o que haya marcado como "No aplicable". Excepción: un administrador de la plataforma puede conceder a una organización la **Exención de la doble verificación (cuatro ojos)**; entonces sus miembros pueden aprobar sus propios registros de PCC, y cada una de esas aprobaciones queda marcada en el registro de auditoría.
 - **Doble verificación en los resultados de laboratorio, siempre**: la persona que ingresó los resultados no puede aprobarlos. No hay exención.
 - **Doble verificación en la finalización**: la persona que solicitó la finalización no puede confirmarla (salvo que la organización tenga la exención).
 - **Solo las organizaciones verificadas ingresan datos.**

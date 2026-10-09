@@ -16,7 +16,7 @@ Oturum açtıktan sonra sizi bekleyen görevlerin listesi olan **İşlerim** say
 **Sık görülen mesajlar**
 
 - "Kullanıcı adı veya şifre hatalı. Çok sayıda başarısız denemeden sonra hesap bir süre kilitlenir." Kullanıcı adı veya şifre yanlıştır ya da hesap kilitlenmiştir. **5 başarısız denemeden sonra hesap 15 dakika kilitlenir**. Bekleyip yeniden deneyin ya da **Şifrenizi mi unuttunuz?** bağlantısını kullanın.
-- "Bu hesabın web paneline erişimi yok. …" Hesabınızın etkin bir üyeliği yoktur. Bir platform yöneticisinden sizi kurumunuza eklemesini isteyin.
+- "Bu hesabın henüz panele erişimi yok: hiçbir kurumun üyesi değil. …" Hesabınızın etkin bir üyeliği yoktur. Bir platform yöneticisinden sizi kurumunuza eklemesini isteyin.
 
 Oturumu kapatmak için sağ üstteki avatarınızın menüsünü açın ve **Çıkış Yap** seçeneğini seçin.
 
@@ -28,7 +28,7 @@ Oturumu kapatmak için sağ üstteki avatarınızın menüsünü açın ve **Ç�
 4. "TOP4HoneyChains şifrenizi sıfırlayın" konulu e-postayı açın ve bağlantıya tıklayın. Bağlantı bir gün geçerlidir.
 5. **Yeni Parola** alanını iki kez doldurun ve onaylayın. Oturum açma sayfasına geri yönlendirilirsiniz.
 
-Şifreler en az 6 karakter olmalıdır. E-posta gelmezse önce istenmeyen (spam) klasörünü kontrol edin, ardından bir platform yöneticisine başvurun; yönetici sizin için yeni bir şifre belirleyebilir (bkz. [Kullanıcılar](#admin-users)).
+Şifreler en az 6 karakter olmalıdır; bir kural karşılanmazsa sayfa bunu sizin dilinizde belirtir, bağlantının süresi dolmuşsa da "Bağlantı geçersiz veya süresi dolmuş. Yeni bir şifre sıfırlama isteyin." yazar. E-posta gelmezse önce istenmeyen (spam) klasörünü kontrol edin, ardından bir platform yöneticisine başvurun; yönetici sizin için yeni bir şifre belirleyebilir (bkz. [Kullanıcılar](#admin-users)).
 
 <!-- SHOT: forgot-password -->
 
@@ -40,7 +40,7 @@ Avatar menüsünü açın ve **Profil** seçeneğini seçin.
 - **Telefon Numarası** değiştirilebilir. **Kaydet** düğmesine tıklayın.
 - **Parolayı Değiştir** bir pencere açar: **Mevcut Parola**, **Yeni Parola** ve **Parolayı onaylayın** alanlarını doldurun, ardından **Parolayı Güncelle** düğmesine tıklayın.
 
-Avatar menüsünde ayrıca **Ekranı Kilitle** seçeneği bulunur; sayfa, şifrenizi yeniden girene kadar gizlenir. Bu yalnızca bir gizlilik ekranıdır; oturumunuzu kapatmaz.
+Ortak kullanılan bir bilgisayardan ayrılırken **Çıkış Yap** seçeneğini kullanın; ekran kilitleme özelliği yoktur.
 
 <!-- SHOT: profile -->
 
@@ -62,11 +62,11 @@ Seçiminiz tarayıcınızda bir yıl boyunca hatırlanır. Referans verilerinden
 - **kurum · rol etiketi**: şu anda hangi kurumda ve hangi rolde çalıştığınız;
 - dil düğmesi;
 - tam ekran düğmesi;
-- **Profil**, **Ekranı Kilitle** ve **Çıkış Yap** seçenekleriyle avatarınız.
+- **Profil** ve **Çıkış Yap** seçenekleriyle avatarınız.
 
 <!-- SHOT: top-bar-role-chip -->
 
-Kurumunuz doğrulanmışsa etikette bir onay işareti, doğrulanmamışsa bir ünlem işareti görünür. Kurum doğrulanmadığı sürece üyeleri verilerini okuyabilir, kurum yöneticisi de belge yükleyebilir; ancak **kimse veri giremez**. Bir uyarı şeridinde şu yazar: "Kurumunuz henüz doğrulanmadı. …"
+Kurumunuz doğrulanmışsa etikette bir onay işareti, doğrulama beklerken bir ünlem işareti, askıya alınmışsa kırmızı zemin üzerinde bir dur işareti görünür. Kurum doğrulanmadığı sürece üyeleri verilerini okuyabilir, kurum yöneticisi de belge yükleyebilir; ancak **kimse veri giremez**. Bir uyarı şeridinde şu yazar: "Kurumunuz henüz doğrulanmadı. …"; askıya alınmış bir kurum için ise "Kurumunuz askıya alındı. Verilerini okuyabilirsiniz, ancak bir platform yöneticisi yeniden etkinleştirene kadar kimse veri giremez."
 
 ### Birden fazla üyelik {#memberships}
 
@@ -90,7 +90,7 @@ Menü, **İşlerim** sayfasındaki görevler, görebildiğiniz kayıtlar ve yapa
 | Grup | Anlamı | Kime düşer |
 |---|---|---|
 | **Girilecek değerler** | Bir lotun veya partinin bir kontrol noktası (KKN) için değer girilmesi gerekiyor | O KKN'ye değer giren roller |
-| **Onaylanacak değerler** | Bir KKN kaydı veya bir KKN 10 depolama kaydı gönderildi ve ikinci bir kişinin onayını bekliyor | O KKN'yi onaylayan roller |
+| **Onaylanacak değerler** | Bir KKN kaydı veya bir KKN 10 depolama kaydı gönderildi ya da onay almadan tamamlandı veya "Uygulanamaz" olarak işaretlendi ve ikinci bir kişinin onayını bekliyor. Kendi girdiğiniz veya işaretlediğiniz kayıtları hiçbir zaman görmezsiniz. | O KKN'yi onaylayan roller |
 | **Kesinleştirme talepleri** | Biri bir partinin kesinleştirilmesini talep etti | Parti sahibi kurumun Kalite onaylayıcısı |
 | **Teslim alınacak numuneler** | Laboratuvarınıza bir numune gönderildi | Analist, Laboratuvar müdürü |
 | **Girilecek laboratuvar sonuçları** | Teslim alınan bir numunenin henüz raporu yok ya da rapor geri gönderildi | Analist |

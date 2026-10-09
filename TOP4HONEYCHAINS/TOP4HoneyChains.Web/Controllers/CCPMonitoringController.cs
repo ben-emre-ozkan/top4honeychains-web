@@ -655,7 +655,34 @@ namespace TOP4HoneyChains.Web.Controllers
                 Amount = production.RawHoneyProductionAmount,
                 ApiaryId = production.RawHoneyProductionApiaryId ?? 0
             };
+            if (!await MaySeeBeekeepersAsync(Owner.RawLot, rawHoneyProductionId))
+                model.BeekeeperName = model.ApiaryName = null;
             return await FillCommonAsync(model, Owner.RawLot, rawHoneyProductionId, ccpId) ? model : null;
+        }
+
+        // D-75: beekeepers and apiaries are personal data. As in the recall report, only administrators, the lot owner, owners
+        // of a batch made from the lot and the beekeeper's association see their names; later holders read the values without them.
+        private async Task<bool> MaySeeBeekeepersAsync(Owner owner, int ownerId)
+        {
+            if (!_current.Enabled || _current.IsPlatformAdmin)
+                return true;
+            var active = await _current.GetAsync();
+            if (active == null)
+                return false;
+            if (owner == Owner.Batch)
+                return await _resp.BatchOwnerAsync(ownerId) == active.OrgId;
+            if (await _resp.LotOwnerAsync(ownerId) == active.OrgId)
+                return true;
+            foreach (var batchId in await _context.FinalHoneyProductionDetails.Where(d => d.RawHoneyProductionId == ownerId)
+                         .Select(d => d.FinalHoneyProductionId).Distinct().ToListAsync())
+                if (await _resp.BatchOwnerAsync(batchId) == active.OrgId)
+                    return true;
+            if (!active.Has(Capabilities.Association))
+                return false;
+            var beekeeperId = await _context.RawHoneyProductions.Where(r => r.RawHoneyProductionId == ownerId)
+                .Select(r => r.RawHoneyProductionApiary!.ApiaryBeekeeperId).FirstOrDefaultAsync();
+            return beekeeperId != null && await _context.BeekeeperAssociations
+                .AnyAsync(a => a.AssociationOrgId == active.OrgId && a.ValidTo == null && a.BeekeeperId == beekeeperId);
         }
 
         private async Task<CCPMonitoringViewModelForFinalBatch?> BuildBatchModelAsync(int finalHoneyProductionId, int ccpId)
@@ -684,6 +711,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 WholesalerId = batch.FinalHoneyProductionWholesalerId,
                 RawSourceCount = batch.FinalHoneyProductionDetails.Count
             };
+            var showBeekeepers = await MaySeeBeekeepersAsync(Owner.Batch, finalHoneyProductionId);
             foreach (var detail in batch.FinalHoneyProductionDetails)
             {
                 var raw = detail.RawHoneyProduction;
@@ -695,6 +723,8 @@ namespace TOP4HoneyChains.Web.Controllers
                     HoneyType = raw?.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle,
                     UsedAmount = detail.UsedAmount
                 });
+                if (!showBeekeepers)
+                    model.RawSources[^1].BeekeeperName = model.RawSources[^1].ApiaryName = null;
             }
             return await FillCommonAsync(model, Owner.Batch, finalHoneyProductionId, ccpId) ? model : null;
         }

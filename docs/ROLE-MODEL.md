@@ -1,9 +1,9 @@
-﻿# Role and organization model (design)
+# Role and organization model
 
-Status: written 2026-10-03 on `feat/role-model`. **P1 is implemented** (`feat/role-model-p1`, flag `Features:OrgRoleModel`, default off); P2–P5 are design. Implementation choices and deviations from this text: D-32 (active membership as a re-checked cookie choice instead of a claim; lot/batch ownership through `Organizations.LegacyWholesalerId` until the P3 custody columns; registry data in `BeekeeperRegistry` instead of new `Beekeepers` columns; fixed enter/approve roles until the P2 configuration). Decisions D-22 to D-31 in [DECISIONS.md](DECISIONS.md) are **assumptions, revisable**; open points are PQ-04 to PQ-12 in [PARTNER-QUESTIONS.md](PARTNER-QUESTIONS.md).
-Paths are relative to `TOP4HONEYCHAINS/TOP4HoneyChains.Web/`.
+Status: designed 2026-10-03 on `feat/role-model`, updated 2026-10-09 to match the code. **P1 to P5 are implemented** behind the flag `Features:OrgRoleModel`: organizations, memberships, verification and audit (migration 004), CCP responsibility, owning organization and approvals (005), intake, custody, shipments and recall (006), samples and lab reports (007), registry, consents, storefront and origin shares (008), plus the editable role permissions (013) and the CCP 0 default (015). Main code: `Services/OrgModel/` and `IntakeController`, `SamplesController`, `LabReportsController`, `ShipmentsController`, `StorefrontController`, `StorefrontsController`, `RecallController`, `OrgWorkspaceController`, `MyWorkController`, `CCPMonitoringController`. Implementation choices and later changes are in [DECISIONS.md](DECISIONS.md) (D-22 to D-31 design assumptions; D-32, D-40 to D-43 implementation choices per phase; D-56 role permissions; D-61, D-63 CCP 0; D-73, D-75 holders and four-eyes). Open points are PQ-04 to PQ-12 in [PARTNER-QUESTIONS.md](PARTNER-QUESTIONS.md).
+Paths are relative to `TOP4HONEYCHAINS/TOP4HoneyChains.Web/`. This document describes the behaviour with `Features:OrgRoleModel = true`, the live setting.
 
-**Ground rule:** v1.0 behaviour stays as it is: admin-only web panel (D-01), beekeeper logins locked (D-09). Everything below is switched on by one feature flag, `Features:OrgRoleModel` (default `false`). All schema changes are additive numbered scripts (CLAUDE.md).
+**Ground rule:** with the flag off the app falls back to v1.0: admin-only web panel (D-01), beekeeper logins locked (D-09). All schema changes are additive numbered scripts (CLAUDE.md).
 
 ---
 
@@ -12,20 +12,22 @@ Paths are relative to `TOP4HONEYCHAINS/TOP4HoneyChains.Web/`.
 | # | Goal / constraint | Source |
 |---|---|---|
 | G1 | Only licensed or platform-approved actors take part: AKS-registered beekeepers, beekeeper associations, the central association, packers, accredited labs. Wholesalers and retailers need no licence but must be approved by the platform. | Partner meeting (owner, 2026-10-03) |
-| G2 | Beekeepers never enter data and never log in. Their association records on their behalf. | Partner meeting |
-| G3 | Beekeepers get value from a public storefront page, built only from verified data and published only after recorded consent (KVKK). Province and district only, never an exact location. | Partner meeting, KVKK, D-12 |
+| G2 | Beekeepers never enter data and never log in. They are records kept by the platform and linked to their association. | Partner meeting, D-23 |
+| G3 | Beekeepers get value from a public storefront page, built only from verified data and published only after recorded consent (KVKK). Province and district only, never an exact location. | Partner meeting, KVKK, D-30, D-72 |
 | G4 | No AKS access today. A registry verification interface with a manual implementation now (document + approval) and an AKS implementation later. Enterprise number format `TR` + 2-digit province + 10 digits. | Partner meeting |
-| G5 | CCP responsibility follows WP4 Table 1 (Association CCP 1–6, BALMER CCP 7–9, TUMA CCP 10). Association, BALMER and TUMA are **role types**, never records. CCP 0 is the field audit at the beekeeper. | WP4 report, Table 1; `CCP-CURRENT.md` §6 |
-| G6 | Responsibility is configuration, not code. Write rights follow custody; read rights flow along the chain; the public sees Honey Story only. | Partner meeting |
-| G7 | Four-eyes for CCP values, lab results and finalize. After finalize, corrections only through a correction record, never an unlock. | Partner meeting, D-14 |
+| G5 | CCP responsibility follows WP4 Table 1 (Association CCP 1–6, BALMER CCP 7–9, TUMA CCP 10), mapped to **capabilities** (Processing, Packing, Wholesale/Retail), never to named records. CCP 0 (primary audit) is done at reception by the lot owner: its SampleAcceptanceOfficer enters it, its QualityApprover approves it (migration 015, D-63). | WP4 report, Table 1; `CCP-CURRENT.md` §6 |
+| G6 | Responsibility is configuration, not code. Write rights follow ownership and custody; read rights flow along the chain; the public sees Honey Story and the storefront only. | Partner meeting |
+| G7 | Four-eyes for CCP values, lab results and finalize. After finalize, corrections only through a correction record, never an unlock. | Partner meeting, D-14, D-27 |
 | G8 | Append-only audit log for every create, update, approve and delete. | Partner meeting |
 | G9 | Blends show country-of-origin percentages. | Directive (EU) 2024/1438 (amends 2001/110) |
 | G10 | No personal or company names in code or seeds. Platform admin is the project team now, possibly the central union later. | Owner |
-| G11 | v1.0 unchanged until the flag is on; additive schema; SQL Server 2019. | CLAUDE.md, D-01 |
+| G11 | v1.0 unchanged while the flag is off; additive schema; SQL Server 2019. | CLAUDE.md, D-01 |
 
 ---
 
 ## 2. Current state (inventory, 2026-10-03)
+
+> **Historical.** This is the inventory taken before P1; it no longer describes the app. The live model is in §3 to §14.
 
 ### 2.1 Identity
 - `ApplicationUser : IdentityUser` with no extra fields. Standard `AspNet*` tables (EF migrations cover Identity only).
@@ -78,131 +80,157 @@ Paths are relative to `TOP4HONEYCHAINS/TOP4HoneyChains.Web/`.
 
 ## 3. Actors and capabilities
 
-An **organization** has one or more **capabilities**. Capabilities decide what an org may do; memberships decide what a person in it may do.
+An **organization** has one or more **capabilities**. Capabilities decide what an org may do; memberships decide what a person in it may do. Capabilities are set by a platform administrator.
 
 | Capability | Meaning | Login | Licence / approval | Typical CCPs |
 |---|---|---|---|---|
-| `Beekeeping` | A beekeeper's enterprise (one person or a company) | **no** | AKS registry number, verified (G4) | — (subject of CCP 0) |
-| `Association` | Beekeeper association | yes | Verified by PlatformAdmin or CentralAssociation (configurable) | CCP 0; CCP 1–6 when it also has `Processing` |
-| `CentralAssociation` | Central beekeepers' union | yes | Verified by PlatformAdmin | May verify associations; read-only on member associations |
-| `Processing` | Reception and processing (CCP 1–6). An association **or** a packer. | yes | Verified | CCP 1–6 |
-| `Packing` | Filling, labelling, packaging (CCP 7–9) | yes | Verified (licence document) | CCP 7–9 |
-| `Laboratory` | Analyses. Flags: `IsAccredited`, `AccreditationNumber`, validity. "In-house" when owned by the producing org (shown on Honey Story). | yes | Accreditation document | CCP 1 lab results |
-| `Wholesale` | Sells to retail; holder while it has the goods | yes | Approved (no licence) | CCP 10 while holder |
-| `Retail` | Sells to consumers (e.g. a honey-selling company); holder at CCP 10 | yes | Approved | CCP 10 while holder |
+| `Beekeeping` | A beekeeper's enterprise (one person or a company) | **no** | AKS registry number, verified (G4) | — |
+| `Association` | Beekeeper association: member beekeepers are linked to it; it records their storefront consents | yes | Verified by PlatformAdmin or CentralAssociation (configurable) | none by default; CCP 0 only if an administrator gives it to the association on the CCP responsibilities page; CCP 1–6 when it also has `Processing` |
+| `CentralAssociation` | Central beekeepers' union | yes | Verified by PlatformAdmin | May verify associations (`OrgModel:AssociationVerifier`) |
+| `Processing` | Reception and processing. An association **or** a packer. | yes | Verified | lot CCP 0–3, batch CCP 4–6 |
+| `Packing` | Filling, labelling, packaging | yes | Verified (licence document) | CCP 7–9; CCP 10 |
+| `Laboratory` | Analyses. Flags: `IsAccredited`, `AccreditationNumber`, validity. "In-house" when owned by the producing org (shown on Honey Story). | yes | Accreditation document | CCP 1 lab results (through lab reports) |
+| `Wholesale` | Sells to retail; holder while it has the goods | yes | Approved (no licence) | CCP 10 (batch owner, or storage record as holder) |
+| `Retail` | Sells to consumers; holder at CCP 10 | yes | Approved | CCP 10 (batch owner, or storage record as holder) |
 | `PublicAuthority` | Inspection body | yes | Verified | read-only everywhere |
 | `PlatformAdmin` | Runs the platform (project team now) | yes | — | configuration, verification |
 
-Combinations are normal: Wholesale + Retail; Association + Processing + Packing (an association that packs itself); Processing + Packing + Wholesale (today's "wholesaler", D-24).
+Combinations are normal: Wholesale + Retail; Association + Processing + Packing (an association that packs itself); Processing + Packing + Wholesale (a plant that fills and stores its own honey, D-24).
 
 ---
 
 ## 4. Org roles (memberships)
 
-A user joins an org through a **membership** with one org role. One user can hold several memberships (several orgs, or several roles in one org). The user picks the **active membership** in the UI; every write is attributed to user + org.
+A user joins an org through a **membership** with one org role. One user can hold several memberships (several orgs, or several roles in one org). The user picks the **active membership** in the UI; every write is attributed to user + org. Memberships are added and revoked by platform administrators only.
 
-| Org role | Does | Typical capability |
+| Org role | Does (defaults) | Typical capability |
 |---|---|---|
-| `OrgAdmin` | Manages the org's members, documents and settings | any |
-| `Staff` | Enters CCP values and operational records | Processing, Packing, Wholesale, Retail |
-| `FieldInspector` | Enters CCP 0 (field audit at the beekeeper) | Association |
-| `SampleAcceptanceOfficer` | Lot intake, sampling, seals (CCP 1 reception) | Processing |
-| `QualityApprover` | Approves CCP records of their org (four-eyes) | Processing, Packing |
-| `Analyst` | Enters lab results | Laboratory |
-| `LabManager` | Approves lab results and the lab report | Laboratory |
+| `OrgAdmin` | Uploads documents for its own org (also while Pending), requests finalizing, ships and confirms or rejects receipts, records beekeeper consents (associations), reads intake and samples. Members, capabilities and the four-eyes exemption are **platform-admin only**. | any |
+| `Staff` | Enters CCP values (CCP 2–10, and CCP 1 parameters the lab report does not cover), requests finalizing, ships and confirms receipts, enters CCP 10 storage records as holder | Processing, Packing, Wholesale, Retail |
+| `FieldInspector` | Reads. No default write right; enters CCP 0 only if an administrator gives CCP 0 to the association on the CCP responsibilities page | Association |
+| `SampleAcceptanceOfficer` | Records deliveries (intake), takes and seals samples and sends them to a lab, enters CCP 0 | Processing |
+| `QualityApprover` | Approves CCP records and CCP 10 storage records of its org, confirms finalizing (four-eyes) | Processing, Packing, Wholesale, Retail |
+| `Analyst` | Receives samples at the lab, enters lab results, submits the report | Laboratory |
+| `LabManager` | Receives samples, approves or returns lab reports | Laboratory |
 
-PlatformAdmin users are `OrgAdmin` of the platform org. A PublicAuthority member gets read access through the capability, not through a role.
+Platform administrators are users in the Identity role `Administrator` with an `OrgAdmin` membership in the platform org (D-32). With the flag on they are **read-only on business data** (D-35): they manage organizations, members, verification, configuration, the registry, and (for now) batches (§5). A PublicAuthority member gets read access through the capability, not through a role.
 
 ---
 
 ## 5. Permission matrix
 
-Defaults of the responsibility configuration (§13). **E** = enter, **A** = approve, **R** = read, **–** = none. "Holder" is the org with custody of the product at that moment (§6). Write needs: the org has the capability, it is Verified, it has custody, and the user has the role. The approver must not be the person who entered (four-eyes).
+The defaults come from two editable tables plus a few fixed rules. Both tables are edited by platform administrators (Organizations → Roles and permissions, and CCP responsibilities); changes act at once.
 
-| Activity | Assoc. FieldInspector | Proc. SampleAcceptanceOfficer | Proc. Staff | Proc. QualityApprover | Lab Analyst | Lab LabManager | Packing Staff | Packing QualityApprover | Holder Staff (Wholesale/Retail) | OrgAdmin | PublicAuthority | PlatformAdmin | Public |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| CCP 0 field audit (beekeeper's association) | E | R | R | R | – | – | R | R | R | R (own org) | R | R | status + yes/no only (D-20) |
-| Lot intake, sampling, seals | – | E | R | R | R (sample) | R (sample) | R | R | R | R | R | R | – |
-| CCP 1 reception tests (non-lab) | – | E | E | A | – | – | R | R | R | R | R | R | Honey Story |
-| CCP 1 lab results | – | R | R | R | E | A | R | R | R | R | R | R | Honey Story (+ lab, in-house badge) |
-| CCP 2–6 processing | – | R | E | A | – | – | R | R | R | R | R | R | Honey Story |
-| Define batch / composition | – | – | E | A | – | – | E (if it also processes) | A | – | R | R | R | – |
-| Finalize batch | – | – | E (request) | A (four-eyes) | – | – | E (request) | A | – | R | R | R | Honey Story |
-| CCP 7–9 filling, labelling, packaging | – | – | R | R | – | – | E | A | R | R | R | R | Honey Story |
-| Shipment send / receive | – | – | E (send) | – | – | – | E (send) | – | E (receive) | R | R | R | – |
-| CCP 10 storage | – | – | E (while holder) | A | – | – | E (while holder) | A | E (while holder) | R | R | R | Honey Story |
-| Correction after finalize | – | – | E (request) | A | E (lab data) | A (lab data) | E | A | – | R | R | R | "corrected" note |
-| Recall report | – | – | R | R | – | – | R | R | R | E | E | E | – |
-| Org verification | – | – | – | – | – | – | – | – | – | E (documents) | R | A (or CentralAssociation for associations) | – |
+**Write needs, everywhere:** the org is Verified, has the required capability, owns (or holds) the item, and the user's active role has the right. The approver must not be the person who entered (four-eyes, §5.4). Platform administrators never enter or approve business data.
 
-"Read flows along the chain": an org reads the full CCP history of everything it holds or held and of everything upstream of it (contributing lots, earlier holders). Upstream orgs see only the receipt status of their own shipments, not the downstream CCP records (default; PQ-06).
+### 5.1 CCP responsibilities (`CcpResponsibilities`, seeded by 005, CCP 0 changed by 015)
+
+| CCP | Side | Owner rule | Required capability | Enter | Approve |
+|---|---|---|---|---|---|
+| CCP 0 primary audit | lot | Owner | Processing | SampleAcceptanceOfficer | QualityApprover |
+| CCP 1 sampling and lab | lot | Owner | Processing | SampleAcceptanceOfficer, Staff (lab values are written from the approved lab report, §7) | QualityApprover |
+| CCP 2–3 | lot | Owner | Processing | Staff | QualityApprover |
+| CCP 4–6 | batch | Owner | Processing | Staff | QualityApprover |
+| CCP 7–9 | batch | Owner | Packing | Staff | QualityApprover |
+| CCP 10 storage | batch | Owner | Wholesale, Retail or Packing | Staff | QualityApprover |
+
+"Owner" is the owning organization of the lot or batch (`OwnerOrgId`, D-36; or the organization linked to its wholesaler while none is set). All batch CCPs belong to the batch owner. The owner rule `BeekeeperAssociation` still exists and can be chosen for a CCP. CCP 10 storage records of later holders use the same CCP 10 row (§6).
+
+### 5.2 Other rights (`RolePermissions`, seeded by 013, defaults in `Services/OrgModel/Permissions.cs`)
+
+| Area | Enter | Approve | Read | Further checks |
+|---|---|---|---|---|
+| Intake (delivery) | SampleAcceptanceOfficer | – | SampleAcceptanceOfficer, OrgAdmin | Processing org |
+| Samples | SampleAcceptanceOfficer (take, seal, send) | Analyst, LabManager (receive at the lab, seal check) | SampleAcceptanceOfficer, OrgAdmin, Analyst, LabManager | lot owner; the lab the sample was sent to (Laboratory) |
+| Lab results | Analyst | LabManager | all roles | Laboratory org that received the sample; lot's CCP 0 done (§7) |
+| Shipments | Staff, OrgAdmin (send) | Staff, OrgAdmin (confirm or reject receipt) | Staff, OrgAdmin, QualityApprover | holder of the quantity; receiver Verified; no capability check |
+| Storefront (consents) | OrgAdmin | – | OrgAdmin | Association, beekeeper linked to it |
+| Recall report | – | – | all roles | own lots and batches, or the association's beekeepers |
+| Finalize | Staff, OrgAdmin (request) | QualityApprover (confirm) | – | batch owner |
+| CCP read (per CCP) | – | – | all roles | the read rule in §5.3 |
+
+### 5.3 Read along the chain
+
+An org reads: the CCPs it is responsible for; the earlier CCPs of the same lot or batch; every CCP of the lots in batches it owns; and, as a **holder** (it received a shipment of the batch or keeps a storage record of it), that batch's CCPs and its lots' CCPs, read-only, without beekeeper and apiary names (D-73, D-75). A verified PublicAuthority reads everything. Upstream orgs do not see downstream records (PQ-06). A refused CCP read answers the branded 403 page; other pages answer 404 for records of other orgs (D-47, D-73).
+
+### 5.4 Fixed rules (not configurable)
+
+- **Batches:** creating a batch, its composition, setting its owner and assigning its CCPs are **platform-admin only** for now (`FinalHoneyProductionsController` is `[Authorize(Roles = "Administrator")]`, D-73). Lots are created by intake (all lot CCPs are assigned automatically) or by an administrator.
+- **Four-eyes:** the approver of a CCP record must not be a person who recorded its values or who marked it "Not applicable" (D-75); the person who requested finalizing cannot confirm it; the approver of a lab report must not be its analyst. A platform administrator can give a one-person org a four-eyes exemption (flagged on the record and in the audit log); lab results never get it. My work offers only the approvals the four-eyes rule allows.
+- **Corrections after approval or finalize:** only a platform administrator requests one; a second platform administrator decides it (`CCPMonitoringController.RequestCorrection` / `DecideCorrection`). There is no "corrected" note on Honey Story.
+- **Order:** lot CCP 0–3, batch CCP 4–10 (`CriticalControlPoints.AppliesTo`). A lot joins a batch only when all its CCPs are done and approved. Every batch CCP, **including CCP 10 storage at the plant**, must be completed (or not applicable) and approved before finalizing (`CcpIntegrityService.GetFinalizeBlockersAsync`). Only finalized batches ship. Finalized batches and their lots are locked; there is no unfinalize (D-14).
+- **Registry, org verification, members, capabilities, four-eyes exemption, CCP responsibilities, role permissions, audit log:** platform-admin only (associations may be verified by a central association if configured).
 
 ---
 
 ## 6. Custody, lots and shipments
 
-- **Intake.** The SampleAcceptanceOfficer of a Processing org records the delivery from the beekeeper: lot, quantity, containers, a photo of the signed delivery form (stored with SHA-256), and optionally an SMS to the beekeeper's phone. Custody of the lot starts with that org.
-- **Lots** are defined by the Processing or Packing org (today: the wholesaler). The beekeeper's association records CCP 0 on its members' lots.
-- **Batches** are composed by the org that holds the lots. Finalize needs four-eyes and all CCP rules (D-16).
-- **Shipments** move a finalized batch (or part of it) after packaging. Custody moves only when the receiver confirms receipt. CCP 10 is recorded by whoever holds the goods, once per holder.
-- **Recall report**: from a batch to all upstream lots, apiaries and beekeepers, and to every downstream shipment (recursively).
+- **Intake.** The SampleAcceptanceOfficer of a Processing org records the delivery from the beekeeper: quantity, province/district, origin country, a photo or PDF of the signed delivery form (stored with SHA-256), optionally an SMS. The lot is created with that org as owner and every lot CCP (0–3) is assigned.
+- **Lot CCPs.** CCP 0 by the SampleAcceptanceOfficer, then the lab (§7) fills CCP 1, then Staff enter CCP 2–3; each approved by a QualityApprover.
+- **Batches** are created, composed, given an owner and their CCPs (4–10) by a platform administrator; the owner's Staff enter and its QualityApprover approves them. Finalize: Staff or OrgAdmin request, a QualityApprover (another person) confirms; origin shares are stored at that moment.
+- **Shipments** move a quantity of a finalized batch. Custody of that quantity moves only when the receiver confirms receipt. Each later holder records its own **CCP 10 storage record** (`HolderStorageRecords`) after receipt, approved by its QualityApprover.
+- **Recall report**: from a batch to all upstream lots, apiaries and beekeepers, and to every downstream shipment.
 
 ```mermaid
 flowchart LR
-    BK[Beekeeper<br/>no login] -- delivers honey --> IN[Intake<br/>SampleAcceptanceOfficer<br/>delivery form photo, SMS]
-    ASSOC[Association<br/>FieldInspector] -. CCP 0 .-> LOT
-    IN --> LOT[Raw lot<br/>custody: Processing org]
-    LOT -- CCP 1 + sample --> LAB[Laboratory]
-    LOT -- CCP 2-6 --> BATCH[Batch composition<br/>Processing org]
-    BATCH -- finalize, four-eyes --> FIN[Finalized batch]
-    FIN -- CCP 7-9 --> PACK[Packing org]
-    PACK -- shipment --> SHP{Receipt confirmed?}
-    SHP -- yes, custody moves --> HOLD[Wholesale / Retail<br/>CCP 10 while holder]
-    SHP -- no --> PACK
-    HOLD -- shipment --> HOLD2[Next holder<br/>CCP 10]
+    BK[Beekeeper<br/>no login] -- delivers honey --> IN[Intake<br/>SampleAcceptanceOfficer]
+    IN --> LOT[Raw lot<br/>owner: Processing org]
+    LOT -- CCP 0 --> C0[CCP 0 approved]
+    LOT -- sample --> LAB[Laboratory]
+    C0 --> LAB
+    LAB -- approved report --> C1[CCP 1]
+    C1 --> C23[CCP 2-3]
+    C23 --> BATCH[Batch<br/>created by platform admin]
+    BATCH -- CCP 4-10 incl. storage at plant --> FIN[Finalize<br/>request + four-eyes confirm]
+    FIN --> SHP{Receipt confirmed?}
+    SHP -- yes, custody moves --> HOLD[Wholesale / Retail<br/>own CCP 10 storage record]
+    SHP -- rejected --> FIN
+    HOLD -- shipment --> HOLD2[Next holder<br/>own CCP 10 storage record]
 ```
 
 ```mermaid
 sequenceDiagram
-    participant S as Sender org (Staff)
+    participant S as Sender org (Staff / OrgAdmin)
     participant P as Platform
-    participant R as Receiver org (Staff)
-    S->>P: Create shipment (batch, quantity, documents)
+    participant R as Receiver org (Staff / OrgAdmin)
+    S->>P: Create shipment (finalized batch, quantity)
     P-->>R: Shipment pending
-    R->>P: Confirm receipt (quantity, condition)
+    R->>P: Confirm receipt (or reject with reason)
     P->>P: Custody moves to receiver, audit entry
-    P-->>S: Shipment received
-    R->>P: CCP 10 storage records while holder
+    R->>P: CCP 10 storage record (Staff), approved by QualityApprover
 ```
 
 ---
 
 ## 7. Samples and lab
 
-- A sample is taken at intake (CCP 1) by the SampleAcceptanceOfficer: sample code, **seal number**, a **retained counter-sample** (seal number, storage place, retain-until date), and a **chain of custody** (each hand-over: from, to, who, when, seal intact yes/no).
-- The lab (Analyst) enters results against the sample; the LabManager approves. The lab report PDF is stored with its **SHA-256** hash, report number and issue date.
-- Honey Story shows: tested by an accredited lab (yes/no), accreditation number, and "in-house lab" when the lab belongs to the producing org.
+- The SampleAcceptanceOfficer of the lot owner takes the sample: sample code, **seal number**, a **retained counter-sample** (seal number, storage place, retain-until date), and sends it to a lab. Each hand-over is a custody event (seal intact yes/no).
+- The lab (Analyst or LabManager) receives the sample and checks the seal. The Analyst enters results, uploads the report PDF (stored with **SHA-256**, report number and issue date) and submits; the LabManager (another person) approves or returns it. Approval writes the results into the lot's CCP 1.
+- **CCP 0 first (D-61):** lab results are saved, submitted and approved only after the lot's CCP 0 is completed and approved (or not applicable); a report can still be returned meanwhile (`Services/OrgModel/Lab.cs`).
+- Lab rights come from `RolePermissions` (areas Samples and LabResults), not from `CcpResponsibilities`.
+- Honey Story shows: tested by an accredited lab (yes/no), accreditation number, and "in-house lab" when the lab belongs to the producing org. A public page (`/verify-report`) compares a report PDF with its stored hash.
 
 ```mermaid
 sequenceDiagram
     participant SAO as SampleAcceptanceOfficer
+    participant QA as QualityApprover
     participant P as Platform
     participant L as Lab Analyst
     participant M as LabManager
-    SAO->>P: Sample (code, seal no., counter-sample seal, retain until)
-    SAO->>P: Custody event: handed to lab
-    L->>P: Custody event: received, seal intact
-    L->>P: Results for CCP 1 parameters
-    L->>P: Upload report PDF (SHA-256 stored)
-    M->>P: Approve results (four-eyes)
-    P->>P: CCP 1 lab part Completed, audit entries
+    SAO->>P: Sample (code, seal no., counter-sample, retain until), sent to lab
+    SAO->>P: CCP 0 values
+    QA->>P: Approve CCP 0 (four-eyes)
+    L->>P: Receive sample, seal intact
+    L->>P: Results, report PDF (SHA-256), submit
+    M->>P: Approve report (four-eyes)
+    P->>P: Results written to CCP 1, audit entries
 ```
 
 ---
 
 ## 8. Organization verification
 
-Statuses `Pending` → `Verified` → `Suspended` (and back to `Verified`). Documents (licence, accreditation certificate, tax certificate, registry proof) are uploaded by the OrgAdmin. PlatformAdmin verifies; for `Association` the verifier can be configured to be the CentralAssociation. Only Verified orgs can write. Suspension keeps all data and blocks new writes.
+Statuses `Pending` → `Verified` → `Suspended` (and back to `Verified`). Documents (licence, accreditation certificate, tax certificate, registry proof) are uploaded by the org's OrgAdmin (or a platform administrator). A platform administrator verifies; for `Association` the verifier can be configured to be the CentralAssociation (`OrgModel:AssociationVerifier`). Only Verified orgs can write. Suspension keeps all data and blocks new writes.
 
 ```mermaid
 stateDiagram-v2
@@ -226,35 +254,34 @@ public interface IRegistryVerifier
 }
 ```
 
-- `ManualRegistryVerifier` (now): the association uploads proof (registry printout, photo), a PlatformAdmin (or a delegated association OrgAdmin, configurable) approves or rejects. The result, document hash and decider are stored.
-- `AksRegistryVerifier` (later): calls the ministry service when access exists (PQ-10). The same result record, `Method = Aks`.
+- The registry page (`RegistryController`) is **platform-admin only**: an administrator links a beekeeper to its association, uploads the proof and approves or rejects the registry number; one administrator is enough (D-37). The result, document hash and decider are stored.
+- `ManualRegistryVerifier` (now); `AksRegistryVerifier` (later, when access exists, PQ-10) with the same result record.
 - Format check: `^TR\d{2}\d{10}$`, and the two province digits must be 01–81.
-- A beekeeper can appear on a storefront and in lots for new batches only when verified (configurable grace period for existing data).
 
 ---
 
 ## 10. Audit
 
-- Table `AuditEntries` (append-only): id, time (UTC), user id, active org id, action (`Create`, `Update`, `Delete`, `Approve`, `Reject`, `Finalize`, `Correct`, `Verify`, `CustodyTransfer`, `Login`), entity, key, old values (JSON), new values (JSON), correlation id, client IP.
-- Written by an EF Core `SaveChangesInterceptor` for every tracked change, plus explicit entries for approvals and logins.
-- Append-only: the app's DB user gets `INSERT`/`SELECT` only on the table (`DENY UPDATE, DELETE`), plus an `INSTEAD OF UPDATE, DELETE` trigger that raises an error. Each row stores the hash of the previous row (hash chain) so tampering is detectable.
-- Corrections after finalize are their own records (`CcpCorrections`: target, old value, new value, reason, requested by, approved by), never in-place edits without a trace. Honey Story shows "corrected on date".
+- Table `AuditEntries` (append-only): time (UTC), user, active org, action, entity, key, old and new values (JSON), client IP.
+- Written by an EF Core interceptor for every insert, update and delete of the business context, in the same transaction, plus explicit entries for approvals, logins and Identity changes. On regardless of the flag (D-34).
+- Append-only: triggers reject `UPDATE` and `DELETE`; the app's DB login is denied both (D-39). Each row stores the hash of the previous row (hash chain); the audit page can check the chain.
+- Corrections are their own records (`CcpCorrections`: target, old value, new value, reason, requested by, decided by), never in-place edits without a trace (§5.4).
 
 ---
 
 ## 11. Storefront and privacy
 
-- A beekeeper storefront (`/beekeeper/{slug}`) is generated **only** from verified data: AKS-verified registry, Verified association, finalized batches with that beekeeper's lots, approved lab results.
-- Published only after **recorded consent** (`Consents`: purpose, consent text version and its hash, given at, recorded by, evidence document, withdrawn at). Withdrawal unpublishes at once.
-- Shows province and district only. Never exact coordinates, phone, birth date or photos without a separate consent.
-- Personal data stays with the association that records it (KVKK roles: platform as processor or joint controller, PQ-09).
-- Honey Story keeps D-12 and D-20.
+- A beekeeper storefront (`/storefront/{code}`) is generated **only** from verified data: verified registry number, verified association, finalized batches with that beekeeper's lots, approved lab results.
+- Published only after **recorded consent**, entered by the OrgAdmin of the beekeeper's verified association (purpose, consent text version and hash, given on, recorded by, signed document, withdrawn at). Withdrawal unpublishes at once.
+- Shows province and district only. Never coordinates, phone, birth date or personal photos.
+- Personal data stays with the association that records it (KVKK roles: PQ-09).
+- Honey Story shows provinces only (D-72) and keeps D-20; the beekeeper's name appears only with consent.
 
 ---
 
 ## 12. Data model
 
-All new tables and columns are additive. Existing FKs stay. Names are proposals.
+> **Historical.** This is the schema proposal of 2026-10-03. The implemented tables and columns are in migrations 004–008 and 013–015 and in `Data/TOP4HoneyChainsContext.cs`; names and details differ (for example `HolderStorageRecords` instead of `HolderCcpAssignments`, `BeekeeperRegistry` instead of new `Beekeepers` columns, ownership through `OwnerOrgId`).
 
 ```mermaid
 erDiagram
@@ -320,31 +347,32 @@ New columns on existing tables (all nullable or with defaults):
 
 ## 13. Configuration tables
 
-Responsibility is data (`CcpResponsibilities`, `CcpResponsibilityRoles`), seeded with these defaults and editable by PlatformAdmin:
+CCP responsibility is data (`CcpResponsibilities`, `CcpResponsibilityCapabilities`, `CcpResponsibilityRoles`), seeded by 005 (CCP 0 changed by 015) and editable by platform administrators on the CCP responsibilities page:
 
 | CCP | Required capability | Owner rule | Enter | Approve |
 |---|---|---|---|---|
-| CCP 0 | Association | beekeeper's association | FieldInspector | – (or QualityApprover, configurable) |
-| CCP 1 (reception) | Processing | custodian | SampleAcceptanceOfficer, Staff | QualityApprover |
-| CCP 1 (lab) | Laboratory | lab of the sample | Analyst | LabManager |
-| CCP 2–6 | Processing | custodian | Staff | QualityApprover |
-| CCP 7–9 | Packing | custodian | Staff | QualityApprover |
-| CCP 10 | Wholesale or Retail (or the packer while it holds) | current holder | Staff | – (configurable) |
+| CCP 0 | Processing | lot owner | SampleAcceptanceOfficer | QualityApprover |
+| CCP 1 | Processing | lot owner | SampleAcceptanceOfficer, Staff (lab values come from the approved lab report) | QualityApprover |
+| CCP 2–3 | Processing | lot owner | Staff | QualityApprover |
+| CCP 4–6 | Processing | batch owner | Staff | QualityApprover |
+| CCP 7–9 | Packing | batch owner | Staff | QualityApprover |
+| CCP 10 | Wholesale, Retail or Packing | batch owner (holders: their own storage record) | Staff | QualityApprover |
 
-Other settings: `Features:OrgRoleModel`, verifier of associations (`PlatformAdmin` / `CentralAssociation`), four-eyes waiver for one-person orgs (default off, PQ-07), registry grace period, SMS provider on/off.
+Lab rights (receive samples, enter, approve) are not in this table: they come from `RolePermissions` (areas Samples and LabResults, §5.2), edited on Organizations → Roles and permissions (D-56).
+
+Other settings: `Features:OrgRoleModel`; `OrgModel:AssociationVerifier` (`PlatformAdmin` / `CentralAssociation`); the four-eyes exemption per organization (set by a platform administrator, default off, PQ-07). A registry grace period and an SMS provider switch from the design are not settings in the code.
 
 ---
 
 ## 14. Authorization approach (ASP.NET Core)
 
-- **Feature flag.** `Features:OrgRoleModel = false`: every policy below resolves to "is in role Administrator", so v1.0 behaves exactly as today. `true`: the org model applies.
-- **Claims.** A custom `IUserClaimsPrincipalFactory` adds the active membership (`org`, `org_role`, `org_caps`, `org_status`). Switching membership re-issues the cookie. Membership changes rotate the security stamp, so old cookies stop working.
-- **Policies** (attribute level): `PlatformAdmin`, `OrgMember`, `OrgAdmin`, `CanVerifyOrgs`, `ReadOnlyAuthority`. Controllers move from `[Authorize(Roles = "Administrator")]` to policies one by one.
-- **Resource-based handlers** (per record): `IAuthorizationService.AuthorizeAsync(User, resource, requirement)` with:
-  - `CcpEnterRequirement` / `CcpApproveRequirement`: resource = (CCP, lot or batch). The handler checks the responsibility config, the org's capability and status, custody (or association of the beekeeper for CCP 0), the user's role, the D-14 lock and four-eyes (approver ≠ recorder).
-  - `ShipmentReceiveRequirement`, `BatchFinalizeRequirement`, `CorrectionApproveRequirement`, `OrgVerifyRequirement`.
-- **Org scoping of queries.** A scoped service (`IOrgScope`) exposes `VisibleLots()`, `VisibleBatches()`, `VisibleBeekeepers()`, built from custody history and association membership. Controllers query through it, never `_context.X` directly. EF global query filters only on strictly owned tables (memberships, documents).
-- **Tests.** One integration test per matrix cell (enter / approve / read / denied), and one test that the flag-off mode equals v1.0.
+- **Feature flag.** `Features:OrgRoleModel = false`: only users in the Identity role `Administrator` use the panel (v1.0). `true`: the org model applies.
+- **Active membership.** The chosen membership id is kept in a cookie (`T4H.Membership`), not in a claim. Every request re-reads it from the database and checks that it belongs to the user and is active, so a revoked membership or a suspended org takes effect at once (`Services/OrgModel/CurrentOrg.cs`, D-32).
+- **Policies** (`Program.cs`, `Services/OrgModel/Authorization.cs`): `PanelUser` (an administrator, or a user with an active membership while the flag is on), `PlatformAdmin` (Identity role `Administrator`), `SignedIn`. Admin-only screens (organization create/edit, capabilities, members, four-eyes exemption, registry, CCP responsibilities, permissions, audit, corrections) use `PlatformAdmin`; business data controllers that are not yet opened to members (beekeepers, apiaries, lots, batches, wholesalers) keep `[Authorize(Roles = "Administrator")]`.
+- **Resource-based handlers:** `OrganizationAuthorizationHandler` (read, manage documents, verify) and `CcpAuthorizationHandler` (read, enter, approve a CCP of a lot or batch, built on `CcpResponsibilityService` in `Services/OrgModel/Responsibility.cs`, plus four-eyes through `CcpRecorders`).
+- **Inline checks** for everything else: intake, samples, lab reports, shipments and receipt, storage records, finalize request/confirm, storefront consents and recall check the active membership, the org status and capability, ownership or custody, and `Permissions` (RolePermissions) in the controller or in `Services/OrgModel/` (`Lab.cs`, `Custody.cs`). There are no `ShipmentReceiveRequirement` or `BatchFinalizeRequirement` handlers.
+- **Org scoping of queries.** `OrgScope` (in `Authorization.cs`) gives the lots and batches an org may list; administrators and verified public authorities read all.
+- **Tests.** `TOP4HoneyChains.Web.Tests` (unit and `Category=E2E`, the app hosted with the flag on against a throw-away database, D-46).
 
 ---
 
@@ -353,7 +381,7 @@ Other settings: `Features:OrgRoleModel`, verifier of associations (`PlatformAdmi
 1. Add the schema (P1 script), flag off.
 2. Create the platform org (generic name, no personal or company names) with capability `PlatformAdmin`; give every current Administrator an `OrgAdmin` membership in it.
 3. Create one org per `Wholesalers` row (`LegacyWholesalerId`), capabilities Processing + Packing + Wholesale (D-24), status Pending. Backfill `DefinedByOrgId`, `CustodianOrgId`, `OwnerOrgId`.
-4. Beekeepers: no user accounts in the new model. Logins stay locked (D-09); deletion is PQ-05. Association links and registry numbers are entered by associations (P1/P2).
+4. Beekeepers: no user accounts in the new model. Logins stay locked (D-09); deletion is PQ-05. Association links and registry numbers are entered by platform administrators (§9).
 5. Global roles `Wholesaler`, `Consumer`, `SampleAcceptanceOfficer`, `Beekeeper`: kept but unused once the flag is on (no deletes; GO-LIVE step 6 still applies).
 6. Legacy CCP data: unchanged, labelled "recorded before approvals" where approval data is missing. The five finalized batches stay as they are (D-16).
 7. Switch the flag on in a test environment, run the matrix tests, then switch on in production.
@@ -361,6 +389,8 @@ Other settings: `Features:OrgRoleModel`, verifier of associations (`PlatformAdmi
 ---
 
 ## 16. Phased plan
+
+> **Historical.** The plan as written on 2026-10-03. All five phases are implemented (migrations 004–008); the deviations are in D-32 and D-40 to D-43, later changes in §5 and DECISIONS.md.
 
 | Phase | Scope | Acceptance criteria |
 |---|---|---|
@@ -377,15 +407,15 @@ Other settings: `Features:OrgRoleModel`, verifier of associations (`PlatformAdmi
 | Risk | Mitigation |
 |---|---|
 | Associations lack staff or devices to record on behalf of beekeepers | Simple mobile-friendly forms, offline-tolerant intake later, training material |
-| One-person orgs cannot do four-eyes | Configurable waiver with an audit flag (PQ-07) |
+| One-person orgs cannot do four-eyes | Exemption per org, set by a platform administrator, flagged in the audit log (PQ-07) |
 | No AKS access: manual verification can be faked | Document + hash + named decider; periodic re-verification; AKS adapter when possible |
 | KVKK: associations process beekeeper data; consent quality | Clear controller/processor roles and agreements (PQ-09); consent text versioned and hashed |
 | "Wholesaler" assumption wrong (D-24) | Capabilities are data: re-assign without schema change |
-| Org scoping bugs leak data between competitors | `IOrgScope` as the only query path; matrix tests; code review rule |
+| Org scoping bugs leak data between competitors | `OrgScope` and `CcpResponsibilityService` as the query and access path; E2E tests; code review rule |
 | Audit table growth | Partitioning by month, archive after the retention period (PQ-09) |
 | Legacy demo-like data (PQ-02) on public pages | Clean up before the flag is switched on |
 | Origin rule details unclear in Turkish law | Snapshot at finalize; display rule configurable (PQ-11) |
-| Feature flag drift (two code paths) | Flag-off tests in CI until v1.0 mode is retired |
+| Feature flag drift (two code paths) | Flag-off tests until v1.0 mode is retired |
 
 ---
 

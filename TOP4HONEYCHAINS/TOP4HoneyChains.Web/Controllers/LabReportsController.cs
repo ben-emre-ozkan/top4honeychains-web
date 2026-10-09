@@ -96,6 +96,9 @@ namespace TOP4HoneyChains.Web.Controllers
                 error = report.Status == LabReportStatus.Approved
                     ? "An approved lab report cannot be changed; request a correction instead."
                     : "The report is submitted; the LabManager approves it or returns it for changes.";
+            // D-75: a draft cannot be saved either once the lot is locked in a finalized batch
+            if (error == null && await _ccp.GetRawLotLockReasonAsync(sample.RawHoneyProductionId) != null)
+                error = "The lot is locked in a finalized batch; lab values can only be changed through a correction.";
             reportNumber = string.IsNullOrWhiteSpace(reportNumber) ? null : reportNumber.Trim();
             if (error == null && reportNumber?.Length > 50)
                 error = "The report number can be at most 50 characters.";
@@ -219,6 +222,8 @@ namespace TOP4HoneyChains.Web.Controllers
             string? error = await _lab.LabDeniedAsync(sample.LabOrgId, EnterRoles) ?? await _lab.Ccp0PendingAsync(sample.RawHoneyProductionId);
             if (error == null && (report == null || report.Status != LabReportStatus.Draft))
                 error = "Only a draft report can be submitted.";
+            else if (error == null && await _ccp.GetRawLotLockReasonAsync(sample.RawHoneyProductionId) != null)
+                error = "The lot is locked in a finalized batch; lab values can only be changed through a correction.";   // D-75
             else if (error == null && report!.Results.Count == 0)
                 error = "Enter at least one result before submitting.";
             else if (error == null && report!.StoredFileName == null)

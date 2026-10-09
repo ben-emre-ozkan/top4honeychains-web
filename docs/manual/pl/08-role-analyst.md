@@ -53,3 +53,4 @@ Po przesłaniu raportu nie można już edytować, chyba że kierownik laboratori
 | „Raport laboratoryjny musi być plikiem PDF.” | Jako raport akceptowane są wyłącznie pliki PDF. |
 | „Raport został przesłany; kierownik laboratorium go zatwierdzi lub zwróci do poprawy.” | Poczekaj na decyzję kierownika laboratorium. |
 | „Zatwierdzonego raportu laboratoryjnego nie można zmienić; zamiast tego zgłoś korektę.” | Poproś administratora platformy o korektę. |
+| „Partia jest zablokowana w zatwierdzonej ostatecznie partii końcowej; wartości laboratoryjne można zmienić tylko poprzez korektę.” | Partia została zamknięta w partii końcowej; wersji roboczej nie można już zapisać ani przesłać. Zwróć się do administratora platformy. |

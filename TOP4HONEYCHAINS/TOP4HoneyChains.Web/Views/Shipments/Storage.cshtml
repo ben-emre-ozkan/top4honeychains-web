@@ -19,7 +19,7 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">CCP 10 – @L["Cust.Storage"]: @batch?.FinalHoneyProductionTitle</h4>
+                    <h4 class="card-title">@Ref.Code("CCP 10") – @L["Cust.Storage"]: @batch?.FinalHoneyProductionTitle</h4>
                     <p class="card-title-desc">@L["Cust.StorageHelp"] <strong>@holder?.DisplayName</strong> · @L["Cust.Held"]: <strong id="held">@(((decimal)ViewBag.Held).ToString("0.##"))</strong> kg</p>
                     @if (!canEnter && enterDenied != null)
                     {

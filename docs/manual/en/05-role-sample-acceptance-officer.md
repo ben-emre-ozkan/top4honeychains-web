@@ -95,7 +95,7 @@ There is no separate submit button. When every required parameter has a value, t
 2. Write the **Reason**, for example "Raw honey is not heated or pasteurized".
 3. Click **Mark as "Not applicable"**. The reason, your user name and the time are recorded and shown as "Not applicable" on the public Honey Story.
 
-To undo it, click **Remove "Not applicable"**. A not-applicable CCP still needs approval.
+To undo it, click **Remove "Not applicable"**. A not-applicable CCP still needs approval, by another person than the one who marked it.
 
 **Common errors**
 

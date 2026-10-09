@@ -410,7 +410,7 @@
                                             foreach (var p in source.Photos)
                                             {
                                                 <div class="carousel-item @(isFirstPhoto ? "active" : "")">
-                                                    <img src="@Url.Action("Image", "ApiaryPhotos", new { id = p.ApiaryPhotoId })"
+                                                    <img src="@Url.Action("Image", "HoneyStory", new { id = p.ApiaryPhotoId, qr = Model.BatchQR })" alt="" loading="lazy"
                                                          class="d-block w-100" />
                                                 </div>
                                                 isFirstPhoto = false;

@@ -53,3 +53,4 @@ Pēc iesniegšanas pārskatu vairs nevar rediģēt, ja vien laboratorijas vadīt
 | "Laboratorijas pārskatam jābūt PDF formātā." | Pārskatam tiek pieņemti tikai PDF faili. |
 | "Pārskats ir iesniegts; laboratorijas vadītājs to apstiprina vai atgriež labošanai." | Gaidiet laboratorijas vadītāja lēmumu. |
 | "Apstiprinātu laboratorijas pārskatu nevar mainīt; tā vietā pieprasiet labojumu." | Lūdziet platformas administratoram veikt labojumu. |
+| "Partija ir bloķēta pabeigtā (fiksētā) gala partijā; laboratorijas vērtības var mainīt tikai ar labojumu." | Partija ir noslēgta gala partijā; melnrakstu vairs nevar saglabāt vai iesniegt. Vērsieties pie platformas administratora. |

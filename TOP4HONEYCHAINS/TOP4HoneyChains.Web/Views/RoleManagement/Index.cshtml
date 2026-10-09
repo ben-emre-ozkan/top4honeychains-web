@@ -72,6 +72,12 @@
 
                                             <td>
 
+                                                @if (TOP4HoneyChains.Web.Controllers.RoleManagementController.IsProtected(role.Name))
+                                                {
+                                                    <span class="badge bg-light text-dark border" title="@L["This role is used by the platform and cannot be renamed or deleted."]"><i class="mdi mdi-lock-outline me-1"></i>@L["Protected"]</span>
+                                                }
+                                                else
+                                                {
                                                 <div class="d-flex gap-2">
 
                                                     <button class="btn btn-sm btn-info"
@@ -92,6 +98,7 @@
                                                     </button>
 
                                                 </div>
+                                                }
 
                                             </td>
 

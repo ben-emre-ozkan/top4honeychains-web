@@ -35,9 +35,9 @@
 ## Najczęściej zadawane pytania i rozwiązywanie problemów {#faq}
 
 **Nie mogę się zalogować: „Nieprawidłowa nazwa użytkownika lub hasło. …”**
-Sprawdź nazwę użytkownika (a nie adres e-mail) i hasło. Po 5 nieudanych próbach konto zostaje zablokowane na 15 minut; odczekaj, a w razie potrzeby użyj opcji **Zapomniałeś hasła?**.
+Sprawdź nazwę użytkownika (a nie adres e-mail) i hasło. Po 5 nieudanych próbach konto zostaje zablokowane na 15 minut; odczekaj lub poproś administratora platformy o odblokowanie konta (**Odblokuj**), a następnie w razie potrzeby użyj opcji **Zapomniałeś hasła?**.
 
-**„To konto nie ma dostępu do panelu internetowego.”**
+**„To konto nie ma jeszcze dostępu do panelu: nie należy do żadnej organizacji.”**
 Twoje konto nie ma aktywnego członkostwa. Poproś administratora platformy o dodanie Cię do Twojej organizacji z odpowiednią rolą.
 
 **Widzę stronę „Nie możesz otworzyć tej strony” (403).**
@@ -65,7 +65,7 @@ Przeczytaj listę „Brakuje przed ostatecznym zatwierdzeniem:”. Każdy KPK pa
 Tak ma być: każda zmiana wymaga ponownego zatwierdzenia.
 
 **Partia nie pojawia się na stronie „Zarządzaj partią”.**
-Partia pojawia się tylko wtedy, gdy wszystkie jej KPK są zakończone lub oznaczone jako nie dotyczy i zatwierdzone, i tylko u hurtownika danej partii końcowej. Zakład przetwórczy musi być powiązany ze swoim rekordem hurtownika.
+Partia pojawia się tylko wtedy, gdy wszystkie jej KPK są zakończone lub oznaczone jako nie dotyczy i zatwierdzone, i tylko u hurtownika danej partii końcowej. Zakład przetwórczy musi być powiązany ze swoim rekordem hurtownika (organizacja → **Edytuj**); strona podaje nazwy zakładów, które nie są powiązane.
 
 **Wartość została zatwierdzona, ale jest błędna.**
 Poproś administratora platformy o korektę; zatwierdza ją drugi administrator.

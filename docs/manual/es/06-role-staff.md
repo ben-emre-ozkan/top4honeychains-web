@@ -57,7 +57,7 @@ Solo se puede enviar una partida finalizada.
 
 1. Abra **Envíos y existencias**. **Partidas en su poder** muestra, por partida, la cantidad que tiene, la reservada por envíos pendientes y la disponible.
 2. Haga clic en **Enviar** junto a la partida.
-3. Elija la organización receptora en **To** (destinatario; esta etiqueta todavía aparece en inglés en la pantalla en español): cualquier otra organización verificada. Ingrese la **Cantidad (kg)** y, si lo desea, una **Nota**.
+3. Elija la organización receptora en **Destinatario**: cualquier otra organización verificada. Ingrese la **Cantidad (kg)** y, si lo desea, una **Nota**.
 4. Confirme. La cantidad queda reservada de inmediato: "Envío creado; la custodia se transfiere cuando el receptor lo confirma."
 
 <!-- SHOT: shipment-create -->
@@ -76,7 +76,7 @@ Errores: "Solo se puede enviar una partida finalizada.", "Puede enviar como máx
 
 Después de recibir una partida:
 
-1. En **Envíos y existencias**, haga clic en **Almacenamiento** junto a la partida (página "PCC 10 – Almacenamiento").
+1. En **Envíos y existencias**, en la columna **Almacenamiento** de la partida, haga clic en **PCC 10** (página "PCC 10 – Almacenamiento").
 2. Ingrese de una vez todos los valores de almacenamiento obligatorios (por ejemplo, temperatura y humedad).
 3. Haga clic en **Guardar**: "Valores de almacenamiento guardados." El registro pasa a **Enviado** y su aprobador de calidad lo ve en **Valores por aprobar**.
 
@@ -84,9 +84,9 @@ Después de recibir una partida:
 
 ## Consultar los registros del productor {#staff-read-only}
 
-Cuando su organización tiene en su poder o ha recibido una partida, usted puede abrir **en modo de solo lectura** los puntos de control del productor de esa partida y de sus lotes: ve los valores y quién los aprobó, pero no hay botones para guardar ni aprobar. La página muestra **Solo lectura** con "Este punto de control es responsabilidad de otra organización; solo puede consultarlo." Para una partida que su organización nunca recibió, la plataforma muestra "No puede abrir esta página".
+Cuando su organización tiene en su poder o ha recibido una partida, usted puede abrir **en modo de solo lectura** los puntos de control del productor de esa partida y de sus lotes: ve los valores y quién los aprobó, pero no hay botones para guardar ni aprobar. Los nombres del apicultor y del apiario aparecen como "no se muestra", igual que en el informe de retiro. La página muestra **Solo lectura** con "Este punto de control es responsabilidad de otra organización; solo puede consultarlo." Para una partida que su organización nunca recibió, la plataforma muestra "No puede abrir esta página".
 
-> En la versión actual, **Envíos y existencias** no tiene un enlace directo a las páginas de PCC del productor. Ábralas desde la página **Flujo del proceso** de la partida o con la dirección de la página de PCC que le comparta el productor.
+Para abrirlos, vaya a **Envíos y existencias**, haga clic en **Flujo del proceso** junto a la partida que tiene en su poder y haga clic en una etapa del flujo.
 
 ## Informe de retiro {#staff-recall}
 

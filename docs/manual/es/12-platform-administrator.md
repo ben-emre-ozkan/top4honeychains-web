@@ -27,7 +27,7 @@ El menú de administración:
 
 1. **Organizaciones** → **Nueva organización**.
 2. Ingrese el nombre, la razón social, el número de identificación fiscal, la provincia y el distrito.
-3. Si la organización es un mayorista que ya existe en la plataforma, elíjalo en el campo del mayorista existente. **Una planta de procesamiento debe estar vinculada a su registro de mayorista**: los lotes que recibe se archivan bajo ese mayorista, y una partida solo puede usar lotes de su propio mayorista.
+3. Si la organización es un mayorista que ya existe en la plataforma, elíjalo en el campo del mayorista existente. **Una planta de procesamiento debe estar vinculada a su registro de mayorista**: los lotes que recibe se archivan bajo ese mayorista, y una partida solo puede usar lotes de su propio mayorista. El vínculo también se puede definir más tarde en la página **Editar** de la organización. Los lotes que una planta recibió antes de quedar vinculada pasan a las partidas del mayorista al que está vinculada.
 4. Marque al menos una capacidad y haga clic en **Crear**.
 
 La organización empieza en estado **Pendiente**: "Organización creada. Permanece en estado Pendiente hasta que sea verificada."
@@ -68,9 +68,12 @@ Las organizaciones pequeñas con una sola persona de calidad pueden recibir la *
 
 - **Agregar nuevo usuario** crea una cuenta. Con el modelo de organizaciones, deje vacío el **Rol global** para los miembros de organizaciones y asígneles una membresía en la página de la organización; elija **Administrador de la plataforma** solo para los administradores.
 - **Restablecer contraseña** asigna una contraseña nueva a un usuario.
-- **Eliminar** borra una cuenta (úselo con cuidado; no se puede deshacer).
+- **Desbloquear** aparece junto a una cuenta con el estado **Bloqueado** y termina el bloqueo de inmediato ("Cuenta desbloqueada."). Sin él, el bloqueo termina por sí solo a los 15 minutos.
+- **Eliminar** borra una cuenta (úselo con cuidado; no se puede deshacer). No puede eliminar su propia cuenta. Cada eliminación y cada desbloqueo queda registrado en el registro de auditoría.
 
-Las contraseñas deben tener al menos 6 caracteres. Tras 5 intentos fallidos de inicio de sesión, la cuenta se bloquea durante 15 minutos. No hay un botón de desbloqueo; el bloqueo termina por sí solo.
+Las contraseñas deben tener al menos 6 caracteres. Tras 5 intentos fallidos de inicio de sesión, la cuenta se bloquea durante 15 minutos.
+
+**Gestión de Usuarios** → **Roles** muestra los roles globales. Los roles de los que depende la plataforma (**Administrador** y **Apicultor**) están marcados como **Protegido** y no se pueden renombrar ni eliminar.
 
 ## Roles y permisos {#admin-permissions}
 
@@ -116,9 +119,9 @@ Los tipos de miel (con su clase de miel para los límites), los períodos de pro
 
 1. **Mayoristas** → el mayorista → **Producciones finales de miel (partidas)** → **Nueva partida**.
 2. Ingrese el **Título de la partida** y la **Fecha de producción**, y haga clic en **Crear partida**. Se genera el código QR.
-3. En **Gestionar partida**, ingrese la cantidad que se usará de cada lote elegible (lotes de este mayorista con todos sus PCC aprobados) y haga clic en **Guardar composición de la partida**. Las cantidades superiores a la disponible se ignoran.
+3. En **Gestionar partida**, ingrese la cantidad que se usará de cada lote elegible (lotes de este mayorista con todos sus PCC aprobados) y haga clic en **Guardar composición de la partida**: "Composición de la partida guardada: … kg en total." Si una cantidad es demasiado grande o un lote no se puede usar, la página enumera cada problema (por ejemplo, "Lote #…: hay como máximo … kg disponibles.") y no guarda nada. Si una planta tiene lotes que ninguna partida puede tomar porque no está vinculada a un registro de mayorista, la página la nombra con un enlace a su página **Editar**.
 4. Use **Editar** en la partida para definir la organización propietaria (la planta).
-5. **Gestionar PCC**: marque del PCC 4 al PCC 10 y haga clic en **Guardar asignaciones**.
+5. **Gestionar PCC**: marque del PCC 4 al PCC 10 y haga clic en **Guardar asignaciones**: "Asignaciones de PCC guardadas: … añadidas, … quitadas."
 
 Después, la planta ingresa los PCC de la partida y la finaliza. Los administradores no pueden finalizar: "Con el modelo de organizaciones, la organización propietaria finaliza la partida (solicitud y aprobación por dos personas)."
 

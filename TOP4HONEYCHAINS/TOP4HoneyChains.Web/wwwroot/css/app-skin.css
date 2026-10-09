@@ -282,6 +282,9 @@ body.app-skin .badge.bg-dark { background-color: var(--b-cream) !important; colo
 .role-chip-mark { flex-shrink: 0; }
 .role-chip.is-verified .role-chip-mark { color: var(--b-green); }
 .role-chip.is-pending .role-chip-mark { color: #A2450B; }
+/* D-75: a suspended organization: a stop mark on a muted red chip, distinct from pending */
+.role-chip.is-suspended { background: #FCEDEC; box-shadow: inset 0 0 0 1px #F1C4C0; }
+.role-chip.is-suspended .role-chip-mark { color: #B42318; }
 .role-chip-org { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
 .role-chip-sep { color: var(--b-muted); }
 .role-chip-role { white-space: nowrap; color: var(--b-honey-ink); }

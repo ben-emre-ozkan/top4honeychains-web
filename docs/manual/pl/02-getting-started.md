@@ -16,7 +16,7 @@ Po zalogowaniu otwiera się strona **Moja praca**, czyli lista zadań, które na
 **Częste komunikaty**
 
 - „Nieprawidłowa nazwa użytkownika lub hasło. Po zbyt wielu nieudanych próbach konto zostaje na pewien czas zablokowane.” Nazwa użytkownika lub hasło są błędne albo konto jest zablokowane. Po **5 nieudanych próbach konto zostaje zablokowane na 15 minut**. Odczekaj i spróbuj ponownie albo użyj opcji **Zapomniałeś hasła?**.
-- „To konto nie ma dostępu do panelu internetowego. …” Twoje konto nie ma aktywnego członkostwa. Poproś administratora platformy o dodanie Cię do Twojej organizacji.
+- „To konto nie ma jeszcze dostępu do panelu: nie należy do żadnej organizacji. …” Twoje konto nie ma aktywnego członkostwa. Poproś administratora platformy o dodanie Cię do Twojej organizacji.
 
 Aby się wylogować, otwórz menu pod awatarem (w prawym górnym rogu) i wybierz **Wyloguj się**.
 
@@ -28,7 +28,7 @@ Aby się wylogować, otwórz menu pod awatarem (w prawym górnym rogu) i wybierz
 4. Otwórz wiadomość „Zresetuj hasło do TOP4HoneyChains” i kliknij zawarty w niej odnośnik. Odnośnik jest ważny przez jeden dzień.
 5. Wpisz dwukrotnie **Nowe hasło** i potwierdź. Nastąpi powrót do strony logowania.
 
-Hasło musi mieć co najmniej 6 znaków. Jeśli wiadomość nie dotrze, sprawdź folder spamu, a następnie zwróć się do administratora platformy, który może ustawić dla Ciebie nowe hasło (zob. [Użytkownicy](#admin-users)).
+Hasło musi mieć co najmniej 6 znaków; jeśli reguła nie jest spełniona, strona informuje o tym w Twoim języku, a gdy link jest zbyt stary, wyświetla „Link jest nieprawidłowy lub wygasł. Poproś o nowe zresetowanie hasła.” Jeśli wiadomość nie dotrze, sprawdź folder spamu, a następnie zwróć się do administratora platformy, który może ustawić dla Ciebie nowe hasło (zob. [Użytkownicy](#admin-users)).
 
 <!-- SHOT: forgot-password -->
 
@@ -40,7 +40,7 @@ Otwórz menu awatara i wybierz **Profil**.
 - **Numer telefonu** można zmienić. Kliknij **Zapisz**.
 - **Zmień hasło** otwiera okno dialogowe: wpisz **Obecne hasło**, **Nowe hasło** i **Potwierdź hasło**, a następnie kliknij **Zaktualizuj hasło**.
 
-Menu awatara zawiera też opcję **Zablokuj Ekran**, która ukrywa stronę do czasu ponownego wpisania hasła. Służy wyłącznie ochronie prywatności; nie powoduje wylogowania.
+Zanim odejdziesz od współdzielonego komputera, użyj opcji **Wyloguj się**; funkcji blokady ekranu nie ma.
 
 <!-- SHOT: profile -->
 
@@ -62,11 +62,11 @@ Górny pasek pokazuje, od lewej do prawej:
 - **wskaźnik organizacja · rola**: organizację i rolę, w której obecnie pracujesz;
 - przycisk języka;
 - przycisk trybu pełnoekranowego;
-- Twój awatar z opcjami **Profil**, **Zablokuj Ekran** i **Wyloguj się**.
+- Twój awatar z opcjami **Profil** i **Wyloguj się**.
 
 <!-- SHOT: top-bar-role-chip -->
 
-Wskaźnik pokazuje znak zaznaczenia, gdy Twoja organizacja jest zweryfikowana, oraz wykrzyknik, gdy nie jest. Dopóki organizacja nie jest zweryfikowana, jej członkowie mogą przeglądać jej dane, a administrator organizacji może przesyłać dokumenty, ale **nikt nie może wprowadzać danych**. Wyświetla się wtedy komunikat: „Twoja organizacja nie jest jeszcze zweryfikowana. …”
+Wskaźnik pokazuje znak zaznaczenia, gdy Twoja organizacja jest zweryfikowana, wykrzyknik, gdy czeka na weryfikację, oraz znak stopu na czerwonym tle, gdy jest zawieszona. Dopóki organizacja nie jest zweryfikowana, jej członkowie mogą przeglądać jej dane, a administrator organizacji może przesyłać dokumenty, ale **nikt nie może wprowadzać danych**. Wyświetla się wtedy komunikat: „Twoja organizacja nie jest jeszcze zweryfikowana. …”, a w przypadku zawieszonej organizacji: „Twoja organizacja jest zawieszona. Możesz przeglądać jej dane, ale nikt nie może wprowadzać danych, dopóki administrator platformy jej nie przywróci.”
 
 ### Kilka członkostw {#memberships}
 
@@ -90,7 +90,7 @@ Menu, zadania na stronie **Moja praca**, widoczne rekordy i dozwolone czynności
 | Grupa | Co oznacza | Kto ją otrzymuje |
 |---|---|---|
 | **Wartości do wprowadzenia** | Punkt kontrolny (KPK) partii lub partii końcowej wymaga wprowadzenia wartości | Role, które wprowadzają dane tego KPK |
-| **Wartości do zatwierdzenia** | Rekord KPK lub rekord przechowywania KPK 10 został przesłany i wymaga drugiej osoby | Role, które zatwierdzają ten KPK |
+| **Wartości do zatwierdzenia** | Rekord KPK lub rekord przechowywania KPK 10 został przesłany albo zakończony lub oznaczony jako „Nie dotyczy” bez zatwierdzenia i wymaga drugiej osoby. Nigdy nie widzisz rekordów, które sam wprowadziłeś lub oznaczyłeś. | Role, które zatwierdzają ten KPK |
 | **Wnioski o ostateczne zatwierdzenie** | Ktoś złożył wniosek o ostateczne zatwierdzenie partii końcowej | Zatwierdzający jakość właściciela partii końcowej |
 | **Próbki do przyjęcia** | Do Twojego laboratorium wysłano próbkę | Analityk, Kierownik laboratorium |
 | **Wyniki laboratoryjne do wprowadzenia** | Przyjęta próbka nie ma jeszcze raportu albo raport został zwrócony | Analityk |

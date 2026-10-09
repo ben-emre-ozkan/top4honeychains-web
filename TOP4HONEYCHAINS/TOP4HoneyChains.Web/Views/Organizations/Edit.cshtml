@@ -32,6 +32,15 @@
                             <div class="col-md-8 mb-3">
                                 @await Html.PartialAsync("~/Views/Shared/_ProvinceDistrict.cshtml", new TOP4HoneyChains.Web.Models.ViewModels.ProvinceDistrictField("Province", "District", Model?.Province, Model?.District, false, "Org.Province", "Org.District"))
                             </div>
+                            @* D-75: the wholesaler record of a processing organization; its delivered lots are filed under it *@
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="LegacyWholesalerId" class="form-label">@L["Org.ExistingWholesaler"]</label>
+                                <select asp-for="LegacyWholesalerId" asp-items="ViewBag.Wholesalers" class="form-select">
+                                    <option value="">@L["(none)"]</option>
+                                </select>
+                                <small class="text-muted">@L["Org.ExistingWholesalerHelp"]</small>
+                                <span asp-validation-for="LegacyWholesalerId" class="text-danger small d-block"></span>
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-primary">@L["Org.Save"]</button>
                         <a asp-action="Details" asp-route-id="@Model.OrgId" class="btn btn-secondary">@L["Org.Cancel"]</a>

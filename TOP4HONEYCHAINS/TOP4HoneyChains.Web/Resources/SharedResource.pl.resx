@@ -283,7 +283,7 @@
     <value>Nieprawidłowa nazwa użytkownika lub hasło. Po zbyt wielu nieudanych próbach konto zostaje na pewien czas zablokowane.</value>
   </data>
   <data name="Login.NoPanelAccess" xml:space="preserve">
-    <value>To konto nie ma dostępu do panelu internetowego. Zalogować się mogą tylko administratorzy. Skontaktuj się z administratorem.</value>
+    <value>To konto nie ma jeszcze dostępu do panelu: nie należy do żadnej organizacji. Poproś administratora platformy o dodanie Cię do Twojej organizacji.</value>
   </data>
   <data name="ForgotPassword.Sent" xml:space="preserve">
     <value>Jeśli istnieje konto z tym adresem e-mail, wysłano na nie instrukcje resetowania hasła.</value>
@@ -559,7 +559,7 @@
     <value>Od</value>
   </data>
   <data name="Org.To" xml:space="preserve">
-    <value>To</value>
+    <value>Na</value>
   </data>
   <data name="Org.Reason" xml:space="preserve">
     <value>Powód</value>
@@ -838,7 +838,7 @@
     <value>Od</value>
   </data>
   <data name="Cust.To" xml:space="preserve">
-    <value>To</value>
+    <value>Odbiorca</value>
   </data>
   <data name="Cust.Pending" xml:space="preserve">
     <value>Oczekująca</value>
@@ -6956,5 +6956,143 @@
   </data>
   <data name="Audit.F.WithdrawnByUserId" xml:space="preserve">
     <value>Wycofał(a)</value>
+  </data>
+  <data name="&quot;Not applicable&quot; was removed; values can be recorded again." xml:space="preserve">
+    <value>Usunięto oznaczenie „Nie dotyczy”; można ponownie rejestrować wartości.</value>
+  </data>
+  <data name="This CCP is marked &quot;Not applicable&quot;. Remove that mark first to record values." xml:space="preserve">
+    <value>Ten KPK jest oznaczony jako „Nie dotyczy”. Aby rejestrować wartości, najpierw usuń to oznaczenie.</value>
+  </data>
+  <data name="{0}: enter text, not a number." xml:space="preserve">
+    <value>{0}: wprowadź tekst, a nie liczbę.</value>
+  </data>
+  <data name="{0}: enter either a number or a text, not both." xml:space="preserve">
+    <value>{0}: wprowadź liczbę albo tekst, nie oba naraz.</value>
+  </data>
+  <data name="{0}: the text can be at most 100 characters." xml:space="preserve">
+    <value>{0}: tekst może mieć najwyżej 100 znaków.</value>
+  </data>
+  <data name="{0}: the notes can be at most 500 characters." xml:space="preserve">
+    <value>{0}: uwagi mogą mieć najwyżej 500 znaków.</value>
+  </data>
+  <data name="Lot {0} / {1} (#{2})" xml:space="preserve">
+    <value>Partia {0} / {1} (#{2})</value>
+  </data>
+  <data name="The note can be at most 500 characters." xml:space="preserve">
+    <value>Uwaga może mieć najwyżej 500 znaków.</value>
+  </data>
+  <data name="{0} cannot be removed because values or a &quot;Not applicable&quot; record exist for this batch. Nothing was changed." xml:space="preserve">
+    <value>Nie można usunąć {0}, ponieważ dla tej partii końcowej istnieją wartości lub zapis „Nie dotyczy”. Niczego nie zmieniono.</value>
+  </data>
+  <data name="{0} cannot be removed because values or a &quot;Not applicable&quot; record exist for this lot. Nothing was changed." xml:space="preserve">
+    <value>Nie można usunąć {0}, ponieważ dla tej partii istnieją wartości lub zapis „Nie dotyczy”. Niczego nie zmieniono.</value>
+  </data>
+  <data name="{0} Allowed: {1}." xml:space="preserve">
+    <value>{0} Dozwolone: {1}.</value>
+  </data>
+  <data name="Allowed: {0}" xml:space="preserve">
+    <value>Dozwolone: {0}</value>
+  </data>
+  <data name="Four-eyes: you marked this CCP &quot;Not applicable&quot;, so another person must approve it." xml:space="preserve">
+    <value>Zasada czterech oczu: to Ty oznaczyłeś ten KPK jako „Nie dotyczy”, więc musi go zatwierdzić inna osoba.</value>
+  </data>
+  <data name="This role is used by the platform and cannot be renamed or deleted." xml:space="preserve">
+    <value>Ta rola jest używana przez platformę i nie można zmienić jej nazwy ani jej usunąć.</value>
+  </data>
+  <data name="Protected" xml:space="preserve">
+    <value>Chroniona</value>
+  </data>
+  <data name="You cannot delete your own account." xml:space="preserve">
+    <value>Nie możesz usunąć własnego konta.</value>
+  </data>
+  <data name="User deleted." xml:space="preserve">
+    <value>Użytkownik został usunięty.</value>
+  </data>
+  <data name="The user could not be deleted." xml:space="preserve">
+    <value>Nie udało się usunąć użytkownika.</value>
+  </data>
+  <data name="Account unlocked." xml:space="preserve">
+    <value>Konto zostało odblokowane.</value>
+  </data>
+  <data name="Unlock" xml:space="preserve">
+    <value>Odblokuj</value>
+  </data>
+  <data name="Lot #{0} cannot be used in this batch: it belongs to another wholesaler or not all its CCPs are completed and approved." xml:space="preserve">
+    <value>Partii #{0} nie można użyć w tej partii końcowej: należy do innego hurtownika lub nie wszystkie jej KPK są zakończone i zatwierdzone.</value>
+  </data>
+  <data name="Lot #{0}: at most {1} kg is available." xml:space="preserve">
+    <value>Partia #{0}: dostępne jest najwyżej {1} kg.</value>
+  </data>
+  <data name="Nothing was saved." xml:space="preserve">
+    <value>Niczego nie zapisano.</value>
+  </data>
+  <data name="Batch composition saved: {0} kg in total." xml:space="preserve">
+    <value>Zapisano skład partii końcowej: łącznie {0} kg.</value>
+  </data>
+  <data name="CCP assignments saved: {0} added, {1} removed." xml:space="preserve">
+    <value>Zapisano przypisania KPK: dodano {0}, usunięto {1}.</value>
+  </data>
+  <data name="Suspended organisation" xml:space="preserve">
+    <value>Organizacja zawieszona</value>
+  </data>
+  <data name="Org.SuspendedBanner" xml:space="preserve">
+    <value>Twoja organizacja jest zawieszona. Możesz przeglądać jej dane, ale nikt nie może wprowadzać danych, dopóki administrator platformy jej nie przywróci.</value>
+  </data>
+  <data name="{0} has {1} raw honey lot(s) without a wholesaler: no batch can take them until the organization is linked to its wholesaler record." xml:space="preserve">
+    <value>{0} ma {1} partię(-e) surowego miodu bez hurtownika: żadna partia końcowa nie może ich przyjąć, dopóki organizacja nie zostanie powiązana ze swoim rekordem hurtownika.</value>
+  </data>
+  <data name="Link it to a wholesaler record" xml:space="preserve">
+    <value>Powiąż z rekordem hurtownika</value>
+  </data>
+  <data name="Correct" xml:space="preserve">
+    <value>Korekta zastosowana</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>Odrzuć</value>
+  </data>
+  <data name="Correction" xml:space="preserve">
+    <value>Korekta</value>
+  </data>
+  <data name="An unknown error has occurred." xml:space="preserve">
+    <value>Wystąpił nieznany błąd.</value>
+  </data>
+  <data name="The record was changed by someone else; reload the page and try again." xml:space="preserve">
+    <value>Rekord został zmieniony przez kogoś innego; odśwież stronę i spróbuj ponownie.</value>
+  </data>
+  <data name="Incorrect password." xml:space="preserve">
+    <value>Nieprawidłowe hasło.</value>
+  </data>
+  <data name="The link is invalid or has expired. Request a new password reset." xml:space="preserve">
+    <value>Link jest nieprawidłowy lub wygasł. Poproś o nowe zresetowanie hasła.</value>
+  </data>
+  <data name="The user name {0} is invalid: use letters, digits and - . _ @ + only." xml:space="preserve">
+    <value>Nazwa użytkownika {0} jest nieprawidłowa: używaj tylko liter, cyfr oraz - . _ @ +.</value>
+  </data>
+  <data name="The e-mail address {0} is invalid." xml:space="preserve">
+    <value>Adres e-mail {0} jest nieprawidłowy.</value>
+  </data>
+  <data name="The user name {0} is already taken." xml:space="preserve">
+    <value>Nazwa użytkownika {0} jest już zajęta.</value>
+  </data>
+  <data name="The e-mail address {0} is already used." xml:space="preserve">
+    <value>Adres e-mail {0} jest już używany.</value>
+  </data>
+  <data name="The password must be at least {0} characters long." xml:space="preserve">
+    <value>Hasło musi mieć co najmniej {0} znaków.</value>
+  </data>
+  <data name="The password must contain at least one symbol." xml:space="preserve">
+    <value>Hasło musi zawierać co najmniej jeden symbol.</value>
+  </data>
+  <data name="The password must contain at least one digit." xml:space="preserve">
+    <value>Hasło musi zawierać co najmniej jedną cyfrę.</value>
+  </data>
+  <data name="The password must contain at least one lowercase letter." xml:space="preserve">
+    <value>Hasło musi zawierać co najmniej jedną małą literę.</value>
+  </data>
+  <data name="The password must contain at least one uppercase letter." xml:space="preserve">
+    <value>Hasło musi zawierać co najmniej jedną wielką literę.</value>
+  </data>
+  <data name="The password must contain at least {0} different characters." xml:space="preserve">
+    <value>Hasło musi zawierać co najmniej {0} różnych znaków.</value>
   </data>
 </root>

@@ -27,7 +27,7 @@ The administration menu:
 
 1. **Organizations** → **New organization**.
 2. Enter the name, legal name, tax number, province and district.
-3. If the organization is a wholesaler already in the platform, choose it under the existing wholesaler field. **A processing plant must be linked to its wholesaler record**: the lots it receives are filed under that wholesaler, and a batch can only use lots of its own wholesaler.
+3. If the organization is a wholesaler already in the platform, choose it under the existing wholesaler field. **A processing plant must be linked to its wholesaler record**: the lots it receives are filed under that wholesaler, and a batch can only use lots of its own wholesaler. The link can also be set later on the organization's **Edit** page. Lots that a plant received before it was linked are taken by the batches of the wholesaler it is linked to.
 4. Tick at least one capability and click **Create**.
 
 The organization starts as **Pending**: "Organization created. It stays Pending until it is verified."
@@ -68,9 +68,12 @@ Small organizations with one quality person can get the **Four-eyes exemption**:
 
 - **Add New User** creates an account. With the organization model, leave **Global role** empty for organization members and give them a membership on the organization page; choose **Platform administrator** only for administrators.
 - **Reset Password** sets a new password for a user.
-- **Delete** removes an account (use with care; it cannot be undone).
+- **Unlock** appears next to a **Locked** account and ends the lock at once ("Account unlocked."). Without it, the lock ends by itself after 15 minutes.
+- **Delete** removes an account (use with care; it cannot be undone). You cannot delete your own account. Every deletion and every unlock is written to the audit log.
 
-Passwords need at least 6 characters. After 5 failed sign-ins an account is locked for 15 minutes. There is no unlock button; the lock ends by itself.
+Passwords need at least 6 characters. After 5 failed sign-ins an account is locked for 15 minutes.
+
+**User Management** → **Roles** lists the global roles. The roles the platform relies on (**Administrator** and **Beekeeper**) are marked **Protected** and cannot be renamed or deleted.
 
 ## Roles and permissions {#admin-permissions}
 
@@ -116,9 +119,9 @@ Honey types (with their honey class for the limits), production periods, educati
 
 1. **Wholesalers** → the wholesaler → **Final Honey Productions (Batches)** → **New Batch**.
 2. Enter the **Batch Title** and **Production Date** and click **Create Batch**. The QR code is generated.
-3. On **Manage Batch**, enter the amount to use from each eligible lot (lots of this wholesaler whose CCPs are all approved) and click **Save Batch Composition**. Amounts above the available quantity are ignored.
+3. On **Manage Batch**, enter the amount to use from each eligible lot (lots of this wholesaler whose CCPs are all approved) and click **Save Batch Composition**: "Batch composition saved: … kg in total." If an amount is too large or a lot cannot be used, the page lists each problem (for example "Lot #…: at most … kg is available.") and saves nothing. If a plant has lots that no batch can take because it is not linked to a wholesaler record, the page names it with a link to its **Edit** page.
 4. **Edit** the batch to set the owning organization (the plant).
-5. **Manage CCP**: tick CCP 4 to CCP 10 and click **Save Assignments**.
+5. **Manage CCP**: tick CCP 4 to CCP 10 and click **Save Assignments**: "CCP assignments saved: … added, … removed."
 
 The plant then enters the batch CCPs and finalizes the batch. Administrators cannot finalize: "With the organization model, the owning organization finalizes the batch (request and approval by two people)."
 

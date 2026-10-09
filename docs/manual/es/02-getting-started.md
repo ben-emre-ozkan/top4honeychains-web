@@ -16,7 +16,7 @@ Después de iniciar sesión llega a **Mis tareas**, la lista de tareas que esper
 **Mensajes frecuentes**
 
 - "Nombre de usuario o contraseña no válidos. Tras demasiados intentos fallidos, la cuenta se bloquea durante un tiempo." El nombre de usuario o la contraseña son incorrectos, o la cuenta está bloqueada. **Tras 5 intentos fallidos, la cuenta se bloquea durante 15 minutos**. Espere y vuelva a intentarlo, o use **¿Olvidaste tu contraseña?**.
-- "Esta cuenta no tiene acceso al panel web. …" Su cuenta no tiene ninguna membresía activa. Pida a un administrador de la plataforma que lo agregue a su organización.
+- "Esta cuenta todavía no tiene acceso al panel: no es miembro de ninguna organización. …" Su cuenta no tiene ninguna membresía activa. Pida a un administrador de la plataforma que lo agregue a su organización.
 
 Para cerrar la sesión, abra el menú de su avatar (arriba a la derecha) y elija **Cerrar Sesión**.
 
@@ -28,7 +28,7 @@ Para cerrar la sesión, abra el menú de su avatar (arriba a la derecha) y elija
 4. Abra el correo "Restablezca su contraseña de TOP4HoneyChains" y haga clic en el enlace. El enlace es válido durante un día.
 5. Ingrese la **Nueva contraseña** dos veces y confirme. La plataforma lo lleva de vuelta a la página de inicio de sesión.
 
-Las contraseñas deben tener al menos 6 caracteres. Si el correo no llega, revise la carpeta de correo no deseado y, después, consulte a un administrador de la plataforma, que puede asignarle una contraseña nueva (consulte [Usuarios](#admin-users)).
+Las contraseñas deben tener al menos 6 caracteres; si no se cumple una regla, la página lo indica en su idioma, y si el enlace es demasiado antiguo muestra "El enlace no es válido o ha caducado. Solicite un nuevo restablecimiento de contraseña." Si el correo no llega, revise la carpeta de correo no deseado y, después, consulte a un administrador de la plataforma, que puede asignarle una contraseña nueva (consulte [Usuarios](#admin-users)).
 
 <!-- SHOT: forgot-password -->
 
@@ -40,7 +40,7 @@ Abra el menú del avatar y elija **Perfil**.
 - **Número de teléfono** se puede cambiar. Haga clic en **Guardar**.
 - **Cambiar contraseña** abre un cuadro de diálogo: ingrese la **Contraseña actual**, la **Nueva contraseña** y **Confirme la contraseña**, y haga clic en **Actualizar contraseña**.
 
-El menú del avatar también tiene **Bloquear Pantalla**, que oculta la página hasta que vuelva a ingresar su contraseña. Es solo una pantalla de privacidad; no cierra la sesión.
+Para dejar un equipo compartido, use **Cerrar Sesión**; no hay pantalla de bloqueo.
 
 <!-- SHOT: profile -->
 
@@ -62,11 +62,11 @@ La barra superior muestra, de izquierda a derecha:
 - la **etiqueta organización · rol**: la organización y el rol con los que está trabajando ahora;
 - el botón de idioma;
 - un botón de pantalla completa;
-- su avatar, con **Perfil**, **Bloquear Pantalla** y **Cerrar Sesión**.
+- su avatar, con **Perfil** y **Cerrar Sesión**.
 
 <!-- SHOT: top-bar-role-chip -->
 
-La etiqueta muestra una marca de verificación cuando su organización está verificada y un signo de exclamación cuando no lo está. Mientras una organización no está verificada, sus miembros pueden consultar sus datos y su administrador de la organización puede subir documentos, pero **nadie puede ingresar datos**. Un aviso lo indica: "Su organización aún no está verificada. …"
+La etiqueta muestra una marca de verificación cuando su organización está verificada, un signo de exclamación mientras espera la verificación y un signo de alto sobre fondo rojo cuando está suspendida. Mientras una organización no está verificada, sus miembros pueden consultar sus datos y su administrador de la organización puede subir documentos, pero **nadie puede ingresar datos**. Un aviso lo indica: "Su organización aún no está verificada. …", o, para una organización suspendida, "Su organización está suspendida. Puede consultar sus datos, pero nadie puede ingresar datos hasta que un administrador de la plataforma la reactive."
 
 ### Varias membresías {#memberships}
 
@@ -90,7 +90,7 @@ El menú, las tareas de **Mis tareas**, los registros que puede ver y las accion
 | Grupo | Qué significa | Quién lo recibe |
 |---|---|---|
 | **Valores por ingresar** | Un punto de control (PCC) de un lote o de una partida necesita valores | Los roles que ingresan ese PCC |
-| **Valores por aprobar** | Se envió un registro de PCC, o un registro de almacenamiento del PCC 10, y necesita una segunda persona | Los roles que aprueban ese PCC |
+| **Valores por aprobar** | Se envió un registro de PCC o un registro de almacenamiento del PCC 10, o se completó o marcó como "No aplicable" sin una aprobación, y necesita una segunda persona. Nunca ve los registros que usted mismo ingresó o marcó. | Los roles que aprueban ese PCC |
 | **Solicitudes de finalización** | Alguien solicitó finalizar una partida | Aprobador de calidad del propietario de la partida |
 | **Muestras por recibir** | Se envió una muestra a su laboratorio | Analista, Responsable de laboratorio |
 | **Resultados de laboratorio por ingresar** | Una muestra recibida aún no tiene informe, o el informe fue devuelto | Analista |

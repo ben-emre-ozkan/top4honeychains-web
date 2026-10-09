@@ -53,3 +53,4 @@ After submitting, the report can no longer be edited unless the lab manager retu
 | "The lab report must be a PDF." | Only PDF files are accepted for the report. |
 | "The report is submitted; the LabManager approves it or returns it for changes." | Wait for the lab manager. |
 | "An approved lab report cannot be changed; request a correction instead." | Ask a platform administrator for a correction. |
+| "The lot is locked in a finalized batch; lab values can only be changed through a correction." | The lot was sealed in a batch; a draft can no longer be saved or submitted. Ask a platform administrator. |

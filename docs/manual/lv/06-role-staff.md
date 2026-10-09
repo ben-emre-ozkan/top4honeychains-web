@@ -57,7 +57,7 @@ Nosūtīt var tikai pabeigtu (fiksētu) gala partiju.
 
 1. Atveriet **Sūtījumi un krājumi**. Sadaļā **Jūsu turējumā esošās gala partijas** katrai gala partijai redzams turējumā esošais daudzums, nepabeigtajiem sūtījumiem rezervētais daudzums un pieejamais daudzums.
 2. Noklikšķiniet uz **Nosūtīt** blakus gala partijai.
-3. Laukā **To** (saņēmējs) izvēlieties saņēmēju organizāciju (jebkuru citu pārbaudītu organizāciju), aizpildiet lauku **Daudzums (kg)** un, ja vēlaties, lauku **Piezīme**.
+3. Laukā **Saņēmējs** izvēlieties saņēmēju organizāciju (jebkuru citu pārbaudītu organizāciju), aizpildiet lauku **Daudzums (kg)** un, ja vēlaties, lauku **Piezīme**.
 4. Apstipriniet. Daudzums tiek rezervēts uzreiz: "Sūtījums izveidots; turējums pāriet, kad saņēmējs to apstiprina."
 
 <!-- SHOT: shipment-create -->
@@ -76,7 +76,7 @@ Kļūdas: "Nosūtīt var tikai pabeigtu (fiksētu) gala partiju.", "No šīs gal
 
 Pēc gala partijas saņemšanas:
 
-1. Lapā **Sūtījumi un krājumi** noklikšķiniet uz **Uzglabāšana** blakus gala partijai (lapa "KKP 10 – Uzglabāšana").
+1. Lapā **Sūtījumi un krājumi** gala partijas kolonnā **Uzglabāšana** noklikšķiniet uz **KKP 10** (lapa "KKP 10 – Uzglabāšana").
 2. Vienā reizē ievadiet visas obligātās uzglabāšanas vērtības (piemēram, temperatūru un mitrumu).
 3. Noklikšķiniet uz **Saglabāt**: "Uzglabāšanas vērtības saglabātas." Ieraksts iegūst statusu **Iesniegts**, un jūsu kvalitātes apstiprinātājs to redz grupā **Apstiprināmās vērtības**.
 
@@ -84,9 +84,9 @@ Pēc gala partijas saņemšanas:
 
 ## Ražotāja ierakstu skatīšana {#staff-read-only}
 
-Ja jūsu organizācijas turējumā ir gala partija vai organizācija to ir saņēmusi, jūs varat atvērt ražotāja kontroles punktus šai gala partijai un tās partijām **tikai lasīšanas režīmā**: jūs redzat vērtības un to, kas tās apstiprināja, taču nav saglabāšanas vai apstiprināšanas pogu. Lapā redzams **Tikai lasāms** ar paziņojumu "Par šo kontroles punktu atbild cita organizācija; jūs to varat tikai skatīt." Gala partijai, ko jūsu organizācija nekad nav saņēmusi, platforma parāda "Jūs nevarat atvērt šo lapu".
+Ja jūsu organizācijas turējumā ir gala partija vai organizācija to ir saņēmusi, jūs varat atvērt ražotāja kontroles punktus šai gala partijai un tās partijām **tikai lasīšanas režīmā**: jūs redzat vērtības un to, kas tās apstiprināja, taču nav saglabāšanas vai apstiprināšanas pogu. Biškopju vārdi un dravu nosaukumi tiek rādīti kā "netiek rādīts", tāpat kā atsaukšanas pārskatā. Lapā redzams **Tikai lasāms** ar paziņojumu "Par šo kontroles punktu atbild cita organizācija; jūs to varat tikai skatīt." Gala partijai, ko jūsu organizācija nekad nav saņēmusi, platforma parāda "Jūs nevarat atvērt šo lapu".
 
-> Pašreizējā versijā lapā **Sūtījumi un krājumi** nav tiešas saites uz ražotāja KKP lapām. Atveriet tās no gala partijas lapas **Procesa plūsma** vai ar KKP lapas adresi, ko jums nosūta ražotājs.
+Lai tos atvērtu, lapā **Sūtījumi un krājumi** noklikšķiniet uz **Procesa plūsma** blakus gala partijai, kas ir jūsu turējumā, un pēc tam noklikšķiniet uz plūsmas posma.
 
 ## Atsaukšanas pārskats {#staff-recall}
 

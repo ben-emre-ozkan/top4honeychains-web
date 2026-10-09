@@ -27,7 +27,7 @@ Yönetim menüsü:
 
 1. **Kurumlar** → **Yeni kurum**.
 2. Adı, ticari unvanı, vergi numarasını, ili ve ilçeyi girin.
-3. Kurum platformda zaten kayıtlı bir toptancıysa, mevcut toptancı alanında onu seçin. **İşleme tesisi kendi toptancı kaydına bağlanmalıdır**: tesisin teslim aldığı lotlar o toptancının altında tutulur ve bir parti yalnızca kendi toptancısının lotlarını kullanabilir.
+3. Kurum platformda zaten kayıtlı bir toptancıysa, mevcut toptancı alanında onu seçin. **İşleme tesisi kendi toptancı kaydına bağlanmalıdır**: tesisin teslim aldığı lotlar o toptancının altında tutulur ve bir parti yalnızca kendi toptancısının lotlarını kullanabilir. Bağlantı daha sonra kurumun **Düzenle** sayfasında da kurulabilir. Bir tesisin bağlanmadan önce teslim aldığı lotlar, bağlandığı toptancının partilerinde kullanılır.
 4. En az bir yeteneği işaretleyin ve **Oluştur** düğmesine tıklayın.
 
 Kurum **Beklemede** durumunda başlar: "Kurum oluşturuldu. Doğrulanana kadar Beklemede kalır."
@@ -68,9 +68,12 @@ Tek bir kalite sorumlusu olan küçük kurumlara **Dört göz muafiyeti** tanın
 
 - **Yeni Kullanıcı Ekle** bir hesap oluşturur. Kurum modelinde kurum üyeleri için **Genel rol** alanını boş bırakın ve onlara kurum sayfasında bir üyelik verin; **Platform yöneticisi** seçeneğini yalnızca yöneticiler için seçin.
 - **Parolayı Sıfırla** bir kullanıcı için yeni şifre belirler.
-- **Sil** bir hesabı kaldırır (dikkatli kullanın; geri alınamaz).
+- **Kilidi aç**, **Kilitli** bir hesabın yanında görünür ve kilidi hemen kaldırır ("Hesabın kilidi açıldı."). Bu düğme kullanılmazsa kilit 15 dakika sonra kendiliğinden kalkar.
+- **Sil** bir hesabı kaldırır (dikkatli kullanın; geri alınamaz). Kendi hesabınızı silemezsiniz. Her silme ve her kilit açma işlemi denetim kaydına yazılır.
 
-Şifreler en az 6 karakter olmalıdır. 5 başarısız oturum açma denemesinden sonra hesap 15 dakika kilitlenir. Kilit açma düğmesi yoktur; kilit kendiliğinden kalkar.
+Şifreler en az 6 karakter olmalıdır. 5 başarısız oturum açma denemesinden sonra hesap 15 dakika kilitlenir.
+
+**Kullanıcı Yönetimi** → **Roller** genel rolleri listeler. Platformun dayandığı roller (**Yönetici** ve **Arıcı**) **Korumalı** olarak işaretlidir; yeniden adlandırılamaz ve silinemez.
 
 ## Roller ve yetkiler {#admin-permissions}
 
@@ -116,9 +119,9 @@ Bal türleri (limitler için kullanılan bal sınıflarıyla birlikte), üretim 
 
 1. **Toptancılar** → toptancı → **Nihai Bal Üretimleri (Partiler)** → **Yeni Parti**.
 2. **Parti Başlığı** ve **Üretim Tarihi** alanlarını doldurun ve **Parti Oluştur** düğmesine tıklayın. QR kod üretilir.
-3. **Partiyi Yönet** sayfasında uygun her lottan (bu toptancının, tüm KKN'leri onaylanmış lotları) kullanılacak miktarı girin ve **Parti Bileşimini Kaydet** düğmesine tıklayın. Kullanılabilir miktarı aşan miktarlar dikkate alınmaz.
+3. **Partiyi Yönet** sayfasında uygun her lottan (bu toptancının, tüm KKN'leri onaylanmış lotları) kullanılacak miktarı girin ve **Parti Bileşimini Kaydet** düğmesine tıklayın: "Parti bileşimi kaydedildi: toplam … kg." Bir miktar çok büyükse veya bir lot kullanılamıyorsa sayfa her sorunu listeler (örneğin "Lot #…: en çok … kg kullanılabilir.") ve hiçbir şey kaydetmez. Bir tesisin, bir toptancı kaydına bağlı olmadığı için hiçbir partinin alamadığı lotları varsa sayfa o tesisin adını, **Düzenle** sayfasına bir bağlantıyla birlikte gösterir.
 4. Sahip kurumu (tesisi) belirlemek için partiyi **Düzenle** ile açın.
-5. **KKN Yönet**: KKN 4'ten KKN 10'a kadar işaretleyin ve **Atamaları Kaydet** düğmesine tıklayın.
+5. **KKN Yönet**: KKN 4'ten KKN 10'a kadar işaretleyin ve **Atamaları Kaydet** düğmesine tıklayın: "KKN atamaları kaydedildi: … eklendi, … kaldırıldı."
 
 Ardından tesis parti KKN'lerini girer ve partiyi kesinleştirir. Yöneticiler kesinleştirme yapamaz: "Kurum modelinde partiyi sahibi olan kurum kesinleştirir (iki kişi: talep ve onay)."
 
