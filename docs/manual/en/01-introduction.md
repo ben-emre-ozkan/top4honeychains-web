@@ -6,7 +6,7 @@ This manual describes the platform as it runs today, with the organization model
 
 ## How to read this manual {#how-to-read}
 
-- **Chapters 1–4** explain the platform, signing in, organizations and roles, and the full journey of a batch of honey. Read them first.
+- **Chapters 1–4** explain the platform, capabilities, organizations and roles, signing in, and the full journey of a batch of honey. Read them first.
 - **Chapters 5–11** have one chapter per role. Each starts with "your daily work" and then explains every task step by step. Read the chapter of your own role.
 - **Chapter 12** is for platform administrators.
 - **Chapter 13** explains the audit log and what the public sees.

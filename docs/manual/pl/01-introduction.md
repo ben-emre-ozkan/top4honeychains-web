@@ -8,7 +8,7 @@ Niniejszy podręcznik opisuje platformę w obecnej postaci, z włączonym modele
 
 ## Jak korzystać z podręcznika {#how-to-read}
 
-- **Rozdziały 1–4** opisują platformę, logowanie, organizacje i role oraz całą drogę partii miodu. Przeczytaj je w pierwszej kolejności.
+- **Rozdziały 1–4** opisują platformę, funkcje, organizacje i role, logowanie oraz całą drogę partii miodu. Przeczytaj je w pierwszej kolejności.
 - **Rozdziały 5–11** to osobne rozdziały dla poszczególnych ról. Każdy zaczyna się od części „Twoja codzienna praca”, a następnie opisuje krok po kroku wszystkie zadania. Przeczytaj rozdział dotyczący Twojej roli.
 - **Rozdział 12** jest przeznaczony dla administratorów platformy.
 - **Rozdział 13** opisuje dziennik audytu oraz informacje widoczne publicznie.

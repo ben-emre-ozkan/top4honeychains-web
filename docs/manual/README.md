@@ -16,11 +16,11 @@ The manual describes the application as it runs with `Features:OrgRoleModel = tr
 
 ## Structure
 
-Each language folder has the same files, the same headings and the same anchors (`{#anchor}` after a heading), so links and pass-2 screenshots line up across languages:
+Each language folder has the same files, the same headings and the same anchors (`{#anchor}` after a heading), so links and screenshots line up across languages:
 
 1. About TOP4HoneyChains
-2. Getting started
-3. Organizations, roles and permissions (with the permission matrix)
+2. Capabilities, organizations and roles (with the permission matrix)
+3. Getting started
 4. The end-to-end flow
 5. – 11. One chapter per role
 12. Platform administrator
@@ -29,7 +29,14 @@ Each language folder has the same files, the same headings and the same anchors 
 
 ## Screenshots
 
-There are no images yet. Wherever a screen helps, the text has a line `<!-- SHOT: <id> -->`, which renders as nothing. [shots.yml](shots.yml) describes each shot: page, role, [DEMO] record, UI state, viewport, what to highlight and the file name `img/<lang>/<id>.png`. Pass 2 captures them in every language; the build then inserts each image where its marker is and skips the ones that are still missing.
+Wherever a screen helps, the text has a line `<!-- SHOT: <id> -->`. [shots.yml](shots.yml) is the capture list: for each shot the page, role, [DEMO] record, UI state, viewport, what to highlight and the file name `img/<lang>/<id>.png`. The capture script `capture.mjs` in this folder takes the shots against the local demo environment:
+
+```
+node capture.mjs            # all five languages
+node capture.mjs tr en      # only some
+```
+
+It reads the demo users' credentials at run time from the untracked `demo_users.txt` at the repository root; they are never stored in this folder or in the repository. The build inserts each image where its marker is and leaves out a marker whose image is missing.
 
 ## Building the PDFs
 
