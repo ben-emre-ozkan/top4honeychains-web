@@ -1,0 +1,401 @@
+# Screenshot list for the user manual (pass 2). Each id matches a `<!-- SHOT: <id> -->` line in docs/manual/<lang>/*.md.
+# Capture every shot in every language (tr, en, es, pl, lv) and save it as img/<lang>/<id>.png (path relative to docs/manual);
+# build.mjs picks the images up automatically and skips the ones that are missing.
+#
+# Rules for capturing:
+# - Local demo environment only (flag Features:OrgRoleModel on), never production.
+# - Only [DEMO] records and the demo users; no real person's data may be visible. Where a page lists real records
+#   (beekeeper or apiary lists, audit log, dashboard activity), filter to [DEMO] records or crop to the [DEMO] rows.
+# - Account names must not be readable in the published images: crop or blur the user name in the avatar menu,
+#   greetings, "entered by / approved by" lines and the audit log.
+# - Switch the UI language with /Home/SetLanguage?culture=<lang>&returnUrl=<path> before each capture.
+# - viewport: desktop = 1440 x 900, phone = 390 x 844 (device scale factor 2). full_page: false unless stated.
+# - role: sign in as a user with this membership; "anonymous" = not signed in.
+#
+# Demo records (names as in the local demo data):
+#   processor  [DEMO] Kovan Bal İşleme            (Processing, Packing, Wholesale)
+#   laboratory [DEMO] Analiz Laboratuvarı          (Laboratory, accredited)
+#   market     [DEMO] Şehir Marketi                (Retail)
+#   association [DEMO] Arıcılar Birliği            (Association)
+#   beekeeper  [DEMO] Zeynep Kovancı, apiary [DEMO] Kekik Yaylası Arılığı
+#   batch      [DEMO] Kekik Balı 2026 (finalized), its lot from [DEMO] Kekik Yaylası Arılığı
+
+defaults:
+  file: img/{lang}/{id}.png
+  languages: [tr, en, es, pl, lv]
+
+shots:
+  - id: intro-chain
+    chapter: 1
+    page: /#chain
+    role: anonymous
+    record: none
+    state: landing page scrolled to the five-step chain section
+    viewport: desktop
+    highlight: the five stations Apiary, Delivery, Laboratory, Processing, Shelf
+
+  - id: public-honey-story
+    chapter: 1
+    page: /honeystory/{qr of [DEMO] Kekik Balı 2026}
+    role: anonymous
+    record: batch [DEMO] Kekik Balı 2026
+    state: top of the page (hero with badges and the start of the journey)
+    viewport: phone
+    highlight: batch name, badges, journey
+
+  - id: sign-in
+    chapter: 2
+    page: /Account/Login
+    role: anonymous
+    record: none
+    state: empty form
+    viewport: desktop
+    highlight: Username, Password, Remember me, Log In, language links
+
+  - id: forgot-password
+    chapter: 2
+    page: /Account/ForgotPassword
+    role: anonymous
+    record: none
+    state: after submitting an @example.invalid address (confirmation text shown)
+    viewport: desktop
+    highlight: the confirmation message
+
+  - id: profile
+    chapter: 2
+    page: /Account/Profile
+    role: Staff at [DEMO] Kovan Bal İşleme
+    record: none
+    state: Change Password dialog open, fields empty
+    viewport: desktop
+    highlight: Phone Number, Change Password
+    note: blur the user name and e-mail
+
+  - id: top-bar-role-chip
+    chapter: 2
+    page: /MyWork/Index
+    role: Quality approver at [DEMO] Arıcılar Birliği (a user with two memberships there)
+    record: none
+    state: top bar only (crop)
+    viewport: desktop
+    highlight: organization · role chip with its verified mark
+
+  - id: role-switch
+    chapter: 2
+    page: /MyWork/Index
+    role: user with two memberships at [DEMO] Arıcılar Birliği (Quality approver, Organisation admin)
+    record: none
+    state: chip dropdown "Your roles" open
+    viewport: desktop
+    highlight: the list of memberships, the ticked current one
+
+  - id: my-work
+    chapter: 2
+    page: /MyWork/Index
+    role: Quality approver at [DEMO] Kovan Bal İşleme
+    record: at least one item under Values to approve and Finalize requests
+    state: page with group tiles and one open group
+    viewport: desktop
+    highlight: group tiles, an item with its age and New chip, the badge on My work in the menu
+
+  - id: admin-permissions-matrix
+    chapter: 3
+    page: /Permissions/Index?tab=roles
+    role: platform administrator
+    record: role Staff selected
+    state: Role permissions tab with the matrix
+    viewport: desktop
+    highlight: the Enter / Approve / Read columns and the fixed-rules box
+
+  - id: flow-overview
+    chapter: 4
+    page: /Flow/Batch/{id of [DEMO] Kekik Balı 2026}
+    role: Staff at [DEMO] Kovan Bal İşleme
+    record: batch [DEMO] Kekik Balı 2026
+    state: Process flow timeline of the batch
+    viewport: desktop
+    highlight: stages with status and responsible organization
+
+  - id: intake-form
+    chapter: 5
+    page: /Intake/Create?number={registry number of [DEMO] Zeynep Kovancı}
+    role: Sample acceptance officer at [DEMO] Kovan Bal İşleme
+    record: beekeeper [DEMO] Zeynep Kovancı
+    state: beekeeper found, form filled (apiary, honey type, amount 120,5, province, district), not saved
+    viewport: phone
+    highlight: Find, the form fields, the camera button, Record delivery
+
+  - id: sample-form
+    chapter: 5
+    page: /Samples/Create?lotId={a new [DEMO] lot}
+    role: Sample acceptance officer at [DEMO] Kovan Bal İşleme
+    record: a [DEMO] lot without a sample
+    state: form filled with test seal numbers, not sent
+    viewport: desktop
+    highlight: Laboratory, the two seal numbers, Send to the laboratory
+
+  - id: ccp-page-lot
+    chapter: 5
+    page: /CCPMonitoring/RawHoneyProductionManageCCP?rawHoneyProductionId={lot}&ccpId={CCP 0}
+    role: Sample acceptance officer at [DEMO] Kovan Bal İşleme
+    record: an open [DEMO] lot
+    state: CCP 0 partly filled; one conditional question shown
+    viewport: desktop
+    highlight: status pill, parameters, Critical limit, Save Monitoring Logs
+
+  - id: ccp0-submitted
+    chapter: 5
+    page: same as ccp-page-lot
+    role: Sample acceptance officer at [DEMO] Kovan Bal İşleme
+    record: the same lot after saving all required values
+    state: status Submitted; approval card shows the four-eyes note
+    viewport: desktop
+    highlight: Submitted pill, "Entered by"
+
+  - id: my-organization
+    chapter: 6
+    page: /OrgWorkspace/Index
+    role: Staff at [DEMO] Kovan Bal İşleme
+    record: [DEMO] lots and batches
+    state: lot and batch tables with CCP chips
+    viewport: desktop
+    highlight: chip colours and the chip legend
+
+  - id: ccp-page-batch
+    chapter: 6
+    page: /CCPMonitoring/FinalHoneyProductionManageCCP?finalHoneyProductionId={open [DEMO] batch}&ccpId={CCP 10}
+    role: Staff at [DEMO] Kovan Bal İşleme
+    record: an open [DEMO] batch
+    state: CCP 10 at the plant, values entered, not saved
+    viewport: desktop
+    highlight: source composition and the storage parameters
+
+  - id: finalize-request
+    chapter: 6
+    page: /OrgWorkspace/Batch/{open [DEMO] batch}
+    role: Staff at [DEMO] Kovan Bal İşleme
+    record: an open [DEMO] batch with one CCP not approved
+    state: Finalize card with "Missing before finalizing:" and the disabled button
+    viewport: desktop
+    highlight: the missing list and the disabled Request finalizing
+
+  - id: shipment-create
+    chapter: 6
+    page: /Shipments/Create?batchId={[DEMO] Kekik Balı 2026}
+    role: Staff at [DEMO] Kovan Bal İşleme
+    record: batch [DEMO] Kekik Balı 2026
+    state: form filled (To [DEMO] Şehir Marketi, amount), not sent
+    viewport: desktop
+    highlight: available quantity, To, Amount
+
+  - id: shipment-confirm
+    chapter: 6
+    page: /Shipments/Index
+    role: Staff at [DEMO] Şehir Marketi
+    record: a pending [DEMO] shipment
+    state: Incoming shipments with Confirm receipt and Reject
+    viewport: phone
+    highlight: Confirm receipt, reason (to reject)
+
+  - id: storage-record
+    chapter: 6
+    page: /Shipments/Storage?batchId={[DEMO] batch held by the market}
+    role: Staff at [DEMO] Şehir Marketi
+    record: a [DEMO] batch received by the market
+    state: storage values entered, not saved
+    viewport: desktop
+    highlight: the CCP 10 storage fields
+
+  - id: ccp-approve
+    chapter: 7
+    page: CCP page of a submitted [DEMO] lot CCP
+    role: Quality approver at [DEMO] Kovan Bal İşleme
+    record: a submitted [DEMO] CCP record
+    state: Approval (four-eyes) card with the Approve button
+    viewport: desktop
+    highlight: Approve and the note
+
+  - id: out-of-limit-dialog
+    chapter: 7
+    page: CCP page of a submitted [DEMO] record with a value outside its limit
+    role: Quality approver at [DEMO] Kovan Bal İşleme
+    record: a [DEMO] record with an out-of-limit value
+    state: dialog "Values outside their limits" open
+    viewport: desktop
+    highlight: the listed value, Limit:, Approve anyway
+
+  - id: finalize-confirm
+    chapter: 7
+    page: /OrgWorkspace/Batch/{[DEMO] batch with a finalize request}
+    role: Quality approver at [DEMO] Kovan Bal İşleme
+    record: an open [DEMO] batch with all CCPs approved and finalizing requested
+    state: Finalize card with Confirm and finalize
+    viewport: desktop
+    highlight: Finalizing requested on …, Confirm and finalize
+
+  - id: batch-sealed
+    chapter: 7
+    page: /OrgWorkspace/Batch/{the batch just finalized}
+    role: Quality approver at [DEMO] Kovan Bal İşleme
+    record: a [DEMO] batch right after finalizing
+    state: the seal shown once (capture within two seconds), QR visible
+    viewport: desktop
+    highlight: Sealed, Open the Honey Story, Download QR
+    note: capturing this finalizes a [DEMO] batch; use a batch created for the capture
+
+  - id: sample-receive
+    chapter: 8
+    page: /Samples/Index
+    role: Analyst at [DEMO] Analiz Laboratuvarı
+    record: a [DEMO] sample with status Sent
+    state: received-samples table with the receive buttons
+    viewport: desktop
+    highlight: seal number, Received, seal intact, Seal broken: reject
+
+  - id: lab-results-form
+    chapter: 8
+    page: /LabReports/Edit/{[DEMO] sample}
+    role: Analyst at [DEMO] Analiz Laboratuvarı
+    record: a received [DEMO] sample whose lot has CCP 0 approved
+    state: report number, date and PDF chosen; values partly entered
+    viewport: desktop
+    highlight: Report PDF, required values, Within limit / Out of limit
+
+  - id: lab-submit
+    chapter: 8
+    page: /LabReports/Edit/{[DEMO] sample}
+    role: Analyst at [DEMO] Analiz Laboratuvarı
+    record: the same report with all values
+    state: "Required values entered" complete, Submit for approval enabled
+    viewport: desktop
+    highlight: progress line and Submit for approval
+
+  - id: lab-approve
+    chapter: 9
+    page: /LabReports/Edit/{[DEMO] sample}
+    role: Lab manager at [DEMO] Analiz Laboratuvarı
+    record: a submitted [DEMO] report
+    state: decision area with Approve, reason (to return) and Return
+    viewport: desktop
+    highlight: Approve, Return, the four-eyes note
+
+  - id: verify-report
+    chapter: 9
+    page: /verify-report?code={report code of a [DEMO] report}
+    role: anonymous
+    record: an approved [DEMO] report
+    state: result shown, compare-PDF box visible
+    viewport: phone
+    highlight: Approved, laboratory, fingerprint
+
+  - id: org-details
+    chapter: 10
+    page: /Organizations/Details/{[DEMO] Arıcılar Birliği}
+    role: Organisation admin at [DEMO] Arıcılar Birliği
+    record: organization [DEMO] Arıcılar Birliği
+    state: documents card with the upload form
+    viewport: desktop
+    highlight: document type, Upload, the SHA-256 column
+    note: crop or blur the member list
+
+  - id: consent-form
+    chapter: 10
+    page: /Storefronts/Consent/{[DEMO] beekeeper without consent}
+    role: Organisation admin at [DEMO] Arıcılar Birliği
+    record: a [DEMO] beekeeper without an active consent
+    state: form filled, not saved
+    viewport: phone
+    highlight: the two checkboxes, Date of consent, Signed consent document
+
+  - id: admin-dashboard
+    chapter: 12
+    page: /Dashboard/Index
+    role: platform administrator
+    record: none
+    state: top of the page (welcome band, figures, chain strip)
+    viewport: desktop
+    highlight: figures and chain strip
+    note: blur the user name in the greeting; do not include the recent-activity card
+
+  - id: admin-org-create
+    chapter: 12
+    page: /Organizations/Create
+    role: platform administrator
+    record: a new organization named "[DEMO] Örnek Kurum" (not saved)
+    state: form filled with capabilities ticked
+    viewport: desktop
+    highlight: existing wholesaler field and capabilities
+
+  - id: admin-org-members
+    chapter: 12
+    page: /Organizations/Details/{[DEMO] Kovan Bal İşleme}
+    role: platform administrator
+    record: organization [DEMO] Kovan Bal İşleme
+    state: members card with the Add member form
+    viewport: desktop
+    highlight: role, existing user name, Add member
+    note: blur user names
+
+  - id: admin-role-permissions
+    chapter: 12
+    page: /Permissions/Index?tab=roles
+    role: platform administrator
+    record: role Quality approver selected
+    state: matrix
+    viewport: desktop
+    highlight: CCP rows and area rows
+
+  - id: admin-parameter-limits
+    chapter: 12
+    page: /CriticalControlPointParameters/Limits/{a CCP 1 parameter such as moisture}
+    role: platform administrator
+    record: reference data
+    state: limits table and the Add a limit form
+    viewport: desktop
+    highlight: default limits, Limits verified (on the parameter edit page)
+
+  - id: admin-registry
+    chapter: 12
+    page: /Registry/Edit/{[DEMO] Zeynep Kovancı}
+    role: platform administrator
+    record: beekeeper [DEMO] Zeynep Kovancı
+    state: association and registry verification cards
+    viewport: desktop
+    highlight: registry number format, proof, Verify / Reject
+
+  - id: admin-manage-batch
+    chapter: 12
+    page: /FinalHoneyProductions/ManageBatch/{open [DEMO] batch}
+    role: platform administrator
+    record: an open [DEMO] batch
+    state: eligible lots with amounts entered
+    viewport: desktop
+    highlight: Use Amount (kg), Save Batch Composition
+
+  - id: recall-report
+    chapter: 12
+    page: /Recall/Batch/{[DEMO] Kekik Balı 2026}
+    role: Staff at [DEMO] Kovan Bal İşleme
+    record: batch [DEMO] Kekik Balı 2026
+    state: full report
+    viewport: desktop
+    highlight: upstream, downstream, holders, Print, CSV
+
+  - id: audit-log
+    chapter: 13
+    page: /Audit/Index?entity=FinalHoneyProductions
+    role: platform administrator
+    record: rows of [DEMO] batches only (crop)
+    state: one row with "Show raw" opened
+    viewport: desktop
+    highlight: old → new changes, Show raw, Verify hash chain
+    note: blur user names
+
+  - id: public-map
+    chapter: 13
+    page: /honeystory/{qr of [DEMO] Kekik Balı 2026}#hs-map
+    role: anonymous
+    record: batch [DEMO] Kekik Balı 2026
+    state: origins-by-province map, tooltip of the province open
+    viewport: phone
+    highlight: province only, no points
