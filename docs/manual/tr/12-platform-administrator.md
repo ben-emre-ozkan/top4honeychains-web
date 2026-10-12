@@ -2,13 +2,16 @@
 
 ## Günlük işiniz {#admin-daily}
 
-Platform yöneticileri platformu işletir. Kurumları doğrular, üyeleri ve yetkileri yönetir, referans verilerini ve kontrol noktası tanımlarını güncel tutar, arıcıları kaydeder, (şimdilik) parti oluşturur, düzeltmelere karar verir ve denetim kaydını izler.
+Platform yöneticileri platformu işletir. Kurumları doğrular, üyelikleri ve yetkileri yönetir, referans verilerini ve kontrol noktası tanımlarını güncel tutar, arıcıları kaydeder, (şimdilik) parti oluşturur, düzeltmelere karar verir ve denetim kaydını izler.
 
 Yöneticiler her kaydı okuyabilir, ancak **iş verisi girmez ve onaylamaz**. Oturum açtıklarında **İşlerim** sayfası açılır; bu sayfada **Doğrulanacak kurumlar**, **Doğrulanacak kayıt numaraları** ve **Karar bekleyen düzeltmeler** grupları yer alır. **Panel** genel bir bakış sunar (rakamlar, zincir, il bazında arıcı ve arılık haritası, son etkinlikler ve bekleyen onaylar).
 
 <!-- SHOT: admin-dashboard -->
+Figure: Platform yöneticisinin paneli.
 
-Yönetim menüsü:
+Yönetim menüsü ([Tablo](#tbl-admin-menu)):
+
+Table: Yönetim menüsü {#tbl-admin-menu}
 
 | Menü | Öğeler |
 |---|---|
@@ -33,10 +36,11 @@ Yönetim menüsü:
 Kurum **Beklemede** durumunda başlar: "Kurum oluşturuldu. Doğrulanana kadar Beklemede kalır."
 
 <!-- SHOT: admin-org-create -->
+Figure: Kurum oluşturma: toptancı bağlantısı ve yetenekler.
 
 ### Doğrulama, belge isteme, askıya alma {#admin-org-verify}
 
-Kurum sayfasında:
+Kurum sayfasında (bir platform yöneticisi; platform bu şekilde yapılandırılmışsa, arıcı birlikleri için doğrulanmış bir merkez birliğin kurum yöneticisi de):
 
 - **Doğrula** (Beklemede durumundan) için en az bir yüklenmiş belge gerekir.
 - **Belge iste** (Beklemede iken) için bir gerekçe gerekir, örneğin hangi belgenin eksik olduğu.
@@ -54,9 +58,10 @@ Her değişiklik doğrulama geçmişinde ve denetim kaydında görünür.
 2. Mevcut bir kullanıcı adı girin ya da kullanıcıyı aynı anda oluşturmak için yeni bir kullanıcı adı, e-posta ve şifre girin.
 3. **Üye ekle** düğmesine tıklayın: "…, … olarak eklendi."
 
-Bir kullanıcının birden fazla üyeliği olabilir. **İptal et** bir üyeliği sona erdirir ve kullanıcının tüm oturumlarını kapatır. **Roller ve yetkiler** altındaki **Üyeler** sekmesi, tüm kurumların tüm üyeliklerini listeler.
+Üyelik, bir kullanıcı hesabı × bir kurum × bir rol demektir; bir kullanıcının birden fazla üyeliği olabilir. **İptal et** bir üyeliği sona erdirir ve kullanıcının tüm oturumlarını kapatır. **Roller ve yetkiler** altındaki **Üyeler** sekmesi, tüm kurumların tüm üyeliklerini listeler.
 
 <!-- SHOT: admin-org-members -->
+Figure: Bir kurumun üyelikleri ve **Üye ekle** formu.
 
 ### Dört göz muafiyeti {#admin-four-eyes}
 
@@ -83,9 +88,10 @@ Tek bir kalite sorumlusu olan küçük kurumlara **Dört göz muafiyeti** tanın
 - **Rol yetkileri**: bir rol seçin ve her işlev için **Giriş**, **Onayla** ve **Okuma** kutularını işaretleyin. İşlevler, KKN'ler (her biri ayrı bir satır) ile teslim alma, numuneler, laboratuvar sonuçları, sevkiyatlar, arıcı sayfaları, geri çağırma ve kesinleştirme alanlarıdır. Her yetki en az bir rolde kalmalıdır. Değişiklikler hemen uygulanır.
 - **Kurum yetkinlikleri**: kurum başına yetenekler.
 
-"Sabit kurallar (kapatılamaz):" kutusu, hiçbir ayarın değiştiremediği kuralları listeler (bkz. [Sabit kurallar](#fixed-rules)).
+"Temel kurallar (kapatılamaz):" kutusu, hiçbir ayarın değiştiremediği kuralları listeler (bkz. [Temel kurallar](#fixed-rules)). Bir yöneticinin tam olarak neleri değiştirebileceğini [Tablo](#tbl-admin-changeable) listeler.
 
 <!-- SHOT: admin-role-permissions -->
+Figure: Kalite Güvence Sorumlusunun rol yetkileri.
 
 ## KKN sorumlulukları {#admin-ccp-responsibilities}
 
@@ -100,6 +106,7 @@ Tek bir kalite sorumlusu olan küçük kurumlara **Dört göz muafiyeti** tanın
 **Doğrulanmış limitler.** Her parametrede **Limitler doğrulandı (herkese açık gösterilir)** kutusu bulunur. Bal Hikâyesi'nde ve arıcı sayfasında yalnızca doğrulanmış limitler herkese açık bir limit içinde/limit dışında değerlendirmesi üretir. Doğrulanmamış limitler panelde "doğrulanacak" olarak işaretlenir; herkese açık sayfalar ise limitlerin hâlâ kontrol edildiğini belirtir.
 
 <!-- SHOT: admin-parameter-limits -->
+Figure: Bir parametrenin limitleri (KKN 1, nem).
 
 ## Referans verileri ve çeviriler {#admin-reference}
 
@@ -114,6 +121,7 @@ Bal türleri (limitler için kullanılan bal sınıflarıyla birlikte), üretim 
 - **Arıcı kaydı ve birlikler**: her arıcı için birliği bağlayın ve işletme kayıt numarasını (biçim: `TR` + il kodu + 10 rakam, örneğin `TR061234567890`) bir kanıt belgesiyle birlikte girin. Ardından **Doğrula** veya **Reddet** düğmesine tıklayın (reddetmek için gerekçe zorunludur).
 
 <!-- SHOT: admin-registry -->
+Figure: Arıcı kaydı ve birlik.
 
 ## Partiler (şimdilik yalnızca yönetici) {#admin-batches}
 
@@ -126,6 +134,7 @@ Bal türleri (limitler için kullanılan bal sınıflarıyla birlikte), üretim 
 Ardından tesis parti KKN'lerini girer ve partiyi kesinleştirir. Yöneticiler kesinleştirme yapamaz: "Kurum modelinde partiyi sahibi olan kurum kesinleştirir (iki kişi: talep ve onay)."
 
 <!-- SHOT: admin-manage-batch -->
+Figure: Uygun lotlardan parti bileşimini belirleme.
 
 ## Düzeltmeler {#admin-corrections}
 
@@ -148,9 +157,10 @@ Bir partinin veya lotun **Geri çağırma raporu** şunları listeler:
 - partiler;
 - **sonrası**: sevkiyatlar ve partiyi şu anda elinde tutan kurumlar.
 
-Üyeler, kurumlarının görebildiği kısmı görür (sahip, partiyi elinde tutan kurum veya birlik); gizlenen satırların yalnızca sayısı gösterilir. **Yazdır** ve **CSV** raporu dışa aktarır.
+Üyeler, kurumlarının okuyabildiği kısmı okur (sahip, partiyi elinde tutan kurum veya birlik); gizlenen satırların yalnızca sayısı gösterilir. **Yazdır** ve **CSV** raporu dışa aktarır.
 
 <!-- SHOT: recall-report -->
+Figure: Bir partinin geri çağırma raporu.
 
 ## Denetim kaydı {#admin-audit}
 

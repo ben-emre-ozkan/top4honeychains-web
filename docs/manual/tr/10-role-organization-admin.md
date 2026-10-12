@@ -6,10 +6,10 @@ Kurum yöneticisi, platformda bir kurumun yöneticisidir. Göreviniz:
 
 - kurumun belgelerini güncel tutmak (ruhsat, akreditasyon, vergi levhası, kayıt kanıtı);
 - bir tesiste: teslimleri ve numuneleri okumak, kesinleştirme talep etmek, sevk etmek ve sevkiyatları onaylamak;
-- bir toptancıda veya mağazada: sevkiyatları onaylamak;
+- bir toptancıda veya perakendecide: sevkiyatları onaylamak;
 - bir birlikte: herkese açık arıcı sayfası için arıcıların rızasını kaydetmek ve geri çekmek.
 
-Kurumunuzun üyelerini, rollerini ve yeteneklerini platform yöneticileri yönetir. Bir iş arkadaşınızın erişime veya farklı bir role ihtiyacı varsa onlara başvurun.
+Kurumunuzun üyeliklerini ve yeteneklerini platform yöneticileri yönetir. Bir iş arkadaşınızın erişime veya farklı bir role ihtiyacı varsa onlara başvurun.
 
 ## Kurum sayfanız {#orgadmin-org-page}
 
@@ -17,6 +17,7 @@ Kurumunuzun üyelerini, rollerini ve yeteneklerini platform yöneticileri yönet
 2. Sayfa kurumunuzun durumunu, yeteneklerini, belgelerini, doğrulama geçmişini ve üyelerini gösterir.
 
 <!-- SHOT: org-details -->
+Figure: SHA-256 parmak izleriyle kurum belgeleri.
 
 ### Belge yükleme {#orgadmin-documents}
 
@@ -51,6 +52,7 @@ Sayfa yalnızca şu koşulların **tümü** sağlandığında herkese açıktır
 6. Kaydedin.
 
 <!-- SHOT: consent-form -->
+Figure: Telefonda bir arıcının rızasını kaydetme.
 
 Mesaj "Rıza kaydedildi; arıcı sayfası yayında." olur; kayıt numarası henüz doğrulanmadıysa "Rıza kaydedildi. Arıcı sayfası kayıt numarası doğrulanınca yayımlanır." olur.
 

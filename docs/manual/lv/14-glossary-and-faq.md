@@ -2,11 +2,16 @@
 
 ## Terminu skaidrojumi {#glossary}
 
+[Table](#tbl-glossary) skaidro šajā rokasgrāmatā lietotos terminus; [Table](#tbl-renamed-labels) uzskaita nosaukumus, kas mainās nākamajā versijā.
+
+Table: Terminu skaidrojumi {#tbl-glossary}
+
 | Termins | Nozīme |
 |---|---|
 | **HACCP** | Riska analīze un kritiskie kontroles punkti (Hazard Analysis and Critical Control Points): pārtikas nekaitīguma metode, no kuras ņemti kontroles punkti. |
 | **KKP (kritiskais kontroles punkts)** | Solis, kurā risks tiek kontrolēts ar mērījumu vai pārbaudi. Angļu valodā CCP, turku valodā KKN, spāņu valodā PCC, poļu valodā KPK. |
-| **Parametrs** | Viena KKP reģistrēta vērtība, piemēram, mitrums vai temperatūra. |
+| **Dati** | Tas, ko cilvēki reģistrē platformā: izmērītās vērtības (piemēram, mitrums %) un atbildes (piemēram, Jā / Nē). |
+| **Parametrs** | Viena KKP reģistrēta datu vienība, piemēram, mitrums vai temperatūra. |
 | **Kritiskā robežvērtība** | Parametra pieļaujamais minimums un/vai maksimums. |
 | **Pārbaudīta robežvērtība** | Robežvērtība, ko apstiprinājis projekts; tikai pārbaudītas robežvērtības dod publisku spriedumu "robežās / ārpus robežām". |
 | **Robežās / Ārpus robežām** | Vērtības salīdzinājums ar tās robežvērtību. Vērtības ārpus robežām paliek atzīmētas arī pēc apstiprināšanas. |
@@ -14,11 +19,12 @@
 | **Neapstrādāta medus partija** | Vienas piegādes medus no vienas dravas (viens periods, viens medus veids). Tai ir KKP 0–3. |
 | **Gala partija** | Medus no vienas vai vairākām partijām, kas apstrādāts un iepakots kopā. Tai ir KKP 4–10 un QR kods. |
 | **Pabeigšana (fiksēšana)** | Divu personu solis, kas bloķē gala partiju un tās partijas un publicē Medus stāstu. |
-| **Četru acu princips** | Katru ierakstu apstiprina cita persona, nevis tā, kas to ievadīja. |
+| **Četru acu princips** | Katrā ierakstā piedalās divas dažādas personas: viena ievada datus, otra tos pārbauda un apstiprina. Neviens neapstiprina to, ko pats ievadījis. Skatīt [Pamatnoteikumi](#fixed-rules). |
 | **Četru acu principa izņēmums** | Iestatījums mazām organizācijām, kas ļauj pašam apstiprināt savus KKP ierakstus; tas vienmēr tiek atzīmēts. Nekad neattiecas uz laboratorijas rezultātiem. |
 | **Paraugs / kontrolparaugs** | Noplombētais paraugs, kas tiek nosūtīts uz laboratoriju, un tā dvīņu paraugs, ko glabā uzņēmumā. |
 | **Plombas numurs** | Numurs uz parauga plombas; laboratorija to pārbauda, saņemot paraugu. |
 | **Laboratorijas pārskats / pārskata kods** | Laboratorijas pārskats (PDF un vērtības) un tā publiskais 12 rakstzīmju kods. |
+| **Pārtikas analīžu laboratorija** | Laboratorija, kas analizē medus paraugus, parasti akreditēta. Tās analītiķis ievada rezultātus, tās laboratorijas vadītājs tos apstiprina. |
 | **Akreditēta laboratorija** | Laboratorija ar derīgu akreditāciju, kas tiek reģistrēta pārskata apstiprināšanas brīdī. |
 | **Iekšējā laboratorija** | Laboratorija, kas pieder partijas īpašniekam. |
 | **Turētājs** | Organizācija, kuras turējumā pēc apstiprināta sūtījuma ir gala partijas daudzums. |
@@ -27,10 +33,23 @@
 | **Medus stāsts** | Pabeigtas (fiksētas) gala partijas publiskā lapa, ko atver ar tās QR kodu. |
 | **Biškopja lapa** | Biškopja publiskā lapa, kas tiek publicēta ar viņa piekrišanu. |
 | **Reģistrācijas numurs (AKS)** | Biškopja saimniecības reģistrācijas numurs: `TR` + provinces kods + 10 cipari. |
-| **Dalība** | Personas loma organizācijā. Vienai personai var būt vairākas dalības. |
-| **Kompetence** | Kāda veida darbu organizācija veic (Pārstrāde, Laboratorija, Mazumtirdzniecība, …). |
+| **Dalība** | Viens lietotāja konts × viena organizācija × viena loma. Vienai personai var būt vairākas dalības, arī vairākas vienā organizācijā. |
+| **Biškopis (ieraksts)** | Biškopjiem nav kontu. Katru no viņiem platformā pārstāv biškopja ieraksts. |
+| **Lasīt** | Tiesības atvērt un lasīt ierakstus, tos nemainot. |
+| **Kompetence** | Organizācijas spēja: tas, ko organizācija spēj darīt medus ķēdē (piemēram, "Spēj pieņemt un pārstrādāt medu"). Skatīt [Table](#tbl-capabilities). |
+| **Pamatnoteikumi** | Platformā iestrādātie noteikumi, kurus nevar izslēgt neviens iestatījums. Skatīt [Pamatnoteikumi](#fixed-rules). |
 | **Audita žurnāls** | Tikai papildināms visu izmaiņu ieraksts, ko aizsargā jaucējvērtību ķēde. |
 | **SHA-256 nospiedums** | Kods, kas aprēķināts no faila satura; jebkuras faila izmaiņas maina arī šo kodu. |
+
+Table: Nosaukumi, kas mainās nākamajā versijā (ekrānuzņēmumos redzami vecie nosaukumi) {#tbl-renamed-labels}
+
+| Šodien ekrānā | Jaunais nosaukums (lietots šajā rokasgrāmatā) |
+|---|---|
+| Kvalitātes apstiprinātājs | Kvalitātes nodrošināšanas speciālists |
+| Fiksēti noteikumi (tos nevar izslēgt) | Pamatnoteikumi (tos nevar izslēgt) |
+| Kompetenču apraksti (piemēram, "Pieņemšana un pārstrāde: …") | Spēju teksti (piemēram, "Spēj pieņemt un pārstrādāt medu: …"), skatīt [Table](#tbl-capabilities) |
+| Biškopība (kompetence) | Biškopības saimniecība |
+| CCP lapā **Lomas un atļaujas** (piemēram, "CCP 0") | KKP (piemēram, "KKP 0"), kā citur platformā |
 
 ## Bieži uzdotie jautājumi un problēmu novēršana {#faq}
 
@@ -53,7 +72,7 @@ Izlasiet zem tā norādīto iemeslu. Tipiski iemesli: jūsu organizācija vēl n
 Organizācijas administrators organizācijas lapā augšupielādē dokumentu (licenci, akreditāciju, reģistrācijas apliecinājumu); pēc tam platformas administrators organizāciju pārbauda.
 
 **Laboratorija nevar ievadīt rezultātus: "Šīs partijas KKP 0 (sākotnējais audits) vēl nav pabeigts; …"**
-Uzņēmumam vispirms jāievada KKP 0, un tā kvalitātes apstiprinātājam tas jāapstiprina.
+Uzņēmumam vispirms jāievada KKP 0, un tā kvalitātes nodrošināšanas speciālistam tas jāapstiprina.
 
 **Nevaru apstiprināt: "Četru acu princips: jūs reģistrējāt šī KKP vērtības, tāpēc tas jāapstiprina citai personai."**
 To jāizdara citam apstiprinātājam. Ja jūsu organizācijā ir tikai viens kvalitātes speciālists, jautājiet platformas administratoram par četru acu principa izņēmumu (laboratorijas rezultātiem tas nav pieejams).

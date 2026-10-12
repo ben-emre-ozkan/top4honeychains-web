@@ -7,7 +7,7 @@ Lauka inspektors ir biškopju biedrības tehniķis. Ar noklusējuma konfigurāci
 Jūs varat:
 
 - atvērt **Mans darbs** un **Mana organizācija**;
-- skatīt to partiju un gala partiju kontroles punktus un laboratorijas pārskatus, kurās piedalās jūsu biedrība;
+- lasīt to partiju un gala partiju kontroles punktus un laboratorijas pārskatus, kurās piedalās jūsu biedrība;
 - atvērt lapu **Atsaukšanas pārskats** savas biedrības tvērumā.
 
 ## Ja KKP 0 tiek piešķirts biedrībai {#fieldinspector-ccp0}
@@ -16,6 +16,6 @@ Platformas administrators var mainīt atbildību par KKP 0 tā, lai to reģistr�
 
 1. Pēc kāda jūsu biedra piegādes jūsu sadaļā **Mans darbs**, grupā **Ievadāmās vērtības**, parādās uzdevums "KKP 0 · #[partija]".
 2. Ievadiet vērtības, kā aprakstīts sadaļā [Darbs KKP lapā](#ccp-page), un noklikšķiniet uz **Saglabāt uzraudzības ierakstus**.
-3. Jūsu biedrības kvalitātes apstiprinātājs to apstiprina.
+3. Jūsu biedrības kvalitātes nodrošināšanas speciālists to apstiprina.
 
 Laboratorija var ievadīt rezultātus tikai pēc tam, kad KKP 0 ir apstiprināts.

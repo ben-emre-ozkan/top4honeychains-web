@@ -16,6 +16,6 @@ A platform administrator can change the responsibility for CCP 0 so that the bee
 
 1. After a delivery of one of your members, the task "CCP 0 · #[lot]" appears in your **My work** under **Values to enter**.
 2. Enter the values as described in [Working on a CCP page](#ccp-page) and click **Save Monitoring Logs**.
-3. A quality approver of your association approves it.
+3. A Quality Assurance Officer of your association approves it.
 
 The laboratory can enter results only after CCP 0 is approved.

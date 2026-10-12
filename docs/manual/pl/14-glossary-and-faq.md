@@ -2,11 +2,16 @@
 
 ## Słowniczek {#glossary}
 
+[Table](#tbl-glossary) objaśnia terminy używane w tym podręczniku; [Table](#tbl-renamed-labels) wymienia etykiety, które zmienią się w następnej wersji.
+
+Table: Słowniczek {#tbl-glossary}
+
 | Termin | Znaczenie |
 |---|---|
 | **HACCP** | Analiza zagrożeń i krytyczne punkty kontroli (Hazard Analysis and Critical Control Points): metoda zapewnienia bezpieczeństwa żywności, z której wywodzą się punkty kontrolne. |
 | **KPK (krytyczny punkt kontroli)** | Etap, na którym zagrożenie jest kontrolowane przez pomiar lub sprawdzenie. W wersji angielskiej CCP, w tureckiej KKN, w hiszpańskiej PCC, w łotewskiej KKP. |
-| **Parametr** | Jedna wartość rejestrowana w KPK, na przykład wilgotność lub temperatura. |
+| **Dane** | To, co użytkownicy rejestrują na platformie: zmierzone wartości (na przykład wilgotność w %) oraz odpowiedzi (na przykład Tak / Nie). |
+| **Parametr** | Jedna pozycja danych rejestrowana w KPK, na przykład wilgotność lub temperatura. |
 | **Limit krytyczny** | Minimalna i/lub maksymalna dopuszczalna wartość parametru. |
 | **Zweryfikowany limit** | Limit potwierdzony w ramach projektu; tylko zweryfikowane limity dają publiczną ocenę „w granicach limitu / poza limitem”. |
 | **W granicach limitu / Poza limitem** | Wynik porównania wartości z jej limitem. Wartości poza limitem pozostają oznaczone także po zatwierdzeniu. |
@@ -14,11 +19,12 @@
 | **Partia surowego miodu** | Miód z jednej dostawy z jednej pasieki (jeden okres, jeden rodzaj miodu). Obejmuje KPK 0–3. |
 | **Partia końcowa** | Miód z jednej lub kilku partii, przetworzony i zapakowany razem. Obejmuje KPK 4–10 i ma kod QR. |
 | **Ostateczne zatwierdzenie / zamknięcie** | Dwuosobowy krok, który blokuje partię końcową i jej partie oraz publikuje Historię miodu. |
-| **Zasada czterech oczu** | Każdy rekord zatwierdza inna osoba niż ta, która go wprowadziła. |
+| **Zasada czterech oczu** | W każdym rekordzie uczestniczą dwie różne osoby: jedna wprowadza dane, a druga je sprawdza i zatwierdza. Nikt nie zatwierdza tego, co sam wprowadził. Zob. [Zasady podstawowe](#fixed-rules). |
 | **Wyjątek od zasady czterech oczu** | Ustawienie dla małych organizacji, które pozwala samodzielnie zatwierdzać rekordy KPK; takie zatwierdzenie jest zawsze oznaczane. Nigdy nie dotyczy wyników laboratoryjnych. |
 | **Próbka / przeciwpróbka** | Zaplombowana próbka wysyłana do laboratorium oraz jej bliźniacza część przechowywana w zakładzie. |
 | **Numer plomby** | Numer na plombie próbki; laboratorium sprawdza go przy przyjęciu. |
 | **Raport laboratoryjny / kod raportu** | Raport laboratorium (plik PDF i wartości) oraz jego publiczny 12-znakowy kod. |
+| **Laboratorium analizy żywności** | Laboratorium, które analizuje próbki miodu, zwykle akredytowane. Jego analityk wprowadza wyniki, a kierownik laboratorium je zatwierdza. |
 | **Akredytowane laboratorium** | Laboratorium z ważną akredytacją, odnotowaną w chwili zatwierdzenia raportu. |
 | **Laboratorium własne** | Laboratorium należące do właściciela partii. |
 | **Posiadacz** | Organizacja, która posiada ilość partii końcowej po potwierdzonej wysyłce. |
@@ -27,10 +33,21 @@
 | **Historia miodu** | Publiczna strona partii końcowej zatwierdzonej ostatecznie, otwierana z jej kodu QR. |
 | **Strona pszczelarza** | Publiczna strona pszczelarza, publikowana za jego zgodą. |
 | **Numer w rejestrze (AKS)** | Numer gospodarstwa pszczelarza w rejestrze: `TR` + kod prowincji + 10 cyfr. |
-| **Członkostwo** | Rola danej osoby w organizacji. Jedna osoba może mieć kilka członkostw. |
-| **Funkcja** | Rodzaj pracy wykonywanej przez organizację (Przetwarzanie, Laboratorium, Handel detaliczny, …). |
+| **Członkostwo** | Jedno konto użytkownika × jedna organizacja × jedna rola. Jedna osoba może mieć kilka członkostw, także kilka w tej samej organizacji. |
+| **Pszczelarz (rekord)** | Pszczelarze nie mają kont. Każdego z nich reprezentuje na platformie rekord pszczelarza. |
+| **Odczyt** | Prawo do otwierania i odczytywania rekordów bez ich zmieniania. |
+| **Funkcja** | Zdolność organizacji: to, co może ona robić w łańcuchu miodu (na przykład „Zdolność do przyjmowania i przetwarzania miodu”). Zob. [Table](#tbl-capabilities). |
+| **Zasady podstawowe** | Zasady wbudowane w platformę, których nie może wyłączyć żadne ustawienie. Zob. [Zasady podstawowe](#fixed-rules). |
 | **Dziennik audytu** | Rejestr wszystkich zmian, do którego można tylko dopisywać, chroniony łańcuchem skrótów. |
 | **Odcisk SHA-256** | Kod obliczany na podstawie zawartości pliku; każda zmiana pliku zmienia ten kod. |
+
+Table: Etykiety zmienione w następnej wersji (zrzuty ekranu pokazują stare etykiety) {#tbl-renamed-labels}
+
+| Obecnie na ekranie | Nowa nazwa (używana w tym podręczniku) |
+|---|---|
+| Zatwierdzający jakość (także w komunikatach, na przykład „musi go potwierdzić zatwierdzający jakość (inna osoba)”) | Specjalista ds. zapewnienia jakości |
+| Stałe zasady (nie można ich wyłączyć) | Zasady podstawowe (nie można ich wyłączyć) |
+| Opisy funkcji (na przykład „Przyjęcie i przetwarzanie, KPK 1-6 (stowarzyszenie lub firma konfekcjonująca)”) | Opisy zdolności (na przykład „Zdolność do przyjmowania i przetwarzania miodu: …”), zob. [Table](#tbl-capabilities) |
 
 ## Najczęściej zadawane pytania i rozwiązywanie problemów {#faq}
 
@@ -53,7 +70,7 @@ Przeczytaj podany pod spodem powód. Typowe powody: Twoja organizacja nie jest j
 Administrator organizacji przesyła dokument (licencję, akredytację, dowód wpisu do rejestru) na stronie organizacji; następnie administrator platformy weryfikuje organizację.
 
 **Laboratorium nie może wprowadzić wyników: „KPK 0 (audyt wstępny) tej partii nie jest jeszcze zakończony; …”**
-Zakład musi najpierw wprowadzić KPK 0, a jego zatwierdzający jakość musi go zatwierdzić.
+Zakład musi najpierw wprowadzić KPK 0, a jego specjalista ds. zapewnienia jakości musi go zatwierdzić.
 
 **Nie mogę zatwierdzić: „Zasada czterech oczu: wartości tego KPK zostały zarejestrowane przez Ciebie, więc musi je zatwierdzić inna osoba.”**
 Musi to zrobić inny zatwierdzający. Jeśli w Twojej organizacji za jakość odpowiada tylko jedna osoba, zapytaj administratora platformy o wyjątek od zasady czterech oczu (niedostępny dla wyników laboratoryjnych).

@@ -2,9 +2,9 @@
 
 ## Twoja codzienna praca {#staff-daily}
 
-**W zakładzie przetwórczym lub konfekcjonującym** wprowadzasz wartości produkcyjnych punktów kontrolnych: KPK 2–3 w partiach surowego miodu oraz KPK 4–10 w partiach końcowych. Gdy partia końcowa jest kompletna, składasz wniosek o jej ostateczne zatwierdzenie, a po jej zamknięciu wysyłasz ją.
+**W zakładzie przetwórczym lub konfekcjonującym** wprowadzasz dane produkcyjnych punktów kontrolnych: KPK 2–3 w partiach surowego miodu oraz KPK 4–10 w partiach końcowych. Gdy partia końcowa jest kompletna, składasz wniosek o jej ostateczne zatwierdzenie, a po jej zamknięciu wysyłasz ją.
 
-**U hurtownika lub w sklepie** potwierdzasz lub odrzucasz przychodzące wysyłki oraz rejestrujesz warunki przechowywania (KPK 10) posiadanych partii końcowych.
+**U hurtownika lub detalisty** potwierdzasz lub odrzucasz przychodzące wysyłki oraz rejestrujesz warunki przechowywania (KPK 10) posiadanych partii końcowych.
 
 Twoje zadania pojawiają się na stronie **Moja praca** w grupach **Wartości do wprowadzenia** i **Wysyłki do potwierdzenia**. Menu zawiera pozycje **Moja organizacja** oraz **Wysyłki i zapasy**.
 
@@ -21,6 +21,7 @@ Strona **Moja organizacja** zawiera listę partii surowego miodu i partii końco
 Kliknij znacznik, aby otworzyć stronę KPK. Odnośnik **Przebieg procesu** pokazuje oś czasu partii lub partii końcowej.
 
 <!-- SHOT: my-organization -->
+Figure: **Moja organizacja**: partie i partie końcowe z ich znacznikami KPK.
 
 ## Wprowadzanie KPK 2–3 partii {#staff-lot-ccps}
 
@@ -29,7 +30,7 @@ Kliknij znacznik, aby otworzyć stronę KPK. Odnośnik **Przebieg procesu** poka
 3. Jeśli dany etap nie dotyczy tego miodu, oznacz go jako **Nie dotyczy**, podając powód.
 4. Powtórz te czynności dla KPK 3.
 
-Następnie zatwierdzający jakość je zatwierdza. Partię można dodać do partii końcowej dopiero wtedy, gdy wszystkie jej KPK są zakończone lub oznaczone jako nie dotyczy i zatwierdzone.
+Następnie specjalista ds. zapewnienia jakości je zatwierdza. Partię można dodać do partii końcowej dopiero wtedy, gdy wszystkie jej KPK są zakończone lub oznaczone jako nie dotyczy i zatwierdzone.
 
 ## Wprowadzanie KPK 4–10 partii końcowej {#staff-batch-ccps}
 
@@ -40,6 +41,7 @@ Administrator platformy tworzy partię końcową, dodaje do niej partie i przypi
 3. Za każdym razem kliknij **Zapisz zapisy monitorowania**.
 
 <!-- SHOT: ccp-page-batch -->
+Figure: Strona KPK partii końcowej: skład źródłowy i parametry KPK 10.
 
 ## Wniosek o ostateczne zatwierdzenie {#staff-request-finalize}
 
@@ -48,8 +50,9 @@ Administrator platformy tworzy partię końcową, dodaje do niej partie i przypi
 3. Gdy lista jest pusta, kliknij **Wnioskuj o ostateczne zatwierdzenie**.
 
 <!-- SHOT: finalize-request -->
+Figure: Karta **Zatwierdź ostatecznie** z listą tego, czego jeszcze brakuje.
 
-Komunikat „Złożono wniosek o ostateczne zatwierdzenie; musi go potwierdzić zatwierdzający jakość (inna osoba).” potwierdza złożenie wniosku. Zatwierdzający jakość Twojej organizacji widzi go w grupie **Wnioski o ostateczne zatwierdzenie**. Nie możesz potwierdzić własnego wniosku.
+Komunikat „Złożono wniosek o ostateczne zatwierdzenie; musi go potwierdzić specjalista ds. zapewnienia jakości (inna osoba).” potwierdza złożenie wniosku. Specjalista ds. zapewnienia jakości Twojej organizacji znajduje go w grupie **Wnioski o ostateczne zatwierdzenie**. Nie możesz potwierdzić własnego wniosku.
 
 ## Wysyłka partii końcowej {#staff-ship}
 
@@ -61,6 +64,7 @@ Wysłać można tylko partię końcową zatwierdzoną ostatecznie.
 4. Potwierdź przyciskiem **Wyślij**. Ilość zostaje od razu zarezerwowana: „Utworzono wysyłkę; piecza przechodzi na odbiorcę po jej potwierdzeniu.”
 
 <!-- SHOT: shipment-create -->
+Figure: Wysyłanie partii końcowej do innej organizacji.
 
 Błędy: „Wysłać można tylko partię końcową zatwierdzoną ostatecznie.”, „Z tej partii końcowej możesz wysłać maksymalnie … kg.”, „Wybierz inną zweryfikowaną organizację jako odbiorcę.”
 
@@ -71,6 +75,7 @@ Błędy: „Wysłać można tylko partię końcową zatwierdzoną ostatecznie.�
 3. Możesz też wpisać **powód (w przypadku odrzucenia)** i kliknąć **Odrzuć**: „Wysyłka została odrzucona; ilość pozostaje u nadawcy.” Podanie powodu jest wymagane.
 
 <!-- SHOT: shipment-confirm -->
+Figure: Przychodząca wysyłka na telefonie: **Potwierdź odbiór** lub **Odrzuć**.
 
 ## Rejestracja przechowywania (KPK 10 u odbiorcy) {#staff-storage}
 
@@ -78,16 +83,17 @@ Po przyjęciu partii końcowej:
 
 1. Na stronie **Wysyłki i zapasy** w kolumnie **Przechowywanie** przy partii końcowej kliknij **KPK 10** (strona „KPK 10 – Przechowywanie”).
 2. Wprowadź jednorazowo wszystkie wymagane wartości przechowywania (na przykład temperaturę i wilgotność).
-3. Kliknij **Zapisz**: „Zapisano wartości przechowywania.” Rekord otrzymuje status **Przesłany**, a zatwierdzający jakość Twojej organizacji widzi go w grupie **Wartości do zatwierdzenia**.
+3. Kliknij **Zapisz**: „Zapisano wartości przechowywania.” Rekord otrzymuje status **Przesłany**, a specjalista ds. zapewnienia jakości Twojej organizacji znajduje go w grupie **Wartości do zatwierdzenia**.
 
 <!-- SHOT: storage-record -->
+Figure: Rejestracja przechowywania KPK 10 u odbiorcy.
 
 ## Przeglądanie zapisów producenta {#staff-read-only}
 
-Jeśli Twoja organizacja posiada partię końcową lub ją otrzymała, możesz otwierać punkty kontrolne producenta dotyczące tej partii końcowej i jej partii **tylko do odczytu**: widzisz wartości i osoby, które je zatwierdziły, ale nie ma przycisków zapisu ani zatwierdzenia. Imiona i nazwiska pszczelarzy oraz nazwy pasiek są wyświetlane jako „nie wyświetlono”, tak jak w raporcie z wycofania. Strona wyświetla oznaczenie **Tylko do odczytu** z komunikatem „Za ten punkt kontrolny odpowiada inna organizacja; możesz go tylko odczytywać.” W przypadku partii końcowej, której Twoja organizacja nigdy nie otrzymała, platforma wyświetla stronę „Nie możesz otworzyć tej strony”.
+Jeśli Twoja organizacja posiada partię końcową lub ją otrzymała, możesz otwierać punkty kontrolne producenta dotyczące tej partii końcowej i jej partii **tylko do odczytu**: możesz odczytać dane i to, kto je zatwierdził, ale nie ma przycisków zapisu ani zatwierdzenia. Imiona i nazwiska pszczelarzy oraz nazwy pasiek są wyświetlane jako „nie wyświetlono”, tak jak w raporcie z wycofania. Strona wyświetla oznaczenie **Tylko do odczytu** z komunikatem „Za ten punkt kontrolny odpowiada inna organizacja; możesz go tylko odczytywać.” W przypadku partii końcowej, której Twoja organizacja nigdy nie otrzymała, platforma wyświetla stronę „Nie możesz otworzyć tej strony”.
 
 Aby je otworzyć, przejdź do strony **Wysyłki i zapasy**, kliknij **Przebieg procesu** przy posiadanej partii końcowej, a następnie kliknij etap przebiegu.
 
 ## Raport z wycofania {#staff-recall}
 
-Z poziomu partii końcowej lub partii możesz otworzyć **Raport z wycofania**. Zawiera on partie w górę łańcucha i wysyłki w dół łańcucha, które Twoja organizacja może widzieć, oraz przyciski **Drukuj** i **CSV**. Zob. [Wycofanie](#admin-recall).
+Z poziomu partii końcowej lub partii możesz otworzyć **Raport z wycofania**. Zawiera on partie w górę łańcucha i wysyłki w dół łańcucha, które Twoja organizacja może odczytać, oraz przyciski **Drukuj** i **CSV**. Zob. [Wycofanie](#admin-recall).

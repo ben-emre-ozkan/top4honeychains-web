@@ -2,9 +2,9 @@
 
 ## Günlük işiniz {#staff-daily}
 
-**Bir işleme veya paketleme tesisinde** üretim kontrol noktalarının değerlerini girersiniz: ham bal lotlarında KKN 2–3, partilerde KKN 4–10. Bir parti tamamlandığında kesinleştirme talep eder, parti mühürlendikten sonra da partiyi sevk edersiniz.
+**Bir işleme veya paketleme tesisinde** üretim kontrol noktalarının verilerini girersiniz: ham bal lotlarında KKN 2–3, partilerde KKN 4–10. Bir parti tamamlandığında kesinleştirme talep eder, parti mühürlendikten sonra da partiyi sevk edersiniz.
 
-**Bir toptancıda veya mağazada** gelen sevkiyatları onaylar veya reddeder, elinizdeki partilerin depolama koşullarını (KKN 10) kaydedersiniz.
+**Bir toptancıda veya perakendecide** gelen sevkiyatları onaylar veya reddeder, elinizdeki partilerin depolama koşullarını (KKN 10) kaydedersiniz.
 
 Görevleriniz **İşlerim** sayfasında **Girilecek değerler** ve **Onaylanacak sevkiyatlar** altında görünür. Menüde **Kurumum** ve **Sevkiyatlar ve stok** bulunur.
 
@@ -21,6 +21,7 @@ Görevleriniz **İşlerim** sayfasında **Girilecek değerler** ve **Onaylanacak
 KKN sayfasını açmak için bir etikete tıklayın. **Süreç akışı** bağlantısı bir lotun veya partinin zaman çizelgesini gösterir.
 
 <!-- SHOT: my-organization -->
+Figure: **Kurumum**: KKN etiketleriyle lotlar ve partiler.
 
 ## Lotta KKN 2–3 girişi {#staff-lot-ccps}
 
@@ -29,7 +30,7 @@ KKN sayfasını açmak için bir etikete tıklayın. **Süreç akışı** bağla
 3. Bu adım bu bal için geçerli değilse, bir gerekçeyle **Uygulanamaz** olarak işaretleyin.
 4. Aynı işlemi KKN 3 için tekrarlayın.
 
-Ardından kalite onaylayıcı bu kayıtları onaylar. Bir lot ancak tüm KKN'leri tamamlandığında veya uygulanamaz olarak işaretlendiğinde ve onaylandığında partiye eklenebilir.
+Ardından Kalite Güvence Sorumlusu bu kayıtları onaylar. Bir lot ancak tüm KKN'leri tamamlandığında veya uygulanamaz olarak işaretlendiğinde ve onaylandığında partiye eklenebilir.
 
 ## Partide KKN 4–10 girişi {#staff-batch-ccps}
 
@@ -40,6 +41,7 @@ Partiyi bir platform yöneticisi oluşturur, lotları ekler ve KKN 4–10'u atar
 3. Her seferinde **İzleme Kayıtlarını Kaydet** düğmesine tıklayın.
 
 <!-- SHOT: ccp-page-batch -->
+Figure: Bir parti KKN sayfası: kaynak bileşimi ve KKN 10 parametreleri.
 
 ## Kesinleştirme talebi {#staff-request-finalize}
 
@@ -48,8 +50,9 @@ Partiyi bir platform yöneticisi oluşturur, lotları ekler ve KKN 4–10'u atar
 3. Liste boşaldığında **Kesinleştirme talep et** düğmesine tıklayın.
 
 <!-- SHOT: finalize-request -->
+Figure: Hâlâ eksik olanları listeleyen **Kesinleştirme** kartı.
 
-"Kesinleştirme talep edildi; bir kalite onaylayıcı (başka bir kişi) onaylamalı." mesajı talebin alındığını bildirir. Kurumunuzun bir kalite onaylayıcısı talebi **Kesinleştirme talepleri** altında görür. Kendi talebinizi onaylayamazsınız.
+"Kesinleştirme talep edildi; bir Kalite Güvence Sorumlusu (başka bir kişi) onaylamalı." mesajı talebin alındığını bildirir. Kurumunuzun bir Kalite Güvence Sorumlusu talebi **Kesinleştirme talepleri** altında bulur. Kendi talebinizi onaylayamazsınız.
 
 ## Parti sevk etme {#staff-ship}
 
@@ -61,6 +64,7 @@ Yalnızca kesinleşmiş bir parti sevk edilebilir.
 4. Onaylayın. Miktar hemen ayrılır: "Sevkiyat oluşturuldu; emanet alıcı onaylayınca geçer."
 
 <!-- SHOT: shipment-create -->
+Figure: Bir partiyi başka bir kuruma sevk etme.
 
 Hatalar: "Yalnızca kesinleşmiş bir parti sevk edilebilir.", "Bu partiden en çok … kg sevk edebilirsiniz.", "Alıcı olarak başka bir doğrulanmış kurum seçin."
 
@@ -71,6 +75,7 @@ Hatalar: "Yalnızca kesinleşmiş bir parti sevk edilebilir.", "Bu partiden en �
 3. Ya da **gerekçe (reddetmek için)** alanını doldurup **Reddet** düğmesine tıklayın: "Sevkiyat reddedildi; miktar gönderende kalır." Gerekçe zorunludur.
 
 <!-- SHOT: shipment-confirm -->
+Figure: Telefonda gelen bir sevkiyat: **Teslimi onayla** veya **Reddet**.
 
 ## Depolama kaydı (alıcıda KKN 10) {#staff-storage}
 
@@ -78,16 +83,17 @@ Bir partiyi teslim aldıktan sonra:
 
 1. **Sevkiyatlar ve stok** sayfasında partinin **Depolama** sütunundaki **KKN 10** bağlantısına tıklayın ("KKN 10 – Depolama" sayfası).
 2. Tüm zorunlu depolama değerlerini tek seferde girin (örneğin sıcaklık ve nem).
-3. **Kaydet** düğmesine tıklayın: "Depolama değerleri kaydedildi." Kayıt **Gönderildi** durumuna geçer ve kalite onaylayıcınız kaydı **Onaylanacak değerler** altında görür.
+3. **Kaydet** düğmesine tıklayın: "Depolama değerleri kaydedildi." Kayıt **Gönderildi** durumuna geçer ve Kalite Güvence Sorumlunuz kaydı **Onaylanacak değerler** altında bulur.
 
 <!-- SHOT: storage-record -->
+Figure: Alıcıda KKN 10 depolama kaydı.
 
 ## Üreticinin kayıtlarını okuma {#staff-read-only}
 
-Kurumunuz bir partiyi elinde tutuyor veya teslim almışsa, o partinin ve lotlarının üreticiye ait kontrol noktalarını **salt okunur** olarak açabilirsiniz: değerleri ve onaylayanları görürsünüz, ancak kaydetme veya onaylama düğmeleri yoktur. Arıcı ve arılık adları, geri çağırma raporunda olduğu gibi "gösterilmiyor" olarak görünür. Sayfada **Salt okunur** ve "Bu kontrol noktası başka bir kurumun sorumluluğunda; yalnızca okuyabilirsiniz." yazar. Kurumunuzun hiç teslim almadığı bir parti için platform "Bu sayfayı açamazsınız" sayfasını gösterir.
+Kurumunuz bir partiyi elinde tutuyor veya teslim almışsa, o partinin ve lotlarının üreticiye ait kontrol noktalarını **salt okunur** olarak açabilirsiniz: verileri ve onaylayanları okuyabilirsiniz, ancak kaydetme veya onaylama düğmeleri yoktur. Arıcı ve arılık adları, geri çağırma raporunda olduğu gibi "gösterilmiyor" olarak görünür. Sayfada **Salt okunur** ve "Bu kontrol noktası başka bir kurumun sorumluluğunda; yalnızca okuyabilirsiniz." yazar. Kurumunuzun hiç teslim almadığı bir parti için platform "Bu sayfayı açamazsınız" sayfasını gösterir.
 
 Bu sayfaları açmak için **Sevkiyatlar ve stok** sayfasında elinizdeki partinin yanındaki **Süreç akışı** düğmesine, ardından akıştaki bir aşamaya tıklayın.
 
 ## Geri çağırma raporu {#staff-recall}
 
-Bir partiden veya lottan **Geri çağırma raporu** açabilirsiniz. Rapor, kurumunuzun görebildiği kaynak lotları ve sonraki sevkiyatları **Yazdır** ve **CSV** düğmeleriyle birlikte listeler. Bkz. [Geri çağırma](#admin-recall).
+Bir partiden veya lottan **Geri çağırma raporu** açabilirsiniz. Rapor, kurumunuzun okuyabildiği kaynak lotları ve sonraki sevkiyatları **Yazdır** ve **CSV** düğmeleriyle birlikte listeler. Bkz. [Geri çağırma](#admin-recall).

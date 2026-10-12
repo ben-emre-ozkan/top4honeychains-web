@@ -2,7 +2,7 @@
 
 ## Su trabajo diario {#analyst-daily}
 
-Usted trabaja en un laboratorio. Recibe las muestras precintadas que le envían las plantas de procesamiento, controla el precinto, analiza la miel, ingresa los resultados con el PDF del informe y envía el informe a su responsable de laboratorio para que lo apruebe.
+Usted trabaja en un laboratorio de análisis de alimentos y es la primera de sus dos personas: usted ingresa, el responsable de laboratorio aprueba. Recibe las muestras precintadas que le envían las plantas de procesamiento, controla el precinto, analiza la miel, ingresa los resultados con el PDF del informe y envía el informe a su responsable de laboratorio para que lo apruebe.
 
 Sus tareas aparecen en **Mis tareas**, en **Muestras por recibir** y **Resultados de laboratorio por ingresar**. El menú muestra **Muestras y laboratorio**.
 
@@ -14,17 +14,19 @@ Sus tareas aparecen en **Mis tareas**, en **Muestras por recibir** y **Resultado
 4. Si el precinto está roto, escriba el **motivo (si el precinto está roto)** y haga clic en **Precinto roto: rechazar**: "Muestra rechazada: el precinto está roto." La planta debe tomar una muestra nueva.
 
 <!-- SHOT: sample-receive -->
+Figure: Recepción de muestras en el laboratorio: el control del precinto.
 
 ## Ingresar los resultados de laboratorio {#analyst-results}
 
 1. En **Mis tareas**, abra **Resultados de laboratorio por ingresar**. Se abre la página **Informe de laboratorio** de la muestra.
-2. Compruebe que la página no diga "El PCC 0 (auditoría primaria) de este lote aún no está completo; …". Mientras el PCC 0 del lote no esté aprobado, el formulario es de solo lectura. Espere a que el aprobador de calidad de la planta apruebe el PCC 0.
+2. Compruebe que la página no diga "El PCC 0 (auditoría primaria) de este lote aún no está completo; …". Mientras el PCC 0 del lote no esté aprobado, el formulario es de solo lectura. Espere a que el responsable de aseguramiento de la calidad de la planta apruebe el PCC 0.
 3. Ingrese el **Número del informe** y la **Fecha de emisión** (no puede ser futura).
 4. Elija el **PDF del informe** (un PDF de hasta 10 MB).
 5. Ingrese el valor de cada parámetro. Los parámetros obligatorios están marcados con *. Los números admiten coma o punto.
 6. Haga clic en **Guardar**: "Resultados de laboratorio guardados."
 
 <!-- SHOT: lab-results-form -->
+Figure: Ingreso de los resultados de laboratorio con el PDF del informe.
 
 Después de guardar, la plataforma:
 
@@ -40,10 +42,13 @@ Puede guardar tantas veces como quiera mientras el informe sea un borrador.
 2. Haga clic en **Enviar para aprobación**: "Informe enviado; un responsable de laboratorio (otra persona) debe aprobarlo."
 
 <!-- SHOT: lab-submit -->
+Figure: Todos los datos obligatorios ingresados: el informe se puede enviar.
 
 Una vez enviado, el informe ya no se puede editar, salvo que el responsable de laboratorio lo devuelva. Un informe devuelto muestra el motivo; corríjalo y vuelva a enviarlo.
 
 **Errores frecuentes**
+
+Table: Errores frecuentes al ingresar los resultados de laboratorio {#tbl-lab-errors}
 
 | Mensaje | Qué hacer |
 |---|---|

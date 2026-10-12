@@ -2,7 +2,7 @@
 
 ## Jūsu ikdienas darbs {#analyst-daily}
 
-Jūs strādājat laboratorijā. Jūs saņemat noplombētos paraugus, ko jums nosūta pārstrādes uzņēmumi, pārbaudāt plombu, analizējat medu, ievadāt rezultātus kopā ar pārskata PDF failu un iesniedzat pārskatu apstiprināšanai savam laboratorijas vadītājam.
+Jūs strādājat pārtikas analīžu laboratorijā un esat pirmā no tās divām personām: jūs ievadāt, laboratorijas vadītājs apstiprina. Jūs saņemat noplombētos paraugus, ko jums nosūta pārstrādes uzņēmumi, pārbaudāt plombu, analizējat medu, ievadāt rezultātus kopā ar pārskata PDF failu un iesniedzat pārskatu apstiprināšanai savam laboratorijas vadītājam.
 
 Jūsu uzdevumi redzami sadaļā **Mans darbs**, grupās **Saņemamie paraugi** un **Ievadāmie laboratorijas rezultāti**. Izvēlnē redzams vienums **Paraugi un laboratorija**.
 
@@ -14,17 +14,19 @@ Jūsu uzdevumi redzami sadaļā **Mans darbs**, grupās **Saņemamie paraugi** u
 4. Ja plomba ir bojāta, ierakstiet laukā **iemesls (ja plomba ir bojāta)** iemeslu un noklikšķiniet uz **Plomba bojāta: noraidīt**: "Paraugs noraidīts: plomba ir bojāta." Uzņēmumam jāņem jauns paraugs.
 
 <!-- SHOT: sample-receive -->
+Figure: Paraugu saņemšana laboratorijā: plombas pārbaude.
 
 ## Laboratorijas rezultātu ievadīšana {#analyst-results}
 
 1. Sadaļā **Mans darbs** atveriet **Ievadāmie laboratorijas rezultāti**. Paraugam atveras lapa **Laboratorijas pārskats**.
-2. Pārbaudiet, vai lapā nav redzams paziņojums "Šīs partijas KKP 0 (sākotnējais audits) vēl nav pabeigts; …". Kamēr partijas KKP 0 nav apstiprināts, veidlapa ir tikai lasāma. Gaidiet, līdz uzņēmuma kvalitātes apstiprinātājs apstiprina KKP 0.
+2. Pārbaudiet, vai lapā nav redzams paziņojums "Šīs partijas KKP 0 (sākotnējais audits) vēl nav pabeigts; …". Kamēr partijas KKP 0 nav apstiprināts, veidlapa ir tikai lasāma. Gaidiet, līdz uzņēmuma kvalitātes nodrošināšanas speciālists apstiprina KKP 0.
 3. Aizpildiet laukus **Pārskata numurs** un **Izdošanas datums** (ne nākotnē).
 4. Laukā **Pārskata PDF** izvēlieties failu (PDF līdz 10 MB).
 5. Ievadiet katra parametra vērtību. Obligātie parametri ir atzīmēti ar *. Skaitļos var lietot komatu vai punktu.
 6. Noklikšķiniet uz **Saglabāt**: "Laboratorijas rezultāti saglabāti."
 
 <!-- SHOT: lab-results-form -->
+Figure: Laboratorijas rezultātu ievadīšana kopā ar pārskata PDF.
 
 Pēc saglabāšanas platforma:
 
@@ -40,10 +42,13 @@ Kamēr pārskats ir melnraksts, to var saglabāt tik bieži, cik vēlaties.
 2. Noklikšķiniet uz **Iesniegt apstiprināšanai**: "Pārskats iesniegts; tas jāapstiprina laboratorijas vadītājs (citai personai)."
 
 <!-- SHOT: lab-submit -->
+Figure: Ievadīti visi obligātie dati: pārskatu var iesniegt.
 
 Pēc iesniegšanas pārskatu vairs nevar rediģēt, ja vien laboratorijas vadītājs to neatgriež. Atgrieztā pārskatā redzams iemesls; izlabojiet to un iesniedziet vēlreiz.
 
 **Biežākās kļūdas**
+
+Table: Biežākās kļūdas, ievadot laboratorijas rezultātus {#tbl-lab-errors}
 
 | Paziņojums | Kas jādara |
 |---|---|

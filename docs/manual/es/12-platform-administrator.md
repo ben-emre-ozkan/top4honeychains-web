@@ -2,13 +2,16 @@
 
 ## Su trabajo diario {#admin-daily}
 
-Los administradores de la plataforma la gestionan. Verifican organizaciones, gestionan miembros y permisos, mantienen los datos de referencia y las definiciones de los puntos de control, registran a los apicultores, crean partidas (por ahora), deciden sobre las correcciones y supervisan el registro de auditoría.
+Los administradores de la plataforma la gestionan. Verifican organizaciones, gestionan membresías y permisos, mantienen los datos de referencia y las definiciones de los puntos de control, registran a los apicultores, crean partidas (por ahora), deciden sobre las correcciones y supervisan el registro de auditoría.
 
-Los administradores pueden consultar todos los registros, pero **no ingresan ni aprueban datos de negocio**. Al iniciar sesión llegan a **Mis tareas**, que muestra **Organizaciones por verificar**, **Números de registro por verificar** y **Correcciones por decidir**. El **Panel** ofrece una visión general (cifras, la cadena, un mapa de apicultores y apiarios por provincia, la actividad reciente y las aprobaciones pendientes).
+Los administradores pueden leer todos los registros, pero **no ingresan ni aprueban datos de negocio**. Al iniciar sesión llegan a **Mis tareas**, que muestra **Organizaciones por verificar**, **Números de registro por verificar** y **Correcciones por decidir**. El **Panel** ofrece una visión general (cifras, la cadena, un mapa de apicultores y apiarios por provincia, la actividad reciente y las aprobaciones pendientes).
 
 <!-- SHOT: admin-dashboard -->
+Figure: El panel del administrador de la plataforma.
 
-El menú de administración:
+El menú de administración ([Table](#tbl-admin-menu)):
+
+Table: El menú de administración {#tbl-admin-menu}
 
 | Menú | Entradas |
 |---|---|
@@ -33,10 +36,11 @@ El menú de administración:
 La organización empieza en estado **Pendiente**: "Organización creada. Permanece en estado Pendiente hasta que sea verificada."
 
 <!-- SHOT: admin-org-create -->
+Figure: Creación de una organización: vínculo con el mayorista y capacidades.
 
 ### Verificar, solicitar documentos, suspender {#admin-org-verify}
 
-En la página de la organización:
+En la página de la organización (un administrador de la plataforma; para las asociaciones de apicultores, también el administrador de la organización de una asociación central verificada, si la plataforma está configurada para ello):
 
 - **Verificar** (desde Pendiente) requiere al menos un documento subido.
 - **Solicitar documentos** (mientras está Pendiente) requiere un motivo, por ejemplo qué documento falta.
@@ -54,9 +58,10 @@ Cada cambio aparece en el historial de verificación y en el registro de auditor
 2. Ingrese un nombre de usuario existente, o un nombre de usuario, correo electrónico y contraseña nuevos para crear el usuario al mismo tiempo.
 3. Haga clic en **Agregar miembro**: "… agregado como …".
 
-Un usuario puede tener varias membresías. **Revocar** termina una membresía y cierra la sesión del usuario en todos los dispositivos. La pestaña **Miembros** de **Roles y permisos** muestra todas las membresías de todas las organizaciones.
+Una membresía es una cuenta de usuario × una organización × un rol; un usuario puede tener varias. **Revocar** termina una membresía y cierra la sesión del usuario en todos los dispositivos. La pestaña **Miembros** de **Roles y permisos** muestra todas las membresías de todas las organizaciones.
 
 <!-- SHOT: admin-org-members -->
+Figure: Membresías de una organización y el formulario **Agregar miembro**.
 
 ### Exención de la doble verificación {#admin-four-eyes}
 
@@ -83,9 +88,10 @@ Las contraseñas deben tener al menos 6 caracteres. Tras 5 intentos fallidos de 
 - **Permisos por rol**: elija un rol y marque, para cada función, **Introducir**, **Aprobar** y **Leer**. Las funciones son los PCC (una fila cada uno) y las áreas de recepción, muestras, resultados de laboratorio, envíos, páginas de apicultores, retiro y finalización. Cada derecho debe conservar al menos un rol. Los cambios se aplican de inmediato.
 - **Capacidades de la organización**: las capacidades de cada organización.
 
-El recuadro "Reglas fijas (no se pueden desactivar):" enumera las reglas que ninguna configuración modifica (consulte [Reglas fijas](#fixed-rules)).
+El recuadro "Reglas básicas (no se pueden desactivar):" enumera las reglas que ninguna configuración modifica (consulte [Reglas básicas](#fixed-rules)). La [Table](#tbl-admin-changeable) indica exactamente lo que puede cambiar un administrador.
 
 <!-- SHOT: admin-role-permissions -->
+Figure: Permisos del rol Responsable de aseguramiento de la calidad.
 
 ## Responsabilidades de PCC {#admin-ccp-responsibilities}
 
@@ -100,6 +106,7 @@ El recuadro "Reglas fijas (no se pueden desactivar):" enumera las reglas que nin
 **Límites verificados.** Cada parámetro tiene la casilla **Límites verificados (se muestran públicamente)**. Solo los límites verificados producen un veredicto público dentro/fuera del límite en la Historia de la miel y en la página del apicultor. En el panel, los límites no verificados aparecen marcados como "por verificar", y las páginas públicas indican que los límites todavía se están revisando.
 
 <!-- SHOT: admin-parameter-limits -->
+Figure: Límites de un parámetro (PCC 1, humedad).
 
 ## Datos de referencia y traducciones {#admin-reference}
 
@@ -114,6 +121,7 @@ Los tipos de miel (con su clase de miel para los límites), los períodos de pro
 - **Registro de apicultores y asociaciones**: para cada apicultor, vincule la asociación e ingrese el número de registro de la explotación (formato `TR` + código de provincia + 10 dígitos, por ejemplo `TR061234567890`) con un documento probatorio. Después, haga clic en **Verificar** o **Rechazar** (para rechazar se requiere un motivo).
 
 <!-- SHOT: admin-registry -->
+Figure: Registro de apicultores y asociación.
 
 ## Partidas (por ahora, solo administradores) {#admin-batches}
 
@@ -126,6 +134,7 @@ Los tipos de miel (con su clase de miel para los límites), los períodos de pro
 Después, la planta ingresa los PCC de la partida y la finaliza. Los administradores no pueden finalizar: "Con el modelo de organizaciones, la organización propietaria finaliza la partida (solicitud y aprobación por dos personas)."
 
 <!-- SHOT: admin-manage-batch -->
+Figure: Composición de una partida a partir de los lotes que cumplen los requisitos.
 
 ## Correcciones {#admin-corrections}
 
@@ -148,9 +157,10 @@ El **Informe de retiro** de una partida o de un lote muestra:
 - las partidas;
 - **aguas abajo**: los envíos y los poseedores actuales.
 
-Los miembros ven la parte que su organización puede ver (propietario, poseedor o asociación); las filas ocultas se cuentan. **Imprimir** y **CSV** exportan el informe.
+Los miembros leen la parte que su organización puede leer (propietario, poseedor o asociación); las filas ocultas se cuentan. **Imprimir** y **CSV** exportan el informe.
 
 <!-- SHOT: recall-report -->
+Figure: El informe de retiro de una partida.
 
 ## Registro de auditoría {#admin-audit}
 

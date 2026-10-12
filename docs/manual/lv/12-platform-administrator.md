@@ -2,13 +2,16 @@
 
 ## Jūsu ikdienas darbs {#admin-daily}
 
-Platformas administratori uztur platformas darbību. Viņi pārbauda organizācijas, pārvalda dalībniekus un atļaujas, uztur atsauces datus un kontroles punktu definīcijas, reģistrē biškopjus, izveido gala partijas (pagaidām), izlemj labojumus un seko audita žurnālam.
+Platformas administratori uztur platformas darbību. Viņi pārbauda organizācijas, pārvalda dalības un atļaujas, uztur atsauces datus un kontroles punktu definīcijas, reģistrē biškopjus, izveido gala partijas (pagaidām), izlemj labojumus un seko audita žurnālam.
 
-Administratori var skatīt katru ierakstu, taču **neievada un neapstiprina uzņēmējdarbības datus**. Pēc pieteikšanās viņi nonāk lapā **Mans darbs**, kurā redzamas grupas **Pārbaudāmās organizācijas**, **Pārbaudāmie reģistrācijas numuri** un **Izlemjamie labojumi**. Lapa **Informācijas Panelis** sniedz pārskatu (skaitļi, ķēde, biškopju un dravu karte pa provincēm, nesenās darbības un gaidošie apstiprinājumi).
+Administratori var lasīt katru ierakstu, taču **neievada un neapstiprina uzņēmējdarbības datus**. Pēc pieteikšanās viņi nonāk lapā **Mans darbs**, kurā redzamas grupas **Pārbaudāmās organizācijas**, **Pārbaudāmie reģistrācijas numuri** un **Izlemjamie labojumi**. Lapa **Informācijas Panelis** sniedz pārskatu (skaitļi, ķēde, biškopju un dravu karte pa provincēm, nesenās darbības un gaidošie apstiprinājumi).
 
 <!-- SHOT: admin-dashboard -->
+Figure: Platformas administratora informācijas panelis.
 
-Administrēšanas izvēlne:
+Administrēšanas izvēlne ([Table](#tbl-admin-menu)):
+
+Table: Administrēšanas izvēlne {#tbl-admin-menu}
 
 | Izvēlne | Vienumi |
 |---|---|
@@ -33,10 +36,11 @@ Administrēšanas izvēlne:
 Organizācijai sākotnēji ir statuss **Gaida**: "Organizācija izveidota. Tās statuss paliek "Gaida", līdz tā tiek pārbaudīta."
 
 <!-- SHOT: admin-org-create -->
+Figure: Organizācijas izveide: saite ar vairumtirgotāju un kompetences.
 
 ### Pārbaude, dokumentu pieprasīšana, apturēšana {#admin-org-verify}
 
-Organizācijas lapā:
+Organizācijas lapā (platformas administrators; biškopju biedrībām arī pārbaudītas centrālās biedrības organizācijas administrators, ja platforma ir tā konfigurēta):
 
 - **Pārbaudīt** (no statusa "Gaida") – nepieciešams vismaz viens augšupielādēts dokuments.
 - **Pieprasīt dokumentus** (kamēr statuss ir "Gaida") – nepieciešams iemesls, piemēram, kurš dokuments trūkst.
@@ -54,9 +58,10 @@ Katra izmaiņa parādās pārbaužu vēsturē un audita žurnālā.
 2. Ievadiet esoša lietotāja lietotājvārdu vai arī jaunu lietotājvārdu, e-pasta adresi un paroli, lai vienlaikus izveidotu lietotāju.
 3. Noklikšķiniet uz **Pievienot dalībnieku**: "… pievienots kā …".
 
-Lietotājam var būt vairākas dalības. **Atsaukt** izbeidz dalību un izraksta lietotāju visās ierīcēs. Cilnē **Dalībnieki** lapā **Lomas un atļaujas** uzskaitītas visu organizāciju visas dalības.
+Dalība ir viens lietotāja konts × viena organizācija × viena loma; lietotājam var būt vairākas dalības. **Atsaukt** izbeidz dalību un izraksta lietotāju visās ierīcēs. Cilnē **Dalībnieki** lapā **Lomas un atļaujas** uzskaitītas visu organizāciju visas dalības.
 
 <!-- SHOT: admin-org-members -->
+Figure: Organizācijas dalības un veidlapa **Pievienot dalībnieku**.
 
 ### Četru acu principa izņēmums {#admin-four-eyes}
 
@@ -83,9 +88,10 @@ Lapā **Lomas un atļaujas** ir trīs cilnes:
 - **Lomu atļaujas**: izvēlieties lomu un katrai funkcijai atzīmējiet **Ievadīt**, **Apstiprināt** un **Lasīt**. Funkcijas ir KKP (katram sava rinda) un jomas: pieņemšana, paraugi, laboratorijas rezultāti, sūtījumi, biškopju lapas, atsaukšana un pabeigšana (fiksēšana). Katrām tiesībām jāpaliek vismaz vienai lomai. Izmaiņas stājas spēkā nekavējoties.
 - **Organizācijas kompetences**: kompetences katrai organizācijai.
 
-Lodziņā "Fiksēti noteikumi (tos nevar izslēgt):" uzskaitīti noteikumi, kurus nemaina neviens iestatījums (skatīt [Fiksēti noteikumi](#fixed-rules)).
+Lodziņā "Pamatnoteikumi (tos nevar izslēgt):" uzskaitīti noteikumi, kurus nemaina neviens iestatījums (skatīt [Pamatnoteikumi](#fixed-rules)). [Table](#tbl-admin-changeable) precīzi uzskaita, ko administrators var mainīt.
 
 <!-- SHOT: admin-role-permissions -->
+Figure: Kvalitātes nodrošināšanas speciālista lomas atļaujas.
 
 ## KKP atbildība {#admin-ccp-responsibilities}
 
@@ -100,6 +106,7 @@ Lapā **KKP atbildība** katram KKP nosaka, kura organizācija ir atbildīga (pa
 **Pārbaudītas robežvērtības.** Katram parametram ir izvēles rūtiņa **Robežvērtības pārbaudītas (tiek rādītas publiski)**. Tikai pārbaudītas robežvērtības Medus stāstā un biškopja lapā dod publisku spriedumu "robežās / ārpus robežām". Nepārbaudītas robežvērtības panelī ir atzīmētas ar "jāpārbauda", un publiskajās lapās norādīts, ka robežvērtības vēl tiek pārbaudītas.
 
 <!-- SHOT: admin-parameter-limits -->
+Figure: Parametra robežvērtības (KKP 1, mitrums).
 
 ## Atsauces dati un tulkojumi {#admin-reference}
 
@@ -114,6 +121,7 @@ Lapā **Atsauces datu tulkojumi** glabājas nosaukumi, kas sarakstos, tabulās u
 - **Biškopju reģistrs un biedrības**: katram biškopim piesaistiet biedrību un ievadiet saimniecības reģistrācijas numuru (formāts: `TR` + provinces kods + 10 cipari, piemēram, `TR061234567890`) ar apliecinošu dokumentu. Pēc tam izvēlieties **Pārbaudīt** vai **Noraidīt** (noraidīšanai jānorāda iemesls).
 
 <!-- SHOT: admin-registry -->
+Figure: Biškopju reģistrs un biedrība.
 
 ## Gala partijas (pagaidām tikai administratoriem) {#admin-batches}
 
@@ -126,6 +134,7 @@ Lapā **Atsauces datu tulkojumi** glabājas nosaukumi, kas sarakstos, tabulās u
 Pēc tam uzņēmums ievada gala partijas KKP un pabeidz (fiksē) gala partiju. Administratori nevar pabeigt gala partiju: "Organizāciju modelī gala partiju pabeidz (fiksē) īpašniece organizācija (pieprasījums un apstiprinājums, ko veic divas personas)."
 
 <!-- SHOT: admin-manage-batch -->
+Figure: Gala partijas sastāva veidošana no piemērotām partijām.
 
 ## Labojumi {#admin-corrections}
 
@@ -148,9 +157,10 @@ Gala partijas vai partijas **Atsaukšanas pārskats** uzskaita:
 - gala partijas;
 - **lejupējo ķēdi**: sūtījumus un pašreizējos turētājus.
 
-Dalībnieki redz to daļu, ko drīkst redzēt viņu organizācija (īpašnieks, turētājs vai biedrība); paslēptās rindas tiek saskaitītas. **Drukāt** un **CSV** eksportē pārskatu.
+Dalībnieki lasa to daļu, ko drīkst lasīt viņu organizācija (īpašnieks, turētājs vai biedrība); paslēptās rindas tiek saskaitītas. **Drukāt** un **CSV** eksportē pārskatu.
 
 <!-- SHOT: recall-report -->
+Figure: Gala partijas atsaukšanas pārskats.
 
 ## Audita žurnāls {#admin-audit}
 

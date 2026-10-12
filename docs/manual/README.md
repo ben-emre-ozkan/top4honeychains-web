@@ -27,6 +27,24 @@ Each language folder has the same files, the same headings and the same anchors 
 13. Trust and privacy
 14. Glossary and FAQ
 
+## Figures, tables and references
+
+The build numbers figures and tables in order and writes the captions in each language ("Figure 3. …", "Tabla 5. …"); the lists of figures and tables follow the contents. In the sources (the keywords stay in English in every language):
+
+- a screenshot is a `<!-- SHOT: <id> -->` line followed by a line `Figure: <caption>`; its anchor is `#fig-<id>`;
+- a table is preceded by a line `Table: <caption> {#tbl-<id>}` and a blank line;
+- a reference is a link `[Figure](#fig-<id>)` or `[Table](#tbl-<id>)`; the build replaces its text with the number.
+
+The build reports any figure or table without a caption and any reference to an unknown id ("problems" in its output must be 0).
+
+## Cover and funding
+
+The cover names the project and the ICT-AGRI-FOOD 2022 call. Logos and the acknowledgement come from `docs/brand/funders/`: `programme.svg|png|jpg` (the programme logo, on the cover), any other image (the funding agencies' logos, along the bottom, in file-name order) and `acknowledgement.<lang>.md` or `acknowledgement.md` (the text above the logos). Without that folder the cover has no logos.
+
+## Planned application changes and review
+
+[PLANNED-APP-CHANGES.md](PLANNED-APP-CHANGES.md) lists the application changes the manual already assumes (for example the role name Quality Assurance Officer); [REVIEW-RESPONSE-2026-10.md](REVIEW-RESPONSE-2026-10.md) answers the review of October 2026 comment by comment.
+
 ## Screenshots
 
 Wherever a screen helps, the text has a line `<!-- SHOT: <id> -->`. [shots.yml](shots.yml) is the capture list: for each shot the page, role, [DEMO] record, UI state, viewport, what to highlight and the file name `img/<lang>/<id>.png`. The capture script `capture.mjs` in this folder takes the shots against the local demo environment:

@@ -5,11 +5,11 @@
 Organizācijas administrators ir organizācijas vadītājs platformā. Jūs:
 
 - uzturat aktuālus organizācijas dokumentus (licenci, akreditāciju, nodokļu apliecību, reģistrācijas apliecinājumu);
-- uzņēmumā: skatāt piegādes un paraugus, pieprasāt pabeigšanu (fiksēšanu), nosūtāt un apstiprināt sūtījumus;
-- pie vairumtirgotāja vai veikalā: apstiprināt sūtījumus;
+- uzņēmumā: lasāt piegādes un paraugus, pieprasāt pabeigšanu (fiksēšanu), nosūtāt un apstiprināt sūtījumus;
+- pie vairumtirgotāja vai mazumtirgotāja: apstiprināt sūtījumus;
 - biedrībā: reģistrējat un atsaucat biškopju piekrišanu publiskai biškopja lapai.
 
-Jūsu organizācijas dalībniekus, lomas un kompetences pārvalda platformas administratori. Ja kolēģim nepieciešama piekļuve vai cita loma, vērsieties pie viņiem.
+Jūsu organizācijas dalības un kompetences pārvalda platformas administratori. Ja kolēģim nepieciešama piekļuve vai cita loma, vērsieties pie viņiem.
 
 ## Jūsu organizācijas lapa {#orgadmin-org-page}
 
@@ -17,6 +17,7 @@ Jūsu organizācijas dalībniekus, lomas un kompetences pārvalda platformas adm
 2. Lapā redzams jūsu organizācijas statuss, kompetences, dokumenti, pārbaužu vēsture un dalībnieki.
 
 <!-- SHOT: org-details -->
+Figure: Organizācijas dokumenti ar to SHA-256 nospiedumiem.
 
 ### Dokumenta augšupielāde {#orgadmin-documents}
 
@@ -51,6 +52,7 @@ Lapa ir publiska tikai tad, ja izpildīti **visi** šie nosacījumi:
 6. Saglabājiet.
 
 <!-- SHOT: consent-form -->
+Figure: Biškopja piekrišanas reģistrēšana tālrunī.
 
 Paziņojums ir "Piekrišana reģistrēta; publiskā lapa ir publicēta." vai, ja reģistrācijas numurs vēl nav pārbaudīts, "Piekrišana reģistrēta. Publiskā lapa tiks publicēta, kad reģistrācijas numurs būs pārbaudīts."
 

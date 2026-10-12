@@ -2,11 +2,16 @@
 
 ## Sözlük {#glossary}
 
+[Tablo](#tbl-glossary), bu kılavuzda kullanılan terimleri tanımlar; [Tablo](#tbl-renamed-labels) ise bir sonraki sürümde değişecek etiketleri listeler.
+
+Table: Sözlük {#tbl-glossary}
+
 | Terim | Anlamı |
 |---|---|
 | **HACCP** | Tehlike Analizi ve Kritik Kontrol Noktaları (Hazard Analysis and Critical Control Points): kontrol noktalarının dayandığı gıda güvenliği yöntemi. |
 | **KKN (kritik kontrol noktası)** | Bir tehlikenin ölçüm veya kontrolle denetim altında tutulduğu adım. İngilizcede CCP, İspanyolcada PCC, Lehçede KPK, Letoncada KKP. |
-| **Parametre** | Bir KKN'de kaydedilen tek bir değer, örneğin nem veya sıcaklık. |
+| **Veri** | Kişilerin platforma kaydettiği bilgiler: ölçülen değerler (örneğin % cinsinden nem) ve yanıtlar (örneğin Evet / Hayır). |
+| **Parametre** | Bir KKN'de kaydedilen tek bir veri öğesi, örneğin nem veya sıcaklık. |
 | **Kritik limit** | Bir parametre için izin verilen en düşük ve/veya en yüksek değer. |
 | **Doğrulanmış limit** | Proje tarafından teyit edilmiş limit; yalnızca doğrulanmış limitler herkese açık bir limit içinde/limit dışında değerlendirmesi verir. |
 | **Limit içinde / Limit dışında** | Bir değerin limitiyle karşılaştırılmasının sonucu. Limit dışındaki değerler onaydan sonra da işaretli kalır. |
@@ -14,11 +19,12 @@
 | **Ham bal lotu** | Tek bir arılıktan yapılan tek bir teslimin balı (bir dönem, bir bal türü). KKN 0–3'ü taşır. |
 | **Parti** | Bir veya daha fazla lottan oluşan, birlikte işlenip paketlenen bal. KKN 4–10'u ve QR kodu taşır. |
 | **Kesinleştirme / mühürleme** | Bir partiyi ve lotlarını kilitleyen ve Bal Hikâyesi'ni yayımlayan iki kişilik adım. |
-| **Dört göz ilkesi** | Her kaydı, onu girenden farklı bir kişi onaylar. |
+| **Dört göz ilkesi** | Her kayıtta iki farklı kişi yer alır: biri veriyi girer, ikinci bir kişi kontrol edip onaylar. Kimse kendi girdiğini onaylayamaz. Bkz. [Temel kurallar](#fixed-rules). |
 | **Dört göz muafiyeti** | Küçük kurumlar için, KKN kayıtlarının kişinin kendisi tarafından onaylanmasına izin veren ve bu onayları her zaman işaretleyen bir ayar. Laboratuvar sonuçları için hiçbir zaman geçerli değildir. |
 | **Numune / şahit numune** | Laboratuvara gönderilen mühürlü numune ve tesiste saklanan eşi. |
 | **Mühür numarası** | Numunenin mührü üzerindeki numara; laboratuvar numuneyi teslim alırken bu numarayı kontrol eder. |
 | **Laboratuvar raporu / rapor kodu** | Laboratuvarın raporu (PDF ve değerler) ve raporun herkese açık 12 karakterlik kodu. |
+| **Gıda analiz laboratuvarı** | Bal numunelerini analiz eden laboratuvar; genellikle akredite bir laboratuvardır. Sonuçları laboratuvarın analisti girer, laboratuvar müdürü onaylar. |
 | **Akredite laboratuvar** | Geçerli akreditasyonu olan laboratuvar; akreditasyon durumu rapor onaylandığında kaydedilir. |
 | **Kurum içi laboratuvar** | Lot sahibine ait laboratuvar. |
 | **Emanetçi** | Onaylanmış bir sevkiyattan sonra bir partinin belirli bir miktarını elinde tutan kurum. |
@@ -27,10 +33,23 @@
 | **Bal Hikâyesi** | Kesinleşmiş bir partinin, QR kodundan açılan herkese açık sayfası. |
 | **Arıcı sayfası** | Bir arıcının, rızasıyla yayımlanan herkese açık sayfası. |
 | **Kayıt numarası (AKS)** | Arıcının işletme kayıt numarası: `TR` + il kodu + 10 rakam. |
-| **Üyelik** | Bir kişinin bir kurumdaki rolü. Bir kişinin birden fazla üyeliği olabilir. |
-| **Yetenek** | Bir kurumun yaptığı iş türü (İşleme, Laboratuvar, Perakende, …). |
+| **Üyelik** | Bir kullanıcı hesabı × bir kurum × bir rol. Bir kişinin birden fazla üyeliği olabilir, aynı kurumda birkaç üyeliği de olabilir. |
+| **Arıcı (kaydı)** | Arıcıların hesabı yoktur. Her arıcı platformda bir Arıcı kaydı ile temsil edilir. |
+| **Okuma** | Kayıtları değiştirmeden açma ve okuma hakkı. |
+| **Yetenek** | Bir kurumun sahip olduğu bir beceri: kurumun bal zincirinde neler yapabileceği (örneğin "Balı teslim alıp işleyebilir"). Bkz. [Tablo](#tbl-capabilities). |
+| **Temel kurallar** | Platforma yerleşik olan ve hiçbir ayarın kapatamadığı kurallar. Bkz. [Temel kurallar](#fixed-rules). |
 | **Denetim kaydı** | Her değişikliğin, hash zinciriyle korunan ve yalnızca eklenebilen kaydı. |
 | **SHA-256 parmak izi** | Bir dosyanın içeriğinden hesaplanan kod; dosyadaki her değişiklik bu kodu da değiştirir. |
+
+Table: Bir sonraki sürümde yeniden adlandırılacak etiketler (ekran görüntüleri eski etiketleri gösterir) {#tbl-renamed-labels}
+
+| Bugün ekranda | Yeni ad (bu kılavuzda kullanılan) |
+|---|---|
+| Kalite onaylayıcı | Kalite Güvence Sorumlusu |
+| Sabit kurallar (kapatılamaz) | Temel kurallar (kapatılamaz) |
+| Yetenek açıklamaları (örneğin "Kabul ve işleme: teslim almalar, numuneler, lot KKN 0–3 ve parti KKN 4–6") | "… yapabilir" biçimindeki açıklamalar (örneğin "Balı teslim alıp işleyebilir: …"), bkz. [Tablo](#tbl-capabilities) |
+| Arıcılık (yetenek) | Arıcılık İşletmesi |
+| Rolü adıyla anan mesajlar ("bir kalite onaylayıcı (başka bir kişi) onaylamalı") | Yeni rol adı ("bir Kalite Güvence Sorumlusu (başka bir kişi) onaylamalı") |
 
 ## SSS ve sorun giderme {#faq}
 
@@ -53,7 +72,7 @@ Altındaki gerekçeyi okuyun. Olağan nedenler: kurumunuz henüz doğrulanmamı�
 Kurum yöneticisi kurum sayfasında bir belge (ruhsat, akreditasyon, kayıt kanıtı) yükler; ardından bir platform yöneticisi kurumu doğrular.
 
 **Laboratuvar sonuç giremiyor: "Bu lotun KKN 0 (ön denetim) aşaması henüz tamamlanmadı; …"**
-Önce tesisin KKN 0'ı girmesi ve tesisin kalite onaylayıcısının onaylaması gerekir.
+Önce tesisin KKN 0'ı girmesi ve tesisin Kalite Güvence Sorumlusunun onaylaması gerekir.
 
 **Onaylayamıyorum: "Dört göz: bu KKN'nin değerlerini siz girdiniz, başka bir kişinin onaylaması gerekir."**
 Kaydı başka bir onaylayıcı onaylamalıdır. Kurumunuzda tek bir kalite sorumlusu varsa bir platform yöneticisine dört göz muafiyetini sorun (laboratuvar sonuçları için kullanılamaz).

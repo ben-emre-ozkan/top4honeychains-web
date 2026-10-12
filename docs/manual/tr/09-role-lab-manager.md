@@ -2,7 +2,7 @@
 
 ## Günlük işiniz {#labmanager-daily}
 
-Analistlerinizin onaya gönderdiği laboratuvar raporlarını onaylar veya geri gönderirsiniz. Numune de teslim alabilirsiniz. Sonuçlarını kendiniz girdiğiniz bir raporu hiçbir zaman onaylayamazsınız; laboratuvar sonuçlarında bu kuralın muafiyeti yoktur.
+Laboratuvarın iki kişisinden ikincisisiniz: analistlerinizin onaya gönderdiği laboratuvar raporlarını onaylar veya geri gönderirsiniz. Numune de teslim alabilirsiniz. Sonuçlarını kendiniz girdiğiniz bir raporu hiçbir zaman onaylayamazsınız; laboratuvar sonuçlarında bu kuralın muafiyeti yoktur.
 
 Görevleriniz **İşlerim** sayfasında **Onaylanacak laboratuvar raporları** (ve **Teslim alınacak numuneler**) altında görünür.
 
@@ -14,6 +14,7 @@ Görevleriniz **İşlerim** sayfasında **Onaylanacak laboratuvar raporları** (
 4. Raporu geri göndermek için **gerekçe (geri göndermek için)** alanını doldurun ve **Geri gönder** düğmesine tıklayın: "Rapor analiste geri gönderildi."
 
 <!-- SHOT: lab-approve -->
+Figure: Laboratuvar müdürü bir raporu onaylar veya geri gönderir.
 
 Onay, balın uygun olduğunu değil, raporun doğru kaydedildiğini teyit eder; limit dışındaki değerler lotta işaretli kalır.
 
@@ -21,9 +22,11 @@ Onay, balın uygun olduğunu değil, raporun doğru kaydedildiğini teyit eder; 
 
 - Rapor **Onaylandı** durumuna geçer ve herkese açık doğrulama sayfasında görünür.
 - Platform, laboratuvarın o anda **akredite** olup olmadığını (akreditasyon numarasıyla birlikte) ve lot sahibinin **şirket içi** laboratuvarı olup olmadığını kaydeder.
-- Sonuçlar lotun **KKN 1** değerleri olur. Artık düzenlenemez, yalnızca yöneticiler tarafından düzeltilebilir. Laboratuvar tüm KKN 1 parametrelerini kapsadıysa KKN 1 hemen tamamlanır ve onaylanır; aksi halde kayıt tesisin kalite onaylayıcısına gider.
+- Sonuçlar lotun **KKN 1** değerleri olur. Artık düzenlenemez, yalnızca yöneticiler tarafından düzeltilebilir. Laboratuvar tüm KKN 1 parametrelerini kapsadıysa KKN 1 hemen tamamlanır ve onaylanır; aksi halde kayıt tesisin Kalite Güvence Sorumlusuna gider.
 
 **Sık karşılaşılan hatalar**
+
+Table: Bir laboratuvar raporunu onaylarken sık karşılaşılan hatalar {#tbl-labmgr-errors}
 
 | Mesaj | Anlamı |
 |---|---|
@@ -37,3 +40,4 @@ Onay, balın uygun olduğunu değil, raporun doğru kaydedildiğini teyit eder; 
 Herkes bir raporu **Laboratuvar raporu doğrula** (`/verify-report`) sayfasında kontrol edebilir: **Rapor kodu** girilir ve **Sorgula** düğmesine tıklanır. Sayfa raporun onaylanıp onaylanmadığını, laboratuvarı, akreditasyonunu, rapor numarasını, tarihi ve SHA-256 parmak izini gösterir. **Bir PDF dosyasını bu parmak izle karşılaştırın (dosya cihazınızdan çıkmaz)** seçeneği bir PDF'i ziyaretçinin kendi cihazında kontrol eder (dosya yüklenmez). Hiçbir lot, arıcı veya kullanıcı verisi gösterilmez.
 
 <!-- SHOT: verify-report -->
+Figure: Telefonda bir laboratuvar raporunun herkese açık doğrulanması.

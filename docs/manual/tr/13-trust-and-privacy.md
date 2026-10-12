@@ -18,6 +18,7 @@ Her satır şunları gösterir:
 Kayıt türüne, işleme, kullanıcı adına veya işarete (örneğin `SelfApproved`) göre süzün ve **Filtrele** düğmesine tıklayın.
 
 <!-- SHOT: audit-log -->
+Figure: Eski → yeni değişiklikleri ve ham verisiyle denetim kaydı.
 
 ### Yalnızca ekleme ve hash zinciri {#trust-hash-chain}
 
@@ -36,13 +37,13 @@ Denetim kaydına yalnızca ekleme yapılabilir. Veritabanı, bir satırı deği�
 
 Teslim formları, laboratuvar raporu PDF'leri, kurum belgeleri, kayıt kanıtları ve rıza belgeleri, herkese açık web klasörünün dışında, rastgele bir adla ve **SHA-256 parmak izleriyle** birlikte saklanır. Yüklenen dosyalar yalnızca dosya adına göre değil, içeriklerine göre de kontrol edilir: 10 MB'a kadar PDF ya da 8 MB'a kadar JPG, PNG veya WEBP. Platform, onaylanmış bir laboratuvar raporunu kullanmadan önce saklanan PDF'in parmak iziyle hâlâ eşleştiğini kontrol eder. Herkes, bir rapor PDF'ini yüklemeden, herkese açık doğrulama sayfasında parmak iziyle karşılaştırabilir.
 
-## Kamuya açık bilgiler {#trust-public}
+## Herkesin okuyabildiği bilgiler {#trust-public}
 
 Herkese açık sayfalar (Bal Hikâyesi, arıcı sayfası, rapor doğrulama) yalnızca onaylanmış ve doğrulanmış bilgileri gösterir:
 
-- **Yer**: yalnızca **il** (arıcı sayfası ilçeyi de belirtir). İl sunucuda hesaplanır; arılık koordinatları sunucudan hiç çıkmaz. Türkiye haritası hiçbir zaman nokta göstermez, yalnızca illeri renklendirir.
-- **Kişiler**: arıcının adı yalnızca yazılı rızayla gösterilir (aksi halde nötr bir kod); telefon numarası, doğum tarihi veya kişi fotoğrafı hiçbir zaman gösterilmez. Platformun kullanıcı adları da gösterilmez.
-- **Değerler**: laboratuvar ve kontrol noktası değerleri; limit içinde/limit dışında değerlendirmesi yalnızca **doğrulanmış limitler** için. Serbest metin yanıtlar ve dosyalar, bir yönetici yanıtları kişisel veri içermeyen bir KKN için buna açıkça izin vermedikçe yayımlanmaz.
+- **Yer**: yalnızca **il** (arıcı sayfası ilçeyi de belirtir). İl sunucuda hesaplanır; arılık koordinatları sunucudan hiç çıkmaz. Harita hiçbir zaman nokta göstermez, yalnızca illeri renklendirir; şu anda Türkiye'yi kapsar, diğer ortak ülkelerin haritaları planlanmaktadır.
+- **Kişiler**: Bal Hikâyesi partiye katkıda bulunan arıcıların adını verir; arıcı sayfası adı yalnızca yazılı rızayla gösterir (aksi halde nötr bir kod). Telefon numarası, doğum tarihi veya kişi fotoğrafı hiçbir zaman gösterilmez; platformun kullanıcı adları da gösterilmez.
+- **Veriler**: laboratuvar ve kontrol noktası verileri; limit içinde/limit dışında değerlendirmesi yalnızca **doğrulanmış limitler** için. Serbest metin yanıtlar ve dosyalar, bir yönetici yanıtları kişisel veri içermeyen bir KKN için buna açıkça izin vermedikçe yayımlanmaz.
 - **Raporlar**: rapor kodu, laboratuvar, akreditasyon, tarih ve parmak izi; lot veya arıcı hiçbir zaman gösterilmez.
 
 - **Fotoğraflar**: yalnızca partiye bal sağlayan arılıkların fotoğrafları, meta verileri olmadan (GPS konumu veya kamera bilgisi olmadan) sunulur.
@@ -50,3 +51,4 @@ Herkese açık sayfalar (Bal Hikâyesi, arıcı sayfası, rapor doğrulama) yaln
 Bal Hikâyesi yalnızca kesinleşmiş partiler için vardır; arıcı sayfası ise yalnızca rıza geçerli olduğu sürece yayındadır.
 
 <!-- SHOT: public-map -->
+Figure: Herkese açık Bal Hikâyesi'nde il bazında kökenler.

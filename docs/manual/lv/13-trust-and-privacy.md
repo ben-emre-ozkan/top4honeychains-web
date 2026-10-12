@@ -18,6 +18,7 @@ Katrā rindā redzams:
 Filtrējiet pēc ieraksta veida, darbības, lietotājvārda vai karodziņa (piemēram, `SelfApproved`) un noklikšķiniet uz **Filtrēt**.
 
 <!-- SHOT: audit-log -->
+Figure: Audita žurnāls ar izmaiņām vecā → jaunā un neapstrādātajiem datiem.
 
 ### Tikai papildināms žurnāls un jaucējvērtību ķēde {#trust-hash-chain}
 
@@ -36,13 +37,13 @@ Audita žurnālu var tikai papildināt. Datubāze noraida jebkuru mēģinājumu 
 
 Piegādes veidlapas, laboratorijas pārskatu PDF faili, organizāciju dokumenti, reģistrācijas apliecinājumi un piekrišanas dokumenti tiek glabāti ārpus publiskās tīmekļa mapes ar nejaušu nosaukumu un to **SHA-256 nospiedumu**. Augšupielādes tiek pārbaudītas pēc satura, ne tikai pēc faila nosaukuma: PDF līdz 10 MB vai JPG, PNG vai WEBP līdz 8 MB. Pirms apstiprināta laboratorijas pārskata izmantošanas platforma pārbauda, vai saglabātais PDF fails joprojām atbilst tā nospiedumam. Ikviens var salīdzināt pārskata PDF failu ar tā nospiedumu publiskajā pārbaudes lapā, to neaugšupielādējot.
 
-## Ko redz sabiedrība {#trust-public}
+## Ko var lasīt sabiedrība {#trust-public}
 
 Publiskajās lapās (Medus stāsts, biškopja lapa, pārskata pārbaude) redzama tikai apstiprināta, pārbaudīta informācija:
 
-- **Vieta**: tikai **province** (biškopja lapā norādīts arī rajons). Provinci aprēķina serverī; dravu koordinātas nekad nepamet serveri. Turcijas kartē tiek iekrāsotas provinces, nekad netiek rādīti punkti.
-- **Cilvēki**: biškopja vārds tikai ar rakstisku piekrišanu (pretējā gadījumā neitrāls kods); nekad netiek rādīts tālruņa numurs, dzimšanas datums vai personas fotoattēls. Netiek rādīti platformas lietotājvārdi.
-- **Vērtības**: laboratorijas un kontroles punktu vērtības; spriedums "robežās / ārpus robežām" tikai **pārbaudītām robežvērtībām**. Brīva teksta atbildes un faili netiek publicēti, ja vien administrators to nav skaidri atļāvis KKP, kura atbildēs nav personas datu.
+- **Vieta**: tikai **province** (biškopja lapā norādīts arī rajons). Provinci aprēķina serverī; dravu koordinātas nekad nepamet serveri. Kartē tiek iekrāsotas provinces, nekad netiek rādīti punkti; pašlaik tā aptver Turciju, un citu partnervalstu kartes ir plānotas.
+- **Cilvēki**: Medus stāstā ir nosaukti biškopji, kuru medus ir gala partijā; biškopja lapā vārds tiek rādīts tikai ar rakstisku piekrišanu (pretējā gadījumā neitrāls kods). Nekad netiek rādīts tālruņa numurs, dzimšanas datums vai personas fotoattēls, un netiek rādīti platformas lietotājvārdi.
+- **Dati**: laboratorijas un kontroles punktu dati; spriedums "robežās / ārpus robežām" tikai **pārbaudītām robežvērtībām**. Brīva teksta atbildes un faili netiek publicēti, ja vien administrators to nav skaidri atļāvis KKP, kura atbildēs nav personas datu.
 - **Pārskati**: pārskata kods, laboratorija, akreditācija, datums un nospiedums, nekad – partija vai biškopis.
 
 - **Fotoattēli**: tikai to dravu fotoattēli, kas piegādāja medu gala partijai, un bez metadatiem (bez GPS atrašanās vietas vai kameras datiem).
@@ -50,3 +51,4 @@ Publiskajās lapās (Medus stāsts, biškopja lapa, pārskata pārbaude) redzama
 Medus stāsts pastāv tikai pabeigtām (fiksētām) gala partijām; biškopja lapa – tikai tik ilgi, kamēr piekrišana ir spēkā.
 
 <!-- SHOT: public-map -->
+Figure: Izcelsme pa provincēm publiskajā Medus stāstā.
