@@ -37,9 +37,15 @@ The build numbers figures and tables in order and writes the captions in each la
 
 The build reports any figure or table without a caption and any reference to an unknown id ("problems" in its output must be 0).
 
-## Cover and funding
+## Cover and logos
 
-The cover names the project and the ICT-AGRI-FOOD 2022 call. Logos and the acknowledgement come from `docs/brand/funders/`: `programme.svg|png|jpg` (the programme logo, on the cover), any other image (the funding agencies' logos, along the bottom, in file-name order) and `acknowledgement.<lang>.md` or `acknowledgement.md` (the text above the logos). Without that folder the cover has no logos.
+The cover shows the platform logo, the project and the ICT-AGRI-FOOD 2022 call, the programme logo with an acknowledgement line, and the consortium partners. The logos come from `docs/brand/`:
+
+- `programme/`: the ICT-AGRI-FOOD ERA-NET Cofund logo, shown prominently with the acknowledgement line (text per language in `build.mjs`, provisional until the wording is confirmed);
+- `partners/`: the consortium partners' logos, in file-name order (`01-…` to `09-…`), in a strip along the bottom captioned "Consortium" in each language, all at the same height;
+- `funders/` (optional, not present yet): the funding agencies' logos, shown as a second strip captioned "Funding", and `acknowledgement.<lang>.md` or `acknowledgement.md`, which replaces the acknowledgement line. Partner logos are never shown as funders.
+
+`docs/brand/partners/README.md` says where each logo comes from and which ones need a better file.
 
 ## Planned application changes and review
 

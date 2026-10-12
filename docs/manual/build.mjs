@@ -16,15 +16,20 @@ const logo = path.join(repo, 'docs', 'brand', 'top4-logo-w3.svg');
 const dist = path.join(here, 'dist');
 const LANGS = {
     en: { name: 'English', title: 'User manual', draft: null, toc: 'Contents', version: 'Version', page: 'Page', month: 'October 2026',
-          figure: 'Figure', table: 'Table', figures: 'List of figures', tables: 'List of tables' },
+          figure: 'Figure', table: 'Table', figures: 'List of figures', tables: 'List of tables',
+          consortium: 'Consortium', funding: 'Funding', acknowledgement: 'Carried out within the ICT-AGRI-FOOD ERA-NET Cofund (2022 call).' },
     tr: { name: 'Türkçe', title: 'Kullanım kılavuzu', draft: null, toc: 'İçindekiler', version: 'Sürüm', page: 'Sayfa', month: 'Ekim 2026',
-          figure: 'Şekil', table: 'Tablo', figures: 'Şekiller listesi', tables: 'Tablolar listesi' },
+          figure: 'Şekil', table: 'Tablo', figures: 'Şekiller listesi', tables: 'Tablolar listesi',
+          consortium: 'Konsorsiyum', funding: 'Finansman', acknowledgement: 'ICT-AGRI-FOOD ERA-NET Cofund (2022 çağrısı) kapsamında yürütülmektedir.' },
     es: { name: 'Español', title: 'Manual de usuario', draft: 'Borrador, para revisión de los socios', toc: 'Índice', version: 'Versión', page: 'Página', month: 'Octubre de 2026',
-          figure: 'Figura', table: 'Tabla', figures: 'Índice de figuras', tables: 'Índice de tablas' },
+          figure: 'Figura', table: 'Tabla', figures: 'Índice de figuras', tables: 'Índice de tablas',
+          consortium: 'Consorcio', funding: 'Financiación', acknowledgement: 'Realizado en el marco del ERA-NET Cofund ICT-AGRI-FOOD (convocatoria 2022).' },
     pl: { name: 'Polski', title: 'Podręcznik użytkownika', draft: 'Wersja robocza do przeglądu przez partnerów', toc: 'Spis treści', version: 'Wersja', page: 'Strona', month: 'Październik 2026',
-          figure: 'Rysunek', table: 'Tabela', figures: 'Spis rysunków', tables: 'Spis tabel' },
+          figure: 'Rysunek', table: 'Tabela', figures: 'Spis rysunków', tables: 'Spis tabel',
+          consortium: 'Konsorcjum', funding: 'Finansowanie', acknowledgement: 'Realizowany w ramach ERA-NET Cofund ICT-AGRI-FOOD (nabór 2022).' },
     lv: { name: 'Latviešu', title: 'Lietotāja rokasgrāmata', draft: 'Melnraksts partneru pārskatīšanai', toc: 'Saturs', version: 'Versija', page: 'Lapa', month: '2026. gada oktobris',
-          figure: 'Attēls', table: 'Tabula', figures: 'Attēlu saraksts', tables: 'Tabulu saraksts' },
+          figure: 'Attēls', table: 'Tabula', figures: 'Attēlu saraksts', tables: 'Tabulu saraksts',
+          consortium: 'Konsorcijs', funding: 'Finansējums', acknowledgement: 'Īstenots ICT-AGRI-FOOD ERA-NET Cofund (2022. gada konkursa) ietvaros.' },
 };
 // the edition shown on the cover and in the footer: the month of the release in each language (MANUAL_MONTH overrides it)
 const edition = lang => process.env.MANUAL_MONTH || LANGS[lang].month;
@@ -104,26 +109,29 @@ function render(lang) {
 
 function font(file) { return pathToFileURL(path.join(fonts, file)).href; }
 
-// Funding: docs/brand/funders/ may hold the programme logo (programme.svg|png|jpg), the funding agencies' logos (any other
-// image, shown along the bottom of the cover in file-name order) and the acknowledgement text (acknowledgement.<lang>.md or
-// acknowledgement.md). Without the folder the cover has no logos.
-const funders = path.join(repo, 'docs', 'brand', 'funders');
-function funding(lang) {
-    if (!fs.existsSync(funders)) return { programme: '', agencies: '', text: '' };
-    const files = fs.readdirSync(funders).sort();
-    const isImage = f => /\.(svg|png|jpe?g)$/i.test(f);
-    const img = f => `<img src="${pathToFileURL(path.join(funders, f)).href}" alt="">`;
-    const programme = files.find(f => /^programme\./i.test(f) && isImage(f));
-    const text = [`acknowledgement.${lang}.md`, 'acknowledgement.md'].find(f => files.includes(f));
+// Cover logos (docs/brand/):
+// - programme/  the programme logo (ICT-AGRI-FOOD ERA-NET Cofund), shown prominently with the acknowledgement line;
+// - partners/   the consortium partners' logos, in file-name order, in a strip along the bottom captioned "Consortium";
+// - funders/    optional, for the funding agencies once their logos arrive (a second strip captioned "Funding"), and an
+//               acknowledgement.<lang>.md or acknowledgement.md that replaces the default acknowledgement line.
+// Missing folders simply leave their part out.
+const brand = path.join(repo, 'docs', 'brand');
+const isImage = f => /\.(svg|png|jpe?g)$/i.test(f);
+const images = dir => (fs.existsSync(path.join(brand, dir)) ? fs.readdirSync(path.join(brand, dir)).filter(isImage).sort() : [])
+    .map(f => `<img src="${pathToFileURL(path.join(brand, dir, f)).href}" alt="">`);
+function coverLogos(lang) {
+    const funders = path.join(brand, 'funders');
+    const text = fs.existsSync(funders) && [`acknowledgement.${lang}.md`, 'acknowledgement.md'].find(f => fs.existsSync(path.join(funders, f)));
     return {
-        programme: programme ? img(programme) : '',
-        agencies: files.filter(f => isImage(f) && f !== programme).map(img).join(''),
-        text: text ? md.render(fs.readFileSync(path.join(funders, text), 'utf8')) : '',
+        programme: images('programme')[0] || '',
+        partners: images('partners').join(''),
+        agencies: images('funders').join(''),
+        acknowledgement: text ? md.renderInline(fs.readFileSync(path.join(funders, text), 'utf8').trim()) : LANGS[lang].acknowledgement,
     };
 }
 
 function html(lang, { body, toc, figureList, tableList }) {
-    const F = funding(lang);
+    const F = coverLogos(lang);
     const L = LANGS[lang];
     const svg = fs.readFileSync(logo, 'utf8').replace(/<\?xml[^>]*>/, '');
     return `<!doctype html>
@@ -180,19 +188,21 @@ nav.lists h1 { break-before: auto; font-size: 16pt; }
 nav.lists ul { list-style: none; padding: 0; font-size: 9pt; }
 nav.lists li { margin: 0 0 2pt; }
 nav.lists a { color: inherit; }
-.cover .programme img { max-height: 22mm; max-width: 90mm; margin-top: 8mm; }
-.cover .funding { margin-top: auto; font-size: 8.5pt; color: var(--muted); }
-.cover .funding p { margin: 0 0 4mm; }
-.cover .agencies { display: flex; flex-wrap: wrap; gap: 6mm; align-items: center; margin-bottom: 6mm; }
-.cover .agencies img { max-height: 14mm; max-width: 40mm; }
-.cover .meta { margin-top: 6mm; }
 .cover { height: 297mm; padding: 34mm 24mm 24mm; display: flex; flex-direction: column; background: radial-gradient(70% 55% at 100% 0%, rgba(255, 210, 90, 0.45), transparent 70%), radial-gradient(60% 50% at 0% 100%, rgba(255, 231, 174, 0.7), transparent 70%), linear-gradient(180deg, #FFFFFF, var(--foam)); break-after: page; }
 .cover .logo svg { width: 120mm; height: auto; }
 .cover .project { margin-top: 26mm; font: 700 13pt 'Bricolage Grotesque', sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: var(--heading); }
 .cover .title { break-before: avoid; margin: 6mm 0 0; font: 800 34pt/1.05 'Bricolage Grotesque', sans-serif; color: #4A3F36; border: 0; padding: 0; }
 .cover .lang { margin-top: 6mm; font-size: 14pt; color: var(--ink); }
 .cover .draft { display: inline-block; margin-top: 8mm; padding: 3mm 6mm; border-radius: 999px; background: #FFF0E0; color: #A2450B; font-weight: 600; border: 1px solid #F3C9A0; }
-.cover .meta { margin-top: auto; font-size: 10pt; color: var(--muted); border-top: 1px solid var(--line); padding-top: 5mm; }
+.cover .meta { margin-top: 5mm; font-size: 10pt; color: var(--muted); border-top: 1px solid var(--line); padding-top: 4mm; }
+.cover .programme { margin-top: 14mm; display: flex; align-items: center; gap: 7mm; }
+.cover .programme img { height: 24mm; width: auto; }
+.cover .programme p { margin: 0; max-width: 70mm; font-size: 10pt; line-height: 1.4; color: var(--ink); }
+.cover .logos { margin-top: auto; }
+.cover .logos h2 { margin: 0 0 3mm; font: 700 8.5pt 'Instrument Sans', sans-serif; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-align: center; }
+.cover .strip { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4mm 6mm; padding: 4mm 3mm; background: #FFFFFF; border-radius: 4mm; }
+.cover .strip img { height: 10mm; width: auto; }
+.cover .strip + h2 { margin-top: 4mm; }
 nav.toc { break-after: page; }
 nav.toc h1 { break-before: auto; }
 nav.toc ul { list-style: none; padding: 0; columns: 1; }
@@ -204,12 +214,15 @@ nav.toc a { color: inherit; }
 <body>
 <section class="cover">
   <div class="logo">${svg}</div>
-  <div class="project">TOP4HoneyChains · ICT-AGRI-FOOD 2022</div>
-  ${F.programme ? `<div class="programme">${F.programme}</div>` : ''}
+  <div class="project" lang="en">TOP4HoneyChains · ICT-AGRI-FOOD 2022</div>
   <h1 class="title">TOP4HoneyChains<br>${L.title}</h1>
   <div class="lang">${L.name}</div>
   ${L.draft ? `<div><span class="draft">${L.draft}</span></div>` : ''}
-  <div class="funding">${F.text}${F.agencies ? `<div class="agencies">${F.agencies}</div>` : ''}</div>
+  <div class="programme">${F.programme}<p>${F.acknowledgement}</p></div>
+  <div class="logos">
+    ${F.partners ? `<h2>${L.consortium}</h2><div class="strip">${F.partners}</div>` : ''}
+    ${F.agencies ? `<h2>${L.funding}</h2><div class="strip">${F.agencies}</div>` : ''}
+  </div>
   <div class="meta">${edition(lang)}</div>
 </section>
 <nav class="toc"><h1 id="contents">${L.toc}</h1><ul>
