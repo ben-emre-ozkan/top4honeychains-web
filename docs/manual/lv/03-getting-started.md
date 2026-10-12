@@ -8,10 +8,11 @@
 4. Noklikšķiniet uz **Pieteikties**.
 
 <!-- SHOT: sign-in -->
+Figure: Pieteikšanās lapa.
 
 Pēc pieteikšanās tiek atvērta lapa **Mans darbs** – jūs gaidošo uzdevumu saraksts.
 
-**Kas var pieteikties.** Jums jābūt platformas administratora lomai vai vismaz vienai aktīvai dalībai kādā organizācijā. Dalību piešķir platformas administrators (skatīt [Dalībnieki](#admin-members)).
+**Kas var pieteikties.** Jums jābūt platformas administratora lomai vai vismaz vienai aktīvai dalībai (viena organizācija × viena loma). Dalību piešķir platformas administrators (skatīt [Dalībnieki](#admin-members)).
 
 **Biežākie paziņojumi**
 
@@ -31,6 +32,7 @@ Lai izrakstītos, atveriet izvēlni zem sava avatāra (augšējā labajā stūr�
 Parolei jābūt vismaz 6 rakstzīmes garai; ja kāda prasība nav izpildīta, lapa to norāda jūsu valodā, bet, ja saite ir par vecu, tā parāda "Saite nav derīga vai tai ir beidzies termiņš. Pieprasiet jaunu paroles atiestatīšanu." Ja e-pasts nepienāk, pārbaudiet surogātpasta mapi un pēc tam vērsieties pie platformas administratora, kurš var iestatīt jums jaunu paroli (skatīt [Lietotāji](#admin-users)).
 
 <!-- SHOT: forgot-password -->
+Figure: Paroles atiestatīšana: apstiprinājums pēc e-pasta adreses nosūtīšanas.
 
 ## Jūsu profils {#profile}
 
@@ -43,6 +45,7 @@ Atveriet avatāra izvēlni un izvēlieties **Profils**.
 Atstājot koplietošanas datoru, izmantojiet **Izrakstīties**; ekrāna bloķēšanas nav.
 
 <!-- SHOT: profile -->
+Figure: Profila lapa ar dialoglodziņu **Mainīt paroli**.
 
 ## Valodas izvēle {#language}
 
@@ -65,24 +68,29 @@ Augšējā joslā no kreisās uz labo pusi redzams:
 - jūsu avatārs ar vienumiem **Profils** un **Izrakstīties**.
 
 <!-- SHOT: top-bar-role-chip -->
+Figure: Augšējā josla ar organizācijas · lomas žetonu.
 
-Žetonā redzama ķeksīša zīme, ja jūsu organizācija ir pārbaudīta, izsaukuma zīme, kamēr tā gaida pārbaudi, un apturēšanas zīme uz sarkana fona, ja tā ir apturēta. Kamēr organizācija nav pārbaudīta, tās dalībnieki var skatīt tās datus un organizācijas administrators var augšupielādēt dokumentus, taču **neviens nevar ievadīt datus**. Reklāmjoslā redzams paziņojums: "Jūsu organizācija vēl nav pārbaudīta. …", bet apturētai organizācijai – "Jūsu organizācija ir apturēta. Jūs varat skatīt tās datus, taču neviens nevar ievadīt datus, kamēr platformas administrators to neatjauno."
+Žetonā redzama ķeksīša zīme, ja jūsu organizācija ir pārbaudīta, izsaukuma zīme, kamēr tā gaida pārbaudi, un apturēšanas zīme uz sarkana fona, ja tā ir apturēta. Kamēr organizācija nav pārbaudīta, tās dalībnieki var lasīt tās datus un organizācijas administrators var augšupielādēt dokumentus, taču **neviens nevar ievadīt datus**. Reklāmjoslā redzams paziņojums: "Jūsu organizācija vēl nav pārbaudīta. …", bet apturētai organizācijai – "Jūsu organizācija ir apturēta. Jūs varat skatīt tās datus, taču neviens nevar ievadīt datus, kamēr platformas administrators to neatjauno."
 
 Ja jums ir vairākas dalības, noklikšķiniet uz žetona, lai pārslēgtos starp tām; skatīt [Vairākas dalības](#memberships).
 
 <!-- SHOT: role-switch -->
+Figure: Dalības pārslēgšana: žetona saraksts **Jūsu lomas**.
 
 ## Mans darbs {#my-work}
 
-**Mans darbs** ir jūsu sākumlapa. Tajā uzskaitīts viss, kas jūs gaida aktīvajā dalībā, sagrupēts pēc veida, sākot ar vecākajiem. Katrai grupai lapas augšdaļā ir sava flīze; noklikšķiniet uz tās, lai pārietu uz grupu.
+**Mans darbs** ir jūsu sākumlapa ([Figure](#fig-my-work)). Tajā uzskaitīts viss, kas jūs gaida aktīvajā dalībā, sagrupēts pēc veida, sākot ar vecākajiem ([Table](#tbl-mywork-groups)). Katrai grupai lapas augšdaļā ir sava flīze; noklikšķiniet uz tās, lai pārietu uz grupu.
 
 <!-- SHOT: my-work -->
+Figure: Kvalitātes nodrošināšanas speciālista lapa **Mans darbs** ar grupu flīzēm.
+
+Table: Grupas lapā **Mans darbs** {#tbl-mywork-groups}
 
 | Grupa | Ko tā nozīmē | Kas to saņem |
 |---|---|---|
-| **Ievadāmās vērtības** | Partijas vai gala partijas kontroles punktam (KKP) jāievada vērtības | Lomas, kas ievada šo KKP |
-| **Apstiprināmās vērtības** | KKP ieraksts vai KKP 10 uzglabāšanas ieraksts ir iesniegts vai bez apstiprinājuma pabeigts vai atzīmēts kā "Nav piemērojams", un to jāapstiprina otrai personai. Ierakstus, kurus pats ievadījāt vai atzīmējāt, jūs nekad neredzat. | Lomas, kas apstiprina šo KKP |
-| **Pabeigšanas (fiksēšanas) pieprasījumi** | Kāds ir pieprasījis gala partijas pabeigšanu (fiksēšanu) | Gala partijas īpašnieka kvalitātes apstiprinātājs |
+| **Ievadāmās vērtības** | Partijas vai gala partijas kontroles punktam (KKP) jāievada dati | Lomas, kas ievada šo KKP |
+| **Apstiprināmās vērtības** | KKP ieraksts vai KKP 10 uzglabāšanas ieraksts ir iesniegts vai bez apstiprinājuma pabeigts vai atzīmēts kā "Nav piemērojams", un to jāapstiprina otrai personai. Lapā **Mans darbs** nekad netiek uzskaitīti ieraksti, kurus pats ievadījāt vai atzīmējāt. | Lomas, kas apstiprina šo KKP |
+| **Pabeigšanas (fiksēšanas) pieprasījumi** | Kāds ir pieprasījis gala partijas pabeigšanu (fiksēšanu) | Gala partijas īpašnieka kvalitātes nodrošināšanas speciālists |
 | **Saņemamie paraugi** | Uz jūsu laboratoriju ir nosūtīts paraugs | Analītiķis, laboratorijas vadītājs |
 | **Ievadāmie laboratorijas rezultāti** | Saņemtam paraugam vēl nav pārskata, vai pārskats ir atgriezts | Analītiķis |
 | **Apstiprināmie laboratorijas pārskati** | Pārskats ir iesniegts | Laboratorijas vadītājs |
@@ -97,7 +105,9 @@ Izvēlnes saitei **Mans darbs** ir emblēma ar gaidošo vienumu skaitu. Kamēr l
 
 ## Izvēlne {#menu}
 
-Organizāciju dalībnieki redz īsu izvēlni. Katrs vienums tiek rādīts tikai tad, ja jūsu organizācijai ir attiecīgā kompetence un jūsu lomai ir attiecīgās tiesības:
+Organizāciju dalībniekiem ir īsa izvēlne ([Table](#tbl-menu)). Katrs vienums tiek rādīts tikai tad, ja jūsu organizācijai ir attiecīgā kompetence un jūsu lomai ir attiecīgās tiesības:
+
+Table: Organizāciju dalībnieku izvēlne {#tbl-menu}
 
 | Izvēlnes vienums | Ko atver | Kad redzams |
 |---|---|---|
@@ -108,7 +118,7 @@ Organizāciju dalībnieki redz īsu izvēlni. Katrs vienums tiek rādīts tikai 
 | **Sūtījumi un krājumi** | Jūsu turējumā esošās gala partijas, ienākošie un izejošie sūtījumi, uzglabāšanas ieraksti | Pārstrādes, iepakošanas, vairumtirdzniecības vai mazumtirdzniecības organizācija; lomas ar sūtījumu lasīšanas tiesībām |
 | **Biškopju lapas** | Piekrišanas un publiskās biškopju lapas | Biedrība; lomas ar biškopju lapu lasīšanas tiesībām |
 
-Platformas administratori redz pilnu administrēšanas izvēlni (skatīt [12. nodaļu](#admin)).
+Platformas administratoriem ir pilna administrēšanas izvēlne (skatīt [12. nodaļu](#admin)).
 
 ## Paziņojumi, ielāde un kļūdu lapas {#messages}
 

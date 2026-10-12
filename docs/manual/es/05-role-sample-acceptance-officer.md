@@ -6,7 +6,7 @@ Usted trabaja en la recepción de una planta de procesamiento. Cuando un apicult
 
 1. registra la entrega (esto crea el lote de miel cruda);
 2. precinta una muestra y una contramuestra, y envía la muestra a un laboratorio;
-3. ingresa el PCC 0, la auditoría primaria del lote, para que un aprobador de calidad pueda aprobarlo.
+3. ingresa el PCC 0, la auditoría primaria del lote, para que un responsable de aseguramiento de la calidad pueda aprobarlo.
 
 Sus tareas aparecen en **Mis tareas**, en **Valores por ingresar**. El menú muestra **Entregas (recepción)** y **Muestras y laboratorio**.
 
@@ -27,10 +27,13 @@ Sus tareas aparecen en **Mis tareas**, en **Valores por ingresar**. El menú mue
 4. Haga clic en **Registrar entrega**.
 
 <!-- SHOT: intake-form -->
+Figure: Registro de una entrega en un teléfono.
 
 El mensaje "Entrega registrada como lote n.º … ." confirma el nuevo lote. La plataforma asigna los PCC 0–3 al lote y abre **Tomar una muestra** para él.
 
 **Errores frecuentes**
+
+Table: Errores frecuentes al registrar una entrega {#tbl-intake-errors}
 
 | Mensaje | Qué hacer |
 |---|---|
@@ -53,16 +56,18 @@ La lista **Entregas (recepción)** muestra cada entrega con su número de lote, 
 5. Haga clic en **Enviar al laboratorio**, o en **Más tarde** para enviarla en otro momento.
 
 <!-- SHOT: sample-form -->
+Figure: Toma de una muestra: laboratorio y números de precinto.
 
-La muestra recibe un código como `S-20070-1` y el estado **Enviada**. El laboratorio la ve en **Muestras por recibir**. Si el laboratorio encuentra el precinto roto, la muestra se rechaza; tome una muestra nueva del mismo lote.
+La muestra recibe un código como `S-20070-1` y el estado **Enviada**. El laboratorio la encuentra en **Muestras por recibir**. Si el laboratorio encuentra el precinto roto, la muestra se rechaza; tome una muestra nueva del mismo lote.
 
 Errores: "Elija un laboratorio verificado.", "La muestra y la contramuestra necesitan precintos diferentes.", "Indique dónde se conserva la contramuestra (máximo 200 caracteres).", "Indique hasta cuándo se conserva la contramuestra (una fecha futura).", "Solo la organización que tiene el lote en su poder toma sus muestras."
 
 ## Trabajar en una página de PCC {#ccp-page}
 
-Todos los roles que ingresan o aprueban valores de PCC usan la misma página. Ábrala desde **Mis tareas**, desde las etiquetas de PCC de **Mi organización** o desde la página **Flujo del proceso** de un lote o de una partida.
+Todos los roles que ingresan o aprueban datos de PCC usan la misma página ([Figure](#fig-ccp-page-lot)). Ábrala desde **Mis tareas**, desde las etiquetas de PCC de **Mi organización** o desde la página **Flujo del proceso** de un lote o de una partida.
 
 <!-- SHOT: ccp-page-lot -->
+Figure: Una página de PCC de un lote: una respuesta **Sí** abre una pregunta adicional obligatoria.
 
 La página muestra:
 
@@ -70,7 +75,7 @@ La página muestra:
 - la etiqueta de **Estado** y quién ingresó y aprobó el registro;
 - la clase de miel que se usa para los límites ("Límites para la clase de miel: …");
 - los parámetros, agrupados, cada uno con su campo, su **Límite crítico:** y, después de guardar, **Dentro del límite** o **Fuera del límite**;
-- un aviso **Solo lectura** con el motivo cuando usted no puede ingresar valores.
+- un aviso **Solo lectura** con el motivo cuando usted no puede ingresar datos.
 
 Tipos de campo:
 
@@ -82,7 +87,7 @@ Tipos de campo:
 
 Algunos parámetros solo son obligatorios cuando otra pregunta se responde de una forma determinada, por ejemplo "Obligatorio solo si «…» se responde Sí."
 
-**Para ingresar valores**
+**Para ingresar datos**
 
 1. Complete los parámetros.
 2. Haga clic en **Guardar registros de monitoreo**. El mensaje "PCC … valores guardados." confirma que se guardaron, y usted vuelve a **Mi organización**.
@@ -99,11 +104,13 @@ Para deshacerlo, haga clic en **Quitar "No aplicable"**. Un PCC no aplicable tam
 
 **Errores frecuentes**
 
+Table: Errores frecuentes en una página de PCC {#tbl-ccp-errors}
+
 | Mensaje | Significado |
 |---|---|
 | "…: introduzca un número." / "…: elija Sí o No." | Un valor tiene un tipo incorrecto. |
 | "Este PCC está marcado como "No aplicable". Quite primero esa marca para registrar valores." | Quite la marca antes de ingresar valores. |
-| "Este punto de control es responsabilidad de otra organización; solo puede consultarlo." | Usted ve este PCC en modo de solo lectura. |
+| "Este punto de control es responsabilidad de otra organización; solo puede consultarlo." | Puede leer este PCC, pero no modificarlo. |
 | "Su rol (…) no puede ingresar datos en este punto de control; roles que ingresan: …" | Otro rol ingresa este PCC. |
 | "Su organización está en estado Pendiente; solo las organizaciones verificadas pueden ingresar datos." | Espere la verificación. |
 | "Este lote de miel cruda se utiliza en la partida finalizada … y está bloqueado. …" | El lote está sellado; solo una corrección puede modificarlo. |
@@ -114,6 +121,7 @@ Para deshacerlo, haga clic en **Quitar "No aplicable"**. Un PCC no aplicable tam
 2. Ingrese los controles de recepción (los parámetros del PCC 0). Algunas preguntas, si se responden **Sí**, abren otras preguntas obligatorias.
 3. Haga clic en **Guardar registros de monitoreo**.
 
-Cuando están todos los valores obligatorios, el PCC 0 pasa a **Enviado** y el aprobador de calidad de su organización lo ve en **Valores por aprobar**. Usted no puede aprobar su propio PCC 0 ("Cuatro ojos: usted registró valores de este PCC, por lo que otra persona debe aprobarlo."). El laboratorio solo puede ingresar resultados después de que se apruebe el PCC 0.
+Cuando están todos los datos obligatorios, el PCC 0 pasa a **Enviado** ([Figure](#fig-ccp0-submitted)) y el responsable de aseguramiento de la calidad de su organización lo encuentra en **Valores por aprobar**. Usted no puede aprobar su propio PCC 0 ("Cuatro ojos: usted registró valores de este PCC, por lo que otra persona debe aprobarlo."). El laboratorio solo puede ingresar resultados después de que se apruebe el PCC 0.
 
 <!-- SHOT: ccp0-submitted -->
+Figure: PCC 0 enviado y a la espera de la aprobación de otra persona.

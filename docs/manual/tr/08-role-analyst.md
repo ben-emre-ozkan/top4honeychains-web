@@ -2,7 +2,7 @@
 
 ## Günlük işiniz {#analyst-daily}
 
-Bir laboratuvarda çalışırsınız. İşleme tesislerinin gönderdiği mühürlü numuneleri teslim alır, mührü kontrol eder, balı analiz eder, sonuçları rapor PDF'iyle birlikte girer ve raporu onay için laboratuvar müdürünüze gönderirsiniz.
+Bir gıda analiz laboratuvarında çalışırsınız ve laboratuvarın iki kişisinden birincisisiniz: siz girersiniz, laboratuvar müdürü onaylar. İşleme tesislerinin gönderdiği mühürlü numuneleri teslim alır, mührü kontrol eder, balı analiz eder, sonuçları rapor PDF'iyle birlikte girer ve raporu onay için laboratuvar müdürünüze gönderirsiniz.
 
 Görevleriniz **İşlerim** sayfasında **Teslim alınacak numuneler** ve **Girilecek laboratuvar sonuçları** altında görünür. Menüde **Numuneler ve laboratuvar** bulunur.
 
@@ -14,17 +14,19 @@ Görevleriniz **İşlerim** sayfasında **Teslim alınacak numuneler** ve **Giri
 4. Mühür bozuksa **gerekçe (mühür bozuksa)** alanını doldurun ve **Mühür bozuk: reddet** düğmesine tıklayın: "Numune reddedildi: mühür bozuk." Bu durumda tesisin yeni bir numune alması gerekir.
 
 <!-- SHOT: sample-receive -->
+Figure: Laboratuvarda numune teslim alma: mühür kontrolü.
 
 ## Laboratuvar sonuçlarını girme {#analyst-results}
 
 1. **İşlerim** sayfasında **Girilecek laboratuvar sonuçları** grubunu açın. Numune için **Laboratuvar raporu** sayfası açılır.
-2. Sayfada "Bu lotun KKN 0 (ön denetim) aşaması henüz tamamlanmadı; …" uyarısının olmadığını kontrol edin. Lotun KKN 0 kaydı onaylanmadığı sürece form salt okunurdur. Tesisin kalite onaylayıcısı KKN 0'ı onaylayana kadar bekleyin.
+2. Sayfada "Bu lotun KKN 0 (ön denetim) aşaması henüz tamamlanmadı; …" uyarısının olmadığını kontrol edin. Lotun KKN 0 kaydı onaylanmadığı sürece form salt okunurdur. Tesisin Kalite Güvence Sorumlusu KKN 0'ı onaylayana kadar bekleyin.
 3. **Rapor numarası** ve **Düzenleme tarihi** (ileri bir tarih olamaz) alanlarını doldurun.
 4. **Rapor PDF** dosyasını seçin (10 MB'a kadar PDF).
 5. Her parametrenin değerini girin. Zorunlu parametreler * ile işaretlidir. Sayılarda virgül veya nokta kullanılabilir.
 6. **Kaydet** düğmesine tıklayın: "Laboratuvar sonuçları kaydedildi."
 
 <!-- SHOT: lab-results-form -->
+Figure: Rapor PDF'iyle birlikte laboratuvar sonuçlarını girme.
 
 Kayıttan sonra platform:
 
@@ -40,10 +42,13 @@ Rapor taslak olduğu sürece istediğiniz kadar kaydedebilirsiniz.
 2. **Onaya gönder** düğmesine tıklayın: "Rapor onaya gönderildi; bir laboratuvar müdürü (başka bir kişi) onaylamalı."
 
 <!-- SHOT: lab-submit -->
+Figure: Tüm zorunlu veriler girildi: rapor onaya gönderilebilir.
 
 Onaya gönderdikten sonra rapor, laboratuvar müdürü geri göndermedikçe artık düzenlenemez. Geri gönderilen bir raporda gerekçe gösterilir; raporu düzeltip yeniden gönderin.
 
 **Sık karşılaşılan hatalar**
+
+Table: Laboratuvar sonuçlarını girerken sık karşılaşılan hatalar {#tbl-lab-errors}
 
 | Mesaj | Ne yapmalı |
 |---|---|

@@ -1,4 +1,4 @@
-# 7. Aprobador de calidad {#role-qa}
+# 7. Responsable de aseguramiento de la calidad {#role-qa}
 
 ## Su trabajo diario {#qa-daily}
 
@@ -6,9 +6,9 @@ Usted es el segundo par de ojos de su organización. Usted:
 
 - aprueba los registros de PCC que han enviado sus colegas (PCC 0, PCC 2–10 y registros de almacenamiento);
 - confirma las solicitudes de finalización, con lo que se sella una partida;
-- en un mayorista o una tienda, aprueba los registros de almacenamiento del PCC 10.
+- en un mayorista o un minorista, aprueba los registros de almacenamiento del PCC 10.
 
-Sus tareas aparecen en **Mis tareas**, en **Valores por aprobar** y **Solicitudes de finalización**. Nunca aprueba un registro en el que usted mismo haya registrado valores.
+Sus tareas aparecen en **Mis tareas**, en **Valores por aprobar** y **Solicitudes de finalización**. Nunca aprueba un registro en el que usted mismo haya registrado datos.
 
 ## Aprobar un registro de PCC {#qa-approve}
 
@@ -18,16 +18,20 @@ Sus tareas aparecen en **Mis tareas**, en **Valores por aprobar** y **Solicitude
 4. Haga clic en **Aprobar**.
 
 <!-- SHOT: ccp-approve -->
+Figure: Aprobación de un registro de PCC (cuatro ojos).
 
 El mensaje "Registro de PCC aprobado." lo confirma; la etiqueta de estado muestra **Aprobado** con su nombre y la hora.
 
 **Valores fuera de sus límites.** Si algún valor está fuera del límite, un cuadro de diálogo **Valores fuera de sus límites** los enumera, cada uno con su **Límite:** (y "límite aún no verificado" para los límites que todavía deben verificarse). Haga clic en **Aprobar de todos modos** para aprobar, o en **Cancelar**. Los valores siguen marcados como fuera del límite; la aprobación solo confirma que se registraron correctamente.
 
 <!-- SHOT: out-of-limit-dialog -->
+Figure: El cuadro de diálogo para datos fuera de sus límites.
 
 **Registros no aplicables.** Un PCC marcado como "No aplicable" también debe aprobarse, y aparece en **Valores por aprobar** para los aprobadores que no lo marcaron. Lea el motivo antes de aprobarlo.
 
 **Errores frecuentes**
+
+Table: Errores frecuentes al aprobar un registro de PCC {#tbl-qa-errors}
 
 | Mensaje | Significado |
 |---|---|
@@ -46,6 +50,7 @@ Si su organización tiene la **Exención de la doble verificación (cuatro ojos)
 3. Haga clic en **Confirmar y finalizar**.
 
 <!-- SHOT: finalize-confirm -->
+Figure: Confirmación de una solicitud de finalización.
 
 La partida queda sellada: "Partida finalizada." Aparece una vez un sello con los enlaces **Abrir la Historia de la miel** y **Descargar QR**. A partir de ese momento:
 
@@ -58,8 +63,9 @@ No existe la opción de "deshacer la finalización". Los errores que se detecten
 Errores: "Cuatro ojos: la persona que solicitó la finalización no puede confirmarla.", "Primero se debe solicitar la finalización.", "La partida todavía no se puede finalizar: …".
 
 <!-- SHOT: batch-sealed -->
+Figure: Una partida sellada con el enlace a su Historia de la miel y su código QR.
 
-## Aprobar registros de almacenamiento (mayorista o tienda) {#qa-storage}
+## Aprobar registros de almacenamiento (mayorista o minorista) {#qa-storage}
 
 1. En **Mis tareas**, abra el elemento marcado como **almacenamiento** ("PCC 10 · [batch]"), o vaya a **Envíos y existencias** → **Almacenamiento**.
 2. Revise los valores y haga clic en **Aprobar** (si se le pide, confirme en el cuadro de diálogo los valores fuera del límite).

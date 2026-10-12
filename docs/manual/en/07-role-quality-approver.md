@@ -1,4 +1,4 @@
-# 7. Quality approver {#role-qa}
+# 7. Quality Assurance Officer {#role-qa}
 
 ## Your daily work {#qa-daily}
 
@@ -6,9 +6,9 @@ You are the second pair of eyes of your organization. You:
 
 - approve CCP records that colleagues have submitted (CCP 0, CCP 2–10 and storage records);
 - confirm finalizing requests, which seals a batch;
-- at a wholesaler or shop, approve the CCP 10 storage records.
+- at a wholesaler or retailer, approve the CCP 10 storage records.
 
-Your tasks appear in **My work** under **Values to approve** and **Finalize requests**. You never approve a record in which you recorded values yourself.
+Your tasks appear in **My work** under **Values to approve** and **Finalize requests**. You never approve a record in which you recorded data yourself.
 
 ## Approve a CCP record {#qa-approve}
 
@@ -18,16 +18,20 @@ Your tasks appear in **My work** under **Values to approve** and **Finalize requ
 4. Click **Approve**.
 
 <!-- SHOT: ccp-approve -->
+Figure: Approving a CCP record (four-eyes).
 
 The message "CCP record approved." confirms it; the status pill shows **Approved** with your name and the time.
 
 **Values outside their limits.** If any value is out of limit, a dialog **Values outside their limits** lists them, each with its **Limit:** (and "limit not verified yet" for limits that are still to be verified). Click **Approve anyway** to approve, or **Cancel**. The values stay flagged as out of limit; approval only confirms that they were recorded correctly.
 
 <!-- SHOT: out-of-limit-dialog -->
+Figure: The dialog for data outside their limits.
 
 **Not applicable records.** A CCP marked "Not applicable" must be approved as well, and appears in **Values to approve** for the approvers who did not mark it. Read the reason before you approve.
 
 **Common errors**
+
+Table: Common errors when approving a CCP record {#tbl-qa-errors}
 
 | Message | Meaning |
 |---|---|
@@ -46,6 +50,7 @@ If your organization has the **Four-eyes exemption**, you may approve your own r
 3. Click **Confirm and finalize**.
 
 <!-- SHOT: finalize-confirm -->
+Figure: Confirming a finalizing request.
 
 The batch is sealed: "Batch finalized." A seal appears once with the links **Open the Honey Story** and **Download QR**. From now on:
 
@@ -58,8 +63,9 @@ There is no "un-finalize". Mistakes found later are corrected through the admini
 Errors: "Four-eyes: the person who requested finalizing cannot confirm it.", "Finalizing must be requested first.", "The batch cannot be finalized yet: …".
 
 <!-- SHOT: batch-sealed -->
+Figure: A sealed batch with its Honey Story link and QR code.
 
-## Approve storage records (wholesaler or shop) {#qa-storage}
+## Approve storage records (wholesaler or retailer) {#qa-storage}
 
 1. In **My work** open the item marked **storage** ("CCP 10 · [batch]"), or go to **Shipments and stock** → **Storage**.
 2. Check the values and click **Approve** (confirm out-of-limit values in the dialog if asked).

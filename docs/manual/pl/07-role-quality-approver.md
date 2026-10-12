@@ -1,4 +1,4 @@
-# 7. Zatwierdzający jakość {#role-qa}
+# 7. Specjalista ds. zapewnienia jakości {#role-qa}
 
 ## Twoja codzienna praca {#qa-daily}
 
@@ -6,9 +6,9 @@ Jesteś drugą parą oczu w swojej organizacji. Twoje zadania to:
 
 - zatwierdzanie rekordów KPK przesłanych przez współpracowników (KPK 0, KPK 2–10 i rekordy przechowywania);
 - potwierdzanie wniosków o ostateczne zatwierdzenie, co zamyka partię końcową;
-- u hurtownika lub w sklepie: zatwierdzanie rekordów przechowywania KPK 10.
+- u hurtownika lub detalisty: zatwierdzanie rekordów przechowywania KPK 10.
 
-Twoje zadania pojawiają się na stronie **Moja praca** w grupach **Wartości do zatwierdzenia** i **Wnioski o ostateczne zatwierdzenie**. Nigdy nie zatwierdzasz rekordu, w którym sam zarejestrowałeś wartości.
+Twoje zadania pojawiają się na stronie **Moja praca** w grupach **Wartości do zatwierdzenia** i **Wnioski o ostateczne zatwierdzenie**. Nigdy nie zatwierdzasz rekordu, w którym sam zarejestrowałeś dane.
 
 ## Zatwierdzanie rekordu KPK {#qa-approve}
 
@@ -18,16 +18,20 @@ Twoje zadania pojawiają się na stronie **Moja praca** w grupach **Wartości do
 4. Kliknij **Zatwierdź**.
 
 <!-- SHOT: ccp-approve -->
+Figure: Zatwierdzanie rekordu KPK (zasada czterech oczu).
 
 Komunikat „Rekord KPK został zatwierdzony.” potwierdza zatwierdzenie; etykieta statusu pokazuje **Zatwierdzono** wraz z Twoim nazwiskiem i czasem.
 
 **Wartości poza limitem.** Jeśli którakolwiek wartość jest poza limitem, okno dialogowe **Wartości poza limitem** wymienia takie wartości, każdą z jej wartością **Limit:** (oraz adnotacją „limit jeszcze niezweryfikowany” w przypadku limitów, które wciąż czekają na weryfikację). Kliknij **Zatwierdź mimo to**, aby zatwierdzić, lub **Anuluj**. Wartości pozostają oznaczone jako poza limitem; zatwierdzenie potwierdza jedynie, że zostały poprawnie zarejestrowane.
 
 <!-- SHOT: out-of-limit-dialog -->
+Figure: Okno dialogowe dla danych poza limitem.
 
 **Rekordy oznaczone jako nie dotyczy.** KPK oznaczony jako „Nie dotyczy” również wymaga zatwierdzenia i pojawia się w sekcji **Wartości do zatwierdzenia** u zatwierdzających, którzy go nie oznaczyli. Przed zatwierdzeniem przeczytaj podany powód.
 
 **Częste błędy**
+
+Table: Częste błędy przy zatwierdzaniu rekordu KPK {#tbl-qa-errors}
 
 | Komunikat | Znaczenie |
 |---|---|
@@ -46,6 +50,7 @@ Jeśli Twoja organizacja ma **Wyjątek od zasady czterech oczu**, możesz zatwie
 3. Kliknij **Potwierdź i zatwierdź ostatecznie**.
 
 <!-- SHOT: finalize-confirm -->
+Figure: Potwierdzanie wniosku o ostateczne zatwierdzenie.
 
 Partia końcowa zostaje zamknięta: „Partia końcowa została zatwierdzona ostatecznie.” Jednorazowo pojawia się pieczęć z odnośnikami **Otwórz Historię miodu** i **Pobierz kod QR**. Od tej chwili:
 
@@ -58,8 +63,9 @@ Nie ma możliwości „cofnięcia ostatecznego zatwierdzenia”. Błędy wykryte
 Błędy: „Zasada czterech oczu: osoba, która złożyła wniosek o ostateczne zatwierdzenie, nie może go potwierdzić.”, „Najpierw należy złożyć wniosek o ostateczne zatwierdzenie.”, „Partii końcowej nie można jeszcze zatwierdzić ostatecznie: …”.
 
 <!-- SHOT: batch-sealed -->
+Figure: Zamknięta partia końcowa z odnośnikiem do Historii miodu i kodem QR.
 
-## Zatwierdzanie rekordów przechowywania (hurtownik lub sklep) {#qa-storage}
+## Zatwierdzanie rekordów przechowywania (hurtownik lub detalista) {#qa-storage}
 
 1. Na stronie **Moja praca** otwórz pozycję oznaczoną słowem **przechowywanie** („KPK 10 · [partia końcowa]”) albo przejdź do **Wysyłki i zapasy** → **Przechowywanie**.
 2. Sprawdź wartości i kliknij **Zatwierdź** (jeśli pojawi się takie pytanie, potwierdź w oknie dialogowym wartości poza limitem).

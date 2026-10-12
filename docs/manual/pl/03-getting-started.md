@@ -8,10 +8,11 @@
 4. Kliknij **Zaloguj się**.
 
 <!-- SHOT: sign-in -->
+Figure: Strona logowania.
 
 Po zalogowaniu otwiera się strona **Moja praca**, czyli lista zadań, które na Ciebie czekają.
 
-**Kto może się zalogować.** Potrzebujesz roli administratora platformy albo co najmniej jednego aktywnego członkostwa w organizacji. Członkostwo nadaje administrator platformy (zob. [Członkowie](#admin-members)).
+**Kto może się zalogować.** Potrzebujesz roli administratora platformy albo co najmniej jednego aktywnego członkostwa (jedna organizacja × jedna rola). Członkostwo nadaje administrator platformy (zob. [Członkowie](#admin-members)).
 
 **Częste komunikaty**
 
@@ -31,6 +32,7 @@ Aby się wylogować, otwórz menu pod awatarem (w prawym górnym rogu) i wybierz
 Hasło musi mieć co najmniej 6 znaków; jeśli reguła nie jest spełniona, strona informuje o tym w Twoim języku, a gdy link jest zbyt stary, wyświetla „Link jest nieprawidłowy lub wygasł. Poproś o nowe zresetowanie hasła.” Jeśli wiadomość nie dotrze, sprawdź folder spamu, a następnie zwróć się do administratora platformy, który może ustawić dla Ciebie nowe hasło (zob. [Użytkownicy](#admin-users)).
 
 <!-- SHOT: forgot-password -->
+Figure: Resetowanie hasła: potwierdzenie po wysłaniu adresu e-mail.
 
 ## Twój profil {#profile}
 
@@ -43,6 +45,7 @@ Otwórz menu awatara i wybierz **Profil**.
 Zanim odejdziesz od współdzielonego komputera, użyj opcji **Wyloguj się**; funkcji blokady ekranu nie ma.
 
 <!-- SHOT: profile -->
+Figure: Strona profilu z oknem dialogowym **Zmień hasło**.
 
 ## Wybór języka {#language}
 
@@ -65,24 +68,29 @@ Górny pasek pokazuje, od lewej do prawej:
 - Twój awatar z opcjami **Profil** i **Wyloguj się**.
 
 <!-- SHOT: top-bar-role-chip -->
+Figure: Górny pasek ze wskaźnikiem organizacja · rola.
 
-Wskaźnik pokazuje znak zaznaczenia, gdy Twoja organizacja jest zweryfikowana, wykrzyknik, gdy czeka na weryfikację, oraz znak stopu na czerwonym tle, gdy jest zawieszona. Dopóki organizacja nie jest zweryfikowana, jej członkowie mogą przeglądać jej dane, a administrator organizacji może przesyłać dokumenty, ale **nikt nie może wprowadzać danych**. Wyświetla się wtedy komunikat: „Twoja organizacja nie jest jeszcze zweryfikowana. …”, a w przypadku zawieszonej organizacji: „Twoja organizacja jest zawieszona. Możesz przeglądać jej dane, ale nikt nie może wprowadzać danych, dopóki administrator platformy jej nie przywróci.”
+Wskaźnik pokazuje znak zaznaczenia, gdy Twoja organizacja jest zweryfikowana, wykrzyknik, gdy czeka na weryfikację, oraz znak stopu na czerwonym tle, gdy jest zawieszona. Dopóki organizacja nie jest zweryfikowana, jej członkowie mogą odczytywać jej dane, a administrator organizacji może przesyłać dokumenty, ale **nikt nie może wprowadzać danych**. Wyświetla się wtedy komunikat: „Twoja organizacja nie jest jeszcze zweryfikowana. …”, a w przypadku zawieszonej organizacji: „Twoja organizacja jest zawieszona. Możesz przeglądać jej dane, ale nikt nie może wprowadzać danych, dopóki administrator platformy jej nie przywróci.”
 
 Jeśli masz kilka członkostw, kliknij wskaźnik, aby przełączać się między nimi; zob. [Kilka członkostw](#memberships).
 
 <!-- SHOT: role-switch -->
+Figure: Przełączanie członkostwa: lista **Twoje role** we wskaźniku.
 
 ## Moja praca {#my-work}
 
-**Moja praca** to Twoja strona główna. Wyświetla wszystko, co czeka na Ciebie w aktywnym członkostwie, pogrupowane według rodzaju, od najstarszych pozycji. Każda grupa ma kafelek u góry strony; kliknij go, aby przejść do tej grupy.
+**Moja praca** to Twoja strona główna ([Figure](#fig-my-work)). Wyświetla wszystko, co czeka na Ciebie w aktywnym członkostwie, pogrupowane według rodzaju, od najstarszych pozycji ([Table](#tbl-mywork-groups)). Każda grupa ma kafelek u góry strony; kliknij go, aby przejść do tej grupy.
 
 <!-- SHOT: my-work -->
+Figure: **Moja praca** specjalisty ds. zapewnienia jakości, z kafelkami grup.
+
+Table: Grupy na stronie **Moja praca** {#tbl-mywork-groups}
 
 | Grupa | Co oznacza | Kto ją otrzymuje |
 |---|---|---|
-| **Wartości do wprowadzenia** | Punkt kontrolny (KPK) partii lub partii końcowej wymaga wprowadzenia wartości | Role, które wprowadzają dane tego KPK |
-| **Wartości do zatwierdzenia** | Rekord KPK lub rekord przechowywania KPK 10 został przesłany albo zakończony lub oznaczony jako „Nie dotyczy” bez zatwierdzenia i wymaga drugiej osoby. Nigdy nie widzisz rekordów, które sam wprowadziłeś lub oznaczyłeś. | Role, które zatwierdzają ten KPK |
-| **Wnioski o ostateczne zatwierdzenie** | Ktoś złożył wniosek o ostateczne zatwierdzenie partii końcowej | Zatwierdzający jakość właściciela partii końcowej |
+| **Wartości do wprowadzenia** | Punkt kontrolny (KPK) partii lub partii końcowej wymaga wprowadzenia danych | Role, które wprowadzają dane tego KPK |
+| **Wartości do zatwierdzenia** | Rekord KPK lub rekord przechowywania KPK 10 został przesłany albo zakończony lub oznaczony jako „Nie dotyczy” bez zatwierdzenia i wymaga drugiej osoby. Strona **Moja praca** nigdy nie wyświetla rekordów, które sam wprowadziłeś lub oznaczyłeś. | Role, które zatwierdzają ten KPK |
+| **Wnioski o ostateczne zatwierdzenie** | Ktoś złożył wniosek o ostateczne zatwierdzenie partii końcowej | Specjalista ds. zapewnienia jakości właściciela partii końcowej |
 | **Próbki do przyjęcia** | Do Twojego laboratorium wysłano próbkę | Analityk, Kierownik laboratorium |
 | **Wyniki laboratoryjne do wprowadzenia** | Przyjęta próbka nie ma jeszcze raportu albo raport został zwrócony | Analityk |
 | **Raporty laboratoryjne do zatwierdzenia** | Przesłano raport | Kierownik laboratorium |
@@ -97,7 +105,9 @@ Odnośnik **Moja praca** w menu ma plakietkę z liczbą oczekujących pozycji. G
 
 ## Menu {#menu}
 
-Członkowie organizacji widzą krótkie menu. Każda pozycja pojawia się tylko wtedy, gdy Twoja organizacja ma odpowiednią funkcję, a Twoja rola ma odpowiednie uprawnienie:
+Członkowie organizacji mają krótkie menu ([Table](#tbl-menu)). Każda pozycja pojawia się tylko wtedy, gdy Twoja organizacja ma odpowiednią funkcję, a Twoja rola ma odpowiednie uprawnienie:
+
+Table: Menu członków organizacji {#tbl-menu}
 
 | Pozycja menu | Otwiera | Wyświetlana, gdy |
 |---|---|---|
@@ -108,7 +118,7 @@ Członkowie organizacji widzą krótkie menu. Każda pozycja pojawia się tylko 
 | **Wysyłki i zapasy** | Posiadane partie końcowe, wysyłki przychodzące i wychodzące, rekordy przechowywania | Organizacja z funkcją Przetwarzanie, Konfekcjonowanie, Handel hurtowy lub Handel detaliczny; role z prawem odczytu wysyłek |
 | **Strony pszczelarzy** | Zgody i publiczne strony pszczelarzy | Stowarzyszenie; role z prawem odczytu stron pszczelarzy |
 
-Administratorzy platformy widzą pełne menu administracyjne (zob. [rozdział 12](#admin)).
+Administratorzy platformy mają pełne menu administracyjne (zob. [rozdział 12](#admin)).
 
 ## Komunikaty, wczytywanie i strony błędów {#messages}
 

@@ -2,9 +2,9 @@
 
 ## Your daily work {#staff-daily}
 
-**At a processing or packing plant** you enter the values of the production control points: CCP 2–3 on the raw honey lots and CCP 4–10 on the batches. When a batch is complete you request finalizing, and after it is sealed you ship it.
+**At a processing or packing plant** you enter the data of the production control points: CCP 2–3 on the raw honey lots and CCP 4–10 on the batches. When a batch is complete you request finalizing, and after it is sealed you ship it.
 
-**At a wholesaler or shop** you confirm or reject incoming shipments and record the storage conditions (CCP 10) of the batches you hold.
+**At a wholesaler or retailer** you confirm or reject incoming shipments and record the storage conditions (CCP 10) of the batches you hold.
 
 Your tasks appear in **My work** under **Values to enter** and **Shipments to confirm**. The menu shows **My organization** and **Shipments and stock**.
 
@@ -21,6 +21,7 @@ Your tasks appear in **My work** under **Values to enter** and **Shipments to co
 Click a chip to open the CCP page. The **Process flow** link shows the timeline of a lot or batch.
 
 <!-- SHOT: my-organization -->
+Figure: **My organization**: lots and batches with their CCP chips.
 
 ## Enter lot CCP 2–3 {#staff-lot-ccps}
 
@@ -29,7 +30,7 @@ Click a chip to open the CCP page. The **Process flow** link shows the timeline 
 3. If the step does not apply to this honey, mark it **Not applicable** with a reason.
 4. Repeat for CCP 3.
 
-The quality approver then approves them. A lot can be put into a batch only when all its CCPs are completed or not applicable and approved.
+The Quality Assurance Officer then approves them. A lot can be put into a batch only when all its CCPs are completed or not applicable and approved.
 
 ## Enter batch CCP 4–10 {#staff-batch-ccps}
 
@@ -40,6 +41,7 @@ A platform administrator creates the batch, adds the lots and assigns CCP 4–10
 3. Click **Save Monitoring Logs** each time.
 
 <!-- SHOT: ccp-page-batch -->
+Figure: A batch CCP page: source composition and the CCP 10 parameters.
 
 ## Request finalizing {#staff-request-finalize}
 
@@ -48,8 +50,9 @@ A platform administrator creates the batch, adds the lots and assigns CCP 4–10
 3. When the list is empty, click **Request finalizing**.
 
 <!-- SHOT: finalize-request -->
+Figure: The **Finalize** card listing what is still missing.
 
-The message "Finalizing requested; a QualityApprover (another person) must confirm it." confirms the request. A quality approver of your organization sees it under **Finalize requests**. You cannot confirm your own request.
+The message "Finalizing requested; a Quality Assurance Officer (another person) must confirm it." confirms the request. A Quality Assurance Officer of your organization finds it under **Finalize requests**. You cannot confirm your own request.
 
 ## Ship a batch {#staff-ship}
 
@@ -61,6 +64,7 @@ Only a finalized batch can be shipped.
 4. Confirm. The quantity is reserved at once: "Shipment created; custody moves when the receiver confirms it."
 
 <!-- SHOT: shipment-create -->
+Figure: Shipping a batch to another organization.
 
 Errors: "Only a finalized batch can be shipped.", "You can ship at most … kg of this batch.", "Choose another verified organization as receiver."
 
@@ -71,6 +75,7 @@ Errors: "Only a finalized batch can be shipped.", "You can ship at most … kg o
 3. Or write a **reason (to reject)** and click **Reject**: "Shipment rejected; the quantity stays with the sender." A reason is required.
 
 <!-- SHOT: shipment-confirm -->
+Figure: An incoming shipment on a phone: **Confirm receipt** or **Reject**.
 
 ## Record storage (CCP 10 at the receiver) {#staff-storage}
 
@@ -78,16 +83,17 @@ After you have received a batch:
 
 1. In **Shipments and stock**, in the **Storage** column of the batch, click **CCP 10** (page "CCP 10 – Storage").
 2. Enter all required storage values in one go (for example temperature and humidity).
-3. Click **Save**: "Storage values saved." The record is **Submitted** and your quality approver sees it under **Values to approve**.
+3. Click **Save**: "Storage values saved." The record is **Submitted** and your Quality Assurance Officer finds it under **Values to approve**.
 
 <!-- SHOT: storage-record -->
+Figure: Recording CCP 10 storage at the receiver.
 
 ## Read the producer's records {#staff-read-only}
 
-When your organization holds or has received a batch, you can open the producer's control points of that batch and of its lots **read-only**: you see the values and who approved them, but no save or approve buttons. The beekeeper and apiary names are shown as "not shown", as in the recall report. The page shows **Read only** with "This control point is the responsibility of another organization; you can read it only." For a batch your organization never received, the platform shows "You can't open this page".
+When your organization holds or has received a batch, you can open the producer's control points of that batch and of its lots **read-only**: you can read the data and who approved it, but no save or approve buttons. The beekeeper and apiary names are shown as "not shown", as in the recall report. The page shows **Read only** with "This control point is the responsibility of another organization; you can read it only." For a batch your organization never received, the platform shows "You can't open this page".
 
 To open them, go to **Shipments and stock**, click **Process flow** next to the batch you hold, and click a stage of the flow.
 
 ## Recall report {#staff-recall}
 
-From a batch or a lot you can open the **Recall report**. It lists the lots upstream and the shipments downstream that your organization may see, with **Print** and **CSV** buttons. See [Recall](#admin-recall).
+From a batch or a lot you can open the **Recall report**. It lists the lots upstream and the shipments downstream that your organization may read, with **Print** and **CSV** buttons. See [Recall](#admin-recall).

@@ -2,7 +2,7 @@
 
 ## Twoja codzienna praca {#analyst-daily}
 
-Pracujesz w laboratorium. Przyjmujesz zaplombowane próbki przesłane przez zakłady przetwórcze, sprawdzasz plombę, analizujesz miód, wprowadzasz wyniki wraz z plikiem PDF raportu i przesyłasz raport do zatwierdzenia kierownikowi laboratorium.
+Pracujesz w laboratorium analizy żywności i jesteś pierwszą z jego dwóch osób: Ty wprowadzasz dane, a kierownik laboratorium je zatwierdza. Przyjmujesz zaplombowane próbki przesłane przez zakłady przetwórcze, sprawdzasz plombę, analizujesz miód, wprowadzasz wyniki wraz z plikiem PDF raportu i przesyłasz raport do zatwierdzenia kierownikowi laboratorium.
 
 Twoje zadania pojawiają się na stronie **Moja praca** w grupach **Próbki do przyjęcia** i **Wyniki laboratoryjne do wprowadzenia**. Menu zawiera pozycję **Próbki i laboratorium**.
 
@@ -14,17 +14,19 @@ Twoje zadania pojawiają się na stronie **Moja praca** w grupach **Próbki do p
 4. Jeśli plomba jest naruszona, wpisz **powód (jeśli plomba jest naruszona)** i kliknij **Plomba naruszona: odrzuć**: „Próbka została odrzucona: plomba jest naruszona.” Zakład musi pobrać nową próbkę.
 
 <!-- SHOT: sample-receive -->
+Figure: Przyjmowanie próbek w laboratorium: kontrola plomby.
 
 ## Wprowadzanie wyników laboratoryjnych {#analyst-results}
 
 1. Na stronie **Moja praca** otwórz grupę **Wyniki laboratoryjne do wprowadzenia**. Dla próbki otwiera się strona **Raport laboratoryjny**.
-2. Sprawdź, czy strona nie wyświetla komunikatu „KPK 0 (audyt wstępny) tej partii nie jest jeszcze zakończony; …”. Dopóki KPK 0 partii nie jest zatwierdzony, formularz jest dostępny tylko do odczytu. Poczekaj, aż zatwierdzający jakość w zakładzie zatwierdzi KPK 0.
+2. Sprawdź, czy strona nie wyświetla komunikatu „KPK 0 (audyt wstępny) tej partii nie jest jeszcze zakończony; …”. Dopóki KPK 0 partii nie jest zatwierdzony, formularz jest dostępny tylko do odczytu. Poczekaj, aż specjalista ds. zapewnienia jakości w zakładzie zatwierdzi KPK 0.
 3. Wpisz **Numer raportu** i **Data wydania** (nie może być datą przyszłą).
 4. Wybierz **PDF raportu** (plik PDF do 10 MB).
 5. Wpisz wartość każdego parametru. Parametry wymagane są oznaczone gwiazdką (*). W polach liczbowych można użyć przecinka lub kropki.
 6. Kliknij **Zapisz**: „Wyniki laboratoryjne zostały zapisane.”
 
 <!-- SHOT: lab-results-form -->
+Figure: Wprowadzanie wyników laboratoryjnych wraz z plikiem PDF raportu.
 
 Po zapisaniu platforma:
 
@@ -40,10 +42,13 @@ Dopóki raport jest wersją roboczą, możesz go zapisywać dowolnie wiele razy.
 2. Kliknij **Prześlij do zatwierdzenia**: „Raport został przesłany; musi go zatwierdzić kierownik laboratorium (inna osoba).”
 
 <!-- SHOT: lab-submit -->
+Figure: Wprowadzono wszystkie wymagane dane: raport można przesłać.
 
 Po przesłaniu raportu nie można już edytować, chyba że kierownik laboratorium go zwróci. Zwrócony raport pokazuje powód zwrotu; popraw raport i prześlij go ponownie.
 
 **Częste błędy**
+
+Table: Częste błędy przy wprowadzaniu wyników laboratoryjnych {#tbl-lab-errors}
 
 | Komunikat | Co zrobić |
 |---|---|

@@ -8,10 +8,11 @@
 4. Haga clic en **Iniciar sesión**.
 
 <!-- SHOT: sign-in -->
+Figure: La página de inicio de sesión.
 
 Después de iniciar sesión llega a **Mis tareas**, la lista de tareas que esperan su intervención.
 
-**Quién puede iniciar sesión.** Necesita el rol de administrador de la plataforma o al menos una membresía activa en una organización. Un administrador de la plataforma le asigna la membresía (consulte [Miembros](#admin-members)).
+**Quién puede iniciar sesión.** Necesita el rol de administrador de la plataforma o al menos una membresía activa (una organización × un rol). Un administrador de la plataforma le asigna la membresía (consulte [Miembros](#admin-members)).
 
 **Mensajes frecuentes**
 
@@ -31,6 +32,7 @@ Para cerrar la sesión, abra el menú de su avatar (arriba a la derecha) y elija
 Las contraseñas deben tener al menos 6 caracteres; si no se cumple una regla, la página lo indica en su idioma, y si el enlace es demasiado antiguo muestra "El enlace no es válido o ha caducado. Solicite un nuevo restablecimiento de contraseña." Si el correo no llega, revise la carpeta de correo no deseado y, después, consulte a un administrador de la plataforma, que puede asignarle una contraseña nueva (consulte [Usuarios](#admin-users)).
 
 <!-- SHOT: forgot-password -->
+Figure: Restablecimiento de la contraseña: la confirmación después de enviar una dirección de correo electrónico.
 
 ## Su perfil {#profile}
 
@@ -43,6 +45,7 @@ Abra el menú del avatar y elija **Perfil**.
 Para dejar un equipo compartido, use **Cerrar Sesión**; no hay pantalla de bloqueo.
 
 <!-- SHOT: profile -->
+Figure: La página del perfil con el cuadro de diálogo **Cambiar contraseña**.
 
 ## Elegir el idioma {#language}
 
@@ -65,24 +68,29 @@ La barra superior muestra, de izquierda a derecha:
 - su avatar, con **Perfil** y **Cerrar Sesión**.
 
 <!-- SHOT: top-bar-role-chip -->
+Figure: La barra superior con la etiqueta organización · rol.
 
-La etiqueta muestra una marca de verificación cuando su organización está verificada, un signo de exclamación mientras espera la verificación y un signo de alto sobre fondo rojo cuando está suspendida. Mientras una organización no está verificada, sus miembros pueden consultar sus datos y su administrador de la organización puede subir documentos, pero **nadie puede ingresar datos**. Un aviso lo indica: "Su organización aún no está verificada. …", o, para una organización suspendida, "Su organización está suspendida. Puede consultar sus datos, pero nadie puede ingresar datos hasta que un administrador de la plataforma la reactive."
+La etiqueta muestra una marca de verificación cuando su organización está verificada, un signo de exclamación mientras espera la verificación y un signo de alto sobre fondo rojo cuando está suspendida. Mientras una organización no está verificada, sus miembros pueden leer sus datos y su administrador de la organización puede subir documentos, pero **nadie puede ingresar datos**. Un aviso lo indica: "Su organización aún no está verificada. …", o, para una organización suspendida, "Su organización está suspendida. Puede consultar sus datos, pero nadie puede ingresar datos hasta que un administrador de la plataforma la reactive."
 
 Si tiene varias membresías, haga clic en la etiqueta para cambiar de una a otra; consulte [Varias membresías](#memberships).
 
 <!-- SHOT: role-switch -->
+Figure: Cambio de membresía: la lista **Sus roles** de la etiqueta.
 
 ## Mis tareas {#my-work}
 
-**Mis tareas** es su página de inicio. Muestra todo lo que espera su intervención en la membresía activa, agrupado por tipo y empezando por lo más antiguo. Cada grupo tiene un mosaico en la parte superior; haga clic en él para saltar al grupo.
+**Mis tareas** es su página de inicio ([Figure](#fig-my-work)). Muestra todo lo que espera su intervención en la membresía activa, agrupado por tipo y empezando por lo más antiguo ([Table](#tbl-mywork-groups)). Cada grupo tiene un mosaico en la parte superior; haga clic en él para saltar al grupo.
 
 <!-- SHOT: my-work -->
+Figure: **Mis tareas** de un Responsable de aseguramiento de la calidad, con los mosaicos de los grupos.
+
+Table: Grupos de **Mis tareas** {#tbl-mywork-groups}
 
 | Grupo | Qué significa | Quién lo recibe |
 |---|---|---|
-| **Valores por ingresar** | Un punto de control (PCC) de un lote o de una partida necesita valores | Los roles que ingresan ese PCC |
-| **Valores por aprobar** | Se envió un registro de PCC o un registro de almacenamiento del PCC 10, o se completó o marcó como "No aplicable" sin una aprobación, y necesita una segunda persona. Nunca ve los registros que usted mismo ingresó o marcó. | Los roles que aprueban ese PCC |
-| **Solicitudes de finalización** | Alguien solicitó finalizar una partida | Aprobador de calidad del propietario de la partida |
+| **Valores por ingresar** | Un punto de control (PCC) de un lote o de una partida necesita datos | Los roles que ingresan ese PCC |
+| **Valores por aprobar** | Se envió un registro de PCC o un registro de almacenamiento del PCC 10, o se completó o marcó como "No aplicable" sin una aprobación, y necesita una segunda persona. **Mis tareas** nunca muestra los registros que usted mismo ingresó o marcó. | Los roles que aprueban ese PCC |
+| **Solicitudes de finalización** | Alguien solicitó finalizar una partida | Responsable de aseguramiento de la calidad del propietario de la partida |
 | **Muestras por recibir** | Se envió una muestra a su laboratorio | Analista, Responsable de laboratorio |
 | **Resultados de laboratorio por ingresar** | Una muestra recibida aún no tiene informe, o el informe fue devuelto | Analista |
 | **Informes de laboratorio por aprobar** | Se envió un informe | Responsable de laboratorio |
@@ -97,7 +105,9 @@ El enlace **Mis tareas** del menú lleva un indicador con el número de elemento
 
 ## El menú {#menu}
 
-Los miembros de una organización ven un menú breve. Cada entrada aparece solo si su organización tiene la capacidad correspondiente y su rol tiene el derecho necesario:
+Los miembros de una organización tienen un menú breve ([Table](#tbl-menu)). Cada entrada aparece solo si su organización tiene la capacidad correspondiente y su rol tiene el derecho necesario:
+
+Table: El menú de los miembros de una organización {#tbl-menu}
 
 | Entrada del menú | Abre | Se muestra cuando |
 |---|---|---|
@@ -108,7 +118,7 @@ Los miembros de una organización ven un menú breve. Cada entrada aparece solo 
 | **Envíos y existencias** | Partidas en su poder, envíos entrantes y salientes, registros de almacenamiento | Organización de procesamiento, envasado, comercio mayorista o minorista; roles con derecho de lectura de envíos |
 | **Páginas de apicultores** | Consentimientos y páginas públicas de apicultores | Asociación; roles con derecho de lectura de las páginas de apicultores |
 
-Los administradores de la plataforma ven el menú de administración completo (consulte el [capítulo 12](#admin)).
+Los administradores de la plataforma tienen el menú de administración completo (consulte el [capítulo 12](#admin)).
 
 ## Mensajes, carga y páginas de error {#messages}
 

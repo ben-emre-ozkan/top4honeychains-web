@@ -8,10 +8,11 @@
 4. **Giriş Yap** düğmesine tıklayın.
 
 <!-- SHOT: sign-in -->
+Figure: Oturum açma sayfası.
 
 Oturum açtıktan sonra sizi bekleyen görevlerin listesi olan **İşlerim** sayfası açılır.
 
-**Kimler oturum açabilir?** Platform yöneticisi rolüne ya da bir kurumda en az bir etkin üyeliğe sahip olmanız gerekir. Üyeliği bir platform yöneticisi verir (bkz. [Üyeler](#admin-members)).
+**Kimler oturum açabilir?** Platform yöneticisi rolüne ya da en az bir etkin üyeliğe (bir kurum × bir rol) sahip olmanız gerekir. Üyeliği bir platform yöneticisi verir (bkz. [Üyeler](#admin-members)).
 
 **Sık görülen mesajlar**
 
@@ -31,6 +32,7 @@ Oturumu kapatmak için sağ üstteki avatarınızın menüsünü açın ve **Ç�
 Şifreler en az 6 karakter olmalıdır; bir kural karşılanmazsa sayfa bunu sizin dilinizde belirtir, bağlantının süresi dolmuşsa da "Bağlantı geçersiz veya süresi dolmuş. Yeni bir şifre sıfırlama isteyin." yazar. E-posta gelmezse önce istenmeyen (spam) klasörünü kontrol edin, ardından bir platform yöneticisine başvurun; yönetici sizin için yeni bir şifre belirleyebilir (bkz. [Kullanıcılar](#admin-users)).
 
 <!-- SHOT: forgot-password -->
+Figure: Şifre sıfırlama: bir e-posta adresi gönderildikten sonraki onay.
 
 ## Profiliniz {#profile}
 
@@ -43,6 +45,7 @@ Avatar menüsünü açın ve **Profil** seçeneğini seçin.
 Ortak kullanılan bir bilgisayardan ayrılırken **Çıkış Yap** seçeneğini kullanın; ekran kilitleme özelliği yoktur.
 
 <!-- SHOT: profile -->
+Figure: **Parolayı Değiştir** penceresiyle profil sayfası.
 
 ## Dil seçimi {#language}
 
@@ -65,24 +68,29 @@ Seçiminiz tarayıcınızda bir yıl boyunca hatırlanır. Referans verilerinden
 - **Profil** ve **Çıkış Yap** seçenekleriyle avatarınız.
 
 <!-- SHOT: top-bar-role-chip -->
+Figure: Kurum · rol etiketiyle üst çubuk.
 
 Kurumunuz doğrulanmışsa etikette bir onay işareti, doğrulama beklerken bir ünlem işareti, askıya alınmışsa kırmızı zemin üzerinde bir dur işareti görünür. Kurum doğrulanmadığı sürece üyeleri verilerini okuyabilir, kurum yöneticisi de belge yükleyebilir; ancak **kimse veri giremez**. Bir uyarı şeridinde şu yazar: "Kurumunuz henüz doğrulanmadı. …"; askıya alınmış bir kurum için ise "Kurumunuz askıya alındı. Verilerini okuyabilirsiniz, ancak bir platform yöneticisi yeniden etkinleştirene kadar kimse veri giremez."
 
 Birden fazla üyeliğiniz varsa aralarında geçiş yapmak için etikete tıklayın; bkz. [Birden fazla üyelik](#memberships).
 
 <!-- SHOT: role-switch -->
+Figure: Üyelik değiştirme: etiketin **Rolleriniz** listesi.
 
 ## İşlerim {#my-work}
 
-**İşlerim** ana sayfanızdır. Etkin üyelikte sizi bekleyen her şeyi türüne göre gruplar ve en eskisinden başlayarak listeler. Her grubun üst kısımda bir kutucuğu vardır; kutucuğa tıklayınca o gruba gidersiniz.
+**İşlerim** ana sayfanızdır ([Şekil](#fig-my-work)). Etkin üyelikte sizi bekleyen her şeyi türüne göre gruplar ve en eskisinden başlayarak listeler ([Tablo](#tbl-mywork-groups)). Her grubun üst kısımda bir kutucuğu vardır; kutucuğa tıklayınca o gruba gidersiniz.
 
 <!-- SHOT: my-work -->
+Figure: Bir Kalite Güvence Sorumlusunun **İşlerim** sayfası, grup kutucuklarıyla.
+
+Table: **İşlerim** sayfasındaki gruplar {#tbl-mywork-groups}
 
 | Grup | Anlamı | Kime düşer |
 |---|---|---|
-| **Girilecek değerler** | Bir lotun veya partinin bir kontrol noktası (KKN) için değer girilmesi gerekiyor | O KKN'ye değer giren roller |
-| **Onaylanacak değerler** | Bir KKN kaydı veya bir KKN 10 depolama kaydı gönderildi ya da onay almadan tamamlandı veya "Uygulanamaz" olarak işaretlendi ve ikinci bir kişinin onayını bekliyor. Kendi girdiğiniz veya işaretlediğiniz kayıtları hiçbir zaman görmezsiniz. | O KKN'yi onaylayan roller |
-| **Kesinleştirme talepleri** | Biri bir partinin kesinleştirilmesini talep etti | Parti sahibi kurumun Kalite onaylayıcısı |
+| **Girilecek değerler** | Bir lotun veya partinin bir kontrol noktası (KKN) için veri girilmesi gerekiyor | O KKN'ye veri giren roller |
+| **Onaylanacak değerler** | Bir KKN kaydı veya bir KKN 10 depolama kaydı gönderildi ya da onay almadan tamamlandı veya "Uygulanamaz" olarak işaretlendi ve ikinci bir kişinin onayını bekliyor. **İşlerim**, kendi girdiğiniz veya işaretlediğiniz kayıtları hiçbir zaman listelemez. | O KKN'yi onaylayan roller |
+| **Kesinleştirme talepleri** | Biri bir partinin kesinleştirilmesini talep etti | Parti sahibi kurumun Kalite Güvence Sorumlusu |
 | **Teslim alınacak numuneler** | Laboratuvarınıza bir numune gönderildi | Analist, Laboratuvar müdürü |
 | **Girilecek laboratuvar sonuçları** | Teslim alınan bir numunenin henüz raporu yok ya da rapor geri gönderildi | Analist |
 | **Onaylanacak laboratuvar raporları** | Bir rapor onaya gönderildi | Laboratuvar müdürü |
@@ -97,7 +105,9 @@ Menüdeki **İşlerim** bağlantısında bekleyen öğe sayısını gösteren bi
 
 ## Menü {#menu}
 
-Kurum üyeleri kısa bir menü görür. Her öğe yalnızca kurumunuz ilgili yeteneğe ve rolünüz ilgili yetkiye sahipse görünür:
+Kurum üyelerinin kısa bir menüsü vardır ([Tablo](#tbl-menu)). Her öğe yalnızca kurumunuz ilgili yeteneğe ve rolünüz ilgili yetkiye sahipse görünür:
+
+Table: Kurum üyelerinin menüsü {#tbl-menu}
 
 | Menü öğesi | Açtığı sayfa | Ne zaman görünür |
 |---|---|---|
@@ -108,7 +118,7 @@ Kurum üyeleri kısa bir menü görür. Her öğe yalnızca kurumunuz ilgili yet
 | **Sevkiyatlar ve stok** | Elinizdeki partiler, gelen ve giden sevkiyatlar, depolama kayıtları | İşleme, paketleme, toptan satış veya perakende kurumu; sevkiyat okuma yetkisi olan roller |
 | **Arıcı sayfaları** | Rızalar ve herkese açık arıcı sayfaları | Birlik; arıcı sayfası okuma yetkisi olan roller |
 
-Platform yöneticileri yönetim menüsünün tamamını görür (bkz. [bölüm 12](#admin)).
+Platform yöneticileri yönetim menüsünün tamamını kullanır (bkz. [bölüm 12](#admin)).
 
 ## Mesajlar, yükleme göstergesi ve hata sayfaları {#messages}
 

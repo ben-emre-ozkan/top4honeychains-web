@@ -8,10 +8,11 @@
 4. Click **Log In**.
 
 <!-- SHOT: sign-in -->
+Figure: The sign-in page.
 
 After signing in you land on **My work**, the list of tasks waiting for you.
 
-**Who can sign in.** You need either the platform administrator role or at least one active membership in an organization. A platform administrator gives you the membership (see [Members](#admin-members)).
+**Who can sign in.** You need either the platform administrator role or at least one active membership (one organization × one role). A platform administrator gives you the membership (see [Members](#admin-members)).
 
 **Common messages**
 
@@ -31,6 +32,7 @@ To sign out, open the menu under your avatar (top right) and choose **Logout**.
 Passwords need at least 6 characters; the page says so in your language if a rule is not met, and "The link is invalid or has expired. Request a new password reset." if the link is too old. If the e-mail does not arrive, check the spam folder, then ask a platform administrator, who can set a new password for you (see [Users](#admin-users)).
 
 <!-- SHOT: forgot-password -->
+Figure: Password reset: the confirmation after an e-mail address was sent.
 
 ## Your profile {#profile}
 
@@ -43,6 +45,7 @@ Open the avatar menu and choose **Profile**.
 To leave a shared computer, use **Logout**; there is no lock screen.
 
 <!-- SHOT: profile -->
+Figure: The profile page with the **Change Password** dialog.
 
 ## Choosing the language {#language}
 
@@ -65,28 +68,33 @@ The top bar shows, from left to right:
 - your avatar, with **Profile** and **Logout**.
 
 <!-- SHOT: top-bar-role-chip -->
+Figure: The top bar with the organization · role chip.
 
-The chip shows a check mark when your organization is verified, an exclamation mark while it is waiting for verification, and a stop mark on a red background when it is suspended. While an organization is not verified, its members can read its data, and its organisation admin can upload documents, but **nobody can enter data**. A banner says: "Your organization is not verified yet. …", or for a suspended organization "Your organization is suspended. You can read its data, but nobody can enter data until a platform administrator reinstates it."
+The chip shows a check mark when your organization is verified, an exclamation mark while it is waiting for verification, and a stop mark on a red background when it is suspended. While an organization is not verified, its members can read its data, and its organization admin can upload documents, but **nobody can enter data**. A banner says: "Your organization is not verified yet. …", or for a suspended organization "Your organization is suspended. You can read its data, but nobody can enter data until a platform administrator reinstates it."
 
 If you have several memberships, click the chip to switch between them; see [Multiple memberships](#memberships).
 
 <!-- SHOT: role-switch -->
+Figure: Switching membership: the **Your roles** list of the chip.
 
 ## My work {#my-work}
 
-**My work** is your home page. It lists everything that is waiting for you in the active membership, grouped by kind, oldest first. Each group has a tile at the top; click it to jump to the group.
+**My work** is your home page ([Figure](#fig-my-work)). It lists everything that is waiting for you in the active membership, grouped by kind, oldest first ([Table](#tbl-mywork-groups)). Each group has a tile at the top; click it to jump to the group.
 
 <!-- SHOT: my-work -->
+Figure: **My work** of a Quality Assurance Officer, with the group tiles.
+
+Table: Groups in **My work** {#tbl-mywork-groups}
 
 | Group | What it means | Who gets it |
 |---|---|---|
-| **Values to enter** | A control point (CCP) of a lot or batch needs values | The roles that enter that CCP |
-| **Values to approve** | A CCP record or a CCP 10 storage record was submitted, or completed or marked "Not applicable" without an approval, and needs a second person. You never see records you entered or marked yourself. | The roles that approve that CCP |
-| **Finalize requests** | Someone requested finalizing a batch | Quality approver of the batch owner |
+| **Values to enter** | A control point (CCP) of a lot or batch needs data | The roles that enter that CCP |
+| **Values to approve** | A CCP record or a CCP 10 storage record was submitted, or completed or marked "Not applicable" without an approval, and needs a second person. **My work** never lists records you entered or marked yourself. | The roles that approve that CCP |
+| **Finalize requests** | Someone requested finalizing a batch | Quality Assurance Officer of the batch owner |
 | **Samples to receive** | A sample was sent to your laboratory | Analyst, Lab manager |
 | **Lab results to enter** | A received sample has no report yet, or the report was returned | Analyst |
 | **Lab reports to approve** | A report was submitted | Lab manager |
-| **Shipments to confirm** | A shipment to your organization is waiting | Staff, Organisation admin of the receiver |
+| **Shipments to confirm** | A shipment to your organization is waiting | Staff, Organization admin of the receiver |
 | **Organizations to verify** | An organization uploaded documents and waits for verification | Platform administrator |
 | **Registry numbers to verify** | A beekeeper's enterprise registry number waits for verification | Platform administrator |
 | **Corrections to decide** | Another administrator requested a correction | Platform administrator |
@@ -97,7 +105,9 @@ The **My work** link in the menu carries a badge with the number of waiting item
 
 ## The menu {#menu}
 
-Organization members see a short menu. Each entry appears only if your organization has the capability and your role has the right:
+Organization members have a short menu ([Table](#tbl-menu)). Each entry appears only if your organization has the capability and your role has the right:
+
+Table: The menu of organization members {#tbl-menu}
 
 | Menu entry | Opens | Shown when |
 |---|---|---|
@@ -108,10 +118,10 @@ Organization members see a short menu. Each entry appears only if your organizat
 | **Shipments and stock** | Batches you hold, incoming and outgoing shipments, storage records | Processing, packing, wholesale or retail organization; roles with shipment read right |
 | **Beekeeper pages** | Consents and public beekeeper pages | Association; roles with storefront read right |
 
-Platform administrators see the full administration menu (see [chapter 12](#admin)).
+Platform administrators have the full administration menu (see [chapter 12](#admin)).
 
 ## Messages, loading and error pages {#messages}
 
 - **Messages** appear in the top corner. Success and information messages close after a few seconds; error messages stay until you close them.
 - The **loader** (an animated honey bee) appears when a page or a save takes longer than a moment.
-- **Error pages**: "You can't open this page" (403) means your role does not allow the page; ask your organisation admin. "This page isn't here" (404) means the address does not exist or the record is not visible to you. A 500 page shows a short reference; quote it when you report the problem. Each error page has a button back to **My work** and a **Go back** button.
+- **Error pages**: "You can't open this page" (403) means your role does not allow the page; ask your organization admin. "This page isn't here" (404) means the address does not exist or the record is not visible to you. A 500 page shows a short reference; quote it when you report the problem. Each error page has a button back to **My work** and a **Go back** button.

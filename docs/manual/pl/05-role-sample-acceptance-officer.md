@@ -6,7 +6,7 @@ Pracujesz w punkcie przyjęć zakładu przetwórczego. Gdy pszczelarz dostarcza 
 
 1. rejestrujesz dostawę (co tworzy partię surowego miodu);
 2. plombujesz próbkę i przeciwpróbkę, a następnie wysyłasz próbkę do laboratorium;
-3. wprowadzasz KPK 0, czyli audyt wstępny partii, aby zatwierdzający jakość mógł go zatwierdzić.
+3. wprowadzasz KPK 0, czyli audyt wstępny partii, aby specjalista ds. zapewnienia jakości mógł go zatwierdzić.
 
 Twoje zadania pojawiają się na stronie **Moja praca** w grupie **Wartości do wprowadzenia**. Menu zawiera pozycje **Dostawy (przyjęcie)** oraz **Próbki i laboratorium**.
 
@@ -27,10 +27,13 @@ Twoje zadania pojawiają się na stronie **Moja praca** w grupie **Wartości do 
 4. Kliknij **Zarejestruj dostawę**.
 
 <!-- SHOT: intake-form -->
+Figure: Rejestracja dostawy na telefonie.
 
 Komunikat „Dostawę zarejestrowano jako partię nr ….” potwierdza utworzenie nowej partii. Platforma przypisuje do partii KPK 0–3 i otwiera dla niej stronę **Pobierz próbkę**.
 
 **Częste błędy**
+
+Table: Częste błędy przy rejestracji dostawy {#tbl-intake-errors}
 
 | Komunikat | Co zrobić |
 |---|---|
@@ -53,16 +56,18 @@ Lista **Dostawy (przyjęcie)** pokazuje wszystkie dostawy wraz z numerem partii,
 5. Kliknij **Wyślij do laboratorium** albo **Później**, aby wysłać próbkę w innym terminie.
 
 <!-- SHOT: sample-form -->
+Figure: Pobieranie próbki: laboratorium i numery plomb.
 
-Próbka otrzymuje kod, na przykład `S-20070-1`, oraz status **Wysłana**. Laboratorium widzi ją w grupie **Próbki do przyjęcia**. Jeśli laboratorium stwierdzi naruszenie plomby, próbka zostaje odrzucona; pobierz nową próbkę z tej samej partii.
+Próbka otrzymuje kod, na przykład `S-20070-1`, oraz status **Wysłana**. Laboratorium znajduje ją w grupie **Próbki do przyjęcia**. Jeśli laboratorium stwierdzi naruszenie plomby, próbka zostaje odrzucona; pobierz nową próbkę z tej samej partii.
 
 Błędy: „Wybierz zweryfikowane laboratorium.”, „Próbka i przeciwpróbka wymagają różnych plomb.”, „Wprowadź, gdzie przechowywana jest przeciwpróbka (maksymalnie 200 znaków).”, „Wprowadź, do kiedy przechowywana jest przeciwpróbka (data w przyszłości).”, „Próbki pobiera tylko organizacja, która posiada partię.”
 
 ## Praca na stronie KPK {#ccp-page}
 
-Wszystkie role, które wprowadzają lub zatwierdzają wartości KPK, korzystają z tej samej strony. Otwórz ją ze strony **Moja praca**, ze znaczników KPK na stronie **Moja organizacja** lub ze strony **Przebieg procesu** partii albo partii końcowej.
+Wszystkie role, które wprowadzają lub zatwierdzają dane KPK, korzystają z tej samej strony ([Figure](#fig-ccp-page-lot)). Otwórz ją ze strony **Moja praca**, ze znaczników KPK na stronie **Moja organizacja** lub ze strony **Przebieg procesu** partii albo partii końcowej.
 
 <!-- SHOT: ccp-page-lot -->
+Figure: Strona KPK partii: odpowiedź **Tak** otwiera wymagane pytanie uzupełniające.
 
 Strona pokazuje:
 
@@ -70,7 +75,7 @@ Strona pokazuje:
 - etykietę **Status** oraz informację, kto wprowadził i kto zatwierdził rekord;
 - klasę miodu, według której stosowane są limity („Limity dla klasy miodu: …”);
 - parametry w grupach, każdy z polem do wprowadzania, wartością **Limit krytyczny:** oraz, po zapisaniu, oceną **W granicach limitu** lub **Poza limitem**;
-- baner **Tylko do odczytu** z podaniem przyczyny, jeśli nie możesz wprowadzać wartości.
+- baner **Tylko do odczytu** z podaniem przyczyny, jeśli nie możesz wprowadzać danych.
 
 Typy pól:
 
@@ -82,7 +87,7 @@ Typy pól:
 
 Niektóre parametry są wymagane tylko wtedy, gdy na inne pytanie udzielono określonej odpowiedzi, na przykład „Wymagane tylko, gdy na »…« odpowiedziano Tak.”
 
-**Aby wprowadzić wartości**
+**Aby wprowadzić dane**
 
 1. Wypełnij parametry.
 2. Kliknij **Zapisz zapisy monitorowania**. Komunikat „Zapisano wartości: KPK ….” potwierdza zapis, po czym nastąpi powrót do strony **Moja organizacja**.
@@ -99,11 +104,13 @@ Aby cofnąć to oznaczenie, kliknij **Usuń „Nie dotyczy”**. KPK oznaczony j
 
 **Częste błędy**
 
+Table: Częste błędy na stronie KPK {#tbl-ccp-errors}
+
 | Komunikat | Znaczenie |
 |---|---|
 | „…: wprowadź liczbę.” / „…: wybierz Tak lub Nie.” | Wartość ma nieprawidłowy typ. |
 | „Ten KPK jest oznaczony jako „Nie dotyczy”. Aby rejestrować wartości, najpierw usuń to oznaczenie.” | Przed wprowadzeniem wartości usuń oznaczenie. |
-| „Za ten punkt kontrolny odpowiada inna organizacja; możesz go tylko odczytywać.” | Ten KPK jest dla Ciebie dostępny tylko do odczytu. |
+| „Za ten punkt kontrolny odpowiada inna organizacja; możesz go tylko odczytywać.” | Możesz odczytać ten KPK, ale nie możesz go zmienić. |
 | „Twoja rola (…) nie może wprowadzać danych w tym punkcie kontrolnym; role wprowadzające: ….” | Dane tego KPK wprowadza inna rola. |
 | „Twoja organizacja ma status Oczekująca; dane mogą wprowadzać tylko zweryfikowane organizacje.” | Poczekaj na weryfikację. |
 | „Ta partia surowca miodu jest wykorzystana w zatwierdzonej ostatecznie partii końcowej … i jest zablokowana. …” | Partia jest zamknięta; zmienić ją można tylko w drodze korekty. |
@@ -114,6 +121,7 @@ Aby cofnąć to oznaczenie, kliknij **Usuń „Nie dotyczy”**. KPK oznaczony j
 2. Wprowadź wyniki kontroli przy przyjęciu (parametry KPK 0). Niektóre pytania po udzieleniu odpowiedzi **Tak** odsłaniają kolejne pytania wymagane.
 3. Kliknij **Zapisz zapisy monitorowania**.
 
-Gdy wszystkie wymagane wartości są wprowadzone, KPK 0 otrzymuje status **Przesłany**, a zatwierdzający jakość Twojej organizacji widzi go w grupie **Wartości do zatwierdzenia**. Nie możesz zatwierdzić własnego KPK 0 („Zasada czterech oczu: wartości tego KPK zostały zarejestrowane przez Ciebie, więc musi je zatwierdzić inna osoba.”). Laboratorium może wprowadzić wyniki dopiero po zatwierdzeniu KPK 0.
+Gdy wszystkie wymagane dane są wprowadzone, KPK 0 otrzymuje status **Przesłany** ([Figure](#fig-ccp0-submitted)), a specjalista ds. zapewnienia jakości Twojej organizacji znajduje go w grupie **Wartości do zatwierdzenia**. Nie możesz zatwierdzić własnego KPK 0 („Zasada czterech oczu: wartości tego KPK zostały zarejestrowane przez Ciebie, więc musi je zatwierdzić inna osoba.”). Laboratorium może wprowadzić wyniki dopiero po zatwierdzeniu KPK 0.
 
 <!-- SHOT: ccp0-submitted -->
+Figure: KPK 0 przesłany i oczekujący na zatwierdzenie przez inną osobę.

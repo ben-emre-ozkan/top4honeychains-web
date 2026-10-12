@@ -1,15 +1,15 @@
-# 10. Organisation admin {#role-org-admin}
+# 10. Organization admin {#role-org-admin}
 
 ## Your daily work {#orgadmin-daily}
 
-The organisation admin is the manager of an organization in the platform. You:
+The organization admin is the manager of an organization in the platform. You:
 
 - keep the organization's documents up to date (licence, accreditation, tax certificate, registry proof);
 - at a plant: read deliveries and samples, request finalizing, ship and confirm shipments;
-- at a wholesaler or shop: confirm shipments;
+- at a wholesaler or retailer: confirm shipments;
 - at an association: record and withdraw the beekeepers' consent for a public beekeeper page.
 
-Members, roles and capabilities of your organization are managed by the platform administrators. If a colleague needs access or a different role, ask them.
+Memberships and capabilities of your organization are managed by the platform administrators. If a colleague needs access or a different role, ask them.
 
 ## Your organization page {#orgadmin-org-page}
 
@@ -17,6 +17,7 @@ Members, roles and capabilities of your organization are managed by the platform
 2. The page shows the status, capabilities, documents, verification history and members of your organization.
 
 <!-- SHOT: org-details -->
+Figure: Organization documents with their SHA-256 fingerprints.
 
 ### Upload a document {#orgadmin-documents}
 
@@ -51,6 +52,7 @@ The page is public only when **all** of these hold:
 6. Save.
 
 <!-- SHOT: consent-form -->
+Figure: Recording a beekeeper's consent on a phone.
 
 The message is "Consent recorded; the storefront is published." or, if the registry number is not verified yet, "Consent recorded. The storefront is published once the registry number is verified."
 

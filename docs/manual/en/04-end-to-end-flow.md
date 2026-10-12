@@ -1,32 +1,39 @@
 # 4. The end-to-end flow {#flow}
 
-This chapter follows one batch of honey through the platform: who does each step and what must be finished before the next step can start. The role chapters (5–11) explain each screen in detail.
+This chapter follows one batch of honey through the platform: who does each step and what must be finished before the next step can start ([Figure](#fig-flow-overview)). The role chapters (5–11) explain each screen in detail.
 
 <!-- SHOT: flow-overview -->
+Figure: The **Process flow** of a finalized batch: every stage with its status and responsible organization.
 
 ## The control points (CCPs) {#ccp-list}
 
-A **critical control point (CCP)** is a step where something is measured or checked. Each CCP has parameters (for example temperature or moisture), limits, and a status. CCP 0–3 belong to the **raw honey lot**, CCP 4–10 to the **batch**.
+A **critical control point (CCP)** is a step where something is measured or checked. Each CCP has parameters (for example temperature or moisture), limits, and a status. CCP 0–3 belong to the **raw honey lot**, CCP 4–10 to the **batch** ([Table](#tbl-ccps)).
+
+Table: The critical control points (CCPs) and their default roles {#tbl-ccps}
 
 | CCP | Belongs to | What is checked | Entered by (default) | Approved by (default) |
 |---|---|---|---|---|
-| CCP 0 | Lot | Primary audit at reception, **before** the lab test | Sample acceptance officer of the plant | Quality approver of the plant |
-| CCP 1 | Lot | Sampling and laboratory results | Written from the approved lab report | Lab manager (or the plant's Quality approver, see below) |
-| CCP 2 | Lot | Temperature monitoring (heating) | Staff of the plant | Quality approver |
-| CCP 3 | Lot | Filter condition | Staff | Quality approver |
-| CCP 4 | Batch | Homogeneity (mixing) | Staff of the batch owner | Quality approver |
-| CCP 5 | Batch | Time and temperature (pasteurization) | Staff | Quality approver |
-| CCP 6 | Batch | Foam and sediment removal | Staff | Quality approver |
-| CCP 7 | Batch | Quantity (filling) | Staff (Packing) | Quality approver |
-| CCP 8 | Batch | Label accuracy | Staff (Packing) | Quality approver |
-| CCP 9 | Batch | Packaging integrity | Staff (Packing) | Quality approver |
-| CCP 10 | Batch | Temperature and humidity in storage | Staff (Wholesale, Retail or Packing) | Quality approver |
+| CCP 0 | Lot | Primary audit at reception, **before** the lab test | Sample acceptance officer of the plant | Quality Assurance Officer of the plant |
+| CCP 1 | Lot | Sampling and laboratory results | Written from the approved lab report | Lab manager (or the plant's Quality Assurance Officer, see below) |
+| CCP 2 | Lot | Temperature monitoring (heating) | Staff of the plant | Quality Assurance Officer |
+| CCP 3 | Lot | Filter condition | Staff | Quality Assurance Officer |
+| CCP 4 | Batch | Homogeneity (mixing) | Staff of the batch owner | Quality Assurance Officer |
+| CCP 5 | Batch | Time and temperature (pasteurization) | Staff | Quality Assurance Officer |
+| CCP 6 | Batch | Foam and sediment removal | Staff | Quality Assurance Officer |
+| CCP 7 | Batch | Quantity (filling) | Staff (Packing) | Quality Assurance Officer |
+| CCP 8 | Batch | Label accuracy | Staff (Packing) | Quality Assurance Officer |
+| CCP 9 | Batch | Packaging integrity | Staff (Packing) | Quality Assurance Officer |
+| CCP 10 | Batch | Temperature and humidity in storage | Staff (Wholesale, Retail or Packing) | Quality Assurance Officer |
 
 CCP 10 appears twice in the life of a batch: first **on the batch, at the plant** (it must be approved before the batch can be sealed), and later as a **storage record at each receiver** after a shipment.
 
-A CCP record moves through these statuses: **Assigned** (no values yet) → **In Progress** (some values) → **Submitted** (all required values entered; waiting for approval) → **Completed** with an approval. A CCP that does not apply can be marked **Not applicable** with a reason; it must still be approved. Changing a value removes an existing approval.
+A CCP record moves through these statuses: **Assigned** (no data yet) → **In Progress** (some data) → **Submitted** (all required data entered; waiting for approval) → **Completed** with an approval. A CCP that does not apply can be marked **Not applicable** with a reason; it must still be approved. Changing any data removes an existing approval.
 
 ## Step by step {#flow-steps}
+
+[Table](#tbl-flow-steps) lists every step, who does it and what it blocks.
+
+Table: The end-to-end flow, step by step {#tbl-flow-steps}
 
 | # | Step | Who | Where | Blocks the next step until… |
 |---|---|---|---|---|
@@ -35,20 +42,20 @@ A CCP record moves through these statuses: **Assigned** (no values yet) → **In
 | 3 | Delivery recorded: a raw honey lot is created | Sample acceptance officer (plant) | **Deliveries (intake)** → **Record a delivery** | – (CCP 0–3 are assigned to the lot automatically) |
 | 4 | Sample sealed and sent to a laboratory | Sample acceptance officer | **Samples and lab** → **Take a sample** | The laboratory receives it |
 | 5 | CCP 0 entered | Sample acceptance officer | **My work** → CCP 0 | It is submitted |
-| 6 | CCP 0 approved | Quality approver (another person) | **My work** → CCP 0 | **Lab results can be entered only after CCP 0 is approved** |
+| 6 | CCP 0 approved | Quality Assurance Officer (another person) | **My work** → CCP 0 | **Lab results can be entered only after CCP 0 is approved** |
 | 7 | Sample received, seal checked | Analyst or Lab manager | **My work** → **Samples to receive** | A broken seal rejects the sample; take a new one |
 | 8 | Lab results entered, PDF uploaded, report submitted | Analyst | **My work** → **Lab results to enter** | All required values, the PDF, the report number and date are present |
 | 9 | Lab report approved (or returned) | Lab manager (another person) | **My work** → **Lab reports to approve** | Approval writes the results into the lot's CCP 1 |
-| 10 | CCP 2–3 entered and approved | Staff, then Quality approver | **My work** | A lot can go into a batch only when **all** its CCPs are completed or not applicable, **and approved** |
+| 10 | CCP 2–3 entered and approved | Staff, then Quality Assurance Officer | **My work** | A lot can go into a batch only when **all** its CCPs are completed or not applicable, **and approved** |
 | 11 | Batch created, lots added, owner set, CCP 4–10 assigned | **Platform administrator** (for now) | **Final Honey Productions** | The batch has lots and its CCPs |
-| 12 | CCP 4–10 entered and approved, including CCP 10 storage at the plant | Staff, then Quality approver | **My work** | Every batch CCP must be approved |
-| 13 | Finalizing requested | Staff or Organisation admin of the owner | **My organization** → batch → **Request finalizing** | The button is disabled while anything is missing |
-| 14 | Finalizing confirmed: the batch is sealed | Quality approver (another person) | **My work** → **Finalize requests** | – The Honey Story and QR code go live; the batch and its lots are locked |
-| 15 | Shipment created | Staff or Organisation admin of the holder | **Shipments and stock** → **Ship** | The receiver confirms |
-| 16 | Receipt confirmed (or rejected) | Staff or Organisation admin of the receiver | **My work** → **Shipments to confirm** | Custody moves only on confirmation |
-| 17 | Storage record (CCP 10) at the receiver, approved | Receiver's Staff, then its Quality approver | **Shipments and stock** → **Storage** | – |
+| 12 | CCP 4–10 entered and approved, including CCP 10 storage at the plant | Staff, then Quality Assurance Officer | **My work** | Every batch CCP must be approved |
+| 13 | Finalizing requested | Staff or Organization admin of the owner | **My organization** → batch → **Request finalizing** | The button is disabled while anything is missing |
+| 14 | Finalizing confirmed: the batch is sealed | Quality Assurance Officer (another person) | **My work** → **Finalize requests** | – The Honey Story and QR code go live; the batch and its lots are locked |
+| 15 | Shipment created | Staff or Organization admin of the holder | **Shipments and stock** → **Ship** | The receiver confirms |
+| 16 | Receipt confirmed (or rejected) | Staff or Organization admin of the receiver | **My work** → **Shipments to confirm** | Custody moves only on confirmation |
+| 17 | Storage record (CCP 10) at the receiver, approved | Receiver's Staff, then its Quality Assurance Officer | **Shipments and stock** → **Storage** | – |
 | 18 | Receiver reads the producer's records | Receiver (any role with CCP read right) | CCP pages, read-only | – |
-| 19 | Consumer scans the QR code | Anyone | Honey Story | – |
+| 19 | Consumer scans the QR code | Any public visitor (no account) | Honey Story | – |
 
 ### Why CCP 0 comes before the lab test {#why-ccp0-first}
 

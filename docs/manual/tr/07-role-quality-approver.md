@@ -1,4 +1,4 @@
-# 7. Kalite onaylayıcı {#role-qa}
+# 7. Kalite Güvence Sorumlusu {#role-qa}
 
 ## Günlük işiniz {#qa-daily}
 
@@ -6,9 +6,9 @@ Kurumunuzun ikinci göz çiftisiniz. Göreviniz:
 
 - iş arkadaşlarınızın gönderdiği KKN kayıtlarını (KKN 0, KKN 2–10 ve depolama kayıtları) onaylamak;
 - bir partiyi mühürleyen kesinleştirme taleplerini onaylamak;
-- bir toptancıda veya mağazada KKN 10 depolama kayıtlarını onaylamak.
+- bir toptancıda veya perakendecide KKN 10 depolama kayıtlarını onaylamak.
 
-Görevleriniz **İşlerim** sayfasında **Onaylanacak değerler** ve **Kesinleştirme talepleri** altında görünür. Değerlerini kendiniz girdiğiniz bir kaydı hiçbir zaman onaylayamazsınız.
+Görevleriniz **İşlerim** sayfasında **Onaylanacak değerler** ve **Kesinleştirme talepleri** altında görünür. Verilerini kendiniz girdiğiniz bir kaydı hiçbir zaman onaylayamazsınız.
 
 ## KKN kaydını onaylama {#qa-approve}
 
@@ -18,16 +18,20 @@ Görevleriniz **İşlerim** sayfasında **Onaylanacak değerler** ve **Kesinleş
 4. **Onayla** düğmesine tıklayın.
 
 <!-- SHOT: ccp-approve -->
+Figure: Bir KKN kaydını onaylama (dört göz).
 
 "KKN kaydı onaylandı." mesajı onayı bildirir; durum göstergesinde adınız ve zamanla birlikte **Onaylandı** yazar.
 
 **Limit dışındaki değerler.** Herhangi bir değer limit dışındaysa **Sınır dışındaki değerler** penceresi bu değerleri, her birinin **Limit:** bilgisiyle listeler (henüz doğrulanmamış limitler için "sınır henüz doğrulanmadı" yazar). Onaylamak için **Yine de onayla**, vazgeçmek için **Vazgeç** düğmesine tıklayın. Değerler limit dışı olarak işaretli kalır; onay yalnızca değerlerin doğru kaydedildiğini teyit eder.
 
 <!-- SHOT: out-of-limit-dialog -->
+Figure: Limit dışındaki veriler için açılan pencere.
 
 **Uygulanamaz kayıtlar.** "Uygulanamaz" olarak işaretlenmiş bir KKN'nin de onaylanması gerekir; bu kayıt, onu işaretlemeyen onaylayıcıların **Onaylanacak değerler** listesinde görünür. Onaylamadan önce gerekçeyi okuyun.
 
 **Sık karşılaşılan hatalar**
+
+Table: Bir KKN kaydını onaylarken sık karşılaşılan hatalar {#tbl-qa-errors}
 
 | Mesaj | Anlamı |
 |---|---|
@@ -46,6 +50,7 @@ Kurumunuzun **Dört göz muafiyeti** varsa kendi kayıtlarınızı onaylayabilir
 3. **Onayla ve kesinleştir** düğmesine tıklayın.
 
 <!-- SHOT: finalize-confirm -->
+Figure: Bir kesinleştirme talebini onaylama.
 
 Parti mühürlenir: "Parti kesinleşti." Bir kez, **Bal Hikâyesini aç** ve **QR'ı indir** bağlantılarıyla birlikte bir mühür görünür. Bundan sonra:
 
@@ -58,8 +63,9 @@ Kesinleştirmeyi geri almak mümkün değildir. Sonradan fark edilen hatalar, y�
 Hatalar: "Dört göz: kesinleştirmeyi talep eden kişi onaylayamaz.", "Önce kesinleştirme talep edilmelidir.", "Parti henüz kesinleştirilemez: …".
 
 <!-- SHOT: batch-sealed -->
+Figure: Bal Hikâyesi bağlantısı ve QR koduyla mühürlenmiş bir parti.
 
-## Depolama kayıtlarını onaylama (toptancı veya mağaza) {#qa-storage}
+## Depolama kayıtlarını onaylama (toptancı veya perakendeci) {#qa-storage}
 
 1. **İşlerim** sayfasında **depolama** olarak işaretlenmiş öğeyi ("KKN 10 · [parti]") açın veya **Sevkiyatlar ve stok** → **Depolama** bölümüne gidin.
 2. Değerleri kontrol edin ve **Onayla** düğmesine tıklayın (istenirse limit dışındaki değerleri pencerede onaylayın).

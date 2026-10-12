@@ -2,7 +2,7 @@
 
 ## Twoja codzienna praca {#labmanager-daily}
 
-Zatwierdzasz lub zwracasz raporty laboratoryjne przesłane przez analityków. Możesz też przyjmować próbki. Nigdy nie zatwierdzasz raportu, którego wyniki sam wprowadziłeś; w przypadku wyników laboratoryjnych od tej zasady nie ma wyjątku.
+Jesteś drugą z dwóch osób w laboratorium: zatwierdzasz lub zwracasz raporty laboratoryjne przesłane przez analityków. Możesz też przyjmować próbki. Nigdy nie zatwierdzasz raportu, którego wyniki sam wprowadziłeś; w przypadku wyników laboratoryjnych od tej zasady nie ma wyjątku.
 
 Twoje zadania pojawiają się na stronie **Moja praca** w grupie **Raporty laboratoryjne do zatwierdzenia** (oraz **Próbki do przyjęcia**).
 
@@ -14,6 +14,7 @@ Twoje zadania pojawiają się na stronie **Moja praca** w grupie **Raporty labor
 4. Aby zwrócić raport, wpisz **powód (w przypadku zwrotu)** i kliknij **Zwróć**: „Raport został zwrócony do analityka.”
 
 <!-- SHOT: lab-approve -->
+Figure: Kierownik laboratorium zatwierdza lub zwraca raport.
 
 Zatwierdzenie potwierdza, że raport jest poprawnie zarejestrowany, a nie że miód spełnia wymagania; wartości poza limitem pozostają oznaczone w partii.
 
@@ -21,9 +22,11 @@ Zatwierdzenie potwierdza, że raport jest poprawnie zarejestrowany, a nie że mi
 
 - Raport otrzymuje status **Zatwierdzono** i staje się widoczny na publicznej stronie weryfikacji.
 - Platforma zapisuje, czy laboratorium było w tym momencie **akredytowane** (wraz z numerem akredytacji) oraz czy jest to laboratorium **własne** właściciela partii.
-- Wyniki stają się wartościami **KPK 1** partii. Nie można ich już edytować; mogą je jedynie skorygować administratorzy. Jeśli laboratorium objęło badaniami każdy parametr KPK 1, KPK 1 zostaje od razu zakończony i zatwierdzony; w przeciwnym razie trafia do zatwierdzającego jakość w zakładzie.
+- Wyniki stają się wartościami **KPK 1** partii. Nie można ich już edytować; mogą je jedynie skorygować administratorzy. Jeśli laboratorium objęło badaniami każdy parametr KPK 1, KPK 1 zostaje od razu zakończony i zatwierdzony; w przeciwnym razie trafia do specjalisty ds. zapewnienia jakości w zakładzie.
 
 **Częste błędy**
+
+Table: Częste błędy przy zatwierdzaniu raportu laboratoryjnego {#tbl-labmgr-errors}
 
 | Komunikat | Znaczenie |
 |---|---|
@@ -37,3 +40,4 @@ Zatwierdzenie potwierdza, że raport jest poprawnie zarejestrowany, a nie że mi
 Każdy może sprawdzić raport na stronie **Zweryfikuj raport laboratoryjny** (`/verify-report`): wpisz **Kod raportu** i kliknij **Sprawdź**. Strona pokazuje, czy raport jest zatwierdzony, a także laboratorium, jego akredytację, numer raportu, datę i odcisk SHA-256. Funkcja **Porównaj plik PDF z tym odciskiem (plik pozostaje na Twoim urządzeniu)** sprawdza plik PDF na urządzeniu odwiedzającego (plik nie jest przesyłany). Strona nie pokazuje żadnych danych partii, pszczelarza ani użytkownika.
 
 <!-- SHOT: verify-report -->
+Figure: Publiczna weryfikacja raportu laboratoryjnego na telefonie.

@@ -5,11 +5,11 @@
 El administrador de la organización es el responsable de una organización en la plataforma. Usted:
 
 - mantiene al día los documentos de la organización (licencia, acreditación, certificado fiscal, comprobante de registro);
-- en una planta: consulta entregas y muestras, solicita la finalización, envía y confirma envíos;
-- en un mayorista o una tienda: confirma envíos;
+- en una planta: lee entregas y muestras, solicita la finalización, envía y confirma envíos;
+- en un mayorista o un minorista: confirma envíos;
 - en una asociación: registra y retira el consentimiento de los apicultores para una página pública del apicultor.
 
-Los miembros, los roles y las capacidades de su organización los gestionan los administradores de la plataforma. Si un colega necesita acceso o un rol distinto, consúltelos.
+Las membresías y las capacidades de su organización los gestionan los administradores de la plataforma. Si un colega necesita acceso o un rol distinto, consúltelos.
 
 ## La página de su organización {#orgadmin-org-page}
 
@@ -17,6 +17,7 @@ Los miembros, los roles y las capacidades de su organización los gestionan los 
 2. La página muestra el estado, las capacidades, los documentos, el historial de verificación y los miembros de su organización.
 
 <!-- SHOT: org-details -->
+Figure: Documentos de la organización con sus huellas SHA-256.
 
 ### Subir un documento {#orgadmin-documents}
 
@@ -51,6 +52,7 @@ La página es pública solo cuando se cumplen **todas** estas condiciones:
 6. Guarde.
 
 <!-- SHOT: consent-form -->
+Figure: Registro del consentimiento de un apicultor en un teléfono.
 
 El mensaje es "Consentimiento registrado; la página pública está publicada." o, si el número de registro aún no está verificado, "Consentimiento registrado. La página pública se publicará cuando se verifique el número de registro."
 

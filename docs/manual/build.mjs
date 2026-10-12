@@ -15,11 +15,16 @@ const fonts = path.join(repo, 'TOP4HONEYCHAINS', 'TOP4HoneyChains.Web', 'wwwroot
 const logo = path.join(repo, 'docs', 'brand', 'top4-logo-w3.svg');
 const dist = path.join(here, 'dist');
 const LANGS = {
-    en: { name: 'English', title: 'User manual', draft: null, toc: 'Contents', version: 'Version', page: 'Page', month: 'October 2026' },
-    tr: { name: 'Türkçe', title: 'Kullanım kılavuzu', draft: null, toc: 'İçindekiler', version: 'Sürüm', page: 'Sayfa', month: 'Ekim 2026' },
-    es: { name: 'Español', title: 'Manual de usuario', draft: 'Borrador, para revisión de los socios', toc: 'Índice', version: 'Versión', page: 'Página', month: 'Octubre de 2026' },
-    pl: { name: 'Polski', title: 'Podręcznik użytkownika', draft: 'Wersja robocza do przeglądu przez partnerów', toc: 'Spis treści', version: 'Wersja', page: 'Strona', month: 'Październik 2026' },
-    lv: { name: 'Latviešu', title: 'Lietotāja rokasgrāmata', draft: 'Melnraksts partneru pārskatīšanai', toc: 'Saturs', version: 'Versija', page: 'Lapa', month: '2026. gada oktobris' },
+    en: { name: 'English', title: 'User manual', draft: null, toc: 'Contents', version: 'Version', page: 'Page', month: 'October 2026',
+          figure: 'Figure', table: 'Table', figures: 'List of figures', tables: 'List of tables' },
+    tr: { name: 'Türkçe', title: 'Kullanım kılavuzu', draft: null, toc: 'İçindekiler', version: 'Sürüm', page: 'Sayfa', month: 'Ekim 2026',
+          figure: 'Şekil', table: 'Tablo', figures: 'Şekiller listesi', tables: 'Tablolar listesi' },
+    es: { name: 'Español', title: 'Manual de usuario', draft: 'Borrador, para revisión de los socios', toc: 'Índice', version: 'Versión', page: 'Página', month: 'Octubre de 2026',
+          figure: 'Figura', table: 'Tabla', figures: 'Índice de figuras', tables: 'Índice de tablas' },
+    pl: { name: 'Polski', title: 'Podręcznik użytkownika', draft: 'Wersja robocza do przeglądu przez partnerów', toc: 'Spis treści', version: 'Wersja', page: 'Strona', month: 'Październik 2026',
+          figure: 'Rysunek', table: 'Tabela', figures: 'Spis rysunków', tables: 'Spis tabel' },
+    lv: { name: 'Latviešu', title: 'Lietotāja rokasgrāmata', draft: 'Melnraksts partneru pārskatīšanai', toc: 'Saturs', version: 'Versija', page: 'Lapa', month: '2026. gada oktobris',
+          figure: 'Attēls', table: 'Tabula', figures: 'Attēlu saraksts', tables: 'Tabulu saraksts' },
 };
 // the edition shown on the cover and in the footer: the month of the release in each language (MANUAL_MONTH overrides it)
 const edition = lang => process.env.MANUAL_MONTH || LANGS[lang].month;
@@ -43,20 +48,43 @@ md.core.ruler.push('heading_anchors', state => {
 function render(lang) {
     const dir = path.join(here, lang);
     const files = fs.readdirSync(dir).filter(f => /^\d\d-.*\.md$/.test(f)).sort();
+    const L0 = LANGS[lang];
     let source = files.map(f => fs.readFileSync(path.join(dir, f), 'utf8')).join('\n\n');
-    // screenshots: a figure when the image exists, otherwise nothing
+    // Figures and tables are numbered in order of appearance:
+    // - a screenshot is a `<!-- SHOT: <id> -->` line followed by a `Figure: <caption>` line; its anchor is #fig-<id>;
+    // - a table is preceded by a `Table: <caption> {#tbl-<id>}` line;
+    // - a link [Figure](#fig-<id>) or [Table](#tbl-<id>) gets the number as its text ("Figure 3", "Tabla 5").
+    const figures = [], tables = [], problems = [];
     let shots = 0, present = 0;
-    source = source.replace(/^<!--\s*SHOT:\s*([\w.-]+)\s*-->\s*$/gm, (_, id) => {
+    source = source.replace(/^<!--\s*SHOT:\s*([\w.-]+)\s*-->[ \t]*\r?\n(?:[ \t]*\r?\n)*(?:Figure:[ \t]*(.+))?$/gm, (_, id, caption) => {
         shots++;
+        if (!caption) problems.push(`figure ${id} has no caption`);
+        const n = figures.push({ id: `fig-${id}`, caption: caption || id });
         const img = path.join(here, 'img', lang, `${id}.png`);
         if (!fs.existsSync(img)) return '';
         present++;
         // phone captures (390 px at scale 2 = 780 px wide) print narrow and tall; desktop captures use the page width
         const width = fs.readFileSync(img).readUInt32BE(16);
         // a blank line after the figure ends the HTML block, so a heading or table right below it is still Markdown
-        return `<figure class="shot${width <= 800 ? ' phone' : ''}"><img src="${pathToFileURL(img).href}" alt=""></figure>
-`;
+        return `<figure class="shot${width <= 800 ? ' phone' : ''}" id="fig-${id}"><img src="${pathToFileURL(img).href}" alt="">` +
+            `<figcaption><b>${L0.figure} ${n}.</b> ${md.renderInline(caption || '')}</figcaption></figure>\n`;
     });
+    source = source.replace(/^Table:[ \t]*(.+?)\s*\{#(tbl-[\w-]+)\}[ \t]*$/gm, (_, caption, id) => {
+        const n = tables.push({ id, caption });
+        return `<p class="tbl-caption" id="${id}"><b>${L0.table} ${n}.</b> ${md.renderInline(caption)}</p>\n`;
+    });
+    // every Markdown table needs a caption line right above it (blank lines in between are allowed)
+    let before = '';
+    for (const line of source.split(/\r?\n/)) {
+        if (/^\|/.test(line) && !/^\|/.test(before) && !/class="tbl-caption"/.test(before)) problems.push(`table without caption: ${line.slice(0, 60)}`);
+        if (line.trim() !== '') before = line;
+    }
+    const number = Object.fromEntries([...figures.map((f, i) => [f.id, `${L0.figure} ${i + 1}`]), ...tables.map((t, i) => [t.id, `${L0.table} ${i + 1}`])]);
+    source = source.replace(/\[[^\]]*\]\(#((?:fig|tbl)-[\w-]+)\)/g, (all, id) => {
+        if (!number[id]) { problems.push(`reference to unknown ${id}`); return all; }
+        return `[${number[id]}](#${id})`;
+    });
+    for (const p of problems) console.log(`${lang}: ${p}`);
     // wide tables (eight columns or more, such as the permission matrix) get a compact style
     // the Markdown table of contents of the language folder (<lang>/README.md), from the H1 and H2 headings
     const L = LANGS[lang];
@@ -70,12 +98,32 @@ function render(lang) {
     // contents: the H1 and H2 headings with their anchors
     const toc = [...body.matchAll(/<h([12]) id="([\w-]+)">(.*?)<\/h\1>/g)]
         .map(m => `<li class="toc-${m[1]}"><a href="#${m[2]}">${m[3].replace(/<[^>]+>/g, '')}</a></li>`).join('\n');
-    return { body, toc, files, shots, present };
+    const list = items => items.map((x, i) => `<li><a href="#${x.id}">${i + 1}. ${md.renderInline(x.caption).replace(/<\/?a[^>]*>/g, '')}</a></li>`).join('\n');
+    return { body, toc, files, shots, present, figureList: list(figures), tableList: list(tables), figures: figures.length, tables: tables.length, problems: problems.length };
 }
 
 function font(file) { return pathToFileURL(path.join(fonts, file)).href; }
 
-function html(lang, { body, toc }) {
+// Funding: docs/brand/funders/ may hold the programme logo (programme.svg|png|jpg), the funding agencies' logos (any other
+// image, shown along the bottom of the cover in file-name order) and the acknowledgement text (acknowledgement.<lang>.md or
+// acknowledgement.md). Without the folder the cover has no logos.
+const funders = path.join(repo, 'docs', 'brand', 'funders');
+function funding(lang) {
+    if (!fs.existsSync(funders)) return { programme: '', agencies: '', text: '' };
+    const files = fs.readdirSync(funders).sort();
+    const isImage = f => /\.(svg|png|jpe?g)$/i.test(f);
+    const img = f => `<img src="${pathToFileURL(path.join(funders, f)).href}" alt="">`;
+    const programme = files.find(f => /^programme\./i.test(f) && isImage(f));
+    const text = [`acknowledgement.${lang}.md`, 'acknowledgement.md'].find(f => files.includes(f));
+    return {
+        programme: programme ? img(programme) : '',
+        agencies: files.filter(f => isImage(f) && f !== programme).map(img).join(''),
+        text: text ? md.render(fs.readFileSync(path.join(funders, text), 'utf8')) : '',
+    };
+}
+
+function html(lang, { body, toc, figureList, tableList }) {
+    const F = funding(lang);
     const L = LANGS[lang];
     const svg = fs.readFileSync(logo, 'utf8').replace(/<\?xml[^>]*>/, '');
     return `<!doctype html>
@@ -123,6 +171,21 @@ figure.shot { margin: 8pt 0 12pt; break-inside: avoid; }
 figure.shot img { max-width: 100%; max-height: 235mm; border: 1px solid var(--line); border-radius: 8px; }
 figure.shot.phone { text-align: center; }
 figure.shot.phone img { max-width: 78mm; }
+figure.shot figcaption, p.tbl-caption { font-size: 9pt; color: var(--muted); margin: 3pt 0 0; text-align: left; }
+figure.shot.phone figcaption { text-align: center; }
+p.tbl-caption { margin: 10pt 0 2pt; break-after: avoid; }
+figure.shot figcaption b, p.tbl-caption b { color: var(--heading); }
+nav.lists { break-after: page; }
+nav.lists h1 { break-before: auto; font-size: 16pt; }
+nav.lists ul { list-style: none; padding: 0; font-size: 9pt; }
+nav.lists li { margin: 0 0 2pt; }
+nav.lists a { color: inherit; }
+.cover .programme img { max-height: 22mm; max-width: 90mm; margin-top: 8mm; }
+.cover .funding { margin-top: auto; font-size: 8.5pt; color: var(--muted); }
+.cover .funding p { margin: 0 0 4mm; }
+.cover .agencies { display: flex; flex-wrap: wrap; gap: 6mm; align-items: center; margin-bottom: 6mm; }
+.cover .agencies img { max-height: 14mm; max-width: 40mm; }
+.cover .meta { margin-top: 6mm; }
 .cover { height: 297mm; padding: 34mm 24mm 24mm; display: flex; flex-direction: column; background: radial-gradient(70% 55% at 100% 0%, rgba(255, 210, 90, 0.45), transparent 70%), radial-gradient(60% 50% at 0% 100%, rgba(255, 231, 174, 0.7), transparent 70%), linear-gradient(180deg, #FFFFFF, var(--foam)); break-after: page; }
 .cover .logo svg { width: 120mm; height: auto; }
 .cover .project { margin-top: 26mm; font: 700 13pt 'Bricolage Grotesque', sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: var(--heading); }
@@ -141,14 +204,22 @@ nav.toc a { color: inherit; }
 <body>
 <section class="cover">
   <div class="logo">${svg}</div>
-  <div class="project">TÜBİTAK TOP4HoneyChains</div>
+  <div class="project">TOP4HoneyChains · ICT-AGRI-FOOD 2022</div>
+  ${F.programme ? `<div class="programme">${F.programme}</div>` : ''}
   <h1 class="title">TOP4HoneyChains<br>${L.title}</h1>
   <div class="lang">${L.name}</div>
   ${L.draft ? `<div><span class="draft">${L.draft}</span></div>` : ''}
+  <div class="funding">${F.text}${F.agencies ? `<div class="agencies">${F.agencies}</div>` : ''}</div>
   <div class="meta">${edition(lang)}</div>
 </section>
 <nav class="toc"><h1 id="contents">${L.toc}</h1><ul>
 ${toc}
+</ul></nav>
+<nav class="lists"><h1 id="list-of-figures">${L.figures}</h1><ul>
+${figureList}
+</ul>
+<h1 id="list-of-tables">${L.tables}</h1><ul>
+${tableList}
 </ul></nav>
 <main>
 ${body}
@@ -193,7 +264,7 @@ for (const lang of wanted) {
     fs.writeFileSync(`${base}.html`, html(lang, result));
     try {
         await pdf(`${base}.html`, `${base}.pdf`, lang);
-        console.log(`${lang}: ${result.files.length} files, ${result.shots} shot placeholders (${result.present} images), ${pageCount(`${base}.pdf`)} pages -> ${path.relative(repo, base)}.pdf`);
+        console.log(`${lang}: ${result.files.length} files, ${result.figures} figures (${result.present} images), ${result.tables} tables, ${result.problems} problems, ${pageCount(`${base}.pdf`)} pages -> ${path.relative(repo, base)}.pdf`);
     } catch (e) {
         console.log(`${lang}: PDF failed (${e.message.split('\n')[0]}); HTML written -> ${path.relative(repo, base)}.html`);
         process.exitCode = 1;

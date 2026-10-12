@@ -6,7 +6,7 @@ You work at the reception of a processing plant. When a beekeeper delivers honey
 
 1. record the delivery (this creates the raw honey lot);
 2. seal a sample and a counter-sample and send the sample to a laboratory;
-3. enter CCP 0, the primary audit of the lot, so that a quality approver can approve it.
+3. enter CCP 0, the primary audit of the lot, so that a Quality Assurance Officer can approve it.
 
 Your tasks appear in **My work** under **Values to enter**. The menu shows **Deliveries (intake)** and **Samples and lab**.
 
@@ -27,10 +27,13 @@ Your tasks appear in **My work** under **Values to enter**. The menu shows **Del
 4. Click **Record delivery**.
 
 <!-- SHOT: intake-form -->
+Figure: Recording a delivery on a phone.
 
 The message "Delivery recorded as lot #… ." confirms the new lot. The platform assigns CCP 0–3 to the lot and opens **Take a sample** for it.
 
 **Common errors**
+
+Table: Common errors when recording a delivery {#tbl-intake-errors}
 
 | Message | What to do |
 |---|---|
@@ -40,7 +43,7 @@ The message "Delivery recorded as lot #… ." confirms the new lot. The platform
 | "Choose a district of the selected province." | Choose the province first, then a district from its list. |
 | "Attach the photo of the signed delivery form." | The signed form is required. |
 | "This apiary already has a production record for the selected period and honey type." | One apiary delivers once per period and honey type. Check the period and honey type. |
-| "Only a Processing organization records deliveries." / "Your role (…) cannot record deliveries; roles: …" | Your organization or role cannot record deliveries. Ask your organisation admin. |
+| "Only a Processing organization records deliveries." / "Your role (…) cannot record deliveries; roles: …" | Your organization or role cannot record deliveries. Ask your organization admin. |
 
 The **Deliveries (intake)** list shows every delivery with its lot number, date, apiary, honey type, amount, origin and the signed form (with the first characters of its SHA-256 fingerprint). From each row you can open **Sample** and **Recall**.
 
@@ -53,16 +56,18 @@ The **Deliveries (intake)** list shows every delivery with its lot number, date,
 5. Click **Send to the laboratory**, or **Later** to send it another time.
 
 <!-- SHOT: sample-form -->
+Figure: Taking a sample: laboratory and seal numbers.
 
-The sample gets a code such as `S-20070-1` and the status **Sent**. The laboratory sees it under **Samples to receive**. If the laboratory finds the seal broken, the sample is rejected; take a new sample for the same lot.
+The sample gets a code such as `S-20070-1` and the status **Sent**. The laboratory finds it under **Samples to receive**. If the laboratory finds the seal broken, the sample is rejected; take a new sample for the same lot.
 
 Errors: "Choose a verified laboratory.", "The sample and the counter-sample need different seals.", "Enter where the counter-sample is kept (at most 200 characters).", "Enter until when the counter-sample is kept (a future date).", "Only the organization that holds the lot takes its samples."
 
 ## Working on a CCP page {#ccp-page}
 
-All roles that enter or approve CCP values use the same page. Open it from **My work**, from the CCP chips on **My organization**, or from the **Process flow** page of a lot or batch.
+All roles that enter or approve CCP data use the same page ([Figure](#fig-ccp-page-lot)). Open it from **My work**, from the CCP chips on **My organization**, or from the **Process flow** page of a lot or batch.
 
 <!-- SHOT: ccp-page-lot -->
+Figure: A lot CCP page: a **Yes** answer opens a required follow-up question.
 
 The page shows:
 
@@ -70,7 +75,7 @@ The page shows:
 - the **Status** pill and who entered and approved the record;
 - the honey class used for the limits ("Limits for honey class: …");
 - the parameters, grouped, each with its input, its **Critical limit:** and, after saving, **Within limit** or **Out of limit**;
-- a **Read only** banner with the reason when you may not enter values.
+- a **Read only** banner with the reason when you may not enter data.
 
 Input types:
 
@@ -82,7 +87,7 @@ Input types:
 
 Some parameters are required only when another question is answered in a certain way, for example "Required only when "…" is answered Yes."
 
-**To enter values**
+**To enter data**
 
 1. Fill in the parameters.
 2. Click **Save Monitoring Logs**. The message "CCP … values saved." confirms the save and you return to **My organization**.
@@ -99,11 +104,13 @@ To undo it, click **Remove "Not applicable"**. A not-applicable CCP still needs 
 
 **Common errors**
 
+Table: Common errors on a CCP page {#tbl-ccp-errors}
+
 | Message | Meaning |
 |---|---|
 | "…: enter a number." / "…: choose Yes or No." | A value has the wrong type. |
 | "This CCP is marked "Not applicable". Remove that mark first to record values." | Remove the mark before entering values. |
-| "This control point is the responsibility of another organization; you can read it only." | You see this CCP read-only. |
+| "This control point is the responsibility of another organization; you can read it only." | You can read this CCP but not change it. |
 | "Your role (…) cannot enter this control point; entering roles: …" | Another role enters this CCP. |
 | "Your organization is Pending; only verified organizations can enter data." | Wait for verification. |
 | "This raw honey lot is used in the finalized batch … and is locked. …" | The lot is sealed; only a correction can change it. |
@@ -114,6 +121,7 @@ To undo it, click **Remove "Not applicable"**. A not-applicable CCP still needs 
 2. Enter the reception checks (the parameters of CCP 0). Some questions open further required questions when answered **Yes**.
 3. Click **Save Monitoring Logs**.
 
-When all required values are present, CCP 0 is **Submitted** and the quality approver of your organization sees it under **Values to approve**. You cannot approve your own CCP 0 ("Four-eyes: you recorded values of this CCP, so another person must approve it."). The laboratory can enter results only after CCP 0 is approved.
+When all required data is present, CCP 0 is **Submitted** ([Figure](#fig-ccp0-submitted)) and the Quality Assurance Officer of your organization finds it under **Values to approve**. You cannot approve your own CCP 0 ("Four-eyes: you recorded values of this CCP, so another person must approve it."). The laboratory can enter results only after CCP 0 is approved.
 
 <!-- SHOT: ccp0-submitted -->
+Figure: CCP 0 submitted and waiting for approval by another person.

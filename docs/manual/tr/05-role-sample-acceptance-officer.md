@@ -6,7 +6,7 @@ Bir işleme tesisinin kabul biriminde çalışırsınız. Bir arıcı bal teslim
 
 1. teslimi kaydedersiniz (bu kayıt ham bal lotunu oluşturur);
 2. bir numune ve bir şahit numune mühürler, numuneyi laboratuvara gönderirsiniz;
-3. lotun ön denetimi olan KKN 0'ı girersiniz; böylece bir kalite onaylayıcı kaydı onaylayabilir.
+3. lotun ön denetimi olan KKN 0'ı girersiniz; böylece bir Kalite Güvence Sorumlusu kaydı onaylayabilir.
 
 Görevleriniz **İşlerim** sayfasında **Girilecek değerler** altında görünür. Menüde **Teslim almalar** ve **Numuneler ve laboratuvar** bulunur.
 
@@ -27,10 +27,13 @@ Görevleriniz **İşlerim** sayfasında **Girilecek değerler** altında görün
 4. **Teslimi kaydet** düğmesine tıklayın.
 
 <!-- SHOT: intake-form -->
+Figure: Telefonda teslim kaydetme.
 
 "Teslim #… numaralı lot olarak kaydedildi." mesajı yeni lotun oluştuğunu bildirir. Platform lota KKN 0–3'ü atar ve lot için **Numune al** sayfasını açar.
 
 **Sık karşılaşılan hatalar**
+
+Table: Teslim kaydederken sık karşılaşılan hatalar {#tbl-intake-errors}
 
 | Mesaj | Ne yapmalı |
 |---|---|
@@ -53,16 +56,18 @@ Görevleriniz **İşlerim** sayfasında **Girilecek değerler** altında görün
 5. **Laboratuvara gönder** düğmesine ya da numuneyi daha sonra göndermek için **Sonra** düğmesine tıklayın.
 
 <!-- SHOT: sample-form -->
+Figure: Numune alma: laboratuvar ve mühür numaraları.
 
-Numune `S-20070-1` gibi bir kod ve **Gönderildi** durumunu alır. Laboratuvar numuneyi **Teslim alınacak numuneler** altında görür. Laboratuvar mührü bozuk bulursa numune reddedilir; bu durumda aynı lot için yeni bir numune alın.
+Numune `S-20070-1` gibi bir kod ve **Gönderildi** durumunu alır. Laboratuvar numuneyi **Teslim alınacak numuneler** altında bulur. Laboratuvar mührü bozuk bulursa numune reddedilir; bu durumda aynı lot için yeni bir numune alın.
 
 Hatalar: "Doğrulanmış bir laboratuvar seçin.", "Numune ve şahit numune farklı mühürler gerektirir.", "Şahit numunenin nerede saklandığını girin (en çok 200 karakter).", "Şahit numunenin ne zamana kadar saklanacağını girin (ileri bir tarih).", "Numuneyi yalnızca lotun bulunduğu kurum alır."
 
 ## KKN sayfasında çalışma {#ccp-page}
 
-KKN değerlerini giren veya onaylayan tüm roller aynı sayfayı kullanır. Sayfayı **İşlerim** sayfasından, **Kurumum** sayfasındaki KKN etiketlerinden veya bir lotun ya da partinin **Süreç akışı** sayfasından açın.
+KKN verilerini giren veya onaylayan tüm roller aynı sayfayı kullanır ([Şekil](#fig-ccp-page-lot)). Sayfayı **İşlerim** sayfasından, **Kurumum** sayfasındaki KKN etiketlerinden veya bir lotun ya da partinin **Süreç akışı** sayfasından açın.
 
 <!-- SHOT: ccp-page-lot -->
+Figure: Bir lot KKN sayfası: **Evet** yanıtı zorunlu bir ek soru açar.
 
 Sayfa şunları gösterir:
 
@@ -70,7 +75,7 @@ Sayfa şunları gösterir:
 - **Durum** göstergesi ve kaydı kimin girip kimin onayladığı;
 - limitler için kullanılan bal sınıfı ("Bal sınıfı için limitler: …");
 - gruplanmış parametreler; her birinin giriş alanı, **Kritik limit:** bilgisi ve kayıttan sonra **Limit içinde** veya **Limit dışında** sonucu;
-- değer giremediğiniz durumlarda, gerekçesiyle birlikte bir **Salt okunur** uyarısı.
+- veri giremediğiniz durumlarda, gerekçesiyle birlikte bir **Salt okunur** uyarısı.
 
 Giriş türleri:
 
@@ -82,7 +87,7 @@ Giriş türleri:
 
 Bazı parametreler yalnızca başka bir soru belirli bir şekilde yanıtlandığında zorunludur, örneğin "Yalnızca “…” sorusu Evet yanıtlanırsa zorunludur."
 
-**Değer girmek için**
+**Veri girmek için**
 
 1. Parametreleri doldurun.
 2. **İzleme Kayıtlarını Kaydet** düğmesine tıklayın. "KKN … değerleri kaydedildi." mesajı kaydın yapıldığını bildirir ve **Kurumum** sayfasına dönersiniz.
@@ -99,11 +104,13 @@ Geri almak için **"Uygulanamaz" işaretini kaldır** düğmesine tıklayın. Uy
 
 **Sık karşılaşılan hatalar**
 
+Table: KKN sayfasında sık karşılaşılan hatalar {#tbl-ccp-errors}
+
 | Mesaj | Anlamı |
 |---|---|
 | "…: bir sayı girin." / "…: Evet veya Hayır seçin." | Bir değerin türü yanlış. |
 | "Bu KKN "Uygulanamaz" olarak işaretli. Değer kaydetmek için önce bu işareti kaldırın." | Değer girmeden önce işareti kaldırın. |
-| "Bu kontrol noktası başka bir kurumun sorumluluğunda; yalnızca okuyabilirsiniz." | Bu KKN'yi salt okunur görürsünüz. |
+| "Bu kontrol noktası başka bir kurumun sorumluluğunda; yalnızca okuyabilirsiniz." | Bu KKN'yi okuyabilirsiniz, ancak değiştiremezsiniz. |
 | "Rolünüz (…) bu kontrol noktasına veri giremez; veri giren roller: …" | Bu KKN'ye başka bir rol veri girer. |
 | "Kurumunuzun durumu: Beklemede; yalnızca doğrulanmış kurumlar veri girebilir." | Kurumun doğrulanmasını bekleyin. |
 | "Bu ham bal lotu kesinleşmiş … partisinde kullanıldığı için kilitli. …" | Lot mühürlenmiştir; yalnızca bir düzeltmeyle değiştirilebilir. |
@@ -114,6 +121,7 @@ Geri almak için **"Uygulanamaz" işaretini kaldır** düğmesine tıklayın. Uy
 2. Kabul kontrollerini (KKN 0 parametrelerini) girin. Bazı sorular **Evet** olarak yanıtlandığında başka zorunlu sorular açılır.
 3. **İzleme Kayıtlarını Kaydet** düğmesine tıklayın.
 
-Tüm zorunlu değerler girildiğinde KKN 0 **Gönderildi** durumuna geçer ve kurumunuzun kalite onaylayıcısı kaydı **Onaylanacak değerler** altında görür. Kendi girdiğiniz KKN 0 kaydını onaylayamazsınız ("Dört göz: bu KKN'nin değerlerini siz girdiniz, başka bir kişinin onaylaması gerekir."). Laboratuvar ancak KKN 0 onaylandıktan sonra sonuç girebilir.
+Tüm zorunlu veriler girildiğinde KKN 0 **Gönderildi** durumuna geçer ([Şekil](#fig-ccp0-submitted)) ve kurumunuzun Kalite Güvence Sorumlusu kaydı **Onaylanacak değerler** altında bulur. Kendi girdiğiniz KKN 0 kaydını onaylayamazsınız ("Dört göz: bu KKN'nin değerlerini siz girdiniz, başka bir kişinin onaylaması gerekir."). Laboratuvar ancak KKN 0 onaylandıktan sonra sonuç girebilir.
 
 <!-- SHOT: ccp0-submitted -->
+Figure: Gönderilmiş ve başka bir kişinin onayını bekleyen KKN 0.

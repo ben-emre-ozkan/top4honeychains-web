@@ -2,13 +2,16 @@
 
 ## Your daily work {#admin-daily}
 
-Platform administrators run the platform. They verify organizations, manage members and permissions, keep the reference data and control point definitions, register beekeepers, create batches (for now), decide corrections and watch the audit log.
+Platform administrators run the platform. They verify organizations, manage memberships and permissions, keep the reference data and control point definitions, register beekeepers, create batches (for now), decide corrections and watch the audit log.
 
 Administrators can read every record but **do not enter or approve business data**. They land on **My work**, which shows **Organizations to verify**, **Registry numbers to verify** and **Corrections to decide**. The **Dashboard** gives an overview (figures, the chain, a map of beekeepers and apiaries by province, recent activity and approvals waiting).
 
 <!-- SHOT: admin-dashboard -->
+Figure: The platform administrator's dashboard.
 
-The administration menu:
+The administration menu ([Table](#tbl-admin-menu)):
+
+Table: The administration menu {#tbl-admin-menu}
 
 | Menu | Entries |
 |---|---|
@@ -33,10 +36,11 @@ The administration menu:
 The organization starts as **Pending**: "Organization created. It stays Pending until it is verified."
 
 <!-- SHOT: admin-org-create -->
+Figure: Creating an organization: wholesaler link and capabilities.
 
 ### Verify, request documents, suspend {#admin-org-verify}
 
-On the organization page:
+On the organization page (a platform administrator; for beekeepers' associations also the organization admin of a verified central association, when the platform is configured for it):
 
 - **Verify** (from Pending) needs at least one uploaded document.
 - **Request documents** (while Pending) needs a reason, for example which document is missing.
@@ -54,9 +58,10 @@ Every change appears in the verification history and in the audit log.
 2. Enter an existing user name, or a new user name, e-mail and password to create the user at the same time.
 3. Click **Add member**: "… added as …".
 
-A user can have several memberships. **Revoke** ends a membership and signs the user out everywhere. The tab **Members** under **Roles and permissions** lists all memberships of all organizations.
+A membership is one user account × one organization × one role; a user can have several. **Revoke** ends a membership and signs the user out everywhere. The tab **Members** under **Roles and permissions** lists all memberships of all organizations.
 
 <!-- SHOT: admin-org-members -->
+Figure: Memberships of an organization and the **Add member** form.
 
 ### Four-eyes exemption {#admin-four-eyes}
 
@@ -83,9 +88,10 @@ Passwords need at least 6 characters. After 5 failed sign-ins an account is lock
 - **Role permissions**: choose a role and tick, for each function, **Enter**, **Approve** and **Read**. The functions are the CCPs (one row each) and the areas intake, samples, lab results, shipments, beekeeper pages, recall and finalize. Every right must keep at least one role. Changes apply at once.
 - **Organization capabilities**: capabilities per organization.
 
-The box "Fixed rules (cannot be switched off):" lists the rules that no setting changes (see [Fixed rules](#fixed-rules)).
+The box "Ground rules (cannot be switched off):" lists the rules that no setting changes (see [Ground rules](#fixed-rules)). [Table](#tbl-admin-changeable) lists exactly what an administrator can change.
 
 <!-- SHOT: admin-role-permissions -->
+Figure: Role permissions of the Quality Assurance Officer.
 
 ## CCP responsibilities {#admin-ccp-responsibilities}
 
@@ -100,6 +106,7 @@ The box "Fixed rules (cannot be switched off):" lists the rules that no setting 
 **Verified limits.** Each parameter has the box **Limits verified (shown publicly)**. Only verified limits produce a public within/out-of-limit verdict on the Honey Story and the beekeeper page. Unverified limits are marked "to verify" in the panel, and the public pages say that limits are still being checked.
 
 <!-- SHOT: admin-parameter-limits -->
+Figure: Limits of a parameter (CCP 1, moisture).
 
 ## Reference data and translations {#admin-reference}
 
@@ -114,6 +121,7 @@ Honey types (with their honey class for the limits), production periods, educati
 - **Beekeeper registry and associations**: per beekeeper, link the association, and enter the enterprise registry number (format `TR` + province code + 10 digits, for example `TR061234567890`) with a proof document. Then **Verify** or **Reject** (a reason is required to reject).
 
 <!-- SHOT: admin-registry -->
+Figure: Beekeeper registry and association.
 
 ## Batches (admin-only for now) {#admin-batches}
 
@@ -126,6 +134,7 @@ Honey types (with their honey class for the limits), production periods, educati
 The plant then enters the batch CCPs and finalizes the batch. Administrators cannot finalize: "With the organization model, the owning organization finalizes the batch (request and approval by two people)."
 
 <!-- SHOT: admin-manage-batch -->
+Figure: Composing a batch from eligible lots.
 
 ## Corrections {#admin-corrections}
 
@@ -148,9 +157,10 @@ The **Recall report** of a batch or lot lists:
 - the batches;
 - **downstream**: the shipments and the current holders.
 
-Members see the part their organization may see (owner, holder or association); hidden rows are counted. **Print** and **CSV** export the report.
+Members read the part their organization may read (owner, holder or association); hidden rows are counted. **Print** and **CSV** export the report.
 
 <!-- SHOT: recall-report -->
+Figure: The recall report of a batch.
 
 ## Audit log {#admin-audit}
 

@@ -2,13 +2,16 @@
 
 ## Twoja codzienna praca {#admin-daily}
 
-Administratorzy platformy prowadzą platformę. Weryfikują organizacje, zarządzają członkami i uprawnieniami, utrzymują dane referencyjne i definicje punktów kontrolnych, rejestrują pszczelarzy, tworzą partie końcowe (na razie), rozstrzygają korekty i monitorują dziennik audytu.
+Administratorzy platformy prowadzą platformę. Weryfikują organizacje, zarządzają członkostwami i uprawnieniami, utrzymują dane referencyjne i definicje punktów kontrolnych, rejestrują pszczelarzy, tworzą partie końcowe (na razie), rozstrzygają korekty i monitorują dziennik audytu.
 
-Administratorzy mogą przeglądać każdy rekord, ale **nie wprowadzają ani nie zatwierdzają danych biznesowych**. Po zalogowaniu trafiają na stronę **Moja praca**, która pokazuje grupy **Organizacje do weryfikacji**, **Numery w rejestrze do weryfikacji** i **Korekty do rozstrzygnięcia**. Strona **Panel** zawiera przegląd (liczby, łańcuch, mapę pszczelarzy i pasiek według prowincji, ostatnią aktywność i oczekujące zatwierdzenia).
+Administratorzy mogą odczytać każdy rekord, ale **nie wprowadzają ani nie zatwierdzają danych biznesowych**. Po zalogowaniu trafiają na stronę **Moja praca**, która pokazuje grupy **Organizacje do weryfikacji**, **Numery w rejestrze do weryfikacji** i **Korekty do rozstrzygnięcia**. Strona **Panel** zawiera przegląd (liczby, łańcuch, mapę pszczelarzy i pasiek według prowincji, ostatnią aktywność i oczekujące zatwierdzenia).
 
 <!-- SHOT: admin-dashboard -->
+Figure: Panel administratora platformy.
 
-Menu administracyjne:
+Menu administracyjne ([Table](#tbl-admin-menu)):
+
+Table: Menu administracyjne {#tbl-admin-menu}
 
 | Menu | Pozycje |
 |---|---|
@@ -33,10 +36,11 @@ Menu administracyjne:
 Organizacja otrzymuje początkowo status **Oczekująca**: „Organizacja została utworzona. Pozostaje w stanie Oczekująca do czasu weryfikacji.”
 
 <!-- SHOT: admin-org-create -->
+Figure: Tworzenie organizacji: powiązanie z hurtownikiem i funkcje.
 
 ### Weryfikacja, żądanie dokumentów, zawieszenie {#admin-org-verify}
 
-Na stronie organizacji:
+Na stronie organizacji (administrator platformy; w przypadku stowarzyszeń pszczelarzy także administrator organizacji zweryfikowanego związku centralnego, jeśli platforma jest tak skonfigurowana):
 
 - **Zweryfikuj** (ze statusu Oczekująca) wymaga co najmniej jednego przesłanego dokumentu.
 - **Zażądaj dokumentów** (w statusie Oczekująca) wymaga podania powodu, na przykład którego dokumentu brakuje.
@@ -54,9 +58,10 @@ Każda zmiana pojawia się w historii weryfikacji i w dzienniku audytu.
 2. Wpisz nazwę istniejącego użytkownika albo nową nazwę użytkownika, adres e-mail i hasło, aby jednocześnie utworzyć użytkownika.
 3. Kliknij **Dodaj członka**: „Dodano … jako ….”
 
-Użytkownik może mieć kilka członkostw. **Cofnij** kończy członkostwo i wylogowuje użytkownika na wszystkich urządzeniach. Zakładka **Członkowie** na stronie **Role i uprawnienia** zawiera listę wszystkich członkostw we wszystkich organizacjach.
+Członkostwo to jedno konto użytkownika × jedna organizacja × jedna rola; użytkownik może mieć ich kilka. **Cofnij** kończy członkostwo i wylogowuje użytkownika na wszystkich urządzeniach. Zakładka **Członkowie** na stronie **Role i uprawnienia** zawiera listę wszystkich członkostw we wszystkich organizacjach.
 
 <!-- SHOT: admin-org-members -->
+Figure: Członkostwa organizacji i formularz **Dodaj członka**.
 
 ### Wyjątek od zasady czterech oczu {#admin-four-eyes}
 
@@ -83,9 +88,10 @@ Strona **Role i uprawnienia** ma trzy zakładki:
 - **Uprawnienia ról**: wybierz rolę i dla każdej funkcji zaznacz **Wprowadzanie**, **Zatwierdzenie** i **Odczyt**. Funkcjami są poszczególne KPK (każdy w osobnym wierszu) oraz obszary: przyjęcie, próbki, wyniki laboratoryjne, wysyłki, strony pszczelarzy, wycofanie i ostateczne zatwierdzenie. Każde uprawnienie musi zachować co najmniej jedną rolę. Zmiany obowiązują natychmiast.
 - **Funkcje organizacji**: funkcje poszczególnych organizacji.
 
-Ramka „Stałe zasady (nie można ich wyłączyć):” wymienia zasady, których nie zmienia żadne ustawienie (zob. [Stałe zasady](#fixed-rules)).
+Ramka „Zasady podstawowe (nie można ich wyłączyć):” wymienia zasady, których nie zmienia żadne ustawienie (zob. [Zasady podstawowe](#fixed-rules)). [Table](#tbl-admin-changeable) wymienia dokładnie, co może zmienić administrator.
 
 <!-- SHOT: admin-role-permissions -->
+Figure: Uprawnienia roli Specjalista ds. zapewnienia jakości.
 
 ## Odpowiedzialności za KPK {#admin-ccp-responsibilities}
 
@@ -100,6 +106,7 @@ Strona **Odpowiedzialności za KPK** określa dla każdego KPK, która organizac
 **Zweryfikowane limity.** Każdy parametr ma pole wyboru **Limity zweryfikowane (wyświetlane publicznie)**. Tylko zweryfikowane limity dają publiczną ocenę „w granicach limitu / poza limitem” w Historii miodu i na stronie pszczelarza. Niezweryfikowane limity są oznaczone w panelu jako „do weryfikacji”, a strony publiczne informują, że limity są wciąż sprawdzane.
 
 <!-- SHOT: admin-parameter-limits -->
+Figure: Limity parametru (KPK 1, wilgotność).
 
 ## Dane referencyjne i tłumaczenia {#admin-reference}
 
@@ -114,6 +121,7 @@ Strona **Tłumaczenia danych referencyjnych** zawiera nazwy wyświetlane na list
 - **Rejestr pszczelarzy i stowarzyszenia**: dla każdego pszczelarza przypisz stowarzyszenie i wpisz numer gospodarstwa w rejestrze (format: `TR` + kod prowincji + 10 cyfr, na przykład `TR061234567890`) wraz z dokumentem potwierdzającym. Następnie kliknij **Zweryfikuj** lub **Odrzuć** (odrzucenie wymaga podania powodu).
 
 <!-- SHOT: admin-registry -->
+Figure: Rejestr pszczelarzy i stowarzyszenie.
 
 ## Partie końcowe (na razie tylko administrator) {#admin-batches}
 
@@ -126,6 +134,7 @@ Strona **Tłumaczenia danych referencyjnych** zawiera nazwy wyświetlane na list
 Następnie zakład wprowadza KPK partii końcowej i zatwierdza ją ostatecznie. Administratorzy nie mogą zatwierdzać ostatecznie: „W modelu organizacji partię końcową zatwierdza ostatecznie organizacja będąca jej właścicielem (wniosek i zatwierdzenie przez dwie osoby).”
 
 <!-- SHOT: admin-manage-batch -->
+Figure: Ustalanie składu partii końcowej z kwalifikujących się partii.
 
 ## Korekty {#admin-corrections}
 
@@ -148,9 +157,10 @@ Administratorzy mogą otwierać strony **Strony pszczelarzy**, **Wysyłki i zapa
 - partie końcowe;
 - **w dół łańcucha**: wysyłki i obecnych posiadaczy.
 
-Członkowie widzą tę część, którą może widzieć ich organizacja (jako właściciel, posiadacz lub stowarzyszenie); ukryte wiersze są zliczane. Przyciski **Drukuj** i **CSV** eksportują raport.
+Członkowie odczytują tę część, którą może odczytać ich organizacja (jako właściciel, posiadacz lub stowarzyszenie); ukryte wiersze są zliczane. Przyciski **Drukuj** i **CSV** eksportują raport.
 
 <!-- SHOT: recall-report -->
+Figure: Raport z wycofania partii końcowej.
 
 ## Dziennik audytu {#admin-audit}
 

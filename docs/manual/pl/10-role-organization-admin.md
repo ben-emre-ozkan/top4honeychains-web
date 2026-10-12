@@ -5,11 +5,11 @@
 Administrator organizacji zarządza organizacją na platformie. Twoje zadania to:
 
 - aktualizowanie dokumentów organizacji (licencja, akredytacja, zaświadczenie podatkowe, dowód wpisu do rejestru);
-- w zakładzie: przeglądanie dostaw i próbek, składanie wniosków o ostateczne zatwierdzenie, wysyłanie towaru i potwierdzanie wysyłek;
-- u hurtownika lub w sklepie: potwierdzanie wysyłek;
+- w zakładzie: odczytywanie dostaw i próbek, składanie wniosków o ostateczne zatwierdzenie, wysyłanie towaru i potwierdzanie wysyłek;
+- u hurtownika lub detalisty: potwierdzanie wysyłek;
 - w stowarzyszeniu: rejestrowanie i wycofywanie zgód pszczelarzy na publiczną stronę pszczelarza.
 
-Członkami, rolami i funkcjami Twojej organizacji zarządzają administratorzy platformy. Jeśli współpracownik potrzebuje dostępu lub innej roli, zwróć się do nich.
+Członkostwami i funkcjami Twojej organizacji zarządzają administratorzy platformy. Jeśli współpracownik potrzebuje dostępu lub innej roli, zwróć się do nich.
 
 ## Strona Twojej organizacji {#orgadmin-org-page}
 
@@ -17,6 +17,7 @@ Członkami, rolami i funkcjami Twojej organizacji zarządzają administratorzy p
 2. Strona pokazuje status, funkcje, dokumenty, historię weryfikacji i członków Twojej organizacji.
 
 <!-- SHOT: org-details -->
+Figure: Dokumenty organizacji wraz z ich odciskami SHA-256.
 
 ### Przesyłanie dokumentu {#orgadmin-documents}
 
@@ -51,6 +52,7 @@ Strona jest publiczna tylko wtedy, gdy spełnione są **wszystkie** poniższe wa
 6. Zapisz.
 
 <!-- SHOT: consent-form -->
+Figure: Rejestracja zgody pszczelarza na telefonie.
 
 Wyświetla się komunikat „Zgoda została zarejestrowana; strona pszczelarza została opublikowana.” albo, jeśli numer w rejestrze nie został jeszcze zweryfikowany, „Zgoda została zarejestrowana. Strona pszczelarza zostanie opublikowana po weryfikacji numeru w rejestrze.”
 
