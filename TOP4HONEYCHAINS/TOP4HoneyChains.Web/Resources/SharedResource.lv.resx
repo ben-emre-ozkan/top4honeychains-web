@@ -7095,4 +7095,10 @@
   <data name="The password must contain at least {0} different characters." xml:space="preserve">
     <value>Parolē jābūt vismaz {0} dažādām rakstzīmēm.</value>
   </data>
+  <data name="Apiary reference" xml:space="preserve">
+    <value>Dravas identifikators</value>
+  </data>
+  <data name="Internal reference of the apiary, created automatically. It is not a QR code and is not shown publicly." xml:space="preserve">
+    <value>Dravas iekšējais identifikators, izveidots automātiski. Tas nav QR kods un netiek rādīts publiski.</value>
+  </data>
 </root>

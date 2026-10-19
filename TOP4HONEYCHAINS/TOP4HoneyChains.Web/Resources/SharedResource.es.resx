@@ -7095,4 +7095,10 @@
   <data name="The password must contain at least {0} different characters." xml:space="preserve">
     <value>La contraseña debe contener al menos {0} caracteres distintos.</value>
   </data>
+  <data name="Apiary reference" xml:space="preserve">
+    <value>Referencia del apiario</value>
+  </data>
+  <data name="Internal reference of the apiary, created automatically. It is not a QR code and is not shown publicly." xml:space="preserve">
+    <value>Referencia interna del apiario, creada automáticamente. No es un código QR y no se muestra públicamente.</value>
+  </data>
 </root>
