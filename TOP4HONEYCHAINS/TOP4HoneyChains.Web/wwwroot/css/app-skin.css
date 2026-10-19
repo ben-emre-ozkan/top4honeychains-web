@@ -95,7 +95,8 @@ body.app-skin .app-pagehead .breadcrumb a:hover { text-decoration: underline; }
 body.app-skin .ccp-range { white-space: normal; max-width: 100%; }
 
 /* ------------------------------------------------------------------ page */
-body.app-skin .main-content { flex: 1; overflow: visible; }
+/* the content area fills the screen; the footer sits at its bottom on short pages and after the content on long ones */
+body.app-skin .main-content { flex: 1; overflow: visible; display: flex; flex-direction: column; }
 body.app-skin .main-content:focus { outline: none; }
 body.app-skin[data-layout=horizontal] .page-content, body.app-skin .page-content { margin-top: 0; padding: 16px 0 88px; }
 body.app-skin .page-content > .container-fluid, body.app-skin[data-layout=horizontal] .page-content > .container-fluid { max-width: min(1320px, 100%); padding: 0 clamp(12px, 3vw, 28px); }
@@ -349,7 +350,7 @@ body.app-skin .topnav .nav-link.work-pulse::before, body.app-skin .dropdown-item
 .work-empty-links { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 0; padding: 0; }
 
 /* ------------------------------------------------------------------ footer */
-body.app-skin .footer { position: static; height: auto; padding: 18px 16px; background: transparent; border-top: 1px solid var(--b-line); color: var(--b-muted); font-size: 13.5px; text-align: center; }
+body.app-skin .footer { position: static; margin-top: auto; height: auto; padding: 18px 16px; background: transparent; border-top: 1px solid var(--b-line); color: var(--b-muted); font-size: 13.5px; text-align: center; }
 
 /* ------------------------------------------------------------------ D-67: read-only facts, file picker, hash */
 .app-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px 24px; margin: 0 0 18px; }
