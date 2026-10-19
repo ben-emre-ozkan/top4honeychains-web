@@ -84,7 +84,7 @@
                                                 @(item.BeekeeperExperienceTime.HasValue? item.BeekeeperExperienceTime + " years" : "-")
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.BeekeeperPhoneNumber)
+                                                @TOP4HoneyChains.Web.Services.PhoneNumberPolicy.Display(item.BeekeeperPhoneNumber)
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.BeekeeperBusinessNumber)

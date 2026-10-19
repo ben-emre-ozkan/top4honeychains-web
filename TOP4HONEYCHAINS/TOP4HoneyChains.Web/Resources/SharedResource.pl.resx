@@ -7101,4 +7101,13 @@
   <data name="Internal reference of the apiary, created automatically. It is not a QR code and is not shown publicly." xml:space="preserve">
     <value>Wewnętrzny identyfikator pasieki, tworzony automatycznie. Nie jest kodem QR i nie jest publikowany.</value>
   </data>
+  <data name="e.g. +90 532 123 45 67" xml:space="preserve">
+    <value>np. +48 512 345 678</value>
+  </data>
+  <data name="With the country code (+…). A number that starts with 0 is read as a Turkish number. It is saved in the international format." xml:space="preserve">
+    <value>Z numerem kierunkowym kraju (+…). Numer zaczynający się od 0 jest traktowany jako numer turecki. Zapisywany jest w formacie międzynarodowym.</value>
+  </data>
+  <data name="Enter a valid phone number with its country code, for example +90 532 123 45 67." xml:space="preserve">
+    <value>Wpisz prawidłowy numer telefonu z numerem kierunkowym kraju, na przykład +48 512 345 678.</value>
+  </data>
 </root>

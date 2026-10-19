@@ -152,6 +152,7 @@ namespace TOP4HoneyChains.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Beekeeper beekeeper)
         {
+            ApplyPhone(beekeeper, stored: null);
             await ValidateProfilePhotoAsync(beekeeper);
 
             if (ModelState.IsValid)
@@ -287,6 +288,7 @@ namespace TOP4HoneyChains.Web.Controllers
             beekeeper.IsActive = existingBeekeeper.IsActive;
             beekeeper.DeactivatedAt = existingBeekeeper.DeactivatedAt;
 
+            ApplyPhone(beekeeper, existingBeekeeper.BeekeeperPhoneNumber);
             await ValidateProfilePhotoAsync(beekeeper);
 
             if (ModelState.IsValid)
@@ -386,6 +388,24 @@ namespace TOP4HoneyChains.Web.Controllers
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        // D-78: a new or changed phone number is validated and stored in the international form (+905321234567);
+        // an unchanged stored number (also one saved before D-78) is kept exactly as it is.
+        private void ApplyPhone(Beekeeper beekeeper, string? stored)
+        {
+            var input = beekeeper.BeekeeperPhoneNumber?.Trim();
+            if (stored != null && input == stored.Trim())
+            {
+                beekeeper.BeekeeperPhoneNumber = stored;
+                return;
+            }
+            beekeeper.BeekeeperPhoneNumber = Services.PhoneNumberPolicy.Normalize(input, out var error);
+            if (error != null)
+            {
+                beekeeper.BeekeeperPhoneNumber = input;
+                ModelState.AddModelError(nameof(Beekeeper.BeekeeperPhoneNumber), error);
+            }
         }
 
         private async Task ValidateProfilePhotoAsync(Beekeeper beekeeper)

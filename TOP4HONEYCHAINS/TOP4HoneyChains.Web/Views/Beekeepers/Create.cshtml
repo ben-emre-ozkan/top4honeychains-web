@@ -52,7 +52,8 @@
 
                                 <div class="mb-3">
                                     <label asp-for="BeekeeperPhoneNumber" class="form-label">@L["Phone Number"]</label>
-                                    <input asp-for="BeekeeperPhoneNumber" class="form-control" placeholder="05XX XXX XX XX" />
+                                    <input asp-for="BeekeeperPhoneNumber" type="tel" inputmode="tel" autocomplete="tel" class="form-control" placeholder="@L["e.g. +90 532 123 45 67"]" aria-describedby="phone-help" />
+                                    <div id="phone-help" class="form-text">@L["With the country code (+…). A number that starts with 0 is read as a Turkish number. It is saved in the international format."]</div>
                                     <span asp-validation-for="BeekeeperPhoneNumber" class="text-danger"></span>
                                 </div>
 
