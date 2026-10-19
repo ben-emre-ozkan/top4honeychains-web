@@ -54,12 +54,11 @@
                                     <span asp-validation-for="ApiaryLocationLongitude" class="text-danger"></span>
                                 </div>
 
-                                <!-- QR Display (Readonly) -->
+                                <!-- internal reference of the apiary (D-78): read-only; not a QR code -->
                                 <div class="mb-3">
-                                    <label class="form-label">@L["QR Code"]</label>
-                                    <input value="@Model.ApiaryQRCode"
-                                           class="form-control"
-                                           readonly />
+                                    <label class="form-label" for="apiary-reference">@L["Apiary reference"]</label>
+                                    <input id="apiary-reference" value="@Model.ApiaryQRCode" class="form-control form-control-sm text-muted" readonly aria-describedby="apiary-reference-help" />
+                                    <div id="apiary-reference-help" class="form-text">@L["Internal reference of the apiary, created automatically. It is not a QR code and is not shown publicly."]</div>
                                 </div>
 
                                 <div class="mb-0">

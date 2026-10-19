@@ -7095,4 +7095,10 @@
   <data name="The password must contain at least {0} different characters." xml:space="preserve">
     <value>Şifre en az {0} farklı karakter içermelidir.</value>
   </data>
+  <data name="Apiary reference" xml:space="preserve">
+    <value>Arılık referansı</value>
+  </data>
+  <data name="Internal reference of the apiary, created automatically. It is not a QR code and is not shown publicly." xml:space="preserve">
+    <value>Arılığın otomatik oluşturulan iç referansıdır. QR kodu değildir ve herkese açık sayfalarda gösterilmez.</value>
+  </data>
 </root>

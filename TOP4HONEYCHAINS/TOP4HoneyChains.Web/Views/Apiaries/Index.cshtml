@@ -38,7 +38,6 @@
 
                                 <thead>
                                     <tr>
-                                        <th>@L["QR Code"]</th>
                                         <th>@L["Title"]</th>
                                         <th>@L["Beehives"]</th>
                                         <th>@L["Latitude"]</th>
@@ -54,10 +53,6 @@
                                     @foreach (var item in Model)
                                     {
                                         <tr class="@(item.ApiaryIsActive ? "" : "table-light text-muted")">
-
-                                            <td>
-                                                @item.ApiaryQRCode
-                                            </td>
 
                                             <td>
                                                 @item.ApiaryTitle
