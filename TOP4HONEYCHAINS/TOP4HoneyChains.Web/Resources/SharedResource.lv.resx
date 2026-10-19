@@ -7110,4 +7110,28 @@
   <data name="Enter a valid phone number with its country code, for example +90 532 123 45 67." xml:space="preserve">
     <value>Ievadiet derīgu tālruņa numuru ar valsts kodu, piemēram, +371 2123 4567.</value>
   </data>
+  <data name="Click the map to set the apiary location, or drag the pin. You can also type the coordinates." xml:space="preserve">
+    <value>Noklikšķiniet kartē, lai iestatītu dravas atrašanās vietu, vai velciet atzīmi. Koordinātas var ievadīt arī manuāli.</value>
+  </data>
+  <data name="Use my location" xml:space="preserve">
+    <value>Izmantot manu atrašanās vietu</value>
+  </data>
+  <data name="Map for choosing the apiary location" xml:space="preserve">
+    <value>Karte dravas atrašanās vietas izvēlei</value>
+  </data>
+  <data name="Apiary location" xml:space="preserve">
+    <value>Dravas atrašanās vieta</value>
+  </data>
+  <data name="Location set:" xml:space="preserve">
+    <value>Atrašanās vieta iestatīta:</value>
+  </data>
+  <data name="Finding your location…" xml:space="preserve">
+    <value>Nosaka jūsu atrašanās vietu…</value>
+  </data>
+  <data name="Your location could not be found; click the map instead." xml:space="preserve">
+    <value>Atrašanās vietu neizdevās noteikt; noklikšķiniet kartē.</value>
+  </data>
+  <data name="The exact location is only kept for the records; public pages show the province only." xml:space="preserve">
+    <value>Precīzā atrašanās vieta tiek glabāta tikai ierakstos; publiskajās lapās redzama tikai province.</value>
+  </data>
 </root>

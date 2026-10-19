@@ -1,0 +1,17 @@
+@* D-78: pick the apiary location on a map (Leaflet, OpenStreetMap tiles). It fills the latitude and longitude fields,
+   which stay editable; administrators only. Public pages never show these coordinates (D-12): they show the province. *@
+<div class="mb-3 apiary-map-picker">
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+        <span class="form-text m-0">@L["Click the map to set the apiary location, or drag the pin. You can also type the coordinates."]</span>
+        <button type="button" class="btn btn-sm btn-outline-secondary" id="apiary-map-locate">
+            <i class="mdi mdi-crosshairs-gps" aria-hidden="true"></i> @L["Use my location"]
+        </button>
+    </div>
+    <div id="apiary-map" role="application" tabindex="0" aria-label="@L["Map for choosing the apiary location"]"
+         data-lat="ApiaryLocationLatitude" data-lng="ApiaryLocationLongitude"
+         data-pin="@L["Apiary location"]" data-set="@L["Location set:"]"
+         data-locating="@L["Finding your location…"]" data-nolocation="@L["Your location could not be found; click the map instead."]"
+         style="height: 360px; border-radius: 12px; border: 1px solid var(--b-line, #F2E3C6);"></div>
+    <div class="form-text" id="apiary-map-status" aria-live="polite"></div>
+    <div class="form-text">@L["The exact location is only kept for the records; public pages show the province only."]</div>
+</div>

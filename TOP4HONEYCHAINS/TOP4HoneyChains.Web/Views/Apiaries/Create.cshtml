@@ -37,15 +37,17 @@
 
                                 <div class="mb-3">
                                     <label asp-for="ApiaryLocationLatitude" class="form-label required">@L["Location Latitude"]</label>
-                                    <input asp-for="ApiaryLocationLatitude" class="form-control" />
+                                    <input asp-for="ApiaryLocationLatitude" asp-format="{0:0.#########}" inputmode="decimal" class="form-control" />
                                     <span asp-validation-for="ApiaryLocationLatitude" class="text-danger"></span>
                                 </div>
 
                                 <div class="mb-3">
                                     <label asp-for="ApiaryLocationLongitude" class="form-label required">@L["Location Longitude"]</label>
-                                    <input asp-for="ApiaryLocationLongitude" class="form-control" />
+                                    <input asp-for="ApiaryLocationLongitude" asp-format="{0:0.#########}" inputmode="decimal" class="form-control" />
                                     <span asp-validation-for="ApiaryLocationLongitude" class="text-danger"></span>
                                 </div>
+
+                                <partial name="_LocationPicker" />
 
 
 
@@ -68,7 +70,12 @@
             </div>
         </div>
     </div>
+    @section AddToHead {
+        <link href="~/assets/libs/leaflet/leaflet.css" rel="stylesheet" asp-append-version="true" />
+    }
     @section scripts{
+        <script src="~/assets/libs/leaflet/leaflet.js" asp-append-version="true"></script>
+        <script src="~/js/apiary-map.js" asp-append-version="true"></script>
         <script src="~/assets/libs/parsleyjs/parsley.min.js"></script>
         <script src="~/assets/js/pages/form-validation.init.js"></script>
         <script src="~/assets/js/app.js"></script>

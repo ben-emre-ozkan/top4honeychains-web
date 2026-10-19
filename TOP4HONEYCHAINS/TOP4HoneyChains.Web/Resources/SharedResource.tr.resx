@@ -7110,4 +7110,28 @@
   <data name="Enter a valid phone number with its country code, for example +90 532 123 45 67." xml:space="preserve">
     <value>Ülke koduyla geçerli bir telefon numarası girin, örneğin +90 532 123 45 67.</value>
   </data>
+  <data name="Click the map to set the apiary location, or drag the pin. You can also type the coordinates." xml:space="preserve">
+    <value>Arılığın konumunu belirlemek için haritaya tıklayın veya iğneyi sürükleyin. Koordinatları elle de yazabilirsiniz.</value>
+  </data>
+  <data name="Use my location" xml:space="preserve">
+    <value>Konumumu kullan</value>
+  </data>
+  <data name="Map for choosing the apiary location" xml:space="preserve">
+    <value>Arılık konumunu seçme haritası</value>
+  </data>
+  <data name="Apiary location" xml:space="preserve">
+    <value>Arılık konumu</value>
+  </data>
+  <data name="Location set:" xml:space="preserve">
+    <value>Konum belirlendi:</value>
+  </data>
+  <data name="Finding your location…" xml:space="preserve">
+    <value>Konumunuz bulunuyor…</value>
+  </data>
+  <data name="Your location could not be found; click the map instead." xml:space="preserve">
+    <value>Konumunuz bulunamadı; bunun yerine haritaya tıklayın.</value>
+  </data>
+  <data name="The exact location is only kept for the records; public pages show the province only." xml:space="preserve">
+    <value>Kesin konum yalnızca kayıtlarda tutulur; herkese açık sayfalar yalnızca ili gösterir.</value>
+  </data>
 </root>

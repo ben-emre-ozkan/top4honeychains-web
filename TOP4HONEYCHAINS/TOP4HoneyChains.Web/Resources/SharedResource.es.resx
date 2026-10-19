@@ -7110,4 +7110,28 @@
   <data name="Enter a valid phone number with its country code, for example +90 532 123 45 67." xml:space="preserve">
     <value>Introduzca un número de teléfono válido con el código de país, por ejemplo +54 9 11 2345 6789.</value>
   </data>
+  <data name="Click the map to set the apiary location, or drag the pin. You can also type the coordinates." xml:space="preserve">
+    <value>Haga clic en el mapa para fijar la ubicación del apiario o arrastre el marcador. También puede escribir las coordenadas.</value>
+  </data>
+  <data name="Use my location" xml:space="preserve">
+    <value>Usar mi ubicación</value>
+  </data>
+  <data name="Map for choosing the apiary location" xml:space="preserve">
+    <value>Mapa para elegir la ubicación del apiario</value>
+  </data>
+  <data name="Apiary location" xml:space="preserve">
+    <value>Ubicación del apiario</value>
+  </data>
+  <data name="Location set:" xml:space="preserve">
+    <value>Ubicación fijada:</value>
+  </data>
+  <data name="Finding your location…" xml:space="preserve">
+    <value>Buscando su ubicación…</value>
+  </data>
+  <data name="Your location could not be found; click the map instead." xml:space="preserve">
+    <value>No se pudo determinar su ubicación; haga clic en el mapa.</value>
+  </data>
+  <data name="The exact location is only kept for the records; public pages show the province only." xml:space="preserve">
+    <value>La ubicación exacta solo se guarda en los registros; las páginas públicas muestran solo la provincia.</value>
+  </data>
 </root>
