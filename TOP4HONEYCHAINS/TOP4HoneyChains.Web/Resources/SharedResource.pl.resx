@@ -7110,4 +7110,28 @@
   <data name="Enter a valid phone number with its country code, for example +90 532 123 45 67." xml:space="preserve">
     <value>Wpisz prawidłowy numer telefonu z numerem kierunkowym kraju, na przykład +48 512 345 678.</value>
   </data>
+  <data name="Click the map to set the apiary location, or drag the pin. You can also type the coordinates." xml:space="preserve">
+    <value>Kliknij mapę, aby ustawić położenie pasieki, lub przeciągnij znacznik. Współrzędne można też wpisać ręcznie.</value>
+  </data>
+  <data name="Use my location" xml:space="preserve">
+    <value>Użyj mojej lokalizacji</value>
+  </data>
+  <data name="Map for choosing the apiary location" xml:space="preserve">
+    <value>Mapa do wyboru położenia pasieki</value>
+  </data>
+  <data name="Apiary location" xml:space="preserve">
+    <value>Położenie pasieki</value>
+  </data>
+  <data name="Location set:" xml:space="preserve">
+    <value>Ustawiono położenie:</value>
+  </data>
+  <data name="Finding your location…" xml:space="preserve">
+    <value>Ustalanie lokalizacji…</value>
+  </data>
+  <data name="Your location could not be found; click the map instead." xml:space="preserve">
+    <value>Nie udało się ustalić lokalizacji; kliknij mapę.</value>
+  </data>
+  <data name="The exact location is only kept for the records; public pages show the province only." xml:space="preserve">
+    <value>Dokładne położenie jest przechowywane tylko w rejestrach; strony publiczne pokazują jedynie prowincję.</value>
+  </data>
 </root>
