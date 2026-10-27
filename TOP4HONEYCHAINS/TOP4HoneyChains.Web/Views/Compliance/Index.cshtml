@@ -158,7 +158,9 @@
                     <ul class="small" id="approval-flags">
                         @foreach (var f in flags)
                         {
-                            <li><a href="/Flow/Lot/@f.LotId">#@f.LotId</a> · @f.Ccp · @(f.SelfApproved ? L["Co.SelfApproved"] : string.Format(L["Co.Waiting"].Value, f.Since?.ToString("dd.MM.yyyy")))</li>
+                            <li data-flag="@f.Kind"><a href="@f.Url">@(f.Kind == ComplianceService.FlagKinds.Lot ? L["Kind.lot"] : L["Kind.batch"]) #@f.Id</a>
+                                · @(f.Kind == ComplianceService.FlagKinds.Finalize ? L["Finalize"].Value : Ref.Code(f.Ccp))
+                                · @(f.SelfApproved ? L["Co.SelfApproved"] : string.Format(L["Co.Waiting"].Value, f.Since?.ToString("dd.MM.yyyy")))</li>
                         }
                         @if (!flags.Any()) { <li class="text-muted">@L["Org.None"]</li> }
                     </ul>

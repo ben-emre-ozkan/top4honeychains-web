@@ -8653,7 +8653,7 @@
     <value>Onay mekanizması</value>
   </data>
   <data name="Co.ApprovalsHelp" xml:space="preserve">
-    <value>{0} günden uzun süredir onay bekleyen KKN kayıtları ve dört göz muafiyetiyle yapılan onaylar.</value>
+    <value>{0} günden uzun süredir onay bekleyen lot ve parti KKN kayıtları, depolama kayıtları (KKN 10) ve kesinleştirme talepleri ile dört göz muafiyetiyle yapılan onaylar ve kesinleştirmeler.</value>
   </data>
   <data name="Co.SelfApproved" xml:space="preserve">
     <value>aynı kişi tarafından onaylandı (dört göz muafiyeti)</value>

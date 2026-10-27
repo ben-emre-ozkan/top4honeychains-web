@@ -172,18 +172,57 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
 
         // ---------------------------------------------------------------- approval mechanism
 
-        public record ApprovalFlag(int LotId, string Ccp, DateTime? Since, bool SelfApproved);
+        // Kind: lot (raw lot CCP), batch (batch CCP), storage (CCP 10 of a holder), finalize (finalizing a batch)
+        public record ApprovalFlag(string Kind, int Id, string Ccp, DateTime? Since, bool SelfApproved)
+        {
+            public string Url => Kind switch
+            {
+                FlagKinds.Lot => $"/Flow/Lot/{Id}",
+                FlagKinds.Storage => $"/Shipments/Storage?batchId={Id}",
+                _ => $"/Flow/Batch/{Id}"
+            };
+        }
 
+        public static class FlagKinds
+        {
+            public const string Lot = "lot", Batch = "batch", Storage = "storage", Finalize = "finalize";
+        }
+
+        // P3 follow-up (D-84): stale and self-approved approvals of the organization's lots AND batches: lot CCPs, batch CCPs,
+        // the CCP 10 storage records it holds, and finalize requests (waiting, or finalized by the requester)
         public async Task<List<ApprovalFlag>> ApprovalFlagsAsync(int orgId)
         {
+            const int take = 200;
             var stale = DateTime.Now.AddDays(-_options.StaleApprovalDays);
-            return await _context.RawHoneyCCPAssignments.AsNoTracking()
+            var flags = new List<ApprovalFlag>();
+            flags.AddRange(await _context.RawHoneyCCPAssignments.AsNoTracking()
                 .Where(a => a.RawHoneyProduction!.OwnerOrgId == orgId
                             && ((a.RawHoneyCCPAssignmentStatus == AssignmentStatusIds.Submitted && (a.RawHoneyCCPAssignmentEndDate ?? a.RawHoneyCCPAssignmentStartDate) < stale)
                                 || (a.SelfApproved && a.ApprovedByOrgId == orgId)))
-                .OrderByDescending(a => a.SelfApproved).ThenBy(a => a.RawHoneyCCPAssignmentEndDate)
-                .Select(a => new ApprovalFlag(a.RawHoneyProductionId, a.CCP!.Code, a.RawHoneyCCPAssignmentEndDate ?? a.RawHoneyCCPAssignmentStartDate, a.SelfApproved))
-                .Take(200).ToListAsync();
+                .OrderByDescending(a => a.SelfApproved).ThenBy(a => a.RawHoneyCCPAssignmentEndDate).Take(take)
+                .Select(a => new ApprovalFlag(FlagKinds.Lot, a.RawHoneyProductionId, a.CCP!.Code, a.RawHoneyCCPAssignmentEndDate ?? a.RawHoneyCCPAssignmentStartDate, a.SelfApproved))
+                .ToListAsync());
+            flags.AddRange(await _context.FinalHoneyCCPAssignments.AsNoTracking()
+                .Where(a => a.FinalHoneyProduction!.OwnerOrgId == orgId
+                            && ((a.FinalHoneyCCPAssignmentStatus == AssignmentStatusIds.Submitted && (a.FinalHoneyCCPAssignmentEndDate ?? a.FinalHoneyCCPAssignmentStartDate) < stale)
+                                || (a.SelfApproved && a.ApprovedByOrgId == orgId)))
+                .OrderByDescending(a => a.SelfApproved).ThenBy(a => a.FinalHoneyCCPAssignmentEndDate).Take(take)
+                .Select(a => new ApprovalFlag(FlagKinds.Batch, a.FinalHoneyProductionId, a.CCP!.Code, a.FinalHoneyCCPAssignmentEndDate ?? a.FinalHoneyCCPAssignmentStartDate, a.SelfApproved))
+                .ToListAsync());
+            flags.AddRange(await _context.HolderStorageRecords.AsNoTracking()
+                .Where(r => r.HolderOrgId == orgId
+                            && ((r.Status == AssignmentStatusIds.Submitted && r.RecordedAt < stale) || (r.SelfApproved && r.ApprovedAt != null)))
+                .OrderByDescending(r => r.SelfApproved).ThenBy(r => r.RecordedAt).Take(take)
+                .Select(r => new ApprovalFlag(FlagKinds.Storage, r.FinalHoneyProductionId, r.Ccp!.Code, r.RecordedAt, r.SelfApproved))
+                .ToListAsync());
+            flags.AddRange(await _context.FinalHoneyProductions.AsNoTracking()
+                .Where(b => b.OwnerOrgId == orgId
+                            && ((!b.FinalHoneyProductionIsFinalized && b.FinalizeRequestedAt != null && b.FinalizeRequestedAt < stale)
+                                || (b.FinalHoneyProductionIsFinalized && b.SelfFinalized)))
+                .OrderByDescending(b => b.SelfFinalized).ThenBy(b => b.FinalizeRequestedAt).Take(take)
+                .Select(b => new ApprovalFlag(FlagKinds.Finalize, b.FinalHoneyProductionId, "", b.FinalizeRequestedAt, b.SelfFinalized))
+                .ToListAsync());
+            return flags.OrderByDescending(f => f.SelfApproved).ThenBy(f => f.Since).Take(take).ToList();
         }
 
         public Task<List<AuditEntry>> AuditAsync(int orgId) =>

@@ -8653,7 +8653,7 @@
     <value>Apstiprināšanas mehānisms</value>
   </data>
   <data name="Co.ApprovalsHelp" xml:space="preserve">
-    <value>KKP ieraksti, kas gaida apstiprinājumu ilgāk par {0} dienām, un apstiprinājumi ar četru acu izņēmumu.</value>
+    <value>Partiju un gala partiju KKP ieraksti, uzglabāšanas ieraksti (KKP 10) un pabeigšanas pieprasījumi, kas gaida apstiprinājumu ilgāk par {0} dienām, un apstiprinājumi un pabeigšana ar četru acu izņēmumu.</value>
   </data>
   <data name="Co.SelfApproved" xml:space="preserve">
     <value>apstiprinājusi tā pati persona (četru acu izņēmums)</value>
