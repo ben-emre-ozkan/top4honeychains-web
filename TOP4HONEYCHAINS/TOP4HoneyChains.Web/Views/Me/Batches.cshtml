@@ -1,0 +1,24 @@
+@model List<TOP4HoneyChains.Web.Services.OrgModel.BeekeeperPortalService.BatchRow>
+@{
+    ViewBag.Title = L["Me.Nav.Batches"].Value;
+}
+<h1>@L["Me.Nav.Batches"]</h1>
+<p class="me-sub">@L["Me.BatchesHelp"]</p>
+@foreach (var b in Model)
+{
+    <div class="me-card me-batch">
+        <h3>@b.Batch.FinalHoneyProductionTitle</h3>
+        <dl class="me-kv">
+            <dt>@L["Org.Status"]</dt><dd>@(b.Batch.FinalHoneyProductionIsFinalized ? L["Org.Finalized"] : L["Org.Draft"])</dd>
+            <dt>@L["Me.MyShare"]</dt><dd>@b.MyKg.ToString("0.##") kg · @b.Percent.ToString("0.#") %</dd>
+            @if (b.Batch.FinalHoneyProductionIsFinalized)
+            {
+                <dt>@L["Me.Story"]</dt><dd><a href="/honeystory/@b.Batch.FinalHoneyProductionQR" target="_blank" rel="noopener">@L["Me.OpenStory"]</a></dd>
+            }
+        </dl>
+    </div>
+}
+@if (!Model.Any())
+{
+    <p class="me-muted">@L["Org.None"]</p>
+}

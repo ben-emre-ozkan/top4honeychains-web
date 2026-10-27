@@ -1,0 +1,30 @@
+@model List<TOP4HoneyChains.Web.Services.OrgModel.BeekeeperPortalService.BatchRow>
+@using TOP4HoneyChains.Web.Services.OrgModel
+@{
+    ViewBag.Title = L["Me.Nav.Stories"].Value;
+    var shown = ViewBag.Shown as PublicNameService.PublicName;
+}
+<h1>@L["Me.Nav.Stories"]</h1>
+<div class="me-card" id="me-shown-as">
+    <h3>@L["Me.ShownAs"]</h3>
+    @if (shown?.IsName == true)
+    {
+        <p class="m-0"><strong>@shown.Text</strong> <span class="me-muted">(@L["Me.ShownName"])</span></p>
+    }
+    else
+    {
+        <p class="m-0"><strong>@shown?.Text</strong> <span class="me-muted">(@L["Me.ShownCode"])</span></p>
+    }
+    <a href="/Me/Privacy">@L["Me.Nav.Privacy"]</a>
+</div>
+@foreach (var b in Model)
+{
+    <div class="me-card me-story">
+        <h3>@b.Batch.FinalHoneyProductionTitle</h3>
+        <p class="m-0"><a href="/honeystory/@b.Batch.FinalHoneyProductionQR" target="_blank" rel="noopener">@L["Me.OpenStory"]</a> <span class="me-muted">· @b.MyKg.ToString("0.##") kg</span></p>
+    </div>
+}
+@if (!Model.Any())
+{
+    <p class="me-muted">@L["Me.NoStories"]</p>
+}

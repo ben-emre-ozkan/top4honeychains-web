@@ -1,16 +1,48 @@
 @model TOP4HoneyChains.Web.Models.Entities.Beekeeper
+@using TOP4HoneyChains.Web.Services.OrgModel
 @{
     ViewBag.Title = L["Me.Title"].Value;
-    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+    var deliveries = ViewBag.Deliveries as List<BeekeeperPortalService.Delivery> ?? new();
+    var last = deliveries.FirstOrDefault();
+    var report = ViewBag.LastReport as BeekeeperPortalService.SampleRow;
+    var noPrice = (int)ViewBag.NoPrice;
+    var notices = (int)ViewBag.PendingNotices;
+}
+<h1 id="me-home">@L["Me.Hello", Model.BeekeeperFirstName]</h1>
+<p class="me-sub">@Model.BeekeeperBusinessNumber</p>
+
+@if (noPrice > 0 || notices > 0)
+{
+    <div class="me-card" id="me-open-items">
+        <h3>@L["Me.OpenItems"]</h3>
+        @if (noPrice > 0)
+        {
+            <p class="m-0"><a href="/Me/Deliveries">@string.Format(L["Me.NoPrice"].Value, noPrice)</a></p>
+        }
+        @if (notices > 0)
+        {
+            <p class="m-0"><a href="/Notices/Accept?returnUrl=%2FMe">@L["Me.NoticeToAccept"]</a></p>
+        }
+    </div>
 }
 
-<h1 class="au-title">@L["Me.Hello", Model.BeekeeperFirstName]</h1>
-<p class="au-sub" id="me-coming">@L["Me.Coming"]</p>
-<p class="small text-muted">@Model.BeekeeperBusinessNumber</p>
-<div class="au-form">
-    <a class="b-btn b-btn-ghost" href="/Notices/Accept?returnUrl=%2FMe%2FIndex">@L["Notice.Title"]</a>
-    <a class="b-btn b-btn-ghost" href="/privacy">@L["Notice.PublicTitle"]</a>
-    <form asp-controller="Account" asp-action="Logout" method="post" class="m-0">
-        <button type="submit" class="b-btn b-btn-honey au-submit">@L["Menu.Logout"]</button>
-    </form>
+<div class="me-tiles">
+    <a class="me-tile" href="/Me/Deliveries"><strong>@deliveries.Count</strong>@L["Me.Nav.Deliveries"]</a>
+    <a class="me-tile" href="/Me/Batches"><strong>@ViewBag.BatchCount</strong>@L["Me.InBatches"]</a>
 </div>
+
+@if (last != null)
+{
+    <h2>@L["Me.LastDelivery"]</h2>
+    <div class="me-card">
+        <div class="me-row"><strong>@last.Intake.DeliveryDate.ToString("dd.MM.yyyy")</strong><span>@last.Intake.ReceivingOrg?.DisplayName</span><span>@last.Intake.Quantity.ToString("0.##") kg</span></div>
+    </div>
+}
+@if (report != null)
+{
+    <h2>@L["Me.LastResult"]</h2>
+    <div class="me-card">
+        <div class="me-row"><strong>@report.Sample.SampleCode</strong><span>@report.Sample.LabOrg?.DisplayName</span><span>@report.ApprovedReport!.ApprovedAt?.ToLocalTime().ToString("dd.MM.yyyy")</span></div>
+        <a href="/Me/Samples">@L["Me.Nav.Samples"]</a>
+    </div>
+}

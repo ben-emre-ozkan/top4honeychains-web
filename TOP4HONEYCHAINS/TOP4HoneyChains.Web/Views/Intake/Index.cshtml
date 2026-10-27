@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
     var intakes = ViewBag.Intakes as List<LotIntake> ?? new();
     var denied = ViewBag.Denied as string;
+    var prices = ViewBag.Prices as Dictionary<int, LotPrice>;
 }
 
 <body data-topbar="light" data-layout="horizontal">
@@ -26,7 +27,7 @@
                         }
                     </div>
                     <div class="table-responsive"><table class="table table-sm table-bordered mt-2" id="intakes">
-                        <thead><tr><th>@L["Cust.Lot"]</th><th>@L["Org.Date"]</th><th>@L["Org.Apiary"]</th><th>@L["Org.HoneyType"]</th><th>@L["Org.Amount"]</th><th>@L["Cust.Origin"]</th><th>@L["Ci.Confirmation"]</th><th>SMS</th><th></th></tr></thead>
+                        <thead><tr><th>@L["Cust.Lot"]</th><th>@L["Org.Date"]</th><th>@L["Org.Apiary"]</th><th>@L["Org.HoneyType"]</th><th>@L["Org.Amount"]</th><th>@L["Cust.Origin"]</th><th>@L["Ci.Confirmation"]</th><th>SMS</th>@if (prices != null) { <th>@L["Me.Price"]</th> }<th></th></tr></thead>
                         <tbody>
                             @foreach (var i in intakes)
                             {
@@ -53,6 +54,10 @@
                                         }
                                     </td>
                                     <td>@(i.SmsStatus != null ? L[i.SmsStatus].Value : "–")</td>
+                                    @if (prices != null)
+                                    {
+                                        <td class="lot-price">@(prices.TryGetValue(i.RawHoneyProductionId, out var price) ? TOP4HoneyChains.Web.Services.OrgModel.BeekeeperPortalService.Money(price.PricePerKg, price.Currency) + " / kg" : "–")</td>
+                                    }
                                     <td class="text-nowrap">
                                         @if (i.IsLegacy)
                                         {
@@ -67,7 +72,7 @@
                             }
                             @if (!intakes.Any())
                             {
-                                <tr><td colspan="9" class="text-muted">@L["Org.None"]</td></tr>
+                                <tr><td colspan="@(prices != null ? 10 : 9)" class="text-muted">@L["Org.None"]</td></tr>
                             }
                         </tbody>
                     </table></div>

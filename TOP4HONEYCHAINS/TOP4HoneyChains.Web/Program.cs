@@ -135,6 +135,8 @@ builder.Services.AddScoped<RegistrationService>();
 builder.Services.AddScoped<BeekeeperSignIn>();
 builder.Services.AddScoped<CustodyIntakeService>();
 builder.Services.AddScoped<DeliveryCorrectionService>();
+builder.Services.Configure<PublicNameOptions>(builder.Configuration.GetSection("PublicNames"));
+builder.Services.AddScoped<PublicNameService>();
 builder.Services.Configure<LabOptions>(builder.Configuration.GetSection("Lab"));
 builder.Services.AddScoped<LabCustodyService>();
 builder.Services.AddScoped<AuditWriter>();
@@ -143,11 +145,16 @@ builder.Services.AddScoped<IRegistryVerifier>(sp => sp.GetRequiredService<Manual
 builder.Services.AddScoped<IAuthorizationHandler, PanelUserHandler>();
 builder.Services.AddScoped<IAuthorizationHandler, OrganizationAuthorizationHandler>();
 builder.Services.AddScoped<IAuthorizationHandler, CcpAuthorizationHandler>();
+builder.Services.AddScoped<BeekeeperPortalService>();
+builder.Services.AddScoped<LotPriceReader>();
+builder.Services.AddScoped<IAuthorizationHandler, TOP4HoneyChains.Web.Filters.BeekeeperSelfHandler>();
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy(AuthPolicies.PanelUser, p => p.RequireAuthenticatedUser().AddRequirements(new PanelUserRequirement()));
     options.AddPolicy(AuthPolicies.PlatformAdmin, p => p.RequireRole(CurrentOrg.AdminRole));
     options.AddPolicy(AuthPolicies.SignedIn, p => p.RequireAuthenticatedUser());
+    // D-78 P3: the beekeeper portal
+    options.AddPolicy(AuthPolicies.BeekeeperSelf, p => p.RequireAuthenticatedUser().AddRequirements(new TOP4HoneyChains.Web.Filters.BeekeeperSelfRequirement()));
     // D-47: safety net - an endpoint without an explicit policy or [AllowAnonymous] requires sign-in
     options.FallbackPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
 });
@@ -211,6 +218,8 @@ app.UseRouting();
 }
 app.UseRequestLocalization(localizationOptions);
 app.UseAuthentication();
+// D-78 P3: a beekeeper account reaches only its portal and the public pages (403 elsewhere)
+app.UseMiddleware<TOP4HoneyChains.Web.Filters.BeekeeperBoundaryMiddleware>();
 app.UseAuthorization();
 
 

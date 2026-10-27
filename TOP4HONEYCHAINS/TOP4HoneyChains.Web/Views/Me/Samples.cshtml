@@ -1,0 +1,66 @@
+@model List<TOP4HoneyChains.Web.Services.OrgModel.BeekeeperPortalService.SampleRow>
+@using TOP4HoneyChains.Web.Models.Entities
+@{
+    ViewBag.Title = L["Me.Nav.Samples"].Value;
+}
+<h1>@L["Me.Nav.Samples"]</h1>
+<p class="me-sub">@L["Me.SamplesHelp"]</p>
+@foreach (var row in Model)
+{
+    var s = row.Sample;
+    <div class="me-card me-sample" data-sample="@s.SampleCode">
+        <h3>@s.SampleCode</h3>
+        <dl class="me-kv">
+            @if (s.Kind == SampleKind.Container)
+            {
+                <dt>@L["Ci.Container"]</dt><dd>@s.Container?.ContainerCode</dd>
+            }
+            else if (s.Kind == SampleKind.Composite)
+            {
+                <dt>@L["Ci.Kind"]</dt><dd>@L["Lab.Composite"]</dd>
+            }
+            <dt>@L["Ci.SealShort"]</dt><dd><code>@s.SealNumber</code></dd>
+            <dt>@L["Lab.Laboratory"]</dt><dd>@s.LabOrg?.DisplayName</dd>
+            <dt>@L["Org.Status"]</dt>
+            <dd>
+                <span class="me-badge @(s.Status == SampleStatus.Received ? "me-badge-ok" : s.Status == SampleStatus.Rejected ? "me-badge-bad" : "")">@L["Lab.Status" + s.Status]</span>
+                @if (s.JarCapIntactAtReception == true)
+                {
+                    <span class="me-muted">@L["Lab.CheckCap"]</span>
+                }
+            </dd>
+            <dt>@L["Lab.Report"]</dt><dd>@(row.ApprovedReport == null ? L["Me.ReportPending"] : L["Ccp.Approved"])</dd>
+        </dl>
+        @if (row.Values.Any())
+        {
+            <div class="me-scroll">
+                <table class="me-table me-values">
+                    <tbody>
+                        @foreach (var (p, r) in row.Values)
+                        {
+                            <tr>
+                                <td>@Ref.T("Parameter", p.ParameterId, "Name", p.ParameterName)</td>
+                                <td>@(r.MeasuredNumericValue?.ToString("0.####") ?? r.MeasuredTextValue) @p.ParameterUnit</td>
+                                <td>
+                                    @* D-18: a verdict only where the limit is verified *@
+                                    @if (p.LimitVerified && r.IsInRange == true)
+                                    {
+                                        <span class="me-badge me-badge-ok">@L["Me.WithinLimit"]</span>
+                                    }
+                                    else if (p.LimitVerified && r.IsInRange == false)
+                                    {
+                                        <span class="me-badge me-badge-bad">@L["Out of limit"]</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+}
+@if (!Model.Any())
+{
+    <p class="me-muted">@L["Org.None"]</p>
+}

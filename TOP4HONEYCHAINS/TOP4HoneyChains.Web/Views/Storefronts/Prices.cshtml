@@ -1,0 +1,44 @@
+@model List<TOP4HoneyChains.Web.Controllers.StorefrontsController.PriceRow>
+@using TOP4HoneyChains.Web.Models.Entities
+@using TOP4HoneyChains.Web.Services.OrgModel
+@{
+    ViewData["Title"] = L["Me.Price"];
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var bk = (Beekeeper)ViewBag.Beekeeper;
+}
+@* D-78 P3 (O-6): a member's asking prices, shown to the association with the beekeeper's consent *@
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card" id="association-prices">
+                <div class="card-body">
+                    <h4 class="card-title">@L["Me.Price"] · @bk.BeekeeperFirstName @bk.BeekeeperLastName</h4>
+                    <p class="card-title-desc">@L["Lp.AssociationHelp"]</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered">
+                            <thead><tr><th>@L["Cust.Lot"]</th><th>@L["Org.HoneyType"]</th><th>@L["Org.Amount"]</th><th>@L["Me.Price"]</th><th>@L["Me.PriceHistory"]</th></tr></thead>
+                            <tbody>
+                                @foreach (var r in Model)
+                                {
+                                    var current = r.Prices.First();
+                                    <tr>
+                                        <td>#@r.Lot.RawHoneyProductionId · @r.Lot.RawHoneyProductionDate?.ToString("dd.MM.yyyy")</td>
+                                        <td>@Ref.HoneyType(r.Lot.RawHoneyProductionHoneyType, r.Lot.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle)</td>
+                                        <td>@r.Lot.RawHoneyProductionAmount?.ToString("0.##")</td>
+                                        <td class="lot-price">@BeekeeperPortalService.Money(current.PricePerKg, current.Currency) / kg</td>
+                                        <td class="small">@string.Join(" · ", r.Prices.Skip(1).Select(p => p.EnteredAt.ToLocalTime().ToString("dd.MM.yyyy") + " " + BeekeeperPortalService.Money(p.PricePerKg, p.Currency)))</td>
+                                    </tr>
+                                }
+                                @if (!Model.Any())
+                                {
+                                    <tr><td colspan="5" class="text-muted">@L["Org.None"]</td></tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <a asp-action="Index" class="btn btn-link app-back"><i class="mdi mdi-arrow-left" aria-hidden="true"></i> @L["Org.Back"]</a>
+        </div>
+    </div>
+</body>

@@ -213,6 +213,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 && Perm.Allows(PermissionAreas.Samples, PermissionAreas.Enter, m.OrgRole);
             ViewBag.IsRecorder = intake.ReceivedByUserId == _current.UserId;
             await CorrectionsViewAsync(intake);
+            ViewBag.PriceHistory = await HttpContext.RequestServices.GetRequiredService<LotPriceReader>().HistoryAsync(intake.RawHoneyProductionId);
             ViewBag.Controller = "Intake";
             ViewBag.Action = "Details";
             return View(intake);

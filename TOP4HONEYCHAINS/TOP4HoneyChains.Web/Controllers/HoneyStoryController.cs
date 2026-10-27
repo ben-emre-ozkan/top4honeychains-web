@@ -215,6 +215,10 @@ namespace TOP4HoneyChains.Web.Controllers
                 .ToListAsync();
 
 
+            // D-78 P3 (C5, O-8): the name only with the beekeeper's consent, otherwise the neutral code
+            var publicNames = await HttpContext.RequestServices.GetRequiredService<Services.OrgModel.PublicNameService>()
+                .NamesAsync(details.Select(d => d.Raw?.RawHoneyProductionApiary?.ApiaryBeekeeperId).OfType<string>());
+
             // 4) VM doldur
             foreach (var d in details)
             {
@@ -229,7 +233,7 @@ namespace TOP4HoneyChains.Web.Controllers
                     RawHoneyProductionId = d.RawHoneyProductionId,
                     ApiaryId = raw.RawHoneyProductionApiaryId,
                     ApiaryName = apiary?.ApiaryTitle,
-                    BeekeeperName = (beekeeper?.BeekeeperFirstName + " " + beekeeper?.BeekeeperLastName)?.Trim(),
+                    BeekeeperName = beekeeper?.BeekeeperId is string bkId && publicNames.TryGetValue(bkId, out var shown) ? shown.Text : null,
                     HoneyType = raw.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle,
                     UsedAmount = d.UsedAmount,
                     HarvestedOn = raw.RawHoneyProductionDate,
@@ -404,6 +408,10 @@ namespace TOP4HoneyChains.Web.Controllers
                 })
                 .ToListAsync();
 
+            // D-78 P3 (C5, O-8): the name only with the beekeeper's consent, otherwise the neutral code
+            var publicNames = await HttpContext.RequestServices.GetRequiredService<Services.OrgModel.PublicNameService>()
+                .NamesAsync(details.Select(d => d.Raw?.RawHoneyProductionApiary?.ApiaryBeekeeperId).OfType<string>());
+
             // 4) VM doldur
             foreach (var d in details)
             {
@@ -418,7 +426,7 @@ namespace TOP4HoneyChains.Web.Controllers
                     RawHoneyProductionId = d.RawHoneyProductionId,
                     ApiaryId = raw.RawHoneyProductionApiaryId,
                     ApiaryName = apiary?.ApiaryTitle,
-                    BeekeeperName = (beekeeper?.BeekeeperFirstName + " " + beekeeper?.BeekeeperLastName)?.Trim(),
+                    BeekeeperName = beekeeper?.BeekeeperId is string bkId && publicNames.TryGetValue(bkId, out var shown) ? shown.Text : null,
                     HoneyType = raw.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle,
                     UsedAmount = d.UsedAmount
                 };

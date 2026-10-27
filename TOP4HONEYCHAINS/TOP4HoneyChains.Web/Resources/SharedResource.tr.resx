@@ -8277,4 +8277,274 @@
   <data name="Lab.LotValue" xml:space="preserve">
     <value>Lot (KKN 1)</value>
   </data>
+  <data name="Me.Nav.Home" xml:space="preserve">
+    <value>Ana sayfa</value>
+  </data>
+  <data name="Me.Nav.Deliveries" xml:space="preserve">
+    <value>Teslimatlarım</value>
+  </data>
+  <data name="Me.Nav.Samples" xml:space="preserve">
+    <value>Numuneler ve laboratuvar</value>
+  </data>
+  <data name="Me.Nav.Batches" xml:space="preserve">
+    <value>Balımın olduğu partiler</value>
+  </data>
+  <data name="Me.Nav.Stories" xml:space="preserve">
+    <value>Bal Hikâyesi sayfalarım</value>
+  </data>
+  <data name="Me.Nav.Apiaries" xml:space="preserve">
+    <value>Arılıklarım</value>
+  </data>
+  <data name="Me.Nav.Privacy" xml:space="preserve">
+    <value>Gizlilik ve onaylar</value>
+  </data>
+  <data name="Me.Nav.Account" xml:space="preserve">
+    <value>Hesap</value>
+  </data>
+  <data name="Me.OpenItems" xml:space="preserve">
+    <value>Yapılacaklar</value>
+  </data>
+  <data name="Me.NoPrice" xml:space="preserve">
+    <value>Fiyat girilmemiş {0} teslimat</value>
+  </data>
+  <data name="Me.NoticeToAccept" xml:space="preserve">
+    <value>Okunup onaylanacak bir aydınlatma metni</value>
+  </data>
+  <data name="Me.InBatches" xml:space="preserve">
+    <value>balımın olduğu parti</value>
+  </data>
+  <data name="Me.LastDelivery" xml:space="preserve">
+    <value>Son teslimat</value>
+  </data>
+  <data name="Me.LastResult" xml:space="preserve">
+    <value>Son laboratuvar sonucu</value>
+  </data>
+  <data name="Me.ApiariesHelp" xml:space="preserve">
+    <value>Arılıklarınızın tam konumunu yalnızca siz görürsünüz.</value>
+  </data>
+  <data name="Me.Province" xml:space="preserve">
+    <value>İl</value>
+  </data>
+  <data name="Me.District" xml:space="preserve">
+    <value>İlçe</value>
+  </data>
+  <data name="Me.Hives" xml:space="preserve">
+    <value>Kovan</value>
+  </data>
+  <data name="Me.Pin" xml:space="preserve">
+    <value>Konum</value>
+  </data>
+  <data name="Me.DeliveriesHelp" xml:space="preserve">
+    <value>Teslimatlarınız, işletmelerin kaydettiği şekilde kapları ve mühürleriyle. Kilogram başına istediğiniz fiyatı girin; lot sonlandırılmış bir partiye girene kadar değiştirebilirsiniz.</value>
+  </data>
+  <data name="Me.Corrected" xml:space="preserve">
+    <value>platform tarafından düzeltildi</value>
+  </data>
+  <data name="Me.Price" xml:space="preserve">
+    <value>İstenen fiyat</value>
+  </data>
+  <data name="Me.Total" xml:space="preserve">
+    <value>toplam</value>
+  </data>
+  <data name="Me.NoPriceYet" xml:space="preserve">
+    <value>Henüz fiyat girilmedi.</value>
+  </data>
+  <data name="Me.PricePerKg" xml:space="preserve">
+    <value>Kilogram fiyatı</value>
+  </data>
+  <data name="Me.Currency" xml:space="preserve">
+    <value>Para birimi</value>
+  </data>
+  <data name="Me.Note" xml:space="preserve">
+    <value>Not (isteğe bağlı)</value>
+  </data>
+  <data name="Me.EnterPrice" xml:space="preserve">
+    <value>Fiyat gir</value>
+  </data>
+  <data name="Me.ChangePrice" xml:space="preserve">
+    <value>Fiyatı değiştir</value>
+  </data>
+  <data name="Me.PriceHistory" xml:space="preserve">
+    <value>Fiyat geçmişi</value>
+  </data>
+  <data name="Me.ConfirmTotal" xml:space="preserve">
+    <value>Bu fiyat kaydedilsin mi? Teslimatın toplamı: {0}</value>
+  </data>
+  <data name="Me.SamplesHelp" xml:space="preserve">
+    <value>Teslimatlarınızın tüm numune kavanozları. Laboratuvar değerleri, laboratuvar raporunu onayladığında görünür; yalnızca limiti doğrulanmış değerlerde sonuç gösterilir.</value>
+  </data>
+  <data name="Me.ReportPending" xml:space="preserve">
+    <value>devam ediyor</value>
+  </data>
+  <data name="Me.WithinLimit" xml:space="preserve">
+    <value>limit içinde</value>
+  </data>
+  <data name="Me.BatchesHelp" xml:space="preserve">
+    <value>Balınızı içeren partiler ve bunlardaki payınız. Diğer arıcıların adı gösterilmez.</value>
+  </data>
+  <data name="Me.MyShare" xml:space="preserve">
+    <value>Payım</value>
+  </data>
+  <data name="Me.Story" xml:space="preserve">
+    <value>Bal Hikâyesi</value>
+  </data>
+  <data name="Me.OpenStory" xml:space="preserve">
+    <value>Herkese açık sayfayı aç</value>
+  </data>
+  <data name="Me.ShownAs" xml:space="preserve">
+    <value>Herkese açık sayfalarda görünen adınız</value>
+  </data>
+  <data name="Me.ShownName" xml:space="preserve">
+    <value>onayınızla adınız</value>
+  </data>
+  <data name="Me.ShownCode" xml:space="preserve">
+    <value>nötr bir kod, adınız gösterilmez</value>
+  </data>
+  <data name="Me.NoStories" xml:space="preserve">
+    <value>Henüz balınızı içeren sonlandırılmış parti yok.</value>
+  </data>
+  <data name="Me.Consents" xml:space="preserve">
+    <value>Onaylarınız</value>
+  </data>
+  <data name="Me.ConsentsHelp" xml:space="preserve">
+    <value>Her onay isteğe bağlıdır. Geri çekme hemen geçerli olur.</value>
+  </data>
+  <data name="Me.Consent.PublicName" xml:space="preserve">
+    <value>Herkese açık sayfalarda adım</value>
+  </data>
+  <data name="Me.Consent.PortalNotifications" xml:space="preserve">
+    <value>Teslimatlarım ve sonuçlarım hakkında mesajlar</value>
+  </data>
+  <data name="Me.Consent.AssociationPrice" xml:space="preserve">
+    <value>Birliğim fiyatlarımı görebilir</value>
+  </data>
+  <data name="Me.Consent.Storefront" xml:space="preserve">
+    <value>Herkese açık arıcı sayfam</value>
+  </data>
+  <data name="Me.ConsentHelp.PublicName" xml:space="preserve">
+    <value>Onay yoksa Bal Hikâyesi adınız yerine nötr bir kod gösterir.</value>
+  </data>
+  <data name="Me.ConsentHelp.PortalNotifications" xml:space="preserve">
+    <value>Onay kodları dışındaki bilgilendirme mesajları.</value>
+  </data>
+  <data name="Me.ConsentHelp.AssociationPrice" xml:space="preserve">
+    <value>Arıcılar birliğiniz girdiğiniz fiyatları görebilir.</value>
+  </data>
+  <data name="Me.ConsentHelp.Storefront" xml:space="preserve">
+    <value>Birliğiniz aracılığıyla verildi; buradan geri çekebilirsiniz.</value>
+  </data>
+  <data name="Me.Given" xml:space="preserve">
+    <value>verildi</value>
+  </data>
+  <data name="Me.NotGiven" xml:space="preserve">
+    <value>verilmedi</value>
+  </data>
+  <data name="Me.Give" xml:space="preserve">
+    <value>Onay ver</value>
+  </data>
+  <data name="Me.Withdraw" xml:space="preserve">
+    <value>Geri çek</value>
+  </data>
+  <data name="Me.AcceptedNotices" xml:space="preserve">
+    <value>Onayladığınız aydınlatma metinleri</value>
+  </data>
+  <data name="Me.Controllers" xml:space="preserve">
+    <value>Verilerinizi kimler tutuyor</value>
+  </data>
+  <data name="Me.ControllersHelp" xml:space="preserve">
+    <value>Kişisel verileriniz için bu veri sorumlularıyla iletişime geçin.</value>
+  </data>
+  <data name="Me.Why.Platform" xml:space="preserve">
+    <value>platform</value>
+  </data>
+  <data name="Me.Why.Registration" xml:space="preserve">
+    <value>sizi kaydetti</value>
+  </data>
+  <data name="Me.Why.Association" xml:space="preserve">
+    <value>birliğiniz</value>
+  </data>
+  <data name="Me.Why.Deliveries" xml:space="preserve">
+    <value>teslimatlarınızı aldı</value>
+  </data>
+  <data name="Me.Phone" xml:space="preserve">
+    <value>Cep telefonu</value>
+  </data>
+  <data name="Me.NewPhone" xml:space="preserve">
+    <value>Yeni numara</value>
+  </data>
+  <data name="Me.SendCode" xml:space="preserve">
+    <value>Kod gönder</value>
+  </data>
+  <data name="Me.CodeTo" xml:space="preserve">
+    <value>Kodun gönderildiği numara</value>
+  </data>
+  <data name="Me.Verify" xml:space="preserve">
+    <value>Doğrula</value>
+  </data>
+  <data name="Me.Language" xml:space="preserve">
+    <value>Dil</value>
+  </data>
+  <data name="Me.Save" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="Me.Password" xml:space="preserve">
+    <value>Şifre</value>
+  </data>
+  <data name="Me.CurrentPassword" xml:space="preserve">
+    <value>Mevcut şifre</value>
+  </data>
+  <data name="Me.NewPassword" xml:space="preserve">
+    <value>Yeni şifre</value>
+  </data>
+  <data name="Me.ConfirmPassword" xml:space="preserve">
+    <value>Yeni şifre (tekrar)</value>
+  </data>
+  <data name="Me.ChangePassword" xml:space="preserve">
+    <value>Şifreyi değiştir</value>
+  </data>
+  <data name="Lp.Help" xml:space="preserve">
+    <value>Arıcının kilogram başına istediği fiyat ve geçmişi. Diğer rollere, sonraki sahiplere veya herkese açık sayfalara gösterilmez.</value>
+  </data>
+  <data name="Lp.AssociationHelp" xml:space="preserve">
+    <value>Üye, birliğin bu fiyatları görmesine onay verdi; onay her zaman geri çekilebilir.</value>
+  </data>
+  <data name="Price saved." xml:space="preserve">
+    <value>Fiyat kaydedildi.</value>
+  </data>
+  <data name="Consent given." xml:space="preserve">
+    <value>Onay verildi.</value>
+  </data>
+  <data name="Consent withdrawn; it takes effect at once." xml:space="preserve">
+    <value>Onay geri çekildi; hemen geçerli olur.</value>
+  </data>
+  <data name="There is no such consent to withdraw." xml:space="preserve">
+    <value>Geri çekilecek böyle bir onay yok.</value>
+  </data>
+  <data name="This consent cannot be given here." xml:space="preserve">
+    <value>Bu onay burada verilemez.</value>
+  </data>
+  <data name="The new passwords do not match." xml:space="preserve">
+    <value>Yeni şifreler aynı değil.</value>
+  </data>
+  <data name="The lot is in a finalized batch; its price is locked." xml:space="preserve">
+    <value>Lot sonlandırılmış bir partide; fiyatı kilitli.</value>
+  </data>
+  <data name="The delivery is not confirmed yet; the price can be entered once it is." xml:space="preserve">
+    <value>Teslimat henüz onaylanmadı; onaylandığında fiyat girilebilir.</value>
+  </data>
+  <data name="Enter the price per kg (more than 0, at most two decimals)." xml:space="preserve">
+    <value>Kilogram fiyatını girin (0'dan büyük, en fazla iki ondalık).</value>
+  </data>
+  <data name="Choose a currency." xml:space="preserve">
+    <value>Bir para birimi seçin.</value>
+  </data>
+  <data name="The note can be at most 200 characters." xml:space="preserve">
+    <value>Not en fazla 200 karakter olabilir.</value>
+  </data>
+  <data name="Area.Price" xml:space="preserve">
+    <value>Arıcıların istediği fiyatlar</value>
+  </data>
+  <data name="Area.OrgAudit" xml:space="preserve">
+    <value>Kuruluşun denetim kayıtları</value>
+  </data>
 </root>

@@ -37,6 +37,9 @@ namespace TOP4HoneyChains.Web.Models.Entities
         // D-78 (migration 018): register beekeepers; accept or reject fallback evidence (signed photo)
         public const string Registration = "Registration";
         public const string Evidence = "Evidence";
+        // D-78 P3 (migration 025): read the beekeepers' asking prices of owned lots; read the organization's audit entries
+        public const string Price = "Price";
+        public const string OrgAudit = "OrgAudit";
 
         public const string Enter = "Enter";
         public const string Approve = "Approve";
@@ -53,7 +56,9 @@ namespace TOP4HoneyChains.Web.Models.Entities
             (Recall, new[] { Read }),
             (Finalize, new[] { Enter, Approve }),
             (Registration, new[] { Enter, Read }),
-            (Evidence, new[] { Approve })
+            (Evidence, new[] { Approve }),
+            (Price, new[] { Read }),
+            (OrgAudit, new[] { Read })
         };
     }
 }

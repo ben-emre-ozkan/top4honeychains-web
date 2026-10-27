@@ -13,6 +13,8 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         public const string PlatformAdmin = "PlatformAdmin";
         // Any signed-in user (own profile, sign-out)
         public const string SignedIn = "SignedIn";
+        // D-78 P3 (D78-SPEC 2.4): an active beekeeper account (the portal /Me)
+        public const string BeekeeperSelf = "BeekeeperSelf";
     }
 
     public class PanelUserRequirement : IAuthorizationRequirement { }

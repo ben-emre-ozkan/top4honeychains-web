@@ -139,6 +139,21 @@
                     }
                 </div>
             </div>
+            @if (ViewBag.PriceHistory is List<LotPrice> priceHistory && priceHistory.Count > 0)
+            {
+                <div class="card" id="lot-prices">
+                    <div class="card-body">
+                        <h5 class="card-title">@L["Me.Price"]</h5>
+                        <p class="card-title-desc">@L["Lp.Help"]</p>
+                        <ul class="mb-0">
+                            @foreach (var p in priceHistory)
+                            {
+                                <li>@p.EnteredAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm") · <strong>@TOP4HoneyChains.Web.Services.OrgModel.BeekeeperPortalService.Money(p.PricePerKg, p.Currency) / kg</strong> @(p.Note == null ? "" : "· " + p.Note)</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            }
             <partial name="_Corrections" model="Model" />
             <a asp-action="Index" class="btn btn-link app-back"><i class="mdi mdi-arrow-left" aria-hidden="true"></i> @L["Org.Back"]</a>
         </div>

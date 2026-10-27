@@ -8277,4 +8277,274 @@
   <data name="Lab.LotValue" xml:space="preserve">
     <value>Partija (KKP 1)</value>
   </data>
+  <data name="Me.Nav.Home" xml:space="preserve">
+    <value>Sākums</value>
+  </data>
+  <data name="Me.Nav.Deliveries" xml:space="preserve">
+    <value>Manas piegādes</value>
+  </data>
+  <data name="Me.Nav.Samples" xml:space="preserve">
+    <value>Paraugi un laboratorija</value>
+  </data>
+  <data name="Me.Nav.Batches" xml:space="preserve">
+    <value>Partijas ar manu medu</value>
+  </data>
+  <data name="Me.Nav.Stories" xml:space="preserve">
+    <value>Manas Honey Story lapas</value>
+  </data>
+  <data name="Me.Nav.Apiaries" xml:space="preserve">
+    <value>Manas dravas</value>
+  </data>
+  <data name="Me.Nav.Privacy" xml:space="preserve">
+    <value>Privātums un piekrišanas</value>
+  </data>
+  <data name="Me.Nav.Account" xml:space="preserve">
+    <value>Konts</value>
+  </data>
+  <data name="Me.OpenItems" xml:space="preserve">
+    <value>Darāmais</value>
+  </data>
+  <data name="Me.NoPrice" xml:space="preserve">
+    <value>Piegādes bez jūsu cenas: {0}</value>
+  </data>
+  <data name="Me.NoticeToAccept" xml:space="preserve">
+    <value>Privātuma paziņojums, kas jāizlasa un jāapstiprina</value>
+  </data>
+  <data name="Me.InBatches" xml:space="preserve">
+    <value>partijas ar manu medu</value>
+  </data>
+  <data name="Me.LastDelivery" xml:space="preserve">
+    <value>Pēdējā piegāde</value>
+  </data>
+  <data name="Me.LastResult" xml:space="preserve">
+    <value>Pēdējais laboratorijas rezultāts</value>
+  </data>
+  <data name="Me.ApiariesHelp" xml:space="preserve">
+    <value>Tikai jūs redzat precīzu savu dravu atrašanās vietu.</value>
+  </data>
+  <data name="Me.Province" xml:space="preserve">
+    <value>Province</value>
+  </data>
+  <data name="Me.District" xml:space="preserve">
+    <value>Novads</value>
+  </data>
+  <data name="Me.Hives" xml:space="preserve">
+    <value>Stropi</value>
+  </data>
+  <data name="Me.Pin" xml:space="preserve">
+    <value>Atrašanās vieta</value>
+  </data>
+  <data name="Me.DeliveriesHelp" xml:space="preserve">
+    <value>Jūsu piegādes, kā tās reģistrēja uzņēmumi, ar tvertnēm un plombām. Norādiet savu cenu par kg; to var mainīt, līdz partija ir pabeigtā gatavās produkcijas partijā.</value>
+  </data>
+  <data name="Me.Corrected" xml:space="preserve">
+    <value>platformas izlabota</value>
+  </data>
+  <data name="Me.Price" xml:space="preserve">
+    <value>Prasītā cena</value>
+  </data>
+  <data name="Me.Total" xml:space="preserve">
+    <value>kopā</value>
+  </data>
+  <data name="Me.NoPriceYet" xml:space="preserve">
+    <value>Cena vēl nav norādīta.</value>
+  </data>
+  <data name="Me.PricePerKg" xml:space="preserve">
+    <value>Cena par kg</value>
+  </data>
+  <data name="Me.Currency" xml:space="preserve">
+    <value>Valūta</value>
+  </data>
+  <data name="Me.Note" xml:space="preserve">
+    <value>Piezīme (nav obligāta)</value>
+  </data>
+  <data name="Me.EnterPrice" xml:space="preserve">
+    <value>Norādīt cenu</value>
+  </data>
+  <data name="Me.ChangePrice" xml:space="preserve">
+    <value>Mainīt cenu</value>
+  </data>
+  <data name="Me.PriceHistory" xml:space="preserve">
+    <value>Cenu vēsture</value>
+  </data>
+  <data name="Me.ConfirmTotal" xml:space="preserve">
+    <value>Saglabāt šo cenu? Kopā par piegādi: {0}</value>
+  </data>
+  <data name="Me.SamplesHelp" xml:space="preserve">
+    <value>Visas jūsu piegāžu paraugu burkas. Vērtības parādās, kad laboratorija apstiprina pārskatu; vērtējums tikai tur, kur robeža ir pārbaudīta.</value>
+  </data>
+  <data name="Me.ReportPending" xml:space="preserve">
+    <value>procesā</value>
+  </data>
+  <data name="Me.WithinLimit" xml:space="preserve">
+    <value>robežās</value>
+  </data>
+  <data name="Me.BatchesHelp" xml:space="preserve">
+    <value>Partijas, kurās ir jūsu medus, un jūsu daļa tajās. Citi biškopji netiek nosaukti.</value>
+  </data>
+  <data name="Me.MyShare" xml:space="preserve">
+    <value>Mana daļa</value>
+  </data>
+  <data name="Me.Story" xml:space="preserve">
+    <value>Honey Story</value>
+  </data>
+  <data name="Me.OpenStory" xml:space="preserve">
+    <value>Atvērt publisko lapu</value>
+  </data>
+  <data name="Me.ShownAs" xml:space="preserve">
+    <value>Publiskajās lapās jūs redzami kā</value>
+  </data>
+  <data name="Me.ShownName" xml:space="preserve">
+    <value>jūsu vārds, ar jūsu piekrišanu</value>
+  </data>
+  <data name="Me.ShownCode" xml:space="preserve">
+    <value>neitrāls kods, jūsu vārds netiek rādīts</value>
+  </data>
+  <data name="Me.NoStories" xml:space="preserve">
+    <value>Vēl nav pabeigtas partijas ar jūsu medu.</value>
+  </data>
+  <data name="Me.Consents" xml:space="preserve">
+    <value>Jūsu piekrišanas</value>
+  </data>
+  <data name="Me.ConsentsHelp" xml:space="preserve">
+    <value>Katra piekrišana nav obligāta. Atsaukums stājas spēkā uzreiz.</value>
+  </data>
+  <data name="Me.Consent.PublicName" xml:space="preserve">
+    <value>Mans vārds publiskajās lapās</value>
+  </data>
+  <data name="Me.Consent.PortalNotifications" xml:space="preserve">
+    <value>Ziņas par manām piegādēm un rezultātiem</value>
+  </data>
+  <data name="Me.Consent.AssociationPrice" xml:space="preserve">
+    <value>Mana biedrība drīkst redzēt manas cenas</value>
+  </data>
+  <data name="Me.Consent.Storefront" xml:space="preserve">
+    <value>Mana publiskā biškopja lapa</value>
+  </data>
+  <data name="Me.ConsentHelp.PublicName" xml:space="preserve">
+    <value>Bez tās Honey Story jūsu vārda vietā rāda neitrālu kodu.</value>
+  </data>
+  <data name="Me.ConsentHelp.PortalNotifications" xml:space="preserve">
+    <value>Informatīvas ziņas papildus apstiprinājuma kodiem.</value>
+  </data>
+  <data name="Me.ConsentHelp.AssociationPrice" xml:space="preserve">
+    <value>Jūsu biškopju biedrība drīkst lasīt jūsu norādītās cenas.</value>
+  </data>
+  <data name="Me.ConsentHelp.Storefront" xml:space="preserve">
+    <value>Dota ar biedrības starpniecību; to var atsaukt šeit.</value>
+  </data>
+  <data name="Me.Given" xml:space="preserve">
+    <value>dota</value>
+  </data>
+  <data name="Me.NotGiven" xml:space="preserve">
+    <value>nav dota</value>
+  </data>
+  <data name="Me.Give" xml:space="preserve">
+    <value>Dot</value>
+  </data>
+  <data name="Me.Withdraw" xml:space="preserve">
+    <value>Atsaukt</value>
+  </data>
+  <data name="Me.AcceptedNotices" xml:space="preserve">
+    <value>Apstiprinātie privātuma paziņojumi</value>
+  </data>
+  <data name="Me.Controllers" xml:space="preserve">
+    <value>Kam ir jūsu dati</value>
+  </data>
+  <data name="Me.ControllersHelp" xml:space="preserve">
+    <value>Par saviem personas datiem sazinieties ar šiem pārziņiem.</value>
+  </data>
+  <data name="Me.Why.Platform" xml:space="preserve">
+    <value>platforma</value>
+  </data>
+  <data name="Me.Why.Registration" xml:space="preserve">
+    <value>jūs reģistrēja</value>
+  </data>
+  <data name="Me.Why.Association" xml:space="preserve">
+    <value>jūsu biedrība</value>
+  </data>
+  <data name="Me.Why.Deliveries" xml:space="preserve">
+    <value>saņēma jūsu piegādes</value>
+  </data>
+  <data name="Me.Phone" xml:space="preserve">
+    <value>Mobilais tālrunis</value>
+  </data>
+  <data name="Me.NewPhone" xml:space="preserve">
+    <value>Jauns numurs</value>
+  </data>
+  <data name="Me.SendCode" xml:space="preserve">
+    <value>Nosūtīt kodu</value>
+  </data>
+  <data name="Me.CodeTo" xml:space="preserve">
+    <value>Kods nosūtīts uz</value>
+  </data>
+  <data name="Me.Verify" xml:space="preserve">
+    <value>Pārbaudīt</value>
+  </data>
+  <data name="Me.Language" xml:space="preserve">
+    <value>Valoda</value>
+  </data>
+  <data name="Me.Save" xml:space="preserve">
+    <value>Saglabāt</value>
+  </data>
+  <data name="Me.Password" xml:space="preserve">
+    <value>Parole</value>
+  </data>
+  <data name="Me.CurrentPassword" xml:space="preserve">
+    <value>Pašreizējā parole</value>
+  </data>
+  <data name="Me.NewPassword" xml:space="preserve">
+    <value>Jaunā parole</value>
+  </data>
+  <data name="Me.ConfirmPassword" xml:space="preserve">
+    <value>Jaunā parole vēlreiz</value>
+  </data>
+  <data name="Me.ChangePassword" xml:space="preserve">
+    <value>Mainīt paroli</value>
+  </data>
+  <data name="Lp.Help" xml:space="preserve">
+    <value>Biškopja prasītā cena par kg un tās vēsture. Netiek rādīta citām lomām, vēlākiem turētājiem un publiskajās lapās.</value>
+  </data>
+  <data name="Lp.AssociationHelp" xml:space="preserve">
+    <value>Biedrs piekrita, ka biedrība drīkst lasīt šīs cenas; piekrišanu var atsaukt jebkurā laikā.</value>
+  </data>
+  <data name="Price saved." xml:space="preserve">
+    <value>Cena saglabāta.</value>
+  </data>
+  <data name="Consent given." xml:space="preserve">
+    <value>Piekrišana dota.</value>
+  </data>
+  <data name="Consent withdrawn; it takes effect at once." xml:space="preserve">
+    <value>Piekrišana atsaukta; tas stājas spēkā uzreiz.</value>
+  </data>
+  <data name="There is no such consent to withdraw." xml:space="preserve">
+    <value>Nav tādas piekrišanas, ko atsaukt.</value>
+  </data>
+  <data name="This consent cannot be given here." xml:space="preserve">
+    <value>Šo piekrišanu šeit nevar dot.</value>
+  </data>
+  <data name="The new passwords do not match." xml:space="preserve">
+    <value>Jaunās paroles nesakrīt.</value>
+  </data>
+  <data name="The lot is in a finalized batch; its price is locked." xml:space="preserve">
+    <value>Partija ir pabeigtā gatavās produkcijas partijā; tās cena ir bloķēta.</value>
+  </data>
+  <data name="The delivery is not confirmed yet; the price can be entered once it is." xml:space="preserve">
+    <value>Piegāde vēl nav apstiprināta; cenu var norādīt pēc apstiprināšanas.</value>
+  </data>
+  <data name="Enter the price per kg (more than 0, at most two decimals)." xml:space="preserve">
+    <value>Ievadiet cenu par kg (vairāk par 0, ne vairāk kā divas zīmes aiz komata).</value>
+  </data>
+  <data name="Choose a currency." xml:space="preserve">
+    <value>Izvēlieties valūtu.</value>
+  </data>
+  <data name="The note can be at most 200 characters." xml:space="preserve">
+    <value>Piezīmē var būt ne vairāk kā 200 rakstzīmes.</value>
+  </data>
+  <data name="Area.Price" xml:space="preserve">
+    <value>Biškopju prasītās cenas</value>
+  </data>
+  <data name="Area.OrgAudit" xml:space="preserve">
+    <value>Organizācijas audita ieraksti</value>
+  </data>
 </root>

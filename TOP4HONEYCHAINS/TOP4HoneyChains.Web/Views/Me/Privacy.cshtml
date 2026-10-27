@@ -1,0 +1,72 @@
+@model TOP4HoneyChains.Web.Models.Entities.Beekeeper
+@using TOP4HoneyChains.Web.Models.Entities
+@using TOP4HoneyChains.Web.Services.OrgModel
+@{
+    ViewBag.Title = L["Me.Nav.Privacy"].Value;
+    var consents = ViewBag.Consents as List<BeekeeperPortalService.ConsentRow> ?? new();
+    var notices = ViewBag.Notices as List<NoticeAcceptance> ?? new();
+    var controllers = ViewBag.Controllers as List<BeekeeperPortalService.Controller> ?? new();
+    var shown = ViewBag.Shown as PublicNameService.PublicName;
+}
+<h1>@L["Me.Nav.Privacy"]</h1>
+
+<h2>@L["Me.Consents"]</h2>
+<p class="me-sub">@L["Me.ConsentsHelp"]</p>
+@foreach (var c in consents)
+{
+    <div class="me-card me-consent" data-purpose="@c.Purpose" data-active="@(c.Active != null ? "true" : "false")">
+        <h3>@L["Me.Consent." + c.Purpose]</h3>
+        <p class="me-muted m-0">@L["Me.ConsentHelp." + c.Purpose]</p>
+        @if (c.Active != null)
+        {
+            <p class="m-0"><span class="me-badge me-badge-ok">@L["Me.Given"]</span> <span class="me-muted">@c.Active.GivenOn.ToString("dd.MM.yyyy")</span></p>
+        }
+        else
+        {
+            <p class="m-0"><span class="me-badge">@L["Me.NotGiven"]</span></p>
+        }
+        <form asp-action="Consent" method="post" class="me-form">
+            <input type="hidden" name="purpose" value="@c.Purpose" />
+            @if (c.MayWithdraw)
+            {
+                <button type="submit" name="give" value="false" class="b-btn b-btn-ghost consent-withdraw">@L["Me.Withdraw"]</button>
+            }
+            else if (c.MayGive)
+            {
+                <button type="submit" name="give" value="true" class="b-btn b-btn-honey consent-give">@L["Me.Give"]</button>
+            }
+        </form>
+    </div>
+}
+<p class="me-muted">@L["Me.ShownAs"]: <strong id="me-public-name">@shown?.Text</strong></p>
+
+<h2>@L["Me.AcceptedNotices"]</h2>
+@foreach (var n in notices)
+{
+    <div class="me-card me-notice">
+        <div class="me-row"><strong>@L["Notice.Title"]</strong><span>@n.Notice?.Version</span><span class="me-muted">@n.At.ToLocalTime().ToString("dd.MM.yyyy")</span></div>
+    </div>
+}
+@if (!notices.Any())
+{
+    <p class="me-muted">@L["Org.None"]</p>
+}
+<p><a href="/privacy">@L["Notice.PublicTitle"]</a></p>
+
+<h2>@L["Me.Controllers"]</h2>
+<p class="me-sub">@L["Me.ControllersHelp"]</p>
+@foreach (var c in controllers)
+{
+    <div class="me-card me-controller">
+        <h3>@c.Name</h3>
+        <p class="me-muted m-0">@L[c.Why]</p>
+        @if (c.Address != null)
+        {
+            <p class="m-0">@c.Address</p>
+        }
+        @if (c.Contact != null)
+        {
+            <p class="m-0">@c.Contact</p>
+        }
+    </div>
+}
