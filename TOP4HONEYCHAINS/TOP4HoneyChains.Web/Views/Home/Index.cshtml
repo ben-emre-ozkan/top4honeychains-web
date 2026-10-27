@@ -36,13 +36,6 @@
         (Title: L["Land.Who.Retailers.Title"].Value, Text: L["Land.Who.Retailers.Text"].Value, Icon: "shelf"),
         (Title: L["Land.Who.Consumers.Title"].Value, Text: L["Land.Who.Consumers.Text"].Value, Icon: "qr")
     };
-    var partners = new[]
-    {
-        ("Boğaziçi University", L["Türkiye"].Value), ("Işık University", L["Türkiye"].Value), ("Apiculture Research Institute", L["Türkiye"].Value),
-        ("Instituto Nacional de Tecnología Agropecuaria (INTA)", L["Argentina"].Value), ("NEXCO S.A", L["Argentina"].Value),
-        ("CNORTEGRANDE Cooperative", L["Argentina"].Value), ("Alimentos Naturales Natural Foods S.A.", L["Argentina"].Value),
-        ("University of Economics in Katowice", L["Poland"].Value), ("Latvia University of Life Sciences and Technologies", L["Latvia"].Value)
-    };
     var heroLines = new[] { L["Land.Hero.Line1"].Value, L["Land.Hero.Line2"].Value, L["Land.Hero.Line3"].Value, L["Land.Hero.Line4"].Value, L["Land.Hero.Line5"].Value };
     var heroSpots = new[] { (11.0, 77.0), (30.5, 22.0), (50.0, 77.0), (69.5, 22.0), (89.0, 77.0) };   // medallion centres (% of the chain area) on wide screens; written in invariant culture (a comma would break the CSS)
     var currentName = languages.First(l => l.Item1 == lang).Item2;
@@ -353,7 +346,7 @@
         <div class="ld-divider" aria-hidden="true"></div>
     </main>
 
-    @* 6. footer: language switch, partners (logos from wwwroot/img/partners when added), contact *@
+    @* 6. footer: contact, language switch; then the two logo groups (D-78 P4, D78-SPEC 4.11): project partners and funding organizations *@
     <footer class="ld-footer">
         <div class="ld-wrap">
             <div class="ld-footer-grid">
@@ -367,27 +360,6 @@
                         <a class="b-link" href="mailto:intalalab@isikun.edu.tr">intalalab@isikun.edu.tr</a><br>
                         <a class="b-link" href="tel:+902165288000">+90 216 528 80 00</a>
                     </p>
-                </div>
-                <div>
-                    <h2 class="ld-footer-h">@L["Land.Footer.Partners"]</h2>
-                    @if (Model.PartnerLogos.Count > 0)
-                    {
-                        <ul class="ld-logos">
-                            @foreach (var logo in Model.PartnerLogos)
-                            {
-                                <li><img src="@logo" alt="@System.IO.Path.GetFileNameWithoutExtension(logo)" loading="lazy" height="48"></li>
-                            }
-                        </ul>
-                    }
-                    else
-                    {
-                        <ul class="ld-partners" id="partner-list">
-                            @foreach (var (name, country) in partners)
-                            {
-                                <li><span class="ld-partner">@name</span> <span class="ld-country">@country</span></li>
-                            }
-                        </ul>
-                    }
                 </div>
                 <div>
                     <h2 class="ld-footer-h">@L["Language"]</h2>
@@ -407,6 +379,31 @@
                         }
                     </ul>
                 </div>
+            </div>
+            <div class="ld-logo-groups">
+                <section class="ld-logo-group" id="partner-logos" aria-labelledby="partners-h">
+                    <h2 class="ld-footer-h" id="partners-h">@L["Land.Logos.Partners"]</h2>
+                    <ul class="ld-logos">
+                        @foreach (var (logo, i) in Model.PartnerLogos.Select((l, i) => (l, i)))
+                        {
+                            var title = logo.Country == null ? logo.Name : $"{logo.Name} ({L[logo.Country].Value})";
+                            <li class="ld-logo" title="@(i == 0 ? title + " · " + L["Land.Logos.Coordinator"].Value : title)">
+                                <img src="@logo.Url" alt="@logo.Name" loading="lazy" decoding="async">
+                            </li>
+                        }
+                    </ul>
+                </section>
+                <section class="ld-logo-group ld-funders" id="funder-logos" aria-labelledby="funders-h">
+                    <h2 class="ld-footer-h" id="funders-h">@L["Land.Logos.Funders"]</h2>
+                    <ul class="ld-logos">
+                        <li class="ld-logo ld-logo-programme" title="ICT-AGRI-FOOD ERA-NET Cofund"><img src="~/img/programme/ict-agri-food.png" alt="ICT-AGRI-FOOD ERA-NET Cofund" loading="lazy" decoding="async"></li>
+                        @foreach (var logo in Model.FunderLogos)
+                        {
+                            <li class="ld-logo" title="@logo.Name"><img src="@logo.Url" alt="@logo.Name" loading="lazy" decoding="async"></li>
+                        }
+                    </ul>
+                    <p class="ld-ack">@L["Land.Logos.Acknowledgement"]</p>
+                </section>
             </div>
             <p class="ld-footer-rights b-credit-row"><span>@string.Format(L["Land.Footer.Rights"].Value, DateTime.Now.Year)</span><span class="b-credit-sep" aria-hidden="true">·</span><partial name="_IntalaCredit" /></p>
         </div>

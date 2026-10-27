@@ -8769,4 +8769,16 @@
   <data name="Name a Compliance Officer (an active member with that role) before verifying the organization." xml:space="preserve">
     <value>Pirms organizācijas pārbaudes ieceliet atbilstības speciālistu (aktīvu dalībnieku ar šo lomu).</value>
   </data>
+  <data name="Land.Logos.Partners" xml:space="preserve">
+    <value>Projekta partneri</value>
+  </data>
+  <data name="Land.Logos.Funders" xml:space="preserve">
+    <value>Finansētāji</value>
+  </data>
+  <data name="Land.Logos.Coordinator" xml:space="preserve">
+    <value>koordinators</value>
+  </data>
+  <data name="Land.Logos.Acknowledgement" xml:space="preserve">
+    <value>Īstenots ICT-AGRI-FOOD ERA-NET Cofund (2022. gada konkursa) ietvaros.</value>
+  </data>
 </root>

@@ -77,7 +77,32 @@ namespace TOP4HoneyChains.Web.Tests
             Touch("img/partners/b-university.svg");
             Touch("img/partners/a-institute.png");
             Touch("img/partners/readme.txt");
-            Assert.Equal(new[] { "/img/partners/a-institute.png", "/img/partners/b-university.svg" }, LandingImages.PartnerLogos(new Env(_root)));
+            Assert.Equal(new[] { "/img/partners/a-institute.png", "/img/partners/b-university.svg" }, LandingImages.PartnerLogos(new Env(_root)).Select(l => l.Url));
+        }
+
+        // D-78 P4: a numbered partner file takes the partner's name and country (README order, coordinator first)
+        [Fact]
+        public void Numbered_partner_logos_carry_the_partners_names()
+        {
+            Touch("img/partners/02-isik-university.png");
+            Touch("img/partners/01-bogazici-university.png");
+            var logos = LandingImages.PartnerLogos(new Env(_root));
+            Assert.Equal(("Boğaziçi University", "Türkiye"), (logos[0].Name, logos[0].Country));
+            Assert.Equal("Işık University", logos[1].Name);
+        }
+
+        // D-78 P4: agency logos are picked up from the funders folder without a code change; the file name gives the alt text
+        [Fact]
+        public void Funder_logos_come_from_the_funders_folder_with_their_names()
+        {
+            Directory.CreateDirectory(_root);
+            Assert.Empty(LandingImages.FunderLogos(new Env(_root)));
+            Touch("img/funders/02-Agencia I+D+i.png");
+            Touch("img/funders/01-TUBITAK.svg");
+            Touch("img/funders/README.txt");
+            var logos = LandingImages.FunderLogos(new Env(_root));
+            Assert.Equal(new[] { "TUBITAK", "Agencia I+D+i" }, logos.Select(l => l.Name));
+            Assert.Equal("/img/funders/01-TUBITAK.svg", logos[0].Url);
         }
     }
 }

@@ -74,14 +74,48 @@ namespace TOP4HoneyChains.Web.Services
                 : new LandingImage(name, jpeg, webp, avif);
         }
 
-        // partner logos: any image in wwwroot/img/partners (empty for now)
-        public static IReadOnlyList<string> PartnerLogos(IWebHostEnvironment env)
+        // D-78 P4 (D78-SPEC 4.11, D-77): the consortium partners in the README order (coordinator first). A file named
+        // "NN-..." in wwwroot/img/partners takes the name of partner NN; any other file its own name.
+        public static readonly (string Name, string Country)[] Partners =
         {
-            var dir = env.WebRootFileProvider.GetDirectoryContents("img/partners");
-            if (!dir.Exists)
-                return Array.Empty<string>();
-            return dir.Where(f => !f.IsDirectory && new[] { ".svg", ".png", ".webp", ".jpg" }.Contains(Path.GetExtension(f.Name).ToLowerInvariant()))
-                .OrderBy(f => f.Name).Select(f => "/img/partners/" + f.Name).ToList();
+            ("Boğaziçi University", "Türkiye"), ("Işık University", "Türkiye"), ("Apiculture Research Institute", "Türkiye"),
+            ("Instituto Nacional de Tecnología Agropecuaria (INTA)", "Argentina"), ("NEXCO S.A.", "Argentina"),
+            ("Coop. Agrop. y Apícola Norte Grande", "Argentina"), ("Alimentos Naturales Natural Foods S.A.", "Argentina"),
+            ("University of Economics in Katowice", "Poland"), ("Latvia University of Life Sciences and Technologies", "Latvia")
+        };
+
+        public record Logo(string Url, string Name, string? Country);
+
+        private static readonly string[] LogoTypes = { ".svg", ".png", ".webp", ".jpg" };
+
+        private static IEnumerable<Microsoft.Extensions.FileProviders.IFileInfo> Images(IWebHostEnvironment env, string folder)
+        {
+            var dir = env.WebRootFileProvider.GetDirectoryContents(folder);
+            return dir.Exists
+                ? dir.Where(f => !f.IsDirectory && LogoTypes.Contains(Path.GetExtension(f.Name).ToLowerInvariant())).OrderBy(f => f.Name, StringComparer.Ordinal)
+                : Enumerable.Empty<Microsoft.Extensions.FileProviders.IFileInfo>();
         }
+
+        // "03-apiculture-research-institute.png" -> 3; "tubitak.png" -> null
+        private static int? Number(string fileName) =>
+            fileName.Length > 2 && char.IsDigit(fileName[0]) && char.IsDigit(fileName[1]) && fileName[2] == '-' ? int.Parse(fileName[..2]) : null;
+
+        // "02-Agencia Nacional.png" -> "Agencia Nacional"
+        public static string NameOf(string fileName)
+        {
+            var name = Path.GetFileNameWithoutExtension(fileName);
+            if (Number(fileName) != null)
+                name = name[3..];
+            return name.Replace('_', ' ').Trim();
+        }
+
+        public static IReadOnlyList<Logo> PartnerLogos(IWebHostEnvironment env) =>
+            Images(env, "img/partners").Select(f => Number(f.Name) is int n && n >= 1 && n <= Partners.Length
+                ? new Logo("/img/partners/" + f.Name, Partners[n - 1].Name, Partners[n - 1].Country)
+                : new Logo("/img/partners/" + f.Name, NameOf(f.Name), null)).ToList();
+
+        // the funding agencies' logos, whatever files are in wwwroot/img/funders (named "NN-Agency name.png"); no code change needed
+        public static IReadOnlyList<Logo> FunderLogos(IWebHostEnvironment env) =>
+            Images(env, "img/funders").Select(f => new Logo("/img/funders/" + f.Name, NameOf(f.Name), null)).ToList();
     }
 }

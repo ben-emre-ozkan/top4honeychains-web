@@ -8769,4 +8769,16 @@
   <data name="Name a Compliance Officer (an active member with that role) before verifying the organization." xml:space="preserve">
     <value>Name a Compliance Officer (an active member with that role) before verifying the organization.</value>
   </data>
+  <data name="Land.Logos.Partners" xml:space="preserve">
+    <value>Project partners</value>
+  </data>
+  <data name="Land.Logos.Funders" xml:space="preserve">
+    <value>Funding organizations</value>
+  </data>
+  <data name="Land.Logos.Coordinator" xml:space="preserve">
+    <value>coordinator</value>
+  </data>
+  <data name="Land.Logos.Acknowledgement" xml:space="preserve">
+    <value>Carried out within the ICT-AGRI-FOOD ERA-NET Cofund (2022 call).</value>
+  </data>
 </root>

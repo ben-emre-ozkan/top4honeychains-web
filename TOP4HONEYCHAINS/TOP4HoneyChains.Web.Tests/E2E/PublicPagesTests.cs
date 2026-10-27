@@ -36,6 +36,30 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             Assert.DoesNotContain("landingassets", html);
         }
 
+        // D-78 P4 (D78-SPEC 4.11): two labelled logo groups in every language; partners are never shown as funders
+        [Theory]
+        [InlineData("tr", "Proje paydaşları", "Fonlayan kuruluşlar")]
+        [InlineData("en", "Project partners", "Funding organizations")]
+        [InlineData("es", "Socios del proyecto", "Entidades financiadoras")]
+        [InlineData("pl", "Partnerzy projektu", "Instytucje finansujące")]
+        [InlineData("lv", "Projekta partneri", "Finansētāji")]
+        public async Task The_landing_shows_partners_and_funders_as_separate_groups(string language, string partners, string funders)
+        {
+            var html = WebUtility.HtmlDecode(await GetAsync("/", language));
+            var partnerGroup = Regex.Match(html, "<section class=\"ld-logo-group\" id=\"partner-logos\".*?</section>", RegexOptions.Singleline).Value;
+            var funderGroup = Regex.Match(html, "<section class=\"ld-logo-group ld-funders\" id=\"funder-logos\".*?</section>", RegexOptions.Singleline).Value;
+            Assert.Contains(partners, partnerGroup);
+            Assert.Contains(funders, funderGroup);
+            var alts = Regex.Matches(partnerGroup, "<img [^>]*alt=\"([^\"]+)\"").Select(m => m.Groups[1].Value).ToList();
+            Assert.Equal(9, alts.Count);
+            Assert.Equal("Boğaziçi University", alts[0]);   // the coordinator first
+            Assert.All(alts, a => Assert.False(string.IsNullOrWhiteSpace(a)));
+            Assert.Contains("alt=\"ICT-AGRI-FOOD ERA-NET Cofund\"", funderGroup);
+            Assert.Contains("ICT-AGRI-FOOD", funderGroup);
+            Assert.DoesNotContain("/img/partners/", funderGroup);
+            Assert.DoesNotContain("ICT-AGRI-FOOD", partnerGroup);
+        }
+
         [Theory]
         [InlineData("tr", "Giriş yap")]
         [InlineData("en", "Sign in")]

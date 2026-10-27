@@ -8769,4 +8769,16 @@
   <data name="Name a Compliance Officer (an active member with that role) before verifying the organization." xml:space="preserve">
     <value>Przed weryfikacją organizacji wyznacz specjalistę ds. zgodności (aktywnego członka z tą rolą).</value>
   </data>
+  <data name="Land.Logos.Partners" xml:space="preserve">
+    <value>Partnerzy projektu</value>
+  </data>
+  <data name="Land.Logos.Funders" xml:space="preserve">
+    <value>Instytucje finansujące</value>
+  </data>
+  <data name="Land.Logos.Coordinator" xml:space="preserve">
+    <value>koordynator</value>
+  </data>
+  <data name="Land.Logos.Acknowledgement" xml:space="preserve">
+    <value>Realizowany w ramach ERA-NET Cofund ICT-AGRI-FOOD (nabór 2022).</value>
+  </data>
 </root>
