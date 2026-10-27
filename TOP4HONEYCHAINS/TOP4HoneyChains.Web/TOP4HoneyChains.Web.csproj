@@ -239,7 +239,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.23" />
     <PackageReference Include="QRCoder" Version="1.7.0" />
-    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.12" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.2.0" />
   </ItemGroup>
 
   <!-- D-70: the animated mark is inlined by TagHelpers/HoneyMarkTagHelper.cs; embedded so it does not depend on the web root -->
