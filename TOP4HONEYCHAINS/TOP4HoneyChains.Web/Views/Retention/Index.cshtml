@@ -1,0 +1,61 @@
+@model List<TOP4HoneyChains.Web.Services.OrgModel.RetentionService.Rule>
+@{
+    ViewData["Title"] = L["Ret.Title"];
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var options = (TOP4HoneyChains.Web.Services.OrgModel.RetentionOptions)ViewBag.Options;
+    var kept = (Dictionary<string, string>)ViewBag.Kept;
+    var lastRun = (DateTime?)ViewBag.LastRun;
+}
+
+@* D-78 P5 (D78-SPEC 6.3, D-84): the dry run (counts only) and, when switched on, the run that the owner approved *@
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-2">
+                        <div>
+                            <h4 class="card-title mb-1">@L["Ret.Title"]</h4>
+                            <p class="card-title-desc mb-0">@L["Ret.Help"]</p>
+                        </div>
+                        <a asp-action="Report" class="btn btn-outline-secondary" id="retention-report"><i class="mdi mdi-download" aria-hidden="true"></i> @L["Ret.Csv"]</a>
+                    </div>
+                    <p class="small mb-3" id="retention-state">
+                        <span class="st-pill @(options.ApplyEnabled ? "st-pending" : "st-locked")"><span>@(options.ApplyEnabled ? L["Ret.On"] : L["Ret.Off"])</span></span>
+                        @if (options.Schedule) { <span class="st-pill st-inlimit"><span>@L["Ret.Monthly"]</span></span> }
+                        · @L["Ret.LastRun"] @(lastRun?.ToLocalTime().ToString("dd.MM.yyyy HH:mm") ?? L["Ret.Never"].Value)
+                    </p>
+
+                    <div class="table-responsive"><table class="table table-sm table-bordered table-cards" id="retention-rules">
+                        <thead><tr><th>@L["Ret.Data"]</th><th>@L["Ret.Kept"]</th><th>@L["Ret.Then"]</th><th>@L["Ret.Cutoff"]</th><th>@L["Ret.Rows"]</th><th>@L["Ret.Job"]</th></tr></thead>
+                        <tbody>
+                            @foreach (var r in Model)
+                            {
+                                <tr data-rule="@r.Key" data-count="@r.Count">
+                                    <td data-label="@L["Ret.Data"]">@L[$"Ret.{r.Key}.Data"]</td>
+                                    <td data-label="@L["Ret.Kept"]">@kept[r.Key]</td>
+                                    <td data-label="@L["Ret.Then"]">@L[$"Ret.{r.Key}.Then"]</td>
+                                    <td data-label="@L["Ret.Cutoff"]">@r.Cutoff.ToString("dd.MM.yyyy")</td>
+                                    <td data-label="@L["Ret.Rows"]" class="fw-semibold">@r.Count</td>
+                                    <td data-label="@L["Ret.Job"]">@(r.Applies ? L["Ret.Applies"] : L["Ret.CountOnly"])</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table></div>
+                    <p class="small text-muted">@L["Ret.Note"]</p>
+
+                    @if (options.ApplyEnabled)
+                    {
+                        <form asp-action="Run" method="post" class="border rounded p-3 mt-3" id="retention-run">
+                            <label class="form-check">
+                                <input type="checkbox" name="approved" value="true" class="form-check-input" required />
+                                <span class="form-check-label">@L["Ret.Confirm"]</span>
+                            </label>
+                            <button type="submit" class="btn btn-danger mt-2">@L["Ret.Run"]</button>
+                        </form>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

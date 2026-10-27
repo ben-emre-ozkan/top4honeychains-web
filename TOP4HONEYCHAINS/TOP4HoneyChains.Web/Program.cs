@@ -150,6 +150,10 @@ builder.Services.AddScoped<LotPriceReader>();
 builder.Services.AddScoped<EvidenceAccess>();
 builder.Services.AddScoped<TOP4HoneyChains.Web.Services.UiPreferences>();
 builder.Services.Configure<ComplianceOptions>(builder.Configuration.GetSection("Compliance"));
+// D-78 P5 (D-84): the retention job, off by default (Retention:ApplyEnabled, Retention:Schedule)
+builder.Services.Configure<RetentionOptions>(builder.Configuration.GetSection("Retention"));
+builder.Services.AddScoped<RetentionService>();
+builder.Services.AddHostedService<RetentionScheduler>();
 builder.Services.AddScoped<ComplianceService>();
 builder.Services.AddScoped<IAuthorizationHandler, TOP4HoneyChains.Web.Filters.BeekeeperSelfHandler>();
 builder.Services.AddAuthorization(options =>

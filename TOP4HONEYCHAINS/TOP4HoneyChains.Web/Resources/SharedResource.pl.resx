@@ -8898,4 +8898,145 @@
   <data name="Cust.YourHoldingHelp" xml:space="preserve">
     <value>Pokazano tylko stan Twojej organizacji; części tej partii końcowej mogą mieć inne organizacje.</value>
   </data>
+  <data name="Ret.Title" xml:space="preserve">
+    <value>Przechowywanie danych</value>
+  </data>
+  <data name="Ret.Help" xml:space="preserve">
+    <value>Jak długo platforma przechowuje każdy rodzaj danych i co dzieje się potem. Tabela to przebieg próbny: liczy wiersze po upływie okresu i niczego nie zmienia.</value>
+  </data>
+  <data name="Ret.Csv" xml:space="preserve">
+    <value>Raport przebiegu próbnego (CSV)</value>
+  </data>
+  <data name="Ret.On" xml:space="preserve">
+    <value>Uruchamianie przechowywania włączone</value>
+  </data>
+  <data name="Ret.Off" xml:space="preserve">
+    <value>Wyłączone: o pierwszym uruchomieniu decyduje właściciel</value>
+  </data>
+  <data name="Ret.Monthly" xml:space="preserve">
+    <value>co miesiąc po pierwszym uruchomieniu</value>
+  </data>
+  <data name="Ret.LastRun" xml:space="preserve">
+    <value>Ostatnie uruchomienie:</value>
+  </data>
+  <data name="Ret.Never" xml:space="preserve">
+    <value>nigdy</value>
+  </data>
+  <data name="Ret.Data" xml:space="preserve">
+    <value>Dane</value>
+  </data>
+  <data name="Ret.Kept" xml:space="preserve">
+    <value>Przechowywane</value>
+  </data>
+  <data name="Ret.Then" xml:space="preserve">
+    <value>Następnie</value>
+  </data>
+  <data name="Ret.Cutoff" xml:space="preserve">
+    <value>Starsze niż</value>
+  </data>
+  <data name="Ret.Rows" xml:space="preserve">
+    <value>Wiersze</value>
+  </data>
+  <data name="Ret.Job" xml:space="preserve">
+    <value>Uruchomienie</value>
+  </data>
+  <data name="Ret.Applies" xml:space="preserve">
+    <value>zmienia te wiersze</value>
+  </data>
+  <data name="Ret.CountOnly" xml:space="preserve">
+    <value>tylko liczy (decyzja O-14)</value>
+  </data>
+  <data name="Ret.Note" xml:space="preserve">
+    <value>Dziennik audytu nigdy nie jest zmieniany. Partie końcowe nie mają daty minimalnej trwałości; zastępuje ją data partii plus skonfigurowana liczba lat.</value>
+  </data>
+  <data name="Ret.Confirm" xml:space="preserve">
+    <value>Właściciel zatwierdził to uruchomienie (usuwa i czyści dane, nie można go cofnąć).</value>
+  </data>
+  <data name="Ret.Run" xml:space="preserve">
+    <value>Uruchom przechowywanie teraz</value>
+  </data>
+  <data name="Ret.Years" xml:space="preserve">
+    <value>{0} lat</value>
+  </data>
+  <data name="Ret.codes.Kept" xml:space="preserve">
+    <value>{0} dni</value>
+  </data>
+  <data name="Ret.lots.Kept" xml:space="preserve">
+    <value>{0} lat po najpóźniejszej dacie minimalnej trwałości partii końcowej (data partii + {1} lat) lub po dostawie</value>
+  </data>
+  <data name="Ret.consents.Kept" xml:space="preserve">
+    <value>tak długo jak powiązane dane + {0} lat (dowód)</value>
+  </data>
+  <data name="Ret.accounts.Kept" xml:space="preserve">
+    <value>{0} lat po zakończeniu ostatniego członkostwa</value>
+  </data>
+  <data name="Ret.beekeepers.Kept" xml:space="preserve">
+    <value>póki aktywny, potem okres jego partii</value>
+  </data>
+  <data name="Ret.evidence.Kept" xml:space="preserve">
+    <value>tak długo jak rekord, który potwierdzają</value>
+  </data>
+  <data name="Ret.codes.Data" xml:space="preserve">
+    <value>Kody jednorazowe</value>
+  </data>
+  <data name="Ret.codes.Then" xml:space="preserve">
+    <value>usuwane (przechowywano tylko skróty); kod potwierdzający rekord pozostaje z nim</value>
+  </data>
+  <data name="Ret.sms.Data" xml:space="preserve">
+    <value>Wiadomości SMS</value>
+  </data>
+  <data name="Ret.sms.Then" xml:space="preserve">
+    <value>numer i treść usuwane, liczniki zachowane</value>
+  </data>
+  <data name="Ret.prices.Data" xml:space="preserve">
+    <value>Ceny</value>
+  </data>
+  <data name="Ret.prices.Then" xml:space="preserve">
+    <value>usuwane</value>
+  </data>
+  <data name="Ret.lots.Data" xml:space="preserve">
+    <value>Partie, przyjęcia, pojemniki, próbki, raporty laboratoryjne, partie końcowe</value>
+  </data>
+  <data name="Ret.lots.Then" xml:space="preserve">
+    <value>powiązanie z pszczelarzem pseudonimizowane; dane produktu zachowane</value>
+  </data>
+  <data name="Ret.beekeepers.Data" xml:space="preserve">
+    <value>Tożsamość pszczelarza (nieaktywni pszczelarze)</value>
+  </data>
+  <data name="Ret.beekeepers.Then" xml:space="preserve">
+    <value>pseudonimizowana</value>
+  </data>
+  <data name="Ret.evidence.Data" xml:space="preserve">
+    <value>Zdjęcia dowodowe (podpisane formularze dostaw)</value>
+  </data>
+  <data name="Ret.evidence.Then" xml:space="preserve">
+    <value>usuwane, skrót zachowany</value>
+  </data>
+  <data name="Ret.consents.Data" xml:space="preserve">
+    <value>Zgody i akceptacje informacji</value>
+  </data>
+  <data name="Ret.consents.Then" xml:space="preserve">
+    <value>usuwane</value>
+  </data>
+  <data name="Ret.accounts.Data" xml:space="preserve">
+    <value>Konta byłych członków</value>
+  </data>
+  <data name="Ret.accounts.Then" xml:space="preserve">
+    <value>anonimizowane; wpisy audytu zachowują tylko identyfikator użytkownika</value>
+  </data>
+  <data name="Ret.audit.Data" xml:space="preserve">
+    <value>Dziennik audytu</value>
+  </data>
+  <data name="Ret.audit.Then" xml:space="preserve">
+    <value>niezmieniany (tylko dopisywanie)</value>
+  </data>
+  <data name="Retention is off (Retention:ApplyEnabled); its first run is the owner's decision." xml:space="preserve">
+    <value>Przechowywanie jest wyłączone (Retention:ApplyEnabled); o pierwszym uruchomieniu decyduje właściciel.</value>
+  </data>
+  <data name="Confirm that the owner approved this run." xml:space="preserve">
+    <value>Potwierdź, że właściciel zatwierdził to uruchomienie.</value>
+  </data>
+  <data name="Retention run: {0} codes deleted, {1} SMS messages cleared, {2} prices deleted." xml:space="preserve">
+    <value>Przechowywanie wykonane: usunięto {0} kodów, wyczyszczono {1} SMS, usunięto {2} cen.</value>
+  </data>
 </root>
