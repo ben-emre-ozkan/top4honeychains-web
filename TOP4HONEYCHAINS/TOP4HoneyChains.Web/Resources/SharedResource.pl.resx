@@ -7524,4 +7524,331 @@
   <data name="Org.CredentialsBySms" xml:space="preserve">
     <value>Bez hasła początkowego nazwa użytkownika i hasło tymczasowe zostaną wysłane SMS-em. W obu przypadkach nowy użytkownik ustawia hasło przy pierwszym logowaniu.</value>
   </data>
+  <data name="Apiary.CurrentTitle" xml:space="preserve">
+    <value>Obecna nazwa</value>
+  </data>
+  <data name="Apiary.LegacyTitle" xml:space="preserve">
+    <value>Ta pasieka ma jeszcze wpisaną ręcznie nazwę. Wybierz prowincję i powiat oraz wpisz miejscowość, aby zastąpić ją nazwą generowaną.</value>
+  </data>
+  <data name="Apiary.Locality" xml:space="preserve">
+    <value>Miejscowość (wieś, płaskowyż, pole)</value>
+  </data>
+  <data name="Apiary.LocalityExample" xml:space="preserve">
+    <value>np. Kümbet Yaylası</value>
+  </data>
+  <data name="Apiary.TitleHelp" xml:space="preserve">
+    <value>Nazwa jest generowana: Prowincja – Powiat – Miejscowość.</value>
+  </data>
+  <data name="Apiary Hives" xml:space="preserve">
+    <value>Ule</value>
+  </data>
+  <data name="Attest" xml:space="preserve">
+    <value>Oświadczenie</value>
+  </data>
+  <data name="Draft Key" xml:space="preserve">
+    <value>Szkic</value>
+  </data>
+  <data name="Education Level Id" xml:space="preserve">
+    <value>Wykształcenie</value>
+  </data>
+  <data name="Fallback Reason" xml:space="preserve">
+    <value>Powód</value>
+  </data>
+  <data name="Issue Sign In" xml:space="preserve">
+    <value>Logowanie</value>
+  </data>
+  <data name="No Phone" xml:space="preserve">
+    <value>Brak telefonu komórkowego</value>
+  </data>
+  <data name="Portal Notifications" xml:space="preserve">
+    <value>Powiadomienia SMS</value>
+  </data>
+  <data name="Province Mismatch Reason" xml:space="preserve">
+    <value>Powód innej prowincji</value>
+  </data>
+  <data name="Public Name" xml:space="preserve">
+    <value>Imię i nazwisko na stronach publicznych</value>
+  </data>
+  <data name="Purpose Type Id" xml:space="preserve">
+    <value>Cel pszczelarstwa</value>
+  </data>
+  <data name="Registry Number" xml:space="preserve">
+    <value>Numer rejestrowy</value>
+  </data>
+  <data name="Work.Kind.Evidence" xml:space="preserve">
+    <value>Sprawdź zdjęcia podpisów</value>
+  </data>
+  <data name="Reg78.Title" xml:space="preserve">
+    <value>Rejestracja pszczelarzy</value>
+  </data>
+  <data name="Reg78.Help" xml:space="preserve">
+    <value>Pszczelarze zarejestrowani przez Twoją organizację. Każdą rejestrację potwierdzają numer rejestrowy, kod SMS na telefon pszczelarza i Twoje oświadczenie.</value>
+  </data>
+  <data name="Reg78.FindLabel" xml:space="preserve">
+    <value>Numer rejestrowy (AKS) lub numer gospodarstwa</value>
+  </data>
+  <data name="Reg78.Find" xml:space="preserve">
+    <value>Znajdź lub zarejestruj</value>
+  </data>
+  <data name="Reg78.FindHelp" xml:space="preserve">
+    <value>Znany pszczelarz jest weryfikowany ponownie; nowy numer rejestrowy rozpoczyna nową rejestrację.</value>
+  </data>
+  <data name="Reg78.Date" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="Reg78.Beekeeper" xml:space="preserve">
+    <value>Pszczelarz</value>
+  </data>
+  <data name="Reg78.RegistryNumber" xml:space="preserve">
+    <value>Numer rejestrowy</value>
+  </data>
+  <data name="Reg78.Kind" xml:space="preserve">
+    <value>Rejestracja</value>
+  </data>
+  <data name="Reg78.Method" xml:space="preserve">
+    <value>Potwierdzono przez</value>
+  </data>
+  <data name="Reg78.Evidence" xml:space="preserve">
+    <value>Dowód</value>
+  </data>
+  <data name="Reg78.None" xml:space="preserve">
+    <value>Brak rejestracji.</value>
+  </data>
+  <data name="Reg78.Kind.New" xml:space="preserve">
+    <value>Nowa</value>
+  </data>
+  <data name="Reg78.Kind.Reverification" xml:space="preserve">
+    <value>Ponowna weryfikacja</value>
+  </data>
+  <data name="Reg78.Kind.IdentityChange" xml:space="preserve">
+    <value>Zmiana danych</value>
+  </data>
+  <data name="Reg78.Method.SmsCode" xml:space="preserve">
+    <value>Kod SMS</value>
+  </data>
+  <data name="Reg78.Method.SignedPhoto" xml:space="preserve">
+    <value>Zdjęcie podpisu</value>
+  </data>
+  <data name="Reg78.Evidence.Accepted" xml:space="preserve">
+    <value>Zaakceptowany</value>
+  </data>
+  <data name="Reg78.Evidence.PendingReview" xml:space="preserve">
+    <value>Czeka na sprawdzenie</value>
+  </data>
+  <data name="Reg78.Evidence.Rejected" xml:space="preserve">
+    <value>Odrzucony</value>
+  </data>
+  <data name="Reg78.New" xml:space="preserve">
+    <value>Zarejestruj pszczelarza</value>
+  </data>
+  <data name="Reg78.Reverify" xml:space="preserve">
+    <value>Ponownie zweryfikuj pszczelarza</value>
+  </data>
+  <data name="Reg78.Registry" xml:space="preserve">
+    <value>Numer rejestrowy</value>
+  </data>
+  <data name="Reg78.RegistryHelp" xml:space="preserve">
+    <value>TR, kod prowincji i 10 cyfr. Porównywany z prowincją dyrekcji.</value>
+  </data>
+  <data name="Reg78.MismatchReason" xml:space="preserve">
+    <value>Jeśli numer należy do innej prowincji: powód</value>
+  </data>
+  <data name="Reg78.Identity" xml:space="preserve">
+    <value>Pszczelarz</value>
+  </data>
+  <data name="Reg78.NoPhone" xml:space="preserve">
+    <value>Pszczelarz nie ma telefonu komórkowego (zdjęcie podpisu, bez konta)</value>
+  </data>
+  <data name="Reg78.Language" xml:space="preserve">
+    <value>Język SMS</value>
+  </data>
+  <data name="Reg78.Apiary" xml:space="preserve">
+    <value>Pasieka</value>
+  </data>
+  <data name="Reg78.Apiaries" xml:space="preserve">
+    <value>Pasieki</value>
+  </data>
+  <data name="Reg78.Hives" xml:space="preserve">
+    <value>uli</value>
+  </data>
+  <data name="Reg78.MoreApiaryOptional" xml:space="preserve">
+    <value>Dodaj poniżej kolejną pasiekę (opcjonalnie).</value>
+  </data>
+  <data name="Reg78.NoticeAndConsent" xml:space="preserve">
+    <value>Informacja i zgoda</value>
+  </data>
+  <data name="Reg78.NoticeIntro" xml:space="preserve">
+    <value>Daj pszczelarzowi tę informację do przeczytania lub przeczytaj ją na głos:</value>
+  </data>
+  <data name="Reg78.ConsentPublicName" xml:space="preserve">
+    <value>Pszczelarz zgadza się na pokazywanie imienia i nazwiska na stronach publicznych (opcjonalnie; inaczej pokazywany jest neutralny kod)</value>
+  </data>
+  <data name="Reg78.ConsentSms" xml:space="preserve">
+    <value>Pszczelarz zgadza się na powiadomienia SMS o dostawach i wynikach badań (opcjonalnie)</value>
+  </data>
+  <data name="Reg78.ConsentTexts" xml:space="preserve">
+    <value>Pełne treści zgód</value>
+  </data>
+  <data name="Reg78.Attestation" xml:space="preserve">
+    <value>Twoje oświadczenie</value>
+  </data>
+  <data name="Reg78.AttestFallback" xml:space="preserve">
+    <value>Okazano mi dokument tożsamości pszczelarza i wpis w rejestrze.</value>
+  </data>
+  <data name="Reg78.IssueSignIn" xml:space="preserve">
+    <value>Wyślij też pszczelarzowi dane logowania SMS-em</value>
+  </data>
+  <data name="Reg78.IssueSignInButton" xml:space="preserve">
+    <value>Wyślij dane logowania SMS-em</value>
+  </data>
+  <data name="Reg78.PrintSign" xml:space="preserve">
+    <value>Zapoznałem/zapoznałam się z informacją; powyższe wybory są prawidłowe. Podpis pszczelarza i data:</value>
+  </data>
+  <data name="Reg78.Confirm" xml:space="preserve">
+    <value>Potwierdzenie</value>
+  </data>
+  <data name="Reg78.SendHelp" xml:space="preserve">
+    <value>Pszczelarz dostaje SMS z nazwą organizacji, linkiem do informacji, wyborem dotyczącym nazwiska i kodem. Zmiana pola potem wymaga nowego kodu.</value>
+  </data>
+  <data name="Reg78.DemoSms" xml:space="preserve">
+    <value>Testowy SMS (pokaz):</value>
+  </data>
+  <data name="Reg78.ConfirmButton" xml:space="preserve">
+    <value>Potwierdź rejestrację</value>
+  </data>
+  <data name="Reg78.Fallback" xml:space="preserve">
+    <value>SMS niemożliwy: zdjęcie podpisu</value>
+  </data>
+  <data name="Reg78.FallbackHelp" xml:space="preserve">
+    <value>Wydrukuj stronę, poproś pszczelarza o podpis i prześlij zdjęcie. Rejestracja czeka na specjalistę ds. zgodności Twojej organizacji; do tego czasu pszczelarz nie może dostarczać.</value>
+  </data>
+  <data name="Reg78.FallbackReason" xml:space="preserve">
+    <value>Dlaczego bez kodu SMS</value>
+  </data>
+  <data name="Reg78.SignedPhoto" xml:space="preserve">
+    <value>Zdjęcie podpisanego formularza</value>
+  </data>
+  <data name="Reg78.Print" xml:space="preserve">
+    <value>Drukuj formularz</value>
+  </data>
+  <data name="Reg78.SaveWithPhoto" xml:space="preserve">
+    <value>Zapisz ze zdjęciem podpisu</value>
+  </data>
+  <data name="Reg78.Details" xml:space="preserve">
+    <value>Rejestracja</value>
+  </data>
+  <data name="Reg78.OtherProvince" xml:space="preserve">
+    <value>inna prowincja</value>
+  </data>
+  <data name="Reg78.Consents" xml:space="preserve">
+    <value>Zgody</value>
+  </data>
+  <data name="Reg78.Withdrawn" xml:space="preserve">
+    <value>wycofana</value>
+  </data>
+  <data name="Reg78.Review" xml:space="preserve">
+    <value>Sprawdzenie zdjęcia podpisu</value>
+  </data>
+  <data name="Reg78.ReviewHelp" xml:space="preserve">
+    <value>Otwórz zdjęcie i porównaj z rejestracją: tożsamość, numer rejestrowy, wybory pszczelarza i podpis. Nie Ty wprowadzałeś tę rejestrację.</value>
+  </data>
+  <data name="Reg78.ReviewReason" xml:space="preserve">
+    <value>Uwaga (wymagana przy odrzuceniu)</value>
+  </data>
+  <data name="Reg78.Accept" xml:space="preserve">
+    <value>Akceptuj</value>
+  </data>
+  <data name="Reg78.Reject" xml:space="preserve">
+    <value>Odrzuć</value>
+  </data>
+  <data name="Reg78.WaitingReview" xml:space="preserve">
+    <value>Czeka na sprawdzenie przez specjalistę ds. zgodności. To Ty wprowadziłeś rejestrację, więc decyduje inna osoba.</value>
+  </data>
+  <data name="Reg78.AddApiary" xml:space="preserve">
+    <value>Dodaj pasiekę</value>
+  </data>
+  <data name="Reg78.AttestedNote" xml:space="preserve">
+    <value>Ten pszczelarz został zarejestrowany przez dyrekcję: imię i nazwisko, data urodzenia i telefon są poświadczone i zmieniają się tylko przez nową rejestrację (Rejestracja pszczelarzy → ponowna weryfikacja).</value>
+  </data>
+  <data name="A beekeeper with this registry number is already registered. Find it and re-verify instead." xml:space="preserve">
+    <value>Pszczelarz z tym numerem jest już zarejestrowany. Znajdź go i zweryfikuj ponownie.</value>
+  </data>
+  <data name="The registry number belongs to another province than the directorate. Give a reason to continue." xml:space="preserve">
+    <value>Numer rejestrowy należy do innej prowincji niż dyrekcja. Podaj powód, aby kontynuować.</value>
+  </data>
+  <data name="Enter the first and last name (at most 50 characters each)." xml:space="preserve">
+    <value>Wpisz imię i nazwisko (maks. 50 znaków każde).</value>
+  </data>
+  <data name="Enter a valid birth date." xml:space="preserve">
+    <value>Wpisz prawidłową datę urodzenia.</value>
+  </data>
+  <data name="Without a mobile phone the registration is confirmed by a signed photo." xml:space="preserve">
+    <value>Bez telefonu komórkowego rejestrację potwierdza zdjęcie podpisu.</value>
+  </data>
+  <data name="Set the apiary location on the map or type its coordinates." xml:space="preserve">
+    <value>Zaznacz położenie pasieki na mapie lub wpisz współrzędne.</value>
+  </data>
+  <data name="Confirm the attestation: you have seen the identity document and the registry record." xml:space="preserve">
+    <value>Potwierdź oświadczenie: okazano Ci dokument tożsamości i wpis w rejestrze.</value>
+  </data>
+  <data name="Choose the province and the district and enter the locality of the apiary." xml:space="preserve">
+    <value>Wybierz prowincję i powiat oraz wpisz miejscowość pasieki.</value>
+  </data>
+  <data name="The locality has at most 60 characters." xml:space="preserve">
+    <value>Miejscowość ma maks. 60 znaków.</value>
+  </data>
+  <data name="Choose a district of the chosen province." xml:space="preserve">
+    <value>Wybierz powiat z wybranej prowincji.</value>
+  </data>
+  <data name="Beekeeper accounts are not enabled yet." xml:space="preserve">
+    <value>Konta pszczelarzy nie są jeszcze włączone.</value>
+  </data>
+  <data name="Enter the registry number (or the business number of a registered beekeeper)." xml:space="preserve">
+    <value>Wpisz numer rejestrowy (lub numer gospodarstwa zarejestrowanego pszczelarza).</value>
+  </data>
+  <data name="This beekeeper is registered by another directorate." xml:space="preserve">
+    <value>Ten pszczelarz jest zarejestrowany przez inną dyrekcję.</value>
+  </data>
+  <data name="Give the reason why the SMS code cannot be used." xml:space="preserve">
+    <value>Podaj powód, dla którego nie można użyć kodu SMS.</value>
+  </data>
+  <data name="Attach the photo of the signed registration form." xml:space="preserve">
+    <value>Dołącz zdjęcie podpisanego formularza rejestracji.</value>
+  </data>
+  <data name="A code was sent to the beekeeper's phone. Enter the code the beekeeper reads out." xml:space="preserve">
+    <value>Kod został wysłany na telefon pszczelarza. Wpisz kod, który pszczelarz odczyta.</value>
+  </data>
+  <data name="The beekeeper is registered and verified." xml:space="preserve">
+    <value>Pszczelarz jest zarejestrowany i zweryfikowany.</value>
+  </data>
+  <data name="The beekeeper is registered and verified; the sign-in details were sent by SMS." xml:space="preserve">
+    <value>Pszczelarz jest zarejestrowany i zweryfikowany; dane logowania wysłano SMS-em.</value>
+  </data>
+  <data name="The registration is saved with the signed photo. It waits for the Compliance Officer's review." xml:space="preserve">
+    <value>Rejestrację zapisano ze zdjęciem podpisu. Czeka na sprawdzenie przez specjalistę ds. zgodności.</value>
+  </data>
+  <data name="This registration was already reviewed." xml:space="preserve">
+    <value>Ta rejestracja została już sprawdzona.</value>
+  </data>
+  <data name="You recorded this registration; another person must review its evidence." xml:space="preserve">
+    <value>To Ty wprowadziłeś tę rejestrację; dowód musi sprawdzić inna osoba.</value>
+  </data>
+  <data name="Give the reason for the rejection." xml:space="preserve">
+    <value>Podaj powód odrzucenia.</value>
+  </data>
+  <data name="Evidence accepted; the registry number is verified." xml:space="preserve">
+    <value>Dowód zaakceptowany; numer rejestrowy zweryfikowany.</value>
+  </data>
+  <data name="Evidence rejected; the beekeeper cannot deliver until registered again." xml:space="preserve">
+    <value>Dowód odrzucony; pszczelarz nie może dostarczać do ponownej rejestracji.</value>
+  </data>
+  <data name="Apiary {0} added." xml:space="preserve">
+    <value>Dodano pasiekę {0}.</value>
+  </data>
+  <data name="A sign-in needs a registration confirmed by the SMS code (O-17: no account without a mobile phone)." xml:space="preserve">
+    <value>Logowanie wymaga rejestracji potwierdzonej kodem SMS (bez telefonu komórkowego brak konta).</value>
+  </data>
+  <data name="The sign-in details were sent by SMS." xml:space="preserve">
+    <value>Dane logowania wysłano SMS-em.</value>
+  </data>
 </root>
