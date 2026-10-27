@@ -118,13 +118,17 @@ namespace TOP4HoneyChains.Web.Controllers
                     .Where(d => d.FinalHoneyProduction.FinalHoneyProductionQR == qr && d.FinalHoneyProduction.FinalHoneyProductionIsFinalized
                                 && d.RawHoneyProductionId == lot)
                     .Select(d => new { d.RawHoneyProduction.RawHoneyProductionHoneyType, d.RawHoneyProduction.RawHoneyProductionHoneyTypeNavigation!.HoneyClass,
-                                       Apiary = d.RawHoneyProduction.RawHoneyProductionApiary!.ApiaryTitle })
+                                       Apiary = d.RawHoneyProduction.RawHoneyProductionApiary!.ApiaryTitle,
+                                       d.RawHoneyProduction.RawHoneyProductionApiary!.TitleSource,
+                                       d.RawHoneyProduction.RawHoneyProductionApiary!.ApiaryBeekeeperId })
                     .FirstOrDefaultAsync();
                 if (inBatch != null)
                 {
                     vm.Qr = qr;
                     vm.Lot = lot;
-                    vm.JarSource = inBatch.Apiary;
+                    var jarNames = await HttpContext.RequestServices.GetRequiredService<Services.OrgModel.PublicNameService>().NamesAsync(new[] { inBatch.ApiaryBeekeeperId });
+                    vm.JarSource = Services.OrgModel.PublicNameService.PublicApiaryTitle(inBatch.Apiary, inBatch.TitleSource,
+                        jarNames.TryGetValue(inBatch.ApiaryBeekeeperId, out var jarName) && jarName.IsName);
                     var logs = await _context.CriticalControlPointMonitoringLogs.AsNoTracking()
                         .Where(l => l.RawHoneyProductionId == lot && l.CCPId == parameter.CCPId).ToListAsync();
                     var log = logs.FirstOrDefault(l => l.ParameterId == id);
@@ -227,12 +231,13 @@ namespace TOP4HoneyChains.Web.Controllers
 
                 var apiary = raw.RawHoneyProductionApiary;
                 var beekeeper = apiary?.ApiaryBeekeeper;
+                var nameShown = beekeeper?.BeekeeperId is string shownId && publicNames.TryGetValue(shownId, out var publicName) && publicName.IsName;
 
                 var source = new HoneyStoryRawSource
                 {
                     RawHoneyProductionId = d.RawHoneyProductionId,
                     ApiaryId = raw.RawHoneyProductionApiaryId,
-                    ApiaryName = apiary?.ApiaryTitle,
+                    ApiaryName = Services.OrgModel.PublicNameService.PublicApiaryTitle(apiary?.ApiaryTitle, apiary?.TitleSource, nameShown),
                     BeekeeperName = beekeeper?.BeekeeperId is string bkId && publicNames.TryGetValue(bkId, out var shown) ? shown.Text : null,
                     HoneyType = raw.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle,
                     UsedAmount = d.UsedAmount,
@@ -251,7 +256,7 @@ namespace TOP4HoneyChains.Web.Controllers
                         {
                             ApiaryPhotoId = p.ApiaryPhotoId,
                             FileName = p.ApiaryPhotoFileName,
-                            Description = p.ApiaryPhotoDesc
+                            Description = Services.OrgModel.PublicNameService.PublicPhotoText(p.ApiaryPhotoDesc, nameShown)
                         })
                         .ToList();
                 }
@@ -406,12 +411,13 @@ namespace TOP4HoneyChains.Web.Controllers
 
                 var apiary = raw.RawHoneyProductionApiary;
                 var beekeeper = apiary?.ApiaryBeekeeper;
+                var nameShown = beekeeper?.BeekeeperId is string shownId && publicNames.TryGetValue(shownId, out var publicName) && publicName.IsName;
 
                 var source = new HoneyStoryRawSource
                 {
                     RawHoneyProductionId = d.RawHoneyProductionId,
                     ApiaryId = raw.RawHoneyProductionApiaryId,
-                    ApiaryName = apiary?.ApiaryTitle,
+                    ApiaryName = Services.OrgModel.PublicNameService.PublicApiaryTitle(apiary?.ApiaryTitle, apiary?.TitleSource, nameShown),
                     BeekeeperName = beekeeper?.BeekeeperId is string bkId && publicNames.TryGetValue(bkId, out var shown) ? shown.Text : null,
                     HoneyType = raw.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle,
                     UsedAmount = d.UsedAmount
@@ -426,7 +432,7 @@ namespace TOP4HoneyChains.Web.Controllers
                         {
                             ApiaryPhotoId = p.ApiaryPhotoId,
                             FileName = p.ApiaryPhotoFileName,
-                            Description = p.ApiaryPhotoDesc
+                            Description = Services.OrgModel.PublicNameService.PublicPhotoText(p.ApiaryPhotoDesc, nameShown)
                         })
                         .ToList();
                 }

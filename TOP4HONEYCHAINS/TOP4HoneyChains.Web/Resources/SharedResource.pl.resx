@@ -9039,4 +9039,16 @@
   <data name="Retention run: {0} codes deleted, {1} SMS messages cleared, {2} prices deleted." xml:space="preserve">
     <value>Przechowywanie wykonane: usunięto {0} kodów, wyczyszczono {1} SMS, usunięto {2} cen.</value>
   </data>
+  <data name="Hst.ApiaryIn" xml:space="preserve">
+    <value>Pasieka w: {0}</value>
+  </data>
+  <data name="Hst.AnApiary" xml:space="preserve">
+    <value>Pasieka</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Pobranie</value>
+  </data>
+  <data name="Retention" xml:space="preserve">
+    <value>Przechowywanie</value>
+  </data>
 </root>

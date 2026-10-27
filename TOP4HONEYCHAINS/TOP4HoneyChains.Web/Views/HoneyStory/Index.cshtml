@@ -19,7 +19,9 @@
     string Pct(decimal share) => (share * 100).ToString("0.#", culture) + "%";
     string Num(decimal v) => v.ToString("0.##", culture);
     string Beekeeper(HoneyStoryRawSource s) => string.IsNullOrWhiteSpace(s.BeekeeperName) ? L["Hst.UnknownBeekeeper"].Value : s.BeekeeperName!;
-    string Apiary(HoneyStoryRawSource s) => string.IsNullOrWhiteSpace(s.ApiaryName) ? L["Hst.UnknownApiary"].Value : s.ApiaryName!;
+    // D-85: without a public title the apiary is named by its province only
+    string Apiary(HoneyStoryRawSource s) => !string.IsNullOrWhiteSpace(s.ApiaryName) ? s.ApiaryName!
+        : s.ProvincePlate > 0 ? L["Hst.ApiaryIn", Province(s.ProvincePlate)].Value : L["Hst.AnApiary"].Value;
     string Color(int i) => "hs-c" + (i % 6);
     var biggest = sources.Count == 0 ? 0 : sources.IndexOf(sources.OrderByDescending(s => s.UsedAmount).First());
     var badges = Model.Badges;

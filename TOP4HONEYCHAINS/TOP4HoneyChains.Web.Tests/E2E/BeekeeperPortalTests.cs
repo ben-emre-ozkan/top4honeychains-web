@@ -156,15 +156,27 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             var anonymous = UserClient.Anonymous(_app);
             async Task<string> StoryAsync() => WebUtility.HtmlDecode(await anonymous.HtmlAsync($"/honeystory/{qr}"));
 
-            // a legacy beekeeper without consent: the neutral code (HideUntilConsent, the default)
+            // D-85: a title typed before D-78 often contains the beekeeper's name; it is public only where the name is
+            await _app.WithContextAsync(async db =>
+            {
+                var apiary = await db.Apiaries.SingleAsync(a => a.ApiaryId == one.Plant.ApiaryId);
+                apiary.ApiaryTitle = name + " Arılığı";
+                apiary.TitleSource = null;
+                return await db.SaveChangesAsync();
+            });
+
+            // a legacy beekeeper without consent: the neutral code (HideUntilConsent, the default), and no typed apiary title
             var story = await StoryAsync();
             Assert.DoesNotContain(name, story);
             var code = await _app.WithContextAsync(db => db.BeekeeperStorefronts.Where(s => s.BeekeeperId == one.Plant.BeekeeperId).Select(s => s.Code).FirstAsync());
             Assert.Contains(code, story);
             Assert.Contains(code, await one.Client.HtmlAsync("/Me/Stories"));
 
+            Assert.DoesNotContain("Arılığı", story);
+            Assert.Contains("Apiary in", WebUtility.HtmlDecode(await anonymous.HtmlAsync($"/honeystory/{qr}?culture=en")));
             Assert.Contains("Consent given.", await one.Client.PostFlashAsync("/Me/Consent", new() { ["purpose"] = ConsentPurpose.PublicName, ["give"] = "true" }, "/Me/Privacy"));
             Assert.Contains(name, await StoryAsync());
+            Assert.Contains(name + " Arılığı", await StoryAsync());
             Assert.Contains("Consent withdrawn", await one.Client.PostFlashAsync("/Me/Consent", new() { ["purpose"] = ConsentPurpose.PublicName, ["give"] = "false" }, "/Me/Privacy"));
             story = await StoryAsync();
             Assert.DoesNotContain(name, story);
