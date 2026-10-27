@@ -2,19 +2,30 @@
 
 ## Your daily work {#analyst-daily}
 
-You work in a food-analysis laboratory and are the first of its two people: you enter, the lab manager approves. You receive the sealed samples that processing plants send you, check the seal, analyse the honey, enter the results with the report PDF, and submit the report to your lab manager for approval.
+You work in a food-analysis laboratory and are the first of its two people: you enter, the lab manager approves. You receive the sealed sample jars that processing plants send you (one from every container of a delivery), check seal, label and cap, make the composite sample, analyse the honey, enter the results with the report PDF, and submit the report to your lab manager for approval.
 
 Your tasks appear in **My work** under **Samples to receive** and **Lab results to enter**. The menu shows **Samples and lab**.
 
 ## Receive a sample {#analyst-receive}
 
-1. In **My work** open **Samples to receive**, or go to **Samples and lab** → **Samples sent to your laboratory**.
-2. Compare the seal number on the sample with the one shown.
-3. If the seal is intact, click **Received, seal intact**: "Sample received; the seal is intact."
-4. If the seal is broken, write the **reason (if the seal is broken)** and click **Seal broken: reject**: "Sample rejected: the seal is broken." The plant must take a new sample.
+1. In **My work** open **Samples to receive**, or go to **Samples and lab** → **Samples sent to your laboratory**. Each jar shows its code (`S-{lot}-C{n}`), its container and its seal number.
+2. Answer the three checks for the jar: **The seal number matches the record**, **The label is intact** and **The cap is intact (button down)**.
+3. If all three are **Yes**, click **Record the reception**: the jar is received.
+4. If any check is **No**, write the **Reason if a check fails** and click **Record the reception**: the jar is rejected. The plant takes a new jar from the same container and sends it to you.
 
 <!-- SHOT: sample-receive -->
-Figure: Receiving samples at the laboratory: the seal check.
+Figure: Receiving sample jars at the laboratory: seal, label and cap.
+
+A sample of a legacy delivery (one sample per lot) has the single seal check: **Received, seal intact**, or the **reason (if the seal is broken)** and **Seal broken: reject**.
+
+## Make the composite sample {#analyst-composite}
+
+With composite analysis (the default), the lab analyses one composite sample per lot (see [Composite or per container](#flow-analysis)). When every container's jar of a lot has arrived in good order, the lot appears under **Lots ready for the composite sample**: "Every container's jar of these lots arrived in good order. Mix equal parts of the jars into one composite sample and analyse it; the jars stay retained for single analyses."
+
+1. Mix equal parts of the jars.
+2. Click **Make the composite**. The composite sample `S-{lot}-COMP` is created and received; its report is entered like any other.
+
+When the composite fails, or on request, you can also enter a report for a single jar; it stays with that jar and does not change the lot's CCP 1 values. With per-container analysis there is no composite: every jar gets its own report, and the lot's CCP 1 takes the worst value of each parameter (see [The worst-value rule](#flow-worst)).
 
 ## Enter lab results {#analyst-results}
 
@@ -38,7 +49,7 @@ You can save as often as you like while the report is a draft.
 
 ## Submit the report {#analyst-submit}
 
-1. The page shows "Required values entered: … of …". **Submit for approval** is enabled only when all required values, the PDF, the report number and the date are present.
+1. The page shows "Required values entered: … of …"; the count follows your typing, and "Missing:" names the values still empty. **Submit for approval** is enabled only when all required values, the PDF, the report number and the date are **saved**: when everything is typed but not saved yet, the page says "Save the values before submitting."
 2. Click **Submit for approval**: "Report submitted; a lab manager (another person) must approve it."
 
 <!-- SHOT: lab-submit -->
@@ -52,7 +63,7 @@ Table: Common errors when entering lab results {#tbl-lab-errors}
 
 | Message | What to do |
 |---|---|
-| "Results are entered only for a received sample with an intact seal." | Receive the sample first. |
+| "Results are entered only for a received sample with an intact seal." | Receive the jar first; a rejected jar gets no results. |
 | "Upload the report PDF before submitting." | Choose the PDF and save. |
 | "Enter all required values before submitting: … of … entered." | Complete the missing values listed under "Missing:". |
 | "The lab report must be a PDF." | Only PDF files are accepted for the report. |

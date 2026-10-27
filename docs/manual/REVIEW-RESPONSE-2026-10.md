@@ -2,7 +2,9 @@
 
 Reviewer: the project coordinator (Boğaziçi University). Reviewed document: the English user manual of 9 October 2026 (page numbers below refer to that PDF). Decision: D-76 (documentation only; the live application, its database and its reference data were not changed). Where a comment implies an application change, the manual is written as if the change has shipped, and the change is listed in [PLANNED-APP-CHANGES.md](PLANNED-APP-CHANGES.md).
 
-All changes were made in English first and then in the Turkish, Spanish, Polish and Latvian versions, which keep the same structure, anchors, figures and tables. Figure and table numbers below refer to the new English PDF.
+All changes were made in English first and then in the Turkish, Spanish, Polish and Latvian versions, which keep the same structure, anchors, figures and tables. Figure and table numbers below refer to the English PDF of the review response (October 2026).
+
+**Update with D-78 (D-85, 28 October 2026).** The application changes this response listed as planned have shipped (D-84): the role name Quality Assurance Officer, the ability texts, the "Ground rules" box, the spelling "organization", role names in messages and the names of the special capabilities. The manual of the D-78 release describes them as they are on screen and has new chapters (12 Beekeeper registration officer, 13 Compliance Officer, 14 The beekeeper portal); the platform administrator, trust and glossary chapters became 15–17, and the figure and table numbers after chapter 11 moved accordingly. The screenshots were retaken with the new labels in all five languages.
 
 | # | Page | Marked text | Comment | What changed | Where |
 |---|---|---|---|---|---|
@@ -45,6 +47,6 @@ All changes were made in English first and then in the Turkish, Spanish, Polish 
 |---|---|
 | Funding agencies' logos and the final acknowledgement wording | The agencies' logos and the approved wording have not arrived. The build shows them as a second strip captioned "Funding" once the logos are in `docs/brand/funders/`, and `acknowledgement.<lang>.md` or `acknowledgement.md` there replaces the provisional acknowledgement line. The programme logo and the consortium strip are on the cover since D-77. |
 | Naming TÜBİTAK together with the other funding agencies | The names of the other agencies and the grant numbers were not supplied; they are not invented. |
-| Application changes the manual already assumes (role label, ability texts, ground-rules box, spelling, role names in messages, capability names) | Documentation-only work item; the application is live. Listed in PLANNED-APP-CHANGES (A1–A6). |
+| ~~Application changes the manual already assumes (role label, ability texts, ground-rules box, spelling, role names in messages, capability names)~~ **Done (D-84).** | Documentation-only work item; the application is live. Listed in PLANNED-APP-CHANGES (A1–A6). |
 | Origin maps for the other partner countries | A larger application item (map data and shapes per country). PLANNED-APP-CHANGES A8. |
-| Screenshots with the new labels | No recapture in this pass; they will be retaken after the label changes ship. |
+| ~~Screenshots with the new labels~~ **Done (D-85): retaken in five languages.** | No recapture in this pass; they will be retaken after the label changes ship. |

@@ -1,8 +1,8 @@
-# 14. Glossary and FAQ {#glossary-faq}
+# 17. Glossary and FAQ {#glossary-faq}
 
 ## Glossary {#glossary}
 
-[Table](#tbl-glossary) defines the terms used in this manual; [Table](#tbl-renamed-labels) lists the labels that change in the next release.
+[Table](#tbl-glossary) defines the terms used in this manual; [Table](#tbl-renamed-labels) lists the labels that were renamed in this release.
 
 Table: Glossary {#tbl-glossary}
 
@@ -21,8 +21,17 @@ Table: Glossary {#tbl-glossary}
 | **Finalize / seal** | The two-person step that locks a batch and its lots and publishes the Honey Story. |
 | **Four-eyes principle** | Two different people are involved in every record: one enters the data, a second person checks and approves it. Nobody approves what they entered themselves. See [Ground rules](#fixed-rules). |
 | **Four-eyes exemption** | A setting for small organizations that allows self-approval of CCP records, always flagged. Never for lab results. |
-| **Sample / counter-sample** | The sealed sample sent to the laboratory, and its twin kept at the plant. |
-| **Seal number** | The number on the seal of a sample; the laboratory checks it on receipt. |
+| **Container** | A tin, drum or barrel of a delivery. Each container is recorded with its net weight and its seals, and gives its own sample jar. |
+| **Seal event** | One step in the seal history of a container: checked on arrival, plant seal applied, opened for sampling, sealed again. Seal events can only be added. |
+| **Sample jar / counter-sample** | The sealed jar sent to the laboratory from one container, and its twin kept at the plant. |
+| **Tamper-evident cap** | The cap of a sample jar with a button that pops up when the jar is opened; it must be down (intact) when the jar is sealed and when it is received. |
+| **Seal number** | The number on a seal; the laboratory checks it on receipt. |
+| **Composite sample** | A sample the laboratory mixes from equal parts of a lot's received jars and analyses once for the lot. |
+| **Worst value** | With jars analysed one by one, the lot's CCP 1 value per parameter: the container value furthest out of, or closest to, its limit. |
+| **SMS code** | A 6-digit code sent by SMS that confirms exactly the content it was sent for (registration, delivery, notice); valid 5 minutes. |
+| **Content fingerprint** | The SHA-256 fingerprint of a confirmed registration or delivery; it shows whether the record is unchanged since confirmation. |
+| **Signed photo** | The photo of a form signed by the beekeeper, used when no SMS code is possible; a Compliance Officer accepts or rejects it. |
+| **Delivery correction** | A change of the facts of a confirmed delivery, requested by one platform administrator and confirmed by a second; the beekeeper is informed by SMS. |
 | **Lab report / report code** | The laboratory's report (PDF and values) and its public 12-character code. |
 | **Food-analysis laboratory** | The laboratory that analyses the honey samples, typically an accredited one. Its analyst enters the results; its lab manager approves them. |
 | **Accredited laboratory** | A laboratory with a valid accreditation, recorded when the report is approved. |
@@ -33,17 +42,27 @@ Table: Glossary {#tbl-glossary}
 | **Honey Story** | The public page of a finalized batch, opened from its QR code. |
 | **Beekeeper page** | The public page of a beekeeper, published with consent. |
 | **Registry number (AKS)** | The beekeeper's enterprise registry number, `TR` + province code + 10 digits. |
+| **Beekeeper registration** | The registration of a beekeeper and their apiaries by a beekeeper registration officer of a district directorate, confirmed by the beekeeper's SMS code or a signed photo. |
+| **Compliance Officer** | The person in every organization who reviews evidence, sampling quality and approvals and handles data-protection requests; enters no workflow data. |
+| **Beekeeper portal** | The beekeeper's own area (**My beekeeper area**) with their deliveries, samples, batches, prices and consents. |
+| **Asking price** | The price per kg a beekeeper asks for a delivered lot; read only by the lot's owner and the administrators, never public. |
+| **Privacy notice** | The text that tells how personal data is processed and who the data controller is; versioned, confirmed by every user. |
+| **Data controller** | The organization responsible for the personal data it records, named in its privacy notice. |
+| **Consent** | An optional agreement of the beekeeper (name on public pages, information SMS, association's access to prices, public beekeeper page); a withdrawal takes effect at once. |
+| **Neutral code** | The code shown on public pages instead of a beekeeper's name when there is no name consent. |
+| **Data-subject request** | A request of a person about their personal data (access, correction, deletion, objection, consent withdrawal), answered within 30 days. |
+| **Retention** | How long each kind of data is kept and what happens afterwards; the run is off until the owner approves it. |
 | **Membership** | One user account × one organization × one role. One person can have several memberships, also several in the same organization. |
-| **Beekeeper (record)** | Beekeepers have no accounts. Each one is represented in the platform by a Beekeeper record. |
+| **Beekeeper (record)** | Each beekeeper is represented in the platform by a Beekeeper record. A beekeeper can also have a portal account, which holds no membership. |
 | **Read** | The right to open and read records, without changing them. |
 | **Capability** | An ability of an organization: what it is able to do in the honey chain (for example "Able to receive and process honey"). See [Table](#tbl-capabilities). |
 | **Ground rules** | The rules built into the platform that no setting can switch off. See [Ground rules](#fixed-rules). |
 | **Audit log** | The append-only record of every change, protected by a hash chain. |
 | **SHA-256 fingerprint** | A code calculated from a file's content; any change to the file changes it. |
 
-Table: Labels renamed in the next release (the screenshots show the old labels) {#tbl-renamed-labels}
+Table: Labels renamed in this release {#tbl-renamed-labels}
 
-| Today on screen | New name (used in this manual) |
+| Before this release | Now on screen (used in this manual) |
 |---|---|
 | Quality approver | Quality Assurance Officer |
 | Organisation admin | Organization admin |
@@ -96,5 +115,29 @@ Check that the consent is recorded, the registry number is verified, the associa
 **I work for two organizations.**
 Switch with the organization · role chip in the top bar. The choice lasts until you close the browser.
 
-**I don't receive the password reset e-mail.**
-Check the spam folder. A platform administrator can set a new password for you.
+**I don't receive the password reset code.**
+The code goes only to a **verified** mobile phone. Check the number on your **Profile**. Without a verified phone, ask the person who gave you your sign-in details to send new ones.
+
+**My temporary password does not work.**
+It is valid for 72 hours. Ask for new sign-in details: a platform administrator for members, the registration officer for beekeepers.
+
+**The beekeeper did not get the SMS code.**
+Check the phone number, wait a minute and click **Send a new code**. If no SMS is possible, use the signed-photo path; the record then waits for the Compliance Officer.
+
+**"No active beekeeper with this number." at a delivery.**
+The beekeeper is not registered, or was registered with a signed photo that the Compliance Officer has not accepted yet. Ask the beekeeper registration officer of the district.
+
+**The laboratory rejected a jar.**
+Take a new jar from the same container: on the delivery page, **Open, sample and seal again**.
+
+**"Request finalizing" names a delivery photo.**
+A delivery confirmed by a signed photo can be finalized only after the plant's Compliance Officer accepts the photo.
+
+**The Verify page says the report code is not found.**
+Only approved reports can be verified. Ask the laboratory whether the report is approved.
+
+**The Honey Story shows a code instead of the beekeeper's name.**
+The beekeeper has not given the consent to show the name. The beekeeper can give it in the portal, or at the next registration.
+
+**The animations disturb me.**
+Turn them off with **Show animations** in the avatar menu (or on the **Account** page of the portal).

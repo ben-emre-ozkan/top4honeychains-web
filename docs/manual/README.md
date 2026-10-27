@@ -12,7 +12,7 @@ The user manual of the TOP4HoneyChains web platform in the five UI languages. En
 
 ## Source of truth
 
-The manual describes the application as it runs with `Features:OrgRoleModel = true`. It was written from the code (controllers, views, permission checks, `db/migrations`, in particular `013_role_permissions.sql` and `015_ccp0_reception_officer.sql`). UI labels and messages are taken from `TOP4HONEYCHAINS/TOP4HoneyChains.Web/Resources/SharedResource.<lang>.resx`; role, capability, status and CCP names from the reference translations in the database. When the application changes, update the English chapter first, then the same section in the other languages.
+The manual describes the application as it runs with `Features:OrgRoleModel = true` and the D-78 switches on (`Features:CustodyIntake`, `Features:BeekeeperAccounts`); chapter 15 lists the switches and what they change while off. It was written from the code (controllers, views, permission checks, `db/migrations`, in particular `013_role_permissions.sql` and `015_ccp0_reception_officer.sql`). UI labels and messages are taken from `TOP4HONEYCHAINS/TOP4HoneyChains.Web/Resources/SharedResource.<lang>.resx`; role, capability, status and CCP names from the reference translations in the database. When the application changes, update the English chapter first, then the same section in the other languages.
 
 ## Structure
 
@@ -22,10 +22,11 @@ Each language folder has the same files, the same headings and the same anchors 
 2. Capabilities, organizations and roles (with the permission matrix)
 3. Getting started
 4. The end-to-end flow
-5. – 11. One chapter per role
-12. Platform administrator
-13. Trust and privacy
-14. Glossary and FAQ
+5. – 13. One chapter per role (12 Beekeeper registration officer, 13 Compliance Officer)
+14. The beekeeper portal
+15. Platform administrator
+16. Trust and privacy
+17. Glossary and FAQ
 
 ## Figures, tables and references
 
@@ -49,7 +50,7 @@ The cover shows the platform logo, the project and the ICT-AGRI-FOOD 2022 call, 
 
 ## Planned application changes and review
 
-[PLANNED-APP-CHANGES.md](PLANNED-APP-CHANGES.md) lists the application changes the manual already assumes (for example the role name Quality Assurance Officer); [REVIEW-RESPONSE-2026-10.md](REVIEW-RESPONSE-2026-10.md) answers the review of October 2026 comment by comment.
+[PLANNED-APP-CHANGES.md](PLANNED-APP-CHANGES.md) lists the application changes the review asked for; all but the multi-country origin map (A8) shipped with D-78 (D-84); [REVIEW-RESPONSE-2026-10.md](REVIEW-RESPONSE-2026-10.md) answers the review of October 2026 comment by comment.
 
 ## Screenshots
 

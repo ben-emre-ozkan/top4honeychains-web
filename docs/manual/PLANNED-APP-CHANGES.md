@@ -1,6 +1,6 @@
 # Planned application changes assumed by the user manual
 
-The user manual of October 2026 (decision D-76, review by the project coordinator) is written as if the changes below have shipped. Items marked **Done** are built (D-84, release with D-78; not yet on the live site, which goes live with D-78 as a whole); A7 was done with D-83; A8 is still open. The screenshots show today's labels; [Table "Labels renamed in the next release"](en/14-glossary-and-faq.md#glossary) lists old → new names for readers.
+The user manual of October 2026 (decision D-76, review by the project coordinator) is written as if the changes below have shipped. Items marked **Done** are built (D-84, release with D-78; not yet on the live site, which goes live with D-78 as a whole); A7 was done with D-83; A8 is still open. The manual of the D-78 release (D-85) describes the shipped labels; [Table "Labels renamed in this release"](en/17-glossary-and-faq.md#glossary) lists old → new names for readers.
 
 Each item names where the change belongs in the code, so it can be planned as its own work item (one branch per item, per `CLAUDE.md`). Reference-text changes go into a new numbered migration in `db/migrations/` (idempotent, five languages), like `017_capability_texts.sql`.
 
