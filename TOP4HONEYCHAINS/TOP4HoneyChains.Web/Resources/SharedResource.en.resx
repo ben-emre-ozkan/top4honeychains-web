@@ -8889,4 +8889,13 @@
   <data name="Tour.Me.Account" xml:space="preserve">
     <value>Your phone, language, password and the animations switch.</value>
   </data>
+  <data name="Only a processing organization takes samples." xml:space="preserve">
+    <value>Only a processing organization takes samples.</value>
+  </data>
+  <data name="Only a processing or packing organization finalizes batches." xml:space="preserve">
+    <value>Only a processing or packing organization finalizes batches.</value>
+  </data>
+  <data name="Only an organization that processes, packs or trades honey ships or receives it." xml:space="preserve">
+    <value>Only an organization that processes, packs or trades honey ships or receives it.</value>
+  </data>
 </root>

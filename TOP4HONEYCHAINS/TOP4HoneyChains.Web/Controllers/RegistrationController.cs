@@ -253,12 +253,17 @@ namespace TOP4HoneyChains.Web.Controllers
         public async Task<IActionResult> Evidence(int id)
         {
             var r = await _context.BeekeeperRegistrations.AsNoTracking().FirstOrDefaultAsync(x => x.RegistrationId == id);
-            if (r == null || r.EvidenceStoredFileName == null || !await _registration.MayReadAsync(r))
+            if (r == null || r.EvidenceStoredFileName == null)
                 return NotFound();
+            // C2 (D-84): the registering organization's registration officer, Compliance Officer and admin
+            var access = HttpContext.RequestServices.GetRequiredService<EvidenceAccess>();
+            var result = await access.CheckAsync(r.RegisteringOrgId, OrgRoles.RegistrationOfficer);
+            if (result != EvidenceAccess.Result.Allowed)
+                return EvidenceAccess.Refuse(result);
             var path = FileStore.PathOf(_env, RegistrationService.EvidenceFolder, r.EvidenceStoredFileName);
             if (path == null)
                 return NotFound();
-            await HttpContext.RequestServices.GetRequiredService<AuditWriter>().WriteAsync("Download", "BeekeeperRegistrations", id.ToString());
+            await access.AuditAsync("BeekeeperRegistrations", id.ToString(), r.EvidenceOriginalFileName);
             return PhysicalFile(path, FileStore.ContentTypeOf(path), r.EvidenceOriginalFileName ?? Path.GetFileName(path));
         }
 

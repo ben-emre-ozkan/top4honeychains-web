@@ -32,7 +32,8 @@ namespace TOP4HoneyChains.Web.Controllers
             var r = await _context.LabReports.AsNoTracking().Include(x => x.LabOrg)
                 .FirstOrDefaultAsync(x => x.ReportCode == code);
             // Only submitted or approved reports are public; a draft is still being written
-            if (r == null || r.Status == LabReportStatus.Draft)
+            // C4 (D-84): only an approved report is confirmed publicly; a draft or submitted one is "not found"
+            if (r == null || r.Status != LabReportStatus.Approved)
                 return View((ReportInfo?)null);
             return View(new ReportInfo(r.ReportCode, r.Status, r.ReportNumber, r.IssuedOn, r.LabOrg!.DisplayName,
                 r.IsAccredited, r.AccreditationNumber, r.InHouse, r.Sha256, r.ApprovedAt));

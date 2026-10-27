@@ -324,9 +324,14 @@ namespace TOP4HoneyChains.Web.Controllers
             var doc = await _context.OrgDocuments.Include(d => d.Org).ThenInclude(o => o!.Capabilities).FirstOrDefaultAsync(d => d.DocumentId == id);
             if (doc == null || !await AllowedAsync(doc.Org!, OrgOperations.Read))
                 return NotFound();
+            // C2 (D-84): the organization's admin and Compliance Officer, platform administrators, and whoever verifies the organization
+            var access = HttpContext.RequestServices.GetRequiredService<EvidenceAccess>();
+            if (!await AllowedAsync(doc.Org!, OrgOperations.Verify) && await access.CheckAsync(doc.OrgId) != EvidenceAccess.Result.Allowed)
+                return EvidenceAccess.Refuse(EvidenceAccess.Result.Forbidden);
             var path = FileStore.PathOf(_env, FileStore.OrgDocuments, doc.StoredFileName);
             if (path == null)
                 return NotFound();
+            await access.AuditAsync("OrgDocuments", id.ToString(), doc.OriginalFileName);
             return PhysicalFile(path, FileStore.ContentTypeOf(path), doc.OriginalFileName);
         }
 

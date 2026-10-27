@@ -32,6 +32,12 @@ namespace TOP4HoneyChains.Web.Controllers
 
         public record Row(Beekeeper Beekeeper, StorefrontService.State State, string? RegistryNumber);
 
+        private IActionResult ReadDenied(ActiveMembership active)
+        {
+            TempData["Error"] = $"Your role ({active.OrgRole}) cannot open this page; roles: {string.Join(", ", Perm.Roles(PermissionAreas.Storefront, PermissionAreas.Read))}.";
+            return RedirectToAction("Index", "MyWork");
+        }
+
         // Why the active membership may not manage storefronts (null = allowed)
         private async Task<string?> ManageDeniedAsync()
         {
@@ -71,6 +77,9 @@ namespace TOP4HoneyChains.Web.Controllers
                 var active = await _current.GetAsync();
                 if (active == null || !active.Has(Capabilities.Association))
                     return NotFound();
+                // C1 (D-84): the read right is checked on the page, not only in the menu
+                if (!MemberMenu.Storefronts(active, Perm))
+                    return ReadDenied(active);
                 ids = _context.BeekeeperAssociations.Where(a => a.AssociationOrgId == active.OrgId && a.ValidTo == null).Select(a => a.BeekeeperId);
             }
             var list = await ids.Take(500).ToListAsync();
@@ -205,10 +214,16 @@ namespace TOP4HoneyChains.Web.Controllers
             var consent = await _context.Consents.AsNoTracking().FirstOrDefaultAsync(c => c.ConsentId == id);
             if (consent == null)
                 return NotFound();
-            if (!_current.IsPlatformAdmin && (await _current.GetAsync())?.OrgId != consent.AssociationOrgId)
-                return NotFound();
+            // C2 (D-84): the association's admin (who records storefront consents) and Compliance Officer
+            var access = HttpContext.RequestServices.GetRequiredService<EvidenceAccess>();
+            var result = await access.CheckAsync(consent.AssociationOrgId);
+            if (result != EvidenceAccess.Result.Allowed)
+                return EvidenceAccess.Refuse(result);
             var path = FileStore.PathOf(_env, StorefrontService.ConsentDocuments, consent.DocumentStoredFileName);
-            return path == null ? NotFound() : PhysicalFile(path, FileStore.ContentTypeOf(path), consent.DocumentOriginalFileName);
+            if (path == null)
+                return NotFound();
+            await access.AuditAsync("Consents", id.ToString(), consent.DocumentOriginalFileName);
+            return PhysicalFile(path, FileStore.ContentTypeOf(path), consent.DocumentOriginalFileName);
         }
 
         // Printable card with the QR code of the public page
@@ -216,6 +231,8 @@ namespace TOP4HoneyChains.Web.Controllers
         {
             if (!_current.IsPlatformAdmin && await MemberAsync(id) == null)
                 return NotFound();
+            if (!_current.IsPlatformAdmin && await _current.GetAsync() is { } m && !MemberMenu.Storefronts(m, Perm))
+                return ReadDenied(m);
             var bk = await _context.Beekeepers.AsNoTracking().FirstOrDefaultAsync(b => b.BeekeeperId == id);
             var state = bk == null ? null : (await _storefronts.StatesAsync(new[] { id })).GetValueOrDefault(id);
             if (state == null || !state.Published)

@@ -190,6 +190,12 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             // the Compliance Officer sees it in My work, opens the photo and accepts
             Assert.Contains($"/Registration/Details/{regId}", await d.Co.HtmlAsync("/MyWork/Index"));
             Assert.Equal(HttpStatusCode.OK, (await d.Co.GetAsync($"/Registration/Evidence/{regId}")).StatusCode);
+            // C2 (D-84): the recording role, the Compliance Officer and the admin; another role 403, another organization 404; audited
+            Assert.Equal(HttpStatusCode.OK, (await d.Officer.GetAsync($"/Registration/Evidence/{regId}")).StatusCode);
+            Assert.True(await _app.WithContextAsync(db => db.AuditEntries.AnyAsync(a => a.Action == "Download" && a.Entity == "BeekeeperRegistrations" && a.EntityKey == regId.ToString())));
+            await _app.AddMemberAsync(d.OrgId, await _app.CreateUserAsync("zz_test_reg3_staff"), OrgRoles.Staff);
+            Assert.Equal(403, await (await UserClient.LoginAsync(_app, "zz_test_reg3_staff")).StatusAsync($"/Registration/Evidence/{regId}"));
+            Assert.Equal(404, await sao.StatusAsync($"/Registration/Evidence/{regId}"));
             Assert.Equal("Evidence accepted; the registry number is verified.",
                 await d.Co.PostFlashAsync($"/Registration/Review/{regId}", new() { ["accept"] = "true" }, $"/Registration/Details/{regId}"));
             Assert.Equal(RegistryStatus.Verified, await _app.WithContextAsync(db => db.BeekeeperRegistry.Where(x => x.BeekeeperId == r.BeekeeperId).Select(x => x.Status).FirstAsync()));

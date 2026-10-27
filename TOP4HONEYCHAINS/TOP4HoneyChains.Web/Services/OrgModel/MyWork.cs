@@ -192,7 +192,10 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         {
             if (await _context.Organizations.AsNoTracking().Where(o => o.IsPlatform).Select(o => (int?)o.OrgId).FirstOrDefaultAsync() is int platformId)
                 await EvidenceItemsAsync(platformId, items);
-            foreach (var o in await PendingOrgsAsync(o => true))
+            // C6 / O-16: with the central-association setting, associations are verified by the central association, not here
+            var centralSetting = OrganizationAuthorizationHandler.CentralSetting(_config);
+            foreach (var o in await PendingOrgsAsync(o => !centralSetting || !o.Capabilities.Any(c => c.Capability == Capabilities.Association)
+                                                          || o.Capabilities.Any(c => c.Capability == Capabilities.CentralAssociation)))
                 items.Add(new Item("Verify", o.DisplayName, null, $"/Organizations/Details/{o.OrgId}", o.CreatedAt));
             foreach (var r in await _context.RegistryVerifications.AsNoTracking().Where(v => v.Status == RegistryStatus.Pending).ToListAsync())
                 items.Add(new Item("Registry", r.EnterpriseNumber, null, $"/Registry/Edit/{r.BeekeeperId}", r.RequestedAt));

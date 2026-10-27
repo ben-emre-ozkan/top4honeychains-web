@@ -278,9 +278,15 @@ namespace TOP4HoneyChains.Web.Controllers
             var intake = await _context.LotIntakes.AsNoTracking().FirstOrDefaultAsync(i => i.IntakeId == id);
             if (intake == null || !await MaySeeIntakeAsync(intake))
                 return NotFound();
+            // C2 (D-84): the signed form only for the receiving organization's sample officer, Compliance Officer and admin
+            var access = HttpContext.RequestServices.GetRequiredService<EvidenceAccess>();
+            var result = await access.CheckAsync(intake.ReceivingOrgId, OrgRoles.SampleAcceptanceOfficer);
+            if (result != EvidenceAccess.Result.Allowed)
+                return EvidenceAccess.Refuse(result == EvidenceAccess.Result.NotFound ? EvidenceAccess.Result.Forbidden : result);
             var path = FileStore.PathOf(_env, IntakeForms, intake.FormStoredFileName);
             if (path == null)
                 return NotFound();
+            await access.AuditAsync("LotIntakes", id.ToString(), intake.FormOriginalFileName);
             return PhysicalFile(path, FileStore.ContentTypeOf(path), intake.FormOriginalFileName);
         }
 

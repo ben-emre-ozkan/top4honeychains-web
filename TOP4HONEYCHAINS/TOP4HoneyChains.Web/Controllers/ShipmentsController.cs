@@ -53,6 +53,14 @@ namespace TOP4HoneyChains.Web.Controllers
             var active = await _current.GetAsync();
             if (active == null)
                 return NotFound();
+            // C1 (D-84): Shipments Read (and the capability) are checked on the page, not only in the menu
+            if (!MemberMenu.Shipments(active, Perm))
+            {
+                // a refusal from another shipment action keeps its own reason
+                if (TempData.Peek("Error") == null)
+                    TempData["Error"] = $"Your role ({active.OrgRole}) cannot open this page; roles: {string.Join(", ", Perm.Roles(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Shipments, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Read))}.";
+                return RedirectToAction("Index", "MyWork");
+            }
 
             var owned = await (await _scope.OwnedBatchesAsync(active.OrgId)).Where(f => f.FinalHoneyProductionIsFinalized)
                 .Select(f => f.FinalHoneyProductionId).ToListAsync();
@@ -84,6 +92,9 @@ namespace TOP4HoneyChains.Web.Controllers
                 return "No active membership.";
             if (!active.IsVerified)
                 return $"Your organization is {active.OrgStatus}; only verified organizations can enter data.";
+            // C3 (D-84): only an organization that processes, packs or trades honey ships it
+            if (!(active.Has(Capabilities.Processing) || active.Has(Capabilities.Packing) || active.Has(Capabilities.Wholesale) || active.Has(Capabilities.Retail)))
+                return "Only an organization that processes, packs or trades honey ships or receives it.";
             if (!Perm.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Shipments, action, active.OrgRole))
                 return $"Your role ({active.OrgRole}) cannot ship or receive goods; roles: {string.Join(", ", Perm.Roles(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Shipments, action))}.";
             return null;
