@@ -4717,7 +4717,7 @@
     <value>El campo {0} debe ser un texto o una lista con una longitud mínima de '{1}'.</value>
   </data>
   <data name="Honey Type Id" xml:space="preserve">
-    <value>Tipo de miel (n.º)</value>
+    <value>Tipo de miel</value>
   </data>
   <data name="Wholesaler Title" xml:space="preserve">
     <value>Nombre del mayorista</value>
@@ -7850,5 +7850,263 @@
   </data>
   <data name="The sign-in details were sent by SMS." xml:space="preserve">
     <value>Los datos de acceso se enviaron por SMS.</value>
+  </data>
+  <data name="Origin Country" xml:space="preserve">
+    <value>País de origen</value>
+  </data>
+  <data name="Period Id" xml:space="preserve">
+    <value>Periodo de producción</value>
+  </data>
+  <data name="Ci.Help" xml:space="preserve">
+    <value>Registre cada envase de la entrega con su precinto, tome una muestra de cada envase y luego el apicultor lo confirma todo con un código SMS.</value>
+  </data>
+  <data name="Ci.NoPhone" xml:space="preserve">
+    <value>sin móvil: solo foto firmada</value>
+  </data>
+  <data name="Ci.Delivery" xml:space="preserve">
+    <value>La entrega</value>
+  </data>
+  <data name="Ci.Containers" xml:space="preserve">
+    <value>Envases y muestras</value>
+  </data>
+  <data name="Ci.ContainersHelp" xml:space="preserve">
+    <value>Una fila por envase. Un envase precintado: compruebe su precinto. Uno sin precinto: aplique un precinto de la planta delante del apicultor. Luego ábralo, llene el frasco de muestra y el de contramuestra, compruebe que el botón de la tapa está abajo y vuelva a precintar el envase.</value>
+  </data>
+  <data name="Ci.Kind" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="Ci.Kind.Tin" xml:space="preserve">
+    <value>Lata</value>
+  </data>
+  <data name="Ci.Kind.Drum" xml:space="preserve">
+    <value>Bidón</value>
+  </data>
+  <data name="Ci.Kind.Bucket" xml:space="preserve">
+    <value>Cubo</value>
+  </data>
+  <data name="Ci.Kind.Ibc" xml:space="preserve">
+    <value>IBC</value>
+  </data>
+  <data name="Ci.Kind.Other" xml:space="preserve">
+    <value>Otro</value>
+  </data>
+  <data name="Ci.NetKg" xml:space="preserve">
+    <value>Kg netos</value>
+  </data>
+  <data name="Ci.GrossKg" xml:space="preserve">
+    <value>Kg brutos</value>
+  </data>
+  <data name="Ci.Arrival" xml:space="preserve">
+    <value>A la llegada</value>
+  </data>
+  <data name="Ci.ArrivedSealed" xml:space="preserve">
+    <value>llegó precintado</value>
+  </data>
+  <data name="Ci.OriginSeal" xml:space="preserve">
+    <value>Número de precinto</value>
+  </data>
+  <data name="Ci.OriginIntact" xml:space="preserve">
+    <value>precinto intacto</value>
+  </data>
+  <data name="Ci.PlantSeal" xml:space="preserve">
+    <value>Precinto de planta aplicado ahora</value>
+  </data>
+  <data name="Ci.JarSeal" xml:space="preserve">
+    <value>Precinto del frasco</value>
+  </data>
+  <data name="Ci.CounterSeal" xml:space="preserve">
+    <value>Precinto de contramuestra</value>
+  </data>
+  <data name="Ci.Cap" xml:space="preserve">
+    <value>Tapa intacta</value>
+  </data>
+  <data name="Ci.CapHelp" xml:space="preserve">
+    <value>Tapa de seguridad: marque solo si el botón está abajo. Una tapa saltada indica que el frasco se abrió: deséchelo y llene uno nuevo.</value>
+  </data>
+  <data name="Ci.Reseal" xml:space="preserve">
+    <value>Precinto nuevo tras el muestreo</value>
+  </data>
+  <data name="Ci.Remove" xml:space="preserve">
+    <value>Quitar la fila</value>
+  </data>
+  <data name="Ci.AddContainer" xml:space="preserve">
+    <value>Añadir un envase</value>
+  </data>
+  <data name="Ci.Total" xml:space="preserve">
+    <value>Total neto</value>
+  </data>
+  <data name="Ci.Samples" xml:space="preserve">
+    <value>Laboratorio y contramuestras</value>
+  </data>
+  <data name="Ci.CounterLocation" xml:space="preserve">
+    <value>Dónde se guardan las contramuestras</value>
+  </data>
+  <data name="Ci.RetainUntil" xml:space="preserve">
+    <value>Conservar hasta</value>
+  </data>
+  <data name="Ci.Confirm" xml:space="preserve">
+    <value>El apicultor confirma</value>
+  </data>
+  <data name="Ci.SendHelp" xml:space="preserve">
+    <value>El apicultor recibe un SMS con su organización, la fecha, los envases, los kilos, el tipo de miel, el número de muestras y un código. Cualquier cambio tras el envío exige un código nuevo.</value>
+  </data>
+  <data name="Ci.NotPresent" xml:space="preserve">
+    <value>Si el apicultor no está presente, llámele: leerá el código de su teléfono.</value>
+  </data>
+  <data name="Ci.ConfirmButton" xml:space="preserve">
+    <value>Confirmar la entrega</value>
+  </data>
+  <data name="Ci.Fallback" xml:space="preserve">
+    <value>Sin SMS posible: foto firmada</value>
+  </data>
+  <data name="Ci.FallbackHelp" xml:space="preserve">
+    <value>Suba la foto del formulario de entrega firmado por el apicultor e indique el motivo. Se puede trabajar con el lote, pero no finalizarlo hasta que el Responsable de cumplimiento de la planta acepte la foto.</value>
+  </data>
+  <data name="Ci.SaveWithPhoto" xml:space="preserve">
+    <value>Registrar con la foto firmada</value>
+  </data>
+  <data name="Ci.DetailsTitle" xml:space="preserve">
+    <value>Entrega</value>
+  </data>
+  <data name="Ci.RecordedAt" xml:space="preserve">
+    <value>registrada</value>
+  </data>
+  <data name="Ci.Confirmation" xml:space="preserve">
+    <value>Confirmación</value>
+  </data>
+  <data name="Ci.Legacy" xml:space="preserve">
+    <value>anterior (envases no registrados)</value>
+  </data>
+  <data name="Ci.ContentHash" xml:space="preserve">
+    <value>Contenido confirmado</value>
+  </data>
+  <data name="Ci.ContentVerified" xml:space="preserve">
+    <value>sin cambios desde la confirmación</value>
+  </data>
+  <data name="Ci.ContentChanged" xml:space="preserve">
+    <value>cambiado tras la confirmación</value>
+  </data>
+  <data name="Ci.ReviewHelp" xml:space="preserve">
+    <value>Abra el formulario de entrega firmado y compárelo con los envases, los pesos y los precintos. Usted no registró esta entrega.</value>
+  </data>
+  <data name="Ci.WaitingReview" xml:space="preserve">
+    <value>La foto firmada espera al Responsable de cumplimiento. Usted registró esta entrega, así que decide otra persona.</value>
+  </data>
+  <data name="Ci.LabelsA4" xml:space="preserve">
+    <value>Etiquetas (hoja A4)</value>
+  </data>
+  <data name="Ci.LabelsSingle" xml:space="preserve">
+    <value>Etiquetas (100 × 50 mm)</value>
+  </data>
+  <data name="Ci.Container" xml:space="preserve">
+    <value>Envase</value>
+  </data>
+  <data name="Ci.SealHistory" xml:space="preserve">
+    <value>Historial de precintos</value>
+  </data>
+  <data name="Ci.Jars" xml:space="preserve">
+    <value>Frascos de muestra</value>
+  </data>
+  <data name="Ci.Seal.Checked" xml:space="preserve">
+    <value>Precinto de origen comprobado</value>
+  </data>
+  <data name="Ci.Seal.Applied" xml:space="preserve">
+    <value>Precinto de planta aplicado</value>
+  </data>
+  <data name="Ci.Seal.Broken" xml:space="preserve">
+    <value>Precinto roto</value>
+  </data>
+  <data name="Ci.Seal.Replaced" xml:space="preserve">
+    <value>Precinto sustituido</value>
+  </data>
+  <data name="Ci.NotIntact" xml:space="preserve">
+    <value>no intacto</value>
+  </data>
+  <data name="Ci.Labels" xml:space="preserve">
+    <value>Etiquetas</value>
+  </data>
+  <data name="Ci.SealShort" xml:space="preserve">
+    <value>Precinto</value>
+  </data>
+  <data name="Ci.SampleJar" xml:space="preserve">
+    <value>Frasco de muestra</value>
+  </data>
+  <data name="Ci.CounterJar" xml:space="preserve">
+    <value>Contramuestra</value>
+  </data>
+  <data name="Ci.KeepUntil" xml:space="preserve">
+    <value>conservar hasta</value>
+  </data>
+  <data name="Ci.DeliveryLocked" xml:space="preserve">
+    <value>El apicultor confirmó esta entrega con sus envases: colmenar, tipo de miel, periodo, cantidad, fecha y origen no se pueden cambiar.</value>
+  </data>
+  <data name="Record at least one container." xml:space="preserve">
+    <value>Registre al menos un envase.</value>
+  </data>
+  <data name="At most 100 containers per delivery." xml:space="preserve">
+    <value>Como máximo 100 envases por entrega.</value>
+  </data>
+  <data name="Container {0}: choose the kind of container." xml:space="preserve">
+    <value>Envase {0}: elija el tipo de envase.</value>
+  </data>
+  <data name="Container {0}: enter the net weight (more than 0 kg)." xml:space="preserve">
+    <value>Envase {0}: introduzca el peso neto (más de 0 kg).</value>
+  </data>
+  <data name="Container {0}: the gross weight cannot be lower than the net weight." xml:space="preserve">
+    <value>Envase {0}: el peso bruto no puede ser menor que el neto.</value>
+  </data>
+  <data name="Container {0}: enter the number of the seal it arrived with." xml:space="preserve">
+    <value>Envase {0}: introduzca el número del precinto con el que llegó.</value>
+  </data>
+  <data name="Container {0}: apply a plant seal in front of the beekeeper and enter its number." xml:space="preserve">
+    <value>Envase {0}: aplique un precinto de planta delante del apicultor e introduzca su número.</value>
+  </data>
+  <data name="Container {0}: enter the seal numbers of the sample jar and of the counter-sample jar." xml:space="preserve">
+    <value>Envase {0}: introduzca los precintos del frasco de muestra y del de contramuestra.</value>
+  </data>
+  <data name="Container {0}: the jar's cap must be intact (button down) when sealed. A popped cap: discard the jar and fill a new one." xml:space="preserve">
+    <value>Envase {0}: la tapa del frasco debe estar intacta (botón abajo) al precintar. Tapa saltada: deseche el frasco y llene uno nuevo.</value>
+  </data>
+  <data name="Container {0}: enter the new plant seal applied after sampling." xml:space="preserve">
+    <value>Envase {0}: introduzca el nuevo precinto de planta aplicado tras el muestreo.</value>
+  </data>
+  <data name="Container {0}: seal numbers have at most 50 characters." xml:space="preserve">
+    <value>Envase {0}: los números de precinto tienen como máximo 50 caracteres.</value>
+  </data>
+  <data name="Every seal number of the delivery must be different." xml:space="preserve">
+    <value>Cada número de precinto de la entrega debe ser distinto.</value>
+  </data>
+  <data name="The beekeeper has no mobile phone: confirm the delivery with the photo of the signed form." xml:space="preserve">
+    <value>El apicultor no tiene móvil: confirme la entrega con la foto del formulario firmado.</value>
+  </data>
+  <data name="A code was sent to the beekeeper's phone. Enter the code the beekeeper reads out (in person or by phone)." xml:space="preserve">
+    <value>Se envió un código al teléfono del apicultor. Introduzca el código que el apicultor le lea (en persona o por teléfono).</value>
+  </data>
+  <data name="Delivery confirmed by the beekeeper and recorded as lot #{0}." xml:space="preserve">
+    <value>Entrega confirmada por el apicultor y registrada como lote #{0}.</value>
+  </data>
+  <data name="Delivery recorded as lot #{0} with the signed photo; it waits for the Compliance Officer." xml:space="preserve">
+    <value>Entrega registrada como lote #{0} con la foto firmada; espera al Responsable de cumplimiento.</value>
+  </data>
+  <data name="This delivery was already reviewed." xml:space="preserve">
+    <value>Esta entrega ya fue revisada.</value>
+  </data>
+  <data name="You recorded this delivery; another person must review its signed photo." xml:space="preserve">
+    <value>Usted registró esta entrega; otra persona debe revisar la foto firmada.</value>
+  </data>
+  <data name="Signed photo accepted; the lot can be finalized when its CCPs are done." xml:space="preserve">
+    <value>Foto firmada aceptada; el lote se puede finalizar cuando sus PCC estén completos.</value>
+  </data>
+  <data name="Signed photo rejected; the lot cannot be finalized." xml:space="preserve">
+    <value>Foto firmada rechazada; el lote no se puede finalizar.</value>
+  </data>
+  <data name="{0}: the signed photo of the delivery was rejected." xml:space="preserve">
+    <value>{0}: la foto firmada de la entrega fue rechazada.</value>
+  </data>
+  <data name="{0}: the signed photo of the delivery waits for the Compliance Officer." xml:space="preserve">
+    <value>{0}: la foto firmada de la entrega espera al Responsable de cumplimiento.</value>
+  </data>
+  <data name="Samples of this lot are taken per container on the delivery page." xml:space="preserve">
+    <value>Las muestras de este lote se toman por envase en la página de la entrega.</value>
   </data>
 </root>

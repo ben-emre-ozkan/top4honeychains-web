@@ -15,7 +15,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@L["Ci.Labels"] · L@lot.RawHoneyProductionId</title>
+    <title>@L["Ci.Labels"] · L@(lot.RawHoneyProductionId)</title>
     <meta name="robots" content="noindex">
     <style>
         @if (size == "label")
@@ -46,7 +46,7 @@
     </style>
 </head>
 <body>
-    <div class="tools"><button type="button" onclick="window.print()">@L["Reg78.Print"]</button> · L@lot.RawHoneyProductionId · @date</div>
+    <div class="tools"><button type="button" onclick="window.print()">@L["Reg78.Print"]</button> · L@(lot.RawHoneyProductionId) · @date</div>
     <div class="sheet" id="labels">
         @foreach (var c in Model.Containers.OrderBy(c => c.Seq))
         {
