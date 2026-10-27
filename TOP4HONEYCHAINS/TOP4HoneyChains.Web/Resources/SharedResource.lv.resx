@@ -9039,4 +9039,16 @@
   <data name="Retention run: {0} codes deleted, {1} SMS messages cleared, {2} prices deleted." xml:space="preserve">
     <value>Glabāšana izpildīta: dzēsti {0} kodi, notīrītas {1} SMS, dzēstas {2} cenas.</value>
   </data>
+  <data name="Hst.ApiaryIn" xml:space="preserve">
+    <value>Drava: {0}</value>
+  </data>
+  <data name="Hst.AnApiary" xml:space="preserve">
+    <value>Drava</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Lejupielāde</value>
+  </data>
+  <data name="Retention" xml:space="preserve">
+    <value>Glabāšana</value>
+  </data>
 </root>

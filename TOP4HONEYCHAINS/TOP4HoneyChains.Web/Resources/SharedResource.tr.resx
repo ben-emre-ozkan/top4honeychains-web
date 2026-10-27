@@ -9039,4 +9039,16 @@
   <data name="Retention run: {0} codes deleted, {1} SMS messages cleared, {2} prices deleted." xml:space="preserve">
     <value>Saklama çalıştırıldı: {0} kod silindi, {1} SMS temizlendi, {2} fiyat silindi.</value>
   </data>
+  <data name="Hst.ApiaryIn" xml:space="preserve">
+    <value>{0} ilindeki arılık</value>
+  </data>
+  <data name="Hst.AnApiary" xml:space="preserve">
+    <value>Arılık</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>İndirme</value>
+  </data>
+  <data name="Retention" xml:space="preserve">
+    <value>Saklama</value>
+  </data>
 </root>

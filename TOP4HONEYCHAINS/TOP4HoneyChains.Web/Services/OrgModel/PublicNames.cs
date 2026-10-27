@@ -35,6 +35,14 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             _options = options.Value;
         }
 
+        // D-85: an apiary title typed before D-78 often contains the beekeeper's name ("<name> Arılığı"), and a photo
+        // description is free text; public pages show them only where the beekeeper's name may be shown. A title generated from
+        // province, district and locality carries no name and is always shown.
+        public static string? PublicApiaryTitle(string? title, string? titleSource, bool nameShown) =>
+            nameShown || titleSource == ApiaryTitles.Generated ? title : null;
+
+        public static string? PublicPhotoText(string? description, bool nameShown) => nameShown ? description : null;
+
         public static bool ShowsName(bool nameConsent, bool registered, string legacyMode) =>
             nameConsent || (!registered && string.Equals(legacyMode, LegacyNameMode.ShowUntilReverified, StringComparison.OrdinalIgnoreCase));
 

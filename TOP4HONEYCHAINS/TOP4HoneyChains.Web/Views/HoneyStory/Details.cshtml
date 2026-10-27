@@ -324,7 +324,7 @@
 
                                     <h4 class="fw-bold mb-1 text-dark">
                                         <i class="mdi mdi-beehive-outline text-primary me-2"></i>
-                                        @source.BeekeeperName – @source.ApiaryName
+                                        @source.BeekeeperName – @(source.ApiaryName ?? L["Hst.AnApiary"].Value)
                                     </h4>
 
                                     <div class="text-muted small">
@@ -463,7 +463,7 @@
         {
             <h5 class="mt-4 mb-3">
                 <span class="badge bg-secondary me-2">@L["Raw honey"]</span>
-                @source.ApiaryName · @Ref.Text("HoneyType", "Title", source.HoneyType)
+                @(source.ApiaryName ?? L["Hst.AnApiary"].Value) · @Ref.Text("HoneyType", "Title", source.HoneyType)
             </h5>
             <div class="ccp-container">
                 @foreach (var block in source.CcpBlocks)
