@@ -77,6 +77,9 @@ namespace TOP4HoneyChains.Web.Controllers
                 return "Only the organization that holds the lot takes its samples.";
             if (!active.IsVerified)
                 return $"Your organization is {active.OrgStatus}; only verified organizations can enter data.";
+            // C3 (D-84): samples are taken by a processing organization
+            if (!active.Has(Capabilities.Processing))
+                return "Only a processing organization takes samples.";
             if (!Perm.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Samples, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Enter, active.OrgRole))
                 return $"Your role ({active.OrgRole}) cannot take samples; roles: {string.Join(", ", Perm.Roles(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Samples, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Enter))}.";
             return null;

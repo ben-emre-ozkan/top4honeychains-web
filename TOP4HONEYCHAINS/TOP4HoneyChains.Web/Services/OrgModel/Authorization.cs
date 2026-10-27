@@ -136,6 +136,14 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             _config = config;
         }
 
+        public static bool CentralSetting(IConfiguration config) =>
+            string.Equals(config["OrgModel:AssociationVerifier"], Capabilities.CentralAssociation, StringComparison.OrdinalIgnoreCase);
+
+        // an association (not itself a central association) while the central-association setting is on
+        public static bool CentralVerifies(IConfiguration config, Organization org) =>
+            CentralSetting(config) && org.Capabilities.Any(c => c.Capability == Capabilities.Association)
+            && !org.Capabilities.Any(c => c.Capability == Capabilities.CentralAssociation);
+
         public static bool IsCentralVerifier(IConfiguration config, ActiveMembership active) =>
             string.Equals(config["OrgModel:AssociationVerifier"], Capabilities.CentralAssociation, StringComparison.OrdinalIgnoreCase)
             && active.Has(Capabilities.CentralAssociation) && active.IsVerified && active.OrgRole == OrgRoles.OrgAdmin;
@@ -144,6 +152,10 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         {
             if (_current.IsPlatformAdmin)
             {
+                // C6 / O-16 (D-84): with the central-association setting, the central association is the ONLY verifier of
+                // beekeepers' associations; platform administrators no longer verify them
+                if (requirement.Name == nameof(OrgOperations.Verify) && CentralVerifies(_config, org))
+                    return;
                 context.Succeed(requirement);
                 return;
             }

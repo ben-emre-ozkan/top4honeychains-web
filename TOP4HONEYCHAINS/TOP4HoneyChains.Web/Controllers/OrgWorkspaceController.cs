@@ -133,6 +133,9 @@ namespace TOP4HoneyChains.Web.Controllers
             return View(batch);
         }
 
+        // C3 (D-84): finalizing is for an organization that processes or packs honey
+        private static bool MayFinalizeBatches(ActiveMembership active) => active.Has(Capabilities.Processing) || active.Has(Capabilities.Packing);
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RequestFinalize(int id)
@@ -146,6 +149,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 TempData["Error"] = "This batch is already finalized.";
             else if (!active.IsVerified || !FinalizeRequestRoles.Contains(active.OrgRole))
                 TempData["Error"] = $"Finalizing is requested by {string.Join(" or ", FinalizeRequestRoles)} of a verified organization.";
+            else if (!MayFinalizeBatches(active))
+                TempData["Error"] = "Only a processing or packing organization finalizes batches.";
             else if (blockers.Count > 0)
                 TempData["Error"] = "The batch cannot be finalized yet: " + string.Join(" ", blockers);
             else
@@ -173,6 +178,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 error = "This batch is already finalized.";
             else if (!active.IsVerified || !FinalizeApproveRoles.Contains(active.OrgRole))
                 error = $"Only a {string.Join(" or ", FinalizeApproveRoles)} of a verified organization can finalize.";
+            else if (!MayFinalizeBatches(active))
+                error = "Only a processing or packing organization finalizes batches.";
             else if (batch.FinalizeRequestedByUserId == null)
                 error = "Finalizing must be requested first.";
             else if (self && !active.FourEyesExempt)

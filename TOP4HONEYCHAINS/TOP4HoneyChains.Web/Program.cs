@@ -147,6 +147,7 @@ builder.Services.AddScoped<IAuthorizationHandler, OrganizationAuthorizationHandl
 builder.Services.AddScoped<IAuthorizationHandler, CcpAuthorizationHandler>();
 builder.Services.AddScoped<BeekeeperPortalService>();
 builder.Services.AddScoped<LotPriceReader>();
+builder.Services.AddScoped<EvidenceAccess>();
 builder.Services.AddScoped<TOP4HoneyChains.Web.Services.UiPreferences>();
 builder.Services.Configure<ComplianceOptions>(builder.Configuration.GetSection("Compliance"));
 builder.Services.AddScoped<ComplianceService>();

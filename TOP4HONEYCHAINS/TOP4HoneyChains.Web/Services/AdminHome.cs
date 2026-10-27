@@ -36,10 +36,12 @@ namespace TOP4HoneyChains.Web.Services
         private readonly TOP4HoneyChainsContext _context;
         private readonly IMemoryCache _cache;
         private readonly FeatureFlags _flags;
+        private readonly IConfiguration _config;
 
-        public AdminHomeService(TOP4HoneyChainsContext context, IMemoryCache cache, IOptions<FeatureFlags> flags)
+        public AdminHomeService(TOP4HoneyChainsContext context, IMemoryCache cache, IOptions<FeatureFlags> flags, IConfiguration config)
         {
             _context = context;
+            _config = config;
             _cache = cache;
             _flags = flags.Value;
         }
@@ -149,7 +151,10 @@ namespace TOP4HoneyChains.Web.Services
             foreach (var b in await _context.FinalHoneyProductions.AsNoTracking().Where(f => !f.FinalHoneyProductionIsFinalized && f.FinalizeRequestedByUserId != null)
                          .Select(f => new { f.FinalHoneyProductionId, f.FinalHoneyProductionTitle, f.FinalizeRequestedAt }).ToListAsync())
                 items.Add(new("finalize", b.FinalHoneyProductionTitle ?? $"#{b.FinalHoneyProductionId}", $"/OrgWorkspace/Batch/{b.FinalHoneyProductionId}", b.FinalizeRequestedAt));
-            foreach (var o in await _context.Organizations.AsNoTracking().Where(o => !o.IsPlatform && o.Status == OrgStatus.Pending && o.Documents.Any())
+            // C6 / O-16: with the central-association setting, associations wait for the central association, not for the administrators
+            var central = TOP4HoneyChains.Web.Services.OrgModel.OrganizationAuthorizationHandler.CentralSetting(_config);
+            foreach (var o in await _context.Organizations.AsNoTracking().Where(o => !o.IsPlatform && o.Status == OrgStatus.Pending && o.Documents.Any()
+                             && (!central || !o.Capabilities.Any(c => c.Capability == Capabilities.Association) || o.Capabilities.Any(c => c.Capability == Capabilities.CentralAssociation)))
                          .Select(o => new { o.OrgId, o.DisplayName, o.CreatedAt }).ToListAsync())
                 items.Add(new("org", o.DisplayName, $"/Organizations/Details/{o.OrgId}", o.CreatedAt));
             foreach (var r in await _context.RegistryVerifications.AsNoTracking().Where(v => v.Status == RegistryStatus.Pending)
