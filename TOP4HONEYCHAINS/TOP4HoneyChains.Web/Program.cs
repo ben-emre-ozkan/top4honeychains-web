@@ -107,6 +107,24 @@ builder.Services.AddScoped<StorefrontService>();
 builder.Services.AddScoped<StorefrontPage>();
 builder.Services.AddScoped<MyWorkService>();
 builder.Services.AddScoped<ISmsSender, LoggingSmsSender>();
+// D-78 P1 (D78-SPEC 5): SMS through a provider chosen in Sms:Provider (Fake, Logging, Netgsm, IletiMerkezi), one-time codes.
+// The application refuses to start with an invalid SMS configuration (e.g. the fake provider in Production without Sms:AllowFake).
+builder.Services.Configure<TOP4HoneyChains.Web.Services.Messaging.SmsOptions>(builder.Configuration.GetSection("Sms"));
+{
+    var sms = builder.Configuration.GetSection("Sms").Get<TOP4HoneyChains.Web.Services.Messaging.SmsOptions>() ?? new();
+    var errors = sms.Validate(builder.Environment.IsDevelopment()).ToList();
+    if (errors.Count > 0)
+        throw new InvalidOperationException("SMS configuration: " + string.Join(" ", errors));
+}
+builder.Services.AddSingleton(TimeProvider.System);
+builder.Services.AddSingleton<TOP4HoneyChains.Web.Services.Messaging.FakeSmsStore>();
+builder.Services.AddSingleton<TOP4HoneyChains.Web.Services.Messaging.FakeSmsGateway>();
+builder.Services.AddSingleton<TOP4HoneyChains.Web.Services.Messaging.LoggingSmsGateway>();
+builder.Services.AddHttpClient<TOP4HoneyChains.Web.Services.Messaging.NetgsmSmsGateway>(c => c.Timeout = TimeSpan.FromSeconds(20));
+builder.Services.AddHttpClient<TOP4HoneyChains.Web.Services.Messaging.IletiMerkeziSmsGateway>(c => c.Timeout = TimeSpan.FromSeconds(20));
+builder.Services.AddScoped<TOP4HoneyChains.Web.Services.Messaging.SmsGatewayFactory>();
+builder.Services.AddScoped<TOP4HoneyChains.Web.Services.Messaging.IMessageService, TOP4HoneyChains.Web.Services.Messaging.MessageService>();
+builder.Services.AddHostedService<TOP4HoneyChains.Web.Services.Messaging.SmsStatusPoller>();
 builder.Services.AddScoped<AuditWriter>();
 builder.Services.AddScoped<ManualRegistryVerifier>();
 builder.Services.AddScoped<IRegistryVerifier>(sp => sp.GetRequiredService<ManualRegistryVerifier>());

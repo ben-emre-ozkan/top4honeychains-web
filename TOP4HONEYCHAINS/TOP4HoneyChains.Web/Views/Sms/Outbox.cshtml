@@ -1,0 +1,44 @@
+@model List<TOP4HoneyChains.Web.Controllers.SmsController.OutboxRow>
+@{
+    ViewData["Title"] = L["Sms.Outbox"].Value;
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-1">@L["Sms.Outbox"]</h4>
+                    <p class="card-title-desc">@L["Sms.OutboxHelp"]</p>
+                    <p class="small text-muted" id="sms-today">@L["Sms.SegmentsToday"]: @ViewBag.Today / @ViewBag.DailyLimit</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered small" id="sms-outbox">
+                            <thead class="table-light">
+                                <tr><th>@L["Sms.Time"]</th><th>@L["Sms.Purpose"]</th><th>@L["Sms.To"]</th><th>@L["Language"]</th><th>@L["Sms.Text"]</th><th>@L["Sms.Segments"]</th><th>@L["Sms.Status"]</th></tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var m in Model)
+                                {
+                                    <tr>
+                                        <td class="text-nowrap"><span data-utc="@m.At.ToString("o")">@m.At.ToLocalTime().ToString("dd.MM.yyyy HH:mm:ss")</span></td>
+                                        <td>@L["Sms.Purpose." + m.Purpose]<div class="text-muted">@m.SubjectType @m.SubjectKey</div></td>
+                                        <td class="text-nowrap">@(m.ToFull ?? m.ToMasked)</td>
+                                        <td>@m.Language</td>
+                                        <td class="sms-text">@m.Text</td>
+                                        <td>@m.Segments</td>
+                                        <td>@m.Status</td>
+                                    </tr>
+                                }
+                                @if (Model.Count == 0)
+                                {
+                                    <tr><td colspan="7" class="text-muted">@L["Sms.NoMessages"]</td></tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

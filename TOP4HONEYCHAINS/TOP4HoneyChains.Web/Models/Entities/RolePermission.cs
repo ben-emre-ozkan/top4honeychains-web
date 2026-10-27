@@ -34,6 +34,9 @@ namespace TOP4HoneyChains.Web.Models.Entities
         public const string Storefront = "Storefront";
         public const string Recall = "Recall";
         public const string Finalize = "Finalize";
+        // D-78 (migration 018): register beekeepers; accept or reject fallback evidence (signed photo)
+        public const string Registration = "Registration";
+        public const string Evidence = "Evidence";
 
         public const string Enter = "Enter";
         public const string Approve = "Approve";
@@ -48,7 +51,9 @@ namespace TOP4HoneyChains.Web.Models.Entities
             (Shipments, new[] { Enter, Approve, Read }),
             (Storefront, new[] { Enter, Read }),
             (Recall, new[] { Read }),
-            (Finalize, new[] { Enter, Approve })
+            (Finalize, new[] { Enter, Approve }),
+            (Registration, new[] { Enter, Read }),
+            (Evidence, new[] { Approve })
         };
     }
 }

@@ -325,6 +325,8 @@ namespace TOP4HoneyChains.Web.Models.Entities
         public const string Retail = "Retail";
         public const string PublicAuthority = "PublicAuthority";
         public const string PlatformAdmin = "PlatformAdmin";
+        // D-78: district directorate of agriculture: registers beekeepers (migration 018)
+        public const string BeekeeperRegistration = "BeekeeperRegistration";
     }
 
     // Org role codes (table OrgRoles)
@@ -337,8 +339,13 @@ namespace TOP4HoneyChains.Web.Models.Entities
         public const string QualityApprover = "QualityApprover";
         public const string Analyst = "Analyst";
         public const string LabManager = "LabManager";
+        // D-78 (migration 018): beekeeper registration officer at a district directorate; Compliance Officer in any organization
+        public const string RegistrationOfficer = "RegistrationOfficer";
+        public const string ComplianceOfficer = "ComplianceOfficer";
 
-        public static readonly string[] All = { OrgAdmin, Staff, FieldInspector, SampleAcceptanceOfficer, QualityApprover, Analyst, LabManager };
+        public static readonly string[] All = { OrgAdmin, Staff, FieldInspector, SampleAcceptanceOfficer, QualityApprover, Analyst, LabManager, RegistrationOfficer, ComplianceOfficer };
+        // D-78 (O-12): roles that sign on behalf of their organization confirm a notice with an SMS code (default; Notices:SmsConfirmRoles)
+        public static readonly string[] Signing = { OrgAdmin, ComplianceOfficer, RegistrationOfficer, QualityApprover, LabManager };
 
         // P1: fixed sets; P2 replaces them with the per-CCP responsibility configuration (D-25)
         public static readonly string[] CcpEnter = { Staff, FieldInspector, SampleAcceptanceOfficer };

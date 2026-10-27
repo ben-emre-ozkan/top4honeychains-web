@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.AspNetCore.TestHost;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
@@ -26,6 +27,9 @@ namespace TOP4HoneyChains.Web.Tests.E2E
         public static readonly string Database = "TOP4HoneyChainsE2E";
         public static string SourceDatabase => Environment.GetEnvironmentVariable("E2E_SOURCE_DB") ?? "TOP4HoneyChainsDb";
 
+        // D-78: the application's clock; tests move it forward to check expiry and rate limits, and reset it afterwards
+        public TestClock Clock { get; } = new();
+
         public string ConnectionString => $"Server={Server};Database={Database};Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=True";
         private readonly string _contentRoot = Path.Combine(Path.GetTempPath(), "t4h-e2e-" + Guid.NewGuid().ToString("N"));
 
@@ -47,8 +51,11 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             {
                 ["ConnectionStrings:DefaultConnection"] = ConnectionString,
                 ["Features:OrgRoleModel"] = "true",
-                ["App:PublicBaseUrl"] = "http://localhost"
+                ["App:PublicBaseUrl"] = "http://localhost",
+                ["Sms:Provider"] = "Fake",
+                ["Sms:DailyLimit"] = "2000"
             }));
+            builder.ConfigureTestServices(services => services.AddSingleton<TimeProvider>(Clock));
         }
 
         public async Task InitializeAsync()
@@ -157,5 +164,14 @@ namespace TOP4HoneyChains.Web.Tests.E2E
                 db.Memberships.Add(new Membership { OrgId = orgId, UserId = userId, OrgRole = role, Status = MembershipStatus.Active, GrantedAt = DateTime.UtcNow });
                 return await db.SaveChangesAsync();
             });
+    }
+
+    // The system clock plus an offset the tests can move
+    public sealed class TestClock : TimeProvider
+    {
+        public TimeSpan Offset { get; set; }
+        public override DateTimeOffset GetUtcNow() => base.GetUtcNow() + Offset;
+        public void Advance(TimeSpan by) => Offset += by;
+        public void Reset() => Offset = TimeSpan.Zero;
     }
 }

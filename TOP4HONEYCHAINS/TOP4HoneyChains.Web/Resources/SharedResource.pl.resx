@@ -7134,4 +7134,118 @@
   <data name="The exact location is only kept for the records; public pages show the province only." xml:space="preserve">
     <value>Dokładne położenie jest przechowywane tylko w rejestrach; strony publiczne pokazują jedynie prowincję.</value>
   </data>
+  <data name="Area.Registration" xml:space="preserve">
+    <value>Rejestracja pszczelarzy</value>
+  </data>
+  <data name="Area.Evidence" xml:space="preserve">
+    <value>Dowód ze zdjęciem podpisu (akceptacja lub odrzucenie)</value>
+  </data>
+  <data name="Cap.Uses.BeekeeperRegistration" xml:space="preserve">
+    <value>Powiatowa dyrekcja rolnictwa: jej specjaliści ds. rejestracji rejestrują pszczelarzy i ich pasieki, sprawdzają numer rejestrowy, potwierdzają tożsamość i zgodę kodem SMS (lub zdjęciem podpisu) i wydają dane logowania.</value>
+  </data>
+  <data name="Org.NoComplianceOfficer" xml:space="preserve">
+    <value>Ta organizacja nie ma jeszcze specjalisty ds. zgodności. Każda organizacja wyznacza co najmniej jednego (może to być administrator organizacji z drugim członkostwem).</value>
+  </data>
+  <data name="The beekeeper registration officer role needs an organization with the Beekeeper registration capability." xml:space="preserve">
+    <value>Rola specjalisty ds. rejestracji pszczelarzy wymaga organizacji z funkcją Rejestracja pszczelarzy.</value>
+  </data>
+  <data name="Revoke the beekeeper registration officers of this organization first." xml:space="preserve">
+    <value>Najpierw odwołaj specjalistów ds. rejestracji pszczelarzy tej organizacji.</value>
+  </data>
+  <data name="A mobile phone number is required." xml:space="preserve">
+    <value>Wymagany jest numer telefonu komórkowego.</value>
+  </data>
+  <data name="SMS to numbers outside the allowed countries is not enabled." xml:space="preserve">
+    <value>Wysyłanie SMS na numery spoza dozwolonych krajów nie jest włączone.</value>
+  </data>
+  <data name="The daily SMS limit of the platform is reached. Try again tomorrow or use the signed-photo path." xml:space="preserve">
+    <value>Osiągnięto dzienny limit SMS platformy. Spróbuj jutro lub użyj ścieżki ze zdjęciem podpisu.</value>
+  </data>
+  <data name="Wait a minute before sending a new code." xml:space="preserve">
+    <value>Poczekaj minutę przed wysłaniem nowego kodu.</value>
+  </data>
+  <data name="Too many codes for this record in the last hour. Try again later." xml:space="preserve">
+    <value>Za dużo kodów dla tego rekordu w ostatniej godzinie. Spróbuj później.</value>
+  </data>
+  <data name="Too many codes to this phone number. Try again later." xml:space="preserve">
+    <value>Za dużo kodów na ten numer telefonu. Spróbuj później.</value>
+  </data>
+  <data name="You have sent too many codes in the last hour. Try again later." xml:space="preserve">
+    <value>Wysłano zbyt wiele kodów w ostatniej godzinie. Spróbuj później.</value>
+  </data>
+  <data name="The SMS could not be sent. Try again, or use the signed-photo path." xml:space="preserve">
+    <value>Nie udało się wysłać SMS. Spróbuj ponownie lub użyj ścieżki ze zdjęciem podpisu.</value>
+  </data>
+  <data name="The SMS could not be sent. Try again later." xml:space="preserve">
+    <value>Nie udało się wysłać SMS. Spróbuj później.</value>
+  </data>
+  <data name="Too many wrong codes. Wait 15 minutes before trying again." xml:space="preserve">
+    <value>Zbyt wiele błędnych kodów. Odczekaj 15 minut przed kolejną próbą.</value>
+  </data>
+  <data name="No valid code. Send a new code." xml:space="preserve">
+    <value>Brak ważnego kodu. Wyślij nowy kod.</value>
+  </data>
+  <data name="The code has expired. Send a new code." xml:space="preserve">
+    <value>Kod wygasł. Wyślij nowy kod.</value>
+  </data>
+  <data name="The details changed after the code was sent. Send a new code." xml:space="preserve">
+    <value>Dane zmieniły się po wysłaniu kodu. Wyślij nowy kod.</value>
+  </data>
+  <data name="Wrong code. The code is no longer valid; send a new code." xml:space="preserve">
+    <value>Błędny kod. Kod nie jest już ważny; wyślij nowy kod.</value>
+  </data>
+  <data name="Wrong code. {0} tries left." xml:space="preserve">
+    <value>Błędny kod. Pozostało prób: {0}.</value>
+  </data>
+  <data name="Sms.Outbox" xml:space="preserve">
+    <value>Skrzynka nadawcza SMS (dostawca testowy)</value>
+  </data>
+  <data name="Sms.OutboxHelp" xml:space="preserve">
+    <value>Dostawca testowy niczego nie wysyła: każda wiadomość wraz z kodem jest pokazana tutaj. Ta strona istnieje tylko, gdy Sms:Provider ma wartość Fake (rozwój i pokazy).</value>
+  </data>
+  <data name="Sms.SegmentsToday" xml:space="preserve">
+    <value>Części dzisiaj / limit dzienny</value>
+  </data>
+  <data name="Sms.Time" xml:space="preserve">
+    <value>Czas</value>
+  </data>
+  <data name="Sms.Purpose" xml:space="preserve">
+    <value>Cel</value>
+  </data>
+  <data name="Sms.To" xml:space="preserve">
+    <value>Do</value>
+  </data>
+  <data name="Sms.Text" xml:space="preserve">
+    <value>Treść</value>
+  </data>
+  <data name="Sms.Segments" xml:space="preserve">
+    <value>Części</value>
+  </data>
+  <data name="Sms.Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Sms.NoMessages" xml:space="preserve">
+    <value>Brak wiadomości.</value>
+  </data>
+  <data name="Sms.Purpose.Registration" xml:space="preserve">
+    <value>Rejestracja i zgoda</value>
+  </data>
+  <data name="Sms.Purpose.Credentials" xml:space="preserve">
+    <value>Dane logowania</value>
+  </data>
+  <data name="Sms.Purpose.IntakeConfirm" xml:space="preserve">
+    <value>Potwierdzenie dostawy</value>
+  </data>
+  <data name="Sms.Purpose.PasswordReset" xml:space="preserve">
+    <value>Zmiana hasła</value>
+  </data>
+  <data name="Sms.Purpose.NoticeConfirm" xml:space="preserve">
+    <value>Potwierdzenie informacji</value>
+  </data>
+  <data name="Sms.Purpose.PhoneVerify" xml:space="preserve">
+    <value>Weryfikacja telefonu</value>
+  </data>
+  <data name="Sms.Purpose.Info" xml:space="preserve">
+    <value>Informacja</value>
+  </data>
 </root>

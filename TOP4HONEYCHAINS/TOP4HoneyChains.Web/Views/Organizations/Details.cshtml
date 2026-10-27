@@ -189,6 +189,10 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">@L["Org.Members"]</h5>
+                            @if (ViewBag.MissingComplianceOfficer == true)
+                            {
+                                <div class="alert alert-warning py-2 small" id="missing-compliance-officer">@L["Org.NoComplianceOfficer"]</div>
+                            }
                             <div class="table-responsive"><table class="table table-sm" id="members">
                                 <thead><tr><th>@L["Org.User"]</th><th>@L["Org.OrgRole"]</th><th>@L["Org.Status"]</th><th></th></tr></thead>
                                 <tbody>
