@@ -111,7 +111,24 @@
                                             <td class="small">
                                                 @foreach (var s in c.Samples.OrderBy(s => s.SampleId))
                                                 {
-                                                    <div>@s.SampleCode · <code>@s.SealNumber</code> · @L[s.Status] · @s.LabOrg?.DisplayName</div>
+                                                    <div class="jar" data-status="@s.Status">@s.SampleCode · <code>@s.SealNumber</code> · @L["Lab.Status" + s.Status] · @s.LabOrg?.DisplayName
+                                                        @if (s.Status == SampleStatus.Rejected)
+                                                        {
+                                                            <span class="text-danger">@s.RejectReason</span>
+                                                        }
+                                                    </div>
+                                                }
+                                                @if (ViewBag.MayResample == true && c.Samples.Any() && c.Samples.All(s => s.Status == SampleStatus.Rejected))
+                                                {
+                                                    <form asp-controller="Samples" asp-action="Resample" method="post" class="border rounded p-2 mt-1 resample-form">
+                                                        <input type="hidden" name="containerId" value="@c.ContainerId" />
+                                                        <div class="fw-semibold mb-1">@L["Ci.Resample"]</div>
+                                                        <input name="jarSeal" class="form-control form-control-sm mb-1" maxlength="50" required placeholder="@L["Ci.JarSeal"]" aria-label="@L["Ci.JarSeal"]" />
+                                                        <input name="counterSeal" class="form-control form-control-sm mb-1" maxlength="50" required placeholder="@L["Ci.CounterSeal"]" aria-label="@L["Ci.CounterSeal"]" />
+                                                        <label class="d-block mb-1"><input type="checkbox" name="capIntact" value="true" required /> @L["Ci.Cap"]</label>
+                                                        <input name="reseal" class="form-control form-control-sm mb-1" maxlength="50" required placeholder="@L["Ci.Reseal"]" aria-label="@L["Ci.Reseal"]" />
+                                                        <button type="submit" class="btn btn-sm btn-outline-primary">@L["Ci.ResampleButton"]</button>
+                                                    </form>
                                                 }
                                             </td>
                                         </tr>

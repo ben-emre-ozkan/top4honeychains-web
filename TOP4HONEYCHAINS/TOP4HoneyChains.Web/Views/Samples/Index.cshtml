@@ -5,6 +5,7 @@
     var sent = ViewBag.Sent as List<Sample> ?? new();
     var received = ViewBag.Received as List<Sample> ?? new();
     var canReceive = ViewBag.CanReceive == true;
+    var compositeReady = ViewBag.CompositeReady as List<int> ?? new();
     string StatusText(Sample s) => s.Status switch { "Sent" => L["Lab.StatusSent"], "Received" => L["Lab.StatusReceived"], "Rejected" => L["Lab.StatusRejected"], _ => s.Status };
     string ReportText(Sample s) => s.Report == null ? "–" : s.Report.Status switch { "Draft" => L["Org.Draft"], "Submitted" => L["Cust.Pending"], "Approved" => L["Ccp.Approved"], _ => s.Report.Status };
 }
@@ -21,7 +22,7 @@
                             @foreach (var s in sent)
                             {
                                 <tr data-sample-id="@s.SampleId">
-                                    <td>@s.SampleCode</td>
+                                    <td>@s.SampleCode <partial name="_SampleKind" model="s" /></td>
                                     <td><a href="/Flow/Lot/@s.RawHoneyProductionId" class="flow-link">#@s.RawHoneyProductionId</a> @Ref.T("HoneyType", s.RawHoneyProduction?.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeId, "Title", s.RawHoneyProduction?.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle)</td>
                                     <td>@s.LabOrg?.DisplayName</td>
                                     <td>@s.SealNumber</td>
@@ -39,6 +40,22 @@
                 </div>
             </div>
 
+            @if (ViewBag.IsAdmin != true && compositeReady.Any())
+            {
+                <div class="card" id="composite-ready">
+                    <div class="card-body">
+                        <h4 class="card-title">@L["Lab.CompositeTitle"]</h4>
+                        <p class="card-title-desc">@L["Lab.CompositeHelp"]</p>
+                        @foreach (var lotId in compositeReady)
+                        {
+                            <form asp-action="Composite" method="post" class="d-inline-block me-2 mb-2 composite-form">
+                                <input type="hidden" name="lotId" value="@lotId" />
+                                <button type="submit" class="btn btn-sm btn-primary">@L["Lab.MakeComposite"] · #@lotId</button>
+                            </form>
+                        }
+                    </div>
+                </div>
+            }
             @if (ViewBag.IsAdmin != true)
             {
                 <div class="card">
@@ -51,13 +68,29 @@
                                 @foreach (var s in received)
                                 {
                                     <tr data-sample-id="@s.SampleId">
-                                        <td>@s.SampleCode</td>
+                                        <td>@s.SampleCode <partial name="_SampleKind" model="s" /></td>
                                         <td>@s.TakingOrg?.DisplayName <a href="/Flow/Lot/@s.RawHoneyProductionId" class="small flow-link">@L["Flow.Title"]</a></td>
                                         <td>@s.SealNumber</td>
                                         <td class="sample-status"><partial name="_StatusPill" model="@(new TOP4HoneyChains.Web.Models.ViewModels.StatusPill(TOP4HoneyChains.Web.Models.ViewModels.StatusPill.ForSample(s.Status), StatusText(s)))" /> @if (s.SealIntact == false) { <span class="st-pill st-outlimit"><i class="mdi mdi-alert-outline" aria-hidden="true"></i><span>@L["Lab.SealBroken"]</span></span> } @s.RejectReason</td>
                                         <td><a asp-controller="LabReports" asp-action="Edit" asp-route-id="@s.SampleId" class="report-link">@ReportText(s)</a></td>
                                         <td>
-                                            @if (s.Status == SampleStatus.Sent && canReceive)
+                                            @if (s.Status == SampleStatus.Sent && canReceive && s.Kind == SampleKind.Container)
+                                            {
+                                                <form asp-action="Receive" method="post" class="receive-jar-form small">
+                                                    <input type="hidden" name="id" value="@s.SampleId" />
+                                                    @foreach (var (field, label) in new[] { ("sealMatches", L["Lab.CheckSeal"].Value), ("labelIntact", L["Lab.CheckLabel"].Value), ("capIntact", L["Lab.CheckCap"].Value) })
+                                                    {
+                                                        <div class="d-flex align-items-center gap-2 mb-1">
+                                                            <span class="flex-grow-1">@label</span>
+                                                            <label class="text-nowrap"><input type="radio" name="@field" value="true" required /> @L["Yes"]</label>
+                                                            <label class="text-nowrap"><input type="radio" name="@field" value="false" /> @L["No"]</label>
+                                                        </div>
+                                                    }
+                                                    <input name="note" class="form-control form-control-sm mb-1" maxlength="500" placeholder="@L["Lab.RejectReason"]" />
+                                                    <button type="submit" class="btn btn-sm btn-success">@L["Lab.RecordReception"]</button>
+                                                </form>
+                                            }
+                                            else if (s.Status == SampleStatus.Sent && canReceive)
                                             {
                                                 <form asp-action="Receive" method="post" class="d-flex gap-1 receive-form">
                                                     <input type="hidden" name="id" value="@s.SampleId" />

@@ -8109,4 +8109,91 @@
   <data name="Samples of this lot are taken per container on the delivery page." xml:space="preserve">
     <value>Bu lotun numuneleri teslimat sayfasında kap başına alınır.</value>
   </data>
+  <data name="Ci.Resample" xml:space="preserve">
+    <value>Laboratuvar kavanozu reddetti: yeni numune alın</value>
+  </data>
+  <data name="Ci.ResampleButton" xml:space="preserve">
+    <value>Aç, numune al ve yeniden mühürle</value>
+  </data>
+  <data name="Lab.CheckSeal" xml:space="preserve">
+    <value>Mühür numarası kayıtla aynı</value>
+  </data>
+  <data name="Lab.CheckLabel" xml:space="preserve">
+    <value>Etiket sağlam</value>
+  </data>
+  <data name="Lab.CheckCap" xml:space="preserve">
+    <value>Kapak sağlam (düğme aşağıda)</value>
+  </data>
+  <data name="Lab.Composite" xml:space="preserve">
+    <value>karışım</value>
+  </data>
+  <data name="Lab.CompositeTitle" xml:space="preserve">
+    <value>Karışım numunesine hazır lotlar</value>
+  </data>
+  <data name="Lab.CompositeHelp" xml:space="preserve">
+    <value>Bu lotların her kabının kavanozu sağlam ulaştı. Kavanozlardan eşit miktarları tek bir karışım numunesinde birleştirip analiz edin; kavanozlar tek tek analiz için saklanır.</value>
+  </data>
+  <data name="Lab.MakeComposite" xml:space="preserve">
+    <value>Karışım numunesini oluştur</value>
+  </data>
+  <data name="Lab.JarReportOnly" xml:space="preserve">
+    <value>Bu, tek bir kabın kavanozudur. Onaylanan sonuçları kavanozda kalır; lotun KKN 1 değerleri karışım numunesinden gelir.</value>
+  </data>
+  <data name="Lab.RecordReception" xml:space="preserve">
+    <value>Kabulü kaydet</value>
+  </data>
+  <data name="Lab.RejectReason" xml:space="preserve">
+    <value>Bir kontrol başarısızsa gerekçe</value>
+  </data>
+  <data name="Answer all three reception checks: seal number, label and cap." xml:space="preserve">
+    <value>Üç kabul kontrolünün hepsini yanıtlayın: mühür numarası, etiket ve kapak.</value>
+  </data>
+  <data name="A failed reception check rejects the jar: write the reason." xml:space="preserve">
+    <value>Başarısız bir kabul kontrolü kavanozu reddeder: gerekçeyi yazın.</value>
+  </data>
+  <data name="The laboratory analyses the composite of the lot's jars first; analyse a single jar after the composite was made." xml:space="preserve">
+    <value>Laboratuvar önce lotun kavanozlarından yapılan karışımı analiz eder; tek bir kavanoz karışım oluşturulduktan sonra analiz edilir.</value>
+  </data>
+  <data name="The laboratory analyses every container's jar on its own (Lab:AnalysisMode = PerContainer)." xml:space="preserve">
+    <value>Laboratuvar her kabın kavanozunu ayrı analiz eder (Lab:AnalysisMode = PerContainer).</value>
+  </data>
+  <data name="A composite of this lot was already made." xml:space="preserve">
+    <value>Bu lotun karışım numunesi zaten oluşturuldu.</value>
+  </data>
+  <data name="This lot has no containers." xml:space="preserve">
+    <value>Bu lotun kabı yok.</value>
+  </data>
+  <data name="Every container's jar must be received in good order before the composite is made." xml:space="preserve">
+    <value>Karışım oluşturulmadan önce her kabın kavanozu sağlam teslim alınmalıdır.</value>
+  </data>
+  <data name="The container was not found." xml:space="preserve">
+    <value>Kap bulunamadı.</value>
+  </data>
+  <data name="A new jar is taken only when the container's jar was rejected by the laboratory." xml:space="preserve">
+    <value>Yeni kavanoz yalnızca kabın kavanozu laboratuvar tarafından reddedildiğinde alınır.</value>
+  </data>
+  <data name="Enter the seal numbers of the new jar, of its counter-sample and the new seal of the container." xml:space="preserve">
+    <value>Yeni kavanozun, şahit numunesinin ve kabın yeni mührünün numaralarını girin.</value>
+  </data>
+  <data name="Seal numbers have at most 50 characters." xml:space="preserve">
+    <value>Mühür numaraları en fazla 50 karakterdir.</value>
+  </data>
+  <data name="The jar's cap must be intact (button down) when sealed. A popped cap: discard the jar and fill a new one." xml:space="preserve">
+    <value>Mühürlenirken kavanoz kapağı sağlam olmalı (düğme aşağıda). Fırlamış kapak: kavanozu atın ve yenisini doldurun.</value>
+  </data>
+  <data name="Jar received; seal number, label and cap are in order." xml:space="preserve">
+    <value>Kavanoz teslim alındı; mühür numarası, etiket ve kapak yerinde.</value>
+  </data>
+  <data name="Jar rejected: the plant takes a new jar from the same container." xml:space="preserve">
+    <value>Kavanoz reddedildi: işletme aynı kaptan yeni kavanoz alır.</value>
+  </data>
+  <data name="Composite sample {0} made from {1} jars; enter its results." xml:space="preserve">
+    <value>{0} karışım numunesi {1} kavanozdan oluşturuldu; sonuçlarını girin.</value>
+  </data>
+  <data name="New jar {0} sent to the laboratory; the container was sealed again." xml:space="preserve">
+    <value>Yeni kavanoz {0} laboratuvara gönderildi; kap yeniden mühürlendi.</value>
+  </data>
+  <data name="Lab report approved for this container's jar; the lot's CCP 1 values stay those of the composite." xml:space="preserve">
+    <value>Bu kabın kavanozu için laboratuvar raporu onaylandı; lotun KKN 1 değerleri karışım numunesininkiler olarak kalır.</value>
+  </data>
 </root>

@@ -17,7 +17,7 @@ namespace TOP4HoneyChains.Web.Tests.E2E
     // a confirmed delivery cannot change, legacy deliveries stay valid.
     [Collection("E2E")]
     [Trait("Category", "E2E")]
-    public class CustodyIntakeTests
+    public partial class CustodyIntakeTests
     {
         private readonly E2EApp _app;
         public CustodyIntakeTests(E2EApp app) => _app = app;

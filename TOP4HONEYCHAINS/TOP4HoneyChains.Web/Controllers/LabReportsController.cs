@@ -29,6 +29,7 @@ namespace TOP4HoneyChains.Web.Controllers
         private readonly AuditWriter _audit;
         private readonly IWebHostEnvironment _env;
         private readonly CcpResponsibilityService _resp;
+        private LabCustodyService LabCustody => HttpContext.RequestServices.GetRequiredService<LabCustodyService>();
 
         public LabReportsController(TOP4HoneyChainsContext context, ICurrentOrg current, LabService lab, CcpIntegrityService ccp,
             AuditWriter audit, IWebHostEnvironment env, CcpResponsibilityService resp)
@@ -69,7 +70,8 @@ namespace TOP4HoneyChains.Web.Controllers
             ViewBag.Parameters = await _lab.LabParametersAsync(ccpId);
             var ccp0 = await _lab.Ccp0PendingAsync(sample.RawHoneyProductionId);
             ViewBag.EnterDenied = sample.Status != SampleStatus.Received ? "Results are entered only for a received sample with an intact seal."
-                : await _lab.LabDeniedAsync(sample.LabOrgId, EnterRoles) ?? ccp0;
+                : await _lab.LabDeniedAsync(sample.LabOrgId, EnterRoles) ?? ccp0 ?? await LabCustody.ReportDeniedAsync(sample);
+            ViewBag.SetsLotValues = LabCustody.SetsLotValues(sample);
             ViewBag.ApproveDenied = await _lab.LabDeniedAsync(sample.LabOrgId, ApproveRoles);
             ViewBag.Ccp0Pending = ccp0;
             ViewBag.UserId = _current.UserId;
@@ -90,7 +92,7 @@ namespace TOP4HoneyChains.Web.Controllers
             if (sample == null)
                 return NotFound();
             string? error = sample.Status != SampleStatus.Received ? "Results are entered only for a received sample with an intact seal."
-                : await _lab.LabDeniedAsync(sample.LabOrgId, EnterRoles) ?? await _lab.Ccp0PendingAsync(sample.RawHoneyProductionId);
+                : await _lab.LabDeniedAsync(sample.LabOrgId, EnterRoles) ?? await _lab.Ccp0PendingAsync(sample.RawHoneyProductionId) ?? await LabCustody.ReportDeniedAsync(sample);
             var report = sample.Report;
             if (error == null && report != null && report.Status != LabReportStatus.Draft)
                 error = report.Status == LabReportStatus.Approved
@@ -309,12 +311,18 @@ namespace TOP4HoneyChains.Web.Controllers
             report.AccreditationNumber = number;
             report.InHouse = lotOwner == sample.LabOrgId;
             await _context.SaveChangesAsync();
-            await _lab.ApplyApprovedReportAsync(report, sample, _current.UserId!);
-            await _context.SaveChangesAsync();
+            // D-78 P2: in composite mode a single container jar's report is kept with the jar and does not replace the lot's CCP 1 values
+            var setsLot = LabCustody.SetsLotValues(sample);
+            if (setsLot)
+            {
+                await _lab.ApplyApprovedReportAsync(report, sample, _current.UserId!);
+                await _context.SaveChangesAsync();
+            }
             await _audit.WriteAsync("Approve", "LabReports", report.ReportId.ToString(), null,
                 new { report.ReportCode, report.Sha256, report.IsAccredited, report.InHouse });
             await transaction.CommitAsync();
-            TempData["Success"] = "Lab report approved; the results are now the lot's CCP 1 values.";
+            TempData["Success"] = setsLot ? "Lab report approved; the results are now the lot's CCP 1 values."
+                : "Lab report approved for this container's jar; the lot's CCP 1 values stay those of the composite.";
             TempData["JustApproved"] = true;   // D-67: the status pill draws its check mark once
             return RedirectToAction(nameof(Edit), new { id });
         }

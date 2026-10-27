@@ -18,6 +18,7 @@ namespace TOP4HoneyChains.Web.Controllers
         private readonly ICurrentOrg _current;
         private readonly CcpResponsibilityService _resp;
         private readonly LabService _lab;
+        private LabCustodyService LabCustody => HttpContext.RequestServices.GetRequiredService<LabCustodyService>();
         // D-56: rights of organization roles (editable matrix)
         private TOP4HoneyChains.Web.Services.OrgModel.Permissions Perm => HttpContext.RequestServices.GetRequiredService<TOP4HoneyChains.Web.Services.OrgModel.Permissions>();
 
@@ -34,7 +35,7 @@ namespace TOP4HoneyChains.Web.Controllers
             ViewBag.Controller = "Samples";
             ViewBag.Action = "Index";
             IQueryable<Sample> q = _context.Samples.AsNoTracking()
-                .Include(s => s.TakingOrg).Include(s => s.LabOrg).Include(s => s.Report)
+                .Include(s => s.TakingOrg).Include(s => s.LabOrg).Include(s => s.Report).Include(s => s.Container)
                 .Include(s => s.RawHoneyProduction!).ThenInclude(r => r.RawHoneyProductionHoneyTypeNavigation);
             if (_current.IsPlatformAdmin)
             {
@@ -55,6 +56,15 @@ namespace TOP4HoneyChains.Web.Controllers
             ViewBag.Received = await q.Where(s => s.LabOrgId == active.OrgId).OrderBy(s => s.Status == SampleStatus.Sent ? 0 : 1)
                 .ThenByDescending(s => s.SampleId).Take(200).ToListAsync();
             ViewBag.CanReceive = await _lab.LabDeniedAsync(active.OrgId, Perm.Roles(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Samples, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Approve)) == null;
+            // D-78 P2: lots whose container jars are all received here and wait for the composite
+            var ready = new List<int>();
+            if (LabCustody.Mode == LabAnalysisMode.Composite)
+                foreach (var lotId in await _context.Samples.Where(s => s.LabOrgId == active.OrgId && s.Kind == SampleKind.Container && s.Status == SampleStatus.Received)
+                             .Select(s => s.RawHoneyProductionId).Distinct().ToListAsync())
+                    if ((await LabCustody.CompositeSourcesAsync(lotId, active.OrgId)).Error == null)
+                        ready.Add(lotId);
+            ViewBag.CompositeReady = ready;
+            ViewBag.AnalysisMode = LabCustody.Mode;
             return View();
         }
 
@@ -170,10 +180,11 @@ namespace TOP4HoneyChains.Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // The laboratory records receipt; a broken seal rejects the sample (reason required)
+        // The laboratory records receipt; a broken seal rejects the sample (reason required). D-78 P2: a container jar needs
+        // three answers (seal number matches, label intact, cap intact); any "no" rejects it.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Receive(int id, bool sealIntact, string? note)
+        public async Task<IActionResult> Receive(int id, bool sealIntact, string? note, bool? sealMatches = null, bool? labelIntact = null, bool? capIntact = null)
         {
             var sample = await _context.Samples.FirstOrDefaultAsync(s => s.SampleId == id);
             if (sample == null)
@@ -185,6 +196,11 @@ namespace TOP4HoneyChains.Web.Controllers
             string? error = await _lab.LabDeniedAsync(sample.LabOrgId, Perm.Roles(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Samples, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Approve));
             if (error == null && sample.Status != SampleStatus.Sent)
                 error = "This sample was already received or rejected.";
+            else if (error == null && sample.Kind == SampleKind.Container)
+            {
+                error = LabCustodyService.CheckReception(sealMatches, labelIntact, capIntact, note);
+                sealIntact = sealMatches == true && labelIntact == true && capIntact == true;
+            }
             else if (error == null && !sealIntact && note == null)
                 error = "A broken seal rejects the sample: write the reason.";
             else if (error == null && note?.Length > 500)
@@ -199,6 +215,12 @@ namespace TOP4HoneyChains.Web.Controllers
             sample.ReceivedByUserId = _current.UserId;
             sample.ReceivedAt = DateTime.UtcNow;
             sample.RejectReason = sealIntact ? null : note;
+            if (sample.Kind == SampleKind.Container)
+            {
+                sample.SealNumberMatches = sealMatches;
+                sample.LabelIntactAtReception = labelIntact;
+                sample.JarCapIntactAtReception = capIntact;
+            }
             _context.SampleCustodyEvents.Add(new SampleCustodyEvent
             {
                 SampleId = sample.SampleId,
@@ -211,10 +233,51 @@ namespace TOP4HoneyChains.Web.Controllers
                 Note = note
             });
             await _context.SaveChangesAsync();
-            TempData[sealIntact ? "Success" : "Error"] = sealIntact
-                ? "Sample received; the seal is intact."
-                : "Sample rejected: the seal is broken.";
+            TempData[sealIntact ? "Success" : "Error"] = sample.Kind == SampleKind.Container
+                ? (sealIntact ? "Jar received; seal number, label and cap are in order." : "Jar rejected: the plant takes a new jar from the same container.")
+                : sealIntact ? "Sample received; the seal is intact." : "Sample rejected: the seal is broken.";
             return RedirectToAction(nameof(Index));
+        }
+
+        // D-78 P2 (D78-SPEC 4.6 step 4): the laboratory mixes the received jars of a lot into one composite sample
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Composite(int lotId)
+        {
+            var active = await _current.GetAsync();
+            if (_current.IsPlatformAdmin || active == null)
+                return NotFound();
+            var (jars, error) = await LabCustody.CompositeSourcesAsync(lotId, active.OrgId);
+            error ??= await _lab.LabDeniedAsync(active.OrgId, Perm.Roles(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Samples, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Approve));
+            if (error != null)
+            {
+                TempData["Error"] = error;
+                return RedirectToAction(nameof(Index));
+            }
+            var composite = await LabCustody.CreateCompositeAsync(lotId, jars, active.OrgId, _current.UserId!);
+            TempData["Success"] = string.Format(System.Globalization.CultureInfo.InvariantCulture, "Composite sample {0} made from {1} jars; enter its results.", composite.SampleCode, jars.Count);
+            return RedirectToAction("Edit", "LabReports", new { id = composite.SampleId });
+        }
+
+        // D-78 P2 (D78-SPEC 4.6 step 3): after a rejected jar the plant takes a new jar from the same container
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Resample(int containerId, string? jarSeal, string? counterSeal, bool capIntact, string? reseal)
+        {
+            var container = await _context.Containers.AsNoTracking().FirstOrDefaultAsync(c => c.ContainerId == containerId);
+            if (container == null)
+                return NotFound();
+            if (await TakeDeniedAsync(container.RawHoneyProductionId) is string denied)
+            {
+                TempData["Error"] = denied;
+                return RedirectToAction(nameof(Index));
+            }
+            var (jar, error) = await LabCustody.ResampleAsync(containerId, jarSeal, counterSeal, capIntact, reseal, _current.UserId!);
+            if (error != null)
+                TempData["Error"] = error;
+            else
+                TempData["Success"] = string.Format(System.Globalization.CultureInfo.InvariantCulture, "New jar {0} sent to the laboratory; the container was sealed again.", jar!.SampleCode);
+            return RedirectToAction("Details", "Intake", new { id = container.IntakeId });
         }
     }
 }

@@ -61,6 +61,10 @@
                     {
                         <partial name="_RecordStrip" model="@(new TOP4HoneyChains.Web.Models.ViewModels.RecordStrip(Model.EnteredByUserId, Model.SubmittedAt ?? Model.CreatedAt, Model.Status == LabReportStatus.Approved ? Model.ApprovedByUserId : null, Model.ApprovedAt, IdsNotNames: true, TimesAreUtc: true))" />
                     }
+                    @if (ViewBag.SetsLotValues == false)
+                    {
+                        <div class="alert alert-info small" id="jar-report-only">@L["Lab.JarReportOnly"]</div>
+                    }
                     @if (Model?.ReturnReason != null)
                     {
                         <div class="alert alert-warning" id="return-reason">@L["Lab.Returned"]: @Model.ReturnReason</div>
