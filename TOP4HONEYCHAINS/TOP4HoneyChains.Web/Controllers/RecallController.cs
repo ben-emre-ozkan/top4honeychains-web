@@ -33,7 +33,14 @@ namespace TOP4HoneyChains.Web.Controllers
         }
 
         public record LotRow(int LotId, decimal? Amount, decimal? UsedAmount, string? HoneyType, string? Apiary, string? Beekeeper, string? BeekeeperNumber,
-            int? IntakeId, DateOnly? DeliveryDate, string? IntakeOrg, decimal? IntakeQuantity, string? Origin, string? FormSha256, string? SmsStatus);
+            int? IntakeId, DateOnly? DeliveryDate, string? IntakeOrg, decimal? IntakeQuantity, string? Origin, string? FormSha256, string? SmsStatus,
+            IntakeCustody? Custody = null);
+        // D-78 P2 (D78-SPEC 3.11): a delivery recorded with containers: how it was confirmed, whether the stored content still matches
+        // the confirmed hash, and every container with its seal history and sample jars. Null for a legacy intake.
+        public record IntakeCustody(string? Method, string? EvidenceStatus, string? ContentSha256, bool? ContentMatches, List<ContainerRow> Containers);
+        public record ContainerRow(string Code, string Kind, decimal NetKg, string? CurrentSeal, List<SealRow> Seals, List<JarRow> Jars);
+        public record SealRow(string Event, string SealNumber, bool? Intact, DateTime At);
+        public record JarRow(string Code, string Seal, string Status, string? Kind);
         public record BatchRow(int BatchId, string? Title, DateTime? Date, bool Finalized, decimal? Total, decimal? UsedAmount, string? Owner);
         public record ShipmentRow(int ShipmentId, int BatchId, string From, string To, decimal Quantity, string Status, DateTime ShippedAt, DateTime? DecidedAt, string? RejectReason);
         public record HolderRow(int BatchId, string Org, decimal Held);
@@ -120,7 +127,7 @@ namespace TOP4HoneyChains.Web.Controllers
             var row = await LotRowAsync(id, null);
             // the association sees its member's lot, not the processor's intake form
             report.Lots.Add(admin || lotOwner || ownedBatches.Count > 0 ? row
-                : row with { IntakeId = null, DeliveryDate = null, IntakeOrg = null, IntakeQuantity = null, FormSha256 = null, SmsStatus = null });
+                : row with { IntakeId = null, DeliveryDate = null, IntakeOrg = null, IntakeQuantity = null, FormSha256 = null, SmsStatus = null, Custody = null });
 
             var visibleBatches = admin ? batches.Select(b => b.FinalHoneyProductionId).ToList() : association && !lotOwner ? new() : ownedBatches;
             report.HiddenBatches = batches.Count - visibleBatches.Count;
@@ -147,10 +154,25 @@ namespace TOP4HoneyChains.Web.Controllers
                 .FirstAsync(x => x.RawHoneyProductionId == lotId);
             var intake = await _context.LotIntakes.AsNoTracking().Include(i => i.ReceivingOrg).FirstOrDefaultAsync(i => i.RawHoneyProductionId == lotId);
             var bk = r.RawHoneyProductionApiary?.ApiaryBeekeeper;
+            IntakeCustody? custody = null;
+            if (intake is { ContainersRecorded: true })
+            {
+                var containers = await _context.Containers.AsNoTracking().Include(c => c.SealEvents).Include(c => c.Samples)
+                    .Where(c => c.IntakeId == intake.IntakeId).OrderBy(c => c.Seq).ToListAsync();
+                var composite = await _context.Samples.AsNoTracking().Where(s => s.RawHoneyProductionId == lotId && s.Kind == SampleKind.Composite)
+                    .Select(s => new JarRow(s.SampleCode, s.SealNumber, s.Status, s.Kind)).ToListAsync();
+                var check = HttpContext.RequestServices.GetRequiredService<CustodyIntakeService>();
+                custody = new IntakeCustody(intake.ConfirmationMethod, intake.EvidenceStatus, intake.ContentSha256?.Trim(), await check.ContentMatchesAsync(intake.IntakeId),
+                    containers.Select(c => new ContainerRow(c.ContainerCode, c.Kind, c.NetWeightKg, CustodyIntakeService.CurrentSeal(c.SealEvents),
+                        c.SealEvents.OrderBy(e => e.EventId).Select(e => new SealRow(e.Event, e.SealNumber, e.Intact, e.At)).ToList(),
+                        c.Samples.OrderBy(s => s.SampleId).Select(s => new JarRow(s.SampleCode, s.SealNumber, s.Status, s.Kind)).ToList())).ToList());
+                if (composite.Count > 0)
+                    custody.Containers.Add(new ContainerRow("", SampleKind.Composite, 0, null, new(), composite));
+            }
             return new LotRow(lotId, r.RawHoneyProductionAmount, used, r.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle,
                 r.RawHoneyProductionApiary?.ApiaryTitle, bk == null ? null : $"{bk.BeekeeperFirstName} {bk.BeekeeperLastName}", bk?.BeekeeperBusinessNumber,
                 intake?.IntakeId, intake?.DeliveryDate, intake?.ReceivingOrg?.DisplayName, intake?.Quantity,
-                intake == null ? null : $"{intake.Province} / {intake.District}", intake?.FormSha256, intake?.SmsStatus);
+                intake == null ? null : $"{intake.Province} / {intake.District}", intake?.FormSha256, intake?.SmsStatus, custody);
         }
 
         private async Task AddShipmentsAsync(Report report, IEnumerable<int> batchIds, bool admin, int orgId)
@@ -201,8 +223,23 @@ namespace TOP4HoneyChains.Web.Controllers
             {
                 Row(L["Lot"].Value, l.LotId, l.Apiary, refText.Text(Models.Entities.RefEntity.HoneyType, "Title", l.HoneyType), l.UsedAmount ?? l.Amount, null, null, null);
                 Row(L["Beekeeper"].Value, l.LotId, l.Beekeeper, l.BeekeeperNumber, null, null, null, l.Origin);
-                if (l.IntakeId != null)
-                    Row(L["Intake"].Value, l.IntakeId, l.IntakeOrg, l.Origin, l.IntakeQuantity, l.DeliveryDate?.ToString("yyyy-MM-dd"), l.SmsStatus, "SHA-256 " + l.FormSha256);
+                if (l.IntakeId != null && l.Custody == null)
+                    Row(L["Intake"].Value, l.IntakeId, l.IntakeOrg, l.Origin, l.IntakeQuantity, l.DeliveryDate?.ToString("yyyy-MM-dd"), $"{l.SmsStatus} ({L["Ci.Legacy"].Value})", "SHA-256 " + l.FormSha256);
+                else if (l.Custody is { } c)
+                {
+                    // D-78 P2: the confirmed content, every container with its seal history and its jars
+                    Row(L["Intake"].Value, l.IntakeId, l.IntakeOrg, l.Origin, l.IntakeQuantity, l.DeliveryDate?.ToString("yyyy-MM-dd"),
+                        $"{L["Reg78.Method." + c.Method].Value} / {L["Reg78.Evidence." + c.EvidenceStatus].Value}",
+                        $"{L["Ci.ContentHash"].Value} SHA-256 {c.ContentSha256}: {(c.ContentMatches == true ? L["Ci.ContentVerified"].Value : L["Ci.ContentChanged"].Value)}");
+                    foreach (var k in c.Containers)
+                    {
+                        if (k.Kind != SampleKind.Composite)
+                            Row(L["Ci.Container"].Value, k.Code, L["Ci.Kind." + k.Kind].Value, k.CurrentSeal, k.NetKg, null, null,
+                                string.Join(" > ", k.Seals.Select(e => $"{L["Ci.Seal." + e.Event].Value} {e.SealNumber}{(e.Intact == false ? " (" + L["Ci.NotIntact"].Value + ")" : "")} {e.At:yyyy-MM-dd HH:mm} UTC")));
+                        foreach (var j in k.Jars)
+                            Row(j.Kind == SampleKind.Composite ? L["Lab.Composite"].Value : L["Ci.SampleJar"].Value, j.Code, k.Code, j.Seal, null, null, L["Lab.Status" + j.Status].Value, null);
+                    }
+                }
             }
             if (report.HiddenLots > 0) Row(L["Lot"].Value, null, L["not shown"].Value, L["{0} lot(s) of another organization", report.HiddenLots].Value, null, null, null, null);
             foreach (var b in report.Batches)
