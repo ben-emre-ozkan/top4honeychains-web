@@ -1,0 +1,222 @@
+@using TOP4HoneyChains.Web.Models.Entities
+@using TOP4HoneyChains.Web.Services.OrgModel
+@{
+    ViewData["Title"] = L["Co.Title"];
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var org = (Organization)ViewBag.Org;
+    var quality = ViewBag.Quality as List<ComplianceService.QualityItem> ?? new();
+    var requests = ViewBag.Requests as List<DataSubjectRequest> ?? new();
+    var flags = ViewBag.Flags as List<ComplianceService.ApprovalFlag> ?? new();
+    var rights = ViewBag.Rights as List<(string Area, List<(string Action, string[] Roles)> Actions)> ?? new();
+    var audit = ViewBag.Audit as List<AuditEntry>;
+    var userId = ViewBag.UserId as string;
+    var today = DateOnly.FromDateTime(DateTime.Today);
+    var agreements = org.Documents.Where(d => d.AgreementKind != null).OrderByDescending(d => d.UploadedAt).ToList();
+}
+@* D-78 P3 (D78-SPEC 4.8): the Compliance Officer's section *@
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">@L["Co.Title"] · @org.DisplayName</h4>
+                    <p class="card-title-desc">@L["Co.Help"]</p>
+                    <nav class="d-flex flex-wrap gap-2 small">
+                        <a href="#quality">@L["Co.Quality"]</a><a href="#evidence">@L["Co.Evidence"]</a><a href="#requests">@L["Co.Requests"]</a>
+                        <a href="#approvals">@L["Co.Approvals"]</a><a href="#agreements">@L["Co.Agreements"]</a><a href="#controller">@L["Notice.DataController"]</a>
+                        @if (audit != null) { <a href="#audit">@L["Co.Audit"]</a> }
+                    </nav>
+                </div>
+            </div>
+
+            <div class="card" id="quality">
+                <div class="card-body">
+                    <h5 class="card-title">@L["Co.Quality"]</h5>
+                    <p class="card-title-desc">@L["Co.QualityHelp"]</p>
+                    <div class="table-responsive"><table class="table table-sm align-top">
+                        <thead><tr><th>@L["Co.Item"]</th><th>@L["Org.Date"]</th><th>@L["Co.Review"]</th></tr></thead>
+                        <tbody>
+                            @foreach (var q in quality)
+                            {
+                                <tr class="quality-item" data-subject="@q.SubjectType-@q.SubjectId" data-open="@(q.Open ? "true" : "false")">
+                                    <td><span class="badge bg-light text-dark border">@L["Co.Kind." + q.Kind]</span> <a href="@q.Url">@q.Title</a><div class="small text-muted">@q.Detail</div></td>
+                                    <td class="text-nowrap">@q.At.ToLocalTime().ToString("dd.MM.yyyy")</td>
+                                    <td>
+                                        @foreach (var r in q.Reviews)
+                                        {
+                                            <div class="small"><span class="badge @(r.Outcome == ReviewOutcome.InOrder ? "bg-success" : "bg-warning text-dark")">@L["Co.Outcome." + r.Outcome]</span> @r.Finding @(r.Action == null ? "" : "· " + r.Action) <span class="text-muted">@r.ReviewedAt.ToLocalTime().ToString("dd.MM.yyyy")</span></div>
+                                        }
+                                        @if (q.RecordedBy == userId)
+                                        {
+                                            <div class="small text-muted">@L["Co.OwnItem"]</div>
+                                        }
+                                        else
+                                        {
+                                            <details>
+                                                <summary class="small">@L["Co.WriteReview"]</summary>
+                                                <form asp-action="Review" method="post" class="row g-1 mt-1 review-form">
+                                                    <input type="hidden" name="subjectType" value="@q.SubjectType" />
+                                                    <input type="hidden" name="subjectId" value="@q.SubjectId" />
+                                                    <div class="col-12">
+                                                        <label class="me-2 small"><input type="radio" name="outcome" value="InOrder" required /> @L["Co.Outcome.InOrder"]</label>
+                                                        <label class="small"><input type="radio" name="outcome" value="Finding" /> @L["Co.Outcome.Finding"]</label>
+                                                    </div>
+                                                    <div class="col-12"><textarea name="finding" class="form-control form-control-sm" rows="2" maxlength="1000" required placeholder="@L["Co.Finding"]" aria-label="@L["Co.Finding"]"></textarea></div>
+                                                    <div class="col-12"><textarea name="action" class="form-control form-control-sm" rows="2" maxlength="1000" placeholder="@L["Co.Action"]" aria-label="@L["Co.Action"]"></textarea></div>
+                                                    <div class="col-12"><button type="submit" class="btn btn-sm btn-primary">@L["Co.Save"]</button></div>
+                                                </form>
+                                            </details>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                            @if (!quality.Any())
+                            {
+                                <tr><td colspan="3" class="text-muted">@L["Org.None"]</td></tr>
+                            }
+                        </tbody>
+                    </table></div>
+                </div>
+            </div>
+
+            <div class="card" id="evidence">
+                <div class="card-body">
+                    <h5 class="card-title">@L["Co.Evidence"]</h5>
+                    <p class="mb-0">@string.Format(L["Co.EvidenceHelp"].Value, ViewBag.PendingEvidence) <a href="/MyWork/Index">@L["Work.Title"]</a></p>
+                </div>
+            </div>
+
+            <div class="card" id="requests">
+                <div class="card-body">
+                    <h5 class="card-title">@L["Co.Requests"]</h5>
+                    <p class="card-title-desc">@L["Co.RequestsHelp"]</p>
+                    <div class="table-responsive"><table class="table table-sm align-top">
+                        <thead><tr><th>@L["Co.Subject"]</th><th>@L["Co.RequestKind"]</th><th>@L["Co.Received"]</th><th>@L["Co.Due"]</th><th>@L["Org.Status"]</th></tr></thead>
+                        <tbody>
+                            @foreach (var r in requests)
+                            {
+                                var overdue = r.Status == DataSubjectRequestStatus.Open && r.DueOn < today;
+                                <tr class="dsr" data-status="@r.Status">
+                                    <td>@r.SubjectName<div class="small text-muted">@r.Channel · @r.Details</div></td>
+                                    <td>@L["Co.RequestKind." + r.Kind]</td>
+                                    <td class="text-nowrap">@r.ReceivedOn.ToString("dd.MM.yyyy")</td>
+                                    <td class="text-nowrap @(overdue ? "text-danger fw-bold" : "")">@r.DueOn.ToString("dd.MM.yyyy")</td>
+                                    <td>
+                                        @if (r.Status == DataSubjectRequestStatus.Open)
+                                        {
+                                            <form asp-action="CloseRequest" method="post" class="d-flex flex-wrap gap-1 close-request">
+                                                <input type="hidden" name="requestId" value="@r.RequestId" />
+                                                <input name="outcome" class="form-control form-control-sm" maxlength="1000" required placeholder="@L["Co.Answer"]" aria-label="@L["Co.Answer"]" />
+                                                <button type="submit" name="status" value="Answered" class="btn btn-sm btn-success">@L["Co.Status.Answered"]</button>
+                                                <button type="submit" name="status" value="Refused" class="btn btn-sm btn-outline-secondary">@L["Co.Status.Refused"]</button>
+                                            </form>
+                                        }
+                                        else
+                                        {
+                                            <span>@L["Co.Status." + r.Status]</span><div class="small text-muted">@r.Outcome</div>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                            @if (!requests.Any())
+                            {
+                                <tr><td colspan="5" class="text-muted">@L["Org.None"]</td></tr>
+                            }
+                        </tbody>
+                    </table></div>
+                    <details>
+                        <summary class="btn btn-sm btn-outline-primary">@L["Co.NewRequest"]</summary>
+                        <form asp-action="RecordRequest" method="post" class="row g-2 mt-1" id="record-request">
+                            <div class="col-md-4"><label class="form-label small" for="dsr-name">@L["Co.Subject"]</label><input id="dsr-name" name="subjectName" class="form-control form-control-sm" maxlength="200" required /></div>
+                            <div class="col-md-4"><label class="form-label small" for="dsr-number">@L["Co.BeekeeperNumber"]</label><input id="dsr-number" name="beekeeperNumber" class="form-control form-control-sm" maxlength="50" /></div>
+                            <div class="col-md-4">
+                                <label class="form-label small" for="dsr-kind">@L["Co.RequestKind"]</label>
+                                <select id="dsr-kind" name="kind" class="form-select form-select-sm">
+                                    @foreach (var k in DataSubjectRequestKind.All) { <option value="@k">@L["Co.RequestKind." + k]</option> }
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small" for="dsr-purpose">@L["Co.ConsentToWithdraw"]</label>
+                                <select id="dsr-purpose" name="consentPurpose" class="form-select form-select-sm">
+                                    <option value="">–</option>
+                                    @foreach (var p in BeekeeperPortalService.PortalPurposes) { <option value="@p">@L["Me.Consent." + p]</option> }
+                                </select>
+                            </div>
+                            <div class="col-md-4"><label class="form-label small" for="dsr-channel">@L["Co.Channel"]</label><input id="dsr-channel" name="channel" class="form-control form-control-sm" maxlength="50" required /></div>
+                            <div class="col-md-4"><label class="form-label small" for="dsr-date">@L["Co.Received"]</label><input id="dsr-date" type="date" name="receivedOn" class="form-control form-control-sm" value="@today.ToString("yyyy-MM-dd")" required /></div>
+                            <div class="col-12"><label class="form-label small" for="dsr-details">@L["Co.Details"]</label><textarea id="dsr-details" name="details" class="form-control form-control-sm" rows="2" maxlength="1000" required></textarea></div>
+                            <div class="col-12"><button type="submit" class="btn btn-sm btn-primary">@L["Co.Save"]</button></div>
+                        </form>
+                    </details>
+                </div>
+            </div>
+
+            <div class="card" id="approvals">
+                <div class="card-body">
+                    <h5 class="card-title">@L["Co.Approvals"]</h5>
+                    <p class="card-title-desc">@string.Format(L["Co.ApprovalsHelp"].Value, ViewBag.StaleDays)</p>
+                    <ul class="small" id="approval-flags">
+                        @foreach (var f in flags)
+                        {
+                            <li><a href="/Flow/Lot/@f.LotId">#@f.LotId</a> · @f.Ccp · @(f.SelfApproved ? L["Co.SelfApproved"] : string.Format(L["Co.Waiting"].Value, f.Since?.ToString("dd.MM.yyyy")))</li>
+                        }
+                        @if (!flags.Any()) { <li class="text-muted">@L["Org.None"]</li> }
+                    </ul>
+                    <h6>@L["Co.Rights"]</h6>
+                    <div class="table-responsive"><table class="table table-sm small">
+                        <tbody>
+                            @foreach (var (area, actions) in rights)
+                            {
+                                <tr><td>@L["Area." + area]</td><td>@foreach (var (action, roles) in actions) { <div><strong>@L[action]</strong>: @string.Join(", ", roles.Select(r => Ref.Role(r)))</div> }</td></tr>
+                            }
+                        </tbody>
+                    </table></div>
+                    <p class="small text-muted mb-0">@L["Co.RightsHelp"]</p>
+                </div>
+            </div>
+
+            <div class="card" id="agreements">
+                <div class="card-body">
+                    <h5 class="card-title">@L["Co.Agreements"]</h5>
+                    <ul class="small">
+                        @foreach (var d in agreements)
+                        {
+                            <li><a href="/Organizations/Document/@d.DocumentId" target="_blank">@d.OriginalFileName</a> · @L[d.AgreementKind!] · @d.UploadedAt.ToLocalTime().ToString("dd.MM.yyyy")</li>
+                        }
+                        @if (!agreements.Any()) { <li class="text-muted">@L["Org.None"]</li> }
+                    </ul>
+                    <a href="/Organizations/Details/@org.OrgId#documents" class="btn btn-sm btn-outline-secondary">@L["Co.ManageDocuments"]</a>
+                </div>
+            </div>
+
+            <div class="card" id="controller">
+                <div class="card-body">
+                    <h5 class="card-title">@L["Notice.DataController"]</h5>
+                    <p class="mb-1">@(org.DataControllerName ?? "–") · @(org.DataControllerContact ?? "–")</p>
+                    <a href="/Organizations/Details/@org.OrgId" class="btn btn-sm btn-outline-secondary">@L["Co.EditController"]</a>
+                    <a href="/Notices" class="btn btn-sm btn-outline-secondary">@L["Notice.Title"]</a>
+                </div>
+            </div>
+
+            @if (audit != null)
+            {
+                <div class="card" id="audit">
+                    <div class="card-body">
+                        <h5 class="card-title">@L["Co.Audit"]</h5>
+                        <div class="table-responsive"><table class="table table-sm small">
+                            <thead><tr><th>@L["Org.Date"]</th><th>@L["Org.User"]</th><th>@L["Co.Change"]</th></tr></thead>
+                            <tbody>
+                                @foreach (var a in audit)
+                                {
+                                    <tr><td class="text-nowrap">@a.At.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</td><td>@a.UserName</td><td>@a.Action · @a.Entity @a.EntityKey</td></tr>
+                                }
+                                @if (!audit.Any()) { <tr><td colspan="3" class="text-muted">@L["Org.None"]</td></tr> }
+                            </tbody>
+                        </table></div>
+                    </div>
+                </div>
+            }
+            <a asp-controller="OrgWorkspace" asp-action="Index" class="btn btn-link app-back"><i class="mdi mdi-arrow-left" aria-hidden="true"></i> @L["Org.Back"]</a>
+        </div>
+    </div>
+</body>

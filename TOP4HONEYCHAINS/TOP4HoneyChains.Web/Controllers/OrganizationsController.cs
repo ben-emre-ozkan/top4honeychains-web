@@ -200,7 +200,9 @@ namespace TOP4HoneyChains.Web.Controllers
             ViewBag.IsAdmin = _current.IsPlatformAdmin;
             ViewBag.AllCapabilities = await _context.Capabilities.OrderBy(c => c.SortOrder).ToListAsync();
             ViewBag.Roles = OrgRoles.All;
-            ViewBag.DocumentKinds = OrgDocumentKinds.All;
+            ViewBag.DocumentKinds = OrgDocumentKinds.All.Concat(AgreementKinds.All).ToArray();
+            // O-9: the deadline for organizations verified before a Compliance Officer was required
+            ViewBag.ComplianceDue = HttpContext.RequestServices.GetRequiredService<ComplianceService>().GraceUntil;
             ViewBag.Controller = "Organizations";
             ViewBag.Action = "Details";
             return View(org);
@@ -291,7 +293,7 @@ namespace TOP4HoneyChains.Web.Controllers
             if (!await AllowedAsync(org, OrgOperations.ManageDocuments))
                 return Forbid();
 
-            if (!OrgDocumentKinds.All.Contains(kind))
+            if (!OrgDocumentKinds.All.Contains(kind) && !AgreementKinds.All.Contains(kind))
                 TempData["Error"] = "Choose a document type.";
             else if (file == null || file.Length == 0)
                 TempData["Error"] = "Choose a file.";
@@ -303,7 +305,9 @@ namespace TOP4HoneyChains.Web.Controllers
                 _context.OrgDocuments.Add(new OrgDocument
                 {
                     OrgId = id,
-                    Kind = kind,
+                    // D-78 P3 (025): agreements are stored as "Other" with their agreement kind
+                    Kind = AgreementKinds.All.Contains(kind) ? "Other" : kind,
+                    AgreementKind = AgreementKinds.All.Contains(kind) ? kind : null,
                     OriginalFileName = Truncate(Path.GetFileName(file.FileName), 255),
                     StoredFileName = stored,
                     Sha256 = sha,
@@ -346,6 +350,9 @@ namespace TOP4HoneyChains.Web.Controllers
             {
                 if (org.Status == OrgStatus.Pending && org.Documents.Count == 0)
                     error = "Upload at least one document (licence, accreditation, registry proof) before verifying.";
+                // O-9 (D-82): an organization verified for the first time needs an active Compliance Officer
+                else if (org.VerifiedAt == null && !ComplianceService.HasComplianceOfficer(await _context.Memberships.Where(m => m.OrgId == id).ToListAsync()))
+                    error = "Name a Compliance Officer (an active member with that role) before verifying the organization.";
             }
             else if (toStatus == OrgStatus.Suspended && org.Status == OrgStatus.Verified)
             {

@@ -8547,4 +8547,226 @@
   <data name="Area.OrgAudit" xml:space="preserve">
     <value>Kuruluşun denetim kayıtları</value>
   </data>
+  <data name="Co.Title" xml:space="preserve">
+    <value>Uyum</value>
+  </data>
+  <data name="Co.Help" xml:space="preserve">
+    <value>Uyum Sorumlusu olarak denetim görevleriniz. Teslimat, KKN değeri veya laboratuvar sonucu girmezsiniz; bunları incelersiniz.</value>
+  </data>
+  <data name="Co.Quality" xml:space="preserve">
+    <value>Numune alma kalitesi</value>
+  </data>
+  <data name="Co.QualityHelp" xml:space="preserve">
+    <value>İmzalı fotoğrafla onaylanan teslimatlar, laboratuvarın reddettiği numuneler ve kırık bulunan mühürler. Her biri için inceleme yazın: uygun ya da bulgu ve alınan önlem.</value>
+  </data>
+  <data name="Co.Item" xml:space="preserve">
+    <value>Kayıt</value>
+  </data>
+  <data name="Co.Review" xml:space="preserve">
+    <value>İnceleme</value>
+  </data>
+  <data name="Co.Kind.PhotoIntake" xml:space="preserve">
+    <value>fotoğrafla teslimat</value>
+  </data>
+  <data name="Co.Kind.RejectedSample" xml:space="preserve">
+    <value>reddedilen numune</value>
+  </data>
+  <data name="Co.Kind.BrokenSeal" xml:space="preserve">
+    <value>kırık mühür</value>
+  </data>
+  <data name="Co.Outcome.InOrder" xml:space="preserve">
+    <value>uygun</value>
+  </data>
+  <data name="Co.Outcome.Finding" xml:space="preserve">
+    <value>bulgu</value>
+  </data>
+  <data name="Co.OwnItem" xml:space="preserve">
+    <value>Bu kaydı siz girdiniz; başka biri inceler.</value>
+  </data>
+  <data name="Co.WriteReview" xml:space="preserve">
+    <value>İnceleme yaz</value>
+  </data>
+  <data name="Co.Finding" xml:space="preserve">
+    <value>Neyi kontrol ettiniz ve ne buldunuz</value>
+  </data>
+  <data name="Co.Action" xml:space="preserve">
+    <value>Alınan veya istenen önlem</value>
+  </data>
+  <data name="Co.Save" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="Co.Evidence" xml:space="preserve">
+    <value>İmzalı fotoğraflar</value>
+  </data>
+  <data name="Co.EvidenceHelp" xml:space="preserve">
+    <value>Kayıt ve teslimatlara ait {0} imzalı fotoğraf kararınızı bekliyor.</value>
+  </data>
+  <data name="Co.Requests" xml:space="preserve">
+    <value>İlgili kişi başvuruları</value>
+  </data>
+  <data name="Co.RequestsHelp" xml:space="preserve">
+    <value>Portal dışında gelen erişim, düzeltme, silme, itiraz ve onay geri çekme başvuruları. KVKK: 30 gün içinde yanıtlayın. Onay geri çekme kaydedildiğinde geçerli olur.</value>
+  </data>
+  <data name="Co.Subject" xml:space="preserve">
+    <value>İlgili kişi</value>
+  </data>
+  <data name="Co.RequestKind" xml:space="preserve">
+    <value>Başvuru</value>
+  </data>
+  <data name="Co.RequestKind.Access" xml:space="preserve">
+    <value>erişim</value>
+  </data>
+  <data name="Co.RequestKind.Correction" xml:space="preserve">
+    <value>düzeltme</value>
+  </data>
+  <data name="Co.RequestKind.Deletion" xml:space="preserve">
+    <value>silme</value>
+  </data>
+  <data name="Co.RequestKind.Objection" xml:space="preserve">
+    <value>itiraz</value>
+  </data>
+  <data name="Co.RequestKind.ConsentWithdrawal" xml:space="preserve">
+    <value>onay geri çekme</value>
+  </data>
+  <data name="Co.Received" xml:space="preserve">
+    <value>Alındı</value>
+  </data>
+  <data name="Co.Due" xml:space="preserve">
+    <value>Son yanıt tarihi</value>
+  </data>
+  <data name="Co.Answer" xml:space="preserve">
+    <value>Verilen yanıt</value>
+  </data>
+  <data name="Co.Status.Answered" xml:space="preserve">
+    <value>yanıtlandı</value>
+  </data>
+  <data name="Co.Status.Refused" xml:space="preserve">
+    <value>reddedildi</value>
+  </data>
+  <data name="Co.NewRequest" xml:space="preserve">
+    <value>Başvuru kaydet</value>
+  </data>
+  <data name="Co.BeekeeperNumber" xml:space="preserve">
+    <value>Arıcı numarası (arıcıysa)</value>
+  </data>
+  <data name="Co.ConsentToWithdraw" xml:space="preserve">
+    <value>Geri çekilecek onay</value>
+  </data>
+  <data name="Co.Channel" xml:space="preserve">
+    <value>Geliş yolu</value>
+  </data>
+  <data name="Co.Details" xml:space="preserve">
+    <value>Ne isteniyor</value>
+  </data>
+  <data name="Co.Approvals" xml:space="preserve">
+    <value>Onay mekanizması</value>
+  </data>
+  <data name="Co.ApprovalsHelp" xml:space="preserve">
+    <value>{0} günden uzun süredir onay bekleyen KKN kayıtları ve dört göz muafiyetiyle yapılan onaylar.</value>
+  </data>
+  <data name="Co.SelfApproved" xml:space="preserve">
+    <value>aynı kişi tarafından onaylandı (dört göz muafiyeti)</value>
+  </data>
+  <data name="Co.Waiting" xml:space="preserve">
+    <value>{0} tarihinden beri bekliyor</value>
+  </data>
+  <data name="Co.Rights" xml:space="preserve">
+    <value>Kim neyi girer ve onaylar</value>
+  </data>
+  <data name="Co.RightsHelp" xml:space="preserve">
+    <value>Bu yapılandırmayı platform yöneticisi tutar; değişiklik için ona başvurun.</value>
+  </data>
+  <data name="Co.Agreements" xml:space="preserve">
+    <value>Sözleşmeler</value>
+  </data>
+  <data name="Co.ManageDocuments" xml:space="preserve">
+    <value>Kuruluşun belgeleri</value>
+  </data>
+  <data name="Co.EditController" xml:space="preserve">
+    <value>Kuruluş sayfasında düzenle</value>
+  </data>
+  <data name="Co.Audit" xml:space="preserve">
+    <value>Denetim kayıtları</value>
+  </data>
+  <data name="Co.Change" xml:space="preserve">
+    <value>Değişiklik</value>
+  </data>
+  <data name="Co.DueBy" xml:space="preserve">
+    <value>{0} tarihine kadar atayın.</value>
+  </data>
+  <data name="Work.Kind.Review" xml:space="preserve">
+    <value>İncelemeler</value>
+  </data>
+  <data name="Work.Kind.Request" xml:space="preserve">
+    <value>İlgili kişi başvuruları</value>
+  </data>
+  <data name="DataProcessingAgreement" xml:space="preserve">
+    <value>Veri işleme sözleşmesi</value>
+  </data>
+  <data name="SupplyAgreement" xml:space="preserve">
+    <value>Tedarik sözleşmesi</value>
+  </data>
+  <data name="Review recorded." xml:space="preserve">
+    <value>İnceleme kaydedildi.</value>
+  </data>
+  <data name="Request recorded; the answer is due within 30 days." xml:space="preserve">
+    <value>Başvuru kaydedildi; 30 gün içinde yanıtlanmalıdır.</value>
+  </data>
+  <data name="Request closed." xml:space="preserve">
+    <value>Başvuru kapatıldı.</value>
+  </data>
+  <data name="This item is not one of your organization's." xml:space="preserve">
+    <value>Bu kayıt kuruluşunuza ait değil.</value>
+  </data>
+  <data name="Four-eyes: you recorded this item; another person reviews it." xml:space="preserve">
+    <value>Dört göz: bu kaydı siz girdiniz; başka biri inceler.</value>
+  </data>
+  <data name="Choose whether the item is in order or has a finding." xml:space="preserve">
+    <value>Kaydın uygun mu yoksa bulgulu mu olduğunu seçin.</value>
+  </data>
+  <data name="Describe what you checked and found." xml:space="preserve">
+    <value>Neyi kontrol ettiğinizi ve ne bulduğunuzu yazın.</value>
+  </data>
+  <data name="The finding and the action can be at most 1000 characters each." xml:space="preserve">
+    <value>Bulgu ve önlem en fazla 1000'er karakter olabilir.</value>
+  </data>
+  <data name="A finding needs the action taken or requested." xml:space="preserve">
+    <value>Bulgu için alınan veya istenen önlem gereklidir.</value>
+  </data>
+  <data name="Choose the kind of request." xml:space="preserve">
+    <value>Başvuru türünü seçin.</value>
+  </data>
+  <data name="Enter who made the request (at most 200 characters)." xml:space="preserve">
+    <value>Başvuruyu kimin yaptığını girin (en fazla 200 karakter).</value>
+  </data>
+  <data name="Enter how the request came in (at most 50 characters)." xml:space="preserve">
+    <value>Başvurunun nasıl geldiğini girin (en fazla 50 karakter).</value>
+  </data>
+  <data name="Enter the date the request was received (not in the future)." xml:space="preserve">
+    <value>Başvurunun alındığı tarihi girin (gelecek olamaz).</value>
+  </data>
+  <data name="Describe the request (at most 1000 characters)." xml:space="preserve">
+    <value>Başvuruyu açıklayın (en fazla 1000 karakter).</value>
+  </data>
+  <data name="No beekeeper with this number." xml:space="preserve">
+    <value>Bu numarada arıcı yok.</value>
+  </data>
+  <data name="A consent withdrawal needs the beekeeper's number and the consent." xml:space="preserve">
+    <value>Onay geri çekme için arıcı numarası ve onay gereklidir.</value>
+  </data>
+  <data name="The request was not found." xml:space="preserve">
+    <value>Başvuru bulunamadı.</value>
+  </data>
+  <data name="This request is already closed." xml:space="preserve">
+    <value>Bu başvuru zaten kapatıldı.</value>
+  </data>
+  <data name="Choose answered or refused." xml:space="preserve">
+    <value>Yanıtlandı veya reddedildi seçin.</value>
+  </data>
+  <data name="Describe the answer (at most 1000 characters)." xml:space="preserve">
+    <value>Yanıtı açıklayın (en fazla 1000 karakter).</value>
+  </data>
+  <data name="Name a Compliance Officer (an active member with that role) before verifying the organization." xml:space="preserve">
+    <value>Kuruluşu doğrulamadan önce bir Uyum Sorumlusu atayın (bu role sahip aktif bir üye).</value>
+  </data>
 </root>

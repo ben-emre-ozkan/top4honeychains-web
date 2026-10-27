@@ -21,11 +21,13 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         private readonly IConfiguration _config;
         private readonly Permissions _perm;
         private readonly LabService _lab;
+        private readonly ComplianceService _compliance;
 
         public MyWorkService(TOP4HoneyChainsContext context, ICurrentOrg current, OrgScope scope, CcpResponsibilityService resp,
-            CustodyService custody, IConfiguration config, Permissions perm, LabService lab)
+            CustodyService custody, IConfiguration config, Permissions perm, LabService lab, ComplianceService compliance)
         {
             _lab = lab;
+            _compliance = compliance;
             _perm = perm;
             _context = context;
             _current = current;
@@ -53,6 +55,9 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             // D-78: signed-photo registrations of the organization, for its Compliance Officer (never the officer who recorded them)
             if (_perm.Allows(PermissionAreas.Evidence, PermissionAreas.Approve, active.OrgRole))
                 await EvidenceItemsAsync(active.OrgId, items);
+            // D-78 P3 (4.8): sampling-quality items without a review and open data-subject requests, for the Compliance Officer
+            if (active.OrgRole == OrgRoles.ComplianceOfficer)
+                await ComplianceItemsAsync(active.OrgId, items);
             if (OrganizationAuthorizationHandler.IsCentralVerifier(_config, active))
                 foreach (var o in await PendingOrgsAsync(o => o.Capabilities.Any(c => c.Capability == Capabilities.Association)))
                     items.Add(new Item("Verify", o.DisplayName, null, $"/Organizations/Details/{o.OrgId}", o.CreatedAt));
@@ -175,6 +180,14 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                 items.Add(new Item("Evidence", $"#{i.RawHoneyProductionId}", i.FallbackReason, $"/Intake/Details/{i.IntakeId}", i.ReceivedAt, "Kind.lot"));
         }
 
+        private async Task ComplianceItemsAsync(int orgId, List<Item> items)
+        {
+            foreach (var q in (await _compliance.QualityItemsAsync(orgId)).Where(q => q.Open && q.RecordedBy != _current.UserId))
+                items.Add(new Item("Review", q.Title, null, "/Compliance#quality", q.At));
+            foreach (var r in await _context.DataSubjectRequests.AsNoTracking().Where(r => r.OrgId == orgId && r.Status == DataSubjectRequestStatus.Open).ToListAsync())
+                items.Add(new Item("Request", r.SubjectName, r.DueOn.ToString("dd.MM.yyyy"), "/Compliance#requests", r.ReceivedOn.ToDateTime(TimeOnly.MinValue)));
+        }
+
         private async Task AdminItemsAsync(List<Item> items)
         {
             if (await _context.Organizations.AsNoTracking().Where(o => o.IsPlatform).Select(o => (int?)o.OrgId).FirstOrDefaultAsync() is int platformId)
@@ -221,6 +234,9 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             a.Has(Capabilities.BeekeeperRegistration)
             && (p.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Registration, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Read, a.OrgRole)
                 || p.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Registration, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Enter, a.OrgRole));
+
+        // D-78 P3: the Compliance section (4.8), for the organization's Compliance Officer
+        public static bool Compliance(ActiveMembership a) => a.OrgRole == OrgRoles.ComplianceOfficer;
 
         public static bool Storefronts(ActiveMembership a, Permissions p) =>
             a.Has(Capabilities.Association) && p.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Storefront, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Read, a.OrgRole);
