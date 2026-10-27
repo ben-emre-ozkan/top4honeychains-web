@@ -158,7 +158,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 batch.FinalizeRequestedByUserId = _current.UserId;
                 batch.FinalizeRequestedAt = DateTime.Now;
                 await _context.SaveChangesAsync();
-                TempData["Success"] = "Finalizing requested; a QualityApprover (another person) must confirm it.";
+                TempData["Success"] = $"Finalizing requested; a {OrgRoles.QualityApprover} (another person) must confirm it.";
             }
             return RedirectToAction(nameof(Batch), new { id });
         }

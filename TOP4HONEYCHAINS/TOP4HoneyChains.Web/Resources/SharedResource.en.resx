@@ -310,7 +310,7 @@
     <value>Capabilities</value>
   </data>
   <data name="Org.NotVerifiedBanner" xml:space="preserve">
-    <value>Your organization is not verified yet. You can read its data and (as organisation admin) upload documents, but nobody can enter data until it is verified.</value>
+    <value>Your organization is not verified yet. You can read its data and (as organization admin) upload documents, but nobody can enter data until it is verified.</value>
   </data>
   <data name="Org.OrganizationPage" xml:space="preserve">
     <value>Organization page</value>
@@ -379,7 +379,7 @@
     <value>Finalize</value>
   </data>
   <data name="Org.FinalizeHelp" xml:space="preserve">
-    <value>All control points of the batch and its lots must be approved. One person requests, another person (quality approver) confirms. A finalized batch cannot be changed.</value>
+    <value>All control points of the batch and its lots must be approved. One person requests, another person (Quality Assurance Officer) confirms. A finalized batch cannot be changed.</value>
   </data>
   <data name="Org.SelfApproved" xml:space="preserve">
     <value>self-approved (exemption)</value>
@@ -3495,8 +3495,8 @@
   <data name="The CCP is marked &quot;Not applicable&quot;." xml:space="preserve">
     <value>The CCP is marked &quot;Not applicable&quot;.</value>
   </data>
-  <data name="Only a QualityApprover of the organization can approve." xml:space="preserve">
-    <value>Only a quality approver of the organization can approve.</value>
+  <data name="Only a {0} of the organization can approve." xml:space="preserve">
+    <value>Only a {0} of the organization can approve.</value>
   </data>
   <data name="Only a submitted (or &quot;Not applicable&quot;) CCP record can be approved." xml:space="preserve">
     <value>Only a submitted (or &quot;Not applicable&quot;) CCP record can be approved.</value>
@@ -3765,8 +3765,8 @@
   <data name="Finalizing is requested by {0} of a verified organization." xml:space="preserve">
     <value>Finalizing is requested by {0} of a verified organization.</value>
   </data>
-  <data name="Finalizing requested; a QualityApprover (another person) must confirm it." xml:space="preserve">
-    <value>Finalizing requested; a quality approver (another person) must confirm it.</value>
+  <data name="Finalizing requested; a {0} (another person) must confirm it." xml:space="preserve">
+    <value>Finalizing requested; a {0} (another person) must confirm it.</value>
   </data>
   <data name="Only a {0} of a verified organization can finalize." xml:space="preserve">
     <value>Only a {0} of a verified organization can finalize.</value>
@@ -3954,9 +3954,6 @@
   <data name="Only a Processing organization records deliveries." xml:space="preserve">
     <value>Only a Processing organization records deliveries.</value>
   </data>
-  <data name="Your role ({0}) cannot record deliveries; only a SampleAcceptanceOfficer can." xml:space="preserve">
-    <value>Your role ({0}) cannot record deliveries; only a SampleAcceptanceOfficer can.</value>
-  </data>
   <data name="No active beekeeper with this number." xml:space="preserve">
     <value>No active beekeeper with this number.</value>
   </data>
@@ -4023,9 +4020,6 @@
   <data name="Only the organization that holds the lot takes its samples." xml:space="preserve">
     <value>Only the organization that holds the lot takes its samples.</value>
   </data>
-  <data name="Your role ({0}) cannot take samples; only a SampleAcceptanceOfficer can." xml:space="preserve">
-    <value>Your role ({0}) cannot take samples; only a SampleAcceptanceOfficer can.</value>
-  </data>
   <data name="Choose a verified laboratory." xml:space="preserve">
     <value>Choose a verified laboratory.</value>
   </data>
@@ -4062,8 +4056,8 @@
   <data name="An approved lab report cannot be changed; request a correction instead." xml:space="preserve">
     <value>An approved lab report cannot be changed; request a correction instead.</value>
   </data>
-  <data name="The report is submitted; the LabManager approves it or returns it for changes." xml:space="preserve">
-    <value>The report is submitted; the lab manager approves it or returns it for changes.</value>
+  <data name="The report is submitted; the {0} approves it or returns it for changes." xml:space="preserve">
+    <value>The report is submitted; the {0} approves it or returns it for changes.</value>
   </data>
   <data name="The report number can be at most 50 characters." xml:space="preserve">
     <value>The report number can be at most 50 characters.</value>
@@ -4089,8 +4083,8 @@
   <data name="Enter the report number and the issue date before submitting." xml:space="preserve">
     <value>Enter the report number and the issue date before submitting.</value>
   </data>
-  <data name="Report submitted; a LabManager (another person) must approve it." xml:space="preserve">
-    <value>Report submitted; a lab manager (another person) must approve it.</value>
+  <data name="Report submitted; a {0} (another person) must approve it." xml:space="preserve">
+    <value>Report submitted; a {0} (another person) must approve it.</value>
   </data>
   <data name="Only a submitted report can be approved or returned." xml:space="preserve">
     <value>Only a submitted report can be approved or returned.</value>
@@ -4115,9 +4109,6 @@
   </data>
   <data name="Only a beekeepers' association manages storefronts." xml:space="preserve">
     <value>Only a beekeepers' association manages storefronts.</value>
-  </data>
-  <data name="Your role ({0}) cannot manage storefronts; only the association's OrgAdmin can." xml:space="preserve">
-    <value>Your role ({0}) cannot manage storefronts; only the association's OrgAdmin can.</value>
   </data>
   <data name="This beekeeper already has an active consent; withdraw it first to record a new one." xml:space="preserve">
     <value>This beekeeper already has an active consent; withdraw it first to record a new one.</value>
@@ -5052,8 +5043,8 @@
   <data name="Who works for which organization in which role, what each role may do, and which functions each organization has. Every change is recorded in the audit log." xml:space="preserve">
     <value>Who works for which organization in which role, what each role may do, and which functions each organization has. Every change is recorded in the audit log.</value>
   </data>
-  <data name="Fixed rules (cannot be switched off):" xml:space="preserve">
-    <value>Fixed rules (cannot be switched off):</value>
+  <data name="Ground rules (cannot be switched off):" xml:space="preserve">
+    <value>Ground rules (cannot be switched off):</value>
   </data>
   <data name="Nobody approves a record they entered themselves." xml:space="preserve">
     <value>Nobody approves a record they entered themselves.</value>
@@ -5179,7 +5170,7 @@
     <value>When it is set as the association verifier, it reads and lists the associations it verifies.</value>
   </data>
   <data name="Cap.Uses.Processing" xml:space="preserve">
-    <value>Receives the honey: lot intake, CCP 0 at delivery (sample acceptance officer, approved by a quality approver), sealed samples for the laboratory and the processing CCPs.</value>
+    <value>Receives the honey: lot intake, CCP 0 at delivery (sample acceptance officer, approved by a Quality Assurance Officer), sealed samples for the laboratory and the processing CCPs.</value>
   </data>
   <data name="Cap.Uses.Packing" xml:space="preserve">
     <value>Filling, labelling and packaging of batches (the packing CCPs).</value>
@@ -5245,7 +5236,7 @@
     <value>Latest batch</value>
   </data>
   <data name="Sf.FinalisedOn" xml:space="preserve">
-    <value>Finalised on {0}</value>
+    <value>Finalized on {0}</value>
   </data>
   <data name="Sf.LatestReport" xml:space="preserve">
     <value>Latest lab report</value>
@@ -5299,7 +5290,7 @@
     <value>Hives under chestnut trees, a short walk from the Black Sea</value>
   </data>
   <data name="Sf.Demo.Story1" xml:space="preserve">
-    <value>[Sample text for the demo; on a real page the association writes it with the beekeeper's consent.] Ayşe keeps her colonies in the chestnut and linden forests above Akçakoca. Each harvest is delivered to the processing organisation with a signed delivery form, sampled under seal and tested by an accredited laboratory before it becomes part of a batch.</value>
+    <value>[Sample text for the demo; on a real page the association writes it with the beekeeper's consent.] Ayşe keeps her colonies in the chestnut and linden forests above Akçakoca. Each harvest is delivered to the processing organization with a signed delivery form, sampled under seal and tested by an accredited laboratory before it becomes part of a batch.</value>
   </data>
   <data name="Sf.Demo.Story2" xml:space="preserve">
     <value>Because every lot is traced, buyers can see exactly which batches contain her honey and how each of them passed its control points.</value>
@@ -5707,7 +5698,7 @@
     <value>Platform administrator</value>
   </data>
   <data name="UM.OrgRoleNote" xml:space="preserve">
-    <value>Organization roles (sample acceptance, analyst, quality approver and others) are given per organization; beekeepers and consumers do not sign in. Give them under</value>
+    <value>Organization roles (sample acceptance, analyst, Quality Assurance Officer and others) are given per organization; beekeepers and consumers do not sign in. Give them under</value>
   </data>
   <data name="User created without a global role. Give the organization role under Organizations → Add member." xml:space="preserve">
     <value>User created without a global role. Give the organization role under Organizations → Add member.</value>
@@ -5833,10 +5824,10 @@
     <value>On the platform so far</value>
   </data>
   <data name="Land.Stats.Batches" xml:space="preserve">
-    <value>finalised batches</value>
+    <value>finalized batches</value>
   </data>
   <data name="Land.Stats.Orgs" xml:space="preserve">
-    <value>verified organisations</value>
+    <value>verified organizations</value>
   </data>
   <data name="Land.Stats.Reports" xml:space="preserve">
     <value>approved lab reports</value>
@@ -5881,19 +5872,19 @@
     <value>The laboratory checks the seal, enters the results with the signed report, and a second person approves them.</value>
   </data>
   <data name="Land.Step4.Title" xml:space="preserve">
-    <value>Processing, packing and batch finalisation</value>
+    <value>Processing, packing and batch finalization</value>
   </data>
   <data name="Land.Step4.Tag" xml:space="preserve">
-    <value>CCP 2–9</value>
+    <value>Lot CCP 2–3 · batch CCP 4–9</value>
   </data>
   <data name="Land.Step4.Text" xml:space="preserve">
-    <value>Every control point from filtering to labelling is entered by one person and approved by another before the batch is finalised.</value>
+    <value>The lot carries CCP 0–3, the batch CCP 4–10. Every control point from filtering to labelling is entered by one person and approved by another before the batch is finalized.</value>
   </data>
   <data name="Land.Step5.Title" xml:space="preserve">
     <value>Shelf and Honey Story</value>
   </data>
   <data name="Land.Step5.Tag" xml:space="preserve">
-    <value>CCP 10</value>
+    <value>Batch CCP 10</value>
   </data>
   <data name="Land.Step5.Text" xml:space="preserve">
     <value>The retailer confirms what arrives and records storage conditions; the QR code on the jar opens the honey's full story.</value>
@@ -5920,7 +5911,7 @@
     <value>Every change is appended to a log whose entries are linked by a hash chain, so a removed or altered entry shows.</value>
   </data>
   <data name="Land.Trust.Orgs.Title" xml:space="preserve">
-    <value>Verified organisations only</value>
+    <value>Verified organizations only</value>
   </data>
   <data name="Land.Trust.Orgs.Text" xml:space="preserve">
     <value>Processors, laboratories and retailers are checked before their people can record anything.</value>
@@ -5947,7 +5938,7 @@
     <value>Processors and packers</value>
   </data>
   <data name="Land.Who.Processors.Text" xml:space="preserve">
-    <value>Intake, sealed samples, control points and batch finalisation in one place, with two-person approval built in.</value>
+    <value>Intake, sealed samples, control points and batch finalization in one place, with two-person approval built in.</value>
   </data>
   <data name="Land.Who.Labs.Title" xml:space="preserve">
     <value>Laboratories</value>
@@ -5998,7 +5989,7 @@
     <value>An append-only audit log with a hash chain.</value>
   </data>
   <data name="Auth.Point3" xml:space="preserve">
-    <value>Only verified organisations take part.</value>
+    <value>Only verified organizations take part.</value>
   </data>
   <data name="Auth.BackHome" xml:space="preserve">
     <value>Back to the home page</value>
@@ -6021,8 +6012,8 @@
   <data name="Your roles" xml:space="preserve">
     <value>Your roles</value>
   </data>
-  <data name="Verified organisation" xml:space="preserve">
-    <value>Verified organisation</value>
+  <data name="Verified organization" xml:space="preserve">
+    <value>Verified organization</value>
   </data>
   <data name="Not verified" xml:space="preserve">
     <value>Not verified</value>
@@ -6079,7 +6070,7 @@
     <value>You can't open this page</value>
   </data>
   <data name="Err.403.Text" xml:space="preserve">
-    <value>Your role does not allow this page. Ask your organisation's admin if you need it.</value>
+    <value>Your role does not allow this page. Ask your organization's admin if you need it.</value>
   </data>
   <data name="Err.404.Title" xml:space="preserve">
     <value>This page isn't here</value>
@@ -6199,7 +6190,7 @@
     <value>CCP 1, four-eyes approval</value>
   </data>
   <data name="Land.Hero.Line4" xml:space="preserve">
-    <value>CCP 2–9, batch sealed</value>
+    <value>Lot CCP 2–3, batch CCP 4–9</value>
   </data>
   <data name="Land.Hero.Line5" xml:space="preserve">
     <value>CCP 10, Honey Story</value>
@@ -6235,7 +6226,7 @@
     <value>Raw lots this month</value>
   </data>
   <data name="Home.Kpi.Batches" xml:space="preserve">
-    <value>Batches finalised</value>
+    <value>Batches finalized</value>
   </data>
   <data name="Home.Kpi.Reports" xml:space="preserve">
     <value>Approved lab reports</value>
@@ -6244,13 +6235,13 @@
     <value>Approvals waiting</value>
   </data>
   <data name="Home.Kpi.Orgs" xml:space="preserve">
-    <value>Verified organisations</value>
+    <value>Verified organizations</value>
   </data>
   <data name="Home.Kpi.Empty.Lots" xml:space="preserve">
     <value>No raw lot registered this month yet.</value>
   </data>
   <data name="Home.Kpi.Empty.Batches" xml:space="preserve">
-    <value>No batch has been finalised yet.</value>
+    <value>No batch has been finalized yet.</value>
   </data>
   <data name="Home.Kpi.Empty.Reports" xml:space="preserve">
     <value>No lab report has been approved yet.</value>
@@ -6259,10 +6250,10 @@
     <value>Nothing is waiting: all caught up.</value>
   </data>
   <data name="Home.Kpi.Empty.Orgs" xml:space="preserve">
-    <value>No organisation has been verified yet.</value>
+    <value>No organization has been verified yet.</value>
   </data>
   <data name="Home.Kpi.Off" xml:space="preserve">
-    <value>Comes with the organisation model.</value>
+    <value>Comes with the organization model.</value>
   </data>
   <data name="Home.Kpi.Cached" xml:space="preserve">
     <value>Figures refresh every 5 minutes.</value>
@@ -6319,10 +6310,10 @@
     <value>Storage values</value>
   </data>
   <data name="Home.Wait.Kind.finalize" xml:space="preserve">
-    <value>Batch finalisation</value>
+    <value>Batch finalization</value>
   </data>
   <data name="Home.Wait.Kind.org" xml:space="preserve">
-    <value>Organisation</value>
+    <value>Organization</value>
   </data>
   <data name="Home.Wait.Kind.registry" xml:space="preserve">
     <value>Registry number</value>
@@ -6337,7 +6328,7 @@
     <value>Nothing is waiting for approval.</value>
   </data>
   <data name="Home.Wait.Off" xml:space="preserve">
-    <value>Approvals belong to the organisation model; nothing waits in this mode.</value>
+    <value>Approvals belong to the organization model; nothing waits in this mode.</value>
   </data>
   <data name="Home.Quick.Title" xml:space="preserve">
     <value>Quick actions</value>
@@ -6376,7 +6367,7 @@
     <value>Delivery of lot</value>
   </data>
   <data name="Home.Act.Kind.org" xml:space="preserve">
-    <value>Organisation</value>
+    <value>Organization</value>
   </data>
   <data name="Home.Act.Kind.registry" xml:space="preserve">
     <value>Registry number</value>
@@ -6388,7 +6379,7 @@
     <value>approved by {0}</value>
   </data>
   <data name="Home.Act.Requested" xml:space="preserve">
-    <value>finalisation requested by {0}</value>
+    <value>finalization requested by {0}</value>
   </data>
   <data name="Home.Act.Finalized" xml:space="preserve">
     <value>sealed by {0}</value>
@@ -6532,7 +6523,7 @@
     <value>Approved</value>
   </data>
   <data name="Audit.F.ApprovedByOrgId" xml:space="preserve">
-    <value>Approving organisation</value>
+    <value>Approving organization</value>
   </data>
   <data name="Audit.F.ApprovedByUserId" xml:space="preserve">
     <value>Approved by</value>
@@ -6640,16 +6631,16 @@
     <value>Batch</value>
   </data>
   <data name="Audit.F.FinalizeRequestedAt" xml:space="preserve">
-    <value>Finalisation requested</value>
+    <value>Finalization requested</value>
   </data>
   <data name="Audit.F.FinalizeRequestedByUserId" xml:space="preserve">
-    <value>Finalisation requested by</value>
+    <value>Finalization requested by</value>
   </data>
   <data name="Audit.F.FinalizedByUserId" xml:space="preserve">
-    <value>Finalised by</value>
+    <value>Finalized by</value>
   </data>
   <data name="Audit.F.FinalizedDate" xml:space="preserve">
-    <value>Finalised</value>
+    <value>Finalized</value>
   </data>
   <data name="Audit.F.FirstName" xml:space="preserve">
     <value>First name</value>
@@ -6664,7 +6655,7 @@
     <value>Stored form</value>
   </data>
   <data name="Audit.F.FromOrgId" xml:space="preserve">
-    <value>From organisation</value>
+    <value>From organization</value>
   </data>
   <data name="Audit.F.GivenOn" xml:space="preserve">
     <value>Given on</value>
@@ -6694,7 +6685,7 @@
     <value>Active</value>
   </data>
   <data name="Audit.F.IsFinalized" xml:space="preserve">
-    <value>Finalised</value>
+    <value>Finalized</value>
   </data>
   <data name="Audit.F.IsInRange" xml:space="preserve">
     <value>Within limits</value>
@@ -6754,7 +6745,7 @@
     <value>Notes</value>
   </data>
   <data name="Audit.F.OrgId" xml:space="preserve">
-    <value>Organisation</value>
+    <value>Organization</value>
   </data>
   <data name="Audit.F.OrgRole" xml:space="preserve">
     <value>Role</value>
@@ -6808,7 +6799,7 @@
     <value>Received by</value>
   </data>
   <data name="Audit.F.ReceivingOrgId" xml:space="preserve">
-    <value>Receiving organisation</value>
+    <value>Receiving organization</value>
   </data>
   <data name="Audit.F.RecordId" xml:space="preserve">
     <value>Record</value>
@@ -6817,7 +6808,7 @@
     <value>Recorded</value>
   </data>
   <data name="Audit.F.RecordedByOrgId" xml:space="preserve">
-    <value>Recording organisation</value>
+    <value>Recording organization</value>
   </data>
   <data name="Audit.F.RecordedByUserId" xml:space="preserve">
     <value>Recorded by</value>
@@ -6871,7 +6862,7 @@
     <value>Four-eyes exemption</value>
   </data>
   <data name="Audit.F.SelfFinalized" xml:space="preserve">
-    <value>Finalised under the four-eyes exemption</value>
+    <value>Finalized under the four-eyes exemption</value>
   </data>
   <data name="Audit.F.Sha256" xml:space="preserve">
     <value>Fingerprint (SHA-256)</value>
@@ -6907,7 +6898,7 @@
     <value>Taken by</value>
   </data>
   <data name="Audit.F.TakingOrgId" xml:space="preserve">
-    <value>Sampling organisation</value>
+    <value>Sampling organization</value>
   </data>
   <data name="Audit.F.TextSha256" xml:space="preserve">
     <value>Text fingerprint (SHA-256)</value>
@@ -6919,7 +6910,7 @@
     <value>Title</value>
   </data>
   <data name="Audit.F.ToOrgId" xml:space="preserve">
-    <value>To organisation</value>
+    <value>To organization</value>
   </data>
   <data name="Audit.F.TotalAmount" xml:space="preserve">
     <value>Total amount (kg)</value>
@@ -7032,8 +7023,8 @@
   <data name="CCP assignments saved: {0} added, {1} removed." xml:space="preserve">
     <value>CCP assignments saved: {0} added, {1} removed.</value>
   </data>
-  <data name="Suspended organisation" xml:space="preserve">
-    <value>Suspended organisation</value>
+  <data name="Suspended organization" xml:space="preserve">
+    <value>Suspended organization</value>
   </data>
   <data name="Org.SuspendedBanner" xml:space="preserve">
     <value>Your organization is suspended. You can read its data, but nobody can enter data until a platform administrator reinstates it.</value>

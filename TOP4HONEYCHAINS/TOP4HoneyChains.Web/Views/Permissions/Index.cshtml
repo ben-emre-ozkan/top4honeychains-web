@@ -17,7 +17,7 @@
                 <p class="card-title-desc">@L["Who works for which organization in which role, what each role may do, and which functions each organization has. Every change is recorded in the audit log."]</p>
 
                 <div class="alert alert-secondary small" id="fixed-rules">
-                    <strong>@L["Fixed rules (cannot be switched off):"]</strong>
+                    <strong>@L["Ground rules (cannot be switched off):"]</strong>
                     <ul class="mb-0">
                         <li>@L["Nobody approves a record they entered themselves."]</li>
                         <li>@L["Lab results are always approved by a second person."]</li>
@@ -98,13 +98,13 @@
                                     @foreach (var row in matrix)
                                     {
                                         <tr>
-                                            <td>@(row.Label.StartsWith("Area.") ? L[row.Label].Value : row.Label) <small class="text-muted">@(row.CcpId != null ? Ref.CcpTitle(row.CcpId, row.Detail) : row.Detail)</small></td>
+                                            <td>@(row.Label.StartsWith("Area.") ? L[row.Label].Value : Ref.Code(row.Label)) <small class="text-muted">@(row.CcpId != null ? Ref.CcpTitle(row.CcpId, row.Detail) : row.Detail)</small></td>
                                             @foreach (var cell in new[] { row.Enter, row.Approve, row.Read })
                                             {
                                                 <td class="text-center">
                                                     @if (cell.Available)
                                                     {
-                                                        <input type="checkbox" class="form-check-input" name="allow" value="@cell.Key" checked="@cell.Allowed" aria-label="@(row.Label.StartsWith("Area.") ? L[row.Label].Value : row.Label) · @L[cell.Key.Split(':').Last()]" />
+                                                        <input type="checkbox" class="form-check-input" name="allow" value="@cell.Key" checked="@cell.Allowed" aria-label="@(row.Label.StartsWith("Area.") ? L[row.Label].Value : Ref.Code(row.Label)) · @L[cell.Key.Split(':').Last()]" />
                                                     }
                                                     else
                                                     {

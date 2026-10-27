@@ -379,7 +379,7 @@
     <value>Pabeigt (fiksēt)</value>
   </data>
   <data name="Org.FinalizeHelp" xml:space="preserve">
-    <value>Visiem gala partijas un tās partiju kontroles punktiem jābūt apstiprinātiem. Viena persona pieprasa, cita persona (kvalitātes apstiprinātājs) apstiprina. Pabeigtu (fiksētu) gala partiju nevar mainīt.</value>
+    <value>Visiem gala partijas un tās partiju kontroles punktiem jābūt apstiprinātiem. Viena persona pieprasa, cita persona (kvalitātes nodrošināšanas speciālists) apstiprina. Pabeigtu (fiksētu) gala partiju nevar mainīt.</value>
   </data>
   <data name="Org.SelfApproved" xml:space="preserve">
     <value>pašapstiprināts (izņēmums)</value>
@@ -1557,9 +1557,6 @@
   <data name="Batch: {0} ({1}) is not assigned." xml:space="preserve">
     <value>Gala partija: {0} ({1}) nav piešķirts.</value>
   </data>
-  <data name="Your role ({0}) cannot take samples; only a SampleAcceptanceOfficer can." xml:space="preserve">
-    <value>Jūsu loma ({0}) nevar ņemt paraugus; to var tikai paraugu pieņemšanas speciālists.</value>
-  </data>
   <data name="Consent recorded. The storefront is published once the registry number is verified." xml:space="preserve">
     <value>Piekrišana reģistrēta. Publiskā lapa tiks publicēta, kad reģistrācijas numurs būs pārbaudīts.</value>
   </data>
@@ -1593,8 +1590,8 @@
   <data name="The platform organization cannot change status." xml:space="preserve">
     <value>Platformas organizācijas statusu nevar mainīt.</value>
   </data>
-  <data name="Only a QualityApprover of the organization can approve." xml:space="preserve">
-    <value>Apstiprināt var tikai organizācijas kvalitātes apstiprinātājs.</value>
+  <data name="Only a {0} of the organization can approve." xml:space="preserve">
+    <value>Apstiprināt var tikai organizācijas {0}.</value>
   </data>
   <data name="Profile Photo" xml:space="preserve">
     <value>Profila fotoattēls</value>
@@ -1920,8 +1917,8 @@
   <data name="Update the selected raw honey production period." xml:space="preserve">
     <value>Atjauniniet izvēlēto neapstrādāta medus ražošanas periodu.</value>
   </data>
-  <data name="The report is submitted; the LabManager approves it or returns it for changes." xml:space="preserve">
-    <value>Pārskats ir iesniegts; laboratorijas vadītājs to apstiprina vai atgriež labošanai.</value>
+  <data name="The report is submitted; the {0} approves it or returns it for changes." xml:space="preserve">
+    <value>Pārskats ir iesniegts; lietotājs ar lomu {0} to apstiprina vai atgriež labošanai.</value>
   </data>
   <data name="Show _MENU_ entries" xml:space="preserve">
     <value>Rādīt _MENU_ ierakstus</value>
@@ -2721,8 +2718,8 @@
   <data name="Delete Honey Type" xml:space="preserve">
     <value>Dzēst medus veidu</value>
   </data>
-  <data name="Finalizing requested; a QualityApprover (another person) must confirm it." xml:space="preserve">
-    <value>Pabeigšana (fiksēšana) pieprasīta; tā jāapstiprina kvalitātes apstiprinātājs (citai personai).</value>
+  <data name="Finalizing requested; a {0} (another person) must confirm it." xml:space="preserve">
+    <value>Pabeigšana (fiksēšana) pieprasīta; tā jāapstiprina citai personai ar lomu {0}.</value>
   </data>
   <data name="Action" xml:space="preserve">
     <value>Darbība</value>
@@ -2940,8 +2937,8 @@
   <data name="Ratio to (extra check)" xml:space="preserve">
     <value>Attiecība pret (papildu pārbaude)</value>
   </data>
-  <data name="Report submitted; a LabManager (another person) must approve it." xml:space="preserve">
-    <value>Pārskats iesniegts; tas jāapstiprina laboratorijas vadītājs (citai personai).</value>
+  <data name="Report submitted; a {0} (another person) must approve it." xml:space="preserve">
+    <value>Pārskats iesniegts; tas jāapstiprina citai personai ar lomu {0}.</value>
   </data>
   <data name="Company Name" xml:space="preserve">
     <value>Uzņēmuma nosaukums</value>
@@ -3630,9 +3627,6 @@
   <data name="Wholesalers" xml:space="preserve">
     <value>Vairumtirgotāji</value>
   </data>
-  <data name="Your role ({0}) cannot manage storefronts; only the association's OrgAdmin can." xml:space="preserve">
-    <value>Jūsu loma ({0}) nevar pārvaldīt biškopju publiskās lapas; to var tikai biedrības organizācijas administrators.</value>
-  </data>
   <data name="The stored report file does not match its SHA-256 hash; upload it again." xml:space="preserve">
     <value>Saglabātais pārskata fails neatbilst tā SHA-256 jaucējvērtībai; augšupielādējiet to vēlreiz.</value>
   </data>
@@ -3662,9 +3656,6 @@
   </data>
   <data name="Upload at least one document (licence, accreditation, registry proof) before verifying." xml:space="preserve">
     <value>Pirms pārbaudes augšupielādējiet vismaz vienu dokumentu (licenci, akreditāciju, reģistrācijas apliecinājumu).</value>
-  </data>
-  <data name="Your role ({0}) cannot record deliveries; only a SampleAcceptanceOfficer can." xml:space="preserve">
-    <value>Jūsu loma ({0}) nevar reģistrēt piegādes; to var tikai paraugu pieņemšanas speciālists.</value>
   </data>
   <data name="TOP4HoneyChains Educational Content" xml:space="preserve">
     <value>TOP4HoneyChains izglītojošais saturs</value>
@@ -5052,8 +5043,8 @@
   <data name="Who works for which organization in which role, what each role may do, and which functions each organization has. Every change is recorded in the audit log." xml:space="preserve">
     <value>Kurš kurā organizācijā strādā kādā lomā, ko drīkst katra loma un kādas funkcijas ir katrai organizācijai. Katra izmaiņa tiek ierakstīta audita žurnālā.</value>
   </data>
-  <data name="Fixed rules (cannot be switched off):" xml:space="preserve">
-    <value>Fiksēti noteikumi (tos nevar izslēgt):</value>
+  <data name="Ground rules (cannot be switched off):" xml:space="preserve">
+    <value>Pamatnoteikumi (tos nevar izslēgt):</value>
   </data>
   <data name="Nobody approves a record they entered themselves." xml:space="preserve">
     <value>Neviens neapstiprina ierakstu, ko pats ievadījis.</value>
@@ -5179,7 +5170,7 @@
     <value>Ja tā iestatīta kā biedrību pārbaudītāja, tā redz un uzskaita biedrības, kuras pārbauda.</value>
   </data>
   <data name="Cap.Uses.Processing" xml:space="preserve">
-    <value>Pieņem medu: partiju pieņemšana, KKP 0 piegādes brīdī (paraugu pieņemšanas speciālists, apstiprina kvalitātes apstiprinātājs), aizzīmogoti paraugi laboratorijai un apstrādes KKP.</value>
+    <value>Pieņem medu: partiju pieņemšana, KKP 0 piegādes brīdī (paraugu pieņemšanas speciālists, apstiprina kvalitātes nodrošināšanas speciālists), aizzīmogoti paraugi laboratorijai un apstrādes KKP.</value>
   </data>
   <data name="Cap.Uses.Packing" xml:space="preserve">
     <value>Partiju pildīšana, marķēšana un iepakošana (iepakošanas KKP).</value>
@@ -5707,7 +5698,7 @@
     <value>Platformas administrators</value>
   </data>
   <data name="UM.OrgRoleNote" xml:space="preserve">
-    <value>Organizācijas lomas (paraugu pieņemšana, analītiķis, kvalitātes apstiprinātājs u. c.) piešķir katrā organizācijā; biškopji un patērētāji nepiesakās. Piešķiriet tās šeit:</value>
+    <value>Organizācijas lomas (paraugu pieņemšana, analītiķis, kvalitātes nodrošināšanas speciālists u. c.) piešķir katrā organizācijā; biškopji un patērētāji nepiesakās. Piešķiriet tās šeit:</value>
   </data>
   <data name="User created without a global role. Give the organization role under Organizations → Add member." xml:space="preserve">
     <value>Lietotājs izveidots bez globālās lomas. Piešķiriet organizācijas lomu sadaļā Organizācijas → Pievienot dalībnieku.</value>
@@ -5884,16 +5875,16 @@
     <value>Apstrāde, iepakošana un gala partijas pabeigšana</value>
   </data>
   <data name="Land.Step4.Tag" xml:space="preserve">
-    <value>KKP 2–9</value>
+    <value>Partijas KKP 2–3 · gala partijas KKP 4–9</value>
   </data>
   <data name="Land.Step4.Text" xml:space="preserve">
-    <value>Katru kontrolpunktu no filtrēšanas līdz marķēšanai ievada viena persona un apstiprina cita, pirms gala partija tiek pabeigta.</value>
+    <value>Partijai ir KKP 0–3, gala partijai KKP 4–10. Katru kontrolpunktu no filtrēšanas līdz marķēšanai ievada viena persona un apstiprina cita, pirms gala partija tiek pabeigta.</value>
   </data>
   <data name="Land.Step5.Title" xml:space="preserve">
     <value>Plaukts un Medus stāsts</value>
   </data>
   <data name="Land.Step5.Tag" xml:space="preserve">
-    <value>KKP 10</value>
+    <value>Gala partijas KKP 10</value>
   </data>
   <data name="Land.Step5.Text" xml:space="preserve">
     <value>Mazumtirgotājs apstiprina saņemto un reģistrē uzglabāšanas apstākļus; QR kods uz burkas atver visu medus stāstu.</value>
@@ -6021,7 +6012,7 @@
   <data name="Your roles" xml:space="preserve">
     <value>Jūsu lomas</value>
   </data>
-  <data name="Verified organisation" xml:space="preserve">
+  <data name="Verified organization" xml:space="preserve">
     <value>Pārbaudīta organizācija</value>
   </data>
   <data name="Not verified" xml:space="preserve">
@@ -6199,7 +6190,7 @@
     <value>KKP 1, divu personu apstiprinājums</value>
   </data>
   <data name="Land.Hero.Line4" xml:space="preserve">
-    <value>KKP 2–9, partija aizzīmogota</value>
+    <value>Partijas KKP 2–3, gala partijas KKP 4–9</value>
   </data>
   <data name="Land.Hero.Line5" xml:space="preserve">
     <value>KKP 10, Medus stāsts</value>
@@ -7032,7 +7023,7 @@
   <data name="CCP assignments saved: {0} added, {1} removed." xml:space="preserve">
     <value>KKP piešķīrumi saglabāti: pievienoti {0}, noņemti {1}.</value>
   </data>
-  <data name="Suspended organisation" xml:space="preserve">
+  <data name="Suspended organization" xml:space="preserve">
     <value>Apturēta organizācija</value>
   </data>
   <data name="Org.SuspendedBanner" xml:space="preserve">

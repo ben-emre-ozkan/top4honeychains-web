@@ -20,6 +20,8 @@ namespace TOP4HoneyChains.Web.Tests
             return Path.Combine(dir!.FullName, "TOP4HoneyChains.Web");
         });
 
+        public static string WebRootPath => WebRoot.Value;
+
         private static readonly Lazy<Dictionary<string, Dictionary<string, string>>> Resources = new(() =>
             Languages.ToDictionary(l => l, l => XDocument.Load(Path.Combine(WebRoot.Value, "Resources", $"SharedResource.{l}.resx"))
                 .Root!.Elements("data")
