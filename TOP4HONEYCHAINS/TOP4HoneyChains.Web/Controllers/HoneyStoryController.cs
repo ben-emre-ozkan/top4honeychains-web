@@ -327,21 +327,7 @@ namespace TOP4HoneyChains.Web.Controllers
         // a JPEG copy without EXIF, IPTC, XMP or ICC data; null when the stored bytes are not an image
         public static byte[]? PublicPhoto(byte[] data)
         {
-            try
-            {
-                using var image = SixLabors.ImageSharp.Image.Load(data);
-                image.Metadata.ExifProfile = null;
-                image.Metadata.IptcProfile = null;
-                image.Metadata.XmpProfile = null;
-                image.Metadata.IccProfile = null;
-                using var output = new MemoryStream();
-                SixLabors.ImageSharp.ImageExtensions.SaveAsJpeg(image, output, new SixLabors.ImageSharp.Formats.Jpeg.JpegEncoder { Quality = 85 });
-                return output.ToArray();
-            }
-            catch (SixLabors.ImageSharp.ImageFormatException)
-            {
-                return null;
-            }
+            return ImageTools.CleanJpeg(data, 85);
         }
 
 

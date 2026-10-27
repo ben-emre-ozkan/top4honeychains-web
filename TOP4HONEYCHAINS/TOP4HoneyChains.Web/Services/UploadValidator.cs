@@ -1,6 +1,4 @@
-﻿using SixLabors.ImageSharp;
-
-namespace TOP4HoneyChains.Web.Services
+﻿namespace TOP4HoneyChains.Web.Services
 {
     // Server-side checks for uploaded files (type, content and size). The browser's
     // "accept" attribute and the posted Content-Type header can be forged, so the file
@@ -12,7 +10,7 @@ namespace TOP4HoneyChains.Web.Services
         public const int MaxImageDimension = 10000;
 
         private static readonly HashSet<string> ImageExtensions = new(StringComparer.OrdinalIgnoreCase) { ".jpg", ".jpeg", ".png", ".webp" };
-        private static readonly HashSet<string> ImageFormats = new(StringComparer.OrdinalIgnoreCase) { "JPEG", "PNG", "Webp" };
+        private static readonly HashSet<string> ImageFormats = new(StringComparer.OrdinalIgnoreCase) { "JPEG", "PNG", "WEBP" };
         private static readonly HashSet<string> VideoExtensions = new(StringComparer.OrdinalIgnoreCase) { ".mp4", ".webm" };
 
         public const string ImageRule = "JPG, PNG or WEBP, at most 8 MB";
@@ -28,19 +26,15 @@ namespace TOP4HoneyChains.Web.Services
             if (!ImageExtensions.Contains(Path.GetExtension(file.FileName)))
                 return $"Unsupported image type ({ImageRule}).";
 
-            try
-            {
-                await using var stream = file.OpenReadStream();
-                var info = await Image.IdentifyAsync(stream);
-                if (info.Metadata.DecodedImageFormat == null || !ImageFormats.Contains(info.Metadata.DecodedImageFormat.Name))
-                    return $"The file is not a valid image ({ImageRule}).";
-                if (info.Width > MaxImageDimension || info.Height > MaxImageDimension)
-                    return $"The image dimensions are too large (at most {MaxImageDimension} px).";
-            }
-            catch (Exception ex) when (ex is ImageFormatException or UnknownImageFormatException or InvalidImageContentException or NotSupportedException)
-            {
+            await using var stream = file.OpenReadStream();
+            using var copy = new MemoryStream();
+            await stream.CopyToAsync(copy);
+            copy.Position = 0;
+            var info = ImageTools.Identify(copy);
+            if (info == null || !ImageFormats.Contains(info.Format))
                 return $"The file is not a valid image ({ImageRule}).";
-            }
+            if (info.Width > MaxImageDimension || info.Height > MaxImageDimension)
+                return $"The image dimensions are too large (at most {MaxImageDimension} px).";
 
             return null;
         }

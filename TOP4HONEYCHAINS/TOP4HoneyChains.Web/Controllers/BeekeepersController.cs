@@ -5,9 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Formats.Jpeg;
-using SixLabors.ImageSharp.Processing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -86,22 +83,9 @@ namespace TOP4HoneyChains.Web.Controllers
                 var photo = await _context.Beekeepers.AsNoTracking().Where(b => b.BeekeeperId == id).Select(b => b.BeekeeperProfilePhoto).FirstOrDefaultAsync();
                 if (photo == null || photo.Length == 0)
                     return NotFound();
-                try
-                {
-                    using var image = SixLabors.ImageSharp.Image.Load(photo);
-                    image.Mutate(x => x.AutoOrient().Resize(new SixLabors.ImageSharp.Processing.ResizeOptions
-                    {
-                        Size = new SixLabors.ImageSharp.Size(96, 96),
-                        Mode = SixLabors.ImageSharp.Processing.ResizeMode.Crop
-                    }));
-                    using var output = new MemoryStream();
-                    await image.SaveAsJpegAsync(output, new SixLabors.ImageSharp.Formats.Jpeg.JpegEncoder { Quality = 80 });
-                    thumb = output.ToArray();
-                }
-                catch (SixLabors.ImageSharp.ImageFormatException)
-                {
+                thumb = ImageTools.CropToJpeg(photo, 96, 96, 80);
+                if (thumb == null)
                     return NotFound();
-                }
                 cache.Set(key, thumb, new Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions { SlidingExpiration = TimeSpan.FromHours(6), Size = thumb.Length });
             }
             Response.Headers.CacheControl = "private, max-age=86400";
@@ -203,22 +187,10 @@ namespace TOP4HoneyChains.Web.Controllers
 
                     if (beekeeper.ProfilePhotoFile != null && beekeeper.ProfilePhotoFile.Length > 0)
                     {
-                        using var image = await Image.LoadAsync(beekeeper.ProfilePhotoFile.OpenReadStream());
-
-                        image.Mutate(x => x.Resize(new ResizeOptions
-                        {
-                            Size = new Size(300, 300),
-                            Mode = ResizeMode.Crop
-                        }));
-
-                        using var memoryStream = new MemoryStream();
-
-                        await image.SaveAsync(memoryStream, new JpegEncoder
-                        {
-                            Quality = 80
-                        });
-
-                        beekeeper.BeekeeperProfilePhoto = memoryStream.ToArray();
+                        using var upload = new MemoryStream();
+                        await beekeeper.ProfilePhotoFile.CopyToAsync(upload);
+                        upload.Position = 0;
+                        beekeeper.BeekeeperProfilePhoto = ImageTools.CropToJpeg(upload, 300, 300, 80);
                     }
 
                     _context.Add(beekeeper);
@@ -315,18 +287,10 @@ namespace TOP4HoneyChains.Web.Controllers
 
                     if (beekeeper.ProfilePhotoFile != null && beekeeper.ProfilePhotoFile.Length > 0)
                     {
-                        using var image = await SixLabors.ImageSharp.Image.LoadAsync(beekeeper.ProfilePhotoFile.OpenReadStream());
-
-                        image.Mutate(x => x.Resize(new ResizeOptions
-                        {
-                            Size = new SixLabors.ImageSharp.Size(300, 300),
-                            Mode = ResizeMode.Crop
-                        }));
-
-                        using var memoryStream = new MemoryStream();
-                        await image.SaveAsJpegAsync(memoryStream);
-
-                        beekeeper.BeekeeperProfilePhoto = memoryStream.ToArray();
+                        using var upload = new MemoryStream();
+                        await beekeeper.ProfilePhotoFile.CopyToAsync(upload);
+                        upload.Position = 0;
+                        beekeeper.BeekeeperProfilePhoto = ImageTools.CropToJpeg(upload, 300, 300, 75);
                     }
                     else
                     {
