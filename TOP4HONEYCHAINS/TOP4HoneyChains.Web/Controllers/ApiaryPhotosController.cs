@@ -2,12 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Formats.Jpeg;
-using SixLabors.ImageSharp.Processing;
 using TOP4HoneyChains.Web.Data;
 using TOP4HoneyChains.Web.Models.Entities;
-using ImageSharpImage = SixLabors.ImageSharp.Image;
 
 namespace TOP4HoneyChains.Web.Controllers
 {
@@ -78,21 +74,16 @@ namespace TOP4HoneyChains.Web.Controllers
             const int targetHeight = 530;
 
             await using var stream = file.OpenReadStream();
-            using var image = await ImageSharpImage.LoadAsync(stream);
-
-            image.Mutate(x =>
+            using var buffer = new MemoryStream();
+            await stream.CopyToAsync(buffer);
+            buffer.Position = 0;
+            var jpeg = ImageTools.CropToJpeg(buffer, targetWidth, targetHeight, 85);
+            if (jpeg == null)
             {
-                x.AutoOrient();
-                x.Resize(new ResizeOptions
-                {
-                    Size = new Size(targetWidth, targetHeight),
-                    Mode = ResizeMode.Crop,
-                    Position = AnchorPositionMode.Center
-                });
-            });
-
-            using var ms = new MemoryStream();
-            await image.SaveAsJpegAsync(ms, new JpegEncoder { Quality = 85 });
+                TempData["Error"] = $"The file is not a valid image ({UploadValidator.ImageRule}).";
+                return RedirectToAction(nameof(Index), new { apiaryId, periodId });
+            }
+            using var ms = new MemoryStream(jpeg);
 
             _context.ApiaryPhotos.Add(new ApiaryPhoto
             {
