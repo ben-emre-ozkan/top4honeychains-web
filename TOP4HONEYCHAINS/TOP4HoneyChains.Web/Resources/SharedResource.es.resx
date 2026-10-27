@@ -8653,7 +8653,7 @@
     <value>Mecanismo de aprobación</value>
   </data>
   <data name="Co.ApprovalsHelp" xml:space="preserve">
-    <value>Registros PCC que esperan aprobación más de {0} días y aprobaciones hechas con la exención de cuatro ojos.</value>
+    <value>Registros PCC de lotes y partidas, registros de almacenamiento (PCC 10) y solicitudes de cierre que esperan aprobación más de {0} días, y aprobaciones y cierres hechos con la exención de cuatro ojos.</value>
   </data>
   <data name="Co.SelfApproved" xml:space="preserve">
     <value>aprobado por la misma persona (exención de cuatro ojos)</value>

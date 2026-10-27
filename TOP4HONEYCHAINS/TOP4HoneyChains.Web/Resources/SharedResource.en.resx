@@ -8653,7 +8653,7 @@
     <value>Approval mechanism</value>
   </data>
   <data name="Co.ApprovalsHelp" xml:space="preserve">
-    <value>CCP records waiting for approval longer than {0} days and approvals made under the four-eyes exemption.</value>
+    <value>Lot and batch CCP records, storage records (CCP 10) and finalize requests waiting for approval longer than {0} days, and approvals and finalizing done under the four-eyes exemption.</value>
   </data>
   <data name="Co.SelfApproved" xml:space="preserve">
     <value>approved by the same person (four-eyes exemption)</value>

@@ -8653,7 +8653,7 @@
     <value>Mechanizm zatwierdzania</value>
   </data>
   <data name="Co.ApprovalsHelp" xml:space="preserve">
-    <value>Zapisy KPK czekające na zatwierdzenie dłużej niż {0} dni oraz zatwierdzenia z wyłączeniem zasady czterech oczu.</value>
+    <value>Zapisy KPK partii i partii końcowych, zapisy przechowywania (KPK 10) i wnioski o zamknięcie czekające na zatwierdzenie dłużej niż {0} dni oraz zatwierdzenia i zamknięcia z wyłączeniem zasady czterech oczu.</value>
   </data>
   <data name="Co.SelfApproved" xml:space="preserve">
     <value>zatwierdzone przez tę samą osobę (wyłączenie czterech oczu)</value>
