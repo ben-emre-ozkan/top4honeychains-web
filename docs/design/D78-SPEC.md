@@ -1012,6 +1012,17 @@ Each phase is one or more work items (one branch per item, per CLAUDE.md), merge
 - **Tests:** E2E for each C item (positive and the 403/404 negative), a resource-key test for A1–A4 in five languages.
 - **Risk to live data:** low; 026 changes reference texts only. The visible change is C4 (submitted reports stop verifying publicly) and the A1 rename.
 - **Effort:** 6–8 days.
+- **As built (2026-10-28, D-84)**, where the implementation differs from or adds to the text above:
+  - Migrations: 026 (reference texts, as planned), **027** (`UserSettings.ToursSeen`, the follow-up from P4) and **028** (the retention passage of three append-only triggers). A3 needed no migration: the English role names live in the code (`RefText.RoleEnglish`) and the `.resx` files.
+  - C2: the storefront consent document has no separate recording role; the association's admin records it, so admin and Compliance Officer download it. Organization documents are also open to whoever verifies the organization (platform administrators or, with the setting, the central association).
+  - C1: a refused role is sent to My work with a message naming the roles that may open the page (not a bare 403); the Shipments page also needs a trading capability (C3).
+  - C6 / O-16 decided as the manual describes: exclusive. Platform administrators get "access denied" for associations and do not see them in their waiting lists.
+  - A2: the role is a placeholder of the message template, so every language shows the role's own name; three unused messages that named codes were removed. A3 also covers "finalise/finalisation" in the English texts.
+  - B3: tags "Lot CCP 2–3 · batch CCP 4–9" (step 4) and "Batch CCP 10" (step 5); the step text names lot CCP 0–3 and batch CCP 4–10.
+  - B5: the Verify page uses the sign-in layout (brand panel, language switch) and a localized file picker; B6 uses a CSS card layout (`table-cards`, labels from `data-label`) on all three tables of the page; B7 keeps the submit rule on saved values and shows "Save the values before submitting." when everything is typed.
+  - Follow-ups: the Compliance Officer's approval checks cover batch CCPs, CCP 10 storage records the organization holds, finalize requests waiting longer than `Compliance:StaleApprovalDays` and self-finalized batches; the tour's "seen" marks are stored per user and role (the scenes' first-visit marks stay in the browser).
+  - Retention (6.3): the dry run counts all nine rules; the run (off by default, owner's approval) covers one-time codes, SMS and prices. Pseudonymisation, evidence files, consents and acceptances, and former accounts wait for decision O-14 (pseudonym format). Batches have no best-before date: batch date + 2 years (`Retention:BestBeforeYears`) stands in for it.
+  - Tests: E2E for C1–C4 and C6 (allowed and refused cases; C5 by the P3 public-name test), the reference texts in five languages (026 applied twice), the batch approval flags, the server-side tour marks (including a beekeeper and a second device) and the retention dry run and run (720 tests in all).
 
 ### P6: manual in five languages, screenshots, live update package
 
