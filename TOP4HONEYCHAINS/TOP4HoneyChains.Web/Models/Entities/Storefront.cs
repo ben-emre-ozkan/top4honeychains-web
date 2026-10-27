@@ -72,6 +72,8 @@ namespace TOP4HoneyChains.Web.Models.Entities
         // D-78 (D78-SPEC 6.2): optional consents captured at registration
         public const string PublicName = "PublicName";
         public const string PortalNotifications = "PortalNotifications";
+        // D-78 P3 (O-6): the beekeeper lets the association read the asking prices
+        public const string AssociationPrice = "AssociationPrice";
     }
 
     // Stable, random public code of a beekeeper's storefront (never derived from the name)

@@ -1,0 +1,56 @@
+@model TOP4HoneyChains.Web.Models.Entities.Beekeeper
+@using TOP4HoneyChains.Web.Services.Messaging
+@{
+    ViewBag.Title = L["Me.Nav.Account"].Value;
+    var pending = ViewBag.PendingPhone as string;
+    var names = new Dictionary<string, string> { ["tr"] = "Türkçe", ["en"] = "English", ["es"] = "Español", ["pl"] = "Polski", ["lv"] = "Latviešu" };
+}
+<h1>@L["Me.Nav.Account"]</h1>
+
+<div class="me-card">
+    <h3>@L["Me.Phone"]</h3>
+    <p class="m-0"><code>@Model.BeekeeperPhoneNumber</code></p>
+    @if (pending == null)
+    {
+        <form asp-action="Phone" method="post" class="me-form" id="phone-form">
+            <label for="phone">@L["Me.NewPhone"]</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" required />
+            <button type="submit" class="b-btn b-btn-ghost">@L["Me.SendCode"]</button>
+        </form>
+    }
+    else
+    {
+        <form asp-action="VerifyPhone" method="post" class="me-form" id="verify-phone-form">
+            <input type="hidden" name="phone" value="@pending" />
+            <label for="code">@L["Me.CodeTo"] <code>@pending</code></label>
+            <input id="code" name="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" required />
+            <button type="submit" class="b-btn b-btn-honey">@L["Me.Verify"]</button>
+        </form>
+    }
+</div>
+
+<div class="me-card">
+    <h3>@L["Me.Language"]</h3>
+    <form asp-action="Language" method="post" class="me-form" id="language-form">
+        <select name="language" aria-label="@L["Me.Language"]">
+            @foreach (var code in SmsTemplates.Languages)
+            {
+                <option value="@code" selected="@(code == (Model.PreferredLanguage ?? SmsTemplates.DefaultLanguage))">@names[code]</option>
+            }
+        </select>
+        <button type="submit" class="b-btn b-btn-ghost">@L["Me.Save"]</button>
+    </form>
+</div>
+
+<div class="me-card">
+    <h3>@L["Me.Password"]</h3>
+    <form asp-action="Password" method="post" class="me-form" id="password-form">
+        <label for="currentPassword">@L["Me.CurrentPassword"]</label>
+        <input id="currentPassword" name="currentPassword" type="password" autocomplete="current-password" required />
+        <label for="newPassword">@L["Me.NewPassword"]</label>
+        <input id="newPassword" name="newPassword" type="password" autocomplete="new-password" minlength="10" required />
+        <label for="confirmPassword">@L["Me.ConfirmPassword"]</label>
+        <input id="confirmPassword" name="confirmPassword" type="password" autocomplete="new-password" minlength="10" required />
+        <button type="submit" class="b-btn b-btn-honey">@L["Me.ChangePassword"]</button>
+    </form>
+</div>

@@ -13,7 +13,7 @@ namespace TOP4HoneyChains.Web.Controllers
     // beekeeper never logs in. Platform administrators read everything.
     [RequireOrgModel]
     [Authorize(Policy = AuthPolicies.PanelUser)]
-    public class StorefrontsController : Controller
+    public partial class StorefrontsController : Controller
     {
         private readonly TOP4HoneyChainsContext _context;
         private readonly ICurrentOrg _current;
@@ -81,6 +81,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 .Select(b => new Row(b, states[b.BeekeeperId], registry.GetValueOrDefault(b.BeekeeperId))).ToList();
             ViewBag.ManageDenied = await ManageDeniedAsync();
             ViewBag.IsAdmin = _current.IsPlatformAdmin;
+            // D-78 P3 (O-6): members who let the association read their asking prices
+            ViewBag.PriceConsents = _current.IsPlatformAdmin || await _current.GetAsync() is not { } m ? new HashSet<string>() : await PriceConsentsAsync(m.OrgId, list);
             return View();
         }
 

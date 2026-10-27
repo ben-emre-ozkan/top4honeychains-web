@@ -84,6 +84,10 @@ namespace TOP4HoneyChains.Web.Controllers
                 .Include(i => i.RawHoneyProduction!).ThenInclude(r => r.RawHoneyProductionApiary)
                 .Include(i => i.RawHoneyProduction!).ThenInclude(r => r.RawHoneyProductionHoneyTypeNavigation)
                 .OrderByDescending(i => i.IntakeId).Take(200).ToListAsync();
+            // D-78 P3 (O-6): the beekeepers' asking prices for the roles allowed to read them (OA, CO by default)
+            var prices = HttpContext.RequestServices.GetRequiredService<LotPriceReader>();
+            if (await prices.RoleMayReadAsync())
+                ViewBag.Prices = await prices.CurrentAsync(((List<LotIntake>)ViewBag.Intakes).Select(i => i.RawHoneyProductionId));
             ViewBag.Denied = await DeniedAsync();
             ViewBag.Controller = "Intake";
             ViewBag.Action = "Index";

@@ -8277,4 +8277,274 @@
   <data name="Lab.LotValue" xml:space="preserve">
     <value>Lote (PCC 1)</value>
   </data>
+  <data name="Me.Nav.Home" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
+  <data name="Me.Nav.Deliveries" xml:space="preserve">
+    <value>Mis entregas</value>
+  </data>
+  <data name="Me.Nav.Samples" xml:space="preserve">
+    <value>Muestras y laboratorio</value>
+  </data>
+  <data name="Me.Nav.Batches" xml:space="preserve">
+    <value>Lotes con mi miel</value>
+  </data>
+  <data name="Me.Nav.Stories" xml:space="preserve">
+    <value>Mis páginas Honey Story</value>
+  </data>
+  <data name="Me.Nav.Apiaries" xml:space="preserve">
+    <value>Mis colmenares</value>
+  </data>
+  <data name="Me.Nav.Privacy" xml:space="preserve">
+    <value>Privacidad y consentimientos</value>
+  </data>
+  <data name="Me.Nav.Account" xml:space="preserve">
+    <value>Cuenta</value>
+  </data>
+  <data name="Me.OpenItems" xml:space="preserve">
+    <value>Pendiente</value>
+  </data>
+  <data name="Me.NoPrice" xml:space="preserve">
+    <value>{0} entrega(s) sin su precio</value>
+  </data>
+  <data name="Me.NoticeToAccept" xml:space="preserve">
+    <value>Un aviso de privacidad para leer y confirmar</value>
+  </data>
+  <data name="Me.InBatches" xml:space="preserve">
+    <value>lotes con mi miel</value>
+  </data>
+  <data name="Me.LastDelivery" xml:space="preserve">
+    <value>Última entrega</value>
+  </data>
+  <data name="Me.LastResult" xml:space="preserve">
+    <value>Último resultado de laboratorio</value>
+  </data>
+  <data name="Me.ApiariesHelp" xml:space="preserve">
+    <value>Solo usted ve la posición exacta de sus colmenares.</value>
+  </data>
+  <data name="Me.Province" xml:space="preserve">
+    <value>Provincia</value>
+  </data>
+  <data name="Me.District" xml:space="preserve">
+    <value>Distrito</value>
+  </data>
+  <data name="Me.Hives" xml:space="preserve">
+    <value>Colmenas</value>
+  </data>
+  <data name="Me.Pin" xml:space="preserve">
+    <value>Posición</value>
+  </data>
+  <data name="Me.DeliveriesHelp" xml:space="preserve">
+    <value>Sus entregas tal como las registraron las plantas, con sus envases y precintos. Indique su precio por kg; puede cambiarlo hasta que el lote esté en un lote de producción finalizado.</value>
+  </data>
+  <data name="Me.Corrected" xml:space="preserve">
+    <value>corregida por la plataforma</value>
+  </data>
+  <data name="Me.Price" xml:space="preserve">
+    <value>Precio solicitado</value>
+  </data>
+  <data name="Me.Total" xml:space="preserve">
+    <value>total</value>
+  </data>
+  <data name="Me.NoPriceYet" xml:space="preserve">
+    <value>Aún no hay precio.</value>
+  </data>
+  <data name="Me.PricePerKg" xml:space="preserve">
+    <value>Precio por kg</value>
+  </data>
+  <data name="Me.Currency" xml:space="preserve">
+    <value>Moneda</value>
+  </data>
+  <data name="Me.Note" xml:space="preserve">
+    <value>Nota (opcional)</value>
+  </data>
+  <data name="Me.EnterPrice" xml:space="preserve">
+    <value>Indicar precio</value>
+  </data>
+  <data name="Me.ChangePrice" xml:space="preserve">
+    <value>Cambiar precio</value>
+  </data>
+  <data name="Me.PriceHistory" xml:space="preserve">
+    <value>Historial de precios</value>
+  </data>
+  <data name="Me.ConfirmTotal" xml:space="preserve">
+    <value>¿Guardar este precio? Total de la entrega: {0}</value>
+  </data>
+  <data name="Me.SamplesHelp" xml:space="preserve">
+    <value>Todos los frascos de muestra de sus entregas. Los valores aparecen cuando el laboratorio aprueba su informe; el veredicto solo donde el límite está verificado.</value>
+  </data>
+  <data name="Me.ReportPending" xml:space="preserve">
+    <value>en curso</value>
+  </data>
+  <data name="Me.WithinLimit" xml:space="preserve">
+    <value>dentro del límite</value>
+  </data>
+  <data name="Me.BatchesHelp" xml:space="preserve">
+    <value>Los lotes de producción que contienen su miel y su parte. No se nombra a otros apicultores.</value>
+  </data>
+  <data name="Me.MyShare" xml:space="preserve">
+    <value>Mi parte</value>
+  </data>
+  <data name="Me.Story" xml:space="preserve">
+    <value>Honey Story</value>
+  </data>
+  <data name="Me.OpenStory" xml:space="preserve">
+    <value>Abrir la página pública</value>
+  </data>
+  <data name="Me.ShownAs" xml:space="preserve">
+    <value>En las páginas públicas aparece como</value>
+  </data>
+  <data name="Me.ShownName" xml:space="preserve">
+    <value>su nombre, con su consentimiento</value>
+  </data>
+  <data name="Me.ShownCode" xml:space="preserve">
+    <value>un código neutro, su nombre no se muestra</value>
+  </data>
+  <data name="Me.NoStories" xml:space="preserve">
+    <value>Aún no hay lotes finalizados con su miel.</value>
+  </data>
+  <data name="Me.Consents" xml:space="preserve">
+    <value>Sus consentimientos</value>
+  </data>
+  <data name="Me.ConsentsHelp" xml:space="preserve">
+    <value>Cada consentimiento es opcional. La retirada surte efecto de inmediato.</value>
+  </data>
+  <data name="Me.Consent.PublicName" xml:space="preserve">
+    <value>Mi nombre en páginas públicas</value>
+  </data>
+  <data name="Me.Consent.PortalNotifications" xml:space="preserve">
+    <value>Mensajes sobre mis entregas y resultados</value>
+  </data>
+  <data name="Me.Consent.AssociationPrice" xml:space="preserve">
+    <value>Mi asociación puede ver mis precios</value>
+  </data>
+  <data name="Me.Consent.Storefront" xml:space="preserve">
+    <value>Mi página pública de apicultor</value>
+  </data>
+  <data name="Me.ConsentHelp.PublicName" xml:space="preserve">
+    <value>Sin él, Honey Story muestra un código neutro en lugar de su nombre.</value>
+  </data>
+  <data name="Me.ConsentHelp.PortalNotifications" xml:space="preserve">
+    <value>Mensajes informativos además de los códigos de confirmación.</value>
+  </data>
+  <data name="Me.ConsentHelp.AssociationPrice" xml:space="preserve">
+    <value>Su asociación de apicultores puede leer los precios que indica.</value>
+  </data>
+  <data name="Me.ConsentHelp.Storefront" xml:space="preserve">
+    <value>Otorgado a través de su asociación; puede retirarlo aquí.</value>
+  </data>
+  <data name="Me.Given" xml:space="preserve">
+    <value>otorgado</value>
+  </data>
+  <data name="Me.NotGiven" xml:space="preserve">
+    <value>no otorgado</value>
+  </data>
+  <data name="Me.Give" xml:space="preserve">
+    <value>Otorgar</value>
+  </data>
+  <data name="Me.Withdraw" xml:space="preserve">
+    <value>Retirar</value>
+  </data>
+  <data name="Me.AcceptedNotices" xml:space="preserve">
+    <value>Avisos de privacidad que confirmó</value>
+  </data>
+  <data name="Me.Controllers" xml:space="preserve">
+    <value>Quién tiene sus datos</value>
+  </data>
+  <data name="Me.ControllersHelp" xml:space="preserve">
+    <value>Contacte con estos responsables del tratamiento sobre sus datos personales.</value>
+  </data>
+  <data name="Me.Why.Platform" xml:space="preserve">
+    <value>la plataforma</value>
+  </data>
+  <data name="Me.Why.Registration" xml:space="preserve">
+    <value>le registró</value>
+  </data>
+  <data name="Me.Why.Association" xml:space="preserve">
+    <value>su asociación</value>
+  </data>
+  <data name="Me.Why.Deliveries" xml:space="preserve">
+    <value>recibió sus entregas</value>
+  </data>
+  <data name="Me.Phone" xml:space="preserve">
+    <value>Teléfono móvil</value>
+  </data>
+  <data name="Me.NewPhone" xml:space="preserve">
+    <value>Número nuevo</value>
+  </data>
+  <data name="Me.SendCode" xml:space="preserve">
+    <value>Enviar un código</value>
+  </data>
+  <data name="Me.CodeTo" xml:space="preserve">
+    <value>Código enviado a</value>
+  </data>
+  <data name="Me.Verify" xml:space="preserve">
+    <value>Verificar</value>
+  </data>
+  <data name="Me.Language" xml:space="preserve">
+    <value>Idioma</value>
+  </data>
+  <data name="Me.Save" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="Me.Password" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="Me.CurrentPassword" xml:space="preserve">
+    <value>Contraseña actual</value>
+  </data>
+  <data name="Me.NewPassword" xml:space="preserve">
+    <value>Contraseña nueva</value>
+  </data>
+  <data name="Me.ConfirmPassword" xml:space="preserve">
+    <value>Repita la contraseña nueva</value>
+  </data>
+  <data name="Me.ChangePassword" xml:space="preserve">
+    <value>Cambiar contraseña</value>
+  </data>
+  <data name="Lp.Help" xml:space="preserve">
+    <value>El precio por kg solicitado por el apicultor y su historial. No se muestra a otros roles, poseedores posteriores ni páginas públicas.</value>
+  </data>
+  <data name="Lp.AssociationHelp" xml:space="preserve">
+    <value>El socio aceptó que la asociación lea estos precios; el consentimiento puede retirarse en cualquier momento.</value>
+  </data>
+  <data name="Price saved." xml:space="preserve">
+    <value>Precio guardado.</value>
+  </data>
+  <data name="Consent given." xml:space="preserve">
+    <value>Consentimiento otorgado.</value>
+  </data>
+  <data name="Consent withdrawn; it takes effect at once." xml:space="preserve">
+    <value>Consentimiento retirado; surte efecto de inmediato.</value>
+  </data>
+  <data name="There is no such consent to withdraw." xml:space="preserve">
+    <value>No hay tal consentimiento que retirar.</value>
+  </data>
+  <data name="This consent cannot be given here." xml:space="preserve">
+    <value>Este consentimiento no se puede otorgar aquí.</value>
+  </data>
+  <data name="The new passwords do not match." xml:space="preserve">
+    <value>Las contraseñas nuevas no coinciden.</value>
+  </data>
+  <data name="The lot is in a finalized batch; its price is locked." xml:space="preserve">
+    <value>El lote está en un lote de producción finalizado; su precio está bloqueado.</value>
+  </data>
+  <data name="The delivery is not confirmed yet; the price can be entered once it is." xml:space="preserve">
+    <value>La entrega aún no está confirmada; el precio se puede indicar cuando lo esté.</value>
+  </data>
+  <data name="Enter the price per kg (more than 0, at most two decimals)." xml:space="preserve">
+    <value>Indique el precio por kg (más de 0, como máximo dos decimales).</value>
+  </data>
+  <data name="Choose a currency." xml:space="preserve">
+    <value>Elija una moneda.</value>
+  </data>
+  <data name="The note can be at most 200 characters." xml:space="preserve">
+    <value>La nota puede tener como máximo 200 caracteres.</value>
+  </data>
+  <data name="Area.Price" xml:space="preserve">
+    <value>Precios solicitados por los apicultores</value>
+  </data>
+  <data name="Area.OrgAudit" xml:space="preserve">
+    <value>Registros de auditoría de la organización</value>
+  </data>
 </root>

@@ -1,0 +1,126 @@
+@model List<TOP4HoneyChains.Web.Services.OrgModel.BeekeeperPortalService.Delivery>
+@using TOP4HoneyChains.Web.Models.Entities
+@using TOP4HoneyChains.Web.Services.OrgModel
+@{
+    ViewBag.Title = L["Me.Nav.Deliveries"].Value;
+    var inv = System.Globalization.CultureInfo.InvariantCulture;
+}
+<h1>@L["Me.Nav.Deliveries"]</h1>
+<p class="me-sub">@L["Me.DeliveriesHelp"]</p>
+@foreach (var d in Model)
+{
+    var current = d.Prices.FirstOrDefault();
+    var lotId = d.Lot.RawHoneyProductionId;
+    <div class="me-card me-delivery" id="lot-@lotId" data-lot="@lotId">
+        <h3>@d.Intake.DeliveryDate.ToString("dd.MM.yyyy") · @d.Intake.ReceivingOrg?.DisplayName</h3>
+        <dl class="me-kv">
+            <dt>@L["Org.HoneyType"]</dt><dd>@Ref.HoneyType(d.Lot.RawHoneyProductionHoneyType, d.Lot.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle)</dd>
+            <dt>@L["Org.Amount"]</dt><dd>@d.Intake.Quantity.ToString("0.##") kg</dd>
+            <dt>@L["Ci.Confirmation"]</dt>
+            <dd>
+                @if (d.Intake.IsLegacy)
+                {
+                    <span class="me-badge">@L["Ci.Legacy"]</span>
+                }
+                else
+                {
+                    <span>@L["Reg78.Method." + d.Intake.ConfirmationMethod]</span>
+                    <span class="me-badge @(d.Intake.EvidenceStatus == EvidenceStatus.Accepted ? "me-badge-ok" : "me-badge-warn")">@L["Reg78.Evidence." + d.Intake.EvidenceStatus]</span>
+                    @if (d.Intake.ConfirmedAt != null)
+                    {
+                        <span class="me-muted">@d.Intake.ConfirmedAt.Value.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</span>
+                    }
+                }
+                @if (d.Corrected)
+                {
+                    <span class="me-badge me-badge-warn me-corrected">@L["Me.Corrected"]</span>
+                }
+            </dd>
+        </dl>
+        @if (d.Containers.Any())
+        {
+            <div class="me-scroll">
+                <table class="me-table me-containers">
+                    <thead><tr><th>@L["Ci.Container"]</th><th>@L["Ci.NetKg"]</th><th>@L["Ci.SealHistory"]</th></tr></thead>
+                    <tbody>
+                        @foreach (var c in d.Containers)
+                        {
+                            <tr>
+                                <td>@c.ContainerCode<div class="me-muted">@L["Ci.Kind." + c.Kind]</div></td>
+                                <td>@c.NetWeightKg.ToString("0.##")</td>
+                                <td>
+                                    @foreach (var e in c.SealEvents.OrderBy(e => e.EventId))
+                                    {
+                                        <div>@L["Ci.Seal." + e.Event] <code>@e.SealNumber</code></div>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+
+        <h2>@L["Me.Price"]</h2>
+        @if (current != null)
+        {
+            <p class="m-0 me-current-price"><strong>@BeekeeperPortalService.Money(current.PricePerKg, current.Currency)</strong> / kg · @L["Me.Total"]: @BeekeeperPortalService.Money(current.PricePerKg * d.Intake.Quantity, current.Currency)</p>
+        }
+        else
+        {
+            <p class="me-muted m-0">@L["Me.NoPriceYet"]</p>
+        }
+        @if (d.PriceDenied != null)
+        {
+            <p class="me-muted me-price-locked">@Msg.T(d.PriceDenied)</p>
+        }
+        else
+        {
+            <form asp-action="Price" method="post" class="me-form price-form" data-kg="@d.Intake.Quantity.ToString(inv)" data-confirm="@L["Me.ConfirmTotal"]">
+                <input type="hidden" name="lotId" value="@lotId" />
+                <label for="price-@lotId">@L["Me.PricePerKg"]</label>
+                <div class="me-inline">
+                    <input id="price-@lotId" name="pricePerKg" inputmode="decimal" required value="@current?.PricePerKg.ToString("0.00", inv)" />
+                    <select name="currency" aria-label="@L["Me.Currency"]">
+                        @foreach (var cur in BeekeeperPortalService.Currencies)
+                        {
+                            <option value="@cur" selected="@(cur == (current?.Currency ?? BeekeeperPortalService.DefaultCurrency(d.Lot.OriginCountry)))">@cur</option>
+                        }
+                    </select>
+                </div>
+                <label for="note-@lotId">@L["Me.Note"]</label>
+                <input id="note-@lotId" name="note" maxlength="200" />
+                <button type="submit" class="b-btn b-btn-honey">@(current == null ? L["Me.EnterPrice"] : L["Me.ChangePrice"])</button>
+            </form>
+        }
+        @if (d.Prices.Count > 0)
+        {
+            <details class="price-history">
+                <summary>@L["Me.PriceHistory"] (@d.Prices.Count)</summary>
+                <ul>
+                    @foreach (var p in d.Prices)
+                    {
+                        <li>@p.EnteredAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm") · @BeekeeperPortalService.Money(p.PricePerKg, p.Currency) / kg @(p.Note == null ? "" : "· " + p.Note)</li>
+                    }
+                </ul>
+            </details>
+        }
+    </div>
+}
+@if (!Model.Any())
+{
+    <p class="me-muted">@L["Org.None"]</p>
+}
+@section scripts {
+    <script>
+        // the total before saving: price per kg x the confirmed quantity
+        document.querySelectorAll('.price-form').forEach(function (f) {
+            f.addEventListener('submit', function (e) {
+                var price = parseFloat((f.elements.pricePerKg.value || '').replace(',', '.'));
+                if (!(price > 0)) return;
+                var total = (price * parseFloat(f.dataset.kg)).toFixed(2) + ' ' + f.elements.currency.value;
+                if (!confirm(f.dataset.confirm.replace('{0}', total))) e.preventDefault();
+            });
+        });
+    </script>
+}

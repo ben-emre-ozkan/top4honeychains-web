@@ -67,7 +67,7 @@ namespace TOP4HoneyChains.Web.Controllers
 
         // D-78 (O-15): an active beekeeper account, while Features:BeekeeperAccounts is on (it opens only the beekeeper area /Me)
         private async Task<bool> IsBeekeeperAsync(string userId) =>
-            HttpContext.RequestServices.GetRequiredService<Microsoft.Extensions.Options.IOptions<FeatureFlags>>().Value.BeekeeperAccounts
+            HttpContext.RequestServices.GetRequiredService<Microsoft.Extensions.Options.IOptionsSnapshot<FeatureFlags>>().Value.BeekeeperAccounts
             && await Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.AnyAsync(
                 _context.BeekeeperAccounts, a => a.UserId == userId && a.Status == Models.Entities.BeekeeperAccountStatus.Active);
 

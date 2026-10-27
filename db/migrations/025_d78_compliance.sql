@@ -7,6 +7,9 @@
 --   * OrgDocuments.AgreementKind: the new document kinds DataProcessingAgreement and SupplyAgreement, stored with Kind 'Other'
 --     (the existing CHECK on Kind stays as it is: no constraint is dropped).
 --   * RolePermissions: Price Read (OrgAdmin, ComplianceOfficer) and OrgAudit Read (ComplianceOfficer).
+--   * Consents.Purpose: the CHECK of 008 allowed only 'Storefront', so the consents captured at registration since P1 (PublicName,
+--     PortalNotifications) could not be stored in a database built by the scripts. The old CHECK is disabled (not dropped) and a
+--     wider one is added: Storefront, PublicName, PortalNotifications and AssociationPrice (P3, O-6).
 -- Additive and idempotent; a second run changes nothing. SQL Server 2019 (level 150). Run with sqlcmd -I.
 
 SET NOCOUNT ON;
@@ -84,6 +87,14 @@ GO
 IF NOT EXISTS (SELECT 1 FROM sys.check_constraints WHERE name = N'CK_OrgDocuments_AgreementKind')
     ALTER TABLE dbo.OrgDocuments ADD CONSTRAINT CK_OrgDocuments_AgreementKind
         CHECK (AgreementKind IS NULL OR (Kind = N'Other' AND AgreementKind IN ('DataProcessingAgreement', 'SupplyAgreement')));
+GO
+
+IF EXISTS (SELECT 1 FROM sys.check_constraints WHERE name = N'CK_Consents_Purpose' AND is_disabled = 0)
+    ALTER TABLE dbo.Consents NOCHECK CONSTRAINT CK_Consents_Purpose;
+GO
+IF NOT EXISTS (SELECT 1 FROM sys.check_constraints WHERE name = N'CK_Consents_Purpose2')
+    ALTER TABLE dbo.Consents ADD CONSTRAINT CK_Consents_Purpose2
+        CHECK (Purpose IN (N'Storefront', N'PublicName', N'PortalNotifications', N'AssociationPrice'));
 GO
 
 INSERT dbo.RolePermissions (Area, AreaKey, Action, OrgRole)

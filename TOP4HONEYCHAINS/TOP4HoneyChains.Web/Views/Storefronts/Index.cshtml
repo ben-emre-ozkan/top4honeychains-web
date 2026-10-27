@@ -66,6 +66,10 @@
                                         {
                                             <a asp-action="Card" asp-route-id="@r.Beekeeper.BeekeeperId" class="btn btn-sm btn-outline-secondary card-link">@L["P5.Card"]</a>
                                         }
+                                        @if (ViewBag.PriceConsents is HashSet<string> priceConsents && priceConsents.Contains(r.Beekeeper.BeekeeperId))
+                                        {
+                                            <a asp-action="Prices" asp-route-id="@r.Beekeeper.BeekeeperId" class="btn btn-sm btn-outline-secondary prices-link">@L["Me.Price"]</a>
+                                        }
                                     </td>
                                 </tr>
                             }

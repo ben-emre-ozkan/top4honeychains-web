@@ -368,7 +368,7 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         private readonly FeatureFlags _flags;
 
         public BeekeeperSignIn(TOP4HoneyChainsContext context, UserManager<ApplicationUser> users, RoleManager<IdentityRole> roles,
-            CredentialService credentials, IOptions<FeatureFlags> flags)
+            CredentialService credentials, IOptionsSnapshot<FeatureFlags> flags)
         {
             _context = context;
             _users = users;
