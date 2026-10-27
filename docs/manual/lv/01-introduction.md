@@ -9,14 +9,15 @@ TOP4HoneyChains ir tīmekļa platforma, kas izseko medu no biškopja dravas līd
 ## Kā lietot šo rokasgrāmatu {#how-to-read}
 
 - **1.–4. nodaļā** aprakstīta platforma, kompetences, organizācijas un lomas, pieteikšanās, kā arī viss medus gala partijas ceļš. Izlasiet tās vispirms.
-- **5.–11. nodaļā** katrai lomai ir sava nodaļa. Katra sākas ar sadaļu "Jūsu ikdienas darbs", pēc tam soli pa solim aprakstīts katrs uzdevums. Izlasiet savas lomas nodaļu.
-- **12. nodaļa** paredzēta platformas administratoriem.
-- **13. nodaļā** aprakstīts audita žurnāls un tas, ko var lasīt sabiedrība.
-- **14. nodaļā** ir terminu skaidrojumi un atbildes uz biežāk sastopamajām problēmām.
+- **5.–13. nodaļā** katrai lomai ir sava nodaļa. Katra sākas ar sadaļu "Jūsu ikdienas darbs", pēc tam soli pa solim aprakstīts katrs uzdevums. Izlasiet savas lomas nodaļu.
+- **14. nodaļa** paredzēta biškopjiem: biškopju portāls.
+- **15. nodaļa** paredzēta platformas administratoriem.
+- **16. nodaļā** aprakstīts audita žurnāls, privātuma paziņojumi un piekrišanas, kā arī tas, ko var lasīt sabiedrība.
+- **17. nodaļā** ir terminu skaidrojumi un atbildes uz biežāk sastopamajām problēmām.
 
 Pogu, izvēlņu un lauku nosaukumi rakstīti **treknrakstā** tieši tā, kā tie redzami ekrānā. Sistēmas paziņojumi rakstīti pēdiņās. Attēli un tabulas ir numurēti; attēlu un tabulu saraksti ir pēc satura rādītāja. Piemēros izmantoti testa ieraksti, kuru nosaukumi sākas ar **[DEMO]**; tie nav reālas personas vai uzņēmumi.
 
-> **Nosaukumi, kas mainās nākamajā versijā.** Daži ekrānā redzamie nosaukumi nākamajā platformas versijā tiks mainīti. Šajā rokasgrāmatā jau lietoti jaunie nosaukumi, piemēram, loma **Kvalitātes nodrošināšanas speciālists** (šodien: "Kvalitātes apstiprinātājs") un kompetenču apraksti, kas sākas ar "Spēj …". Ekrānuzņēmumos redzami šodienas nosaukumi. [Table](#tbl-renamed-labels) terminu skaidrojumos uzskaita visus vecos un jaunos nosaukumus.
+> **Šajā versijā mainītie nosaukumi.** Daži ekrānā redzamie nosaukumi šajā platformas versijā ir mainīti, piemēram, loma **Kvalitātes nodrošināšanas speciālists** (agrāk: "Kvalitātes apstiprinātājs"), **Pamatnoteikumi** un kompetenču apraksti, kas sākas ar "Spēj …". [Table](#tbl-renamed-labels) terminu skaidrojumos uzskaita visus vecos un jaunos nosaukumus.
 
 > Latviešu valodas versijā platforma, tāpat kā ekrānā, lieto saīsinājumu **KKP** (kritiskais kontroles punkts). Angļu valodā lieto starptautisko terminu CCP (critical control point), citās valodu versijās – savu saīsinājumu: KKN (turku), PCC (spāņu), KPK (poļu). Pagaidām izņēmums ir lapa **Lomas un atļaujas**, kurā vēl redzams "CCP"; šī rokasgrāmata visur lieto KKP.
 
@@ -24,9 +25,9 @@ Pogu, izvēlņu un lauku nosaukumi rakstīti **treknrakstā** tieši tā, kā ti
 
 Medus iziet cauri piecām stacijām. Platforma reģistrē katru no tām:
 
-1. **Drava**: biškopis iegūst medu. Biškopji platformā nepiesakās, un viņiem nav kontu; katru biškopi platformā pārstāv **biškopja ieraksts**, ko aktuālu uztur platformas administratori un biškopja biedrība.
-2. **Piegāde**: biškopis piegādā medu pārstrādes uzņēmumam. Uzņēmums reģistrē piegādi, tādējādi izveidojot *neapstrādāta medus partiju*, un pārbauda to pieņemšanas brīdī (KKP 0).
-3. **Laboratorija**: uzņēmums noplombē paraugu un nosūta to uz pārtikas analīžu laboratoriju (parasti akreditētu). Laboratorijā analītiķis ievada analīzes rezultātus, un otra persona – laboratorijas vadītājs – apstiprina pārskatu.
+1. **Drava**: biškopis iegūst medu. Katru biškopi platformā pārstāv **biškopja ieraksts**, ko reģistrē novada lauksaimniecības pārvalde un ko biškopis apstiprina ar kodu, kas saņemts SMS. Biškopim var būt arī personīgs konts **biškopju portālā**.
+2. **Piegāde**: biškopis piegādā medu pārstrādes uzņēmumam tvertnēs. Uzņēmums reģistrē katru tvertni ar tās svaru un plombām, biškopis apstiprina piegādi ar SMS kodu, un piegāde kļūst par *neapstrādāta medus partiju*, ko pārbauda pieņemšanas brīdī (KKP 0).
+3. **Laboratorija**: uzņēmums no katras tvertnes piepilda noplombētu paraugu burku un nosūta burkas uz pārtikas analīžu laboratoriju (parasti akreditētu). Laboratorija pārbauda katru burku un analizē medu, analītiķis ievada rezultātus, un otra persona – laboratorijas vadītājs – apstiprina pārskatu.
 4. **Apstrāde**: uzņēmums apstrādā medu (partijas KKP 2–3), apvieno partijas *gala partijā* un reģistrē apstrādes, pildīšanas, marķēšanas, iepakošanas un uzglabāšanas pārbaudes (gala partijas KKP 4–10). Pēc tam divas personas gala partiju *pabeidz (fiksē)*.
 5. **Plaukts**: gala partija tiek nosūtīta vairumtirgotājam vai mazumtirgotājam. Saņēmējs apstiprina saņemšanu un reģistrē savus uzglabāšanas apstākļus.
 
@@ -55,14 +56,16 @@ Table: Kam platforma paredzēta {#tbl-audience}
 
 | Kas | Konts | Ko viņi dara platformā |
 |---|---|---|
-| Biškopji | nav; viņus pārstāv **biškopja ieraksts** | Piegādā medu; viņu biedrība reģistrē viņu piekrišanu publiskai biškopja lapai |
+| Biškopji | viņus pārstāv **biškopja ieraksts**; pēc izvēles portāla konts | Piegādā medu un apstiprina piegādes ar SMS kodu; portālā: seko savām piegādēm, paraugiem un gala partijām, ievada savu prasīto cenu, dod vai atsauc piekrišanas |
+| Novadu lauksaimniecības pārvaldes | organizācijas dalībnieki | Reģistrē biškopjus un viņu dravas, apliecina viņu identitāti un piekrišanas, nosūta viņu pieteikšanās datus portālam |
 | Biškopju biedrības | organizācijas dalībnieki | Sasaista savus biedrus biškopjus, reģistrē viņu piekrišanu publiskai biškopja lapai |
 | Pārstrādes un iepakošanas uzņēmumi | organizācijas dalībnieki | Reģistrē piegādes, ņem paraugus, reģistrē kontroles punktus, pieprasa un apstiprina pabeigšanu (fiksēšanu), nosūta preces |
 | Pārtikas analīžu laboratorijas | organizācijas dalībnieki | Saņem paraugus, ievada rezultātus, apstiprina pārskatus |
 | Vairumtirgotāji | organizācijas dalībnieki | Apstiprina sūtījumus, reģistrē uzglabāšanas apstākļus, lasa ražotāja ierakstus |
 | Mazumtirgotāji | organizācijas dalībnieki | Apstiprina sūtījumus, reģistrē uzglabāšanas apstākļus, lasa ražotāja ierakstus |
 | Valsts iestādes | organizācijas dalībnieki | Lasa ierakstus (tikai lasīšanas piekļuve) |
-| Platformas administratori | globāla loma lietotāja kontā | Pārbauda organizācijas, pārvalda dalības, nosaka kontroles punktus un robežvērtības, izveido gala partijas, lasa audita žurnālu |
+| Atbilstības speciālisti | loma katrā organizācijā | Pārskata pierādījumus, paraugu ņemšanas kvalitāti un apstiprinājumus; apstrādā datu aizsardzības pieprasījumus |
+| Platformas administratori | globāla loma lietotāja kontā | Pārbauda organizācijas, pārvalda dalības, nosaka kontroles punktus un robežvērtības, publicē paziņojumu tekstus, izveido gala partijas, lasa audita žurnālu |
 | Patērētāji un citi publiski apmeklētāji | nav | Lasa publiskās lapas: Medus stāstu, ko atver ar QR kodu uz burkas, biškopju lapas, laboratorijas pārskatu pārbaudi |
 
 ## Publiskais Medus stāsts un QR kodi {#honey-story}
@@ -74,7 +77,7 @@ Medus stāsts parāda valodā, ko apmeklētājs izvēlas lapā:
 - gala partijas nosaukumu, daudzumu un ražošanas datumu;
 - medus ceļu: ievākšanu, piegādi, laboratoriju, apstrādi un plauktu;
 - medus izcelsmi kartē: pašlaik pa Turcijas provincēm; citu partnervalstu kartes ir plānotas;
-- biškopjus, kuri piedalījās, ar saiti uz viņu publisko biškopja lapu, ja viņi tai ir piekrituši;
+- biškopjus, kuri piedalījās: ar vārdu tikai tad, ja biškopis tam piekritis, citādi ar neitrālu kodu, ar saiti uz viņu publisko biškopja lapu, ja tāda ir;
 - laboratorijas rezultātus, norādot, vai vērtība ir robežās vai ārpus tām, tikai tām robežvērtībām, kas ir pārbaudītas;
 - apstrādes un iepakošanas kontroles punktus;
 - saiti laboratorijas pārskata pārbaudei.
@@ -87,5 +90,6 @@ Figure: Pabeigtas (fiksētas) gala partijas publiskais Medus stāsts tālrunī.
 Citas publiskās lapas:
 
 - **Biškopja lapa** (`/storefront/<code>`): biškopja publiskā lapa, kas tiek publicēta tikai ar biškopja parakstītu piekrišanu un pārbaudītu reģistrācijas numuru.
-- **Pārbaudīt laboratorijas pārskatu** (`/verify-report`): ikviens var ievadīt pārskata kodu un izlasīt, vai pārskats pastāv un ir apstiprināts, kā arī salīdzināt PDF failu ar tā nospiedumu.
+- **Pārbaudīt laboratorijas pārskatu** (`/verify-report`): ikviens var ievadīt pārskata kodu, izlasīt, vai pastāv apstiprināts pārskats, un salīdzināt PDF failu ar tā nospiedumu.
+- **Privātums un piekrišana** (`/privacy`): spēkā esošie privātuma paziņojumi biškopjiem un platformas lietotājiem.
 - **Sākumlapa** (`/`): projekta mājaslapa ar pieteikšanās pogu.

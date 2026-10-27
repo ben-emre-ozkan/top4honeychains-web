@@ -5,16 +5,20 @@
 El administrador de la organización es el responsable de una organización en la plataforma. Usted:
 
 - mantiene al día los documentos de la organización (licencia, acreditación, certificado fiscal, comprobante de registro);
-- en una planta: lee entregas y muestras, solicita la finalización, envía y confirma envíos;
+- en una planta: lee entregas y muestras, lee el precio solicitado por los apicultores para los lotes que posee su organización, solicita la finalización, envía y confirma envíos;
 - en un mayorista o un minorista: confirma envíos;
 - en una asociación: registra y retira el consentimiento de los apicultores para una página pública del apicultor.
 
-Las membresías y las capacidades de su organización los gestionan los administradores de la plataforma. Si un colega necesita acceso o un rol distinto, consúltelos.
+Las membresías y las capacidades de su organización los gestionan los administradores de la plataforma. Si un colega necesita acceso o un rol distinto, consúltelos. Cada organización necesita un **Responsable de cumplimiento**; en una organización pequeña puede ser usted, con una segunda membresía (consulte el [capítulo 13](#role-co)).
 
 ## La página de su organización {#orgadmin-org-page}
 
 1. Abra **Mi organización** y haga clic en **Página de la organización**.
-2. La página muestra el estado, las capacidades, los documentos, el historial de verificación y los miembros de su organización.
+2. La página muestra el estado, las capacidades, los documentos, los datos del **Responsable del tratamiento**, el historial de verificación y los miembros de su organización.
+
+Mientras la organización no tiene Responsable de cumplimiento, la página dice "Esta organización aún no tiene Responsable de cumplimiento. Cada organización nombra al menos uno (puede ser el administrador de la organización con una segunda membresía)." con la fecha en la que debe asignarse uno.
+
+**Responsable del tratamiento.** El aviso de privacidad de la organización la nombra como responsable del tratamiento: su **Razón social**, **Contacto (correo o teléfono)** y **Dirección**. "falta" significa que los datos aún no se han introducido. Los mantienen al día el Responsable de cumplimiento o un administrador de la plataforma.
 
 <!-- SHOT: org-details -->
 Figure: Documentos de la organización con sus huellas SHA-256.
@@ -30,6 +34,10 @@ La plataforma almacena el archivo con su huella SHA-256. Los documentos no se pu
 ## Finalización y envíos {#orgadmin-plant}
 
 En una planta, usted puede usar **Solicitar la finalización** y **Enviar** con una partida, igual que el Personal: consulte [Solicitar la finalización](#staff-request-finalize) y [Enviar una partida](#staff-ship). En un receptor, puede **Confirmar recepción** o **Rechazar**: consulte [Confirmar o rechazar un envío](#staff-receive).
+
+## El precio solicitado de sus lotes {#orgadmin-price}
+
+Los apicultores indican en su portal un precio solicitado por kg para cada entrega (consulte [Sus entregas y su precio](#portal-price)). En la página de la entrega de un lote que posee su organización, el recuadro **Precio solicitado** muestra el precio actual y su historial: "El precio por kg solicitado por el apicultor y su historial. No se muestra a otros roles, poseedores posteriores ni páginas públicas." Lo leen el administrador de la organización, el Responsable de cumplimiento y los administradores de la plataforma; nadie más. Una asociación solo lee los precios de sus miembros cuando el apicultor lo ha aceptado.
 
 ## Páginas de apicultores (asociaciones) {#orgadmin-storefronts}
 

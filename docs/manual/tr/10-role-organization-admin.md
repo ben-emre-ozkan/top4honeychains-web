@@ -5,16 +5,20 @@
 Kurum yöneticisi, platformda bir kurumun yöneticisidir. Göreviniz:
 
 - kurumun belgelerini güncel tutmak (ruhsat, akreditasyon, vergi levhası, kayıt kanıtı);
-- bir tesiste: teslimleri ve numuneleri okumak, kesinleştirme talep etmek, sevk etmek ve sevkiyatları onaylamak;
+- bir tesiste: teslimleri ve numuneleri okumak, kurumunuzun sahip olduğu lotlar için arıcıların istediği fiyatı okumak, kesinleştirme talep etmek, sevk etmek ve sevkiyatları onaylamak;
 - bir toptancıda veya perakendecide: sevkiyatları onaylamak;
 - bir birlikte: herkese açık arıcı sayfası için arıcıların rızasını kaydetmek ve geri çekmek.
 
-Kurumunuzun üyeliklerini ve yeteneklerini platform yöneticileri yönetir. Bir iş arkadaşınızın erişime veya farklı bir role ihtiyacı varsa onlara başvurun.
+Kurumunuzun üyeliklerini ve yeteneklerini platform yöneticileri yönetir. Bir iş arkadaşınızın erişime veya farklı bir role ihtiyacı varsa onlara başvurun. Her kurumun bir **Uyum Sorumlusu** olmalıdır; küçük bir kurumda bu kişi, ikinci bir üyelikle siz olabilirsiniz (bkz. [bölüm 13](#role-co)).
 
 ## Kurum sayfanız {#orgadmin-org-page}
 
 1. **Kurumum** sayfasını açın ve **Kurum sayfası** bağlantısına tıklayın.
-2. Sayfa kurumunuzun durumunu, yeteneklerini, belgelerini, doğrulama geçmişini ve üyelerini gösterir.
+2. Sayfa kurumunuzun durumunu, yeteneklerini, belgelerini, **Veri sorumlusu** bilgilerini, doğrulama geçmişini ve üyelerini gösterir.
+
+Kurumun henüz bir Uyum Sorumlusu yoksa sayfada, bir Uyum Sorumlusunun atanması gereken tarihle birlikte şu yazar: "Bu kuruluşun henüz Uyum Sorumlusu yok. Her kuruluş en az bir kişi belirler (ikinci bir üyelikle kuruluş yöneticisi de olabilir)."
+
+**Veri sorumlusu.** Kurumun aydınlatma metni, kurumu veri sorumlusu olarak adlandırır: **Tüzel kişi adı**, **İletişim (e-posta veya telefon)** ve **Adres**. "eksik", bilgilerin henüz girilmediği anlamına gelir. Bilgileri Uyum Sorumlusu veya bir platform yöneticisi güncel tutar.
 
 <!-- SHOT: org-details -->
 Figure: SHA-256 parmak izleriyle kurum belgeleri.
@@ -30,6 +34,10 @@ Platform dosyayı SHA-256 parmak iziyle birlikte saklar. Belgeler silinemez. Yen
 ## Kesinleştirme ve sevkiyatlar {#orgadmin-plant}
 
 Bir tesiste, tıpkı Personel gibi bir parti için **Kesinleştirme talep et** işlemini yapabilir ve partiyi **Sevk et** ile sevk edebilirsiniz: bkz. [Kesinleştirme talebi](#staff-request-finalize) ve [Parti sevk etme](#staff-ship). Alıcı kurumda **Teslimi onayla** veya **Reddet** işlemlerini yapabilirsiniz: bkz. [Sevkiyatı onaylama veya reddetme](#staff-receive).
+
+## Lotlarınızın istenen fiyatı {#orgadmin-price}
+
+Arıcılar portallarında her teslim için kilogram başına bir istenen fiyat girer (bkz. [Teslimleriniz ve fiyatınız](#portal-price)). Kurumunuzun sahip olduğu bir lotun teslimat sayfasında **İstenen fiyat** kutusu güncel fiyatı ve geçmişini gösterir: "Arıcının kilogram başına istediği fiyat ve geçmişi. Diğer rollere, sonraki sahiplere veya herkese açık sayfalara gösterilmez." Fiyatı kurum yöneticisi, Uyum Sorumlusu ve platform yöneticileri okur; başka kimse okuyamaz. Bir birlik üyelerinin fiyatlarını yalnızca arıcı buna rıza verdiyse okur.
 
 ## Arıcı sayfaları (birlikler) {#orgadmin-storefronts}
 

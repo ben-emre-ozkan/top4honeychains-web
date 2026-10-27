@@ -56,7 +56,7 @@ Paziņojums "Pabeigšana (fiksēšana) pieprasīta; tā jāapstiprina kvalitāte
 
 ## Gala partijas nosūtīšana {#staff-ship}
 
-Nosūtīt var tikai pabeigtu (fiksētu) gala partiju.
+Nosūtīt var tikai pabeigtu (fiksētu) gala partiju, un to var darīt tikai organizācija, kas medu pārstrādā, iepako vai tirgo (kompetence **Pārstrāde**, **Iepakošana**, **Vairumtirdzniecība** vai **Mazumtirdzniecība**).
 
 1. Atveriet **Sūtījumi un krājumi**. Sadaļā **Jūsu turējumā esošās gala partijas** katrai gala partijai redzams turējumā esošais daudzums, nepabeigtajiem sūtījumiem rezervētais daudzums un pieejamais daudzums.
 2. Noklikšķiniet uz **Nosūtīt** blakus gala partijai.
@@ -66,13 +66,15 @@ Nosūtīt var tikai pabeigtu (fiksētu) gala partiju.
 <!-- SHOT: shipment-create -->
 Figure: Gala partijas nosūtīšana citai organizācijai.
 
-Kļūdas: "Nosūtīt var tikai pabeigtu (fiksētu) gala partiju.", "No šīs gala partijas varat nosūtīt ne vairāk kā … kg.", "Izvēlieties citu pārbaudītu organizāciju kā saņēmēju."
+Kļūdas: "Nosūtīt var tikai pabeigtu (fiksētu) gala partiju.", "No šīs gala partijas varat nosūtīt ne vairāk kā … kg.", "Izvēlieties citu pārbaudītu organizāciju kā saņēmēju.", "Medu sūta vai saņem tikai organizācija, kas to pārstrādā, iepako vai tirgo."
 
 ## Sūtījuma apstiprināšana vai noraidīšana (saņēmējs) {#staff-receive}
 
 1. Sadaļā **Mans darbs** atveriet **Apstiprināmie sūtījumi** vai dodieties uz **Sūtījumi un krājumi** → **Ienākošie sūtījumi**.
 2. Pārbaudiet preces. Noklikšķiniet uz **Apstiprināt saņemšanu**: "Saņemšana apstiprināta; šis daudzums tagad ir jūsu turējumā."
 3. Vai arī ierakstiet laukā **iemesls (lai noraidītu)** iemeslu un noklikšķiniet uz **Noraidīt**: "Sūtījums noraidīts; daudzums paliek pie sūtītāja." Iemesls ir obligāts.
+
+Tālrunī katrs ienākošais sūtījums tiek rādīts kā kartīte ar iemesla lauku un abām pogām zem tā.
 
 <!-- SHOT: shipment-confirm -->
 Figure: Ienākošs sūtījums tālrunī: **Apstiprināt saņemšanu** vai **Noraidīt**.
@@ -96,4 +98,4 @@ Lai tos atvērtu, lapā **Sūtījumi un krājumi** noklikšķiniet uz **Procesa 
 
 ## Atsaukšanas pārskats {#staff-recall}
 
-No gala partijas vai partijas varat atvērt lapu **Atsaukšanas pārskats**. Tajā uzskaitītas partijas augšupējā ķēdē un sūtījumi lejupējā ķēdē, kurus jūsu organizācija drīkst lasīt, ar pogām **Drukāt** un **CSV**. Skatīt [Atsaukšana](#admin-recall).
+No gala partijas vai partijas varat atvērt lapu **Atsaukšanas pārskats**. Tajā uzskaitītas partijas augšupējā ķēdē un sūtījumi lejupējā ķēdē, kurus jūsu organizācija drīkst lasīt, ar pogām **Drukāt** un **CSV**. Sadaļā **Jūsu pašreizējais krājums** redzams daudzums jūsu organizācijas turējumā; arī citām organizācijām var būt gala partijas daļas, un visus turētājus redz tikai platformas administratori ("Parādīts tikai jūsu organizācijas krājums; citām organizācijām var būt šīs gala partijas daļas."). Skatīt [Atsaukšana](#admin-recall).

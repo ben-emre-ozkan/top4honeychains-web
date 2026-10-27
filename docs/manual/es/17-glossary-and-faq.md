@@ -1,8 +1,8 @@
-# 14. Glosario y preguntas frecuentes {#glossary-faq}
+# 17. Glosario y preguntas frecuentes {#glossary-faq}
 
 ## Glosario {#glossary}
 
-La [Table](#tbl-glossary) define los términos que se usan en este manual; la [Table](#tbl-renamed-labels) enumera las etiquetas que cambian en la próxima versión.
+La [Table](#tbl-glossary) define los términos que se usan en este manual; la [Table](#tbl-renamed-labels) enumera las etiquetas que cambiaron de nombre en esta versión.
 
 Table: Glosario {#tbl-glossary}
 
@@ -21,8 +21,17 @@ Table: Glosario {#tbl-glossary}
 | **Finalizar / sellar** | El paso, realizado por dos personas, que bloquea una partida y sus lotes y publica la Historia de la miel. |
 | **Principio de los cuatro ojos** | En cada registro intervienen dos personas distintas: una ingresa los datos y una segunda persona los revisa y los aprueba. Nadie aprueba lo que ha ingresado él mismo. Consulte [Reglas básicas](#fixed-rules). |
 | **Exención de la doble verificación (cuatro ojos)** | Una configuración para organizaciones pequeñas que permite autoaprobar registros de PCC, siempre con una marca. Nunca para los resultados de laboratorio. |
-| **Muestra / contramuestra** | La muestra precintada que se envía al laboratorio y su gemela, que se conserva en la planta. |
-| **Número de precinto** | El número del precinto de una muestra; el laboratorio lo comprueba al recibirla. |
+| **Envase** | Una lata, un bidón o un barril de una entrega. Cada envase se registra con su peso neto y sus precintos, y da su propio frasco de muestra. |
+| **Evento de precinto** | Un paso del historial de precintos de un envase: comprobado a la llegada, precinto de la planta aplicado, abierto para el muestreo, precintado de nuevo. A los eventos de precinto solo se les pueden añadir entradas. |
+| **Frasco de muestra / contramuestra** | El frasco precintado de un envase que se envía al laboratorio, y su gemelo, que se conserva en la planta. |
+| **Tapa de seguridad** | La tapa de un frasco de muestra con un botón que salta cuando se abre el frasco; debe estar abajo (intacta) cuando se precinta el frasco y cuando se recibe. |
+| **Número de precinto** | El número de un precinto; el laboratorio lo comprueba al recibir la muestra. |
+| **Muestra compuesta** | Una muestra que el laboratorio prepara con partes iguales de los frascos recibidos de un lote y que analiza una sola vez para el lote. |
+| **Peor valor** | Con los frascos analizados uno por uno, el valor del PCC 1 del lote para cada parámetro: el valor del envase que más se aleja de su límite o que más se acerca a él. |
+| **Código SMS** | Un código de 6 dígitos enviado por SMS que confirma exactamente el contenido para el que se envió (registro, entrega, aviso); válido 5 minutos. |
+| **Huella del contenido** | La huella SHA-256 de un registro o de una entrega confirmados; indica si el registro no ha cambiado desde la confirmación. |
+| **Foto firmada** | La foto de un formulario firmado por el apicultor, que se usa cuando no es posible un código SMS; un Responsable de cumplimiento la acepta o la rechaza. |
+| **Corrección de una entrega** | Un cambio de los datos de una entrega confirmada, solicitado por un administrador de la plataforma y confirmado por un segundo; se informa al apicultor por SMS. |
 | **Informe de laboratorio / código del informe** | El informe del laboratorio (PDF y valores) y su código público de 12 caracteres. |
 | **Laboratorio de análisis de alimentos** | El laboratorio que analiza las muestras de miel, normalmente acreditado. Su analista ingresa los resultados; su responsable de laboratorio los aprueba. |
 | **Laboratorio acreditado** | Un laboratorio con una acreditación vigente, que se registra cuando se aprueba el informe. |
@@ -33,17 +42,27 @@ Table: Glosario {#tbl-glossary}
 | **Historia de la miel** | La página pública de una partida finalizada, que se abre desde su código QR. |
 | **Página del apicultor** | La página pública de un apicultor, publicada con su consentimiento. |
 | **Número de registro (AKS)** | El número de registro de la explotación del apicultor: `TR` + código de provincia + 10 dígitos. |
+| **Registro de apicultores** | El registro de un apicultor y sus apiarios por un responsable de registro de apicultores de una dirección distrital, confirmado con el código SMS del apicultor o con una foto firmada. |
+| **Responsable de cumplimiento** | La persona de cada organización que revisa las pruebas, la calidad del muestreo y las aprobaciones, y atiende las solicitudes de protección de datos; no ingresa datos del flujo de trabajo. |
+| **Portal del apicultor** | El área propia del apicultor (**Mi área de apicultor**), con sus entregas, muestras, partidas, precios y consentimientos. |
+| **Precio solicitado** | El precio por kg que un apicultor pide por un lote entregado; solo lo leen el propietario del lote y los administradores, nunca es público. |
+| **Aviso de privacidad** | El texto que explica cómo se tratan los datos personales y quién es el responsable del tratamiento; tiene versiones y lo confirma cada usuario. |
+| **Responsable del tratamiento** | La organización responsable de los datos personales que registra, nombrada en su aviso de privacidad. |
+| **Consentimiento** | Un acuerdo opcional del apicultor (nombre en las páginas públicas, SMS informativos, acceso de la asociación a los precios, página pública de apicultor); una retirada surte efecto de inmediato. |
+| **Código neutro** | El código que se muestra en las páginas públicas en lugar del nombre de un apicultor cuando no hay consentimiento de nombre. |
+| **Solicitud de un interesado** | Una solicitud de una persona sobre sus datos personales (acceso, rectificación, supresión, oposición, retirada del consentimiento), que se responde en un plazo de 30 días. |
+| **Conservación de datos** | Cuánto tiempo se conserva cada tipo de dato y qué ocurre después; la ejecución está desactivada hasta que el propietario la apruebe. |
 | **Membresía** | Una cuenta de usuario × una organización × un rol. Una persona puede tener varias membresías, también varias en la misma organización. |
-| **Apicultor (registro)** | Los apicultores no tienen cuenta. Cada uno está representado en la plataforma por un registro de apicultor. |
+| **Apicultor (registro)** | Cada apicultor está representado en la plataforma por un registro de apicultor. Un apicultor también puede tener una cuenta del portal, sin ninguna membresía. |
 | **Leer** | El derecho a abrir y leer registros, sin modificarlos. |
 | **Capacidad** | Una aptitud de una organización: lo que es capaz de hacer en la cadena de la miel (por ejemplo, "Capaz de recibir y procesar miel"). Consulte la [Table](#tbl-capabilities). |
 | **Reglas básicas** | Las reglas que forman parte de la plataforma y que ningún ajuste puede desactivar. Consulte [Reglas básicas](#fixed-rules). |
 | **Registro de auditoría** | El registro de solo adición de todos los cambios, protegido por una cadena de hash. |
 | **Huella SHA-256** | Un código calculado a partir del contenido de un archivo; cualquier cambio en el archivo lo modifica. |
 
-Table: Etiquetas que cambian de nombre en la próxima versión (las capturas de pantalla muestran las etiquetas antiguas) {#tbl-renamed-labels}
+Table: Etiquetas renombradas en esta versión {#tbl-renamed-labels}
 
-| Hoy en pantalla | Nombre nuevo (usado en este manual) |
+| Antes de esta versión | Ahora en pantalla (usado en este manual) |
 |---|---|
 | Aprobador de calidad | Responsable de aseguramiento de la calidad |
 | Reglas fijas (no se pueden desactivar) | Reglas básicas (no se pueden desactivar) |
@@ -94,5 +113,29 @@ Compruebe que el consentimiento esté registrado, que el número de registro est
 **Trabajo para dos organizaciones.**
 Cambie de una a otra con la etiqueta organización · rol de la barra superior. La elección se mantiene hasta que cierre el navegador.
 
-**No recibo el correo para restablecer la contraseña.**
-Revise la carpeta de correo no deseado. Un administrador de la plataforma puede asignarle una contraseña nueva.
+**No recibo el código para restablecer la contraseña.**
+El código solo se envía a un teléfono móvil **verificado**. Compruebe el número en su **Perfil**. Sin un teléfono verificado, pida a quien le dio sus datos de acceso que le envíe unos nuevos.
+
+**Mi contraseña temporal no funciona.**
+Es válida durante 72 horas. Pida nuevos datos de acceso: a un administrador de la plataforma si es miembro, al responsable de registro de apicultores si es apicultor.
+
+**El apicultor no recibió el código SMS.**
+Compruebe el número de teléfono, espere un minuto y haga clic en **Enviar un código nuevo**. Si no es posible un SMS, use el camino de la foto firmada; el registro espera entonces al Responsable de cumplimiento.
+
+**"No hay ningún apicultor activo con este número." en una entrega.**
+El apicultor no está registrado, o se registró con una foto firmada que el Responsable de cumplimiento aún no ha aceptado. Consulte al responsable de registro de apicultores del distrito.
+
+**El laboratorio rechazó un frasco.**
+Tome un frasco nuevo del mismo envase: en la página de la entrega, **Abrir, muestrear y precintar de nuevo**.
+
+**"Solicitar la finalización" nombra una foto de entrega.**
+Una entrega confirmada con una foto firmada solo se puede finalizar después de que el Responsable de cumplimiento de la planta acepte la foto.
+
+**La página de verificación dice que no encuentra el código del informe.**
+Solo se pueden verificar los informes aprobados. Pregunte al laboratorio si el informe está aprobado.
+
+**La Historia de la miel muestra un código en lugar del nombre del apicultor.**
+El apicultor no ha dado el consentimiento para mostrar su nombre. Puede darlo en el portal o en el siguiente registro.
+
+**Las animaciones me molestan.**
+Desactívelas con **Mostrar animaciones** en el menú del avatar (o en la página **Cuenta** del portal).

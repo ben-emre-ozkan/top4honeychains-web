@@ -56,7 +56,7 @@ Figure: Hâlâ eksik olanları listeleyen **Kesinleştirme** kartı.
 
 ## Parti sevk etme {#staff-ship}
 
-Yalnızca kesinleşmiş bir parti sevk edilebilir.
+Yalnızca kesinleşmiş bir parti sevk edilebilir; sevkiyatı da yalnızca balı işleyen, paketleyen veya ticaretini yapan bir kurum (**İşleme**, **Paketleme**, **Toptan Satış** veya **Perakende** yeteneği) yapabilir.
 
 1. **Sevkiyatlar ve stok** sayfasını açın. **Elinizdeki partiler** her parti için elinizdeki miktarı, bekleyen sevkiyatlar için ayrılan miktarı ve kullanılabilir miktarı gösterir.
 2. Partinin yanındaki **Sevk et** düğmesine tıklayın.
@@ -66,13 +66,15 @@ Yalnızca kesinleşmiş bir parti sevk edilebilir.
 <!-- SHOT: shipment-create -->
 Figure: Bir partiyi başka bir kuruma sevk etme.
 
-Hatalar: "Yalnızca kesinleşmiş bir parti sevk edilebilir.", "Bu partiden en çok … kg sevk edebilirsiniz.", "Alıcı olarak başka bir doğrulanmış kurum seçin."
+Hatalar: "Yalnızca kesinleşmiş bir parti sevk edilebilir.", "Bu partiden en çok … kg sevk edebilirsiniz.", "Alıcı olarak başka bir doğrulanmış kurum seçin.", "Balı yalnızca işleyen, paketleyen veya ticaretini yapan bir kuruluş gönderir veya teslim alır."
 
 ## Sevkiyatı onaylama veya reddetme (alıcı) {#staff-receive}
 
 1. **İşlerim** sayfasında **Onaylanacak sevkiyatlar** grubunu açın veya **Sevkiyatlar ve stok** → **Gelen sevkiyatlar** bölümüne gidin.
 2. Ürünleri kontrol edin. **Teslimi onayla** düğmesine tıklayın: "Teslim onaylandı; bu miktar artık sizde."
 3. Ya da **gerekçe (reddetmek için)** alanını doldurup **Reddet** düğmesine tıklayın: "Sevkiyat reddedildi; miktar gönderende kalır." Gerekçe zorunludur.
+
+Telefonda her gelen sevkiyat, gerekçe alanı ve altında iki düğmeyle birlikte bir kart olarak gösterilir.
 
 <!-- SHOT: shipment-confirm -->
 Figure: Telefonda gelen bir sevkiyat: **Teslimi onayla** veya **Reddet**.
@@ -96,4 +98,4 @@ Bu sayfaları açmak için **Sevkiyatlar ve stok** sayfasında elinizdeki partin
 
 ## Geri çağırma raporu {#staff-recall}
 
-Bir partiden veya lottan **Geri çağırma raporu** açabilirsiniz. Rapor, kurumunuzun okuyabildiği kaynak lotları ve sonraki sevkiyatları **Yazdır** ve **CSV** düğmeleriyle birlikte listeler. Bkz. [Geri çağırma](#admin-recall).
+Bir partiden veya lottan **Geri çağırma raporu** açabilirsiniz. Rapor, kurumunuzun okuyabildiği kaynak lotları ve sonraki sevkiyatları **Yazdır** ve **CSV** düğmeleriyle birlikte listeler. **Mevcut elinizdeki miktar** altında kurumunuzun elindeki miktarı gösterir; partinin bazı kısımları başka kurumlarda da olabilir ve her sahibi yalnızca platform yöneticileri görür ("Yalnızca kuruluşunuzun elindeki miktar gösterilir; bu partinin bir kısmı başka kuruluşlarda da olabilir."). Bkz. [Geri çağırma](#admin-recall).

@@ -2,7 +2,7 @@
 
 ## Su trabajo diario {#labmanager-daily}
 
-Usted es la segunda de las dos personas del laboratorio: aprueba o devuelve los informes de laboratorio que envían sus analistas. También puede recibir muestras. Nunca aprueba un informe cuyos resultados haya ingresado usted mismo; para los resultados de laboratorio no hay exención de esta regla.
+Usted es la segunda de las dos personas del laboratorio: aprueba o devuelve los informes de laboratorio que envían sus analistas. También puede recibir frascos de muestra (comprobaciones de precinto, etiqueta y tapa; consulte [Recibir una muestra](#analyst-receive)) y hacer la muestra compuesta. Nunca aprueba un informe cuyos resultados haya ingresado usted mismo; para los resultados de laboratorio no hay exención de esta regla.
 
 Sus tareas aparecen en **Mis tareas**, en **Informes de laboratorio por aprobar** (y en **Muestras por recibir**).
 
@@ -22,7 +22,7 @@ Al aprobar, usted confirma que el informe está registrado correctamente, no que
 
 - El informe pasa a **Aprobado** y se puede consultar en la página pública de verificación.
 - La plataforma registra si el laboratorio estaba **acreditado** en ese momento (con su número de acreditación) y si es un laboratorio **propio** del propietario del lote.
-- Los resultados pasan a ser los valores del **PCC 1** del lote. Ya no se pueden editar; solo los administradores pueden corregirlos. Si el laboratorio cubrió todos los parámetros del PCC 1, el PCC 1 queda completado y aprobado de inmediato; si no, pasa al responsable de aseguramiento de la calidad de la planta.
+- Los resultados pasan a ser los valores del **PCC 1** del lote: los valores de la muestra compuesta o, cuando cada frasco se analiza por separado, el peor valor de cada parámetro entre los envases (consulte [La regla del peor valor](#flow-worst)). Un informe de un solo frasco en el análisis compuesto se queda con su frasco. Ya no se pueden editar; solo los administradores pueden corregirlos. Si el laboratorio cubrió todos los parámetros del PCC 1, el PCC 1 queda completado y aprobado de inmediato; si no, pasa al responsable de aseguramiento de la calidad de la planta.
 
 **Errores frecuentes**
 
@@ -37,7 +37,7 @@ Table: Errores frecuentes al aprobar un informe de laboratorio {#tbl-labmgr-erro
 
 ## Verificar un informe públicamente {#labmanager-verify}
 
-Cualquier persona puede comprobar un informe en **Verificar un informe de laboratorio** (`/verify-report`): ingrese el **Código del informe** y haga clic en **Consultar**. La página muestra si el informe está aprobado, el laboratorio, su acreditación, el número del informe, la fecha y la huella SHA-256. **Comparar un PDF con esta huella (el archivo permanece en su dispositivo)** comprueba un PDF en el propio dispositivo del visitante (el archivo no se sube). No se muestran datos del lote, del apicultor ni de usuarios.
+Cualquier persona puede comprobar un informe en **Verificar un informe de laboratorio** (`/verify-report`): ingrese el **Código del informe** y haga clic en **Consultar**. Solo se encuentran los informes **aprobados**; un informe en borrador o enviado responde como un código desconocido. La página muestra la fecha de aprobación, el laboratorio, su acreditación, el número del informe, la fecha de emisión y la huella SHA-256. En **Comparar un PDF con esta huella (el archivo permanece en su dispositivo)**, **Elegir PDF** comprueba un PDF en el propio dispositivo del visitante (el archivo no se sube) e indica si coincide. No se muestran datos del lote, del apicultor ni de usuarios.
 
 <!-- SHOT: verify-report -->
 Figure: Verificación pública de un informe de laboratorio en un teléfono.
