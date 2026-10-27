@@ -7,14 +7,15 @@ This manual describes the platform as it runs today, with the organization model
 ## How to read this manual {#how-to-read}
 
 - **Chapters 1–4** explain the platform, capabilities, organizations and roles, signing in, and the full journey of a batch of honey. Read them first.
-- **Chapters 5–11** have one chapter per role. Each starts with "your daily work" and then explains every task step by step. Read the chapter of your own role.
-- **Chapter 12** is for platform administrators.
-- **Chapter 13** explains the audit log and what the public can read.
-- **Chapter 14** has a glossary and answers to common problems.
+- **Chapters 5–13** have one chapter per role. Each starts with "your daily work" and then explains every task step by step. Read the chapter of your own role.
+- **Chapter 14** is for beekeepers: the beekeeper portal.
+- **Chapter 15** is for platform administrators.
+- **Chapter 16** explains the audit log, privacy notices and consents, and what the public can read.
+- **Chapter 17** has a glossary and answers to common problems.
 
 Button, menu and field names are written in **bold**, exactly as they appear on screen. Messages that the system shows are written in quotation marks. Figures and tables are numbered; the lists of figures and tables follow the contents. The examples use test records whose names start with **[DEMO]**; they are not real people or companies.
 
-> **Labels that change in the next release.** A few labels on screen will be renamed in the next release of the platform. This manual already uses the new names, for example the role **Quality Assurance Officer** (today: "Quality approver") and capability descriptions that start with "Able to …". The screenshots show today's labels. [Table](#tbl-renamed-labels) in the glossary lists every old and new name.
+> **Labels renamed in this release.** A few labels on screen were renamed in this release of the platform, for example the role **Quality Assurance Officer** (before: "Quality approver"), **Ground rules** and capability descriptions that start with "Able to …". [Table](#tbl-renamed-labels) in the glossary lists every old and new name.
 
 > The platform uses the international term **CCP** (critical control point) in English. The other language versions use their own abbreviation, as on screen: KKN (Turkish), PCC (Spanish), KPK (Polish), KKP (Latvian).
 
@@ -22,9 +23,9 @@ Button, menu and field names are written in **bold**, exactly as they appear on 
 
 Honey passes through five stations. The platform records each one:
 
-1. **Apiary**: the beekeeper produces the honey. Beekeepers do not sign in and have no accounts; each beekeeper is represented in the platform by a **Beekeeper** record, which the platform administrators and the beekeeper's association keep up to date.
-2. **Delivery**: the beekeeper delivers the honey to a processing plant. The plant records the delivery, which creates a *raw honey lot*, and checks it at reception (CCP 0).
-3. **Laboratory**: the plant seals a sample and sends it to a food-analysis laboratory (typically an accredited one). At the laboratory, an analyst enters the results of the analysis and a second person, the lab manager, approves the report.
+1. **Apiary**: the beekeeper produces the honey. Each beekeeper is represented in the platform by a **Beekeeper** record, registered by the district directorate of agriculture and confirmed by the beekeeper with a code received by SMS. A beekeeper can also have a personal account for the **beekeeper portal**.
+2. **Delivery**: the beekeeper delivers the honey to a processing plant in containers. The plant records every container with its weight and seals, the beekeeper confirms the delivery with an SMS code, and the delivery becomes a *raw honey lot*, checked at reception (CCP 0).
+3. **Laboratory**: the plant fills a sealed sample jar from every container and sends the jars to a food-analysis laboratory (typically an accredited one). The laboratory checks every jar, analyses the honey, an analyst enters the results and a second person, the lab manager, approves the report.
 4. **Processing**: the plant processes the honey (CCP 2–3 on the lot), combines lots into a *batch* and records the processing, filling, labelling, packing and storage checks (CCP 4–10 on the batch). Two people then *finalize* (seal) the batch.
 5. **Shelf**: the batch is shipped to a wholesaler or a retailer. The receiver confirms the receipt and records its own storage conditions.
 
@@ -53,14 +54,16 @@ Table: Who the platform is for {#tbl-audience}
 
 | Who | Account | What they do in the platform |
 |---|---|---|
-| Beekeepers | none; represented by a **Beekeeper** record | Deliver honey; their association records their consent for a public beekeeper page |
+| Beekeepers | represented by a **Beekeeper** record; optionally a portal account | Deliver honey and confirm deliveries with an SMS code; in the portal: follow their deliveries, samples and batches, enter their asking price, give or withdraw consents |
+| District directorates of agriculture | members of an organization | Register beekeepers and their apiaries, attest their identity and consents, send their portal sign-in |
 | Beekeepers' associations | members of an organization | Link their member beekeepers, record their consent for a public beekeeper page |
 | Processing and packing plants | members of an organization | Record deliveries, take samples, record the control points, request and confirm finalizing, ship |
 | Food-analysis laboratories | members of an organization | Receive samples, enter results, approve reports |
 | Wholesalers | members of an organization | Confirm shipments, record storage conditions, read the producer's records |
 | Retailers | members of an organization | Confirm shipments, record storage conditions, read the producer's records |
 | Public authorities | members of an organization | Read records (read-only) |
-| Platform administrators | global role on a user account | Verify organizations, manage memberships, define control points and limits, create batches, read the audit log |
+| Compliance Officers | a role in every organization | Review evidence, sampling quality and approvals; handle data-protection requests |
+| Platform administrators | global role on a user account | Verify organizations, manage memberships, define control points and limits, publish notice texts, create batches, read the audit log |
 | Consumers and other public visitors | none | Read the public pages: the Honey Story from the QR code on the jar, beekeeper pages, report verification |
 
 ## The public Honey Story and QR codes {#honey-story}
@@ -72,7 +75,7 @@ The Honey Story shows, in the language the visitor chooses on the page:
 - the batch name, amount and production date;
 - the journey of the honey: harvest, delivery, laboratory, processing and shelf;
 - the origin of the honey on a map: currently by province of Türkiye; maps of the other partner countries are planned;
-- the beekeepers who contributed, with a link to their public beekeeper page when they have agreed to one;
+- the beekeepers who contributed: by name only when the beekeeper agreed to it, otherwise by a neutral code, with a link to their public beekeeper page when they have one;
 - the laboratory results, with a within/out-of-limit verdict only for limits that have been verified;
 - the control points of processing and packing;
 - a link to verify the laboratory report.
@@ -85,5 +88,6 @@ Figure: The public Honey Story of a finalized batch on a phone.
 Other public pages:
 
 - **Beekeeper page** (`/storefront/<code>`): a beekeeper's public page, published only with the beekeeper's signed consent and a verified registry number.
-- **Verify a lab report** (`/verify-report`): anyone can enter a report code and read whether the report exists and was approved, and compare a PDF with its fingerprint.
+- **Verify a lab report** (`/verify-report`): anyone can enter a report code, read whether an approved report exists, and compare a PDF with its fingerprint.
+- **Privacy and consent** (`/privacy`): the current privacy notices for beekeepers and for users of the platform.
 - **Landing page** (`/`): the project's home page, with the button to sign in.

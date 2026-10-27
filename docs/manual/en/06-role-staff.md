@@ -56,7 +56,7 @@ The message "Finalizing requested; a Quality Assurance Officer (another person) 
 
 ## Ship a batch {#staff-ship}
 
-Only a finalized batch can be shipped.
+Only a finalized batch can be shipped, and only by an organization that processes, packs or trades honey (capability **Processing**, **Packing**, **Wholesale** or **Retail**).
 
 1. Open **Shipments and stock**. **Batches you hold** shows, per batch, the quantity held, reserved by pending shipments and available.
 2. Click **Ship** next to the batch.
@@ -66,13 +66,15 @@ Only a finalized batch can be shipped.
 <!-- SHOT: shipment-create -->
 Figure: Shipping a batch to another organization.
 
-Errors: "Only a finalized batch can be shipped.", "You can ship at most … kg of this batch.", "Choose another verified organization as receiver."
+Errors: "Only a finalized batch can be shipped.", "You can ship at most … kg of this batch.", "Choose another verified organization as receiver.", "Only an organization that processes, packs or trades honey ships or receives it."
 
 ## Confirm or reject a shipment (receiver) {#staff-receive}
 
 1. In **My work** open **Shipments to confirm**, or go to **Shipments and stock** → **Incoming shipments**.
 2. Check the goods. Click **Confirm receipt**: "Receipt confirmed; you now hold this quantity."
 3. Or write a **reason (to reject)** and click **Reject**: "Shipment rejected; the quantity stays with the sender." A reason is required.
+
+On a phone, every incoming shipment is shown as a card with the reason field and the two buttons below it.
 
 <!-- SHOT: shipment-confirm -->
 Figure: An incoming shipment on a phone: **Confirm receipt** or **Reject**.
@@ -96,4 +98,4 @@ To open them, go to **Shipments and stock**, click **Process flow** next to the 
 
 ## Recall report {#staff-recall}
 
-From a batch or a lot you can open the **Recall report**. It lists the lots upstream and the shipments downstream that your organization may read, with **Print** and **CSV** buttons. See [Recall](#admin-recall).
+From a batch or a lot you can open the **Recall report**. It lists the lots upstream and the shipments downstream that your organization may read, with **Print** and **CSV** buttons. Under **Your current holding** it shows the quantity your organization holds; other organizations may hold parts of the batch too, and only platform administrators see every holder ("Only your organization's holding is shown; other organizations may hold parts of this batch."). See [Recall](#admin-recall).
