@@ -194,6 +194,7 @@ namespace TOP4HoneyChains.Web.Controllers
             ViewBag.UserNames = await _userManager.Users.Where(u => userIds.Contains(u.Id)).ToDictionaryAsync(u => u.Id, u => u.UserName ?? u.Id);
             ViewBag.Members = members;
             ViewBag.MissingComplianceOfficer = MembershipRules.MissingComplianceOfficer(org.Status, members);
+            ViewBag.CanEditDataController = await MayEditDataControllerAsync(id);
             ViewBag.CanManageDocuments = await AllowedAsync(org, OrgOperations.ManageDocuments);
             ViewBag.CanVerify = await AllowedAsync(org, OrgOperations.Verify);
             ViewBag.IsAdmin = _current.IsPlatformAdmin;
@@ -474,6 +475,36 @@ namespace TOP4HoneyChains.Web.Controllers
                 TempData["Success"] = "Membership revoked.";
             }
             return RedirectToAction(nameof(Details), new { id = m.OrgId });
+        }
+
+        // ---------------------------------------------------------------- data controller (D-78, D78-SPEC 3.5, 6.1)
+
+        // platform administrators, and the organization's own Compliance Officer
+        private async Task<bool> MayEditDataControllerAsync(int orgId)
+        {
+            if (_current.IsPlatformAdmin)
+                return true;
+            var active = await _current.GetAsync();
+            return active != null && active.OrgId == orgId && active.OrgRole == OrgRoles.ComplianceOfficer;
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DataController(int id, string? name, string? address, string? contact, string? verbis)
+        {
+            var org = await _context.Organizations.FirstOrDefaultAsync(o => o.OrgId == id);
+            if (org == null || !await AllowedAsync(org, OrgOperations.Read))
+                return NotFound();
+            if (!await MayEditDataControllerAsync(id))
+                return Forbid();
+            static string? Clean(string? s, int max) => string.IsNullOrWhiteSpace(s) ? null : s.Trim().Length > max ? s.Trim()[..max] : s.Trim();
+            org.DataControllerName = Clean(name, 200);
+            org.DataControllerAddress = Clean(address, 400);
+            org.DataControllerContact = Clean(contact, 200);
+            org.VerbisNumber = Clean(verbis, 50);
+            await _context.SaveChangesAsync();
+            TempData["Success"] = "Data controller details saved.";
+            return RedirectToAction(nameof(Details), new { id });
         }
 
         // ---------------------------------------------------------------- helpers

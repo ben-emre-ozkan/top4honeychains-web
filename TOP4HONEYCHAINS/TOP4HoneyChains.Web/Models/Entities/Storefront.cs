@@ -12,7 +12,8 @@ namespace TOP4HoneyChains.Web.Models.Entities
         [StringLength(450)]
         public string BeekeeperId { get; set; } = null!;
 
-        public int AssociationOrgId { get; set; }
+        // D-78 (020): null for a consent given at registration (the directorate is RegisteringOrgId)
+        public int? AssociationOrgId { get; set; }
 
         [StringLength(30)]
         public string Purpose { get; set; } = ConsentPurpose.Storefront;
@@ -29,13 +30,13 @@ namespace TOP4HoneyChains.Web.Models.Entities
         public DateOnly GivenOn { get; set; }
 
         [StringLength(100)]
-        public string DocumentStoredFileName { get; set; } = null!;
+        public string? DocumentStoredFileName { get; set; }
 
         [StringLength(260)]
-        public string DocumentOriginalFileName { get; set; } = null!;
+        public string? DocumentOriginalFileName { get; set; }
 
         [StringLength(64)]
-        public string DocumentSha256 { get; set; } = null!;
+        public string? DocumentSha256 { get; set; }
 
         [StringLength(450)]
         public string RecordedByUserId { get; set; } = null!;
@@ -50,6 +51,17 @@ namespace TOP4HoneyChains.Web.Models.Entities
         [StringLength(500)]
         public string? WithdrawReason { get; set; }
 
+        // D-78 (020): how the consent was confirmed (SmsCode, SignedPhoto, Portal; null = signed document, before D-78),
+        // the code that confirmed it, the consent text version shown and the directorate that recorded it
+        [StringLength(20)]
+        public string? Method { get; set; }
+
+        public long? CodeId { get; set; }
+
+        public int? NoticeId { get; set; }
+
+        public int? RegisteringOrgId { get; set; }
+
         public virtual Beekeeper? Beekeeper { get; set; }
         public virtual Organization? AssociationOrg { get; set; }
     }
@@ -57,6 +69,9 @@ namespace TOP4HoneyChains.Web.Models.Entities
     public static class ConsentPurpose
     {
         public const string Storefront = "Storefront";
+        // D-78 (D78-SPEC 6.2): optional consents captured at registration
+        public const string PublicName = "PublicName";
+        public const string PortalNotifications = "PortalNotifications";
     }
 
     // Stable, random public code of a beekeeper's storefront (never derived from the name)

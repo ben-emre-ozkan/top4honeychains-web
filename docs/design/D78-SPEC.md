@@ -318,6 +318,7 @@ Existing columns keep their meaning: `SealNumber` (the jar's seal label), `Count
 | Language | varchar(5) | one row per language of the same version |
 | Body | nvarchar(max) | |
 | BodySha256 | char(64) | |
+| IsDraft | bit | P1 addition (D-80): a text not yet approved by the data-protection office, shown with a DRAFT mark |
 | PublishedAt, PublishedByUserId, RetiredAt | | a new version retires the previous one |
 
 `NoticeAcceptances` (new, append-only):
@@ -337,7 +338,7 @@ Existing columns keep their meaning: `SealNumber` (the jar's seal label), `Count
 
 `Consents` (existing, D-43): **extended**, not replaced. New nullable columns: `Method` (`SignedDocument` for the 4 existing rows when read as null, `SmsCode`, `SignedPhoto`, `Portal`), `CodeId`, `NoticeId` (the consent text version), `RegisteringOrgId` (the directorate when given at registration). `Purpose` gains the values listed under `Notices.Purpose`; `AssociationOrgId` becomes nullable (a consent given at registration has no association). Making a `NOT NULL` column nullable is a widening, allowed by the migration rules. The document columns become nullable too (an SMS consent has no document).
 
-`Organizations` (existing) gets nullable columns for the **data controller**: `DataControllerName` (legal entity), `DataControllerAddress`, `DataControllerContact` (e-mail or phone for data-subject requests), `VerbisNumber` (Türkiye's data controller registry, optional), `PrivacyNoticeId` (current notice). Null on existing organizations until their CO fills them; P1 shows a "missing" badge.
+`Organizations` (existing) gets nullable columns for the **data controller**: `DataControllerName` (legal entity), `DataControllerAddress`, `DataControllerContact` (e-mail or phone for data-subject requests), `VerbisNumber` (Türkiye's data controller registry, optional). Null on existing organizations until their CO fills them; P1 shows a "missing" badge. (P1: no `PrivacyNoticeId` column; the current notice of an organization is the non-retired `Notices` row with its `OrgId`, D-80.)
 
 ### 3.6 Apiary title (F5)
 

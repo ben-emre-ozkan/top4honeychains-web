@@ -35,7 +35,7 @@
             ["raw"] = new[] { "RawHoneyProductions", "HoneyTypes", "RawHoneyProductionPeriods" }, ["wholesalers"] = new[] { "Wholesalers" },
             ["final"] = new[] { "FinalHoneyProductions", "Flow" },
             ["ccp"] = new[] { "CriticalControlPoints", "CriticalControlPointParameterCategories", "CriticalControlPointParameters", "CriticalControlPointParameterContents", "ReferenceTranslations", "CCPMonitoring" },
-            ["users"] = new[] { "UserManagement", "RoleManagement", "Audit", "Sms" },
+            ["users"] = new[] { "UserManagement", "RoleManagement", "Audit", "Sms", "Notices" },
             ["orgs"] = new[] { "MyWork", "Organizations", "Capabilities", "Permissions", "CcpResponsibilities", "Shipments", "Samples", "LabReports", "Storefronts", "OrgWorkspace", "Intake" }
         };
     string Cur(string group) => groups.TryGetValue(group, out var c) && current.Any(x => c.Contains(x, StringComparer.OrdinalIgnoreCase)) ? "is-current" : "";
@@ -229,6 +229,7 @@
                                     <a href="/UserManagement/Index" class="dropdown-item">@L["Menu.Users"]</a>
                                     <a href="/RoleManagement/Index" class="dropdown-item">@L["Menu.Roles"]</a>
                                     <a href="/Audit/Index" class="dropdown-item">@L["Audit.Title"]</a>
+                                    <a href="/Notices/Index" class="dropdown-item" id="menu-notices">@L["Notice.AdminTitle"]</a>
                                     @if (MenuSmsOptions.Value.IsFake)
                                     {
                                         <a href="/Sms/Outbox" class="dropdown-item" id="menu-sms-outbox">@L["Sms.Outbox"]</a>

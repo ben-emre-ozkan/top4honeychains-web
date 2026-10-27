@@ -7248,4 +7248,184 @@
   <data name="Sms.Purpose.Info" xml:space="preserve">
     <value>Informācija</value>
   </data>
+  <data name="Notice.Title" xml:space="preserve">
+    <value>Privātuma paziņojums</value>
+  </data>
+  <data name="Notice.NothingPending" xml:space="preserve">
+    <value>Jūs esat pieņēmis pašreizējos paziņojumus. Nekas cits nav vajadzīgs.</value>
+  </data>
+  <data name="Notice.Continue" xml:space="preserve">
+    <value>Turpināt</value>
+  </data>
+  <data name="Notice.Intro" xml:space="preserve">
+    <value>Pirms turpināt, izlasiet, kā tiek apstrādāti jūsu personas dati, un apstipriniet, ka esat to izlasījis.</value>
+  </data>
+  <data name="Notice.Draft" xml:space="preserve">
+    <value>PROJEKTS</value>
+  </data>
+  <data name="Notice.SmsNote" xml:space="preserve">
+    <value>Jūsu loma paraksta organizācijas vārdā, tāpēc jūs apstiprināt ar kodu, kas nosūtīts uz jūsu mobilo tālruni.</value>
+  </data>
+  <data name="Notice.MobilePhone" xml:space="preserve">
+    <value>Mobilais tālrunis</value>
+  </data>
+  <data name="Notice.SendCode" xml:space="preserve">
+    <value>Sūtīt kodu</value>
+  </data>
+  <data name="Notice.SendNewCode" xml:space="preserve">
+    <value>Sūtīt jaunu kodu</value>
+  </data>
+  <data name="Notice.IHaveRead" xml:space="preserve">
+    <value>Esmu izlasījis iepriekš minēto paziņojumu.</value>
+  </data>
+  <data name="Notice.Code" xml:space="preserve">
+    <value>Kods no SMS (6 cipari)</value>
+  </data>
+  <data name="Notice.Accept" xml:space="preserve">
+    <value>Apstiprināt</value>
+  </data>
+  <data name="Notice.PublicLink" xml:space="preserve">
+    <value>Atvērt paziņojumu jaunā cilnē</value>
+  </data>
+  <data name="Notice.PublicTitle" xml:space="preserve">
+    <value>Privātums un piekrišana</value>
+  </data>
+  <data name="Notice.ForBeekeepers" xml:space="preserve">
+    <value>Biškopjiem</value>
+  </data>
+  <data name="Notice.ForUsers" xml:space="preserve">
+    <value>Platformas lietotājiem</value>
+  </data>
+  <data name="Notice.NotPublished" xml:space="preserve">
+    <value>Neviens paziņojums vēl nav publicēts.</value>
+  </data>
+  <data name="Consent.PublicName" xml:space="preserve">
+    <value>Vārds publiskajās lapās</value>
+  </data>
+  <data name="Consent.PortalNotifications" xml:space="preserve">
+    <value>SMS paziņojumi</value>
+  </data>
+  <data name="Notice.DataController" xml:space="preserve">
+    <value>Datu pārzinis</value>
+  </data>
+  <data name="Notice.Contact" xml:space="preserve">
+    <value>Kontakts pieprasījumiem</value>
+  </data>
+  <data name="Notice.AdminTitle" xml:space="preserve">
+    <value>Paziņojumi un piekrišanas teksti</value>
+  </data>
+  <data name="Notice.AdminHelp" xml:space="preserve">
+    <value>Tekstiem ir versijas, un pēc publicēšanas tos nemaina: publicējiet jaunu versiju. Lietotāji pieņem platformas un katras organizācijas, kurā strādā, paziņojuma pašreizējo versiju.</value>
+  </data>
+  <data name="Notice.PublishNew" xml:space="preserve">
+    <value>Publicēt jaunu versiju</value>
+  </data>
+  <data name="Notice.PublishHelp" xml:space="preserve">
+    <value>Publicēšana atsauc pašreizējo tā paša veida, auditorijas, organizācijas, mērķa un valodas tekstu. Lietotājiem, kas pieņēma iepriekšējo versiju, jautās vēlreiz.</value>
+  </data>
+  <data name="Notice.Kind" xml:space="preserve">
+    <value>Veids</value>
+  </data>
+  <data name="Notice.Audience" xml:space="preserve">
+    <value>Kam</value>
+  </data>
+  <data name="Notice.Purpose" xml:space="preserve">
+    <value>Piekrišanas mērķis</value>
+  </data>
+  <data name="Notice.Version" xml:space="preserve">
+    <value>Versija</value>
+  </data>
+  <data name="Notice.Published" xml:space="preserve">
+    <value>Publicēts</value>
+  </data>
+  <data name="Notice.Acceptances" xml:space="preserve">
+    <value>Pieņemts</value>
+  </data>
+  <data name="Notice.Retired" xml:space="preserve">
+    <value>atsaukts</value>
+  </data>
+  <data name="Notice.Show" xml:space="preserve">
+    <value>Rādīt</value>
+  </data>
+  <data name="Notice.NewVersion" xml:space="preserve">
+    <value>Jauna versija</value>
+  </data>
+  <data name="Notice.Kind.PrivacyNotice" xml:space="preserve">
+    <value>Privātuma paziņojums</value>
+  </data>
+  <data name="Notice.Kind.ConsentText" xml:space="preserve">
+    <value>Piekrišanas teksts</value>
+  </data>
+  <data name="Notice.Kind.TermsOfUse" xml:space="preserve">
+    <value>Lietošanas noteikumi</value>
+  </data>
+  <data name="Notice.Kind.Attestation" xml:space="preserve">
+    <value>Darbinieka apliecinājums</value>
+  </data>
+  <data name="Notice.Audience.Beekeeper" xml:space="preserve">
+    <value>Biškopji</value>
+  </data>
+  <data name="Notice.Audience.Member" xml:space="preserve">
+    <value>Lietotāji</value>
+  </data>
+  <data name="Notice.Audience.All" xml:space="preserve">
+    <value>Visi</value>
+  </data>
+  <data name="Notice.IsDraft" xml:space="preserve">
+    <value>Projekts (datu aizsardzības nodaļa vēl nav apstiprinājusi)</value>
+  </data>
+  <data name="Notice.Text" xml:space="preserve">
+    <value>Teksts</value>
+  </data>
+  <data name="Notice.Publish" xml:space="preserve">
+    <value>Publicēt</value>
+  </data>
+  <data name="Notice.Banner" xml:space="preserve">
+    <value>Lūdzu, izlasiet privātuma paziņojumu un apstipriniet, ka esat to izlasījis.</value>
+  </data>
+  <data name="Notice.ReadAndAccept" xml:space="preserve">
+    <value>Izlasīt un apstiprināt</value>
+  </data>
+  <data name="Org.DataControllerMissing" xml:space="preserve">
+    <value>trūkst</value>
+  </data>
+  <data name="Org.DataControllerHelp" xml:space="preserve">
+    <value>Norādīts organizācijas privātuma paziņojumā. To uztur platformas administrators vai organizācijas atbilstības speciālists.</value>
+  </data>
+  <data name="Org.DataControllerName" xml:space="preserve">
+    <value>Juridiskais nosaukums</value>
+  </data>
+  <data name="Org.DataControllerContact" xml:space="preserve">
+    <value>Kontakts (e-pasts vai tālrunis)</value>
+  </data>
+  <data name="Org.DataControllerAddress" xml:space="preserve">
+    <value>Adrese</value>
+  </data>
+  <data name="A code was sent by SMS. Enter it below." xml:space="preserve">
+    <value>Kods nosūtīts pa SMS. Ievadiet to zemāk.</value>
+  </data>
+  <data name="Tick the box to confirm that you have read the notice." xml:space="preserve">
+    <value>Atzīmējiet rūtiņu, lai apstiprinātu, ka esat izlasījis paziņojumu.</value>
+  </data>
+  <data name="Thank you. Your acceptance of the notice is recorded." xml:space="preserve">
+    <value>Paldies. Jūsu paziņojuma pieņemšana ir reģistrēta.</value>
+  </data>
+  <data name="Choose the kind, the audience and the language." xml:space="preserve">
+    <value>Izvēlieties veidu, auditoriju un valodu.</value>
+  </data>
+  <data name="Enter the version (at most 40 characters) and the text." xml:space="preserve">
+    <value>Ievadiet versiju (ne vairāk kā 40 rakstzīmes) un tekstu.</value>
+  </data>
+  <data name="A consent text needs its purpose." xml:space="preserve">
+    <value>Piekrišanas tekstam vajadzīgs mērķis.</value>
+  </data>
+  <data name="This version already exists in this language. Publish a new version." xml:space="preserve">
+    <value>Šī versija šajā valodā jau pastāv. Publicējiet jaunu versiju.</value>
+  </data>
+  <data name="Notice published; the previous version of this text is retired." xml:space="preserve">
+    <value>Paziņojums publicēts; šī teksta iepriekšējā versija ir atsaukta.</value>
+  </data>
+  <data name="Data controller details saved." xml:space="preserve">
+    <value>Pārziņa dati saglabāti.</value>
+  </data>
 </root>

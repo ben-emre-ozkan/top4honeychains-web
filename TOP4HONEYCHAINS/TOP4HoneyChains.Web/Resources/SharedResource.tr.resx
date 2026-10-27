@@ -7248,4 +7248,184 @@
   <data name="Sms.Purpose.Info" xml:space="preserve">
     <value>Bilgilendirme</value>
   </data>
+  <data name="Notice.Title" xml:space="preserve">
+    <value>Aydınlatma metni</value>
+  </data>
+  <data name="Notice.NothingPending" xml:space="preserve">
+    <value>Güncel aydınlatma metinlerini kabul ettiniz. Başka bir işlem gerekmiyor.</value>
+  </data>
+  <data name="Notice.Continue" xml:space="preserve">
+    <value>Devam</value>
+  </data>
+  <data name="Notice.Intro" xml:space="preserve">
+    <value>Devam etmeden önce kişisel verilerinizin nasıl işlendiğini okuyun ve okuduğunuzu onaylayın.</value>
+  </data>
+  <data name="Notice.Draft" xml:space="preserve">
+    <value>TASLAK</value>
+  </data>
+  <data name="Notice.SmsNote" xml:space="preserve">
+    <value>Rolünüz kuruluşunuz adına imza yetkisi taşıdığı için cep telefonunuza gönderilen bir kodla onaylarsınız.</value>
+  </data>
+  <data name="Notice.MobilePhone" xml:space="preserve">
+    <value>Cep telefonu</value>
+  </data>
+  <data name="Notice.SendCode" xml:space="preserve">
+    <value>Kod gönder</value>
+  </data>
+  <data name="Notice.SendNewCode" xml:space="preserve">
+    <value>Yeni kod gönder</value>
+  </data>
+  <data name="Notice.IHaveRead" xml:space="preserve">
+    <value>Yukarıdaki aydınlatma metnini okudum.</value>
+  </data>
+  <data name="Notice.Code" xml:space="preserve">
+    <value>SMS'teki kod (6 hane)</value>
+  </data>
+  <data name="Notice.Accept" xml:space="preserve">
+    <value>Onayla</value>
+  </data>
+  <data name="Notice.PublicLink" xml:space="preserve">
+    <value>Metni yeni sekmede aç</value>
+  </data>
+  <data name="Notice.PublicTitle" xml:space="preserve">
+    <value>Gizlilik ve rıza</value>
+  </data>
+  <data name="Notice.ForBeekeepers" xml:space="preserve">
+    <value>Arıcılar için</value>
+  </data>
+  <data name="Notice.ForUsers" xml:space="preserve">
+    <value>Platform kullanıcıları için</value>
+  </data>
+  <data name="Notice.NotPublished" xml:space="preserve">
+    <value>Henüz yayımlanmış bir metin yok.</value>
+  </data>
+  <data name="Consent.PublicName" xml:space="preserve">
+    <value>Adın herkese açık sayfalarda gösterilmesi</value>
+  </data>
+  <data name="Consent.PortalNotifications" xml:space="preserve">
+    <value>SMS bildirimleri</value>
+  </data>
+  <data name="Notice.DataController" xml:space="preserve">
+    <value>Veri sorumlusu</value>
+  </data>
+  <data name="Notice.Contact" xml:space="preserve">
+    <value>Başvuru için iletişim</value>
+  </data>
+  <data name="Notice.AdminTitle" xml:space="preserve">
+    <value>Aydınlatma ve rıza metinleri</value>
+  </data>
+  <data name="Notice.AdminHelp" xml:space="preserve">
+    <value>Metinler sürümlüdür ve yayımlandıktan sonra değiştirilmez; bunun yerine yeni bir sürüm yayımlayın. Kullanıcılar platform metninin ve çalıştıkları her kuruluşun metninin güncel sürümünü kabul eder.</value>
+  </data>
+  <data name="Notice.PublishNew" xml:space="preserve">
+    <value>Yeni sürüm yayımla</value>
+  </data>
+  <data name="Notice.PublishHelp" xml:space="preserve">
+    <value>Yayımlamak, aynı tür, hedef kitle, kuruluş, amaç ve dildeki güncel metni yürürlükten kaldırır. Önceki sürümü kabul etmiş kullanıcılardan yeniden onay istenir.</value>
+  </data>
+  <data name="Notice.Kind" xml:space="preserve">
+    <value>Tür</value>
+  </data>
+  <data name="Notice.Audience" xml:space="preserve">
+    <value>Kimin için</value>
+  </data>
+  <data name="Notice.Purpose" xml:space="preserve">
+    <value>Rıza amacı</value>
+  </data>
+  <data name="Notice.Version" xml:space="preserve">
+    <value>Sürüm</value>
+  </data>
+  <data name="Notice.Published" xml:space="preserve">
+    <value>Yayımlanma</value>
+  </data>
+  <data name="Notice.Acceptances" xml:space="preserve">
+    <value>Kabul</value>
+  </data>
+  <data name="Notice.Retired" xml:space="preserve">
+    <value>yürürlükten kalktı</value>
+  </data>
+  <data name="Notice.Show" xml:space="preserve">
+    <value>Göster</value>
+  </data>
+  <data name="Notice.NewVersion" xml:space="preserve">
+    <value>Yeni sürüm</value>
+  </data>
+  <data name="Notice.Kind.PrivacyNotice" xml:space="preserve">
+    <value>Aydınlatma metni</value>
+  </data>
+  <data name="Notice.Kind.ConsentText" xml:space="preserve">
+    <value>Açık rıza metni</value>
+  </data>
+  <data name="Notice.Kind.TermsOfUse" xml:space="preserve">
+    <value>Kullanım koşulları</value>
+  </data>
+  <data name="Notice.Kind.Attestation" xml:space="preserve">
+    <value>Görevli beyanı</value>
+  </data>
+  <data name="Notice.Audience.Beekeeper" xml:space="preserve">
+    <value>Arıcılar</value>
+  </data>
+  <data name="Notice.Audience.Member" xml:space="preserve">
+    <value>Kullanıcılar</value>
+  </data>
+  <data name="Notice.Audience.All" xml:space="preserve">
+    <value>Herkes</value>
+  </data>
+  <data name="Notice.IsDraft" xml:space="preserve">
+    <value>Taslak (henüz KVKK birimince onaylanmadı)</value>
+  </data>
+  <data name="Notice.Text" xml:space="preserve">
+    <value>Metin</value>
+  </data>
+  <data name="Notice.Publish" xml:space="preserve">
+    <value>Yayımla</value>
+  </data>
+  <data name="Notice.Banner" xml:space="preserve">
+    <value>Lütfen aydınlatma metnini okuyun ve okuduğunuzu onaylayın.</value>
+  </data>
+  <data name="Notice.ReadAndAccept" xml:space="preserve">
+    <value>Oku ve onayla</value>
+  </data>
+  <data name="Org.DataControllerMissing" xml:space="preserve">
+    <value>eksik</value>
+  </data>
+  <data name="Org.DataControllerHelp" xml:space="preserve">
+    <value>Kuruluşun aydınlatma metninde belirtilir. Platform yöneticisi veya kuruluşun Uyum Sorumlusu günceller.</value>
+  </data>
+  <data name="Org.DataControllerName" xml:space="preserve">
+    <value>Tüzel kişi adı</value>
+  </data>
+  <data name="Org.DataControllerContact" xml:space="preserve">
+    <value>İletişim (e-posta veya telefon)</value>
+  </data>
+  <data name="Org.DataControllerAddress" xml:space="preserve">
+    <value>Adres</value>
+  </data>
+  <data name="A code was sent by SMS. Enter it below." xml:space="preserve">
+    <value>SMS ile bir kod gönderildi. Aşağıya girin.</value>
+  </data>
+  <data name="Tick the box to confirm that you have read the notice." xml:space="preserve">
+    <value>Metni okuduğunuzu onaylamak için kutuyu işaretleyin.</value>
+  </data>
+  <data name="Thank you. Your acceptance of the notice is recorded." xml:space="preserve">
+    <value>Teşekkürler. Metni kabul ettiğiniz kaydedildi.</value>
+  </data>
+  <data name="Choose the kind, the audience and the language." xml:space="preserve">
+    <value>Türü, hedef kitleyi ve dili seçin.</value>
+  </data>
+  <data name="Enter the version (at most 40 characters) and the text." xml:space="preserve">
+    <value>Sürümü (en fazla 40 karakter) ve metni girin.</value>
+  </data>
+  <data name="A consent text needs its purpose." xml:space="preserve">
+    <value>Rıza metninin amacı seçilmelidir.</value>
+  </data>
+  <data name="This version already exists in this language. Publish a new version." xml:space="preserve">
+    <value>Bu sürüm bu dilde zaten var. Yeni bir sürüm yayımlayın.</value>
+  </data>
+  <data name="Notice published; the previous version of this text is retired." xml:space="preserve">
+    <value>Metin yayımlandı; bu metnin önceki sürümü yürürlükten kaldırıldı.</value>
+  </data>
+  <data name="Data controller details saved." xml:space="preserve">
+    <value>Veri sorumlusu bilgileri kaydedildi.</value>
+  </data>
 </root>

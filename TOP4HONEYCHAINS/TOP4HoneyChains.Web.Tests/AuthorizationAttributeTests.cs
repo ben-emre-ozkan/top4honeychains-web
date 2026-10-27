@@ -15,7 +15,7 @@ namespace TOP4HoneyChains.Web.Tests
             "Account.Login", "Account.ForgotPassword", "Account.ResetPassword", "Account.AccessDenied",
             "Dashboard.Error", "Dashboard.Status", "Home.Index", "Home.SetLanguage",
             "HoneyStory.ParameterDetails", "HoneyStory.Index", "HoneyStory.BatchQRCode", "HoneyStory.Image", "HoneyStory.Details",
-            "Storefront.Index", "Storefront.Qr", "Verify.Index"
+            "Storefront.Index", "Storefront.Qr", "Verify.Index", "Notices.Public"
         };
 
         public static IEnumerable<object[]> Actions() =>

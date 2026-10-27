@@ -65,7 +65,7 @@ namespace TOP4HoneyChains.Web.Controllers
             ViewBag.Action = "Index";
             IQueryable<string> ids;
             if (_current.IsPlatformAdmin)
-                ids = _context.Consents.Select(c => c.BeekeeperId).Distinct();
+                ids = _context.Consents.Where(c => c.Purpose == ConsentPurpose.Storefront).Select(c => c.BeekeeperId).Distinct();
             else
             {
                 var active = await _current.GetAsync();
@@ -177,7 +177,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 TempData["Error"] = denied;
                 return RedirectToAction(nameof(Index));
             }
-            var consent = await _context.Consents.FirstOrDefaultAsync(c => c.ConsentId == consentId);
+            // D-78: the association withdraws only storefront consents; consents given at registration are managed elsewhere
+            var consent = await _context.Consents.FirstOrDefaultAsync(c => c.ConsentId == consentId && c.Purpose == ConsentPurpose.Storefront);
             if (consent == null || await MemberAsync(consent.BeekeeperId) == null)
                 return NotFound();
             reason = string.IsNullOrWhiteSpace(reason) ? null : reason.Trim();

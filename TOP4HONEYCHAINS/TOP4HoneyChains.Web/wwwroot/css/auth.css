@@ -89,3 +89,16 @@ body.au { margin: 0; font-family: var(--b-text); font-size: 16px; line-height: 1
 .au-brand-word { width: 158px; height: 66px; }
 .au-form-logo { display: inline-flex; align-items: center; gap: 8px; min-height: var(--b-touch); margin-bottom: 18px; }
 .au-foot.b-credit-row { justify-content: center; }
+
+/* D-78: notices, consent texts and code entry on the sign-in layout */
+.au-notice { max-height: 340px; overflow-y: auto; padding: 14px 16px; background: var(--b-card); border: 1px solid #E8D6B8; border-radius: 14px; white-space: pre-line; font-size: 14.5px; line-height: 1.5; color: var(--b-ink-2); }
+.au-notice:focus-visible { outline: 3px solid var(--b-focus); outline-offset: 2px; }
+.au-notice + .au-notice { margin-top: 12px; }
+.au-badge-draft { display: inline-block; margin-left: 8px; padding: 2px 8px; border-radius: 8px; background: var(--b-honey-soft); color: var(--b-honey-ink); font-size: 12px; font-weight: 700; letter-spacing: .04em; vertical-align: middle; }
+.au-controller { margin-top: 10px; padding: 10px 14px; border-left: 4px solid var(--b-honey); background: var(--b-honey-soft); border-radius: 0 12px 12px 0; font-size: 14px; }
+.au-controller dt { font-weight: 700; }
+.au-controller dd { margin: 0 0 4px; overflow-wrap: anywhere; }
+.au-check { display: flex; gap: 10px; align-items: flex-start; min-height: var(--b-touch); font-size: 15px; }
+.au-check input { width: 22px; height: 22px; margin-top: 2px; flex: 0 0 auto; accent-color: var(--b-honey); }
+.au-field input.au-code-input { letter-spacing: .4em; font-size: 22px; font-variant-numeric: tabular-nums; max-width: 220px; }
+.au-section-title { font-size: 17px; font-weight: 700; margin: 22px 0 8px; color: var(--b-ink); }
