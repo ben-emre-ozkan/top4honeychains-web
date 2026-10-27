@@ -213,6 +213,25 @@ namespace TOP4HoneyChains.Web.Tests.E2E
         });
 
         [Fact]
+        public async Task A_code_sent_for_another_delivery_does_not_confirm_this_one() => await WithCustodyAsync(async () =>
+        {
+            var p = await PlantAsync("ci11");
+            var first = Form(p, 1);
+            var firstHtml = await BodyAsync(await p.Sao.PostAsync("/Intake/Record", Op(first, "send"), $"/Intake/Create?number={p.BusinessNumber}"));
+            var firstCode = System.Text.RegularExpressions.Regex.Match((await _app.WithContextAsync(db => db.SmsMessages.Where(m => m.SubjectKey == DraftOf(firstHtml)).FirstAsync())).BodyStored, @"\b\d{6}\b").Value;
+            var second = Form(p, 1, (i, f) => f[$"Containers[{i}].NetKg"] = "30");
+            var secondHtml = await BodyAsync(await p.Sao.PostAsync("/Intake/Record", Op(second, "send"), $"/Intake/Create?number={p.BusinessNumber}"));
+            Assert.NotEqual(DraftOf(firstHtml), DraftOf(secondHtml));
+            var wrong = await p.Sao.PostAsync("/Intake/Record", Op(new Dictionary<string, string>(second) { ["DraftKey"] = DraftOf(secondHtml), ["Code"] = firstCode }, "confirm"), "/Intake/Index");
+            Assert.Equal(HttpStatusCode.OK, wrong.StatusCode);
+            // the first delivery's code with the second delivery's content under the first draft fails too: the content hash differs
+            var swapped = await p.Sao.PostAsync("/Intake/Record", Op(new Dictionary<string, string>(second) { ["DraftKey"] = DraftOf(firstHtml), ["Code"] = firstCode }, "confirm"), "/Intake/Index");
+            Assert.Equal(HttpStatusCode.OK, swapped.StatusCode);
+            Assert.False(await _app.WithContextAsync(db => db.LotIntakes.AnyAsync(i => i.RawHoneyProduction!.RawHoneyProductionApiaryId == p.ApiaryId)));
+            return 0;
+        });
+
+        [Fact]
         public async Task The_container_rows_are_checked() => await WithCustodyAsync(async () =>
         {
             var p = await PlantAsync("ci2");
