@@ -479,6 +479,16 @@ namespace TOP4HoneyChains.Web.Controllers
             return RedirectToAction("Profile");
         }
 
+        // D-78 P4 (D78-SPEC 7.2): the explanatory scenes on or off, stored per user (UserSettings.ShowAnimations)
+        [HttpPost]
+        [Authorize(Policy = AuthPolicies.SignedIn)]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Animations(bool show, string? returnUrl)
+        {
+            await HttpContext.RequestServices.GetRequiredService<Services.UiPreferences>().SetShowAnimationsAsync(_userManager.GetUserId(User)!, show);
+            return LocalRedirect(Url.IsLocalUrl(returnUrl) ? returnUrl! : "/");
+        }
+
         [HttpPost]
         [Authorize(Policy = AuthPolicies.SignedIn)]
         [ValidateAntiForgeryToken]

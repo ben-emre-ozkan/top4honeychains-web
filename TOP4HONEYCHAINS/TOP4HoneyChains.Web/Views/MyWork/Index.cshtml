@@ -91,7 +91,8 @@
             {
                 <section class="card work-empty" id="work-empty">
                     <div class="card-body">
-                        <partial name="_BeeArt" model="@L["Work.EmptyArt"].Value" />
+                        @* D-78 P4 (S4): the comb fades in and the bee lands, once per session; then it keeps its calm loop *@
+                        <honey-scene name="empty" trigger="session" replay="false" caption="false" class="work-empty-scene" />
                         <p class="work-empty-text">@L["Work.Empty"]</p>
                         @if (links.Any())
                         {

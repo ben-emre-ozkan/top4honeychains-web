@@ -1,0 +1,81 @@
+@using TOP4HoneyChains.Web.TagHelpers
+@{
+    Layout = null;
+    var lang = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+}
+@* D-78 P4 (D-83): review page for the explanatory scenes, Development only (DevController). For each scene: the scene with Play,
+   its static final frame (what reduced motion and "Show animations: off" show), and the reduced-motion state forced. *@
+<!doctype html>
+<html lang="@lang" data-user="gallery">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <title>Scene gallery · TOP4HoneyChains</title>
+    <link href="~/css/brand.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/css/honey-mark.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/css/honey-scene.css" rel="stylesheet" asp-append-version="true">
+    <style>
+        body { margin: 0; padding: 16px; background: #fff; color: var(--b-ink); font-family: var(--b-text, system-ui, sans-serif); }
+        main { max-width: 1180px; margin: 0 auto; }
+        h1 { font-family: var(--b-display, inherit); color: var(--b-heading); font-size: 26px; margin: 0 0 4px; }
+        .g-help { color: var(--b-muted); margin: 0 0 16px; }
+        .g-scene { border: 1px solid var(--b-line); border-radius: 14px; padding: 14px; margin-bottom: 16px; }
+        .g-scene h2 { font-size: 17px; margin: 0 0 10px; color: var(--b-heading); }
+        .g-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+        .g-cell h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: var(--b-muted); margin: 0 0 6px; }
+        .g-play { margin-bottom: 8px; min-height: 36px; padding: 6px 14px; border: 1px solid #FFC45E; border-radius: 999px; background: var(--b-honey-grad); font-weight: 600; cursor: pointer; }
+        .g-reduced .hs * { animation: none !important; }
+        .g-cell .hs { flex-direction: column; align-items: flex-start; }
+        .g-typing { margin-top: 8px; width: 100%; max-width: 320px; padding: 8px; border: 1px solid var(--b-input-line); border-radius: 8px; font-size: 15px; }
+        .g-icons { display: flex; flex-wrap: wrap; gap: 10px; }
+        .g-icons button { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 6px 14px; border: 1px solid var(--b-input-line); border-radius: 10px; background: #fff; color: var(--b-ink); cursor: pointer; }
+    </style>
+</head>
+<body>
+<main>
+    <h1>Scene gallery</h1>
+    <p class="g-help">Development only. Play each scene; type in the field while it plays (typing ends it at once); the static frame is what reduced motion and "Show animations: off" show. Durations: at most 1.5 s.</p>
+    @foreach (var name in HoneySceneTagHelper.Names)
+    {
+        <section class="g-scene" id="g-@name">
+            <h2>@name · @HoneySceneTagHelper.Durations[name] ms</h2>
+            <div class="g-row">
+                <div class="g-cell">
+                    <h3>Scene</h3>
+                    <button type="button" class="g-play" data-g-play="@name">Play</button>
+                    <honey-scene name="@name" trigger="manual" replay="false" class="g-live" />
+                    <input class="g-typing" placeholder="Type here while it plays" aria-label="Typing test for @name" />
+                </div>
+                <div class="g-cell">
+                    <h3>Static frame</h3>
+                    <honey-scene name="@name" trigger="manual" replay="false" />
+                </div>
+                <div class="g-cell g-reduced">
+                    <h3>Reduced motion</h3>
+                    <honey-scene name="@name" trigger="manual" replay="false" caption="false" />
+                </div>
+            </div>
+        </section>
+    }
+    <section class="g-scene" id="g-icons">
+        <h2>Action icons</h2>
+        <div class="g-icons">
+            @foreach (var (icon, label) in new[] { ("jar", L["Lab.SendSample"].Value), ("truck", L["Cust.NewIntake"].Value), ("seal", L["Ci.ResampleButton"].Value), ("flask", L["Lab.RecordReception"].Value), ("box", L["Cust.Ship"].Value) })
+            {
+                <button type="button" class="ib @(icon == "jar" ? "ib-jar" : "")"><partial name="_ActionIcon" model="@icon" /> @label</button>
+            }
+        </div>
+    </section>
+</main>
+<script src="~/js/honey-scene.js" asp-append-version="true"></script>
+<script>
+    document.addEventListener('click', function (e) {
+        var b = e.target.closest('[data-g-play]');
+        if (!b) return;
+        var scene = document.querySelector('#g-' + b.getAttribute('data-g-play') + ' .g-live');
+        window.honeyScene.play(scene);
+    });
+</script>
+</body>
+</html>

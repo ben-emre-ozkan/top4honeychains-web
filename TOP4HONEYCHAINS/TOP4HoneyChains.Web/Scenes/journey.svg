@@ -1,0 +1,32 @@
+<svg viewBox="0 0 320 120" width="320" height="120">
+  <defs>
+    <linearGradient id="s-honey" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFD25A"/><stop offset="1" stop-color="#FFA23A"/></linearGradient>
+  </defs>
+  <rect x="0" y="0" width="320" height="120" rx="16" fill="#FFF4D6"/>
+  <path class="p-line" d="M44 78H276" stroke="#8C5E2E" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 7"/>
+  <g class="p-st p-s1" stroke="#574A40" stroke-width="2" stroke-linejoin="round">
+    <path d="M26 92H62V70C62 60 54 54 44 54C34 54 26 60 26 70Z" fill="#FFE7AE"/>
+    <path d="M26 72H62M26 82H62" fill="none" stroke-width="1.5"/>
+    <path d="M40 92V86H48V92" fill="#574A40"/>
+  </g>
+  <g class="p-st p-s2" stroke="#574A40" stroke-width="2">
+    <rect x="86" y="64" width="22" height="28" rx="3" fill="#FFFBF0"/>
+    <rect x="110" y="64" width="22" height="28" rx="3" fill="#FFFBF0"/>
+    <rect x="94" y="70" width="6" height="8" rx="1" fill="#FFB547" stroke-width="1.2"/>
+    <rect x="118" y="70" width="6" height="8" rx="1" fill="#FFB547" stroke-width="1.2"/>
+  </g>
+  <g class="p-st p-s3" stroke="#574A40" stroke-width="2">
+    <rect x="152" y="64" width="24" height="28" rx="6" fill="url(#s-honey)"/>
+    <rect x="150" y="58" width="28" height="7" rx="2" fill="#FFFBF0"/>
+  </g>
+  <g class="p-st p-s4" fill="none" stroke="#574A40" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M213 56V66L223 86C224.5 89.5 222.5 92 219 92H203C199.5 92 197.5 89.5 199 86L209 66V56" fill="#FFFBF0"/>
+    <path d="M207 56H215"/><path d="M203 82H219" stroke="#FFB547" stroke-width="3"/>
+  </g>
+  <g class="p-st p-s5" stroke="#574A40" stroke-width="2" stroke-linecap="round">
+    <path d="M246 92H298M246 66H298" fill="none"/>
+    <rect x="254" y="72" width="14" height="20" rx="4" fill="url(#s-honey)" stroke-width="1.5"/>
+    <rect x="274" y="72" width="14" height="20" rx="4" fill="url(#s-honey)" stroke-width="1.5"/>
+    <rect x="263" y="46" width="14" height="20" rx="4" fill="url(#s-honey)" stroke-width="1.5"/>
+  </g>
+</svg>

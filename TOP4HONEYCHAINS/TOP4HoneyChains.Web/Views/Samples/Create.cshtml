@@ -50,7 +50,7 @@
                                 <input type="date" name="retainUntil" id="retainUntil" class="form-control" value="@DateTime.Today.AddMonths(12).ToString("yyyy-MM-dd")" />
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success">@L["Lab.SendSample"]</button>
+                        <button type="submit" class="btn btn-success ib ib-jar"><partial name="_ActionIcon" model="@("jar")" /> @L["Lab.SendSample"]</button>
                         <a asp-action="Index" class="btn btn-secondary">@L["Lab.Later"]</a>
                     </form>
                 </div>

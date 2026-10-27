@@ -8781,4 +8781,112 @@
   <data name="Land.Logos.Acknowledgement" xml:space="preserve">
     <value>Realizowany w ramach ERA-NET Cofund ICT-AGRI-FOOD (nabór 2022).</value>
   </data>
+  <data name="Scene.sample" xml:space="preserve">
+    <value>Jedna próbka z każdej puszki. Sprawdź, czy przycisk wieczka jest wciśnięty.</value>
+  </data>
+  <data name="Scene.delivery" xml:space="preserve">
+    <value>Zapisz każdą puszkę i jej plombę. Pszczelarz potwierdza kodem SMS.</value>
+  </data>
+  <data name="Scene.seal" xml:space="preserve">
+    <value>Numerowana plomba przechodzi przez uchwyt i się zatrzaskuje. Zapisz jej numer.</value>
+  </data>
+  <data name="Scene.send" xml:space="preserve">
+    <value>Zaplombowane słoiki jadą do laboratorium; próbki kontrolne zostają w zakładzie.</value>
+  </data>
+  <data name="Scene.reception" xml:space="preserve">
+    <value>Sprawdź numer plomby, etykietę i przycisk wieczka. Jeśli coś się nie zgadza, odrzuć próbkę.</value>
+  </data>
+  <data name="Scene.ship" xml:space="preserve">
+    <value>Zaplombowana partia wyjeżdża; pieczę przejmuje odbiorca po potwierdzeniu.</value>
+  </data>
+  <data name="Scene.empty" xml:space="preserve">
+    <value>Nic na Ciebie nie czeka.</value>
+  </data>
+  <data name="Scene.journey" xml:space="preserve">
+    <value>Droga Twojego miodu: pasieka, puszki, słoik z próbką, laboratorium, słoik na półce.</value>
+  </data>
+  <data name="Scene.Replay" xml:space="preserve">
+    <value>Pokaż, co się dzieje</value>
+  </data>
+  <data name="Scene.Switch" xml:space="preserve">
+    <value>Pokazuj animacje</value>
+  </data>
+  <data name="Scene.SwitchHelp" xml:space="preserve">
+    <value>Krótkie sceny pokazujące, co robi przycisk i co się właśnie stało. Po wyłączeniu widać nieruchomy obraz.</value>
+  </data>
+  <data name="Scene.TurnOff" xml:space="preserve">
+    <value>Wyłącz animacje</value>
+  </data>
+  <data name="Scene.TurnOn" xml:space="preserve">
+    <value>Włącz animacje</value>
+  </data>
+  <data name="Tour.Title" xml:space="preserve">
+    <value>Krótkie oprowadzenie</value>
+  </data>
+  <data name="Tour.Next" xml:space="preserve">
+    <value>Dalej</value>
+  </data>
+  <data name="Tour.Back" xml:space="preserve">
+    <value>Wstecz</value>
+  </data>
+  <data name="Tour.Skip" xml:space="preserve">
+    <value>Pomiń</value>
+  </data>
+  <data name="Tour.Done" xml:space="preserve">
+    <value>Gotowe</value>
+  </data>
+  <data name="Tour.Of" xml:space="preserve">
+    <value>{0} z {1}</value>
+  </data>
+  <data name="Tour.Open" xml:space="preserve">
+    <value>Pokaż oprowadzenie</value>
+  </data>
+  <data name="Tour.Work" xml:space="preserve">
+    <value>Moja praca pokazuje, co na Ciebie czeka: wartości do wpisania lub zatwierdzenia, dostawy, próbki, dowody.</value>
+  </data>
+  <data name="Tour.Org" xml:space="preserve">
+    <value>Moja organizacja: Twoje partie, Twoja rola i strona organizacji.</value>
+  </data>
+  <data name="Tour.Intake" xml:space="preserve">
+    <value>Dostawy: zapisz każdą puszkę z plombą i pobierz próbkę z każdej; pszczelarz potwierdza SMS-em.</value>
+  </data>
+  <data name="Tour.Samples" xml:space="preserve">
+    <value>Próbki: wysłane słoiki i ich status w laboratorium.</value>
+  </data>
+  <data name="Tour.Lab" xml:space="preserve">
+    <value>Próbki i laboratorium: przyjmuj słoiki (plomba, etykieta, wieczko), wpisuj wyniki, zatwierdzaj raporty.</value>
+  </data>
+  <data name="Tour.Registration" xml:space="preserve">
+    <value>Rejestracja pszczelarzy: rejestruj pszczelarzy i ich pasieki; pszczelarz potwierdza SMS-em.</value>
+  </data>
+  <data name="Tour.Compliance" xml:space="preserve">
+    <value>Zgodność: oceny, zdjęcia podpisów, żądania dotyczące danych i dziennik audytu.</value>
+  </data>
+  <data name="Tour.Shipments" xml:space="preserve">
+    <value>Wysyłki: wyślij sfinalizowaną partię do kolejnej organizacji; piecza przechodzi po potwierdzeniu.</value>
+  </data>
+  <data name="Tour.Ccp" xml:space="preserve">
+    <value>Punkty kontrolne (KPK) czekające na Twoje wartości lub zatwierdzenie są w Mojej pracy.</value>
+  </data>
+  <data name="Tour.Menu" xml:space="preserve">
+    <value>Twoje menu: język, profil, ponowne oprowadzenie i przełącznik animacji.</value>
+  </data>
+  <data name="Tour.Admin.Dashboard" xml:space="preserve">
+    <value>Pulpit: co czeka na platformę i ostatnia aktywność.</value>
+  </data>
+  <data name="Tour.Admin.Data" xml:space="preserve">
+    <value>Pszczelarze, pasieki i listy referencyjne.</value>
+  </data>
+  <data name="Tour.Me.Deliveries" xml:space="preserve">
+    <value>Twoje dostawy z puszkami i plombami; tu podajesz swoją cenę.</value>
+  </data>
+  <data name="Tour.Me.Samples" xml:space="preserve">
+    <value>Twoje słoiki z próbkami i wyniki po zatwierdzeniu.</value>
+  </data>
+  <data name="Tour.Me.Privacy" xml:space="preserve">
+    <value>Twoje zgody: udzielaj lub wycofuj w każdej chwili.</value>
+  </data>
+  <data name="Tour.Me.Account" xml:space="preserve">
+    <value>Telefon, język, hasło i przełącznik animacji.</value>
+  </data>
 </root>

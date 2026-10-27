@@ -66,7 +66,16 @@ namespace TOP4HoneyChains.Web.TagHelpers
         }
 
         // the master without its <style>, title, desc and fixed size; read once
-        private string Template()
+        // D-78 P4: the decorative mark inside another drawing (the bee that lands in the empty My work scene)
+        public static string Decorative(string prefix, int size, string mode)
+        {
+            var width = (int)Math.Round(size * 512.0 / 445.0);
+            var classes = mode switch { "loop" => "honey-mark is-looping", "slow" => "honey-mark is-looping is-slow", _ => "honey-mark" };
+            return Template().Replace("id=\"th-", $"id=\"{prefix}-").Replace("url(#th-", $"url(#{prefix}-")
+                .Replace("<svg ", $"<svg class=\"{classes}\" width=\"{width}\" height=\"{size}\" aria-hidden=\"true\" focusable=\"false\" ", StringComparison.Ordinal);
+        }
+
+        private static string Template()
         {
             if (_template != null)
                 return _template;

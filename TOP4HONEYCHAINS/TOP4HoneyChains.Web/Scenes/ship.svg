@@ -1,0 +1,15 @@
+<svg viewBox="0 0 320 120" width="320" height="120">
+  <rect x="0" y="0" width="320" height="120" rx="16" fill="#FFF4D6"/>
+  <path d="M60 84H260" stroke="#EBD5A8" stroke-width="4" stroke-linecap="round"/>
+  <path class="p-ribbon" d="M60 84H160" stroke="#FFB547" stroke-width="4" stroke-linecap="round"/>
+  <g class="p-node" fill="#FFFBF0" stroke="#574A40" stroke-width="2">
+    <circle cx="60" cy="84" r="8"/><circle cx="260" cy="84" r="8"/>
+  </g>
+  <circle class="p-arrive" cx="160" cy="84" r="13" fill="none" stroke="#0B7A75" stroke-width="2"/>
+  <circle cx="160" cy="84" r="8" fill="#FFE7AE" stroke="#574A40" stroke-width="2"/>
+  <g class="p-crate">
+    <rect x="140" y="42" width="40" height="30" rx="3" fill="#FFFBF0" stroke="#574A40" stroke-width="2"/>
+    <path d="M140 52H180M160 42V72" stroke="#574A40" stroke-width="1.5"/>
+    <rect x="155" y="47" width="10" height="10" rx="2" fill="#FFB547" stroke="#574A40" stroke-width="1.2"/>
+  </g>
+</svg>

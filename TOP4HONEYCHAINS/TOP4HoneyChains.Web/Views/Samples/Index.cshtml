@@ -15,6 +15,15 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
+                    @if (TempData.Peek("Scene") != null)
+                    {
+                        <partial name="_SceneNow" />
+                    }
+                    else if (ViewBag.IsAdmin != true)
+                    {
+                        @* the first visit: a laboratory sees the reception check, a plant the jars travelling to the lab *@
+                        <honey-scene name="@(canReceive ? "reception" : "send")" trigger="first" class="hs-compact" />
+                    }
                     <h4 class="card-title">@(ViewBag.IsAdmin == true ? L["Lab.AllSamples"] : L["Lab.SentSamples"])</h4>
                     <div class="table-responsive"><table class="table table-sm table-bordered" id="sent-samples">
                         <thead><tr><th>@L["Lab.Sample"]</th><th>@L["Cust.Lot"]</th><th>@L["Lab.Laboratory"]</th><th>@L["Lab.SealNumber"]</th><th>@L["Lab.CounterSample"]</th><th>@L["Org.Status"]</th><th>@L["Lab.Report"]</th></tr></thead>
@@ -87,7 +96,7 @@
                                                         </div>
                                                     }
                                                     <input name="note" class="form-control form-control-sm mb-1" maxlength="500" placeholder="@L["Lab.RejectReason"]" />
-                                                    <button type="submit" class="btn btn-sm btn-success">@L["Lab.RecordReception"]</button>
+                                                    <button type="submit" class="btn btn-sm btn-success ib"><partial name="_ActionIcon" model="@("flask")" /> @L["Lab.RecordReception"]</button>
                                                 </form>
                                             }
                                             else if (s.Status == SampleStatus.Sent && canReceive)
@@ -95,7 +104,7 @@
                                                 <form asp-action="Receive" method="post" class="d-flex gap-1 receive-form">
                                                     <input type="hidden" name="id" value="@s.SampleId" />
                                                     <input name="note" class="form-control form-control-sm" maxlength="500" placeholder="@L["Lab.BrokenReason"]" />
-                                                    <button type="submit" name="sealIntact" value="true" class="btn btn-sm btn-success">@L["Lab.ReceiveIntact"]</button>
+                                                    <button type="submit" name="sealIntact" value="true" class="btn btn-sm btn-success ib"><partial name="_ActionIcon" model="@("flask")" /> @L["Lab.ReceiveIntact"]</button>
                                                     <button type="submit" name="sealIntact" value="false" class="btn btn-sm btn-outline-danger">@L["Lab.ReceiveBroken"]</button>
                                                 </form>
                                             }

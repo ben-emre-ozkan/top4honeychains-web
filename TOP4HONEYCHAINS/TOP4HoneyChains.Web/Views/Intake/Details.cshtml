@@ -14,6 +14,7 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
+                    <partial name="_SceneNow" />
                     <h4 class="card-title mb-1">@L["Cust.Lot"] #@lot.RawHoneyProductionId · @Ref.HoneyType(lot.RawHoneyProductionHoneyType, lot.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle)</h4>
                     <p class="card-title-desc">@bk?.BeekeeperFirstName @bk?.BeekeeperLastName · @lot.RawHoneyProductionApiary?.ApiaryTitle · @Model.ReceivingOrg?.DisplayName</p>
 
@@ -127,7 +128,7 @@
                                                         <input name="counterSeal" class="form-control form-control-sm mb-1" maxlength="50" required placeholder="@L["Ci.CounterSeal"]" aria-label="@L["Ci.CounterSeal"]" />
                                                         <label class="d-block mb-1"><input type="checkbox" name="capIntact" value="true" required /> @L["Ci.Cap"]</label>
                                                         <input name="reseal" class="form-control form-control-sm mb-1" maxlength="50" required placeholder="@L["Ci.Reseal"]" aria-label="@L["Ci.Reseal"]" />
-                                                        <button type="submit" class="btn btn-sm btn-outline-primary">@L["Ci.ResampleButton"]</button>
+                                                        <button type="submit" class="btn btn-sm btn-outline-primary ib"><partial name="_ActionIcon" model="@("seal")" /> @L["Ci.ResampleButton"]</button>
                                                     </form>
                                                 }
                                             </td>

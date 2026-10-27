@@ -16,7 +16,7 @@ namespace TOP4HoneyChains.Web.Filters
     {
         private static readonly HashSet<string> Open = new(StringComparer.OrdinalIgnoreCase)
         {
-            "Account.Logout", "Account.FirstPassword", "Account.AccessDenied", "Home.SetLanguage",
+            "Account.Logout", "Account.FirstPassword", "Account.AccessDenied", "Account.Animations", "Home.SetLanguage",
             "Notices.Accept", "Notices.SendCode", "Notices.Public"
         };
 

@@ -1,0 +1,36 @@
+<svg viewBox="0 0 320 120" width="320" height="120">
+  <rect x="0" y="0" width="320" height="120" rx="16" fill="#FFF4D6"/>
+  <path d="M16 104H304" stroke="#EBD5A8" stroke-width="2" stroke-linecap="round"/>
+  <path d="M112 104V98" stroke="#8C5E2E" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 4"/>
+  <g class="p-truck">
+    <rect x="14" y="44" width="66" height="46" rx="4" fill="#FFFBF0" stroke="#574A40" stroke-width="2"/>
+    <path d="M80 60H96L106 74V90H80Z" fill="#FFE7AE" stroke="#574A40" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M84 64H95L101 73H84Z" fill="#FFFBF0" stroke="#574A40" stroke-width="1.5" stroke-linejoin="round"/>
+    <circle cx="32" cy="93" r="8" fill="#574A40"/><circle cx="32" cy="93" r="3" fill="#FFF4D6"/>
+    <circle cx="90" cy="93" r="8" fill="#574A40"/><circle cx="90" cy="93" r="3" fill="#FFF4D6"/>
+  </g>
+  <g class="p-tin p-t1">
+    <rect x="126" y="78" width="24" height="26" rx="3" fill="#FFFBF0" stroke="#574A40" stroke-width="2"/>
+    <path d="M132 78C132 72 144 72 144 78" fill="none" stroke="#574A40" stroke-width="1.5" stroke-linecap="round"/>
+    <rect x="135" y="84" width="6" height="8" rx="1" fill="#FFB547" stroke="#574A40" stroke-width="1.2"/>
+  </g>
+  <g class="p-tin p-t2">
+    <rect x="160" y="78" width="24" height="26" rx="3" fill="#FFFBF0" stroke="#574A40" stroke-width="2"/>
+    <path d="M166 78C166 72 178 72 178 78" fill="none" stroke="#574A40" stroke-width="1.5" stroke-linecap="round"/>
+    <rect x="169" y="84" width="6" height="8" rx="1" fill="#FFB547" stroke="#574A40" stroke-width="1.2"/>
+  </g>
+  <g class="p-tin p-t3">
+    <rect x="194" y="78" width="24" height="26" rx="3" fill="#FFFBF0" stroke="#574A40" stroke-width="2"/>
+    <path d="M200 78C200 72 212 72 212 78" fill="none" stroke="#574A40" stroke-width="1.5" stroke-linecap="round"/>
+    <rect x="203" y="84" width="6" height="8" rx="1" fill="#FFB547" stroke="#574A40" stroke-width="1.2"/>
+  </g>
+  <g class="p-tick p-k1"><circle cx="138" cy="60" r="7" fill="#E8F8F7" stroke="#0B7A75" stroke-width="2"/><path d="M134.5 60.5L137 63L141.5 58" fill="none" stroke="#0B7A75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g class="p-tick p-k2"><circle cx="172" cy="60" r="7" fill="#E8F8F7" stroke="#0B7A75" stroke-width="2"/><path d="M168.5 60.5L171 63L175.5 58" fill="none" stroke="#0B7A75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g class="p-tick p-k3"><circle cx="206" cy="60" r="7" fill="#E8F8F7" stroke="#0B7A75" stroke-width="2"/><path d="M202.5 60.5L205 63L209.5 58" fill="none" stroke="#0B7A75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g class="p-phone">
+    <rect x="252" y="34" width="38" height="64" rx="8" fill="#FFFBF0" stroke="#574A40" stroke-width="2"/>
+    <path d="M266 40H276" stroke="#574A40" stroke-width="2" stroke-linecap="round"/>
+    <path d="M258 52H284V68H266L260 73V68H258Z" fill="#FFE7AE" stroke="#8C5E2E" stroke-width="1.5" stroke-linejoin="round"/>
+    <g class="p-dots" fill="#8C5E2E"><circle cx="262" cy="60" r="1.5"/><circle cx="265.5" cy="60" r="1.5"/><circle cx="269" cy="60" r="1.5"/><circle cx="272.5" cy="60" r="1.5"/><circle cx="276" cy="60" r="1.5"/><circle cx="279.5" cy="60" r="1.5"/></g>
+  </g>
+</svg>

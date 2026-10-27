@@ -1,0 +1,5 @@
+@* D-78 P4 (D78-SPEC 7.1): what just happened, once, after an action (the controller sets TempData["Scene"]) *@
+@if (TempData["Scene"] is string scene && TOP4HoneyChains.Web.TagHelpers.HoneySceneTagHelper.Names.Contains(scene))
+{
+    <honey-scene name="@scene" trigger="now" class="scene-now" />
+}

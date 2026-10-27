@@ -159,6 +159,9 @@ namespace TOP4HoneyChains.Web.Controllers
             await _context.SaveChangesAsync();
             await transaction.CommitAsync();
             TempData["Success"] = "Shipment created; custody moves when the receiver confirms it.";
+            // D-78 P4 (7.1): the organization's first shipment shows the sealed batch leaving
+            if (await _context.Shipments.CountAsync(s => s.FromOrgId == active.OrgId) == 1)
+                TempData["Scene"] = "ship";
             return RedirectToAction(nameof(Index));
         }
 

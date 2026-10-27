@@ -1,12 +1,13 @@
 # TOP4HoneyChains motion system
 
-Motion has one job: show that something happened, or welcome someone at a brand moment. It never decorates a screen where people are entering data. Recorded as D-70; the code lives in `wwwroot/css/honey-mark.css`, `wwwroot/js/honey-mark.js`, `wwwroot/js/landing.js` and the "D-70 motion system" block of `wwwroot/css/app-skin.css`.
+Motion has one job: show that something happened, explain a step, or welcome someone at a brand moment. It never decorates a screen where people are entering data. Recorded as D-70; the code lives in `wwwroot/css/honey-mark.css`, `wwwroot/js/honey-mark.js`, `wwwroot/js/landing.js` and the "D-70 motion system" block of `wwwroot/css/app-skin.css`.
 
-## Three levels
+## Four levels
 
 | Level | Where | Motion | Timing |
 |---|---|---|---|
 | **Brand moments**: expressive | Logo, landing page, sign-in, loader, empty states, success moments | The animated mark (lift, wing flutter, halo, light sweep, pollen), scroll reveals, the honey line, the hero honeycomb, the background video | Logo moment 620 ms with a 1.35 s sweep; loops 2.4–5.4 s; reveals 700 ms |
+| **Explanation**: teaches a physical step (D-83) | The scenes of D78-SPEC 7.1: record delivery, seal a container, take sample, samples to the lab, lab reception, first shipment, empty My work, the beekeeper's journey | A short scene of what happens to the honey outside the computer (tins, seals, jars, caps) | **≤ 1.5 s**, once per trigger |
 | **Feedback**: subtle | Buttons, toasts, the My work badge glow, a status pill that just changed, row hover | One short move or fade: lift by 1–2 px, scale to 1.04–1.15 and back, fade a glow in and out | **150–250 ms** (`--b-fast` = 160 ms); the badge glow rises once |
 | **Data entry**: still | CCP values, lab results, tables, every form | Nothing decorative. Fields, rows and colours change at once. Nothing moves while someone types, and counters in forms are never animated | none |
 
@@ -17,6 +18,21 @@ Motion has one job: show that something happened, or welcome someone at a brand 
 3. **Loops pause when nobody can see them**: off screen (IntersectionObserver), in a hidden tab (`html.is-hidden-tab`), and while focus is in a form field (`html.is-typing`). The honeycomb canvas and the video stop drawing as well.
 4. **Nothing moves while someone types.** Loops pause, and no feedback animation is attached to typing.
 5. **One brand moment at a time.** The top-bar mark plays once per session after sign-in, and again only on a success moment.
+
+## Explanatory scenes (D-83)
+
+`<honey-scene name="…" trigger="now|first|session|click|manual" for="#…" />` (tag helper `TagHelpers/HoneySceneTagHelper.cs`, drawings in `Scenes/*.svg`, timelines in `wwwroot/css/honey-scene.css`, player `wwwroot/js/honey-scene.js`).
+
+- **Information, not decoration**: each scene shows a real-world step that the screen records. The caption next to it says the same in words (HTML, translated, read by screen readers); the drawing is `aria-hidden`; nothing is told only by motion; no text inside a drawing.
+- **One source per scene**: the SVG is drawn in its final frame. Without the `is-playing` class it is the static illustration shown for reduced motion and when the user's switch is off.
+- **At most 1.5 s, plays once per trigger**: `now` after an action (what just happened), `first` on the first visit per user, `session` once per browser session (empty My work), `click` on the first click of a control (the first container row), `manual` only by the ⓘ replay button. No loops; the empty My work bee then keeps the mark's calm loop under the rules above.
+- **Never blocks**: no modal, no overlay, focus is never moved. A key press, a click or Esc ends every scene at its final frame; a field focused by the page does not (typing does). Scenes that start on their own wait 0.45 s, wait for the top-bar mark's intro (one brand moment at a time) and are dropped once the user has pressed something.
+- **Off switch**: "Show animations" in the user menu (and on the beekeeper's account page), stored per user (`UserSettings.ShowAnimations`, default on); `html[data-scenes="off"]` and `prefers-reduced-motion` keep the static frame.
+- **Style**: cream plate (`--b-cream`), the honey gradient for honey, 2 px ink strokes with round ends, foam bubbles that rise and fade, the tick in the brand green. Only `transform` and `opacity` move; the seal strap's stroke draws once (like the map outline).
+- **Budget**: each scene ≤ 8 KB; at 4× CPU throttling no task over 50 ms (measured: the player about 2 ms per page, the tour 6–12 ms; 60 fps while a scene plays).
+- **Icon buttons** (`_ActionIcon`): jar = take sample (its cap button presses down while pressed), truck = record delivery, seal = apply seal, flask = lab reception, box = ship. The text label stays; the icon is decorative.
+- **First-use tour** (`js/honey-tour.js`): 3–5 still steps per role pointing at `data-tour` menu items; shown once per user and role, skippable (Skip, Esc), re-opened from the user menu. Not a scene: a still highlight.
+- Review all scenes at `/Dev/Scenes` (Development only; the static frame and the reduced-motion state next to each).
 
 ## The animated mark
 
@@ -62,7 +78,8 @@ The top-bar mark (`data-hm-intro`) plays once per browser session after sign-in 
 
 ## Checklist for new screens
 
-- Is it a data-entry screen? Then add no motion.
+- Is it a data-entry screen? Then add no motion, except an explanatory scene beside the form that ends on the first key press.
+- An explanatory scene? A real-world step, ≤ 1.5 s, once per trigger, a translated caption, drawn in its final frame.
 - Feedback? 150–250 ms, transform or opacity, and a reduced-motion rule that turns it off.
 - A loop? It must pause off screen, in a hidden tab and while typing.
 - Is a colour, shadow or size animated? Use a layer whose opacity changes instead.

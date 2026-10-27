@@ -43,6 +43,17 @@
 </div>
 
 <div class="me-card">
+    <h3>@L["Scene.Switch"]</h3>
+    <p class="me-muted">@L["Scene.SwitchHelp"]</p>
+    <form asp-controller="Account" asp-action="Animations" method="post" class="me-form" id="animations-form">
+        <input type="hidden" name="show" value="@(ViewBag.ShowAnimations == true ? "false" : "true")" />
+        <input type="hidden" name="returnUrl" value="/Me/Account" />
+        <button type="submit" class="b-btn b-btn-ghost" role="switch" aria-checked="@(ViewBag.ShowAnimations == true ? "true" : "false")">@(ViewBag.ShowAnimations == true ? L["Scene.TurnOff"] : L["Scene.TurnOn"])</button>
+    </form>
+    <button type="button" class="b-btn b-btn-ghost" data-tour-open>@L["Tour.Open"]</button>
+</div>
+
+<div class="me-card">
     <h3>@L["Me.Password"]</h3>
     <form asp-action="Password" method="post" class="me-form" id="password-form">
         <label for="currentPassword">@L["Me.CurrentPassword"]</label>
