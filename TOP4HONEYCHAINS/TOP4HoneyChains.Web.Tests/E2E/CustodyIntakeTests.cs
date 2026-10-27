@@ -25,8 +25,10 @@ namespace TOP4HoneyChains.Web.Tests.E2E
         private record Plant(int OrgId, int LabId, UserClient Sao, UserClient Co, string BusinessNumber, string BeekeeperId, int ApiaryId, int HoneyTypeId,
             int PeriodId, string District, string Tag);
 
-        private async Task<Plant> PlantAsync(string tag, string? phone = "+905320000601")
+        private async Task<Plant> PlantAsync(string tag, bool hasPhone = true)
         {
+            // a number per beekeeper: the per-phone SMS limits (5 an hour, 10 a day) must not couple the tests
+            var phone = hasPhone ? "+90532" + Random.Shared.Next(1000000, 9999999).ToString(System.Globalization.CultureInfo.InvariantCulture) : null;
             var org = await _app.CreateOrgAsync($"zz_test {tag} plant", null, (Capabilities.Processing, null));
             var lab = await _app.CreateOrgAsync($"zz_test {tag} lab", null, (Capabilities.Laboratory, "zz-acc"));
             await _app.AddMemberAsync(org, await _app.CreateUserAsync($"zz_test_{tag}_sao"), OrgRoles.SampleAcceptanceOfficer);
@@ -229,14 +231,14 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             var future = Form(p, 1);
             future["DeliveryDate"] = DateTime.Today.AddDays(1).ToString("yyyy-MM-dd");
             Assert.Contains("Enter the delivery date (not in the future).", await SendAsync(future));
-            Assert.False(await _app.WithContextAsync(db => db.SmsMessages.AnyAsync(m => m.ToPhoneMasked == "+90******0601" && m.Purpose == SmsPurpose.IntakeConfirm && m.BodyStored.Contains("ci2"))));
+            Assert.False(await _app.WithContextAsync(db => db.SmsMessages.AnyAsync(m => m.Purpose == SmsPurpose.IntakeConfirm && m.BodyStored.Contains("zz_test ci2 plant"))));
             return 0;
         });
 
         [Fact]
         public async Task A_signed_photo_needs_a_reason_and_blocks_finalizing_until_the_compliance_officer_accepts() => await WithCustodyAsync(async () =>
         {
-            var p = await PlantAsync("ci3", phone: null);
+            var p = await PlantAsync("ci3", hasPhone: false);
             var form = Form(p, 1);
             Assert.Contains("The beekeeper has no mobile phone", await BodyAsync(await p.Sao.PostAsync("/Intake/Record", Op(form, "send"), $"/Intake/Create?number={p.BusinessNumber}")));
             Assert.Contains("Give the reason why the SMS code cannot be used.",
