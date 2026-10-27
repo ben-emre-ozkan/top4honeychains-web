@@ -61,6 +61,8 @@ namespace TOP4HoneyChains.Web.Controllers
             public List<ShipmentRow> Shipments { get; } = new();
             public int HiddenShipments { get; set; }
             public List<HolderRow> Holders { get; } = new();
+            // B9 (D-84): a member organization sees only its own holding
+            public bool OwnHoldingOnly { get; set; }
         }
 
         // ---------------------------------------------------------------- batch
@@ -95,6 +97,7 @@ namespace TOP4HoneyChains.Web.Controllers
             await AddShipmentsAsync(report, new[] { id }, admin, orgId);
             var holdings = await _custody.HoldingsAsync(id);
             var names = await OrgNamesAsync(holdings.Keys);
+            report.OwnHoldingOnly = !admin;
             foreach (var h in holdings.Values.Where(h => h.Held > 0 && (admin || h.OrgId == orgId)))
                 report.Holders.Add(new HolderRow(id, names.GetValueOrDefault(h.OrgId, $"#{h.OrgId}"), h.Held));
             return Output(report, format);

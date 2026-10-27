@@ -102,3 +102,28 @@ body.au { margin: 0; font-family: var(--b-text); font-size: 16px; line-height: 1
 .au-check input { width: 22px; height: 22px; margin-top: 2px; flex: 0 0 auto; accent-color: var(--b-honey); }
 .au-field input.au-code-input { letter-spacing: .4em; font-size: 22px; font-variant-numeric: tabular-nums; max-width: 220px; }
 .au-section-title { font-size: 17px; font-weight: 700; margin: 22px 0 8px; color: var(--b-ink); }
+
+/* Verify a lab report (B5, D-84): code field with its button, the report's facts, the file comparison */
+.au-verify-row { display: flex; gap: 10px; }
+.au-verify-row .au-verify-code { flex: 1 1 auto; min-width: 0; text-transform: uppercase; letter-spacing: .06em; }
+.au-verify-row .b-btn { flex: 0 0 auto; min-height: 50px; }
+.au-facts { display: grid; grid-template-columns: minmax(110px, auto) 1fr; gap: 10px 18px; margin: 26px 0 0; padding: 18px 0 0; border-top: 1px solid var(--b-line); }
+.au-facts dt { color: var(--b-muted); font-size: 14px; font-weight: 600; }
+.au-facts dd { margin: 0; color: var(--b-ink); overflow-wrap: anywhere; }
+.au-facts code { font-size: 12.5px; color: var(--b-ink); word-break: break-all; }
+.au-pill { display: inline-block; margin: 0 4px 2px 0; padding: 2px 10px; border-radius: 999px; font-size: 13px; font-weight: 700; }
+.au-pill-ok { background: var(--b-green-soft); color: var(--b-green-dark); border: 1px solid var(--b-green-line); }
+.au-pill-warn { background: var(--b-honey-soft); color: var(--b-honey-ink); border: 1px solid #F6DFA8; }
+.au-verify-file { margin-top: 22px; }
+.au-label { display: block; font-weight: 600; margin-bottom: 8px; }
+.au-file { position: relative; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.au-file-input { position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden; }
+.au-file-btn { min-height: 44px; background: var(--b-card); color: var(--b-heading); border: 1.5px solid var(--b-input-line); cursor: pointer; }
+.au-file-input:focus-visible + .au-file-btn { outline: 3px solid var(--b-focus); outline-offset: 2px; }
+.au-file-name { color: var(--b-muted); font-size: 14px; overflow-wrap: anywhere; }
+.au-verify-file .au-alert { margin-top: 12px; }
+.au-form + .au-alert { margin-top: 18px; }
+@media (max-width: 480px) {
+    .au-facts { grid-template-columns: 1fr; gap: 2px; }
+    .au-facts dd { margin-bottom: 10px; }
+}

@@ -316,6 +316,13 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             var receiverRecall = await receiverStaff.HtmlAsync($"/Recall/Batch/{batch}");
             Assert.DoesNotContain($"data-lot-id=\"{lot}\"", receiverRecall);
             Assert.Contains("id=\"hidden-lots\"", receiverRecall);
+            // B9 (D-84): a member sees only its own holding, and the heading says so; an administrator sees all holders
+            Assert.Contains("Your current holding", receiverRecall);
+            Assert.Contains("Current holders", await admin.HtmlAsync($"/Recall/Batch/{batch}"));
+            // B6: the shipment tables become cards on phones (labels for every cell)
+            var shipments = await receiverStaff.HtmlAsync("/Shipments/Index");
+            Assert.Contains("table-cards\" id=\"holdings\"", shipments);
+            Assert.Contains("data-label=", shipments);
 
             // ---- audit chain is intact after the whole run
             Assert.Contains("verify", await admin.PostFlashAsync("/Audit/Verify", new(), "/Audit/Index"));

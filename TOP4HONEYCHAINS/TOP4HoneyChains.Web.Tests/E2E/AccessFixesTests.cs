@@ -167,6 +167,10 @@ namespace TOP4HoneyChains.Web.Tests.E2E
                 var results = new Dictionary<string, string> { ["reportNumber"] = "ZZ-C4", ["issuedOn"] = DateTime.Today.ToString("yyyy-MM-dd") };
                 foreach (var x in parameters)
                     results[$"values[{x.ParameterId}]"] = x.DataType == CcpDataType.Text ? "zz" : "1";
+                // B7: the required values are counted while typing
+                var edit = await lab.Analyst.HtmlAsync($"/LabReports/Edit/{jars[0].SampleId}");
+                Assert.Contains("data-required=\"true\"", edit);
+                Assert.Contains("id=\"required-save\"", edit);
                 await lab.Analyst.PostMultipartAsync($"/LabReports/Save/{jars[0].SampleId}", results, Pdf.File("reportFile"), $"/LabReports/Edit/{jars[0].SampleId}");
                 await lab.Analyst.PostFlashAsync($"/LabReports/Submit/{jars[0].SampleId}", new(), $"/LabReports/Edit/{jars[0].SampleId}");
                 // jar 2: approved
@@ -177,6 +181,7 @@ namespace TOP4HoneyChains.Web.Tests.E2E
                 var submitted = await anonymous.HtmlAsync($"/verify-report?code={codes[0].ReportCode}");
                 var approved = await anonymous.HtmlAsync($"/verify-report?code={codes[1].ReportCode}");
                 Assert.Contains("id=\"verify-result\"", approved);
+                Assert.Contains("class=\"au-facts\"", approved);   // B5: the branded page of the sign-in layout
                 Assert.DoesNotContain("id=\"verify-result\"", submitted);
             }
             finally

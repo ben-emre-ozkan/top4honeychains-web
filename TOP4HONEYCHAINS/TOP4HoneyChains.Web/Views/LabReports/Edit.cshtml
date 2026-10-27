@@ -139,6 +139,7 @@
                                             <td><label for="value-@p.ParameterId" class="mb-0 fw-normal">@Limits.Label(p)</label> @if (p.IsRequired) { <span class="text-danger" title="@L["Required"]">*</span> }</td>
                                             <td style="max-width:180px">
                                                 <input name="values[@p.ParameterId]" id="value-@p.ParameterId" class="form-control form-control-sm" maxlength="100"
+                                                       data-required="@(p.IsRequired ? "true" : null)" data-name="@(p.IsRequired ? Ref.T("Parameter", p.ParameterId, "Name", p.ParameterName) : null)"
                                                        value="@(r?.MeasuredNumericValue?.ToString("0.####", System.Globalization.CultureInfo.InvariantCulture) ?? r?.MeasuredTextValue)" />
                                             </td>
                                             <td class="small">
@@ -165,13 +166,34 @@
                     }
                     @if (required.Count > 0)
                     {
-                        <div class="mt-2 small" id="required-progress" data-entered="@(required.Count - missing.Count)" data-required="@required.Count">
-                            <strong>@L["Required values entered: {0} of {1}", required.Count - missing.Count, required.Count]</strong>
+                        <div class="mt-2 small" id="required-progress" data-entered="@(required.Count - missing.Count)" data-required="@required.Count"
+                             data-template="@L["Required values entered: {0} of {1}"].Value" data-missing="@L["Missing:"].Value" aria-live="polite">
+                            <strong id="required-count">@L["Required values entered: {0} of {1}", required.Count - missing.Count, required.Count]</strong>
                             @if (missing.Count > 0)
                             {
                                 <span class="text-danger" id="required-missing"> · @L["Missing:"] @string.Join(", ", missing.Select(p => Ref.T("Parameter", p.ParameterId, "Name", p.ParameterName)))</span>
                             }
+                            <span class="text-muted" id="required-save" hidden> · @L["Lab.SaveToSubmit"]</span>
                         </div>
+                        <script>
+                            // B7 (D-84): the count follows the typing; submitting still waits for the saved values (the server checks them)
+                            (function () {
+                                var box = document.getElementById('required-progress');
+                                var inputs = [].slice.call(document.querySelectorAll('input[data-required]'));
+                                if (!box || !inputs.length) return;
+                                var saved = +box.dataset.entered, total = +box.dataset.required;
+                                function update() {
+                                    var missing = inputs.filter(function (i) { return !i.value.trim(); });
+                                    var entered = total - missing.length;
+                                    document.getElementById('required-count').textContent = box.dataset.template.replace('{0}', entered).replace('{1}', total);
+                                    var list = document.getElementById('required-missing');
+                                    if (!list) { list = document.createElement('span'); list.id = 'required-missing'; list.className = 'text-danger'; box.insertBefore(list, document.getElementById('required-save')); }
+                                    list.textContent = missing.length ? ' · ' + box.dataset.missing + ' ' + missing.map(function (i) { return i.dataset.name; }).join(', ') : '';
+                                    document.getElementById('required-save').hidden = !(missing.length === 0 && saved < total);
+                                }
+                                inputs.forEach(function (i) { i.addEventListener('input', update); });
+                            })();
+                        </script>
                     }
                     @if (editable && Model != null)
                     {
