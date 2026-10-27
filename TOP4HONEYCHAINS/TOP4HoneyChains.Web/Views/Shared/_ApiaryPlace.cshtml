@@ -1,0 +1,35 @@
+@model TOP4HoneyChains.Web.Models.ViewModels.ApiaryPlaceField
+@inject TOP4HoneyChains.Web.Services.Places PlaceList
+@* D-78 (F5, D78-SPEC 3.6, 4.2): the apiary title is generated from province – district – locality; there is no title field.
+   The province is proposed from the map pin; districts load for the chosen province (wwwroot/js/apiary-place.js). *@
+<div class="apiary-place" data-lat="@Model.LatId" data-lng="@Model.LngId" data-district="@Model.DistrictId"
+     data-districts-url="/Places/Districts" data-province-url="/Places/ProvinceAt">
+    @if (!string.IsNullOrEmpty(Model.CurrentTitle))
+    {
+        <p class="mb-2" id="apiary-current-title"><span class="text-muted">@L["Apiary.CurrentTitle"]:</span> <strong>@Model.CurrentTitle</strong></p>
+    }
+    <div class="row g-2">
+        <div class="col-md-4">
+            <label class="form-label @(Model.Required ? "required" : "")" for="ap-province">@L["Province"]</label>
+            <select class="form-select ap-province" id="ap-province" name="@Model.ProvinceName" required="@Model.Required">
+                <option value="">@L["-- Select --"]</option>
+                @foreach (var p in PlaceList.All())
+                {
+                    <option value="@p.Code" selected="@(p.Code == Model.Province)">@p.Name</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label @(Model.Required ? "required" : "")" for="ap-district">@L["District"]</label>
+            <select class="form-select ap-district" id="ap-district" name="@Model.DistrictName" required="@Model.Required">
+                <option value="">@L["-- Select --"]</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label @(Model.Required ? "required" : "")" for="ap-locality">@L["Apiary.Locality"]</label>
+            <input class="form-control ap-locality" id="ap-locality" name="@Model.LocalityName" value="@Model.Locality" maxlength="60"
+                   required="@Model.Required" placeholder="@L["Apiary.LocalityExample"]" />
+        </div>
+    </div>
+    <div class="form-text mt-1">@L["Apiary.TitleHelp"] <strong class="ap-preview" id="apiary-title-preview" aria-live="polite"></strong></div>
+</div>
