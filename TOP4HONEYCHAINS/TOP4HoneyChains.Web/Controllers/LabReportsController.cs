@@ -72,6 +72,14 @@ namespace TOP4HoneyChains.Web.Controllers
             ViewBag.EnterDenied = sample.Status != SampleStatus.Received ? "Results are entered only for a received sample with an intact seal."
                 : await _lab.LabDeniedAsync(sample.LabOrgId, EnterRoles) ?? ccp0 ?? await LabCustody.ReportDeniedAsync(sample);
             ViewBag.SetsLotValues = LabCustody.SetsLotValues(sample);
+            // D-82: the values of every container of the lot next to the lot's CCP 1 value
+            if (sample.Kind == SampleKind.Container)
+            {
+                ViewBag.ContainerResults = await LabCustody.ContainerResultsAsync(sample.RawHoneyProductionId);
+                ViewBag.LotLabValues = await _context.CriticalControlPointMonitoringLogs.AsNoTracking()
+                    .Where(l => l.RawHoneyProductionId == sample.RawHoneyProductionId && l.CCPId == ccpId && l.ParameterId != null)
+                    .ToDictionaryAsync(l => l.ParameterId!.Value);
+            }
             ViewBag.ApproveDenied = await _lab.LabDeniedAsync(sample.LabOrgId, ApproveRoles);
             ViewBag.Ccp0Pending = ccp0;
             ViewBag.UserId = _current.UserId;
@@ -315,7 +323,12 @@ namespace TOP4HoneyChains.Web.Controllers
             var setsLot = LabCustody.SetsLotValues(sample);
             if (setsLot)
             {
-                await _lab.ApplyApprovedReportAsync(report, sample, _current.UserId!);
+                // D-82: in per-container mode the lot gets the worst value of its containers, every container's value stays on its report
+                IReadOnlyDictionary<int, LabService.LabValue>? values = null;
+                if (sample.Kind == SampleKind.Container)
+                    values = await LabCustody.WorstValuesAsync(sample.RawHoneyProductionId, await _lab.LabParametersAsync(await _lab.LabCcpIdAsync() ?? 0),
+                        await _ccp.GetHoneyProfileForRawLotAsync(sample.RawHoneyProductionId));
+                await _lab.ApplyApprovedReportAsync(report, sample, _current.UserId!, values);
                 await _context.SaveChangesAsync();
             }
             await _audit.WriteAsync("Approve", "LabReports", report.ReportId.ToString(), null,

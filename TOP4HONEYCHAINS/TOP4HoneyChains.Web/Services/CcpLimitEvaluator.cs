@@ -73,6 +73,21 @@ namespace TOP4HoneyChains.Web.Services
             return (row.MinValue, row.MaxValue);
         }
 
+        // D-78 P3 (D-82): which way a value gets worse under its main limit (also a limit on a sum with another parameter):
+        // +1 higher is worse (max only), -1 lower is worse (min only), 0 both bounds, null no limit
+        public static int? WorseDirection(CriticalControlPointParameter parameter, IReadOnlyDictionary<int, decimal> siblingValues, HoneyProfile honey)
+        {
+            var row = MainRow(parameter, siblingValues, honey);
+            var (min, max) = row == null ? (parameter.MinValue, parameter.MaxValue) : (row.MinValue, row.MaxValue);
+            return (min, max) switch
+            {
+                (null, null) => null,
+                (null, _) => 1,
+                (_, null) => -1,
+                _ => 0
+            };
+        }
+
         private static (bool? ok, string label)? MainCheck(CriticalControlPointParameter parameter, decimal value,
             IReadOnlyDictionary<int, decimal> siblingValues, HoneyProfile honey)
         {

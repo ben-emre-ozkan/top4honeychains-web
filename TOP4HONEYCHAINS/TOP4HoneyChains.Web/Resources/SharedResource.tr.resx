@@ -8268,4 +8268,13 @@
   <data name="The delivery changed after the correction was requested; request it again." xml:space="preserve">
     <value>Düzeltme istendikten sonra teslimat değişti; yeniden isteyin.</value>
   </data>
+  <data name="Lab.ContainerValues" xml:space="preserve">
+    <value>Kap başına laboratuvar değerleri</value>
+  </data>
+  <data name="Lab.ContainerValuesHelp" xml:space="preserve">
+    <value>Bu lotun her kabının onaylı değerleri. Kavanozlar tek tek analiz edildiğinde lotun KKN 1 değeri bunların en kötüsüdür (kalın).</value>
+  </data>
+  <data name="Lab.LotValue" xml:space="preserve">
+    <value>Lot (KKN 1)</value>
+  </data>
 </root>

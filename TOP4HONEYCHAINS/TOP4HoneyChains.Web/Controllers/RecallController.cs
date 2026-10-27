@@ -37,7 +37,10 @@ namespace TOP4HoneyChains.Web.Controllers
             IntakeCustody? Custody = null);
         // D-78 P2 (D78-SPEC 3.11): a delivery recorded with containers: how it was confirmed, whether the stored content still matches
         // the confirmed hash, and every container with its seal history and sample jars. Null for a legacy intake.
-        public record IntakeCustody(string? Method, string? EvidenceStatus, string? ContentSha256, bool? ContentMatches, List<ContainerRow> Containers);
+        public record IntakeCustody(string? Method, string? EvidenceStatus, string? ContentSha256, bool? ContentMatches, List<ContainerRow> Containers,
+            List<ContainerLabRow>? Lab = null);
+        // D-82: the approved lab values of every container (the lot's CCP 1 value is the worst of them in per-container mode)
+        public record ContainerLabRow(string ContainerCode, string ReportCode, List<(int ParameterId, string Parameter, string Value)> Values);
         public record ContainerRow(string Code, string Kind, decimal NetKg, string? CurrentSeal, List<SealRow> Seals, List<JarRow> Jars);
         public record SealRow(string Event, string SealNumber, bool? Intact, DateTime At);
         public record JarRow(string Code, string Seal, string Status, string? Kind);
@@ -168,6 +171,17 @@ namespace TOP4HoneyChains.Web.Controllers
                         c.Samples.OrderBy(s => s.SampleId).Select(s => new JarRow(s.SampleCode, s.SealNumber, s.Status, s.Kind)).ToList())).ToList());
                 if (composite.Count > 0)
                     custody.Containers.Add(new ContainerRow("", SampleKind.Composite, 0, null, new(), composite));
+                var lab = await HttpContext.RequestServices.GetRequiredService<LabCustodyService>().ContainerResultsAsync(lotId);
+                if (lab.Count > 0)
+                {
+                    var names = await _context.CriticalControlPointParameters.AsNoTracking().ToDictionaryAsync(p => p.ParameterId, p => p.ParameterName);
+                    custody = custody with
+                    {
+                        Lab = lab.Select(r => new ContainerLabRow(r.ContainerCode, r.ReportCode, r.Results.OrderBy(x => x.ParameterId)
+                            .Select(x => (x.ParameterId, names.GetValueOrDefault(x.ParameterId, $"#{x.ParameterId}"),
+                                x.MeasuredNumericValue?.ToString("0.####", System.Globalization.CultureInfo.InvariantCulture) ?? x.MeasuredTextValue ?? "")).ToList())).ToList()
+                    };
+                }
             }
             return new LotRow(lotId, r.RawHoneyProductionAmount, used, r.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle,
                 r.RawHoneyProductionApiary?.ApiaryTitle, bk == null ? null : $"{bk.BeekeeperFirstName} {bk.BeekeeperLastName}", bk?.BeekeeperBusinessNumber,
@@ -239,6 +253,9 @@ namespace TOP4HoneyChains.Web.Controllers
                         foreach (var j in k.Jars)
                             Row(j.Kind == SampleKind.Composite ? L["Lab.Composite"].Value : L["Ci.SampleJar"].Value, j.Code, k.Code, j.Seal, null, null, L["Lab.Status" + j.Status].Value, null);
                     }
+                    foreach (var r in c.Lab ?? new())
+                        Row(L["Lab.ContainerValues"].Value, r.ContainerCode, r.ReportCode, null, null, null, null,
+                            string.Join("; ", r.Values.Select(v => $"{refText.Text(Models.Entities.RefEntity.Parameter, "Name", v.Parameter)} {v.Value}")));
                 }
             }
             if (report.HiddenLots > 0) Row(L["Lot"].Value, null, L["not shown"].Value, L["{0} lot(s) of another organization", report.HiddenLots].Value, null, null, null, null);

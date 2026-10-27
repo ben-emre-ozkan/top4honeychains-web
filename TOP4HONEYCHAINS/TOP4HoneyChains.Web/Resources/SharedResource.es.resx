@@ -8268,4 +8268,13 @@
   <data name="The delivery changed after the correction was requested; request it again." xml:space="preserve">
     <value>La entrega cambió después de pedir la corrección; pídala de nuevo.</value>
   </data>
+  <data name="Lab.ContainerValues" xml:space="preserve">
+    <value>Valores de laboratorio por envase</value>
+  </data>
+  <data name="Lab.ContainerValuesHelp" xml:space="preserve">
+    <value>Los valores aprobados de cada envase de este lote. Cuando los frascos se analizan uno a uno, el valor PCC 1 del lote es el peor de ellos (en negrita).</value>
+  </data>
+  <data name="Lab.LotValue" xml:space="preserve">
+    <value>Lote (PCC 1)</value>
+  </data>
 </root>

@@ -98,6 +98,16 @@
                                                     }
                                                 </tbody>
                                             </table>
+                                            @if (c.Lab?.Count > 0)
+                                            {
+                                                <div class="small mt-1 recall-container-lab">
+                                                    <div class="fw-semibold">@L["Lab.ContainerValues"]</div>
+                                                    @foreach (var r in c.Lab)
+                                                    {
+                                                        <div><strong>@r.ContainerCode</strong> <span class="text-muted">@r.ReportCode</span>: @string.Join(" · ", r.Values.Select(v => Ref.T("Parameter", v.ParameterId, "Name", v.Parameter) + " " + v.Value))</div>
+                                                    }
+                                                </div>
+                                            }
                                         }
                                         else { <span class="text-muted">–</span> }
                                     </td>

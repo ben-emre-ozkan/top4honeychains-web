@@ -34,6 +34,46 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         public string Mode => string.Equals(_options.AnalysisMode, LabAnalysisMode.PerContainer, StringComparison.OrdinalIgnoreCase)
             ? LabAnalysisMode.PerContainer : LabAnalysisMode.Composite;
 
+        // D-78 P3 (D-82): the approved results of every container of a lot (the latest approved jar report of each container)
+        public record ContainerResult(int ContainerId, string ContainerCode, int ReportId, string ReportCode, IReadOnlyList<LabResult> Results)
+        {
+            public IReadOnlyDictionary<int, decimal> Numbers => Results.Where(r => r.MeasuredNumericValue != null)
+                .GroupBy(r => r.ParameterId).ToDictionary(g => g.Key, g => g.First().MeasuredNumericValue!.Value);
+        }
+
+        public async Task<List<ContainerResult>> ContainerResultsAsync(int lotId)
+        {
+            var reports = await _context.LabReports.AsNoTracking().Include(r => r.Results).Include(r => r.Sample!).ThenInclude(s => s.Container)
+                .Where(r => r.Status == LabReportStatus.Approved && r.Sample!.RawHoneyProductionId == lotId && r.Sample.Kind == SampleKind.Container)
+                .ToListAsync();
+            return reports.GroupBy(r => r.Sample!.ContainerId)
+                .Select(g => g.OrderByDescending(r => r.ApprovedAt).ThenByDescending(r => r.ReportId).First())
+                .OrderBy(r => r.Sample!.Container!.Seq)
+                .Select(r => new ContainerResult(r.Sample!.ContainerId!.Value, r.Sample.Container!.ContainerCode, r.ReportId, r.ReportCode, r.Results.ToList()))
+                .ToList();
+        }
+
+        // The lot's CCP 1 values in per-container mode: per parameter the worst value of the containers (WorstValue)
+        public async Task<Dictionary<int, LabService.LabValue>> WorstValuesAsync(int lotId, IEnumerable<CriticalControlPointParameter> parameters, HoneyProfile honey)
+        {
+            var results = await ContainerResultsAsync(lotId);
+            var values = new Dictionary<int, LabService.LabValue>();
+            foreach (var p in parameters)
+            {
+                var candidates = results.Select(r => (r, value: r.Results.FirstOrDefault(x => x.ParameterId == p.ParameterId)))
+                    .Where(x => x.value != null).ToList();
+                if (candidates.Count == 0)
+                    continue;
+                var list = candidates.Select(x => new WorstValue.Candidate(x.r.ContainerCode, x.value!.MeasuredNumericValue, x.value.MeasuredTextValue, x.r.Numbers)).ToList();
+                var note = $"Worst of {candidates.Count} container(s)";
+                if (WorstValue.Pick(p, list, honey) is int i)
+                    values[p.ParameterId] = new LabService.LabValue(list[i].Number, null, candidates[i].r.ReportId, $"{note}: {list[i].Tag}, lab report {candidates[i].r.ReportCode}");
+                else if (WorstValue.CombineTexts(list) is string text)
+                    values[p.ParameterId] = new LabService.LabValue(null, text, candidates[^1].r.ReportId, note);
+            }
+            return values;
+        }
+
         // Reception of a container jar: seal number matches, label intact, cap intact (button still down) are all required answers;
         // any "no" rejects the jar and needs a reason.
         public static string? CheckReception(bool? sealMatches, bool? labelIntact, bool? capIntact, string? note)

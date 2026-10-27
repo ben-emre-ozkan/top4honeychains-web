@@ -1,0 +1,37 @@
+@using TOP4HoneyChains.Web.Models.Entities
+@using TOP4HoneyChains.Web.Services.OrgModel
+@{
+    var results = ViewBag.ContainerResults as List<LabCustodyService.ContainerResult> ?? new();
+    var parameters = ViewBag.Parameters as List<CriticalControlPointParameter> ?? new();
+    var lotValues = ViewBag.LotLabValues as Dictionary<int, CriticalControlPointMonitoringLog> ?? new();
+    string Show(LabResult? r) => r == null ? "–" : r.MeasuredNumericValue?.ToString("0.####") ?? r.MeasuredTextValue ?? "–";
+}
+@* D-78 P3 (D-82): every container's approved values; in per-container mode the lot's CCP 1 value is the worst of them (marked) *@
+@if (results.Count > 0)
+{
+    <div class="mt-3" id="container-values">
+        <h5>@L["Lab.ContainerValues"]</h5>
+        <p class="small text-muted">@L["Lab.ContainerValuesHelp"]</p>
+        <div class="table-responsive">
+            <table class="table table-sm table-bordered small">
+                <thead><tr><th></th>@foreach (var r in results) { <th>@r.ContainerCode<div class="fw-normal text-muted">@r.ReportCode</div></th> }<th>@L["Lab.LotValue"]</th></tr></thead>
+                <tbody>
+                    @foreach (var p in parameters.Where(p => results.Any(r => r.Results.Any(x => x.ParameterId == p.ParameterId))))
+                    {
+                        lotValues.TryGetValue(p.ParameterId, out var lot);
+                        <tr>
+                            <td>@Ref.T("Parameter", p.ParameterId, "Name", p.ParameterName)</td>
+                            @foreach (var r in results)
+                            {
+                                var v = r.Results.FirstOrDefault(x => x.ParameterId == p.ParameterId);
+                                var used = lot != null && lot.LabReportId == r.ReportId && v != null && v.MeasuredNumericValue == lot.MeasuredNumericValue && lot.MeasuredNumericValue != null;
+                                <td class="@(used ? "fw-bold worst-value" : "") @(v?.IsInRange == false ? "text-danger" : "")">@Show(v)</td>
+                            }
+                            <td>@(lot?.MeasuredNumericValue?.ToString("0.####") ?? lot?.MeasuredTextValue ?? "–")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

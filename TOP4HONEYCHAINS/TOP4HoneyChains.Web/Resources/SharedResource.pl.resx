@@ -8268,4 +8268,13 @@
   <data name="The delivery changed after the correction was requested; request it again." xml:space="preserve">
     <value>Dostawa zmieniła się po zgłoszeniu korekty; zgłoś ją ponownie.</value>
   </data>
+  <data name="Lab.ContainerValues" xml:space="preserve">
+    <value>Wyniki laboratoryjne dla każdego pojemnika</value>
+  </data>
+  <data name="Lab.ContainerValuesHelp" xml:space="preserve">
+    <value>Zatwierdzone wyniki każdego pojemnika tej partii. Gdy słoiki bada się osobno, wartością KPK 1 partii jest najgorsza z nich (pogrubiona).</value>
+  </data>
+  <data name="Lab.LotValue" xml:space="preserve">
+    <value>Partia (KPK 1)</value>
+  </data>
 </root>
