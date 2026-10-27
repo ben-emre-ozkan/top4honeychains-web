@@ -185,6 +185,38 @@
                         </div>
                     </div>
 
+                    <!-- D-78: data controller (D78-SPEC 3.5, 6.1) -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">@L["Notice.DataController"]
+                                @if (string.IsNullOrWhiteSpace(Model.DataControllerName))
+                                {
+                                    <span class="badge bg-warning text-dark" id="data-controller-missing">@L["Org.DataControllerMissing"]</span>
+                                }
+                            </h5>
+                            <p class="small text-muted mb-2">@L["Org.DataControllerHelp"]</p>
+                            @if (ViewBag.CanEditDataController == true)
+                            {
+                                <form asp-action="DataController" asp-route-id="@Model.OrgId" method="post" class="row g-2" id="data-controller-form">
+                                    <div class="col-md-6"><label class="form-label small" for="dcName">@L["Org.DataControllerName"]</label><input id="dcName" name="name" class="form-control form-control-sm" maxlength="200" value="@Model.DataControllerName" /></div>
+                                    <div class="col-md-6"><label class="form-label small" for="dcContact">@L["Org.DataControllerContact"]</label><input id="dcContact" name="contact" class="form-control form-control-sm" maxlength="200" value="@Model.DataControllerContact" /></div>
+                                    <div class="col-md-9"><label class="form-label small" for="dcAddress">@L["Org.DataControllerAddress"]</label><input id="dcAddress" name="address" class="form-control form-control-sm" maxlength="400" value="@Model.DataControllerAddress" /></div>
+                                    <div class="col-md-3"><label class="form-label small" for="dcVerbis">VERBİS</label><input id="dcVerbis" name="verbis" class="form-control form-control-sm" maxlength="50" value="@Model.VerbisNumber" /></div>
+                                    <div class="col-12"><button type="submit" class="btn btn-sm btn-primary">@L["Save"]</button></div>
+                                </form>
+                            }
+                            else
+                            {
+                                <dl class="row small mb-0" id="data-controller">
+                                    <dt class="col-sm-3">@L["Org.DataControllerName"]</dt><dd class="col-sm-9">@(Model.DataControllerName ?? "–")</dd>
+                                    <dt class="col-sm-3">@L["Org.DataControllerContact"]</dt><dd class="col-sm-9">@(Model.DataControllerContact ?? "–")</dd>
+                                    <dt class="col-sm-3">@L["Org.DataControllerAddress"]</dt><dd class="col-sm-9">@(Model.DataControllerAddress ?? "–")</dd>
+                                    <dt class="col-sm-3">VERBİS</dt><dd class="col-sm-9">@(Model.VerbisNumber ?? "–")</dd>
+                                </dl>
+                            }
+                        </div>
+                    </div>
+
                     <!-- Members -->
                     <div class="card">
                         <div class="card-body">

@@ -1,0 +1,88 @@
+@model TOP4HoneyChains.Web.Models.Entities.Notice
+@using TOP4HoneyChains.Web.Models.Entities
+@{
+    ViewData["Title"] = L["Notice.PublishNew"].Value;
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var orgs = (IEnumerable<dynamic>)ViewBag.Orgs;
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-1">@L["Notice.PublishNew"]</h4>
+                    <p class="card-title-desc">@L["Notice.PublishHelp"]</p>
+                    <form method="post" action="/Notices/Publish" class="row g-3" id="notice-publish-form">
+                        @Html.AntiForgeryToken()
+                        <div class="col-md-3">
+                            <label class="form-label" for="kind">@L["Notice.Kind"]</label>
+                            <select class="form-select" id="kind" name="kind">
+                                @foreach (var k in NoticeKind.All)
+                                {
+                                    <option value="@k" selected="@(k == Model.Kind)">@L["Notice.Kind." + k]</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label" for="audience">@L["Notice.Audience"]</label>
+                            <select class="form-select" id="audience" name="audience">
+                                @foreach (var a in NoticeAudience.Values)
+                                {
+                                    <option value="@a" selected="@(a == Model.Audience)">@L["Notice.Audience." + a]</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label" for="orgId">@L["Organization"]</label>
+                            <select class="form-select" id="orgId" name="orgId">
+                                <option value="">TOP4HoneyChains</option>
+                                @foreach (var o in orgs)
+                                {
+                                    <option value="@o.OrgId" selected="@(o.OrgId == Model.OrgId)">@o.DisplayName</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label" for="purpose">@L["Notice.Purpose"]</label>
+                            <select class="form-select" id="purpose" name="purpose">
+                                <option value="">–</option>
+                                @foreach (var p in new[] { ConsentPurpose.PublicName, ConsentPurpose.PortalNotifications })
+                                {
+                                    <option value="@p" selected="@(p == Model.Purpose)">@L["Consent." + p]</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label" for="version">@L["Notice.Version"]</label>
+                            <input class="form-control" id="version" name="version" maxlength="40" required placeholder="platform-2026-12-v1" />
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label" for="language">@L["Language"]</label>
+                            <select class="form-select" id="language" name="language">
+                                @foreach (var l in TOP4HoneyChains.Web.Services.Messaging.SmsTemplates.Languages)
+                                {
+                                    <option value="@l" selected="@(l == Model.Language)">@l</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-6 d-flex align-items-end">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="isDraft" name="isDraft" value="true" checked="@Model.IsDraft" />
+                                <label class="form-check-label" for="isDraft">@L["Notice.IsDraft"]</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label" for="body">@L["Notice.Text"]</label>
+                            <textarea class="form-control" id="body" name="body" rows="16" required>@Model.Body</textarea>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary">@L["Notice.Publish"]</button>
+                            <a href="/Notices/Index" class="btn btn-secondary">@L["Cancel"]</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

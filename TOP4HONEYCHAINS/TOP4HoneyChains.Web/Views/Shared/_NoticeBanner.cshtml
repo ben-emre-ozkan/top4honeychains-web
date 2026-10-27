@@ -1,0 +1,32 @@
+@inject TOP4HoneyChains.Web.Services.OrgModel.NoticeService BannerNotices
+@* D-78 (O-14): while Notices:Enforce is off, a user with a notice to accept sees this banner instead of being sent to the
+   notice page; it can be closed for the rest of the browser session *@
+@{
+    var bannerUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+    var pendingNotices = bannerUserId == null || BannerNotices.Options.Enforce
+        ? new List<TOP4HoneyChains.Web.Services.OrgModel.PendingNotice>()
+        : await BannerNotices.PendingForCurrentUserAsync(Context, bannerUserId);
+}
+@if (pendingNotices.Count > 0)
+{
+    <div class="container-fluid">
+        <div class="alert alert-warning d-flex align-items-center gap-2 mt-2 mb-0" role="status" id="notice-banner" hidden>
+            <i class="mdi mdi-shield-account-outline" aria-hidden="true"></i>
+            <span class="flex-grow-1">@L["Notice.Banner"]</span>
+            <a class="btn btn-sm btn-warning" href="/Notices/Accept?returnUrl=@Uri.EscapeDataString(Context.Request.Path + Context.Request.QueryString)">@L["Notice.ReadAndAccept"]</a>
+            <button type="button" class="btn-close" aria-label="@L["Close"]" id="notice-banner-close"></button>
+        </div>
+    </div>
+    <script>
+        (function () {
+            var b = document.getElementById('notice-banner');
+            var shown = true;
+            try { shown = sessionStorage.getItem('t4h-notice-banner') !== 'closed'; } catch (e) { }
+            b.hidden = !shown;
+            document.getElementById('notice-banner-close').addEventListener('click', function () {
+                b.hidden = true;
+                try { sessionStorage.setItem('t4h-notice-banner', 'closed'); } catch (e) { }
+            });
+        })();
+    </script>
+}

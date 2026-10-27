@@ -1,0 +1,30 @@
+@model TOP4HoneyChains.Web.Models.Entities.Notice
+@{
+    ViewData["Title"] = L["Notice.AdminTitle"].Value;
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-1">@L["Notice.Kind." + Model.Kind] · @L["Notice.Audience." + Model.Audience] · @(Model.Org?.DisplayName ?? "TOP4HoneyChains")</h4>
+                    <p class="small text-muted mb-2" id="notice-meta">
+                        @Model.Version · @Model.Language · @Model.PublishedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm") · SHA-256 @Model.BodySha256[..16]…
+                        @if (Model.IsDraft)
+                        {
+                            <span class="badge bg-warning-subtle text-dark border">@L["Notice.Draft"]</span>
+                        }
+                        @if (Model.RetiredAt != null)
+                        {
+                            <span class="badge bg-light text-dark border">@L["Notice.Retired"]</span>
+                        }
+                    </p>
+                    <div class="border rounded p-3 bg-white" style="white-space: pre-line" lang="@Model.Language" id="notice-body">@Model.Body</div>
+                    <p class="mt-3"><a href="/Notices/Index">@L["Notice.AdminTitle"]</a> · <a href="/Notices/Publish?from=@Model.NoticeId">@L["Notice.NewVersion"]</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

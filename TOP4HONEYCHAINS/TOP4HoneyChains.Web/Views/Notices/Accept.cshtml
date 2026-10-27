@@ -1,0 +1,68 @@
+@model TOP4HoneyChains.Web.Controllers.NoticesController.AcceptModel
+@{
+    ViewBag.Title = L["Notice.Title"].Value;
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+    var back = Url.IsLocalUrl(Model.ReturnUrl) ? Model.ReturnUrl : "/MyWork/Index";
+}
+
+<h1 class="au-title">@L["Notice.Title"]</h1>
+
+@if (Model.Pending.Count == 0)
+{
+    <p class="au-sub" id="notice-none">@L["Notice.NothingPending"]</p>
+    <a class="b-btn b-btn-honey au-submit" href="@back">@L["Notice.Continue"]</a>
+}
+else
+{
+    <p class="au-sub">@L["Notice.Intro"]</p>
+    @foreach (var p in Model.Pending)
+    {
+        <h2 class="au-section-title">
+            @(p.Org?.DisplayName ?? "TOP4HoneyChains") <small class="text-muted">@p.Notice.Version</small>
+            @if (p.Notice.IsDraft)
+            {
+                <span class="au-badge-draft" data-draft>@L["Notice.Draft"]</span>
+            }
+        </h2>
+        <div class="au-notice" tabindex="0" id="notice-@p.Notice.NoticeId" lang="@p.Notice.Language">@p.Notice.Body</div>
+        @if (p.Org != null)
+        {
+            <partial name="_DataController" model="@p.Org" />
+        }
+        else
+        {
+            <partial name="_DataController" model="@Model.Platform" />
+            @foreach (var o in Model.Orgs.Where(o => !o.IsPlatform))
+            {
+                <partial name="_DataController" model="@o" />
+            }
+        }
+    }
+
+    @if (Model.NeedsSms)
+    {
+        <p class="au-sub mt-3" id="notice-sms-note">@L["Notice.SmsNote"]</p>
+        <form asp-action="SendCode" method="post" class="au-form" id="notice-send-code">
+            <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+            <div class="au-field">
+                <label for="phone">@L["Notice.MobilePhone"]</label>
+                <input id="phone" name="phone" type="tel" value="@Model.Phone" autocomplete="tel" placeholder="+90 532 123 45 67" required />
+            </div>
+            <button type="submit" class="b-btn b-btn-ghost">@(Model.CodeSent ? L["Notice.SendNewCode"] : L["Notice.SendCode"])</button>
+        </form>
+    }
+
+    <form asp-action="Accept" method="post" class="au-form" id="notice-accept">
+        <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+        <label class="au-check"><input type="checkbox" name="read" value="true" required /> <span>@L["Notice.IHaveRead"]</span></label>
+        @if (Model.NeedsSms)
+        {
+            <div class="au-field">
+                <label for="code">@L["Notice.Code"]</label>
+                <input id="code" name="code" class="au-code-input" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" required />
+            </div>
+        }
+        <button type="submit" class="b-btn b-btn-honey au-submit">@L["Notice.Accept"]</button>
+    </form>
+}
+<p class="au-alt"><a class="au-link" href="/privacy?for=member" target="_blank" rel="noopener">@L["Notice.PublicLink"]</a></p>

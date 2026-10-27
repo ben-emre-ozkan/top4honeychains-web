@@ -39,7 +39,7 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             "AssignmentStatuses", "HoneyTypes", "RawHoneyProductionPeriods", "BeekeeperEducationLevels", "BeekeepingPurposeTypes", "BeekeepingTypes",
             "Capabilities", "OrgRoles", "CriticalControlPoints", "CriticalControlPointParameterCategories", "CriticalControlPointParameters",
             "CriticalControlPointParameterLimits", "CcpResponsibilities", "CcpResponsibilityCapabilities", "CcpResponsibilityRoles",
-            "Provinces", "Districts", "RolePermissions"
+            "Provinces", "Districts", "RolePermissions", "Notices"
         };
 
         protected override void ConfigureWebHost(IWebHostBuilder builder)
@@ -88,7 +88,9 @@ namespace TOP4HoneyChains.Web.Tests.E2E
                 var hasIdentity = await ScalarAsync(conn, $"SELECT COUNT(*) FROM sys.identity_columns WHERE object_id = OBJECT_ID('dbo.{table}')") > 0;
                 var list = string.Join(", ", columns.Select(c => $"[{c}]"));
                 var sql = (hasIdentity ? $"SET IDENTITY_INSERT dbo.[{table}] ON; " : "")
-                          + $"INSERT INTO dbo.[{table}] ({list}) SELECT {list} FROM [{SourceDatabase}].dbo.[{table}];"
+                          + $"INSERT INTO dbo.[{table}] ({list}) SELECT {list} FROM [{SourceDatabase}].dbo.[{table}]"
+                          // D-78: only the platform's notices (organization notices belong to organizations that are not copied)
+                          + (table == "Notices" ? " WHERE OrgId IS NULL;" : ";")
                           + (hasIdentity ? $" SET IDENTITY_INSERT dbo.[{table}] OFF;" : "");
                 await using var copy = new SqlCommand(sql, conn);
                 await copy.ExecuteNonQueryAsync();

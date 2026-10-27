@@ -1,0 +1,23 @@
+@model TOP4HoneyChains.Web.Models.Entities.Organization?
+@* D-78: the data controller named for a notice (D78-SPEC 6.1); the organization's name until the details are filled in *@
+@if (Model != null)
+{
+    <dl class="au-controller" data-controller-org="@Model.OrgId">
+        <dt>@L["Notice.DataController"]</dt>
+        <dd>@(Model.DataControllerName ?? Model.LegalName ?? Model.DisplayName)</dd>
+        @if (!string.IsNullOrWhiteSpace(Model.DataControllerAddress))
+        {
+            <dd>@Model.DataControllerAddress</dd>
+        }
+        @if (!string.IsNullOrWhiteSpace(Model.DataControllerContact))
+        {
+            <dt>@L["Notice.Contact"]</dt>
+            <dd>@Model.DataControllerContact</dd>
+        }
+        @if (!string.IsNullOrWhiteSpace(Model.VerbisNumber))
+        {
+            <dt>VERBİS</dt>
+            <dd>@Model.VerbisNumber</dd>
+        }
+    </dl>
+}

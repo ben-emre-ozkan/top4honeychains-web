@@ -1,0 +1,44 @@
+@model TOP4HoneyChains.Web.Controllers.NoticesController.PublicModel
+@{
+    ViewBag.Title = L["Notice.PublicTitle"].Value;
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+    var forBeekeepers = Model.Audience == TOP4HoneyChains.Web.Models.Entities.NoticeAudience.Beekeeper;
+}
+
+<h1 class="au-title">@L["Notice.PublicTitle"]</h1>
+<p class="au-sub">
+    @(forBeekeepers ? L["Notice.ForBeekeepers"] : L["Notice.ForUsers"])
+    · <a class="au-link" href="/privacy?for=@(forBeekeepers ? "member" : "beekeeper")">@(forBeekeepers ? L["Notice.ForUsers"] : L["Notice.ForBeekeepers"])</a>
+</p>
+
+@if (Model.Notice == null)
+{
+    <p id="notice-missing">@L["Notice.NotPublished"]</p>
+}
+else
+{
+    <p class="small text-muted">
+        @Model.Notice.Version
+        @if (Model.Notice.IsDraft)
+        {
+            <span class="au-badge-draft" data-draft>@L["Notice.Draft"]</span>
+        }
+    </p>
+    <div class="au-notice" tabindex="0" id="public-notice" lang="@Model.Notice.Language">@Model.Notice.Body</div>
+    @if (Model.Org != null)
+    {
+        <partial name="_DataController" model="@Model.Org" />
+    }
+    <partial name="_DataController" model="@Model.Platform" />
+    @foreach (var c in Model.Consents)
+    {
+        <h2 class="au-section-title">
+            @L["Consent." + c.Purpose]
+            @if (c.IsDraft)
+            {
+                <span class="au-badge-draft">@L["Notice.Draft"]</span>
+            }
+        </h2>
+        <div class="au-notice" tabindex="0" lang="@c.Language">@c.Body</div>
+    }
+}

@@ -7248,4 +7248,184 @@
   <data name="Sms.Purpose.Info" xml:space="preserve">
     <value>Information</value>
   </data>
+  <data name="Notice.Title" xml:space="preserve">
+    <value>Privacy notice</value>
+  </data>
+  <data name="Notice.NothingPending" xml:space="preserve">
+    <value>You have accepted the current notices. Nothing else is needed.</value>
+  </data>
+  <data name="Notice.Continue" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="Notice.Intro" xml:space="preserve">
+    <value>Before you continue, read how your personal data is processed and confirm that you have read it.</value>
+  </data>
+  <data name="Notice.Draft" xml:space="preserve">
+    <value>DRAFT</value>
+  </data>
+  <data name="Notice.SmsNote" xml:space="preserve">
+    <value>Your role signs on behalf of your organization, so you confirm with a code sent to your mobile phone.</value>
+  </data>
+  <data name="Notice.MobilePhone" xml:space="preserve">
+    <value>Mobile phone</value>
+  </data>
+  <data name="Notice.SendCode" xml:space="preserve">
+    <value>Send code</value>
+  </data>
+  <data name="Notice.SendNewCode" xml:space="preserve">
+    <value>Send a new code</value>
+  </data>
+  <data name="Notice.IHaveRead" xml:space="preserve">
+    <value>I have read the notice above.</value>
+  </data>
+  <data name="Notice.Code" xml:space="preserve">
+    <value>Code from the SMS (6 digits)</value>
+  </data>
+  <data name="Notice.Accept" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="Notice.PublicLink" xml:space="preserve">
+    <value>Open the notice in a new tab</value>
+  </data>
+  <data name="Notice.PublicTitle" xml:space="preserve">
+    <value>Privacy and consent</value>
+  </data>
+  <data name="Notice.ForBeekeepers" xml:space="preserve">
+    <value>For beekeepers</value>
+  </data>
+  <data name="Notice.ForUsers" xml:space="preserve">
+    <value>For users of the platform</value>
+  </data>
+  <data name="Notice.NotPublished" xml:space="preserve">
+    <value>No notice has been published yet.</value>
+  </data>
+  <data name="Consent.PublicName" xml:space="preserve">
+    <value>Name on public pages</value>
+  </data>
+  <data name="Consent.PortalNotifications" xml:space="preserve">
+    <value>SMS notifications</value>
+  </data>
+  <data name="Notice.DataController" xml:space="preserve">
+    <value>Data controller</value>
+  </data>
+  <data name="Notice.Contact" xml:space="preserve">
+    <value>Contact for requests</value>
+  </data>
+  <data name="Notice.AdminTitle" xml:space="preserve">
+    <value>Notices and consent texts</value>
+  </data>
+  <data name="Notice.AdminHelp" xml:space="preserve">
+    <value>Texts are versioned and never changed after publishing: publish a new version instead. Users accept the current version of the platform notice and of each organization they work for.</value>
+  </data>
+  <data name="Notice.PublishNew" xml:space="preserve">
+    <value>Publish a new version</value>
+  </data>
+  <data name="Notice.PublishHelp" xml:space="preserve">
+    <value>Publishing retires the current text of the same kind, audience, organization, purpose and language. Users who accepted an earlier version are asked again.</value>
+  </data>
+  <data name="Notice.Kind" xml:space="preserve">
+    <value>Kind</value>
+  </data>
+  <data name="Notice.Audience" xml:space="preserve">
+    <value>For</value>
+  </data>
+  <data name="Notice.Purpose" xml:space="preserve">
+    <value>Consent purpose</value>
+  </data>
+  <data name="Notice.Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="Notice.Published" xml:space="preserve">
+    <value>Published</value>
+  </data>
+  <data name="Notice.Acceptances" xml:space="preserve">
+    <value>Accepted</value>
+  </data>
+  <data name="Notice.Retired" xml:space="preserve">
+    <value>retired</value>
+  </data>
+  <data name="Notice.Show" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="Notice.NewVersion" xml:space="preserve">
+    <value>New version</value>
+  </data>
+  <data name="Notice.Kind.PrivacyNotice" xml:space="preserve">
+    <value>Privacy notice</value>
+  </data>
+  <data name="Notice.Kind.ConsentText" xml:space="preserve">
+    <value>Consent text</value>
+  </data>
+  <data name="Notice.Kind.TermsOfUse" xml:space="preserve">
+    <value>Terms of use</value>
+  </data>
+  <data name="Notice.Kind.Attestation" xml:space="preserve">
+    <value>Officer's attestation</value>
+  </data>
+  <data name="Notice.Audience.Beekeeper" xml:space="preserve">
+    <value>Beekeepers</value>
+  </data>
+  <data name="Notice.Audience.Member" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="Notice.Audience.All" xml:space="preserve">
+    <value>Everyone</value>
+  </data>
+  <data name="Notice.IsDraft" xml:space="preserve">
+    <value>Draft (not yet approved by the data-protection office)</value>
+  </data>
+  <data name="Notice.Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="Notice.Publish" xml:space="preserve">
+    <value>Publish</value>
+  </data>
+  <data name="Notice.Banner" xml:space="preserve">
+    <value>Please read the privacy notice and confirm that you have read it.</value>
+  </data>
+  <data name="Notice.ReadAndAccept" xml:space="preserve">
+    <value>Read and confirm</value>
+  </data>
+  <data name="Org.DataControllerMissing" xml:space="preserve">
+    <value>missing</value>
+  </data>
+  <data name="Org.DataControllerHelp" xml:space="preserve">
+    <value>Named in the organization's privacy notice. The platform administrator or the organization's Compliance Officer keeps it up to date.</value>
+  </data>
+  <data name="Org.DataControllerName" xml:space="preserve">
+    <value>Legal name</value>
+  </data>
+  <data name="Org.DataControllerContact" xml:space="preserve">
+    <value>Contact (e-mail or phone)</value>
+  </data>
+  <data name="Org.DataControllerAddress" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="A code was sent by SMS. Enter it below." xml:space="preserve">
+    <value>A code was sent by SMS. Enter it below.</value>
+  </data>
+  <data name="Tick the box to confirm that you have read the notice." xml:space="preserve">
+    <value>Tick the box to confirm that you have read the notice.</value>
+  </data>
+  <data name="Thank you. Your acceptance of the notice is recorded." xml:space="preserve">
+    <value>Thank you. Your acceptance of the notice is recorded.</value>
+  </data>
+  <data name="Choose the kind, the audience and the language." xml:space="preserve">
+    <value>Choose the kind, the audience and the language.</value>
+  </data>
+  <data name="Enter the version (at most 40 characters) and the text." xml:space="preserve">
+    <value>Enter the version (at most 40 characters) and the text.</value>
+  </data>
+  <data name="A consent text needs its purpose." xml:space="preserve">
+    <value>A consent text needs its purpose.</value>
+  </data>
+  <data name="This version already exists in this language. Publish a new version." xml:space="preserve">
+    <value>This version already exists in this language. Publish a new version.</value>
+  </data>
+  <data name="Notice published; the previous version of this text is retired." xml:space="preserve">
+    <value>Notice published; the previous version of this text is retired.</value>
+  </data>
+  <data name="Data controller details saved." xml:space="preserve">
+    <value>Data controller details saved.</value>
+  </data>
 </root>

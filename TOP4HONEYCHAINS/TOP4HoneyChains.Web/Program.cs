@@ -125,6 +125,10 @@ builder.Services.AddHttpClient<TOP4HoneyChains.Web.Services.Messaging.IletiMerke
 builder.Services.AddScoped<TOP4HoneyChains.Web.Services.Messaging.SmsGatewayFactory>();
 builder.Services.AddScoped<TOP4HoneyChains.Web.Services.Messaging.IMessageService, TOP4HoneyChains.Web.Services.Messaging.MessageService>();
 builder.Services.AddHostedService<TOP4HoneyChains.Web.Services.Messaging.SmsStatusPoller>();
+// D-78 P1 (D78-SPEC 4.9): information notices; Notices:Enforce (default false) decides whether the gate blocks or only shows a banner
+builder.Services.Configure<NoticeOptions>(builder.Configuration.GetSection("Notices"));
+builder.Services.AddScoped<NoticeService>();
+builder.Services.AddScoped<AccountGateFilter>();
 builder.Services.AddScoped<AuditWriter>();
 builder.Services.AddScoped<ManualRegistryVerifier>();
 builder.Services.AddScoped<IRegistryVerifier>(sp => sp.GetRequiredService<ManualRegistryVerifier>());
@@ -147,6 +151,9 @@ builder.Services.AddControllersWithViews(options =>
 
     // FK/unique violations on save/delete -> friendly message instead of HTTP 500
     options.Filters.Add<DbUpdateExceptionFilter>();
+
+    // D-78: notices to accept (and, from P1 credentials, the forced first password change) before the panel opens
+    options.Filters.AddService<AccountGateFilter>();
 
     // Server messages are written in English and translated at display time (English stays the fallback)
     options.Filters.Add<TranslateModelStateFilter>();

@@ -1,0 +1,60 @@
+@model List<TOP4HoneyChains.Web.Models.Entities.Notice>
+@{
+    ViewData["Title"] = L["Notice.AdminTitle"].Value;
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var accepted = ViewBag.Accepted as Dictionary<int, int> ?? new();
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-2 gap-2 flex-wrap">
+                        <div>
+                            <h4 class="card-title mb-1">@L["Notice.AdminTitle"]</h4>
+                            <p class="card-title-desc mb-0">@L["Notice.AdminHelp"]</p>
+                        </div>
+                        <a href="/Notices/Publish" class="btn btn-primary" id="notice-publish">@L["Notice.PublishNew"]</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered small" id="notices">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>@L["Notice.Kind"]</th><th>@L["Notice.Audience"]</th><th>@L["Organization"]</th><th>@L["Notice.Purpose"]</th>
+                                    <th>@L["Notice.Version"]</th><th>@L["Language"]</th><th>@L["Notice.Published"]</th><th>@L["Notice.Acceptances"]</th><th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var n in Model)
+                                {
+                                    <tr class="@(n.RetiredAt != null ? "text-muted" : "")">
+                                        <td>@L["Notice.Kind." + n.Kind]</td>
+                                        <td>@L["Notice.Audience." + n.Audience]</td>
+                                        <td>@(n.Org?.DisplayName ?? "TOP4HoneyChains")</td>
+                                        <td>@(n.Purpose == null ? "" : L["Consent." + n.Purpose].Value)</td>
+                                        <td>
+                                            @n.Version
+                                            @if (n.IsDraft)
+                                            {
+                                                <span class="badge bg-warning-subtle text-dark border">@L["Notice.Draft"]</span>
+                                            }
+                                            @if (n.RetiredAt != null)
+                                            {
+                                                <span class="badge bg-light text-dark border">@L["Notice.Retired"]</span>
+                                            }
+                                        </td>
+                                        <td>@n.Language</td>
+                                        <td class="text-nowrap">@n.PublishedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</td>
+                                        <td>@accepted.GetValueOrDefault(n.NoticeId)</td>
+                                        <td class="text-nowrap"><a href="/Notices/Text/@n.NoticeId">@L["Notice.Show"]</a> · <a href="/Notices/Publish?from=@n.NoticeId">@L["Notice.NewVersion"]</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
