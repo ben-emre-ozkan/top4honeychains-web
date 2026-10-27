@@ -28,7 +28,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
     options.Password.RequireLowercase = false;
     options.Password.RequireUppercase = false;
     options.Password.RequireNonAlphanumeric = false;
-    options.Password.RequiredLength = 6; // Telefon için yeterli
+    options.Password.RequiredLength = 10;   // D-78 (D78-SPEC 4.3): at least 10 characters for new passwords; plus PasswordPolicyValidator
 
     // Lock an account for 15 minutes after 5 failed sign-ins (brute-force protection)
     options.Lockout.AllowedForNewUsers = true;
@@ -37,6 +37,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 })
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddErrorDescriber<LocalizedIdentityErrors>()   // D-75: account errors in the user's language
+.AddPasswordValidator<PasswordPolicyValidator>()   // D-78: not the user name, not a common password
 .AddDefaultTokenProviders();
 
 builder.Services.ConfigureApplicationCookie(options =>
@@ -129,6 +130,7 @@ builder.Services.AddHostedService<TOP4HoneyChains.Web.Services.Messaging.SmsStat
 builder.Services.Configure<NoticeOptions>(builder.Configuration.GetSection("Notices"));
 builder.Services.AddScoped<NoticeService>();
 builder.Services.AddScoped<AccountGateFilter>();
+builder.Services.AddScoped<CredentialService>();
 builder.Services.AddScoped<AuditWriter>();
 builder.Services.AddScoped<ManualRegistryVerifier>();
 builder.Services.AddScoped<IRegistryVerifier>(sp => sp.GetRequiredService<ManualRegistryVerifier>());

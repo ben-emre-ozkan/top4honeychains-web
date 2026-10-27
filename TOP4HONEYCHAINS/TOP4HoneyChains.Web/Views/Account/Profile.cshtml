@@ -44,19 +44,29 @@
 
                                 <div class="mb-3">
 
-                                    <label class="form-label">@L["Phone Number"]</label>
+                                    <label class="form-label">@L["Phone Number"]
+                                        @if (Model.PhoneConfirmed)
+                                        {
+                                            <span class="badge bg-success-subtle text-success border ms-1" id="phone-verified"><i class="mdi mdi-check"></i> @L["Phone.Verified"]</span>
+                                        }
+                                        else if (!string.IsNullOrEmpty(Model.PhoneNumber))
+                                        {
+                                            <span class="badge bg-warning-subtle text-dark border ms-1" id="phone-unverified">@L["Phone.NotVerified"]</span>
+                                        }
+                                    </label>
 
                                     <input asp-for="PhoneNumber"
                                            class="form-control"
                                            placeholder="+90 5xx xxx xxxx" />
+                                    <div class="form-text">@L["Phone.Help"]</div>
 
                                 </div>
 
                                 <div class="d-flex gap-2">
 
                                     <button type="submit"
-                                            class="btn btn-primary waves-effect waves-light">
-                                        @L["Save"]
+                                            class="btn btn-primary waves-effect waves-light" id="phone-send-code">
+                                        @L["Notice.SendCode"]
                                     </button>
 
                                     <button type="button"
@@ -69,6 +79,18 @@
                                 </div>
 
                             </form>
+
+                            @if (TempData.Peek("PendingPhone") is string pendingPhone)
+                            {
+                                <form asp-action="VerifyPhone" method="post" class="row g-2 align-items-end mt-3" id="phone-verify">
+                                    <input type="hidden" name="phone" value="@pendingPhone" />
+                                    <div class="col-auto">
+                                        <label class="form-label" for="phone-code">@L["Notice.Code"] · @TOP4HoneyChains.Web.Services.PhoneNumberPolicy.Display(pendingPhone)</label>
+                                        <input id="phone-code" name="code" class="form-control" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" required />
+                                    </div>
+                                    <div class="col-auto"><button type="submit" class="btn btn-success">@L["Notice.Accept"]</button></div>
+                                </form>
+                            }
 
                         </div>
                     </div>

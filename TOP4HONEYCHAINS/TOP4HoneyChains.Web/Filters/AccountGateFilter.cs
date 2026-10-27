@@ -8,8 +8,9 @@ using TOP4HoneyChains.Web.Services.OrgModel;
 namespace TOP4HoneyChains.Web.Filters
 {
     /// <summary>
-    /// D-78 P1 (D78-SPEC 4.9): what a signed-in user must do before using the panel. With Notices:Enforce, a user who has not
-    /// accepted the current notice(s) is sent to the notice page first; while it is off, a banner asks instead (O-14).
+    /// D-78 P1 (D78-SPEC 4.3, 4.9): what a signed-in user must do before using the panel. First, a user with issued sign-in
+    /// details changes the temporary password (always). Then, with Notices:Enforce, a user who has not accepted the current
+    /// notice(s) is sent to the notice page; while it is off, a banner asks instead (O-14).
     /// Public pages and the pages of the gate itself are never redirected.
     /// </summary>
     public class AccountGateFilter : IAsyncActionFilter
@@ -18,12 +19,17 @@ namespace TOP4HoneyChains.Web.Filters
         private static readonly HashSet<string> Open = new(StringComparer.OrdinalIgnoreCase)
         {
             "Account.Logout", "Account.Login", "Account.AccessDenied", "Home.SetLanguage",
-            "Notices.Accept", "Notices.SendCode", "Notices.Public"
+            "Notices.Accept", "Notices.SendCode", "Notices.Public", "Account.FirstPassword"
         };
 
         private readonly NoticeService _notices;
+        private readonly CredentialService _credentials;
 
-        public AccountGateFilter(NoticeService notices) => _notices = notices;
+        public AccountGateFilter(NoticeService notices, CredentialService credentials)
+        {
+            _notices = notices;
+            _credentials = credentials;
+        }
 
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
@@ -35,6 +41,11 @@ namespace TOP4HoneyChains.Web.Filters
                 return;
             }
 
+            if (await _credentials.PendingAsync(userId) != null)
+            {
+                context.Result = new RedirectResult("/Account/FirstPassword");
+                return;
+            }
             if (_notices.Options.Enforce && (await _notices.PendingForCurrentUserAsync(http, userId)).Count > 0)
             {
                 context.Result = new RedirectResult("/Notices/Accept?returnUrl=" + Uri.EscapeDataString(http.Request.Path + http.Request.QueryString));

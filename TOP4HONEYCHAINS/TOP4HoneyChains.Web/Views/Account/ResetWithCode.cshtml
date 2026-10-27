@@ -1,0 +1,39 @@
+@{
+    ViewBag.Title = L["Reset Password"].Value;
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+}
+
+<h1 class="au-title">@L["Create New Password"]</h1>
+<p class="au-sub">@L["Reset.CodeIntro"]</p>
+
+<form asp-action="ResetWithCode" asp-controller="Account" method="post" class="au-form" id="reset-with-code">
+    <div class="au-field">
+        <label for="userName">@L["User Name"]</label>
+        <input id="userName" name="userName" value="@ViewBag.UserName" autocomplete="username" required />
+    </div>
+    <div class="au-field">
+        <label for="code">@L["Notice.Code"]</label>
+        <input id="code" name="code" class="au-code-input" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" required />
+    </div>
+    <div class="au-field">
+        <label for="password">@L["New Password"]</label>
+        <input id="password" name="password" type="password" autocomplete="new-password" minlength="10" required />
+        <small class="text-muted">@L["Password.Rule"]</small>
+    </div>
+    <div class="au-field">
+        <label for="confirmPassword">@L["Confirm Password"]</label>
+        <input id="confirmPassword" name="confirmPassword" type="password" autocomplete="new-password" minlength="10" required />
+    </div>
+    <button type="submit" class="b-btn b-btn-honey au-submit">@L["Reset Password"]</button>
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="au-alert au-alert-error" role="alert" id="reset-errors">
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <div>@Msg.T(error.ErrorMessage)</div>
+            }
+        </div>
+    }
+</form>
+<p class="au-alt"><a asp-action="ForgotPassword" class="au-link b-link">@L["Notice.SendNewCode"]</a></p>
