@@ -39,7 +39,7 @@ Canlı veriler: tüm betikler ekleme yapıyor (018'den 026'ya), hiçbir satır d
 
 Toplam yaklaşık 56–72 geliştirici günü. Hiçbir şey parça parça canlıya çıkmıyor; dağıtım öncesi onayınız alınacak.
 
-**SMS paketi:** ilk yıl için yaklaşık 1.900 SMS (bilgilendirme mesajlarıyla 2.500). Öneri: **5.000'lik paket**. Gönderici adı (ör. TOP4HONEY) kaydı için sağlayıcının istediği belgeler ve mesajların "bilgilendirme" (İYS gerektirmeyen) olarak gönderilmesi satın almadan önce teyit edilmeli.
+**SMS paketi:** ilk yıl için yaklaşık 2.100 SMS (bilgilendirme mesajlarıyla 2.700). Öneri: **5.000'lik paket**. Gönderici adı (ör. TOP4HONEY) kaydı için sağlayıcının istediği belgeler ve mesajların "bilgilendirme" (İYS gerektirmeyen) olarak gönderilmesi satın almadan önce teyit edilmeli.
 
 ## Sizden / koordinatörden beklenen kararlar
 

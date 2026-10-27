@@ -106,6 +106,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 error = "Choose an organization.";
             else if (!OrgRoles.All.Contains(orgRole))
                 error = "Choose an org role.";
+            else if (MembershipRules.Check(orgRole, await _context.OrgCapabilities.Where(c => c.OrgId == orgId).Select(c => c.Capability).ToListAsync()) is string placement)
+                error = placement;
             else if (await _context.Memberships.AnyAsync(m => m.UserId == user.Id && m.OrgId == orgId && m.OrgRole == orgRole && m.Status == MembershipStatus.Active))
                 error = "The user already has this role in the organization.";
             if (error != null)

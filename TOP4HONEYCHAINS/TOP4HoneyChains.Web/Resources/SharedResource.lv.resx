@@ -7134,4 +7134,118 @@
   <data name="The exact location is only kept for the records; public pages show the province only." xml:space="preserve">
     <value>Precīzā atrašanās vieta tiek glabāta tikai ierakstos; publiskajās lapās redzama tikai province.</value>
   </data>
+  <data name="Area.Registration" xml:space="preserve">
+    <value>Biškopju reģistrācija</value>
+  </data>
+  <data name="Area.Evidence" xml:space="preserve">
+    <value>Parakstīta foto pierādījums (pieņemt vai noraidīt)</value>
+  </data>
+  <data name="Cap.Uses.BeekeeperRegistration" xml:space="preserve">
+    <value>Novada lauksaimniecības pārvalde: tās reģistrācijas speciālisti reģistrē biškopjus un viņu dravas, pārbauda reģistra numuru, apstiprina identitāti un piekrišanu ar SMS kodu (vai parakstītu foto) un izsniedz pieteikšanās datus.</value>
+  </data>
+  <data name="Org.NoComplianceOfficer" xml:space="preserve">
+    <value>Šai organizācijai vēl nav atbilstības speciālista. Katra organizācija nosaka vismaz vienu (tas var būt organizācijas administrators ar otru dalību).</value>
+  </data>
+  <data name="The beekeeper registration officer role needs an organization with the Beekeeper registration capability." xml:space="preserve">
+    <value>Biškopju reģistrācijas speciālista lomai vajadzīga organizācija ar spēju Biškopju reģistrācija.</value>
+  </data>
+  <data name="Revoke the beekeeper registration officers of this organization first." xml:space="preserve">
+    <value>Vispirms atsauciet šīs organizācijas biškopju reģistrācijas speciālistus.</value>
+  </data>
+  <data name="A mobile phone number is required." xml:space="preserve">
+    <value>Nepieciešams mobilā tālruņa numurs.</value>
+  </data>
+  <data name="SMS to numbers outside the allowed countries is not enabled." xml:space="preserve">
+    <value>SMS sūtīšana uz numuriem ārpus atļautajām valstīm nav ieslēgta.</value>
+  </data>
+  <data name="The daily SMS limit of the platform is reached. Try again tomorrow or use the signed-photo path." xml:space="preserve">
+    <value>Sasniegts platformas dienas SMS limits. Mēģiniet rīt vai izmantojiet parakstīta foto ceļu.</value>
+  </data>
+  <data name="Wait a minute before sending a new code." xml:space="preserve">
+    <value>Pagaidiet minūti, pirms sūtāt jaunu kodu.</value>
+  </data>
+  <data name="Too many codes for this record in the last hour. Try again later." xml:space="preserve">
+    <value>Pēdējā stundā šim ierakstam nosūtīts pārāk daudz kodu. Mēģiniet vēlāk.</value>
+  </data>
+  <data name="Too many codes to this phone number. Try again later." xml:space="preserve">
+    <value>Uz šo tālruņa numuru nosūtīts pārāk daudz kodu. Mēģiniet vēlāk.</value>
+  </data>
+  <data name="You have sent too many codes in the last hour. Try again later." xml:space="preserve">
+    <value>Pēdējā stundā esat nosūtījis pārāk daudz kodu. Mēģiniet vēlāk.</value>
+  </data>
+  <data name="The SMS could not be sent. Try again, or use the signed-photo path." xml:space="preserve">
+    <value>SMS neizdevās nosūtīt. Mēģiniet vēlreiz vai izmantojiet parakstīta foto ceļu.</value>
+  </data>
+  <data name="The SMS could not be sent. Try again later." xml:space="preserve">
+    <value>SMS neizdevās nosūtīt. Mēģiniet vēlāk.</value>
+  </data>
+  <data name="Too many wrong codes. Wait 15 minutes before trying again." xml:space="preserve">
+    <value>Pārāk daudz nepareizu kodu. Pagaidiet 15 minūtes, pirms mēģināt vēlreiz.</value>
+  </data>
+  <data name="No valid code. Send a new code." xml:space="preserve">
+    <value>Nav derīga koda. Nosūtiet jaunu kodu.</value>
+  </data>
+  <data name="The code has expired. Send a new code." xml:space="preserve">
+    <value>Koda derīgums ir beidzies. Nosūtiet jaunu kodu.</value>
+  </data>
+  <data name="The details changed after the code was sent. Send a new code." xml:space="preserve">
+    <value>Pēc koda nosūtīšanas dati mainījās. Nosūtiet jaunu kodu.</value>
+  </data>
+  <data name="Wrong code. The code is no longer valid; send a new code." xml:space="preserve">
+    <value>Nepareizs kods. Kods vairs nav derīgs; nosūtiet jaunu kodu.</value>
+  </data>
+  <data name="Wrong code. {0} tries left." xml:space="preserve">
+    <value>Nepareizs kods. Atlikuši mēģinājumi: {0}.</value>
+  </data>
+  <data name="Sms.Outbox" xml:space="preserve">
+    <value>SMS izsūtne (testa pakalpojums)</value>
+  </data>
+  <data name="Sms.OutboxHelp" xml:space="preserve">
+    <value>Testa pakalpojums neko nesūta: katra ziņa ar kodu tiek parādīta šeit. Šī lapa pastāv tikai, kamēr Sms:Provider ir Fake (izstrāde un demonstrācijas).</value>
+  </data>
+  <data name="Sms.SegmentsToday" xml:space="preserve">
+    <value>Daļas šodien / dienas limits</value>
+  </data>
+  <data name="Sms.Time" xml:space="preserve">
+    <value>Laiks</value>
+  </data>
+  <data name="Sms.Purpose" xml:space="preserve">
+    <value>Mērķis</value>
+  </data>
+  <data name="Sms.To" xml:space="preserve">
+    <value>Kam</value>
+  </data>
+  <data name="Sms.Text" xml:space="preserve">
+    <value>Teksts</value>
+  </data>
+  <data name="Sms.Segments" xml:space="preserve">
+    <value>Daļas</value>
+  </data>
+  <data name="Sms.Status" xml:space="preserve">
+    <value>Statuss</value>
+  </data>
+  <data name="Sms.NoMessages" xml:space="preserve">
+    <value>Vēl nav ziņu.</value>
+  </data>
+  <data name="Sms.Purpose.Registration" xml:space="preserve">
+    <value>Reģistrācija un piekrišana</value>
+  </data>
+  <data name="Sms.Purpose.Credentials" xml:space="preserve">
+    <value>Pieteikšanās dati</value>
+  </data>
+  <data name="Sms.Purpose.IntakeConfirm" xml:space="preserve">
+    <value>Piegādes apstiprinājums</value>
+  </data>
+  <data name="Sms.Purpose.PasswordReset" xml:space="preserve">
+    <value>Paroles atjaunošana</value>
+  </data>
+  <data name="Sms.Purpose.NoticeConfirm" xml:space="preserve">
+    <value>Paziņojuma apstiprinājums</value>
+  </data>
+  <data name="Sms.Purpose.PhoneVerify" xml:space="preserve">
+    <value>Tālruņa pārbaude</value>
+  </data>
+  <data name="Sms.Purpose.Info" xml:space="preserve">
+    <value>Informācija</value>
+  </data>
 </root>

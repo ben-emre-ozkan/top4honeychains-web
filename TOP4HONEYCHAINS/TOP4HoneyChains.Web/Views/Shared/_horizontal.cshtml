@@ -1,6 +1,7 @@
 @inject TOP4HoneyChains.Web.Services.OrgModel.Permissions MenuPermissions
 @inject Microsoft.Extensions.Options.IOptions<TOP4HoneyChains.Web.Services.OrgModel.FeatureFlags> FeatureFlagOptions
 @inject TOP4HoneyChains.Web.Services.OrgModel.ICurrentOrg MenuCurrentOrg
+@inject Microsoft.Extensions.Options.IOptions<TOP4HoneyChains.Web.Services.Messaging.SmsOptions> MenuSmsOptions
 @using System.Globalization
 @* App shell top bar (D-66): sticky, translucent; brand, role chip, language and account in one row, the menu below.
    Styles: wwwroot/css/app-skin.css (driven by brand.css). The template's classes (topnav, dropdowns, collapse) stay. *@
@@ -34,7 +35,7 @@
             ["raw"] = new[] { "RawHoneyProductions", "HoneyTypes", "RawHoneyProductionPeriods" }, ["wholesalers"] = new[] { "Wholesalers" },
             ["final"] = new[] { "FinalHoneyProductions", "Flow" },
             ["ccp"] = new[] { "CriticalControlPoints", "CriticalControlPointParameterCategories", "CriticalControlPointParameters", "CriticalControlPointParameterContents", "ReferenceTranslations", "CCPMonitoring" },
-            ["users"] = new[] { "UserManagement", "RoleManagement", "Audit" },
+            ["users"] = new[] { "UserManagement", "RoleManagement", "Audit", "Sms" },
             ["orgs"] = new[] { "MyWork", "Organizations", "Capabilities", "Permissions", "CcpResponsibilities", "Shipments", "Samples", "LabReports", "Storefronts", "OrgWorkspace", "Intake" }
         };
     string Cur(string group) => groups.TryGetValue(group, out var c) && current.Any(x => c.Contains(x, StringComparer.OrdinalIgnoreCase)) ? "is-current" : "";
@@ -228,6 +229,10 @@
                                     <a href="/UserManagement/Index" class="dropdown-item">@L["Menu.Users"]</a>
                                     <a href="/RoleManagement/Index" class="dropdown-item">@L["Menu.Roles"]</a>
                                     <a href="/Audit/Index" class="dropdown-item">@L["Audit.Title"]</a>
+                                    @if (MenuSmsOptions.Value.IsFake)
+                                    {
+                                        <a href="/Sms/Outbox" class="dropdown-item" id="menu-sms-outbox">@L["Sms.Outbox"]</a>
+                                    }
                                 </div>
                             </li>
 

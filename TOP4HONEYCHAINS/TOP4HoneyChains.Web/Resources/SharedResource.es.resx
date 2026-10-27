@@ -7134,4 +7134,118 @@
   <data name="The exact location is only kept for the records; public pages show the province only." xml:space="preserve">
     <value>La ubicación exacta solo se guarda en los registros; las páginas públicas muestran solo la provincia.</value>
   </data>
+  <data name="Area.Registration" xml:space="preserve">
+    <value>Registro de apicultores</value>
+  </data>
+  <data name="Area.Evidence" xml:space="preserve">
+    <value>Prueba con foto firmada (aceptar o rechazar)</value>
+  </data>
+  <data name="Cap.Uses.BeekeeperRegistration" xml:space="preserve">
+    <value>Dirección distrital de agricultura: sus responsables de registro inscriben a los apicultores y sus colmenares, comprueban el número de registro, confirman la identidad y el consentimiento con un código SMS (o una foto firmada) y emiten el acceso.</value>
+  </data>
+  <data name="Org.NoComplianceOfficer" xml:space="preserve">
+    <value>Esta organización aún no tiene Responsable de cumplimiento. Cada organización nombra al menos uno (puede ser el administrador de la organización con una segunda membresía).</value>
+  </data>
+  <data name="The beekeeper registration officer role needs an organization with the Beekeeper registration capability." xml:space="preserve">
+    <value>El rol de responsable de registro de apicultores requiere una organización con la capacidad Registro de apicultores.</value>
+  </data>
+  <data name="Revoke the beekeeper registration officers of this organization first." xml:space="preserve">
+    <value>Primero revoque a los responsables de registro de apicultores de esta organización.</value>
+  </data>
+  <data name="A mobile phone number is required." xml:space="preserve">
+    <value>Se requiere un número de teléfono móvil.</value>
+  </data>
+  <data name="SMS to numbers outside the allowed countries is not enabled." xml:space="preserve">
+    <value>El envío de SMS a números fuera de los países permitidos no está habilitado.</value>
+  </data>
+  <data name="The daily SMS limit of the platform is reached. Try again tomorrow or use the signed-photo path." xml:space="preserve">
+    <value>Se alcanzó el límite diario de SMS de la plataforma. Inténtelo mañana o use la vía de la foto firmada.</value>
+  </data>
+  <data name="Wait a minute before sending a new code." xml:space="preserve">
+    <value>Espere un minuto antes de enviar un código nuevo.</value>
+  </data>
+  <data name="Too many codes for this record in the last hour. Try again later." xml:space="preserve">
+    <value>Demasiados códigos para este registro en la última hora. Inténtelo más tarde.</value>
+  </data>
+  <data name="Too many codes to this phone number. Try again later." xml:space="preserve">
+    <value>Demasiados códigos a este número de teléfono. Inténtelo más tarde.</value>
+  </data>
+  <data name="You have sent too many codes in the last hour. Try again later." xml:space="preserve">
+    <value>Ha enviado demasiados códigos en la última hora. Inténtelo más tarde.</value>
+  </data>
+  <data name="The SMS could not be sent. Try again, or use the signed-photo path." xml:space="preserve">
+    <value>No se pudo enviar el SMS. Inténtelo de nuevo o use la vía de la foto firmada.</value>
+  </data>
+  <data name="The SMS could not be sent. Try again later." xml:space="preserve">
+    <value>No se pudo enviar el SMS. Inténtelo más tarde.</value>
+  </data>
+  <data name="Too many wrong codes. Wait 15 minutes before trying again." xml:space="preserve">
+    <value>Demasiados códigos incorrectos. Espere 15 minutos antes de volver a intentarlo.</value>
+  </data>
+  <data name="No valid code. Send a new code." xml:space="preserve">
+    <value>No hay un código válido. Envíe un código nuevo.</value>
+  </data>
+  <data name="The code has expired. Send a new code." xml:space="preserve">
+    <value>El código ha caducado. Envíe un código nuevo.</value>
+  </data>
+  <data name="The details changed after the code was sent. Send a new code." xml:space="preserve">
+    <value>Los datos cambiaron después de enviar el código. Envíe un código nuevo.</value>
+  </data>
+  <data name="Wrong code. The code is no longer valid; send a new code." xml:space="preserve">
+    <value>Código incorrecto. El código ya no es válido; envíe uno nuevo.</value>
+  </data>
+  <data name="Wrong code. {0} tries left." xml:space="preserve">
+    <value>Código incorrecto. Quedan {0} intentos.</value>
+  </data>
+  <data name="Sms.Outbox" xml:space="preserve">
+    <value>Bandeja de salida de SMS (proveedor de prueba)</value>
+  </data>
+  <data name="Sms.OutboxHelp" xml:space="preserve">
+    <value>El proveedor de prueba no envía nada: cada mensaje, con su código, se muestra aquí. Esta página solo existe mientras Sms:Provider es Fake (desarrollo y demostraciones).</value>
+  </data>
+  <data name="Sms.SegmentsToday" xml:space="preserve">
+    <value>Segmentos hoy / límite diario</value>
+  </data>
+  <data name="Sms.Time" xml:space="preserve">
+    <value>Hora</value>
+  </data>
+  <data name="Sms.Purpose" xml:space="preserve">
+    <value>Finalidad</value>
+  </data>
+  <data name="Sms.To" xml:space="preserve">
+    <value>Para</value>
+  </data>
+  <data name="Sms.Text" xml:space="preserve">
+    <value>Texto</value>
+  </data>
+  <data name="Sms.Segments" xml:space="preserve">
+    <value>Segmentos</value>
+  </data>
+  <data name="Sms.Status" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="Sms.NoMessages" xml:space="preserve">
+    <value>Aún no hay mensajes.</value>
+  </data>
+  <data name="Sms.Purpose.Registration" xml:space="preserve">
+    <value>Registro y consentimiento</value>
+  </data>
+  <data name="Sms.Purpose.Credentials" xml:space="preserve">
+    <value>Datos de acceso</value>
+  </data>
+  <data name="Sms.Purpose.IntakeConfirm" xml:space="preserve">
+    <value>Confirmación de entrega</value>
+  </data>
+  <data name="Sms.Purpose.PasswordReset" xml:space="preserve">
+    <value>Restablecer contraseña</value>
+  </data>
+  <data name="Sms.Purpose.NoticeConfirm" xml:space="preserve">
+    <value>Confirmación del aviso</value>
+  </data>
+  <data name="Sms.Purpose.PhoneVerify" xml:space="preserve">
+    <value>Verificación del teléfono</value>
+  </data>
+  <data name="Sms.Purpose.Info" xml:space="preserve">
+    <value>Información</value>
+  </data>
 </root>

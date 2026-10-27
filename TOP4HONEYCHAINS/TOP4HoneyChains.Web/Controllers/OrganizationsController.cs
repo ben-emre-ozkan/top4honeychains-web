@@ -193,6 +193,7 @@ namespace TOP4HoneyChains.Web.Controllers
             var userIds = members.Select(m => m.UserId).Distinct().ToList();
             ViewBag.UserNames = await _userManager.Users.Where(u => userIds.Contains(u.Id)).ToDictionaryAsync(u => u.Id, u => u.UserName ?? u.Id);
             ViewBag.Members = members;
+            ViewBag.MissingComplianceOfficer = MembershipRules.MissingComplianceOfficer(org.Status, members);
             ViewBag.CanManageDocuments = await AllowedAsync(org, OrgOperations.ManageDocuments);
             ViewBag.CanVerify = await AllowedAsync(org, OrgOperations.Verify);
             ViewBag.IsAdmin = _current.IsPlatformAdmin;
@@ -249,6 +250,9 @@ namespace TOP4HoneyChains.Web.Controllers
                 TempData["Error"] = "The platform capability cannot be removed.";
             else if (org.Capabilities.Count == 1)
                 TempData["Error"] = "An organization needs at least one capability.";
+            else if (capability == Capabilities.BeekeeperRegistration
+                     && await _context.Memberships.AnyAsync(m => m.OrgId == id && m.OrgRole == OrgRoles.RegistrationOfficer && m.Status == MembershipStatus.Active))
+                TempData["Error"] = "Revoke the beekeeper registration officers of this organization first.";
             else
             {
                 _context.OrgCapabilities.Remove(cap);
@@ -396,6 +400,11 @@ namespace TOP4HoneyChains.Web.Controllers
             if (!OrgRoles.All.Contains(orgRole))
             {
                 TempData["Error"] = "Choose an org role.";
+                return RedirectToAction(nameof(Details), new { id });
+            }
+            if (MembershipRules.Check(orgRole, org.Capabilities.Select(c => c.Capability)) is string placement)
+            {
+                TempData["Error"] = placement;
                 return RedirectToAction(nameof(Details), new { id });
             }
 

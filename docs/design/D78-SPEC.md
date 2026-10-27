@@ -274,7 +274,7 @@ Existing columns keep their meaning: `SealNumber` (the jar's seal label), `Count
 | SmsId | bigint identity PK | |
 | Purpose | varchar(30) | `Registration`, `Credentials`, `IntakeConfirm`, `PasswordReset`, `NoticeConfirm`, `PhoneVerify`, `Info` |
 | SubjectType, SubjectKey | varchar(30), nvarchar(64) | e.g. `LotIntake` / `123`, `Beekeeper` / id |
-| ToPhoneMasked | varchar(20) | `+90*******4567`; the full number is never stored here |
+| ToPhoneMasked | varchar(20) | `+90******4567`; the full number is never stored here |
 | ToPhoneHash | char(64) | HMAC-SHA256 of the E.164 number, for rate limits |
 | Language | varchar(5) | tr, en, es, pl, lv |
 | BodyStored | nvarchar(800) | with codes and passwords replaced by `******` for a real provider; full text for the fake provider (5.3) |
@@ -296,7 +296,8 @@ Existing columns keep their meaning: `SealNumber` (the jar's seal label), `Count
 | CodeHash | char(64) | HMAC-SHA256(server key, salt + code) |
 | Salt | binary(16) | |
 | ExpiresAt | datetime2 | created + 5 minutes |
-| Attempts | tinyint | max 3 |
+| Attempts | tinyint | wrong entries, max 3 |
+| LastAttemptAt | datetime2 null | time of the last wrong entry (P1 addition: pause of an officer after 10 wrong entries per hour, D-80) |
 | UsedAt, UsedByUserId | null | set once |
 | VoidedAt, VoidReason | null | replaced by a resend, too many attempts, or content changed |
 
@@ -708,7 +709,7 @@ Placeholders: `{org}` organization name, `{code}`, `{link}` short link to the pu
 
 **M6 Information (optional, P3)**: delivery corrected, consent withdrawn, honey in a finalized batch with the Honey Story link. Sent only with the "portal notifications by SMS" consent, except the correction notice, which is always sent.
 
-Length: with the provider's Turkish encoding a segment holds about 155 characters; ES may fit the GSM alphabet if accents are avoided, PL and LV need Unicode (70 characters, 67 per part of a long message). M1 and M3 are about 150–190 characters in Turkish, so they are **2 segments**; M2, M4, M5 are 1 segment in Turkish. The template engine counts segments before sending and stores the count.
+Length: with the provider's Turkish encoding a segment holds about 155 characters; ES may fit the GSM alphabet if accents are avoided, PL and LV need Unicode (70 characters, 67 per part of a long message). M1, M2 and M3 are about 150–190 characters in Turkish, so they are **2 segments** (M2 measured at 178 characters with a short link; the spec first assumed 1); M4 and M5 are 1 segment in Turkish. The template engine counts segments before sending and stores the count.
 
 ### 5.6 Expected volume (to size the package)
 
@@ -717,16 +718,16 @@ Live counts (local copy of production, October 2026): 70 beekeepers, 73 lots, 12
 | Flow | Messages per event | Segments (TR) | Event count, year 1 (estimate) | Segments per year |
 |---|---|---|---|---|
 | Registration and consent (M1), incl. ~20 % resends | 1.2 | 2 | 70 re-verifications + 100 new beekeepers = 170 | ≈ 410 |
-| Credentials, beekeepers (M2), incl. re-issues | 1.2 | 1 | 150 | ≈ 180 |
-| Credentials, members (M2) and their notice confirmations (M5) | 1.2 + 1 | 1 | 60 | ≈ 130 |
+| Credentials, beekeepers (M2), incl. re-issues | 1.2 | 2 | 150 | ≈ 360 |
+| Credentials, members (M2, 2 segments) and their notice confirmations (M5, 1 segment) | 1.2 + 1 | 2 / 1 | 60 | ≈ 200 |
 | Delivery confirmation (M3), incl. resends | 1.2 | 2 | 400 deliveries | ≈ 960 |
 | Password resets (M4) | 1 | 1 | 25 % of 210 accounts | ≈ 55 |
 | Notice re-acceptance after a new version (M5, signing roles) | 1 | 1 | 1 version × 30 | ≈ 30 |
 | Information (M6, optional) | 1 | 1–2 | 400 | ≈ 600 |
 | Tests on the production line before go-live | | | | ≈ 100 |
-| **Total** | | | | **≈ 1 900 without M6, ≈ 2 500 with M6** |
+| **Total** | | | | **≈ 2 100 without M6, ≈ 2 700 with M6** |
 
-Recommendation: a **5 000-SMS package** covers the first year with room for growth; a 2 000 package covers it only without M6 notifications. Formula for other scenarios: segments ≈ 2.4 × registrations + 1.2 × beekeeper accounts + 2.2 × member accounts + 2.4 × deliveries (+ 1.5 × deliveries with M6) + 200 for resets, notices and tests. Set `Sms:DailyLimit` to about 10 × the expected daily average (e.g. 100) so that a bug or abuse cannot empty the package in a day.
+Recommendation: a **5 000-SMS package** covers the first year with room for growth; a 2 000 package is too small. Formula for other scenarios: segments ≈ 2.4 × registrations + 2.4 × beekeeper accounts + 3.4 × member accounts + 2.4 × deliveries (+ 1.5 × deliveries with M6) + 200 for resets, notices and tests. Set `Sms:DailyLimit` to about 10 × the expected daily average (e.g. 100) so that a bug or abuse cannot empty the package in a day.
 
 ---
 

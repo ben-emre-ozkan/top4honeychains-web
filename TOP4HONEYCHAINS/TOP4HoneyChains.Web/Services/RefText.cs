@@ -191,7 +191,8 @@ namespace TOP4HoneyChains.Web.Services
         private static readonly Dictionary<string, string> RoleNames = new(StringComparer.OrdinalIgnoreCase)
         {
             ["Analyst"] = "Analyst", ["FieldInspector"] = "Field inspector", ["LabManager"] = "Lab manager", ["OrgAdmin"] = "Organisation admin",
-            ["QualityApprover"] = "Quality approver", ["SampleAcceptanceOfficer"] = "Sample acceptance officer", ["Staff"] = "Staff"
+            ["QualityApprover"] = "Quality approver", ["SampleAcceptanceOfficer"] = "Sample acceptance officer", ["Staff"] = "Staff",
+            ["RegistrationOfficer"] = "Beekeeper registration officer", ["ComplianceOfficer"] = "Compliance Officer"
         };
 
         // a known role's English name, otherwise the code split at its capitals ("LabManager" -> "Lab manager")

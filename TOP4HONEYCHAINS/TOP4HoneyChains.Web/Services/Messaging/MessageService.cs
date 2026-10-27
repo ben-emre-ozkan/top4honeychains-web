@@ -114,7 +114,8 @@ namespace TOP4HoneyChains.Web.Services.Messaging
         private int SegmentsToday()
         {
             var day = Now.Date;
-            return _db.SmsMessages.Where(m => m.CreatedAt >= day && m.Status != SmsStatus.Failed).Sum(m => (int?)m.Segments) ?? 0;
+            var next = day.AddDays(1);
+            return _db.SmsMessages.Where(m => m.CreatedAt >= day && m.CreatedAt < next && m.Status != SmsStatus.Failed).Sum(m => (int?)m.Segments) ?? 0;
         }
 
         public bool DailyLimitReached() => SegmentsToday() >= _options.DailyLimit;
@@ -254,7 +255,7 @@ namespace TOP4HoneyChains.Web.Services.Messaging
                 await _db.SaveChangesAsync();
                 return new VerifyResult(false, "The code has expired. Send a new code.");
             }
-            if (!string.Equals(otp.ContentSha256, contentSha256, StringComparison.OrdinalIgnoreCase))
+            if (!string.Equals(otp.ContentSha256.Trim(), contentSha256.Trim(), StringComparison.OrdinalIgnoreCase))
             {
                 Void(otp, CodeVoidReason.ContentChanged);
                 await _db.SaveChangesAsync();
