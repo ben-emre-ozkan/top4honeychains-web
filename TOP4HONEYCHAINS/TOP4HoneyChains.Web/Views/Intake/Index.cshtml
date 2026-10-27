@@ -26,7 +26,7 @@
                         }
                     </div>
                     <div class="table-responsive"><table class="table table-sm table-bordered mt-2" id="intakes">
-                        <thead><tr><th>@L["Cust.Lot"]</th><th>@L["Org.Date"]</th><th>@L["Org.Apiary"]</th><th>@L["Org.HoneyType"]</th><th>@L["Org.Amount"]</th><th>@L["Cust.Origin"]</th><th>@L["Cust.DeliveryForm"]</th><th>SMS</th><th></th></tr></thead>
+                        <thead><tr><th>@L["Cust.Lot"]</th><th>@L["Org.Date"]</th><th>@L["Org.Apiary"]</th><th>@L["Org.HoneyType"]</th><th>@L["Org.Amount"]</th><th>@L["Cust.Origin"]</th><th>@L["Ci.Confirmation"]</th><th>SMS</th><th></th></tr></thead>
                         <tbody>
                             @foreach (var i in intakes)
                             {
@@ -37,9 +37,31 @@
                                     <td>@Ref.T("HoneyType", i.RawHoneyProduction?.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeId, "Title", i.RawHoneyProduction?.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle)</td>
                                     <td>@i.Quantity.ToString("0.##")</td>
                                     <td>@i.Province / @i.District</td>
-                                    <td><a asp-action="Form" asp-route-id="@i.IntakeId" target="_blank">@L["Org.Open"]</a> <small class="text-muted" title="SHA-256">@i.FormSha256[..12]…</small></td>
+                                    <td>
+                                        @if (i.IsLegacy)
+                                        {
+                                            <span class="badge bg-light text-dark border intake-legacy">@L["Ci.Legacy"]</span>
+                                            @if (i.FormStoredFileName != null)
+                                            {
+                                                <a asp-action="Form" asp-route-id="@i.IntakeId" target="_blank">@L["Org.Open"]</a> <small class="text-muted" title="SHA-256">@i.FormSha256?[..12]…</small>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <span>@L["Reg78.Method." + i.ConfirmationMethod]</span>
+                                            <span class="badge @(i.EvidenceStatus == "Accepted" ? "bg-success" : i.EvidenceStatus == "Rejected" ? "bg-danger" : "bg-warning text-dark")">@L["Reg78.Evidence." + i.EvidenceStatus]</span>
+                                        }
+                                    </td>
                                     <td>@(i.SmsStatus != null ? L[i.SmsStatus].Value : "–")</td>
-                                    <td class="text-nowrap"><a asp-controller="Samples" asp-action="Create" asp-route-lotId="@i.RawHoneyProductionId" class="btn btn-sm btn-outline-primary">@L["Lab.Sample"]</a>
+                                    <td class="text-nowrap">
+                                        @if (i.IsLegacy)
+                                        {
+                                            <a asp-controller="Samples" asp-action="Create" asp-route-lotId="@i.RawHoneyProductionId" class="btn btn-sm btn-outline-primary">@L["Lab.Sample"]</a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-action="Details" asp-route-id="@i.IntakeId" class="btn btn-sm btn-outline-primary intake-details">@L["Ci.DetailsTitle"]</a>
+                                        }
                                         <a asp-controller="Recall" asp-action="Lot" asp-route-id="@i.RawHoneyProductionId" class="btn btn-sm btn-outline-secondary">@L["Cust.Recall"]</a></td>
                                 </tr>
                             }

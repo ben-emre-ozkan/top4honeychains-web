@@ -7851,4 +7851,262 @@
   <data name="The sign-in details were sent by SMS." xml:space="preserve">
     <value>Pieteikšanās dati nosūtīti pa SMS.</value>
   </data>
+  <data name="Origin Country" xml:space="preserve">
+    <value>Izcelsmes valsts</value>
+  </data>
+  <data name="Period Id" xml:space="preserve">
+    <value>Ražošanas periods</value>
+  </data>
+  <data name="Ci.Help" xml:space="preserve">
+    <value>Reģistrējiet katru piegādes tvertni ar tās plombu, paņemiet paraugu no katras tvertnes, pēc tam biškopis visu apstiprina ar SMS kodu.</value>
+  </data>
+  <data name="Ci.NoPhone" xml:space="preserve">
+    <value>nav mobilā tālruņa: tikai parakstīts foto</value>
+  </data>
+  <data name="Ci.Delivery" xml:space="preserve">
+    <value>Piegāde</value>
+  </data>
+  <data name="Ci.Containers" xml:space="preserve">
+    <value>Tvertnes un paraugi</value>
+  </data>
+  <data name="Ci.ContainersHelp" xml:space="preserve">
+    <value>Viena rinda katrai tvertnei. Noplombētai tvertnei pārbaudiet plombu. Bez plombas: biškopja klātbūtnē uzlieciet uzņēmuma plombu. Tad atveriet, piepildiet parauga un kontrolparauga burku, pārbaudiet, ka vāciņa poga ir nospiesta, un tvertni noplombējiet no jauna.</value>
+  </data>
+  <data name="Ci.Kind" xml:space="preserve">
+    <value>Veids</value>
+  </data>
+  <data name="Ci.Kind.Tin" xml:space="preserve">
+    <value>Kanna</value>
+  </data>
+  <data name="Ci.Kind.Drum" xml:space="preserve">
+    <value>Muca</value>
+  </data>
+  <data name="Ci.Kind.Bucket" xml:space="preserve">
+    <value>Spainis</value>
+  </data>
+  <data name="Ci.Kind.Ibc" xml:space="preserve">
+    <value>IBC</value>
+  </data>
+  <data name="Ci.Kind.Other" xml:space="preserve">
+    <value>Cits</value>
+  </data>
+  <data name="Ci.NetKg" xml:space="preserve">
+    <value>Neto kg</value>
+  </data>
+  <data name="Ci.GrossKg" xml:space="preserve">
+    <value>Bruto kg</value>
+  </data>
+  <data name="Ci.Arrival" xml:space="preserve">
+    <value>Pienākot</value>
+  </data>
+  <data name="Ci.ArrivedSealed" xml:space="preserve">
+    <value>pienāca noplombēta</value>
+  </data>
+  <data name="Ci.OriginSeal" xml:space="preserve">
+    <value>Plombas numurs</value>
+  </data>
+  <data name="Ci.OriginIntact" xml:space="preserve">
+    <value>plomba neskarta</value>
+  </data>
+  <data name="Ci.PlantSeal" xml:space="preserve">
+    <value>Tagad uzliktā uzņēmuma plomba</value>
+  </data>
+  <data name="Ci.JarSeal" xml:space="preserve">
+    <value>Burkas plomba</value>
+  </data>
+  <data name="Ci.CounterSeal" xml:space="preserve">
+    <value>Kontrolparauga plomba</value>
+  </data>
+  <data name="Ci.Cap" xml:space="preserve">
+    <value>Vāciņš neskarts</value>
+  </data>
+  <data name="Ci.CapHelp" xml:space="preserve">
+    <value>Drošības vāciņš: atzīmējiet tikai tad, ja poga ir nospiesta. Izlēkusi poga nozīmē, ka burka atvērta: izmetiet to un piepildiet jaunu.</value>
+  </data>
+  <data name="Ci.Reseal" xml:space="preserve">
+    <value>Jaunā plomba pēc paraugu ņemšanas</value>
+  </data>
+  <data name="Ci.Remove" xml:space="preserve">
+    <value>Noņemt rindu</value>
+  </data>
+  <data name="Ci.AddContainer" xml:space="preserve">
+    <value>Pievienot tvertni</value>
+  </data>
+  <data name="Ci.Total" xml:space="preserve">
+    <value>Kopā neto</value>
+  </data>
+  <data name="Ci.Samples" xml:space="preserve">
+    <value>Laboratorija un kontrolparaugi</value>
+  </data>
+  <data name="Ci.CounterLocation" xml:space="preserve">
+    <value>Kur glabā kontrolparaugus</value>
+  </data>
+  <data name="Ci.RetainUntil" xml:space="preserve">
+    <value>Glabāt līdz</value>
+  </data>
+  <data name="Ci.Confirm" xml:space="preserve">
+    <value>Biškopis apstiprina</value>
+  </data>
+  <data name="Ci.SendHelp" xml:space="preserve">
+    <value>Biškopis saņem SMS ar jūsu organizāciju, datumu, tvertnēm, kilogramiem, medus veidu, paraugu skaitu un kodu. Jebkurai izmaiņai pēc nosūtīšanas vajadzīgs jauns kods.</value>
+  </data>
+  <data name="Ci.NotPresent" xml:space="preserve">
+    <value>Ja biškopis nav klāt, piezvaniet viņam: viņš nolasīs kodu no tālruņa.</value>
+  </data>
+  <data name="Ci.ConfirmButton" xml:space="preserve">
+    <value>Apstiprināt piegādi</value>
+  </data>
+  <data name="Ci.Fallback" xml:space="preserve">
+    <value>SMS nav iespējama: parakstīts foto</value>
+  </data>
+  <data name="Ci.FallbackHelp" xml:space="preserve">
+    <value>Augšupielādējiet biškopja parakstītās piegādes veidlapas foto un norādiet iemeslu. Ar partiju var strādāt, bet to nevar pabeigt, līdz uzņēmuma atbilstības speciālists pieņem foto.</value>
+  </data>
+  <data name="Ci.SaveWithPhoto" xml:space="preserve">
+    <value>Reģistrēt ar parakstītu foto</value>
+  </data>
+  <data name="Ci.DetailsTitle" xml:space="preserve">
+    <value>Piegāde</value>
+  </data>
+  <data name="Ci.RecordedAt" xml:space="preserve">
+    <value>reģistrēts</value>
+  </data>
+  <data name="Ci.Confirmation" xml:space="preserve">
+    <value>Apstiprinājums</value>
+  </data>
+  <data name="Ci.Legacy" xml:space="preserve">
+    <value>agrāka (tvertnes nav reģistrētas)</value>
+  </data>
+  <data name="Ci.ContentHash" xml:space="preserve">
+    <value>Apstiprinātais saturs</value>
+  </data>
+  <data name="Ci.ContentVerified" xml:space="preserve">
+    <value>nemainīts kopš apstiprinājuma</value>
+  </data>
+  <data name="Ci.ContentChanged" xml:space="preserve">
+    <value>mainīts pēc apstiprinājuma</value>
+  </data>
+  <data name="Ci.ReviewHelp" xml:space="preserve">
+    <value>Atveriet parakstīto piegādes veidlapu un salīdziniet ar tvertnēm, svariem un plombu numuriem. Jūs šo piegādi nereģistrējāt.</value>
+  </data>
+  <data name="Ci.WaitingReview" xml:space="preserve">
+    <value>Parakstītais foto gaida atbilstības speciālistu. Jūs reģistrējāt šo piegādi, tāpēc lemj cita persona.</value>
+  </data>
+  <data name="Ci.LabelsA4" xml:space="preserve">
+    <value>Etiķetes (A4 lapa)</value>
+  </data>
+  <data name="Ci.LabelsSingle" xml:space="preserve">
+    <value>Etiķetes (100 × 50 mm)</value>
+  </data>
+  <data name="Ci.Container" xml:space="preserve">
+    <value>Tvertne</value>
+  </data>
+  <data name="Ci.SealHistory" xml:space="preserve">
+    <value>Plombu vēsture</value>
+  </data>
+  <data name="Ci.Jars" xml:space="preserve">
+    <value>Paraugu burkas</value>
+  </data>
+  <data name="Ci.Seal.Checked" xml:space="preserve">
+    <value>Izcelsmes plomba pārbaudīta</value>
+  </data>
+  <data name="Ci.Seal.Applied" xml:space="preserve">
+    <value>Uzlikta uzņēmuma plomba</value>
+  </data>
+  <data name="Ci.Seal.Broken" xml:space="preserve">
+    <value>Plomba noņemta</value>
+  </data>
+  <data name="Ci.Seal.Replaced" xml:space="preserve">
+    <value>Plomba nomainīta</value>
+  </data>
+  <data name="Ci.NotIntact" xml:space="preserve">
+    <value>nav neskarta</value>
+  </data>
+  <data name="Ci.Labels" xml:space="preserve">
+    <value>Etiķetes</value>
+  </data>
+  <data name="Ci.SealShort" xml:space="preserve">
+    <value>Plomba</value>
+  </data>
+  <data name="Ci.SampleJar" xml:space="preserve">
+    <value>Parauga burka</value>
+  </data>
+  <data name="Ci.CounterJar" xml:space="preserve">
+    <value>Kontrolparaugs</value>
+  </data>
+  <data name="Ci.KeepUntil" xml:space="preserve">
+    <value>glabāt līdz</value>
+  </data>
+  <data name="Ci.DeliveryLocked" xml:space="preserve">
+    <value>Biškopis apstiprināja šo piegādi ar tās tvertnēm: dravu, medus veidu, periodu, daudzumu, datumu un izcelsmi nevar mainīt.</value>
+  </data>
+  <data name="Record at least one container." xml:space="preserve">
+    <value>Reģistrējiet vismaz vienu tvertni.</value>
+  </data>
+  <data name="At most 100 containers per delivery." xml:space="preserve">
+    <value>Ne vairāk kā 100 tvertnes vienā piegādē.</value>
+  </data>
+  <data name="Container {0}: choose the kind of container." xml:space="preserve">
+    <value>Tvertne {0}: izvēlieties tvertnes veidu.</value>
+  </data>
+  <data name="Container {0}: enter the net weight (more than 0 kg)." xml:space="preserve">
+    <value>Tvertne {0}: ievadiet neto svaru (vairāk par 0 kg).</value>
+  </data>
+  <data name="Container {0}: the gross weight cannot be lower than the net weight." xml:space="preserve">
+    <value>Tvertne {0}: bruto svars nevar būt mazāks par neto svaru.</value>
+  </data>
+  <data name="Container {0}: enter the number of the seal it arrived with." xml:space="preserve">
+    <value>Tvertne {0}: ievadiet plombas numuru, ar kuru tā pienāca.</value>
+  </data>
+  <data name="Container {0}: apply a plant seal in front of the beekeeper and enter its number." xml:space="preserve">
+    <value>Tvertne {0}: biškopja klātbūtnē uzlieciet uzņēmuma plombu un ievadiet tās numuru.</value>
+  </data>
+  <data name="Container {0}: enter the seal numbers of the sample jar and of the counter-sample jar." xml:space="preserve">
+    <value>Tvertne {0}: ievadiet parauga burkas un kontrolparauga burkas plombu numurus.</value>
+  </data>
+  <data name="Container {0}: the jar's cap must be intact (button down) when sealed. A popped cap: discard the jar and fill a new one." xml:space="preserve">
+    <value>Tvertne {0}: plombējot burkas vāciņam jābūt neskartam (poga nospiesta). Izlēkusi poga: izmetiet burku un piepildiet jaunu.</value>
+  </data>
+  <data name="Container {0}: enter the new plant seal applied after sampling." xml:space="preserve">
+    <value>Tvertne {0}: ievadiet jauno uzņēmuma plombu, kas uzlikta pēc paraugu ņemšanas.</value>
+  </data>
+  <data name="Container {0}: seal numbers have at most 50 characters." xml:space="preserve">
+    <value>Tvertne {0}: plombu numuriem ir ne vairāk kā 50 rakstzīmes.</value>
+  </data>
+  <data name="Every seal number of the delivery must be different." xml:space="preserve">
+    <value>Katram piegādes plombas numuram jābūt atšķirīgam.</value>
+  </data>
+  <data name="The beekeeper has no mobile phone: confirm the delivery with the photo of the signed form." xml:space="preserve">
+    <value>Biškopim nav mobilā tālruņa: apstipriniet piegādi ar parakstītās veidlapas foto.</value>
+  </data>
+  <data name="A code was sent to the beekeeper's phone. Enter the code the beekeeper reads out (in person or by phone)." xml:space="preserve">
+    <value>Kods nosūtīts uz biškopja tālruni. Ievadiet kodu, ko biškopis nolasa (klātienē vai pa tālruni).</value>
+  </data>
+  <data name="Delivery confirmed by the beekeeper and recorded as lot #{0}." xml:space="preserve">
+    <value>Piegādi apstiprināja biškopis, un tā reģistrēta kā partija #{0}.</value>
+  </data>
+  <data name="Delivery recorded as lot #{0} with the signed photo; it waits for the Compliance Officer." xml:space="preserve">
+    <value>Piegāde reģistrēta kā partija #{0} ar parakstītu foto; tā gaida atbilstības speciālistu.</value>
+  </data>
+  <data name="This delivery was already reviewed." xml:space="preserve">
+    <value>Šī piegāde jau ir pārbaudīta.</value>
+  </data>
+  <data name="You recorded this delivery; another person must review its signed photo." xml:space="preserve">
+    <value>Jūs reģistrējāt šo piegādi; parakstīto foto jāpārbauda citai personai.</value>
+  </data>
+  <data name="Signed photo accepted; the lot can be finalized when its CCPs are done." xml:space="preserve">
+    <value>Parakstītais foto pieņemts; partiju var pabeigt, kad tās KKP ir izpildīti.</value>
+  </data>
+  <data name="Signed photo rejected; the lot cannot be finalized." xml:space="preserve">
+    <value>Parakstītais foto noraidīts; partiju nevar pabeigt.</value>
+  </data>
+  <data name="{0}: the signed photo of the delivery was rejected." xml:space="preserve">
+    <value>{0}: piegādes parakstītais foto tika noraidīts.</value>
+  </data>
+  <data name="{0}: the signed photo of the delivery waits for the Compliance Officer." xml:space="preserve">
+    <value>{0}: piegādes parakstītais foto gaida atbilstības speciālistu.</value>
+  </data>
+  <data name="Samples of this lot are taken per container on the delivery page." xml:space="preserve">
+    <value>Šīs partijas paraugus ņem katrai tvertnei piegādes lapā.</value>
+  </data>
 </root>

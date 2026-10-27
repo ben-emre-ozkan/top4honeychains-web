@@ -14,7 +14,7 @@ namespace TOP4HoneyChains.Web.Controllers
     // form. The intake creates the raw lot, owned by that organization.
     [RequireOrgModel]
     [Authorize(Policy = AuthPolicies.PanelUser)]
-    public class IntakeController : Controller
+    public partial class IntakeController : Controller
     {
         public const string IntakeForms = "App_Data/intake-forms";
 
@@ -109,6 +109,14 @@ namespace TOP4HoneyChains.Web.Controllers
                     .Select(r => r.RegistryNumber).FirstOrDefaultAsync();
                 ViewBag.Province = (places.FromRegistryNumber(number.Trim()) ?? places.FromRegistryNumber(registry))?.Name;
             }
+            // D-78 P2: the delivery with sealed containers (Features:CustodyIntake)
+            if (CustodyOn)
+                return await CustodyFormAsync(new IntakeForm
+                {
+                    Number = number, DeliveryDate = DateOnly.FromDateTime(DateTime.Today), Province = ViewBag.Province as string,
+                    OriginCountry = Origin.Default, RetainUntil = DateOnly.FromDateTime(DateTime.Today).AddYears(2),
+                    Containers = { new ContainerRow() }
+                }, ViewBag.Beekeeper as Beekeeper, codeSent: false);
             await FillListsAsync();
             ViewBag.Number = number;
             ViewBag.Controller = "Intake";
@@ -144,6 +152,9 @@ namespace TOP4HoneyChains.Web.Controllers
         public async Task<IActionResult> Create(string number, int apiaryId, int honeyTypeId, int periodId, DateOnly? deliveryDate,
             decimal? quantity, string? province, string? district, IFormFile? deliveryForm, bool sendSms, string? originCountry)
         {
+            // D-78 P2: with sealed containers the delivery is recorded with Record (containers, jars, SMS confirmation)
+            if (CustodyOn)
+                return NotFound();
             if (await DeniedAsync() is string denied)
             {
                 TempData["Error"] = denied;

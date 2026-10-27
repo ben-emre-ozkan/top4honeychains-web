@@ -14,6 +14,9 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         public bool OrgRoleModel { get; set; }
         // D-78 (O-15): sign-in accounts for beekeepers; off until the beekeeper portal ships (P3)
         public bool BeekeeperAccounts { get; set; }
+        // D-78 P2 (D-81): the delivery with sealed containers, a jar per container and the beekeeper's SMS confirmation;
+        // off = the intake works as before
+        public bool CustodyIntake { get; set; }
     }
 
     public record ActiveMembership(

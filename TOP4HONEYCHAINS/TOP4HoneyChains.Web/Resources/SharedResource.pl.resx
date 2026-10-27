@@ -4717,7 +4717,7 @@
     <value>Pole {0} musi być tekstem lub tablicą o długości co najmniej '{1}'.</value>
   </data>
   <data name="Honey Type Id" xml:space="preserve">
-    <value>Rodzaj miodu (nr)</value>
+    <value>Rodzaj miodu</value>
   </data>
   <data name="Wholesaler Title" xml:space="preserve">
     <value>Nazwa hurtownika</value>
@@ -7850,5 +7850,263 @@
   </data>
   <data name="The sign-in details were sent by SMS." xml:space="preserve">
     <value>Dane logowania wysłano SMS-em.</value>
+  </data>
+  <data name="Origin Country" xml:space="preserve">
+    <value>Kraj pochodzenia</value>
+  </data>
+  <data name="Period Id" xml:space="preserve">
+    <value>Okres produkcji</value>
+  </data>
+  <data name="Ci.Help" xml:space="preserve">
+    <value>Zapisz każdy pojemnik dostawy z jego plombą, pobierz próbkę z każdego pojemnika, a potem pszczelarz potwierdza całość kodem SMS.</value>
+  </data>
+  <data name="Ci.NoPhone" xml:space="preserve">
+    <value>brak telefonu: tylko zdjęcie podpisu</value>
+  </data>
+  <data name="Ci.Delivery" xml:space="preserve">
+    <value>Dostawa</value>
+  </data>
+  <data name="Ci.Containers" xml:space="preserve">
+    <value>Pojemniki i próbki</value>
+  </data>
+  <data name="Ci.ContainersHelp" xml:space="preserve">
+    <value>Jeden wiersz na pojemnik. Zaplombowany: sprawdź plombę. Bez plomby: załóż plombę zakładu przy pszczelarzu. Następnie otwórz, napełnij słoik próbki i próbki kontrolnej, sprawdź, czy przycisk wieczka jest wciśnięty, i ponownie zaplombuj pojemnik.</value>
+  </data>
+  <data name="Ci.Kind" xml:space="preserve">
+    <value>Rodzaj</value>
+  </data>
+  <data name="Ci.Kind.Tin" xml:space="preserve">
+    <value>Puszka</value>
+  </data>
+  <data name="Ci.Kind.Drum" xml:space="preserve">
+    <value>Beczka</value>
+  </data>
+  <data name="Ci.Kind.Bucket" xml:space="preserve">
+    <value>Wiadro</value>
+  </data>
+  <data name="Ci.Kind.Ibc" xml:space="preserve">
+    <value>IBC</value>
+  </data>
+  <data name="Ci.Kind.Other" xml:space="preserve">
+    <value>Inny</value>
+  </data>
+  <data name="Ci.NetKg" xml:space="preserve">
+    <value>Kg netto</value>
+  </data>
+  <data name="Ci.GrossKg" xml:space="preserve">
+    <value>Kg brutto</value>
+  </data>
+  <data name="Ci.Arrival" xml:space="preserve">
+    <value>Przy przyjęciu</value>
+  </data>
+  <data name="Ci.ArrivedSealed" xml:space="preserve">
+    <value>przyjechał zaplombowany</value>
+  </data>
+  <data name="Ci.OriginSeal" xml:space="preserve">
+    <value>Numer plomby</value>
+  </data>
+  <data name="Ci.OriginIntact" xml:space="preserve">
+    <value>plomba nienaruszona</value>
+  </data>
+  <data name="Ci.PlantSeal" xml:space="preserve">
+    <value>Plomba zakładu założona teraz</value>
+  </data>
+  <data name="Ci.JarSeal" xml:space="preserve">
+    <value>Plomba słoika</value>
+  </data>
+  <data name="Ci.CounterSeal" xml:space="preserve">
+    <value>Plomba próbki kontrolnej</value>
+  </data>
+  <data name="Ci.Cap" xml:space="preserve">
+    <value>Wieczko nienaruszone</value>
+  </data>
+  <data name="Ci.CapHelp" xml:space="preserve">
+    <value>Wieczko z zabezpieczeniem: zaznacz tylko, gdy przycisk jest wciśnięty. Wyskoczony przycisk oznacza otwarcie słoika: wyrzuć go i napełnij nowy.</value>
+  </data>
+  <data name="Ci.Reseal" xml:space="preserve">
+    <value>Nowa plomba po pobraniu</value>
+  </data>
+  <data name="Ci.Remove" xml:space="preserve">
+    <value>Usuń wiersz</value>
+  </data>
+  <data name="Ci.AddContainer" xml:space="preserve">
+    <value>Dodaj pojemnik</value>
+  </data>
+  <data name="Ci.Total" xml:space="preserve">
+    <value>Razem netto</value>
+  </data>
+  <data name="Ci.Samples" xml:space="preserve">
+    <value>Laboratorium i próbki kontrolne</value>
+  </data>
+  <data name="Ci.CounterLocation" xml:space="preserve">
+    <value>Gdzie przechowywane są próbki kontrolne</value>
+  </data>
+  <data name="Ci.RetainUntil" xml:space="preserve">
+    <value>Przechowywać do</value>
+  </data>
+  <data name="Ci.Confirm" xml:space="preserve">
+    <value>Pszczelarz potwierdza</value>
+  </data>
+  <data name="Ci.SendHelp" xml:space="preserve">
+    <value>Pszczelarz dostaje SMS z nazwą organizacji, datą, pojemnikami, kilogramami, rodzajem miodu, liczbą próbek i kodem. Każda zmiana po wysłaniu wymaga nowego kodu.</value>
+  </data>
+  <data name="Ci.NotPresent" xml:space="preserve">
+    <value>Jeśli pszczelarza nie ma na miejscu, zadzwoń: odczyta kod z telefonu.</value>
+  </data>
+  <data name="Ci.ConfirmButton" xml:space="preserve">
+    <value>Potwierdź dostawę</value>
+  </data>
+  <data name="Ci.Fallback" xml:space="preserve">
+    <value>SMS niemożliwy: zdjęcie podpisu</value>
+  </data>
+  <data name="Ci.FallbackHelp" xml:space="preserve">
+    <value>Prześlij zdjęcie formularza dostawy podpisanego przez pszczelarza i podaj powód. Na partii można pracować, ale nie można jej sfinalizować, dopóki specjalista ds. zgodności zakładu nie zaakceptuje zdjęcia.</value>
+  </data>
+  <data name="Ci.SaveWithPhoto" xml:space="preserve">
+    <value>Zapisz ze zdjęciem podpisu</value>
+  </data>
+  <data name="Ci.DetailsTitle" xml:space="preserve">
+    <value>Dostawa</value>
+  </data>
+  <data name="Ci.RecordedAt" xml:space="preserve">
+    <value>zapisano</value>
+  </data>
+  <data name="Ci.Confirmation" xml:space="preserve">
+    <value>Potwierdzenie</value>
+  </data>
+  <data name="Ci.Legacy" xml:space="preserve">
+    <value>wcześniejsza (pojemniki niezapisane)</value>
+  </data>
+  <data name="Ci.ContentHash" xml:space="preserve">
+    <value>Potwierdzona treść</value>
+  </data>
+  <data name="Ci.ContentVerified" xml:space="preserve">
+    <value>bez zmian od potwierdzenia</value>
+  </data>
+  <data name="Ci.ContentChanged" xml:space="preserve">
+    <value>zmienione po potwierdzeniu</value>
+  </data>
+  <data name="Ci.ReviewHelp" xml:space="preserve">
+    <value>Otwórz podpisany formularz dostawy i porównaj z pojemnikami, wagami i numerami plomb. Nie Ty zapisałeś tę dostawę.</value>
+  </data>
+  <data name="Ci.WaitingReview" xml:space="preserve">
+    <value>Zdjęcie podpisu czeka na specjalistę ds. zgodności. To Ty zapisałeś dostawę, więc decyduje inna osoba.</value>
+  </data>
+  <data name="Ci.LabelsA4" xml:space="preserve">
+    <value>Etykiety (arkusz A4)</value>
+  </data>
+  <data name="Ci.LabelsSingle" xml:space="preserve">
+    <value>Etykiety (100 × 50 mm)</value>
+  </data>
+  <data name="Ci.Container" xml:space="preserve">
+    <value>Pojemnik</value>
+  </data>
+  <data name="Ci.SealHistory" xml:space="preserve">
+    <value>Historia plomb</value>
+  </data>
+  <data name="Ci.Jars" xml:space="preserve">
+    <value>Słoiki z próbkami</value>
+  </data>
+  <data name="Ci.Seal.Checked" xml:space="preserve">
+    <value>Sprawdzono plombę z pochodzenia</value>
+  </data>
+  <data name="Ci.Seal.Applied" xml:space="preserve">
+    <value>Założono plombę zakładu</value>
+  </data>
+  <data name="Ci.Seal.Broken" xml:space="preserve">
+    <value>Plomba zerwana</value>
+  </data>
+  <data name="Ci.Seal.Replaced" xml:space="preserve">
+    <value>Plomba wymieniona</value>
+  </data>
+  <data name="Ci.NotIntact" xml:space="preserve">
+    <value>naruszona</value>
+  </data>
+  <data name="Ci.Labels" xml:space="preserve">
+    <value>Etykiety</value>
+  </data>
+  <data name="Ci.SealShort" xml:space="preserve">
+    <value>Plomba</value>
+  </data>
+  <data name="Ci.SampleJar" xml:space="preserve">
+    <value>Słoik z próbką</value>
+  </data>
+  <data name="Ci.CounterJar" xml:space="preserve">
+    <value>Próbka kontrolna</value>
+  </data>
+  <data name="Ci.KeepUntil" xml:space="preserve">
+    <value>przechowywać do</value>
+  </data>
+  <data name="Ci.DeliveryLocked" xml:space="preserve">
+    <value>Pszczelarz potwierdził tę dostawę z pojemnikami: pasieki, rodzaju miodu, okresu, ilości, daty i pochodzenia nie można zmienić.</value>
+  </data>
+  <data name="Record at least one container." xml:space="preserve">
+    <value>Zapisz co najmniej jeden pojemnik.</value>
+  </data>
+  <data name="At most 100 containers per delivery." xml:space="preserve">
+    <value>Najwyżej 100 pojemników na dostawę.</value>
+  </data>
+  <data name="Container {0}: choose the kind of container." xml:space="preserve">
+    <value>Pojemnik {0}: wybierz rodzaj pojemnika.</value>
+  </data>
+  <data name="Container {0}: enter the net weight (more than 0 kg)." xml:space="preserve">
+    <value>Pojemnik {0}: wpisz wagę netto (więcej niż 0 kg).</value>
+  </data>
+  <data name="Container {0}: the gross weight cannot be lower than the net weight." xml:space="preserve">
+    <value>Pojemnik {0}: waga brutto nie może być mniejsza niż netto.</value>
+  </data>
+  <data name="Container {0}: enter the number of the seal it arrived with." xml:space="preserve">
+    <value>Pojemnik {0}: wpisz numer plomby, z którą przyjechał.</value>
+  </data>
+  <data name="Container {0}: apply a plant seal in front of the beekeeper and enter its number." xml:space="preserve">
+    <value>Pojemnik {0}: załóż plombę zakładu przy pszczelarzu i wpisz jej numer.</value>
+  </data>
+  <data name="Container {0}: enter the seal numbers of the sample jar and of the counter-sample jar." xml:space="preserve">
+    <value>Pojemnik {0}: wpisz numery plomb słoika z próbką i słoika z próbką kontrolną.</value>
+  </data>
+  <data name="Container {0}: the jar's cap must be intact (button down) when sealed. A popped cap: discard the jar and fill a new one." xml:space="preserve">
+    <value>Pojemnik {0}: przy plombowaniu wieczko słoika musi być nienaruszone (przycisk wciśnięty). Wyskoczony przycisk: wyrzuć słoik i napełnij nowy.</value>
+  </data>
+  <data name="Container {0}: enter the new plant seal applied after sampling." xml:space="preserve">
+    <value>Pojemnik {0}: wpisz nową plombę zakładu założoną po pobraniu próbki.</value>
+  </data>
+  <data name="Container {0}: seal numbers have at most 50 characters." xml:space="preserve">
+    <value>Pojemnik {0}: numery plomb mają maks. 50 znaków.</value>
+  </data>
+  <data name="Every seal number of the delivery must be different." xml:space="preserve">
+    <value>Każdy numer plomby w dostawie musi być inny.</value>
+  </data>
+  <data name="The beekeeper has no mobile phone: confirm the delivery with the photo of the signed form." xml:space="preserve">
+    <value>Pszczelarz nie ma telefonu komórkowego: potwierdź dostawę zdjęciem podpisanego formularza.</value>
+  </data>
+  <data name="A code was sent to the beekeeper's phone. Enter the code the beekeeper reads out (in person or by phone)." xml:space="preserve">
+    <value>Kod został wysłany na telefon pszczelarza. Wpisz kod, który pszczelarz odczyta (osobiście lub przez telefon).</value>
+  </data>
+  <data name="Delivery confirmed by the beekeeper and recorded as lot #{0}." xml:space="preserve">
+    <value>Dostawa potwierdzona przez pszczelarza i zapisana jako partia #{0}.</value>
+  </data>
+  <data name="Delivery recorded as lot #{0} with the signed photo; it waits for the Compliance Officer." xml:space="preserve">
+    <value>Dostawę zapisano jako partię #{0} ze zdjęciem podpisu; czeka na specjalistę ds. zgodności.</value>
+  </data>
+  <data name="This delivery was already reviewed." xml:space="preserve">
+    <value>Ta dostawa została już sprawdzona.</value>
+  </data>
+  <data name="You recorded this delivery; another person must review its signed photo." xml:space="preserve">
+    <value>To Ty zapisałeś tę dostawę; zdjęcie podpisu musi sprawdzić inna osoba.</value>
+  </data>
+  <data name="Signed photo accepted; the lot can be finalized when its CCPs are done." xml:space="preserve">
+    <value>Zdjęcie podpisu zaakceptowane; partię można sfinalizować po wykonaniu jej KPK.</value>
+  </data>
+  <data name="Signed photo rejected; the lot cannot be finalized." xml:space="preserve">
+    <value>Zdjęcie podpisu odrzucone; partii nie można sfinalizować.</value>
+  </data>
+  <data name="{0}: the signed photo of the delivery was rejected." xml:space="preserve">
+    <value>{0}: zdjęcie podpisu dostawy zostało odrzucone.</value>
+  </data>
+  <data name="{0}: the signed photo of the delivery waits for the Compliance Officer." xml:space="preserve">
+    <value>{0}: zdjęcie podpisu dostawy czeka na specjalistę ds. zgodności.</value>
+  </data>
+  <data name="Samples of this lot are taken per container on the delivery page." xml:space="preserve">
+    <value>Próbki tej partii pobiera się dla każdego pojemnika na stronie dostawy.</value>
   </data>
 </root>

@@ -90,6 +90,12 @@ namespace TOP4HoneyChains.Web.Controllers
                 TempData["Error"] = denied;
                 return RedirectToAction(nameof(Index));
             }
+            // D-78 P2: a delivery with containers has a jar per container; samples are taken on the delivery page
+            if (await _context.LotIntakes.Where(i => i.RawHoneyProductionId == lotId && i.ContainersRecorded == true).Select(i => (int?)i.IntakeId).FirstOrDefaultAsync() is int intakeId)
+            {
+                TempData["Info"] = "Samples of this lot are taken per container on the delivery page.";
+                return RedirectToAction("Details", "Intake", new { id = intakeId });
+            }
             ViewBag.Lot = lot;
             ViewBag.Labs = await LabsAsync();
             ViewBag.Existing = await _context.Samples.AsNoTracking().Include(s => s.LabOrg).Where(s => s.RawHoneyProductionId == lotId).ToListAsync();
@@ -104,6 +110,11 @@ namespace TOP4HoneyChains.Web.Controllers
         {
             if (!await _context.RawHoneyProductions.AnyAsync(r => r.RawHoneyProductionId == lotId))
                 return NotFound();
+            if (await _context.LotIntakes.AnyAsync(i => i.RawHoneyProductionId == lotId && i.ContainersRecorded == true))
+            {
+                TempData["Error"] = "Samples of this lot are taken per container on the delivery page.";
+                return RedirectToAction(nameof(Index));
+            }
             if (await TakeDeniedAsync(lotId) is string denied)
             {
                 TempData["Error"] = denied;

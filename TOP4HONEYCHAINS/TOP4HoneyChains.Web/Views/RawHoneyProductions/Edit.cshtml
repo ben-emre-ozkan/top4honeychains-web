@@ -79,6 +79,10 @@
             <div class="card border-0 shadow-sm">
                 <div class="card-body">
 
+                    @if (ViewBag.DeliveryLocked == true)
+                    {
+                        <div class="alert alert-info small" id="delivery-locked">@L["Ci.DeliveryLocked"]</div>
+                    }
                     <form asp-action="Edit" class="custom-validation">
 
                         <input type="hidden" asp-for="RawHoneyProductionId" />

@@ -258,6 +258,7 @@ namespace TOP4HoneyChains.Web.Controllers
             FillOrigins(rawHoneyProduction.OriginCountry);
             ViewBag.Controller = "Raw Honey Production";
             ViewBag.Action = "Edit";
+            ViewBag.DeliveryLocked = await _context.LotIntakes.AnyAsync(i => i.RawHoneyProductionId == id && i.ContainersRecorded == true);
 
             return View(rawHoneyProduction);
         }
@@ -289,6 +290,20 @@ namespace TOP4HoneyChains.Web.Controllers
                 ModelState.AddModelError("OriginCountry", "Choose the country of origin.");
             else if (rawHoneyProduction.OwnerOrgId != null && !await _context.Organizations.AnyAsync(o => o.OrgId == rawHoneyProduction.OwnerOrgId && !o.IsPlatform))
                 ModelState.AddModelError("OwnerOrgId", "Unknown organization.");
+
+            // D-78 P2 (D78-SPEC 3.10): a delivery recorded with containers keeps apiary, honey type, period, amount, date and origin
+            if (await _context.LotIntakes.AnyAsync(i => i.RawHoneyProductionId == id && i.ContainersRecorded == true))
+            {
+                var stored = await _context.RawHoneyProductions.AsNoTracking().FirstAsync(r => r.RawHoneyProductionId == id);
+                rawHoneyProduction.RawHoneyProductionApiaryId = stored.RawHoneyProductionApiaryId;
+                rawHoneyProduction.RawHoneyProductionHoneyType = stored.RawHoneyProductionHoneyType;
+                rawHoneyProduction.RawHoneyProductionPeriodId = stored.RawHoneyProductionPeriodId;
+                rawHoneyProduction.RawHoneyProductionAmount = stored.RawHoneyProductionAmount;
+                rawHoneyProduction.RawHoneyProductionDate = stored.RawHoneyProductionDate;
+                rawHoneyProduction.OriginCountry = stored.OriginCountry;
+                foreach (var key in new[] { "RawHoneyProductionApiaryId", "RawHoneyProductionHoneyType", "RawHoneyProductionPeriodId", "RawHoneyProductionAmount", "RawHoneyProductionDate", "OriginCountry" })
+                    ModelState.Remove(key);
+            }
 
             if (ModelState.IsValid)
             {

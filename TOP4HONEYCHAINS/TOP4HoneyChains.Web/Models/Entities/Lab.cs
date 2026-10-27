@@ -47,11 +47,42 @@ namespace TOP4HoneyChains.Web.Models.Entities
         [StringLength(500)]
         public string? RejectReason { get; set; }
 
+        // D-78 P2 (D78-SPEC 3.3, migration 023): the container the jar was filled from (null = legacy lot sample), the kind
+        // (Container / Composite; null = legacy), the tamper-evident cap at sealing and the laboratory's reception checks
+        public int? ContainerId { get; set; }
+
+        [StringLength(20)]
+        public string? Kind { get; set; }
+
+        public bool? JarCapIntactAtSealing { get; set; }
+
+        public bool? JarCapIntactAtReception { get; set; }
+
+        public bool? LabelIntactAtReception { get; set; }
+
+        public bool? SealNumberMatches { get; set; }
+
+        public virtual Container? Container { get; set; }
+
         public virtual RawHoneyProduction? RawHoneyProduction { get; set; }
         public virtual Organization? TakingOrg { get; set; }
         public virtual Organization? LabOrg { get; set; }
         public virtual LabReport? Report { get; set; }
         public virtual ICollection<SampleCustodyEvent> Events { get; set; } = new List<SampleCustodyEvent>();
+    }
+
+    public static class SampleKind
+    {
+        public const string Container = "Container";
+        public const string Composite = "Composite";
+    }
+
+    // D-78 P2: the container jars a composite sample was made from
+    public class SampleSource
+    {
+        public int CompositeSampleId { get; set; }
+        public int SourceSampleId { get; set; }
+        public DateTime CreatedAt { get; set; }
     }
 
     public static class SampleStatus

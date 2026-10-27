@@ -15,6 +15,9 @@ public partial class TOP4HoneyChainsContext
     public virtual DbSet<BeekeeperRegistration> BeekeeperRegistrations { get; set; }
     public virtual DbSet<UserCredentialIssue> UserCredentialIssues { get; set; }
     public virtual DbSet<UserSetting> UserSettings { get; set; }
+    public virtual DbSet<Container> Containers { get; set; }
+    public virtual DbSet<ContainerSealEvent> ContainerSealEvents { get; set; }
+    public virtual DbSet<SampleSource> SampleSources { get; set; }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder)
     {
@@ -125,6 +128,55 @@ public partial class TOP4HoneyChainsContext
 
             entity.HasOne<OneTimeCode>().WithMany().HasForeignKey(e => e.PhoneCodeId).OnDelete(DeleteBehavior.Restrict);
         });
+
+        // D-78 P2 (migration 023)
+        modelBuilder.Entity<Container>(entity =>
+        {
+            entity.ToTable("Containers", tb => tb.HasTrigger("TR_Containers_Immutable"));
+            entity.Property(e => e.Kind).IsUnicode(false);
+            entity.Property(e => e.CreatedAt).HasDefaultValueSql("SYSUTCDATETIME()");
+            entity.HasIndex(e => e.ContainerCode).IsUnique();
+            entity.HasIndex(e => new { e.RawHoneyProductionId, e.Seq }).IsUnique();
+            entity.HasOne(e => e.Intake).WithMany(i => i.Containers).HasForeignKey(e => e.IntakeId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne<RawHoneyProduction>().WithMany().HasForeignKey(e => e.RawHoneyProductionId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<ContainerSealEvent>(entity =>
+        {
+            entity.ToTable("ContainerSealEvents", tb => tb.HasTrigger("TR_ContainerSealEvents_AppendOnly"));
+            entity.Property(e => e.Event).IsUnicode(false);
+            entity.Property(e => e.PhotoSha256).IsFixedLength().IsUnicode(false);
+            entity.Property(e => e.At).HasDefaultValueSql("SYSUTCDATETIME()");
+            entity.HasIndex(e => new { e.ContainerId, e.EventId });
+            entity.HasOne(e => e.Container).WithMany(c => c.SealEvents).HasForeignKey(e => e.ContainerId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<SampleSource>(entity =>
+        {
+            entity.ToTable("SampleSources", tb => tb.HasTrigger("TR_SampleSources_InsertOnly"));
+            entity.HasKey(e => new { e.CompositeSampleId, e.SourceSampleId });
+            entity.Property(e => e.CreatedAt).HasDefaultValueSql("SYSUTCDATETIME()");
+            entity.HasOne<Sample>().WithMany().HasForeignKey(e => e.CompositeSampleId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne<Sample>().WithMany().HasForeignKey(e => e.SourceSampleId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<Sample>(entity =>
+        {
+            entity.Property(e => e.Kind).IsUnicode(false);
+            entity.HasIndex(e => e.ContainerId);
+            entity.HasOne(e => e.Container).WithMany(c => c.Samples).HasForeignKey(e => e.ContainerId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<LotIntake>(entity =>
+        {
+            entity.ToTable(tb => tb.HasTrigger("TR_LotIntakes_DeliveryLocked"));
+            entity.Property(e => e.ConfirmationMethod).IsUnicode(false);
+            entity.Property(e => e.EvidenceStatus).IsUnicode(false);
+            entity.Property(e => e.ContentSha256).IsFixedLength().IsUnicode(false);
+            entity.HasOne<OneTimeCode>().WithMany().HasForeignKey(e => e.CodeId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<RawHoneyProduction>(entity => entity.ToTable(tb => tb.HasTrigger("TR_RawHoneyProductions_DeliveryLocked")));
 
         modelBuilder.Entity<Consent>(entity =>
         {

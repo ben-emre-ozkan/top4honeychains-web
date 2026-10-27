@@ -7851,4 +7851,262 @@
   <data name="The sign-in details were sent by SMS." xml:space="preserve">
     <value>Giriş bilgileri SMS ile gönderildi.</value>
   </data>
+  <data name="Origin Country" xml:space="preserve">
+    <value>Menşe ülke</value>
+  </data>
+  <data name="Period Id" xml:space="preserve">
+    <value>Üretim dönemi</value>
+  </data>
+  <data name="Ci.Help" xml:space="preserve">
+    <value>Teslimattaki her kabı mührüyle kaydedin, her kaptan numune alın; ardından arıcı hepsini SMS koduyla onaylar.</value>
+  </data>
+  <data name="Ci.NoPhone" xml:space="preserve">
+    <value>cep telefonu yok: yalnızca imzalı fotoğraf</value>
+  </data>
+  <data name="Ci.Delivery" xml:space="preserve">
+    <value>Teslimat</value>
+  </data>
+  <data name="Ci.Containers" xml:space="preserve">
+    <value>Kaplar ve numuneler</value>
+  </data>
+  <data name="Ci.ContainersHelp" xml:space="preserve">
+    <value>Her kap için bir satır. Mühürlü gelen kabın mührünü kontrol edin; mühürsüz geleni arıcının önünde işletme mührüyle mühürleyin. Sonra açın, numune ve şahit numune kavanozunu doldurun, kapak düğmesinin aşağıda olduğunu kontrol edin ve kabı yeniden mühürleyin.</value>
+  </data>
+  <data name="Ci.Kind" xml:space="preserve">
+    <value>Tür</value>
+  </data>
+  <data name="Ci.Kind.Tin" xml:space="preserve">
+    <value>Teneke</value>
+  </data>
+  <data name="Ci.Kind.Drum" xml:space="preserve">
+    <value>Varil</value>
+  </data>
+  <data name="Ci.Kind.Bucket" xml:space="preserve">
+    <value>Kova</value>
+  </data>
+  <data name="Ci.Kind.Ibc" xml:space="preserve">
+    <value>IBC</value>
+  </data>
+  <data name="Ci.Kind.Other" xml:space="preserve">
+    <value>Diğer</value>
+  </data>
+  <data name="Ci.NetKg" xml:space="preserve">
+    <value>Net kg</value>
+  </data>
+  <data name="Ci.GrossKg" xml:space="preserve">
+    <value>Brüt kg</value>
+  </data>
+  <data name="Ci.Arrival" xml:space="preserve">
+    <value>Gelişte</value>
+  </data>
+  <data name="Ci.ArrivedSealed" xml:space="preserve">
+    <value>mühürlü geldi</value>
+  </data>
+  <data name="Ci.OriginSeal" xml:space="preserve">
+    <value>Mühür numarası</value>
+  </data>
+  <data name="Ci.OriginIntact" xml:space="preserve">
+    <value>mühür sağlam</value>
+  </data>
+  <data name="Ci.PlantSeal" xml:space="preserve">
+    <value>Şimdi takılan işletme mührü</value>
+  </data>
+  <data name="Ci.JarSeal" xml:space="preserve">
+    <value>Kavanoz mührü</value>
+  </data>
+  <data name="Ci.CounterSeal" xml:space="preserve">
+    <value>Şahit numune mührü</value>
+  </data>
+  <data name="Ci.Cap" xml:space="preserve">
+    <value>Kapak sağlam</value>
+  </data>
+  <data name="Ci.CapHelp" xml:space="preserve">
+    <value>Güvenlik kapağı: yalnızca düğme aşağıdayken işaretleyin. Fırlamış kapak kavanozun açıldığını gösterir: kavanozu atın ve yenisini doldurun.</value>
+  </data>
+  <data name="Ci.Reseal" xml:space="preserve">
+    <value>Numuneden sonra yeni mühür</value>
+  </data>
+  <data name="Ci.Remove" xml:space="preserve">
+    <value>Satırı kaldır</value>
+  </data>
+  <data name="Ci.AddContainer" xml:space="preserve">
+    <value>Kap ekle</value>
+  </data>
+  <data name="Ci.Total" xml:space="preserve">
+    <value>Toplam net</value>
+  </data>
+  <data name="Ci.Samples" xml:space="preserve">
+    <value>Laboratuvar ve şahit numuneler</value>
+  </data>
+  <data name="Ci.CounterLocation" xml:space="preserve">
+    <value>Şahit numunelerin saklandığı yer</value>
+  </data>
+  <data name="Ci.RetainUntil" xml:space="preserve">
+    <value>Saklama bitişi</value>
+  </data>
+  <data name="Ci.Confirm" xml:space="preserve">
+    <value>Arıcı onaylar</value>
+  </data>
+  <data name="Ci.SendHelp" xml:space="preserve">
+    <value>Arıcıya kuruluşunuz, tarih, kaplar, kilogram, bal türü, numune sayısı ve bir kod içeren SMS gider. Gönderdikten sonra bir şey değişirse yeni kod gerekir.</value>
+  </data>
+  <data name="Ci.NotPresent" xml:space="preserve">
+    <value>Arıcı burada değilse onu arayın: kodu telefonundan okur.</value>
+  </data>
+  <data name="Ci.ConfirmButton" xml:space="preserve">
+    <value>Teslimatı onayla</value>
+  </data>
+  <data name="Ci.Fallback" xml:space="preserve">
+    <value>SMS mümkün değil: imzalı fotoğraf</value>
+  </data>
+  <data name="Ci.FallbackHelp" xml:space="preserve">
+    <value>Arıcının imzaladığı teslim formunun fotoğrafını yükleyin ve gerekçeyi yazın. Lot üzerinde çalışılabilir, ancak işletmenin Uyum Sorumlusu fotoğrafı kabul edene kadar sonlandırılamaz.</value>
+  </data>
+  <data name="Ci.SaveWithPhoto" xml:space="preserve">
+    <value>İmzalı fotoğrafla kaydet</value>
+  </data>
+  <data name="Ci.DetailsTitle" xml:space="preserve">
+    <value>Teslimat</value>
+  </data>
+  <data name="Ci.RecordedAt" xml:space="preserve">
+    <value>kaydedildi</value>
+  </data>
+  <data name="Ci.Confirmation" xml:space="preserve">
+    <value>Onay</value>
+  </data>
+  <data name="Ci.Legacy" xml:space="preserve">
+    <value>eski kayıt (kaplar kaydedilmemiş)</value>
+  </data>
+  <data name="Ci.ContentHash" xml:space="preserve">
+    <value>Onaylanan içerik</value>
+  </data>
+  <data name="Ci.ContentVerified" xml:space="preserve">
+    <value>onaydan beri değişmedi</value>
+  </data>
+  <data name="Ci.ContentChanged" xml:space="preserve">
+    <value>onaydan sonra değişmiş</value>
+  </data>
+  <data name="Ci.ReviewHelp" xml:space="preserve">
+    <value>İmzalı teslim formunu açın ve kaplar, ağırlıklar ve mühür numaralarıyla karşılaştırın. Bu teslimatı siz kaydetmediniz.</value>
+  </data>
+  <data name="Ci.WaitingReview" xml:space="preserve">
+    <value>İmzalı fotoğraf Uyum Sorumlusunu bekliyor. Bu teslimatı siz kaydettiğiniz için başka biri karar verir.</value>
+  </data>
+  <data name="Ci.LabelsA4" xml:space="preserve">
+    <value>Etiketler (A4 sayfa)</value>
+  </data>
+  <data name="Ci.LabelsSingle" xml:space="preserve">
+    <value>Etiketler (100 × 50 mm)</value>
+  </data>
+  <data name="Ci.Container" xml:space="preserve">
+    <value>Kap</value>
+  </data>
+  <data name="Ci.SealHistory" xml:space="preserve">
+    <value>Mühür geçmişi</value>
+  </data>
+  <data name="Ci.Jars" xml:space="preserve">
+    <value>Numune kavanozları</value>
+  </data>
+  <data name="Ci.Seal.Checked" xml:space="preserve">
+    <value>Menşe mührü kontrol edildi</value>
+  </data>
+  <data name="Ci.Seal.Applied" xml:space="preserve">
+    <value>İşletme mührü takıldı</value>
+  </data>
+  <data name="Ci.Seal.Broken" xml:space="preserve">
+    <value>Mühür açıldı</value>
+  </data>
+  <data name="Ci.Seal.Replaced" xml:space="preserve">
+    <value>Mühür değiştirildi</value>
+  </data>
+  <data name="Ci.NotIntact" xml:space="preserve">
+    <value>sağlam değil</value>
+  </data>
+  <data name="Ci.Labels" xml:space="preserve">
+    <value>Etiketler</value>
+  </data>
+  <data name="Ci.SealShort" xml:space="preserve">
+    <value>Mühür</value>
+  </data>
+  <data name="Ci.SampleJar" xml:space="preserve">
+    <value>Numune kavanozu</value>
+  </data>
+  <data name="Ci.CounterJar" xml:space="preserve">
+    <value>Şahit numune</value>
+  </data>
+  <data name="Ci.KeepUntil" xml:space="preserve">
+    <value>saklama</value>
+  </data>
+  <data name="Ci.DeliveryLocked" xml:space="preserve">
+    <value>Arıcı bu teslimatı kaplarıyla birlikte onayladı: arılık, bal türü, dönem, miktar, tarih ve menşe değiştirilemez.</value>
+  </data>
+  <data name="Record at least one container." xml:space="preserve">
+    <value>En az bir kap kaydedin.</value>
+  </data>
+  <data name="At most 100 containers per delivery." xml:space="preserve">
+    <value>Bir teslimatta en fazla 100 kap olabilir.</value>
+  </data>
+  <data name="Container {0}: choose the kind of container." xml:space="preserve">
+    <value>Kap {0}: kap türünü seçin.</value>
+  </data>
+  <data name="Container {0}: enter the net weight (more than 0 kg)." xml:space="preserve">
+    <value>Kap {0}: net ağırlığı girin (0 kg'dan fazla).</value>
+  </data>
+  <data name="Container {0}: the gross weight cannot be lower than the net weight." xml:space="preserve">
+    <value>Kap {0}: brüt ağırlık net ağırlıktan düşük olamaz.</value>
+  </data>
+  <data name="Container {0}: enter the number of the seal it arrived with." xml:space="preserve">
+    <value>Kap {0}: geldiği mührün numarasını girin.</value>
+  </data>
+  <data name="Container {0}: apply a plant seal in front of the beekeeper and enter its number." xml:space="preserve">
+    <value>Kap {0}: arıcının önünde işletme mührü takın ve numarasını girin.</value>
+  </data>
+  <data name="Container {0}: enter the seal numbers of the sample jar and of the counter-sample jar." xml:space="preserve">
+    <value>Kap {0}: numune kavanozunun ve şahit numune kavanozunun mühür numaralarını girin.</value>
+  </data>
+  <data name="Container {0}: the jar's cap must be intact (button down) when sealed. A popped cap: discard the jar and fill a new one." xml:space="preserve">
+    <value>Kap {0}: mühürlenirken kavanoz kapağı sağlam olmalı (düğme aşağıda). Fırlamış kapak: kavanozu atın ve yenisini doldurun.</value>
+  </data>
+  <data name="Container {0}: enter the new plant seal applied after sampling." xml:space="preserve">
+    <value>Kap {0}: numuneden sonra takılan yeni işletme mührünü girin.</value>
+  </data>
+  <data name="Container {0}: seal numbers have at most 50 characters." xml:space="preserve">
+    <value>Kap {0}: mühür numaraları en fazla 50 karakterdir.</value>
+  </data>
+  <data name="Every seal number of the delivery must be different." xml:space="preserve">
+    <value>Teslimattaki her mühür numarası farklı olmalıdır.</value>
+  </data>
+  <data name="The beekeeper has no mobile phone: confirm the delivery with the photo of the signed form." xml:space="preserve">
+    <value>Arıcının cep telefonu yok: teslimatı imzalı formun fotoğrafıyla onaylayın.</value>
+  </data>
+  <data name="A code was sent to the beekeeper's phone. Enter the code the beekeeper reads out (in person or by phone)." xml:space="preserve">
+    <value>Arıcının telefonuna bir kod gönderildi. Arıcının (yüz yüze veya telefonda) okuduğu kodu girin.</value>
+  </data>
+  <data name="Delivery confirmed by the beekeeper and recorded as lot #{0}." xml:space="preserve">
+    <value>Teslimat arıcı tarafından onaylandı ve #{0} numaralı lot olarak kaydedildi.</value>
+  </data>
+  <data name="Delivery recorded as lot #{0} with the signed photo; it waits for the Compliance Officer." xml:space="preserve">
+    <value>Teslimat imzalı fotoğrafla #{0} numaralı lot olarak kaydedildi; Uyum Sorumlusunu bekliyor.</value>
+  </data>
+  <data name="This delivery was already reviewed." xml:space="preserve">
+    <value>Bu teslimat zaten incelendi.</value>
+  </data>
+  <data name="You recorded this delivery; another person must review its signed photo." xml:space="preserve">
+    <value>Bu teslimatı siz kaydettiniz; imzalı fotoğrafını başka biri incelemelidir.</value>
+  </data>
+  <data name="Signed photo accepted; the lot can be finalized when its CCPs are done." xml:space="preserve">
+    <value>İmzalı fotoğraf kabul edildi; KKN'leri tamamlanınca lot sonlandırılabilir.</value>
+  </data>
+  <data name="Signed photo rejected; the lot cannot be finalized." xml:space="preserve">
+    <value>İmzalı fotoğraf reddedildi; lot sonlandırılamaz.</value>
+  </data>
+  <data name="{0}: the signed photo of the delivery was rejected." xml:space="preserve">
+    <value>{0}: teslimatın imzalı fotoğrafı reddedildi.</value>
+  </data>
+  <data name="{0}: the signed photo of the delivery waits for the Compliance Officer." xml:space="preserve">
+    <value>{0}: teslimatın imzalı fotoğrafı Uyum Sorumlusunu bekliyor.</value>
+  </data>
+  <data name="Samples of this lot are taken per container on the delivery page." xml:space="preserve">
+    <value>Bu lotun numuneleri teslimat sayfasında kap başına alınır.</value>
+  </data>
 </root>

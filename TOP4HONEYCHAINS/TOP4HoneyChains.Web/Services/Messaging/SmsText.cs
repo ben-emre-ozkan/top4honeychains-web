@@ -73,6 +73,23 @@ namespace TOP4HoneyChains.Web.Services.Messaging
             ["tr"] = ("EVET", "HAYIR"), ["en"] = ("YES", "NO"), ["es"] = ("SÍ", "NO"), ["pl"] = ("TAK", "NIE"), ["lv"] = ("JĀ", "NĒ")
         };
 
+        // D-78 P2 (M3): container kinds in the delivery SMS ("3 teneke, 1 varil")
+        private static readonly Dictionary<string, Dictionary<string, string>> ContainerWords = new()
+        {
+            ["tr"] = new() { ["Tin"] = "teneke", ["Drum"] = "varil", ["Bucket"] = "kova", ["Ibc"] = "IBC", ["Other"] = "kap" },
+            ["en"] = new() { ["Tin"] = "tins", ["Drum"] = "drums", ["Bucket"] = "buckets", ["Ibc"] = "IBC", ["Other"] = "containers" },
+            ["es"] = new() { ["Tin"] = "latas", ["Drum"] = "bidones", ["Bucket"] = "cubos", ["Ibc"] = "IBC", ["Other"] = "envases" },
+            ["pl"] = new() { ["Tin"] = "puszki", ["Drum"] = "beczki", ["Bucket"] = "wiadra", ["Ibc"] = "IBC", ["Other"] = "pojemniki" },
+            ["lv"] = new() { ["Tin"] = "kannas", ["Drum"] = "mucas", ["Bucket"] = "spaiņi", ["Ibc"] = "IBC", ["Other"] = "tvertnes" }
+        };
+
+        public static string ContainersText(IEnumerable<string> kinds, string? language)
+        {
+            var words = ContainerWords[Language(language)];
+            return string.Join(", ", kinds.GroupBy(k => k).OrderByDescending(g => g.Count())
+                .Select(g => $"{g.Count()} {(words.TryGetValue(g.Key, out var w) ? w : words["Other"])}"));
+        }
+
         private static readonly Regex Placeholder = new(@"\{([a-z]+)\}");
 
         public static IEnumerable<string> Purposes => Texts.Keys;
