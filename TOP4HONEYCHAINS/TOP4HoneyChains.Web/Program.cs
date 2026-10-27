@@ -131,6 +131,8 @@ builder.Services.Configure<NoticeOptions>(builder.Configuration.GetSection("Noti
 builder.Services.AddScoped<NoticeService>();
 builder.Services.AddScoped<AccountGateFilter>();
 builder.Services.AddScoped<CredentialService>();
+builder.Services.AddScoped<RegistrationService>();
+builder.Services.AddScoped<BeekeeperSignIn>();
 builder.Services.AddScoped<AuditWriter>();
 builder.Services.AddScoped<ManualRegistryVerifier>();
 builder.Services.AddScoped<IRegistryVerifier>(sp => sp.GetRequiredService<ManualRegistryVerifier>());
