@@ -29,19 +29,52 @@ namespace TOP4HoneyChains.Web.Models.Entities
         [StringLength(100)]
         public string District { get; set; } = null!;
 
+        // the photo of the signed delivery form; since D-78 (023) only the fallback, so nullable
         [StringLength(100)]
-        public string FormStoredFileName { get; set; } = null!;
+        public string? FormStoredFileName { get; set; }
 
         [StringLength(260)]
-        public string FormOriginalFileName { get; set; } = null!;
+        public string? FormOriginalFileName { get; set; }
 
         [StringLength(64)]
-        public string FormSha256 { get; set; } = null!;
+        public string? FormSha256 { get; set; }
 
         [StringLength(30)]
         public string? SmsStatus { get; set; }
 
         public DateTime? SmsAt { get; set; }
+
+        // D-78 P2 (D78-SPEC 3.9, migration 023): how the beekeeper confirmed the delivery (SmsCode / SignedPhoto; null = legacy),
+        // the hash of the confirmed content, the photo review by the Compliance Officer, and whether containers were recorded
+        [StringLength(20)]
+        public string? ConfirmationMethod { get; set; }
+
+        [StringLength(64)]
+        public string? ContentSha256 { get; set; }
+
+        public DateTime? ConfirmedAt { get; set; }
+
+        public long? CodeId { get; set; }
+
+        [StringLength(300)]
+        public string? FallbackReason { get; set; }
+
+        [StringLength(20)]
+        public string? EvidenceStatus { get; set; }
+
+        [StringLength(450)]
+        public string? ReviewedByUserId { get; set; }
+
+        public DateTime? ReviewedAt { get; set; }
+
+        [StringLength(500)]
+        public string? ReviewReason { get; set; }
+
+        public bool? ContainersRecorded { get; set; }
+
+        public bool IsLegacy => ContainersRecorded != true;
+
+        public virtual ICollection<Container> Containers { get; set; } = new List<Container>();
 
         public virtual RawHoneyProduction? RawHoneyProduction { get; set; }
         public virtual Organization? ReceivingOrg { get; set; }
