@@ -4,32 +4,38 @@
 
 Bir işleme tesisinin kabul biriminde çalışırsınız. Bir arıcı bal teslim ettiğinde:
 
-1. teslimi kaydedersiniz (bu kayıt ham bal lotunu oluşturur);
-2. bir numune ve bir şahit numune mühürler, numuneyi laboratuvara gönderirsiniz;
-3. lotun ön denetimi olan KKN 0'ı girersiniz; böylece bir Kalite Güvence Sorumlusu kaydı onaylayabilir.
+1. teslimi mühürleriyle birlikte kap kap kaydeder, her kaptan bir numune kavanozu ve bir şahit numune kavanozu doldurursunuz;
+2. arıcının teslimi SMS ile aldığı kodla onaylamasını sağlarsınız;
+3. etiketleri yazdırır ve numune kavanozlarını laboratuvara gönderirsiniz;
+4. lotun ön denetimi olan KKN 0'ı girersiniz; böylece bir Kalite Güvence Sorumlusu kaydı onaylayabilir.
 
 Görevleriniz **İşlerim** sayfasında **Girilecek değerler** altında görünür. Menüde **Teslim almalar** ve **Numuneler ve laboratuvar** bulunur.
 
 ## Teslim kaydetme {#sao-intake}
 
+"Teslimattaki her kabı mührüyle kaydedin, her kaptan numune alın; ardından arıcı hepsini SMS koduyla onaylar."
+
 1. **Teslim almalar** sayfasını açın ve **Teslim al** düğmesine tıklayın.
-2. **Arıcı işletme veya kayıt numarası** alanına arıcının işletme numarasını veya doğrulanmış işletme kayıt numarasını eksiksiz yazın ve **Bul** düğmesine tıklayın. Hiçbir şey bulunamazsa şu mesaj çıkar: "Bu numarayla etkin bir arıcı yok." Numarayı kontrol edin; arıcıları bir platform yöneticisi kaydeder.
-3. Formu doldurun:
-   - **Arılık**: arıcının arılıklarından biri.
-   - **Bal türü**.
-   - **Üretim dönemi**: geçerli dönem önceden seçilidir.
-   - **Menşe ülke**.
-   - **Teslim tarihi**: varsayılan olarak bugündür; ileri bir tarih olamaz.
-   - **Miktar (kg)**: ondalık ayırıcı olarak virgül veya nokta kullanılabilir.
-   - Kökenin **İl** ve **İlçe** bilgisi: il, mümkün olduğunda kayıt numarasından önceden doldurulur.
-   - **İmzalı teslim formunun fotoğrafı**: kamera düğmesiyle fotoğraf çekin veya bir dosya seçin (10 MB'a kadar PDF ya da 8 MB'a kadar JPG, PNG veya WEBP).
-   - **Arıcıya SMS gönder** (isteğe bağlı; mevcut sürümde mesaj gönderilmez, yalnızca kayda geçer).
-4. **Teslimi kaydet** düğmesine tıklayın.
+2. **Arıcı işletme veya kayıt numarası** alanına arıcının işletme numarasını veya doğrulanmış işletme kayıt numarasını eksiksiz yazın ve **Bul** düğmesine tıklayın. Hiçbir şey bulunamazsa şu mesaj çıkar: "Bu numarayla etkin bir arıcı yok." Numarayı kontrol edin. Arıcıları arıcı kayıt görevlisi kaydeder; imzalı fotoğrafla kaydedilen bir arıcı ancak Uyum Sorumlusu fotoğrafı kabul ettikten sonra teslim yapabilir. "cep telefonu yok: yalnızca imzalı fotoğraf" ifadesi, arıcının SMS kodu alamayacağı anlamına gelir.
+3. **Teslimat**: **Arılık**, **Bal türü** ve **Üretim dönemi** (geçerli dönem önceden seçilidir), **Menşe ülke** ve **Teslim tarihi** (varsayılan olarak bugün; ileri bir tarih olamaz) alanlarını seçin.
+4. **Kaplar ve numuneler**: her kap için bir satır ([Şekil](#fig-intake-form)).
+   - Kabın **Tür** bilgisi, **Net kg** ve isteğe bağlı olarak **Brüt kg** (ondalık ayırıcı olarak virgül veya nokta kullanılabilir).
+   - **Gelişte**: **mühürlü geldi** kutusunu işaretleyip **Mühür numarası** alanını doldurun, mühür sağlamsa **mühür sağlam** kutusunu işaretleyin; mühürsüz bir kap için arıcının önünde takılan **Şimdi takılan işletme mührü** numarasını girin.
+   - Kabı açın, numune kavanozunu ve şahit numune kavanozunu doldurun. **Kavanoz mührü** ve **Şahit numune mührü** alanlarını doldurun.
+   - **Kapak sağlam** kutusunu yalnızca kapağın düğmesi aşağıdayken işaretleyin. "Güvenlik kapağı: yalnızca düğme aşağıdayken işaretleyin. Fırlamış kapak kavanozun açıldığını gösterir: kavanozu atın ve yenisini doldurun."
+   - Kabı yeniden kapatan **Numuneden sonra yeni mühür** numarasını girin.
+   - **Kap ekle** bir satır ekler; **Satırı kaldır** bir satırı kaldırır. **Toplam net** kapların toplamını gösterir.
+5. **Laboratuvar ve şahit numuneler**: **Laboratuvar** (yalnızca doğrulanmış laboratuvarlar listelenir; akredite bir laboratuvar, akreditasyon numarasıyla birlikte gösterilir), **Şahit numunelerin saklandığı yer** ve **Saklama bitişi** (varsayılan olarak 12 ay sonrası) alanlarını doldurun.
+6. **Arıcı onaylar**: **Kod gönder** düğmesine tıklayın. Arıcıya kurumunuzu, tarihi, kapları, kilogramları, bal türünü, numune sayısını ve bir kodu içeren bir SMS gider. Arıcının okuduğu kodu **SMS'teki kod (6 hane)** alanına girin ve **Teslimatı onayla** düğmesine tıklayın. "Arıcı burada değilse onu arayın: kodu telefonundan okur."
 
 <!-- SHOT: intake-form -->
-Figure: Telefonda teslim kaydetme.
+Figure: Telefonda teslim kaydetme: kaplar, mühürler ve numune kavanozları.
 
-"Teslim #… numaralı lot olarak kaydedildi." mesajı yeni lotun oluştuğunu bildirir. Platform lota KKN 0–3'ü atar ve lot için **Numune al** sayfasını açar.
+"Teslimat arıcı tarafından onaylandı ve #… numaralı lot olarak kaydedildi." mesajı yeni lotun oluştuğunu bildirir. Platform lota KKN 0–3'ü atar, her mührü bir mühür olayı olarak kaydeder ve her kap için bir numune kavanozunu seçilen laboratuvara gönderir.
+
+**Kod.** Kod 5 dakika geçerlidir ve 3 kez denenebilir; **Yeni kod gönder** bir dakika sonra yeni bir kod gönderir. Kodu gönderdikten sonra herhangi bir şeyi değiştirirseniz kod geçersiz olur ("Kod gönderildikten sonra bilgiler değişti. Yeni bir kod gönderin."). Bir saatte 10 yanlış koddan sonra 15 dakika beklemeniz gerekir; bir görevli saatte en çok 30 kod gönderir.
+
+**SMS mümkün değil: imzalı fotoğraf.** Arıcının cep telefonu yoksa veya SMS gönderilemiyorsa **SMS mümkün değil: imzalı fotoğraf** bölümünü açın, teslim formunu yazdırın, arıcıya imzalatın, **İmzalı teslim formunun fotoğrafı** alanında fotoğrafı seçin (kamera veya dosya: 10 MB'a kadar PDF ya da 8 MB'a kadar JPG, PNG veya WEBP), **SMS kodu neden kullanılamıyor** alanını doldurun ve **İmzalı fotoğrafla kaydet** düğmesine tıklayın: "Teslimat imzalı fotoğrafla #… numaralı lot olarak kaydedildi; Uyum Sorumlusunu bekliyor." Lot üzerinde çalışılabilir, ancak tesisin Uyum Sorumlusu fotoğrafı kabul edene kadar lot kesinleştirilemez.
 
 **Sık karşılaşılan hatalar**
 
@@ -37,30 +43,50 @@ Table: Teslim kaydederken sık karşılaşılan hatalar {#tbl-intake-errors}
 
 | Mesaj | Ne yapmalı |
 |---|---|
-| "Arıcının arılıklarından birini seçin." | Listeden bir arılık seçin. |
-| "Teslim tarihini girin (gelecekte olamaz)." | Tarihi düzeltin. |
-| "Miktar 0'dan büyük olmalıdır." | Miktarı kilogram olarak girin. |
-| "Seçilen ilin bir ilçesini seçin." | Önce ili, ardından o ilin listesinden bir ilçe seçin. |
-| "İmzalı teslim formunun fotoğrafını ekleyin." | İmzalı form zorunludur. |
+| "En az bir kap kaydedin." | Her kap için bir satır ekleyin. |
+| "Kap …: net ağırlığı girin (0 kg'dan fazla)." / "…: brüt ağırlık net ağırlıktan düşük olamaz." | O kabın ağırlıklarını düzeltin. |
+| "Kap …: geldiği mührün numarasını girin." / "…: arıcının önünde işletme mührü takın ve numarasını girin." | Her kabın geliş mührü veya bir işletme mührü olmalıdır. |
+| "Kap …: numune kavanozunun ve şahit numune kavanozunun mühür numaralarını girin." | Her kabın iki kavanozu da mühürlenir. |
+| "Kap …: mühürlenirken kavanoz kapağı sağlam olmalı (düğme aşağıda). Fırlamış kapak: kavanozu atın ve yenisini doldurun." | Kapağı sağlam yeni bir kavanoz doldurun. |
+| "Kap …: numuneden sonra takılan yeni işletme mührünü girin." | Kabı yeni bir mühürle kapatın. |
+| "Teslimattaki her mühür numarası farklı olmalıdır." | Bir mühür numarası iki kez kullanılmış; numaraları kontrol edin. |
+| "Arıcının arılıklarından birini seçin." / "Teslim tarihini girin (gelecekte olamaz)." | Teslimat alanlarını düzeltin. |
 | "Bu arılığın seçilen dönem ve bal türü için zaten bir üretim kaydı var." | Bir arılık her dönem ve bal türü için yalnızca bir kez teslim yapar. Dönemi ve bal türünü kontrol edin. |
+| "Yanlış kod. … deneme hakkı kaldı." / "Kodun süresi doldu. Yeni bir kod gönderin." | Arıcıdan kodu yeniden okumasını isteyin veya yeni bir kod gönderin. |
+| "SMS kodunun neden kullanılamadığını yazın." / "İmzalı teslim formunun fotoğrafını ekleyin." | İmzalı fotoğraf yolu ikisini de gerektirir. |
 | "Teslimleri yalnızca işleme yeteneği olan kurum kaydeder." / "Rolünüz (…) teslim kaydedemez; yetkili roller: …" | Kurumunuz veya rolünüz teslim kaydedemez. Kurum yöneticinize başvurun. |
 
-**Teslim almalar** listesi her teslimi lot numarası, tarih, arılık, bal türü, miktar, köken ve imzalı formla (SHA-256 parmak izinin ilk karakterleriyle birlikte) gösterir. Her satırdan **Numune** ve **Geri çağırma** sayfalarını açabilirsiniz.
+**Teslim almalar** listesi her teslimi lot numarası, tarih, arılık, bal türü, miktar, köken ve nasıl onaylandığıyla birlikte gösterir. Her satırdan teslimat sayfasını, **Numune** ve **Geri çağırma** sayfalarını açabilirsiniz.
 
-## Numune alma ve gönderme {#sao-sample}
+## Teslimat sayfası ve etiketler {#sao-labels}
 
-1. Teslimi kaydettikten sonra **Numune al** sayfası açılır. Bu sayfayı **Numuneler ve laboratuvar** sayfasından veya teslim satırından da açabilirsiniz.
-2. **Laboratuvar** seçin: yalnızca doğrulanmış laboratuvarlar listelenir; akredite bir laboratuvar, akreditasyon numarasıyla birlikte gösterilir.
+Teslimat sayfası lotu, **Mühür geçmişi** ile birlikte kapları, **Numune kavanozları** ve bunların laboratuvardaki durumunu, teslimin hangi **Onay yolu** ile (SMS kodu veya imzalı fotoğraf) onaylandığını ve **Onaylanan içerik** kontrolünü gösterir: "onaydan beri değişmedi" ya da bir düzeltmeden sonra düzeltilmiş içerik.
+
+**Etiketler (A4 sayfa)** teslimin tüm etiketlerini A4 sayfalara (2 × 5) yazdırır; **Etiketler (100 × 50 mm)** bir etiket yazıcısı için sayfa başına bir etiket yazdırır. Her kap (`L{lot}-C{n}`), her numune kavanozu (`S-{lot}-C{n}`) ve her şahit numune (`S-{lot}-C{n}-K`) için, her biri QR kodlu ve mühür numaralı bir etiket vardır; şahit numune etiketinde ayrıca **saklama** tarihi yer alır.
+
+<!-- SHOT: intake-labels -->
+Figure: Bir teslimin etiketleri: kap, numune kavanozu ve şahit numune.
+
+## Laboratuvar bir kavanozu reddettiğinde yeni kavanoz alma {#sao-resample}
+
+Laboratuvar bir kavanozu reddederse (mühür numarası, etiket veya kapak uygun değil) teslimat sayfası o kavanozda "Laboratuvar kavanozu reddetti: yeni numune alın" uyarısını gösterir. Kabı yeniden açın, yeni bir numune kavanozu ve şahit numune kavanozu doldurun, mühürlerini girin, **Kapak sağlam** kutusunu işaretleyip **Numuneden sonra yeni mühür** alanını doldurun ve **Aç, numune al ve yeniden mühürle** düğmesine tıklayın. Yeni kavanoz (`S-{lot}-C{n}-2`, …) aynı laboratuvara gider; mühür geçmişi kabın açılıp yeniden mühürlendiğini gösterir.
+
+## Eski bir teslimden numune alma {#sao-sample}
+
+Kap prosedüründen önce kaydedilen teslimlerin ("eski kayıt (kaplar kaydedilmemiş)") tek bir numunesi vardır; bu numune **Numune al** sayfasıyla alınır:
+
+1. **Numune al** sayfasını **Numuneler ve laboratuvar** sayfasından veya teslim satırından açın.
+2. **Laboratuvar** seçin: yalnızca doğrulanmış laboratuvarlar listelenir.
 3. Numunenin **Mühür numarası** ile **Şahit numune mühür numarası** alanlarını doldurun. İki numara farklı olmalıdır.
 4. **Şahit numunenin saklandığı yer** ve **Saklama süresi sonu** alanlarını doldurun (varsayılan olarak 12 ay sonrası).
 5. **Laboratuvara gönder** düğmesine ya da numuneyi daha sonra göndermek için **Sonra** düğmesine tıklayın.
 
 <!-- SHOT: sample-form -->
-Figure: Numune alma: laboratuvar ve mühür numaraları.
+Figure: Eski bir teslimden numune alma: laboratuvar ve mühür numaraları.
 
-Numune `S-20070-1` gibi bir kod ve **Gönderildi** durumunu alır. Laboratuvar numuneyi **Teslim alınacak numuneler** altında bulur. Laboratuvar mührü bozuk bulursa numune reddedilir; bu durumda aynı lot için yeni bir numune alın.
+Numune `S-20070-1` gibi bir kod ve **Gönderildi** durumunu alır. Laboratuvar mührü bozuk bulursa numune reddedilir; bu durumda aynı lot için yeni bir numune alın.
 
-Hatalar: "Doğrulanmış bir laboratuvar seçin.", "Numune ve şahit numune farklı mühürler gerektirir.", "Şahit numunenin nerede saklandığını girin (en çok 200 karakter).", "Şahit numunenin ne zamana kadar saklanacağını girin (ileri bir tarih).", "Numuneyi yalnızca lotun bulunduğu kurum alır."
+Hatalar: "Doğrulanmış bir laboratuvar seçin.", "Numune ve şahit numune farklı mühürler gerektirir.", "Şahit numunenin nerede saklandığını girin (en çok 200 karakter).", "Şahit numunenin ne zamana kadar saklanacağını girin (ileri bir tarih).", "Numuneyi yalnızca lotun bulunduğu kurum alır.", "Numuneyi yalnızca işleme yapan bir kuruluş alır."
 
 ## KKN sayfasında çalışma {#ccp-page}
 

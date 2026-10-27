@@ -56,7 +56,7 @@ El mensaje "Finalización solicitada; un responsable de aseguramiento de la cali
 
 ## Enviar una partida {#staff-ship}
 
-Solo se puede enviar una partida finalizada.
+Solo se puede enviar una partida finalizada, y solo puede hacerlo una organización que procesa, envasa o comercia miel (capacidad **Procesamiento**, **Envasado**, **Comercio mayorista** o **Comercio minorista**).
 
 1. Abra **Envíos y existencias**. **Partidas en su poder** muestra, por partida, la cantidad que tiene, la reservada por envíos pendientes y la disponible.
 2. Haga clic en **Enviar** junto a la partida.
@@ -66,13 +66,15 @@ Solo se puede enviar una partida finalizada.
 <!-- SHOT: shipment-create -->
 Figure: Envío de una partida a otra organización.
 
-Errores: "Solo se puede enviar una partida finalizada.", "Puede enviar como máximo … kg de esta partida.", "Elija otra organización verificada como receptora."
+Errores: "Solo se puede enviar una partida finalizada.", "Puede enviar como máximo … kg de esta partida.", "Elija otra organización verificada como receptora.", "Solo una organización que procesa, envasa o comercia miel la envía o la recibe."
 
 ## Confirmar o rechazar un envío (receptor) {#staff-receive}
 
 1. En **Mis tareas**, abra **Envíos por confirmar**, o vaya a **Envíos y existencias** → **Envíos entrantes**.
 2. Revise la mercancía. Haga clic en **Confirmar recepción**: "Recepción confirmada; ahora usted tiene esta cantidad en su poder."
 3. O bien escriba un **motivo (para rechazar)** y haga clic en **Rechazar**: "Envío rechazado; la cantidad permanece en poder del remitente." El motivo es obligatorio.
+
+En un teléfono, cada envío entrante se muestra como una tarjeta con el campo del motivo y los dos botones debajo.
 
 <!-- SHOT: shipment-confirm -->
 Figure: Un envío entrante en un teléfono: **Confirmar recepción** o **Rechazar**.
@@ -96,4 +98,4 @@ Para abrirlos, vaya a **Envíos y existencias**, haga clic en **Flujo del proces
 
 ## Informe de retiro {#staff-recall}
 
-Desde una partida o un lote puede abrir el **Informe de retiro**. Muestra los lotes aguas arriba y los envíos aguas abajo que su organización puede leer, con los botones **Imprimir** y **CSV**. Consulte [Retiro](#admin-recall).
+Desde una partida o un lote puede abrir el **Informe de retiro**. Muestra los lotes aguas arriba y los envíos aguas abajo que su organización puede leer, con los botones **Imprimir** y **CSV**. En **Su existencia actual** muestra la cantidad que tiene su organización; otras organizaciones también pueden tener partes de la partida, y solo los administradores de la plataforma ven a todos los poseedores ("Solo se muestra la existencia de su organización; otras organizaciones pueden tener partes de esta partida."). Consulte [Retiro](#admin-recall).

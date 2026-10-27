@@ -1,8 +1,8 @@
-# 14. Sözlük ve SSS {#glossary-faq}
+# 17. Sözlük ve SSS {#glossary-faq}
 
 ## Sözlük {#glossary}
 
-[Tablo](#tbl-glossary), bu kılavuzda kullanılan terimleri tanımlar; [Tablo](#tbl-renamed-labels) ise bir sonraki sürümde değişecek etiketleri listeler.
+[Tablo](#tbl-glossary), bu kılavuzda kullanılan terimleri tanımlar; [Tablo](#tbl-renamed-labels) ise bu sürümde yeniden adlandırılan etiketleri listeler.
 
 Table: Sözlük {#tbl-glossary}
 
@@ -21,8 +21,17 @@ Table: Sözlük {#tbl-glossary}
 | **Kesinleştirme / mühürleme** | Bir partiyi ve lotlarını kilitleyen ve Bal Hikâyesi'ni yayımlayan iki kişilik adım. |
 | **Dört göz ilkesi** | Her kayıtta iki farklı kişi yer alır: biri veriyi girer, ikinci bir kişi kontrol edip onaylar. Kimse kendi girdiğini onaylayamaz. Bkz. [Temel kurallar](#fixed-rules). |
 | **Dört göz muafiyeti** | Küçük kurumlar için, KKN kayıtlarının kişinin kendisi tarafından onaylanmasına izin veren ve bu onayları her zaman işaretleyen bir ayar. Laboratuvar sonuçları için hiçbir zaman geçerli değildir. |
-| **Numune / şahit numune** | Laboratuvara gönderilen mühürlü numune ve tesiste saklanan eşi. |
-| **Mühür numarası** | Numunenin mührü üzerindeki numara; laboratuvar numuneyi teslim alırken bu numarayı kontrol eder. |
+| **Kap** | Bir teslimdeki teneke, bidon veya varil. Her kap net ağırlığı ve mühürleriyle kaydedilir ve kendi numune kavanozunu verir. |
+| **Mühür olayı** | Bir kabın mühür geçmişindeki tek bir adım: gelişte kontrol edildi, işletme mührü takıldı, numune için açıldı, yeniden mühürlendi. Mühür olayları yalnızca eklenebilir. |
+| **Numune kavanozu / şahit numune** | Bir kaptan laboratuvara gönderilen mühürlü kavanoz ve tesiste saklanan eşi. |
+| **Güvenlik kapağı** | Numune kavanozunun, kavanoz açıldığında yukarı fırlayan bir düğmesi olan kapağı; kavanoz mühürlenirken ve teslim alınırken düğme aşağıda (kapak sağlam) olmalıdır. |
+| **Mühür numarası** | Bir mührün üzerindeki numara; laboratuvar teslim alırken bu numarayı kontrol eder. |
+| **Karışım numunesi** | Laboratuvarın bir lotun teslim alınan kavanozlarından eşit miktarlarla karıştırdığı ve lot için bir kez analiz ettiği numune. |
+| **En kötü değer** | Kavanozlar tek tek analiz edildiğinde lotun parametre başına KKN 1 değeri: limitinin en çok dışında olan ya da limitine en yakın kap değeri. |
+| **SMS kodu** | Tam olarak gönderildiği içeriği (kayıt, teslim, aydınlatma metni) onaylayan, SMS ile gönderilen 6 haneli kod; 5 dakika geçerlidir. |
+| **İçerik parmak izi** | Onaylanmış bir kaydın veya teslimin SHA-256 parmak izi; kaydın onaydan beri değişip değişmediğini gösterir. |
+| **İmzalı fotoğraf** | SMS kodu mümkün olmadığında kullanılan, arıcının imzaladığı formun fotoğrafı; bir Uyum Sorumlusu kabul eder veya reddeder. |
+| **Teslim düzeltmesi** | Onaylanmış bir teslimin bilgilerinin, bir platform yöneticisinin talep ettiği ve ikincisinin onayladığı değişikliği; arıcıya SMS ile bilgi verilir. |
 | **Laboratuvar raporu / rapor kodu** | Laboratuvarın raporu (PDF ve değerler) ve raporun herkese açık 12 karakterlik kodu. |
 | **Gıda analiz laboratuvarı** | Bal numunelerini analiz eden laboratuvar; genellikle akredite bir laboratuvardır. Sonuçları laboratuvarın analisti girer, laboratuvar müdürü onaylar. |
 | **Akredite laboratuvar** | Geçerli akreditasyonu olan laboratuvar; akreditasyon durumu rapor onaylandığında kaydedilir. |
@@ -33,17 +42,27 @@ Table: Sözlük {#tbl-glossary}
 | **Bal Hikâyesi** | Kesinleşmiş bir partinin, QR kodundan açılan herkese açık sayfası. |
 | **Arıcı sayfası** | Bir arıcının, rızasıyla yayımlanan herkese açık sayfası. |
 | **Kayıt numarası (AKS)** | Arıcının işletme kayıt numarası: `TR` + il kodu + 10 rakam. |
+| **Arıcı kaydı** | Bir arıcının ve arılıklarının, ilçe müdürlüğünün arıcı kayıt görevlisi tarafından kaydedilmesi; arıcının SMS koduyla veya imzalı bir fotoğrafla onaylanır. |
+| **Uyum Sorumlusu** | Her kurumda kanıtları, numune alma kalitesini ve onayları inceleyen ve kişisel verilerin korunmasına ilişkin başvuruları ele alan kişi; iş akışı verisi girmez. |
+| **Arıcı portalı** | Arıcının teslimleri, numuneleri, partileri, fiyatları ve rızalarıyla kendi alanı (**Arıcı alanım**). |
+| **İstenen fiyat** | Arıcının teslim ettiği bir lot için istediği kilogram fiyatı; yalnızca lotun sahibi ve yöneticiler okur, hiçbir zaman herkese açık değildir. |
+| **Aydınlatma metni** | Kişisel verilerin nasıl işlendiğini ve veri sorumlusunun kim olduğunu bildiren metin; sürümlüdür, her kullanıcı tarafından onaylanır. |
+| **Veri sorumlusu** | Kaydettiği kişisel verilerden sorumlu olan ve aydınlatma metninde belirtilen kurum. |
+| **Rıza** | Arıcının isteğe bağlı onayı (herkese açık sayfalarda ad, bilgilendirme SMS'leri, birliğin fiyatlara erişimi, herkese açık arıcı sayfası); geri çekme hemen geçerli olur. |
+| **Nötr kod** | Ad rızası olmadığında herkese açık sayfalarda arıcının adı yerine gösterilen kod. |
+| **İlgili kişi başvurusu** | Bir kişinin kendi kişisel verilerine ilişkin, 30 gün içinde yanıtlanan başvurusu (erişim, düzeltme, silme, itiraz, rızanın geri çekilmesi). |
+| **Veri saklama** | Her veri türünün ne kadar saklandığı ve sonrasında ne olduğu; çalıştırma, sahip onaylayana kadar kapalıdır. |
 | **Üyelik** | Bir kullanıcı hesabı × bir kurum × bir rol. Bir kişinin birden fazla üyeliği olabilir, aynı kurumda birkaç üyeliği de olabilir. |
-| **Arıcı (kaydı)** | Arıcıların hesabı yoktur. Her arıcı platformda bir Arıcı kaydı ile temsil edilir. |
+| **Arıcı (kaydı)** | Her arıcı platformda bir Arıcı kaydı ile temsil edilir. Arıcının, hiçbir üyelik taşımayan bir portal hesabı da olabilir. |
 | **Okuma** | Kayıtları değiştirmeden açma ve okuma hakkı. |
 | **Yetenek** | Bir kurumun sahip olduğu bir beceri: kurumun bal zincirinde neler yapabileceği (örneğin "Balı teslim alıp işleyebilir"). Bkz. [Tablo](#tbl-capabilities). |
 | **Temel kurallar** | Platforma yerleşik olan ve hiçbir ayarın kapatamadığı kurallar. Bkz. [Temel kurallar](#fixed-rules). |
 | **Denetim kaydı** | Her değişikliğin, hash zinciriyle korunan ve yalnızca eklenebilen kaydı. |
 | **SHA-256 parmak izi** | Bir dosyanın içeriğinden hesaplanan kod; dosyadaki her değişiklik bu kodu da değiştirir. |
 
-Table: Bir sonraki sürümde yeniden adlandırılacak etiketler (ekran görüntüleri eski etiketleri gösterir) {#tbl-renamed-labels}
+Table: Bu sürümde yeniden adlandırılan etiketler {#tbl-renamed-labels}
 
-| Bugün ekranda | Yeni ad (bu kılavuzda kullanılan) |
+| Bu sürümden önce | Şimdi ekranda (bu kılavuzda kullanılan) |
 |---|---|
 | Kalite onaylayıcı | Kalite Güvence Sorumlusu |
 | Sabit kurallar (kapatılamaz) | Temel kurallar (kapatılamaz) |
@@ -95,5 +114,29 @@ Rızanın kaydedildiğini, kayıt numarasının doğrulandığını, birliğin d
 **İki kurum için çalışıyorum.**
 Üst çubuktaki kurum · rol etiketiyle üyelik değiştirin. Seçim tarayıcıyı kapatana kadar geçerlidir.
 
-**Şifre sıfırlama e-postası gelmiyor.**
-İstenmeyen (spam) klasörünü kontrol edin. Bir platform yöneticisi sizin için yeni bir şifre belirleyebilir.
+**Şifre sıfırlama kodu gelmiyor.**
+Kod yalnızca **doğrulanmış** bir cep telefonuna gider. **Profil** sayfanızda numarayı kontrol edin. Doğrulanmış bir telefonunuz yoksa giriş bilgilerinizi veren kişiden yenilerini göndermesini isteyin.
+
+**Geçici şifrem çalışmıyor.**
+Geçici şifre 72 saat geçerlidir. Yeni giriş bilgileri isteyin: üyeler bir platform yöneticisinden, arıcılar kayıt görevlisinden.
+
+**Arıcıya SMS kodu gelmedi.**
+Telefon numarasını kontrol edin, bir dakika bekleyin ve **Yeni kod gönder** düğmesine tıklayın. SMS mümkün değilse imzalı fotoğraf yolunu kullanın; kayıt bu durumda Uyum Sorumlusunu bekler.
+
+**Teslim kaydında "Bu numarayla etkin bir arıcı yok."**
+Arıcı kayıtlı değil ya da Uyum Sorumlusunun henüz kabul etmediği imzalı bir fotoğrafla kaydedilmiş. İlçenin arıcı kayıt görevlisine başvurun.
+
+**Laboratuvar bir kavanozu reddetti.**
+Aynı kaptan yeni bir kavanoz alın: teslimat sayfasında **Aç, numune al ve yeniden mühürle**.
+
+**"Kesinleştirme talep et" bir teslim fotoğrafını belirtiyor.**
+İmzalı fotoğrafla onaylanan bir teslim, ancak tesisin Uyum Sorumlusu fotoğrafı kabul ettikten sonra kesinleştirilebilir.
+
+**Doğrulama sayfası rapor kodunun bulunamadığını söylüyor.**
+Yalnızca onaylanmış raporlar doğrulanabilir. Laboratuvara raporun onaylanıp onaylanmadığını sorun.
+
+**Bal Hikâyesi arıcının adı yerine bir kod gösteriyor.**
+Arıcı adının gösterilmesine rıza vermemiş. Arıcı bu rızayı portalda veya bir sonraki kayıtta verebilir.
+
+**Animasyonlar beni rahatsız ediyor.**
+Avatar menüsündeki **Animasyonları göster** ile (veya portalın **Hesap** sayfasında) kapatın.

@@ -5,16 +5,20 @@
 Administrator organizacji zarządza organizacją na platformie. Twoje zadania to:
 
 - aktualizowanie dokumentów organizacji (licencja, akredytacja, zaświadczenie podatkowe, dowód wpisu do rejestru);
-- w zakładzie: odczytywanie dostaw i próbek, składanie wniosków o ostateczne zatwierdzenie, wysyłanie towaru i potwierdzanie wysyłek;
+- w zakładzie: odczytywanie dostaw i próbek, odczytywanie ceny oczekiwanej przez pszczelarzy za partie należące do Twojej organizacji, składanie wniosków o ostateczne zatwierdzenie, wysyłanie towaru i potwierdzanie wysyłek;
 - u hurtownika lub detalisty: potwierdzanie wysyłek;
 - w stowarzyszeniu: rejestrowanie i wycofywanie zgód pszczelarzy na publiczną stronę pszczelarza.
 
-Członkostwami i funkcjami Twojej organizacji zarządzają administratorzy platformy. Jeśli współpracownik potrzebuje dostępu lub innej roli, zwróć się do nich.
+Członkostwami i funkcjami Twojej organizacji zarządzają administratorzy platformy. Jeśli współpracownik potrzebuje dostępu lub innej roli, zwróć się do nich. Każda organizacja potrzebuje **Specjalisty ds. zgodności**; w małej organizacji możesz nim być Ty, w ramach drugiego członkostwa (zob. [rozdział 13](#role-co)).
 
 ## Strona Twojej organizacji {#orgadmin-org-page}
 
 1. Otwórz **Moja organizacja** i kliknij **Strona organizacji**.
-2. Strona pokazuje status, funkcje, dokumenty, historię weryfikacji i członków Twojej organizacji.
+2. Strona pokazuje status, funkcje, dokumenty, dane w sekcji **Administrator danych**, historię weryfikacji i członków Twojej organizacji.
+
+Dopóki organizacja nie ma Specjalisty ds. zgodności, strona wyświetla komunikat „Ta organizacja nie ma jeszcze specjalisty ds. zgodności. Każda organizacja wyznacza co najmniej jednego (może to być administrator organizacji z drugim członkostwem).” wraz z datą, do której trzeba go wyznaczyć.
+
+**Administrator danych.** Informacja o danych organizacji wskazuje organizację jako administratora danych: jej **Nazwa prawna**, **Kontakt (e-mail lub telefon)** i **Adres**. „brak” oznacza, że dane nie zostały jeszcze wprowadzone. Aktualizuje je Specjalista ds. zgodności lub administrator platformy.
 
 <!-- SHOT: org-details -->
 Figure: Dokumenty organizacji wraz z ich odciskami SHA-256.
@@ -30,6 +34,10 @@ Platforma przechowuje plik wraz z jego odciskiem SHA-256. Dokumentów nie można
 ## Ostateczne zatwierdzenie i wysyłki {#orgadmin-plant}
 
 W zakładzie możesz złożyć wniosek o ostateczne zatwierdzenie partii końcowej przyciskiem **Wnioskuj o ostateczne zatwierdzenie** i wysłać ją przyciskiem **Wyślij**, tak samo jak Personel: zob. [Wniosek o ostateczne zatwierdzenie](#staff-request-finalize) i [Wysyłka partii końcowej](#staff-ship). U odbiorcy możesz użyć przycisków **Potwierdź odbiór** lub **Odrzuć**: zob. [Potwierdzenie lub odrzucenie wysyłki](#staff-receive).
+
+## Cena oczekiwana za Twoje partie {#orgadmin-price}
+
+Pszczelarze wprowadzają w swoim portalu cenę za kg oczekiwaną za każdą dostawę (zob. [Twoje dostawy i Twoja cena](#portal-price)). Na stronie dostawy partii należącej do Twojej organizacji pole **Cena oczekiwana** pokazuje aktualną cenę i jej historię: „Cena za kg oczekiwana przez pszczelarza i jej historia. Niewidoczna dla innych ról, kolejnych posiadaczy i stron publicznych.” Odczytują ją administrator organizacji, Specjalista ds. zgodności i administratorzy platformy; nikt inny. Stowarzyszenie odczytuje ceny swoich członków tylko wtedy, gdy pszczelarz się na to zgodził.
 
 ## Strony pszczelarzy (stowarzyszenia) {#orgadmin-storefronts}
 

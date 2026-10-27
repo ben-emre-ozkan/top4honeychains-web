@@ -1,8 +1,8 @@
-# 14. Słowniczek i najczęściej zadawane pytania {#glossary-faq}
+# 17. Słowniczek i najczęściej zadawane pytania {#glossary-faq}
 
 ## Słowniczek {#glossary}
 
-[Table](#tbl-glossary) objaśnia terminy używane w tym podręczniku; [Table](#tbl-renamed-labels) wymienia etykiety, które zmienią się w następnej wersji.
+[Table](#tbl-glossary) objaśnia terminy używane w tym podręczniku; [Table](#tbl-renamed-labels) wymienia etykiety, których nazwy zmieniono w tej wersji.
 
 Table: Słowniczek {#tbl-glossary}
 
@@ -21,8 +21,17 @@ Table: Słowniczek {#tbl-glossary}
 | **Ostateczne zatwierdzenie / zamknięcie** | Dwuosobowy krok, który blokuje partię końcową i jej partie oraz publikuje Historię miodu. |
 | **Zasada czterech oczu** | W każdym rekordzie uczestniczą dwie różne osoby: jedna wprowadza dane, a druga je sprawdza i zatwierdza. Nikt nie zatwierdza tego, co sam wprowadził. Zob. [Zasady podstawowe](#fixed-rules). |
 | **Wyjątek od zasady czterech oczu** | Ustawienie dla małych organizacji, które pozwala samodzielnie zatwierdzać rekordy KPK; takie zatwierdzenie jest zawsze oznaczane. Nigdy nie dotyczy wyników laboratoryjnych. |
-| **Próbka / przeciwpróbka** | Zaplombowana próbka wysyłana do laboratorium oraz jej bliźniacza część przechowywana w zakładzie. |
-| **Numer plomby** | Numer na plombie próbki; laboratorium sprawdza go przy przyjęciu. |
+| **Pojemnik** | Puszka, bęben lub beczka z dostawy. Każdy pojemnik jest rejestrowany z wagą netto i plombami i daje własny słoik z próbką. |
+| **Zdarzenie plomby** | Jeden krok w historii plomb pojemnika: sprawdzenie przy przyjęciu, założenie plomby zakładu, otwarcie do pobrania próbki, ponowne zaplombowanie. Zdarzenia plomb można tylko dopisywać. |
+| **Słoik z próbką / próbka kontrolna** | Zaplombowany słoik z jednego pojemnika wysyłany do laboratorium oraz jego bliźniaczy słoik przechowywany w zakładzie. |
+| **Wieczko gwarancyjne** | Wieczko słoika z próbką z przyciskiem, który wyskakuje po otwarciu słoika; przy plombowaniu i przy przyjęciu słoika przycisk musi być wciśnięty (wieczko nienaruszone). |
+| **Numer plomby** | Numer na plombie; laboratorium sprawdza go przy przyjęciu. |
+| **Próbka zbiorcza** | Próbka, którą laboratorium tworzy z równych części przyjętych słoików partii i bada jeden raz dla całej partii. |
+| **Najgorsza wartość** | Przy pojedynczej analizie słoików: wartość KPK 1 partii dla danego parametru, czyli wartość pojemnika najdalej poza limitem lub najbliższa limitu. |
+| **Kod SMS** | 6-cyfrowy kod wysyłany SMS-em, który potwierdza dokładnie tę treść, dla której został wysłany (rejestracja, dostawa, informacja o danych); ważny przez 5 minut. |
+| **Odcisk treści** | Odcisk SHA-256 potwierdzonej rejestracji lub dostawy; pokazuje, czy rekord pozostał bez zmian od potwierdzenia. |
+| **Podpisane zdjęcie** | Zdjęcie formularza podpisanego przez pszczelarza, używane, gdy kod SMS jest niemożliwy; akceptuje je lub odrzuca Specjalista ds. zgodności. |
+| **Korekta dostawy** | Zmiana faktów potwierdzonej dostawy, o którą wnioskuje jeden administrator platformy, a którą potwierdza drugi; pszczelarz jest o niej informowany SMS-em. |
 | **Raport laboratoryjny / kod raportu** | Raport laboratorium (plik PDF i wartości) oraz jego publiczny 12-znakowy kod. |
 | **Laboratorium analizy żywności** | Laboratorium, które analizuje próbki miodu, zwykle akredytowane. Jego analityk wprowadza wyniki, a kierownik laboratorium je zatwierdza. |
 | **Akredytowane laboratorium** | Laboratorium z ważną akredytacją, odnotowaną w chwili zatwierdzenia raportu. |
@@ -33,17 +42,27 @@ Table: Słowniczek {#tbl-glossary}
 | **Historia miodu** | Publiczna strona partii końcowej zatwierdzonej ostatecznie, otwierana z jej kodu QR. |
 | **Strona pszczelarza** | Publiczna strona pszczelarza, publikowana za jego zgodą. |
 | **Numer w rejestrze (AKS)** | Numer gospodarstwa pszczelarza w rejestrze: `TR` + kod prowincji + 10 cyfr. |
+| **Rejestracja pszczelarza** | Zarejestrowanie pszczelarza i jego pasiek przez specjalistę ds. rejestracji pszczelarzy powiatowej dyrekcji, potwierdzone kodem SMS pszczelarza lub podpisanym zdjęciem. |
+| **Specjalista ds. zgodności** | Osoba w każdej organizacji, która przegląda dowody, jakość pobierania próbek i zatwierdzenia oraz obsługuje żądania dotyczące ochrony danych; nie wprowadza danych procesowych. |
+| **Portal pszczelarza** | Własny obszar pszczelarza (**Mój obszar pszczelarza**) z jego dostawami, próbkami, partiami końcowymi, cenami i zgodami. |
+| **Cena oczekiwana** | Cena za kg, której pszczelarz oczekuje za dostarczoną partię; odczytują ją tylko właściciel partii i administratorzy, nigdy publicznie. |
+| **Informacja o danych** | Tekst informujący, jak przetwarzane są dane osobowe i kto jest administratorem danych; ma wersje i potwierdza go każdy użytkownik. |
+| **Administrator danych** | Organizacja odpowiedzialna za dane osobowe, które rejestruje, wskazana w jej informacji o danych. |
+| **Zgoda** | Dobrowolna zgoda pszczelarza (imię i nazwisko na stronach publicznych, informacyjne SMS-y, dostęp stowarzyszenia do cen, publiczna strona pszczelarza); wycofanie działa natychmiast. |
+| **Neutralny kod** | Kod pokazywany na stronach publicznych zamiast imienia i nazwiska pszczelarza, gdy brak zgody na podanie nazwiska. |
+| **Żądanie osoby, której dane dotyczą** | Żądanie osoby dotyczące jej danych osobowych (dostęp, sprostowanie, usunięcie, sprzeciw, wycofanie zgody), na które odpowiada się w ciągu 30 dni. |
+| **Przechowywanie danych** | To, jak długo przechowywany jest każdy rodzaj danych i co dzieje się potem; uruchamianie jest wyłączone do czasu zatwierdzenia przez właściciela. |
 | **Członkostwo** | Jedno konto użytkownika × jedna organizacja × jedna rola. Jedna osoba może mieć kilka członkostw, także kilka w tej samej organizacji. |
-| **Pszczelarz (rekord)** | Pszczelarze nie mają kont. Każdego z nich reprezentuje na platformie rekord pszczelarza. |
+| **Pszczelarz (rekord)** | Każdego pszczelarza reprezentuje na platformie rekord pszczelarza. Pszczelarz może też mieć konto w portalu, które nie ma członkostwa. |
 | **Odczyt** | Prawo do otwierania i odczytywania rekordów bez ich zmieniania. |
 | **Funkcja** | Zdolność organizacji: to, co może ona robić w łańcuchu miodu (na przykład „Zdolność do przyjmowania i przetwarzania miodu”). Zob. [Table](#tbl-capabilities). |
 | **Zasady podstawowe** | Zasady wbudowane w platformę, których nie może wyłączyć żadne ustawienie. Zob. [Zasady podstawowe](#fixed-rules). |
 | **Dziennik audytu** | Rejestr wszystkich zmian, do którego można tylko dopisywać, chroniony łańcuchem skrótów. |
 | **Odcisk SHA-256** | Kod obliczany na podstawie zawartości pliku; każda zmiana pliku zmienia ten kod. |
 
-Table: Etykiety zmienione w następnej wersji (zrzuty ekranu pokazują stare etykiety) {#tbl-renamed-labels}
+Table: Etykiety zmienione w tej wersji {#tbl-renamed-labels}
 
-| Obecnie na ekranie | Nowa nazwa (używana w tym podręczniku) |
+| Przed tą wersją | Obecnie na ekranie (używane w tym podręczniku) |
 |---|---|
 | Zatwierdzający jakość (także w komunikatach, na przykład „musi go potwierdzić zatwierdzający jakość (inna osoba)”) | Specjalista ds. zapewnienia jakości |
 | Stałe zasady (nie można ich wyłączyć) | Zasady podstawowe (nie można ich wyłączyć) |
@@ -93,5 +112,29 @@ Sprawdź, czy zgoda jest zarejestrowana, numer w rejestrze jest zweryfikowany, s
 **Pracuję dla dwóch organizacji.**
 Przełącz się za pomocą wskaźnika organizacja · rola na górnym pasku. Wybór obowiązuje do zamknięcia przeglądarki.
 
-**Nie otrzymuję wiadomości e-mail umożliwiającej zresetowanie hasła.**
-Sprawdź folder spamu. Administrator platformy może ustawić dla Ciebie nowe hasło.
+**Nie otrzymuję kodu do zresetowania hasła.**
+Kod trafia wyłącznie na **zweryfikowany** telefon komórkowy. Sprawdź numer na stronie **Profil**. Jeśli nie masz zweryfikowanego telefonu, poproś osobę, która przekazała Ci dane logowania, o nowe.
+
+**Moje hasło tymczasowe nie działa.**
+Jest ważne przez 72 godziny. Poproś o nowe dane logowania: członkowie zwracają się do administratora platformy, pszczelarze do specjalisty ds. rejestracji pszczelarzy.
+
+**Pszczelarz nie otrzymał kodu SMS.**
+Sprawdź numer telefonu, odczekaj minutę i kliknij **Wyślij nowy kod**. Jeśli SMS jest niemożliwy, użyj ścieżki z podpisanym zdjęciem; rekord czeka wtedy na Specjalistę ds. zgodności.
+
+**„Brak aktywnego pszczelarza o tym numerze.” przy dostawie.**
+Pszczelarz nie jest zarejestrowany albo został zarejestrowany za pomocą podpisanego zdjęcia, którego Specjalista ds. zgodności jeszcze nie zaakceptował. Zwróć się do specjalisty ds. rejestracji pszczelarzy w powiecie.
+
+**Laboratorium odrzuciło słoik.**
+Pobierz nowy słoik z tego samego pojemnika: na stronie dostawy kliknij **Otwórz, pobierz i zaplombuj ponownie**.
+
+**„Wnioskuj o ostateczne zatwierdzenie” wskazuje zdjęcie dostawy.**
+Dostawę potwierdzoną podpisanym zdjęciem można zatwierdzić ostatecznie dopiero wtedy, gdy Specjalista ds. zgodności zakładu zaakceptuje zdjęcie.
+
+**Strona weryfikacji informuje, że nie znaleziono kodu raportu.**
+Weryfikować można tylko zatwierdzone raporty. Zapytaj laboratorium, czy raport został zatwierdzony.
+
+**Historia miodu pokazuje kod zamiast imienia i nazwiska pszczelarza.**
+Pszczelarz nie udzielił zgody na pokazywanie imienia i nazwiska. Może jej udzielić w portalu lub przy następnej rejestracji.
+
+**Animacje mi przeszkadzają.**
+Wyłącz je przełącznikiem **Pokazuj animacje** w menu awatara (lub na stronie **Konto** w portalu).

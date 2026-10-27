@@ -1,8 +1,8 @@
-# 14. Terminu skaidrojumi un bieži uzdotie jautājumi {#glossary-faq}
+# 17. Terminu skaidrojumi un bieži uzdotie jautājumi {#glossary-faq}
 
 ## Terminu skaidrojumi {#glossary}
 
-[Table](#tbl-glossary) skaidro šajā rokasgrāmatā lietotos terminus; [Table](#tbl-renamed-labels) uzskaita nosaukumus, kas mainās nākamajā versijā.
+[Table](#tbl-glossary) skaidro šajā rokasgrāmatā lietotos terminus; [Table](#tbl-renamed-labels) uzskaita nosaukumus, kas mainīti šajā versijā.
 
 Table: Terminu skaidrojumi {#tbl-glossary}
 
@@ -21,8 +21,17 @@ Table: Terminu skaidrojumi {#tbl-glossary}
 | **Pabeigšana (fiksēšana)** | Divu personu solis, kas bloķē gala partiju un tās partijas un publicē Medus stāstu. |
 | **Četru acu princips** | Katrā ierakstā piedalās divas dažādas personas: viena ievada datus, otra tos pārbauda un apstiprina. Neviens neapstiprina to, ko pats ievadījis. Skatīt [Pamatnoteikumi](#fixed-rules). |
 | **Četru acu principa izņēmums** | Iestatījums mazām organizācijām, kas ļauj pašam apstiprināt savus KKP ierakstus; tas vienmēr tiek atzīmēts. Nekad neattiecas uz laboratorijas rezultātiem. |
-| **Paraugs / kontrolparaugs** | Noplombētais paraugs, kas tiek nosūtīts uz laboratoriju, un tā dvīņu paraugs, ko glabā uzņēmumā. |
-| **Plombas numurs** | Numurs uz parauga plombas; laboratorija to pārbauda, saņemot paraugu. |
+| **Tvertne** | Piegādes kanna, muca vai cits trauks. Katru tvertni reģistrē ar tās neto svaru un plombām, un no katras tvertnes ņem savu parauga burku. |
+| **Plombas notikums** | Viens solis tvertnes plombu vēsturē: pārbaudīta pienākot, uzlikta uzņēmuma plomba, atvērta paraugu ņemšanai, noplombēta no jauna. Plombu notikumus var tikai pievienot. |
+| **Parauga burka / kontrolparaugs** | Noplombētā burka no vienas tvertnes, ko nosūta uz laboratoriju, un tās dvīņu burka, ko glabā uzņēmumā. |
+| **Drošības vāciņš** | Parauga burkas vāciņš ar pogu, kas izlec, kad burku atver; pogai jābūt nospiestai (vāciņš neskarts), kad burku noplombē un kad to pieņem. |
+| **Plombas numurs** | Numurs uz plombas; laboratorija to pārbauda, saņemot paraugu. |
+| **Kopparaugs** | Paraugs, ko laboratorija sajauc no vienādām daļām no partijas pieņemtajām burkām un analizē vienreiz visai partijai. |
+| **Sliktākā vērtība** | Ja burkas analizē atsevišķi, partijas KKP 1 vērtība katram parametram: tā tvertnes vērtība, kas ir vistālāk ārpus robežvērtības vai vistuvāk tai. |
+| **SMS kods** | 6 ciparu kods, ko nosūta ar SMS un kas apstiprina tieši to saturu, kuram tas nosūtīts (reģistrācija, piegāde, paziņojums); derīgs 5 minūtes. |
+| **Satura nospiedums** | Apstiprinātas reģistrācijas vai piegādes SHA-256 nospiedums; tas parāda, vai ieraksts kopš apstiprināšanas nav mainīts. |
+| **Parakstīts foto** | Biškopja parakstītas veidlapas fotoattēls, ko izmanto, ja SMS kods nav iespējams; to pieņem vai noraida atbilstības speciālists. |
+| **Piegādes labojums** | Apstiprinātas piegādes faktu izmaiņa, ko pieprasa viens platformas administrators un apstiprina otrs; biškopis par to tiek informēts ar SMS. |
 | **Laboratorijas pārskats / pārskata kods** | Laboratorijas pārskats (PDF un vērtības) un tā publiskais 12 rakstzīmju kods. |
 | **Pārtikas analīžu laboratorija** | Laboratorija, kas analizē medus paraugus, parasti akreditēta. Tās analītiķis ievada rezultātus, tās laboratorijas vadītājs tos apstiprina. |
 | **Akreditēta laboratorija** | Laboratorija ar derīgu akreditāciju, kas tiek reģistrēta pārskata apstiprināšanas brīdī. |
@@ -33,23 +42,34 @@ Table: Terminu skaidrojumi {#tbl-glossary}
 | **Medus stāsts** | Pabeigtas (fiksētas) gala partijas publiskā lapa, ko atver ar tās QR kodu. |
 | **Biškopja lapa** | Biškopja publiskā lapa, kas tiek publicēta ar viņa piekrišanu. |
 | **Reģistrācijas numurs (AKS)** | Biškopja saimniecības reģistrācijas numurs: `TR` + provinces kods + 10 cipari. |
+| **Biškopju reģistrācija** | Biškopja un viņa dravu reģistrācija, ko veic novada lauksaimniecības pārvaldes biškopju reģistrācijas speciālists; to apstiprina ar biškopja SMS kodu vai parakstītu foto. |
+| **Atbilstības speciālists** | Persona katrā organizācijā, kas pārskata pierādījumus, paraugu ņemšanas kvalitāti un apstiprinājumus un izskata datu aizsardzības pieprasījumus; darba plūsmas datus neievada. |
+| **Biškopju portāls** | Biškopja paša sadaļa (**Mana biškopja sadaļa**) ar viņa piegādēm, paraugiem, gala partijām, cenām un piekrišanām. |
+| **Prasītā cena** | Cena par kg, ko biškopis prasa par piegādātu partiju; to lasa tikai partijas īpašnieks un administratori, un tā nekad nav publiska. |
+| **Privātuma paziņojums** | Teksts, kas izskaidro, kā tiek apstrādāti personas dati un kas ir datu pārzinis; tam ir versijas, un katrs lietotājs to apstiprina. |
+| **Datu pārzinis** | Organizācija, kas atbild par savu reģistrēto personas datu apstrādi; tā ir norādīta organizācijas privātuma paziņojumā. |
+| **Piekrišana** | Biškopja brīvprātīga piekrišana (vārds publiskajās lapās, informatīvās SMS, biedrības piekļuve cenām, publiska biškopja lapa); atsaukums stājas spēkā nekavējoties. |
+| **Neitrāls kods** | Kods, ko publiskajās lapās rāda biškopja vārda vietā, ja nav piekrišanas vārda rādīšanai. |
+| **Datu subjekta pieprasījums** | Personas pieprasījums par saviem personas datiem (piekļuve, labošana, dzēšana, iebildums, piekrišanas atsaukšana), uz ko atbild 30 dienu laikā. |
+| **Glabāšana** | Cik ilgi glabā katru datu veidu un kas ar tiem notiek pēc tam; palaišana ir izslēgta, līdz to apstiprina īpašnieks. |
 | **Dalība** | Viens lietotāja konts × viena organizācija × viena loma. Vienai personai var būt vairākas dalības, arī vairākas vienā organizācijā. |
-| **Biškopis (ieraksts)** | Biškopjiem nav kontu. Katru no viņiem platformā pārstāv biškopja ieraksts. |
+| **Biškopis (ieraksts)** | Katru biškopi platformā pārstāv biškopja ieraksts. Biškopim var būt arī portāla konts, kuram nav dalības. |
 | **Lasīt** | Tiesības atvērt un lasīt ierakstus, tos nemainot. |
 | **Kompetence** | Organizācijas spēja: tas, ko organizācija spēj darīt medus ķēdē (piemēram, "Spēj pieņemt un pārstrādāt medu"). Skatīt [Table](#tbl-capabilities). |
 | **Pamatnoteikumi** | Platformā iestrādātie noteikumi, kurus nevar izslēgt neviens iestatījums. Skatīt [Pamatnoteikumi](#fixed-rules). |
 | **Audita žurnāls** | Tikai papildināms visu izmaiņu ieraksts, ko aizsargā jaucējvērtību ķēde. |
 | **SHA-256 nospiedums** | Kods, kas aprēķināts no faila satura; jebkuras faila izmaiņas maina arī šo kodu. |
 
-Table: Nosaukumi, kas mainās nākamajā versijā (ekrānuzņēmumos redzami vecie nosaukumi) {#tbl-renamed-labels}
+Table: Nosaukumi, kas mainīti šajā versijā {#tbl-renamed-labels}
 
-| Šodien ekrānā | Jaunais nosaukums (lietots šajā rokasgrāmatā) |
+| Pirms šīs versijas | Tagad ekrānā (lietots šajā rokasgrāmatā) |
 |---|---|
 | Kvalitātes apstiprinātājs | Kvalitātes nodrošināšanas speciālists |
 | Fiksēti noteikumi (tos nevar izslēgt) | Pamatnoteikumi (tos nevar izslēgt) |
 | Kompetenču apraksti (piemēram, "Pieņemšana un pārstrāde: …") | Spēju teksti (piemēram, "Spēj pieņemt un pārstrādāt medu: …"), skatīt [Table](#tbl-capabilities) |
 | Biškopība (kompetence) | Biškopības saimniecība |
 | CCP lapā **Lomas un atļaujas** (piemēram, "CCP 0") | KKP (piemēram, "KKP 0"), kā citur platformā |
+| Paziņojumi, kuros loma nosaukta ar tās kodu ("QualityApprover", "LabManager") | Lomas nosaukums ("kvalitātes nodrošināšanas speciālists", "laboratorijas vadītājs") |
 
 ## Bieži uzdotie jautājumi un problēmu novēršana {#faq}
 
@@ -95,5 +115,29 @@ Pārbaudiet, vai piekrišana ir reģistrēta, reģistrācijas numurs ir pārbaud
 **Es strādāju divās organizācijās.**
 Pārslēdzieties ar organizācijas · lomas žetonu augšējā joslā. Izvēle ir spēkā, līdz aizverat pārlūku.
 
-**Nesaņemu paroles atiestatīšanas e-pastu.**
-Pārbaudiet surogātpasta mapi. Platformas administrators var iestatīt jums jaunu paroli.
+**Nesaņemu paroles atiestatīšanas kodu.**
+Kods tiek sūtīts tikai uz **pārbaudītu** mobilo tālruni. Pārbaudiet numuru savā lapā **Profils**. Ja pārbaudīta tālruņa nav, lūdziet personu, kas jums deva pieteikšanās datus, nosūtīt jaunus.
+
+**Mana pagaidu parole nedarbojas.**
+Tā ir derīga 72 stundas. Lūdziet jaunus pieteikšanās datus: dalībnieki – platformas administratoram, biškopji – reģistrācijas speciālistam.
+
+**Biškopis nesaņēma SMS kodu.**
+Pārbaudiet tālruņa numuru, uzgaidiet minūti un noklikšķiniet **Sūtīt jaunu kodu**. Ja SMS nav iespējama, izmantojiet parakstītā foto ceļu; ieraksts tad gaida atbilstības speciālistu.
+
+**Piegādes reģistrēšanā redzams "Nav aktīva biškopja ar šo numuru."**
+Biškopis nav reģistrēts vai ir reģistrēts ar parakstītu foto, ko atbilstības speciālists vēl nav pieņēmis. Vērsieties pie novada biškopju reģistrācijas speciālista.
+
+**Laboratorija noraidīja burku.**
+Paņemiet jaunu burku no tās pašas tvertnes: piegādes lapā **Atvērt, paņemt paraugu un noplombēt no jauna**.
+
+**"Pieprasīt pabeigšanu (fiksēšanu)" min piegādes foto.**
+Ar parakstītu foto apstiprinātu piegādi var pabeigt tikai pēc tam, kad uzņēmuma atbilstības speciālists foto pieņem.
+
+**Pārbaudes lapā teikts, ka pārskata kods nav atrasts.**
+Pārbaudīt var tikai apstiprinātus pārskatus. Jautājiet laboratorijai, vai pārskats ir apstiprināts.
+
+**Medus stāstā biškopja vārda vietā redzams kods.**
+Biškopis nav devis piekrišanu vārda rādīšanai. Biškopis to var dot portālā vai nākamajā reģistrācijā.
+
+**Animācijas mani traucē.**
+Izslēdziet tās ar **Rādīt animācijas** avatāra izvēlnē (vai portāla lapā **Konts**).

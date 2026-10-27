@@ -2,19 +2,30 @@
 
 ## Günlük işiniz {#analyst-daily}
 
-Bir gıda analiz laboratuvarında çalışırsınız ve laboratuvarın iki kişisinden birincisisiniz: siz girersiniz, laboratuvar müdürü onaylar. İşleme tesislerinin gönderdiği mühürlü numuneleri teslim alır, mührü kontrol eder, balı analiz eder, sonuçları rapor PDF'iyle birlikte girer ve raporu onay için laboratuvar müdürünüze gönderirsiniz.
+Bir gıda analiz laboratuvarında çalışırsınız ve laboratuvarın iki kişisinden birincisisiniz: siz girersiniz, laboratuvar müdürü onaylar. İşleme tesislerinin gönderdiği mühürlü numune kavanozlarını (bir teslimin her kabından bir tane) teslim alır, mührü, etiketi ve kapağı kontrol eder, karışım numunesini oluşturur, balı analiz eder, sonuçları rapor PDF'iyle birlikte girer ve raporu onay için laboratuvar müdürünüze gönderirsiniz.
 
 Görevleriniz **İşlerim** sayfasında **Teslim alınacak numuneler** ve **Girilecek laboratuvar sonuçları** altında görünür. Menüde **Numuneler ve laboratuvar** bulunur.
 
 ## Numune teslim alma {#analyst-receive}
 
-1. **İşlerim** sayfasında **Teslim alınacak numuneler** grubunu açın veya **Numuneler ve laboratuvar** → **Laboratuvarınıza gelen numuneler** bölümüne gidin.
-2. Numunenin üzerindeki mühür numarasını ekranda gösterilen numarayla karşılaştırın.
-3. Mühür sağlamsa **Teslim alındı, mühür sağlam** düğmesine tıklayın: "Numune teslim alındı; mühür sağlam."
-4. Mühür bozuksa **gerekçe (mühür bozuksa)** alanını doldurun ve **Mühür bozuk: reddet** düğmesine tıklayın: "Numune reddedildi: mühür bozuk." Bu durumda tesisin yeni bir numune alması gerekir.
+1. **İşlerim** sayfasında **Teslim alınacak numuneler** grubunu açın veya **Numuneler ve laboratuvar** → **Laboratuvarınıza gelen numuneler** bölümüne gidin. Her kavanoz kodunu (`S-{lot}-C{n}`), kabını ve mühür numarasını gösterir.
+2. Kavanoz için üç kontrolü yanıtlayın: **Mühür numarası kayıtla aynı**, **Etiket sağlam** ve **Kapak sağlam (düğme aşağıda)**.
+3. Üçü de **Evet** ise **Kabulü kaydet** düğmesine tıklayın: kavanoz teslim alınır.
+4. Kontrollerden biri **Hayır** ise **Bir kontrol başarısızsa gerekçe** alanını doldurun ve **Kabulü kaydet** düğmesine tıklayın: kavanoz reddedilir. Tesis aynı kaptan yeni bir kavanoz alır ve size gönderir.
 
 <!-- SHOT: sample-receive -->
-Figure: Laboratuvarda numune teslim alma: mühür kontrolü.
+Figure: Laboratuvarda numune kavanozlarını teslim alma: mühür, etiket ve kapak.
+
+Eski bir teslimin numunesinde (lot başına bir numune) tek bir mühür kontrolü vardır: **Teslim alındı, mühür sağlam** ya da **gerekçe (mühür bozuksa)** ve **Mühür bozuk: reddet**.
+
+## Karışım numunesini oluşturma {#analyst-composite}
+
+Karışım analizinde (varsayılan) laboratuvar lot başına bir karışım numunesi analiz eder (bkz. [Karışım veya kap başına analiz](#flow-analysis)). Bir lotun her kabının kavanozu sağlam ulaştığında lot **Karışım numunesine hazır lotlar** altında görünür: "Bu lotların her kabının kavanozu sağlam ulaştı. Kavanozlardan eşit miktarları tek bir karışım numunesinde birleştirip analiz edin; kavanozlar tek tek analiz için saklanır."
+
+1. Kavanozlardan eşit miktarları karıştırın.
+2. **Karışım numunesini oluştur** düğmesine tıklayın. `S-{lot}-COMP` karışım numunesi oluşturulur ve teslim alınmış olarak kaydedilir; raporu diğer raporlar gibi girilir.
+
+Karışım başarısız olursa veya istenirse tek bir kavanoz için de rapor girebilirsiniz; bu rapor o kavanozda kalır ve lotun KKN 1 değerlerini değiştirmez. Kap başına analizde karışım numunesi yoktur: her kavanozun kendi raporu olur ve lotun KKN 1'i her parametrenin en kötü değerini alır (bkz. [En kötü değer kuralı](#flow-worst)).
 
 ## Laboratuvar sonuçlarını girme {#analyst-results}
 
@@ -38,7 +49,7 @@ Rapor taslak olduğu sürece istediğiniz kadar kaydedebilirsiniz.
 
 ## Raporu onaya gönderme {#analyst-submit}
 
-1. Sayfada "Girilen zorunlu değer: … / …" yazar. **Onaya gönder** düğmesi yalnızca tüm zorunlu değerler, PDF, rapor numarası ve tarih girildiğinde etkin olur.
+1. Sayfada "Girilen zorunlu değer: … / …" yazar; sayı siz yazdıkça güncellenir ve "Eksik:" henüz boş olan değerleri belirtir. **Onaya gönder** düğmesi yalnızca tüm zorunlu değerler, PDF, rapor numarası ve tarih **kaydedildiğinde** etkin olur: her şey yazılmış ancak henüz kaydedilmemişse sayfada "Göndermeden önce değerleri kaydedin." yazar.
 2. **Onaya gönder** düğmesine tıklayın: "Rapor onaya gönderildi; bir laboratuvar müdürü (başka bir kişi) onaylamalı."
 
 <!-- SHOT: lab-submit -->
@@ -52,7 +63,7 @@ Table: Laboratuvar sonuçlarını girerken sık karşılaşılan hatalar {#tbl-l
 
 | Mesaj | Ne yapmalı |
 |---|---|
-| "Sonuçlar yalnızca mührü sağlam teslim alınmış numune için girilir." | Önce numuneyi teslim alın. |
+| "Sonuçlar yalnızca mührü sağlam teslim alınmış numune için girilir." | Önce kavanozu teslim alın; reddedilen bir kavanoza sonuç girilmez. |
 | "Göndermeden önce rapor PDF dosyasını yükleyin." | PDF'i seçin ve kaydedin. |
 | "Onaya göndermeden önce tüm zorunlu değerleri girin: … / … girildi." | "Eksik:" altında listelenen değerleri tamamlayın. |
 | "Laboratuvar raporu PDF olmalıdır." | Rapor için yalnızca PDF dosyaları kabul edilir. |

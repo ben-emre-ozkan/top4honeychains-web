@@ -4,32 +4,38 @@
 
 Jūs strādājat pārstrādes uzņēmuma pieņemšanas punktā. Kad biškopis piegādā medu, jūs:
 
-1. reģistrējat piegādi (tā izveido neapstrādāta medus partiju);
-2. noplombējat paraugu un kontrolparaugu un nosūtāt paraugu uz laboratoriju;
-3. ievadāt KKP 0 – partijas sākotnējo auditu –, lai kvalitātes nodrošināšanas speciālists to varētu apstiprināt.
+1. reģistrējat piegādi tvertni pa tvertnei ar plombām un no katras tvertnes piepildāt paraugu burku un kontrolparauga burku;
+2. ļaujat biškopim apstiprināt piegādi ar kodu, ko viņš saņem SMS;
+3. izdrukājat etiķetes un nosūtāt paraugu burkas uz laboratoriju;
+4. ievadāt KKP 0 – partijas sākotnējo auditu –, lai kvalitātes nodrošināšanas speciālists to varētu apstiprināt.
 
 Jūsu uzdevumi redzami sadaļā **Mans darbs**, grupā **Ievadāmās vērtības**. Izvēlnē redzami vienumi **Piegādes (pieņemšana)** un **Paraugi un laboratorija**.
 
 ## Piegādes reģistrēšana {#sao-intake}
 
+"Reģistrējiet katru piegādes tvertni ar tās plombu, paņemiet paraugu no katras tvertnes, pēc tam biškopis visu apstiprina ar SMS kodu."
+
 1. Atveriet **Piegādes (pieņemšana)** un noklikšķiniet uz **Reģistrēt piegādi**.
-2. Laukā **Biškopja saimniecības vai reģistrācijas numurs** precīzi ierakstiet biškopja saimniecības numuru vai pārbaudīto saimniecības reģistrācijas numuru un noklikšķiniet uz **Atrast**. Ja nekas netiek atrasts, tiek parādīts paziņojums "Nav aktīva biškopja ar šo numuru." Pārbaudiet numuru; biškopjus reģistrē platformas administrators.
-3. Aizpildiet veidlapu:
-   - **Drava**: viena no biškopja dravām.
-   - **Medus veids**.
-   - **Ražošanas periods**: pašreizējais periods ir atlasīts iepriekš.
-   - **Izcelsmes valsts**.
-   - **Piegādes datums**: pēc noklusējuma šodiena; tas nevar būt nākotnē.
-   - **Daudzums (kg)**: kā decimāldaļu atdalītāju var lietot komatu vai punktu.
-   - Izcelsmes **Province** un **Rajons**: ja iespējams, province tiek aizpildīta automātiski pēc reģistrācijas numura.
-   - **Parakstītās piegādes veidlapas fotoattēls**: nofotografējiet ar kameras pogu vai izvēlieties failu (PDF līdz 10 MB vai JPG, PNG vai WEBP līdz 8 MB).
-   - **Nosūtīt biškopim īsziņu** (neobligāti; pašreizējā versijā ziņojums tiek reģistrēts žurnālā, bet netiek nosūtīts).
-4. Noklikšķiniet uz **Reģistrēt piegādi**.
+2. Laukā **Biškopja saimniecības vai reģistrācijas numurs** precīzi ierakstiet biškopja saimniecības numuru vai pārbaudīto saimniecības reģistrācijas numuru un noklikšķiniet uz **Atrast**. Ja nekas netiek atrasts, tiek parādīts paziņojums "Nav aktīva biškopja ar šo numuru." Pārbaudiet numuru. Biškopjus reģistrē biškopju reģistrācijas speciālists; biškopis, kas reģistrēts ar parakstītu foto, var piegādāt tikai pēc tam, kad atbilstības speciālists foto pieņēmis. "nav mobilā tālruņa: tikai parakstīts foto" nozīmē, ka biškopis nevar saņemt SMS kodu.
+3. **Piegāde**: izvēlieties **Drava**, **Medus veids** un **Ražošanas periods** (pašreizējais ir atlasīts iepriekš), **Izcelsmes valsts** un **Piegādes datums** (pēc noklusējuma šodiena; tas nevar būt nākotnē).
+4. **Tvertnes un paraugi**: viena rinda katrai tvertnei ([Figure](#fig-intake-form)).
+   - Tvertnes **Veids**, **Neto kg** un pēc izvēles **Bruto kg** (kā decimāldaļu atdalītāju var lietot komatu vai punktu).
+   - **Pienākot**: atzīmējiet **pienāca noplombēta** un ievadiet tās **Plombas numurs**, atzīmējot **plomba neskarta**, ja tā ir neskarta; tvertnei bez plombas biškopja klātbūtnē ievadiet numuru laukā **Tagad uzliktā uzņēmuma plomba**.
+   - Atveriet tvertni un piepildiet paraugu burku un kontrolparauga burku. Ievadiet **Burkas plomba** un **Kontrolparauga plomba**.
+   - Atzīmējiet **Vāciņš neskarts** tikai tad, ja vāciņa poga ir nospiesta. "Drošības vāciņš: atzīmējiet tikai tad, ja poga ir nospiesta. Izlēkusi poga nozīmē, ka burka atvērta: izmetiet to un piepildiet jaunu."
+   - Ievadiet **Jaunā plomba pēc paraugu ņemšanas**, kas atkal aizver tvertni.
+   - **Pievienot tvertni** pievieno rindu; **Noņemt rindu** to noņem. **Kopā neto** saskaita tvertnes.
+5. **Laboratorija un kontrolparaugi**: izvēlieties **Laboratorija** (sarakstā ir tikai pārbaudītas laboratorijas; akreditētai laboratorijai redzams tās akreditācijas numurs), **Kur glabā kontrolparaugus** un **Glabāt līdz** (pēc noklusējuma 12 mēnešus uz priekšu).
+6. **Biškopis apstiprina**: noklikšķiniet uz **Sūtīt kodu**. Biškopis saņem SMS ar jūsu organizāciju, datumu, tvertnēm, kilogramiem, medus veidu, paraugu skaitu un kodu. Ievadiet **Kods no SMS (6 cipari)**, ko nolasa biškopis, un noklikšķiniet uz **Apstiprināt piegādi**. "Ja biškopis nav klāt, piezvaniet viņam: viņš nolasīs kodu no tālruņa."
 
 <!-- SHOT: intake-form -->
-Figure: Piegādes reģistrēšana tālrunī.
+Figure: Piegādes reģistrēšana tālrunī: tvertnes, plombas un paraugu burkas.
 
-Paziņojums "Piegāde reģistrēta kā partija Nr. … ." apstiprina jauno partiju. Platforma piešķir partijai KKP 0–3 un atver tai lapu **Ņemt paraugu**.
+Paziņojums "Piegādi apstiprināja biškopis, un tā reģistrēta kā partija #… ." apstiprina jauno partiju. Platforma piešķir partijai KKP 0–3, reģistrē katru plombu kā plombas notikumu un nosūta vienu paraugu burku no katras tvertnes izvēlētajai laboratorijai.
+
+**Kods.** Kods ir derīgs 5 minūtes, un to var mēģināt ievadīt 3 reizes; **Sūtīt jaunu kodu** pēc minūtes nosūta citu kodu. Ja pēc koda nosūtīšanas kaut ko maināt, kods kļūst nederīgs ("Pēc koda nosūtīšanas dati mainījās. Nosūtiet jaunu kodu."). Pēc 10 nepareiziem kodiem stundas laikā jāgaida 15 minūtes, un viens speciālists stundā nosūta ne vairāk kā 30 kodus.
+
+**SMS nav iespējama: parakstīts foto.** Ja biškopim nav mobilā tālruņa vai SMS nevar nosūtīt, atveriet **SMS nav iespējama: parakstīts foto**, izdrukājiet piegādes veidlapu, ļaujiet biškopim to parakstīt, izvēlieties **Parakstītās piegādes veidlapas fotoattēls** (kamera vai fails: PDF līdz 10 MB vai JPG, PNG vai WEBP līdz 8 MB), aizpildiet **Kāpēc nav SMS koda** un noklikšķiniet uz **Reģistrēt ar parakstītu foto**: "Piegāde reģistrēta kā partija #… ar parakstītu foto; tā gaida atbilstības speciālistu." Ar partiju var strādāt, bet to nevar pabeigt (fiksēt), kamēr uzņēmuma atbilstības speciālists foto nav pieņēmis.
 
 **Biežākās kļūdas**
 
@@ -37,30 +43,50 @@ Table: Biežākās kļūdas, reģistrējot piegādi {#tbl-intake-errors}
 
 | Paziņojums | Kas jādara |
 |---|---|
-| "Izvēlieties vienu no biškopja dravām." | Izvēlieties dravu no saraksta. |
-| "Ievadiet piegādes datumu (ne nākotnē)." | Izlabojiet datumu. |
-| "Daudzumam jābūt lielākam par 0." | Ievadiet daudzumu kilogramos. |
-| "Izvēlieties izvēlētās provinces rajonu." | Vispirms izvēlieties provinci, pēc tam rajonu no tās saraksta. |
-| "Pievienojiet parakstītās piegādes veidlapas fotoattēlu." | Parakstītā veidlapa ir obligāta. |
+| "Reģistrējiet vismaz vienu tvertni." | Pievienojiet rindu katrai tvertnei. |
+| "Tvertne …: ievadiet neto svaru (vairāk par 0 kg)." / "…: bruto svars nevar būt mazāks par neto svaru." | Izlabojiet šīs tvertnes svarus. |
+| "Tvertne …: ievadiet plombas numuru, ar kuru tā pienāca." / "…: biškopja klātbūtnē uzlieciet uzņēmuma plombu un ievadiet tās numuru." | Katrai tvertnei vajadzīga plomba, ar kuru tā pienāca, vai uzņēmuma plomba. |
+| "Tvertne …: ievadiet parauga burkas un kontrolparauga burkas plombu numurus." | Abas katras tvertnes burkas tiek noplombētas. |
+| "Tvertne …: plombējot burkas vāciņam jābūt neskartam (poga nospiesta). Izlēkusi poga: izmetiet burku un piepildiet jaunu." | Piepildiet jaunu burku ar neskartu vāciņu. |
+| "Tvertne …: ievadiet jauno uzņēmuma plombu, kas uzlikta pēc paraugu ņemšanas." | Aizveriet tvertni ar jaunu plombu. |
+| "Katram piegādes plombas numuram jābūt atšķirīgam." | Kāds plombas numurs izmantots divreiz; pārbaudiet numurus. |
+| "Izvēlieties vienu no biškopja dravām." / "Ievadiet piegādes datumu (ne nākotnē)." | Izlabojiet piegādes laukus. |
 | "Šai dravai jau ir ražošanas ieraksts izvēlētajam periodam un medus veidam." | Viena drava piegādā vienu reizi katrā periodā katram medus veidam. Pārbaudiet periodu un medus veidu. |
+| "Nepareizs kods. Atlikuši mēģinājumi: …." / "Koda derīgums ir beidzies. Nosūtiet jaunu kodu." | Palūdziet biškopim vēlreiz nolasīt kodu vai nosūtiet jaunu. |
+| "Norādiet, kāpēc SMS kodu nevar izmantot." / "Pievienojiet parakstītās piegādes veidlapas fotoattēlu." | Parakstītā foto ceļam vajadzīgi abi. |
 | "Piegādes reģistrē tikai pārstrādes organizācija." / "Jūsu loma (…) nevar reģistrēt piegādes; lomas: …" | Jūsu organizācija vai loma nevar reģistrēt piegādes. Vērsieties pie savas organizācijas administratora. |
 
-Sarakstā **Piegādes (pieņemšana)** redzama katra piegāde ar partijas numuru, datumu, dravu, medus veidu, daudzumu, izcelsmi un parakstīto veidlapu (ar tās SHA-256 nospieduma pirmajām rakstzīmēm). No katras rindas varat atvērt saites **Paraugs** un **Atsaukšana**.
+Sarakstā **Piegādes (pieņemšana)** redzama katra piegāde ar partijas numuru, datumu, dravu, medus veidu, daudzumu, izcelsmi un to, kā tā apstiprināta. No katras rindas varat atvērt piegādes lapu, **Paraugs** un **Atsaukšana**.
 
-## Parauga ņemšana un nosūtīšana {#sao-sample}
+## Piegādes lapa un etiķetes {#sao-labels}
 
-1. Pēc piegādes reģistrēšanas atveras lapa **Ņemt paraugu**. To var atvērt arī no **Paraugi un laboratorija** vai no piegādes rindas.
-2. Laukā **Laboratorija** izvēlieties laboratoriju: sarakstā ir tikai pārbaudītas laboratorijas; akreditētai laboratorijai redzams tās akreditācijas numurs.
+Piegādes lapā redzama partija, tvertnes ar to **Plombu vēsture**, **Paraugu burkas** un to statuss laboratorijā, ar ko piegāde ir apstiprināta (**Apstiprināts ar**: SMS kods vai parakstīts foto) un pārbaude **Apstiprinātais saturs**: "nemainīts kopš apstiprinājuma" vai pēc labojuma – labotais saturs.
+
+**Etiķetes (A4 lapa)** izdrukā visas piegādes etiķetes uz A4 lapām (2 × 5); **Etiķetes (100 × 50 mm)** izdrukā pa vienai etiķetei lapā etiķešu printerim. Ir viena etiķete katrai tvertnei (`L{lot}-C{n}`), katrai paraugu burkai (`S-{lot}-C{n}`) un katram kontrolparaugam (`S-{lot}-C{n}-K`), katra ar QR kodu un plombas numuru; kontrolparauga etiķetē redzams arī **glabāt līdz**.
+
+<!-- SHOT: intake-labels -->
+Figure: Piegādes etiķetes: tvertne, paraugu burka un kontrolparaugs.
+
+## Jaunas burkas ņemšana, ja laboratorija to noraida {#sao-resample}
+
+Ja laboratorija noraida burku (plombas numurs, etiķete vai vāciņš nav kārtībā), piegādes lapā pie šīs burkas redzams "Laboratorija noraidīja burku: paņemiet jaunu". Vēlreiz atveriet tvertni, piepildiet jaunu paraugu burku un kontrolparauga burku, ievadiet to plombas, atzīmējiet **Vāciņš neskarts**, ievadiet **Jaunā plomba pēc paraugu ņemšanas** un noklikšķiniet uz **Atvērt, paņemt paraugu un noplombēt no jauna**. Jaunā burka (`S-{lot}-C{n}-2`, …) tiek nosūtīta uz to pašu laboratoriju; plombu vēsturē redzams, ka tvertne atvērta un noplombēta no jauna.
+
+## Agrākas piegādes parauga ņemšana {#sao-sample}
+
+Piegādēm, kas reģistrētas pirms tvertņu procedūras ("agrāka (tvertnes nav reģistrētas)"), ir viens paraugs, ko ņem lapā **Ņemt paraugu**:
+
+1. Atveriet **Ņemt paraugu** no **Paraugi un laboratorija** vai no piegādes rindas.
+2. Laukā **Laboratorija** izvēlieties laboratoriju: sarakstā ir tikai pārbaudītas laboratorijas.
 3. Aizpildiet laukus **Plombas numurs** (paraugam) un **Kontrolparauga plombas numurs**. Tiem jābūt atšķirīgiem.
 4. Aizpildiet laukus **Kontrolparauga glabāšanas vieta** un **Glabāt līdz** (pēc noklusējuma 12 mēnešus uz priekšu).
 5. Noklikšķiniet uz **Nosūtīt uz laboratoriju** vai uz **Vēlāk**, lai to nosūtītu citā reizē.
 
 <!-- SHOT: sample-form -->
-Figure: Parauga ņemšana: laboratorija un plombu numuri.
+Figure: Agrākas piegādes parauga ņemšana: laboratorija un plombu numuri.
 
-Paraugs saņem kodu, piemēram, `S-20070-1`, un statusu **Nosūtīts**. Laboratorija to atrod grupā **Saņemamie paraugi**. Ja laboratorija konstatē, ka plomba ir bojāta, paraugs tiek noraidīts; ņemiet jaunu paraugu no tās pašas partijas.
+Paraugs saņem kodu, piemēram, `S-20070-1`, un statusu **Nosūtīts**. Ja laboratorija konstatē, ka plomba ir bojāta, paraugs tiek noraidīts; ņemiet jaunu paraugu no tās pašas partijas.
 
-Kļūdas: "Izvēlieties pārbaudītu laboratoriju.", "Paraugam un kontrolparaugam nepieciešamas dažādas plombas.", "Ievadiet, kur tiek glabāts kontrolparaugs (ne vairāk kā 200 rakstzīmes).", "Ievadiet, līdz kuram datumam tiek glabāts kontrolparaugs (datums nākotnē).", "Paraugus ņem tikai organizācija, kuras turējumā ir partija."
+Kļūdas: "Izvēlieties pārbaudītu laboratoriju.", "Paraugam un kontrolparaugam nepieciešamas dažādas plombas.", "Ievadiet, kur tiek glabāts kontrolparaugs (ne vairāk kā 200 rakstzīmes).", "Ievadiet, līdz kuram datumam tiek glabāts kontrolparaugs (datums nākotnē).", "Paraugus ņem tikai organizācija, kuras turējumā ir partija.", "Paraugus ņem tikai pārstrādes organizācija."
 
 ## Darbs KKP lapā {#ccp-page}
 

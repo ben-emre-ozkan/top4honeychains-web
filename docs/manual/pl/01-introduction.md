@@ -9,14 +9,15 @@ Niniejszy podręcznik opisuje platformę w obecnej postaci, z włączonym modele
 ## Jak korzystać z podręcznika {#how-to-read}
 
 - **Rozdziały 1–4** opisują platformę, funkcje, organizacje i role, logowanie oraz całą drogę partii miodu. Przeczytaj je w pierwszej kolejności.
-- **Rozdziały 5–11** to osobne rozdziały dla poszczególnych ról. Każdy zaczyna się od części „Twoja codzienna praca”, a następnie opisuje krok po kroku wszystkie zadania. Przeczytaj rozdział dotyczący Twojej roli.
-- **Rozdział 12** jest przeznaczony dla administratorów platformy.
-- **Rozdział 13** opisuje dziennik audytu oraz to, co może odczytać publiczność.
-- **Rozdział 14** zawiera słowniczek i odpowiedzi na częste problemy.
+- **Rozdziały 5–13** to osobne rozdziały dla poszczególnych ról. Każdy zaczyna się od części „Twoja codzienna praca”, a następnie opisuje krok po kroku wszystkie zadania. Przeczytaj rozdział dotyczący Twojej roli.
+- **Rozdział 14** jest przeznaczony dla pszczelarzy: opisuje portal pszczelarza.
+- **Rozdział 15** jest przeznaczony dla administratorów platformy.
+- **Rozdział 16** opisuje dziennik audytu, informacje o danych i zgody oraz to, co może odczytać publiczność.
+- **Rozdział 17** zawiera słowniczek i odpowiedzi na częste problemy.
 
 Nazwy przycisków, menu i pól są zapisane **pogrubioną czcionką**, dokładnie tak, jak wyświetlają się na ekranie. Komunikaty systemu są podane w cudzysłowie. Rysunki i tabele są numerowane; ich wykazy znajdują się po spisie treści. W przykładach użyto rekordów testowych, których nazwy zaczynają się od **[DEMO]**; nie są to prawdziwe osoby ani firmy.
 
-> **Etykiety, które zmienią się w następnej wersji.** Kilka etykiet na ekranie otrzyma nowe nazwy w następnej wersji platformy. Ten podręcznik używa już nowych nazw, na przykład roli **Specjalista ds. zapewnienia jakości** (obecnie: „Zatwierdzający jakość”) oraz opisów funkcji zaczynających się od „Zdolność do …”. Zrzuty ekranu pokazują obecne etykiety. [Table](#tbl-renamed-labels) w słowniczku wymienia wszystkie stare i nowe nazwy.
+> **Etykiety zmienione w tej wersji.** W tej wersji platformy kilka etykiet na ekranie otrzymało nowe nazwy, na przykład rola **Specjalista ds. zapewnienia jakości** (wcześniej: „Zatwierdzający jakość”), **Zasady podstawowe** oraz opisy funkcji zaczynające się od „Zdolność do …”. [Table](#tbl-renamed-labels) w słowniczku wymienia wszystkie stare i nowe nazwy.
 
 > W wersji polskiej platforma używa skrótu **KPK** (krytyczny punkt kontroli). W wersji angielskiej stosowany jest międzynarodowy termin CCP (critical control point), a pozostałe wersje językowe mają własne skróty, zgodne z ekranem: KKN (turecka), PCC (hiszpańska), KKP (łotewska).
 
@@ -24,9 +25,9 @@ Nazwy przycisków, menu i pól są zapisane **pogrubioną czcionką**, dokładni
 
 Miód przechodzi przez pięć etapów. Platforma rejestruje każdy z nich:
 
-1. **Pasieka**: pszczelarz wytwarza miód. Pszczelarze nie logują się do platformy i nie mają kont; każdego pszczelarza reprezentuje na platformie **rekord pszczelarza**, który aktualizują administratorzy platformy i stowarzyszenie pszczelarza.
-2. **Dostawa**: pszczelarz dostarcza miód do zakładu przetwórczego. Zakład rejestruje dostawę, co tworzy *partię surowego miodu*, i sprawdza ją przy przyjęciu (KPK 0).
-3. **Laboratorium**: zakład plombuje próbkę i wysyła ją do laboratorium analizy żywności (zwykle akredytowanego). W laboratorium analityk wprowadza wyniki analizy, a druga osoba, kierownik laboratorium, zatwierdza raport.
+1. **Pasieka**: pszczelarz wytwarza miód. Każdego pszczelarza reprezentuje na platformie **rekord pszczelarza**, który rejestruje powiatowa dyrekcja rolnictwa, a pszczelarz potwierdza kodem otrzymanym w SMS-ie. Pszczelarz może też mieć osobiste konto w **portalu pszczelarza**.
+2. **Dostawa**: pszczelarz dostarcza miód do zakładu przetwórczego w pojemnikach. Zakład rejestruje każdy pojemnik z jego wagą i plombami, pszczelarz potwierdza dostawę kodem z SMS-a, a dostawa staje się *partią surowego miodu*, sprawdzaną przy przyjęciu (KPK 0).
+3. **Laboratorium**: zakład napełnia z każdego pojemnika zaplombowany słoik z próbką i wysyła słoiki do laboratorium analizy żywności (zwykle akredytowanego). Laboratorium sprawdza każdy słoik i analizuje miód, analityk wprowadza wyniki, a druga osoba, kierownik laboratorium, zatwierdza raport.
 4. **Przetwarzanie**: zakład przetwarza miód (KPK 2–3 w partii), łączy partie w *partię końcową* i rejestruje kontrole przetwarzania, rozlewu, etykietowania, pakowania i przechowywania (KPK 4–10 w partii końcowej). Następnie dwie osoby *zatwierdzają ostatecznie* (zamykają) partię końcową.
 5. **Półka**: partia końcowa zostaje wysłana do hurtownika lub detalisty. Odbiorca potwierdza odbiór i rejestruje własne warunki przechowywania.
 
@@ -55,14 +56,16 @@ Table: Dla kogo jest platforma {#tbl-audience}
 
 | Kto | Konto | Co robi na platformie |
 |---|---|---|
-| Pszczelarze | brak; reprezentowani przez **rekord pszczelarza** | Dostarczają miód; ich stowarzyszenie rejestruje ich zgodę na publiczną stronę pszczelarza |
+| Pszczelarze | reprezentowani przez **rekord pszczelarza**; opcjonalnie konto w portalu | Dostarczają miód i potwierdzają dostawy kodem z SMS-a; w portalu: śledzą swoje dostawy, próbki i partie końcowe, podają cenę oczekiwaną, udzielają lub wycofują zgody |
+| Powiatowe dyrekcje rolnictwa | członkowie organizacji | Rejestrują pszczelarzy i ich pasieki, poświadczają ich tożsamość i zgody, wysyłają im dane logowania do portalu |
 | Stowarzyszenia pszczelarzy | członkowie organizacji | Przypisują pszczelarzy członkowskich, rejestrują ich zgodę na publiczną stronę pszczelarza |
 | Zakłady przetwórcze i konfekcjonujące | członkowie organizacji | Rejestrują dostawy, pobierają próbki, rejestrują punkty kontrolne, składają i potwierdzają wnioski o ostateczne zatwierdzenie, wysyłają towar |
 | Laboratoria analizy żywności | członkowie organizacji | Przyjmują próbki, wprowadzają wyniki, zatwierdzają raporty |
 | Hurtownicy | członkowie organizacji | Potwierdzają wysyłki, rejestrują warunki przechowywania, odczytują zapisy producenta |
 | Detaliści | członkowie organizacji | Potwierdzają wysyłki, rejestrują warunki przechowywania, odczytują zapisy producenta |
 | Organy publiczne | członkowie organizacji | Odczytują zapisy (tylko do odczytu) |
-| Administratorzy platformy | rola globalna konta użytkownika | Weryfikują organizacje, zarządzają członkostwami, definiują punkty kontrolne i limity, tworzą partie końcowe, odczytują dziennik audytu |
+| Specjaliści ds. zgodności | rola w każdej organizacji | Przeglądają dowody, jakość pobierania próbek i zatwierdzenia; obsługują żądania dotyczące ochrony danych |
+| Administratorzy platformy | rola globalna konta użytkownika | Weryfikują organizacje, zarządzają członkostwami, definiują punkty kontrolne i limity, publikują treści informacji, tworzą partie końcowe, odczytują dziennik audytu |
 | Konsumenci i inni odwiedzający strony publiczne | brak | Odczytują strony publiczne: Historię miodu z kodu QR na słoiku, strony pszczelarzy, weryfikację raportów |
 
 ## Publiczna Historia miodu i kody QR {#honey-story}
@@ -74,7 +77,7 @@ Historia miodu pokazuje, w języku wybranym przez odwiedzającego na stronie:
 - nazwę partii końcowej, ilość i datę produkcji;
 - drogę miodu: zbiór, dostawa, laboratorium, przetwarzanie i półka;
 - pochodzenie miodu na mapie: obecnie według prowincji Turcji; mapy pozostałych krajów partnerskich są planowane;
-- pszczelarzy, którzy dostarczyli miód, z odnośnikiem do ich publicznej strony pszczelarza, jeśli wyrazili na nią zgodę;
+- pszczelarzy, którzy dostarczyli miód: z imienia i nazwiska tylko wtedy, gdy pszczelarz się na to zgodził, w przeciwnym razie neutralnym kodem, z odnośnikiem do ich publicznej strony pszczelarza, jeśli ją mają;
 - wyniki laboratoryjne, z oceną „w granicach limitu / poza limitem” tylko dla limitów, które zostały zweryfikowane;
 - punkty kontrolne przetwarzania i pakowania;
 - odnośnik do weryfikacji raportu laboratoryjnego.
@@ -87,5 +90,6 @@ Figure: Publiczna Historia miodu partii końcowej zatwierdzonej ostatecznie, na 
 Inne strony publiczne:
 
 - **Strona pszczelarza** (`/storefront/<code>`): publiczna strona pszczelarza, publikowana wyłącznie za podpisaną zgodą pszczelarza i przy zweryfikowanym numerze w rejestrze.
-- **Zweryfikuj raport laboratoryjny** (`/verify-report`): każdy może wpisać kod raportu i sprawdzić, czy raport istnieje i został zatwierdzony, a także porównać plik PDF z jego odciskiem.
+- **Zweryfikuj raport laboratoryjny** (`/verify-report`): każdy może wpisać kod raportu, sprawdzić, czy istnieje zatwierdzony raport, a także porównać plik PDF z jego odciskiem.
+- **Prywatność i zgoda** (`/privacy`): aktualne informacje o danych dla pszczelarzy i dla użytkowników platformy.
 - **Strona startowa** (`/`): strona główna projektu z przyciskiem logowania.

@@ -5,16 +5,20 @@
 Organizācijas administrators ir organizācijas vadītājs platformā. Jūs:
 
 - uzturat aktuālus organizācijas dokumentus (licenci, akreditāciju, nodokļu apliecību, reģistrācijas apliecinājumu);
-- uzņēmumā: lasāt piegādes un paraugus, pieprasāt pabeigšanu (fiksēšanu), nosūtāt un apstiprināt sūtījumus;
+- uzņēmumā: lasāt piegādes un paraugus, lasāt biškopju prasīto cenu par jūsu organizācijai piederošajām partijām, pieprasāt pabeigšanu (fiksēšanu), nosūtāt un apstiprināt sūtījumus;
 - pie vairumtirgotāja vai mazumtirgotāja: apstiprināt sūtījumus;
 - biedrībā: reģistrējat un atsaucat biškopju piekrišanu publiskai biškopja lapai.
 
-Jūsu organizācijas dalības un kompetences pārvalda platformas administratori. Ja kolēģim nepieciešama piekļuve vai cita loma, vērsieties pie viņiem.
+Jūsu organizācijas dalības un kompetences pārvalda platformas administratori. Ja kolēģim nepieciešama piekļuve vai cita loma, vērsieties pie viņiem. Katrai organizācijai vajadzīgs **atbilstības speciālists**; mazā organizācijā tas varat būt jūs ar otru dalību (skatīt [13. nodaļu](#role-co)).
 
 ## Jūsu organizācijas lapa {#orgadmin-org-page}
 
 1. Atveriet **Mana organizācija** un noklikšķiniet uz **Organizācijas lapa**.
-2. Lapā redzams jūsu organizācijas statuss, kompetences, dokumenti, pārbaužu vēsture un dalībnieki.
+2. Lapā redzams jūsu organizācijas statuss, kompetences, dokumenti, datu pārziņa dati (**Datu pārzinis**), pārbaužu vēsture un dalībnieki.
+
+Kamēr organizācijai nav atbilstības speciālista, lapā redzams "Šai organizācijai vēl nav atbilstības speciālista. Katra organizācija nosaka vismaz vienu (tas var būt organizācijas administrators ar otru dalību)." ar datumu, līdz kuram tas jānosaka.
+
+**Datu pārzinis.** Organizācijas privātuma paziņojumā organizācija norādīta kā datu pārzinis: tās **Juridiskais nosaukums**, **Kontakts (e-pasts vai tālrunis)** un **Adrese**. "trūkst" nozīmē, ka dati vēl nav ievadīti. Tos aktuālus uztur atbilstības speciālists vai platformas administrators.
 
 <!-- SHOT: org-details -->
 Figure: Organizācijas dokumenti ar to SHA-256 nospiedumiem.
@@ -30,6 +34,10 @@ Platforma saglabā failu ar tā SHA-256 nospiedumu. Dokumentus nevar dzēst. Jau
 ## Pabeigšana (fiksēšana) un sūtījumi {#orgadmin-plant}
 
 Uzņēmumā jūs varat izmantot **Pieprasīt pabeigšanu (fiksēšanu)** gala partijai un **Nosūtīt** to tieši tāpat kā darbinieks: skatīt [Pabeigšanas (fiksēšanas) pieprasīšana](#staff-request-finalize) un [Gala partijas nosūtīšana](#staff-ship). Saņēmēja organizācijā jūs varat izmantot **Apstiprināt saņemšanu** vai **Noraidīt**: skatīt [Sūtījuma apstiprināšana vai noraidīšana](#staff-receive).
+
+## Jūsu partiju prasītā cena {#orgadmin-price}
+
+Biškopji savā portālā katrai piegādei ievada prasīto cenu par kg (skatīt [Jūsu piegādes un jūsu cena](#portal-price)). Jūsu organizācijai piederošas partijas piegādes lapā lodziņā **Prasītā cena** redzama pašreizējā cena un tās vēsture: "Biškopja prasītā cena par kg un tās vēsture. Netiek rādīta citām lomām, vēlākiem turētājiem un publiskajās lapās." To lasa organizācijas administrators, atbilstības speciālists un platformas administratori; neviens cits. Biedrība savu biedru cenas lasa tikai tad, ja biškopis tam piekritis.
 
 ## Biškopju lapas (biedrības) {#orgadmin-storefronts}
 

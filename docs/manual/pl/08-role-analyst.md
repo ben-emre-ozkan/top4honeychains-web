@@ -2,19 +2,30 @@
 
 ## Twoja codzienna praca {#analyst-daily}
 
-Pracujesz w laboratorium analizy żywności i jesteś pierwszą z jego dwóch osób: Ty wprowadzasz dane, a kierownik laboratorium je zatwierdza. Przyjmujesz zaplombowane próbki przesłane przez zakłady przetwórcze, sprawdzasz plombę, analizujesz miód, wprowadzasz wyniki wraz z plikiem PDF raportu i przesyłasz raport do zatwierdzenia kierownikowi laboratorium.
+Pracujesz w laboratorium analizy żywności i jesteś pierwszą z jego dwóch osób: Ty wprowadzasz dane, a kierownik laboratorium je zatwierdza. Przyjmujesz zaplombowane słoiki z próbkami przesłane przez zakłady przetwórcze (po jednym z każdego pojemnika dostawy), sprawdzasz plombę, etykietę i wieczko, tworzysz próbkę zbiorczą, analizujesz miód, wprowadzasz wyniki wraz z plikiem PDF raportu i przesyłasz raport do zatwierdzenia kierownikowi laboratorium.
 
 Twoje zadania pojawiają się na stronie **Moja praca** w grupach **Próbki do przyjęcia** i **Wyniki laboratoryjne do wprowadzenia**. Menu zawiera pozycję **Próbki i laboratorium**.
 
 ## Przyjęcie próbki {#analyst-receive}
 
-1. Na stronie **Moja praca** otwórz grupę **Próbki do przyjęcia** albo przejdź do **Próbki i laboratorium** → **Próbki wysłane do Twojego laboratorium**.
-2. Porównaj numer plomby na próbce z numerem wyświetlanym na ekranie.
-3. Jeśli plomba jest nienaruszona, kliknij **Odebrano, plomba nienaruszona**: „Próbka została przyjęta; plomba jest nienaruszona.”
-4. Jeśli plomba jest naruszona, wpisz **powód (jeśli plomba jest naruszona)** i kliknij **Plomba naruszona: odrzuć**: „Próbka została odrzucona: plomba jest naruszona.” Zakład musi pobrać nową próbkę.
+1. Na stronie **Moja praca** otwórz grupę **Próbki do przyjęcia** albo przejdź do **Próbki i laboratorium** → **Próbki wysłane do Twojego laboratorium**. Każdy słoik pokazuje swój kod (`S-{lot}-C{n}`), swój pojemnik i numer plomby.
+2. Odpowiedz na trzy kontrole słoika: **Numer plomby zgadza się z zapisem**, **Etykieta jest nienaruszona** i **Wieczko nienaruszone (przycisk wciśnięty)**.
+3. Jeśli wszystkie trzy odpowiedzi brzmią **Tak**, kliknij **Zapisz przyjęcie**: słoik zostaje przyjęty.
+4. Jeśli którakolwiek kontrola ma odpowiedź **Nie**, wpisz **Powód, jeśli kontrola się nie powiedzie** i kliknij **Zapisz przyjęcie**: słoik zostaje odrzucony. Zakład pobiera nowy słoik z tego samego pojemnika i wysyła go do Ciebie.
 
 <!-- SHOT: sample-receive -->
-Figure: Przyjmowanie próbek w laboratorium: kontrola plomby.
+Figure: Przyjmowanie słoików z próbkami w laboratorium: plomba, etykieta i wieczko.
+
+Próbka z wcześniejszej dostawy (jedna próbka na partię) ma jedną kontrolę plomby: **Odebrano, plomba nienaruszona** albo **powód (jeśli plomba jest naruszona)** i **Plomba naruszona: odrzuć**.
+
+## Utworzenie próbki zbiorczej {#analyst-composite}
+
+Przy analizie próbki zbiorczej (ustawienie domyślne) laboratorium bada jedną próbkę zbiorczą na partię (zob. [Próbka zbiorcza lub osobno dla każdego pojemnika](#flow-analysis)). Gdy słoiki ze wszystkich pojemników partii dotrą w dobrym stanie, partia pojawia się w sekcji **Partie gotowe do próbki zbiorczej**: „Słoiki ze wszystkich pojemników tych partii dotarły w dobrym stanie. Połącz równe części słoików w jedną próbkę zbiorczą i ją zbadaj; słoiki są przechowywane do badań pojedynczych.”
+
+1. Połącz równe części słoików.
+2. Kliknij **Utwórz próbkę zbiorczą**. Zostaje utworzona i przyjęta próbka zbiorcza `S-{lot}-COMP`; jej raport wprowadza się tak jak każdy inny.
+
+Gdy próbka zbiorcza nie spełnia wymagań lub na żądanie możesz też wprowadzić raport dla pojedynczego słoika; pozostaje on przy tym słoiku i nie zmienia wartości KPK 1 partii. Przy analizie osobno dla każdego pojemnika próbki zbiorczej nie ma: każdy słoik otrzymuje własny raport, a KPK 1 partii przyjmuje najgorszą wartość każdego parametru (zob. [Zasada najgorszej wartości](#flow-worst)).
 
 ## Wprowadzanie wyników laboratoryjnych {#analyst-results}
 
@@ -38,7 +49,7 @@ Dopóki raport jest wersją roboczą, możesz go zapisywać dowolnie wiele razy.
 
 ## Przesłanie raportu {#analyst-submit}
 
-1. Strona wyświetla informację „Wprowadzone wartości wymagane: … z …”. Przycisk **Prześlij do zatwierdzenia** jest aktywny tylko wtedy, gdy wprowadzono wszystkie wymagane wartości, plik PDF, numer raportu i datę.
+1. Strona wyświetla informację „Wprowadzone wartości wymagane: … z …”; licznik zmienia się podczas wpisywania, a „Brakuje:” wymienia wartości, które są jeszcze puste. Przycisk **Prześlij do zatwierdzenia** jest aktywny tylko wtedy, gdy wszystkie wymagane wartości, plik PDF, numer raportu i data są **zapisane**: gdy wszystko jest wpisane, ale jeszcze niezapisane, strona wyświetla komunikat „Zapisz wartości przed przesłaniem.”
 2. Kliknij **Prześlij do zatwierdzenia**: „Raport został przesłany; musi go zatwierdzić kierownik laboratorium (inna osoba).”
 
 <!-- SHOT: lab-submit -->
@@ -52,7 +63,7 @@ Table: Częste błędy przy wprowadzaniu wyników laboratoryjnych {#tbl-lab-erro
 
 | Komunikat | Co zrobić |
 |---|---|
-| „Wyniki wprowadza się tylko dla przyjętej próbki z nienaruszoną plombą.” | Najpierw przyjmij próbkę. |
+| „Wyniki wprowadza się tylko dla przyjętej próbki z nienaruszoną plombą.” | Najpierw przyjmij słoik; odrzucony słoik nie otrzymuje wyników. |
 | „Przed przesłaniem prześlij plik PDF raportu.” | Wybierz plik PDF i zapisz. |
 | „Przed wysłaniem wprowadź wszystkie wymagane wartości: wprowadzono … z ….” | Uzupełnij brakujące wartości wymienione pod nagłówkiem „Brakuje:”. |
 | „Raport laboratoryjny musi być plikiem PDF.” | Jako raport akceptowane są wyłącznie pliki PDF. |

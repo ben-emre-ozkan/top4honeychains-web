@@ -56,7 +56,7 @@ Komunikat „Złożono wniosek o ostateczne zatwierdzenie; musi go potwierdzić 
 
 ## Wysyłka partii końcowej {#staff-ship}
 
-Wysłać można tylko partię końcową zatwierdzoną ostatecznie.
+Wysłać można tylko partię końcową zatwierdzoną ostatecznie i tylko z organizacji, która przetwarza, pakuje lub sprzedaje miód (funkcja **Przetwarzanie**, **Konfekcjonowanie**, **Handel hurtowy** lub **Handel detaliczny**).
 
 1. Otwórz **Wysyłki i zapasy**. Tabela **Posiadane partie końcowe** pokazuje dla każdej partii końcowej posiadaną ilość, ilość zarezerwowaną przez oczekujące wysyłki oraz ilość dostępną.
 2. Kliknij **Wyślij** przy partii końcowej.
@@ -66,13 +66,15 @@ Wysłać można tylko partię końcową zatwierdzoną ostatecznie.
 <!-- SHOT: shipment-create -->
 Figure: Wysyłanie partii końcowej do innej organizacji.
 
-Błędy: „Wysłać można tylko partię końcową zatwierdzoną ostatecznie.”, „Z tej partii końcowej możesz wysłać maksymalnie … kg.”, „Wybierz inną zweryfikowaną organizację jako odbiorcę.”
+Błędy: „Wysłać można tylko partię końcową zatwierdzoną ostatecznie.”, „Z tej partii końcowej możesz wysłać maksymalnie … kg.”, „Wybierz inną zweryfikowaną organizację jako odbiorcę.”, „Miód wysyła lub przyjmuje tylko organizacja, która go przetwarza, pakuje lub nim handluje.”
 
 ## Potwierdzenie lub odrzucenie wysyłki (odbiorca) {#staff-receive}
 
 1. Na stronie **Moja praca** otwórz grupę **Wysyłki do potwierdzenia** albo przejdź do **Wysyłki i zapasy** → **Wysyłki przychodzące**.
 2. Sprawdź towar. Kliknij **Potwierdź odbiór**: „Potwierdzono odbiór; jesteś teraz posiadaczem tej ilości.”
 3. Możesz też wpisać **powód (w przypadku odrzucenia)** i kliknąć **Odrzuć**: „Wysyłka została odrzucona; ilość pozostaje u nadawcy.” Podanie powodu jest wymagane.
+
+Na telefonie każda przychodząca wysyłka jest wyświetlana jako karta z polem powodu i dwoma przyciskami pod nim.
 
 <!-- SHOT: shipment-confirm -->
 Figure: Przychodząca wysyłka na telefonie: **Potwierdź odbiór** lub **Odrzuć**.
@@ -96,4 +98,4 @@ Aby je otworzyć, przejdź do strony **Wysyłki i zapasy**, kliknij **Przebieg p
 
 ## Raport z wycofania {#staff-recall}
 
-Z poziomu partii końcowej lub partii możesz otworzyć **Raport z wycofania**. Zawiera on partie w górę łańcucha i wysyłki w dół łańcucha, które Twoja organizacja może odczytać, oraz przyciski **Drukuj** i **CSV**. Zob. [Wycofanie](#admin-recall).
+Z poziomu partii końcowej lub partii możesz otworzyć **Raport z wycofania**. Zawiera on partie w górę łańcucha i wysyłki w dół łańcucha, które Twoja organizacja może odczytać, oraz przyciski **Drukuj** i **CSV**. W sekcji **Twój obecny stan** pokazuje ilość posiadaną przez Twoją organizację; części partii końcowej mogą posiadać również inne organizacje, a wszystkich posiadaczy widzą tylko administratorzy platformy („Pokazano tylko stan Twojej organizacji; części tej partii końcowej mogą mieć inne organizacje.”). Zob. [Wycofanie](#admin-recall).
