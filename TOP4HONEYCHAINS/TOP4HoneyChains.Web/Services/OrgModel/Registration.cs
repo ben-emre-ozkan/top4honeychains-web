@@ -291,7 +291,7 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                 {
                     BeekeeperId = beekeeper.BeekeeperId!, AssociationOrgId = null, RegisteringOrgId = registrar.OrgId, Purpose = purpose,
                     NameConsented = purpose == ConsentPurpose.PublicName, TextVersion = text?.Version ?? "none", TextSha256 = text?.BodySha256 ?? new string('0', 64),
-                    NoticeId = text?.NoticeId, GivenOn = DateOnly.FromDateTime(now), Method = method, CodeId = codeId,
+                    NoticeId = text?.NoticeId, GivenOn = DateOnly.FromDateTime(now.ToLocalTime()), Method = method, CodeId = codeId,
                     DocumentStoredFileName = evidence?.Stored, DocumentOriginalFileName = evidence?.Original is string d ? Trim(d, 260) : null, DocumentSha256 = evidence?.Sha256,
                     RecordedByUserId = officerUserId, RecordedAt = now
                 });

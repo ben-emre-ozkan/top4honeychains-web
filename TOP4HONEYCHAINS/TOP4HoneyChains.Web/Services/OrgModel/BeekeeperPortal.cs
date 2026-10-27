@@ -172,7 +172,7 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             {
                 BeekeeperId = beekeeperId, AssociationOrgId = association, Purpose = purpose, NameConsented = purpose == ConsentPurpose.PublicName,
                 TextVersion = notice?.Version ?? "none", TextSha256 = notice?.BodySha256 ?? new string('0', 64), NoticeId = notice?.NoticeId,
-                GivenOn = DateOnly.FromDateTime(Now), Method = "Portal", RecordedByUserId = userId, RecordedAt = Now
+                GivenOn = DateOnly.FromDateTime(Now.ToLocalTime()), Method = "Portal", RecordedByUserId = userId, RecordedAt = Now
             });
             await _context.SaveChangesAsync();
             return null;
