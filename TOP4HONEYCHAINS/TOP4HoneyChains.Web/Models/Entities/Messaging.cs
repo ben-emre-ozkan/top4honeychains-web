@@ -131,4 +131,114 @@ namespace TOP4HoneyChains.Web.Models.Entities
         public const string ContentChanged = "ContentChanged";
         public const string Expired = "Expired";
     }
+
+    // D-78 P1 (D78-SPEC 3.5, migration 020): a versioned text (privacy notice, consent text, attestation) in one language.
+    // Never changed after publishing; a new version retires the previous one (RetiredAt).
+    public class Notice
+    {
+        [Key]
+        public int NoticeId { get; set; }
+
+        [StringLength(30)]
+        public string Kind { get; set; } = null!;
+
+        [StringLength(20)]
+        public string Audience { get; set; } = null!;
+
+        // null = the platform's text; otherwise the organization as data controller
+        public int? OrgId { get; set; }
+
+        [StringLength(30)]
+        public string? Purpose { get; set; }
+
+        [StringLength(40)]
+        public string Version { get; set; } = null!;
+
+        [StringLength(5)]
+        public string Language { get; set; } = null!;
+
+        public string Body { get; set; } = null!;
+
+        [StringLength(64)]
+        public string BodySha256 { get; set; } = null!;
+
+        // a draft awaiting review (O-14); shown with a DRAFT mark
+        public bool IsDraft { get; set; }
+
+        public DateTime PublishedAt { get; set; }
+
+        [StringLength(450)]
+        public string? PublishedByUserId { get; set; }
+
+        public DateTime? RetiredAt { get; set; }
+
+        public virtual Organization? Org { get; set; }
+
+        // SHA-256 of the text as SQL Server stores it (nvarchar = UTF-16LE), lower-case hex, as computed by migration 020
+        public static string Hash(string body) =>
+            Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(System.Text.Encoding.Unicode.GetBytes(body))).ToLowerInvariant();
+    }
+
+    // Append-only proof that a user or a beekeeper accepted one version of a notice
+    public class NoticeAcceptance
+    {
+        [Key]
+        public long AcceptanceId { get; set; }
+
+        public int NoticeId { get; set; }
+
+        [StringLength(450)]
+        public string? UserId { get; set; }
+
+        [StringLength(450)]
+        public string? BeekeeperId { get; set; }
+
+        public int? OrgId { get; set; }
+
+        [StringLength(20)]
+        public string Method { get; set; } = null!;
+
+        public long? CodeId { get; set; }
+
+        [StringLength(100)]
+        public string? EvidenceStoredFileName { get; set; }
+
+        [StringLength(64)]
+        public string? EvidenceSha256 { get; set; }
+
+        [StringLength(450)]
+        public string RecordedByUserId { get; set; } = null!;
+
+        public DateTime At { get; set; }
+
+        [StringLength(45)]
+        public string? ClientIp { get; set; }
+
+        public virtual Notice? Notice { get; set; }
+    }
+
+    public static class NoticeKind
+    {
+        public const string PrivacyNotice = "PrivacyNotice";
+        public const string ConsentText = "ConsentText";
+        public const string TermsOfUse = "TermsOfUse";
+        public const string Attestation = "Attestation";
+        public static readonly string[] All = { PrivacyNotice, ConsentText, TermsOfUse, Attestation };
+    }
+
+    public static class NoticeAudience
+    {
+        public const string Beekeeper = "Beekeeper";
+        public const string Member = "Member";
+        public const string All = "All";
+        public static readonly string[] Values = { Beekeeper, Member, All };
+    }
+
+    public static class AcceptanceMethod
+    {
+        public const string Click = "Click";
+        public const string SmsCode = "SmsCode";
+        public const string SignedPhoto = "SignedPhoto";
+        public const string Paper = "Paper";
+    }
 }

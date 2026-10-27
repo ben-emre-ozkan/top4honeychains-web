@@ -1,4 +1,4 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace TOP4HoneyChains.Web.Models.Entities
 {
@@ -44,6 +44,19 @@ namespace TOP4HoneyChains.Web.Models.Entities
 
         [StringLength(450)]
         public string? CreatedByUserId { get; set; }
+
+        // D-78 (D78-SPEC 3.5, 6.1, migration 020): the organization's data controller, named in its notice; empty until filled in
+        [StringLength(200)]
+        public string? DataControllerName { get; set; }
+
+        [StringLength(400)]
+        public string? DataControllerAddress { get; set; }
+
+        [StringLength(200)]
+        public string? DataControllerContact { get; set; }
+
+        [StringLength(50)]
+        public string? VerbisNumber { get; set; }
 
         public virtual Wholesaler? LegacyWholesaler { get; set; }
         public virtual ICollection<OrgCapability> Capabilities { get; set; } = new List<OrgCapability>();

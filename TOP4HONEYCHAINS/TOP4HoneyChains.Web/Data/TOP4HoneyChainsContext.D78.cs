@@ -9,6 +9,8 @@ public partial class TOP4HoneyChainsContext
 {
     public virtual DbSet<SmsMessage> SmsMessages { get; set; }
     public virtual DbSet<OneTimeCode> OneTimeCodes { get; set; }
+    public virtual DbSet<Notice> Notices { get; set; }
+    public virtual DbSet<NoticeAcceptance> NoticeAcceptances { get; set; }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder)
     {
@@ -40,6 +42,42 @@ public partial class TOP4HoneyChainsContext
             entity.Property(e => e.CreatedAt).HasDefaultValueSql("SYSUTCDATETIME()");
             entity.HasIndex(e => new { e.Purpose, e.SubjectType, e.SubjectKey, e.CreatedAt });
             entity.HasOne(e => e.Sms).WithMany().HasForeignKey(e => e.SmsId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<Notice>(entity =>
+        {
+            entity.ToTable("Notices", tb => tb.HasTrigger("TR_Notices_Immutable"));
+            entity.Property(e => e.Kind).IsUnicode(false);
+            entity.Property(e => e.Audience).IsUnicode(false);
+            entity.Property(e => e.Purpose).IsUnicode(false);
+            entity.Property(e => e.Version).IsUnicode(false);
+            entity.Property(e => e.Language).IsUnicode(false);
+            entity.Property(e => e.BodySha256).IsFixedLength().IsUnicode(false);
+            entity.Property(e => e.PublishedAt).HasDefaultValueSql("SYSUTCDATETIME()");
+            entity.HasIndex(e => new { e.Kind, e.Audience, e.OrgId, e.Purpose, e.Version, e.Language }).IsUnique();
+            entity.HasOne(e => e.Org).WithMany().HasForeignKey(e => e.OrgId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<NoticeAcceptance>(entity =>
+        {
+            entity.ToTable("NoticeAcceptances", tb => tb.HasTrigger("TR_NoticeAcceptances_AppendOnly"));
+            entity.Property(e => e.Method).IsUnicode(false);
+            entity.Property(e => e.EvidenceSha256).IsFixedLength().IsUnicode(false);
+            entity.Property(e => e.ClientIp).IsUnicode(false);
+            entity.Property(e => e.At).HasDefaultValueSql("SYSUTCDATETIME()");
+            entity.HasIndex(e => new { e.UserId, e.NoticeId });
+            entity.HasIndex(e => new { e.BeekeeperId, e.NoticeId });
+            entity.HasOne(e => e.Notice).WithMany().HasForeignKey(e => e.NoticeId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne<Beekeeper>().WithMany().HasForeignKey(e => e.BeekeeperId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne<OneTimeCode>().WithMany().HasForeignKey(e => e.CodeId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<Consent>(entity =>
+        {
+            entity.Property(e => e.Method).IsUnicode(false);
+            entity.HasOne<OneTimeCode>().WithMany().HasForeignKey(e => e.CodeId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne<Notice>().WithMany().HasForeignKey(e => e.NoticeId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne<Organization>().WithMany().HasForeignKey(e => e.RegisteringOrgId).OnDelete(DeleteBehavior.Restrict);
         });
     }
 }
