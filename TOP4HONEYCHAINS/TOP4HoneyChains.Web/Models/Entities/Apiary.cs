@@ -34,6 +34,21 @@ public partial class Apiary
 
     public bool ApiaryIsActive { get; set; } = true;
 
+    // D-78 (F5, migration 022): the parts of the generated title "Province – District – Locality"; null on typed (legacy) titles
+    [StringLength(2)]
+    [Unicode(false)]
+    public string? Province { get; set; }
+
+    public int? DistrictId { get; set; }
+
+    [StringLength(60)]
+    public string? Locality { get; set; }
+
+    // "Generated"; null = typed before D-78
+    [StringLength(20)]
+    [Unicode(false)]
+    public string? TitleSource { get; set; }
+
     [ForeignKey("ApiaryBeekeeperId")]
     [InverseProperty("Apiaries")]
     public virtual Beekeeper? ApiaryBeekeeper { get; set; }

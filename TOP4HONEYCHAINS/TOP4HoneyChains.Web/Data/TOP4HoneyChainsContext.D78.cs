@@ -76,6 +76,13 @@ public partial class TOP4HoneyChainsContext
             entity.HasOne<OneTimeCode>().WithMany().HasForeignKey(e => e.CodeId).OnDelete(DeleteBehavior.Restrict);
         });
 
+        modelBuilder.Entity<Apiary>(entity =>
+        {
+            entity.Property(e => e.Province).IsFixedLength();
+            entity.HasOne<Province>().WithMany().HasForeignKey(e => e.Province).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne<District>().WithMany().HasForeignKey(e => e.DistrictId).OnDelete(DeleteBehavior.Restrict);
+        });
+
         modelBuilder.Entity<BeekeeperAccount>(entity =>
         {
             entity.ToTable("BeekeeperAccounts");
