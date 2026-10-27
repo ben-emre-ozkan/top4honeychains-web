@@ -1,0 +1,17 @@
+@model TOP4HoneyChains.Web.Models.Entities.Sample
+@using TOP4HoneyChains.Web.Models.Entities
+@* What failed at reception: the seal of a legacy sample; for a container jar (D-78 P2) the seal number, the label or the cap *@
+@if (Model.Kind == SampleKind.Container)
+{
+    @foreach (var (failed, label) in new[] { (Model.SealNumberMatches == false, L["Lab.CheckSeal"].Value), (Model.LabelIntactAtReception == false, L["Lab.CheckLabel"].Value), (Model.JarCapIntactAtReception == false, L["Lab.CheckCap"].Value) })
+    {
+        if (failed)
+        {
+            <span class="st-pill st-outlimit reception-failed"><i class="mdi mdi-alert-outline" aria-hidden="true"></i><span>@label: @L["No"]</span></span>
+        }
+    }
+}
+else if (Model.SealIntact == false)
+{
+    <span class="st-pill st-outlimit"><i class="mdi mdi-alert-outline" aria-hidden="true"></i><span>@L["Lab.SealBroken"]</span></span>
+}

@@ -8109,4 +8109,91 @@
   <data name="Samples of this lot are taken per container on the delivery page." xml:space="preserve">
     <value>Samples of this lot are taken per container on the delivery page.</value>
   </data>
+  <data name="Ci.Resample" xml:space="preserve">
+    <value>The laboratory rejected the jar: take a new one</value>
+  </data>
+  <data name="Ci.ResampleButton" xml:space="preserve">
+    <value>Open, sample and seal again</value>
+  </data>
+  <data name="Lab.CheckSeal" xml:space="preserve">
+    <value>The seal number matches the record</value>
+  </data>
+  <data name="Lab.CheckLabel" xml:space="preserve">
+    <value>The label is intact</value>
+  </data>
+  <data name="Lab.CheckCap" xml:space="preserve">
+    <value>The cap is intact (button down)</value>
+  </data>
+  <data name="Lab.Composite" xml:space="preserve">
+    <value>composite</value>
+  </data>
+  <data name="Lab.CompositeTitle" xml:space="preserve">
+    <value>Lots ready for the composite sample</value>
+  </data>
+  <data name="Lab.CompositeHelp" xml:space="preserve">
+    <value>Every container's jar of these lots arrived in good order. Mix equal parts of the jars into one composite sample and analyse it; the jars stay retained for single analyses.</value>
+  </data>
+  <data name="Lab.MakeComposite" xml:space="preserve">
+    <value>Make the composite</value>
+  </data>
+  <data name="Lab.JarReportOnly" xml:space="preserve">
+    <value>This is the jar of a single container. Its approved results stay with the jar; the lot's CCP 1 values come from the composite sample.</value>
+  </data>
+  <data name="Lab.RecordReception" xml:space="preserve">
+    <value>Record the reception</value>
+  </data>
+  <data name="Lab.RejectReason" xml:space="preserve">
+    <value>Reason if a check fails</value>
+  </data>
+  <data name="Answer all three reception checks: seal number, label and cap." xml:space="preserve">
+    <value>Answer all three reception checks: seal number, label and cap.</value>
+  </data>
+  <data name="A failed reception check rejects the jar: write the reason." xml:space="preserve">
+    <value>A failed reception check rejects the jar: write the reason.</value>
+  </data>
+  <data name="The laboratory analyses the composite of the lot's jars first; analyse a single jar after the composite was made." xml:space="preserve">
+    <value>The laboratory analyses the composite of the lot's jars first; analyse a single jar after the composite was made.</value>
+  </data>
+  <data name="The laboratory analyses every container's jar on its own (Lab:AnalysisMode = PerContainer)." xml:space="preserve">
+    <value>The laboratory analyses every container's jar on its own (Lab:AnalysisMode = PerContainer).</value>
+  </data>
+  <data name="A composite of this lot was already made." xml:space="preserve">
+    <value>A composite of this lot was already made.</value>
+  </data>
+  <data name="This lot has no containers." xml:space="preserve">
+    <value>This lot has no containers.</value>
+  </data>
+  <data name="Every container's jar must be received in good order before the composite is made." xml:space="preserve">
+    <value>Every container's jar must be received in good order before the composite is made.</value>
+  </data>
+  <data name="The container was not found." xml:space="preserve">
+    <value>The container was not found.</value>
+  </data>
+  <data name="A new jar is taken only when the container's jar was rejected by the laboratory." xml:space="preserve">
+    <value>A new jar is taken only when the container's jar was rejected by the laboratory.</value>
+  </data>
+  <data name="Enter the seal numbers of the new jar, of its counter-sample and the new seal of the container." xml:space="preserve">
+    <value>Enter the seal numbers of the new jar, of its counter-sample and the new seal of the container.</value>
+  </data>
+  <data name="Seal numbers have at most 50 characters." xml:space="preserve">
+    <value>Seal numbers have at most 50 characters.</value>
+  </data>
+  <data name="The jar's cap must be intact (button down) when sealed. A popped cap: discard the jar and fill a new one." xml:space="preserve">
+    <value>The jar's cap must be intact (button down) when sealed. A popped cap: discard the jar and fill a new one.</value>
+  </data>
+  <data name="Jar received; seal number, label and cap are in order." xml:space="preserve">
+    <value>Jar received; seal number, label and cap are in order.</value>
+  </data>
+  <data name="Jar rejected: the plant takes a new jar from the same container." xml:space="preserve">
+    <value>Jar rejected: the plant takes a new jar from the same container.</value>
+  </data>
+  <data name="Composite sample {0} made from {1} jars; enter its results." xml:space="preserve">
+    <value>Composite sample {0} made from {1} jars; enter its results.</value>
+  </data>
+  <data name="New jar {0} sent to the laboratory; the container was sealed again." xml:space="preserve">
+    <value>New jar {0} sent to the laboratory; the container was sealed again.</value>
+  </data>
+  <data name="Lab report approved for this container's jar; the lot's CCP 1 values stay those of the composite." xml:space="preserve">
+    <value>Lab report approved for this container's jar; the lot's CCP 1 values stay those of the composite.</value>
+  </data>
 </root>

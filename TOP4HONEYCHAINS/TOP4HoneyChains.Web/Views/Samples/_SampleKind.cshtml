@@ -1,0 +1,11 @@
+@model TOP4HoneyChains.Web.Models.Entities.Sample
+@using TOP4HoneyChains.Web.Models.Entities
+@* D-78 P2: what a sample is: the jar of a container, a composite made by the laboratory, or a legacy lot sample *@
+@if (Model.Kind == SampleKind.Container)
+{
+    <span class="badge bg-light text-dark border sample-kind">@L["Ci.Container"] @Model.Container?.ContainerCode</span>
+}
+else if (Model.Kind == SampleKind.Composite)
+{
+    <span class="badge bg-info text-dark sample-kind">@L["Lab.Composite"]</span>
+}

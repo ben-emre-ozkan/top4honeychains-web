@@ -8109,4 +8109,91 @@
   <data name="Samples of this lot are taken per container on the delivery page." xml:space="preserve">
     <value>Šīs partijas paraugus ņem katrai tvertnei piegādes lapā.</value>
   </data>
+  <data name="Ci.Resample" xml:space="preserve">
+    <value>Laboratorija noraidīja burku: paņemiet jaunu</value>
+  </data>
+  <data name="Ci.ResampleButton" xml:space="preserve">
+    <value>Atvērt, paņemt paraugu un noplombēt no jauna</value>
+  </data>
+  <data name="Lab.CheckSeal" xml:space="preserve">
+    <value>Plombas numurs atbilst ierakstam</value>
+  </data>
+  <data name="Lab.CheckLabel" xml:space="preserve">
+    <value>Etiķete ir neskarta</value>
+  </data>
+  <data name="Lab.CheckCap" xml:space="preserve">
+    <value>Vāciņš neskarts (poga nospiesta)</value>
+  </data>
+  <data name="Lab.Composite" xml:space="preserve">
+    <value>kopparaugs</value>
+  </data>
+  <data name="Lab.CompositeTitle" xml:space="preserve">
+    <value>Partijas, kas gatavas kopparaugam</value>
+  </data>
+  <data name="Lab.CompositeHelp" xml:space="preserve">
+    <value>Šo partiju katras tvertnes burka pienāca kārtībā. Sajauciet vienādas daļas no burkām vienā kopparaugā un analizējiet to; burkas glabā atsevišķām analīzēm.</value>
+  </data>
+  <data name="Lab.MakeComposite" xml:space="preserve">
+    <value>Izveidot kopparaugu</value>
+  </data>
+  <data name="Lab.JarReportOnly" xml:space="preserve">
+    <value>Šī ir vienas tvertnes burka. Tās apstiprinātie rezultāti paliek pie burkas; partijas KKP 1 vērtības nāk no kopparauga.</value>
+  </data>
+  <data name="Lab.RecordReception" xml:space="preserve">
+    <value>Reģistrēt pieņemšanu</value>
+  </data>
+  <data name="Lab.RejectReason" xml:space="preserve">
+    <value>Iemesls, ja pārbaude neizdodas</value>
+  </data>
+  <data name="Answer all three reception checks: seal number, label and cap." xml:space="preserve">
+    <value>Atbildiet uz visām trim pieņemšanas pārbaudēm: plomba, etiķete un vāciņš.</value>
+  </data>
+  <data name="A failed reception check rejects the jar: write the reason." xml:space="preserve">
+    <value>Neizdevusies pieņemšanas pārbaude noraida burku: ierakstiet iemeslu.</value>
+  </data>
+  <data name="The laboratory analyses the composite of the lot's jars first; analyse a single jar after the composite was made." xml:space="preserve">
+    <value>Laboratorija vispirms analizē partijas burku kopparaugu; atsevišķu burku analizē pēc kopparauga izveides.</value>
+  </data>
+  <data name="The laboratory analyses every container's jar on its own (Lab:AnalysisMode = PerContainer)." xml:space="preserve">
+    <value>Laboratorija katras tvertnes burku analizē atsevišķi (Lab:AnalysisMode = PerContainer).</value>
+  </data>
+  <data name="A composite of this lot was already made." xml:space="preserve">
+    <value>Šīs partijas kopparaugs jau ir izveidots.</value>
+  </data>
+  <data name="This lot has no containers." xml:space="preserve">
+    <value>Šai partijai nav tvertņu.</value>
+  </data>
+  <data name="Every container's jar must be received in good order before the composite is made." xml:space="preserve">
+    <value>Pirms kopparauga izveides katras tvertnes burkai jābūt pieņemtai kārtībā.</value>
+  </data>
+  <data name="The container was not found." xml:space="preserve">
+    <value>Tvertne netika atrasta.</value>
+  </data>
+  <data name="A new jar is taken only when the container's jar was rejected by the laboratory." xml:space="preserve">
+    <value>Jaunu burku ņem tikai tad, ja laboratorija noraidīja tvertnes burku.</value>
+  </data>
+  <data name="Enter the seal numbers of the new jar, of its counter-sample and the new seal of the container." xml:space="preserve">
+    <value>Ievadiet jaunās burkas, tās kontrolparauga un tvertnes jaunās plombas numurus.</value>
+  </data>
+  <data name="Seal numbers have at most 50 characters." xml:space="preserve">
+    <value>Plombu numuriem ir ne vairāk kā 50 rakstzīmes.</value>
+  </data>
+  <data name="The jar's cap must be intact (button down) when sealed. A popped cap: discard the jar and fill a new one." xml:space="preserve">
+    <value>Plombējot burkas vāciņam jābūt neskartam (poga nospiesta). Izlēkusi poga: izmetiet burku un piepildiet jaunu.</value>
+  </data>
+  <data name="Jar received; seal number, label and cap are in order." xml:space="preserve">
+    <value>Burka pieņemta; plomba, etiķete un vāciņš kārtībā.</value>
+  </data>
+  <data name="Jar rejected: the plant takes a new jar from the same container." xml:space="preserve">
+    <value>Burka noraidīta: uzņēmums ņem jaunu burku no tās pašas tvertnes.</value>
+  </data>
+  <data name="Composite sample {0} made from {1} jars; enter its results." xml:space="preserve">
+    <value>Kopparaugs {0} izveidots no {1} burkām; ievadiet tā rezultātus.</value>
+  </data>
+  <data name="New jar {0} sent to the laboratory; the container was sealed again." xml:space="preserve">
+    <value>Jaunā burka {0} nosūtīta uz laboratoriju; tvertne noplombēta no jauna.</value>
+  </data>
+  <data name="Lab report approved for this container's jar; the lot's CCP 1 values stay those of the composite." xml:space="preserve">
+    <value>Laboratorijas pārskats apstiprināts šīs tvertnes burkai; partijas KKP 1 vērtības paliek no kopparauga.</value>
+  </data>
 </root>

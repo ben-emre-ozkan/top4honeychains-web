@@ -208,6 +208,9 @@ namespace TOP4HoneyChains.Web.Controllers
                 return NotFound();
             ViewBag.ContentMatches = await Custody.ContentMatchesAsync(id);
             ViewBag.MayReview = intake.EvidenceStatus == EvidenceStatus.PendingReview && await MayReviewIntakeAsync(intake);
+            // D-78 P2: the plant that holds the lot takes a new jar after the laboratory rejected one
+            ViewBag.MayResample = !_current.IsPlatformAdmin && await _current.GetAsync() is { } m && m.OrgId == intake.ReceivingOrgId
+                && Perm.Allows(PermissionAreas.Samples, PermissionAreas.Enter, m.OrgRole);
             ViewBag.IsRecorder = intake.ReceivedByUserId == _current.UserId;
             ViewBag.Controller = "Intake";
             ViewBag.Action = "Details";
