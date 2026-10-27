@@ -158,6 +158,10 @@ namespace TOP4HoneyChains.Web.Services
             foreach (var c in await _context.CcpCorrections.AsNoTracking().Where(c => c.Status == CorrectionStatus.Pending)
                          .Select(c => new { c.Ccp!.Code, c.OwnerId, c.RequestedAt }).ToListAsync())
                 items.Add(new("correction", $"{c.Code} · #{c.OwnerId}", "/CCPMonitoring/Corrections", c.RequestedAt));
+            // D-78 P3: delivery corrections wait for a second administrator too
+            foreach (var c in await _context.DeliveryCorrections.AsNoTracking().Where(c => c.Status == CorrectionStatus.Pending)
+                         .Select(c => new { c.IntakeId, c.RawHoneyProductionId, c.RequestedAt }).ToListAsync())
+                items.Add(new("correction", $"#{c.RawHoneyProductionId}", $"/Intake/Details/{c.IntakeId}", c.RequestedAt));
             return items.OrderBy(i => i.Since ?? DateTime.MaxValue).ToList();
         }
 

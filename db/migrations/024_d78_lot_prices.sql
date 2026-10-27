@@ -88,7 +88,9 @@ BEGIN
     SET NOCOUNT ON;
     IF NOT EXISTS (SELECT 1 FROM inserted)
         THROW 50001, N'Delivery corrections cannot be deleted.', 1;
+    -- a decided correction only gets the id of the information SMS sent to the beekeeper, once
     IF EXISTS (SELECT 1 FROM deleted WHERE Status <> 'Pending')
+       AND (UPDATE(Status) OR UPDATE(DecidedByUserId) OR UPDATE(DecidedAt) OR UPDATE(DecisionNote) OR EXISTS (SELECT 1 FROM deleted WHERE InfoSmsId IS NOT NULL))
         THROW 50001, N'A decided delivery correction cannot be changed.', 1;
     IF UPDATE(IntakeId) OR UPDATE(RawHoneyProductionId) OR UPDATE(OldContent) OR UPDATE(OldContentSha256) OR UPDATE(NewContent)
        OR UPDATE(NewContentSha256) OR UPDATE(Reason) OR UPDATE(RequestedByUserId) OR UPDATE(RequestedAt)

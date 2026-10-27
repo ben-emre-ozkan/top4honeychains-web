@@ -111,6 +111,8 @@ namespace TOP4HoneyChains.Web.Models.Entities
         public const string NoticeConfirm = "NoticeConfirm";
         public const string PhoneVerify = "PhoneVerify";
         public const string Info = "Info";
+        // D-78 P3 (M6): a confirmed correction of a delivery, for the beekeeper's information
+        public const string DeliveryCorrected = "DeliveryCorrected";
     }
 
     public static class SmsStatus

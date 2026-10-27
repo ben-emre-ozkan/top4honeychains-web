@@ -6979,7 +6979,7 @@
     <value>Partija {0} / {1} (#{2})</value>
   </data>
   <data name="The note can be at most 500 characters." xml:space="preserve">
-    <value>Piezīme drīkst būt ne garāka par 500 rakstzīmēm.</value>
+    <value>Piezīmē var būt ne vairāk kā 500 rakstzīmes.</value>
   </data>
   <data name="{0} cannot be removed because values or a &quot;Not applicable&quot; record exist for this batch. Nothing was changed." xml:space="preserve">
     <value>{0} nevar noņemt, jo šai gala partijai ir vērtības vai ieraksts "Nav piemērojams". Nekas netika mainīts.</value>
@@ -8195,5 +8195,77 @@
   </data>
   <data name="Lab report approved for this container's jar; the lot's CCP 1 values stay those of the composite." xml:space="preserve">
     <value>Laboratorijas pārskats apstiprināts šīs tvertnes burkai; partijas KKP 1 vērtības paliek no kopparauga.</value>
+  </data>
+  <data name="Dc.Title" xml:space="preserve">
+    <value>Šīs piegādes labojumi</value>
+  </data>
+  <data name="Dc.Status.Pending" xml:space="preserve">
+    <value>gaida otru administratoru</value>
+  </data>
+  <data name="Dc.Status.Applied" xml:space="preserve">
+    <value>piemērots</value>
+  </data>
+  <data name="Dc.Status.Rejected" xml:space="preserve">
+    <value>noraidīts</value>
+  </data>
+  <data name="Dc.Original" xml:space="preserve">
+    <value>Sākotnēji</value>
+  </data>
+  <data name="Dc.Corrected" xml:space="preserve">
+    <value>Izlabots</value>
+  </data>
+  <data name="Dc.WaitsForSecond" xml:space="preserve">
+    <value>Jūs pieprasījāt šo labojumu; to apstiprina cits platformas administrators.</value>
+  </data>
+  <data name="Dc.Note" xml:space="preserve">
+    <value>Piezīme (vajadzīga noraidīšanai)</value>
+  </data>
+  <data name="Dc.Apply" xml:space="preserve">
+    <value>Apstiprināt un piemērot</value>
+  </data>
+  <data name="Dc.Reject" xml:space="preserve">
+    <value>Noraidīt</value>
+  </data>
+  <data name="Dc.Request" xml:space="preserve">
+    <value>Pieprasīt labojumu</value>
+  </data>
+  <data name="Dc.Help" xml:space="preserve">
+    <value>Tikai kļūdai ierakstā. Labojumu jāapstiprina citam platformas administratoram; sākotnējais ieraksts paliek redzams, un biškopis saņem SMS.</value>
+  </data>
+  <data name="Dc.Reason" xml:space="preserve">
+    <value>Iemesls</value>
+  </data>
+  <data name="Dc.Send" xml:space="preserve">
+    <value>Nosūtīt pieprasījumu</value>
+  </data>
+  <data name="Correction requested; another platform administrator must confirm it." xml:space="preserve">
+    <value>Labojums pieprasīts; tas jāapstiprina citam platformas administratoram.</value>
+  </data>
+  <data name="Correction applied; the beekeeper was informed by SMS." xml:space="preserve">
+    <value>Labojums piemērots; biškopis informēts ar SMS.</value>
+  </data>
+  <data name="Only a delivery recorded with containers can be corrected here." xml:space="preserve">
+    <value>Šeit var labot tikai piegādi, kas reģistrēta ar tvertnēm.</value>
+  </data>
+  <data name="A correction of this delivery already waits for a second administrator." xml:space="preserve">
+    <value>Šīs piegādes labojums jau gaida otru administratoru.</value>
+  </data>
+  <data name="A correction keeps the containers of the delivery; it neither adds nor removes one." xml:space="preserve">
+    <value>Labojums saglabā piegādes tvertnes; tas tās nepievieno un nenoņem.</value>
+  </data>
+  <data name="Container {0}: every seal number is required." xml:space="preserve">
+    <value>Tvertne {0}: vajadzīgi visi plombu numuri.</value>
+  </data>
+  <data name="The correction does not change anything." xml:space="preserve">
+    <value>Labojums neko nemaina.</value>
+  </data>
+  <data name="Batches already use {0} kg of this lot; the corrected amount cannot be lower." xml:space="preserve">
+    <value>Partijas jau izmanto {0} kg no šīs partijas; izlabotais daudzums nevar būt mazāks.</value>
+  </data>
+  <data name="The correction was not found." xml:space="preserve">
+    <value>Labojums netika atrasts.</value>
+  </data>
+  <data name="The delivery changed after the correction was requested; request it again." xml:space="preserve">
+    <value>Piegāde mainījās pēc labojuma pieprasīšanas; pieprasiet to vēlreiz.</value>
   </data>
 </root>

@@ -134,6 +134,7 @@ builder.Services.AddScoped<CredentialService>();
 builder.Services.AddScoped<RegistrationService>();
 builder.Services.AddScoped<BeekeeperSignIn>();
 builder.Services.AddScoped<CustodyIntakeService>();
+builder.Services.AddScoped<DeliveryCorrectionService>();
 builder.Services.Configure<LabOptions>(builder.Configuration.GetSection("Lab"));
 builder.Services.AddScoped<LabCustodyService>();
 builder.Services.AddScoped<AuditWriter>();

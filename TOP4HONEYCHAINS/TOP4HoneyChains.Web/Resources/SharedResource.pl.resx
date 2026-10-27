@@ -6979,7 +6979,7 @@
     <value>Partia {0} / {1} (#{2})</value>
   </data>
   <data name="The note can be at most 500 characters." xml:space="preserve">
-    <value>Uwaga może mieć najwyżej 500 znaków.</value>
+    <value>Uwaga może mieć maks. 500 znaków.</value>
   </data>
   <data name="{0} cannot be removed because values or a &quot;Not applicable&quot; record exist for this batch. Nothing was changed." xml:space="preserve">
     <value>Nie można usunąć {0}, ponieważ dla tej partii końcowej istnieją wartości lub zapis „Nie dotyczy”. Niczego nie zmieniono.</value>
@@ -8195,5 +8195,77 @@
   </data>
   <data name="Lab report approved for this container's jar; the lot's CCP 1 values stay those of the composite." xml:space="preserve">
     <value>Raport zatwierdzony dla słoika tego pojemnika; wartości KPK 1 partii pozostają z próbki zbiorczej.</value>
+  </data>
+  <data name="Dc.Title" xml:space="preserve">
+    <value>Korekty tej dostawy</value>
+  </data>
+  <data name="Dc.Status.Pending" xml:space="preserve">
+    <value>czeka na drugiego administratora</value>
+  </data>
+  <data name="Dc.Status.Applied" xml:space="preserve">
+    <value>zastosowana</value>
+  </data>
+  <data name="Dc.Status.Rejected" xml:space="preserve">
+    <value>odrzucona</value>
+  </data>
+  <data name="Dc.Original" xml:space="preserve">
+    <value>Pierwotnie</value>
+  </data>
+  <data name="Dc.Corrected" xml:space="preserve">
+    <value>Po korekcie</value>
+  </data>
+  <data name="Dc.WaitsForSecond" xml:space="preserve">
+    <value>To Ty zgłosiłeś tę korektę; potwierdza ją inny administrator platformy.</value>
+  </data>
+  <data name="Dc.Note" xml:space="preserve">
+    <value>Uwaga (wymagana przy odrzuceniu)</value>
+  </data>
+  <data name="Dc.Apply" xml:space="preserve">
+    <value>Potwierdź i zastosuj</value>
+  </data>
+  <data name="Dc.Reject" xml:space="preserve">
+    <value>Odrzuć</value>
+  </data>
+  <data name="Dc.Request" xml:space="preserve">
+    <value>Zgłoś korektę</value>
+  </data>
+  <data name="Dc.Help" xml:space="preserve">
+    <value>Tylko w razie błędu w zapisie. Korektę musi potwierdzić inny administrator platformy; oryginał pozostaje tu czytelny, a pszczelarz dostaje SMS.</value>
+  </data>
+  <data name="Dc.Reason" xml:space="preserve">
+    <value>Powód</value>
+  </data>
+  <data name="Dc.Send" xml:space="preserve">
+    <value>Wyślij zgłoszenie</value>
+  </data>
+  <data name="Correction requested; another platform administrator must confirm it." xml:space="preserve">
+    <value>Korekta zgłoszona; musi ją potwierdzić inny administrator platformy.</value>
+  </data>
+  <data name="Correction applied; the beekeeper was informed by SMS." xml:space="preserve">
+    <value>Korekta zastosowana; pszczelarz dostał SMS.</value>
+  </data>
+  <data name="Only a delivery recorded with containers can be corrected here." xml:space="preserve">
+    <value>Tutaj można poprawić tylko dostawę zapisaną z pojemnikami.</value>
+  </data>
+  <data name="A correction of this delivery already waits for a second administrator." xml:space="preserve">
+    <value>Korekta tej dostawy już czeka na drugiego administratora.</value>
+  </data>
+  <data name="A correction keeps the containers of the delivery; it neither adds nor removes one." xml:space="preserve">
+    <value>Korekta zachowuje pojemniki dostawy; nie dodaje ani nie usuwa żadnego.</value>
+  </data>
+  <data name="Container {0}: every seal number is required." xml:space="preserve">
+    <value>Pojemnik {0}: wymagane są wszystkie numery plomb.</value>
+  </data>
+  <data name="The correction does not change anything." xml:space="preserve">
+    <value>Korekta niczego nie zmienia.</value>
+  </data>
+  <data name="Batches already use {0} kg of this lot; the corrected amount cannot be lower." xml:space="preserve">
+    <value>Partie gotowe już używają {0} kg tej partii; poprawiona ilość nie może być mniejsza.</value>
+  </data>
+  <data name="The correction was not found." xml:space="preserve">
+    <value>Nie znaleziono korekty.</value>
+  </data>
+  <data name="The delivery changed after the correction was requested; request it again." xml:space="preserve">
+    <value>Dostawa zmieniła się po zgłoszeniu korekty; zgłoś ją ponownie.</value>
   </data>
 </root>

@@ -22,11 +22,11 @@ namespace TOP4HoneyChains.Web.Tests
         [Fact]
         public void Every_purpose_has_all_five_languages_with_the_same_placeholders()
         {
-            Assert.Equal(6, SmsTemplates.Purposes.Count());
+            Assert.Equal(7, SmsTemplates.Purposes.Count());
             foreach (var purpose in SmsTemplates.Purposes)
             {
                 var en = SmsTemplates.PlaceholdersOf(SmsTemplates.Template(purpose, "en")).OrderBy(x => x).ToList();
-                if (purpose != SmsPurpose.Credentials)
+                if (purpose is not (SmsPurpose.Credentials or SmsPurpose.DeliveryCorrected))
                     Assert.Contains("code", en);
                 foreach (var lang in SmsTemplates.Languages)
                 {
@@ -60,7 +60,7 @@ namespace TOP4HoneyChains.Web.Tests
             Assert.Equal("JĀ", SmsTemplates.YesNoWord(true, "lv"));
         }
 
-        // D78-SPEC 5.5: M1, M2 and M3 are two segments in Turkish, M4 and M5 one
+        // D78-SPEC 5.5: M1, M2 and M3 are two segments in Turkish, M4, M5 and M6 one
         [Theory]
         [InlineData(SmsPurpose.Registration, 2)]
         [InlineData(SmsPurpose.IntakeConfirm, 2)]
@@ -68,6 +68,7 @@ namespace TOP4HoneyChains.Web.Tests
         [InlineData(SmsPurpose.NoticeConfirm, 1)]
         [InlineData(SmsPurpose.PasswordReset, 1)]
         [InlineData(SmsPurpose.PhoneVerify, 1)]
+        [InlineData(SmsPurpose.DeliveryCorrected, 1)]
         public void Turkish_texts_have_the_expected_segment_count(string purpose, int segments)
         {
             var values = new Dictionary<string, string>(Sample) { ["org"] = "Dereli İlçe Müdürlüğü", ["link"] = "top4honeychains.intalalab.net/p" };
