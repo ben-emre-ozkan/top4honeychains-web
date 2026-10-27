@@ -7524,4 +7524,331 @@
   <data name="Org.CredentialsBySms" xml:space="preserve">
     <value>İlk şifre girilmezse kullanıcı adı ve geçici şifre SMS ile gönderilir. Her iki durumda da yeni kullanıcı ilk girişte şifresini belirler.</value>
   </data>
+  <data name="Apiary.CurrentTitle" xml:space="preserve">
+    <value>Mevcut başlık</value>
+  </data>
+  <data name="Apiary.LegacyTitle" xml:space="preserve">
+    <value>Bu arılığın başlığı daha önce elle yazılmış. Oluşturulan başlıkla değiştirmek için il ve ilçeyi seçin, mevkiyi girin.</value>
+  </data>
+  <data name="Apiary.Locality" xml:space="preserve">
+    <value>Mevki (köy, yayla, tarla)</value>
+  </data>
+  <data name="Apiary.LocalityExample" xml:space="preserve">
+    <value>ör. Kümbet Yaylası</value>
+  </data>
+  <data name="Apiary.TitleHelp" xml:space="preserve">
+    <value>Başlık otomatik oluşturulur: İl – İlçe – Mevki.</value>
+  </data>
+  <data name="Apiary Hives" xml:space="preserve">
+    <value>Kovan sayısı</value>
+  </data>
+  <data name="Attest" xml:space="preserve">
+    <value>Beyan</value>
+  </data>
+  <data name="Draft Key" xml:space="preserve">
+    <value>Taslak</value>
+  </data>
+  <data name="Education Level Id" xml:space="preserve">
+    <value>Eğitim düzeyi</value>
+  </data>
+  <data name="Fallback Reason" xml:space="preserve">
+    <value>Gerekçe</value>
+  </data>
+  <data name="Issue Sign In" xml:space="preserve">
+    <value>Giriş</value>
+  </data>
+  <data name="No Phone" xml:space="preserve">
+    <value>Cep telefonu yok</value>
+  </data>
+  <data name="Portal Notifications" xml:space="preserve">
+    <value>SMS bildirimleri</value>
+  </data>
+  <data name="Province Mismatch Reason" xml:space="preserve">
+    <value>Farklı il gerekçesi</value>
+  </data>
+  <data name="Public Name" xml:space="preserve">
+    <value>Ad herkese açık sayfalarda</value>
+  </data>
+  <data name="Purpose Type Id" xml:space="preserve">
+    <value>Arıcılık amacı</value>
+  </data>
+  <data name="Registry Number" xml:space="preserve">
+    <value>Kayıt numarası</value>
+  </data>
+  <data name="Work.Kind.Evidence" xml:space="preserve">
+    <value>İmzalı fotoğrafları incele</value>
+  </data>
+  <data name="Reg78.Title" xml:space="preserve">
+    <value>Arıcı kaydı</value>
+  </data>
+  <data name="Reg78.Help" xml:space="preserve">
+    <value>Kuruluşunuzun kaydettiği arıcılar. Her kayıt kayıt numarası, arıcının telefonuna giden SMS kodu ve sizin beyanınızla doğrulanır.</value>
+  </data>
+  <data name="Reg78.FindLabel" xml:space="preserve">
+    <value>Kayıt numarası (AKS) veya işletme numarası</value>
+  </data>
+  <data name="Reg78.Find" xml:space="preserve">
+    <value>Bul veya kaydet</value>
+  </data>
+  <data name="Reg78.FindHelp" xml:space="preserve">
+    <value>Kayıtlı bir arıcı yeniden doğrulanır; yeni bir kayıt numarası yeni bir kayıt başlatır.</value>
+  </data>
+  <data name="Reg78.Date" xml:space="preserve">
+    <value>Tarih</value>
+  </data>
+  <data name="Reg78.Beekeeper" xml:space="preserve">
+    <value>Arıcı</value>
+  </data>
+  <data name="Reg78.RegistryNumber" xml:space="preserve">
+    <value>Kayıt numarası</value>
+  </data>
+  <data name="Reg78.Kind" xml:space="preserve">
+    <value>Kayıt türü</value>
+  </data>
+  <data name="Reg78.Method" xml:space="preserve">
+    <value>Onay yolu</value>
+  </data>
+  <data name="Reg78.Evidence" xml:space="preserve">
+    <value>Kanıt</value>
+  </data>
+  <data name="Reg78.None" xml:space="preserve">
+    <value>Henüz kayıt yok.</value>
+  </data>
+  <data name="Reg78.Kind.New" xml:space="preserve">
+    <value>Yeni</value>
+  </data>
+  <data name="Reg78.Kind.Reverification" xml:space="preserve">
+    <value>Yeniden doğrulama</value>
+  </data>
+  <data name="Reg78.Kind.IdentityChange" xml:space="preserve">
+    <value>Bilgi değişikliği</value>
+  </data>
+  <data name="Reg78.Method.SmsCode" xml:space="preserve">
+    <value>SMS kodu</value>
+  </data>
+  <data name="Reg78.Method.SignedPhoto" xml:space="preserve">
+    <value>İmzalı fotoğraf</value>
+  </data>
+  <data name="Reg78.Evidence.Accepted" xml:space="preserve">
+    <value>Kabul edildi</value>
+  </data>
+  <data name="Reg78.Evidence.PendingReview" xml:space="preserve">
+    <value>İnceleme bekliyor</value>
+  </data>
+  <data name="Reg78.Evidence.Rejected" xml:space="preserve">
+    <value>Reddedildi</value>
+  </data>
+  <data name="Reg78.New" xml:space="preserve">
+    <value>Arıcı kaydet</value>
+  </data>
+  <data name="Reg78.Reverify" xml:space="preserve">
+    <value>Arıcıyı yeniden doğrula</value>
+  </data>
+  <data name="Reg78.Registry" xml:space="preserve">
+    <value>Kayıt numarası</value>
+  </data>
+  <data name="Reg78.RegistryHelp" xml:space="preserve">
+    <value>TR, il plaka kodu ve 10 hane. Müdürlüğün iliyle karşılaştırılır.</value>
+  </data>
+  <data name="Reg78.MismatchReason" xml:space="preserve">
+    <value>Numara başka bir ile aitse: gerekçe</value>
+  </data>
+  <data name="Reg78.Identity" xml:space="preserve">
+    <value>Arıcı</value>
+  </data>
+  <data name="Reg78.NoPhone" xml:space="preserve">
+    <value>Arıcının cep telefonu yok (imzalı fotoğraf, hesap yok)</value>
+  </data>
+  <data name="Reg78.Language" xml:space="preserve">
+    <value>SMS dili</value>
+  </data>
+  <data name="Reg78.Apiary" xml:space="preserve">
+    <value>Arılık</value>
+  </data>
+  <data name="Reg78.Apiaries" xml:space="preserve">
+    <value>Arılıklar</value>
+  </data>
+  <data name="Reg78.Hives" xml:space="preserve">
+    <value>kovan</value>
+  </data>
+  <data name="Reg78.MoreApiaryOptional" xml:space="preserve">
+    <value>Aşağıya başka bir arılık ekleyin (isteğe bağlı).</value>
+  </data>
+  <data name="Reg78.NoticeAndConsent" xml:space="preserve">
+    <value>Aydınlatma metni ve rıza</value>
+  </data>
+  <data name="Reg78.NoticeIntro" xml:space="preserve">
+    <value>Bu metni arıcıya okutun veya yüksek sesle okuyun:</value>
+  </data>
+  <data name="Reg78.ConsentPublicName" xml:space="preserve">
+    <value>Arıcı, adının herkese açık sayfalarda gösterilmesini kabul ediyor (isteğe bağlı; aksi halde nötr kod gösterilir)</value>
+  </data>
+  <data name="Reg78.ConsentSms" xml:space="preserve">
+    <value>Arıcı, teslimatlar ve analiz sonuçları hakkında SMS bildirimlerini kabul ediyor (isteğe bağlı)</value>
+  </data>
+  <data name="Reg78.ConsentTexts" xml:space="preserve">
+    <value>Rıza metinlerinin tamamı</value>
+  </data>
+  <data name="Reg78.Attestation" xml:space="preserve">
+    <value>Beyanınız</value>
+  </data>
+  <data name="Reg78.AttestFallback" xml:space="preserve">
+    <value>Arıcının kimlik belgesini ve kayıt bilgisini gördüm.</value>
+  </data>
+  <data name="Reg78.IssueSignIn" xml:space="preserve">
+    <value>Arıcıya giriş bilgilerini de SMS ile gönder</value>
+  </data>
+  <data name="Reg78.IssueSignInButton" xml:space="preserve">
+    <value>Giriş bilgilerini SMS ile gönder</value>
+  </data>
+  <data name="Reg78.PrintSign" xml:space="preserve">
+    <value>Aydınlatma metnini okudum; yukarıdaki tercihlerim doğrudur. Arıcının imzası ve tarih:</value>
+  </data>
+  <data name="Reg78.Confirm" xml:space="preserve">
+    <value>Onay</value>
+  </data>
+  <data name="Reg78.SendHelp" xml:space="preserve">
+    <value>Arıcıya kuruluşunuzun adı, metin bağlantısı, ad tercihi ve bir kod içeren SMS gider. Sonradan bir alan değişirse yeni kod gerekir.</value>
+  </data>
+  <data name="Reg78.DemoSms" xml:space="preserve">
+    <value>Test SMS'i (tanıtım):</value>
+  </data>
+  <data name="Reg78.ConfirmButton" xml:space="preserve">
+    <value>Kaydı onayla</value>
+  </data>
+  <data name="Reg78.Fallback" xml:space="preserve">
+    <value>SMS mümkün değil: imzalı fotoğraf</value>
+  </data>
+  <data name="Reg78.FallbackHelp" xml:space="preserve">
+    <value>Bu sayfayı yazdırın, arıcıya imzalatın ve fotoğrafını yükleyin. Kayıt, kuruluşunuzun Uyum Sorumlusunun onayını bekler; o zamana kadar arıcı teslimat yapamaz.</value>
+  </data>
+  <data name="Reg78.FallbackReason" xml:space="preserve">
+    <value>SMS kodu neden kullanılamıyor</value>
+  </data>
+  <data name="Reg78.SignedPhoto" xml:space="preserve">
+    <value>İmzalı formun fotoğrafı</value>
+  </data>
+  <data name="Reg78.Print" xml:space="preserve">
+    <value>Formu yazdır</value>
+  </data>
+  <data name="Reg78.SaveWithPhoto" xml:space="preserve">
+    <value>İmzalı fotoğrafla kaydet</value>
+  </data>
+  <data name="Reg78.Details" xml:space="preserve">
+    <value>Kayıt</value>
+  </data>
+  <data name="Reg78.OtherProvince" xml:space="preserve">
+    <value>başka il</value>
+  </data>
+  <data name="Reg78.Consents" xml:space="preserve">
+    <value>Rızalar</value>
+  </data>
+  <data name="Reg78.Withdrawn" xml:space="preserve">
+    <value>geri alındı</value>
+  </data>
+  <data name="Reg78.Review" xml:space="preserve">
+    <value>İmzalı fotoğrafın incelenmesi</value>
+  </data>
+  <data name="Reg78.ReviewHelp" xml:space="preserve">
+    <value>Fotoğrafı açın ve kayıtla karşılaştırın: kimlik, kayıt numarası, arıcının tercihleri ve imza. Bu kaydı siz girmediniz.</value>
+  </data>
+  <data name="Reg78.ReviewReason" xml:space="preserve">
+    <value>Not (ret için zorunlu)</value>
+  </data>
+  <data name="Reg78.Accept" xml:space="preserve">
+    <value>Kabul et</value>
+  </data>
+  <data name="Reg78.Reject" xml:space="preserve">
+    <value>Reddet</value>
+  </data>
+  <data name="Reg78.WaitingReview" xml:space="preserve">
+    <value>Uyum Sorumlusunun incelemesi bekleniyor. Bu kaydı siz girdiğiniz için başka biri karar verir.</value>
+  </data>
+  <data name="Reg78.AddApiary" xml:space="preserve">
+    <value>Arılık ekle</value>
+  </data>
+  <data name="Reg78.AttestedNote" xml:space="preserve">
+    <value>Bu arıcı bir müdürlük tarafından kaydedildi: ad, doğum tarihi ve telefon doğrulanmıştır ve yalnızca yeni bir kayıtla değişir (Arıcı kaydı → yeniden doğrula).</value>
+  </data>
+  <data name="A beekeeper with this registry number is already registered. Find it and re-verify instead." xml:space="preserve">
+    <value>Bu kayıt numarasıyla bir arıcı zaten kayıtlı. Bulun ve yeniden doğrulayın.</value>
+  </data>
+  <data name="The registry number belongs to another province than the directorate. Give a reason to continue." xml:space="preserve">
+    <value>Kayıt numarası müdürlüğün ilinden farklı bir ile ait. Devam etmek için gerekçe yazın.</value>
+  </data>
+  <data name="Enter the first and last name (at most 50 characters each)." xml:space="preserve">
+    <value>Adı ve soyadı girin (her biri en fazla 50 karakter).</value>
+  </data>
+  <data name="Enter a valid birth date." xml:space="preserve">
+    <value>Geçerli bir doğum tarihi girin.</value>
+  </data>
+  <data name="Without a mobile phone the registration is confirmed by a signed photo." xml:space="preserve">
+    <value>Cep telefonu olmadan kayıt imzalı fotoğrafla onaylanır.</value>
+  </data>
+  <data name="Set the apiary location on the map or type its coordinates." xml:space="preserve">
+    <value>Arılığın konumunu haritada belirleyin veya koordinatlarını yazın.</value>
+  </data>
+  <data name="Confirm the attestation: you have seen the identity document and the registry record." xml:space="preserve">
+    <value>Beyanı onaylayın: kimlik belgesini ve kayıt bilgisini gördünüz.</value>
+  </data>
+  <data name="Choose the province and the district and enter the locality of the apiary." xml:space="preserve">
+    <value>Arılığın ilini ve ilçesini seçin ve mevkiini girin.</value>
+  </data>
+  <data name="The locality has at most 60 characters." xml:space="preserve">
+    <value>Mevki en fazla 60 karakterdir.</value>
+  </data>
+  <data name="Choose a district of the chosen province." xml:space="preserve">
+    <value>Seçilen ile ait bir ilçe seçin.</value>
+  </data>
+  <data name="Beekeeper accounts are not enabled yet." xml:space="preserve">
+    <value>Arıcı hesapları henüz açık değil.</value>
+  </data>
+  <data name="Enter the registry number (or the business number of a registered beekeeper)." xml:space="preserve">
+    <value>Kayıt numarasını (veya kayıtlı bir arıcının işletme numarasını) girin.</value>
+  </data>
+  <data name="This beekeeper is registered by another directorate." xml:space="preserve">
+    <value>Bu arıcı başka bir müdürlük tarafından kaydedilmiş.</value>
+  </data>
+  <data name="Give the reason why the SMS code cannot be used." xml:space="preserve">
+    <value>SMS kodunun neden kullanılamadığını yazın.</value>
+  </data>
+  <data name="Attach the photo of the signed registration form." xml:space="preserve">
+    <value>İmzalı kayıt formunun fotoğrafını ekleyin.</value>
+  </data>
+  <data name="A code was sent to the beekeeper's phone. Enter the code the beekeeper reads out." xml:space="preserve">
+    <value>Arıcının telefonuna bir kod gönderildi. Arıcının okuduğu kodu girin.</value>
+  </data>
+  <data name="The beekeeper is registered and verified." xml:space="preserve">
+    <value>Arıcı kaydedildi ve doğrulandı.</value>
+  </data>
+  <data name="The beekeeper is registered and verified; the sign-in details were sent by SMS." xml:space="preserve">
+    <value>Arıcı kaydedildi ve doğrulandı; giriş bilgileri SMS ile gönderildi.</value>
+  </data>
+  <data name="The registration is saved with the signed photo. It waits for the Compliance Officer's review." xml:space="preserve">
+    <value>Kayıt imzalı fotoğrafla kaydedildi. Uyum Sorumlusunun incelemesini bekliyor.</value>
+  </data>
+  <data name="This registration was already reviewed." xml:space="preserve">
+    <value>Bu kayıt zaten incelendi.</value>
+  </data>
+  <data name="You recorded this registration; another person must review its evidence." xml:space="preserve">
+    <value>Bu kaydı siz girdiniz; kanıtını başka biri incelemelidir.</value>
+  </data>
+  <data name="Give the reason for the rejection." xml:space="preserve">
+    <value>Ret gerekçesini yazın.</value>
+  </data>
+  <data name="Evidence accepted; the registry number is verified." xml:space="preserve">
+    <value>Kanıt kabul edildi; kayıt numarası doğrulandı.</value>
+  </data>
+  <data name="Evidence rejected; the beekeeper cannot deliver until registered again." xml:space="preserve">
+    <value>Kanıt reddedildi; arıcı yeniden kaydedilene kadar teslimat yapamaz.</value>
+  </data>
+  <data name="Apiary {0} added." xml:space="preserve">
+    <value>{0} arılığı eklendi.</value>
+  </data>
+  <data name="A sign-in needs a registration confirmed by the SMS code (O-17: no account without a mobile phone)." xml:space="preserve">
+    <value>Giriş için SMS koduyla onaylanmış bir kayıt gerekir (cep telefonu olmadan hesap yok).</value>
+  </data>
+  <data name="The sign-in details were sent by SMS." xml:space="preserve">
+    <value>Giriş bilgileri SMS ile gönderildi.</value>
+  </data>
 </root>

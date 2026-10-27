@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TOP4HoneyChains.Web.Data;
 using TOP4HoneyChains.Web.Models.Entities;
+using TOP4HoneyChains.Web.Services;
 
 namespace TOP4HoneyChains.Web.Controllers
 {
@@ -50,8 +51,17 @@ namespace TOP4HoneyChains.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Apiary apiary)
         {
+            // D-78 (F5): the title is generated from province – district – locality, never typed
+            ModelState.Remove(nameof(Apiary.ApiaryTitle));
+            var (province, district, placeError) = await ApiaryTitles.ResolveAsync(_context, apiary.Province, apiary.DistrictId, apiary.Locality);
+            if (placeError != null)
+                ModelState.AddModelError("", placeError);
             if (ModelState.IsValid)
             {
+                apiary.Locality = apiary.Locality!.Trim();
+                apiary.ApiaryTitle = await ApiaryTitles.UniqueAsync(_context, province!, district!, apiary.Locality);
+                apiary.TitleSource = ApiaryTitles.Generated;
+
                 // QR Code otomatik üret
                 apiary.ApiaryQRCode = Guid.NewGuid();
 
@@ -97,6 +107,18 @@ namespace TOP4HoneyChains.Web.Controllers
             if (existingApiary == null)
                 return NotFound();
 
+            // D-78 (F5): a generated title follows its parts; a typed (legacy) title stays until province, district and locality are given
+            ModelState.Remove(nameof(Apiary.ApiaryTitle));
+            var anyPart = !string.IsNullOrWhiteSpace(apiary.Province) || apiary.DistrictId != null || !string.IsNullOrWhiteSpace(apiary.Locality);
+            string? province = null, district = null;
+            if (anyPart || existingApiary.TitleSource == ApiaryTitles.Generated)
+            {
+                string? placeError;
+                (province, district, placeError) = await ApiaryTitles.ResolveAsync(_context, apiary.Province, apiary.DistrictId, apiary.Locality);
+                if (placeError != null)
+                    ModelState.AddModelError("", placeError);
+            }
+
             if (ModelState.IsValid)
             {
                 try
@@ -106,7 +128,14 @@ namespace TOP4HoneyChains.Web.Controllers
                     apiary.ApiaryQRCode = existingApiary.ApiaryQRCode;
 
                     // Manuel update (daha güvenli)
-                    existingApiary.ApiaryTitle = apiary.ApiaryTitle;
+                    if (province != null)
+                    {
+                        existingApiary.Province = apiary.Province;
+                        existingApiary.DistrictId = apiary.DistrictId;
+                        existingApiary.Locality = apiary.Locality!.Trim();
+                        existingApiary.ApiaryTitle = await ApiaryTitles.UniqueAsync(_context, province, district!, existingApiary.Locality, existingApiary.ApiaryId);
+                        existingApiary.TitleSource = ApiaryTitles.Generated;
+                    }
                     existingApiary.ApiaryBeehivesCount = apiary.ApiaryBeehivesCount;
                     existingApiary.ApiaryLocationLatitude = apiary.ApiaryLocationLatitude;
                     existingApiary.ApiaryLocationLongitude = apiary.ApiaryLocationLongitude;
@@ -127,6 +156,8 @@ namespace TOP4HoneyChains.Web.Controllers
 
             ViewBag.Controller = "Apiaries";
             ViewBag.Action = "Edit";
+            apiary.ApiaryTitle = existingApiary.ApiaryTitle;
+            apiary.TitleSource = existingApiary.TitleSource;
 
             return View(apiary);
         }

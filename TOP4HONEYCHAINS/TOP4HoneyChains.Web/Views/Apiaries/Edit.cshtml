@@ -30,11 +30,11 @@
                                 <input type="hidden" asp-for="ApiaryBeekeeperId" />
                                 <input type="hidden" asp-for="ApiaryQRCode" />
 
-                                <div class="mb-3">
-                                    <label asp-for="ApiaryTitle" class="form-label required">@L["Title"] </label>
-                                    <input asp-for="ApiaryTitle" class="form-control" />
-                                    <span asp-validation-for="ApiaryTitle" class="text-danger"></span>
-                                </div>
+                                @if (Model.TitleSource != "Generated")
+                                {
+                                    <div class="alert alert-light border small" id="apiary-legacy-title">@L["Apiary.LegacyTitle"]</div>
+                                }
+                                <partial name="_ApiaryPlace" model="@(new TOP4HoneyChains.Web.Models.ViewModels.ApiaryPlaceField(nameof(Model.Province), nameof(Model.DistrictId), nameof(Model.Locality), Model.Province, Model.DistrictId, Model.Locality, "ApiaryLocationLatitude", "ApiaryLocationLongitude", Model.ApiaryTitle, Model.TitleSource == "Generated"))" />
 
                                 <div class="mb-3">
                                     <label asp-for="ApiaryBeehivesCount" class="form-label required">@L["Beehives Count"]</label>
@@ -84,5 +84,6 @@
     @section scripts{
         <script src="~/assets/libs/leaflet/leaflet.js" asp-append-version="true"></script>
         <script src="~/js/apiary-map.js" asp-append-version="true"></script>
+        <script src="~/js/apiary-place.js" asp-append-version="true"></script>
     }
 </body>

@@ -262,6 +262,7 @@ namespace TOP4HoneyChains.Web.Controllers
 
             ViewBag.Controller = "Beekeepers";
             ViewBag.Action = "Edit";
+            ViewBag.Registered = await _context.BeekeeperRegistrations.AnyAsync(r => r.BeekeeperId == id);
             return View(beekeeper);
         }
 
@@ -287,6 +288,20 @@ namespace TOP4HoneyChains.Web.Controllers
             // Copied before validation so a failed POST re-renders the real status.
             beekeeper.IsActive = existingBeekeeper.IsActive;
             beekeeper.DeactivatedAt = existingBeekeeper.DeactivatedAt;
+
+            // D-78 (D78-SPEC 2.3 note 18): the attested facts of a registered beekeeper change only with a new attestation
+            // (Registration -> re-verify); the posted values are ignored
+            if (await _context.BeekeeperRegistrations.AnyAsync(r => r.BeekeeperId == id))
+            {
+                beekeeper.BeekeeperFirstName = existingBeekeeper.BeekeeperFirstName;
+                beekeeper.BeekeeperLastName = existingBeekeeper.BeekeeperLastName;
+                beekeeper.BeekeeperBirthDate = existingBeekeeper.BeekeeperBirthDate;
+                beekeeper.BeekeeperPhoneNumber = existingBeekeeper.BeekeeperPhoneNumber;
+                ModelState.Remove(nameof(Beekeeper.BeekeeperFirstName));
+                ModelState.Remove(nameof(Beekeeper.BeekeeperLastName));
+                ModelState.Remove(nameof(Beekeeper.BeekeeperBirthDate));
+                ModelState.Remove(nameof(Beekeeper.BeekeeperPhoneNumber));
+            }
 
             ApplyPhone(beekeeper, existingBeekeeper.BeekeeperPhoneNumber);
             await ValidateProfilePhotoAsync(beekeeper);

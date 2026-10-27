@@ -23,11 +23,6 @@
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 <input type="hidden" asp-for="ApiaryBeekeeperId" />
 
-                                <div class="mb-3">
-                                    <label asp-for="ApiaryTitle" class="form-label required">@L["Title"]</label>
-                                    <input asp-for="ApiaryTitle" class="form-control" />
-                                    <span asp-validation-for="ApiaryTitle" class="text-danger"></span>
-                                </div>
 
                                 <div class="mb-3">
                                     <label asp-for="ApiaryBeehivesCount" class="form-label required">@L["Beehives Count"]</label>
@@ -48,6 +43,8 @@
                                 </div>
 
                                 <partial name="_LocationPicker" />
+
+                                <partial name="_ApiaryPlace" model="@(new TOP4HoneyChains.Web.Models.ViewModels.ApiaryPlaceField(nameof(Model.Province), nameof(Model.DistrictId), nameof(Model.Locality), Model.Province, Model.DistrictId, Model.Locality, "ApiaryLocationLatitude", "ApiaryLocationLongitude"))" />
 
 
 
@@ -76,6 +73,7 @@
     @section scripts{
         <script src="~/assets/libs/leaflet/leaflet.js" asp-append-version="true"></script>
         <script src="~/js/apiary-map.js" asp-append-version="true"></script>
+        <script src="~/js/apiary-place.js" asp-append-version="true"></script>
         <script src="~/assets/libs/parsleyjs/parsley.min.js"></script>
         <script src="~/assets/js/pages/form-validation.init.js"></script>
         <script src="~/assets/js/app.js"></script>

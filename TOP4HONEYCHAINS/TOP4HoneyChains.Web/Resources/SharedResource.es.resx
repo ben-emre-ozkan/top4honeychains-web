@@ -7524,4 +7524,331 @@
   <data name="Org.CredentialsBySms" xml:space="preserve">
     <value>Sin contraseña inicial, el usuario y una contraseña temporal se envían por SMS. En ambos casos el nuevo usuario elige su contraseña al primer acceso.</value>
   </data>
+  <data name="Apiary.CurrentTitle" xml:space="preserve">
+    <value>Título actual</value>
+  </data>
+  <data name="Apiary.LegacyTitle" xml:space="preserve">
+    <value>Este colmenar aún tiene un título escrito a mano. Elija su provincia y distrito e introduzca la localidad para sustituirlo por el título generado.</value>
+  </data>
+  <data name="Apiary.Locality" xml:space="preserve">
+    <value>Localidad (pueblo, meseta, paraje)</value>
+  </data>
+  <data name="Apiary.LocalityExample" xml:space="preserve">
+    <value>p. ej. Kümbet Yaylası</value>
+  </data>
+  <data name="Apiary.TitleHelp" xml:space="preserve">
+    <value>El título se genera: Provincia – Distrito – Localidad.</value>
+  </data>
+  <data name="Apiary Hives" xml:space="preserve">
+    <value>Colmenas</value>
+  </data>
+  <data name="Attest" xml:space="preserve">
+    <value>Declaración</value>
+  </data>
+  <data name="Draft Key" xml:space="preserve">
+    <value>Borrador</value>
+  </data>
+  <data name="Education Level Id" xml:space="preserve">
+    <value>Nivel de estudios</value>
+  </data>
+  <data name="Fallback Reason" xml:space="preserve">
+    <value>Motivo</value>
+  </data>
+  <data name="Issue Sign In" xml:space="preserve">
+    <value>Acceso</value>
+  </data>
+  <data name="No Phone" xml:space="preserve">
+    <value>Sin móvil</value>
+  </data>
+  <data name="Portal Notifications" xml:space="preserve">
+    <value>Avisos por SMS</value>
+  </data>
+  <data name="Province Mismatch Reason" xml:space="preserve">
+    <value>Motivo de otra provincia</value>
+  </data>
+  <data name="Public Name" xml:space="preserve">
+    <value>Nombre en páginas públicas</value>
+  </data>
+  <data name="Purpose Type Id" xml:space="preserve">
+    <value>Finalidad apícola</value>
+  </data>
+  <data name="Registry Number" xml:space="preserve">
+    <value>Número de registro</value>
+  </data>
+  <data name="Work.Kind.Evidence" xml:space="preserve">
+    <value>Revisar fotos firmadas</value>
+  </data>
+  <data name="Reg78.Title" xml:space="preserve">
+    <value>Registro de apicultores</value>
+  </data>
+  <data name="Reg78.Help" xml:space="preserve">
+    <value>Apicultores registrados por su organización. El número de registro, un código SMS al teléfono del apicultor y su declaración confirman cada registro.</value>
+  </data>
+  <data name="Reg78.FindLabel" xml:space="preserve">
+    <value>Número de registro (AKS) o número de explotación</value>
+  </data>
+  <data name="Reg78.Find" xml:space="preserve">
+    <value>Buscar o registrar</value>
+  </data>
+  <data name="Reg78.FindHelp" xml:space="preserve">
+    <value>Un apicultor conocido se verifica de nuevo; un número de registro nuevo inicia un registro nuevo.</value>
+  </data>
+  <data name="Reg78.Date" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="Reg78.Beekeeper" xml:space="preserve">
+    <value>Apicultor</value>
+  </data>
+  <data name="Reg78.RegistryNumber" xml:space="preserve">
+    <value>Número de registro</value>
+  </data>
+  <data name="Reg78.Kind" xml:space="preserve">
+    <value>Registro</value>
+  </data>
+  <data name="Reg78.Method" xml:space="preserve">
+    <value>Confirmado por</value>
+  </data>
+  <data name="Reg78.Evidence" xml:space="preserve">
+    <value>Prueba</value>
+  </data>
+  <data name="Reg78.None" xml:space="preserve">
+    <value>Aún no hay registros.</value>
+  </data>
+  <data name="Reg78.Kind.New" xml:space="preserve">
+    <value>Nuevo</value>
+  </data>
+  <data name="Reg78.Kind.Reverification" xml:space="preserve">
+    <value>Nueva verificación</value>
+  </data>
+  <data name="Reg78.Kind.IdentityChange" xml:space="preserve">
+    <value>Cambio de datos</value>
+  </data>
+  <data name="Reg78.Method.SmsCode" xml:space="preserve">
+    <value>Código SMS</value>
+  </data>
+  <data name="Reg78.Method.SignedPhoto" xml:space="preserve">
+    <value>Foto firmada</value>
+  </data>
+  <data name="Reg78.Evidence.Accepted" xml:space="preserve">
+    <value>Aceptada</value>
+  </data>
+  <data name="Reg78.Evidence.PendingReview" xml:space="preserve">
+    <value>Pendiente de revisión</value>
+  </data>
+  <data name="Reg78.Evidence.Rejected" xml:space="preserve">
+    <value>Rechazada</value>
+  </data>
+  <data name="Reg78.New" xml:space="preserve">
+    <value>Registrar un apicultor</value>
+  </data>
+  <data name="Reg78.Reverify" xml:space="preserve">
+    <value>Verificar de nuevo a un apicultor</value>
+  </data>
+  <data name="Reg78.Registry" xml:space="preserve">
+    <value>Número de registro</value>
+  </data>
+  <data name="Reg78.RegistryHelp" xml:space="preserve">
+    <value>TR, el código de provincia y 10 dígitos. Se compara con la provincia de la dirección.</value>
+  </data>
+  <data name="Reg78.MismatchReason" xml:space="preserve">
+    <value>Si el número es de otra provincia: el motivo</value>
+  </data>
+  <data name="Reg78.Identity" xml:space="preserve">
+    <value>El apicultor</value>
+  </data>
+  <data name="Reg78.NoPhone" xml:space="preserve">
+    <value>El apicultor no tiene móvil (foto firmada, sin cuenta)</value>
+  </data>
+  <data name="Reg78.Language" xml:space="preserve">
+    <value>Idioma del SMS</value>
+  </data>
+  <data name="Reg78.Apiary" xml:space="preserve">
+    <value>Colmenar</value>
+  </data>
+  <data name="Reg78.Apiaries" xml:space="preserve">
+    <value>Colmenares</value>
+  </data>
+  <data name="Reg78.Hives" xml:space="preserve">
+    <value>colmenas</value>
+  </data>
+  <data name="Reg78.MoreApiaryOptional" xml:space="preserve">
+    <value>Añada otro colmenar abajo (opcional).</value>
+  </data>
+  <data name="Reg78.NoticeAndConsent" xml:space="preserve">
+    <value>Aviso informativo y consentimiento</value>
+  </data>
+  <data name="Reg78.NoticeIntro" xml:space="preserve">
+    <value>Deje que el apicultor lea este aviso o léalo en voz alta:</value>
+  </data>
+  <data name="Reg78.ConsentPublicName" xml:space="preserve">
+    <value>El apicultor acepta que su nombre aparezca en las páginas públicas (opcional; si no, se muestra un código neutro)</value>
+  </data>
+  <data name="Reg78.ConsentSms" xml:space="preserve">
+    <value>El apicultor acepta avisos por SMS sobre entregas y resultados de laboratorio (opcional)</value>
+  </data>
+  <data name="Reg78.ConsentTexts" xml:space="preserve">
+    <value>Textos completos de los consentimientos</value>
+  </data>
+  <data name="Reg78.Attestation" xml:space="preserve">
+    <value>Su declaración</value>
+  </data>
+  <data name="Reg78.AttestFallback" xml:space="preserve">
+    <value>He visto el documento de identidad del apicultor y el registro.</value>
+  </data>
+  <data name="Reg78.IssueSignIn" xml:space="preserve">
+    <value>Enviar también al apicultor los datos de acceso por SMS</value>
+  </data>
+  <data name="Reg78.IssueSignInButton" xml:space="preserve">
+    <value>Enviar datos de acceso por SMS</value>
+  </data>
+  <data name="Reg78.PrintSign" xml:space="preserve">
+    <value>He leído el aviso informativo; mis elecciones arriba son correctas. Firma del apicultor y fecha:</value>
+  </data>
+  <data name="Reg78.Confirm" xml:space="preserve">
+    <value>Confirmación</value>
+  </data>
+  <data name="Reg78.SendHelp" xml:space="preserve">
+    <value>El apicultor recibe un SMS con su organización, el enlace al aviso, la elección del nombre y un código. Cambiar un campo después exige un código nuevo.</value>
+  </data>
+  <data name="Reg78.DemoSms" xml:space="preserve">
+    <value>SMS de prueba (demostración):</value>
+  </data>
+  <data name="Reg78.ConfirmButton" xml:space="preserve">
+    <value>Confirmar el registro</value>
+  </data>
+  <data name="Reg78.Fallback" xml:space="preserve">
+    <value>Sin SMS posible: foto firmada</value>
+  </data>
+  <data name="Reg78.FallbackHelp" xml:space="preserve">
+    <value>Imprima esta página, pida al apicultor que la firme y suba una foto. El registro espera al Responsable de cumplimiento de su organización; hasta entonces el apicultor no puede entregar.</value>
+  </data>
+  <data name="Reg78.FallbackReason" xml:space="preserve">
+    <value>Por qué no hay código SMS</value>
+  </data>
+  <data name="Reg78.SignedPhoto" xml:space="preserve">
+    <value>Foto del formulario firmado</value>
+  </data>
+  <data name="Reg78.Print" xml:space="preserve">
+    <value>Imprimir el formulario</value>
+  </data>
+  <data name="Reg78.SaveWithPhoto" xml:space="preserve">
+    <value>Guardar con la foto firmada</value>
+  </data>
+  <data name="Reg78.Details" xml:space="preserve">
+    <value>Registro</value>
+  </data>
+  <data name="Reg78.OtherProvince" xml:space="preserve">
+    <value>otra provincia</value>
+  </data>
+  <data name="Reg78.Consents" xml:space="preserve">
+    <value>Consentimientos</value>
+  </data>
+  <data name="Reg78.Withdrawn" xml:space="preserve">
+    <value>retirado</value>
+  </data>
+  <data name="Reg78.Review" xml:space="preserve">
+    <value>Revisión de la foto firmada</value>
+  </data>
+  <data name="Reg78.ReviewHelp" xml:space="preserve">
+    <value>Abra la foto y compárela con el registro: identidad, número de registro, elecciones del apicultor y firma. Usted no grabó este registro.</value>
+  </data>
+  <data name="Reg78.ReviewReason" xml:space="preserve">
+    <value>Nota (obligatoria para rechazar)</value>
+  </data>
+  <data name="Reg78.Accept" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <data name="Reg78.Reject" xml:space="preserve">
+    <value>Rechazar</value>
+  </data>
+  <data name="Reg78.WaitingReview" xml:space="preserve">
+    <value>Pendiente de la revisión del Responsable de cumplimiento. Usted grabó este registro, así que decide otra persona.</value>
+  </data>
+  <data name="Reg78.AddApiary" xml:space="preserve">
+    <value>Añadir un colmenar</value>
+  </data>
+  <data name="Reg78.AttestedNote" xml:space="preserve">
+    <value>Este apicultor fue registrado por una dirección: nombre, fecha de nacimiento y teléfono están certificados y solo cambian con un registro nuevo (Registro de apicultores → verificar de nuevo).</value>
+  </data>
+  <data name="A beekeeper with this registry number is already registered. Find it and re-verify instead." xml:space="preserve">
+    <value>Ya hay un apicultor registrado con este número. Búsquelo y verifíquelo de nuevo.</value>
+  </data>
+  <data name="The registry number belongs to another province than the directorate. Give a reason to continue." xml:space="preserve">
+    <value>El número de registro es de otra provincia que la dirección. Indique un motivo para continuar.</value>
+  </data>
+  <data name="Enter the first and last name (at most 50 characters each)." xml:space="preserve">
+    <value>Introduzca el nombre y los apellidos (máximo 50 caracteres cada uno).</value>
+  </data>
+  <data name="Enter a valid birth date." xml:space="preserve">
+    <value>Introduzca una fecha de nacimiento válida.</value>
+  </data>
+  <data name="Without a mobile phone the registration is confirmed by a signed photo." xml:space="preserve">
+    <value>Sin móvil, el registro se confirma con una foto firmada.</value>
+  </data>
+  <data name="Set the apiary location on the map or type its coordinates." xml:space="preserve">
+    <value>Fije la ubicación del colmenar en el mapa o escriba sus coordenadas.</value>
+  </data>
+  <data name="Confirm the attestation: you have seen the identity document and the registry record." xml:space="preserve">
+    <value>Confirme la declaración: ha visto el documento de identidad y el registro.</value>
+  </data>
+  <data name="Choose the province and the district and enter the locality of the apiary." xml:space="preserve">
+    <value>Elija la provincia y el distrito e introduzca la localidad del colmenar.</value>
+  </data>
+  <data name="The locality has at most 60 characters." xml:space="preserve">
+    <value>La localidad tiene como máximo 60 caracteres.</value>
+  </data>
+  <data name="Choose a district of the chosen province." xml:space="preserve">
+    <value>Elija un distrito de la provincia elegida.</value>
+  </data>
+  <data name="Beekeeper accounts are not enabled yet." xml:space="preserve">
+    <value>Las cuentas de apicultor aún no están activadas.</value>
+  </data>
+  <data name="Enter the registry number (or the business number of a registered beekeeper)." xml:space="preserve">
+    <value>Introduzca el número de registro (o el número de explotación de un apicultor registrado).</value>
+  </data>
+  <data name="This beekeeper is registered by another directorate." xml:space="preserve">
+    <value>Este apicultor está registrado por otra dirección.</value>
+  </data>
+  <data name="Give the reason why the SMS code cannot be used." xml:space="preserve">
+    <value>Indique por qué no se puede usar el código SMS.</value>
+  </data>
+  <data name="Attach the photo of the signed registration form." xml:space="preserve">
+    <value>Adjunte la foto del formulario de registro firmado.</value>
+  </data>
+  <data name="A code was sent to the beekeeper's phone. Enter the code the beekeeper reads out." xml:space="preserve">
+    <value>Se envió un código al teléfono del apicultor. Introduzca el código que el apicultor le lea.</value>
+  </data>
+  <data name="The beekeeper is registered and verified." xml:space="preserve">
+    <value>El apicultor está registrado y verificado.</value>
+  </data>
+  <data name="The beekeeper is registered and verified; the sign-in details were sent by SMS." xml:space="preserve">
+    <value>El apicultor está registrado y verificado; los datos de acceso se enviaron por SMS.</value>
+  </data>
+  <data name="The registration is saved with the signed photo. It waits for the Compliance Officer's review." xml:space="preserve">
+    <value>El registro se guardó con la foto firmada. Espera la revisión del Responsable de cumplimiento.</value>
+  </data>
+  <data name="This registration was already reviewed." xml:space="preserve">
+    <value>Este registro ya fue revisado.</value>
+  </data>
+  <data name="You recorded this registration; another person must review its evidence." xml:space="preserve">
+    <value>Usted grabó este registro; otra persona debe revisar la prueba.</value>
+  </data>
+  <data name="Give the reason for the rejection." xml:space="preserve">
+    <value>Indique el motivo del rechazo.</value>
+  </data>
+  <data name="Evidence accepted; the registry number is verified." xml:space="preserve">
+    <value>Prueba aceptada; el número de registro está verificado.</value>
+  </data>
+  <data name="Evidence rejected; the beekeeper cannot deliver until registered again." xml:space="preserve">
+    <value>Prueba rechazada; el apicultor no puede entregar hasta que se registre de nuevo.</value>
+  </data>
+  <data name="Apiary {0} added." xml:space="preserve">
+    <value>Colmenar {0} añadido.</value>
+  </data>
+  <data name="A sign-in needs a registration confirmed by the SMS code (O-17: no account without a mobile phone)." xml:space="preserve">
+    <value>El acceso requiere un registro confirmado con el código SMS (sin móvil no hay cuenta).</value>
+  </data>
+  <data name="The sign-in details were sent by SMS." xml:space="preserve">
+    <value>Los datos de acceso se enviaron por SMS.</value>
+  </data>
 </root>

@@ -7524,4 +7524,331 @@
   <data name="Org.CredentialsBySms" xml:space="preserve">
     <value>Without an initial password the user name and a temporary password are sent by SMS. Either way the new user chooses a password at the first sign-in.</value>
   </data>
+  <data name="Apiary.CurrentTitle" xml:space="preserve">
+    <value>Current title</value>
+  </data>
+  <data name="Apiary.LegacyTitle" xml:space="preserve">
+    <value>This apiary still has a typed title from before. Choose its province and district and enter its locality to replace it with the generated title.</value>
+  </data>
+  <data name="Apiary.Locality" xml:space="preserve">
+    <value>Locality (village, plateau, field)</value>
+  </data>
+  <data name="Apiary.LocalityExample" xml:space="preserve">
+    <value>e.g. Kümbet Yaylası</value>
+  </data>
+  <data name="Apiary.TitleHelp" xml:space="preserve">
+    <value>The title is generated: Province – District – Locality.</value>
+  </data>
+  <data name="Apiary Hives" xml:space="preserve">
+    <value>Beehives</value>
+  </data>
+  <data name="Attest" xml:space="preserve">
+    <value>Attestation</value>
+  </data>
+  <data name="Draft Key" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="Education Level Id" xml:space="preserve">
+    <value>Education level</value>
+  </data>
+  <data name="Fallback Reason" xml:space="preserve">
+    <value>Reason</value>
+  </data>
+  <data name="Issue Sign In" xml:space="preserve">
+    <value>Sign-in</value>
+  </data>
+  <data name="No Phone" xml:space="preserve">
+    <value>No mobile phone</value>
+  </data>
+  <data name="Portal Notifications" xml:space="preserve">
+    <value>SMS notifications</value>
+  </data>
+  <data name="Province Mismatch Reason" xml:space="preserve">
+    <value>Reason for another province</value>
+  </data>
+  <data name="Public Name" xml:space="preserve">
+    <value>Name on public pages</value>
+  </data>
+  <data name="Purpose Type Id" xml:space="preserve">
+    <value>Beekeeping purpose</value>
+  </data>
+  <data name="Registry Number" xml:space="preserve">
+    <value>Registry number</value>
+  </data>
+  <data name="Work.Kind.Evidence" xml:space="preserve">
+    <value>Review signed photos</value>
+  </data>
+  <data name="Reg78.Title" xml:space="preserve">
+    <value>Beekeeper registration</value>
+  </data>
+  <data name="Reg78.Help" xml:space="preserve">
+    <value>Beekeepers registered by your organization. The registry number, an SMS code to the beekeeper's phone and your attestation confirm each registration.</value>
+  </data>
+  <data name="Reg78.FindLabel" xml:space="preserve">
+    <value>Registry number (AKS) or business number</value>
+  </data>
+  <data name="Reg78.Find" xml:space="preserve">
+    <value>Find or register</value>
+  </data>
+  <data name="Reg78.FindHelp" xml:space="preserve">
+    <value>A known beekeeper is re-verified; a new registry number starts a new registration.</value>
+  </data>
+  <data name="Reg78.Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Reg78.Beekeeper" xml:space="preserve">
+    <value>Beekeeper</value>
+  </data>
+  <data name="Reg78.RegistryNumber" xml:space="preserve">
+    <value>Registry number</value>
+  </data>
+  <data name="Reg78.Kind" xml:space="preserve">
+    <value>Registration</value>
+  </data>
+  <data name="Reg78.Method" xml:space="preserve">
+    <value>Confirmed by</value>
+  </data>
+  <data name="Reg78.Evidence" xml:space="preserve">
+    <value>Evidence</value>
+  </data>
+  <data name="Reg78.None" xml:space="preserve">
+    <value>No registrations yet.</value>
+  </data>
+  <data name="Reg78.Kind.New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="Reg78.Kind.Reverification" xml:space="preserve">
+    <value>Re-verification</value>
+  </data>
+  <data name="Reg78.Kind.IdentityChange" xml:space="preserve">
+    <value>Change of details</value>
+  </data>
+  <data name="Reg78.Method.SmsCode" xml:space="preserve">
+    <value>SMS code</value>
+  </data>
+  <data name="Reg78.Method.SignedPhoto" xml:space="preserve">
+    <value>Signed photo</value>
+  </data>
+  <data name="Reg78.Evidence.Accepted" xml:space="preserve">
+    <value>Accepted</value>
+  </data>
+  <data name="Reg78.Evidence.PendingReview" xml:space="preserve">
+    <value>Waiting for review</value>
+  </data>
+  <data name="Reg78.Evidence.Rejected" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="Reg78.New" xml:space="preserve">
+    <value>Register a beekeeper</value>
+  </data>
+  <data name="Reg78.Reverify" xml:space="preserve">
+    <value>Re-verify a beekeeper</value>
+  </data>
+  <data name="Reg78.Registry" xml:space="preserve">
+    <value>Registry number</value>
+  </data>
+  <data name="Reg78.RegistryHelp" xml:space="preserve">
+    <value>TR, the province plate code and 10 digits. Compared with the directorate's province.</value>
+  </data>
+  <data name="Reg78.MismatchReason" xml:space="preserve">
+    <value>If the number belongs to another province: the reason</value>
+  </data>
+  <data name="Reg78.Identity" xml:space="preserve">
+    <value>The beekeeper</value>
+  </data>
+  <data name="Reg78.NoPhone" xml:space="preserve">
+    <value>The beekeeper has no mobile phone (signed photo, no account)</value>
+  </data>
+  <data name="Reg78.Language" xml:space="preserve">
+    <value>Language of the SMS</value>
+  </data>
+  <data name="Reg78.Apiary" xml:space="preserve">
+    <value>Apiary</value>
+  </data>
+  <data name="Reg78.Apiaries" xml:space="preserve">
+    <value>Apiaries</value>
+  </data>
+  <data name="Reg78.Hives" xml:space="preserve">
+    <value>hives</value>
+  </data>
+  <data name="Reg78.MoreApiaryOptional" xml:space="preserve">
+    <value>Add another apiary below (optional).</value>
+  </data>
+  <data name="Reg78.NoticeAndConsent" xml:space="preserve">
+    <value>Information notice and consent</value>
+  </data>
+  <data name="Reg78.NoticeIntro" xml:space="preserve">
+    <value>Let the beekeeper read this notice, or read it aloud:</value>
+  </data>
+  <data name="Reg78.ConsentPublicName" xml:space="preserve">
+    <value>The beekeeper agrees that their name is shown on public pages (optional; without it a neutral code is shown)</value>
+  </data>
+  <data name="Reg78.ConsentSms" xml:space="preserve">
+    <value>The beekeeper agrees to SMS notifications about deliveries and lab results (optional)</value>
+  </data>
+  <data name="Reg78.ConsentTexts" xml:space="preserve">
+    <value>Full texts of the consents</value>
+  </data>
+  <data name="Reg78.Attestation" xml:space="preserve">
+    <value>Your attestation</value>
+  </data>
+  <data name="Reg78.AttestFallback" xml:space="preserve">
+    <value>I have seen the beekeeper's identity document and the registry record.</value>
+  </data>
+  <data name="Reg78.IssueSignIn" xml:space="preserve">
+    <value>Also send the beekeeper the sign-in details by SMS</value>
+  </data>
+  <data name="Reg78.IssueSignInButton" xml:space="preserve">
+    <value>Send sign-in details by SMS</value>
+  </data>
+  <data name="Reg78.PrintSign" xml:space="preserve">
+    <value>I have read the information notice; my choices above are correct. Signature of the beekeeper and date:</value>
+  </data>
+  <data name="Reg78.Confirm" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="Reg78.SendHelp" xml:space="preserve">
+    <value>The beekeeper gets an SMS with your organization, the notice link, the name choice and a code. Changing any field afterwards needs a new code.</value>
+  </data>
+  <data name="Reg78.DemoSms" xml:space="preserve">
+    <value>Test SMS (demo):</value>
+  </data>
+  <data name="Reg78.ConfirmButton" xml:space="preserve">
+    <value>Confirm the registration</value>
+  </data>
+  <data name="Reg78.Fallback" xml:space="preserve">
+    <value>No SMS possible: signed photo</value>
+  </data>
+  <data name="Reg78.FallbackHelp" xml:space="preserve">
+    <value>Print this page, let the beekeeper sign it and upload a photo. The registration waits for your organization's Compliance Officer; until then the beekeeper cannot deliver.</value>
+  </data>
+  <data name="Reg78.FallbackReason" xml:space="preserve">
+    <value>Why no SMS code</value>
+  </data>
+  <data name="Reg78.SignedPhoto" xml:space="preserve">
+    <value>Photo of the signed form</value>
+  </data>
+  <data name="Reg78.Print" xml:space="preserve">
+    <value>Print the form</value>
+  </data>
+  <data name="Reg78.SaveWithPhoto" xml:space="preserve">
+    <value>Save with the signed photo</value>
+  </data>
+  <data name="Reg78.Details" xml:space="preserve">
+    <value>Registration</value>
+  </data>
+  <data name="Reg78.OtherProvince" xml:space="preserve">
+    <value>other province</value>
+  </data>
+  <data name="Reg78.Consents" xml:space="preserve">
+    <value>Consents</value>
+  </data>
+  <data name="Reg78.Withdrawn" xml:space="preserve">
+    <value>withdrawn</value>
+  </data>
+  <data name="Reg78.Review" xml:space="preserve">
+    <value>Review of the signed photo</value>
+  </data>
+  <data name="Reg78.ReviewHelp" xml:space="preserve">
+    <value>Open the photo and check it against the registration: identity, registry number, the beekeeper's choices and the signature. You did not record this registration.</value>
+  </data>
+  <data name="Reg78.ReviewReason" xml:space="preserve">
+    <value>Note (required for a rejection)</value>
+  </data>
+  <data name="Reg78.Accept" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="Reg78.Reject" xml:space="preserve">
+    <value>Reject</value>
+  </data>
+  <data name="Reg78.WaitingReview" xml:space="preserve">
+    <value>Waiting for the Compliance Officer's review. You recorded this registration, so another person decides.</value>
+  </data>
+  <data name="Reg78.AddApiary" xml:space="preserve">
+    <value>Add an apiary</value>
+  </data>
+  <data name="Reg78.AttestedNote" xml:space="preserve">
+    <value>This beekeeper was registered by a directorate: name, birth date and phone are attested and change only through a new registration (Beekeeper registration → re-verify).</value>
+  </data>
+  <data name="A beekeeper with this registry number is already registered. Find it and re-verify instead." xml:space="preserve">
+    <value>A beekeeper with this registry number is already registered. Find it and re-verify instead.</value>
+  </data>
+  <data name="The registry number belongs to another province than the directorate. Give a reason to continue." xml:space="preserve">
+    <value>The registry number belongs to another province than the directorate. Give a reason to continue.</value>
+  </data>
+  <data name="Enter the first and last name (at most 50 characters each)." xml:space="preserve">
+    <value>Enter the first and last name (at most 50 characters each).</value>
+  </data>
+  <data name="Enter a valid birth date." xml:space="preserve">
+    <value>Enter a valid birth date.</value>
+  </data>
+  <data name="Without a mobile phone the registration is confirmed by a signed photo." xml:space="preserve">
+    <value>Without a mobile phone the registration is confirmed by a signed photo.</value>
+  </data>
+  <data name="Set the apiary location on the map or type its coordinates." xml:space="preserve">
+    <value>Set the apiary location on the map or type its coordinates.</value>
+  </data>
+  <data name="Confirm the attestation: you have seen the identity document and the registry record." xml:space="preserve">
+    <value>Confirm the attestation: you have seen the identity document and the registry record.</value>
+  </data>
+  <data name="Choose the province and the district and enter the locality of the apiary." xml:space="preserve">
+    <value>Choose the province and the district and enter the locality of the apiary.</value>
+  </data>
+  <data name="The locality has at most 60 characters." xml:space="preserve">
+    <value>The locality has at most 60 characters.</value>
+  </data>
+  <data name="Choose a district of the chosen province." xml:space="preserve">
+    <value>Choose a district of the chosen province.</value>
+  </data>
+  <data name="Beekeeper accounts are not enabled yet." xml:space="preserve">
+    <value>Beekeeper accounts are not enabled yet.</value>
+  </data>
+  <data name="Enter the registry number (or the business number of a registered beekeeper)." xml:space="preserve">
+    <value>Enter the registry number (or the business number of a registered beekeeper).</value>
+  </data>
+  <data name="This beekeeper is registered by another directorate." xml:space="preserve">
+    <value>This beekeeper is registered by another directorate.</value>
+  </data>
+  <data name="Give the reason why the SMS code cannot be used." xml:space="preserve">
+    <value>Give the reason why the SMS code cannot be used.</value>
+  </data>
+  <data name="Attach the photo of the signed registration form." xml:space="preserve">
+    <value>Attach the photo of the signed registration form.</value>
+  </data>
+  <data name="A code was sent to the beekeeper's phone. Enter the code the beekeeper reads out." xml:space="preserve">
+    <value>A code was sent to the beekeeper's phone. Enter the code the beekeeper reads out.</value>
+  </data>
+  <data name="The beekeeper is registered and verified." xml:space="preserve">
+    <value>The beekeeper is registered and verified.</value>
+  </data>
+  <data name="The beekeeper is registered and verified; the sign-in details were sent by SMS." xml:space="preserve">
+    <value>The beekeeper is registered and verified; the sign-in details were sent by SMS.</value>
+  </data>
+  <data name="The registration is saved with the signed photo. It waits for the Compliance Officer's review." xml:space="preserve">
+    <value>The registration is saved with the signed photo. It waits for the Compliance Officer's review.</value>
+  </data>
+  <data name="This registration was already reviewed." xml:space="preserve">
+    <value>This registration was already reviewed.</value>
+  </data>
+  <data name="You recorded this registration; another person must review its evidence." xml:space="preserve">
+    <value>You recorded this registration; another person must review its evidence.</value>
+  </data>
+  <data name="Give the reason for the rejection." xml:space="preserve">
+    <value>Give the reason for the rejection.</value>
+  </data>
+  <data name="Evidence accepted; the registry number is verified." xml:space="preserve">
+    <value>Evidence accepted; the registry number is verified.</value>
+  </data>
+  <data name="Evidence rejected; the beekeeper cannot deliver until registered again." xml:space="preserve">
+    <value>Evidence rejected; the beekeeper cannot deliver until registered again.</value>
+  </data>
+  <data name="Apiary {0} added." xml:space="preserve">
+    <value>Apiary {0} added.</value>
+  </data>
+  <data name="A sign-in needs a registration confirmed by the SMS code (O-17: no account without a mobile phone)." xml:space="preserve">
+    <value>A sign-in needs a registration confirmed by the SMS code (no account without a mobile phone).</value>
+  </data>
+  <data name="The sign-in details were sent by SMS." xml:space="preserve">
+    <value>The sign-in details were sent by SMS.</value>
+  </data>
 </root>

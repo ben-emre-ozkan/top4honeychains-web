@@ -58,8 +58,13 @@ namespace TOP4HoneyChains.Web.Controllers
             if (string.IsNullOrEmpty(number) || number.Length > 50)
                 return null;
             var viaRegistry = _context.BeekeeperRegistry.Where(r => r.RegistryNumber == number && r.Status == RegistryStatus.Verified).Select(r => r.BeekeeperId);
+            // D-78 (D78-SPEC 4.1 step 8): a beekeeper whose latest registration waits for (or failed) the review of its signed photo cannot deliver
+            var notCleared = _context.BeekeeperRegistrations
+                .Where(g => g.RegistrationId == _context.BeekeeperRegistrations.Where(x => x.BeekeeperId == g.BeekeeperId).Max(x => x.RegistrationId)
+                            && g.EvidenceStatus != EvidenceStatus.Accepted)
+                .Select(g => g.BeekeeperId);
             return await _context.Beekeepers.Include(b => b.Apiaries)
-                .FirstOrDefaultAsync(b => b.IsActive && (b.BeekeeperBusinessNumber == number || viaRegistry.Contains(b.BeekeeperId)));
+                .FirstOrDefaultAsync(b => b.IsActive && (b.BeekeeperBusinessNumber == number || viaRegistry.Contains(b.BeekeeperId)) && !notCleared.Contains(b.BeekeeperId));
         }
 
         public async Task<IActionResult> Index()

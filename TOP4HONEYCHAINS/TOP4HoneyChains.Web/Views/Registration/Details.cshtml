@@ -1,0 +1,124 @@
+@model TOP4HoneyChains.Web.Models.Entities.BeekeeperRegistration
+@using TOP4HoneyChains.Web.Models.Entities
+@{
+    ViewData["Title"] = L["Reg78.Details"].Value;
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var bk = Model.Beekeeper!;
+    var registry = ViewBag.Registry as BeekeeperRegistry;
+    var consents = ViewBag.Consents as List<Consent> ?? new();
+    var badge = Model.EvidenceStatus switch { EvidenceStatus.Accepted => "bg-success", EvidenceStatus.Rejected => "bg-danger", _ => "bg-warning text-dark" };
+}
+@section AddToHead {
+    <link href="~/assets/libs/leaflet/leaflet.css" rel="stylesheet" asp-append-version="true" />
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-1">@bk.BeekeeperFirstName @bk.BeekeeperLastName <small class="text-muted">@bk.BeekeeperBusinessNumber</small></h4>
+                    <p class="card-title-desc"><a href="/Registration/Index">@L["Reg78.Title"]</a></p>
+
+                    <dl class="row mb-0" id="registration-summary">
+                        <dt class="col-sm-3">@L["Reg78.Evidence"]</dt>
+                        <dd class="col-sm-9"><span class="badge @badge" id="evidence-status">@L["Reg78.Evidence." + Model.EvidenceStatus]</span>
+                            @if (Model.ReviewedAt != null)
+                            {
+                                <small class="text-muted">@Model.ReviewedAt.Value.ToLocalTime().ToString("dd.MM.yyyy HH:mm") @Model.ReviewReason</small>
+                            }
+                        </dd>
+                        <dt class="col-sm-3">@L["Reg78.Kind"]</dt><dd class="col-sm-9">@L["Reg78.Kind." + Model.Kind] · @Model.At.ToLocalTime().ToString("dd.MM.yyyy HH:mm") · @Model.RegisteringOrg?.DisplayName</dd>
+                        <dt class="col-sm-3">@L["Reg78.Method"]</dt><dd class="col-sm-9">@L["Reg78.Method." + Model.Method]@if (Model.FallbackReason != null) { <text> · @Model.FallbackReason</text> }</dd>
+                        <dt class="col-sm-3">@L["Reg78.RegistryNumber"]</dt>
+                        <dd class="col-sm-9">@Model.RegistryNumber · @(registry != null ? L[registry.Status].Value : "")
+                            @if (Model.RegistryProvinceMatches == false)
+                            {
+                                <span class="badge bg-light text-dark border">@L["Reg78.OtherProvince"]: @Model.ProvinceMismatchReason</span>
+                            }
+                        </dd>
+                        <dt class="col-sm-3">@L["Notice.MobilePhone"]</dt><dd class="col-sm-9">@(string.IsNullOrEmpty(bk.BeekeeperPhoneNumber) ? "–" : TOP4HoneyChains.Web.Services.PhoneNumberPolicy.Display(bk.BeekeeperPhoneNumber))</dd>
+                        <dt class="col-sm-3">@L["Reg78.Consents"]</dt>
+                        <dd class="col-sm-9" id="registration-consents">
+                            @if (consents.Count == 0)
+                            {
+                                <span>–</span>
+                            }
+                            @foreach (var c in consents)
+                            {
+                                <div>@L["Consent." + c.Purpose] · @c.GivenOn.ToString("dd.MM.yyyy") · @L["Reg78.Method." + (c.Method ?? "SignedPhoto")]
+                                    @if (c.WithdrawnAt != null)
+                                    {
+                                        <span class="badge bg-light text-dark border">@L["Reg78.Withdrawn"]</span>
+                                    }
+                                </div>
+                            }
+                        </dd>
+                        @if (Model.EvidenceStoredFileName != null)
+                        {
+                            <dt class="col-sm-3">@L["Reg78.SignedPhoto"]</dt>
+                            <dd class="col-sm-9"><a href="/Registration/Evidence/@Model.RegistrationId" id="evidence-link"><i class="mdi mdi-file-image-outline"></i> @Model.EvidenceOriginalFileName</a> <small class="text-muted">SHA-256 @Model.EvidenceSha256?[..12]…</small></dd>
+                        }
+                    </dl>
+
+                    @if (ViewBag.MayReview == true)
+                    {
+                        <div class="border rounded p-3 mt-3 bg-light" id="evidence-review">
+                            <h5>@L["Reg78.Review"]</h5>
+                            <p class="small">@L["Reg78.ReviewHelp"]</p>
+                            <form asp-action="Review" asp-route-id="@Model.RegistrationId" method="post" class="row g-2 align-items-end">
+                                <div class="col-md-6"><label class="form-label" for="reason">@L["Reg78.ReviewReason"]</label><input class="form-control" id="reason" name="reason" maxlength="500" /></div>
+                                <div class="col-auto"><button type="submit" name="accept" value="true" class="btn btn-success">@L["Reg78.Accept"]</button></div>
+                                <div class="col-auto"><button type="submit" name="accept" value="false" class="btn btn-outline-danger">@L["Reg78.Reject"]</button></div>
+                            </form>
+                        </div>
+                    }
+                    else if (Model.EvidenceStatus == EvidenceStatus.PendingReview && ViewBag.IsOfficer == true)
+                    {
+                        <div class="alert alert-warning mt-3" id="evidence-waiting">@L["Reg78.WaitingReview"]</div>
+                    }
+
+                    @if (ViewBag.CanRegister == true && ViewBag.SignInEnabled == true && Model.Method == AcceptanceMethod.SmsCode && Model.EvidenceStatus == EvidenceStatus.Accepted)
+                    {
+                        <form asp-action="IssueSignIn" asp-route-id="@Model.RegistrationId" method="post" class="mt-3">
+                            <button type="submit" class="btn btn-outline-primary" id="issue-sign-in"><i class="mdi mdi-message-lock-outline"></i> @L["Reg78.IssueSignInButton"]</button>
+                        </form>
+                    }
+
+                    <h5 class="mt-4">@L["Reg78.Apiaries"]</h5>
+                    <ul id="registration-apiaries">
+                        @foreach (var a in bk.Apiaries.OrderBy(a => a.ApiaryId))
+                        {
+                            <li>@a.ApiaryTitle · @a.ApiaryBeehivesCount @L["Reg78.Hives"]</li>
+                        }
+                    </ul>
+                    @if (ViewBag.CanRegister == true)
+                    {
+                        <details id="add-apiary">
+                            <summary>@L["Reg78.AddApiary"]</summary>
+                            <form asp-action="AddApiary" asp-route-id="@Model.RegistrationId" method="post" class="mt-2">
+                                <div class="row g-2">
+                                    <div class="col-md-4"><label class="form-label" for="ApiaryLocationLatitude">@L["Location Latitude"]</label><input class="form-control" id="ApiaryLocationLatitude" name="apiaryLatitude" inputmode="decimal" /></div>
+                                    <div class="col-md-4"><label class="form-label" for="ApiaryLocationLongitude">@L["Location Longitude"]</label><input class="form-control" id="ApiaryLocationLongitude" name="apiaryLongitude" inputmode="decimal" /></div>
+                                    <div class="col-md-4"><label class="form-label" for="apiaryHives">@L["Beehives Count"]</label><input class="form-control" id="apiaryHives" name="apiaryHives" type="number" min="1" max="10000" /></div>
+                                </div>
+                                <div class="mt-2"><partial name="~/Views/Apiaries/_LocationPicker.cshtml" /></div>
+                                <partial name="_ApiaryPlace" model="@(new TOP4HoneyChains.Web.Models.ViewModels.ApiaryPlaceField("apiaryProvince", "apiaryDistrictId", "apiaryLocality", null, null, null, "ApiaryLocationLatitude", "ApiaryLocationLongitude"))" />
+                                <button type="submit" class="btn btn-primary mt-2">@L["Reg78.AddApiary"]</button>
+                            </form>
+                        </details>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    @section scripts {
+        <script src="~/assets/libs/leaflet/leaflet.js" asp-append-version="true"></script>
+        <script src="~/js/apiary-map.js" asp-append-version="true"></script>
+        <script src="~/js/apiary-place.js" asp-append-version="true"></script>
+        <script>
+            // the map sits in a closed section: let Leaflet measure it again when the section opens
+            document.getElementById('add-apiary')?.addEventListener('toggle', function () { window.dispatchEvent(new Event('resize')); });
+        </script>
+    }
+</body>
