@@ -14,6 +14,7 @@ namespace TOP4HoneyChains.Web.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly Services.OrgModel.FeatureFlags _flags;
         private readonly Services.OrgModel.AuditWriter _audit;
+        private readonly Services.OrgModel.CredentialService _credentials;
 
         // A global role that was found in the received database and is used nowhere in the code (an organization role
         // of the same name exists, given per organization); not offered for new users
@@ -23,8 +24,10 @@ namespace TOP4HoneyChains.Web.Controllers
             UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager,
             Microsoft.Extensions.Options.IOptions<Services.OrgModel.FeatureFlags> flags,
-            Services.OrgModel.AuditWriter audit)
+            Services.OrgModel.AuditWriter audit,
+            Services.OrgModel.CredentialService credentials)
         {
+            _credentials = credentials;
             _userManager = userManager;
             _roleManager = roleManager;
             _flags = flags.Value;
@@ -65,19 +68,36 @@ namespace TOP4HoneyChains.Web.Controllers
             else if (!AllowedRoles().Contains(model.Role) || !await _roleManager.RoleExistsAsync(model.Role))
                 ModelState.AddModelError(nameof(model.Role), "Select a valid role.");
 
+            // D-78 (O-10, D78-SPEC 4.3): sign-in details by SMS (default), or an initial password set here; both are changed at first sign-in
+            var manual = model.Delivery == Services.OrgModel.CredentialDelivery.Manual || (model.Delivery == null && !string.IsNullOrEmpty(model.Password));
+            if (manual && string.IsNullOrEmpty(model.Password))
+                ModelState.AddModelError(nameof(model.Password), "Enter the initial password twice.");
+            if (!manual && string.IsNullOrWhiteSpace(model.PhoneNumber))
+                ModelState.AddModelError(nameof(model.PhoneNumber), "A mobile phone number is required.");
+
             if (!ModelState.IsValid)
                 return CreateView(model);
 
             var user = new ApplicationUser
             {
                 UserName = model.UserName,
-                Email = model.Email
+                Email = string.IsNullOrWhiteSpace(model.Email) ? null : model.Email.Trim()
             };
 
-            var result = await _userManager.CreateAsync(user, model.Password);
+            var result = await _userManager.CreateAsync(user, manual ? model.Password! : Services.OrgModel.CredentialService.Unusable());
 
             if (result.Succeeded)
             {
+                if (manual)
+                    await _credentials.RecordManualAsync(user.Id, _userManager.GetUserId(User));
+                else
+                {
+                    var issued = await _credentials.IssueBySmsAsync(user, model.PhoneNumber!, System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName,
+                        _userManager.GetUserId(User), Services.OrgModel.CredentialService.SignInLink(HttpContext));
+                    TempData[issued.Ok ? "Success" : "Error"] = issued.Ok
+                        ? $"Sign-in details for {user.UserName} were sent by SMS."
+                        : $"The user {user.UserName} was created, but the SMS could not be sent: {issued.Error} Send the sign-in details again from the user list.";
+                }
                 if (!string.IsNullOrEmpty(model.Role))
                 {
                     var roleResult = await _userManager.AddToRoleAsync(user, model.Role);
@@ -88,8 +108,8 @@ namespace TOP4HoneyChains.Web.Controllers
                         return CreateView(model);
                     }
                 }
-                else
-                    TempData["Success"] = "User created without a global role. Give the organization role under Organizations → Add member.";
+                else if (TempData["Error"] == null)
+                    TempData["Info"] = "User created without a global role. Give the organization role under Organizations → Add member.";
                 return RedirectToAction("Index");
             }
 
@@ -134,6 +154,29 @@ namespace TOP4HoneyChains.Web.Controllers
                     TempData["error"] = "The user could not be deleted.";
             }
 
+            return RedirectToAction("Index");
+        }
+
+        // D-78 (D78-SPEC 4.3 step 5): new sign-in details by SMS; the earlier temporary password stops working
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> IssueCredentials(string id, string? phone)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+                return NotFound();
+            if (user.Id == _userManager.GetUserId(User))
+            {
+                TempData["error"] = "Use your profile to change your own password.";
+                return RedirectToAction("Index");
+            }
+            var issued = await _credentials.IssueBySmsAsync(user, string.IsNullOrWhiteSpace(phone) ? user.PhoneNumber ?? "" : phone,
+                System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName, _userManager.GetUserId(User),
+                Services.OrgModel.CredentialService.SignInLink(HttpContext));
+            if (issued.Ok)
+                TempData["success"] = $"Sign-in details for {user.UserName} were sent by SMS.";
+            else
+                TempData["error"] = issued.Error;
             return RedirectToAction("Index");
         }
 
@@ -183,6 +226,8 @@ namespace TOP4HoneyChains.Web.Controllers
             if (result.Succeeded)
             {
                 await _userManager.UpdateSecurityStampAsync(user);
+                // D-78: a password set by an administrator is changed by the user at the next sign-in
+                await _credentials.RecordManualAsync(user.Id, _userManager.GetUserId(User));
 
                 TempData["success"] = "Password updated successfully.";
                 return RedirectToAction("Index");

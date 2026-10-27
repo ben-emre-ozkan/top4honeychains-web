@@ -7,15 +7,20 @@ namespace TOP4HoneyChains.Web.Models.ViewModels
         [Required]
         public string? UserName { get; set; }
 
-        [Required]
+        // D-78: optional (e-mail stays disconnected); sign-in details go by SMS
         [EmailAddress]
         public string? Email { get; set; }
 
-        [Required]
+        // D-78 (D78-SPEC 4.3): the mobile phone that receives the user name and temporary password
+        public string? PhoneNumber { get; set; }
+
+        // "Sms" (default): a temporary password by SMS; "Manual": the administrator sets an initial password.
+        // Both must be changed at the first sign-in.
+        public string? Delivery { get; set; }
+
         [DataType(DataType.Password)]
         public string? Password { get; set; }
 
-        [Required]
         [DataType(DataType.Password)]
         [Compare("Password")]
         public string? ConfirmPassword { get; set; }

@@ -46,6 +46,11 @@ public partial class Beekeeper
 
     public DateTime? DeactivatedAt { get; set; }
 
+    // D-78 (021): language of the SMS texts sent to the beekeeper; null = Turkish
+    [StringLength(5)]
+    [Unicode(false)]
+    public string? PreferredLanguage { get; set; }
+
 
     [InverseProperty("ApiaryBeekeeper")]
     public virtual ICollection<Apiary> Apiaries { get; set; } = new List<Apiary>();

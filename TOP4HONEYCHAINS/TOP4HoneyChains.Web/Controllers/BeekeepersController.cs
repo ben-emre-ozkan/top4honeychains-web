@@ -296,6 +296,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 try
                 {
                     beekeeper.BeekeeperBusinessNumber = existingBeekeeper.BeekeeperBusinessNumber;
+                    beekeeper.PreferredLanguage = existingBeekeeper.PreferredLanguage;   // D-78: set at registration only
 
                     if (beekeeper.ProfilePhotoFile != null && beekeeper.ProfilePhotoFile.Length > 0)
                     {

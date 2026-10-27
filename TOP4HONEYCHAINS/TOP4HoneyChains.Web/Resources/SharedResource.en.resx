@@ -7428,4 +7428,100 @@
   <data name="Data controller details saved." xml:space="preserve">
     <value>Data controller details saved.</value>
   </data>
+  <data name="Login.TemporaryExpired" xml:space="preserve">
+    <value>The temporary password has expired. Ask for new sign-in details.</value>
+  </data>
+  <data name="Enter your user name." xml:space="preserve">
+    <value>Enter your user name.</value>
+  </data>
+  <data name="If the account exists and has a verified mobile phone, a code was sent by SMS." xml:space="preserve">
+    <value>If the account exists and has a verified mobile phone, a code was sent by SMS.</value>
+  </data>
+  <data name="Enter the new password twice." xml:space="preserve">
+    <value>Enter the new password twice.</value>
+  </data>
+  <data name="Your new password is set." xml:space="preserve">
+    <value>Your new password is set.</value>
+  </data>
+  <data name="Phone number verified." xml:space="preserve">
+    <value>Phone number verified.</value>
+  </data>
+  <data name="Use your profile to change your own password." xml:space="preserve">
+    <value>Use your profile to change your own password.</value>
+  </data>
+  <data name="Sign-in details for {0} were sent by SMS." xml:space="preserve">
+    <value>Sign-in details for {0} were sent by SMS.</value>
+  </data>
+  <data name="The user {0} was created, but the SMS could not be sent: {1} Send the sign-in details again from the user list." xml:space="preserve">
+    <value>The user {0} was created, but the SMS could not be sent: {1} Send the sign-in details again from the user list.</value>
+  </data>
+  <data name="Enter the initial password twice." xml:space="preserve">
+    <value>Enter the initial password twice.</value>
+  </data>
+  <data name="Enter an existing user name, or a new user name and a mobile phone (or an initial password)." xml:space="preserve">
+    <value>Enter an existing user name, or a new user name and a mobile phone (or an initial password).</value>
+  </data>
+  <data name="The password must not contain the user name." xml:space="preserve">
+    <value>The password must not contain the user name.</value>
+  </data>
+  <data name="This password is too common. Choose another one." xml:space="preserve">
+    <value>This password is too common. Choose another one.</value>
+  </data>
+  <data name="Reset.SmsIntro" xml:space="preserve">
+    <value>Enter your user name. If your account has a verified mobile phone, we send a code by SMS.</value>
+  </data>
+  <data name="Reset.NoPhone" xml:space="preserve">
+    <value>No verified mobile phone? Ask the person who gave you your sign-in details to send new ones.</value>
+  </data>
+  <data name="Reset.CodeIntro" xml:space="preserve">
+    <value>Enter the code from the SMS and choose a new password. The code is valid for 5 minutes.</value>
+  </data>
+  <data name="Password.Rule" xml:space="preserve">
+    <value>At least 10 characters, not your user name, not a common password.</value>
+  </data>
+  <data name="FirstPassword.Title" xml:space="preserve">
+    <value>Choose your password</value>
+  </data>
+  <data name="FirstPassword.Intro" xml:space="preserve">
+    <value>You signed in with a temporary password. Choose your own password before you continue.</value>
+  </data>
+  <data name="Me.Title" xml:space="preserve">
+    <value>My beekeeper area</value>
+  </data>
+  <data name="Me.Hello" xml:space="preserve">
+    <value>Hello, {0}</value>
+  </data>
+  <data name="Me.Coming" xml:space="preserve">
+    <value>Your portal (apiaries, deliveries, lab results, the price of your honey) opens soon. Until then you can read your privacy notice here.</value>
+  </data>
+  <data name="Phone.Verified" xml:space="preserve">
+    <value>verified</value>
+  </data>
+  <data name="Phone.NotVerified" xml:space="preserve">
+    <value>not verified</value>
+  </data>
+  <data name="Phone.Help" xml:space="preserve">
+    <value>A new number is used only after you enter the code we send to it. A verified number lets you reset your password by SMS.</value>
+  </data>
+  <data name="UM.Delivery" xml:space="preserve">
+    <value>Sign-in details</value>
+  </data>
+  <data name="UM.DeliverySms" xml:space="preserve">
+    <value>Send the user name and a temporary password by SMS (recommended)</value>
+  </data>
+  <data name="UM.DeliveryManual" xml:space="preserve">
+    <value>Set an initial password here (the user changes it at the first sign-in)</value>
+  </data>
+  <data name="UM.SendSignIn" xml:space="preserve">
+    <value>Send sign-in by SMS</value>
+  </data>
+  <data name="Org.EmailOptional" xml:space="preserve">
+    <value>E-mail (optional)</value>
+  </data>
+  <data name="Org.PasswordOptional" xml:space="preserve">
+    <value>Initial password (optional)</value>
+  </data>
+  <data name="Org.CredentialsBySms" xml:space="preserve">
+    <value>Without an initial password the user name and a temporary password are sent by SMS. Either way the new user chooses a password at the first sign-in.</value>
+  </data>
 </root>

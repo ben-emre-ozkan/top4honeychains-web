@@ -1,0 +1,16 @@
+@model TOP4HoneyChains.Web.Models.Entities.Beekeeper
+@{
+    ViewBag.Title = L["Me.Title"].Value;
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+}
+
+<h1 class="au-title">@L["Me.Hello", Model.BeekeeperFirstName]</h1>
+<p class="au-sub" id="me-coming">@L["Me.Coming"]</p>
+<p class="small text-muted">@Model.BeekeeperBusinessNumber</p>
+<div class="au-form">
+    <a class="b-btn b-btn-ghost" href="/Notices/Accept?returnUrl=%2FMe%2FIndex">@L["Notice.Title"]</a>
+    <a class="b-btn b-btn-ghost" href="/privacy">@L["Notice.PublicTitle"]</a>
+    <form asp-controller="Account" asp-action="Logout" method="post" class="m-0">
+        <button type="submit" class="b-btn b-btn-honey au-submit">@L["Menu.Logout"]</button>
+    </form>
+</div>

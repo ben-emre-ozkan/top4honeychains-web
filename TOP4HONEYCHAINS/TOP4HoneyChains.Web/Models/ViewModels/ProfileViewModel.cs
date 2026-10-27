@@ -7,5 +7,7 @@
         public string? Email { get; set; }
 
         public string? PhoneNumber { get; set; }
+        // D-78: confirmed by an SMS code (needed for the password reset by SMS)
+        public bool PhoneConfirmed { get; set; }
     }
 }

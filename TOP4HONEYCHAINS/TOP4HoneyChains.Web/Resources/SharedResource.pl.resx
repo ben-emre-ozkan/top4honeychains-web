@@ -7428,4 +7428,100 @@
   <data name="Data controller details saved." xml:space="preserve">
     <value>Zapisano dane administratora.</value>
   </data>
+  <data name="Login.TemporaryExpired" xml:space="preserve">
+    <value>Hasło tymczasowe wygasło. Poproś o nowe dane logowania.</value>
+  </data>
+  <data name="Enter your user name." xml:space="preserve">
+    <value>Wpisz nazwę użytkownika.</value>
+  </data>
+  <data name="If the account exists and has a verified mobile phone, a code was sent by SMS." xml:space="preserve">
+    <value>Jeśli konto istnieje i ma zweryfikowany telefon komórkowy, wysłano kod SMS-em.</value>
+  </data>
+  <data name="Enter the new password twice." xml:space="preserve">
+    <value>Wpisz nowe hasło dwa razy.</value>
+  </data>
+  <data name="Your new password is set." xml:space="preserve">
+    <value>Nowe hasło zostało ustawione.</value>
+  </data>
+  <data name="Phone number verified." xml:space="preserve">
+    <value>Numer telefonu zweryfikowany.</value>
+  </data>
+  <data name="Use your profile to change your own password." xml:space="preserve">
+    <value>Własne hasło zmień w swoim profilu.</value>
+  </data>
+  <data name="Sign-in details for {0} were sent by SMS." xml:space="preserve">
+    <value>Dane logowania dla {0} wysłano SMS-em.</value>
+  </data>
+  <data name="The user {0} was created, but the SMS could not be sent: {1} Send the sign-in details again from the user list." xml:space="preserve">
+    <value>Utworzono użytkownika {0}, ale nie udało się wysłać SMS: {1} Wyślij dane logowania ponownie z listy użytkowników.</value>
+  </data>
+  <data name="Enter the initial password twice." xml:space="preserve">
+    <value>Wpisz hasło początkowe dwa razy.</value>
+  </data>
+  <data name="Enter an existing user name, or a new user name and a mobile phone (or an initial password)." xml:space="preserve">
+    <value>Wpisz istniejącą nazwę użytkownika albo nową nazwę i telefon komórkowy (lub hasło początkowe).</value>
+  </data>
+  <data name="The password must not contain the user name." xml:space="preserve">
+    <value>Hasło nie może zawierać nazwy użytkownika.</value>
+  </data>
+  <data name="This password is too common. Choose another one." xml:space="preserve">
+    <value>To hasło jest zbyt popularne. Wybierz inne.</value>
+  </data>
+  <data name="Reset.SmsIntro" xml:space="preserve">
+    <value>Wpisz nazwę użytkownika. Jeśli konto ma zweryfikowany telefon komórkowy, wyślemy kod SMS-em.</value>
+  </data>
+  <data name="Reset.NoPhone" xml:space="preserve">
+    <value>Brak zweryfikowanego telefonu? Poproś osobę, która przekazała Ci dane logowania, o nowe.</value>
+  </data>
+  <data name="Reset.CodeIntro" xml:space="preserve">
+    <value>Wpisz kod z SMS i ustaw nowe hasło. Kod jest ważny 5 minut.</value>
+  </data>
+  <data name="Password.Rule" xml:space="preserve">
+    <value>Co najmniej 10 znaków, bez nazwy użytkownika, nie popularne hasło.</value>
+  </data>
+  <data name="FirstPassword.Title" xml:space="preserve">
+    <value>Ustaw swoje hasło</value>
+  </data>
+  <data name="FirstPassword.Intro" xml:space="preserve">
+    <value>Zalogowano się hasłem tymczasowym. Przed kontynuacją ustaw własne hasło.</value>
+  </data>
+  <data name="Me.Title" xml:space="preserve">
+    <value>Mój obszar pszczelarza</value>
+  </data>
+  <data name="Me.Hello" xml:space="preserve">
+    <value>Witaj, {0}</value>
+  </data>
+  <data name="Me.Coming" xml:space="preserve">
+    <value>Twój portal (pasieki, dostawy, wyniki badań, cena Twojego miodu) wkrótce zostanie otwarty. Do tego czasu możesz tu przeczytać informację o danych.</value>
+  </data>
+  <data name="Phone.Verified" xml:space="preserve">
+    <value>zweryfikowany</value>
+  </data>
+  <data name="Phone.NotVerified" xml:space="preserve">
+    <value>niezweryfikowany</value>
+  </data>
+  <data name="Phone.Help" xml:space="preserve">
+    <value>Nowy numer jest używany dopiero po wpisaniu wysłanego na niego kodu. Zweryfikowany numer pozwala zmienić hasło SMS-em.</value>
+  </data>
+  <data name="UM.Delivery" xml:space="preserve">
+    <value>Dane logowania</value>
+  </data>
+  <data name="UM.DeliverySms" xml:space="preserve">
+    <value>Wyślij nazwę użytkownika i hasło tymczasowe SMS-em (zalecane)</value>
+  </data>
+  <data name="UM.DeliveryManual" xml:space="preserve">
+    <value>Ustaw tu hasło początkowe (użytkownik zmieni je przy pierwszym logowaniu)</value>
+  </data>
+  <data name="UM.SendSignIn" xml:space="preserve">
+    <value>Wyślij logowanie SMS</value>
+  </data>
+  <data name="Org.EmailOptional" xml:space="preserve">
+    <value>E-mail (opcjonalnie)</value>
+  </data>
+  <data name="Org.PasswordOptional" xml:space="preserve">
+    <value>Hasło początkowe (opcjonalnie)</value>
+  </data>
+  <data name="Org.CredentialsBySms" xml:space="preserve">
+    <value>Bez hasła początkowego nazwa użytkownika i hasło tymczasowe zostaną wysłane SMS-em. W obu przypadkach nowy użytkownik ustawia hasło przy pierwszym logowaniu.</value>
+  </data>
 </root>
