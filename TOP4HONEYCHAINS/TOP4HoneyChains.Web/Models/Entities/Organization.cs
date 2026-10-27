@@ -122,6 +122,10 @@ namespace TOP4HoneyChains.Web.Models.Entities
 
         public DateTime UploadedAt { get; set; }
 
+        // D-78 P3 (025): DataProcessingAgreement or SupplyAgreement, stored with Kind "Other"
+        [StringLength(30)]
+        public string? AgreementKind { get; set; }
+
         public virtual Organization? Org { get; set; }
     }
 
