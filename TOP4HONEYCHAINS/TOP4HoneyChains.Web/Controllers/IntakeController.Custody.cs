@@ -212,6 +212,7 @@ namespace TOP4HoneyChains.Web.Controllers
             ViewBag.MayResample = !_current.IsPlatformAdmin && await _current.GetAsync() is { } m && m.OrgId == intake.ReceivingOrgId
                 && Perm.Allows(PermissionAreas.Samples, PermissionAreas.Enter, m.OrgRole);
             ViewBag.IsRecorder = intake.ReceivedByUserId == _current.UserId;
+            await CorrectionsViewAsync(intake);
             ViewBag.Controller = "Intake";
             ViewBag.Action = "Details";
             return View(intake);

@@ -1,0 +1,112 @@
+@model TOP4HoneyChains.Web.Models.Entities.LotIntake
+@using TOP4HoneyChains.Web.Models.Entities
+@using TOP4HoneyChains.Web.Services.OrgModel
+@{
+    var corrections = ViewBag.DeliveryCorrections as List<DeliveryCorrection> ?? new();
+    var form = ViewBag.CorrectionForm as DeliveryCorrectionForm;
+    var userId = ViewBag.UserId as string;
+}
+@* D-78 P3 (D-82): corrections of a delivery recorded with containers; requested by one platform administrator, confirmed by another *@
+@if (corrections.Any() || form != null)
+{
+    <div class="card" id="delivery-corrections">
+        <div class="card-body">
+            <h5 class="card-title">@L["Dc.Title"]</h5>
+            @foreach (var c in corrections)
+            {
+                var was = DeliveryCorrectionService.FromJson(c.OldContent);
+                var now = DeliveryCorrectionService.FromJson(c.NewContent);
+                <div class="border rounded p-2 mb-2 delivery-correction" data-status="@c.Status">
+                    <div class="d-flex flex-wrap gap-2 align-items-center">
+                        <span class="badge @(c.Status == CorrectionStatus.Applied ? "bg-success" : c.Status == CorrectionStatus.Rejected ? "bg-secondary" : "bg-warning text-dark")">@L["Dc.Status." + c.Status]</span>
+                        <span class="small text-muted">@c.RequestedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</span>
+                        <span class="small">@c.Reason</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-sm mb-1 small">
+                            <thead><tr><th></th><th>@L["Dc.Original"]</th><th>@L["Dc.Corrected"]</th></tr></thead>
+                            <tbody>
+                                <tr><td>@L["Cust.DeliveryDate"]</td><td>@was.Date.ToString("dd.MM.yyyy")</td><td>@now.Date.ToString("dd.MM.yyyy")</td></tr>
+                                @for (var i = 0; i < was.Containers.Count; i++)
+                                {
+                                    var a = was.Containers[i];
+                                    var b = now.Containers[i];
+                                    <tr>
+                                        <td>@L["Ci.Container"] @(i + 1)</td>
+                                        <td>@L["Ci.Kind." + a.Kind] · @a.Net.ToString("0.##") kg · <code>@(a.OriginSeal ?? a.ArrivalPlantSeal)</code> / <code>@a.JarSeal</code> / <code>@a.CounterSeal</code> / <code>@a.Reseal</code></td>
+                                        <td>@L["Ci.Kind." + b.Kind] · @b.Net.ToString("0.##") kg · <code>@(b.OriginSeal ?? b.ArrivalPlantSeal)</code> / <code>@b.JarSeal</code> / <code>@b.CounterSeal</code> / <code>@b.Reseal</code></td>
+                                    </tr>
+                                }
+                                <tr class="text-muted"><td>SHA-256</td><td><code>@c.OldContentSha256[..16]…</code></td><td><code>@c.NewContentSha256[..16]…</code></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    @if (c.Status == CorrectionStatus.Pending && form != null)
+                    {
+                        if (c.RequestedByUserId == userId)
+                        {
+                            <div class="small text-muted">@L["Dc.WaitsForSecond"]</div>
+                        }
+                        else
+                        {
+                            <form asp-action="DecideCorrection" method="post" class="d-flex flex-wrap gap-1 decide-correction">
+                                <input type="hidden" name="correctionId" value="@c.CorrectionId" />
+                                <input name="note" class="form-control form-control-sm" style="max-width:20rem" maxlength="500" placeholder="@L["Dc.Note"]" />
+                                <button type="submit" name="approve" value="true" class="btn btn-sm btn-success">@L["Dc.Apply"]</button>
+                                <button type="submit" name="approve" value="false" class="btn btn-sm btn-outline-danger">@L["Dc.Reject"]</button>
+                            </form>
+                        }
+                    }
+                    else if (c.DecisionNote != null)
+                    {
+                        <div class="small">@c.DecisionNote</div>
+                    }
+                </div>
+            }
+            @if (form != null && !corrections.Any(c => c.Status == CorrectionStatus.Pending))
+            {
+                <details id="request-correction">
+                    <summary class="btn btn-sm btn-outline-secondary">@L["Dc.Request"]</summary>
+                    <form asp-action="RequestCorrection" asp-route-id="@Model.IntakeId" method="post" class="mt-2">
+                        <p class="small text-muted">@L["Dc.Help"]</p>
+                        <div class="mb-2" style="max-width:14rem">
+                            <label class="form-label" for="corr-date">@L["Cust.DeliveryDate"]</label>
+                            <input type="date" id="corr-date" name="DeliveryDate" class="form-control form-control-sm" value="@form.DeliveryDate?.ToString("yyyy-MM-dd")" required />
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-sm small">
+                                <thead><tr><th>#</th><th>@L["Ci.Kind"]</th><th>@L["Ci.NetKg"]</th><th>@L["Ci.GrossKg"]</th><th>@L["Ci.Arrival"]</th><th>@L["Ci.JarSeal"]</th><th>@L["Ci.CounterSeal"]</th><th>@L["Ci.Reseal"]</th></tr></thead>
+                                <tbody>
+                                    @for (var i = 0; i < form.Containers.Count; i++)
+                                    {
+                                        var c = form.Containers[i];
+                                        <tr>
+                                            <td>@(i + 1)</td>
+                                            <td>
+                                                <select name="Containers[@i].Kind" class="form-select form-select-sm" aria-label="@L["Ci.Kind"]">
+                                                    @foreach (var k in ContainerKind.All)
+                                                    {
+                                                        <option value="@k" selected="@(k == c.Kind)">@L["Ci.Kind." + k]</option>
+                                                    }
+                                                </select>
+                                            </td>
+                                            <td><input name="Containers[@i].NetKg" class="form-control form-control-sm" inputmode="decimal" value="@c.NetKg?.ToString(System.Globalization.CultureInfo.InvariantCulture)" aria-label="@L["Ci.NetKg"]" /></td>
+                                            <td><input name="Containers[@i].GrossKg" class="form-control form-control-sm" inputmode="decimal" value="@c.GrossKg?.ToString(System.Globalization.CultureInfo.InvariantCulture)" aria-label="@L["Ci.GrossKg"]" /></td>
+                                            <td><input name="Containers[@i].ArrivalSeal" class="form-control form-control-sm" maxlength="50" value="@c.ArrivalSeal" aria-label="@L["Ci.Arrival"]" /></td>
+                                            <td><input name="Containers[@i].JarSeal" class="form-control form-control-sm" maxlength="50" value="@c.JarSeal" aria-label="@L["Ci.JarSeal"]" /></td>
+                                            <td><input name="Containers[@i].CounterSeal" class="form-control form-control-sm" maxlength="50" value="@c.CounterSeal" aria-label="@L["Ci.CounterSeal"]" /></td>
+                                            <td><input name="Containers[@i].Reseal" class="form-control form-control-sm" maxlength="50" value="@c.Reseal" aria-label="@L["Ci.Reseal"]" /></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <label class="form-label required" for="corr-reason">@L["Dc.Reason"]</label>
+                        <textarea id="corr-reason" name="Reason" class="form-control form-control-sm mb-2" maxlength="500" rows="2" required></textarea>
+                        <button type="submit" class="btn btn-sm btn-primary">@L["Dc.Send"]</button>
+                    </form>
+                </details>
+            }
+        </div>
+    </div>
+}

@@ -57,6 +57,15 @@ namespace TOP4HoneyChains.Web.Services.Messaging
                 ["pl"] = "TOP4HoneyChains: kod {code} potwierdza zapoznanie się z informacją o danych {org} (wersja {version}). Ważny 5 min.",
                 ["lv"] = "TOP4HoneyChains: kods {code} apstiprina, ka izlasījāt {org} privātuma paziņojumu (versija {version}). Derīgs 5 min."
             },
+            // M6 (D-82): information about a confirmed correction of a delivery (no code)
+            [SmsPurpose.DeliveryCorrected] = new()
+            {
+                ["tr"] = "TOP4HoneyChains: {org}, {date} teslimatınızın kaydını düzeltti: {containers}, {kg} kg {honey}.",
+                ["en"] = "TOP4HoneyChains: {org} corrected the record of your delivery of {date}: {containers}, {kg} kg {honey}.",
+                ["es"] = "TOP4HoneyChains: {org} corrigió el registro de su entrega del {date}: {containers}, {kg} kg de {honey}.",
+                ["pl"] = "TOP4HoneyChains: {org} poprawił zapis Twojej dostawy z {date}: {containers}, {kg} kg {honey}.",
+                ["lv"] = "TOP4HoneyChains: {org} izlaboja jūsu {date} piegādes ierakstu: {containers}, {kg} kg {honey}."
+            },
             // M5 without the notice part: phone check
             [SmsPurpose.PhoneVerify] = new()
             {

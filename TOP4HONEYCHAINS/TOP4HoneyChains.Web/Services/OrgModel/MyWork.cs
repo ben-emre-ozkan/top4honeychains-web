@@ -187,6 +187,10 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                          .Where(c => c.Status == CorrectionStatus.Pending && c.RequestedByUserId != _current.UserId).ToListAsync())
                 items.Add(new Item("Correction", $"{c.Ccp?.Code} #{c.OwnerId}", c.Reason, "/CCPMonitoring/Corrections", c.RequestedAt,
                     c.OwnerKind == "raw" ? "Kind.lot" : "Kind.batch"));   // D-75: a translated record kind
+            // D-78 P3: a delivery correction requested by another administrator
+            foreach (var c in await _context.DeliveryCorrections.AsNoTracking()
+                         .Where(c => c.Status == CorrectionStatus.Pending && c.RequestedByUserId != _current.UserId).ToListAsync())
+                items.Add(new Item("Correction", $"#{c.RawHoneyProductionId}", c.Reason, $"/Intake/Details/{c.IntakeId}", c.RequestedAt, "Kind.lot"));
         }
 
         // Pending organizations that uploaded at least one document

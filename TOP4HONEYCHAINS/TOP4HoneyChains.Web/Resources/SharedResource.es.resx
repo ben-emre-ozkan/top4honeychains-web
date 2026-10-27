@@ -8196,4 +8196,76 @@
   <data name="Lab report approved for this container's jar; the lot's CCP 1 values stay those of the composite." xml:space="preserve">
     <value>Informe aprobado para el frasco de este envase; los valores PCC 1 del lote siguen siendo los de la muestra compuesta.</value>
   </data>
+  <data name="Dc.Title" xml:space="preserve">
+    <value>Correcciones de esta entrega</value>
+  </data>
+  <data name="Dc.Status.Pending" xml:space="preserve">
+    <value>espera a un segundo administrador</value>
+  </data>
+  <data name="Dc.Status.Applied" xml:space="preserve">
+    <value>aplicada</value>
+  </data>
+  <data name="Dc.Status.Rejected" xml:space="preserve">
+    <value>rechazada</value>
+  </data>
+  <data name="Dc.Original" xml:space="preserve">
+    <value>Original</value>
+  </data>
+  <data name="Dc.Corrected" xml:space="preserve">
+    <value>Corregido</value>
+  </data>
+  <data name="Dc.WaitsForSecond" xml:space="preserve">
+    <value>Usted pidió esta corrección; la confirma otro administrador de la plataforma.</value>
+  </data>
+  <data name="Dc.Note" xml:space="preserve">
+    <value>Nota (necesaria para rechazar)</value>
+  </data>
+  <data name="Dc.Apply" xml:space="preserve">
+    <value>Confirmar y aplicar</value>
+  </data>
+  <data name="Dc.Reject" xml:space="preserve">
+    <value>Rechazar</value>
+  </data>
+  <data name="Dc.Request" xml:space="preserve">
+    <value>Pedir una corrección</value>
+  </data>
+  <data name="Dc.Help" xml:space="preserve">
+    <value>Solo para un error en el registro. Otro administrador de la plataforma debe confirmar la corrección; el original sigue legible aquí y se informa al apicultor por SMS.</value>
+  </data>
+  <data name="Dc.Reason" xml:space="preserve">
+    <value>Motivo</value>
+  </data>
+  <data name="Dc.Send" xml:space="preserve">
+    <value>Enviar la solicitud</value>
+  </data>
+  <data name="Correction requested; another platform administrator must confirm it." xml:space="preserve">
+    <value>Corrección solicitada; otro administrador de la plataforma debe confirmarla.</value>
+  </data>
+  <data name="Correction applied; the beekeeper was informed by SMS." xml:space="preserve">
+    <value>Corrección aplicada; se informó al apicultor por SMS.</value>
+  </data>
+  <data name="Only a delivery recorded with containers can be corrected here." xml:space="preserve">
+    <value>Aquí solo se puede corregir una entrega registrada con envases.</value>
+  </data>
+  <data name="A correction of this delivery already waits for a second administrator." xml:space="preserve">
+    <value>Ya hay una corrección de esta entrega esperando a un segundo administrador.</value>
+  </data>
+  <data name="A correction keeps the containers of the delivery; it neither adds nor removes one." xml:space="preserve">
+    <value>Una corrección mantiene los envases de la entrega; no añade ni quita ninguno.</value>
+  </data>
+  <data name="Container {0}: every seal number is required." xml:space="preserve">
+    <value>Envase {0}: se necesitan todos los números de precinto.</value>
+  </data>
+  <data name="The correction does not change anything." xml:space="preserve">
+    <value>La corrección no cambia nada.</value>
+  </data>
+  <data name="Batches already use {0} kg of this lot; the corrected amount cannot be lower." xml:space="preserve">
+    <value>Los lotes de producción ya usan {0} kg de este lote; la cantidad corregida no puede ser menor.</value>
+  </data>
+  <data name="The correction was not found." xml:space="preserve">
+    <value>No se encontró la corrección.</value>
+  </data>
+  <data name="The delivery changed after the correction was requested; request it again." xml:space="preserve">
+    <value>La entrega cambió después de pedir la corrección; pídala de nuevo.</value>
+  </data>
 </root>
