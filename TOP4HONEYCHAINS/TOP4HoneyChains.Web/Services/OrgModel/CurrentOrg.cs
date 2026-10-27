@@ -12,6 +12,8 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
     public class FeatureFlags
     {
         public bool OrgRoleModel { get; set; }
+        // D-78 (O-15): sign-in accounts for beekeepers; off until the beekeeper portal ships (P3)
+        public bool BeekeeperAccounts { get; set; }
     }
 
     public record ActiveMembership(

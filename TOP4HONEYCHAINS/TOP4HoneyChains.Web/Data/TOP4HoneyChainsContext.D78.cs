@@ -11,6 +11,10 @@ public partial class TOP4HoneyChainsContext
     public virtual DbSet<OneTimeCode> OneTimeCodes { get; set; }
     public virtual DbSet<Notice> Notices { get; set; }
     public virtual DbSet<NoticeAcceptance> NoticeAcceptances { get; set; }
+    public virtual DbSet<BeekeeperAccount> BeekeeperAccounts { get; set; }
+    public virtual DbSet<BeekeeperRegistration> BeekeeperRegistrations { get; set; }
+    public virtual DbSet<UserCredentialIssue> UserCredentialIssues { get; set; }
+    public virtual DbSet<UserSetting> UserSettings { get; set; }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder)
     {
@@ -70,6 +74,49 @@ public partial class TOP4HoneyChainsContext
             entity.HasOne(e => e.Notice).WithMany().HasForeignKey(e => e.NoticeId).OnDelete(DeleteBehavior.Restrict);
             entity.HasOne<Beekeeper>().WithMany().HasForeignKey(e => e.BeekeeperId).OnDelete(DeleteBehavior.Restrict);
             entity.HasOne<OneTimeCode>().WithMany().HasForeignKey(e => e.CodeId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<BeekeeperAccount>(entity =>
+        {
+            entity.ToTable("BeekeeperAccounts");
+            entity.Property(e => e.Status).IsUnicode(false).HasDefaultValue(BeekeeperAccountStatus.Active);
+            entity.Property(e => e.LinkedAt).HasDefaultValueSql("SYSUTCDATETIME()");
+            entity.HasIndex(e => e.UserId).IsUnique();
+            entity.HasOne(e => e.Beekeeper).WithOne().HasForeignKey<BeekeeperAccount>(e => e.BeekeeperId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<BeekeeperRegistration>(entity =>
+        {
+            entity.ToTable("BeekeeperRegistrations", tb => tb.HasTrigger("TR_BeekeeperRegistrations_AppendOnly"));
+            entity.Property(e => e.Kind).IsUnicode(false);
+            entity.Property(e => e.Method).IsUnicode(false);
+            entity.Property(e => e.EvidenceStatus).IsUnicode(false);
+            entity.Property(e => e.PhoneE164Hash).IsFixedLength().IsUnicode(false);
+            entity.Property(e => e.EvidenceSha256).IsFixedLength().IsUnicode(false);
+            entity.Property(e => e.At).HasDefaultValueSql("SYSUTCDATETIME()");
+            entity.HasIndex(e => new { e.BeekeeperId, e.At });
+            entity.HasIndex(e => new { e.RegisteringOrgId, e.EvidenceStatus });
+            entity.HasOne(e => e.Beekeeper).WithMany().HasForeignKey(e => e.BeekeeperId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne(e => e.RegisteringOrg).WithMany().HasForeignKey(e => e.RegisteringOrgId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne<OneTimeCode>().WithMany().HasForeignKey(e => e.CodeId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne<Notice>().WithMany().HasForeignKey(e => e.AttestationNoticeId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<UserCredentialIssue>(entity =>
+        {
+            entity.ToTable("UserCredentialIssues", tb => tb.HasTrigger("TR_UserCredentialIssues_AppendOnly"));
+            entity.Property(e => e.Channel).IsUnicode(false);
+            entity.Property(e => e.IssuedAt).HasDefaultValueSql("SYSUTCDATETIME()");
+            entity.HasIndex(e => new { e.UserId, e.IssueId });
+            entity.HasOne<SmsMessage>().WithMany().HasForeignKey(e => e.SmsId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<UserSetting>(entity =>
+        {
+            entity.ToTable("UserSettings");
+            entity.Property(e => e.Language).IsUnicode(false);
+
+            entity.HasOne<OneTimeCode>().WithMany().HasForeignKey(e => e.PhoneCodeId).OnDelete(DeleteBehavior.Restrict);
         });
 
         modelBuilder.Entity<Consent>(entity =>
