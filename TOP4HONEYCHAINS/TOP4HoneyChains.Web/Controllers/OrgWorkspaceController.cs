@@ -43,6 +43,12 @@ namespace TOP4HoneyChains.Web.Controllers
         {
             ViewBag.Active = await _current.GetAsync();
             ViewBag.Memberships = await _current.GetMembershipsAsync();
+            // O-9: a verified organization without a Compliance Officer sees a warning (never blocked)
+            if (ViewBag.Active is ActiveMembership a && a.IsVerified)
+            {
+                ViewBag.MissingComplianceOfficer = !ComplianceService.HasComplianceOfficer(await _context.Memberships.AsNoTracking().Where(m => m.OrgId == a.OrgId).ToListAsync());
+                ViewBag.ComplianceDue = HttpContext.RequestServices.GetRequiredService<ComplianceService>().GraceUntil;
+            }
             var lots = await (await _scope.VisibleLotsAsync())
                 .Include(r => r.RawHoneyProductionApiary)
                 .Include(r => r.RawHoneyProductionHoneyTypeNavigation)

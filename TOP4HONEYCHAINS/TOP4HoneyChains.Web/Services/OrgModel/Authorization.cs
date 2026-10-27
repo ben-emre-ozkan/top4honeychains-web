@@ -162,7 +162,8 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                     break;
                 case nameof(OrgOperations.ManageDocuments):
                     // A Pending org must be able to upload its documents to get verified
-                    if (own && active.OrgRole == OrgRoles.OrgAdmin && active.OrgStatus != OrgStatus.Suspended)
+                    // D-78 P3 (4.8): the Compliance Officer keeps the organization's documents and agreements too
+                    if (own && active.OrgRole is OrgRoles.OrgAdmin or OrgRoles.ComplianceOfficer && active.OrgStatus != OrgStatus.Suspended)
                         context.Succeed(requirement);
                     break;
                 case nameof(OrgOperations.Verify):

@@ -8547,4 +8547,226 @@
   <data name="Area.OrgAudit" xml:space="preserve">
     <value>Audit entries of the organization</value>
   </data>
+  <data name="Co.Title" xml:space="preserve">
+    <value>Compliance</value>
+  </data>
+  <data name="Co.Help" xml:space="preserve">
+    <value>Your supervision duties as Compliance Officer. You do not enter deliveries, CCP values or lab results; you review them.</value>
+  </data>
+  <data name="Co.Quality" xml:space="preserve">
+    <value>Sampling quality</value>
+  </data>
+  <data name="Co.QualityHelp" xml:space="preserve">
+    <value>Deliveries confirmed by a signed photo, samples the laboratory rejected and seals found broken. Write a review for each: in order, or a finding with the action.</value>
+  </data>
+  <data name="Co.Item" xml:space="preserve">
+    <value>Item</value>
+  </data>
+  <data name="Co.Review" xml:space="preserve">
+    <value>Review</value>
+  </data>
+  <data name="Co.Kind.PhotoIntake" xml:space="preserve">
+    <value>delivery by photo</value>
+  </data>
+  <data name="Co.Kind.RejectedSample" xml:space="preserve">
+    <value>rejected sample</value>
+  </data>
+  <data name="Co.Kind.BrokenSeal" xml:space="preserve">
+    <value>broken seal</value>
+  </data>
+  <data name="Co.Outcome.InOrder" xml:space="preserve">
+    <value>in order</value>
+  </data>
+  <data name="Co.Outcome.Finding" xml:space="preserve">
+    <value>finding</value>
+  </data>
+  <data name="Co.OwnItem" xml:space="preserve">
+    <value>You recorded this item; another person reviews it.</value>
+  </data>
+  <data name="Co.WriteReview" xml:space="preserve">
+    <value>Write a review</value>
+  </data>
+  <data name="Co.Finding" xml:space="preserve">
+    <value>What you checked and found</value>
+  </data>
+  <data name="Co.Action" xml:space="preserve">
+    <value>Action taken or requested</value>
+  </data>
+  <data name="Co.Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Co.Evidence" xml:space="preserve">
+    <value>Signed photos</value>
+  </data>
+  <data name="Co.EvidenceHelp" xml:space="preserve">
+    <value>{0} signed photo(s) of registrations and deliveries wait for your decision.</value>
+  </data>
+  <data name="Co.Requests" xml:space="preserve">
+    <value>Data-subject requests</value>
+  </data>
+  <data name="Co.RequestsHelp" xml:space="preserve">
+    <value>Access, correction, deletion, objection and consent withdrawals received outside the portal. KVKK: answer within 30 days. A consent withdrawal takes effect when recorded.</value>
+  </data>
+  <data name="Co.Subject" xml:space="preserve">
+    <value>Data subject</value>
+  </data>
+  <data name="Co.RequestKind" xml:space="preserve">
+    <value>Request</value>
+  </data>
+  <data name="Co.RequestKind.Access" xml:space="preserve">
+    <value>access</value>
+  </data>
+  <data name="Co.RequestKind.Correction" xml:space="preserve">
+    <value>correction</value>
+  </data>
+  <data name="Co.RequestKind.Deletion" xml:space="preserve">
+    <value>deletion</value>
+  </data>
+  <data name="Co.RequestKind.Objection" xml:space="preserve">
+    <value>objection</value>
+  </data>
+  <data name="Co.RequestKind.ConsentWithdrawal" xml:space="preserve">
+    <value>consent withdrawal</value>
+  </data>
+  <data name="Co.Received" xml:space="preserve">
+    <value>Received</value>
+  </data>
+  <data name="Co.Due" xml:space="preserve">
+    <value>Answer by</value>
+  </data>
+  <data name="Co.Answer" xml:space="preserve">
+    <value>Answer given</value>
+  </data>
+  <data name="Co.Status.Answered" xml:space="preserve">
+    <value>answered</value>
+  </data>
+  <data name="Co.Status.Refused" xml:space="preserve">
+    <value>refused</value>
+  </data>
+  <data name="Co.NewRequest" xml:space="preserve">
+    <value>Record a request</value>
+  </data>
+  <data name="Co.BeekeeperNumber" xml:space="preserve">
+    <value>Beekeeper's number (if a beekeeper)</value>
+  </data>
+  <data name="Co.ConsentToWithdraw" xml:space="preserve">
+    <value>Consent to withdraw</value>
+  </data>
+  <data name="Co.Channel" xml:space="preserve">
+    <value>Received by</value>
+  </data>
+  <data name="Co.Details" xml:space="preserve">
+    <value>What is asked</value>
+  </data>
+  <data name="Co.Approvals" xml:space="preserve">
+    <value>Approval mechanism</value>
+  </data>
+  <data name="Co.ApprovalsHelp" xml:space="preserve">
+    <value>CCP records waiting for approval longer than {0} days and approvals made under the four-eyes exemption.</value>
+  </data>
+  <data name="Co.SelfApproved" xml:space="preserve">
+    <value>approved by the same person (four-eyes exemption)</value>
+  </data>
+  <data name="Co.Waiting" xml:space="preserve">
+    <value>waiting since {0}</value>
+  </data>
+  <data name="Co.Rights" xml:space="preserve">
+    <value>Who enters and approves what</value>
+  </data>
+  <data name="Co.RightsHelp" xml:space="preserve">
+    <value>The platform administrator keeps this configuration; ask them for a change.</value>
+  </data>
+  <data name="Co.Agreements" xml:space="preserve">
+    <value>Agreements</value>
+  </data>
+  <data name="Co.ManageDocuments" xml:space="preserve">
+    <value>Documents of the organization</value>
+  </data>
+  <data name="Co.EditController" xml:space="preserve">
+    <value>Edit on the organization page</value>
+  </data>
+  <data name="Co.Audit" xml:space="preserve">
+    <value>Audit entries</value>
+  </data>
+  <data name="Co.Change" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="Co.DueBy" xml:space="preserve">
+    <value>Assign one by {0}.</value>
+  </data>
+  <data name="Work.Kind.Review" xml:space="preserve">
+    <value>Reviews</value>
+  </data>
+  <data name="Work.Kind.Request" xml:space="preserve">
+    <value>Data-subject requests</value>
+  </data>
+  <data name="DataProcessingAgreement" xml:space="preserve">
+    <value>Data processing agreement</value>
+  </data>
+  <data name="SupplyAgreement" xml:space="preserve">
+    <value>Supply agreement</value>
+  </data>
+  <data name="Review recorded." xml:space="preserve">
+    <value>Review recorded.</value>
+  </data>
+  <data name="Request recorded; the answer is due within 30 days." xml:space="preserve">
+    <value>Request recorded; the answer is due within 30 days.</value>
+  </data>
+  <data name="Request closed." xml:space="preserve">
+    <value>Request closed.</value>
+  </data>
+  <data name="This item is not one of your organization's." xml:space="preserve">
+    <value>This item is not one of your organization's.</value>
+  </data>
+  <data name="Four-eyes: you recorded this item; another person reviews it." xml:space="preserve">
+    <value>Four-eyes: you recorded this item; another person reviews it.</value>
+  </data>
+  <data name="Choose whether the item is in order or has a finding." xml:space="preserve">
+    <value>Choose whether the item is in order or has a finding.</value>
+  </data>
+  <data name="Describe what you checked and found." xml:space="preserve">
+    <value>Describe what you checked and found.</value>
+  </data>
+  <data name="The finding and the action can be at most 1000 characters each." xml:space="preserve">
+    <value>The finding and the action can be at most 1000 characters each.</value>
+  </data>
+  <data name="A finding needs the action taken or requested." xml:space="preserve">
+    <value>A finding needs the action taken or requested.</value>
+  </data>
+  <data name="Choose the kind of request." xml:space="preserve">
+    <value>Choose the kind of request.</value>
+  </data>
+  <data name="Enter who made the request (at most 200 characters)." xml:space="preserve">
+    <value>Enter who made the request (at most 200 characters).</value>
+  </data>
+  <data name="Enter how the request came in (at most 50 characters)." xml:space="preserve">
+    <value>Enter how the request came in (at most 50 characters).</value>
+  </data>
+  <data name="Enter the date the request was received (not in the future)." xml:space="preserve">
+    <value>Enter the date the request was received (not in the future).</value>
+  </data>
+  <data name="Describe the request (at most 1000 characters)." xml:space="preserve">
+    <value>Describe the request (at most 1000 characters).</value>
+  </data>
+  <data name="No beekeeper with this number." xml:space="preserve">
+    <value>No beekeeper with this number.</value>
+  </data>
+  <data name="A consent withdrawal needs the beekeeper's number and the consent." xml:space="preserve">
+    <value>A consent withdrawal needs the beekeeper's number and the consent.</value>
+  </data>
+  <data name="The request was not found." xml:space="preserve">
+    <value>The request was not found.</value>
+  </data>
+  <data name="This request is already closed." xml:space="preserve">
+    <value>This request is already closed.</value>
+  </data>
+  <data name="Choose answered or refused." xml:space="preserve">
+    <value>Choose answered or refused.</value>
+  </data>
+  <data name="Describe the answer (at most 1000 characters)." xml:space="preserve">
+    <value>Describe the answer (at most 1000 characters).</value>
+  </data>
+  <data name="Name a Compliance Officer (an active member with that role) before verifying the organization." xml:space="preserve">
+    <value>Name a Compliance Officer (an active member with that role) before verifying the organization.</value>
+  </data>
 </root>

@@ -42,7 +42,20 @@
                                 {
                                     <div class="alert alert-warning mt-2 mb-0" id="not-verified">@(active.OrgStatus == OrgStatus.Suspended ? L["Org.SuspendedBanner"] : L["Org.NotVerifiedBanner"])</div>
                                 }
+                                @if (ViewBag.MissingComplianceOfficer == true)
+                                {
+                                    <div class="alert alert-warning mt-2 mb-0" id="missing-compliance-officer">@L["Org.NoComplianceOfficer"]
+                                        @if (ViewBag.ComplianceDue is DateOnly due)
+                                        {
+                                            <strong>@string.Format(L["Co.DueBy"].Value, due.ToString("dd.MM.yyyy"))</strong>
+                                        }
+                                    </div>
+                                }
                                 <a asp-controller="Organizations" asp-action="Details" asp-route-id="@active.OrgId" class="btn btn-sm btn-outline-primary mt-2">@L["Org.OrganizationPage"]</a>
+                                @if (TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Compliance(active))
+                                {
+                                    <a asp-controller="Compliance" asp-action="Index" class="btn btn-sm btn-outline-primary mt-2" id="link-compliance">@L["Co.Title"]</a>
+                                }
                                 @if (TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Shipments(active, MenuPermissions))
                                 {
                                     <a asp-controller="Shipments" asp-action="Index" class="btn btn-sm btn-outline-primary mt-2" id="link-shipments">@L["Cust.Shipments"]</a>
