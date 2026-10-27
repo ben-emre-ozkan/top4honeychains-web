@@ -1,0 +1,23 @@
+<svg viewBox="0 0 320 120" width="320" height="120">
+  <defs>
+    <linearGradient id="s-honey" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFD25A"/><stop offset="1" stop-color="#FFA23A"/></linearGradient>
+  </defs>
+  <rect x="0" y="0" width="320" height="120" rx="16" fill="#FFF4D6"/>
+  <g class="p-plant" fill="#FFFBF0" stroke="#574A40" stroke-width="2" stroke-linejoin="round">
+    <path d="M22 100V62L48 44L74 62V100Z"/>
+    <path d="M48 66L56 70.5V79.5L48 84L40 79.5V70.5Z" fill="#FFE7AE" stroke="#8C5E2E" stroke-width="1.5"/>
+  </g>
+  <path d="M82 92C130 60 190 60 236 92" fill="none" stroke="#8C5E2E" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 7"/>
+  <g class="p-lab" fill="none" stroke="#574A40" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M232 100H300"/>
+    <path d="M281 54V68L292 92C293.5 95.5 291.5 98 288 98H270C266.5 98 264.5 95.5 266 92L277 68V54" fill="#FFFBF0"/>
+    <path d="M276 54H282"/>
+    <path d="M270 86H288" stroke="#FFB547" stroke-width="3"/>
+  </g>
+  <g class="p-bag">
+    <path d="M236 100L239 74H261L264 100Z" fill="#FFFBF0" stroke="#574A40" stroke-width="2" stroke-linejoin="round"/>
+    <rect x="243" y="80" width="6" height="14" rx="2" fill="url(#s-honey)" stroke="#574A40" stroke-width="1.2"/>
+    <rect x="251" y="80" width="6" height="14" rx="2" fill="url(#s-honey)" stroke="#574A40" stroke-width="1.2"/>
+  </g>
+  <g class="p-tick"><circle cx="250" cy="60" r="7" fill="#E8F8F7" stroke="#0B7A75" stroke-width="2"/><path d="M246.5 60.5L249 63L253.5 58" fill="none" stroke="#0B7A75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg>

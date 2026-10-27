@@ -252,4 +252,9 @@
     <Content Remove="Data\Geo\turkey-provinces.json" />
     <EmbeddedResource Include="Data\Geo\turkey-provinces.json" LogicalName="TOP4HoneyChains.Web.turkey-provinces.json" />
   </ItemGroup>
+
+  <!-- D-78 P4: the explanatory scenes, inlined by TagHelpers/HoneySceneTagHelper.cs -->
+  <ItemGroup>
+    <EmbeddedResource Include="Scenes\*.svg" LogicalName="TOP4HoneyChains.Web.Scenes.%(Filename)%(Extension)" />
+  </ItemGroup>
 </Project>

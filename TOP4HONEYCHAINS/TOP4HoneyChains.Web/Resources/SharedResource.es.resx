@@ -8781,4 +8781,112 @@
   <data name="Land.Logos.Acknowledgement" xml:space="preserve">
     <value>Realizado en el marco del ERA-NET Cofund ICT-AGRI-FOOD (convocatoria 2022).</value>
   </data>
+  <data name="Scene.sample" xml:space="preserve">
+    <value>Una muestra de cada lata. Compruebe que el botón de la tapa está abajo.</value>
+  </data>
+  <data name="Scene.delivery" xml:space="preserve">
+    <value>Registre cada lata y su precinto. El apicultor confirma con el código SMS.</value>
+  </data>
+  <data name="Scene.seal" xml:space="preserve">
+    <value>Un precinto numerado pasa por el asa y se cierra. Anote su número.</value>
+  </data>
+  <data name="Scene.send" xml:space="preserve">
+    <value>Los frascos precintados viajan al laboratorio; las contramuestras se quedan en la planta.</value>
+  </data>
+  <data name="Scene.reception" xml:space="preserve">
+    <value>Compruebe el número de precinto, la etiqueta y el botón de la tapa. Si algo falla, rechace la muestra.</value>
+  </data>
+  <data name="Scene.ship" xml:space="preserve">
+    <value>El lote precintado sale; la custodia pasa cuando el receptor lo confirma.</value>
+  </data>
+  <data name="Scene.empty" xml:space="preserve">
+    <value>No hay nada pendiente para usted.</value>
+  </data>
+  <data name="Scene.journey" xml:space="preserve">
+    <value>El viaje de su miel: colmenar, latas, frasco de muestra, laboratorio, el frasco en el estante.</value>
+  </data>
+  <data name="Scene.Replay" xml:space="preserve">
+    <value>Mostrar qué ocurre</value>
+  </data>
+  <data name="Scene.Switch" xml:space="preserve">
+    <value>Mostrar animaciones</value>
+  </data>
+  <data name="Scene.SwitchHelp" xml:space="preserve">
+    <value>Escenas breves que muestran qué hace un botón y qué acaba de pasar. Si están desactivadas, se muestra una imagen fija.</value>
+  </data>
+  <data name="Scene.TurnOff" xml:space="preserve">
+    <value>Desactivar animaciones</value>
+  </data>
+  <data name="Scene.TurnOn" xml:space="preserve">
+    <value>Activar animaciones</value>
+  </data>
+  <data name="Tour.Title" xml:space="preserve">
+    <value>Un recorrido rápido</value>
+  </data>
+  <data name="Tour.Next" xml:space="preserve">
+    <value>Siguiente</value>
+  </data>
+  <data name="Tour.Back" xml:space="preserve">
+    <value>Atrás</value>
+  </data>
+  <data name="Tour.Skip" xml:space="preserve">
+    <value>Saltar el recorrido</value>
+  </data>
+  <data name="Tour.Done" xml:space="preserve">
+    <value>Listo</value>
+  </data>
+  <data name="Tour.Of" xml:space="preserve">
+    <value>{0} de {1}</value>
+  </data>
+  <data name="Tour.Open" xml:space="preserve">
+    <value>Ver el recorrido</value>
+  </data>
+  <data name="Tour.Work" xml:space="preserve">
+    <value>Mi trabajo enumera lo que le espera: valores que registrar o aprobar, entregas, muestras, evidencias.</value>
+  </data>
+  <data name="Tour.Org" xml:space="preserve">
+    <value>Mi organización: sus lotes y lotes de producción, su rol y la página de la organización.</value>
+  </data>
+  <data name="Tour.Intake" xml:space="preserve">
+    <value>Entregas: registre cada lata con su precinto y tome una muestra de cada lata; el apicultor confirma por SMS.</value>
+  </data>
+  <data name="Tour.Samples" xml:space="preserve">
+    <value>Muestras: los frascos enviados y su estado en el laboratorio.</value>
+  </data>
+  <data name="Tour.Lab" xml:space="preserve">
+    <value>Muestras y laboratorio: reciba frascos (precinto, etiqueta, tapa), registre resultados, apruebe informes.</value>
+  </data>
+  <data name="Tour.Registration" xml:space="preserve">
+    <value>Registro de apicultores: registre apicultores y sus colmenares; el apicultor confirma por SMS.</value>
+  </data>
+  <data name="Tour.Compliance" xml:space="preserve">
+    <value>Cumplimiento: revisiones, fotos firmadas, solicitudes de datos y el registro de auditoría.</value>
+  </data>
+  <data name="Tour.Shipments" xml:space="preserve">
+    <value>Envíos: envíe un lote finalizado a la siguiente organización; la custodia pasa cuando confirma.</value>
+  </data>
+  <data name="Tour.Ccp" xml:space="preserve">
+    <value>Los puntos de control (PCC) que esperan sus valores o su aprobación están en Mi trabajo.</value>
+  </data>
+  <data name="Tour.Menu" xml:space="preserve">
+    <value>Su menú: idioma, perfil, el recorrido de nuevo y las animaciones.</value>
+  </data>
+  <data name="Tour.Admin.Dashboard" xml:space="preserve">
+    <value>El panel: lo que espera a la plataforma y la actividad reciente.</value>
+  </data>
+  <data name="Tour.Admin.Data" xml:space="preserve">
+    <value>Apicultores, colmenares y las listas de referencia.</value>
+  </data>
+  <data name="Tour.Me.Deliveries" xml:space="preserve">
+    <value>Sus entregas con latas y precintos; indique aquí su precio.</value>
+  </data>
+  <data name="Tour.Me.Samples" xml:space="preserve">
+    <value>Sus frascos de muestra y los resultados una vez aprobados.</value>
+  </data>
+  <data name="Tour.Me.Privacy" xml:space="preserve">
+    <value>Sus consentimientos: otórguelos o retírelos cuando quiera.</value>
+  </data>
+  <data name="Tour.Me.Account" xml:space="preserve">
+    <value>Su teléfono, idioma, contraseña y las animaciones.</value>
+  </data>
 </root>

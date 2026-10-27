@@ -1,0 +1,12 @@
+<svg viewBox="0 0 320 120" width="320" height="120">
+  <rect x="0" y="0" width="320" height="120" rx="16" fill="#FFF4D6"/>
+  <g fill="#FFFBF0" stroke="#EBC982" stroke-width="2" stroke-linejoin="round">
+    <path class="p-cell p-c1" d="M160 38L176 47V65L160 74L144 65V47Z" fill="#FFE7AE" stroke="#FFB547"/>
+    <path class="p-cell p-c2" d="M128 38L144 47V65L128 74L112 65V47Z"/>
+    <path class="p-cell p-c3" d="M192 38L208 47V65L192 74L176 65V47Z"/>
+    <path class="p-cell p-c4" d="M144 11L160 20V38L144 47L128 38V20Z"/>
+    <path class="p-cell p-c5" d="M176 11L192 20V38L176 47L160 38V20Z"/>
+    <path class="p-cell p-c6" d="M144 65L160 74V92L144 101L128 92V74Z"/>
+    <path class="p-cell p-c7" d="M176 65L192 74V92L176 101L160 92V74Z"/>
+  </g>
+</svg>

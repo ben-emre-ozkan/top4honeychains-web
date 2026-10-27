@@ -19,7 +19,7 @@
                         </div>
                         @if (denied == null)
                         {
-                            <a asp-action="Create" class="btn btn-primary" id="new-intake"><i class="mdi mdi-plus"></i> @L["Cust.NewIntake"]</a>
+                            <a asp-action="Create" class="btn btn-primary ib" id="new-intake"><partial name="_ActionIcon" model="@("truck")" /> @L["Cust.NewIntake"]</a>
                         }
                         else
                         {
@@ -61,7 +61,7 @@
                                     <td class="text-nowrap">
                                         @if (i.IsLegacy)
                                         {
-                                            <a asp-controller="Samples" asp-action="Create" asp-route-lotId="@i.RawHoneyProductionId" class="btn btn-sm btn-outline-primary">@L["Lab.Sample"]</a>
+                                            <a asp-controller="Samples" asp-action="Create" asp-route-lotId="@i.RawHoneyProductionId" class="btn btn-sm btn-outline-primary ib ib-jar"><partial name="_ActionIcon" model="@("jar")" /> @L["Lab.Sample"]</a>
                                         }
                                         else
                                         {

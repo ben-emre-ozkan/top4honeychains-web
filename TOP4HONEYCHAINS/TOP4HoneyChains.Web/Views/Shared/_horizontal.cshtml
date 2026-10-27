@@ -1,6 +1,7 @@
 @inject TOP4HoneyChains.Web.Services.OrgModel.Permissions MenuPermissions
 @inject Microsoft.Extensions.Options.IOptions<TOP4HoneyChains.Web.Services.OrgModel.FeatureFlags> FeatureFlagOptions
 @inject TOP4HoneyChains.Web.Services.OrgModel.ICurrentOrg MenuCurrentOrg
+@inject TOP4HoneyChains.Web.Services.UiPreferences MenuUi
 @inject Microsoft.Extensions.Options.IOptions<TOP4HoneyChains.Web.Services.Messaging.SmsOptions> MenuSmsOptions
 @using System.Globalization
 @* App shell top bar (D-66): sticky, translucent; brand, role chip, language and account in one row, the menu below.
@@ -11,6 +12,7 @@
     // Return to the same page including its query string (e.g. ?wholesalerId=), otherwise
     // pages that need a query parameter return 404 after switching language (FB-34)
     var languageReturnUrl = $"{Context.Request.PathBase}{Context.Request.Path}{Context.Request.QueryString}";
+    var sceneOn = await MenuUi.ShowAnimationsAsync();
     var languages = new[] { ("en", "English", "us_flag.jpg"), ("tr", "Türkçe", "turkey_flag.jpg"), ("es", "Español", "argentina_flag.jpg"), ("pl", "Polski", "poland_flag.jpg"), ("lv", "Latviešu", "latvia_flag.jpg") };
     var (_, lang, flag) = languages.FirstOrDefault(l => l.Item1 == culture, languages[0]);
 
@@ -103,7 +105,7 @@
             </button>
 
             <div class="dropdown d-inline-block">
-                <button type="button" class="btn app-icon-btn app-user-btn" id="page-header-user-dropdown"
+                <button type="button" class="btn app-icon-btn app-user-btn" id="page-header-user-dropdown" data-tour="user"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="@L["Header Avatar"]: @userName">
                     <span class="app-avatar" aria-hidden="true">@(userName.Length > 0 ? userName.Substring(0, 1).ToUpperInvariant() : "?")</span>
                 </button>
@@ -112,6 +114,17 @@
                     <a class="dropdown-item" asp-controller="Account" asp-action="Profile">
                         <i class="mdi mdi-account-circle me-2" aria-hidden="true"></i>@L["Menu.Profile"]
                     </a>
+                    @* D-78 P4: the first-use tour again, and the explanatory scenes on or off (stored per user) *@
+                    <button type="button" class="dropdown-item" data-tour-open id="menu-tour">
+                        <i class="mdi mdi-compass-outline me-2" aria-hidden="true"></i>@L["Tour.Open"]
+                    </button>
+                    <form asp-controller="Account" asp-action="Animations" method="post" class="m-0" id="animations-form">
+                        <input type="hidden" name="show" value="@(sceneOn ? "false" : "true")" />
+                        <input type="hidden" name="returnUrl" value="@languageReturnUrl" />
+                        <button type="submit" class="dropdown-item" role="switch" aria-checked="@(sceneOn ? "true" : "false")">
+                            <i class="mdi @(sceneOn ? "mdi-toggle-switch" : "mdi-toggle-switch-off-outline") me-2" aria-hidden="true"></i>@L["Scene.Switch"]
+                        </button>
+                    </form>
                     <div class="dropdown-divider"></div>
                     <form asp-controller="Account" asp-action="Logout" method="post" class="m-0">
                         @Html.AntiForgeryToken()
@@ -133,27 +146,27 @@
                         {
                             // D-44: members see only the entries their capabilities and role allow
                         <ul class="navbar-nav" id="member-menu">
-                            <li class="nav-item"><a class="nav-link @Cur("work")" aria-current="@Aria("work")" href="/MyWork/Index" data-work-link data-work-scope="@workScope"><i class="mdi mdi-clipboard-check-outline" aria-hidden="true"></i>@L["Work.Title"]<span class="work-badge" data-work-badge hidden></span></a></li>
-                            <li class="nav-item"><a class="nav-link @Cur("org")" aria-current="@Aria("org")" href="/OrgWorkspace/Index"><i class="mdi mdi-domain" aria-hidden="true"></i>@L["Org.MyOrganization"]</a></li>
+                            <li class="nav-item"><a class="nav-link @Cur("work")" aria-current="@Aria("work")" href="/MyWork/Index" data-tour="work" data-work-link data-work-scope="@workScope"><i class="mdi mdi-clipboard-check-outline" aria-hidden="true"></i>@L["Work.Title"]<span class="work-badge" data-work-badge hidden></span></a></li>
+                            <li class="nav-item"><a class="nav-link @Cur("org")" aria-current="@Aria("org")" href="/OrgWorkspace/Index" data-tour="org"><i class="mdi mdi-domain" aria-hidden="true"></i>@L["Org.MyOrganization"]</a></li>
                             @if (menuActive != null && TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Intake(menuActive, MenuPermissions))
                             {
-                                <li class="nav-item"><a class="nav-link @Cur("intake")" aria-current="@Aria("intake")" href="/Intake/Index"><i class="mdi mdi-truck-delivery-outline" aria-hidden="true"></i>@L["Cust.Intakes"]</a></li>
+                                <li class="nav-item"><a class="nav-link @Cur("intake")" aria-current="@Aria("intake")" href="/Intake/Index" data-tour="intake"><i class="mdi mdi-truck-delivery-outline" aria-hidden="true"></i>@L["Cust.Intakes"]</a></li>
                             }
                             @if (menuActive != null && TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Samples(menuActive, MenuPermissions))
                             {
-                                <li class="nav-item"><a class="nav-link @Cur("samples")" aria-current="@Aria("samples")" href="/Samples/Index"><i class="mdi mdi-flask-outline" aria-hidden="true"></i>@L["Lab.Samples"]</a></li>
+                                <li class="nav-item"><a class="nav-link @Cur("samples")" aria-current="@Aria("samples")" href="/Samples/Index" data-tour="samples"><i class="mdi mdi-flask-outline" aria-hidden="true"></i>@L["Lab.Samples"]</a></li>
                             }
                             @if (menuActive != null && TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Shipments(menuActive, MenuPermissions))
                             {
-                                <li class="nav-item"><a class="nav-link @Cur("shipments")" aria-current="@Aria("shipments")" href="/Shipments/Index"><i class="mdi mdi-truck-outline" aria-hidden="true"></i>@L["Cust.Shipments"]</a></li>
+                                <li class="nav-item"><a class="nav-link @Cur("shipments")" aria-current="@Aria("shipments")" href="/Shipments/Index" data-tour="shipments"><i class="mdi mdi-truck-outline" aria-hidden="true"></i>@L["Cust.Shipments"]</a></li>
                             }
                             @if (menuActive != null && TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Registration(menuActive, MenuPermissions))
                             {
-                                <li class="nav-item"><a class="nav-link @Cur("registration")" aria-current="@Aria("registration")" href="/Registration/Index" id="menu-registration"><i class="mdi mdi-account-plus-outline" aria-hidden="true"></i>@L["Reg78.Title"]</a></li>
+                                <li class="nav-item"><a class="nav-link @Cur("registration")" aria-current="@Aria("registration")" href="/Registration/Index" id="menu-registration" data-tour="registration"><i class="mdi mdi-account-plus-outline" aria-hidden="true"></i>@L["Reg78.Title"]</a></li>
                             }
                             @if (menuActive != null && TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Compliance(menuActive))
                             {
-                                <li class="nav-item"><a class="nav-link @Cur("compliance")" aria-current="@Aria("compliance")" href="/Compliance" id="menu-compliance"><i class="mdi mdi-scale-balance" aria-hidden="true"></i>@L["Co.Title"]</a></li>
+                                <li class="nav-item"><a class="nav-link @Cur("compliance")" aria-current="@Aria("compliance")" href="/Compliance" id="menu-compliance" data-tour="compliance"><i class="mdi mdi-scale-balance" aria-hidden="true"></i>@L["Co.Title"]</a></li>
                             }
                             @if (menuActive != null && TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Storefronts(menuActive, MenuPermissions))
                             {
@@ -165,13 +178,13 @@
                         {
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link @Cur("dashboard")" aria-current="@Aria("dashboard")" href="/Dashboard/Index">
+                                <a class="nav-link @Cur("dashboard")" aria-current="@Aria("dashboard")" href="/Dashboard/Index" data-tour="dashboard">
                                     <i class="mdi mdi-view-dashboard" aria-hidden="true"></i>@L["Menu.Dashboard"]
                                 </a>
                             </li>
 
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle arrow-none @Cur("beekeepers")" href="#" id="topnav-email" role="button"
+                                <a class="nav-link dropdown-toggle arrow-none @Cur("beekeepers")" href="#" id="topnav-email" data-tour="data" role="button"
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="mdi mdi-beekeeper" aria-hidden="true"></i>@L["Menu.Beekeepers"]
                                 </a>

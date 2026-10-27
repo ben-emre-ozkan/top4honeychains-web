@@ -1,0 +1,37 @@
+<svg viewBox="0 0 320 120" width="320" height="120">
+  <defs>
+    <linearGradient id="s-honey" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFD25A"/><stop offset="1" stop-color="#FFA23A"/></linearGradient>
+    <clipPath id="s-jar"><rect x="192" y="58" width="44" height="46" rx="9"/></clipPath>
+  </defs>
+  <rect x="0" y="0" width="320" height="120" rx="16" fill="#FFF4D6"/>
+  <path d="M24 104H296" stroke="#EBD5A8" stroke-width="2" stroke-linecap="round"/>
+  <g class="p-tin">
+    <rect x="56" y="50" width="62" height="54" rx="5" fill="#FFFBF0" stroke="#574A40" stroke-width="2"/>
+    <path d="M65 68H109M65 88H109" stroke="#EBD5A8" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <g class="p-lid">
+    <rect x="52" y="42" width="70" height="9" rx="4" fill="#FFE7AE" stroke="#574A40" stroke-width="2"/>
+    <path d="M74 42C74 32 100 32 100 42" fill="none" stroke="#574A40" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <path class="p-tag" d="M128 99L139 95L142 102L131 106Z" fill="#FFB547" stroke="#574A40" stroke-width="1.5" stroke-linejoin="round"/>
+  <path class="p-ribbon" d="M120 50C150 40 206 38 214 62L214 98" fill="none" stroke="url(#s-honey)" stroke-width="6" stroke-linecap="round" opacity="0"/>
+  <g class="p-jar">
+    <g clip-path="url(#s-jar)"><rect class="p-fill" x="192" y="62" width="44" height="42" fill="url(#s-honey)"/></g>
+    <rect x="192" y="58" width="44" height="46" rx="9" fill="none" stroke="#574A40" stroke-width="2"/>
+    <path d="M200 70V92" stroke="#FFFBF0" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+  </g>
+  <circle class="p-bub p-bub1" cx="204" cy="70" r="3" fill="#FFFBF0" opacity="0"/>
+  <circle class="p-bub p-bub2" cx="225" cy="74" r="2" fill="#FFFBF0" opacity="0"/>
+  <g class="p-cap">
+    <rect x="190" y="49" width="48" height="10" rx="3" fill="#FFFBF0" stroke="#574A40" stroke-width="2"/>
+    <circle class="p-btn" cx="214" cy="46" r="4" fill="#FFB547" stroke="#574A40" stroke-width="1.5"/>
+  </g>
+  <g class="p-label">
+    <rect x="207" y="52" width="14" height="34" rx="2" fill="#FFFBF0" stroke="#8C5E2E" stroke-width="1.5"/>
+    <path d="M211 70H217M211 75H217M211 80H215" stroke="#8C5E2E" stroke-width="1.5" stroke-linecap="round"/>
+  </g>
+  <g class="p-tick">
+    <circle cx="254" cy="46" r="9" fill="#E8F8F7" stroke="#0B7A75" stroke-width="2"/>
+    <path d="M249.5 46.5L252.5 49.5L258 43.5" fill="none" stroke="#0B7A75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

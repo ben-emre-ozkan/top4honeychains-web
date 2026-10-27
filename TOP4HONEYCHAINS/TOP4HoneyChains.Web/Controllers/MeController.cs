@@ -142,6 +142,7 @@ namespace TOP4HoneyChains.Web.Controllers
         {
             var me = await MeAsync("Account");
             ViewBag.PendingPhone = TempData["PendingPhone"] as string;
+            ViewBag.ShowAnimations = await HttpContext.RequestServices.GetRequiredService<TOP4HoneyChains.Web.Services.UiPreferences>().ShowAnimationsAsync();
             return View(me);
         }
 

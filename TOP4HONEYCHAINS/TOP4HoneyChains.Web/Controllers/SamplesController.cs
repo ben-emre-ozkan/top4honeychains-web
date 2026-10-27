@@ -177,6 +177,7 @@ namespace TOP4HoneyChains.Web.Controllers
             _context.Samples.Add(sample);
             await _context.SaveChangesAsync();
             TempData["Success"] = $"Sample {sample.SampleCode} sent to the laboratory.";
+            TempData["Scene"] = "sample";   // D-78 P4: the jar fills and its seal label wraps it
             return RedirectToAction(nameof(Index));
         }
 
@@ -233,6 +234,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 Note = note
             });
             await _context.SaveChangesAsync();
+            if (sealIntact)
+                TempData["Scene"] = "reception";   // D-78 P4: seal number, label and cap checked
             TempData[sealIntact ? "Success" : "Error"] = sample.Kind == SampleKind.Container
                 ? (sealIntact ? "Jar received; seal number, label and cap are in order." : "Jar rejected: the plant takes a new jar from the same container.")
                 : sealIntact ? "Sample received; the seal is intact." : "Sample rejected: the seal is broken.";
@@ -276,7 +279,10 @@ namespace TOP4HoneyChains.Web.Controllers
             if (error != null)
                 TempData["Error"] = error;
             else
+            {
                 TempData["Success"] = string.Format(System.Globalization.CultureInfo.InvariantCulture, "New jar {0} sent to the laboratory; the container was sealed again.", jar!.SampleCode);
+                TempData["Scene"] = "sample";
+            }
             return RedirectToAction("Details", "Intake", new { id = container.IntakeId });
         }
     }

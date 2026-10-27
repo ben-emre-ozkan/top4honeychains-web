@@ -1,0 +1,17 @@
+@inject TOP4HoneyChains.Web.Services.UiPreferences Ui
+@inject TOP4HoneyChains.Web.Services.OrgModel.ICurrentOrg TourOrg
+@model bool
+@* D-78 P4 (D78-SPEC 7.1): the first-use tour of the active role (js/honey-tour.js). Model: true in the beekeeper portal. *@
+@if (User.Identity?.IsAuthenticated == true)
+{
+    var admin = User.IsInRole("Administrator");
+    var active = Model || admin ? null : await TourOrg.GetAsync();
+    var role = Model ? "Beekeeper" : admin ? "Administrator" : active?.OrgRole;
+    if (role != null)
+    {
+        var steps = TOP4HoneyChains.Web.Services.UiPreferences.TourFor(active?.OrgRole, admin, Model)
+            .Select(s => new { target = s.Target, text = L[s.TextKey].Value });
+        <script type="application/json" id="hs-tour" data-key="@Ui.UserKey:@role"
+                data-title="@L["Tour.Title"]" data-next="@L["Tour.Next"]" data-back="@L["Tour.Back"]" data-skip="@L["Tour.Skip"]" data-done="@L["Tour.Done"]" data-of="@L["Tour.Of"]">@Html.Raw(System.Text.Json.JsonSerializer.Serialize(steps).Replace("</", "<\\/"))</script>
+    }
+}

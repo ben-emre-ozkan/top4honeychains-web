@@ -1,5 +1,6 @@
 @* D-78 P3 (D78-SPEC 4.7): the beekeeper portal /Me. Mobile-first, the beekeeper's language, no panel menu. Styles: brand.css + me.css. *@
 @using TOP4HoneyChains.Web.Models.Entities
+@inject TOP4HoneyChains.Web.Services.UiPreferences Ui
 @{
     var lang = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
     var section = ViewBag.Section as string ?? "Home";
@@ -11,7 +12,7 @@
         ("Privacy", "Privacy", "Me.Nav.Privacy"), ("Account", "Account", "Me.Nav.Account") };
 }
 <!doctype html>
-<html lang="@lang">
+<html lang="@lang" data-user="@Ui.UserKey" data-scenes="@(await Ui.ShowAnimationsAsync() ? "on" : "off")">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,6 +22,8 @@
     <partial name="~/Views/Shared/_Favicons.cshtml" />
     <link href="~/css/brand.css" rel="stylesheet" asp-append-version="true">
     <link href="~/css/me.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/css/honey-mark.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/css/honey-scene.css" rel="stylesheet" asp-append-version="true">
 </head>
 <body class="me">
     <header class="me-top">
@@ -33,7 +36,7 @@
     <nav class="me-nav" aria-label="@L["Me.Title"]">
         @foreach (var (key, action, label) in sections)
         {
-            <a href="/Me/@(action == "Index" ? "" : action)" class="me-tab @(key == section ? "is-current" : "")" @(key == section ? "aria-current=page" : "")>@L[label]</a>
+            <a href="/Me/@(action == "Index" ? "" : action)" data-tour="me-@action.ToLowerInvariant()" class="me-tab @(key == section ? "is-current" : "")" @(key == section ? "aria-current=page" : "")>@L[label]</a>
         }
     </nav>
     <main class="me-main" id="main">
@@ -51,6 +54,9 @@
     <script>
         document.querySelectorAll('.me-alert-close').forEach(function (b) { b.addEventListener('click', function () { b.parentElement.remove(); }); });
     </script>
+    <script src="~/js/honey-scene.js" asp-append-version="true"></script>
+    <partial name="_Tour" model="true" />
+    <script src="~/js/honey-tour.js" asp-append-version="true"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

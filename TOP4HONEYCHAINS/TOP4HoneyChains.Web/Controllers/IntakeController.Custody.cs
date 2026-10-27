@@ -140,6 +140,7 @@ namespace TOP4HoneyChains.Web.Controllers
                     var org = await _context.Organizations.AsNoTracking().FirstAsync(o => o.OrgId == active.OrgId);
                     var saved = await Custody.SaveAsync(form, content, active.OrgId, org.LegacyWholesalerId, _current.UserId!, verified.CodeId, null);
                     TempData["Success"] = $"Delivery confirmed by the beekeeper and recorded as lot #{saved.LotId}.";
+                    TempData["Scene"] = "delivery";   // D-78 P4: the truck unloads the sealed tins
                     return RedirectToAction(nameof(Details), new { id = saved.IntakeId });
                 }
                 case OpPhoto:
@@ -151,6 +152,7 @@ namespace TOP4HoneyChains.Web.Controllers
                         var saved = await Custody.SaveAsync(form, content, active.OrgId, org.LegacyWholesalerId, _current.UserId!, null,
                             (stored, Path.GetFileName(deliveryForm!.FileName), sha));
                         TempData["Success"] = $"Delivery recorded as lot #{saved.LotId} with the signed photo; it waits for the Compliance Officer.";
+                        TempData["Scene"] = "delivery";
                         return RedirectToAction(nameof(Details), new { id = saved.IntakeId });
                     }
                     catch

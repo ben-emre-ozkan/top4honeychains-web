@@ -1,0 +1,142 @@
+/* D-78 P4 (D78-SPEC 7, MOTION.md "Explanation"): explanatory scenes. The SVG is drawn in its final frame; .is-playing runs
+   the timeline that leads there (js/honey-scene.js adds it). Only transform and opacity move (the seal strap's stroke draws
+   once, like the map outline). At most 1.5 s, no loops, nothing on a scene is interactive. */
+
+.hs { display: flex; align-items: center; gap: 16px; margin: 0 0 16px; padding: 0; }
+.hs-art { display: block; flex: 0 0 auto; width: 320px; max-width: 100%; height: auto; aspect-ratio: 320 / 120; pointer-events: none; }
+.hs-art * { transform-box: fill-box; }
+.hs-caption { margin: 0; color: var(--b-ink, #574A40); font-size: 14px; line-height: 1.45; max-width: 40ch; }
+.hs-replay { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; margin-left: 6px; vertical-align: middle;
+    padding: 0; border: 1px solid var(--b-line, #F2E3C6); border-radius: 50%; background: var(--b-white, #fff); color: var(--b-heading, #8C5E2E); cursor: pointer; }
+.hs-replay:hover { background: var(--b-foam, #FFFBF0); }
+.hs-replay:focus-visible { outline: 3px solid var(--b-focus, #0B7A75); outline-offset: 2px; }
+.hs-compact .hs-art { width: 240px; }
+@media (max-width: 560px) {
+    .hs { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .hs-art, .hs-compact .hs-art { width: 100%; max-width: 360px; }
+}
+
+/* every animated part keeps its first keyframe until it starts, and its last (the final frame) afterwards */
+.hs.is-playing .hs-art * { animation-fill-mode: both; animation-timing-function: cubic-bezier(.2, .7, .2, 1); }
+
+/* ---------------------------------------------------------------- S1 take sample (1.2 s) */
+.hs-sample.is-playing .p-tag { animation: hs-sample-tag 1.2s both; }
+.hs-sample.is-playing .p-lid { animation: hs-sample-lid 1.2s both; transform-origin: 0% 100%; }
+.hs-sample.is-playing .p-ribbon { animation: hs-sample-ribbon 1.2s both; }
+.hs-sample.is-playing .p-fill { animation: hs-sample-fill 1.2s both; transform-origin: 50% 100%; }
+.hs-sample.is-playing .p-bub1 { animation: hs-bubble 1.2s both; }
+.hs-sample.is-playing .p-bub2 { animation: hs-bubble 1.2s 60ms both; }
+.hs-sample.is-playing .p-cap { animation: hs-sample-cap 1.2s both; transform-origin: 50% 50%; }
+.hs-sample.is-playing .p-btn { animation: hs-sample-btn 1.2s both; transform-origin: 50% 50%; }
+.hs-sample.is-playing .p-tick { animation: hs-tick-at-90 1.2s both; transform-origin: 50% 50%; }
+.hs-sample.is-playing .p-label { animation: hs-sample-label 1.2s both; transform-origin: 0% 50%; }
+@keyframes hs-sample-tag { 0%, 16% { transform: translate(-48px, -62px) rotate(0); opacity: 1; } 34% { transform: translate(0, 0) rotate(-24deg); } 100% { transform: none; } }
+@keyframes hs-sample-lid { 0%, 14% { transform: none; } 24%, 72% { transform: translate(-4px, -12px) rotate(-14deg); } 82%, 100% { transform: none; } }
+@keyframes hs-sample-ribbon { 0%, 32% { opacity: 0; } 38%, 64% { opacity: 1; } 72%, 100% { opacity: 0; } }
+@keyframes hs-sample-fill { 0%, 34% { transform: scaleY(0); } 70%, 100% { transform: scaleY(1); } }
+@keyframes hs-bubble { 0%, 44% { transform: translateY(0); opacity: 0; } 52% { opacity: .95; } 76%, 100% { transform: translateY(-16px); opacity: 0; } }
+@keyframes hs-sample-cap { 0%, 68% { transform: translateY(-26px); opacity: 0; } 76% { transform: translateY(0); opacity: 1; } 80% { transform: scaleX(.92); } 86%, 100% { transform: none; opacity: 1; } }
+@keyframes hs-sample-btn { 0%, 86% { transform: scale(1); } 90% { transform: scale(.82); } 96%, 100% { transform: scale(1); } }
+@keyframes hs-tick-at-90 { 0%, 88% { transform: scale(.6); opacity: 0; } 94%, 100% { transform: scale(1); opacity: 1; } }
+@keyframes hs-sample-label { 0%, 89% { transform: scaleX(0); opacity: 0; } 92% { opacity: 1; } 100% { transform: scaleX(1); opacity: 1; } }
+
+/* ---------------------------------------------------------------- S2 record delivery (1.3 s) */
+.hs-delivery.is-playing .p-truck { animation: hs-delivery-truck 1.3s both; }
+.hs-delivery.is-playing .p-t1 { animation: hs-delivery-t1 1.3s both; }
+.hs-delivery.is-playing .p-t2 { animation: hs-delivery-t2 1.3s both; }
+.hs-delivery.is-playing .p-t3 { animation: hs-delivery-t3 1.3s both; }
+.hs-delivery.is-playing .p-k1 { animation: hs-delivery-k1 1.3s both; transform-origin: 50% 50%; }
+.hs-delivery.is-playing .p-k2 { animation: hs-delivery-k2 1.3s both; transform-origin: 50% 50%; }
+.hs-delivery.is-playing .p-k3 { animation: hs-delivery-k3 1.3s both; transform-origin: 50% 50%; }
+.hs-delivery.is-playing .p-phone { animation: hs-delivery-phone 1.3s both; }
+.hs-delivery.is-playing .p-dots { animation: hs-delivery-dots 1.3s both; transform-origin: 0% 50%; }
+@keyframes hs-delivery-truck { 0% { transform: translateX(-120px); } 23%, 100% { transform: none; } }
+@keyframes hs-delivery-t1 { 0%, 23% { transform: translate(-56px, -22px); opacity: 0; } 26% { opacity: 1; } 38%, 100% { transform: none; opacity: 1; } }
+@keyframes hs-delivery-t2 { 0%, 36% { transform: translate(-90px, -22px); opacity: 0; } 39% { opacity: 1; } 51%, 100% { transform: none; opacity: 1; } }
+@keyframes hs-delivery-t3 { 0%, 49% { transform: translate(-124px, -22px); opacity: 0; } 52% { opacity: 1; } 63%, 100% { transform: none; opacity: 1; } }
+@keyframes hs-delivery-k1 { 0%, 66% { transform: scale(.6); opacity: 0; } 70%, 100% { transform: none; opacity: 1; } }
+@keyframes hs-delivery-k2 { 0%, 71% { transform: scale(.6); opacity: 0; } 75%, 100% { transform: none; opacity: 1; } }
+@keyframes hs-delivery-k3 { 0%, 76% { transform: scale(.6); opacity: 0; } 80%, 100% { transform: none; opacity: 1; } }
+@keyframes hs-delivery-phone { 0%, 80% { transform: translateY(8px); opacity: 0; } 88%, 100% { transform: none; opacity: 1; } }
+@keyframes hs-delivery-dots { 0%, 86% { transform: scaleX(0); } 100% { transform: scaleX(1); } }
+
+/* ---------------------------------------------------------------- container seal (1.0 s) */
+.hs-seal.is-playing .p-strap { animation: hs-seal-strap 1s both; }
+.hs-seal.is-playing .p-tag { animation: hs-seal-tag 1s both; transform-origin: 0% 50%; }
+.hs-seal.is-playing .p-tick { animation: hs-tick-at-80 1s both; transform-origin: 50% 50%; }
+@keyframes hs-seal-strap { 0% { stroke-dashoffset: 1; } 55%, 100% { stroke-dashoffset: 0; } }
+@keyframes hs-seal-tag { 0%, 45% { transform: translate(-6px, -8px) rotate(-30deg); opacity: 0; } 60% { opacity: 1; } 70% { transform: scale(1.12); } 80%, 100% { transform: none; opacity: 1; } }
+@keyframes hs-tick-at-80 { 0%, 76% { transform: scale(.6); opacity: 0; } 86%, 100% { transform: none; opacity: 1; } }
+
+/* ---------------------------------------------------------------- samples travel to the lab (1.2 s) */
+.hs-send.is-playing .p-bag { animation: hs-send-bag 1.2s both; }
+.hs-send.is-playing .p-tick { animation: hs-tick-at-90 1.2s both; transform-origin: 50% 50%; }
+@keyframes hs-send-bag { 0%, 8% { transform: translate(-178px, -2px); } 30% { transform: translate(-128px, -24px); } 55% { transform: translate(-64px, -26px); } 80%, 100% { transform: none; } }
+
+/* ---------------------------------------------------------------- S3 lab reception (1.2 s) */
+.hs-reception.is-playing .p-bag { animation: hs-reception-bag 1.2s both; }
+.hs-reception.is-playing .p-jar { animation: hs-reception-jar 1.2s both; }
+.hs-reception.is-playing .p-mag { animation: hs-reception-mag 1.2s both; }
+.hs-reception.is-playing .p-k1 { animation: hs-reception-k1 1.2s both; transform-origin: 50% 50%; }
+.hs-reception.is-playing .p-k2 { animation: hs-reception-k2 1.2s both; transform-origin: 50% 50%; }
+@keyframes hs-reception-bag { 0%, 12% { transform: none; opacity: 1; } 28%, 100% { transform: translateY(24px); opacity: 0; } }
+@keyframes hs-reception-jar { 0%, 82% { transform: translateX(-108px); } 100% { transform: none; } }
+@keyframes hs-reception-mag { 0%, 36% { transform: none; } 46%, 56% { transform: translate(72px, 34px); } 64%, 74% { transform: translate(72px, 6px); } 86%, 100% { transform: none; } }
+@keyframes hs-reception-k1 { 0%, 54% { transform: scale(.6); opacity: 0; } 60%, 100% { transform: none; opacity: 1; } }
+@keyframes hs-reception-k2 { 0%, 72% { transform: scale(.6); opacity: 0; } 78%, 100% { transform: none; opacity: 1; } }
+
+/* ---------------------------------------------------------------- shipment (1.2 s) */
+.hs-ship.is-playing .p-crate { animation: hs-ship-crate 1.2s both; }
+.hs-ship.is-playing .p-ribbon { animation: hs-ship-ribbon 1.2s both; transform-origin: 0% 50%; }
+.hs-ship.is-playing .p-arrive { animation: hs-ship-arrive 1.2s both; transform-origin: 50% 50%; }
+@keyframes hs-ship-crate { 0%, 8% { transform: translateX(-100px); } 80%, 100% { transform: none; } }
+@keyframes hs-ship-ribbon { 0%, 8% { transform: scaleX(0); } 80%, 100% { transform: scaleX(1); } }
+@keyframes hs-ship-arrive { 0%, 78% { transform: scale(.4); opacity: 0; } 92%, 100% { transform: none; opacity: 1; } }
+
+/* ---------------------------------------------------------------- S4 empty My work (1.0 s; the mark then keeps its calm loop) */
+.hs-stage { position: relative; display: block; flex: 0 0 auto; width: 320px; max-width: 100%; line-height: 0; }
+.hs-stage .hs-art { width: 100%; }
+.hs-empty .hs-bee { position: absolute; left: 50%; top: 46.7%; transform: translate(-50%, -62%); line-height: 0; pointer-events: none; }
+.hs-empty.is-playing .p-cell { animation: hs-empty-cell 1s both; }
+.hs-empty.is-playing .p-c2, .hs-empty.is-playing .p-c3 { animation-delay: 80ms; }
+.hs-empty.is-playing .p-c4, .hs-empty.is-playing .p-c5 { animation-delay: 160ms; }
+.hs-empty.is-playing .p-c6, .hs-empty.is-playing .p-c7 { animation-delay: 240ms; }
+.hs-empty.is-playing .hs-bee { animation: hs-empty-bee 1s cubic-bezier(.2, .7, .2, 1) both; }
+@keyframes hs-empty-cell { 0% { opacity: 0; transform: scale(.85); } 50%, 100% { opacity: 1; transform: none; } }
+@keyframes hs-empty-bee { 0%, 30% { transform: translate(-50%, -62%) translate(46px, -34px); opacity: 0; } 50% { opacity: 1; } 100% { transform: translate(-50%, -62%); opacity: 1; } }
+
+/* ---------------------------------------------------------------- the beekeeper's honey journey (1.4 s) */
+.hs-journey.is-playing .p-line { animation: hs-fade 1.4s both; }
+.hs-journey.is-playing .p-st { animation: hs-journey-st 1.4s both; }
+.hs-journey.is-playing .p-s2 { animation-delay: 220ms; }
+.hs-journey.is-playing .p-s3 { animation-delay: 440ms; }
+.hs-journey.is-playing .p-s4 { animation-delay: 660ms; }
+.hs-journey.is-playing .p-s5 { animation-delay: 880ms; }
+@keyframes hs-fade { 0% { opacity: 0; } 40%, 100% { opacity: 1; } }
+@keyframes hs-journey-st { 0% { transform: translateY(8px); opacity: 0; } 36%, 100% { transform: none; opacity: 1; } }
+.hs-journey .hs-art { width: 100%; max-width: 520px; }
+
+/* 7.2: reduced motion and the "Show animations" switch show the final frame (typing ends a scene: js/honey-scene.js) */
+@media (prefers-reduced-motion: reduce) { .hs.is-playing .hs-art *, .hs.is-playing .hs-bee { animation: none !important; } }
+html[data-scenes="off"] .hs.is-playing .hs-art *, html[data-scenes="off"] .hs.is-playing .hs-bee { animation: none !important; }
+
+/* ---------------------------------------------------------------- icon buttons for the key actions (text label kept) */
+.ib { display: inline-flex; align-items: center; gap: 8px; }
+.ib-icon { flex: 0 0 auto; width: 22px; height: 22px; }
+.ib-jar .ib-capbtn { transform-box: fill-box; transform-origin: 50% 50%; transition: transform 150ms var(--b-ease, ease); }
+.ib-jar:active .ib-capbtn { transform: scale(.7); }
+@media (prefers-reduced-motion: reduce) { .ib-jar .ib-capbtn { transition: none; } }
+
+/* ---------------------------------------------------------------- first-use tour (honey-tour.js): a still card, no scene */
+.tour-card { position: absolute; z-index: 1080; width: min(320px, calc(100vw - 24px)); padding: 12px 14px; background: var(--b-white, #fff);
+    border: 1px solid var(--b-line, #F2E3C6); border-radius: 14px; box-shadow: 0 12px 32px rgba(87, 74, 64, .18); color: var(--b-ink, #574A40); font-size: 14px; }
+.tour-card.is-floating { left: 50% !important; transform: translateX(-50%); }
+.tour-head { display: flex; justify-content: space-between; gap: 8px; margin: 0 0 6px; color: var(--b-heading, #8C5E2E); }
+.tour-count { color: var(--b-muted, #7B6A5C); font-size: 13px; }
+.tour-text { margin: 0 0 10px; line-height: 1.45; }
+.tour-actions { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.tour-btn { min-height: 36px; padding: 6px 14px; border: 1px solid #FFC45E; border-radius: 999px; background: var(--b-honey-grad, #FFB547); color: var(--b-on-honey, #3A2A18); font-weight: 600; cursor: pointer; }
+.tour-btn.tour-ghost { background: var(--b-white, #fff); border-color: var(--b-input-line, #E6D2AE); }
+.tour-skip { min-height: 36px; padding: 6px 4px; border: 0; background: none; color: var(--b-muted, #7B6A5C); text-decoration: underline; cursor: pointer; }
+.tour-btn:focus-visible, .tour-skip:focus-visible { outline: 3px solid var(--b-focus, #0B7A75); outline-offset: 2px; }
+.tour-target { outline: 3px solid var(--b-honey, #FFB547) !important; outline-offset: 3px; border-radius: 8px; }

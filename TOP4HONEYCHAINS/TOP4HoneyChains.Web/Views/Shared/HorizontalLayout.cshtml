@@ -1,5 +1,6 @@
 ﻿<!doctype html>
-<html lang="@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName">
+@inject TOP4HoneyChains.Web.Services.UiPreferences Ui
+<html lang="@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName" data-user="@Ui.UserKey" data-scenes="@(await Ui.ShowAnimationsAsync() ? "on" : "off")">
 
 <head>
 
@@ -67,6 +68,9 @@
     <partial name="_Loader" />
     <script src="~/js/app-shell.js" asp-append-version="true"></script>
     <script src="~/js/honey-mark.js" asp-append-version="true"></script>
+    <script src="~/js/honey-scene.js" asp-append-version="true"></script>
+    <partial name="_Tour" model="false" />
+    <script src="~/js/honey-tour.js" asp-append-version="true"></script>
     @RenderSection("scripts", required: false)
     <partial name="~/Views/Shared/_I18nScripts.cshtml" />
 </body>
