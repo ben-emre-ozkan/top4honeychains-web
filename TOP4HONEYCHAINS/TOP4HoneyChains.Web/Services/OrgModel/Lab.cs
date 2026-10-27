@@ -107,30 +107,34 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         // Approved results become the lot's CCP values (immutable: LabReportId is set, D-42). The CCP is
         // Completed and approved by the LabManager when every value of it comes from approved reports;
         // when the producer recorded other values of the CCP, it is Submitted for the producer's approval.
-        public async Task ApplyApprovedReportAsync(LabReport report, Sample sample, string approverUserId)
+        // D-78 P3: values = the lot's values when they do not all come from this report (worst of the containers, D-82)
+        public record LabValue(decimal? Number, string? Text, int ReportId, string? Note);
+
+        public async Task ApplyApprovedReportAsync(LabReport report, Sample sample, string approverUserId, IReadOnlyDictionary<int, LabValue>? values = null)
         {
             var ccpId = await LabCcpIdAsync() ?? throw new InvalidOperationException("CCP 1 is missing.");
             var lotId = sample.RawHoneyProductionId;
             var parameters = (await LabParametersAsync(ccpId)).ToDictionary(p => p.ParameterId);
             var logs = await _context.CriticalControlPointMonitoringLogs
                 .Where(l => l.RawHoneyProductionId == lotId && l.CCPId == ccpId).ToListAsync();
-            foreach (var r in report.Results)
+            values ??= report.Results.ToDictionary(r => r.ParameterId, r => new LabValue(r.MeasuredNumericValue, r.MeasuredTextValue, report.ReportId, null));
+            foreach (var (parameterId, v) in values)
             {
-                var log = logs.FirstOrDefault(l => l.ParameterId == r.ParameterId);
+                var log = logs.FirstOrDefault(l => l.ParameterId == parameterId);
                 if (log == null)
                 {
-                    log = new CriticalControlPointMonitoringLog { RawHoneyProductionId = lotId, CCPId = ccpId, ParameterId = r.ParameterId };
+                    log = new CriticalControlPointMonitoringLog { RawHoneyProductionId = lotId, CCPId = ccpId, ParameterId = parameterId };
                     _context.CriticalControlPointMonitoringLogs.Add(log);
                     logs.Add(log);
                 }
-                log.MeasuredNumericValue = r.MeasuredNumericValue;
-                log.MeasuredTextValue = r.MeasuredTextValue;
+                log.MeasuredNumericValue = v.Number;
+                log.MeasuredTextValue = v.Text;
                 log.MeasurementDate = report.IssuedOn?.ToDateTime(TimeOnly.MinValue) ?? DateTime.Now;
                 log.RecordedByUserId = report.EnteredByUserId;
                 log.RecordedByOrgId = report.LabOrgId;
-                log.LabReportId = report.ReportId;
+                log.LabReportId = v.ReportId;
                 log.StoredFileName = null;
-                log.Notes = $"Lab report {report.ReportCode}";
+                log.Notes = v.Note ?? $"Lab report {report.ReportCode}";
             }
 
             // range flags of all values of the CCP

@@ -8268,4 +8268,13 @@
   <data name="The delivery changed after the correction was requested; request it again." xml:space="preserve">
     <value>The delivery changed after the correction was requested; request it again.</value>
   </data>
+  <data name="Lab.ContainerValues" xml:space="preserve">
+    <value>Lab values per container</value>
+  </data>
+  <data name="Lab.ContainerValuesHelp" xml:space="preserve">
+    <value>The approved values of every container of this lot. When the jars are analysed one by one, the lot's CCP 1 value is the worst of them (bold).</value>
+  </data>
+  <data name="Lab.LotValue" xml:space="preserve">
+    <value>Lot (CCP 1)</value>
+  </data>
 </root>

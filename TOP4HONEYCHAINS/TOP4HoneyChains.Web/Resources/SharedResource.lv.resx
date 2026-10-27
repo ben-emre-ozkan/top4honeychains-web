@@ -8268,4 +8268,13 @@
   <data name="The delivery changed after the correction was requested; request it again." xml:space="preserve">
     <value>Piegāde mainījās pēc labojuma pieprasīšanas; pieprasiet to vēlreiz.</value>
   </data>
+  <data name="Lab.ContainerValues" xml:space="preserve">
+    <value>Laboratorijas vērtības pa tvertnēm</value>
+  </data>
+  <data name="Lab.ContainerValuesHelp" xml:space="preserve">
+    <value>Katras šīs partijas tvertnes apstiprinātās vērtības. Ja burkas analizē atsevišķi, partijas KKP 1 vērtība ir sliktākā no tām (treknrakstā).</value>
+  </data>
+  <data name="Lab.LotValue" xml:space="preserve">
+    <value>Partija (KKP 1)</value>
+  </data>
 </root>

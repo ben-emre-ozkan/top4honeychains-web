@@ -46,13 +46,13 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             return f;
         }
 
-        private async Task<string> ReportAsync(Lab lab, int sampleId)
+        private async Task<string> ReportAsync(Lab lab, int sampleId, Func<CriticalControlPointParameter, string?>? value = null)
         {
             var ccp1 = await _app.WithContextAsync(db => db.CriticalControlPoints.Where(c => c.Code == "CCP 1").Select(c => c.Id).FirstAsync());
             var parameters = await _app.WithContextAsync(db => db.CriticalControlPointParameters.Where(p => p.CCPId == ccp1 && p.DataType != CcpDataType.File).ToListAsync());
             var results = new Dictionary<string, string> { ["reportNumber"] = $"ZZ-{sampleId}", ["issuedOn"] = DateTime.Today.ToString("yyyy-MM-dd") };
             foreach (var p in parameters)
-                results[$"values[{p.ParameterId}]"] = p.DataType == CcpDataType.Text ? "zz" : p.DataType == CcpDataType.YesNo ? "Yes" : "1";
+                results[$"values[{p.ParameterId}]"] = value?.Invoke(p) ?? (p.DataType == CcpDataType.Text ? "zz" : p.DataType == CcpDataType.YesNo ? "Yes" : "1");
             Assert.Contains("Lab results saved.", await lab.Analyst.FlashAfterAsync(await lab.Analyst.PostMultipartAsync($"/LabReports/Save/{sampleId}", results, Pdf.File("reportFile"), $"/LabReports/Edit/{sampleId}")));
             Assert.Contains("Report submitted", await lab.Analyst.PostFlashAsync($"/LabReports/Submit/{sampleId}", new(), $"/LabReports/Edit/{sampleId}"));
             return await lab.Manager.PostFlashAsync($"/LabReports/Decide/{sampleId}", new() { ["approve"] = "true", ["confirmOutOfLimit"] = "true" }, $"/LabReports/Edit/{sampleId}");
@@ -149,6 +149,50 @@ namespace TOP4HoneyChains.Web.Tests.E2E
                 Assert.Contains("PerContainer", await lab.Analyst.PostFlashAsync("/Samples/Composite", new() { ["lotId"] = lot.ToString() }, "/Samples/Index"));
                 Assert.Contains("the results are now the lot's CCP 1 values", await ReportAsync(lab, jar.SampleId));
                 Assert.Single(await Ccp1ReportIdsAsync(lot));
+                return 0;
+            }
+            finally
+            {
+                config["Lab:AnalysisMode"] = "Composite";
+            }
+        });
+
+        [Fact]
+        public async Task In_per_container_mode_the_lot_gets_the_worst_value_of_its_containers() => await WithCustodyAsync(async () =>
+        {
+            var config = _app.Services.GetRequiredService<IConfiguration>();
+            config["Lab:AnalysisMode"] = "PerContainer";
+            try
+            {
+                var p = await PlantAsync("ci14");
+                var lab = await LabUsersAsync(p);
+                var (intakeId, lot) = await ConfirmBySmsAsync(p, Form(p, 2));
+                await Ccp0DoneAsync(lot);
+                var jars = await JarsAsync(lot);
+                foreach (var j in jars)
+                    Assert.Contains("Jar received", await lab.Analyst.PostFlashAsync("/Samples/Receive", Receive(j.SampleId, true, true, true), "/Samples/Index"));
+                var parameters = await _app.WithContextAsync(db => db.CriticalControlPointParameters.Where(x => x.CCP!.Code == "CCP 1").ToListAsync());
+                int Id(string name) => parameters.First(x => x.ParameterName == name).ParameterId;
+                int moisture = Id("Moisture"), diastase = Id("Diastase"), sensory = Id("Sensory Analysis");
+                // container 1: moisture 18, diastase 9; container 2: moisture 19.5, diastase 12
+                Assert.Contains("CCP 1 values", await ReportAsync(lab, jars[0].SampleId, x => x.ParameterId == moisture ? "18" : x.ParameterId == diastase ? "9" : x.ParameterId == sensory ? "typical" : null));
+                Assert.Contains("CCP 1 values", await ReportAsync(lab, jars[1].SampleId, x => x.ParameterId == moisture ? "19.5" : x.ParameterId == diastase ? "12" : x.ParameterId == sensory ? "fermented" : null));
+                var reports = await _app.WithContextAsync(db => db.LabReports.Where(r => r.Sample!.RawHoneyProductionId == lot).OrderBy(r => r.SampleId).Select(r => r.ReportId).ToListAsync());
+                var logs = await _app.WithContextAsync(db => db.CriticalControlPointMonitoringLogs.Where(l => l.RawHoneyProductionId == lot && l.ParameterId != null && l.LabReportId != null)
+                    .ToDictionaryAsync(l => l.ParameterId!.Value));
+                Assert.Equal((19.5m, (int?)reports[1]), (logs[moisture].MeasuredNumericValue!.Value, logs[moisture].LabReportId));   // the higher moisture (max 20)
+                Assert.Equal((9m, (int?)reports[0]), (logs[diastase].MeasuredNumericValue!.Value, logs[diastase].LabReportId));      // the lower diastase (min 8)
+                Assert.Equal($"C1: typical; C2: fermented", logs[sensory].MeasuredTextValue?.Replace($"L{lot}-", ""));
+                Assert.StartsWith("Worst of 2 container(s)", logs[moisture].Notes);
+                // every container's value stays visible: lab report page and recall report
+                var page = System.Net.WebUtility.HtmlDecode(await lab.Manager.HtmlAsync($"/LabReports/Edit/{jars[0].SampleId}"));
+                Assert.Contains("id=\"container-values\"", page);
+                Assert.Contains("worst-value", page);
+                var recall = System.Net.WebUtility.HtmlDecode(await p.Sao.HtmlAsync($"/Recall/Lot/{lot}"));
+                Assert.Contains("recall-container-lab", recall);
+                Assert.Contains("Moisture 18", recall);
+                Assert.Contains("Moisture 19.5", recall);
+                Assert.Contains("Lab values per container", await (await p.Sao.GetAsync($"/Recall/Lot/{lot}?format=csv")).Content.ReadAsStringAsync());
                 return 0;
             }
             finally
