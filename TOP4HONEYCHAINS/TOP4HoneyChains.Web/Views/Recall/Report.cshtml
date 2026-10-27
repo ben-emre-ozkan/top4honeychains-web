@@ -161,7 +161,11 @@
 
                     @if (Model.Holders.Any())
                     {
-                        <h5 class="mt-4">@L["Cust.Holders"]</h5>
+                        <h5 class="mt-4" id="recall-holders-title">@(Model.OwnHoldingOnly ? L["Cust.YourHolding"] : L["Cust.Holders"])</h5>
+                        @if (Model.OwnHoldingOnly)
+                        {
+                            <p class="small text-muted mb-2">@L["Cust.YourHoldingHelp"]</p>
+                        }
                         <div class="table-responsive"><table class="table table-sm table-bordered" id="recall-holders">
                             <thead><tr><th>@L["Cust.Holder"]</th><th>@L["Cust.Held"]</th></tr></thead>
                             <tbody>

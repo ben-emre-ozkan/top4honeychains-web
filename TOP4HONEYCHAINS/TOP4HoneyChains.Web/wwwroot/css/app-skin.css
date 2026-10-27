@@ -549,3 +549,19 @@ body.app-skin .bk-initials { display: inline-grid; place-items: center; width: 4
 /* DataTables pagination wraps on phones instead of widening the page */
 body.app-skin .dataTables_paginate .pagination { flex-wrap: wrap; justify-content: center; row-gap: 4px; }
 @media (max-width: 575.98px) { body.app-skin .dataTables_paginate .pagination .page-link { padding-left: 10px; padding-right: 10px; } }
+
+/* B6 (D-84): a table.table-cards shows each row as a card on phones; the cell label comes from data-label */
+@media (max-width: 575.98px) {
+    body.app-skin .table-cards thead { display: none; }
+    body.app-skin .table-cards, body.app-skin .table-cards tbody, body.app-skin .table-cards tr, body.app-skin .table-cards td { display: block; width: 100%; }
+    body.app-skin .table-cards { border: 0; margin-bottom: 0; }
+    body.app-skin .table-cards tr { margin-bottom: 12px; padding: 8px 14px; border: 1px solid var(--b-line); border-radius: 12px; background: var(--b-card); }
+    body.app-skin .table-cards td { display: flex; justify-content: space-between; gap: 12px; padding: 5px 0; border: 0; text-align: right; overflow-wrap: anywhere; }
+    body.app-skin .table-cards td[data-label]::before { content: attr(data-label); flex: 0 0 auto; max-width: 45%; color: var(--b-muted); font-weight: 600; text-align: left; }
+    body.app-skin .table-cards td.cell-actions { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 8px; padding-top: 10px; white-space: normal; text-align: left; }
+    body.app-skin .table-cards td.cell-actions:empty { display: none; }
+    body.app-skin .table-cards td.cell-actions .btn { min-height: 44px; display: inline-flex; align-items: center; }
+    body.app-skin .table-cards .decide-form { flex-wrap: wrap; width: 100%; gap: 8px !important; }
+    body.app-skin .table-cards .decide-form input[name=reason] { flex: 1 1 100%; min-height: 44px; font-size: 16px; }
+    body.app-skin .table-cards .decide-form .btn { flex: 1 1 0; justify-content: center; }
+}

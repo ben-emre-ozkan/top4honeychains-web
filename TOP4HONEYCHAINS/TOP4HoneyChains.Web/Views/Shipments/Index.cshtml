@@ -18,25 +18,25 @@
                     <partial name="_SceneNow" />
                     <h4 class="card-title">@L["Cust.Holdings"]</h4>
                     <p class="card-title-desc">@L["Cust.HoldingsHelp"]</p>
-                    <div class="table-responsive"><table class="table table-sm table-bordered" id="holdings">
+                    <div class="table-responsive"><table class="table table-sm table-bordered table-cards" id="holdings">
                         <thead><tr><th>#</th><th>@L["Org.Title"]</th><th>@L["Cust.Held"]</th><th>@L["Cust.Reserved"]</th><th>@L["Cust.Available"]</th><th>@L["Cust.Storage"]</th><th></th></tr></thead>
                         <tbody>
                             @foreach (var h in holdings)
                             {
                                 <tr data-batch-id="@h.Batch.FinalHoneyProductionId">
-                                    <td>@h.Batch.FinalHoneyProductionId</td>
-                                    <td>@h.Batch.FinalHoneyProductionTitle @if (h.Owner) { <span class="badge bg-light text-dark">@L["Cust.Own"]</span> }</td>
-                                    <td class="held">@h.Holding.Held.ToString("0.##")</td>
-                                    <td>@h.Holding.ReservedOut.ToString("0.##")</td>
-                                    <td class="available">@h.Holding.Available.ToString("0.##")</td>
-                                    <td>
+                                    <td data-label="#">@h.Batch.FinalHoneyProductionId</td>
+                                    <td data-label="@L["Org.Title"]">@h.Batch.FinalHoneyProductionTitle @if (h.Owner) { <span class="badge bg-light text-dark">@L["Cust.Own"]</span> }</td>
+                                    <td class="held" data-label="@L["Cust.Held"]">@h.Holding.Held.ToString("0.##")</td>
+                                    <td data-label="@L["Cust.Reserved"]">@h.Holding.ReservedOut.ToString("0.##")</td>
+                                    <td class="available" data-label="@L["Cust.Available"]">@h.Holding.Available.ToString("0.##")</td>
+                                    <td data-label="@L["Cust.Storage"]">
                                         @if (!h.Owner)
                                         {
                                             <a asp-action="Storage" asp-route-batchId="@h.Batch.FinalHoneyProductionId" class="storage-link">@Ref.Code("CCP 10")</a>
                                             <span class="small text-muted">@(h.Storage == null ? "–" : h.Storage.ApprovedAt != null ? "✓" : h.Storage.Status == AssignmentStatusIds.Submitted ? L["Cust.Pending"].Value : "…")</span>
                                         }
                                     </td>
-                                    <td class="text-nowrap">
+                                    <td class="text-nowrap cell-actions">
                                         @if (canShip && h.Holding.Available > 0)
                                         {
                                             <a asp-action="Create" asp-route-batchId="@h.Batch.FinalHoneyProductionId" class="btn btn-sm btn-primary ship-link">@L["Cust.Ship"]</a>
@@ -59,24 +59,24 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">@L["Cust.Incoming"]</h5>
-                    <div class="table-responsive"><table class="table table-sm table-bordered" id="incoming">
+                    <div class="table-responsive"><table class="table table-sm table-bordered table-cards" id="incoming">
                         <thead><tr><th>#</th><th>@L["Cust.Batch"]</th><th>@L["Cust.From"]</th><th>@L["Org.Amount"]</th><th>@L["Org.Date"]</th><th>@L["Org.Status"]</th><th></th></tr></thead>
                         <tbody>
                             @foreach (var s in incoming)
                             {
                                 <tr data-shipment-id="@s.ShipmentId">
-                                    <td>@s.ShipmentId</td>
-                                    <td>@s.Batch?.FinalHoneyProductionTitle</td>
-                                    <td>@s.FromOrg?.DisplayName</td>
-                                    <td>@s.Quantity.ToString("0.##")</td>
-                                    <td>@s.ShippedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</td>
-                                    <td class="shipment-status"><partial name="_StatusPill" model="@(new TOP4HoneyChains.Web.Models.ViewModels.StatusPill(TOP4HoneyChains.Web.Models.ViewModels.StatusPill.ForShipment(s.Status), StatusText(s.Status)))" /> @s.RejectReason</td>
-                                    <td>
+                                    <td data-label="#">@s.ShipmentId</td>
+                                    <td data-label="@L["Cust.Batch"]">@s.Batch?.FinalHoneyProductionTitle</td>
+                                    <td data-label="@L["Cust.From"]">@s.FromOrg?.DisplayName</td>
+                                    <td data-label="@L["Org.Amount"]">@s.Quantity.ToString("0.##")</td>
+                                    <td data-label="@L["Org.Date"]">@s.ShippedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</td>
+                                    <td class="shipment-status" data-label="@L["Org.Status"]"><partial name="_StatusPill" model="@(new TOP4HoneyChains.Web.Models.ViewModels.StatusPill(TOP4HoneyChains.Web.Models.ViewModels.StatusPill.ForShipment(s.Status), StatusText(s.Status)))" /> @s.RejectReason</td>
+                                    <td class="cell-actions">
                                         @if (s.Status == ShipmentStatus.Pending && canShip)
                                         {
-                                            <form asp-action="Decide" method="post" class="d-flex gap-1">
+                                            <form asp-action="Decide" method="post" class="d-flex gap-1 decide-form">
                                                 <input type="hidden" name="id" value="@s.ShipmentId" />
-                                                <input name="reason" class="form-control form-control-sm" maxlength="500" placeholder="@L["Cust.RejectReason"]" />
+                                                <input name="reason" class="form-control form-control-sm" maxlength="500" placeholder="@L["Cust.RejectReason"]" aria-label="@L["Cust.RejectReason"]" />
                                                 <button type="submit" name="confirm" value="true" class="btn btn-sm btn-success">@L["Cust.Confirm"]</button>
                                                 <button type="submit" name="confirm" value="false" class="btn btn-sm btn-outline-danger">@L["Corr.Reject"]</button>
                                             </form>
@@ -92,18 +92,18 @@
                     </table></div>
 
                     <h5 class="card-title mt-4">@L["Cust.Outgoing"]</h5>
-                    <div class="table-responsive"><table class="table table-sm table-bordered" id="outgoing">
+                    <div class="table-responsive"><table class="table table-sm table-bordered table-cards" id="outgoing">
                         <thead><tr><th>#</th><th>@L["Cust.Batch"]</th><th>@L["Cust.To"]</th><th>@L["Org.Amount"]</th><th>@L["Org.Date"]</th><th>@L["Org.Status"]</th></tr></thead>
                         <tbody>
                             @foreach (var s in outgoing)
                             {
                                 <tr data-shipment-id="@s.ShipmentId">
-                                    <td>@s.ShipmentId</td>
-                                    <td>@s.Batch?.FinalHoneyProductionTitle</td>
-                                    <td>@s.ToOrg?.DisplayName</td>
-                                    <td>@s.Quantity.ToString("0.##")</td>
-                                    <td>@s.ShippedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</td>
-                                    <td class="shipment-status"><partial name="_StatusPill" model="@(new TOP4HoneyChains.Web.Models.ViewModels.StatusPill(TOP4HoneyChains.Web.Models.ViewModels.StatusPill.ForShipment(s.Status), StatusText(s.Status)))" /> @s.RejectReason</td>
+                                    <td data-label="#">@s.ShipmentId</td>
+                                    <td data-label="@L["Cust.Batch"]">@s.Batch?.FinalHoneyProductionTitle</td>
+                                    <td data-label="@L["Cust.To"]">@s.ToOrg?.DisplayName</td>
+                                    <td data-label="@L["Org.Amount"]">@s.Quantity.ToString("0.##")</td>
+                                    <td data-label="@L["Org.Date"]">@s.ShippedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</td>
+                                    <td class="shipment-status" data-label="@L["Org.Status"]"><partial name="_StatusPill" model="@(new TOP4HoneyChains.Web.Models.ViewModels.StatusPill(TOP4HoneyChains.Web.Models.ViewModels.StatusPill.ForShipment(s.Status), StatusText(s.Status)))" /> @s.RejectReason</td>
                                 </tr>
                             }
                             @if (!outgoing.Any())
