@@ -379,7 +379,7 @@
     <value>Finalización</value>
   </data>
   <data name="Org.FinalizeHelp" xml:space="preserve">
-    <value>Todos los puntos de control de la partida y de sus lotes deben estar aprobados. Una persona lo solicita y otra persona (aprobador de calidad) lo confirma. Una partida finalizada no se puede modificar.</value>
+    <value>Todos los puntos de control de la partida y de sus lotes deben estar aprobados. Una persona lo solicita y otra persona (responsable de aseguramiento de la calidad) lo confirma. Una partida finalizada no se puede modificar.</value>
   </data>
   <data name="Org.SelfApproved" xml:space="preserve">
     <value>autoaprobado (exención)</value>
@@ -1593,9 +1593,6 @@
   <data name="Critical Control Point Parameters" xml:space="preserve">
     <value>Parámetros de puntos críticos de control</value>
   </data>
-  <data name="Your role ({0}) cannot take samples; only a SampleAcceptanceOfficer can." xml:space="preserve">
-    <value>Su rol ({0}) no puede tomar muestras; solo puede hacerlo un responsable de recepción de muestras.</value>
-  </data>
   <data name="Back to Batches" xml:space="preserve">
     <value>Volver a partidas</value>
   </data>
@@ -1830,17 +1827,14 @@
   <data name="Project Coordinator" xml:space="preserve">
     <value>Coordinador del proyecto</value>
   </data>
-  <data name="Your role ({0}) cannot manage storefronts; only the association's OrgAdmin can." xml:space="preserve">
-    <value>Su rol ({0}) no puede gestionar páginas públicas; solo puede hacerlo el administrador de la organización de la asociación.</value>
-  </data>
   <data name="for Smart Honey Value Chains" xml:space="preserve">
     <value>para cadenas de valor inteligentes de la miel</value>
   </data>
   <data name="Not specified" xml:space="preserve">
     <value>No especificado</value>
   </data>
-  <data name="Finalizing requested; a QualityApprover (another person) must confirm it." xml:space="preserve">
-    <value>Finalización solicitada; un aprobador de calidad (otra persona) debe confirmarla.</value>
+  <data name="Finalizing requested; a {0} (another person) must confirm it." xml:space="preserve">
+    <value>Finalización solicitada; un {0} (otra persona) debe confirmarla.</value>
   </data>
   <data name="Yes, save it" xml:space="preserve">
     <value>Sí, guardar</value>
@@ -3099,8 +3093,8 @@
   <data name="Row {0} does not point to the previous row." xml:space="preserve">
     <value>La fila {0} no apunta a la fila anterior.</value>
   </data>
-  <data name="The report is submitted; the LabManager approves it or returns it for changes." xml:space="preserve">
-    <value>El informe se envió; el responsable de laboratorio lo aprueba o lo devuelve para modificaciones.</value>
+  <data name="The report is submitted; the {0} approves it or returns it for changes." xml:space="preserve">
+    <value>El informe se envió; el {0} lo aprueba o lo devuelve para modificaciones.</value>
   </data>
   <data name="New Password" xml:space="preserve">
     <value>Nueva contraseña</value>
@@ -3405,8 +3399,8 @@
   <data name="Manage CCP" xml:space="preserve">
     <value>Gestionar PCC</value>
   </data>
-  <data name="Report submitted; a LabManager (another person) must approve it." xml:space="preserve">
-    <value>Informe enviado; un responsable de laboratorio (otra persona) debe aprobarlo.</value>
+  <data name="Report submitted; a {0} (another person) must approve it." xml:space="preserve">
+    <value>Informe enviado; un {0} (otra persona) debe aprobarlo.</value>
   </data>
   <data name="Update the selected beekeeping type." xml:space="preserve">
     <value>Actualice el tipo de apicultura seleccionado.</value>
@@ -3864,9 +3858,6 @@
   <data name="Start Date" xml:space="preserve">
     <value>Fecha de inicio</value>
   </data>
-  <data name="Your role ({0}) cannot record deliveries; only a SampleAcceptanceOfficer can." xml:space="preserve">
-    <value>Su rol ({0}) no puede registrar entregas; solo puede hacerlo un responsable de recepción de muestras.</value>
-  </data>
   <data name="The supplied value is invalid for {0}." xml:space="preserve">
     <value>El valor proporcionado no es válido para {0}.</value>
   </data>
@@ -4182,8 +4173,8 @@
   <data name="Are you sure you want to delete this CCP?" xml:space="preserve">
     <value>¿Está seguro de que desea eliminar este PCC?</value>
   </data>
-  <data name="Only a QualityApprover of the organization can approve." xml:space="preserve">
-    <value>Solo un aprobador de calidad de la organización puede aprobar.</value>
+  <data name="Only a {0} of the organization can approve." xml:space="preserve">
+    <value>Solo un {0} de la organización puede aprobar.</value>
   </data>
   <data name="Top 5 Most Productive Beekeepers" xml:space="preserve">
     <value>Los 5 apicultores más productivos</value>
@@ -5052,8 +5043,8 @@
   <data name="Who works for which organization in which role, what each role may do, and which functions each organization has. Every change is recorded in the audit log." xml:space="preserve">
     <value>Quién trabaja para qué organización y con qué rol, qué puede hacer cada rol y qué funciones tiene cada organización. Cada cambio queda en el registro de auditoría.</value>
   </data>
-  <data name="Fixed rules (cannot be switched off):" xml:space="preserve">
-    <value>Reglas fijas (no se pueden desactivar):</value>
+  <data name="Ground rules (cannot be switched off):" xml:space="preserve">
+    <value>Reglas básicas (no se pueden desactivar):</value>
   </data>
   <data name="Nobody approves a record they entered themselves." xml:space="preserve">
     <value>Nadie aprueba un registro que haya introducido personalmente.</value>
@@ -5179,7 +5170,7 @@
     <value>Cuando está configurada como verificadora de asociaciones, ve y lista las asociaciones que verifica.</value>
   </data>
   <data name="Cap.Uses.Processing" xml:space="preserve">
-    <value>Recibe la miel: entrada de lotes, PCC 0 en la entrega (responsable de recepción de muestras, aprobado por un aprobador de calidad), muestras precintadas para el laboratorio y los PCC de procesamiento.</value>
+    <value>Recibe la miel: entrada de lotes, PCC 0 en la entrega (responsable de recepción de muestras, aprobado por un responsable de aseguramiento de la calidad), muestras precintadas para el laboratorio y los PCC de procesamiento.</value>
   </data>
   <data name="Cap.Uses.Packing" xml:space="preserve">
     <value>Envasado, etiquetado y embalaje de los lotes de producción (los PCC de envasado).</value>
@@ -5707,7 +5698,7 @@
     <value>Administrador de la plataforma</value>
   </data>
   <data name="UM.OrgRoleNote" xml:space="preserve">
-    <value>Los roles de organización (recepción de muestras, analista, aprobador de calidad y otros) se asignan por organización; los apicultores y consumidores no inician sesión. Asígnelos en</value>
+    <value>Los roles de organización (recepción de muestras, analista, responsable de aseguramiento de la calidad y otros) se asignan por organización; los apicultores y consumidores no inician sesión. Asígnelos en</value>
   </data>
   <data name="User created without a global role. Give the organization role under Organizations → Add member." xml:space="preserve">
     <value>Usuario creado sin rol global. Asigne el rol de organización en Organizaciones → Añadir miembro.</value>
@@ -5884,16 +5875,16 @@
     <value>Procesamiento, envasado y cierre de la partida</value>
   </data>
   <data name="Land.Step4.Tag" xml:space="preserve">
-    <value>PCC 2–9</value>
+    <value>PCC 2–3 del lote · PCC 4–9 de la partida</value>
   </data>
   <data name="Land.Step4.Text" xml:space="preserve">
-    <value>Cada punto de control, del filtrado al etiquetado, lo introduce una persona y lo aprueba otra antes de cerrar la partida.</value>
+    <value>El lote lleva los PCC 0–3 y la partida los PCC 4–10. Cada punto de control, del filtrado al etiquetado, lo introduce una persona y lo aprueba otra antes de cerrar la partida.</value>
   </data>
   <data name="Land.Step5.Title" xml:space="preserve">
     <value>Estantería e Historia de la miel</value>
   </data>
   <data name="Land.Step5.Tag" xml:space="preserve">
-    <value>PCC 10</value>
+    <value>PCC 10 de la partida</value>
   </data>
   <data name="Land.Step5.Text" xml:space="preserve">
     <value>El minorista confirma lo que llega y registra las condiciones de almacenamiento; el código QR del tarro abre toda la historia de la miel.</value>
@@ -6021,7 +6012,7 @@
   <data name="Your roles" xml:space="preserve">
     <value>Sus roles</value>
   </data>
-  <data name="Verified organisation" xml:space="preserve">
+  <data name="Verified organization" xml:space="preserve">
     <value>Organización verificada</value>
   </data>
   <data name="Not verified" xml:space="preserve">
@@ -6199,7 +6190,7 @@
     <value>PCC 1, doble aprobación</value>
   </data>
   <data name="Land.Hero.Line4" xml:space="preserve">
-    <value>PCC 2–9, lote sellado</value>
+    <value>PCC 2–3 del lote, PCC 4–9 de la partida</value>
   </data>
   <data name="Land.Hero.Line5" xml:space="preserve">
     <value>PCC 10, Historia de la miel</value>
@@ -7032,7 +7023,7 @@
   <data name="CCP assignments saved: {0} added, {1} removed." xml:space="preserve">
     <value>Asignaciones de PCC guardadas: {0} añadidas, {1} quitadas.</value>
   </data>
-  <data name="Suspended organisation" xml:space="preserve">
+  <data name="Suspended organization" xml:space="preserve">
     <value>Organización suspendida</value>
   </data>
   <data name="Org.SuspendedBanner" xml:space="preserve">

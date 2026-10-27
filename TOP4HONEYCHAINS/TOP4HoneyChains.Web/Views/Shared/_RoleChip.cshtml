@@ -7,7 +7,7 @@
     // D-75: verified (check), pending (exclamation), suspended (a stop mark, its own colour and text)
     var suspended = a.OrgStatus == TOP4HoneyChains.Web.Models.Entities.OrgStatus.Suspended;
     var state = a.IsVerified ? "is-verified" : suspended ? "is-suspended" : "is-pending";
-    var stateText = a.IsVerified ? L["Verified organisation"].Value : suspended ? L["Suspended organisation"].Value : L["Not verified"].Value;
+    var stateText = a.IsVerified ? L["Verified organization"].Value : suspended ? L["Suspended organization"].Value : L["Not verified"].Value;
     string StatusNote(string status) => status == TOP4HoneyChains.Web.Models.Entities.OrgStatus.Suspended ? L["Suspended"].Value : L["Not verified"].Value;
 }
 <div class="dropdown role-chip-wrap">

@@ -105,7 +105,7 @@ namespace TOP4HoneyChains.Web.Controllers
             if (error == null && report != null && report.Status != LabReportStatus.Draft)
                 error = report.Status == LabReportStatus.Approved
                     ? "An approved lab report cannot be changed; request a correction instead."
-                    : "The report is submitted; the LabManager approves it or returns it for changes.";
+                    : $"The report is submitted; the {OrgRoles.LabManager} approves it or returns it for changes.";
             // D-75: a draft cannot be saved either once the lot is locked in a finalized batch
             if (error == null && await _ccp.GetRawLotLockReasonAsync(sample.RawHoneyProductionId) != null)
                 error = "The lot is locked in a finalized batch; lab values can only be changed through a correction.";
@@ -257,7 +257,7 @@ namespace TOP4HoneyChains.Web.Controllers
             report.SubmittedAt = DateTime.UtcNow;
             report.EnteredByUserId = _current.UserId!;
             await _context.SaveChangesAsync();
-            TempData["Success"] = "Report submitted; a LabManager (another person) must approve it.";
+            TempData["Success"] = $"Report submitted; a {OrgRoles.LabManager} (another person) must approve it.";
             return RedirectToAction(nameof(Edit), new { id });
         }
 

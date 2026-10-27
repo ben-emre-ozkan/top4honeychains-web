@@ -237,7 +237,7 @@ namespace TOP4HoneyChains.Web.Controllers
             var result = await AuthorizeAsync(owner.Value, ownerId, ccpId, CcpOperations.Approve);
             string? error = await LockReasonAsync(owner.Value, ownerId);
             if (error == null && !result.Succeeded)
-                error = ReasonOf(result) ?? "Only a QualityApprover of the organization can approve.";
+                error = ReasonOf(result) ?? $"Only a {OrgRoles.QualityApprover} of the organization can approve.";
             if (error == null && !(assignment.Status is AssignmentStatusIds.Submitted or AssignmentStatusIds.Completed or AssignmentStatusIds.NotApplicable))
                 error = "Only a submitted (or \"Not applicable\") CCP record can be approved.";
             if (error == null && assignment.ApprovedAt != null)

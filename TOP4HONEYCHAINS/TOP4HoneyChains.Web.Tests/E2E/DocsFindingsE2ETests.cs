@@ -344,7 +344,7 @@ namespace TOP4HoneyChains.Web.Tests.E2E
         {
             var keys = new[]
             {
-                "Login.NoPanelAccess", "Org.SuspendedBanner", "Suspended organisation", "Protected", "Unlock", "Account unlocked.", "User deleted.",
+                "Login.NoPanelAccess", "Org.SuspendedBanner", "Suspended organization", "Protected", "Unlock", "Account unlocked.", "User deleted.",
                 "You cannot delete your own account.", "Nothing was saved.", "Lot #{0}: at most {1} kg is available.", "CCP assignments saved: {0} added, {1} removed.",
                 "Batch composition saved: {0} kg in total.", "Four-eyes: you marked this CCP \"Not applicable\", so another person must approve it.",
                 "This CCP is marked \"Not applicable\". Remove that mark first to record values.", "\"Not applicable\" was removed; values can be recorded again.",

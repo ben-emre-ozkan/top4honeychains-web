@@ -379,7 +379,7 @@
     <value>Zatwierdź ostatecznie</value>
   </data>
   <data name="Org.FinalizeHelp" xml:space="preserve">
-    <value>Wszystkie punkty kontrolne partii końcowej i jej partii muszą być zatwierdzone. Jedna osoba składa wniosek, druga osoba (zatwierdzający jakość) go potwierdza. Partii końcowej zatwierdzonej ostatecznie nie można zmienić.</value>
+    <value>Wszystkie punkty kontrolne partii końcowej i jej partii muszą być zatwierdzone. Jedna osoba składa wniosek, druga osoba (specjalista ds. zapewnienia jakości) go potwierdza. Partii końcowej zatwierdzonej ostatecznie nie można zmienić.</value>
   </data>
   <data name="Org.SelfApproved" xml:space="preserve">
     <value>zatwierdzone samodzielnie (wyjątek)</value>
@@ -1593,9 +1593,6 @@
   <data name="Critical Control Point Parameters" xml:space="preserve">
     <value>Parametry krytycznych punktów kontroli</value>
   </data>
-  <data name="Your role ({0}) cannot take samples; only a SampleAcceptanceOfficer can." xml:space="preserve">
-    <value>Twoja rola ({0}) nie może pobierać próbek; może to robić tylko pracownik przyjmujący próbki.</value>
-  </data>
   <data name="Back to Batches" xml:space="preserve">
     <value>Wróć do partii końcowych</value>
   </data>
@@ -1830,17 +1827,14 @@
   <data name="Project Coordinator" xml:space="preserve">
     <value>Koordynator projektu</value>
   </data>
-  <data name="Your role ({0}) cannot manage storefronts; only the association's OrgAdmin can." xml:space="preserve">
-    <value>Twoja rola ({0}) nie może zarządzać stronami pszczelarzy; może to robić tylko administrator organizacji stowarzyszenia.</value>
-  </data>
   <data name="for Smart Honey Value Chains" xml:space="preserve">
     <value>dla inteligentnych łańcuchów wartości miodu</value>
   </data>
   <data name="Not specified" xml:space="preserve">
     <value>Nie określono</value>
   </data>
-  <data name="Finalizing requested; a QualityApprover (another person) must confirm it." xml:space="preserve">
-    <value>Złożono wniosek o ostateczne zatwierdzenie; musi go potwierdzić zatwierdzający jakość (inna osoba).</value>
+  <data name="Finalizing requested; a {0} (another person) must confirm it." xml:space="preserve">
+    <value>Złożono wniosek o ostateczne zatwierdzenie; musi go potwierdzić {0} (inna osoba).</value>
   </data>
   <data name="Yes, save it" xml:space="preserve">
     <value>Tak, zapisz</value>
@@ -3099,8 +3093,8 @@
   <data name="Row {0} does not point to the previous row." xml:space="preserve">
     <value>Wiersz {0} nie wskazuje na poprzedni wiersz.</value>
   </data>
-  <data name="The report is submitted; the LabManager approves it or returns it for changes." xml:space="preserve">
-    <value>Raport został przesłany; kierownik laboratorium go zatwierdzi lub zwróci do poprawy.</value>
+  <data name="The report is submitted; the {0} approves it or returns it for changes." xml:space="preserve">
+    <value>Raport został przesłany; {0} zatwierdza go lub zwraca do poprawy.</value>
   </data>
   <data name="New Password" xml:space="preserve">
     <value>Nowe hasło</value>
@@ -3405,8 +3399,8 @@
   <data name="Manage CCP" xml:space="preserve">
     <value>Zarządzaj KPK</value>
   </data>
-  <data name="Report submitted; a LabManager (another person) must approve it." xml:space="preserve">
-    <value>Raport został przesłany; musi go zatwierdzić kierownik laboratorium (inna osoba).</value>
+  <data name="Report submitted; a {0} (another person) must approve it." xml:space="preserve">
+    <value>Raport przesłany; musi go zatwierdzić {0} (inna osoba).</value>
   </data>
   <data name="Update the selected beekeeping type." xml:space="preserve">
     <value>Zaktualizuj wybrany typ pszczelarstwa.</value>
@@ -3864,9 +3858,6 @@
   <data name="Start Date" xml:space="preserve">
     <value>Data rozpoczęcia</value>
   </data>
-  <data name="Your role ({0}) cannot record deliveries; only a SampleAcceptanceOfficer can." xml:space="preserve">
-    <value>Twoja rola ({0}) nie może rejestrować dostaw; może to robić tylko pracownik przyjmujący próbki.</value>
-  </data>
   <data name="The supplied value is invalid for {0}." xml:space="preserve">
     <value>Podana wartość jest nieprawidłowa dla pola {0}.</value>
   </data>
@@ -4182,8 +4173,8 @@
   <data name="Are you sure you want to delete this CCP?" xml:space="preserve">
     <value>Czy na pewno chcesz usunąć ten KPK?</value>
   </data>
-  <data name="Only a QualityApprover of the organization can approve." xml:space="preserve">
-    <value>Zatwierdzać może tylko zatwierdzający jakość organizacji.</value>
+  <data name="Only a {0} of the organization can approve." xml:space="preserve">
+    <value>Zatwierdzać może tylko {0} organizacji.</value>
   </data>
   <data name="Top 5 Most Productive Beekeepers" xml:space="preserve">
     <value>5 najbardziej wydajnych pszczelarzy</value>
@@ -5052,8 +5043,8 @@
   <data name="Who works for which organization in which role, what each role may do, and which functions each organization has. Every change is recorded in the audit log." xml:space="preserve">
     <value>Kto pracuje dla której organizacji i w jakiej roli, co może każda rola i jakie funkcje ma każda organizacja. Każda zmiana trafia do dziennika audytu.</value>
   </data>
-  <data name="Fixed rules (cannot be switched off):" xml:space="preserve">
-    <value>Stałe zasady (nie można ich wyłączyć):</value>
+  <data name="Ground rules (cannot be switched off):" xml:space="preserve">
+    <value>Zasady podstawowe (nie można ich wyłączyć):</value>
   </data>
   <data name="Nobody approves a record they entered themselves." xml:space="preserve">
     <value>Nikt nie zatwierdza wpisu, który sam wprowadził.</value>
@@ -5179,7 +5170,7 @@
     <value>Gdy jest ustawiona jako weryfikator stowarzyszeń, widzi i wyświetla stowarzyszenia, które weryfikuje.</value>
   </data>
   <data name="Cap.Uses.Processing" xml:space="preserve">
-    <value>Przyjmuje miód: przyjęcie partii, KPK 0 przy dostawie (pracownik przyjmujący próbki, zatwierdza zatwierdzający jakość), zaplombowane próbki dla laboratorium i KPK przetwarzania.</value>
+    <value>Przyjmuje miód: przyjęcie partii, KPK 0 przy dostawie (pracownik przyjmujący próbki, zatwierdza specjalista ds. zapewnienia jakości), zaplombowane próbki dla laboratorium i KPK przetwarzania.</value>
   </data>
   <data name="Cap.Uses.Packing" xml:space="preserve">
     <value>Rozlew, etykietowanie i pakowanie partii (KPK pakowania).</value>
@@ -5707,7 +5698,7 @@
     <value>Administrator platformy</value>
   </data>
   <data name="UM.OrgRoleNote" xml:space="preserve">
-    <value>Role w organizacji (przyjmowanie próbek, analityk, zatwierdzający jakość i inne) nadaje się w ramach organizacji; pszczelarze i konsumenci się nie logują. Nadaj je w:</value>
+    <value>Role w organizacji (przyjmowanie próbek, analityk, specjalista ds. zapewnienia jakości i inne) nadaje się w ramach organizacji; pszczelarze i konsumenci się nie logują. Nadaj je w:</value>
   </data>
   <data name="User created without a global role. Give the organization role under Organizations → Add member." xml:space="preserve">
     <value>Użytkownik utworzony bez roli globalnej. Nadaj rolę w organizacji w Organizacje → Dodaj członka.</value>
@@ -5884,16 +5875,16 @@
     <value>Przetwarzanie, pakowanie i zamknięcie partii końcowej</value>
   </data>
   <data name="Land.Step4.Tag" xml:space="preserve">
-    <value>KPK 2–9</value>
+    <value>KPK 2–3 partii · KPK 4–9 partii końcowej</value>
   </data>
   <data name="Land.Step4.Text" xml:space="preserve">
-    <value>Każdy punkt kontrolny, od filtrowania po etykietowanie, wprowadza jedna osoba i zatwierdza inna, zanim partia końcowa zostanie zamknięta.</value>
+    <value>Partia ma KPK 0–3, a partia końcowa KPK 4–10. Każdy punkt kontrolny, od filtrowania po etykietowanie, wprowadza jedna osoba i zatwierdza inna, zanim partia końcowa zostanie zamknięta.</value>
   </data>
   <data name="Land.Step5.Title" xml:space="preserve">
     <value>Półka i Historia miodu</value>
   </data>
   <data name="Land.Step5.Tag" xml:space="preserve">
-    <value>KPK 10</value>
+    <value>KPK 10 partii końcowej</value>
   </data>
   <data name="Land.Step5.Text" xml:space="preserve">
     <value>Sprzedawca potwierdza dostawę i rejestruje warunki przechowywania; kod QR na słoiku otwiera pełną historię miodu.</value>
@@ -6021,7 +6012,7 @@
   <data name="Your roles" xml:space="preserve">
     <value>Twoje role</value>
   </data>
-  <data name="Verified organisation" xml:space="preserve">
+  <data name="Verified organization" xml:space="preserve">
     <value>Zweryfikowana organizacja</value>
   </data>
   <data name="Not verified" xml:space="preserve">
@@ -6199,7 +6190,7 @@
     <value>KPK 1, zatwierdzenie dwóch osób</value>
   </data>
   <data name="Land.Hero.Line4" xml:space="preserve">
-    <value>KPK 2–9, partia zapieczętowana</value>
+    <value>KPK 2–3 partii, KPK 4–9 partii końcowej</value>
   </data>
   <data name="Land.Hero.Line5" xml:space="preserve">
     <value>KPK 10, Historia miodu</value>
@@ -7032,7 +7023,7 @@
   <data name="CCP assignments saved: {0} added, {1} removed." xml:space="preserve">
     <value>Zapisano przypisania KPK: dodano {0}, usunięto {1}.</value>
   </data>
-  <data name="Suspended organisation" xml:space="preserve">
+  <data name="Suspended organization" xml:space="preserve">
     <value>Organizacja zawieszona</value>
   </data>
   <data name="Org.SuspendedBanner" xml:space="preserve">
