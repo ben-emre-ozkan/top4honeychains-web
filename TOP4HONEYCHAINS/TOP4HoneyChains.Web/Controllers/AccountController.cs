@@ -489,6 +489,24 @@ namespace TOP4HoneyChains.Web.Controllers
             return LocalRedirect(Url.IsLocalUrl(returnUrl) ? returnUrl! : "/");
         }
 
+        // D-78 P5 (D-84): the first-use tour of the user's current role is marked as seen on the server. The role is decided here,
+        // never taken from the request.
+        [HttpPost]
+        [Authorize(Policy = AuthPolicies.SignedIn)]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> TourSeen()
+        {
+            var userId = _userManager.GetUserId(User)!;
+            var services = HttpContext.RequestServices;
+            var beekeeper = await TOP4HoneyChains.Web.Filters.BeekeeperBoundaryMiddleware.IsBeekeeperAsync(userId, services.GetRequiredService<TOP4HoneyChains.Web.Data.TOP4HoneyChainsContext>(),
+                services.GetRequiredService<Microsoft.Extensions.Caching.Memory.IMemoryCache>());
+            var ui = services.GetRequiredService<Services.UiPreferences>();
+            if (await ui.TourRoleAsync(beekeeper) is not string role)
+                return NoContent();
+            await ui.MarkTourSeenAsync(userId, role);
+            return NoContent();
+        }
+
         [HttpPost]
         [Authorize(Policy = AuthPolicies.SignedIn)]
         [ValidateAntiForgeryToken]

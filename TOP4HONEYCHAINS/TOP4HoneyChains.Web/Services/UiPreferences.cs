@@ -14,12 +14,14 @@ namespace TOP4HoneyChains.Web.Services
     {
         private readonly TOP4HoneyChainsContext _context;
         private readonly IHttpContextAccessor _http;
+        private readonly ICurrentOrg _current;
         private bool? _show;
 
-        public UiPreferences(TOP4HoneyChainsContext context, IHttpContextAccessor http)
+        public UiPreferences(TOP4HoneyChainsContext context, IHttpContextAccessor http, ICurrentOrg current)
         {
             _context = context;
             _http = http;
+            _current = current;
         }
 
         private string? UserId => _http.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -47,6 +49,45 @@ namespace TOP4HoneyChains.Web.Services
         public string? UserKey => UserId is string id ? Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes("ui|" + id)))[..16].ToLowerInvariant() : null;
 
         // ---------------------------------------------------------------- first-use tour (7.1): 3-5 steps per role
+
+        // the role whose tour the signed-in user meets: the beekeeper portal, the platform administrator, or the active membership
+        public async Task<string?> TourRoleAsync(bool beekeeper)
+        {
+            var user = _http.HttpContext?.User;
+            if (user?.Identity?.IsAuthenticated != true)
+                return null;
+            if (beekeeper)
+                return "Beekeeper";
+            if (user.IsInRole("Administrator"))
+                return "Administrator";
+            return (await _current.GetAsync())?.OrgRole;
+        }
+
+        // D-78 P5 (027, D-84): the "seen" marks of the tour are kept per user on the server (a new device does not show it again)
+        public async Task<bool> TourSeenAsync(string role)
+        {
+            var id = UserId;
+            if (id == null)
+                return true;
+            var seen = await _context.UserSettings.AsNoTracking().Where(s => s.UserId == id).Select(s => s.ToursSeen).FirstOrDefaultAsync();
+            return Roles(seen).Contains(role);
+        }
+
+        public async Task MarkTourSeenAsync(string userId, string role)
+        {
+            var settings = await _context.UserSettings.FirstOrDefaultAsync(s => s.UserId == userId);
+            if (settings == null)
+                _context.UserSettings.Add(settings = new UserSetting { UserId = userId });
+            var roles = Roles(settings.ToursSeen);
+            if (roles.Contains(role))
+                return;
+            roles.Add(role);
+            settings.ToursSeen = string.Join(",", roles);
+            await _context.SaveChangesAsync();
+        }
+
+        private static List<string> Roles(string? seen) =>
+            (seen ?? "").Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList();
 
         // Target: the data-tour key of a menu item (never a URL, so the page names no entry the role does not have)
         public record TourStep(string Target, string TextKey);

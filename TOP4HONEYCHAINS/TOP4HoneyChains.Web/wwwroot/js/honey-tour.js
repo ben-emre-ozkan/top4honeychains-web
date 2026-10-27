@@ -1,5 +1,6 @@
 /* D-78 P4 (D78-SPEC 7.1, D-83): the first-use tour of a role. 3-5 steps, each a one-line caption next to a menu item of the role
-   (a still highlight, no scene). Shown once per user and role (browser storage), skippable at any step (Skip, Esc), re-opened from
+   (a still highlight, no scene). Shown once per user and role (kept on the server, D-84: data-seen and a POST to data-url; the
+   browser storage only bridges the moment before the POST lands), skippable at any step (Skip, Esc), re-opened from
    the user menu ([data-tour-open]). Non-modal: the page stays usable, focus moves to the card only when nothing else has it. */
 (function () {
     'use strict';
@@ -11,8 +12,20 @@
     var labels = { next: data.getAttribute('data-next'), back: data.getAttribute('data-back'), skip: data.getAttribute('data-skip'), done: data.getAttribute('data-done'), title: data.getAttribute('data-title'), of: data.getAttribute('data-of') };
     var card = null, index = 0, marked = null, visible = [];
 
-    function seen() { try { return window.localStorage.getItem(key) === '1'; } catch (e) { return true; } }
-    function remember() { try { window.localStorage.setItem(key, '1'); } catch (e) { /* private mode */ } }
+    var serverSeen = data.getAttribute('data-seen') === 'true';
+
+    function seen() {
+        if (serverSeen) return true;
+        try { return window.localStorage.getItem(key) === '1'; } catch (e) { return false; }
+    }
+    function remember() {
+        try { window.localStorage.setItem(key, '1'); } catch (e) { /* private mode */ }
+        if (serverSeen || !window.fetch) return;
+        serverSeen = true;
+        var token = data.getAttribute('data-token') || '';
+        window.fetch(data.getAttribute('data-url'), { method: 'POST', credentials: 'same-origin', headers: { 'RequestVerificationToken': token } })
+            .catch(function () { serverSeen = false; });
+    }
 
     function shown(el) { return !!(el && el.getClientRects().length && window.getComputedStyle(el).visibility !== 'hidden'); }
 
