@@ -155,5 +155,9 @@ namespace TOP4HoneyChains.Web.Models.Entities
         public long? PhoneCodeId { get; set; }
 
         public bool ShowAnimations { get; set; } = true;
+
+        // D-78 P5 (027, D-84): the roles whose first-use tour the user has seen, comma-separated
+        [StringLength(400)]
+        public string? ToursSeen { get; set; }
     }
 }

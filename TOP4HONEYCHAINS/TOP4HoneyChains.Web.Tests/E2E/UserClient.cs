@@ -41,6 +41,9 @@ namespace TOP4HoneyChains.Web.Tests.E2E
 
         public async Task<HttpResponseMessage> GetAsync(string url) => await _http.GetAsync(url);
 
+        // a POST without an antiforgery token (a forged request)
+        public async Task<HttpResponseMessage> RawPostAsync(string url) => await _http.PostAsync(url, new FormUrlEncodedContent(new Dictionary<string, string>()));
+
         public async Task<string> HtmlAsync(string url)
         {
             var response = await _http.GetAsync(url);
