@@ -1,0 +1,128 @@
+@model TOP4HoneyChains.Web.Models.Entities.LotIntake
+@using TOP4HoneyChains.Web.Models.Entities
+@{
+    ViewData["Title"] = L["Ci.DetailsTitle"].Value;
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var lot = Model.RawHoneyProduction!;
+    var bk = lot.RawHoneyProductionApiary?.ApiaryBeekeeper;
+    var matches = ViewBag.ContentMatches as bool?;
+    var badge = Model.EvidenceStatus switch { EvidenceStatus.Accepted => "bg-success", EvidenceStatus.Rejected => "bg-danger", EvidenceStatus.PendingReview => "bg-warning text-dark", _ => "bg-light text-dark border" };
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-1">@L["Cust.Lot"] #@lot.RawHoneyProductionId · @Ref.HoneyType(lot.RawHoneyProductionHoneyType, lot.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle)</h4>
+                    <p class="card-title-desc">@bk?.BeekeeperFirstName @bk?.BeekeeperLastName · @lot.RawHoneyProductionApiary?.ApiaryTitle · @Model.ReceivingOrg?.DisplayName</p>
+
+                    <dl class="row" id="intake-summary">
+                        <dt class="col-sm-3">@L["Cust.DeliveryDate"]</dt><dd class="col-sm-9">@Model.DeliveryDate.ToString("dd.MM.yyyy") <small class="text-muted">(@L["Ci.RecordedAt"] @Model.ReceivedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm"))</small></dd>
+                        <dt class="col-sm-3">@L["Org.Amount"]</dt><dd class="col-sm-9">@Model.Quantity.ToString("0.##") kg</dd>
+                        <dt class="col-sm-3">@L["Ci.Confirmation"]</dt>
+                        <dd class="col-sm-9" id="intake-confirmation">
+                            @if (Model.IsLegacy)
+                            {
+                                <span class="badge bg-light text-dark border" id="intake-legacy">@L["Ci.Legacy"]</span>
+                            }
+                            else
+                            {
+                                <span>@L["Reg78.Method." + Model.ConfirmationMethod]</span>
+                                <span class="badge @badge" id="intake-evidence">@L["Reg78.Evidence." + Model.EvidenceStatus]</span>
+                                @if (Model.ConfirmedAt != null)
+                                {
+                                    <small class="text-muted">@Model.ConfirmedAt.Value.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</small>
+                                }
+                                @if (Model.FallbackReason != null)
+                                {
+                                    <div class="small">@Model.FallbackReason</div>
+                                }
+                                @if (Model.ReviewedAt != null)
+                                {
+                                    <div class="small text-muted">@L["Reg78.Review"]: @Model.ReviewedAt.Value.ToLocalTime().ToString("dd.MM.yyyy HH:mm") @Model.ReviewReason</div>
+                                }
+                            }
+                        </dd>
+                        @if (!Model.IsLegacy)
+                        {
+                            <dt class="col-sm-3">@L["Ci.ContentHash"]</dt>
+                            <dd class="col-sm-9"><code>@Model.ContentSha256?[..16]…</code>
+                                @if (matches == true)
+                                {
+                                    <span class="badge bg-success" id="content-verified">@L["Ci.ContentVerified"]</span>
+                                }
+                                else if (matches == false)
+                                {
+                                    <span class="badge bg-danger" id="content-changed">@L["Ci.ContentChanged"]</span>
+                                }
+                            </dd>
+                        }
+                        @if (Model.FormStoredFileName != null)
+                        {
+                            <dt class="col-sm-3">@L["Cust.DeliveryForm"]</dt><dd class="col-sm-9"><a href="/Intake/Form/@Model.IntakeId">@Model.FormOriginalFileName</a></dd>
+                        }
+                    </dl>
+
+                    @if (ViewBag.MayReview == true)
+                    {
+                        <div class="border rounded p-3 mb-3 bg-light" id="intake-review">
+                            <h5>@L["Reg78.Review"]</h5>
+                            <p class="small">@L["Ci.ReviewHelp"]</p>
+                            <form asp-action="Review" asp-route-id="@Model.IntakeId" method="post" class="row g-2 align-items-end">
+                                <div class="col-md-6"><label class="form-label" for="reason">@L["Reg78.ReviewReason"]</label><input class="form-control" id="reason" name="reason" maxlength="500" /></div>
+                                <div class="col-auto"><button type="submit" name="accept" value="true" class="btn btn-success">@L["Reg78.Accept"]</button></div>
+                                <div class="col-auto"><button type="submit" name="accept" value="false" class="btn btn-outline-danger">@L["Reg78.Reject"]</button></div>
+                            </form>
+                        </div>
+                    }
+                    else if (Model.EvidenceStatus == EvidenceStatus.PendingReview && ViewBag.IsRecorder == true)
+                    {
+                        <div class="alert alert-warning" id="intake-waiting">@L["Ci.WaitingReview"]</div>
+                    }
+
+                    @if (!Model.IsLegacy)
+                    {
+                        <div class="d-flex flex-wrap gap-2 mb-2">
+                            <a class="btn btn-sm btn-outline-secondary" href="/Intake/Labels/@Model.IntakeId?size=a4" target="_blank" rel="noopener" id="labels-a4"><i class="mdi mdi-printer"></i> @L["Ci.LabelsA4"]</a>
+                            <a class="btn btn-sm btn-outline-secondary" href="/Intake/Labels/@Model.IntakeId?size=label" target="_blank" rel="noopener" id="labels-label"><i class="mdi mdi-label-outline"></i> @L["Ci.LabelsSingle"]</a>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-sm" id="intake-containers">
+                                <thead class="table-light"><tr><th>@L["Ci.Container"]</th><th>@L["Ci.Kind"]</th><th>@L["Ci.NetKg"]</th><th>@L["Ci.SealHistory"]</th><th>@L["Ci.Jars"]</th></tr></thead>
+                                <tbody>
+                                    @foreach (var c in Model.Containers.OrderBy(c => c.Seq))
+                                    {
+                                        <tr>
+                                            <td><strong>@c.ContainerCode</strong></td>
+                                            <td>@L["Ci.Kind." + c.Kind]</td>
+                                            <td>@c.NetWeightKg.ToString("0.##")</td>
+                                            <td class="small">
+                                                @foreach (var e in c.SealEvents.OrderBy(e => e.EventId))
+                                                {
+                                                    <div>@L["Ci.Seal." + e.Event] <code>@e.SealNumber</code>
+                                                        @if (e.Intact == false)
+                                                        {
+                                                            <span class="badge bg-danger">@L["Ci.NotIntact"]</span>
+                                                        }
+                                                        <span class="text-muted">@e.At.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</span></div>
+                                                }
+                                            </td>
+                                            <td class="small">
+                                                @foreach (var s in c.Samples.OrderBy(s => s.SampleId))
+                                                {
+                                                    <div>@s.SampleCode · <code>@s.SealNumber</code> · @L[s.Status] · @s.LabOrg?.DisplayName</div>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                </div>
+            </div>
+            <a asp-action="Index" class="btn btn-link app-back"><i class="mdi mdi-arrow-left" aria-hidden="true"></i> @L["Org.Back"]</a>
+        </div>
+    </div>
+</body>

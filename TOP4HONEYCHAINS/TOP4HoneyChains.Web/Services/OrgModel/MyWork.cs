@@ -168,6 +168,11 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                          .ToListAsync())
                 items.Add(new Item("Evidence", $"{r.Beekeeper?.BeekeeperFirstName} {r.Beekeeper?.BeekeeperLastName}", r.RegistryNumber,
                     $"/Registration/Details/{r.RegistrationId}", r.At));
+            // D-78 P2: deliveries confirmed by a signed photo
+            foreach (var i in await _context.LotIntakes.AsNoTracking()
+                         .Where(i => i.ReceivingOrgId == orgId && i.EvidenceStatus == EvidenceStatus.PendingReview && i.ReceivedByUserId != _current.UserId)
+                         .ToListAsync())
+                items.Add(new Item("Evidence", $"#{i.RawHoneyProductionId}", i.FallbackReason, $"/Intake/Details/{i.IntakeId}", i.ReceivedAt, "Kind.lot"));
         }
 
         private async Task AdminItemsAsync(List<Item> items)

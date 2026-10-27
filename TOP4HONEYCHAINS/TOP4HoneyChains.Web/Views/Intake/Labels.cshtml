@@ -1,0 +1,84 @@
+@model TOP4HoneyChains.Web.Models.Entities.LotIntake
+@using TOP4HoneyChains.Web.Models.Entities
+@using TOP4HoneyChains.Web.Controllers
+@{
+    Layout = null;
+    var size = (string)ViewBag.Size;
+    var lot = Model.RawHoneyProduction!;
+    var honey = Ref.HoneyType(lot.RawHoneyProductionHoneyType, lot.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle);
+    var date = Model.DeliveryDate.ToString("dd.MM.yyyy");
+}
+@* D-78 P2 (D-81): container and jar labels, printed from the browser. size=a4: a sheet of 100 x 50 mm labels (2 x 5 per A4);
+   size=label: one 100 x 50 mm label per page (label printers). No printer-specific integration. *@
+<!doctype html>
+<html lang="@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@L["Ci.Labels"] · L@lot.RawHoneyProductionId</title>
+    <meta name="robots" content="noindex">
+    <style>
+        @if (size == "label")
+        {
+            <text>@@page { size: 100mm 50mm; margin: 0; }</text>
+        }
+        else
+        {
+            <text>@@page { size: A4; margin: 10mm 5mm; }</text>
+        }
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: #000; background: #fff; }
+        .sheet { display: flex; flex-wrap: wrap; @(size == "label" ? "" : "width: 200mm;") }
+        .label { width: 100mm; height: 50mm; padding: 3mm 4mm; display: flex; gap: 3mm; overflow: hidden; border: 0.2mm dashed #bbb; page-break-inside: avoid; break-inside: avoid; }
+        @if (size == "label")
+        {
+            <text>.label { border: 0; page-break-after: always; break-after: page; }</text>
+        }
+        .qr { width: 32mm; height: 32mm; flex: 0 0 32mm; }
+        .qr svg { width: 100%; height: 100%; }
+        .txt { display: flex; flex-direction: column; justify-content: space-between; min-width: 0; }
+        .code { font-size: 15pt; font-weight: 700; letter-spacing: .02em; }
+        .kind { font-size: 8pt; text-transform: uppercase; letter-spacing: .08em; color: #333; }
+        .line { font-size: 9pt; line-height: 1.25; overflow-wrap: anywhere; }
+        .seal { font-size: 10pt; font-weight: 700; }
+        .tools { padding: 8px; font-size: 14px; }
+        @@media print { .tools { display: none; } .label { border-color: transparent; } }
+    </style>
+</head>
+<body>
+    <div class="tools"><button type="button" onclick="window.print()">@L["Reg78.Print"]</button> · L@lot.RawHoneyProductionId · @date</div>
+    <div class="sheet" id="labels">
+        @foreach (var c in Model.Containers.OrderBy(c => c.Seq))
+        {
+            var seal = TOP4HoneyChains.Web.Services.OrgModel.CustodyIntakeService.CurrentSeal(c.SealEvents);
+            <div class="label container-label">
+                <div class="qr">@Html.Raw(IntakeController.QrSvg(c.ContainerCode))</div>
+                <div class="txt">
+                    <div><div class="kind">@L["Ci.Container"] · @L["Ci.Kind." + c.Kind]</div><div class="code">@c.ContainerCode</div></div>
+                    <div class="line">@honey · @c.NetWeightKg.ToString("0.##") kg net<br>@date</div>
+                    <div class="seal">@L["Ci.SealShort"] @seal</div>
+                </div>
+            </div>
+            @foreach (var s in c.Samples.Where(s => s.Kind == SampleKind.Container).OrderBy(s => s.SampleId))
+            {
+                <div class="label jar-label">
+                    <div class="qr">@Html.Raw(IntakeController.QrSvg(s.SampleCode))</div>
+                    <div class="txt">
+                        <div><div class="kind">@L["Ci.SampleJar"]</div><div class="code">@s.SampleCode</div></div>
+                        <div class="line">@c.ContainerCode · @honey<br>@date</div>
+                        <div class="seal">@L["Ci.SealShort"] @s.SealNumber</div>
+                    </div>
+                </div>
+                <div class="label jar-label">
+                    <div class="qr">@Html.Raw(IntakeController.QrSvg(s.SampleCode + "-K"))</div>
+                    <div class="txt">
+                        <div><div class="kind">@L["Ci.CounterJar"]</div><div class="code">@(s.SampleCode)-K</div></div>
+                        <div class="line">@c.ContainerCode · @honey<br>@L["Ci.KeepUntil"] @s.RetainUntil.ToString("dd.MM.yyyy")</div>
+                        <div class="seal">@L["Ci.SealShort"] @s.CounterSealNumber</div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</body>
+</html>

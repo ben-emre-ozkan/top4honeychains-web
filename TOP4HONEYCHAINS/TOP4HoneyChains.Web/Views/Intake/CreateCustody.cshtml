@@ -1,0 +1,209 @@
+@model TOP4HoneyChains.Web.Services.OrgModel.IntakeForm
+@using TOP4HoneyChains.Web.Models.Entities
+@{
+    ViewData["Title"] = L["Cust.NewIntake"];
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var bk = ViewBag.Beekeeper as Beekeeper;
+    var labs = ViewBag.Labs as List<Organization> ?? new();
+    var codeSent = ViewBag.CodeSent == true;
+    var hasPhone = ViewBag.HasPhone == true;
+    var rows = Model.Containers.Count == 0 ? new List<TOP4HoneyChains.Web.Services.OrgModel.ContainerRow> { new() } : Model.Containers;
+}
+@* D-78 P2 (D78-SPEC 4.4-4.5): one row per container, a jar from every container, confirmation by the beekeeper's SMS code *@
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">@L["Cust.NewIntake"]</h4>
+                    <p class="card-title-desc">@L["Ci.Help"]</p>
+
+                    <form asp-action="Create" method="get" class="row g-2 align-items-end mb-4 field-form" id="find-beekeeper">
+                        <div class="col-md-5">
+                            <label class="form-label fw-semibold" for="number">@L["Cust.BeekeeperNumber"]</label>
+                            <input name="number" id="number" class="form-control" value="@Model.Number" maxlength="50" autocomplete="off" autocapitalize="characters" />
+                        </div>
+                        <div class="col-md-2"><button type="submit" class="btn btn-outline-primary">@L["Cust.Find"]</button></div>
+                    </form>
+
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div class="alert alert-danger" role="alert" id="intake-errors">
+                            @foreach (var e in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                            {
+                                <div>@Msg.T(e.ErrorMessage)</div>
+                            }
+                        </div>
+                    }
+
+                    @if (bk != null)
+                    {
+                        <form asp-action="Record" method="post" enctype="multipart/form-data" id="custody-form" class="field-form">
+                            <input type="hidden" name="Number" value="@Model.Number" />
+                            <input type="hidden" name="DraftKey" value="@Model.DraftKey" />
+                            <div class="alert alert-light border" id="beekeeper-found">
+                                <strong>@bk.BeekeeperFirstName @bk.BeekeeperLastName</strong> · @bk.BeekeeperBusinessNumber
+                                @if (!hasPhone)
+                                {
+                                    <span class="badge bg-warning text-dark ms-2" id="no-phone">@L["Ci.NoPhone"]</span>
+                                }
+                            </div>
+
+                            <h5>1. @L["Ci.Delivery"]</h5>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label required" for="ApiaryId">@L["Org.Apiary"]</label>
+                                    <select name="ApiaryId" id="ApiaryId" class="form-select">
+                                        @foreach (var a in bk.Apiaries.Where(a => a.ApiaryIsActive).OrderBy(a => a.ApiaryTitle))
+                                        {
+                                            <option value="@a.ApiaryId" selected="@(a.ApiaryId == Model.ApiaryId)">@a.ApiaryTitle</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label required" for="HoneyTypeId">@L["Org.HoneyType"]</label>
+                                    <select name="HoneyTypeId" id="HoneyTypeId" class="form-select" asp-items="ViewBag.HoneyTypes" asp-for="HoneyTypeId"></select>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label required" for="PeriodId">@L["Cust.Period"]</label>
+                                    <select name="PeriodId" id="PeriodId" class="form-select" asp-items="ViewBag.Periods" asp-for="PeriodId"></select>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label class="form-label required" for="OriginCountry">@L["P5.OriginCountry"]</label>
+                                    <select name="OriginCountry" id="OriginCountry" class="form-select" asp-items="ViewBag.Origins" asp-for="OriginCountry"></select>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label class="form-label required" for="DeliveryDate">@L["Cust.DeliveryDate"]</label>
+                                    <input type="date" name="DeliveryDate" id="DeliveryDate" class="form-control" value="@Model.DeliveryDate?.ToString("yyyy-MM-dd")" max="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    @await Html.PartialAsync("~/Views/Shared/_ProvinceDistrict.cshtml", new TOP4HoneyChains.Web.Models.ViewModels.ProvinceDistrictField("Province", "District", Model.Province, Model.District, true, "Org.Province", "Org.District"))
+                                </div>
+                            </div>
+
+                            <h5>2. @L["Ci.Containers"]</h5>
+                            <p class="small text-muted">@L["Ci.ContainersHelp"]</p>
+                            <div class="table-responsive">
+                                <table class="table table-sm align-middle" id="containers">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>#</th><th>@L["Ci.Kind"]</th><th>@L["Ci.NetKg"]</th><th>@L["Ci.GrossKg"]</th><th>@L["Ci.Arrival"]</th>
+                                            <th>@L["Ci.JarSeal"]</th><th>@L["Ci.CounterSeal"]</th><th>@L["Ci.Cap"]</th><th>@L["Ci.Reseal"]</th><th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (var i = 0; i < rows.Count; i++)
+                                        {
+                                            var r = rows[i];
+                                            <tr class="container-row">
+                                                <td class="row-no">@(i + 1)</td>
+                                                <td>
+                                                    <select class="form-select form-select-sm" data-field="Kind" name="Containers[@i].Kind" aria-label="@L["Ci.Kind"]">
+                                                        @foreach (var k in ContainerKind.All)
+                                                        {
+                                                            <option value="@k" selected="@(k == r.Kind)">@L["Ci.Kind." + k]</option>
+                                                        }
+                                                    </select>
+                                                </td>
+                                                <td><input class="form-control form-control-sm net-kg" data-field="NetKg" name="Containers[@i].NetKg" value="@r.NetKg" inputmode="decimal" size="6" aria-label="@L["Ci.NetKg"]" /></td>
+                                                <td><input class="form-control form-control-sm" data-field="GrossKg" name="Containers[@i].GrossKg" value="@r.GrossKg" inputmode="decimal" size="6" aria-label="@L["Ci.GrossKg"]" /></td>
+                                                <td style="min-width: 15rem">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input arrived-sealed" type="checkbox" data-field="ArrivedSealed" name="Containers[@i].ArrivedSealed" value="true" checked="@r.ArrivedSealed" id="sealed-@i" />
+                                                        <label class="form-check-label small" for="sealed-@i">@L["Ci.ArrivedSealed"]</label>
+                                                    </div>
+                                                    <div class="origin @(r.ArrivedSealed ? "" : "d-none")">
+                                                        <input class="form-control form-control-sm mb-1" data-field="OriginSeal" name="Containers[@i].OriginSeal" value="@r.OriginSeal" placeholder="@L["Ci.OriginSeal"]" maxlength="50" />
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" data-field="OriginSealIntact" name="Containers[@i].OriginSealIntact" value="true" checked="@(r.OriginSealIntact || !r.ArrivedSealed)" id="intact-@i" />
+                                                            <label class="form-check-label small" for="intact-@i">@L["Ci.OriginIntact"]</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="plant @(r.ArrivedSealed ? "d-none" : "")">
+                                                        <input class="form-control form-control-sm" data-field="PlantSeal" name="Containers[@i].PlantSeal" value="@r.PlantSeal" placeholder="@L["Ci.PlantSeal"]" maxlength="50" />
+                                                    </div>
+                                                </td>
+                                                <td><input class="form-control form-control-sm" data-field="JarSeal" name="Containers[@i].JarSeal" value="@r.JarSeal" maxlength="50" aria-label="@L["Ci.JarSeal"]" /></td>
+                                                <td><input class="form-control form-control-sm" data-field="CounterSeal" name="Containers[@i].CounterSeal" value="@r.CounterSeal" maxlength="50" aria-label="@L["Ci.CounterSeal"]" /></td>
+                                                <td class="text-center"><input class="form-check-input" type="checkbox" data-field="CapIntact" name="Containers[@i].CapIntact" value="true" checked="@r.CapIntact" aria-label="@L["Ci.Cap"]" title="@L["Ci.CapHelp"]" /></td>
+                                                <td><input class="form-control form-control-sm" data-field="Reseal" name="Containers[@i].Reseal" value="@r.Reseal" maxlength="50" aria-label="@L["Ci.Reseal"]" /></td>
+                                                <td><button type="button" class="btn btn-sm btn-outline-danger remove-row" aria-label="@L["Ci.Remove"]"><i class="mdi mdi-close"></i></button></td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="d-flex flex-wrap gap-3 align-items-center mb-2">
+                                <button type="button" class="btn btn-sm btn-outline-primary" id="add-container"><i class="mdi mdi-plus"></i> @L["Ci.AddContainer"]</button>
+                                <span>@L["Ci.Total"]: <strong id="total-kg">0</strong> kg</span>
+                            </div>
+                            <p class="small text-muted">@L["Ci.CapHelp"]</p>
+
+                            <h5 class="mt-3">3. @L["Ci.Samples"]</h5>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label required" for="LabOrgId">@L["Lab.Laboratory"]</label>
+                                    <select name="LabOrgId" id="LabOrgId" class="form-select">
+                                        @foreach (var lab in labs)
+                                        {
+                                            <option value="@lab.OrgId" selected="@(lab.OrgId == Model.LabOrgId)">@lab.DisplayName</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-5 mb-3">
+                                    <label class="form-label required" for="CounterLocation">@L["Ci.CounterLocation"]</label>
+                                    <input name="CounterLocation" id="CounterLocation" class="form-control" value="@Model.CounterLocation" maxlength="200" />
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label class="form-label required" for="RetainUntil">@L["Ci.RetainUntil"]</label>
+                                    <input type="date" name="RetainUntil" id="RetainUntil" class="form-control" value="@Model.RetainUntil?.ToString("yyyy-MM-dd")" />
+                                </div>
+                            </div>
+
+                            <h5 class="mt-3">4. @L["Ci.Confirm"]</h5>
+                            @if (hasPhone)
+                            {
+                                @if (!codeSent)
+                                {
+                                    <p class="small">@L["Ci.SendHelp"]</p>
+                                    <button type="submit" name="op" value="send" class="btn btn-primary" id="intake-send"><i class="mdi mdi-message-processing-outline"></i> @L["Notice.SendCode"]</button>
+                                }
+                                else
+                                {
+                                    @if (ViewBag.DemoMessage is string demo)
+                                    {
+                                        <div class="alert alert-info small" id="demo-sms"><strong>@L["Reg78.DemoSms"]</strong> @demo</div>
+                                    }
+                                    <p class="small">@L["Ci.NotPresent"]</p>
+                                    <div class="row g-2 align-items-end">
+                                        <div class="col-auto">
+                                            <label class="form-label" for="Code">@L["Notice.Code"]</label>
+                                            <input class="form-control" name="Code" id="Code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" />
+                                        </div>
+                                        <div class="col-auto"><button type="submit" name="op" value="confirm" class="btn btn-success" id="intake-confirm">@L["Ci.ConfirmButton"]</button></div>
+                                        <div class="col-auto"><button type="submit" name="op" value="send" class="btn btn-outline-secondary">@L["Notice.SendNewCode"]</button></div>
+                                    </div>
+                                }
+                            }
+
+                            <details class="mt-4" id="intake-fallback" open="@(!hasPhone || !string.IsNullOrEmpty(Model.FallbackReason))">
+                                <summary>@L["Ci.Fallback"]</summary>
+                                <p class="small mt-2">@L["Ci.FallbackHelp"]</p>
+                                <div class="row g-2">
+                                    <div class="col-md-6"><label class="form-label" for="FallbackReason">@L["Reg78.FallbackReason"]</label><input class="form-control" name="FallbackReason" id="FallbackReason" value="@Model.FallbackReason" maxlength="300" /></div>
+                                    <div class="col-md-6"><label class="form-label" for="deliveryForm">@L["Cust.DeliveryFormPhoto"]</label><input type="file" name="deliveryForm" id="deliveryForm" class="form-control" accept=".pdf,.jpg,.jpeg,.png,.webp" data-camera="@L["Mob.Camera"]" /></div>
+                                </div>
+                                <button type="submit" name="op" value="photo" class="btn btn-warning mt-2" id="intake-photo">@L["Ci.SaveWithPhoto"]</button>
+                            </details>
+                        </form>
+                    }
+                </div>
+            </div>
+            <a asp-action="Index" class="btn btn-link app-back"><i class="mdi mdi-arrow-left" aria-hidden="true"></i> @L["Org.Back"]</a>
+        </div>
+    </div>
+    @section scripts {
+        <script src="~/js/intake-containers.js" asp-append-version="true"></script>
+    }
+</body>

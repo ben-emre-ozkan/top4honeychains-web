@@ -134,9 +134,17 @@ namespace TOP4HoneyChains.Web.Services
                 .Include(a => a.CCP)
                 .Include(a => a.AssignmentStatus)
                 .ToListAsync();
+            // D-78 P2 (D78-SPEC 4.4 step 8): a delivery confirmed by a signed photo is finalized only after the Compliance Officer accepted it
+            var unconfirmed = await _context.LotIntakes.AsNoTracking()
+                .Where(i => rawIds.Contains(i.RawHoneyProductionId) && i.ContainersRecorded == true && i.EvidenceStatus != EvidenceStatus.Accepted)
+                .Select(i => new { i.RawHoneyProductionId, i.EvidenceStatus }).ToListAsync();
             foreach (var d in details)
             {
                 var lot = $"Lot {d.RawHoneyProduction?.RawHoneyProductionApiary?.ApiaryTitle} / {d.RawHoneyProduction?.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle} (#{d.RawHoneyProductionId})";
+                if (unconfirmed.FirstOrDefault(u => u.RawHoneyProductionId == d.RawHoneyProductionId) is { } u)
+                    blockers.Add(u.EvidenceStatus == EvidenceStatus.Rejected
+                        ? $"{lot}: the signed photo of the delivery was rejected."
+                        : $"{lot}: the signed photo of the delivery waits for the Compliance Officer.");
                 var own = rawAssignments.Where(a => a.RawHoneyProductionId == d.RawHoneyProductionId).ToList();
                 if (own.Count == 0)
                     blockers.Add($"{lot}: no CCP assigned.");
