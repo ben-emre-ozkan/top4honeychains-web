@@ -8769,4 +8769,16 @@
   <data name="Name a Compliance Officer (an active member with that role) before verifying the organization." xml:space="preserve">
     <value>Kuruluşu doğrulamadan önce bir Uyum Sorumlusu atayın (bu role sahip aktif bir üye).</value>
   </data>
+  <data name="Land.Logos.Partners" xml:space="preserve">
+    <value>Proje paydaşları</value>
+  </data>
+  <data name="Land.Logos.Funders" xml:space="preserve">
+    <value>Fonlayan kuruluşlar</value>
+  </data>
+  <data name="Land.Logos.Coordinator" xml:space="preserve">
+    <value>koordinatör</value>
+  </data>
+  <data name="Land.Logos.Acknowledgement" xml:space="preserve">
+    <value>ICT-AGRI-FOOD ERA-NET Cofund (2022 çağrısı) kapsamında yürütülmektedir.</value>
+  </data>
 </root>

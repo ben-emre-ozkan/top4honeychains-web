@@ -278,19 +278,32 @@ html.js:not(.ld-static) .ld-step.is-in .ld-hexmask { animation: ld-hexreveal 110
 
 /* ------------------------------------------------------------------ 6. footer */
 .ld-footer { background: var(--b-paper-2); border-top: 1px solid var(--b-line); padding: 56px 0 28px; font-size: 15px; }
-.ld-footer-grid { display: grid; grid-template-columns: 1.1fr 1.4fr 0.7fr; gap: 36px; }
+.ld-footer-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 36px; }
 .ld-footer .ld-brand .b-logo { width: 115px; height: 48px; }
 .ld-footer-tag { color: var(--b-muted); margin-top: 8px !important; max-width: 340px; }
 .ld-footer-h { font-family: var(--b-text) !important; font-size: 13px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: var(--b-kicker) !important; margin: 0 0 12px !important; }
 .ld-footer-tag + .ld-footer-h { margin-top: 24px !important; }
 .ld-footer-contact a { display: inline-flex; align-items: center; min-height: var(--b-touch); text-decoration: none; font-weight: 600; }
-.ld-partners { display: grid; gap: 6px; }
-.ld-partners li { color: var(--b-ink-2); }
-.ld-partners li:hover .ld-partner { text-decoration: underline; text-decoration-color: var(--b-honey); text-decoration-thickness: 2px; text-underline-offset: 4px; }
-.ld-country { color: var(--b-muted); font-size: 13px; }
-.ld-country::before { content: "· "; }
-.ld-logos { display: flex; flex-wrap: wrap; gap: 18px 28px; align-items: center; }
-.ld-logos img { height: 48px; width: auto; }
+/* D-78 P4 (D78-SPEC 4.11): two labelled logo groups. Calm and even: every logo sits centred in the same white tile (logos with
+   a white background blend in), at most 40 px high (32 px on phones), grey at rest and in colour on hover */
+.ld-logo-groups { display: grid; grid-template-columns: 3fr 1fr; gap: 28px 40px; margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--b-line); }
+.ld-logos { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.ld-logo { display: flex; align-items: center; justify-content: center; height: 64px; padding: 10px 14px; background: #fff; border: 1px solid var(--b-line); border-radius: 12px; }
+.ld-logo img { display: block; max-height: 40px; max-width: 100%; width: auto; height: auto; filter: grayscale(1); opacity: .8; transition: filter var(--b-fast) var(--b-ease), opacity var(--b-fast) var(--b-ease); }
+.ld-logo:hover img, .ld-logo:focus-within img { filter: none; opacity: 1; }
+.ld-funders .ld-logos { grid-template-columns: minmax(150px, 220px); }
+.ld-logo-programme { height: 76px; }
+.ld-logo-programme img { max-height: 52px; }
+.ld-ack { margin: 10px 0 0 !important; color: var(--b-muted); font-size: 13px; max-width: 260px; }
+@media (max-width: 900px) { .ld-logo-groups { grid-template-columns: 1fr; } .ld-funders .ld-logos { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); } }
+@media (max-width: 520px) {
+    .ld-logos, .ld-funders .ld-logos { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    .ld-logo { height: 52px; padding: 8px; }
+    .ld-logo img { max-height: 32px; }
+    .ld-logo-programme { grid-column: span 2; height: 60px; }
+    .ld-logo-programme img { max-height: 40px; }
+}
+@media (prefers-reduced-motion: reduce) { .ld-logo img { transition: none; } }
 .ld-footer-langs { display: grid; gap: 2px; }
 .ld-lang-full { display: inline-flex; align-items: center; min-height: var(--b-touch); min-width: var(--b-touch); text-decoration: none; font-weight: 600; color: var(--b-ink-2); }
 .ld-lang-full.is-current { color: var(--b-honey-ink); }

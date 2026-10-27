@@ -39,7 +39,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 Steps = StepImages.Select(name => LandingImages.Find(_env, name)).ToList(),
                 OgImage = LandingImages.Find(_env, "og-image"),
                 PublicBaseUrl = PublicUrl.Build(HttpContext, ""),
-                PartnerLogos = LandingImages.PartnerLogos(_env)
+                PartnerLogos = LandingImages.PartnerLogos(_env),
+                FunderLogos = LandingImages.FunderLogos(_env)
             });
         }
 

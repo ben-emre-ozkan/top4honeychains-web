@@ -11,6 +11,7 @@ namespace TOP4HoneyChains.Web.Models.ViewModels
         public IReadOnlyList<LandingImage> Steps { get; set; } = Array.Empty<LandingImage>();
         public LandingImage? OgImage { get; set; }
         public string? PublicBaseUrl { get; set; }
-        public IReadOnlyList<string> PartnerLogos { get; set; } = Array.Empty<string>();
+        public IReadOnlyList<TOP4HoneyChains.Web.Services.LandingImages.Logo> PartnerLogos { get; set; } = Array.Empty<TOP4HoneyChains.Web.Services.LandingImages.Logo>();
+        public IReadOnlyList<TOP4HoneyChains.Web.Services.LandingImages.Logo> FunderLogos { get; set; } = Array.Empty<TOP4HoneyChains.Web.Services.LandingImages.Logo>();
     }
 }
