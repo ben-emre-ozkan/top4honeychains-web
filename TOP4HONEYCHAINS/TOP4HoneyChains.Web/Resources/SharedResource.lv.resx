@@ -8898,4 +8898,145 @@
   <data name="Cust.YourHoldingHelp" xml:space="preserve">
     <value>Parādīts tikai jūsu organizācijas krājums; citām organizācijām var būt šīs gala partijas daļas.</value>
   </data>
+  <data name="Ret.Title" xml:space="preserve">
+    <value>Datu glabāšana</value>
+  </data>
+  <data name="Ret.Help" xml:space="preserve">
+    <value>Cik ilgi platforma glabā katru datu veidu un kas notiek pēc tam. Tabula ir izmēģinājuma palaišana: tā saskaita rindas, kuru termiņš ir beidzies, un neko nemaina.</value>
+  </data>
+  <data name="Ret.Csv" xml:space="preserve">
+    <value>Izmēģinājuma pārskats (CSV)</value>
+  </data>
+  <data name="Ret.On" xml:space="preserve">
+    <value>Glabāšanas palaišana ieslēgta</value>
+  </data>
+  <data name="Ret.Off" xml:space="preserve">
+    <value>Izslēgta: par pirmo palaišanu lemj īpašnieks</value>
+  </data>
+  <data name="Ret.Monthly" xml:space="preserve">
+    <value>katru mēnesi pēc pirmās palaišanas</value>
+  </data>
+  <data name="Ret.LastRun" xml:space="preserve">
+    <value>Pēdējā palaišana:</value>
+  </data>
+  <data name="Ret.Never" xml:space="preserve">
+    <value>nekad</value>
+  </data>
+  <data name="Ret.Data" xml:space="preserve">
+    <value>Dati</value>
+  </data>
+  <data name="Ret.Kept" xml:space="preserve">
+    <value>Glabā</value>
+  </data>
+  <data name="Ret.Then" xml:space="preserve">
+    <value>Pēc tam</value>
+  </data>
+  <data name="Ret.Cutoff" xml:space="preserve">
+    <value>Vecāki par</value>
+  </data>
+  <data name="Ret.Rows" xml:space="preserve">
+    <value>Rindas</value>
+  </data>
+  <data name="Ret.Job" xml:space="preserve">
+    <value>Palaišana</value>
+  </data>
+  <data name="Ret.Applies" xml:space="preserve">
+    <value>maina šīs rindas</value>
+  </data>
+  <data name="Ret.CountOnly" xml:space="preserve">
+    <value>tikai saskaita (lēmums O-14)</value>
+  </data>
+  <data name="Ret.Note" xml:space="preserve">
+    <value>Audita žurnāls netiek mainīts. Gala partijām nav derīguma termiņa; to aizstāj partijas datums plus iestatītais gadu skaits.</value>
+  </data>
+  <data name="Ret.Confirm" xml:space="preserve">
+    <value>Īpašnieks apstiprināja šo palaišanu (tā dzēš un notīra datus, un to nevar atsaukt).</value>
+  </data>
+  <data name="Ret.Run" xml:space="preserve">
+    <value>Palaist glabāšanu tagad</value>
+  </data>
+  <data name="Ret.Years" xml:space="preserve">
+    <value>{0} gadi</value>
+  </data>
+  <data name="Ret.codes.Kept" xml:space="preserve">
+    <value>{0} dienas</value>
+  </data>
+  <data name="Ret.lots.Kept" xml:space="preserve">
+    <value>{0} gadus pēc gala partijas vēlākā derīguma termiņa (partijas datums + {1} gadi) vai pēc piegādes</value>
+  </data>
+  <data name="Ret.consents.Kept" xml:space="preserve">
+    <value>tik ilgi, cik saistītie dati, + {0} gadi (pierādījums)</value>
+  </data>
+  <data name="Ret.accounts.Kept" xml:space="preserve">
+    <value>{0} gadus pēc pēdējās dalības beigām</value>
+  </data>
+  <data name="Ret.beekeepers.Kept" xml:space="preserve">
+    <value>kamēr aktīvs, pēc tam viņa partiju termiņš</value>
+  </data>
+  <data name="Ret.evidence.Kept" xml:space="preserve">
+    <value>tik ilgi, cik ieraksts, ko tie pierāda</value>
+  </data>
+  <data name="Ret.codes.Data" xml:space="preserve">
+    <value>Vienreizējie kodi</value>
+  </data>
+  <data name="Ret.codes.Then" xml:space="preserve">
+    <value>dzēsti (glabāti tikai jaucējkodi); kods, kas pierāda ierakstu, paliek kopā ar to</value>
+  </data>
+  <data name="Ret.sms.Data" xml:space="preserve">
+    <value>SMS ziņas</value>
+  </data>
+  <data name="Ret.sms.Then" xml:space="preserve">
+    <value>numurs un teksts noņemti, skaits saglabāts</value>
+  </data>
+  <data name="Ret.prices.Data" xml:space="preserve">
+    <value>Cenas</value>
+  </data>
+  <data name="Ret.prices.Then" xml:space="preserve">
+    <value>dzēstas</value>
+  </data>
+  <data name="Ret.lots.Data" xml:space="preserve">
+    <value>Partijas, pieņemšanas, tvertnes, paraugi, laboratorijas pārskati, gala partijas</value>
+  </data>
+  <data name="Ret.lots.Then" xml:space="preserve">
+    <value>saikne ar biškopi pseidonimizēta; produkta dati saglabāti</value>
+  </data>
+  <data name="Ret.beekeepers.Data" xml:space="preserve">
+    <value>Biškopja identitāte (neaktīvi biškopji)</value>
+  </data>
+  <data name="Ret.beekeepers.Then" xml:space="preserve">
+    <value>pseidonimizēta</value>
+  </data>
+  <data name="Ret.evidence.Data" xml:space="preserve">
+    <value>Pierādījumu fotoattēli (parakstītas piegādes veidlapas)</value>
+  </data>
+  <data name="Ret.evidence.Then" xml:space="preserve">
+    <value>dzēsti, jaucējkods saglabāts</value>
+  </data>
+  <data name="Ret.consents.Data" xml:space="preserve">
+    <value>Piekrišanas un paziņojumu pieņemšanas</value>
+  </data>
+  <data name="Ret.consents.Then" xml:space="preserve">
+    <value>dzēstas</value>
+  </data>
+  <data name="Ret.accounts.Data" xml:space="preserve">
+    <value>Bijušo dalībnieku konti</value>
+  </data>
+  <data name="Ret.accounts.Then" xml:space="preserve">
+    <value>anonimizēti; audita ierakstos paliek tikai lietotāja ID</value>
+  </data>
+  <data name="Ret.audit.Data" xml:space="preserve">
+    <value>Audita žurnāls</value>
+  </data>
+  <data name="Ret.audit.Then" xml:space="preserve">
+    <value>netiek mainīts (tikai papildināšana)</value>
+  </data>
+  <data name="Retention is off (Retention:ApplyEnabled); its first run is the owner's decision." xml:space="preserve">
+    <value>Glabāšana ir izslēgta (Retention:ApplyEnabled); par pirmo palaišanu lemj īpašnieks.</value>
+  </data>
+  <data name="Confirm that the owner approved this run." xml:space="preserve">
+    <value>Apstipriniet, ka īpašnieks ir apstiprinājis šo palaišanu.</value>
+  </data>
+  <data name="Retention run: {0} codes deleted, {1} SMS messages cleared, {2} prices deleted." xml:space="preserve">
+    <value>Glabāšana izpildīta: dzēsti {0} kodi, notīrītas {1} SMS, dzēstas {2} cenas.</value>
+  </data>
 </root>

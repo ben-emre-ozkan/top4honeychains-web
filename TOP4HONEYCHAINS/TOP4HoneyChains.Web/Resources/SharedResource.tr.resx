@@ -8898,4 +8898,145 @@
   <data name="Cust.YourHoldingHelp" xml:space="preserve">
     <value>Yalnızca kuruluşunuzun elindeki miktar gösterilir; bu partinin bir kısmı başka kuruluşlarda da olabilir.</value>
   </data>
+  <data name="Ret.Title" xml:space="preserve">
+    <value>Veri saklama</value>
+  </data>
+  <data name="Ret.Help" xml:space="preserve">
+    <value>Platformun her veri türünü ne kadar sakladığı ve sonrasında ne olduğu. Tablo bir deneme çalıştırmasıdır: süresi dolan satırları sayar, hiçbir şeyi değiştirmez.</value>
+  </data>
+  <data name="Ret.Csv" xml:space="preserve">
+    <value>Deneme raporu (CSV)</value>
+  </data>
+  <data name="Ret.On" xml:space="preserve">
+    <value>Saklama çalıştırması açık</value>
+  </data>
+  <data name="Ret.Off" xml:space="preserve">
+    <value>Kapalı: ilk çalıştırma sahibin kararıdır</value>
+  </data>
+  <data name="Ret.Monthly" xml:space="preserve">
+    <value>ilk çalıştırmadan sonra aylık</value>
+  </data>
+  <data name="Ret.LastRun" xml:space="preserve">
+    <value>Son çalıştırma:</value>
+  </data>
+  <data name="Ret.Never" xml:space="preserve">
+    <value>hiç</value>
+  </data>
+  <data name="Ret.Data" xml:space="preserve">
+    <value>Veri</value>
+  </data>
+  <data name="Ret.Kept" xml:space="preserve">
+    <value>Saklama süresi</value>
+  </data>
+  <data name="Ret.Then" xml:space="preserve">
+    <value>Sonra</value>
+  </data>
+  <data name="Ret.Cutoff" xml:space="preserve">
+    <value>Şu tarihten eski</value>
+  </data>
+  <data name="Ret.Rows" xml:space="preserve">
+    <value>Satır</value>
+  </data>
+  <data name="Ret.Job" xml:space="preserve">
+    <value>Çalıştırma</value>
+  </data>
+  <data name="Ret.Applies" xml:space="preserve">
+    <value>bu satırları değiştirir</value>
+  </data>
+  <data name="Ret.CountOnly" xml:space="preserve">
+    <value>yalnızca sayar (karar O-14)</value>
+  </data>
+  <data name="Ret.Note" xml:space="preserve">
+    <value>Denetim kaydı asla değiştirilmez. Partilerde son tüketim tarihi tutulmaz; yerine parti tarihi ile ayarlanan yıl sayısı kullanılır.</value>
+  </data>
+  <data name="Ret.Confirm" xml:space="preserve">
+    <value>Bu çalıştırmayı sahip onayladı (verileri siler ve temizler, geri alınamaz).</value>
+  </data>
+  <data name="Ret.Run" xml:space="preserve">
+    <value>Saklamayı şimdi çalıştır</value>
+  </data>
+  <data name="Ret.Years" xml:space="preserve">
+    <value>{0} yıl</value>
+  </data>
+  <data name="Ret.codes.Kept" xml:space="preserve">
+    <value>{0} gün</value>
+  </data>
+  <data name="Ret.lots.Kept" xml:space="preserve">
+    <value>partinin en geç son tüketim tarihinden (parti tarihi + {1} yıl) ya da teslimden {0} yıl sonrasına kadar</value>
+  </data>
+  <data name="Ret.consents.Kept" xml:space="preserve">
+    <value>ilgili veri süresince + {0} yıl (kanıt)</value>
+  </data>
+  <data name="Ret.accounts.Kept" xml:space="preserve">
+    <value>son üyelik bittikten {0} yıl sonrasına kadar</value>
+  </data>
+  <data name="Ret.beekeepers.Kept" xml:space="preserve">
+    <value>aktif olduğu sürece, sonra lotlarının süresi</value>
+  </data>
+  <data name="Ret.evidence.Kept" xml:space="preserve">
+    <value>kanıtladıkları kayıt kadar</value>
+  </data>
+  <data name="Ret.codes.Data" xml:space="preserve">
+    <value>Tek kullanımlık kodlar</value>
+  </data>
+  <data name="Ret.codes.Then" xml:space="preserve">
+    <value>silinir (yalnızca özetler saklanmıştı); bir kaydı kanıtlayan kod o kayıtla kalır</value>
+  </data>
+  <data name="Ret.sms.Data" xml:space="preserve">
+    <value>SMS mesajları</value>
+  </data>
+  <data name="Ret.sms.Then" xml:space="preserve">
+    <value>numara ve metin kaldırılır, sayılar korunur</value>
+  </data>
+  <data name="Ret.prices.Data" xml:space="preserve">
+    <value>Fiyatlar</value>
+  </data>
+  <data name="Ret.prices.Then" xml:space="preserve">
+    <value>silinir</value>
+  </data>
+  <data name="Ret.lots.Data" xml:space="preserve">
+    <value>Lotlar, teslimler, kaplar, numuneler, laboratuvar raporları, partiler</value>
+  </data>
+  <data name="Ret.lots.Then" xml:space="preserve">
+    <value>arıcı bağlantısı takma adlandırılır; ürün verisi korunur</value>
+  </data>
+  <data name="Ret.beekeepers.Data" xml:space="preserve">
+    <value>Arıcı kimliği (aktif olmayan arıcılar)</value>
+  </data>
+  <data name="Ret.beekeepers.Then" xml:space="preserve">
+    <value>takma adlandırılır</value>
+  </data>
+  <data name="Ret.evidence.Data" xml:space="preserve">
+    <value>Kanıt fotoğrafları (imzalı teslim formları)</value>
+  </data>
+  <data name="Ret.evidence.Then" xml:space="preserve">
+    <value>silinir, özet korunur</value>
+  </data>
+  <data name="Ret.consents.Data" xml:space="preserve">
+    <value>Rızalar ve bilgilendirme onayları</value>
+  </data>
+  <data name="Ret.consents.Then" xml:space="preserve">
+    <value>silinir</value>
+  </data>
+  <data name="Ret.accounts.Data" xml:space="preserve">
+    <value>Eski üyelerin kullanıcı hesapları</value>
+  </data>
+  <data name="Ret.accounts.Then" xml:space="preserve">
+    <value>anonimleştirilir; denetim kayıtlarında yalnızca kullanıcı kimliği kalır</value>
+  </data>
+  <data name="Ret.audit.Data" xml:space="preserve">
+    <value>Denetim kaydı</value>
+  </data>
+  <data name="Ret.audit.Then" xml:space="preserve">
+    <value>değiştirilmez (yalnızca ekleme)</value>
+  </data>
+  <data name="Retention is off (Retention:ApplyEnabled); its first run is the owner's decision." xml:space="preserve">
+    <value>Saklama kapalı (Retention:ApplyEnabled); ilk çalıştırma sahibin kararıdır.</value>
+  </data>
+  <data name="Confirm that the owner approved this run." xml:space="preserve">
+    <value>Bu çalıştırmayı sahibin onayladığını doğrulayın.</value>
+  </data>
+  <data name="Retention run: {0} codes deleted, {1} SMS messages cleared, {2} prices deleted." xml:space="preserve">
+    <value>Saklama çalıştırıldı: {0} kod silindi, {1} SMS temizlendi, {2} fiyat silindi.</value>
+  </data>
 </root>

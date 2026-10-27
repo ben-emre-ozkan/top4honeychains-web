@@ -8898,4 +8898,145 @@
   <data name="Cust.YourHoldingHelp" xml:space="preserve">
     <value>Only your organization's holding is shown; other organizations may hold parts of this batch.</value>
   </data>
+  <data name="Ret.Title" xml:space="preserve">
+    <value>Data retention</value>
+  </data>
+  <data name="Ret.Help" xml:space="preserve">
+    <value>How long the platform keeps each kind of data and what happens afterwards. The table is a dry run: it counts the rows past their period and changes nothing.</value>
+  </data>
+  <data name="Ret.Csv" xml:space="preserve">
+    <value>Dry-run report (CSV)</value>
+  </data>
+  <data name="Ret.On" xml:space="preserve">
+    <value>Retention run switched on</value>
+  </data>
+  <data name="Ret.Off" xml:space="preserve">
+    <value>Off: the first run is the owner's decision</value>
+  </data>
+  <data name="Ret.Monthly" xml:space="preserve">
+    <value>monthly after the first run</value>
+  </data>
+  <data name="Ret.LastRun" xml:space="preserve">
+    <value>Last run:</value>
+  </data>
+  <data name="Ret.Never" xml:space="preserve">
+    <value>never</value>
+  </data>
+  <data name="Ret.Data" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="Ret.Kept" xml:space="preserve">
+    <value>Kept</value>
+  </data>
+  <data name="Ret.Then" xml:space="preserve">
+    <value>Then</value>
+  </data>
+  <data name="Ret.Cutoff" xml:space="preserve">
+    <value>Older than</value>
+  </data>
+  <data name="Ret.Rows" xml:space="preserve">
+    <value>Rows</value>
+  </data>
+  <data name="Ret.Job" xml:space="preserve">
+    <value>The run</value>
+  </data>
+  <data name="Ret.Applies" xml:space="preserve">
+    <value>changes these rows</value>
+  </data>
+  <data name="Ret.CountOnly" xml:space="preserve">
+    <value>counts only (decision O-14)</value>
+  </data>
+  <data name="Ret.Note" xml:space="preserve">
+    <value>The audit log is never changed. Batches carry no best-before date; the batch date plus the configured years stands in for it.</value>
+  </data>
+  <data name="Ret.Confirm" xml:space="preserve">
+    <value>The owner approved this run (it deletes and clears data and cannot be undone).</value>
+  </data>
+  <data name="Ret.Run" xml:space="preserve">
+    <value>Run retention now</value>
+  </data>
+  <data name="Ret.Years" xml:space="preserve">
+    <value>{0} years</value>
+  </data>
+  <data name="Ret.codes.Kept" xml:space="preserve">
+    <value>{0} days</value>
+  </data>
+  <data name="Ret.lots.Kept" xml:space="preserve">
+    <value>{0} years after the latest best-before of a batch (batch date + {1} years), or after the delivery</value>
+  </data>
+  <data name="Ret.consents.Kept" xml:space="preserve">
+    <value>as long as the related data + {0} years (proof)</value>
+  </data>
+  <data name="Ret.accounts.Kept" xml:space="preserve">
+    <value>{0} years after the last membership ends</value>
+  </data>
+  <data name="Ret.beekeepers.Kept" xml:space="preserve">
+    <value>while active, then the period of their lots</value>
+  </data>
+  <data name="Ret.evidence.Kept" xml:space="preserve">
+    <value>as long as the record they prove</value>
+  </data>
+  <data name="Ret.codes.Data" xml:space="preserve">
+    <value>One-time codes</value>
+  </data>
+  <data name="Ret.codes.Then" xml:space="preserve">
+    <value>deleted (only hashes were stored); a code that proves a record stays with it</value>
+  </data>
+  <data name="Ret.sms.Data" xml:space="preserve">
+    <value>SMS messages</value>
+  </data>
+  <data name="Ret.sms.Then" xml:space="preserve">
+    <value>number and body removed, counts kept</value>
+  </data>
+  <data name="Ret.prices.Data" xml:space="preserve">
+    <value>Prices</value>
+  </data>
+  <data name="Ret.prices.Then" xml:space="preserve">
+    <value>deleted</value>
+  </data>
+  <data name="Ret.lots.Data" xml:space="preserve">
+    <value>Lots, intakes, containers, samples, lab reports, batches</value>
+  </data>
+  <data name="Ret.lots.Then" xml:space="preserve">
+    <value>the beekeeper link pseudonymised; product data kept</value>
+  </data>
+  <data name="Ret.beekeepers.Data" xml:space="preserve">
+    <value>Beekeeper identity (inactive beekeepers)</value>
+  </data>
+  <data name="Ret.beekeepers.Then" xml:space="preserve">
+    <value>pseudonymised</value>
+  </data>
+  <data name="Ret.evidence.Data" xml:space="preserve">
+    <value>Evidence photos (signed delivery forms)</value>
+  </data>
+  <data name="Ret.evidence.Then" xml:space="preserve">
+    <value>deleted, the hash kept</value>
+  </data>
+  <data name="Ret.consents.Data" xml:space="preserve">
+    <value>Consents and notice acceptances</value>
+  </data>
+  <data name="Ret.consents.Then" xml:space="preserve">
+    <value>deleted</value>
+  </data>
+  <data name="Ret.accounts.Data" xml:space="preserve">
+    <value>User accounts of former members</value>
+  </data>
+  <data name="Ret.accounts.Then" xml:space="preserve">
+    <value>anonymised; audit entries keep the user id only</value>
+  </data>
+  <data name="Ret.audit.Data" xml:space="preserve">
+    <value>Audit log</value>
+  </data>
+  <data name="Ret.audit.Then" xml:space="preserve">
+    <value>not changed (append-only)</value>
+  </data>
+  <data name="Retention is off (Retention:ApplyEnabled); its first run is the owner's decision." xml:space="preserve">
+    <value>Retention is off (Retention:ApplyEnabled); its first run is the owner's decision.</value>
+  </data>
+  <data name="Confirm that the owner approved this run." xml:space="preserve">
+    <value>Confirm that the owner approved this run.</value>
+  </data>
+  <data name="Retention run: {0} codes deleted, {1} SMS messages cleared, {2} prices deleted." xml:space="preserve">
+    <value>Retention run: {0} codes deleted, {1} SMS messages cleared, {2} prices deleted.</value>
+  </data>
 </root>

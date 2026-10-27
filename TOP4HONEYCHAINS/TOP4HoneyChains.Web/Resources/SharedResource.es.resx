@@ -8898,4 +8898,145 @@
   <data name="Cust.YourHoldingHelp" xml:space="preserve">
     <value>Solo se muestra la existencia de su organización; otras organizaciones pueden tener partes de esta partida.</value>
   </data>
+  <data name="Ret.Title" xml:space="preserve">
+    <value>Conservación de datos</value>
+  </data>
+  <data name="Ret.Help" xml:space="preserve">
+    <value>Cuánto tiempo conserva la plataforma cada tipo de dato y qué ocurre después. La tabla es una simulación: cuenta las filas que superan su plazo y no cambia nada.</value>
+  </data>
+  <data name="Ret.Csv" xml:space="preserve">
+    <value>Informe de simulación (CSV)</value>
+  </data>
+  <data name="Ret.On" xml:space="preserve">
+    <value>Ejecución de conservación activada</value>
+  </data>
+  <data name="Ret.Off" xml:space="preserve">
+    <value>Desactivada: la primera ejecución la decide el propietario</value>
+  </data>
+  <data name="Ret.Monthly" xml:space="preserve">
+    <value>mensual tras la primera ejecución</value>
+  </data>
+  <data name="Ret.LastRun" xml:space="preserve">
+    <value>Última ejecución:</value>
+  </data>
+  <data name="Ret.Never" xml:space="preserve">
+    <value>nunca</value>
+  </data>
+  <data name="Ret.Data" xml:space="preserve">
+    <value>Datos</value>
+  </data>
+  <data name="Ret.Kept" xml:space="preserve">
+    <value>Se conserva</value>
+  </data>
+  <data name="Ret.Then" xml:space="preserve">
+    <value>Después</value>
+  </data>
+  <data name="Ret.Cutoff" xml:space="preserve">
+    <value>Anterior a</value>
+  </data>
+  <data name="Ret.Rows" xml:space="preserve">
+    <value>Filas</value>
+  </data>
+  <data name="Ret.Job" xml:space="preserve">
+    <value>La ejecución</value>
+  </data>
+  <data name="Ret.Applies" xml:space="preserve">
+    <value>cambia estas filas</value>
+  </data>
+  <data name="Ret.CountOnly" xml:space="preserve">
+    <value>solo cuenta (decisión O-14)</value>
+  </data>
+  <data name="Ret.Note" xml:space="preserve">
+    <value>El registro de auditoría nunca se modifica. Las partidas no tienen fecha de consumo preferente; se usa la fecha de la partida más los años configurados.</value>
+  </data>
+  <data name="Ret.Confirm" xml:space="preserve">
+    <value>El propietario aprobó esta ejecución (borra y vacía datos y no se puede deshacer).</value>
+  </data>
+  <data name="Ret.Run" xml:space="preserve">
+    <value>Ejecutar la conservación ahora</value>
+  </data>
+  <data name="Ret.Years" xml:space="preserve">
+    <value>{0} años</value>
+  </data>
+  <data name="Ret.codes.Kept" xml:space="preserve">
+    <value>{0} días</value>
+  </data>
+  <data name="Ret.lots.Kept" xml:space="preserve">
+    <value>{0} años después del último consumo preferente de una partida (fecha de la partida + {1} años) o después de la entrega</value>
+  </data>
+  <data name="Ret.consents.Kept" xml:space="preserve">
+    <value>mientras existan los datos relacionados + {0} años (prueba)</value>
+  </data>
+  <data name="Ret.accounts.Kept" xml:space="preserve">
+    <value>{0} años después del fin de la última membresía</value>
+  </data>
+  <data name="Ret.beekeepers.Kept" xml:space="preserve">
+    <value>mientras esté activo y después el plazo de sus lotes</value>
+  </data>
+  <data name="Ret.evidence.Kept" xml:space="preserve">
+    <value>lo mismo que el registro que prueban</value>
+  </data>
+  <data name="Ret.codes.Data" xml:space="preserve">
+    <value>Códigos de un solo uso</value>
+  </data>
+  <data name="Ret.codes.Then" xml:space="preserve">
+    <value>se borran (solo se guardaron hashes); un código que prueba un registro se queda con él</value>
+  </data>
+  <data name="Ret.sms.Data" xml:space="preserve">
+    <value>Mensajes SMS</value>
+  </data>
+  <data name="Ret.sms.Then" xml:space="preserve">
+    <value>se eliminan el número y el texto; se conservan los recuentos</value>
+  </data>
+  <data name="Ret.prices.Data" xml:space="preserve">
+    <value>Precios</value>
+  </data>
+  <data name="Ret.prices.Then" xml:space="preserve">
+    <value>se borran</value>
+  </data>
+  <data name="Ret.lots.Data" xml:space="preserve">
+    <value>Lotes, entradas, envases, muestras, informes de laboratorio, partidas</value>
+  </data>
+  <data name="Ret.lots.Then" xml:space="preserve">
+    <value>el vínculo con el apicultor se seudonimiza; se conservan los datos del producto</value>
+  </data>
+  <data name="Ret.beekeepers.Data" xml:space="preserve">
+    <value>Identidad del apicultor (apicultores inactivos)</value>
+  </data>
+  <data name="Ret.beekeepers.Then" xml:space="preserve">
+    <value>se seudonimiza</value>
+  </data>
+  <data name="Ret.evidence.Data" xml:space="preserve">
+    <value>Fotos de prueba (formularios de entrega firmados)</value>
+  </data>
+  <data name="Ret.evidence.Then" xml:space="preserve">
+    <value>se borran; se conserva el hash</value>
+  </data>
+  <data name="Ret.consents.Data" xml:space="preserve">
+    <value>Consentimientos y aceptaciones de avisos</value>
+  </data>
+  <data name="Ret.consents.Then" xml:space="preserve">
+    <value>se borran</value>
+  </data>
+  <data name="Ret.accounts.Data" xml:space="preserve">
+    <value>Cuentas de antiguos miembros</value>
+  </data>
+  <data name="Ret.accounts.Then" xml:space="preserve">
+    <value>se anonimizan; la auditoría conserva solo el id del usuario</value>
+  </data>
+  <data name="Ret.audit.Data" xml:space="preserve">
+    <value>Registro de auditoría</value>
+  </data>
+  <data name="Ret.audit.Then" xml:space="preserve">
+    <value>no se modifica (solo se añade)</value>
+  </data>
+  <data name="Retention is off (Retention:ApplyEnabled); its first run is the owner's decision." xml:space="preserve">
+    <value>La conservación está desactivada (Retention:ApplyEnabled); su primera ejecución la decide el propietario.</value>
+  </data>
+  <data name="Confirm that the owner approved this run." xml:space="preserve">
+    <value>Confirme que el propietario aprobó esta ejecución.</value>
+  </data>
+  <data name="Retention run: {0} codes deleted, {1} SMS messages cleared, {2} prices deleted." xml:space="preserve">
+    <value>Conservación ejecutada: {0} códigos borrados, {1} SMS vaciados, {2} precios borrados.</value>
+  </data>
 </root>
