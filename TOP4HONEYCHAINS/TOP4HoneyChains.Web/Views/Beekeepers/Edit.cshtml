@@ -14,6 +14,10 @@
                     <a asp-action="Index"
                        class="btn btn-link app-back"><i class="mdi mdi-arrow-left" aria-hidden="true"></i> @L["Back to list"]</a>
 
+                    @if (ViewBag.Registered == true)
+                    {
+                        <div class="alert alert-info small" id="attested-note">@L["Reg78.AttestedNote"]</div>
+                    }
                     <form asp-action="Edit" enctype="multipart/form-data">
                         <input type="hidden" asp-for="BeekeeperId" />
                         <input type="hidden" asp-for="BeekeeperBusinessNumber" />

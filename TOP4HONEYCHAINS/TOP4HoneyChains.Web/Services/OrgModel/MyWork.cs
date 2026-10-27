@@ -50,6 +50,9 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             await CcpItemsAsync(active, items);
             await LabItemsAsync(active, items);
             await CustodyItemsAsync(active, items);
+            // D-78: signed-photo registrations of the organization, for its Compliance Officer (never the officer who recorded them)
+            if (_perm.Allows(PermissionAreas.Evidence, PermissionAreas.Approve, active.OrgRole))
+                await EvidenceItemsAsync(active.OrgId, items);
             if (OrganizationAuthorizationHandler.IsCentralVerifier(_config, active))
                 foreach (var o in await PendingOrgsAsync(o => o.Capabilities.Any(c => c.Capability == Capabilities.Association)))
                     items.Add(new Item("Verify", o.DisplayName, null, $"/Organizations/Details/{o.OrgId}", o.CreatedAt));
@@ -158,8 +161,19 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         }
 
         // Platform administrators: verification requests and corrections waiting for a second administrator
+        private async Task EvidenceItemsAsync(int orgId, List<Item> items)
+        {
+            foreach (var r in await _context.BeekeeperRegistrations.AsNoTracking().Include(r => r.Beekeeper)
+                         .Where(r => r.RegisteringOrgId == orgId && r.EvidenceStatus == EvidenceStatus.PendingReview && r.OfficerUserId != _current.UserId)
+                         .ToListAsync())
+                items.Add(new Item("Evidence", $"{r.Beekeeper?.BeekeeperFirstName} {r.Beekeeper?.BeekeeperLastName}", r.RegistryNumber,
+                    $"/Registration/Details/{r.RegistrationId}", r.At));
+        }
+
         private async Task AdminItemsAsync(List<Item> items)
         {
+            if (await _context.Organizations.AsNoTracking().Where(o => o.IsPlatform).Select(o => (int?)o.OrgId).FirstOrDefaultAsync() is int platformId)
+                await EvidenceItemsAsync(platformId, items);
             foreach (var o in await PendingOrgsAsync(o => true))
                 items.Add(new Item("Verify", o.DisplayName, null, $"/Organizations/Details/{o.OrgId}", o.CreatedAt));
             foreach (var r in await _context.RegistryVerifications.AsNoTracking().Where(v => v.Status == RegistryStatus.Pending).ToListAsync())
@@ -192,6 +206,12 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         public static bool Shipments(ActiveMembership a, Permissions p) =>
             Any(a, Capabilities.Processing, Capabilities.Packing, Capabilities.Wholesale, Capabilities.Retail)
             && p.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Shipments, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Read, a.OrgRole);
+
+        // D-78: beekeeper registration (district directorates)
+        public static bool Registration(ActiveMembership a, Permissions p) =>
+            a.Has(Capabilities.BeekeeperRegistration)
+            && (p.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Registration, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Read, a.OrgRole)
+                || p.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Registration, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Enter, a.OrgRole));
 
         public static bool Storefronts(ActiveMembership a, Permissions p) =>
             a.Has(Capabilities.Association) && p.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Storefront, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Read, a.OrgRole);

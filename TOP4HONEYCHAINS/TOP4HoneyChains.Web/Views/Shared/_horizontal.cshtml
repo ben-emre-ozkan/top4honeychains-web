@@ -27,7 +27,8 @@
         ? new Dictionary<string, string[]>
         {
             ["work"] = new[] { "MyWork", "CCPMonitoring" }, ["org"] = new[] { "OrgWorkspace", "Organizations" }, ["intake"] = new[] { "Intake" },
-            ["samples"] = new[] { "Samples", "LabReports" }, ["shipments"] = new[] { "Shipments" }, ["storefronts"] = new[] { "Storefronts" }
+            ["samples"] = new[] { "Samples", "LabReports" }, ["shipments"] = new[] { "Shipments" }, ["storefronts"] = new[] { "Storefronts" },
+            ["registration"] = new[] { "Registration" }
         }
         : new Dictionary<string, string[]>
         {
@@ -36,7 +37,7 @@
             ["final"] = new[] { "FinalHoneyProductions", "Flow" },
             ["ccp"] = new[] { "CriticalControlPoints", "CriticalControlPointParameterCategories", "CriticalControlPointParameters", "CriticalControlPointParameterContents", "ReferenceTranslations", "CCPMonitoring" },
             ["users"] = new[] { "UserManagement", "RoleManagement", "Audit", "Sms", "Notices" },
-            ["orgs"] = new[] { "MyWork", "Organizations", "Capabilities", "Permissions", "CcpResponsibilities", "Shipments", "Samples", "LabReports", "Storefronts", "OrgWorkspace", "Intake" }
+            ["orgs"] = new[] { "MyWork", "Organizations", "Capabilities", "Permissions", "CcpResponsibilities", "Shipments", "Samples", "LabReports", "Storefronts", "OrgWorkspace", "Intake", "Registration" }
         };
     string Cur(string group) => groups.TryGetValue(group, out var c) && current.Any(x => c.Contains(x, StringComparer.OrdinalIgnoreCase)) ? "is-current" : "";
     string? Aria(string group) => Cur(group).Length > 0 ? "page" : null;
@@ -47,6 +48,7 @@
         ["work"] = (L["Work.Title"].Value, "/MyWork/Index"), ["org"] = (L["Org.MyOrganization"].Value, "/OrgWorkspace/Index"),
         ["intake"] = (L["Cust.Intakes"].Value, "/Intake/Index"), ["samples"] = (L["Lab.Samples"].Value, "/Samples/Index"),
         ["shipments"] = (L["Cust.Shipments"].Value, "/Shipments/Index"), ["storefronts"] = (L["P5.Storefronts"].Value, "/Storefronts/Index"),
+        ["registration"] = (L["Reg78.Title"].Value, "/Registration/Index"),
         ["dashboard"] = (L["Menu.Dashboard"].Value, "/Dashboard/Index"), ["beekeepers"] = (L["Menu.Beekeepers"].Value, null),
         ["raw"] = (L["Menu.RawHoneyProduction"].Value, null), ["wholesalers"] = (L["Menu.Wholesalers"].Value, "/Wholesalers/Index"),
         ["final"] = (L["Menu.FinalHoneyProductions"].Value, "/FinalHoneyProductions/Index"), ["ccp"] = (L["Menu.CriticalControlPoints"].Value, null),
@@ -144,6 +146,10 @@
                             @if (menuActive != null && TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Shipments(menuActive, MenuPermissions))
                             {
                                 <li class="nav-item"><a class="nav-link @Cur("shipments")" aria-current="@Aria("shipments")" href="/Shipments/Index"><i class="mdi mdi-truck-outline" aria-hidden="true"></i>@L["Cust.Shipments"]</a></li>
+                            }
+                            @if (menuActive != null && TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Registration(menuActive, MenuPermissions))
+                            {
+                                <li class="nav-item"><a class="nav-link @Cur("registration")" aria-current="@Aria("registration")" href="/Registration/Index" id="menu-registration"><i class="mdi mdi-account-plus-outline" aria-hidden="true"></i>@L["Reg78.Title"]</a></li>
                             }
                             @if (menuActive != null && TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Storefronts(menuActive, MenuPermissions))
                             {
@@ -249,6 +255,7 @@
                                         <a href="/Organizations/Index" class="dropdown-item">@L["Org.Organizations"]</a>
                                         <a href="/Capabilities/Index" class="dropdown-item">@L["Org.Capabilities"]</a>
                                         <a href="/Registry/Index" class="dropdown-item">@L["Reg.Title"]</a>
+                                        <a href="/Registration/Index" class="dropdown-item" id="menu-registration-admin">@L["Reg78.Title"]</a>
                                         <a href="/Permissions/Index" class="dropdown-item">@L["Roles and permissions"]</a>
                                         <a href="/CcpResponsibilities/Index" class="dropdown-item">@L["Resp.Title"]</a>
                                         <a href="/CCPMonitoring/Corrections" class="dropdown-item">@L["Corr.Title"]</a>
@@ -289,7 +296,7 @@
      data-one="@L["Work.NewOne"]" data-many="@L["Work.NewMany"]" data-waiting="@L["Work.WaitingCount"]"></div>
 @if (memberMenu || (orgModelOn && isPanelAdmin))
 {
-    var kindNames = new[] { "Approve", "LabApprove", "Finalize", "Confirm", "Receive", "Results", "Verify", "Registry", "Correction", "Enter" }
+    var kindNames = new[] { "Approve", "LabApprove", "Finalize", "Confirm", "Receive", "Results", "Verify", "Registry", "Evidence", "Correction", "Enter" }
         .ToDictionary(k => k, k => L["Work.Kind." + k].Value);
     <script type="application/json" id="work-kinds">@Html.Raw(System.Text.Json.JsonSerializer.Serialize(kindNames))</script>
 }

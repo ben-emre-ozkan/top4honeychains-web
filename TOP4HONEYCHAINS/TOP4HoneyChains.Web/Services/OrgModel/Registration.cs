@@ -196,7 +196,7 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                 f.BirthDate?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture) ?? "", c.PhoneE164 ?? "",
                 f.EducationLevelId?.ToString(CultureInfo.InvariantCulture) ?? "", f.PurposeTypeId?.ToString(CultureInfo.InvariantCulture) ?? "",
                 f.BeekeepingTypeId?.ToString(CultureInfo.InvariantCulture) ?? "", f.Language ?? "",
-                f.ApiaryLatitude?.ToString(CultureInfo.InvariantCulture) ?? "", f.ApiaryLongitude?.ToString(CultureInfo.InvariantCulture) ?? "",
+                f.ApiaryLatitude?.ToString("0.#########", CultureInfo.InvariantCulture) ?? "", f.ApiaryLongitude?.ToString("0.#########", CultureInfo.InvariantCulture) ?? "",
                 f.ApiaryProvince ?? "", f.ApiaryDistrictId?.ToString(CultureInfo.InvariantCulture) ?? "", f.ApiaryLocality?.Trim() ?? "",
                 f.ApiaryHives?.ToString(CultureInfo.InvariantCulture) ?? "", f.PublicName ? "name:yes" : "name:no", f.PortalNotifications ? "sms:yes" : "sms:no"
             }));

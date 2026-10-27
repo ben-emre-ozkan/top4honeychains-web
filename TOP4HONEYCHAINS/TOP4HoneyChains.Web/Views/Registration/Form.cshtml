@@ -1,0 +1,192 @@
+@model TOP4HoneyChains.Web.Services.OrgModel.RegistrationForm
+@using TOP4HoneyChains.Web.Models.Entities
+@{
+    ViewData["Title"] = (Model.IsNew ? L["Reg78.New"] : L["Reg78.Reverify"]).Value;
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var registrar = (TOP4HoneyChains.Web.Services.OrgModel.Registrar)ViewBag.Registrar;
+    var codeSent = ViewBag.CodeSent == true;
+    var apiaries = ViewBag.Apiaries as List<Apiary> ?? new();
+    var notice = ViewBag.Notice as Notice;
+    var attestation = ViewBag.Attestation as Notice;
+    var languages = new[] { ("tr", "Türkçe"), ("en", "English"), ("es", "Español"), ("pl", "Polski"), ("lv", "Latviešu") };
+}
+@section AddToHead {
+    <link href="~/assets/libs/leaflet/leaflet.css" rel="stylesheet" asp-append-version="true" />
+    <style>
+        @@media print {
+            .page-content form .no-print, #page-topbar, .app-pagehead, footer { display: none !important; }
+            .reg-print-only { display: block !important; }
+        }
+        .reg-print-only { display: none; }
+        .reg-notice { max-height: 260px; overflow-y: auto; white-space: pre-line; font-size: .9rem; }
+    </style>
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-1">@(Model.IsNew ? L["Reg78.New"] : L["Reg78.Reverify"])</h4>
+                    <p class="card-title-desc">@registrar.OrgName · <a href="/Registration/Index" class="no-print">@L["Reg78.Title"]</a></p>
+
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div class="alert alert-danger" role="alert" id="registration-errors">
+                            @foreach (var e in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                            {
+                                <div>@Msg.T(e.ErrorMessage)</div>
+                            }
+                        </div>
+                    }
+
+                    <form asp-action="Submit" method="post" enctype="multipart/form-data" id="registration-form">
+                        <input type="hidden" asp-for="DraftKey" />
+                        <input type="hidden" asp-for="BeekeeperId" />
+
+                        <h5 class="mt-2">1. @L["Reg78.Registry"]</h5>
+                        <div class="row g-2">
+                            <div class="col-md-4">
+                                <label class="form-label required" for="RegistryNumber">@L["Reg78.RegistryNumber"]</label>
+                                <input class="form-control" asp-for="RegistryNumber" placeholder="TR061234567890" autocomplete="off" />
+                                <div class="form-text">@L["Reg78.RegistryHelp"]</div>
+                            </div>
+                            <div class="col-md-8">
+                                <label class="form-label" for="ProvinceMismatchReason">@L["Reg78.MismatchReason"]</label>
+                                <input class="form-control" asp-for="ProvinceMismatchReason" maxlength="300" />
+                            </div>
+                        </div>
+
+                        <h5 class="mt-4">2. @L["Reg78.Identity"]</h5>
+                        <div class="row g-2">
+                            <div class="col-md-4"><label class="form-label required" for="FirstName">@L["First Name"]</label><input class="form-control" asp-for="FirstName" maxlength="50" /></div>
+                            <div class="col-md-4"><label class="form-label required" for="LastName">@L["Last Name"]</label><input class="form-control" asp-for="LastName" maxlength="50" /></div>
+                            <div class="col-md-4"><label class="form-label required" for="BirthDate">@L["Birth Date"]</label><input class="form-control" asp-for="BirthDate" type="date" /></div>
+                            <div class="col-md-4">
+                                <label class="form-label" for="Phone">@L["Notice.MobilePhone"]</label>
+                                <input class="form-control" asp-for="Phone" type="tel" placeholder="+90 532 123 45 67" />
+                                <div class="form-check mt-1">
+                                    <input class="form-check-input" type="checkbox" asp-for="NoPhone" />
+                                    <label class="form-check-label small" for="NoPhone">@L["Reg78.NoPhone"]</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label" for="Language">@L["Reg78.Language"]</label>
+                                <select class="form-select" asp-for="Language">
+                                    @foreach (var (code, name) in languages)
+                                    {
+                                        <option value="@code">@name</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-4"><label class="form-label" for="EducationLevelId">@L["Education Level"]</label><select class="form-select" asp-for="EducationLevelId" asp-items="ViewBag.Education"><option value="">@L["-- Select --"]</option></select></div>
+                            <div class="col-md-4"><label class="form-label" for="PurposeTypeId">@L["Beekeeping Purpose Type"]</label><select class="form-select" asp-for="PurposeTypeId" asp-items="ViewBag.Purposes"><option value="">@L["-- Select --"]</option></select></div>
+                            <div class="col-md-4"><label class="form-label" for="BeekeepingTypeId">@L["Beekeeping Type"]</label><select class="form-select" asp-for="BeekeepingTypeId" asp-items="ViewBag.Types"><option value="">@L["-- Select --"]</option></select></div>
+                        </div>
+
+                        <h5 class="mt-4">3. @L["Reg78.Apiary"]</h5>
+                        @if (apiaries.Count > 0)
+                        {
+                            <ul class="small" id="existing-apiaries">
+                                @foreach (var a in apiaries)
+                                {
+                                    <li>@a.ApiaryTitle · @a.ApiaryBeehivesCount @L["Reg78.Hives"]</li>
+                                }
+                            </ul>
+                            <p class="form-text">@L["Reg78.MoreApiaryOptional"]</p>
+                        }
+                        <div class="row g-2">
+                            <div class="col-md-4"><label class="form-label" for="ApiaryLocationLatitude">@L["Location Latitude"]</label><input class="form-control" id="ApiaryLocationLatitude" name="ApiaryLatitude" value="@Model.ApiaryLatitude" inputmode="decimal" /></div>
+                            <div class="col-md-4"><label class="form-label" for="ApiaryLocationLongitude">@L["Location Longitude"]</label><input class="form-control" id="ApiaryLocationLongitude" name="ApiaryLongitude" value="@Model.ApiaryLongitude" inputmode="decimal" /></div>
+                            <div class="col-md-4"><label class="form-label" for="ApiaryHives">@L["Beehives Count"]</label><input class="form-control" asp-for="ApiaryHives" type="number" min="1" max="10000" /></div>
+                        </div>
+                        <div class="no-print mt-2"><partial name="~/Views/Apiaries/_LocationPicker.cshtml" /></div>
+                        <partial name="_ApiaryPlace" model="@(new TOP4HoneyChains.Web.Models.ViewModels.ApiaryPlaceField("ApiaryProvince", "ApiaryDistrictId", "ApiaryLocality", Model.ApiaryProvince, Model.ApiaryDistrictId, Model.ApiaryLocality, "ApiaryLocationLatitude", "ApiaryLocationLongitude", null, Model.IsNew))" />
+
+                        <h5 class="mt-4">4. @L["Reg78.NoticeAndConsent"]</h5>
+                        @if (notice != null)
+                        {
+                            <p class="small mb-1">@L["Reg78.NoticeIntro"] <span class="text-muted">(@notice.Version)</span>
+                                @if (notice.IsDraft)
+                                {
+                                    <span class="badge bg-warning-subtle text-dark border">@L["Notice.Draft"]</span>
+                                }
+                            </p>
+                            <div class="border rounded p-2 bg-light reg-notice" tabindex="0" id="registration-notice" lang="@notice.Language">@notice.Body</div>
+                        }
+                        <div class="form-check mt-2">
+                            <input class="form-check-input" type="checkbox" asp-for="PublicName" />
+                            <label class="form-check-label" for="PublicName">@L["Reg78.ConsentPublicName"]</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" asp-for="PortalNotifications" />
+                            <label class="form-check-label" for="PortalNotifications">@L["Reg78.ConsentSms"]</label>
+                        </div>
+                        <div class="form-text"><a href="/privacy" target="_blank" rel="noopener">@L["Reg78.ConsentTexts"]</a></div>
+
+                        <h5 class="mt-4">5. @L["Reg78.Attestation"]</h5>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" asp-for="Attest" />
+                            <label class="form-check-label" for="Attest">@(attestation?.Body ?? L["Reg78.AttestFallback"].Value)</label>
+                        </div>
+
+                        @if (ViewBag.SignInEnabled == true)
+                        {
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" asp-for="IssueSignIn" />
+                                <label class="form-check-label" for="IssueSignIn">@L["Reg78.IssueSignIn"]</label>
+                            </div>
+                        }
+
+                        <div class="reg-print-only mt-5">
+                            <p>@L["Reg78.PrintSign"]</p>
+                            <p>____________________________ &nbsp; @DateTime.Now.ToString("dd.MM.yyyy")</p>
+                        </div>
+
+                        <h5 class="mt-4 no-print">6. @L["Reg78.Confirm"]</h5>
+                        <div class="no-print">
+                            @if (!codeSent)
+                            {
+                                <p class="small">@L["Reg78.SendHelp"]</p>
+                                <button type="submit" name="op" value="send" class="btn btn-primary" id="registration-send"><i class="mdi mdi-message-processing-outline"></i> @L["Notice.SendCode"]</button>
+                            }
+                            else
+                            {
+                                @if (ViewBag.DemoMessage is string demo)
+                                {
+                                    <div class="alert alert-info small" id="demo-sms"><strong>@L["Reg78.DemoSms"]</strong> @demo</div>
+                                }
+                                <div class="row g-2 align-items-end">
+                                    <div class="col-auto">
+                                        <label class="form-label" for="Code">@L["Notice.Code"]</label>
+                                        <input class="form-control" asp-for="Code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" />
+                                    </div>
+                                    <div class="col-auto"><button type="submit" name="op" value="confirm" class="btn btn-success" id="registration-confirm">@L["Reg78.ConfirmButton"]</button></div>
+                                    <div class="col-auto"><button type="submit" name="op" value="send" class="btn btn-outline-secondary">@L["Notice.SendNewCode"]</button></div>
+                                </div>
+                            }
+
+                            <details class="mt-4" id="registration-fallback" open="@(Model.NoPhone || !string.IsNullOrEmpty(Model.FallbackReason))">
+                                <summary>@L["Reg78.Fallback"]</summary>
+                                <p class="small mt-2">@L["Reg78.FallbackHelp"]</p>
+                                <div class="row g-2">
+                                    <div class="col-md-6"><label class="form-label" for="FallbackReason">@L["Reg78.FallbackReason"]</label><input class="form-control" asp-for="FallbackReason" maxlength="300" /></div>
+                                    <div class="col-md-6"><label class="form-label" for="evidence">@L["Reg78.SignedPhoto"]</label><input class="form-control" type="file" id="evidence" name="evidence" accept=".pdf,.jpg,.jpeg,.png,.webp" /></div>
+                                </div>
+                                <div class="mt-2 d-flex gap-2 flex-wrap">
+                                    <button type="button" class="btn btn-outline-secondary" onclick="window.print()"><i class="mdi mdi-printer"></i> @L["Reg78.Print"]</button>
+                                    <button type="submit" name="op" value="photo" class="btn btn-warning" id="registration-photo">@L["Reg78.SaveWithPhoto"]</button>
+                                </div>
+                            </details>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    @section scripts {
+        <script src="~/assets/libs/leaflet/leaflet.js" asp-append-version="true"></script>
+        <script src="~/js/apiary-map.js" asp-append-version="true"></script>
+        <script src="~/js/apiary-place.js" asp-append-version="true"></script>
+    }
+</body>
