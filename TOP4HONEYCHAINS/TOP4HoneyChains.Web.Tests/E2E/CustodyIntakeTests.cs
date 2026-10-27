@@ -387,9 +387,7 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             // the database refuses changes too (the triggers of migration 023, installed on the test database here)
             await using var conn = new SqlConnection(_app.ConnectionString);
             await conn.OpenAsync();
-            var script = await File.ReadAllTextAsync(Path.Combine(RepoRoot(), "db", "migrations", "023_d78_containers_samples.sql"));
-            foreach (var batch in Regex.Split(script, @"^\s*GO\s*$", RegexOptions.Multiline).Where(b => b.Contains("CREATE OR ALTER TRIGGER")))
-                await new SqlCommand(batch.Trim(), conn).ExecuteNonQueryAsync();
+            await InstallTriggersAsync(conn);
             async Task<bool> RefusedAsync(string sql)
             {
                 try { await new SqlCommand(sql, conn).ExecuteNonQueryAsync(); return false; }
@@ -402,6 +400,17 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             Assert.False(await RefusedAsync($"UPDATE dbo.RawHoneyProductions SET OwnerOrgId = OwnerOrgId WHERE RawHoneyProductionId = {lot}"));
             return 0;
         });
+
+        // the triggers of migrations 023-025 (024 replaces the delivery locks of 023), installed on the test database
+        internal static async Task InstallTriggersAsync(SqlConnection conn)
+        {
+            foreach (var file in new[] { "023_d78_containers_samples.sql", "024_d78_lot_prices.sql", "025_d78_compliance.sql" })
+            {
+                var script = await File.ReadAllTextAsync(Path.Combine(RepoRoot(), "db", "migrations", file));
+                foreach (var batch in Regex.Split(script, @"^\s*GO\s*$", RegexOptions.Multiline).Where(b => b.Contains("CREATE OR ALTER TRIGGER")))
+                    await new SqlCommand(batch.Trim(), conn).ExecuteNonQueryAsync();
+            }
+        }
 
         private static string RepoRoot()
         {

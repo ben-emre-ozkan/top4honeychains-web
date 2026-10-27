@@ -18,6 +18,10 @@ public partial class TOP4HoneyChainsContext
     public virtual DbSet<Container> Containers { get; set; }
     public virtual DbSet<ContainerSealEvent> ContainerSealEvents { get; set; }
     public virtual DbSet<SampleSource> SampleSources { get; set; }
+    public virtual DbSet<LotPrice> LotPrices { get; set; }
+    public virtual DbSet<DeliveryCorrection> DeliveryCorrections { get; set; }
+    public virtual DbSet<DataSubjectRequest> DataSubjectRequests { get; set; }
+    public virtual DbSet<ComplianceReview> ComplianceReviews { get; set; }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder)
     {
@@ -177,6 +181,49 @@ public partial class TOP4HoneyChainsContext
         });
 
         modelBuilder.Entity<RawHoneyProduction>(entity => entity.ToTable(tb => tb.HasTrigger("TR_RawHoneyProductions_DeliveryLocked")));
+
+        // D-78 P3 (migrations 024, 025)
+        modelBuilder.Entity<LotPrice>(entity =>
+        {
+            entity.ToTable("LotPrices", tb => tb.HasTrigger("TR_LotPrices_AppendOnly"));
+            entity.Property(e => e.Currency).IsFixedLength().IsUnicode(false);
+            entity.Property(e => e.Basis).IsUnicode(false).HasDefaultValue(PriceBasis.Asking);
+            entity.Property(e => e.ClientIp).IsUnicode(false);
+            entity.HasIndex(e => new { e.RawHoneyProductionId, e.PriceId });
+            entity.HasOne<RawHoneyProduction>().WithMany().HasForeignKey(e => e.RawHoneyProductionId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<DeliveryCorrection>(entity =>
+        {
+            entity.ToTable("DeliveryCorrections", tb => tb.HasTrigger("TR_DeliveryCorrections_Guard"));
+            entity.Property(e => e.OldContentSha256).IsFixedLength().IsUnicode(false);
+            entity.Property(e => e.NewContentSha256).IsFixedLength().IsUnicode(false);
+            entity.Property(e => e.Status).IsUnicode(false).HasDefaultValue(CorrectionStatus.Pending);
+            entity.HasIndex(e => new { e.IntakeId, e.CorrectionId });
+            entity.HasOne(e => e.Intake).WithMany().HasForeignKey(e => e.IntakeId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne<RawHoneyProduction>().WithMany().HasForeignKey(e => e.RawHoneyProductionId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne<SmsMessage>().WithMany().HasForeignKey(e => e.InfoSmsId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<DataSubjectRequest>(entity =>
+        {
+            entity.Property(e => e.Kind).IsUnicode(false);
+            entity.Property(e => e.Status).IsUnicode(false).HasDefaultValue(DataSubjectRequestStatus.Open);
+            entity.HasIndex(e => new { e.OrgId, e.Status, e.DueOn });
+            entity.HasOne<Organization>().WithMany().HasForeignKey(e => e.OrgId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne<Beekeeper>().WithMany().HasForeignKey(e => e.BeekeeperId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<ComplianceReview>(entity =>
+        {
+            entity.ToTable("ComplianceReviews", tb => tb.HasTrigger("TR_ComplianceReviews_AppendOnly"));
+            entity.Property(e => e.SubjectType).IsUnicode(false);
+            entity.Property(e => e.Outcome).IsUnicode(false);
+            entity.HasIndex(e => new { e.OrgId, e.SubjectType, e.SubjectId });
+            entity.HasOne<Organization>().WithMany().HasForeignKey(e => e.OrgId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<OrgDocument>(entity => entity.Property(e => e.AgreementKind).IsUnicode(false));
 
         modelBuilder.Entity<Consent>(entity =>
         {
