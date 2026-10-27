@@ -952,6 +952,16 @@ Each phase is one or more work items (one branch per item, per CLAUDE.md), merge
 - **Tests:** unit: portal queries filtered by the signed-in beekeeper (a test per screen with two beekeepers), price rules (owner only, lock at finalize, history); E2E: beekeeper signs in, sees only their lots, enters and changes a price, the plant's OA sees it, Staff and a later holder do not; withdraw the public-name consent and the Honey Story shows the neutral code; CO accepts a photo, cannot accept their own; negative: a beekeeper id in a URL that is not theirs (404), POST to any panel action (403).
 - **Risk to live data:** low. New tables; the change visible to the public is the Honey Story name rule (O-8), which is decided before P3 ships.
 - **Effort:** 10–13 days.
+- **As built (2026-10-27, D-82)**, where the implementation differs from or adds to the text above:
+  - 024 also holds `DeliveryCorrections` (P2 follow-up) and new versions of the four delivery-lock triggers of 023; 025 adds `OrgDocuments.AgreementKind` (the agreement kinds are stored with Kind `Other`, the CHECK on Kind is not changed) and replaces the 008 CHECK on `Consents.Purpose` (disabled, not dropped) with one that allows the registration consents of P1 and the new `AssociationPrice` (O-6).
+  - `DataSubjectRequests`: OrgId, BeekeeperId (optional), SubjectName, Kind (Access, Correction, Deletion, Objection, ConsentWithdrawal), Channel, ReceivedOn, DueOn (+30 days), Details, Status (Open, Answered, Refused), Outcome, recorded and closed by/at. `ComplianceReviews`: OrgId, SubjectType (Intake, Sample, SealEvent), SubjectId, Outcome (InOrder, Finding), Finding, Action, reviewer, time; append-only.
+  - The `BeekeeperSelf` policy is evaluated by the portal controller, so `/Me` answers 404 to everyone else (not a redirect); a middleware answers 403 to a beekeeper account on every other action that needs a sign-in (public pages stay open).
+  - The price is entered for every lot of the beekeeper that has an intake: a legacy one, or a delivery with containers once accepted (a signed photo waiting for or refused by the Compliance Officer blocks it). Currencies: TRY, EUR, USD, ARS, PLN. The OA and CO of the lot owner see the price in the intake list and on the delivery page; the association on `/Storefronts/Prices/{beekeeper}` with the consent.
+  - O-8 applies to both Honey Story pages; the neutral code is the beekeeper's storefront code, created on first use. A legacy beekeeper is one without a `BeekeeperRegistrations` row.
+  - O-9: "new" means an organization never verified (`VerifiedAt` empty); re-verifying a suspended organization does not require a Compliance Officer. The warning shows on My organization and on the organization page.
+  - The Compliance Officer may upload organization documents (like the OA). Approval checks cover the CCP records of raw lots (batches not yet); the CCP responsibility matrix is shown as the rights per role.
+  - M6 exists for delivery corrections only (one segment in Turkish); no other information messages yet.
+  - A phone changed in the portal (after its code) also becomes the beekeeper's number for M3 and M6. `Features:BeekeeperAccounts` is read per request.
 
 ### P4: landing logos and in-app animations
 
