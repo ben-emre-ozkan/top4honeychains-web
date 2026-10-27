@@ -7428,4 +7428,100 @@
   <data name="Data controller details saved." xml:space="preserve">
     <value>Veri sorumlusu bilgileri kaydedildi.</value>
   </data>
+  <data name="Login.TemporaryExpired" xml:space="preserve">
+    <value>Geçici şifrenin süresi doldu. Yeni giriş bilgileri isteyin.</value>
+  </data>
+  <data name="Enter your user name." xml:space="preserve">
+    <value>Kullanıcı adınızı girin.</value>
+  </data>
+  <data name="If the account exists and has a verified mobile phone, a code was sent by SMS." xml:space="preserve">
+    <value>Hesap varsa ve doğrulanmış bir cep telefonu varsa SMS ile bir kod gönderildi.</value>
+  </data>
+  <data name="Enter the new password twice." xml:space="preserve">
+    <value>Yeni şifreyi iki kez girin.</value>
+  </data>
+  <data name="Your new password is set." xml:space="preserve">
+    <value>Yeni şifreniz belirlendi.</value>
+  </data>
+  <data name="Phone number verified." xml:space="preserve">
+    <value>Telefon numarası doğrulandı.</value>
+  </data>
+  <data name="Use your profile to change your own password." xml:space="preserve">
+    <value>Kendi şifrenizi profilinizden değiştirin.</value>
+  </data>
+  <data name="Sign-in details for {0} were sent by SMS." xml:space="preserve">
+    <value>{0} için giriş bilgileri SMS ile gönderildi.</value>
+  </data>
+  <data name="The user {0} was created, but the SMS could not be sent: {1} Send the sign-in details again from the user list." xml:space="preserve">
+    <value>{0} kullanıcısı oluşturuldu, ancak SMS gönderilemedi: {1} Giriş bilgilerini kullanıcı listesinden yeniden gönderin.</value>
+  </data>
+  <data name="Enter the initial password twice." xml:space="preserve">
+    <value>İlk şifreyi iki kez girin.</value>
+  </data>
+  <data name="Enter an existing user name, or a new user name and a mobile phone (or an initial password)." xml:space="preserve">
+    <value>Var olan bir kullanıcı adı ya da yeni bir kullanıcı adı ile cep telefonu (veya ilk şifre) girin.</value>
+  </data>
+  <data name="The password must not contain the user name." xml:space="preserve">
+    <value>Şifre kullanıcı adını içeremez.</value>
+  </data>
+  <data name="This password is too common. Choose another one." xml:space="preserve">
+    <value>Bu şifre çok yaygın. Başka bir şifre seçin.</value>
+  </data>
+  <data name="Reset.SmsIntro" xml:space="preserve">
+    <value>Kullanıcı adınızı girin. Hesabınızda doğrulanmış bir cep telefonu varsa SMS ile bir kod göndeririz.</value>
+  </data>
+  <data name="Reset.NoPhone" xml:space="preserve">
+    <value>Doğrulanmış cep telefonunuz yok mu? Giriş bilgilerinizi veren kişiden yenilerini göndermesini isteyin.</value>
+  </data>
+  <data name="Reset.CodeIntro" xml:space="preserve">
+    <value>SMS'teki kodu girin ve yeni bir şifre belirleyin. Kod 5 dakika geçerlidir.</value>
+  </data>
+  <data name="Password.Rule" xml:space="preserve">
+    <value>En az 10 karakter; kullanıcı adınız ve yaygın bir şifre olamaz.</value>
+  </data>
+  <data name="FirstPassword.Title" xml:space="preserve">
+    <value>Şifrenizi belirleyin</value>
+  </data>
+  <data name="FirstPassword.Intro" xml:space="preserve">
+    <value>Geçici bir şifreyle giriş yaptınız. Devam etmeden önce kendi şifrenizi belirleyin.</value>
+  </data>
+  <data name="Me.Title" xml:space="preserve">
+    <value>Arıcı alanım</value>
+  </data>
+  <data name="Me.Hello" xml:space="preserve">
+    <value>Merhaba {0}</value>
+  </data>
+  <data name="Me.Coming" xml:space="preserve">
+    <value>Portalınız (arılıklar, teslimatlar, analiz sonuçları, balınızın fiyatı) yakında açılıyor. O zamana kadar aydınlatma metninizi buradan okuyabilirsiniz.</value>
+  </data>
+  <data name="Phone.Verified" xml:space="preserve">
+    <value>doğrulandı</value>
+  </data>
+  <data name="Phone.NotVerified" xml:space="preserve">
+    <value>doğrulanmadı</value>
+  </data>
+  <data name="Phone.Help" xml:space="preserve">
+    <value>Yeni numara, ona gönderdiğimiz kodu girdikten sonra kullanılır. Doğrulanmış numara şifrenizi SMS ile sıfırlamanızı sağlar.</value>
+  </data>
+  <data name="UM.Delivery" xml:space="preserve">
+    <value>Giriş bilgileri</value>
+  </data>
+  <data name="UM.DeliverySms" xml:space="preserve">
+    <value>Kullanıcı adını ve geçici şifreyi SMS ile gönder (önerilir)</value>
+  </data>
+  <data name="UM.DeliveryManual" xml:space="preserve">
+    <value>İlk şifreyi burada belirle (kullanıcı ilk girişte değiştirir)</value>
+  </data>
+  <data name="UM.SendSignIn" xml:space="preserve">
+    <value>Girişi SMS ile gönder</value>
+  </data>
+  <data name="Org.EmailOptional" xml:space="preserve">
+    <value>E-posta (isteğe bağlı)</value>
+  </data>
+  <data name="Org.PasswordOptional" xml:space="preserve">
+    <value>İlk şifre (isteğe bağlı)</value>
+  </data>
+  <data name="Org.CredentialsBySms" xml:space="preserve">
+    <value>İlk şifre girilmezse kullanıcı adı ve geçici şifre SMS ile gönderilir. Her iki durumda da yeni kullanıcı ilk girişte şifresini belirler.</value>
+  </data>
 </root>

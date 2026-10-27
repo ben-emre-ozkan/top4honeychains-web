@@ -13,6 +13,10 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
     public class CredentialService
     {
         public static readonly TimeSpan Validity = TimeSpan.FromHours(72);
+
+        // the link in the credentials SMS (M2): the public sign-in page
+        public static string SignInLink(HttpContext http) =>
+            PublicUrl.Build(http, "/Account/Login") ?? $"{http.Request.Scheme}://{http.Request.Host}/Account/Login";
         // no 0/O, 1/l/I: 55 symbols, 10 characters = about 58 bits
         private const string Alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789";
         public const int TemporaryLength = 10;
@@ -34,6 +38,9 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         }
 
         private DateTime Now => _clock.GetUtcNow().UtcDateTime;
+
+        // the phone error, or null when the number may receive SMS
+        public string? CheckPhone(string? phone) => _messages.CheckPhone(phone).Error;
 
         public static string TemporaryPassword() =>
             new(Enumerable.Range(0, TemporaryLength).Select(_ => Alphabet[RandomNumberGenerator.GetInt32(Alphabet.Length)]).ToArray());
@@ -116,6 +123,12 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             settings.PhoneCodeId = codeId;
             await _context.SaveChangesAsync();
         }
+    }
+
+    public static class CredentialDelivery
+    {
+        public const string Sms = "Sms";
+        public const string Manual = "Manual";
     }
 
     // D-78 P1 (D78-SPEC 4.3 step 6): at least 10 characters (Identity options), not the user name, not a common password.

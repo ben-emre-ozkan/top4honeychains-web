@@ -65,9 +65,14 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         }
 
         // The platform's notice for members and the notice of every organization the user works for, minus the versions
-        // already accepted (in any language)
+        // already accepted (in any language). A beekeeper account gets the beekeepers' notice; what the beekeeper accepted at
+        // registration (by SMS code or signed photo) counts.
         public async Task<List<PendingNotice>> PendingForUserAsync(string userId, string audience = NoticeAudience.Member)
         {
+            var beekeeperId = await _context.BeekeeperAccounts.AsNoTracking()
+                .Where(a => a.UserId == userId && a.Status == BeekeeperAccountStatus.Active).Select(a => a.BeekeeperId).FirstOrDefaultAsync();
+            if (beekeeperId != null)
+                audience = NoticeAudience.Beekeeper;
             var orgIds = await _context.Memberships.AsNoTracking()
                 .Where(m => m.UserId == userId && m.Status == MembershipStatus.Active)
                 .Select(m => m.OrgId).Distinct().ToListAsync();
@@ -79,7 +84,7 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             if (current.Count == 0)
                 return new();
 
-            var accepted = (await _context.NoticeAcceptances.AsNoTracking().Where(a => a.UserId == userId)
+            var accepted = (await _context.NoticeAcceptances.AsNoTracking().Where(a => a.UserId == userId || (beekeeperId != null && a.BeekeeperId == beekeeperId))
                     .Select(a => new { a.Notice!.Kind, a.Notice.Audience, a.Notice.OrgId, a.Notice.Purpose, a.Notice.Version }).ToListAsync())
                 .Select(a => (a.Kind, a.Audience, a.OrgId, a.Purpose, a.Version)).ToHashSet();
             var orgs = await _context.Organizations.AsNoTracking().Where(o => orgIds.Contains(o.OrgId)).ToDictionaryAsync(o => o.OrgId);

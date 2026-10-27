@@ -7428,4 +7428,100 @@
   <data name="Data controller details saved." xml:space="preserve">
     <value>Datos del responsable guardados.</value>
   </data>
+  <data name="Login.TemporaryExpired" xml:space="preserve">
+    <value>La contraseña temporal ha caducado. Pida nuevos datos de acceso.</value>
+  </data>
+  <data name="Enter your user name." xml:space="preserve">
+    <value>Introduzca su nombre de usuario.</value>
+  </data>
+  <data name="If the account exists and has a verified mobile phone, a code was sent by SMS." xml:space="preserve">
+    <value>Si la cuenta existe y tiene un móvil verificado, se envió un código por SMS.</value>
+  </data>
+  <data name="Enter the new password twice." xml:space="preserve">
+    <value>Introduzca la nueva contraseña dos veces.</value>
+  </data>
+  <data name="Your new password is set." xml:space="preserve">
+    <value>Su nueva contraseña está establecida.</value>
+  </data>
+  <data name="Phone number verified." xml:space="preserve">
+    <value>Número de teléfono verificado.</value>
+  </data>
+  <data name="Use your profile to change your own password." xml:space="preserve">
+    <value>Cambie su propia contraseña desde su perfil.</value>
+  </data>
+  <data name="Sign-in details for {0} were sent by SMS." xml:space="preserve">
+    <value>Los datos de acceso de {0} se enviaron por SMS.</value>
+  </data>
+  <data name="The user {0} was created, but the SMS could not be sent: {1} Send the sign-in details again from the user list." xml:space="preserve">
+    <value>Se creó el usuario {0}, pero no se pudo enviar el SMS: {1} Vuelva a enviar los datos de acceso desde la lista de usuarios.</value>
+  </data>
+  <data name="Enter the initial password twice." xml:space="preserve">
+    <value>Introduzca la contraseña inicial dos veces.</value>
+  </data>
+  <data name="Enter an existing user name, or a new user name and a mobile phone (or an initial password)." xml:space="preserve">
+    <value>Introduzca un usuario existente, o un usuario nuevo y un móvil (o una contraseña inicial).</value>
+  </data>
+  <data name="The password must not contain the user name." xml:space="preserve">
+    <value>La contraseña no debe contener el nombre de usuario.</value>
+  </data>
+  <data name="This password is too common. Choose another one." xml:space="preserve">
+    <value>Esta contraseña es demasiado común. Elija otra.</value>
+  </data>
+  <data name="Reset.SmsIntro" xml:space="preserve">
+    <value>Introduzca su nombre de usuario. Si su cuenta tiene un móvil verificado, le enviamos un código por SMS.</value>
+  </data>
+  <data name="Reset.NoPhone" xml:space="preserve">
+    <value>¿Sin móvil verificado? Pida a quien le dio sus datos de acceso que le envíe unos nuevos.</value>
+  </data>
+  <data name="Reset.CodeIntro" xml:space="preserve">
+    <value>Introduzca el código del SMS y elija una contraseña nueva. El código vale 5 minutos.</value>
+  </data>
+  <data name="Password.Rule" xml:space="preserve">
+    <value>Al menos 10 caracteres, que no sea su usuario ni una contraseña común.</value>
+  </data>
+  <data name="FirstPassword.Title" xml:space="preserve">
+    <value>Elija su contraseña</value>
+  </data>
+  <data name="FirstPassword.Intro" xml:space="preserve">
+    <value>Ha entrado con una contraseña temporal. Elija su propia contraseña antes de continuar.</value>
+  </data>
+  <data name="Me.Title" xml:space="preserve">
+    <value>Mi área de apicultor</value>
+  </data>
+  <data name="Me.Hello" xml:space="preserve">
+    <value>Hola, {0}</value>
+  </data>
+  <data name="Me.Coming" xml:space="preserve">
+    <value>Su portal (colmenares, entregas, resultados de laboratorio, el precio de su miel) se abrirá pronto. Mientras tanto puede leer aquí su aviso de privacidad.</value>
+  </data>
+  <data name="Phone.Verified" xml:space="preserve">
+    <value>verificado</value>
+  </data>
+  <data name="Phone.NotVerified" xml:space="preserve">
+    <value>no verificado</value>
+  </data>
+  <data name="Phone.Help" xml:space="preserve">
+    <value>Un número nuevo solo se usa tras introducir el código que le enviamos. Un número verificado le permite restablecer la contraseña por SMS.</value>
+  </data>
+  <data name="UM.Delivery" xml:space="preserve">
+    <value>Datos de acceso</value>
+  </data>
+  <data name="UM.DeliverySms" xml:space="preserve">
+    <value>Enviar el usuario y una contraseña temporal por SMS (recomendado)</value>
+  </data>
+  <data name="UM.DeliveryManual" xml:space="preserve">
+    <value>Fijar aquí una contraseña inicial (el usuario la cambia al primer acceso)</value>
+  </data>
+  <data name="UM.SendSignIn" xml:space="preserve">
+    <value>Enviar acceso por SMS</value>
+  </data>
+  <data name="Org.EmailOptional" xml:space="preserve">
+    <value>Correo (opcional)</value>
+  </data>
+  <data name="Org.PasswordOptional" xml:space="preserve">
+    <value>Contraseña inicial (opcional)</value>
+  </data>
+  <data name="Org.CredentialsBySms" xml:space="preserve">
+    <value>Sin contraseña inicial, el usuario y una contraseña temporal se envían por SMS. En ambos casos el nuevo usuario elige su contraseña al primer acceso.</value>
+  </data>
 </root>

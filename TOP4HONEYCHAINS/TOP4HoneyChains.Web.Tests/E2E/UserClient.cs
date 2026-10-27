@@ -31,6 +31,14 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             return client;
         }
 
+        // D-78: sign in with any password and return the answer (a temporary password, a wrong one, an expired one)
+        public static async Task<(UserClient Client, HttpResponseMessage Response)> SignInAsync(E2EApp app, string userName, string password)
+        {
+            var client = new UserClient(app.CreateClient(new WebApplicationFactoryClientOptions { AllowAutoRedirect = false, HandleCookies = true }), userName);
+            var response = await client.PostAsync("/Account/Login", new() { ["UserName"] = userName, ["Password"] = password }, "/Account/Login");
+            return (client, response);
+        }
+
         public async Task<HttpResponseMessage> GetAsync(string url) => await _http.GetAsync(url);
 
         public async Task<string> HtmlAsync(string url)

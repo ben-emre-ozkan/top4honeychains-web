@@ -393,7 +393,7 @@ namespace TOP4HoneyChains.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Policy = AuthPolicies.PlatformAdmin)]
-        public async Task<IActionResult> AddMember(int id, string orgRole, string? existingUserName, string? newUserName, string? newEmail, string? newPassword)
+        public async Task<IActionResult> AddMember(int id, string orgRole, string? existingUserName, string? newUserName, string? newEmail, string? newPassword, string? newPhone)
         {
             var org = await LoadAsync(id);
             if (org == null)
@@ -421,20 +421,38 @@ namespace TOP4HoneyChains.Web.Controllers
             }
             else
             {
-                if (string.IsNullOrWhiteSpace(newUserName) || string.IsNullOrWhiteSpace(newEmail) || string.IsNullOrWhiteSpace(newPassword))
+                // D-78 (D78-SPEC 4.3): a new member gets the sign-in details by SMS, or an initial password set here;
+                // both are changed at the first sign-in
+                if (string.IsNullOrWhiteSpace(newUserName) || (string.IsNullOrWhiteSpace(newPhone) && string.IsNullOrWhiteSpace(newPassword)))
                 {
-                    TempData["Error"] = "Enter an existing user name, or a new user name, e-mail and password.";
+                    TempData["Error"] = "Enter an existing user name, or a new user name and a mobile phone (or an initial password).";
                     return RedirectToAction(nameof(Details), new { id });
                 }
-                user = new ApplicationUser { UserName = newUserName.Trim(), Email = newEmail.Trim() };
+                var credentials = HttpContext.RequestServices.GetRequiredService<CredentialService>();
+                var manual = !string.IsNullOrWhiteSpace(newPassword);
+                if (!manual && credentials.CheckPhone(newPhone) is string phoneError)
+                {
+                    TempData["Error"] = phoneError;
+                    return RedirectToAction(nameof(Details), new { id });
+                }
+                user = new ApplicationUser { UserName = newUserName.Trim(), Email = string.IsNullOrWhiteSpace(newEmail) ? null : newEmail.Trim() };
                 // Members get no global role: their access comes only from memberships
-                var result = await _userManager.CreateAsync(user, newPassword);
+                var result = await _userManager.CreateAsync(user, manual ? newPassword! : CredentialService.Unusable());
                 if (!result.Succeeded)
                 {
                     TempData["Error"] = string.Join(" ", result.Errors.Select(e => e.Description));
                     return RedirectToAction(nameof(Details), new { id });
                 }
                 await _audit.WriteAsync("Create", "AspNetUsers", user.Id, null, new { user.UserName, user.Email });
+                if (manual)
+                    await credentials.RecordManualAsync(user.Id, _current.UserId);
+                else
+                {
+                    var issued = await credentials.IssueBySmsAsync(user, newPhone!, System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName,
+                        _current.UserId, CredentialService.SignInLink(HttpContext));
+                    if (!issued.Ok)
+                        TempData["Error"] = $"The user {user.UserName} was created, but the SMS could not be sent: {issued.Error} Send the sign-in details again from the user list.";
+                }
             }
 
             if (await _context.Memberships.AnyAsync(m => m.UserId == user.Id && m.OrgId == id && m.OrgRole == orgRole && m.Status == MembershipStatus.Active))

@@ -99,6 +99,10 @@
 
                                                     </button>
 
+                                                    <form asp-action="IssueCredentials" asp-route-id="@user.Id" method="post" class="m-0 d-flex gap-1 issue-credentials">
+                                                        <input name="phone" type="tel" class="form-control form-control-sm" style="width: 9.5rem" value="@user.PhoneNumber" placeholder="+90 5xx" aria-label="@L["Notice.MobilePhone"]" />
+                                                        <button type="submit" class="btn btn-sm btn-outline-primary text-nowrap"><i class="mdi mdi-message-lock-outline"></i> @L["UM.SendSignIn"]</button>
+                                                    </form>
                                                     @if (user.LockoutEnd != null && user.LockoutEnd > DateTimeOffset.UtcNow)
                                                     {
                                                         <form asp-action="Unlock" asp-route-id="@user.Id" method="post" class="m-0">

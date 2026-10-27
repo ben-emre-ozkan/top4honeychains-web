@@ -7428,4 +7428,100 @@
   <data name="Data controller details saved." xml:space="preserve">
     <value>Pārziņa dati saglabāti.</value>
   </data>
+  <data name="Login.TemporaryExpired" xml:space="preserve">
+    <value>Pagaidu parole ir beigusies. Pieprasiet jaunus pieteikšanās datus.</value>
+  </data>
+  <data name="Enter your user name." xml:space="preserve">
+    <value>Ievadiet savu lietotājvārdu.</value>
+  </data>
+  <data name="If the account exists and has a verified mobile phone, a code was sent by SMS." xml:space="preserve">
+    <value>Ja konts pastāv un tam ir pārbaudīts mobilais tālrunis, kods tika nosūtīts pa SMS.</value>
+  </data>
+  <data name="Enter the new password twice." xml:space="preserve">
+    <value>Ievadiet jauno paroli divreiz.</value>
+  </data>
+  <data name="Your new password is set." xml:space="preserve">
+    <value>Jūsu jaunā parole ir iestatīta.</value>
+  </data>
+  <data name="Phone number verified." xml:space="preserve">
+    <value>Tālruņa numurs pārbaudīts.</value>
+  </data>
+  <data name="Use your profile to change your own password." xml:space="preserve">
+    <value>Savu paroli mainiet savā profilā.</value>
+  </data>
+  <data name="Sign-in details for {0} were sent by SMS." xml:space="preserve">
+    <value>Pieteikšanās dati lietotājam {0} nosūtīti pa SMS.</value>
+  </data>
+  <data name="The user {0} was created, but the SMS could not be sent: {1} Send the sign-in details again from the user list." xml:space="preserve">
+    <value>Lietotājs {0} izveidots, bet SMS neizdevās nosūtīt: {1} Nosūtiet pieteikšanās datus vēlreiz no lietotāju saraksta.</value>
+  </data>
+  <data name="Enter the initial password twice." xml:space="preserve">
+    <value>Ievadiet sākotnējo paroli divreiz.</value>
+  </data>
+  <data name="Enter an existing user name, or a new user name and a mobile phone (or an initial password)." xml:space="preserve">
+    <value>Ievadiet esošu lietotājvārdu vai jaunu lietotājvārdu un mobilo tālruni (vai sākotnējo paroli).</value>
+  </data>
+  <data name="The password must not contain the user name." xml:space="preserve">
+    <value>Parole nedrīkst saturēt lietotājvārdu.</value>
+  </data>
+  <data name="This password is too common. Choose another one." xml:space="preserve">
+    <value>Šī parole ir pārāk izplatīta. Izvēlieties citu.</value>
+  </data>
+  <data name="Reset.SmsIntro" xml:space="preserve">
+    <value>Ievadiet savu lietotājvārdu. Ja jūsu kontam ir pārbaudīts mobilais tālrunis, mēs nosūtīsim kodu pa SMS.</value>
+  </data>
+  <data name="Reset.NoPhone" xml:space="preserve">
+    <value>Nav pārbaudīta mobilā tālruņa? Palūdziet personai, kas jums deva pieteikšanās datus, nosūtīt jaunus.</value>
+  </data>
+  <data name="Reset.CodeIntro" xml:space="preserve">
+    <value>Ievadiet kodu no SMS un izvēlieties jaunu paroli. Kods ir derīgs 5 minūtes.</value>
+  </data>
+  <data name="Password.Rule" xml:space="preserve">
+    <value>Vismaz 10 rakstzīmes, ne jūsu lietotājvārds, ne izplatīta parole.</value>
+  </data>
+  <data name="FirstPassword.Title" xml:space="preserve">
+    <value>Izvēlieties savu paroli</value>
+  </data>
+  <data name="FirstPassword.Intro" xml:space="preserve">
+    <value>Jūs pieslēdzāties ar pagaidu paroli. Pirms turpināt, izvēlieties savu paroli.</value>
+  </data>
+  <data name="Me.Title" xml:space="preserve">
+    <value>Mana biškopja sadaļa</value>
+  </data>
+  <data name="Me.Hello" xml:space="preserve">
+    <value>Sveiki, {0}</value>
+  </data>
+  <data name="Me.Coming" xml:space="preserve">
+    <value>Jūsu portāls (dravas, piegādes, laboratorijas rezultāti, jūsu medus cena) drīz tiks atvērts. Līdz tam šeit varat izlasīt savu privātuma paziņojumu.</value>
+  </data>
+  <data name="Phone.Verified" xml:space="preserve">
+    <value>pārbaudīts</value>
+  </data>
+  <data name="Phone.NotVerified" xml:space="preserve">
+    <value>nav pārbaudīts</value>
+  </data>
+  <data name="Phone.Help" xml:space="preserve">
+    <value>Jauns numurs tiek izmantots tikai pēc tam, kad ievadāt uz to nosūtīto kodu. Pārbaudīts numurs ļauj atjaunot paroli pa SMS.</value>
+  </data>
+  <data name="UM.Delivery" xml:space="preserve">
+    <value>Pieteikšanās dati</value>
+  </data>
+  <data name="UM.DeliverySms" xml:space="preserve">
+    <value>Nosūtīt lietotājvārdu un pagaidu paroli pa SMS (ieteicams)</value>
+  </data>
+  <data name="UM.DeliveryManual" xml:space="preserve">
+    <value>Iestatīt sākotnējo paroli šeit (lietotājs to nomaina pirmajā pieteikšanās reizē)</value>
+  </data>
+  <data name="UM.SendSignIn" xml:space="preserve">
+    <value>Sūtīt pieteikšanos pa SMS</value>
+  </data>
+  <data name="Org.EmailOptional" xml:space="preserve">
+    <value>E-pasts (nav obligāts)</value>
+  </data>
+  <data name="Org.PasswordOptional" xml:space="preserve">
+    <value>Sākotnējā parole (nav obligāta)</value>
+  </data>
+  <data name="Org.CredentialsBySms" xml:space="preserve">
+    <value>Bez sākotnējās paroles lietotājvārds un pagaidu parole tiek nosūtīti pa SMS. Jebkurā gadījumā jaunais lietotājs pirmajā reizē izvēlas paroli.</value>
+  </data>
 </root>
