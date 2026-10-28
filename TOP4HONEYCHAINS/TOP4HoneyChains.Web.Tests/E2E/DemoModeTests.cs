@@ -100,6 +100,7 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             var org = await _app.CreateOrgAsync("zz_test demo registro", null, (Capabilities.BeekeeperRegistration, null));
             await _app.AddMemberAsync(org, await _app.CreateUserAsync("zz_test_demo_ro"), OrgRoles.RegistrationOfficer);
             var ro = await UserClient.LoginAsync(_app, "zz_test_demo_ro");
+            Assert.Contains("id=\"registry-demo-help\"", await ro.HtmlAsync("/Registration/Index"));
             var found = await ro.PostAsync("/Registration/Find", new() { ["number"] = "ar-demo-000123" }, "/Registration/Index");
             Assert.Equal("/Registration/New?registryNumber=AR-DEMO-000123", found.Headers.Location?.ToString());
             Assert.Contains("in this demo also AR-DEMO-", await ro.PostFlashAsync("/Registration/Find", new() { ["number"] = "XX-DEMO-000123" }, "/Registration/Index"));

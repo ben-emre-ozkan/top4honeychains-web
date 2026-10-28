@@ -9075,4 +9075,7 @@
   <data name="The number must be TR, a province code 01-81 and 10 digits (e.g. TR061234567890); in this demo also AR-DEMO-, PL-DEMO- or LV-DEMO- and 6 digits (e.g. AR-DEMO-000123)." xml:space="preserve">
     <value>Numer musi składać się z TR, kodu prowincji 01-81 i 10 cyfr (np. TR061234567890); w tej wersji demonstracyjnej także z AR-DEMO-, PL-DEMO- lub LV-DEMO- i 6 cyfr (np. AR-DEMO-000123).</value>
   </data>
+  <data name="Demo.RegistryHelp" xml:space="preserve">
+    <value>W tej wersji demonstracyjnej także AR-DEMO-, PL-DEMO- lub LV-DEMO- i 6 cyfr (np. AR-DEMO-000123).</value>
+  </data>
 </root>

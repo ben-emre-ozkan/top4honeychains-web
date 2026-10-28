@@ -41,7 +41,7 @@ namespace TOP4HoneyChains.Web.TagHelpers
             var enc = HtmlEncoder.Default;
             var userId = http.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var link = userId != null && !await BeekeeperBoundaryMiddleware.IsBeekeeperAsync(userId, _db, _cache)
-                ? $" <a href=\"/Demo/Inbox\" id=\"demo-inbox-link\" style=\"color:#FFD27A;font-weight:700;text-decoration:underline;white-space:nowrap\">{enc.Encode(_l["Demo.InboxLink"])}</a>"
+                ? $" <a href=\"/Demo/Inbox\" target=\"_blank\" rel=\"noopener\" id=\"demo-inbox-link\" style=\"color:#FFD27A;font-weight:700;text-decoration:underline;white-space:nowrap\">{enc.Encode(_l["Demo.InboxLink"])}</a>"
                 : "";
             output.PreContent.AppendHtml(
                 "<style>@media print{#demo-banner,#demo-banner-space{display:none!important}}</style>"

@@ -9075,4 +9075,7 @@
   <data name="The number must be TR, a province code 01-81 and 10 digits (e.g. TR061234567890); in this demo also AR-DEMO-, PL-DEMO- or LV-DEMO- and 6 digits (e.g. AR-DEMO-000123)." xml:space="preserve">
     <value>Numuram jāsastāv no TR, provinces koda 01–81 un 10 cipariem (piem., TR061234567890); šajā demonstrācijā arī no AR-DEMO-, PL-DEMO- vai LV-DEMO- un 6 cipariem (piem., AR-DEMO-000123).</value>
   </data>
+  <data name="Demo.RegistryHelp" xml:space="preserve">
+    <value>Šajā demonstrācijā arī AR-DEMO-, PL-DEMO- vai LV-DEMO- un 6 cipari (piem., AR-DEMO-000123).</value>
+  </data>
 </root>
