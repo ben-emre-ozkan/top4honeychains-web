@@ -41,7 +41,8 @@
                     }
 
                     <form asp-action="Submit" method="post" enctype="multipart/form-data" id="registration-form">
-                        <input type="hidden" asp-for="DraftKey" />
+                        @* the key set by the controller after the first post (asp-for would repeat the posted empty value) *@
+                        <input type="hidden" name="DraftKey" value="@Model.DraftKey" />
                         <input type="hidden" asp-for="BeekeeperId" />
 
                         <h5 class="mt-2">1. @L["Reg78.Registry"]</h5>
@@ -49,7 +50,7 @@
                             <div class="col-md-4">
                                 <label class="form-label required" for="RegistryNumber">@L["Reg78.RegistryNumber"]</label>
                                 <input class="form-control" asp-for="RegistryNumber" placeholder="TR061234567890" autocomplete="off" />
-                                <div class="form-text">@L["Reg78.RegistryHelp"]</div>
+                                <div class="form-text">@L["Reg78.RegistryHelp"]@if (Demo.Enabled) {<text> </text><span id="registry-demo-help">@L["Demo.RegistryHelp"]</span>}</div>
                             </div>
                             <div class="col-md-8">
                                 <label class="form-label" for="ProvinceMismatchReason">@L["Reg78.MismatchReason"]</label>
