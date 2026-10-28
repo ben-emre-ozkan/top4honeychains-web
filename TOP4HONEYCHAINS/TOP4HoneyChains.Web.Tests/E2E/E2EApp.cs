@@ -39,6 +39,8 @@ namespace TOP4HoneyChains.Web.Tests.E2E
         public string ConnectionString => $"Server={Server};Database={DatabaseName};Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=True";
         public static string ConnectionStringOf(string database) => $"Server={Server};Database={database};Trusted_Connection=True;TrustServerCertificate=True";
         private readonly string _contentRoot = Path.Combine(Path.GetTempPath(), "t4h-e2e-" + Guid.NewGuid().ToString("N"));
+        // the uploaded files (App_Data) of this run
+        public string ContentRoot => _contentRoot;
 
         // Reference tables in dependency order; all other tables stay empty
         private static readonly string[] ReferenceTables =
@@ -67,7 +69,7 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             builder.ConfigureTestServices(services => services.AddSingleton<TimeProvider>(Clock));
         }
 
-        public async Task InitializeAsync()
+        public virtual async Task InitializeAsync()
         {
             await DropDatabaseAsync();
             await PrepareDatabaseAsync();
@@ -121,7 +123,7 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             await cmd.ExecuteNonQueryAsync();
         }
 
-        private async Task DropDatabaseAsync()
+        protected async Task DropDatabaseAsync()
         {
             await using var conn = new SqlConnection($"Server={Server};Database=master;Trusted_Connection=True;TrustServerCertificate=True");
             await conn.OpenAsync();

@@ -221,7 +221,7 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             string kind;
             if (f.IsNew)
             {
-                beekeeper = new Beekeeper { BeekeeperId = Guid.NewGuid().ToString(), BeekeeperBusinessNumber = await BusinessNumbers.NextAsync(_context, now.Year, RegistryNumber.CountryOf(c.RegistryNumber!)), IsActive = true };
+                beekeeper = new Beekeeper { BeekeeperId = Guid.NewGuid().ToString(), BeekeeperBusinessNumber = await BusinessNumbers.NextAsync(_context, now.Year, RegistryNumber.CountryOf(c.RegistryNumber!), _demo), IsActive = true };
                 _context.Beekeepers.Add(beekeeper);
                 kind = RegistrationKind.New;
             }
@@ -343,13 +343,15 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         private static string? Trim(string? s, int max) => string.IsNullOrWhiteSpace(s) ? null : s.Trim().Length > max ? s.Trim()[..max] : s.Trim();
     }
 
-    // Business numbers TR-BEE-{year}-{nnnnnn}, the next free one (D-86: AR-, PL-, LV-BEE-… for the demo numbers of partner countries)
+    // Business numbers TR-BEE-{year}-{nnnnnn}, the next free one. D-86: on a demo site {country}-BEE-DEMO-{nnnnnn}, so a demo
+    // number never equals a real one (country TR, or AR, PL, LV for the demo registry numbers of the partner countries).
     public static class BusinessNumbers
     {
-        public static async Task<string> NextAsync(TOP4HoneyChainsContext db, int year, string country = "TR")
+        public static async Task<string> NextAsync(TOP4HoneyChainsContext db, int year, string country = "TR", bool demo = false)
         {
-            var prefix = $"{country}-BEE-{year}-";
-            var count = await db.Beekeepers.CountAsync(b => b.BeekeeperBusinessNumber.Contains($"BEE-{year}-"));
+            var prefix = demo ? $"{country}-BEE-DEMO-" : $"{country}-BEE-{year}-";
+            var series = demo ? "BEE-DEMO-" : $"BEE-{year}-";
+            var count = await db.Beekeepers.CountAsync(b => b.BeekeeperBusinessNumber.Contains(series));
             for (var n = count + 1; ; n++)
             {
                 var number = prefix + n.ToString("D6", CultureInfo.InvariantCulture);

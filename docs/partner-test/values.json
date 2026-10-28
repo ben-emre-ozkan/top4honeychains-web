@@ -1,0 +1,34 @@
+{
+  "_comment": "D-86: suggested values for the test scenario, all within the platform's limits. Read by the demo seed (TOP4HoneyChains.Web.Tests/Demo), the partner test guide (appendix) and walkthrough.mjs. Key: '<CCP code>|<parameter name>'.",
+  "numbers": {
+    "CCP 1|Moisture": "17.4", "CCP 1|HMF": "11.2", "CCP 1|Diastase": "14.6", "CCP 1|C4 Sugar": "1.2", "CCP 1|Sucrose": "1.8",
+    "CCP 1|Glikoz": "31.5", "CCP 1|Fruktoz": "38.9", "CCP 1|Maltoz": "2.1", "CCP 1|Pesticides": "0", "CCP 1|Antibiotics": "0",
+    "CCP 1|Electrical Conductivity": "0.42", "CCP 1|Proline": "520", "CCP 1|pH": "3.9", "CCP 1|Free Acidity": "24",
+    "CCP 1|Insoluble Matter": "0.05", "CCP 1|Naphthalene": "0",
+    "CCP 2|Temperature": "38", "CCP 2|HMF": "12.8", "CCP 2|Diastase": "14.1", "CCP 2|Moisture": "17.3", "CCP 2|Proline": "512",
+    "CCP 3|Filter integrity": "200", "CCP 3|Pore size": "200",
+    "CCP 4|Moisture": "17.5",
+    "CCP 5|Temperature": "45", "CCP 5|Holding Time": "30", "CCP 5|HMF": "14.2", "CCP 5|Diastase": "13.9", "CCP 5|Moisture": "17.5", "CCP 5|Proline": "505",
+    "CCP 6|Holding Time": "20", "CCP 6|Temperature": "40",
+    "CCP 7|Net weight": "450",
+    "CCP 10|Temperature": "18", "CCP 10|Relative Humidity": "55"
+  },
+  "texts": {
+    "CCP 1|Sensory Analysis": "Typical colour, aroma and taste",
+    "CCP 3|Sediment presence": "No",
+    "CCP 4|Visual appearance": "Uniform", "CCP 4|Viscosity": "Normal", "CCP 4|Color consistency": "Consistent",
+    "CCP 6|Visual Inspection": "Clean, no foam",
+    "CCP 7|Visual Inspection": "Correct fill level",
+    "CCP 8|Origin": "{country}",
+    "CCP 8|Botanical source": "{botanical}",
+    "CCP 8|Analytical consistency": "Consistent with the lab report",
+    "CCP 9|Material type": "Glass jar, metal lid", "CCP 9|Cleanliness": "Clean", "CCP 9|Physical durability": "Intact"
+  },
+  "ccp0": {
+    "yesNo": "Yes",
+    "If yes": "Hot water and scraping",
+    "To what extent": "Drinking-water quality, checked yearly",
+    "text": "Monitored weekly"
+  },
+  "otherYesNo": "Yes"
+}
