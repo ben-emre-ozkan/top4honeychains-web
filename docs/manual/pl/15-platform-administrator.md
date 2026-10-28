@@ -189,6 +189,9 @@ Strona **Informacje i treści zgód** wymienia informacje o danych (dla użytkow
 
 Publiczna strona **Prywatność i zgoda** (`/privacy`) pokazuje aktualne informacje o danych dla pszczelarzy i dla użytkowników platformy.
 
+<!-- SHOT: admin-notices -->
+Figure: **Informacje i treści zgód**: wersje, języki i akceptacje.
+
 ## SMS {#admin-sms}
 
 Platforma wysyła SMS-y z kodami rejestracji, danymi logowania, potwierdzeniami dostaw, potwierdzeniami informacji o danych, resetowaniem haseł, weryfikacją telefonu i wiadomościami informacyjnymi. To, który dostawca je wysyła, jest ustawieniem serwera (zob. [Ustawienia w konfiguracji serwera](#admin-settings)). Platforma prowadzi dziennik każdej wiadomości z zamaskowanym numerem; kody i hasła nigdy nie są przechowywane jawnym tekstem. Dzienny limit chroni budżet SMS; resetowanie haseł i potwierdzenia dostaw są wysyłane także po jego osiągnięciu.

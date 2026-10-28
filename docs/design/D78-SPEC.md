@@ -1031,6 +1031,11 @@ Each phase is one or more work items (one branch per item, per CLAUDE.md), merge
 - **Tests:** the full test suite; a dry run of the update package on a fresh copy of the local database: scripts in order, second run changes nothing, the legacy records render; smoke test list extended (registration by SMS with the real provider on a test number, intake by SMS, portal sign-in).
 - **Risk to live data:** the deployment itself; mitigated by the GO-LIVE backup and rollback steps (scripts are additive, the old build runs on the new schema).
 - **Effort:** 8–10 days (manual ×5 languages is the bulk).
+- **As built (2026-10-28, D-85)**, where the work differs from or adds to the text above:
+  - Manual: the new chapters are 12–14 (registration officer, Compliance Officer, beekeeper portal); platform administrator, trust and glossary moved to 15–17. Chapter 2's rights tables use role abbreviations with a legend. Chapter 15 gained notices, SMS, server switches and data retention; chapter 16 notices, consents, the data controller, codes and retention.
+  - Screenshots: 56 per language (15 new); the [DEMO] D-78 records come from `docs/manual/demo-setup.mjs`, run through the application. The delivery form is shown at desktop width (its container table scrolls sideways on a phone).
+  - Package: scripts 016–028 (not 018–026: 016–017 were in the 9 October package, 027–028 came with P5). The smoke list was run against a LocalDB copy of the 8 October hand-off with the published build in Production; the SMS-provider and portal checks of the list wait for the SMS package (the provider stays `Logging`).
+  - Changes found by the package check: the image library (SkiaSharp instead of ImageSharp 3.2, which needs a licence key for Release builds), public apiary titles and photo descriptions only with the name rule, the local date of a consent.
 
 Total: about 56–72 developer days, P1 → P3 in order (P2 needs P1's SMS; P3 needs P1's accounts and P2's confirmed deliveries); P4 and P5 can run in parallel with P2–P3.
 

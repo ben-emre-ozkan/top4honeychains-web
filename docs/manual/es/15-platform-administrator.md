@@ -189,6 +189,9 @@ Figure: El informe de retiro de una partida.
 
 La página pública **Privacidad y consentimiento** (`/privacy`) muestra los avisos vigentes para los apicultores y para los usuarios de la plataforma.
 
+<!-- SHOT: admin-notices -->
+Figure: **Avisos y textos de consentimiento**: versiones, idiomas y aceptaciones.
+
 ## SMS {#admin-sms}
 
 La plataforma envía SMS para los códigos de registro, los datos de acceso, las confirmaciones de entrega, las confirmaciones de avisos, los restablecimientos de contraseña, las comprobaciones de teléfono y los mensajes informativos. Qué proveedor los envía es un ajuste del servidor (consulte [Ajustes en la configuración del servidor](#admin-settings)). La plataforma guarda un registro de cada mensaje con el número enmascarado; los códigos y las contraseñas nunca se guardan en claro. Un límite diario protege el presupuesto de SMS; los restablecimientos de contraseña y las confirmaciones de entrega se siguen enviando después de alcanzarlo.

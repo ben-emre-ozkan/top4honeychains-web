@@ -25,8 +25,8 @@ const within = (promise, ms, what) => Promise.race([promise, new Promise((_, rej
 
 // ---- credentials: the box-drawn table in demo_users.txt (user name | organisation | roles | password)
 let accounts;
-export function credentials() {
-    if (accounts) return accounts;
+export function credentials(reload = false) {
+    if (accounts && !reload) return accounts;
     const file = path.join(repo, 'demo_users.txt');
     if (!fs.existsSync(file)) throw new Error('demo_users.txt not found at the repository root');
     accounts = [];
@@ -75,8 +75,10 @@ export function ids() {
         ccp0: ccp('CCP 0'), ccp4: ccp('CCP 4'), ccp10: ccp('CCP 10'),
         zeynep: one(`SELECT BeekeeperId FROM Beekeepers WHERE ${like('BeekeeperFirstName', '[DEMO] Zeynep%')}`),
         zeynepNumber: one(`SELECT BeekeeperBusinessNumber FROM Beekeepers WHERE ${like('BeekeeperFirstName', '[DEMO] Zeynep%')}`),
-        noConsent: one(`SELECT TOP 1 b.BeekeeperId FROM Beekeepers b WHERE ${demo('b.BeekeeperFirstName')}
-            AND NOT EXISTS (SELECT 1 FROM Consents c WHERE c.BeekeeperId = b.BeekeeperId AND c.WithdrawnAt IS NULL)`),
+        // a member of the [DEMO] association without a beekeeper-page consent
+        noConsent: one(`SELECT TOP 1 b.BeekeeperId FROM Beekeepers b JOIN BeekeeperAssociations ba ON ba.BeekeeperId = b.BeekeeperId AND ba.ValidTo IS NULL
+            JOIN Organizations o ON o.OrgId = ba.AssociationOrgId WHERE ${demo('b.BeekeeperFirstName')} AND ${like('o.DisplayName', '[DEMO] Ar_c_lar%')}
+            AND NOT EXISTS (SELECT 1 FROM Consents c WHERE c.BeekeeperId = b.BeekeeperId AND c.Purpose = 'Storefront' AND c.WithdrawnAt IS NULL)`),
         moisture: one(`SELECT TOP 1 p.ParameterId FROM CriticalControlPointParameters p JOIN CriticalControlPoints c ON c.Id = p.CCPId
             WHERE c.Code = 'CCP 1' AND p.ParameterName = 'Moisture'`),
     };
@@ -87,6 +89,10 @@ export function ids() {
     r.sampleDraft = one(`SELECT TOP 1 l.SampleId FROM LabReports l JOIN Samples s ON s.SampleId = l.SampleId WHERE l.Status = 'Draft' AND s.RawHoneyProductionId IN (${demoLots})`);
     r.reportCode = one(`SELECT TOP 1 l.ReportCode FROM LabReports l JOIN Samples s ON s.SampleId = l.SampleId WHERE l.Status = 'Approved' AND l.Sha256 NOT LIKE 'dddd%' AND s.RawHoneyProductionId IN (${demoLots}) ORDER BY l.ReportId DESC`);
     r.demoBatchIds = sql(`SELECT FinalHoneyProductionId FROM FinalHoneyProductions WHERE ${demo('FinalHoneyProductionTitle')}`).map(x => x[0]);
+    // D-78 (demo-setup.mjs): the delivery in containers of [DEMO] Zeynep Kovancı and her registration
+    r.containerIntake = one(`SELECT TOP 1 i.IntakeId FROM LotIntakes i JOIN RawHoneyProductions x ON x.RawHoneyProductionId = i.RawHoneyProductionId
+        JOIN Apiaries a ON a.ApiaryId = x.RawHoneyProductionApiaryId WHERE i.ContainersRecorded = 1 AND ${demo('a.ApiaryTitle')} ORDER BY i.IntakeId DESC`);
+    r.zeynepRegistration = r.zeynep && one(`SELECT TOP 1 RegistrationId FROM BeekeeperRegistrations WHERE BeekeeperId = '${r.zeynep}' ORDER BY RegistrationId DESC`);
     return r;
 }
 
@@ -196,6 +202,8 @@ const STYLE = `
 html, body { scroll-behavior: auto !important; }
 *, *::before, *::after { caret-color: transparent !important; cursor: none !important; transition: none !important; animation: none !important; }
 #app-loader, .hm-loader, .app-toast { display: none !important; }
+.tour-card { display: none !important; }
+.tour-target { outline: none !important; box-shadow: none !important; }
 .manual-hl { outline: 3px solid #FFB547 !important; outline-offset: 3px !important; border-radius: 6px; box-shadow: 0 0 0 7px rgba(255, 181, 71, 0.30) !important; }
 `;
 async function highlight(page, selectors = []) {
@@ -351,6 +359,28 @@ async function outline(page) {
 const STAFF = { org: 'Kovan', role: 'Staff' }, SAO = { org: 'Kovan', role: 'SampleAcceptanceOfficer' }, QA = { org: 'Kovan', role: 'QualityApprover' };
 const ASSOC = { org: 'Arıcılar', role: 'OrgAdmin' }, ANALYST = { org: 'Analiz', role: 'Analyst' }, LABMGR = { org: 'Analiz', role: 'LabManager' };
 const MARKET = { org: 'Marketi', role: 'Staff' }, ADMIN = 'admin', ANON = 'anonymous';
+const RO = { org: 'Merkez', role: 'RegistrationOfficer' }, CO = { org: 'Kovan', role: 'ComplianceOfficer' }, BEEKEEPER = { org: 'Zeynep', role: 'Beekeeper' };
+// one container row of the delivery form
+async function fillContainer(page, i, p) {
+    const r = page.locator('#containers tbody tr').nth(i);
+    const f = n => r.locator(`[data-field="${n}"]`);
+    await f('NetKg').fill(p.net); await f('GrossKg').fill(p.gross);
+    if (p.origin) { await f('ArrivedSealed').check(); await f('OriginSeal').fill(p.origin); await f('OriginSealIntact').check(); }
+    else { await f('ArrivedSealed').uncheck(); await f('PlantSeal').fill(p.plant); }
+    await f('JarSeal').fill(p.jar); await f('CounterSeal').fill(p.counter); await f('CapIntact').check(); await f('Reseal').fill(p.reseal);
+}
+async function deliveryForm(page) {
+    await page.selectOption('#HoneyTypeId', '3');
+    if (await page.locator('#containers tbody tr').count() < 2) await page.click('#add-container');
+    await fillContainer(page, 0, { net: '24,5', gross: '26', origin: 'DEMO-B-1101', jar: 'DEMO-J-2101', counter: 'DEMO-K-2101', reseal: 'DEMO-P-3101' });
+    await fillContainer(page, 1, { net: '23,75', gross: '25,2', plant: 'DEMO-P-3102', jar: 'DEMO-J-2102', counter: 'DEMO-K-2102', reseal: 'DEMO-P-3103' });
+    const prov = page.locator('select[data-province-select]').first();
+    await prov.selectOption({ label: 'İstanbul' });
+    const did = await prov.getAttribute('data-province-select');
+    await page.waitForFunction(id => document.getElementById(id).options.length > 1, did);
+    await page.locator('#' + did).selectOption({ index: 1 });
+    await page.fill('#CounterLocation', '[DEMO] Retain shelf 3');
+}
 const desktop = 'desktop', phone = 'phone';
 const lotCcp = (lot, ccp) => `/CCPMonitoring/RawHoneyProductionManageCCP?rawHoneyProductionId=${lot}&ccpId=${ccp}`;
 const batchCcp = (b, ccp) => `/CCPMonitoring/FinalHoneyProductionManageCCP?finalHoneyProductionId=${b}&ccpId=${ccp}`;
@@ -389,8 +419,9 @@ export const SHOTS = [
     { id: 'public-honey-story', who: ANON, viewport: phone, url: I => `/honeystory/${I.kekikQr}`, hl: ['#honeystory h1', '#honeystory-badges', '#hs-journey'] },
     { id: 'sign-in', who: ANON, viewport: desktop, url: '/Account/Login', hl: ['#UserName', '#Password', '#RememberMe', '.au-submit', { sel: '[href*="SetLanguage"]', parent: true }] },
     { id: 'forgot-password', who: ANON, viewport: desktop, url: '/Account/ForgotPassword',
-        prepare: async page => { await page.fill('input[type=email], #Email, [name=Email]', 'zz_test_manual@example.invalid'); await Promise.all([page.waitForLoadState('load'), page.click('.au-submit')]); },
-        hl: ['.au-alert-ok, .au-alert'] },
+        // D-78: the reset goes by SMS code; the page after "Send code" (the answer is the same for any user name)
+        prepare: async page => { await page.fill('#userName', 'zz_test_manual'); await Promise.all([page.waitForURL(/ResetWithCode/i), page.click('#reset-send-code button[type=submit], #reset-send-code .au-submit')]); },
+        hl: ['.au-alert-ok, .au-alert', '#code', '#password'] },
     { id: 'profile', who: STAFF, viewport: desktop, url: '/Account/Profile',
         prepare: async page => { await page.locator('[data-bs-target="#changePasswordModal"]').first().click(); await page.waitForSelector('#changePasswordModal.show'); await page.waitForTimeout(400); },
         hl: ['#changePasswordModal .modal-content'] },
@@ -402,18 +433,11 @@ export const SHOTS = [
     { id: 'admin-permissions-matrix', who: ADMIN, viewport: desktop, url: '/Permissions/Index?tab=roles&role=Staff',
         hl: ['#role-matrix', '#fixed-rules'] },
     { id: 'flow-overview', who: STAFF, viewport: desktop, url: I => `/Flow/Batch/${I.kekik}`, hl: ['#flow-stages', '#flow-lots'] },
-    { id: 'intake-form', who: SAO, viewport: phone, url: I => `/Intake/Create?number=${encodeURIComponent(I.zeynepNumber)}`,
-        prepare: async page => {
-            await page.selectOption('#apiaryId', { index: 1 });
-            await page.selectOption('#honeyTypeId', '3');
-            await page.fill('#quantity', '120,5');
-            const prov = page.locator('select[data-province-select]');
-            await prov.selectOption({ label: 'Muğla' });
-            const did = await prov.getAttribute('data-province-select');
-            await page.waitForFunction(id => document.getElementById(id).options.length > 1, did);
-            await page.locator('#' + did).selectOption({ index: 1 });
-        },
-        hl: ['#find-beekeeper', '#intake-form', '#deliveryForm', '#intake-form button[type=submit]'], fullPage: true },
+    { id: 'intake-form', who: SAO, viewport: desktop, url: I => `/Intake/Create?number=${encodeURIComponent(I.zeynepNumber)}`,
+        prepare: deliveryForm, view: '#containers', keepScroll: true, hl: ['#containers', '#add-container', '#intake-send'] },
+    { id: 'intake-containers', who: SAO, viewport: desktop, url: I => `/Intake/Details/${I.containerIntake}`, clip: '#intake-confirmation||#intake-containers', maxHeight: 860,
+        hl: ['#intake-containers', '#content-verified, #content-changed'] },
+    { id: 'intake-labels', who: SAO, viewport: desktop, url: I => `/Intake/Labels/${I.containerIntake}`, clip: '#labels', maxHeight: 700, hl: [] },
     { id: 'sample-form', who: SAO, viewport: desktop, url: I => `/Samples/Create?lotId=${I.lotNew}`,
         prepare: async (page, I) => { await page.selectOption('#labOrgId', String(I.lab)); await page.fill('#sealNumber', 'DEMO-S-0042'); await page.fill('#counterSealNumber', 'DEMO-C-0042'); await page.fill('#counterLocation', '[DEMO] Retain shelf 3'); },
         hl: ['#labOrgId', '#sealNumber', '#counterSealNumber', '#sample-form button[type=submit]'] },
@@ -430,8 +454,7 @@ export const SHOTS = [
         prepare: async (page, I) => { await page.selectOption('#toOrgId', String(I.market)); await page.fill('#quantity', '10'); await page.fill('#note', '[DEMO] Weekly delivery'); },
         hl: ['#available', '#toOrgId', '#quantity'] },
     { id: 'shipment-confirm', who: MARKET, viewport: phone, url: '/Shipments/Index',
-        prepare: async page => { await page.evaluate(() => { const t = document.querySelector('#incoming'); const box = t?.closest('.table-responsive') || t?.parentElement; if (box) box.scrollLeft = box.scrollWidth; }); },
-        clip: '#incoming', pad: 10, maxHeight: 560,
+        clip: '#incoming', pad: 10, maxHeight: 700,
         hl: ['#incoming tbody tr:first-child button.btn-success', '#incoming tbody tr:first-child input[name=reason]'] },
     { id: 'storage-record', who: MARKET, viewport: desktop, url: I => `/Shipments/Storage?batchId=${I.yayla}`,
         prepare: async page => { await page.locator('#storage-form input[name^="values"]').first().fill('18'); const s = page.locator('#storage-form input[name^="values"]'); if (await s.count() > 1) await s.nth(1).fill('55'); },
@@ -442,8 +465,8 @@ export const SHOTS = [
         clip: 'dialog.oolc[open]', pad: 60, fixedClip: true, hl: ['.oolc-list', '.oolc-confirm'] },
     { id: 'finalize-confirm', who: QA, viewport: desktop, url: I => `/OrgWorkspace/Batch/${I.requested}`, clip: '#finalize-card', maxHeight: 700, hl: ['#finalize-requested', '#confirm-finalize'] },
     { id: 'batch-sealed', who: QA, viewport: desktop, url: I => `/OrgWorkspace/Batch/${I.kekik}`, clip: '#batch-seal', hl: ['.seal-title', '#seal-story', '#seal-download'] },
-    { id: 'sample-receive', who: ANALYST, viewport: desktop, url: '/Samples/Index', clip: '#lab-samples', maxHeight: 800,
-        blur: { rows: '#lab-samples tbody tr', keep: I => [`DEMO-S-${I.lotSubmitted}`, 'DEMO'] }, hl: ['#lab-samples form'] },
+    { id: 'sample-receive', who: ANALYST, viewport: desktop, url: '/Samples/Index', clip: '#lab-samples thead||#lab-samples tr:has(form.receive-jar-form)||#lab-samples tbody tr:nth-child(3)', maxHeight: 800,
+        blur: { rows: '#lab-samples tbody tr', keep: I => [`DEMO-S-${I.lotSubmitted}`, 'DEMO'] }, hl: ['#lab-samples form.receive-jar-form, #lab-samples form'] },
     { id: 'lab-results-form', who: ANALYST, viewport: desktop, url: I => `/LabReports/Edit/${I.sampleDraft}`,
         prepare: async page => {
             await page.fill('#reportNumber', '[DEMO] LR-2026-030');
@@ -497,6 +520,38 @@ export const SHOTS = [
         prepare: async page => { const raw = page.locator('#audit-table details summary').first(); if (await raw.count()) await raw.click(); },
         blur: { rows: '#audit-table tbody tr', keep: I => I.demoBatchIds.map(id => `#${id}`).concat(['[DEMO]']) },
         hl: ['#audit-table tbody tr:first-child td:nth-child(6)', '#audit-table details[open] summary', '#verify-chain'] },
+    { id: 'landing-logos', who: ANON, viewport: desktop, url: '/', clip: '.ld-logo-groups', pad: 18, hl: [] },
+    { id: 'notice-accept', who: QA, viewport: desktop, url: '/Notices/Accept', view: '#notice-sms-note', keepScroll: true, hl: ['#notice-sms-note', '#notice-send-code'] },
+    { id: 'scene-static', who: SAO, viewport: desktop, url: I => `/Intake/Create?number=${encodeURIComponent(I.zeynepNumber)}`, clip: 'figure.hs-delivery .hs-art||figure.hs-delivery figcaption', pad: 16, hl: [] },
+    { id: 'registration-list', who: RO, viewport: desktop, url: '/Registration/Index', hl: ['#registration-find', '#registrations'] },
+    { id: 'registration-form', who: RO, viewport: desktop, url: '/Registration/Index',
+        prepare: async page => {
+            await page.fill('#number', 'TR340000000004');
+            await Promise.all([page.waitForLoadState('load'), page.locator('#registration-find button[type=submit]').click()]);
+            await page.fill('#FirstName', '[DEMO] Selin'); await page.fill('#LastName', 'Arıkan'); await page.fill('#BirthDate', '1984-05-17');
+            await page.fill('#Phone', '+905550000301');
+            await page.selectOption('#ap-province', { label: 'İstanbul' });
+            await page.waitForFunction(() => document.getElementById('ap-district').options.length > 1);
+            await page.selectOption('#ap-district', { index: 1 });
+            await page.fill('#ap-locality', '[DEMO] Yayla');
+            await page.fill('#ApiaryHives', '18');
+            await page.check('#PublicName'); await page.check('#Attest');
+        },
+        view: '#registration-notice', keepScroll: true, hl: ['#registration-notice', '#registration-send'] },
+    { id: 'registration-details', who: RO, viewport: desktop, url: I => `/Registration/Details/${I.zeynepRegistration}`,
+        hl: ['#registration-consents', '#registration-apiaries'] },
+    { id: 'compliance', who: CO, viewport: desktop, url: '/Compliance/Index', hl: ['#quality', '#evidence'] },
+    { id: 'portal-home', who: BEEKEEPER, viewport: phone, url: '/Me', hl: ['#me-open-items'] },
+    { id: 'portal-deliveries', who: BEEKEEPER, viewport: phone, url: '/Me/Deliveries',
+        hl: ['form:has(input[name=pricePerKg])'] },
+    { id: 'portal-privacy', who: BEEKEEPER, viewport: phone, url: '/Me/Privacy', hl: ['#me-public-name'] },
+    { id: 'admin-delivery-correction', who: ADMIN, viewport: desktop, url: I => `/Intake/Details/${I.containerIntake}`, clip: '#delivery-corrections', maxHeight: 820,
+        hl: ['#delivery-corrections'] },
+    { id: 'admin-notices', who: ADMIN, viewport: desktop, url: '/Notices/Index', hl: ['#notice-publish', '#notices'] },
+    { id: 'admin-sms-outbox', who: ADMIN, viewport: desktop, url: '/Sms/Outbox',
+        // the message with sign-in details is never shown, even from the test provider
+        prepare: async page => { await page.evaluate(() => { for (const r of document.querySelectorAll('#sms-outbox tbody tr')) if (/password|şifre|contraseña|hasło|parole/i.test(r.innerText)) r.style.filter = 'blur(7px)'; }); },
+        clip: '#sms-today||#sms-outbox', maxHeight: 760, hl: ['#sms-today'] },
     { id: 'public-map', who: ANON, viewport: phone, url: I => `/honeystory/${I.kekikQr}`,
         prepare: async page => { await page.evaluate(() => document.getElementById('hs-map')?.scrollIntoView({ block: 'center' })); await page.waitForTimeout(600); const p = page.locator('#hs-map path.is-on').first(); if (await p.count()) await p.click().catch(() => {}); await page.waitForTimeout(300); },
         clip: '#hs-map', pad: 12, hl: ['#hs-map figure, #hs-map .tmap'] },

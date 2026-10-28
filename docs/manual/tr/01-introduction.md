@@ -91,3 +91,6 @@ Diğer herkese açık sayfalar:
 - **Laboratuvar raporu doğrula** (`/verify-report`): herkes bir rapor kodu girerek onaylanmış bir raporun var olup olmadığını okuyabilir ve bir PDF'i parmak iziyle karşılaştırabilir.
 - **Gizlilik ve rıza** (`/privacy`): arıcılar ve platform kullanıcıları için geçerli aydınlatma metinleri.
 - **Karşılama sayfası** (`/`): projenin ana sayfası; oturum açma düğmesi buradadır.
+
+<!-- SHOT: landing-logos -->
+Figure: Tanıtım sayfasının alt bölümü: proje ortakları ve fon sağlayan kuruluşlar.

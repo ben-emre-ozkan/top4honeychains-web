@@ -29,7 +29,7 @@ Jūsu uzdevumi redzami sadaļā **Mans darbs**, grupā **Ievadāmās vērtības*
 6. **Biškopis apstiprina**: noklikšķiniet uz **Sūtīt kodu**. Biškopis saņem SMS ar jūsu organizāciju, datumu, tvertnēm, kilogramiem, medus veidu, paraugu skaitu un kodu. Ievadiet **Kods no SMS (6 cipari)**, ko nolasa biškopis, un noklikšķiniet uz **Apstiprināt piegādi**. "Ja biškopis nav klāt, piezvaniet viņam: viņš nolasīs kodu no tālruņa."
 
 <!-- SHOT: intake-form -->
-Figure: Piegādes reģistrēšana tālrunī: tvertnes, plombas un paraugu burkas.
+Figure: Piegādes reģistrēšana: tvertnes, plombas un paraugu burkas.
 
 Paziņojums "Piegādi apstiprināja biškopis, un tā reģistrēta kā partija #… ." apstiprina jauno partiju. Platforma piešķir partijai KKP 0–3, reģistrē katru plombu kā plombas notikumu un nosūta vienu paraugu burku no katras tvertnes izvēlētajai laboratorijai.
 

@@ -29,7 +29,7 @@ Sus tareas aparecen en **Mis tareas**, en **Valores por ingresar**. El menú mue
 6. **El apicultor confirma**: haga clic en **Enviar código**. El apicultor recibe un SMS con su organización, la fecha, los envases, los kilos, el tipo de miel, el número de muestras y un código. Ingrese el **Código del SMS (6 dígitos)** que el apicultor lee en voz alta y haga clic en **Confirmar la entrega**. "Si el apicultor no está presente, llámele: leerá el código de su teléfono."
 
 <!-- SHOT: intake-form -->
-Figure: Registro de una entrega en un teléfono: envases, precintos y frascos de muestra.
+Figure: Registro de una entrega: envases, precintos y frascos de muestra.
 
 El mensaje "Entrega confirmada por el apicultor y registrada como lote #… ." confirma el nuevo lote. La plataforma asigna los PCC 0–3 al lote, registra cada precinto como un evento de precinto y envía un frasco de muestra por envase al laboratorio elegido.
 

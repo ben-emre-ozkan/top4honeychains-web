@@ -24,6 +24,13 @@
 #   lots       three [DEMO] lots of 2026-10-09 told apart by amount: 61.25 kg (CCP 0 submitted, sample sent),
 #              62.5 kg (untouched, no sample), 63.75 kg (CCP 0 approved, lab report submitted)
 #   shipment   a pending [DEMO] shipment of [DEMO] Kekik Balı 2026 to [DEMO] Şehir Marketi
+#   D-78 records, created through the application by `node demo-setup.mjs` (D-85):
+#   directorate [DEMO] Merkez İlçe Tarım Müdürlüğü (Beekeeper registration), registration officer and Compliance Officer
+#   registrations [DEMO] Zeynep Kovancı re-verified by SMS code (with her portal sign-in), [DEMO] Hasan Peteklik by signed photo
+#   delivery   [DEMO] Zeynep Kovancı, two tins confirmed by SMS code; one jar rejected (cap) and sampled again; asking price;
+#              a delivery correction waiting for the second administrator
+# - SMS: the test provider (Sms:Provider = Fake); the message with sign-in details is blurred in the outbox.
+# - The first-use tour and the explanatory animations are hidden or shown as still frames (reduced motion).
 
 defaults:
   file: img/{lang}/{id}.png
@@ -126,9 +133,9 @@ shots:
     page: /Intake/Create?number={registry number of [DEMO] Zeynep Kovancı}
     role: Sample acceptance officer at [DEMO] Kovan Bal İşleme
     record: beekeeper [DEMO] Zeynep Kovancı
-    state: beekeeper found, form filled (apiary, honey type, amount 120,5, province, district), not saved
-    viewport: phone
-    highlight: Find, the form fields, the camera button, Record delivery
+    state: beekeeper found, two container rows filled (seals, jars, cap intact, new seal), laboratory, not sent
+    viewport: desktop
+    highlight: the container rows, Add a container, Send code
 
   - id: sample-form
     chapter: 5
@@ -198,7 +205,7 @@ shots:
     page: /Shipments/Index
     role: Staff at [DEMO] Şehir Marketi
     record: a pending [DEMO] shipment
-    state: Incoming shipments with Confirm receipt and Reject
+    state: Incoming shipments as cards (phone), with Confirm receipt and Reject
     viewport: phone
     highlight: Confirm receipt, reason (to reject)
 
@@ -252,10 +259,10 @@ shots:
     chapter: 8
     page: /Samples/Index
     role: Analyst at [DEMO] Analiz Laboratuvarı
-    record: a [DEMO] sample with status Sent
-    state: received-samples table with the receive buttons
+    record: the new [DEMO] jar S-{lot}-C1-2 (Sent), the received and the rejected jar of the same delivery
+    state: the three checks (seal number, label, cap) with Yes / No and Record the reception
     viewport: desktop
-    highlight: seal number, Received, seal intact, Seal broken: reject
+    highlight: the reception form of the jar
 
   - id: lab-results-form
     chapter: 8
@@ -313,7 +320,7 @@ shots:
     highlight: the two checkboxes, Date of consent, Signed consent document
 
   - id: admin-dashboard
-    chapter: 12
+    chapter: 15
     page: /Dashboard/Index
     role: platform administrator
     record: none
@@ -323,7 +330,7 @@ shots:
     note: blur the user name in the greeting; do not include the recent-activity card
 
   - id: admin-org-create
-    chapter: 12
+    chapter: 15
     page: /Organizations/Create
     role: platform administrator
     record: a new organization named "[DEMO] Örnek Kurum" (not saved)
@@ -332,7 +339,7 @@ shots:
     highlight: existing wholesaler field and capabilities
 
   - id: admin-org-members
-    chapter: 12
+    chapter: 15
     page: /Organizations/Details/{[DEMO] Kovan Bal İşleme}
     role: platform administrator
     record: organization [DEMO] Kovan Bal İşleme
@@ -342,7 +349,7 @@ shots:
     note: blur user names
 
   - id: admin-role-permissions
-    chapter: 12
+    chapter: 15
     page: /Permissions/Index?tab=roles
     role: platform administrator
     record: role Quality approver selected
@@ -351,7 +358,7 @@ shots:
     highlight: CCP rows and area rows
 
   - id: admin-parameter-limits
-    chapter: 12
+    chapter: 15
     page: /CriticalControlPointParameters/Limits/{a CCP 1 parameter such as moisture}
     role: platform administrator
     record: reference data
@@ -360,7 +367,7 @@ shots:
     highlight: default limits, Limits verified (on the parameter edit page)
 
   - id: admin-registry
-    chapter: 12
+    chapter: 15
     page: /Registry/Edit/{[DEMO] Zeynep Kovancı}
     role: platform administrator
     record: beekeeper [DEMO] Zeynep Kovancı
@@ -369,7 +376,7 @@ shots:
     highlight: registry number format, proof, Verify / Reject
 
   - id: admin-manage-batch
-    chapter: 12
+    chapter: 15
     page: /FinalHoneyProductions/ManageBatch/{open [DEMO] batch}
     role: platform administrator
     record: an open [DEMO] batch
@@ -378,7 +385,7 @@ shots:
     highlight: Use Amount (kg), Save Batch Composition
 
   - id: recall-report
-    chapter: 12
+    chapter: 15
     page: /Recall/Batch/{[DEMO] Kekik Balı 2026}
     role: Staff at [DEMO] Kovan Bal İşleme
     record: batch [DEMO] Kekik Balı 2026
@@ -387,7 +394,7 @@ shots:
     highlight: upstream, downstream, holders, Print, CSV
 
   - id: audit-log
-    chapter: 13
+    chapter: 16
     page: /Audit/Index?entity=FinalHoneyProductions
     role: platform administrator
     record: rows of [DEMO] batches only (crop)
@@ -397,10 +404,145 @@ shots:
     note: blur user names
 
   - id: public-map
-    chapter: 13
+    chapter: 16
     page: /honeystory/{qr of [DEMO] Kekik Balı 2026}#hs-map
     role: anonymous
     record: batch [DEMO] Kekik Balı 2026
     state: origins-by-province map, tooltip of the province open
     viewport: phone
     highlight: province only, no points
+
+  - id: landing-logos
+    chapter: 1
+    page: /
+    role: anonymous
+    record: none
+    state: the footer of the landing page
+    viewport: desktop
+    highlight: none (the two logo groups)
+
+  - id: notice-accept
+    chapter: 3
+    page: /Notices/Accept
+    role: Quality Assurance Officer at [DEMO] Kovan Bal İşleme
+    record: the draft notices
+    state: scrolled to the SMS confirmation of a signing role
+    viewport: desktop
+    highlight: the SMS note, Mobile phone and Send code
+
+  - id: scene-static
+    chapter: 3
+    page: /Intake/Create?number={[DEMO] Zeynep Kovancı}
+    role: Sample acceptance officer at [DEMO] Kovan Bal İşleme
+    record: none
+    state: the still frame of the delivery scene with its caption (reduced motion)
+    viewport: desktop
+    highlight: none
+
+  - id: intake-containers
+    chapter: 4
+    page: /Intake/Details/{the D-78 delivery}
+    role: Sample acceptance officer at [DEMO] Kovan Bal İşleme
+    record: the D-78 [DEMO] delivery
+    state: confirmation, content check, containers with seal history and sample jars
+    viewport: desktop
+    highlight: the container table, "unchanged since confirmation"
+
+  - id: intake-labels
+    chapter: 5
+    page: /Intake/Labels/{the D-78 delivery}
+    role: Sample acceptance officer at [DEMO] Kovan Bal İşleme
+    record: the D-78 [DEMO] delivery
+    state: the A4 label sheet
+    viewport: desktop
+    highlight: none
+
+  - id: registration-list
+    chapter: 12
+    page: /Registration/Index
+    role: Beekeeper registration officer at [DEMO] Merkez İlçe Tarım Müdürlüğü
+    record: the two [DEMO] registrations
+    state: list with the SMS and the photo registration
+    viewport: desktop
+    highlight: Find or register, the list
+
+  - id: registration-form
+    chapter: 12
+    page: /Registration/Index → Find TR340000000004
+    role: Beekeeper registration officer at [DEMO] Merkez İlçe Tarım Müdürlüğü
+    record: a new [DEMO] beekeeper, not saved
+    state: form filled, scrolled to the notice and consents
+    viewport: desktop
+    highlight: the notice and consents, Send code
+
+  - id: registration-details
+    chapter: 12
+    page: /Registration/Details/{registration of [DEMO] Zeynep Kovancı}
+    role: Beekeeper registration officer at [DEMO] Merkez İlçe Tarım Müdürlüğü
+    record: [DEMO] Zeynep Kovancı
+    state: the confirmed registration
+    viewport: desktop
+    highlight: consents, apiaries
+
+  - id: compliance
+    chapter: 13
+    page: /Compliance/Index
+    role: Compliance Officer at [DEMO] Kovan Bal İşleme
+    record: the rejected [DEMO] jar
+    state: top of the page
+    viewport: desktop
+    highlight: Sampling quality, Signed photos
+
+  - id: portal-home
+    chapter: 14
+    page: /Me
+    role: the portal account of [DEMO] Zeynep Kovancı
+    record: her deliveries
+    state: home with To do
+    viewport: phone
+    highlight: To do
+
+  - id: portal-deliveries
+    chapter: 14
+    page: /Me/Deliveries
+    role: the portal account of [DEMO] Zeynep Kovancı
+    record: the D-78 delivery
+    state: top of the page
+    viewport: phone
+    highlight: the price form
+
+  - id: portal-privacy
+    chapter: 14
+    page: /Me/Privacy
+    role: the portal account of [DEMO] Zeynep Kovancı
+    record: her consents
+    state: top of the page
+    viewport: phone
+    highlight: My name on public pages
+
+  - id: admin-delivery-correction
+    chapter: 15
+    page: /Intake/Details/{the D-78 delivery}
+    role: platform administrator
+    record: the pending [DEMO] correction
+    state: the corrections box
+    viewport: desktop
+    highlight: the corrections box
+
+  - id: admin-notices
+    chapter: 15
+    page: /Notices/Index
+    role: platform administrator
+    record: the draft notices
+    state: top of the list
+    viewport: desktop
+    highlight: Publish a new version, the list
+
+  - id: admin-sms-outbox
+    chapter: 15
+    page: /Sms/Outbox
+    role: platform administrator
+    record: the [DEMO] messages
+    state: the outbox; the message with sign-in details blurred
+    viewport: desktop
+    highlight: Segments today / daily limit

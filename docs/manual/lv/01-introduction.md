@@ -93,3 +93,6 @@ Citas publiskās lapas:
 - **Pārbaudīt laboratorijas pārskatu** (`/verify-report`): ikviens var ievadīt pārskata kodu, izlasīt, vai pastāv apstiprināts pārskats, un salīdzināt PDF failu ar tā nospiedumu.
 - **Privātums un piekrišana** (`/privacy`): spēkā esošie privātuma paziņojumi biškopjiem un platformas lietotājiem.
 - **Sākumlapa** (`/`): projekta mājaslapa ar pieteikšanās pogu.
+
+<!-- SHOT: landing-logos -->
+Figure: Sākumlapas kājene: projekta partneri un finansētājorganizācijas.

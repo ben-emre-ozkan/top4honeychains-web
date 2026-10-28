@@ -91,3 +91,6 @@ Other public pages:
 - **Verify a lab report** (`/verify-report`): anyone can enter a report code, read whether an approved report exists, and compare a PDF with its fingerprint.
 - **Privacy and consent** (`/privacy`): the current privacy notices for beekeepers and for users of the platform.
 - **Landing page** (`/`): the project's home page, with the button to sign in.
+
+<!-- SHOT: landing-logos -->
+Figure: The footer of the landing page: the project partners and the funding organizations.

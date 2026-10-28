@@ -93,3 +93,6 @@ Inne strony publiczne:
 - **Zweryfikuj raport laboratoryjny** (`/verify-report`): każdy może wpisać kod raportu, sprawdzić, czy istnieje zatwierdzony raport, a także porównać plik PDF z jego odciskiem.
 - **Prywatność i zgoda** (`/privacy`): aktualne informacje o danych dla pszczelarzy i dla użytkowników platformy.
 - **Strona startowa** (`/`): strona główna projektu z przyciskiem logowania.
+
+<!-- SHOT: landing-logos -->
+Figure: Stopka strony startowej: partnerzy projektu i organizacje finansujące.

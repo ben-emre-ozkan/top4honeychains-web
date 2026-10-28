@@ -29,7 +29,7 @@ Görevleriniz **İşlerim** sayfasında **Girilecek değerler** altında görün
 6. **Arıcı onaylar**: **Kod gönder** düğmesine tıklayın. Arıcıya kurumunuzu, tarihi, kapları, kilogramları, bal türünü, numune sayısını ve bir kodu içeren bir SMS gider. Arıcının okuduğu kodu **SMS'teki kod (6 hane)** alanına girin ve **Teslimatı onayla** düğmesine tıklayın. "Arıcı burada değilse onu arayın: kodu telefonundan okur."
 
 <!-- SHOT: intake-form -->
-Figure: Telefonda teslim kaydetme: kaplar, mühürler ve numune kavanozları.
+Figure: Teslim kaydetme: kaplar, mühürler ve numune kavanozları.
 
 "Teslimat arıcı tarafından onaylandı ve #… numaralı lot olarak kaydedildi." mesajı yeni lotun oluştuğunu bildirir. Platform lota KKN 0–3'ü atar, her mührü bir mühür olayı olarak kaydeder ve her kap için bir numune kavanozunu seçilen laboratuvara gönderir.
 
