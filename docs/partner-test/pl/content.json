@@ -1,0 +1,605 @@
+{
+  "labels": {
+    "title": "Przewodnik testowy dla partnerów",
+    "subtitle": "Śladem jednego miodu przez platformę",
+    "language": "Polski",
+    "month": "Październik 2026",
+    "page": "Strona",
+    "figure": "Rysunek",
+    "table": "Tabela",
+    "toc": "Spis treści",
+    "role": "Rola",
+    "who": "Kim jest",
+    "does": "Co robi",
+    "screens": "Ekrany",
+    "account": "Konto demonstracyjne",
+    "accounts": "Konta demonstracyjne",
+    "manual": "Podręcznik użytkownika",
+    "chapter": "rozdział",
+    "step": "Krok",
+    "todo": "Co zrobić",
+    "expect": "Co powinno się pojawić",
+    "organization": "Organizacja",
+    "username": "Nazwa użytkownika",
+    "beekeeper": "Pszczelarz",
+    "businessNumber": "Numer działalności",
+    "note": "Uwaga",
+    "works": "Działa",
+    "doesNotWork": "Nie działa",
+    "notTested": "Nie testowano",
+    "comment": "Komentarz",
+    "result": "Wynik",
+    "question": "Pytanie",
+    "answer": "Odpowiedź",
+    "parameter": "Parametr",
+    "value": "Wartość sugerowana",
+    "limit": "Limit",
+    "unit": "Jednostka",
+    "anyone": "każdy, bez konta",
+    "tester": "Tester",
+    "country": "Kraj",
+    "date": "Data",
+    "phase": "Część",
+    "checklistTitle": "Lista kontrolna testu",
+    "checklistIntro": "Zaznacz każdy krok po jego wykonaniu, oznacz, czy zadziałał, i zapisz swoje uwagi. Zaznaczenia i uwagi pozostają w tej przeglądarce na tym urządzeniu. Na koniec kliknij „Eksportuj wyniki (CSV)” i wyślij plik koordynatorowi.",
+    "export": "Eksportuj wyniki (CSV)",
+    "print": "Drukuj",
+    "reset": "Wyczyść moje odpowiedzi",
+    "resetConfirm": "Wyczyścić wszystkie zaznaczenia i uwagi na tym urządzeniu?",
+    "done": "Wykonano",
+    "progress": "wykonanych kroków",
+    "general": "Pytania ogólne",
+    "testerName": "Twoje imię i nazwisko (lub inicjały)",
+    "csvHint": "Plik CSV otwiera się w programie Excel lub LibreOffice (separator: średnik).",
+    "draft": "Wersja robocza do przeglądu przez partnerów",
+    "coordinatorScope": "wszystkie kraje partnerskie (koordynator)",
+    "coordinatorNote": "To wydanie jest przeznaczone dla koordynatora. Nazwy użytkowników zapisano jako xx.reception: zastąp xx przez ar (Argentyna), pl (Polska), lv (Łotwa) lub tr (Turcja). Organizacje i pszczelarzy każdego kraju podaje Tabela \"Dane demonstracyjne każdego kraju\".",
+    "part": "Część",
+    "ccp": "KPK",
+    "yes": "Tak",
+    "no": "Nie",
+    "platformOrg": "Administracja platformy",
+    "allOrgs": "każda organizacja kraju",
+    "accountsTable": "Konta demonstracyjne",
+    "beekeepersTable": "Pszczelarze demonstracyjni",
+    "demoDataTable": "Dane demonstracyjne każdego kraju",
+    "organizations": "Organizacje",
+    "beekeepers": "Pszczelarze",
+    "example": "Przykładowy miód",
+    "beekeepersIntro": "Poniżsi pszczelarze są już zarejestrowani. W scenariuszu rejestrujesz własnego pszczelarza (krok A1); jeśli pominiesz ten krok, do dostawy użyj pszczelarza {{b1.name}} lub drugiego pszczelarza.",
+    "b1Note": "Zarejestrowany kodem SMS, konto w portalu, przykładowy miód przeszedł cały proces, publiczna strona pszczelarza",
+    "b2Note": "Zarejestrowany kodem SMS, członek stowarzyszenia, jeszcze bez dostaw",
+    "b3Note": "Zarejestrowany podpisanym formularzem; czeka na Specjalistę ds. zgodności (krok F1); nie może dostarczać miodu, dopóki rejestracja nie zostanie zaakceptowana",
+    "beekeeperAccount": "własne konto pszczelarza (nazwa użytkownika = numer działalności, z kroku A2)",
+    "beekeeperAccountPlain": "numer działalności pszczelarza (krok A2)",
+    "beekeeperAccountNote": "(przykładowy pszczelarz); Twój pszczelarz otrzyma konto w kroku A2",
+    "feedbackTable": "Opinia o każdym kroku",
+    "valuesTable": "Wartości sugerowane",
+    "demoSite": "Strona demonstracyjna",
+    "inboxHint": "Kody SMS i dane logowania: „Skrzynka SMS (demo)” na dole każdej strony.",
+    "passwordsHint": "Hasła znajdują się w osobnym arkuszu credentials.txt.",
+    "generic": {
+      "authority": "urząd rejestracji pszczelarzy Twojego kraju",
+      "association": "stowarzyszenie pszczelarzy Twojego kraju",
+      "plant": "zakład przetwórczy Twojego kraju",
+      "lab": "laboratorium Twojego kraju",
+      "shop": "sklep Twojego kraju",
+      "country": "Twój kraj",
+      "registry": "`AR-DEMO-0002nn` (PL-DEMO-, LV-DEMO- lub TR48 + 10 cyfr)",
+      "phone": "numer testowy Twojego kraju (zob. Tabela \"Konta demonstracyjne\")",
+      "region": "region Twojego kraju, np. Entre Ríos (AR)",
+      "district": "powiat tego regionu",
+      "b1": "przykładowy pszczelarz Twojego kraju",
+      "b3": "pszczelarz zarejestrowany podpisanym formularzem",
+      "exampleBatch": "przykładowy miód Twojego kraju",
+      "exampleStory": "odnośnik do Historii miodu (zob. Tabela \"Dane demonstracyjne każdego kraju\")"
+    },
+    "ccp0Values": "**KPK 0 (audyt wstępny):** na każde pytanie typu tak/nie odpowiedz **Tak**. Pytania tekstowe: „Jeśli tak, jakie metody…”: {if}; „W jakim zakresie…”: {extent}; pozostałe pytanie tekstowe: {text}."
+  },
+  "phases": [
+    {
+      "id": "A",
+      "title": "Rejestracja"
+    },
+    {
+      "id": "B",
+      "title": "Dostawa i pszczelarz"
+    },
+    {
+      "id": "C",
+      "title": "Laboratorium"
+    },
+    {
+      "id": "D",
+      "title": "Zakład i partia końcowa"
+    },
+    {
+      "id": "E",
+      "title": "Wysyłka i sklep"
+    },
+    {
+      "id": "F",
+      "title": "Zgodność i strona publiczna"
+    }
+  ],
+  "roles": [
+    {
+      "id": "admin",
+      "name": "Administrator platformy",
+      "accounts": [
+        "admin"
+      ],
+      "manual": 15,
+      "who": "Zespół, który prowadzi platformę dla projektu (w rzeczywistości: operator platformy).",
+      "does": [
+        "weryfikuje organizacje i nadaje im funkcje",
+        "dodaje członków i wysyła im dane logowania",
+        "tworzy partie końcowe z zatwierdzonych partii zakładu (na razie robią to tylko administratorzy)",
+        "rozstrzyga korekty dostaw razem z drugim administratorem",
+        "odczytuje każdy rekord, dziennik audytu i raport z wycofania, ale nigdy nie wprowadza danych procesowych"
+      ],
+      "screens": "Panel, Organizacje, Pszczelarze, Hurtownicy → Końcowe produkcje miodu, Zarządzanie Użytkownikami (dziennik audytu, informacje, przechowywanie danych)"
+    },
+    {
+      "id": "registration",
+      "name": "Specjalista ds. rejestracji pszczelarzy",
+      "accounts": [
+        "registration"
+      ],
+      "manual": 12,
+      "who": "Pracownik urzędu, który prowadzi rejestr pszczelarzy ({{org.authority}}).",
+      "does": [
+        "sprawdza numer rejestrowy i tożsamość pszczelarza",
+        "rejestruje pszczelarza i jego pierwszą pasiekę",
+        "daje pszczelarzowi do przeczytania informację o danych i rejestruje zgody",
+        "potwierdza rejestrację kodem, który pszczelarz otrzymuje SMS-em, albo podpisanym formularzem",
+        "wysyła pszczelarzowi dane logowania do portalu pszczelarza"
+      ],
+      "screens": "Rejestracja pszczelarzy (wyszukiwanie, rejestracja, ponowna weryfikacja, szczegóły)"
+    },
+    {
+      "id": "association",
+      "name": "Administrator organizacji",
+      "accounts": [
+        "association",
+        "plantadmin"
+      ],
+      "manual": 10,
+      "who": "Osoba zarządzająca organizacją na platformie: tutaj stowarzyszeniem pszczelarzy ({{org.association}}) i zakładem ({{org.plant}}).",
+      "does": [
+        "aktualizuje dokumenty organizacji i dane administratora danych",
+        "stowarzyszenie: rejestruje zgodę pszczelarza na publiczną stronę pszczelarza",
+        "zakład: odczytuje dostawy, próbki i ceny oczekiwane pszczelarzy",
+        "może składać wnioski o ostateczne zatwierdzenie i wysyłać towar, tak jak Personel"
+      ],
+      "screens": "Moja organizacja (strona organizacji, dokumenty), Strony pszczelarzy (stowarzyszenie), Wysyłki i zapasy (zakład)"
+    },
+    {
+      "id": "inspector",
+      "name": "Inspektor terenowy",
+      "accounts": [
+        "inspector"
+      ],
+      "manual": 11,
+      "who": "Technik stowarzyszenia pszczelarzy ({{org.association}}).",
+      "does": [
+        "odczytuje partie, partie końcowe i raporty laboratoryjne członków stowarzyszenia",
+        "wprowadza KPK 0 (audyt wstępny u pszczelarza) tylko wtedy, gdy administrator przypisze KPK 0 stowarzyszeniu; domyślnie robi to zakład"
+      ],
+      "screens": "Moja praca, Moja organizacja, raport z wycofania"
+    },
+    {
+      "id": "reception",
+      "name": "Pracownik przyjmujący próbki",
+      "accounts": [
+        "reception"
+      ],
+      "manual": 5,
+      "who": "Osoba w punkcie przyjęć zakładu przetwórczego ({{org.plant}}).",
+      "does": [
+        "rejestruje każdą dostawę pojemnik po pojemniku, z wagami i plombami",
+        "napełnia z każdego pojemnika słoik z próbką i słoik z próbką kontrolną, zamykane wieczkami gwarancyjnymi",
+        "pozwala pszczelarzowi potwierdzić dostawę kodem SMS",
+        "drukuje etykiety i wysyła słoiki do laboratorium",
+        "wprowadza KPK 0 (audyt wstępny) każdej nowej partii"
+      ],
+      "screens": "Dostawy (przyjęcie) → Zarejestruj dostawę, strona dostawy z Etykiety, Próbki i laboratorium, Moja praca → Wartości do wprowadzenia"
+    },
+    {
+      "id": "staff",
+      "name": "Personel",
+      "accounts": [
+        "staff"
+      ],
+      "manual": 6,
+      "who": "Pracownik produkcji zakładu ({{org.plant}}).",
+      "does": [
+        "wprowadza wartości KPK partii (KPK 2–3) i partii końcowych (KPK 4–10)",
+        "składa wniosek o ostateczne zatwierdzenie partii końcowej, gdy wszystko jest kompletne",
+        "wysyła zatwierdzoną ostatecznie partię końcową do klienta"
+      ],
+      "screens": "Moja praca → Wartości do wprowadzenia, Moja organizacja → partia końcowa, Wysyłki i zapasy → Wyślij"
+    },
+    {
+      "id": "quality",
+      "name": "Specjalista ds. zapewnienia jakości",
+      "accounts": [
+        "quality",
+        "shopquality"
+      ],
+      "manual": 7,
+      "who": "Druga osoba, która sprawdza pracę innych: w zakładzie ({{org.plant}}) i w sklepie ({{org.shop}}).",
+      "does": [
+        "zatwierdza rekordy KPK wprowadzone przez inną osobę (zasada czterech oczu)",
+        "potwierdza ostateczne zatwierdzenie: partia końcowa zostaje zamknięta, a jej Historia miodu staje się publiczna",
+        "w sklepie: zatwierdza rekord przechowywania (KPK 10)"
+      ],
+      "screens": "Moja praca → Wartości do zatwierdzenia, Wnioski o ostateczne zatwierdzenie; Wysyłki i zapasy → Przechowywanie"
+    },
+    {
+      "id": "analyst",
+      "name": "Analityk",
+      "accounts": [
+        "analyst"
+      ],
+      "manual": 8,
+      "who": "Analityk laboratoryjny ({{org.lab}}).",
+      "does": [
+        "przyjmuje każdy słoik z próbką i sprawdza numer plomby, etykietę i wieczko gwarancyjne",
+        "tworzy próbkę zbiorczą partii",
+        "wprowadza wyniki laboratoryjne, przesyła plik PDF raportu i przesyła raport do zatwierdzenia"
+      ],
+      "screens": "Moja praca → Próbki do przyjęcia, Wyniki laboratoryjne do wprowadzenia; Próbki i laboratorium"
+    },
+    {
+      "id": "labmanager",
+      "name": "Kierownik laboratorium",
+      "accounts": [
+        "labmanager"
+      ],
+      "manual": 9,
+      "who": "Osoba kierująca laboratorium ({{org.lab}}).",
+      "does": [
+        "zatwierdza lub zwraca raporty przesłane przez analityków (nigdy własnych wyników)",
+        "zatwierdzenie przepisuje wyniki do KPK 1 partii"
+      ],
+      "screens": "Moja praca → Raporty laboratoryjne do zatwierdzenia; strona publiczna Zweryfikuj raport laboratoryjny"
+    },
+    {
+      "id": "compliance",
+      "name": "Specjalista ds. zgodności",
+      "accounts": [
+        "compliance"
+      ],
+      "manual": 13,
+      "who": "Osoba, która nadzoruje, jak organizacja pracuje z platformą. W wersji demonstracyjnej jedno konto ma tę rolę w każdej organizacji kraju; przełączaj się między nimi wskaźnikiem organizacji na górnym pasku.",
+      "does": [
+        "akceptuje lub odrzuca podpisane zdjęcia, które zastępują kod SMS",
+        "ocenia jakość pobierania próbek: odrzucone słoiki, naruszone plomby, dostawy potwierdzone zdjęciem",
+        "obserwuje mechanizm zatwierdzania i wpisy audytu organizacji",
+        "rejestruje żądania osób, których dane dotyczą, i prowadzi dane administratora danych"
+      ],
+      "screens": "Zgodność, Moja praca → Sprawdź zdjęcia podpisów"
+    },
+    {
+      "id": "shop",
+      "name": "Sklep (detalista)",
+      "accounts": [
+        "shop",
+        "shopquality"
+      ],
+      "manual": 6,
+      "who": "Personel sklepu, który przyjmuje miód ({{org.shop}}).",
+      "does": [
+        "potwierdza lub odrzuca odbiór wysyłki",
+        "rejestruje warunki przechowywania (KPK 10), które zatwierdza Specjalista ds. zapewnienia jakości sklepu",
+        "odczytuje zapisy producenta dotyczące partii końcowej, tylko do odczytu"
+      ],
+      "screens": "Moja praca → Wysyłki do potwierdzenia; Wysyłki i zapasy → Przechowywanie"
+    },
+    {
+      "id": "beekeeper",
+      "name": "Pszczelarz (portal)",
+      "accounts": [
+        "beekeeper"
+      ],
+      "manual": 14,
+      "who": "Pszczelarz, który ma własną, niewielką część platformy (portal pszczelarza).",
+      "does": [
+        "śledzi swoje dostawy, pojemniki, plomby i słoiki z próbkami",
+        "widzi zatwierdzone wyniki laboratoryjne, partie końcowe ze swoim miodem i ich strony Historii miodu",
+        "podaje cenę oczekiwaną za kg dla każdej dostawy (do ostatecznego zatwierdzenia partii końcowej)",
+        "udziela lub wycofuje swoje zgody"
+      ],
+      "screens": "Mój obszar pszczelarza: Start, Moje dostawy, Próbki i laboratorium, Partie z moim miodem, Moje strony Honey Story, Prywatność i zgody"
+    },
+    {
+      "id": "public",
+      "name": "Konsument (strona publiczna)",
+      "accounts": [],
+      "manual": 16,
+      "who": "Każdy, kto zeskanuje kod QR na słoiku. Bez konta.",
+      "does": [
+        "czyta Historię miodu: skąd pochodzi miód, wyniki laboratoryjne z ich limitami, punkty kontrolne",
+        "otwiera stronę pszczelarza, jeśli pszczelarz wyraził na to zgodę",
+        "sprawdza raport laboratoryjny na stronie Zweryfikuj raport laboratoryjny"
+      ],
+      "screens": "Historia miodu (kod QR), strona pszczelarza, Zweryfikuj raport laboratoryjny"
+    }
+  ],
+  "steps": [
+    {
+      "id": "A1",
+      "phase": "A",
+      "title": "Zarejestruj pszczelarza",
+      "account": "registration",
+      "shot": "registration-form",
+      "manual": 12,
+      "do": [
+        "Otwórz **Rejestracja pszczelarzy**, wpisz numer rejestrowy, np. {{registry}} (nn: dwie dowolne cyfry), i kliknij **Znajdź lub zarejestruj**.",
+        "Wypełnij dane pszczelarza: imię **[DEMO] i Twoje imię**, nazwisko, datę urodzenia, telefon komórkowy {{phone}} (nn: dwie dowolne cyfry) i język SMS.",
+        "Pasieka: kliknij mapę lub wpisz współrzędne, wybierz **Prowincja** {{region}} i powiat (np. {{district}}), wpisz miejscowość i liczbę uli.",
+        "Przeczytaj informację razem z „pszczelarzem”. Zaznacz zgodę **Pszczelarz zgadza się na pokazywanie imienia i nazwiska na stronach publicznych (opcjonalnie; inaczej pokazywany jest neutralny kod)** (wtedy imię i nazwisko pojawi się w Historii miodu), oświadczenie oraz **Wyślij też pszczelarzowi dane logowania SMS-em**.",
+        "Kliknij **Wyślij kod**. Otwórz **Skrzynka SMS (demo)** (odnośnik na dole strony, otwiera się w nowej karcie), skopiuj 6-cyfrowy kod, wpisz go i kliknij **Potwierdź rejestrację**."
+      ],
+      "expect": "„Pszczelarz jest zarejestrowany i zweryfikowany; dane logowania wysłano SMS-em.” Strona pokazuje pszczelarza z numerem działalności, np. {{bn}}. Zapisz go: będzie potrzebny w zakładzie."
+    },
+    {
+      "id": "A2",
+      "phase": "A",
+      "title": "Przekaż pszczelarzowi dane logowania",
+      "account": "registration",
+      "shot": null,
+      "manual": 14,
+      "do": [
+        "Ponownie otwórz **Skrzynka SMS (demo)**. Najnowsza wiadomość to SMS pszczelarza z danymi logowania: nazwa użytkownika (numer działalności) i hasło tymczasowe.",
+        "Przekaż obie informacje testerowi, który odgrywa pszczelarza (krok B2)."
+      ],
+      "expect": "SMS zawiera nazwę użytkownika i 10-znakowe hasło tymczasowe, ważne przez 72 godziny. Na działającej platformie ten SMS trafia wyłącznie na telefon pszczelarza."
+    },
+    {
+      "id": "B1",
+      "phase": "B",
+      "title": "Zarejestruj dostawę w zaplombowanych pojemnikach",
+      "account": "reception",
+      "shot": "intake-containers",
+      "manual": 5,
+      "do": [
+        "Otwórz **Dostawy (przyjęcie)** → **Zarejestruj dostawę**, wpisz numer działalności z kroku A1 i kliknij **Znajdź**.",
+        "Wybierz pasiekę, rodzaj miodu, okres produkcji ([DEMO] Test season 2026–2027), datę dostawy, **Kraj pochodzenia** {{countryName}}, **Prowincja** {{region}} oraz powiat.",
+        "Wybierz laboratorium **{{org.lab}}**. Lista zawiera laboratoria wszystkich krajów partnerskich: wybierz laboratorium swojego kraju.",
+        "Pojemniki: jeden wiersz na pojemnik (**Dodaj pojemnik** dla drugiego). Wpisz kilogramy netto i plomby: plombę przy przyjęciu (lub plombę zakładu), plombę słoika, plombę próbki kontrolnej oraz nową plombę po pobraniu. Używaj numerów plomb z Twoimi inicjałami; każdy numer musi być inny. Przy każdym słoiku zaznacz **Wieczko nienaruszone**.",
+        "Kliknij **Wyślij kod**, odczytaj kod w **Skrzynka SMS (demo)** (SMS pszczelarza wymienia pojemniki i wagi), wpisz go i kliknij **Potwierdź dostawę**."
+      ],
+      "expect": "„Dostawa potwierdzona przez pszczelarza i zapisana jako partia #….” Strona dostawy pokazuje pojemniki i historię ich plomb; **Etykiety** drukuje etykiety z kodami QR (opcjonalnie)."
+    },
+    {
+      "id": "B2",
+      "phase": "B",
+      "title": "Pszczelarz loguje się i podaje cenę oczekiwaną",
+      "account": "beekeeper",
+      "shot": "portal-deliveries",
+      "manual": 14,
+      "do": [
+        "Zaloguj się numerem działalności i hasłem tymczasowym z kroku A2, a następnie ustaw własne hasło (co najmniej 10 znaków). Przeczytaj i potwierdź informację o danych.",
+        "Otwórz **Moje dostawy**, wpisz cenę oczekiwaną za kg w {{currency}} dla nowej dostawy i kliknij **Podaj cenę**."
+      ],
+      "expect": "„Cena zapisana.” Cenę można zmieniać do ostatecznego zatwierdzenia partii końcowej (krok D5); potem jest zablokowana. Widzą ją tylko zakład, jego Specjalista ds. zgodności i administratorzy platformy."
+    },
+    {
+      "id": "B3",
+      "phase": "B",
+      "title": "KPK 0: audyt wstępny",
+      "account": "reception",
+      "shot": "ccp-page-lot",
+      "manual": 5,
+      "do": [
+        "Otwórz **Moja praca** → **Wartości do wprowadzenia** → **KPK 0** nowej partii.",
+        "Odpowiedz na każde pytanie (sugerowane odpowiedzi: Tabela \"Wartości sugerowane\") i kliknij **Zapisz zapisy monitorowania**."
+      ],
+      "expect": "„Zapisano wartości: KPK 0.” Status zmienia się na **Przesłany**; zadanie przechodzi do Specjalisty ds. zapewnienia jakości."
+    },
+    {
+      "id": "B4",
+      "phase": "B",
+      "title": "Zatwierdź KPK 0",
+      "account": "quality",
+      "shot": "ccp-approve",
+      "manual": 7,
+      "do": [
+        "Otwórz **Moja praca** → **Wartości do zatwierdzenia** → KPK 0 partii, sprawdź odpowiedzi i kliknij **Zatwierdź**."
+      ],
+      "expect": "„Rekord KPK został zatwierdzony.” Dopiero teraz laboratorium może wprowadzić wyniki dla tej partii."
+    },
+    {
+      "id": "C1",
+      "phase": "C",
+      "title": "Przyjmij słoiki z próbkami",
+      "account": "analyst",
+      "shot": "sample-receive",
+      "manual": 8,
+      "do": [
+        "Otwórz **Moja praca** → **Próbki do przyjęcia** (lub **Próbki i laboratorium**). Dla każdego słoika partii odpowiedz **Tak** na trzy kontrole (numer plomby zgadza się z zapisem, etykieta jest nienaruszona, wieczko jest nienaruszone) i kliknij **Zapisz przyjęcie**.",
+        "Gdy słoik każdego pojemnika jest przyjęty, kliknij **Utwórz próbkę zbiorczą**.",
+        "Opcjonalnie: przy jednym słoiku odpowiedz **Nie** w kontroli wieczka. Słoik zostaje odrzucony; zakład pobiera nowy słoik z tego samego pojemnika (strona dostawy → **Otwórz, pobierz i zaplombuj ponownie**), a Specjalista ds. zgodności widzi odrzucenie (krok F1)."
+      ],
+      "expect": "„Słoik przyjęty; plomba, etykieta i wieczko w porządku.” dla każdego słoika; otwiera się próbka zbiorcza S-…-COMP z formularzem raportu laboratoryjnego."
+    },
+    {
+      "id": "C2",
+      "phase": "C",
+      "title": "Wprowadź wyniki laboratoryjne",
+      "account": "analyst",
+      "shot": "lab-results-form",
+      "manual": 8,
+      "do": [
+        "W raporcie próbki zbiorczej wpisz numer raportu, datę wydania i każdą wartość (wartości sugerowane: Tabela \"Wartości sugerowane\"; jeśli chcesz, wpisz jedną wartość spoza limitu).",
+        "Prześlij plik PDF jako raport (możesz użyć pliku demo-lab-report.pdf z tego pakietu), kliknij **Zapisz**, a następnie **Prześlij do zatwierdzenia**."
+      ],
+      "expect": "„Raport przesłany; musi go zatwierdzić Kierownik laboratorium (inna osoba).” Licznik wymaganych wartości pokazuje, że wprowadzono wszystkie."
+    },
+    {
+      "id": "C3",
+      "phase": "C",
+      "title": "Zatwierdź raport laboratoryjny",
+      "account": "labmanager",
+      "shot": "lab-approve",
+      "manual": 9,
+      "do": [
+        "Otwórz **Moja praca** → **Raporty laboratoryjne do zatwierdzenia**, otwórz raport, sprawdź go i kliknij **Zatwierdź** (wartości spoza limitów wymagają potwierdzenia)."
+      ],
+      "expect": "„Raport laboratoryjny został zatwierdzony; wyniki są teraz wartościami KPK 1 partii.” Raport można teraz sprawdzić na stronie publicznej **Zweryfikuj raport laboratoryjny**."
+    },
+    {
+      "id": "D1",
+      "phase": "D",
+      "title": "KPK 2 i KPK 3 partii",
+      "account": "staff",
+      "shot": null,
+      "manual": 6,
+      "do": [
+        "Personel: **Moja praca** → **Wartości do wprowadzenia** → KPK 2, wpisz wartości, **Zapisz zapisy monitorowania**; to samo dla KPK 3.",
+        "Specjalista ds. zapewnienia jakości ({{u.quality}}): **Moja praca** → **Wartości do zatwierdzenia** → **Zatwierdź** każdy z nich."
+      ],
+      "expect": "Oba rekordy mają status **Zakończony** i są zatwierdzone. Partia jest teraz kompletna i może trafić do partii końcowej."
+    },
+    {
+      "id": "D2",
+      "phase": "D",
+      "title": "Utwórz partię końcową",
+      "account": "admin",
+      "shot": "admin-manage-batch",
+      "manual": 15,
+      "do": [
+        "Otwórz **Hurtownicy** → {{org.plant}} → **Końcowe produkcje miodu** → **Nowa partia końcowa**. Wpisz tytuł z Twoimi inicjałami (np. [DEMO] Partia AB) i datę produkcji, kliknij **Utwórz partię**.",
+        "Na stronie **Zarządzaj partią** wpisz ilość (kg), którą chcesz wziąć z Twojej partii, i kliknij **Zapisz skład partii**.",
+        "Otwórz **Zarządzaj KPK**, przestaw KPK 4 do KPK 10 na **Tak** i kliknij **Zapisz przypisania**.",
+        "**Edytuj** partię końcową i wybierz organizację będącą właścicielem: {{org.plant}}."
+      ],
+      "expect": "Partia końcowa zawiera Twoją partię oraz KPK 4–10. Tworzenie partii końcowych jest na razie zadaniem administratora."
+    },
+    {
+      "id": "D3",
+      "phase": "D",
+      "title": "KPK 4 do KPK 10 partii końcowej",
+      "account": "staff",
+      "shot": "ccp-page-batch",
+      "manual": 6,
+      "do": [
+        "Personel: **Moja praca** → **Wartości do wprowadzenia**: wprowadź KPK 4, 5, 6, 7, 8, 9 i 10 partii końcowej i za każdym razem kliknij **Zapisz zapisy monitorowania**.",
+        "Specjalista ds. zapewnienia jakości ({{u.quality}}): zatwierdź każdy z nich."
+      ],
+      "expect": "Siedem rekordów ma status **Zakończony**. KPK 10 oznacza tutaj przechowywanie w zakładzie."
+    },
+    {
+      "id": "D4",
+      "phase": "D",
+      "title": "Złóż wniosek o ostateczne zatwierdzenie",
+      "account": "staff",
+      "shot": "finalize-request",
+      "manual": 6,
+      "do": [
+        "Otwórz **Moja organizacja** → Twoja partia końcowa → **Wnioskuj o ostateczne zatwierdzenie**. Jeśli przycisk jest nieaktywny, strona wymienia, czego jeszcze brakuje."
+      ],
+      "expect": "„Złożono wniosek o ostateczne zatwierdzenie; musi go potwierdzić Specjalista ds. zapewnienia jakości (inna osoba).”"
+    },
+    {
+      "id": "D5",
+      "phase": "D",
+      "title": "Ostateczne zatwierdzenie: partia końcowa zostaje zamknięta",
+      "account": "quality",
+      "shot": "finalize-confirm",
+      "manual": 7,
+      "do": [
+        "Otwórz **Moja praca** → **Wnioski o ostateczne zatwierdzenie** → partia końcowa → **Potwierdź i zatwierdź ostatecznie**."
+      ],
+      "expect": "„Partia końcowa została zatwierdzona ostatecznie.” Strona partii końcowej pokazuje pieczęć i odnośnik do publicznej Historii miodu z kodem QR. Partia końcowa, jej partie i cena pszczelarza są teraz zablokowane."
+    },
+    {
+      "id": "E1",
+      "phase": "E",
+      "title": "Wyślij partię końcową do sklepu",
+      "account": "staff",
+      "shot": "shipment-create",
+      "manual": 6,
+      "do": [
+        "Otwórz **Wysyłki i zapasy** → **Wyślij** obok Twojej partii końcowej, wybierz {{org.shop}}, wpisz ilość w kg i kliknij **Wyślij**."
+      ],
+      "expect": "„Utworzono wysyłkę; piecza przechodzi na odbiorcę po jej potwierdzeniu.”"
+    },
+    {
+      "id": "E2",
+      "phase": "E",
+      "title": "Sklep potwierdza odbiór",
+      "account": "shop",
+      "shot": "shipment-confirm",
+      "manual": 6,
+      "do": [
+        "Otwórz **Moja praca** → **Wysyłki do potwierdzenia** (lub **Wysyłki i zapasy**) i kliknij **Potwierdź odbiór** (lub **Odrzuć**, podając powód)."
+      ],
+      "expect": "„Potwierdzono odbiór; jesteś teraz posiadaczem tej ilości.”"
+    },
+    {
+      "id": "E3",
+      "phase": "E",
+      "title": "Przechowywanie w sklepie (KPK 10)",
+      "account": "shop",
+      "shot": "storage-record",
+      "manual": 6,
+      "do": [
+        "Otwórz **Wysyłki i zapasy** → **Przechowywanie** obok partii końcowej, wpisz temperaturę i wilgotność względną i kliknij **Zapisz**.",
+        "Specjalista ds. zapewnienia jakości sklepu ({{u.shopquality}}) otwiera tę samą stronę i zatwierdza wartości."
+      ],
+      "expect": "„Zapisano wartości przechowywania.”, a następnie „Rekord KPK został zatwierdzony.” Sklep może też odczytać zapisy producenta dotyczące partii końcowej, tylko do odczytu."
+    },
+    {
+      "id": "F1",
+      "phase": "F",
+      "title": "Przegląd Specjalisty ds. zgodności",
+      "account": "compliance",
+      "shot": "compliance",
+      "manual": 13,
+      "do": [
+        "Wskaźnikiem organizacji na górnym pasku przełącz się na **{{org.plant}}**. Otwórz **Zgodność** → **Jakość pobierania próbek**, kliknij **Napisz ocenę** obok odrzuconego słoika, wybierz **w porządku** lub **ustalenie**, opisz, co sprawdzono, i zapisz.",
+        "Przełącz się na **{{org.authority}}**. Otwórz **Moja praca** → **Sprawdź zdjęcia podpisów**: rejestracja pszczelarza {{b3.name}} czeka z podpisanym formularzem. Otwórz ją i kliknij **Akceptuj** (jeśli inny tester już to zrobił, strona pokazuje decyzję).",
+        "Obejrzyj sekcje **Mechanizm zatwierdzania** i **Wpisy audytu** na stronie Zgodność."
+      ],
+      "expect": "„Ocena zapisana.” oraz „Dowód zaakceptowany; numer rejestrowy zweryfikowany.” Nikt nigdy nie ocenia pozycji, którą sam zarejestrował."
+    },
+    {
+      "id": "F2",
+      "phase": "F",
+      "title": "Pszczelarz widzi wynik",
+      "account": "beekeeper",
+      "shot": "portal-home",
+      "manual": 14,
+      "do": [
+        "Zaloguj się jako pszczelarz z kroku B2. Otwórz **Partie z moim miodem** i **Moje strony Honey Story**."
+      ],
+      "expect": "Zatwierdzona ostatecznie partia końcowa z udziałem pszczelarza i odnośnikiem do jej Historii miodu. Imiona i nazwiska oraz ceny innych pszczelarzy nigdy nie są pokazywane."
+    },
+    {
+      "id": "F3",
+      "phase": "F",
+      "title": "Konsument otwiera Historię miodu",
+      "account": null,
+      "shot": "public-honey-story",
+      "manual": 16,
+      "do": [
+        "Zeskanuj telefonem kod QR partii końcowej (ze strony partii końcowej lub z etykiety) albo otwórz odnośnik do Historii miodu na stronie partii końcowej.",
+        "Otwórz też przykładowy miód swojego kraju: {{example.story}}"
+      ],
+      "expect": "Historia miodu: imię i nazwisko pszczelarza (za zgodą), pochodzenie {{countryName}}, zatwierdzone wyniki laboratoryjne z ich limitami oraz punkty kontrolne. Mapa prowincji pokazuje tylko Turcję (zob. „Ograniczenia wersji demonstracyjnej”)."
+    }
+  ],
+  "questions": [
+    "Czy udało Ci się prześledzić jeden miód od pszczelarza aż po półkę sklepową? (1 = wcale, 5 = bez trudu)",
+    "Który krok był najtrudniejszy i dlaczego?",
+    "Które etykiety, komunikaty lub teksty były niejasne w Twoim języku?",
+    "Co nie odpowiada praktyce w Twoim kraju (rejestracja, dostawa, pobieranie próbek, laboratorium, etykietowanie, sklepy)?",
+    "Jakich danych potrzebowałby Twój kraj, których platforma nie rejestruje?",
+    "Czy korzystałeś z telefonu lub tabletu? Jakie urządzenie i jaka przeglądarka? Czy wszystko działało?",
+    "Czy pszczelarze w Twoim kraju korzystaliby z portalu pszczelarza (cena oczekiwana, zgody)? Czego by potrzebowali?",
+    "Czy chcesz nam przekazać coś jeszcze?"
+  ]
+}
