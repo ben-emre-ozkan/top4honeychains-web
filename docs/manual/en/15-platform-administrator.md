@@ -189,6 +189,9 @@ Figure: The recall report of a batch.
 
 The public page **Privacy and consent** (`/privacy`) shows the current notices for beekeepers and for users of the platform.
 
+<!-- SHOT: admin-notices -->
+Figure: **Notices and consent texts**: versions, languages and acceptances.
+
 ## SMS {#admin-sms}
 
 The platform sends SMS for registration codes, sign-in details, delivery confirmations, notice confirmations, password resets, phone checks and information messages. Which provider sends them is a server setting (see [Settings in the server configuration](#admin-settings)). The platform keeps a log of every message with a masked number; codes and passwords are never stored in clear. A daily limit protects the SMS budget; password resets and delivery confirmations are still sent after it is reached.

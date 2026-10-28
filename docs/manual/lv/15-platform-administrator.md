@@ -189,6 +189,9 @@ Lapā **Paziņojumi un piekrišanas teksti** uzskaitīti privātuma paziņojumi 
 
 Publiskajā lapā **Privātums un piekrišana** (`/privacy`) redzami pašreizējie paziņojumi biškopjiem un platformas lietotājiem.
 
+<!-- SHOT: admin-notices -->
+Figure: **Paziņojumi un piekrišanas teksti**: versijas, valodas un apstiprinājumi.
+
 ## SMS {#admin-sms}
 
 Platforma sūta SMS ar reģistrācijas kodiem, pieteikšanās datiem, piegāžu apstiprinājumiem, paziņojumu apstiprinājumiem, paroles atiestatīšanai, tālruņa pārbaudei un informatīvām ziņām. Kurš pakalpojuma sniedzējs tās sūta, nosaka servera iestatījums (skatīt [Iestatījumi servera konfigurācijā](#admin-settings)). Platforma reģistrē katru ziņu ar maskētu numuru; kodi un paroles nekad netiek glabāti atklātā veidā. Dienas limits sargā SMS budžetu; paroles atiestatīšanas un piegāžu apstiprinājumu ziņas tiek sūtītas arī pēc tā sasniegšanas.

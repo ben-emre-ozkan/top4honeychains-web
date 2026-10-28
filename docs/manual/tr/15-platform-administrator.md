@@ -189,6 +189,9 @@ Figure: Bir partinin geri çağırma raporu.
 
 Herkese açık **Gizlilik ve rıza** sayfası (`/privacy`), arıcılar ve platform kullanıcıları için geçerli aydınlatma metinlerini gösterir.
 
+<!-- SHOT: admin-notices -->
+Figure: **Aydınlatma ve rıza metinleri**: sürümler, diller ve onaylar.
+
 ## SMS {#admin-sms}
 
 Platform kayıt kodları, giriş bilgileri, teslim onayları, aydınlatma metni onayları, şifre sıfırlamaları, telefon doğrulamaları ve bilgilendirme mesajları için SMS gönderir. Mesajları hangi sağlayıcının göndereceği bir sunucu ayarıdır (bkz. [Sunucu yapılandırmasındaki ayarlar](#admin-settings)). Platform her mesajın kaydını maskelenmiş numarayla tutar; kodlar ve şifreler hiçbir zaman açık olarak saklanmaz. Günlük bir sınır SMS bütçesini korur; sınıra ulaşıldıktan sonra da şifre sıfırlamaları ve teslim onayları gönderilmeye devam eder.

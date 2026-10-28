@@ -29,7 +29,7 @@ Twoje zadania pojawiają się na stronie **Moja praca** w grupie **Wartości do 
 6. **Pszczelarz potwierdza**: kliknij **Wyślij kod**. Pszczelarz otrzymuje SMS z nazwą Twojej organizacji, datą, pojemnikami, kilogramami, rodzajem miodu, liczbą próbek i kodem. Wpisz **Kod z SMS (6 cyfr)**, który pszczelarz odczytuje na głos, i kliknij **Potwierdź dostawę**. „Jeśli pszczelarza nie ma na miejscu, zadzwoń: odczyta kod z telefonu.”
 
 <!-- SHOT: intake-form -->
-Figure: Rejestracja dostawy na telefonie: pojemniki, plomby i słoiki z próbkami.
+Figure: Rejestracja dostawy: pojemniki, plomby i słoiki z próbkami.
 
 Komunikat „Dostawa potwierdzona przez pszczelarza i zapisana jako partia #….” potwierdza utworzenie nowej partii. Platforma przypisuje do partii KPK 0–3, zapisuje każdą plombę jako zdarzenie plomby i wysyła po jednym słoiku z próbką z każdego pojemnika do wybranego laboratorium.
 

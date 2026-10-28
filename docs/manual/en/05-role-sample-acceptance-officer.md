@@ -29,7 +29,7 @@ Your tasks appear in **My work** under **Values to enter**. The menu shows **Del
 6. **The beekeeper confirms**: click **Send code**. The beekeeper gets an SMS with your organization, the date, the containers, the kilograms, the honey type, the number of samples and a code. Enter the **Code from the SMS (6 digits)** that the beekeeper reads out, and click **Confirm the delivery**. "If the beekeeper is not present, call them: they read the code from their phone."
 
 <!-- SHOT: intake-form -->
-Figure: Recording a delivery on a phone: containers, seals and sample jars.
+Figure: Recording a delivery: containers, seals and sample jars.
 
 The message "Delivery confirmed by the beekeeper and recorded as lot #… ." confirms the new lot. The platform assigns CCP 0–3 to the lot, records every seal as a seal event and sends one sample jar per container to the chosen laboratory.
 

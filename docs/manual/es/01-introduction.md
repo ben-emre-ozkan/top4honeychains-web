@@ -93,3 +93,6 @@ Otras páginas públicas:
 - **Verificar un informe de laboratorio** (`/verify-report`): cualquier persona puede ingresar un código de informe, leer si existe un informe aprobado y comparar un PDF con su huella.
 - **Privacidad y consentimiento** (`/privacy`): los avisos de privacidad vigentes para los apicultores y para los usuarios de la plataforma.
 - **Página de inicio** (`/`): la página principal del proyecto, con el botón para iniciar sesión.
+
+<!-- SHOT: landing-logos -->
+Figure: El pie de la página de inicio: los socios del proyecto y las organizaciones financiadoras.
