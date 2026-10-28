@@ -1,0 +1,1337 @@
+{
+  "Countries": {
+    "AR": {
+      "Language": "es",
+      "Currency": "ARS",
+      "Province": "Entre Ríos (AR)",
+      "Regions": [
+        "Entre Ríos (AR)",
+        "Buenos Aires (AR)"
+      ],
+      "Orgs": {
+        "association": {
+          "Name": "[DEMO] Cooperativa Apícola del Litoral",
+          "Id": 3
+        },
+        "authority": {
+          "Name": "[DEMO] Registro Apícola de Entre Ríos",
+          "Id": 2
+        },
+        "lab": {
+          "Name": "[DEMO] Laboratorio Apícola Santa Fe",
+          "Id": 5
+        },
+        "plant": {
+          "Name": "[DEMO] Mieles del Paraná S.A.",
+          "Id": 4
+        },
+        "shop": {
+          "Name": "[DEMO] Almacén Natural Rosario",
+          "Id": 6
+        }
+      },
+      "Accounts": {
+        "admin": {
+          "UserName": "ar.admin",
+          "Role": "PlatformAdmin",
+          "Org": "Platform administration",
+          "Phone": "+5493434550201"
+        },
+        "registration": {
+          "UserName": "ar.registration",
+          "Role": "RegistrationOfficer",
+          "Org": "[DEMO] Registro Apícola de Entre Ríos",
+          "Phone": "+5493434550202"
+        },
+        "association": {
+          "UserName": "ar.association",
+          "Role": "OrgAdmin",
+          "Org": "[DEMO] Cooperativa Apícola del Litoral",
+          "Phone": "+5493434550203"
+        },
+        "inspector": {
+          "UserName": "ar.inspector",
+          "Role": "FieldInspector",
+          "Org": "[DEMO] Cooperativa Apícola del Litoral",
+          "Phone": "+5493434550204"
+        },
+        "reception": {
+          "UserName": "ar.reception",
+          "Role": "SampleAcceptanceOfficer",
+          "Org": "[DEMO] Mieles del Paraná S.A.",
+          "Phone": "+5493434550205"
+        },
+        "staff": {
+          "UserName": "ar.staff",
+          "Role": "Staff",
+          "Org": "[DEMO] Mieles del Paraná S.A.",
+          "Phone": "+5493434550206"
+        },
+        "quality": {
+          "UserName": "ar.quality",
+          "Role": "QualityApprover",
+          "Org": "[DEMO] Mieles del Paraná S.A.",
+          "Phone": "+5493434550207"
+        },
+        "plantadmin": {
+          "UserName": "ar.plantadmin",
+          "Role": "OrgAdmin",
+          "Org": "[DEMO] Mieles del Paraná S.A.",
+          "Phone": "+5493434550208"
+        },
+        "analyst": {
+          "UserName": "ar.analyst",
+          "Role": "Analyst",
+          "Org": "[DEMO] Laboratorio Apícola Santa Fe",
+          "Phone": "+5493434550209"
+        },
+        "labmanager": {
+          "UserName": "ar.labmanager",
+          "Role": "LabManager",
+          "Org": "[DEMO] Laboratorio Apícola Santa Fe",
+          "Phone": "+5493434550210"
+        },
+        "shop": {
+          "UserName": "ar.shop",
+          "Role": "Staff",
+          "Org": "[DEMO] Almacén Natural Rosario",
+          "Phone": "+5493434550211"
+        },
+        "shopquality": {
+          "UserName": "ar.shopquality",
+          "Role": "QualityApprover",
+          "Org": "[DEMO] Almacén Natural Rosario",
+          "Phone": "+5493434550212"
+        },
+        "compliance": {
+          "UserName": "ar.compliance",
+          "Role": "ComplianceOfficer",
+          "Org": "*",
+          "Phone": "+5493434550213"
+        }
+      },
+      "Beekeepers": {
+        "b1": {
+          "Name": "[DEMO] Lucía Fernández",
+          "Id": "82d7f164-cf1b-4eb3-b388-5b3117ff68aa",
+          "BusinessNumber": "AR-BEE-DEMO-000001",
+          "RegistryNumber": "AR-DEMO-000101",
+          "Phone": "+5493434550101",
+          "District": "Paraná",
+          "Locality": "Colonia Avellaneda",
+          "RegistrationId": 1,
+          "ApiaryId": 1,
+          "Photo": false,
+          "PortalUserName": "AR-BEE-DEMO-000001"
+        },
+        "b2": {
+          "Name": "[DEMO] Martín Gómez",
+          "Id": "e49b817d-c2b0-4b8a-9f3f-456c75fd4a57",
+          "BusinessNumber": "AR-BEE-DEMO-000002",
+          "RegistryNumber": "AR-DEMO-000102",
+          "Phone": "+5493434550102",
+          "District": "Gualeguaychú",
+          "Locality": "Pueblo Belgrano",
+          "RegistrationId": 2,
+          "ApiaryId": 2,
+          "Photo": false,
+          "PortalUserName": null
+        },
+        "b3": {
+          "Name": "[DEMO] Sofía Benítez",
+          "Id": "3efff7b4-682c-425c-a42f-65249e16ed67",
+          "BusinessNumber": "AR-BEE-DEMO-000003",
+          "RegistryNumber": "AR-DEMO-000103",
+          "Phone": "",
+          "District": "Diamante",
+          "Locality": "Strobel",
+          "RegistrationId": 3,
+          "ApiaryId": 3,
+          "Photo": true,
+          "PortalUserName": null
+        }
+      },
+      "Example": {
+        "IntakeId": 1,
+        "LotId": 1,
+        "BatchId": 1,
+        "BatchTitle": "[DEMO] Miel multifloral del Litoral 2026",
+        "Qr": "0298e0ae-604c-4caa-9db9-a66f9f366c90",
+        "ReportNumber": "DEMO-AR-LAB-2026-0101",
+        "StorefrontCode": "BK-TN2C4TA3"
+      }
+    },
+    "LV": {
+      "Language": "lv",
+      "Currency": "EUR",
+      "Province": "Zemgale (LV)",
+      "Regions": [
+        "Zemgale (LV)",
+        "Vidzeme (LV)"
+      ],
+      "Orgs": {
+        "association": {
+          "Name": "[DEMO] Zemgales biškopju biedrība",
+          "Id": 13
+        },
+        "authority": {
+          "Name": "[DEMO] Biškopju reģistrs Zemgale",
+          "Id": 12
+        },
+        "lab": {
+          "Name": "[DEMO] Jelgavas medus laboratorija",
+          "Id": 15
+        },
+        "plant": {
+          "Name": "[DEMO] Medus Darbnīca SIA",
+          "Id": 14
+        },
+        "shop": {
+          "Name": "[DEMO] Veikals Bišu Māja Rīga",
+          "Id": 16
+        }
+      },
+      "Accounts": {
+        "admin": {
+          "UserName": "lv.admin",
+          "Role": "PlatformAdmin",
+          "Org": "Platform administration",
+          "Phone": "+37120000201"
+        },
+        "registration": {
+          "UserName": "lv.registration",
+          "Role": "RegistrationOfficer",
+          "Org": "[DEMO] Biškopju reģistrs Zemgale",
+          "Phone": "+37120000202"
+        },
+        "association": {
+          "UserName": "lv.association",
+          "Role": "OrgAdmin",
+          "Org": "[DEMO] Zemgales biškopju biedrība",
+          "Phone": "+37120000203"
+        },
+        "inspector": {
+          "UserName": "lv.inspector",
+          "Role": "FieldInspector",
+          "Org": "[DEMO] Zemgales biškopju biedrība",
+          "Phone": "+37120000204"
+        },
+        "reception": {
+          "UserName": "lv.reception",
+          "Role": "SampleAcceptanceOfficer",
+          "Org": "[DEMO] Medus Darbnīca SIA",
+          "Phone": "+37120000205"
+        },
+        "staff": {
+          "UserName": "lv.staff",
+          "Role": "Staff",
+          "Org": "[DEMO] Medus Darbnīca SIA",
+          "Phone": "+37120000206"
+        },
+        "quality": {
+          "UserName": "lv.quality",
+          "Role": "QualityApprover",
+          "Org": "[DEMO] Medus Darbnīca SIA",
+          "Phone": "+37120000207"
+        },
+        "plantadmin": {
+          "UserName": "lv.plantadmin",
+          "Role": "OrgAdmin",
+          "Org": "[DEMO] Medus Darbnīca SIA",
+          "Phone": "+37120000208"
+        },
+        "analyst": {
+          "UserName": "lv.analyst",
+          "Role": "Analyst",
+          "Org": "[DEMO] Jelgavas medus laboratorija",
+          "Phone": "+37120000209"
+        },
+        "labmanager": {
+          "UserName": "lv.labmanager",
+          "Role": "LabManager",
+          "Org": "[DEMO] Jelgavas medus laboratorija",
+          "Phone": "+37120000210"
+        },
+        "shop": {
+          "UserName": "lv.shop",
+          "Role": "Staff",
+          "Org": "[DEMO] Veikals Bišu Māja Rīga",
+          "Phone": "+37120000211"
+        },
+        "shopquality": {
+          "UserName": "lv.shopquality",
+          "Role": "QualityApprover",
+          "Org": "[DEMO] Veikals Bišu Māja Rīga",
+          "Phone": "+37120000212"
+        },
+        "compliance": {
+          "UserName": "lv.compliance",
+          "Role": "ComplianceOfficer",
+          "Org": "*",
+          "Phone": "+37120000213"
+        }
+      },
+      "Beekeepers": {
+        "b1": {
+          "Name": "[DEMO] Ilze Ozola",
+          "Id": "6b5919b9-1ab6-48c9-97d1-aa95cee671a6",
+          "BusinessNumber": "LV-BEE-DEMO-000007",
+          "RegistryNumber": "LV-DEMO-000101",
+          "Phone": "+37120000101",
+          "District": "Jelgava",
+          "Locality": "Svēte",
+          "RegistrationId": 7,
+          "ApiaryId": 7,
+          "Photo": false,
+          "PortalUserName": "LV-BEE-DEMO-000007"
+        },
+        "b2": {
+          "Name": "[DEMO] Jānis Kalniņš",
+          "Id": "aee7bd15-11b9-45c4-bcdd-ae0e560d2eda",
+          "BusinessNumber": "LV-BEE-DEMO-000008",
+          "RegistryNumber": "LV-DEMO-000102",
+          "Phone": "+37120000102",
+          "District": "Bauska",
+          "Locality": "Mežotne",
+          "RegistrationId": 8,
+          "ApiaryId": 8,
+          "Photo": false,
+          "PortalUserName": null
+        },
+        "b3": {
+          "Name": "[DEMO] Līga Bērziņa",
+          "Id": "f555bc94-8f2a-4646-a551-3e1e41681b74",
+          "BusinessNumber": "LV-BEE-DEMO-000009",
+          "RegistryNumber": "LV-DEMO-000103",
+          "Phone": "",
+          "District": "Dobele",
+          "Locality": "Auri",
+          "RegistrationId": 9,
+          "ApiaryId": 9,
+          "Photo": true,
+          "PortalUserName": null
+        }
+      },
+      "Example": {
+        "IntakeId": 3,
+        "LotId": 3,
+        "BatchId": 3,
+        "BatchTitle": "[DEMO] Zemgales ziedu medus 2026",
+        "Qr": "2f66a38b-6ee9-45ba-bb9b-5369585162e2",
+        "ReportNumber": "DEMO-LV-LAB-2026-0101",
+        "StorefrontCode": "BK-8HQEA3WJ"
+      }
+    },
+    "PL": {
+      "Language": "pl",
+      "Currency": "PLN",
+      "Province": "Lubelskie (PL)",
+      "Regions": [
+        "Lubelskie (PL)",
+        "Podkarpackie (PL)"
+      ],
+      "Orgs": {
+        "association": {
+          "Name": "[DEMO] Lubelski Związek Pszczelarzy",
+          "Id": 8
+        },
+        "authority": {
+          "Name": "[DEMO] Rejestr Pasiek – Lublin",
+          "Id": 7
+        },
+        "lab": {
+          "Name": "[DEMO] Laboratorium Miodu Puławy",
+          "Id": 10
+        },
+        "plant": {
+          "Name": "[DEMO] Pasieka Lubelska Sp. z o.o.",
+          "Id": 9
+        },
+        "shop": {
+          "Name": "[DEMO] Sklep Zielony Koszyk Lublin",
+          "Id": 11
+        }
+      },
+      "Accounts": {
+        "admin": {
+          "UserName": "pl.admin",
+          "Role": "PlatformAdmin",
+          "Org": "Platform administration",
+          "Phone": "+48512000201"
+        },
+        "registration": {
+          "UserName": "pl.registration",
+          "Role": "RegistrationOfficer",
+          "Org": "[DEMO] Rejestr Pasiek – Lublin",
+          "Phone": "+48512000202"
+        },
+        "association": {
+          "UserName": "pl.association",
+          "Role": "OrgAdmin",
+          "Org": "[DEMO] Lubelski Związek Pszczelarzy",
+          "Phone": "+48512000203"
+        },
+        "inspector": {
+          "UserName": "pl.inspector",
+          "Role": "FieldInspector",
+          "Org": "[DEMO] Lubelski Związek Pszczelarzy",
+          "Phone": "+48512000204"
+        },
+        "reception": {
+          "UserName": "pl.reception",
+          "Role": "SampleAcceptanceOfficer",
+          "Org": "[DEMO] Pasieka Lubelska Sp. z o.o.",
+          "Phone": "+48512000205"
+        },
+        "staff": {
+          "UserName": "pl.staff",
+          "Role": "Staff",
+          "Org": "[DEMO] Pasieka Lubelska Sp. z o.o.",
+          "Phone": "+48512000206"
+        },
+        "quality": {
+          "UserName": "pl.quality",
+          "Role": "QualityApprover",
+          "Org": "[DEMO] Pasieka Lubelska Sp. z o.o.",
+          "Phone": "+48512000207"
+        },
+        "plantadmin": {
+          "UserName": "pl.plantadmin",
+          "Role": "OrgAdmin",
+          "Org": "[DEMO] Pasieka Lubelska Sp. z o.o.",
+          "Phone": "+48512000208"
+        },
+        "analyst": {
+          "UserName": "pl.analyst",
+          "Role": "Analyst",
+          "Org": "[DEMO] Laboratorium Miodu Puławy",
+          "Phone": "+48512000209"
+        },
+        "labmanager": {
+          "UserName": "pl.labmanager",
+          "Role": "LabManager",
+          "Org": "[DEMO] Laboratorium Miodu Puławy",
+          "Phone": "+48512000210"
+        },
+        "shop": {
+          "UserName": "pl.shop",
+          "Role": "Staff",
+          "Org": "[DEMO] Sklep Zielony Koszyk Lublin",
+          "Phone": "+48512000211"
+        },
+        "shopquality": {
+          "UserName": "pl.shopquality",
+          "Role": "QualityApprover",
+          "Org": "[DEMO] Sklep Zielony Koszyk Lublin",
+          "Phone": "+48512000212"
+        },
+        "compliance": {
+          "UserName": "pl.compliance",
+          "Role": "ComplianceOfficer",
+          "Org": "*",
+          "Phone": "+48512000213"
+        }
+      },
+      "Beekeepers": {
+        "b1": {
+          "Name": "[DEMO] Anna Kowalska",
+          "Id": "269f6d64-fa61-44fa-9fb3-b3c33e3ab975",
+          "BusinessNumber": "PL-BEE-DEMO-000004",
+          "RegistryNumber": "PL-DEMO-000101",
+          "Phone": "+48512000101",
+          "District": "Lublin",
+          "Locality": "Jastków",
+          "RegistrationId": 4,
+          "ApiaryId": 4,
+          "Photo": false,
+          "PortalUserName": "PL-BEE-DEMO-000004"
+        },
+        "b2": {
+          "Name": "[DEMO] Piotr Wiśniewski",
+          "Id": "d500268d-09de-4d20-9233-570112e43316",
+          "BusinessNumber": "PL-BEE-DEMO-000005",
+          "RegistryNumber": "PL-DEMO-000102",
+          "Phone": "+48512000102",
+          "District": "Puławy",
+          "Locality": "Końskowola",
+          "RegistrationId": 5,
+          "ApiaryId": 5,
+          "Photo": false,
+          "PortalUserName": null
+        },
+        "b3": {
+          "Name": "[DEMO] Katarzyna Zielińska",
+          "Id": "a156aae2-94e4-49ad-bf71-28537da22a5a",
+          "BusinessNumber": "PL-BEE-DEMO-000006",
+          "RegistryNumber": "PL-DEMO-000103",
+          "Phone": "",
+          "District": "Kraśnik",
+          "Locality": "Urzędów",
+          "RegistrationId": 6,
+          "ApiaryId": 6,
+          "Photo": true,
+          "PortalUserName": null
+        }
+      },
+      "Example": {
+        "IntakeId": 2,
+        "LotId": 2,
+        "BatchId": 2,
+        "BatchTitle": "[DEMO] Miód wielokwiatowy lubelski 2026",
+        "Qr": "7dec5bd3-987b-4a74-bc21-fe7e754ba4ca",
+        "ReportNumber": "DEMO-PL-LAB-2026-0101",
+        "StorefrontCode": "BK-QSUMKY62"
+      }
+    },
+    "TR": {
+      "Language": "tr",
+      "Currency": "TRY",
+      "Province": "Muğla",
+      "Regions": [],
+      "Orgs": {
+        "association": {
+          "Name": "[DEMO] Muğla Arıcılar Birliği",
+          "Id": 18
+        },
+        "authority": {
+          "Name": "[DEMO] Muğla İl Tarım Kayıt Birimi",
+          "Id": 17
+        },
+        "lab": {
+          "Name": "[DEMO] Ege Gıda Analiz Laboratuvarı",
+          "Id": 20
+        },
+        "plant": {
+          "Name": "[DEMO] Ege Bal İşleme A.Ş.",
+          "Id": 19
+        },
+        "shop": {
+          "Name": "[DEMO] Doğal Market İzmir",
+          "Id": 21
+        }
+      },
+      "Accounts": {
+        "admin": {
+          "UserName": "tr.admin",
+          "Role": "PlatformAdmin",
+          "Org": "Platform administration",
+          "Phone": "+905550009201"
+        },
+        "registration": {
+          "UserName": "tr.registration",
+          "Role": "RegistrationOfficer",
+          "Org": "[DEMO] Muğla İl Tarım Kayıt Birimi",
+          "Phone": "+905550009202"
+        },
+        "association": {
+          "UserName": "tr.association",
+          "Role": "OrgAdmin",
+          "Org": "[DEMO] Muğla Arıcılar Birliği",
+          "Phone": "+905550009203"
+        },
+        "inspector": {
+          "UserName": "tr.inspector",
+          "Role": "FieldInspector",
+          "Org": "[DEMO] Muğla Arıcılar Birliği",
+          "Phone": "+905550009204"
+        },
+        "reception": {
+          "UserName": "tr.reception",
+          "Role": "SampleAcceptanceOfficer",
+          "Org": "[DEMO] Ege Bal İşleme A.Ş.",
+          "Phone": "+905550009205"
+        },
+        "staff": {
+          "UserName": "tr.staff",
+          "Role": "Staff",
+          "Org": "[DEMO] Ege Bal İşleme A.Ş.",
+          "Phone": "+905550009206"
+        },
+        "quality": {
+          "UserName": "tr.quality",
+          "Role": "QualityApprover",
+          "Org": "[DEMO] Ege Bal İşleme A.Ş.",
+          "Phone": "+905550009207"
+        },
+        "plantadmin": {
+          "UserName": "tr.plantadmin",
+          "Role": "OrgAdmin",
+          "Org": "[DEMO] Ege Bal İşleme A.Ş.",
+          "Phone": "+905550009208"
+        },
+        "analyst": {
+          "UserName": "tr.analyst",
+          "Role": "Analyst",
+          "Org": "[DEMO] Ege Gıda Analiz Laboratuvarı",
+          "Phone": "+905550009209"
+        },
+        "labmanager": {
+          "UserName": "tr.labmanager",
+          "Role": "LabManager",
+          "Org": "[DEMO] Ege Gıda Analiz Laboratuvarı",
+          "Phone": "+905550009210"
+        },
+        "shop": {
+          "UserName": "tr.shop",
+          "Role": "Staff",
+          "Org": "[DEMO] Doğal Market İzmir",
+          "Phone": "+905550009211"
+        },
+        "shopquality": {
+          "UserName": "tr.shopquality",
+          "Role": "QualityApprover",
+          "Org": "[DEMO] Doğal Market İzmir",
+          "Phone": "+905550009212"
+        },
+        "compliance": {
+          "UserName": "tr.compliance",
+          "Role": "ComplianceOfficer",
+          "Org": "*",
+          "Phone": "+905550009213"
+        }
+      },
+      "Beekeepers": {
+        "b1": {
+          "Name": "[DEMO] Ayşe Yılmaz",
+          "Id": "8100bdc0-0c9f-421c-ab32-b51d947ea72b",
+          "BusinessNumber": "TR-BEE-DEMO-000010",
+          "RegistryNumber": "TR480000000101",
+          "Phone": "+905550009101",
+          "District": "Menteşe",
+          "Locality": "Yerkesik",
+          "RegistrationId": 10,
+          "ApiaryId": 10,
+          "Photo": false,
+          "PortalUserName": "TR-BEE-DEMO-000010"
+        },
+        "b2": {
+          "Name": "[DEMO] Mehmet Kaya",
+          "Id": "1b86ccdf-862e-4f92-873b-32f156087125",
+          "BusinessNumber": "TR-BEE-DEMO-000011",
+          "RegistryNumber": "TR480000000102",
+          "Phone": "+905550009102",
+          "District": "Bodrum",
+          "Locality": "Mumcular",
+          "RegistrationId": 11,
+          "ApiaryId": 11,
+          "Photo": false,
+          "PortalUserName": null
+        },
+        "b3": {
+          "Name": "[DEMO] Fatma Demir",
+          "Id": "7c91c649-6f65-48ba-8503-0512df0d67e0",
+          "BusinessNumber": "TR-BEE-DEMO-000012",
+          "RegistryNumber": "TR480000000103",
+          "Phone": "",
+          "District": "Marmaris",
+          "Locality": "Çetibeli",
+          "RegistrationId": 12,
+          "ApiaryId": 12,
+          "Photo": true,
+          "PortalUserName": null
+        }
+      },
+      "Example": {
+        "IntakeId": 4,
+        "LotId": 4,
+        "BatchId": 4,
+        "BatchTitle": "[DEMO] Ege kekik balı 2026",
+        "Qr": "dbb07eca-e2b2-4f49-b421-045adb3cb031",
+        "ReportNumber": "DEMO-TR-LAB-2026-0101",
+        "StorefrontCode": "BK-9HJ2TUPJ"
+      }
+    }
+  },
+  "Parameters": [
+    {
+      "Id": 1,
+      "Ccp": "CCP 0",
+      "Name": "Are unused beekeeping tools and equipment stored after thorough cleaning?",
+      "Type": "YesNo",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 2,
+      "Ccp": "CCP 0",
+      "Name": "Are hive boxes, frames, and foundation materials managed and controlled during use?",
+      "Type": "YesNo",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 3,
+      "Ccp": "CCP 0",
+      "Name": "Is specialized equipment, such as hive smokers, utilized to ensure stress-free inspections?",
+      "Type": "YesNo",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 4,
+      "Ccp": "CCP 0",
+      "Name": "Is the colony population, brood patterns, and pest presence assessed systematically?",
+      "Type": "YesNo",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 5,
+      "Ccp": "CCP 0",
+      "Name": "Are samples of hive debris, honey or brood collected for laboratory analysis?",
+      "Type": "YesNo",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 6,
+      "Ccp": "CCP 0",
+      "Name": "Are environmental factors (temperature and humidity) that influence hive health regularly monitored? How is it measured (tradional with a simple thermometer/ hygrometer or real time data collection sensors?",
+      "Type": "Text",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 7,
+      "Ccp": "CCP 0",
+      "Name": "Are hive components regularly cleaned and disinfected?",
+      "Type": "YesNo",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 8,
+      "Ccp": "CCP 0",
+      "Name": "If yes, which methods are employed to clean and disinfect hive tools and equipment?",
+      "Type": "Text",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": 7
+    },
+    {
+      "Id": 9,
+      "Ccp": "CCP 0",
+      "Name": "Are records of hive hygiene, maintenance and hive health diligently kept?",
+      "Type": "YesNo",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 10,
+      "Ccp": "CCP 0",
+      "Name": "Are comprehensive risk assessments conducted regarding pesticide usage?",
+      "Type": "YesNo",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 11,
+      "Ccp": "CCP 0",
+      "Name": "Is careful attention given to the timing, dosage and frequency of legally permitted pesticides, particularly for varroa control?",
+      "Type": "YesNo",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 12,
+      "Ccp": "CCP 0",
+      "Name": "Are non-chemical control methods utilized for pest management whenever possible?",
+      "Type": "YesNo",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 13,
+      "Ccp": "CCP 0",
+      "Name": "To what extent is the suitability of water used in honey production, in terms of its microbiological, chemical, and physical properties, verified through accredited laboratory tests, and how frequently are these tests conducted?",
+      "Type": "Text",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 14,
+      "Ccp": "CCP 0",
+      "Name": "Is the water used for cleaning equipment assessed and confirmed to be suitable?",
+      "Type": "YesNo",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 15,
+      "Ccp": "CCP 0",
+      "Name": "Is the water quality used as raw material in the production of sugar water solutions for bee feeding appropriate?",
+      "Type": "YesNo",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 16,
+      "Ccp": "CCP 0",
+      "Name": "Is the timing of honey harvesting optimized based on honey ripeness indicators and the sources of floral nectar?",
+      "Type": "YesNo",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 17,
+      "Ccp": "CCP 0",
+      "Name": "Are physical hazards sources (metal fragments or non-metal; wood, stone, glass, etc) which affect honey quality monitored?",
+      "Type": "YesNo",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 18,
+      "Ccp": "CCP 0",
+      "Name": "Are biological hazards sources (bacterial, yeast and mold contamination agent from environmental factors) which affect honey quality monitored?",
+      "Type": "YesNo",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 19,
+      "Ccp": "CCP 0",
+      "Name": "Are potantial chemical hazards sources (heavy metals, cleaning chemicals, chemicals from cleaning water, medicines and antibiotics, bee repellents or other environmental origin contaminants) that affect honey quality tracked?",
+      "Type": "YesNo",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 20,
+      "Ccp": "CCP 0",
+      "Name": "Are transportation and storage systems designed to minimize exposure to adverse environmental factors?",
+      "Type": "YesNo",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 21,
+      "Ccp": "CCP 0",
+      "Name": "Are monitoring systems in place to track conditions such as temperature and humidity during transportation and storage?",
+      "Type": "YesNo",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 22,
+      "Ccp": "CCP 1",
+      "Name": "Moisture",
+      "Type": "Number",
+      "Unit": "% (Percentage)",
+      "Min": null,
+      "Max": 20.0000,
+      "RequiredIf": null
+    },
+    {
+      "Id": 23,
+      "Ccp": "CCP 1",
+      "Name": "HMF",
+      "Type": "Number",
+      "Unit": "mg/kg",
+      "Min": null,
+      "Max": 40.0000,
+      "RequiredIf": null
+    },
+    {
+      "Id": 24,
+      "Ccp": "CCP 1",
+      "Name": "Diastase",
+      "Type": "Number",
+      "Unit": "DN (Schade)",
+      "Min": 8.0000,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 25,
+      "Ccp": "CCP 1",
+      "Name": "C4 Sugar",
+      "Type": "Number",
+      "Unit": "%",
+      "Min": null,
+      "Max": 7.0000,
+      "RequiredIf": null
+    },
+    {
+      "Id": 26,
+      "Ccp": "CCP 1",
+      "Name": "Sucrose",
+      "Type": "Number",
+      "Unit": "%",
+      "Min": null,
+      "Max": 5.0000,
+      "RequiredIf": null
+    },
+    {
+      "Id": 27,
+      "Ccp": "CCP 1",
+      "Name": "Glikoz",
+      "Type": "Number",
+      "Unit": "%",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 28,
+      "Ccp": "CCP 1",
+      "Name": "Fruktoz",
+      "Type": "Number",
+      "Unit": "%",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 29,
+      "Ccp": "CCP 1",
+      "Name": "Maltoz",
+      "Type": "Number",
+      "Unit": "%",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 30,
+      "Ccp": "CCP 1",
+      "Name": "Pesticides",
+      "Type": "Number",
+      "Unit": "ppb",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 31,
+      "Ccp": "CCP 1",
+      "Name": "Antibiotics",
+      "Type": "Number",
+      "Unit": "ppb",
+      "Min": null,
+      "Max": 0.0000,
+      "RequiredIf": null
+    },
+    {
+      "Id": 32,
+      "Ccp": "CCP 1",
+      "Name": "Electrical Conductivity",
+      "Type": "Number",
+      "Unit": "mS/cm",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 33,
+      "Ccp": "CCP 1",
+      "Name": "Proline",
+      "Type": "Number",
+      "Unit": "mg/kg",
+      "Min": 300.0000,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 34,
+      "Ccp": "CCP 1",
+      "Name": "pH",
+      "Type": "Number",
+      "Unit": "pH",
+      "Min": 3.2000,
+      "Max": 4.5000,
+      "RequiredIf": null
+    },
+    {
+      "Id": 35,
+      "Ccp": "CCP 1",
+      "Name": "Free Acidity",
+      "Type": "Number",
+      "Unit": "meq/kg",
+      "Min": null,
+      "Max": 50.0000,
+      "RequiredIf": null
+    },
+    {
+      "Id": 36,
+      "Ccp": "CCP 1",
+      "Name": "Insoluble Matter",
+      "Type": "Number",
+      "Unit": "%",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 37,
+      "Ccp": "CCP 1",
+      "Name": "Sensory Analysis",
+      "Type": "Text",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 69,
+      "Ccp": "CCP 1",
+      "Name": "Naphthalene",
+      "Type": "Number",
+      "Unit": "ppb",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 38,
+      "Ccp": "CCP 2",
+      "Name": "Temperature",
+      "Type": "Number",
+      "Unit": "°C (Celsius)",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 39,
+      "Ccp": "CCP 2",
+      "Name": "HMF",
+      "Type": "Number",
+      "Unit": "mg/kg",
+      "Min": null,
+      "Max": 40.0000,
+      "RequiredIf": null
+    },
+    {
+      "Id": 40,
+      "Ccp": "CCP 2",
+      "Name": "Diastase",
+      "Type": "Number",
+      "Unit": "DN (Schade)",
+      "Min": 8.0000,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 41,
+      "Ccp": "CCP 2",
+      "Name": "Moisture",
+      "Type": "Number",
+      "Unit": "% (Percentage)",
+      "Min": null,
+      "Max": 20.0000,
+      "RequiredIf": null
+    },
+    {
+      "Id": 42,
+      "Ccp": "CCP 2",
+      "Name": "Proline",
+      "Type": "Number",
+      "Unit": "mg/kg",
+      "Min": 300.0000,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 43,
+      "Ccp": "CCP 3",
+      "Name": "Filter integrity",
+      "Type": "Number",
+      "Unit": "Micron (µm)",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 44,
+      "Ccp": "CCP 3",
+      "Name": "Sediment presence",
+      "Type": "YesNo",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 45,
+      "Ccp": "CCP 3",
+      "Name": "Pore size",
+      "Type": "Number",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 46,
+      "Ccp": "CCP 4",
+      "Name": "Visual appearance",
+      "Type": "Text",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 47,
+      "Ccp": "CCP 4",
+      "Name": "Viscosity",
+      "Type": "Text",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 48,
+      "Ccp": "CCP 4",
+      "Name": "Color consistency",
+      "Type": "Text",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 49,
+      "Ccp": "CCP 4",
+      "Name": "Moisture",
+      "Type": "Number",
+      "Unit": "% (Percentage)",
+      "Min": null,
+      "Max": 20.0000,
+      "RequiredIf": null
+    },
+    {
+      "Id": 50,
+      "Ccp": "CCP 5",
+      "Name": "Temperature",
+      "Type": "Number",
+      "Unit": "°C (Celsius)",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 51,
+      "Ccp": "CCP 5",
+      "Name": "Holding Time",
+      "Type": "Number",
+      "Unit": "Minutes/Seconds",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 52,
+      "Ccp": "CCP 5",
+      "Name": "HMF",
+      "Type": "Number",
+      "Unit": "mg/kg",
+      "Min": null,
+      "Max": 40.0000,
+      "RequiredIf": null
+    },
+    {
+      "Id": 53,
+      "Ccp": "CCP 5",
+      "Name": "Diastase",
+      "Type": "Number",
+      "Unit": "DN (Schade)",
+      "Min": 8.0000,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 54,
+      "Ccp": "CCP 5",
+      "Name": "Moisture",
+      "Type": "Number",
+      "Unit": "% (Percentage)",
+      "Min": null,
+      "Max": 20.0000,
+      "RequiredIf": null
+    },
+    {
+      "Id": 55,
+      "Ccp": "CCP 5",
+      "Name": "Proline",
+      "Type": "Number",
+      "Unit": "mg/kg",
+      "Min": 300.0000,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 56,
+      "Ccp": "CCP 6",
+      "Name": "Visual Inspection",
+      "Type": "Text",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 57,
+      "Ccp": "CCP 6",
+      "Name": "Holding Time",
+      "Type": "Number",
+      "Unit": "Minutes/Seconds",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 58,
+      "Ccp": "CCP 6",
+      "Name": "Temperature",
+      "Type": "Number",
+      "Unit": "°C (Celsius)",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 59,
+      "Ccp": "CCP 7",
+      "Name": "Net weight",
+      "Type": "Number",
+      "Unit": "g (Grams)",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 60,
+      "Ccp": "CCP 7",
+      "Name": "Visual Inspection",
+      "Type": "Text",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 61,
+      "Ccp": "CCP 8",
+      "Name": "Origin",
+      "Type": "Text",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 62,
+      "Ccp": "CCP 8",
+      "Name": "Botanical source",
+      "Type": "Text",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 63,
+      "Ccp": "CCP 8",
+      "Name": "Analytical consistency",
+      "Type": "Text",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 64,
+      "Ccp": "CCP 9",
+      "Name": "Material type",
+      "Type": "Text",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 65,
+      "Ccp": "CCP 9",
+      "Name": "Cleanliness",
+      "Type": "Text",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 66,
+      "Ccp": "CCP 9",
+      "Name": "Physical durability",
+      "Type": "Text",
+      "Unit": "None",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    },
+    {
+      "Id": 67,
+      "Ccp": "CCP 10",
+      "Name": "Temperature",
+      "Type": "Number",
+      "Unit": "°C (Celsius)",
+      "Min": null,
+      "Max": 25.0000,
+      "RequiredIf": null
+    },
+    {
+      "Id": 68,
+      "Ccp": "CCP 10",
+      "Name": "Relative Humidity",
+      "Type": "Number",
+      "Unit": "Percentage (%)",
+      "Min": null,
+      "Max": null,
+      "RequiredIf": null
+    }
+  ]
+}
