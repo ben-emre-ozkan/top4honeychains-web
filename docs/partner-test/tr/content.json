@@ -1,0 +1,605 @@
+{
+  "labels": {
+    "title": "Ortak test kılavuzu",
+    "subtitle": "Bir balı platform boyunca izleyin",
+    "language": "Türkçe",
+    "month": "Ekim 2026",
+    "page": "Sayfa",
+    "figure": "Şekil",
+    "table": "Tablo",
+    "toc": "İçindekiler",
+    "role": "Rol",
+    "who": "Kimdir",
+    "does": "Ne yapar",
+    "screens": "Ekranlar",
+    "account": "Demo hesabı",
+    "accounts": "Demo hesapları",
+    "manual": "Kullanım kılavuzu",
+    "chapter": "bölüm",
+    "step": "Adım",
+    "todo": "Yapılacaklar",
+    "expect": "Görmeniz gerekenler",
+    "organization": "Kurum",
+    "username": "Kullanıcı adı",
+    "beekeeper": "Arıcı",
+    "businessNumber": "İşletme numarası",
+    "note": "Not",
+    "works": "Çalışıyor",
+    "doesNotWork": "Çalışmıyor",
+    "notTested": "Test edilmedi",
+    "comment": "Yorum",
+    "result": "Sonuç",
+    "question": "Soru",
+    "answer": "Yanıt",
+    "parameter": "Parametre",
+    "value": "Önerilen değer",
+    "limit": "Limit",
+    "unit": "Birim",
+    "anyone": "herkes, hesap gerekmez",
+    "tester": "Test eden",
+    "country": "Ülke",
+    "date": "Tarih",
+    "phase": "Kısım",
+    "checklistTitle": "Test kontrol listesi",
+    "checklistIntro": "Her adımı yaptığınızda işaretleyin, çalışıp çalışmadığını belirtin ve dikkatinizi çekenleri yazın. İşaretleriniz ve notlarınız bu cihazdaki bu tarayıcıda kalır. Bitirdiğinizde \"Sonuçları dışa aktar (CSV)\" düğmesine tıklayın ve dosyayı koordinatörünüze gönderin.",
+    "export": "Sonuçları dışa aktar (CSV)",
+    "print": "Yazdır",
+    "reset": "Yanıtlarımı temizle",
+    "resetConfirm": "Bu cihazdaki tüm işaretler ve notlar temizlensin mi?",
+    "done": "Tamamlandı",
+    "progress": "adım tamamlandı",
+    "general": "Genel sorular",
+    "testerName": "Adınız (veya baş harfleriniz)",
+    "csvHint": "CSV dosyası Excel veya LibreOffice ile açılır (ayırıcı: noktalı virgül).",
+    "draft": null,
+    "coordinatorScope": "tüm ortak ülkeler (koordinatör)",
+    "coordinatorNote": "Bu sürüm koordinatör içindir. Kullanıcı adları xx.reception biçiminde yazılmıştır: xx yerine ar (Arjantin), pl (Polonya), lv (Letonya) veya tr (Türkiye) yazın. Her ülkenin kurumları ve arıcıları Tablo \"Her ülkenin demo verileri\" içindedir.",
+    "part": "Kısım",
+    "ccp": "KKN",
+    "yes": "Evet",
+    "no": "Hayır",
+    "platformOrg": "Platform yönetimi",
+    "allOrgs": "ülkenin her kurumu",
+    "accountsTable": "Demo hesapları",
+    "beekeepersTable": "Demo arıcılar",
+    "demoDataTable": "Her ülkenin demo verileri",
+    "organizations": "Kurumlar",
+    "beekeepers": "Arıcılar",
+    "example": "Örnek bal",
+    "beekeepersIntro": "Aşağıdaki arıcılar zaten kayıtlıdır. Senaryoda kendi arıcınızı kaydedersiniz (adım A1); bu adımı atlarsanız teslim için {{b1.name}} veya ikinci arıcıyı kullanın.",
+    "b1Note": "SMS koduyla kaydedildi, portal hesabı var, örnek balı baştan sona tamamlandı, herkese açık arıcı sayfası var",
+    "b2Note": "SMS koduyla kaydedildi, birliğin üyesi, henüz teslimi yok",
+    "b3Note": "İmzalı formla kaydedildi; Uyum Sorumlusunu bekliyor (adım F1); kabul edilene kadar teslim yapamaz",
+    "beekeeperAccount": "arıcının kendi hesabı (kullanıcı adı = işletme numarası, adım A2'den)",
+    "beekeeperAccountPlain": "arıcının işletme numarası (adım A2)",
+    "beekeeperAccountNote": "(örnek arıcı); kendi arıcınız A2 adımında bir hesap alır",
+    "feedbackTable": "Adım adım geri bildirim",
+    "valuesTable": "Önerilen değerler",
+    "demoSite": "Demo sitesi",
+    "inboxHint": "SMS kodları ve giriş bilgileri: her sayfanın altındaki \"Demo SMS kutusu\".",
+    "passwordsHint": "Şifreler ayrı bir sayfada, credentials.txt dosyasındadır.",
+    "generic": {
+      "authority": "ülkenizin kayıt kurumu",
+      "association": "ülkenizin arıcı birliği",
+      "plant": "ülkenizin işleme tesisi",
+      "lab": "ülkenizin laboratuvarı",
+      "shop": "ülkenizin mağazası",
+      "country": "ülkeniz",
+      "registry": "`AR-DEMO-0002nn` (PL-DEMO-, LV-DEMO- veya TR48 + 10 hane)",
+      "phone": "ülkenizin bir test numarası (bkz. Tablo \"Demo hesapları\")",
+      "region": "ülkenizin bölgesi, örneğin Entre Ríos (AR)",
+      "district": "o bölgenin bir ilçesi",
+      "b1": "ülkenizin örnek arıcısı",
+      "b3": "imzalı formla kaydedilen arıcı",
+      "exampleBatch": "ülkenizin örnek balı",
+      "exampleStory": "Tablo \"Her ülkenin demo verileri\" içindeki Bal Hikâyesi bağlantısı"
+    },
+    "ccp0Values": "**KKN 0 (ön denetim):** her evet/hayır sorusunu **Evet** olarak yanıtlayın. Metin soruları: \"Evet ise, kovan alet…\": {if}; \"Bal üretiminde kullanılan suyun…\": {extent}; diğer metin sorusu: {text}."
+  },
+  "phases": [
+    {
+      "id": "A",
+      "title": "Kayıt"
+    },
+    {
+      "id": "B",
+      "title": "Teslim ve arıcı"
+    },
+    {
+      "id": "C",
+      "title": "Laboratuvar"
+    },
+    {
+      "id": "D",
+      "title": "Tesis ve parti"
+    },
+    {
+      "id": "E",
+      "title": "Sevkiyat ve mağaza"
+    },
+    {
+      "id": "F",
+      "title": "Uyum ve kamuoyu"
+    }
+  ],
+  "roles": [
+    {
+      "id": "admin",
+      "name": "Platform yöneticisi",
+      "accounts": [
+        "admin"
+      ],
+      "manual": 15,
+      "who": "Platformu proje için işleten ekip (gerçek hayatta: platform işletmecisi).",
+      "does": [
+        "kurumları doğrular ve onlara yeteneklerini verir",
+        "üye ekler ve onlara giriş bilgilerini gönderir",
+        "bir tesisin onaylanmış lotlarından parti oluşturur (şimdilik bunu yalnızca yöneticiler yapar)",
+        "teslim düzeltmelerine ikinci bir yöneticiyle birlikte karar verir",
+        "her kaydı, denetim kaydını ve geri çağırma raporunu okur, ancak hiçbir zaman iş verisi girmez"
+      ],
+      "screens": "Panel, Kurumlar, Arıcılar, Toptancılar → Nihai Bal Üretimleri, Kullanıcı Yönetimi (denetim kaydı, aydınlatma metinleri, veri saklama)"
+    },
+    {
+      "id": "registration",
+      "name": "Arıcı Kayıt Görevlisi",
+      "accounts": [
+        "registration"
+      ],
+      "manual": 12,
+      "who": "Arıcı kaydını tutan kurumun görevlisi ({{org.authority}}).",
+      "does": [
+        "arıcının kayıt numarasını ve kimliğini kontrol eder",
+        "arıcıyı ve ilk arılığını kaydeder",
+        "aydınlatma metnini arıcıya okutur ve rızaları kaydeder",
+        "kaydı, arıcıya SMS ile gelen kodla veya imzalı bir formla onaylar",
+        "arıcıya arıcı portalının giriş bilgilerini gönderir"
+      ],
+      "screens": "Arıcı kaydı (bulma, kaydetme, yeniden doğrulama, ayrıntılar)"
+    },
+    {
+      "id": "association",
+      "name": "Kurum yöneticisi",
+      "accounts": [
+        "association",
+        "plantadmin"
+      ],
+      "manual": 10,
+      "who": "Bir kurumun platformdaki yöneticisi: burada arıcı birliğinin ({{org.association}}) ve tesisin ({{org.plant}}) yöneticisi.",
+      "does": [
+        "kurumun belgelerini ve veri sorumlusu bilgilerini güncel tutar",
+        "birlik: herkese açık arıcı sayfası için arıcının rızasını kaydeder",
+        "tesis: teslimleri, numuneleri ve arıcıların istediği fiyatları okur",
+        "Personel gibi kesinleştirme talep edebilir ve sevk edebilir"
+      ],
+      "screens": "Kurumum (kurum sayfası, belgeler), Arıcı sayfaları (birlik), Sevkiyatlar ve stok (tesis)"
+    },
+    {
+      "id": "inspector",
+      "name": "Saha denetçisi",
+      "accounts": [
+        "inspector"
+      ],
+      "manual": 11,
+      "who": "Arıcı birliğinin bir teknisyeni ({{org.association}}).",
+      "does": [
+        "birlik üyelerinin lotlarını, partilerini ve laboratuvar raporlarını okur",
+        "KKN 0'ı (arıcıdaki ön denetim) yalnızca bir yönetici KKN 0'ı birliğe verirse girer; varsayılan olarak bunu tesis yapar"
+      ],
+      "screens": "İşlerim, Kurumum, geri çağırma raporu"
+    },
+    {
+      "id": "reception",
+      "name": "Numune kabul sorumlusu",
+      "accounts": [
+        "reception"
+      ],
+      "manual": 5,
+      "who": "İşleme tesisinin kabul birimindeki kişi ({{org.plant}}).",
+      "does": [
+        "her teslimi kap kap, ağırlıkları ve mühürleriyle kaydeder",
+        "her kaptan güvenlik kapaklı bir numune kavanozu ve bir şahit numune kavanozu doldurur",
+        "arıcının teslimi SMS koduyla onaylamasını sağlar",
+        "etiketleri yazdırır ve kavanozları laboratuvara gönderir",
+        "her yeni lotun KKN 0'ını (ön denetim) girer"
+      ],
+      "screens": "Teslim almalar → Teslim al, Etiketler ile teslimat sayfası, Numuneler ve laboratuvar, İşlerim → Girilecek değerler"
+    },
+    {
+      "id": "staff",
+      "name": "Personel",
+      "accounts": [
+        "staff"
+      ],
+      "manual": 6,
+      "who": "Tesisin bir üretim çalışanı ({{org.plant}}).",
+      "does": [
+        "lotların (KKN 2–3) ve partilerin (KKN 4–10) KKN değerlerini girer",
+        "her şey tamamlandığında bir partinin kesinleştirilmesini talep eder",
+        "kesinleşmiş bir partiyi bir müşteriye sevk eder"
+      ],
+      "screens": "İşlerim → Girilecek değerler, Kurumum → parti, Sevkiyatlar ve stok → Sevk et"
+    },
+    {
+      "id": "quality",
+      "name": "Kalite Güvence Sorumlusu",
+      "accounts": [
+        "quality",
+        "shopquality"
+      ],
+      "manual": 7,
+      "who": "Başkalarının işini kontrol eden ikinci kişi: tesiste ({{org.plant}}) ve mağazada ({{org.shop}}).",
+      "does": [
+        "başka bir kişinin girdiği KKN kayıtlarını onaylar (dört göz ilkesi)",
+        "kesinleştirmeyi onaylar: parti mühürlenir ve Bal Hikâyesi yayına girer",
+        "mağazada: depolama kaydını (KKN 10) onaylar"
+      ],
+      "screens": "İşlerim → Onaylanacak değerler, Kesinleştirme talepleri; Sevkiyatlar ve stok → Depolama"
+    },
+    {
+      "id": "analyst",
+      "name": "Analist",
+      "accounts": [
+        "analyst"
+      ],
+      "manual": 8,
+      "who": "Bir laboratuvar analisti ({{org.lab}}).",
+      "does": [
+        "her numune kavanozunu teslim alır ve mühür numarasını, etiketi ve güvenlik kapağını kontrol eder",
+        "bir lotun karışım numunesini oluşturur",
+        "laboratuvar sonuçlarını girer, rapor PDF'ini yükler ve raporu onaya gönderir"
+      ],
+      "screens": "İşlerim → Teslim alınacak numuneler, Girilecek laboratuvar sonuçları; Numuneler ve laboratuvar"
+    },
+    {
+      "id": "labmanager",
+      "name": "Laboratuvar müdürü",
+      "accounts": [
+        "labmanager"
+      ],
+      "manual": 9,
+      "who": "Laboratuvarın sorumlusu ({{org.lab}}).",
+      "does": [
+        "analistlerin onaya gönderdiği raporları onaylar veya geri gönderir (kendi sonuçlarını hiçbir zaman)",
+        "onay, sonuçları lotun KKN 1 kaydına yazar"
+      ],
+      "screens": "İşlerim → Onaylanacak laboratuvar raporları; herkese açık Laboratuvar raporu doğrula sayfası"
+    },
+    {
+      "id": "compliance",
+      "name": "Uyum Sorumlusu",
+      "accounts": [
+        "compliance"
+      ],
+      "manual": 13,
+      "who": "Bir kurumun platformla nasıl çalıştığını gözeten kişi. Demoda tek bir hesap ülkenin her kurumunda bu role sahiptir; kurumlar arasında üstteki kurum · rol etiketiyle geçiş yapın.",
+      "does": [
+        "SMS kodunun yerine geçen imzalı fotoğrafları kabul eder veya reddeder",
+        "numune alma kalitesini inceler: reddedilen kavanozlar, kırık mühürler, fotoğrafla onaylanan teslimler",
+        "kurumun onay mekanizmasını ve denetim kayıtlarını izler",
+        "ilgili kişi başvurularını kaydeder ve veri sorumlusu bilgilerini günceller"
+      ],
+      "screens": "Uyum, İşlerim → İmzalı fotoğrafları incele"
+    },
+    {
+      "id": "shop",
+      "name": "Mağaza (perakendeci)",
+      "accounts": [
+        "shop",
+        "shopquality"
+      ],
+      "manual": 6,
+      "who": "Bal teslim alan bir mağazanın personeli ({{org.shop}}).",
+      "does": [
+        "bir sevkiyatın teslimini onaylar veya reddeder",
+        "depolama koşullarını (KKN 10) kaydeder; kaydı mağazanın Kalite Güvence Sorumlusu onaylar",
+        "partinin üretici kayıtlarını salt okunur olarak okur"
+      ],
+      "screens": "İşlerim → Onaylanacak sevkiyatlar; Sevkiyatlar ve stok → Depolama"
+    },
+    {
+      "id": "beekeeper",
+      "name": "Arıcı (portal)",
+      "accounts": [
+        "beekeeper"
+      ],
+      "manual": 14,
+      "who": "Platformda kendine ait küçük bir alanı (arıcı portalı) olan arıcı.",
+      "does": [
+        "teslimlerini, kaplarını, mühürlerini ve numune kavanozlarını izler",
+        "onaylanmış laboratuvar sonuçlarını, balının bulunduğu partileri ve bunların Bal Hikâyesi sayfalarını görür",
+        "her teslim için kilogram başına bir istenen fiyat girer (parti kesinleşene kadar)",
+        "rızalarını verir veya geri çeker"
+      ],
+      "screens": "Arıcı alanım: Ana sayfa, Teslimatlarım, Numuneler ve laboratuvar, Balımın olduğu partiler, Bal Hikâyesi sayfalarım, Gizlilik ve onaylar"
+    },
+    {
+      "id": "public",
+      "name": "Tüketici (herkes)",
+      "accounts": [],
+      "manual": 16,
+      "who": "Bir kavanozdaki QR kodu tarayan herkes. Hesap gerekmez.",
+      "does": [
+        "Bal Hikâyesi'ni okur: balın nereden geldiği, limitleriyle birlikte laboratuvar sonuçları, kontrol noktaları",
+        "arıcı izin verdiyse arıcının sayfasını açar",
+        "bir laboratuvar raporunu Laboratuvar raporu doğrula sayfasında kontrol eder"
+      ],
+      "screens": "Bal Hikâyesi (QR kod), arıcı sayfası, Laboratuvar raporu doğrula"
+    }
+  ],
+  "steps": [
+    {
+      "id": "A1",
+      "phase": "A",
+      "title": "Bir arıcı kaydedin",
+      "account": "registration",
+      "shot": "registration-form",
+      "manual": 12,
+      "do": [
+        "**Arıcı kaydı** sayfasını açın, {{registry}} gibi bir kayıt numarası yazın (nn: seçtiğiniz iki rakam) ve **Bul veya kaydet** düğmesine tıklayın.",
+        "Arıcının bilgilerini girin: ad olarak **[DEMO] ve kendi adınız**, bir soyadı, doğum tarihi, cep telefonu {{phone}} (nn: seçtiğiniz iki rakam) ve SMS dili.",
+        "Arılık: haritaya tıklayın veya koordinatları yazın, **İl** olarak {{region}} ve bir ilçe seçin (örneğin {{district}}), mevkiyi ve kovan sayısını yazın.",
+        "Aydınlatma metnini \"arıcıyla\" birlikte okuyun. **Arıcı, adının herkese açık sayfalarda gösterilmesini kabul ediyor** (bu durumda ad Bal Hikâyesi'nde görünür), beyan ve **Arıcıya giriş bilgilerini de SMS ile gönder** kutularını işaretleyin.",
+        "**Kod gönder** düğmesine tıklayın. **Demo SMS kutusu** sayfasını açın (sayfanın altındaki bağlantı, yeni bir sekmede açılır), 6 haneli kodu kopyalayın, girin ve **Kaydı onayla** düğmesine tıklayın."
+      ],
+      "expect": "\"Arıcı kaydedildi ve doğrulandı; giriş bilgileri SMS ile gönderildi.\" Sayfa arıcıyı {{bn}} gibi bir işletme numarasıyla gösterir. Bu numarayı not edin: tesisin buna ihtiyacı var."
+    },
+    {
+      "id": "A2",
+      "phase": "A",
+      "title": "Giriş bilgilerini arıcıya verin",
+      "account": "registration",
+      "shot": null,
+      "manual": 14,
+      "do": [
+        "**Demo SMS kutusu** sayfasını yeniden açın. En yeni mesaj arıcının giriş SMS'idir: kullanıcı adı (işletme numarası) ve geçici bir şifre.",
+        "İkisini de arıcıyı oynayan test kullanıcısına verin (adım B2)."
+      ],
+      "expect": "SMS, kullanıcı adını ve 72 saat geçerli, 10 karakterlik geçici bir şifreyi gösterir. Canlı sitede bu SMS yalnızca arıcının telefonuna gider."
+    },
+    {
+      "id": "B1",
+      "phase": "B",
+      "title": "Teslimi mühürlü kaplarla kaydedin",
+      "account": "reception",
+      "shot": "intake-containers",
+      "manual": 5,
+      "do": [
+        "**Teslim almalar** → **Teslim al** sayfasını açın, A1 adımındaki işletme numarasını yazın ve **Bul** düğmesine tıklayın.",
+        "Arılığı, bal türünü, üretim dönemini ([DEMO] Test season 2026–2027), teslim tarihini, **Menşe ülke** olarak {{countryName}}, **İl** olarak {{region}} ve ilçeyi seçin.",
+        "Laboratuvar olarak **{{org.lab}}** seçin. Listede her ortak ülkenin laboratuvarları vardır: kendi laboratuvarınızı seçin.",
+        "Kaplar: her kap için bir satır (ikinci kap için **Kap ekle**). Net kg değerini ve mühürleri girin: gelişteki mühür (veya bir işletme mührü), kavanoz mührü, şahit numune mührü ve numuneden sonraki yeni mühür. Baş harflerinizi içeren mühür numaraları kullanın; her numara farklı olmalıdır. Her kavanoz için **Kapak sağlam** kutusunu işaretleyin.",
+        "**Kod gönder** düğmesine tıklayın, kodu **Demo SMS kutusu** sayfasında okuyun (arıcının SMS'i kapları ve ağırlıkları listeler), girin ve **Teslimatı onayla** düğmesine tıklayın."
+      ],
+      "expect": "\"Teslimat arıcı tarafından onaylandı ve #… numaralı lot olarak kaydedildi.\" Teslimat sayfası kapları ve mühür geçmişlerini gösterir; **Etiketler** QR kodlu etiketleri yazdırır (isteğe bağlı)."
+    },
+    {
+      "id": "B2",
+      "phase": "B",
+      "title": "Arıcı giriş yapar ve istediği fiyatı girer",
+      "account": "beekeeper",
+      "shot": "portal-deliveries",
+      "manual": 14,
+      "do": [
+        "A2 adımındaki işletme numarası ve geçici şifreyle giriş yapın ve kendi şifrenizi belirleyin (en az 10 karakter). Aydınlatma metnini okuyup onaylayın.",
+        "**Teslimatlarım** sayfasını açın, yeni teslim için {{currency}} cinsinden bir kilogram fiyatı girin ve **Kaydet** düğmesine tıklayın."
+      ],
+      "expect": "\"Fiyat kaydedildi.\" Fiyat, parti kesinleşene kadar (adım D5) değiştirilebilir; sonra kilitlenir. Fiyatı yalnızca tesis, tesisin Uyum Sorumlusu ve platform yöneticileri görür."
+    },
+    {
+      "id": "B3",
+      "phase": "B",
+      "title": "KKN 0: ön denetim",
+      "account": "reception",
+      "shot": "ccp-page-lot",
+      "manual": 5,
+      "do": [
+        "**İşlerim** → **Girilecek değerler** → yeni lotun **KKN 0** kaydını açın.",
+        "Her soruyu yanıtlayın (önerilen yanıtlar: Tablo \"Önerilen değerler\") ve **İzleme Kayıtlarını Kaydet** düğmesine tıklayın."
+      ],
+      "expect": "\"… değerleri kaydedildi.\" Durum **Gönderildi** olur; görev Kalite Güvence Sorumlusuna geçer."
+    },
+    {
+      "id": "B4",
+      "phase": "B",
+      "title": "KKN 0'ı onaylayın",
+      "account": "quality",
+      "shot": "ccp-approve",
+      "manual": 7,
+      "do": [
+        "**İşlerim** → **Onaylanacak değerler** → lotun KKN 0 kaydını açın, yanıtları kontrol edin ve **Onayla** düğmesine tıklayın."
+      ],
+      "expect": "\"KKN kaydı onaylandı.\" Laboratuvar bu lot için ancak şimdi sonuç girebilir."
+    },
+    {
+      "id": "C1",
+      "phase": "C",
+      "title": "Numune kavanozlarını teslim alın",
+      "account": "analyst",
+      "shot": "sample-receive",
+      "manual": 8,
+      "do": [
+        "**İşlerim** → **Teslim alınacak numuneler** (veya **Numuneler ve laboratuvar**) sayfasını açın. Lotun her kavanozu için üç kontrolü (mühür numarası kayıtla aynı, etiket sağlam, kapak sağlam) **Evet** olarak yanıtlayın ve **Kabulü kaydet** düğmesine tıklayın.",
+        "Her kabın kavanozu teslim alındığında **Karışım numunesini oluştur** düğmesine tıklayın.",
+        "İsteğe bağlı: bir kavanozun kapağı için **Hayır** yanıtını verin. Kavanoz reddedilir; tesis aynı kaptan yeni bir kavanoz alır (teslimat sayfası → **Aç, numune al ve yeniden mühürle**) ve Uyum Sorumlusu reddi görür (adım F1)."
+      ],
+      "expect": "Her kavanoz için \"Kavanoz teslim alındı\"; S-…-COMP karışım numunesi laboratuvar raporu formuyla açılır."
+    },
+    {
+      "id": "C2",
+      "phase": "C",
+      "title": "Laboratuvar sonuçlarını girin",
+      "account": "analyst",
+      "shot": "lab-results-form",
+      "manual": 8,
+      "do": [
+        "Karışım numunesinin raporunda bir rapor numarası, düzenlenme tarihi ve her değeri girin (önerilen değerler: Tablo \"Önerilen değerler\"; isterseniz bir değeri limitinin dışında girmeyi deneyin).",
+        "Rapor olarak bir PDF yükleyin (bu paketteki demo-lab-report.pdf dosyasını kullanabilirsiniz), **Kaydet** düğmesine, ardından **Onaya gönder** düğmesine tıklayın."
+      ],
+      "expect": "\"Rapor onaya gönderildi; bir Laboratuvar müdürü (başka bir kişi) onaylamalı.\" Zorunlu değer sayacı tüm değerlerin girildiğini gösterir."
+    },
+    {
+      "id": "C3",
+      "phase": "C",
+      "title": "Laboratuvar raporunu onaylayın",
+      "account": "labmanager",
+      "shot": "lab-approve",
+      "manual": 9,
+      "do": [
+        "**İşlerim** → **Onaylanacak laboratuvar raporları** sayfasını açın, raporu açın, kontrol edin ve **Onayla** düğmesine tıklayın (limit dışındaki değerler için teyit istenir)."
+      ],
+      "expect": "\"Laboratuvar raporu onaylandı; sonuçlar artık lotun KKN 1 değerleri.\" Rapor artık herkese açık **Laboratuvar raporu doğrula** sayfasında kontrol edilebilir."
+    },
+    {
+      "id": "D1",
+      "phase": "D",
+      "title": "Lotun KKN 2 ve KKN 3 kayıtları",
+      "account": "staff",
+      "shot": null,
+      "manual": 6,
+      "do": [
+        "Personel: **İşlerim** → **Girilecek değerler** → KKN 2; değerleri girin ve **İzleme Kayıtlarını Kaydet** düğmesine tıklayın; KKN 3 için de aynısını yapın.",
+        "Kalite Güvence Sorumlusu ({{u.quality}}): **İşlerim** → **Onaylanacak değerler** → her birini **Onayla**."
+      ],
+      "expect": "İki kayıt da onayla birlikte **Tamamlandı**. Lot artık tamamdır ve bir partiye girebilir."
+    },
+    {
+      "id": "D2",
+      "phase": "D",
+      "title": "Partiyi oluşturun",
+      "account": "admin",
+      "shot": "admin-manage-batch",
+      "manual": 15,
+      "do": [
+        "**Toptancılar** → {{org.plant}} → **Nihai Bal Üretimleri** → **Yeni Parti** sayfasını açın. Baş harflerinizle bir başlık (örneğin [DEMO] Parti AB) ve üretim tarihini girin, **Parti Oluştur** düğmesine tıklayın.",
+        "**Partiyi Yönet** sayfasında lotunuzdan kullanılacak miktarı (kg) girin ve **Parti Bileşimini Kaydet** düğmesine tıklayın.",
+        "**KKN Yönet** sayfasını açın, KKN 4'ten KKN 10'a kadar hepsini **Evet** yapın ve **Atamaları Kaydet** düğmesine tıklayın.",
+        "Partiyi **Düzenle** ile açın ve sahip kurum olarak {{org.plant}} seçin."
+      ],
+      "expect": "Parti, lotunuzu ve KKN 4–10'u listeler. Parti oluşturmak şimdilik bir yönetici görevidir."
+    },
+    {
+      "id": "D3",
+      "phase": "D",
+      "title": "Partinin KKN 4–10 kayıtları",
+      "account": "staff",
+      "shot": "ccp-page-batch",
+      "manual": 6,
+      "do": [
+        "Personel: **İşlerim** → **Girilecek değerler**: partinin KKN 4, 5, 6, 7, 8, 9 ve 10 kayıtlarını girin ve her birinde **İzleme Kayıtlarını Kaydet** düğmesine tıklayın.",
+        "Kalite Güvence Sorumlusu ({{u.quality}}): her birini onaylayın."
+      ],
+      "expect": "Yedi kayıt **Tamamlandı**. Buradaki KKN 10 tesisteki depolamadır."
+    },
+    {
+      "id": "D4",
+      "phase": "D",
+      "title": "Kesinleştirme talep edin",
+      "account": "staff",
+      "shot": "finalize-request",
+      "manual": 6,
+      "do": [
+        "**Kurumum** → partiniz → **Kesinleştirme talep et**. Düğme devre dışıysa sayfa henüz neyin eksik olduğunu listeler."
+      ],
+      "expect": "\"Kesinleştirme talep edildi; bir Kalite Güvence Sorumlusu (başka bir kişi) onaylamalı.\""
+    },
+    {
+      "id": "D5",
+      "phase": "D",
+      "title": "Kesinleştirme: parti mühürlenir",
+      "account": "quality",
+      "shot": "finalize-confirm",
+      "manual": 7,
+      "do": [
+        "**İşlerim** → **Kesinleştirme talepleri** → parti → **Onayla ve kesinleştir**."
+      ],
+      "expect": "\"Parti kesinleşti.\" Parti sayfası mührü ve QR koduyla birlikte herkese açık Bal Hikâyesi bağlantısını gösterir. Parti, lotları ve arıcının fiyatı artık kilitlidir."
+    },
+    {
+      "id": "E1",
+      "phase": "E",
+      "title": "Partiyi mağazaya sevk edin",
+      "account": "staff",
+      "shot": "shipment-create",
+      "manual": 6,
+      "do": [
+        "**Sevkiyatlar ve stok** sayfasını açın, partinizin yanındaki **Sevk et** düğmesine tıklayın, {{org.shop}} seçin, kg cinsinden bir miktar girin ve **Sevk et** düğmesine tıklayın."
+      ],
+      "expect": "\"Sevkiyat oluşturuldu; emanet alıcı onaylayınca geçer.\""
+    },
+    {
+      "id": "E2",
+      "phase": "E",
+      "title": "Mağaza teslimi onaylar",
+      "account": "shop",
+      "shot": "shipment-confirm",
+      "manual": 6,
+      "do": [
+        "**İşlerim** → **Onaylanacak sevkiyatlar** (veya **Sevkiyatlar ve stok**) sayfasını açın ve **Teslimi onayla** düğmesine tıklayın (veya bir gerekçeyle **Reddet**)."
+      ],
+      "expect": "\"Teslim onaylandı; bu miktar artık sizde.\""
+    },
+    {
+      "id": "E3",
+      "phase": "E",
+      "title": "Mağazada depolama (KKN 10)",
+      "account": "shop",
+      "shot": "storage-record",
+      "manual": 6,
+      "do": [
+        "**Sevkiyatlar ve stok** sayfasını açın, partinin yanındaki **Depolama** düğmesine tıklayın, sıcaklığı ve bağıl nemi girin ve **Kaydet** düğmesine tıklayın.",
+        "Mağazanın Kalite Güvence Sorumlusu ({{u.shopquality}}) aynı sayfayı açar ve onaylar."
+      ],
+      "expect": "\"Depolama değerleri kaydedildi.\", ardından \"KKN kaydı onaylandı.\" Mağaza, partinin üretici kayıtlarını da salt okunur olarak okuyabilir."
+    },
+    {
+      "id": "F1",
+      "phase": "F",
+      "title": "Uyum Sorumlusu inceler",
+      "account": "compliance",
+      "shot": "compliance",
+      "manual": 13,
+      "do": [
+        "Üstteki kurum · rol etiketiyle **{{org.plant}}** kurumuna geçin. **Uyum** → **Numune alma kalitesi** bölümünü açın, reddedilen bir kavanozun yanındaki **İnceleme yaz** düğmesine tıklayın, **uygun** veya **bulgu** seçin, neyi kontrol ettiğinizi yazın ve kaydedin.",
+        "**{{org.authority}}** kurumuna geçin. **İşlerim** → **İmzalı fotoğrafları incele** sayfasını açın: {{b3.name}} arıcısının kaydı imzalı bir formla bekliyor. Kaydı açın ve **Kabul et** düğmesine tıklayın (başka bir test kullanıcısı bunu zaten yaptıysa sayfa kararı gösterir).",
+        "Uyum sayfasındaki **Onay mekanizması** ve **Denetim kayıtları** bölümlerine bakın."
+      ],
+      "expect": "\"İnceleme kaydedildi.\" ve \"Kanıt kabul edildi; kayıt numarası doğrulandı.\" Kimse kendi kaydettiği bir öğeyi incelemez."
+    },
+    {
+      "id": "F2",
+      "phase": "F",
+      "title": "Arıcı sonucu görür",
+      "account": "beekeeper",
+      "shot": "portal-home",
+      "manual": 14,
+      "do": [
+        "B2 adımındaki arıcı olarak giriş yapın. **Balımın olduğu partiler** ve **Bal Hikâyesi sayfalarım** sayfalarını açın."
+      ],
+      "expect": "Kesinleşmiş parti, arıcının payı ve partinin Bal Hikâyesi bağlantısıyla birlikte görünür. Diğer arıcıların adları ve fiyatları hiçbir zaman gösterilmez."
+    },
+    {
+      "id": "F3",
+      "phase": "F",
+      "title": "Tüketici Bal Hikâyesi'ni açar",
+      "account": null,
+      "shot": "public-honey-story",
+      "manual": 16,
+      "do": [
+        "Partinin QR kodunu (parti sayfasında veya etikette) bir telefonla tarayın ya da parti sayfasındaki Bal Hikâyesi bağlantısını açın.",
+        "Ülkenizin örnek balını da açın: {{example.story}}"
+      ],
+      "expect": "Bal Hikâyesi: arıcının adı (rızayla), köken {{countryName}}, limitleriyle birlikte onaylı laboratuvar sonuçları ve kontrol noktaları. İl haritası yalnızca Türkiye'yi gösterir (bkz. \"Ortak ülkeler için demonun sınırları\")."
+    }
+  ],
+  "questions": [
+    "Bir balı arıcıdan mağaza rafına kadar izleyebildiniz mi? (1 = hiç, 5 = kolayca)",
+    "En zor adım hangisiydi ve neden?",
+    "Kendi dilinizde hangi etiketler, mesajlar veya metinler anlaşılmazdı?",
+    "Hangi noktalar ülkenizdeki uygulamayla örtüşmüyor (kayıt, teslim, numune alma, laboratuvar, etiketleme, mağazalar)?",
+    "Ülkenizin ihtiyaç duyduğu ama platformun kaydetmediği veriler hangileri?",
+    "Telefon veya tablet kullandınız mı? Hangi cihaz ve tarayıcıyı kullandınız, çalıştı mı?",
+    "Ülkenizdeki arıcılar arıcı portalını (istenen fiyat, rızalar) kullanır mı? Neye ihtiyaç duyarlar?",
+    "Bize söylemek istediğiniz başka bir şey var mı?"
+  ]
+}

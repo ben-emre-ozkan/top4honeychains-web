@@ -1,0 +1,605 @@
+{
+  "labels": {
+    "title": "Guía de prueba para los socios",
+    "subtitle": "Seguir una miel a través de la plataforma",
+    "language": "Español",
+    "month": "Octubre de 2026",
+    "page": "Página",
+    "figure": "Figura",
+    "table": "Tabla",
+    "toc": "Índice",
+    "role": "Rol",
+    "who": "Quién es",
+    "does": "Qué hace",
+    "screens": "Pantallas",
+    "account": "Cuenta de demostración",
+    "accounts": "Cuentas de demostración",
+    "manual": "Manual de usuario",
+    "chapter": "capítulo",
+    "step": "Paso",
+    "todo": "Qué hacer",
+    "expect": "Qué debería ver",
+    "organization": "Organización",
+    "username": "Nombre de usuario",
+    "beekeeper": "Apicultor",
+    "businessNumber": "Número de explotación",
+    "note": "Nota",
+    "works": "Funciona",
+    "doesNotWork": "No funciona",
+    "notTested": "No probado",
+    "comment": "Comentario",
+    "result": "Resultado",
+    "question": "Pregunta",
+    "answer": "Respuesta",
+    "parameter": "Parámetro",
+    "value": "Valor sugerido",
+    "limit": "Límite",
+    "unit": "Unidad",
+    "anyone": "cualquier persona, sin cuenta",
+    "tester": "Evaluador",
+    "country": "País",
+    "date": "Fecha",
+    "phase": "Parte",
+    "checklistTitle": "Lista de control de la prueba",
+    "checklistIntro": "Marque cada paso cuando lo haya hecho, indique si funcionó y escriba lo que observó. Sus marcas y notas se guardan en este navegador, en este dispositivo. Cuando termine, haga clic en \"Exportar resultados (CSV)\" y envíe el archivo a su coordinador.",
+    "export": "Exportar resultados (CSV)",
+    "print": "Imprimir",
+    "reset": "Borrar mis respuestas",
+    "resetConfirm": "¿Borrar todas las marcas y notas de este dispositivo?",
+    "done": "Hecho",
+    "progress": "pasos hechos",
+    "general": "Preguntas generales",
+    "testerName": "Su nombre (o sus iniciales)",
+    "csvHint": "El archivo CSV se abre en Excel o LibreOffice (separador: punto y coma).",
+    "draft": "Borrador, para revisión de los socios",
+    "coordinatorScope": "todos los países socios (coordinador)",
+    "coordinatorNote": "Esta edición es para el coordinador. Los nombres de usuario se escriben como xx.reception: reemplace xx por ar (Argentina), pl (Polonia), lv (Letonia) o tr (Türkiye). Las organizaciones y los apicultores de cada país están en la Tabla \"Los datos de demostración de cada país\".",
+    "part": "Parte",
+    "ccp": "PCC",
+    "yes": "Sí",
+    "no": "No",
+    "platformOrg": "Administración de la plataforma",
+    "allOrgs": "todas las organizaciones del país",
+    "accountsTable": "Cuentas de demostración",
+    "beekeepersTable": "Apicultores de demostración",
+    "demoDataTable": "Los datos de demostración de cada país",
+    "organizations": "Organizaciones",
+    "beekeepers": "Apicultores",
+    "example": "Miel de ejemplo",
+    "beekeepersIntro": "Los apicultores siguientes ya están registrados. En el escenario, usted registra a su propio apicultor (paso A1); si omite ese paso, use a {{b1.name}} o al segundo apicultor para la entrega.",
+    "b1Note": "Registrado con código SMS, cuenta del portal, miel de ejemplo terminada de principio a fin, página pública de apicultor",
+    "b2Note": "Registrado con código SMS, miembro de la asociación, todavía sin entregas",
+    "b3Note": "Registrado con un formulario firmado; espera al Responsable de cumplimiento (paso F1); no puede entregar hasta que se acepte",
+    "beekeeperAccount": "la cuenta propia del apicultor (nombre de usuario = número de explotación, del paso A2)",
+    "beekeeperAccountPlain": "el número de explotación del apicultor (paso A2)",
+    "beekeeperAccountNote": "(apicultor de ejemplo); su propio apicultor recibe una cuenta en el paso A2",
+    "feedbackTable": "Comentarios por paso",
+    "valuesTable": "Valores sugeridos",
+    "demoSite": "Sitio de demostración",
+    "inboxHint": "Códigos SMS y datos de acceso: \"Bandeja de SMS de demostración\", al pie de cada página.",
+    "passwordsHint": "Las contraseñas están en la hoja aparte credentials.txt.",
+    "generic": {
+      "authority": "la oficina de registro de su país",
+      "association": "la asociación de apicultores de su país",
+      "plant": "la planta de procesamiento de su país",
+      "lab": "el laboratorio de su país",
+      "shop": "el comercio de su país",
+      "country": "su país",
+      "registry": "`AR-DEMO-0002nn` (PL-DEMO-, LV-DEMO- o TR48 + 10 dígitos)",
+      "phone": "un número de prueba de su país (consulte la Tabla \"Cuentas de demostración\")",
+      "region": "la región de su país, p. ej., Entre Ríos (AR)",
+      "district": "un distrito de esa región",
+      "b1": "el apicultor de ejemplo de su país",
+      "b3": "el apicultor registrado con un formulario firmado",
+      "exampleBatch": "la miel de ejemplo de su país",
+      "exampleStory": "el enlace a la Historia de la miel en la Tabla \"Los datos de demostración de cada país\""
+    },
+    "ccp0Values": "**PCC 0 (auditoría primaria):** responda **Sí** a todas las preguntas de sí/no. Preguntas de texto: \"En caso afirmativo, ¿qué métodos…\": {if}; \"¿En qué medida…\": {extent}; la otra pregunta de texto: {text}."
+  },
+  "phases": [
+    {
+      "id": "A",
+      "title": "Registro"
+    },
+    {
+      "id": "B",
+      "title": "La entrega y el apicultor"
+    },
+    {
+      "id": "C",
+      "title": "Laboratorio"
+    },
+    {
+      "id": "D",
+      "title": "Planta y partida"
+    },
+    {
+      "id": "E",
+      "title": "Envío y comercio"
+    },
+    {
+      "id": "F",
+      "title": "Cumplimiento y el público"
+    }
+  ],
+  "roles": [
+    {
+      "id": "admin",
+      "name": "Administrador de la plataforma",
+      "accounts": [
+        "admin"
+      ],
+      "manual": 15,
+      "who": "El equipo que opera la plataforma para el proyecto (en la realidad: el operador de la plataforma).",
+      "does": [
+        "verifica las organizaciones y les asigna sus capacidades",
+        "agrega miembros y les envía sus datos de acceso",
+        "crea partidas a partir de los lotes aprobados de una planta (por ahora, solo los administradores lo hacen)",
+        "decide las correcciones de entregas junto con un segundo administrador",
+        "lee todos los registros, el registro de auditoría y el informe de retiro, pero nunca ingresa datos del negocio"
+      ],
+      "screens": "Panel, Organizaciones, Apicultores, Mayoristas → Producciones finales de miel, Gestión de Usuarios (registro de auditoría, avisos, conservación de datos)"
+    },
+    {
+      "id": "registration",
+      "name": "Responsable de registro de apicultores",
+      "accounts": [
+        "registration"
+      ],
+      "manual": 12,
+      "who": "Un funcionario de la autoridad que lleva el registro de apicultores ({{org.authority}}).",
+      "does": [
+        "comprueba el número de registro y la identidad del apicultor",
+        "registra al apicultor y su primer apiario",
+        "deja que el apicultor lea el aviso informativo y registra los consentimientos",
+        "confirma el registro con el código que el apicultor recibe por SMS, o con un formulario firmado",
+        "envía al apicultor los datos de acceso al portal del apicultor"
+      ],
+      "screens": "Registro de apicultores (buscar, registrar, verificar de nuevo, detalles)"
+    },
+    {
+      "id": "association",
+      "name": "Administrador de la organización",
+      "accounts": [
+        "association",
+        "plantadmin"
+      ],
+      "manual": 10,
+      "who": "El responsable de una organización en la plataforma: aquí, de la asociación de apicultores ({{org.association}}) y de la planta ({{org.plant}}).",
+      "does": [
+        "mantiene al día los documentos de la organización y los datos del responsable del tratamiento",
+        "asociación: registra el consentimiento de un apicultor para una página pública de apicultor",
+        "planta: lee las entregas, las muestras y los precios solicitados por los apicultores",
+        "puede solicitar la finalización y enviar, como el Personal"
+      ],
+      "screens": "Mi organización (página de la organización, documentos), Páginas de apicultores (asociación), Envíos y existencias (planta)"
+    },
+    {
+      "id": "inspector",
+      "name": "Inspector de campo",
+      "accounts": [
+        "inspector"
+      ],
+      "manual": 11,
+      "who": "Un técnico de la asociación de apicultores ({{org.association}}).",
+      "does": [
+        "lee los lotes, las partidas y los informes de laboratorio de los miembros de la asociación",
+        "ingresa el PCC 0 (la auditoría primaria en el apicultor) solo si un administrador asigna el PCC 0 a la asociación; por defecto lo hace la planta"
+      ],
+      "screens": "Mis tareas, Mi organización, informe de retiro"
+    },
+    {
+      "id": "reception",
+      "name": "Responsable de recepción de muestras",
+      "accounts": [
+        "reception"
+      ],
+      "manual": 5,
+      "who": "La persona de la recepción de la planta de procesamiento ({{org.plant}}).",
+      "does": [
+        "registra cada entrega envase por envase, con los pesos y los precintos",
+        "llena un frasco de muestra y un frasco de contramuestra de cada envase, con tapas de seguridad",
+        "deja que el apicultor confirme la entrega con el código SMS",
+        "imprime las etiquetas y envía los frascos al laboratorio",
+        "ingresa el PCC 0 (auditoría primaria) de cada lote nuevo"
+      ],
+      "screens": "Entregas (recepción) → Registrar una entrega, la página de la entrega con Etiquetas, Muestras y laboratorio, Mis tareas → Valores por ingresar"
+    },
+    {
+      "id": "staff",
+      "name": "Personal",
+      "accounts": [
+        "staff"
+      ],
+      "manual": 6,
+      "who": "Un trabajador de producción de la planta ({{org.plant}}).",
+      "does": [
+        "ingresa los valores de los PCC de los lotes (PCC 2–3) y de las partidas (PCC 4–10)",
+        "solicita la finalización de una partida cuando todo está completo",
+        "envía una partida finalizada a un cliente"
+      ],
+      "screens": "Mis tareas → Valores por ingresar, Mi organización → partida, Envíos y existencias → Enviar"
+    },
+    {
+      "id": "quality",
+      "name": "Responsable de aseguramiento de la calidad",
+      "accounts": [
+        "quality",
+        "shopquality"
+      ],
+      "manual": 7,
+      "who": "La segunda persona, que revisa el trabajo de otros: en la planta ({{org.plant}}) y en el comercio ({{org.shop}}).",
+      "does": [
+        "aprueba los registros de PCC que ingresó otra persona (principio de los cuatro ojos)",
+        "confirma la finalización: la partida queda sellada y su Historia de la miel se publica",
+        "en el comercio: aprueba el registro de almacenamiento (PCC 10)"
+      ],
+      "screens": "Mis tareas → Valores por aprobar, Solicitudes de finalización; Envíos y existencias → Almacenamiento"
+    },
+    {
+      "id": "analyst",
+      "name": "Analista",
+      "accounts": [
+        "analyst"
+      ],
+      "manual": 8,
+      "who": "Un analista de laboratorio ({{org.lab}}).",
+      "does": [
+        "recibe cada frasco de muestra y comprueba el número de precinto, la etiqueta y la tapa de seguridad",
+        "prepara la muestra compuesta de un lote",
+        "ingresa los resultados de laboratorio, sube el PDF del informe y envía el informe"
+      ],
+      "screens": "Mis tareas → Muestras por recibir, Resultados de laboratorio por ingresar; Muestras y laboratorio"
+    },
+    {
+      "id": "labmanager",
+      "name": "Responsable de laboratorio",
+      "accounts": [
+        "labmanager"
+      ],
+      "manual": 9,
+      "who": "El director del laboratorio ({{org.lab}}).",
+      "does": [
+        "aprueba o devuelve los informes que envían los analistas (nunca sus propios resultados)",
+        "la aprobación escribe los resultados en el PCC 1 del lote"
+      ],
+      "screens": "Mis tareas → Informes de laboratorio por aprobar; la página pública Verificar un informe de laboratorio"
+    },
+    {
+      "id": "compliance",
+      "name": "Responsable de cumplimiento",
+      "accounts": [
+        "compliance"
+      ],
+      "manual": 13,
+      "who": "La persona que supervisa cómo trabaja una organización con la plataforma. En la demostración, una sola cuenta tiene este rol en todas las organizaciones del país; cambie de una a otra con la etiqueta de la organización en la barra superior.",
+      "does": [
+        "acepta o rechaza las fotos firmadas que sustituyen a un código SMS",
+        "revisa la calidad del muestreo: frascos rechazados, precintos rotos, entregas confirmadas con foto",
+        "vigila el mecanismo de aprobación y las entradas de auditoría de la organización",
+        "registra las solicitudes de los interesados y mantiene los datos del responsable del tratamiento"
+      ],
+      "screens": "Cumplimiento, Mis tareas → Revisar fotos firmadas"
+    },
+    {
+      "id": "shop",
+      "name": "Comercio (minorista)",
+      "accounts": [
+        "shop",
+        "shopquality"
+      ],
+      "manual": 6,
+      "who": "El personal de un comercio que recibe miel ({{org.shop}}).",
+      "does": [
+        "confirma o rechaza la recepción de un envío",
+        "registra las condiciones de almacenamiento (PCC 10), que aprueba su Responsable de aseguramiento de la calidad",
+        "lee los registros de la partida del productor, en modo de solo lectura"
+      ],
+      "screens": "Mis tareas → Envíos por confirmar; Envíos y existencias → Almacenamiento"
+    },
+    {
+      "id": "beekeeper",
+      "name": "Apicultor (portal)",
+      "accounts": [
+        "beekeeper"
+      ],
+      "manual": 14,
+      "who": "El apicultor, con su propia pequeña parte de la plataforma (el portal del apicultor).",
+      "does": [
+        "sigue sus entregas, envases, precintos y frascos de muestra",
+        "ve los resultados de laboratorio aprobados, las partidas con su miel y sus páginas de la Historia de la miel",
+        "indica un precio solicitado por kg para cada entrega (hasta que la partida se finaliza)",
+        "otorga o retira sus consentimientos"
+      ],
+      "screens": "Mi área de apicultor: Inicio, Mis entregas, Muestras y laboratorio, Lotes con mi miel, Mis páginas Honey Story, Privacidad y consentimientos"
+    },
+    {
+      "id": "public",
+      "name": "Consumidor (público)",
+      "accounts": [],
+      "manual": 16,
+      "who": "Cualquier persona que escanea el código QR de un frasco. Sin cuenta.",
+      "does": [
+        "lee la Historia de la miel: de dónde viene la miel, los resultados de laboratorio con sus límites, los puntos de control",
+        "abre la página del apicultor cuando el apicultor lo autorizó",
+        "comprueba un informe de laboratorio en la página Verificar un informe de laboratorio"
+      ],
+      "screens": "Historia de la miel (código QR), página del apicultor, Verificar un informe de laboratorio"
+    }
+  ],
+  "steps": [
+    {
+      "id": "A1",
+      "phase": "A",
+      "title": "Registrar un apicultor",
+      "account": "registration",
+      "shot": "registration-form",
+      "manual": 12,
+      "do": [
+        "Abra **Registro de apicultores**, escriba un número de registro como {{registry}} (nn: dos dígitos a su elección) y haga clic en **Buscar o registrar**.",
+        "Complete los datos del apicultor: nombre **[DEMO] y su nombre de pila**, un apellido, la fecha de nacimiento, el teléfono móvil {{phone}} (nn: dos dígitos a su elección) y el idioma del SMS.",
+        "Apiario: haga clic en el mapa o escriba las coordenadas, elija **Provincia** {{region}}, un distrito (p. ej., {{district}}), escriba la localidad y el número de colmenas.",
+        "Lea el aviso con el \"apicultor\". Marque **El apicultor acepta que su nombre aparezca en las páginas públicas** (así el nombre aparece en la Historia de la miel), la declaración y **Enviar también al apicultor los datos de acceso por SMS**.",
+        "Haga clic en **Enviar código**. Abra **Bandeja de SMS de demostración** (enlace al pie de la página; se abre en una pestaña nueva), copie el código de 6 dígitos, ingréselo y haga clic en **Confirmar el registro**."
+      ],
+      "expect": "\"El apicultor está registrado y verificado; los datos de acceso se enviaron por SMS.\" La página muestra al apicultor con un número de explotación como {{bn}}. Anótelo: la planta lo necesita."
+    },
+    {
+      "id": "A2",
+      "phase": "A",
+      "title": "Entregar los datos de acceso al apicultor",
+      "account": "registration",
+      "shot": null,
+      "manual": 14,
+      "do": [
+        "Abra de nuevo **Bandeja de SMS de demostración**. El mensaje más reciente es el SMS de acceso del apicultor: nombre de usuario (el número de explotación) y una contraseña temporal.",
+        "Entregue ambos datos al evaluador que hace de apicultor (paso B2)."
+      ],
+      "expect": "El SMS muestra el nombre de usuario y una contraseña temporal de 10 caracteres, válida durante 72 horas. En el sitio real, este SMS solo llega al teléfono del apicultor."
+    },
+    {
+      "id": "B1",
+      "phase": "B",
+      "title": "Registrar la entrega con envases precintados",
+      "account": "reception",
+      "shot": "intake-containers",
+      "manual": 5,
+      "do": [
+        "Abra **Entregas (recepción)** → **Registrar una entrega**, escriba el número de explotación del paso A1 y haga clic en **Buscar**.",
+        "Elija el apiario, el tipo de miel, el período de producción ([DEMO] Test season 2026–2027), la fecha de entrega, **País de origen** {{countryName}}, **Provincia** {{region}} y el distrito.",
+        "Elija el laboratorio **{{org.lab}}**. La lista contiene los laboratorios de todos los países socios: elija el suyo.",
+        "Envases: una fila por envase (**Añadir un envase** para el segundo). Ingrese los kg netos y los precintos: el precinto a la llegada (o un precinto de planta), el precinto del frasco, el precinto de contramuestra y el precinto nuevo tras el muestreo. Use números de precinto con sus iniciales, todos distintos. Marque **Tapa intacta** para cada frasco.",
+        "Haga clic en **Enviar código**, lea el código en **Bandeja de SMS de demostración** (el SMS del apicultor enumera los envases y los pesos), ingréselo y haga clic en **Confirmar la entrega**."
+      ],
+      "expect": "\"Entrega confirmada por el apicultor y registrada como lote #…\". La página de la entrega muestra los envases y su historial de precintos; **Etiquetas** imprime las etiquetas con códigos QR (opcional)."
+    },
+    {
+      "id": "B2",
+      "phase": "B",
+      "title": "El apicultor inicia sesión e indica el precio solicitado",
+      "account": "beekeeper",
+      "shot": "portal-deliveries",
+      "manual": 14,
+      "do": [
+        "Inicie sesión con el número de explotación y la contraseña temporal del paso A2 y elija su propia contraseña (al menos 10 caracteres). Lea y confirme el aviso.",
+        "Abra **Mis entregas**, ingrese un precio solicitado por kg en {{currency}} para la nueva entrega y haga clic en **Indicar precio**."
+      ],
+      "expect": "\"Precio guardado.\" El precio se puede cambiar hasta que la partida se finaliza (paso D5); después queda bloqueado. Solo lo ven la planta, su Responsable de cumplimiento y los administradores de la plataforma."
+    },
+    {
+      "id": "B3",
+      "phase": "B",
+      "title": "PCC 0: la auditoría primaria",
+      "account": "reception",
+      "shot": "ccp-page-lot",
+      "manual": 5,
+      "do": [
+        "Abra **Mis tareas** → **Valores por ingresar** → **PCC 0** del nuevo lote.",
+        "Responda todas las preguntas (respuestas sugeridas en la Tabla \"Valores sugeridos\") y haga clic en **Guardar registros de monitoreo**."
+      ],
+      "expect": "\"… valores guardados.\" El estado pasa a **Enviado**; la tarea pasa al Responsable de aseguramiento de la calidad."
+    },
+    {
+      "id": "B4",
+      "phase": "B",
+      "title": "Aprobar el PCC 0",
+      "account": "quality",
+      "shot": "ccp-approve",
+      "manual": 7,
+      "do": [
+        "Abra **Mis tareas** → **Valores por aprobar** → PCC 0 del lote, revise las respuestas y haga clic en **Aprobar**."
+      ],
+      "expect": "\"Registro de PCC aprobado.\" Solo ahora el laboratorio puede ingresar resultados para este lote."
+    },
+    {
+      "id": "C1",
+      "phase": "C",
+      "title": "Recibir los frascos de muestra",
+      "account": "analyst",
+      "shot": "sample-receive",
+      "manual": 8,
+      "do": [
+        "Abra **Mis tareas** → **Muestras por recibir** (o **Muestras y laboratorio**). Para cada frasco del lote, responda **Sí** a las tres comprobaciones (el número de precinto coincide con el registro, la etiqueta está intacta, la tapa está intacta) y haga clic en **Registrar la recepción**.",
+        "Cuando se haya recibido el frasco de cada envase, haga clic en **Hacer la muestra compuesta**.",
+        "Opcional: responda **No** para la tapa de un frasco. El frasco se rechaza; la planta toma un frasco nuevo del mismo envase (página de la entrega → **Abrir, muestrear y precintar de nuevo**), y el Responsable de cumplimiento ve el rechazo (paso F1)."
+      ],
+      "expect": "\"Frasco recibido; precinto, etiqueta y tapa en orden.\" para cada frasco; la muestra compuesta S-…-COMP se abre con el formulario del informe de laboratorio."
+    },
+    {
+      "id": "C2",
+      "phase": "C",
+      "title": "Ingresar los resultados de laboratorio",
+      "account": "analyst",
+      "shot": "lab-results-form",
+      "manual": 8,
+      "do": [
+        "En el informe de la muestra compuesta: ingrese un número de informe, la fecha de emisión y todos los valores (valores sugeridos en la Tabla \"Valores sugeridos\"; si lo desea, pruebe un valor fuera de su límite).",
+        "Suba un PDF como informe (puede usar demo-lab-report.pdf de este paquete), haga clic en **Guardar** y después en **Enviar para aprobación**."
+      ],
+      "expect": "\"Informe enviado; un Responsable de laboratorio (otra persona) debe aprobarlo.\" El contador de valores obligatorios muestra que están todos ingresados."
+    },
+    {
+      "id": "C3",
+      "phase": "C",
+      "title": "Aprobar el informe de laboratorio",
+      "account": "labmanager",
+      "shot": "lab-approve",
+      "manual": 9,
+      "do": [
+        "Abra **Mis tareas** → **Informes de laboratorio por aprobar**, abra el informe, revíselo y haga clic en **Aprobar** (los valores fuera de sus límites piden una confirmación)."
+      ],
+      "expect": "\"Informe de laboratorio aprobado; los resultados son ahora los valores del PCC 1 del lote.\" Ahora el informe se puede comprobar en la página pública **Verificar un informe de laboratorio**."
+    },
+    {
+      "id": "D1",
+      "phase": "D",
+      "title": "PCC 2 y PCC 3 del lote",
+      "account": "staff",
+      "shot": null,
+      "manual": 6,
+      "do": [
+        "Personal: **Mis tareas** → **Valores por ingresar** → PCC 2, ingrese los valores, **Guardar registros de monitoreo**; lo mismo para el PCC 3.",
+        "Responsable de aseguramiento de la calidad ({{u.quality}}): **Mis tareas** → **Valores por aprobar** → **Aprobar** cada uno."
+      ],
+      "expect": "Ambos registros en estado **Completado**, con una aprobación. El lote ya está completo y puede entrar en una partida."
+    },
+    {
+      "id": "D2",
+      "phase": "D",
+      "title": "Crear la partida",
+      "account": "admin",
+      "shot": "admin-manage-batch",
+      "manual": 15,
+      "do": [
+        "Abra **Mayoristas** → {{org.plant}} → **Producciones finales de miel (partidas)** → **Nueva partida**. Ingrese un título con sus iniciales (p. ej., [DEMO] Partida AB) y la fecha de producción, y haga clic en **Crear partida**.",
+        "En **Gestionar partida**, ingrese la cantidad (kg) que se usa de su lote y haga clic en **Guardar composición de la partida**.",
+        "Abra **Gestionar PCC**, ponga del PCC 4 al PCC 10 en **Sí** y haga clic en **Guardar asignaciones**.",
+        "**Editar** la partida y elija la organización propietaria {{org.plant}}."
+      ],
+      "expect": "La partida enumera su lote y los PCC 4–10. Por ahora, crear partidas es una tarea del administrador."
+    },
+    {
+      "id": "D3",
+      "phase": "D",
+      "title": "PCC 4 a PCC 10 de la partida",
+      "account": "staff",
+      "shot": "ccp-page-batch",
+      "manual": 6,
+      "do": [
+        "Personal: **Mis tareas** → **Valores por ingresar**: ingrese y guarde (**Guardar registros de monitoreo**) los PCC 4, 5, 6, 7, 8, 9 y 10 de la partida.",
+        "Responsable de aseguramiento de la calidad ({{u.quality}}): apruebe cada uno."
+      ],
+      "expect": "Siete registros en estado **Completado**. Aquí, el PCC 10 es el almacenamiento en la planta."
+    },
+    {
+      "id": "D4",
+      "phase": "D",
+      "title": "Solicitar la finalización",
+      "account": "staff",
+      "shot": "finalize-request",
+      "manual": 6,
+      "do": [
+        "Abra **Mi organización** → su partida → **Solicitar la finalización**. Si el botón está desactivado, la página enumera lo que todavía falta."
+      ],
+      "expect": "\"Finalización solicitada; un Responsable de aseguramiento de la calidad (otra persona) debe confirmarla.\""
+    },
+    {
+      "id": "D5",
+      "phase": "D",
+      "title": "Finalizar: la partida queda sellada",
+      "account": "quality",
+      "shot": "finalize-confirm",
+      "manual": 7,
+      "do": [
+        "Abra **Mis tareas** → **Solicitudes de finalización** → la partida → **Confirmar y finalizar**."
+      ],
+      "expect": "\"Partida finalizada.\" La página de la partida muestra el sello y el enlace a la Historia de la miel pública con su código QR. La partida, sus lotes y el precio del apicultor quedan bloqueados."
+    },
+    {
+      "id": "E1",
+      "phase": "E",
+      "title": "Enviar la partida al comercio",
+      "account": "staff",
+      "shot": "shipment-create",
+      "manual": 6,
+      "do": [
+        "Abra **Envíos y existencias** → **Enviar** junto a su partida, elija {{org.shop}}, ingrese una cantidad en kg y haga clic en **Enviar**."
+      ],
+      "expect": "\"Envío creado; la custodia se transfiere cuando el receptor lo confirma.\""
+    },
+    {
+      "id": "E2",
+      "phase": "E",
+      "title": "El comercio confirma la recepción",
+      "account": "shop",
+      "shot": "shipment-confirm",
+      "manual": 6,
+      "do": [
+        "Abra **Mis tareas** → **Envíos por confirmar** (o **Envíos y existencias**) y haga clic en **Confirmar recepción** (o en **Rechazar**, con un motivo)."
+      ],
+      "expect": "\"Recepción confirmada; ahora usted tiene esta cantidad en su poder.\""
+    },
+    {
+      "id": "E3",
+      "phase": "E",
+      "title": "Almacenamiento en el comercio (PCC 10)",
+      "account": "shop",
+      "shot": "storage-record",
+      "manual": 6,
+      "do": [
+        "Abra **Envíos y existencias** → **Almacenamiento** junto a la partida, ingrese la temperatura y la humedad relativa y haga clic en **Guardar**.",
+        "El Responsable de aseguramiento de la calidad del comercio ({{u.shopquality}}) abre la misma página y aprueba."
+      ],
+      "expect": "\"Valores de almacenamiento guardados.\" y después \"Registro de PCC aprobado.\" El comercio también puede leer los registros de la partida del productor, en modo de solo lectura."
+    },
+    {
+      "id": "F1",
+      "phase": "F",
+      "title": "El Responsable de cumplimiento revisa",
+      "account": "compliance",
+      "shot": "compliance",
+      "manual": 13,
+      "do": [
+        "Con la etiqueta de la organización en la barra superior, cambie a **{{org.plant}}**. Abra **Cumplimiento** → **Calidad del muestreo**, haga clic en **Escribir una revisión** junto a un frasco rechazado, elija **en orden** o **hallazgo**, escriba qué comprobó y guarde.",
+        "Cambie a **{{org.authority}}**. Abra **Mis tareas** → **Revisar fotos firmadas**: el registro de {{b3.name}} espera con un formulario firmado. Ábralo y haga clic en **Aceptar** (si otro evaluador ya lo hizo, se muestra la decisión).",
+        "Mire **Mecanismo de aprobación** y **Registros de auditoría** en la página de Cumplimiento."
+      ],
+      "expect": "\"Revisión registrada.\" y \"Prueba aceptada; el número de registro está verificado.\" Una persona nunca revisa un elemento que registró ella misma."
+    },
+    {
+      "id": "F2",
+      "phase": "F",
+      "title": "El apicultor ve el resultado",
+      "account": "beekeeper",
+      "shot": "portal-home",
+      "manual": 14,
+      "do": [
+        "Inicie sesión como el apicultor del paso B2. Abra **Lotes con mi miel** y **Mis páginas Honey Story**."
+      ],
+      "expect": "La partida finalizada con la parte del apicultor y el enlace a su Historia de la miel. Nunca se muestran los nombres ni los precios de otros apicultores."
+    },
+    {
+      "id": "F3",
+      "phase": "F",
+      "title": "El consumidor abre la Historia de la miel",
+      "account": null,
+      "shot": "public-honey-story",
+      "manual": 16,
+      "do": [
+        "Escanee con un teléfono el código QR de la partida (página de la partida o etiqueta), o abra el enlace a la Historia de la miel desde la página de la partida.",
+        "Abra también la miel de ejemplo de su país: {{example.story}}"
+      ],
+      "expect": "La Historia de la miel: el nombre del apicultor (con su consentimiento), el origen {{countryName}}, los resultados de laboratorio aprobados con sus límites y los puntos de control. El mapa de provincias solo muestra Türkiye (consulte \"Límites de la demostración\")."
+    }
+  ],
+  "questions": [
+    "¿Pudo seguir una miel desde el apicultor hasta el estante del comercio? (1 = en absoluto, 5 = fácilmente)",
+    "¿Qué paso fue el más difícil y por qué?",
+    "¿Qué etiquetas, mensajes o textos no estaban claros en su idioma?",
+    "¿Qué no coincide con la práctica de su país (registro, entrega, muestreo, laboratorio, etiquetado, comercios)?",
+    "¿Qué datos necesitaría su país que la plataforma no registra?",
+    "¿Usó un teléfono o una tableta? ¿Qué dispositivo y qué navegador, y funcionó?",
+    "¿Usarían los apicultores de su país el portal del apicultor (precio solicitado, consentimientos)? ¿Qué necesitarían?",
+    "¿Hay algo más que quiera decirnos?"
+  ]
+}

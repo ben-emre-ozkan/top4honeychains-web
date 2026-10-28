@@ -1,0 +1,605 @@
+{
+  "labels": {
+    "title": "Partneru testa ceļvedis",
+    "subtitle": "Sekojiet viena medus ceļam platformā",
+    "language": "Latviešu",
+    "month": "2026. gada oktobris",
+    "page": "Lappuse",
+    "figure": "Attēls",
+    "table": "Tabula",
+    "toc": "Saturs",
+    "role": "Loma",
+    "who": "Kas tas ir",
+    "does": "Ko dara",
+    "screens": "Ekrāni",
+    "account": "Demonstrācijas konts",
+    "accounts": "Demonstrācijas konti",
+    "manual": "Lietotāja rokasgrāmata",
+    "chapter": "nodaļa",
+    "step": "Solis",
+    "todo": "Kas jādara",
+    "expect": "Kas jums jāredz",
+    "organization": "Organizācija",
+    "username": "Lietotājvārds",
+    "beekeeper": "Biškopis",
+    "businessNumber": "Saimniecības numurs",
+    "note": "Piezīme",
+    "works": "Darbojas",
+    "doesNotWork": "Nedarbojas",
+    "notTested": "Nav pārbaudīts",
+    "comment": "Komentārs",
+    "result": "Rezultāts",
+    "question": "Jautājums",
+    "answer": "Atbilde",
+    "parameter": "Parametrs",
+    "value": "Ieteicamā vērtība",
+    "limit": "Robežvērtība",
+    "unit": "Mērvienība",
+    "anyone": "jebkurš, bez konta",
+    "tester": "Testētājs",
+    "country": "Valsts",
+    "date": "Datums",
+    "phase": "Daļa",
+    "checklistTitle": "Testa kontrolsaraksts",
+    "checklistIntro": "Atzīmējiet katru soli, kad esat to izpildījis, norādiet, vai tas darbojās, un ierakstiet, ko pamanījāt. Jūsu atzīmes un piezīmes paliek šajā pārlūkā šajā ierīcē. Kad esat beidzis, noklikšķiniet uz \"Eksportēt rezultātus (CSV)\" un nosūtiet failu savam koordinatoram.",
+    "export": "Eksportēt rezultātus (CSV)",
+    "print": "Drukāt",
+    "reset": "Dzēst manas atbildes",
+    "resetConfirm": "Dzēst visas atzīmes un piezīmes šajā ierīcē?",
+    "done": "Izpildīts",
+    "progress": "soļi izpildīti",
+    "general": "Vispārīgi jautājumi",
+    "testerName": "Jūsu vārds (vai iniciāļi)",
+    "csvHint": "CSV failu var atvērt programmā Excel vai LibreOffice (atdalītājs: semikols).",
+    "draft": "Melnraksts partneru pārskatīšanai",
+    "coordinatorScope": "visas partnervalstis (koordinators)",
+    "coordinatorNote": "Šis izdevums ir paredzēts koordinatoram. Lietotājvārdi ir rakstīti formā xx.reception: aizstājiet xx ar ar (Argentīna), pl (Polija), lv (Latvija) vai tr (Turcija). Katras valsts organizācijas un biškopji: Tabula \"Katras valsts demonstrācijas dati\".",
+    "part": "Daļa",
+    "ccp": "KKP",
+    "yes": "Jā",
+    "no": "Nē",
+    "platformOrg": "Platformas administrēšana",
+    "allOrgs": "visas valsts organizācijas",
+    "accountsTable": "Demonstrācijas konti",
+    "beekeepersTable": "Demonstrācijas biškopji",
+    "demoDataTable": "Katras valsts demonstrācijas dati",
+    "organizations": "Organizācijas",
+    "beekeepers": "Biškopji",
+    "example": "Piemēra medus",
+    "beekeepersIntro": "Tālāk minētie biškopji jau ir reģistrēti. Scenārijā jūs reģistrējat savu biškopi (solis A1); ja šo soli izlaižat, piegādei izmantojiet {{b1.name}} vai otro biškopi.",
+    "b1Note": "Reģistrēts ar SMS kodu, portāla konts, piemēra medus pabeigts no sākuma līdz beigām, publiska biškopja lapa",
+    "b2Note": "Reģistrēts ar SMS kodu, biedrības biedrs, piegāžu vēl nav",
+    "b3Note": "Reģistrēts ar parakstītu veidlapu; gaida atbilstības speciālistu (solis F1); līdz pieņemšanai nevar piegādāt",
+    "beekeeperAccount": "biškopja paša konts (lietotājvārds = saimniecības numurs, no soļa A2)",
+    "beekeeperAccountPlain": "biškopja saimniecības numurs (solis A2)",
+    "beekeeperAccountNote": "(piemēra biškopis); jūsu biškopis kontu saņem solī A2",
+    "feedbackTable": "Atsauksmes par katru soli",
+    "valuesTable": "Ieteicamās vērtības",
+    "demoSite": "Demonstrācijas vietne",
+    "inboxHint": "SMS kodi un pieteikšanās dati: \"Demo īsziņu pastkastīte\" katras lapas apakšā.",
+    "passwordsHint": "Paroles ir atsevišķā lapā credentials.txt.",
+    "generic": {
+      "authority": "jūsu valsts reģistrācijas iestāde",
+      "association": "jūsu valsts biškopju biedrība",
+      "plant": "jūsu valsts pārstrādes uzņēmums",
+      "lab": "jūsu valsts laboratorija",
+      "shop": "jūsu valsts veikals",
+      "country": "jūsu valsts",
+      "registry": "`AR-DEMO-0002nn` (PL-DEMO-, LV-DEMO- vai TR48 + 10 cipari)",
+      "phone": "jūsu valsts testa numurs (skatīt: Tabula \"Demonstrācijas konti\")",
+      "region": "jūsu valsts reģions, piem., Entre Ríos (AR)",
+      "district": "šī reģiona novads",
+      "b1": "jūsu valsts piemēra biškopis",
+      "b3": "biškopis, kas reģistrēts ar parakstītu veidlapu",
+      "exampleBatch": "jūsu valsts piemēra medus",
+      "exampleStory": "Medus stāsta saite (skatīt: Tabula \"Katras valsts demonstrācijas dati\")"
+    },
+    "ccp0Values": "**KKP 0 (sākotnējais audits):** uz katru jā/nē jautājumu atbildiet **Jā**. Teksta jautājumi: \"Ja jā, kādas metodes…\": {if}; \"Cik lielā mērā…\": {extent}; otrs teksta jautājums: {text}."
+  },
+  "phases": [
+    {
+      "id": "A",
+      "title": "Reģistrācija"
+    },
+    {
+      "id": "B",
+      "title": "Piegāde un biškopis"
+    },
+    {
+      "id": "C",
+      "title": "Laboratorija"
+    },
+    {
+      "id": "D",
+      "title": "Uzņēmums un gala partija"
+    },
+    {
+      "id": "E",
+      "title": "Sūtījums un veikals"
+    },
+    {
+      "id": "F",
+      "title": "Atbilstība un sabiedrība"
+    }
+  ],
+  "roles": [
+    {
+      "id": "admin",
+      "name": "Platformas administrators",
+      "accounts": [
+        "admin"
+      ],
+      "manual": 15,
+      "who": "Komanda, kas projekta vajadzībām uztur platformu (īstenībā: platformas operators).",
+      "does": [
+        "pārbauda organizācijas un piešķir tām kompetences",
+        "pievieno dalībniekus un nosūta viņiem pieteikšanās datus",
+        "izveido gala partijas no uzņēmuma apstiprinātajām partijām (pagaidām to dara tikai administratori)",
+        "kopā ar otru administratoru izlemj piegāžu labojumus",
+        "lasa katru ierakstu, audita žurnālu un atsaukšanas pārskatu, bet nekad neievada darba plūsmas datus"
+      ],
+      "screens": "Informācijas Panelis, Organizācijas, Biškopji, Vairumtirgotāji → Gala medus ražošana (gala partijas), Lietotāju Pārvaldība (audita žurnāls, paziņojumi, datu glabāšana)"
+    },
+    {
+      "id": "registration",
+      "name": "Biškopju reģistrācijas speciālists",
+      "accounts": [
+        "registration"
+      ],
+      "manual": 12,
+      "who": "Iestādes darbinieks, kas uztur biškopju reģistru ({{org.authority}}).",
+      "does": [
+        "pārbauda biškopja reģistra numuru un identitāti",
+        "reģistrē biškopi un pirmo dravu",
+        "ļauj biškopim izlasīt informatīvo paziņojumu un reģistrē piekrišanas",
+        "apstiprina reģistrāciju ar kodu, ko biškopis saņem SMS, vai ar parakstītu veidlapu",
+        "nosūta biškopim pieteikšanās datus biškopju portālam"
+      ],
+      "screens": "Biškopju reģistrācija (atrast, reģistrēt, atkārtoti pārbaudīt, dati)"
+    },
+    {
+      "id": "association",
+      "name": "Organizācijas administrators",
+      "accounts": [
+        "association",
+        "plantadmin"
+      ],
+      "manual": 10,
+      "who": "Organizācijas vadītājs platformā: šeit biškopju biedrības ({{org.association}}) un uzņēmuma ({{org.plant}}) vadītājs.",
+      "does": [
+        "uztur organizācijas dokumentus un datu pārziņa datus",
+        "biedrība: reģistrē biškopja piekrišanu publiskai biškopja lapai",
+        "uzņēmums: lasa piegādes, paraugus un biškopju prasītās cenas",
+        "var pieprasīt pabeigšanu (fiksēšanu) un nosūtīt, tāpat kā darbinieks"
+      ],
+      "screens": "Mana organizācija (organizācijas lapa, dokumenti), Biškopju lapas (biedrība), Sūtījumi un krājumi (uzņēmums)"
+    },
+    {
+      "id": "inspector",
+      "name": "Lauka inspektors",
+      "accounts": [
+        "inspector"
+      ],
+      "manual": 11,
+      "who": "Biškopju biedrības tehniķis ({{org.association}}).",
+      "does": [
+        "lasa biedrības biedru partijas, gala partijas un laboratorijas pārskatus",
+        "ievada KKP 0 (sākotnējo auditu pie biškopja) tikai tad, ja administrators KKP 0 piešķir biedrībai; pēc noklusējuma to dara uzņēmums"
+      ],
+      "screens": "Mans darbs, Mana organizācija, atsaukšanas pārskats"
+    },
+    {
+      "id": "reception",
+      "name": "Paraugu pieņemšanas speciālists",
+      "accounts": [
+        "reception"
+      ],
+      "manual": 5,
+      "who": "Persona pārstrādes uzņēmuma pieņemšanas punktā ({{org.plant}}).",
+      "does": [
+        "reģistrē katru piegādi tvertni pa tvertnei ar svariem un plombām",
+        "no katras tvertnes piepilda paraugu burku un kontrolparauga burku ar drošības vāciņiem",
+        "ļauj biškopim apstiprināt piegādi ar SMS kodu",
+        "izdrukā etiķetes un nosūta burkas uz laboratoriju",
+        "ievada katras jaunas partijas KKP 0 (sākotnējo auditu)"
+      ],
+      "screens": "Piegādes (pieņemšana) → Reģistrēt piegādi, piegādes lapa ar etiķetēm, Paraugi un laboratorija, Mans darbs → Ievadāmās vērtības"
+    },
+    {
+      "id": "staff",
+      "name": "Darbinieks",
+      "accounts": [
+        "staff"
+      ],
+      "manual": 6,
+      "who": "Uzņēmuma ražošanas darbinieks ({{org.plant}}).",
+      "does": [
+        "ievada partiju KKP vērtības (KKP 2–3) un gala partiju KKP vērtības (KKP 4–10)",
+        "pieprasa gala partijas pabeigšanu (fiksēšanu), kad viss ir pilnīgs",
+        "nosūta pabeigtu (fiksētu) gala partiju klientam"
+      ],
+      "screens": "Mans darbs → Ievadāmās vērtības, Mana organizācija → gala partija, Sūtījumi un krājumi → Nosūtīt"
+    },
+    {
+      "id": "quality",
+      "name": "Kvalitātes nodrošināšanas speciālists",
+      "accounts": [
+        "quality",
+        "shopquality"
+      ],
+      "manual": 7,
+      "who": "Otrā persona, kas pārbauda citu darbu: uzņēmumā ({{org.plant}}) un veikalā ({{org.shop}}).",
+      "does": [
+        "apstiprina KKP ierakstus, ko ievadījusi cita persona (četru acu princips)",
+        "apstiprina pabeigšanu (fiksēšanu): gala partija tiek fiksēta, un tās Medus stāsts kļūst publisks",
+        "veikalā: apstiprina uzglabāšanas ierakstu (KKP 10)"
+      ],
+      "screens": "Mans darbs → Apstiprināmās vērtības, Pabeigšanas (fiksēšanas) pieprasījumi; Sūtījumi un krājumi → Uzglabāšana"
+    },
+    {
+      "id": "analyst",
+      "name": "Analītiķis",
+      "accounts": [
+        "analyst"
+      ],
+      "manual": 8,
+      "who": "Laboratorijas analītiķis ({{org.lab}}).",
+      "does": [
+        "saņem katru paraugu burku un pārbauda plombas numuru, etiķeti un drošības vāciņu",
+        "sagatavo partijas kopparaugu",
+        "ievada laboratorijas rezultātus, augšupielādē pārskata PDF un iesniedz pārskatu"
+      ],
+      "screens": "Mans darbs → Saņemamie paraugi, Ievadāmie laboratorijas rezultāti; Paraugi un laboratorija"
+    },
+    {
+      "id": "labmanager",
+      "name": "Laboratorijas vadītājs",
+      "accounts": [
+        "labmanager"
+      ],
+      "manual": 9,
+      "who": "Persona, kas vada laboratoriju ({{org.lab}}).",
+      "does": [
+        "apstiprina vai atgriež analītiķu iesniegtos pārskatus (nekad savus rezultātus)",
+        "apstiprināšana ieraksta rezultātus partijas KKP 1"
+      ],
+      "screens": "Mans darbs → Apstiprināmie laboratorijas pārskati; publiskā lapa Pārbaudīt laboratorijas pārskatu"
+    },
+    {
+      "id": "compliance",
+      "name": "Atbilstības speciālists",
+      "accounts": [
+        "compliance"
+      ],
+      "manual": 13,
+      "who": "Persona, kas uzrauga, kā organizācija strādā ar platformu. Demonstrācijā vienam kontam šī loma ir katrā valsts organizācijā; starp tām pārslēdzieties ar organizācijas žetonu augšā.",
+      "does": [
+        "pieņem vai noraida parakstītus foto, kas aizstāj SMS kodu",
+        "pārskata paraugu ņemšanas kvalitāti: noraidītas burkas, bojātas plombas, ar foto apstiprinātas piegādes",
+        "uzrauga apstiprināšanas mehānismu un organizācijas audita ierakstus",
+        "reģistrē datu subjektu pieprasījumus un uztur datu pārziņa datus"
+      ],
+      "screens": "Atbilstība, Mans darbs → Pārbaudīt parakstītos foto"
+    },
+    {
+      "id": "shop",
+      "name": "Veikals (mazumtirgotājs)",
+      "accounts": [
+        "shop",
+        "shopquality"
+      ],
+      "manual": 6,
+      "who": "Veikala darbinieki, kas saņem medu ({{org.shop}}).",
+      "does": [
+        "apstiprina vai noraida sūtījuma saņemšanu",
+        "reģistrē uzglabāšanas apstākļus (KKP 10), ko apstiprina veikala kvalitātes nodrošināšanas speciālists",
+        "lasa ražotāja gala partijas ierakstus, tikai lasīšanas režīmā"
+      ],
+      "screens": "Mans darbs → Apstiprināmie sūtījumi; Sūtījumi un krājumi → Uzglabāšana"
+    },
+    {
+      "id": "beekeeper",
+      "name": "Biškopis (portāls)",
+      "accounts": [
+        "beekeeper"
+      ],
+      "manual": 14,
+      "who": "Biškopis ar savu nelielu platformas daļu (biškopju portālu).",
+      "does": [
+        "seko savām piegādēm, tvertnēm, plombām un paraugu burkām",
+        "redz apstiprinātos laboratorijas rezultātus, gala partijas ar savu medu un to Medus stāsta lapas",
+        "ievada prasīto cenu par kg katrai piegādei (līdz gala partija ir pabeigta (fiksēta))",
+        "dod vai atsauc savas piekrišanas"
+      ],
+      "screens": "Mana biškopja sadaļa: Sākums, Manas piegādes, Paraugi un laboratorija, Partijas ar manu medu, Manas Honey Story lapas, Privātums un piekrišanas"
+    },
+    {
+      "id": "public",
+      "name": "Patērētājs (sabiedrība)",
+      "accounts": [],
+      "manual": 16,
+      "who": "Jebkurš, kas noskenē QR kodu uz burkas. Bez konta.",
+      "does": [
+        "lasa Medus stāstu: no kurienes medus nāk, laboratorijas rezultātus ar to robežvērtībām, kontroles punktus",
+        "atver biškopja lapu, ja biškopis tam piekritis",
+        "pārbauda laboratorijas pārskatu lapā Pārbaudīt laboratorijas pārskatu"
+      ],
+      "screens": "Medus stāsts (QR kods), biškopja lapa, Pārbaudīt laboratorijas pārskatu"
+    }
+  ],
+  "steps": [
+    {
+      "id": "A1",
+      "phase": "A",
+      "title": "Reģistrēt biškopi",
+      "account": "registration",
+      "shot": "registration-form",
+      "manual": 12,
+      "do": [
+        "Atveriet **Biškopju reģistrācija**, ierakstiet reģistra numuru, piemēram, {{registry}} (nn: divi cipari pēc jūsu izvēles), un noklikšķiniet uz **Atrast vai reģistrēt**.",
+        "Aizpildiet biškopja datus: vārds **[DEMO] un jūsu vārds**, uzvārds, dzimšanas datums, mobilais tālrunis {{phone}} (nn: divi cipari pēc jūsu izvēles) un SMS valoda.",
+        "Drava: noklikšķiniet kartē vai ierakstiet koordinātas, izvēlieties **Province** {{region}}, novadu (piem., {{district}}), ierakstiet apdzīvoto vietu un stropu skaitu.",
+        "Izlasiet paziņojumu kopā ar \"biškopi\". Atzīmējiet **Biškopis piekrīt, ka viņa vārds tiek rādīts publiskajās lapās** (tad vārds parādās Medus stāstā), apliecinājumu un **Nosūtīt biškopim arī pieteikšanās datus pa SMS**.",
+        "Noklikšķiniet uz **Sūtīt kodu**. Atveriet **Demo īsziņu pastkastīte** (saite lapas apakšā, tā atveras jaunā cilnē), nokopējiet 6 ciparu kodu, ievadiet to un noklikšķiniet uz **Apstiprināt reģistrāciju**."
+      ],
+      "expect": "\"Biškopis ir reģistrēts un pārbaudīts; pieteikšanās dati nosūtīti pa SMS.\" Lapā redzams biškopis ar saimniecības numuru, piemēram, {{bn}}. Pierakstiet to: tas būs vajadzīgs uzņēmumam."
+    },
+    {
+      "id": "A2",
+      "phase": "A",
+      "title": "Nodot pieteikšanās datus biškopim",
+      "account": "registration",
+      "shot": null,
+      "manual": 14,
+      "do": [
+        "Vēlreiz atveriet **Demo īsziņu pastkastīte**. Jaunākā ziņa ir biškopja pieteikšanās SMS: lietotājvārds (saimniecības numurs) un pagaidu parole.",
+        "Nododiet abus testētājam, kurš pārstāv biškopi (solis B2)."
+      ],
+      "expect": "SMS ir redzams lietotājvārds un 10 rakstzīmju pagaidu parole, kas derīga 72 stundas. Īstajā vietnē šī SMS nonāk tikai biškopja tālrunī."
+    },
+    {
+      "id": "B1",
+      "phase": "B",
+      "title": "Reģistrēt piegādi ar noplombētām tvertnēm",
+      "account": "reception",
+      "shot": "intake-containers",
+      "manual": 5,
+      "do": [
+        "Atveriet **Piegādes (pieņemšana)** → **Reģistrēt piegādi**, ierakstiet saimniecības numuru no soļa A1 un noklikšķiniet uz **Atrast**.",
+        "Izvēlieties dravu, medus veidu, ražošanas periodu ([DEMO] Test season 2026–2027), piegādes datumu, **Izcelsmes valsts** {{countryName}}, **Province** {{region}} un novadu.",
+        "Izvēlieties laboratoriju **{{org.lab}}**. Sarakstā ir visu partnervalstu laboratorijas: izvēlieties savējo.",
+        "Tvertnes: viena rinda katrai tvertnei (otrajai – **Pievienot tvertni**). Ievadiet neto kg un plombas: plomba pienākot (vai uzņēmuma plomba), burkas plomba, kontrolparauga plomba, jaunā plomba pēc paraugu ņemšanas. Izmantojiet plombu numurus ar saviem iniciāļiem, katru numuru citādu. Katrai burkai atzīmējiet **Vāciņš neskarts**.",
+        "Noklikšķiniet uz **Sūtīt kodu**, izlasiet kodu sadaļā **Demo īsziņu pastkastīte** (biškopja SMS ir uzskaitītas tvertnes un svari), ievadiet to un noklikšķiniet uz **Apstiprināt piegādi**."
+      ],
+      "expect": "\"Piegādi apstiprināja biškopis, un tā reģistrēta kā partija #…\". Piegādes lapā redzamas tvertnes un to plombu vēsture; ar **Etiķetes** var izdrukāt etiķetes ar QR kodiem (nav obligāti)."
+    },
+    {
+      "id": "B2",
+      "phase": "B",
+      "title": "Biškopis piesakās un nosaka prasīto cenu",
+      "account": "beekeeper",
+      "shot": "portal-deliveries",
+      "manual": 14,
+      "do": [
+        "Piesakieties ar saimniecības numuru un pagaidu paroli no soļa A2 un izvēlieties savu paroli (vismaz 10 rakstzīmes). Izlasiet un apstipriniet paziņojumu.",
+        "Atveriet **Manas piegādes**, ievadiet jaunajai piegādei prasīto cenu par kg valūtā {{currency}} un noklikšķiniet uz **Norādīt cenu**."
+      ],
+      "expect": "\"Cena saglabāta.\" Cenu var mainīt, līdz gala partija ir pabeigta (fiksēta) (solis D5); pēc tam tā ir bloķēta. To redz tikai uzņēmums, tā atbilstības speciālists un platformas administratori."
+    },
+    {
+      "id": "B3",
+      "phase": "B",
+      "title": "KKP 0: sākotnējais audits",
+      "account": "reception",
+      "shot": "ccp-page-lot",
+      "manual": 5,
+      "do": [
+        "Atveriet **Mans darbs** → **Ievadāmās vērtības** → jaunās partijas **KKP 0**.",
+        "Atbildiet uz katru jautājumu (ieteicamās atbildes: Tabula \"Ieteicamās vērtības\") un noklikšķiniet uz **Saglabāt uzraudzības ierakstus**."
+      ],
+      "expect": "\"Saglabātas … vērtības.\" Statuss kļūst **Iesniegts**; uzdevums pāriet pie kvalitātes nodrošināšanas speciālista."
+    },
+    {
+      "id": "B4",
+      "phase": "B",
+      "title": "Apstiprināt KKP 0",
+      "account": "quality",
+      "shot": "ccp-approve",
+      "manual": 7,
+      "do": [
+        "Atveriet **Mans darbs** → **Apstiprināmās vērtības** → partijas KKP 0, pārbaudiet atbildes un noklikšķiniet uz **Apstiprināt**."
+      ],
+      "expect": "\"KKP ieraksts apstiprināts.\" Tikai tagad laboratorija var ievadīt šīs partijas rezultātus."
+    },
+    {
+      "id": "C1",
+      "phase": "C",
+      "title": "Saņemt paraugu burkas",
+      "account": "analyst",
+      "shot": "sample-receive",
+      "manual": 8,
+      "do": [
+        "Atveriet **Mans darbs** → **Saņemamie paraugi** (vai **Paraugi un laboratorija**). Katrai partijas burkai uz trim pārbaudēm (plombas numurs atbilst ierakstam, etiķete ir neskarta, vāciņš ir neskarts) atbildiet **Jā** un noklikšķiniet uz **Reģistrēt pieņemšanu**.",
+        "Kad katras tvertnes burka ir saņemta, noklikšķiniet uz **Izveidot kopparaugu**.",
+        "Pēc izvēles: vienas burkas vāciņam atbildiet **Nē**. Burka tiek noraidīta; uzņēmums paņem jaunu burku no tās pašas tvertnes (piegādes lapa → **Atvērt, paņemt paraugu un noplombēt no jauna**), un atbilstības speciālists redz noraidījumu (solis F1)."
+      ],
+      "expect": "Katrai burkai \"Burka pieņemta\"; atveras kopparaugs S-…-COMP ar laboratorijas pārskata veidlapu."
+    },
+    {
+      "id": "C2",
+      "phase": "C",
+      "title": "Ievadīt laboratorijas rezultātus",
+      "account": "analyst",
+      "shot": "lab-results-form",
+      "manual": 8,
+      "do": [
+        "Kopparauga pārskatā ievadiet pārskata numuru, izdošanas datumu un katru vērtību (ieteicamās vērtības: Tabula \"Ieteicamās vērtības\"; ja vēlaties, izmēģiniet vienu vērtību ārpus tās robežvērtības).",
+        "Augšupielādējiet PDF kā pārskatu (varat izmantot šī komplekta failu demo-lab-report.pdf), noklikšķiniet uz **Saglabāt**, pēc tam uz **Iesniegt apstiprināšanai**."
+      ],
+      "expect": "\"Pārskats iesniegts; tas jāapstiprina citai personai ar lomu Laboratorijas vadītājs.\" Obligāto vērtību skaitītājs rāda, ka visas ir ievadītas."
+    },
+    {
+      "id": "C3",
+      "phase": "C",
+      "title": "Apstiprināt laboratorijas pārskatu",
+      "account": "labmanager",
+      "shot": "lab-approve",
+      "manual": 9,
+      "do": [
+        "Atveriet **Mans darbs** → **Apstiprināmie laboratorijas pārskati**, atveriet pārskatu, pārbaudiet to un noklikšķiniet uz **Apstiprināt** (vērtībām ārpus robežvērtībām tiek prasīts apstiprinājums)."
+      ],
+      "expect": "\"Laboratorijas pārskats apstiprināts; rezultāti tagad ir partijas KKP 1 vērtības.\" Tagad pārskatu var pārbaudīt publiskajā lapā **Pārbaudīt laboratorijas pārskatu**."
+    },
+    {
+      "id": "D1",
+      "phase": "D",
+      "title": "Partijas KKP 2 un KKP 3",
+      "account": "staff",
+      "shot": null,
+      "manual": 6,
+      "do": [
+        "Darbinieks: **Mans darbs** → **Ievadāmās vērtības** → KKP 2, ievadiet vērtības, **Saglabāt uzraudzības ierakstus**; tāpat KKP 3.",
+        "Kvalitātes nodrošināšanas speciālists ({{u.quality}}): **Mans darbs** → **Apstiprināmās vērtības** → katram **Apstiprināt**."
+      ],
+      "expect": "Abi ieraksti ir **Pabeigts** ar apstiprinājumu. Partija tagad ir pilnīga, un to var iekļaut gala partijā."
+    },
+    {
+      "id": "D2",
+      "phase": "D",
+      "title": "Izveidot gala partiju",
+      "account": "admin",
+      "shot": "admin-manage-batch",
+      "manual": 15,
+      "do": [
+        "Atveriet **Vairumtirgotāji** → {{org.plant}} → **Gala medus ražošana (gala partijas)** → **Jauna gala partija**. Ievadiet nosaukumu ar saviem iniciāļiem (piem., [DEMO] Gala partija AB) un ražošanas datumu, noklikšķiniet uz **Izveidot gala partiju**.",
+        "Lapā **Pārvaldīt gala partiju** ievadiet daudzumu (kg), ko izmantot no jūsu partijas, un noklikšķiniet uz **Saglabāt gala partijas sastāvu**.",
+        "Atveriet **Pārvaldīt KKP**, pārslēdziet KKP 4 līdz KKP 10 uz **Jā** un noklikšķiniet uz **Saglabāt piešķīrumus**.",
+        "Noklikšķiniet uz **Rediģēt** pie gala partijas un izvēlieties īpašnieci organizāciju {{org.plant}}."
+      ],
+      "expect": "Gala partijā redzama jūsu partija un KKP 4–10. Gala partiju izveide pagaidām ir administratora uzdevums."
+    },
+    {
+      "id": "D3",
+      "phase": "D",
+      "title": "Gala partijas KKP 4 līdz KKP 10",
+      "account": "staff",
+      "shot": "ccp-page-batch",
+      "manual": 6,
+      "do": [
+        "Darbinieks: **Mans darbs** → **Ievadāmās vērtības**: ievadiet gala partijas KKP 4, 5, 6, 7, 8, 9 un 10 vērtības un katrā noklikšķiniet uz **Saglabāt uzraudzības ierakstus**.",
+        "Kvalitātes nodrošināšanas speciālists ({{u.quality}}): apstipriniet katru no tiem."
+      ],
+      "expect": "Septiņi ieraksti ir **Pabeigts**. KKP 10 šeit ir uzglabāšana uzņēmumā."
+    },
+    {
+      "id": "D4",
+      "phase": "D",
+      "title": "Pieprasīt pabeigšanu (fiksēšanu)",
+      "account": "staff",
+      "shot": "finalize-request",
+      "manual": 6,
+      "do": [
+        "Atveriet **Mana organizācija** → jūsu gala partija → **Pieprasīt pabeigšanu (fiksēšanu)**. Ja poga ir atspējota, lapā ir uzskaitīts, kas vēl trūkst."
+      ],
+      "expect": "\"Pabeigšana (fiksēšana) pieprasīta; tā jāapstiprina citai personai ar lomu Kvalitātes nodrošināšanas speciālists.\""
+    },
+    {
+      "id": "D5",
+      "phase": "D",
+      "title": "Pabeigt (fiksēt): gala partija tiek fiksēta",
+      "account": "quality",
+      "shot": "finalize-confirm",
+      "manual": 7,
+      "do": [
+        "Atveriet **Mans darbs** → **Pabeigšanas (fiksēšanas) pieprasījumi** → gala partija → **Apstiprināt un pabeigt (fiksēt)**."
+      ],
+      "expect": "\"Gala partija pabeigta (fiksēta).\" Gala partijas lapā redzama fiksēšanas atzīme un saite uz publisko Medus stāstu ar tā QR kodu. Gala partija, tās partijas un biškopja cena tagad ir bloķētas."
+    },
+    {
+      "id": "E1",
+      "phase": "E",
+      "title": "Nosūtīt gala partiju uz veikalu",
+      "account": "staff",
+      "shot": "shipment-create",
+      "manual": 6,
+      "do": [
+        "Atveriet **Sūtījumi un krājumi** → **Nosūtīt** pie jūsu gala partijas, izvēlieties {{org.shop}}, ievadiet daudzumu kg un noklikšķiniet uz **Nosūtīt**."
+      ],
+      "expect": "\"Sūtījums izveidots; turējums pāriet, kad saņēmējs to apstiprina.\""
+    },
+    {
+      "id": "E2",
+      "phase": "E",
+      "title": "Veikals apstiprina saņemšanu",
+      "account": "shop",
+      "shot": "shipment-confirm",
+      "manual": 6,
+      "do": [
+        "Atveriet **Mans darbs** → **Apstiprināmie sūtījumi** (vai **Sūtījumi un krājumi**) un noklikšķiniet uz **Apstiprināt saņemšanu** (vai **Noraidīt**, norādot iemeslu)."
+      ],
+      "expect": "\"Saņemšana apstiprināta; šis daudzums tagad ir jūsu turējumā.\""
+    },
+    {
+      "id": "E3",
+      "phase": "E",
+      "title": "Uzglabāšana veikalā (KKP 10)",
+      "account": "shop",
+      "shot": "storage-record",
+      "manual": 6,
+      "do": [
+        "Atveriet **Sūtījumi un krājumi** → **Uzglabāšana** pie gala partijas, ievadiet temperatūru un relatīvo mitrumu un noklikšķiniet uz **Saglabāt**.",
+        "Veikala kvalitātes nodrošināšanas speciālists ({{u.shopquality}}) atver to pašu lapu un apstiprina."
+      ],
+      "expect": "\"Uzglabāšanas vērtības saglabātas.\", pēc tam \"KKP ieraksts apstiprināts.\" Veikals var arī lasīt ražotāja gala partijas ierakstus, tikai lasīšanas režīmā."
+    },
+    {
+      "id": "F1",
+      "phase": "F",
+      "title": "Atbilstības speciālists veic pārskatu",
+      "account": "compliance",
+      "shot": "compliance",
+      "manual": 13,
+      "do": [
+        "Ar organizācijas žetonu augšā pārslēdzieties uz **{{org.plant}}**. Atveriet **Atbilstība** → **Paraugu ņemšanas kvalitāte**, pie noraidītas burkas noklikšķiniet uz **Rakstīt pārskatu**, izvēlieties **kārtībā** vai **konstatējums**, ierakstiet, ko pārbaudījāt, un saglabājiet.",
+        "Pārslēdzieties uz **{{org.authority}}**. Atveriet **Mans darbs** → **Pārbaudīt parakstītos foto**: biškopja {{b3.name}} reģistrācija gaida ar parakstītu veidlapu. Atveriet to un noklikšķiniet uz **Pieņemt** (ja cits testētājs to jau izdarīja, redzams lēmums).",
+        "Lapā **Atbilstība** apskatiet sadaļas **Apstiprināšanas mehānisms** un **Audita ieraksti**."
+      ],
+      "expect": "\"Pārskats saglabāts.\" un \"Pierādījums pieņemts; reģistra numurs pārbaudīts.\" Persona nekad nepārskata ierakstu, ko pati reģistrēja."
+    },
+    {
+      "id": "F2",
+      "phase": "F",
+      "title": "Biškopis redz rezultātu",
+      "account": "beekeeper",
+      "shot": "portal-home",
+      "manual": 14,
+      "do": [
+        "Piesakieties kā soļa B2 biškopis. Atveriet **Partijas ar manu medu** un **Manas Honey Story lapas**."
+      ],
+      "expect": "Pabeigtā (fiksētā) gala partija ar biškopja daļu un saiti uz tās Medus stāstu. Citu biškopju vārdi un cenas nekad netiek rādīti."
+    },
+    {
+      "id": "F3",
+      "phase": "F",
+      "title": "Patērētājs atver Medus stāstu",
+      "account": null,
+      "shot": "public-honey-story",
+      "manual": 16,
+      "do": [
+        "Ar tālruni noskenējiet gala partijas QR kodu (gala partijas lapā vai etiķetē) vai atveriet Medus stāsta saiti gala partijas lapā.",
+        "Atveriet arī jūsu valsts piemēra medu: {{example.story}}"
+      ],
+      "expect": "Medus stāsts: biškopja vārds (ar piekrišanu), izcelsme {{countryName}}, apstiprinātie laboratorijas rezultāti ar to robežvērtībām un kontroles punkti. Provinču karte rāda tikai Turciju (skatīt \"Demonstrācijas ierobežojumi partnervalstīm\")."
+    }
+  ],
+  "questions": [
+    "Vai varējāt izsekot vienam medum no biškopja līdz veikala plauktam? (1 = nemaz, 5 = viegli)",
+    "Kurš solis bija visgrūtākais un kāpēc?",
+    "Kuri nosaukumi, paziņojumi vai teksti jūsu valodā bija neskaidri?",
+    "Kas neatbilst praksei jūsu valstī (reģistrācija, piegāde, paraugu ņemšana, laboratorija, marķēšana, veikali)?",
+    "Kādi dati jūsu valstij būtu vajadzīgi, ko platforma nereģistrē?",
+    "Vai izmantojāt tālruni vai planšetdatoru? Kuru ierīci un pārlūku, un vai tas darbojās?",
+    "Vai biškopji jūsu valstī izmantotu biškopju portālu (prasītā cena, piekrišanas)? Kas viņiem būtu vajadzīgs?",
+    "Vai vēlaties mums pastāstīt vēl ko?"
+  ]
+}

@@ -1,0 +1,605 @@
+{
+  "labels": {
+    "title": "Partner test guide",
+    "subtitle": "Follow one honey through the platform",
+    "language": "English",
+    "month": "October 2026",
+    "page": "Page",
+    "figure": "Figure",
+    "table": "Table",
+    "toc": "Contents",
+    "role": "Role",
+    "who": "Who it is",
+    "does": "What they do",
+    "screens": "Screens",
+    "account": "Demo account",
+    "accounts": "Demo accounts",
+    "manual": "User manual",
+    "chapter": "chapter",
+    "step": "Step",
+    "todo": "What to do",
+    "expect": "What you should see",
+    "organization": "Organization",
+    "username": "User name",
+    "beekeeper": "Beekeeper",
+    "businessNumber": "Business number",
+    "note": "Note",
+    "works": "Works",
+    "doesNotWork": "Does not work",
+    "notTested": "Not tested",
+    "comment": "Comment",
+    "result": "Result",
+    "question": "Question",
+    "answer": "Answer",
+    "parameter": "Parameter",
+    "value": "Suggested value",
+    "limit": "Limit",
+    "unit": "Unit",
+    "anyone": "anyone, no account",
+    "tester": "Tester",
+    "country": "Country",
+    "date": "Date",
+    "phase": "Part",
+    "checklistTitle": "Test checklist",
+    "checklistIntro": "Tick each step when you have done it, mark whether it worked and write what you noticed. Your ticks and notes stay in this browser on this device. When you are done, click \"Export results (CSV)\" and send the file to your coordinator.",
+    "export": "Export results (CSV)",
+    "print": "Print",
+    "reset": "Clear my answers",
+    "resetConfirm": "Clear all ticks and notes on this device?",
+    "done": "Done",
+    "progress": "steps done",
+    "general": "General questions",
+    "testerName": "Your name (or initials)",
+    "csvHint": "The CSV file opens in Excel or LibreOffice (separator: semicolon).",
+    "draft": null,
+    "coordinatorScope": "all partner countries (coordinator)",
+    "coordinatorNote": "This English edition is for the coordinator. User names are written as xx.reception: replace xx by ar (Argentina), pl (Poland), lv (Latvia) or tr (Türkiye). The organizations and beekeepers of each country are in Table \"The demo data of every country\".",
+    "part": "Part",
+    "ccp": "CCP",
+    "yes": "Yes",
+    "no": "No",
+    "platformOrg": "Platform administration",
+    "allOrgs": "every organization of the country",
+    "accountsTable": "Demo accounts",
+    "beekeepersTable": "Demo beekeepers",
+    "demoDataTable": "The demo data of every country",
+    "organizations": "Organizations",
+    "beekeepers": "Beekeepers",
+    "example": "Example honey",
+    "beekeepersIntro": "The beekeepers below are already registered. In the scenario you register your own beekeeper (step A1); if you skip that step, use {{b1.name}} or the second beekeeper for the delivery.",
+    "b1Note": "Registered by SMS code, portal account, example honey finished end to end, public beekeeper page",
+    "b2Note": "Registered by SMS code, member of the association, no deliveries yet",
+    "b3Note": "Registered with a signed form; waits for the Compliance Officer (step F1); cannot deliver until accepted",
+    "beekeeperAccount": "the beekeeper's own account (user name = business number, from step A2)",
+    "beekeeperAccountPlain": "the beekeeper's business number (step A2)",
+    "beekeeperAccountNote": "(example beekeeper); your own beekeeper gets an account in step A2",
+    "feedbackTable": "Feedback per step",
+    "valuesTable": "Suggested values",
+    "demoSite": "Demo site",
+    "inboxHint": "SMS codes and sign-in details: \"Demo SMS inbox\" at the bottom of every page.",
+    "passwordsHint": "The passwords are in the separate sheet credentials.txt.",
+    "generic": {
+      "authority": "the registration office of your country",
+      "association": "the beekeepers' association of your country",
+      "plant": "the processing plant of your country",
+      "lab": "the laboratory of your country",
+      "shop": "the shop of your country",
+      "country": "your country",
+      "registry": "`AR-DEMO-0002nn` (PL-DEMO-, LV-DEMO-, or TR48 + 10 digits)",
+      "phone": "a test number of your country (see Table \"Demo accounts\")",
+      "region": "the region of your country, e.g. Entre Ríos (AR)",
+      "district": "a district of that region",
+      "b1": "the example beekeeper of your country",
+      "b3": "the beekeeper registered with a signed form",
+      "exampleBatch": "the example honey of your country",
+      "exampleStory": "the Honey Story link in Table \"The demo data of every country\""
+    },
+    "ccp0Values": "**CCP 0 (primary audit):** answer every yes/no question with **Yes**. Text questions: \"If yes, which methods…\": {if}; \"To what extent…\": {extent}; the other text question: {text}."
+  },
+  "phases": [
+    {
+      "id": "A",
+      "title": "Registration"
+    },
+    {
+      "id": "B",
+      "title": "Delivery and the beekeeper"
+    },
+    {
+      "id": "C",
+      "title": "Laboratory"
+    },
+    {
+      "id": "D",
+      "title": "Plant and batch"
+    },
+    {
+      "id": "E",
+      "title": "Shipment and shop"
+    },
+    {
+      "id": "F",
+      "title": "Compliance and the public"
+    }
+  ],
+  "roles": [
+    {
+      "id": "admin",
+      "name": "Platform administrator",
+      "accounts": [
+        "admin"
+      ],
+      "manual": 15,
+      "who": "The team that runs the platform for the project (in real life: the platform operator).",
+      "does": [
+        "verifies organizations and gives them their capabilities",
+        "adds members and sends them their sign-in details",
+        "creates batches from the approved lots of a plant (for now only administrators do this)",
+        "decides delivery corrections together with a second administrator",
+        "reads every record, the audit log and the recall report, but never enters business data"
+      ],
+      "screens": "Dashboard, Organizations, Beekeepers, Wholesalers → Final Honey Productions, User Management (audit log, notices, data retention)"
+    },
+    {
+      "id": "registration",
+      "name": "Beekeeper registration officer",
+      "accounts": [
+        "registration"
+      ],
+      "manual": 12,
+      "who": "An officer of the authority that keeps the register of beekeepers ({{org.authority}}).",
+      "does": [
+        "checks the beekeeper's registry number and identity",
+        "records the beekeeper and the first apiary",
+        "lets the beekeeper read the information notice and records the consents",
+        "confirms the registration with the code the beekeeper receives by SMS, or with a signed form",
+        "sends the beekeeper the sign-in details for the beekeeper portal"
+      ],
+      "screens": "Beekeeper registration (find, register, re-verify, details)"
+    },
+    {
+      "id": "association",
+      "name": "Organization admin",
+      "accounts": [
+        "association",
+        "plantadmin"
+      ],
+      "manual": 10,
+      "who": "The manager of an organization in the platform: here of the beekeepers' association ({{org.association}}) and of the plant ({{org.plant}}).",
+      "does": [
+        "keeps the organization's documents and data-controller details up to date",
+        "association: records a beekeeper's consent for a public beekeeper page",
+        "plant: reads the deliveries, the samples and the beekeepers' asking prices",
+        "can request finalizing and ship, like Staff"
+      ],
+      "screens": "My organization (organization page, documents), Beekeeper pages (association), Shipments and stock (plant)"
+    },
+    {
+      "id": "inspector",
+      "name": "Field inspector",
+      "accounts": [
+        "inspector"
+      ],
+      "manual": 11,
+      "who": "A technician of the beekeepers' association ({{org.association}}).",
+      "does": [
+        "reads the lots, batches and lab reports of the association's members",
+        "enters CCP 0 (the primary audit at the beekeeper) only if an administrator gives CCP 0 to the association; by default the plant does it"
+      ],
+      "screens": "My work, My organization, recall report"
+    },
+    {
+      "id": "reception",
+      "name": "Sample acceptance officer",
+      "accounts": [
+        "reception"
+      ],
+      "manual": 5,
+      "who": "The person at the reception of the processing plant ({{org.plant}}).",
+      "does": [
+        "records each delivery container by container, with weights and seals",
+        "fills a sample jar and a counter-sample jar from every container, with tamper-evident caps",
+        "lets the beekeeper confirm the delivery with the SMS code",
+        "prints the labels and sends the jars to the laboratory",
+        "enters CCP 0 (primary audit) of every new lot"
+      ],
+      "screens": "Deliveries (intake) → Record a delivery, the delivery page with Labels, Samples and lab, My work → Values to enter"
+    },
+    {
+      "id": "staff",
+      "name": "Staff",
+      "accounts": [
+        "staff"
+      ],
+      "manual": 6,
+      "who": "A production worker of the plant ({{org.plant}}).",
+      "does": [
+        "enters the CCP values of the lots (CCP 2–3) and of the batches (CCP 4–10)",
+        "requests finalizing of a batch when everything is complete",
+        "ships a finalized batch to a customer"
+      ],
+      "screens": "My work → Values to enter, My organization → batch, Shipments and stock → Ship"
+    },
+    {
+      "id": "quality",
+      "name": "Quality Assurance Officer",
+      "accounts": [
+        "quality",
+        "shopquality"
+      ],
+      "manual": 7,
+      "who": "The second person who checks the work of others: at the plant ({{org.plant}}) and at the shop ({{org.shop}}).",
+      "does": [
+        "approves the CCP records that another person entered (four-eyes principle)",
+        "confirms finalizing: the batch is sealed and its Honey Story goes public",
+        "at the shop: approves the storage record (CCP 10)"
+      ],
+      "screens": "My work → Values to approve, Finalize requests; Shipments and stock → Storage"
+    },
+    {
+      "id": "analyst",
+      "name": "Analyst",
+      "accounts": [
+        "analyst"
+      ],
+      "manual": 8,
+      "who": "A laboratory analyst ({{org.lab}}).",
+      "does": [
+        "receives every sample jar and checks the seal number, the label and the tamper-evident cap",
+        "makes the composite sample of a lot",
+        "enters the lab results, uploads the report PDF and submits the report"
+      ],
+      "screens": "My work → Samples to receive, Lab results to enter; Samples and lab"
+    },
+    {
+      "id": "labmanager",
+      "name": "Lab manager",
+      "accounts": [
+        "labmanager"
+      ],
+      "manual": 9,
+      "who": "The head of the laboratory ({{org.lab}}).",
+      "does": [
+        "approves or returns the reports the analysts submit (never their own results)",
+        "approval writes the results into the lot's CCP 1"
+      ],
+      "screens": "My work → Lab reports to approve; the public page Verify a lab report"
+    },
+    {
+      "id": "compliance",
+      "name": "Compliance Officer",
+      "accounts": [
+        "compliance"
+      ],
+      "manual": 13,
+      "who": "The person who supervises how an organization works with the platform. In the demo one account has this role in every organization of the country; switch between them with the organization chip at the top.",
+      "does": [
+        "accepts or rejects signed photos that replace an SMS code",
+        "reviews the sampling quality: rejected jars, broken seals, deliveries confirmed by photo",
+        "watches the approval mechanism and the audit entries of the organization",
+        "records data-subject requests and keeps the data-controller details"
+      ],
+      "screens": "Compliance, My work → Review signed photos"
+    },
+    {
+      "id": "shop",
+      "name": "Shop (retailer)",
+      "accounts": [
+        "shop",
+        "shopquality"
+      ],
+      "manual": 6,
+      "who": "The staff of a shop that receives honey ({{org.shop}}).",
+      "does": [
+        "confirms or rejects the receipt of a shipment",
+        "records the storage conditions (CCP 10), which its Quality Assurance Officer approves",
+        "reads the producer's records of the batch, read-only"
+      ],
+      "screens": "My work → Shipments to confirm; Shipments and stock → Storage"
+    },
+    {
+      "id": "beekeeper",
+      "name": "Beekeeper (portal)",
+      "accounts": [
+        "beekeeper"
+      ],
+      "manual": 14,
+      "who": "The beekeeper, with their own small part of the platform (the beekeeper portal).",
+      "does": [
+        "follows their deliveries, containers, seals and sample jars",
+        "sees approved lab results, the batches with their honey and their Honey Story pages",
+        "enters an asking price per kg for each delivery (until the batch is finalized)",
+        "gives or withdraws their consents"
+      ],
+      "screens": "My beekeeper area: Home, My deliveries, Samples and lab, Batches with my honey, My Honey Story pages, Privacy and consents"
+    },
+    {
+      "id": "public",
+      "name": "Consumer (public)",
+      "accounts": [],
+      "manual": 16,
+      "who": "Anyone who scans the QR code on a jar. No account.",
+      "does": [
+        "reads the Honey Story: where the honey comes from, the lab results with their limits, the control points",
+        "opens the beekeeper's page when the beekeeper agreed",
+        "checks a lab report on the page Verify a lab report"
+      ],
+      "screens": "Honey Story (QR code), beekeeper page, Verify a lab report"
+    }
+  ],
+  "steps": [
+    {
+      "id": "A1",
+      "phase": "A",
+      "title": "Register a beekeeper",
+      "account": "registration",
+      "shot": "registration-form",
+      "manual": 12,
+      "do": [
+        "Open **Beekeeper registration**, type a registry number such as {{registry}} (nn: two digits of your choice) and click **Find or register**.",
+        "Fill in the beekeeper: first name **[DEMO] and your first name**, a last name, the birth date, the mobile phone {{phone}} (nn: two digits of your choice) and the language of the SMS.",
+        "Apiary: click the map or type the coordinates, choose **Province** {{region}}, a district (e.g. {{district}}), type the locality and the number of hives.",
+        "Read the notice with the \"beekeeper\". Tick **The beekeeper agrees that their name is shown on public pages** (then the name appears in the Honey Story), the attestation and **Also send the beekeeper the sign-in details by SMS**.",
+        "Click **Send code**. Open **Demo SMS inbox** (link at the bottom of the page, it opens in a new tab), copy the 6-digit code, enter it and click **Confirm the registration**."
+      ],
+      "expect": "\"The beekeeper is registered and verified; the sign-in details were sent by SMS.\" The page shows the beekeeper with a business number such as {{bn}}. Write it down: the plant needs it."
+    },
+    {
+      "id": "A2",
+      "phase": "A",
+      "title": "Give the sign-in details to the beekeeper",
+      "account": "registration",
+      "shot": null,
+      "manual": 14,
+      "do": [
+        "Open **Demo SMS inbox** again. The newest message is the beekeeper's sign-in SMS: user name (the business number) and a temporary password.",
+        "Give both to the tester who plays the beekeeper (step B2)."
+      ],
+      "expect": "The SMS shows the user name and a 10-character temporary password, valid for 72 hours. On the live site this SMS reaches only the beekeeper's phone."
+    },
+    {
+      "id": "B1",
+      "phase": "B",
+      "title": "Record the delivery with sealed containers",
+      "account": "reception",
+      "shot": "intake-containers",
+      "manual": 5,
+      "do": [
+        "Open **Deliveries (intake)** → **Record a delivery**, type the business number from step A1 and click **Find**.",
+        "Choose the apiary, the honey type, the production period ([DEMO] Test season 2026–2027), the delivery date, **Country of origin** {{countryName}}, **Province** {{region}} and the district.",
+        "Choose the laboratory **{{org.lab}}**. The list holds the laboratories of every partner country: take your own.",
+        "Containers: one row per container (**Add a container** for the second). Enter the net kg and the seals: the seal on arrival (or a plant seal), the jar seal, the counter-sample seal, the new seal after sampling. Use seal numbers with your initials, every number different. Tick **Cap intact** for each jar.",
+        "Click **Send code**, read the code in **Demo SMS inbox** (the beekeeper's SMS lists the containers and weights), enter it and click **Confirm the delivery**."
+      ],
+      "expect": "\"Delivery confirmed by the beekeeper and recorded as lot #…\". The delivery page shows the containers and their seal history; **Labels** prints the labels with QR codes (optional)."
+    },
+    {
+      "id": "B2",
+      "phase": "B",
+      "title": "The beekeeper signs in and sets the asking price",
+      "account": "beekeeper",
+      "shot": "portal-deliveries",
+      "manual": 14,
+      "do": [
+        "Sign in with the business number and the temporary password from step A2, and choose your own password (at least 10 characters). Read and confirm the notice.",
+        "Open **My deliveries**, enter an asking price per kg in {{currency}} for the new delivery and click **Enter price**."
+      ],
+      "expect": "\"Price saved.\" The price can change until the batch is finalized (step D5); then it is locked. Only the plant, its Compliance Officer and the platform administrators see it."
+    },
+    {
+      "id": "B3",
+      "phase": "B",
+      "title": "CCP 0: the primary audit",
+      "account": "reception",
+      "shot": "ccp-page-lot",
+      "manual": 5,
+      "do": [
+        "Open **My work** → **Values to enter** → **CCP 0** of the new lot.",
+        "Answer every question (suggested answers in Table \"Suggested values\") and click **Save Monitoring Logs**."
+      ],
+      "expect": "\"… values saved.\" The status becomes **Submitted**; the task moves to the Quality Assurance Officer."
+    },
+    {
+      "id": "B4",
+      "phase": "B",
+      "title": "Approve CCP 0",
+      "account": "quality",
+      "shot": "ccp-approve",
+      "manual": 7,
+      "do": [
+        "Open **My work** → **Values to approve** → CCP 0 of the lot, check the answers and click **Approve**."
+      ],
+      "expect": "\"CCP record approved.\" Only now can the laboratory enter results for this lot."
+    },
+    {
+      "id": "C1",
+      "phase": "C",
+      "title": "Receive the sample jars",
+      "account": "analyst",
+      "shot": "sample-receive",
+      "manual": 8,
+      "do": [
+        "Open **My work** → **Samples to receive** (or **Samples and lab**). For each jar of the lot answer the three checks (the seal number matches the record, the label is intact, the cap is intact) with **Yes** and click **Record the reception**.",
+        "When every container's jar is received, click **Make the composite**.",
+        "Optional: answer **No** for the cap of one jar. The jar is rejected; the plant takes a new jar from the same container (delivery page → **Open, sample and seal again**), and the Compliance Officer sees the rejection (step F1)."
+      ],
+      "expect": "\"Jar received\" for each jar; the composite sample S-…-COMP opens with the lab report form."
+    },
+    {
+      "id": "C2",
+      "phase": "C",
+      "title": "Enter the lab results",
+      "account": "analyst",
+      "shot": "lab-results-form",
+      "manual": 8,
+      "do": [
+        "On the composite's report: enter a report number, the date of issue and every value (suggested values in Table \"Suggested values\"; try one value outside its limit if you like).",
+        "Upload a PDF as the report (you can use demo-lab-report.pdf from this pack), click **Save**, then **Submit for approval**."
+      ],
+      "expect": "\"Report submitted; a Lab manager (another person) must approve it.\" The counter of required values shows that all are entered."
+    },
+    {
+      "id": "C3",
+      "phase": "C",
+      "title": "Approve the lab report",
+      "account": "labmanager",
+      "shot": "lab-approve",
+      "manual": 9,
+      "do": [
+        "Open **My work** → **Lab reports to approve**, open the report, check it and click **Approve** (values outside their limits ask for a confirmation)."
+      ],
+      "expect": "\"Lab report approved; the results are now the lot's CCP 1 values.\" The report can now be checked on the public page **Verify a lab report**."
+    },
+    {
+      "id": "D1",
+      "phase": "D",
+      "title": "CCP 2 and CCP 3 of the lot",
+      "account": "staff",
+      "shot": null,
+      "manual": 6,
+      "do": [
+        "Staff: **My work** → **Values to enter** → CCP 2, enter the values, **Save Monitoring Logs**; the same for CCP 3.",
+        "Quality Assurance Officer ({{u.quality}}): **My work** → **Values to approve** → **Approve** each."
+      ],
+      "expect": "Both records **Completed** with an approval. The lot is now complete and can go into a batch."
+    },
+    {
+      "id": "D2",
+      "phase": "D",
+      "title": "Create the batch",
+      "account": "admin",
+      "shot": "admin-manage-batch",
+      "manual": 15,
+      "do": [
+        "Open **Wholesalers** → {{org.plant}} → **Final Honey Productions** → **New Batch**. Enter a title with your initials (e.g. [DEMO] Batch AB) and the production date, click **Create Batch**.",
+        "On **Manage Batch** enter the amount (kg) to use from your lot and click **Save Batch Composition**.",
+        "Open **Manage CCP**, switch CCP 4 to CCP 10 to **Yes** and click **Save Assignments**.",
+        "**Edit** the batch and choose the owning organization {{org.plant}}."
+      ],
+      "expect": "The batch lists your lot and CCP 4–10. Creating batches is an administrator's task for now."
+    },
+    {
+      "id": "D3",
+      "phase": "D",
+      "title": "CCP 4 to CCP 10 of the batch",
+      "account": "staff",
+      "shot": "ccp-page-batch",
+      "manual": 6,
+      "do": [
+        "Staff: **My work** → **Values to enter**: enter the values of CCP 4, 5, 6, 7, 8, 9 and 10 of the batch and click **Save Monitoring Logs** on each.",
+        "Quality Assurance Officer ({{u.quality}}): approve each one."
+      ],
+      "expect": "Seven records **Completed**. CCP 10 here is the storage at the plant."
+    },
+    {
+      "id": "D4",
+      "phase": "D",
+      "title": "Request finalizing",
+      "account": "staff",
+      "shot": "finalize-request",
+      "manual": 6,
+      "do": [
+        "Open **My organization** → your batch → **Request finalizing**. If the button is disabled, the page lists what is still missing."
+      ],
+      "expect": "\"Finalizing requested; a Quality Assurance Officer (another person) must confirm it.\""
+    },
+    {
+      "id": "D5",
+      "phase": "D",
+      "title": "Finalize: the batch is sealed",
+      "account": "quality",
+      "shot": "finalize-confirm",
+      "manual": 7,
+      "do": [
+        "Open **My work** → **Finalize requests** → the batch → **Confirm and finalize**."
+      ],
+      "expect": "\"Batch finalized.\" The batch page shows the seal and the link to the public Honey Story with its QR code. The batch, its lots and the beekeeper's price are now locked."
+    },
+    {
+      "id": "E1",
+      "phase": "E",
+      "title": "Ship the batch to the shop",
+      "account": "staff",
+      "shot": "shipment-create",
+      "manual": 6,
+      "do": [
+        "Open **Shipments and stock** → **Ship** next to your batch, choose {{org.shop}}, enter a quantity in kg and click **Ship**."
+      ],
+      "expect": "\"Shipment created; custody moves when the receiver confirms it.\""
+    },
+    {
+      "id": "E2",
+      "phase": "E",
+      "title": "The shop confirms the receipt",
+      "account": "shop",
+      "shot": "shipment-confirm",
+      "manual": 6,
+      "do": [
+        "Open **My work** → **Shipments to confirm** (or **Shipments and stock**) and click **Confirm receipt** (or **Reject** with a reason)."
+      ],
+      "expect": "\"Receipt confirmed; you now hold this quantity.\""
+    },
+    {
+      "id": "E3",
+      "phase": "E",
+      "title": "Storage at the shop (CCP 10)",
+      "account": "shop",
+      "shot": "storage-record",
+      "manual": 6,
+      "do": [
+        "Open **Shipments and stock** → **Storage** next to the batch, enter the temperature and the relative humidity and click **Save**.",
+        "The shop's Quality Assurance Officer ({{u.shopquality}}) opens the same page and approves."
+      ],
+      "expect": "\"Storage values saved.\", then \"CCP record approved.\" The shop can also read the producer's records of the batch, read-only."
+    },
+    {
+      "id": "F1",
+      "phase": "F",
+      "title": "The Compliance Officer reviews",
+      "account": "compliance",
+      "shot": "compliance",
+      "manual": 13,
+      "do": [
+        "With the organization chip at the top, switch to **{{org.plant}}**. Open **Compliance** → **Sampling quality**, click **Write a review** next to a rejected jar, choose **in order** or **finding**, write what you checked and save.",
+        "Switch to **{{org.authority}}**. Open **My work** → **Review signed photos**: the registration of {{b3.name}} waits with a signed form. Open it and click **Accept** (if another tester already did, it shows the decision).",
+        "Look at **Approval mechanism** and **Audit entries** on the Compliance page."
+      ],
+      "expect": "\"Review recorded.\" and \"Evidence accepted; the registry number is verified.\" A person never reviews an item they recorded themselves."
+    },
+    {
+      "id": "F2",
+      "phase": "F",
+      "title": "The beekeeper sees the result",
+      "account": "beekeeper",
+      "shot": "portal-home",
+      "manual": 14,
+      "do": [
+        "Sign in as the beekeeper of step B2. Open **Batches with my honey** and **My Honey Story pages**."
+      ],
+      "expect": "The finalized batch with the beekeeper's share and the link to its Honey Story. Other beekeepers' names and prices are never shown."
+    },
+    {
+      "id": "F3",
+      "phase": "F",
+      "title": "The consumer opens the Honey Story",
+      "account": null,
+      "shot": "public-honey-story",
+      "manual": 16,
+      "do": [
+        "Scan the QR code of the batch (batch page or label) with a phone, or open the Honey Story link of the batch page.",
+        "Also open the example honey of your country: {{example.story}}"
+      ],
+      "expect": "The Honey Story: the beekeeper's name (with consent), the origin {{countryName}}, the approved lab results with their limits and the control points. The province map shows Türkiye only (see \"Limits of the demo\")."
+    }
+  ],
+  "questions": [
+    "Could you follow one honey from the beekeeper to the shop shelf? (1 = not at all, 5 = easily)",
+    "Which step was the hardest, and why?",
+    "Which labels, messages or texts were unclear in your language?",
+    "What does not match the practice in your country (registration, delivery, sampling, laboratory, labelling, shops)?",
+    "Which data would your country need that the platform does not record?",
+    "Did you use a phone or a tablet? Which device and browser, and did it work?",
+    "Would beekeepers in your country use the beekeeper portal (asking price, consents)? What would they need?",
+    "Anything else you want to tell us?"
+  ]
+}
