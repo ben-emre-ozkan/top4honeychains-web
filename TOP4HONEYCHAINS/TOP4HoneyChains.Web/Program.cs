@@ -80,6 +80,11 @@ builder.Services.AddScoped<CcpIntegrityService>();
 builder.Services.AddMemoryCache();
 builder.Services.AddScoped<LandingStatsService>();
 builder.Services.AddScoped<AdminHomeService>();   // D-72: the admin home
+// D-86: the demo environment (Demo:Enabled, off on the live site). The guard starts first and refuses a real SMS provider
+// or a database without the demo marker.
+builder.Services.Configure<DemoOptions>(builder.Configuration.GetSection("Demo"));
+builder.Services.AddSingleton<DemoMode>();
+builder.Services.AddHostedService<DemoGuard>();
 // D-73: warm the EF models, the first connections and the reference texts in the background after start-up
 builder.Services.AddHostedService<StartupWarmup>();
 builder.Services.AddScoped<TOP4HoneyChains.Web.Services.OrgModel.AuditReadable>();   // D-73: readable audit log
@@ -198,6 +203,27 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Dashboard/Error");
+}
+// D-86: a demo site is never indexed, and answers nothing until its guard has found the demo marker in the database
+{
+    var demo = app.Services.GetRequiredService<DemoMode>();
+    if (demo.Enabled)
+        app.Use(async (context, next) =>
+        {
+            if (!demo.DatabaseOk)
+            {
+                context.Response.StatusCode = StatusCodes.Status503ServiceUnavailable;
+                return;
+            }
+            context.Response.Headers["X-Robots-Tag"] = "noindex, nofollow";
+            if (context.Request.Path.Equals("/robots.txt", StringComparison.OrdinalIgnoreCase))
+            {
+                context.Response.ContentType = "text/plain";
+                await context.Response.WriteAsync("User-agent: *\nDisallow: /\n");
+                return;
+            }
+            await next();
+        });
 }
 // D-67: branded pages for 404 and other status codes without a body; unhandled exceptions are logged with a reference
 app.UseStatusCodePagesWithReExecute("/Dashboard/Status", "?code={0}");

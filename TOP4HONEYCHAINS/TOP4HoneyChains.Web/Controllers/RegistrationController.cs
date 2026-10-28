@@ -33,10 +33,12 @@ namespace TOP4HoneyChains.Web.Controllers
         private readonly SmsOptions _sms;
         private readonly FakeSmsStore _fake;
         private readonly BeekeeperSignIn _signIn;
+        private readonly bool _demo;
 
         public RegistrationController(TOP4HoneyChainsContext context, RegistrationService registration, IMessageService messages, ICurrentOrg current,
-            IWebHostEnvironment env, IOptions<SmsOptions> sms, FakeSmsStore fake, BeekeeperSignIn signIn)
+            IWebHostEnvironment env, IOptions<SmsOptions> sms, FakeSmsStore fake, BeekeeperSignIn signIn, DemoMode demo)
         {
+            _demo = demo.Enabled;
             _context = context;
             _registration = registration;
             _messages = messages;
@@ -82,9 +84,9 @@ namespace TOP4HoneyChains.Web.Controllers
                               ?? await _context.Beekeepers.Where(b => b.BeekeeperBusinessNumber == number!.Trim()).Select(b => b.BeekeeperId).FirstOrDefaultAsync();
             if (beekeeperId == null)
             {
-                if (!RegistryNumber.IsWellFormed(normalized))
+                if (!RegistryNumber.IsWellFormed(normalized, _demo))
                 {
-                    TempData["Error"] = "The number must be TR, a province code 01-81 and 10 digits (e.g. TR061234567890).";
+                    TempData["Error"] = RegistryNumber.Message(_demo);
                     return RedirectToAction(nameof(Index));
                 }
                 return RedirectToAction(nameof(New), new { registryNumber = normalized });

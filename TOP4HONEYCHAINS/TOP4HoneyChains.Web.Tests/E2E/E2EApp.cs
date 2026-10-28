@@ -20,7 +20,7 @@ namespace TOP4HoneyChains.Web.Tests.E2E
     // limits, statuses, honey types, the responsibility matrix…) are copied from the local development
     // database. No personal or business rows are copied. The database and the temporary content root
     // (uploaded files) are deleted afterwards.
-    public sealed class E2EApp : WebApplicationFactory<Program>, IAsyncLifetime
+    public class E2EApp : WebApplicationFactory<Program>, IAsyncLifetime
     {
         public const string Password = "E2e-Test-Pw-2026!";
         private const string Server = @"(localdb)\MSSQLLocalDB";
@@ -30,7 +30,14 @@ namespace TOP4HoneyChains.Web.Tests.E2E
         // D-78: the application's clock; tests move it forward to check expiry and rate limits, and reset it afterwards
         public TestClock Clock { get; } = new();
 
-        public string ConnectionString => $"Server={Server};Database={Database};Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=True";
+        // D-86: a fixture with other settings (the demo mode) uses its own database
+        protected virtual string DatabaseName => Database;
+        protected virtual void AddSettings(Dictionary<string, string?> settings) { }
+        // runs after the old database is dropped and before the application starts
+        protected virtual Task PrepareDatabaseAsync() => Task.CompletedTask;
+
+        public string ConnectionString => $"Server={Server};Database={DatabaseName};Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=True";
+        public static string ConnectionStringOf(string database) => $"Server={Server};Database={database};Trusted_Connection=True;TrustServerCertificate=True";
         private readonly string _contentRoot = Path.Combine(Path.GetTempPath(), "t4h-e2e-" + Guid.NewGuid().ToString("N"));
 
         // Reference tables in dependency order; all other tables stay empty
@@ -47,20 +54,23 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             Directory.CreateDirectory(_contentRoot);
             builder.UseEnvironment("Development");
             builder.UseContentRoot(_contentRoot);
-            builder.ConfigureAppConfiguration((_, config) => config.AddInMemoryCollection(new Dictionary<string, string?>
+            var settings = new Dictionary<string, string?>
             {
                 ["ConnectionStrings:DefaultConnection"] = ConnectionString,
                 ["Features:OrgRoleModel"] = "true",
                 ["App:PublicBaseUrl"] = "http://localhost",
                 ["Sms:Provider"] = "Fake",
                 ["Sms:DailyLimit"] = "2000"
-            }));
+            };
+            AddSettings(settings);
+            builder.ConfigureAppConfiguration((_, config) => config.AddInMemoryCollection(settings));
             builder.ConfigureTestServices(services => services.AddSingleton<TimeProvider>(Clock));
         }
 
         public async Task InitializeAsync()
         {
             await DropDatabaseAsync();
+            await PrepareDatabaseAsync();
             using (var scope = Services.CreateScope())
             {
                 var business = scope.ServiceProvider.GetRequiredService<TOP4HoneyChainsContext>();
@@ -103,11 +113,19 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             return Convert.ToInt32(await cmd.ExecuteScalarAsync());
         }
 
+        protected async Task MasterAsync(string sql)
+        {
+            await using var conn = new SqlConnection(ConnectionStringOf("master"));
+            await conn.OpenAsync();
+            await using var cmd = new SqlCommand(sql, conn);
+            await cmd.ExecuteNonQueryAsync();
+        }
+
         private async Task DropDatabaseAsync()
         {
             await using var conn = new SqlConnection($"Server={Server};Database=master;Trusted_Connection=True;TrustServerCertificate=True");
             await conn.OpenAsync();
-            await using var cmd = new SqlCommand($"IF DB_ID('{Database}') IS NOT NULL BEGIN ALTER DATABASE [{Database}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE [{Database}]; END", conn);
+            await using var cmd = new SqlCommand($"IF DB_ID('{DatabaseName}') IS NOT NULL BEGIN ALTER DATABASE [{DatabaseName}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE [{DatabaseName}]; END", conn);
             await cmd.ExecuteNonQueryAsync();
         }
 

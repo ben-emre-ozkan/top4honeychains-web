@@ -109,7 +109,7 @@
                             <p class="small mb-1">@L["Reg78.NoticeIntro"] <span class="text-muted">(@notice.Version)</span>
                                 @if (notice.IsDraft)
                                 {
-                                    <span class="badge bg-warning-subtle text-dark border">@L["Notice.Draft"]</span>
+                                    <span class="badge bg-warning-subtle text-dark border">@L[Demo.Enabled ? "Notice.DraftDemo" : "Notice.Draft"]</span>
                                 }
                             </p>
                             <div class="border rounded p-2 bg-light reg-notice" tabindex="0" id="registration-notice" lang="@notice.Language">@notice.Body</div>

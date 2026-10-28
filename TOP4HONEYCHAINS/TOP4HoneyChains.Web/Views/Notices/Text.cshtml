@@ -14,7 +14,7 @@
                         @Model.Version · @Model.Language · @Model.PublishedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm") · SHA-256 @Model.BodySha256[..16]…
                         @if (Model.IsDraft)
                         {
-                            <span class="badge bg-warning-subtle text-dark border">@L["Notice.Draft"]</span>
+                            <span class="badge bg-warning-subtle text-dark border">@L[Demo.Enabled ? "Notice.DraftDemo" : "Notice.Draft"]</span>
                         }
                         @if (Model.RetiredAt != null)
                         {

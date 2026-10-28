@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Text.RegularExpressions;
 using TOP4HoneyChains.Web.Data;
 using TOP4HoneyChains.Web.Models.Entities;
+using TOP4HoneyChains.Web.Services;
 
 namespace TOP4HoneyChains.Web.Services.OrgModel
 {
@@ -25,28 +26,45 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
     public static class RegistryNumber
     {
         private static readonly Regex Format = new(@"^TR(0[1-9]|[1-7][0-9]|8[01])\d{10}$", RegexOptions.CultureInvariant);
+        // D-86: on a demo site only, a test number of a partner country without a national format in the platform yet (A8)
+        private static readonly Regex DemoFormat = new(@"^(AR|PL|LV)-DEMO-\d{6}$", RegexOptions.CultureInvariant);
+
+        public const string FormatMessage = "The number must be TR, a province code 01-81 and 10 digits (e.g. TR061234567890).";
+        public const string DemoFormatMessage = "The number must be TR, a province code 01-81 and 10 digits (e.g. TR061234567890); in this demo also AR-DEMO-, PL-DEMO- or LV-DEMO- and 6 digits (e.g. AR-DEMO-000123).";
 
         public static string Normalize(string? value) => (value ?? "").Trim().Replace(" ", "").ToUpperInvariant();
 
-        public static bool IsWellFormed(string value) => Format.IsMatch(Normalize(value));
+        public static bool IsWellFormed(string value, bool demo = false) => Format.IsMatch(Normalize(value)) || (demo && IsDemo(value));
+
+        public static bool IsDemo(string value) => DemoFormat.IsMatch(Normalize(value));
+
+        // the country of a number: TR, or the partner country of a demo number
+        public static string CountryOf(string value) => IsDemo(value) ? Normalize(value)[..2] : "TR";
+
+        public static string Message(bool demo) => demo ? DemoFormatMessage : FormatMessage;
     }
 
     // Stores the request with its proof document as Pending; a platform administrator decides later
     public class ManualRegistryVerifier : IRegistryVerifier
     {
         private readonly TOP4HoneyChainsContext _context;
+        private readonly bool _demo;
 
-        public ManualRegistryVerifier(TOP4HoneyChainsContext context) => _context = context;
+        public ManualRegistryVerifier(TOP4HoneyChainsContext context, DemoMode demo)
+        {
+            _context = context;
+            _demo = demo.Enabled;
+        }
 
         public string Method => "Manual";
 
-        public bool IsWellFormed(string enterpriseNumber) => RegistryNumber.IsWellFormed(enterpriseNumber);
+        public bool IsWellFormed(string enterpriseNumber) => RegistryNumber.IsWellFormed(enterpriseNumber, _demo);
 
         public async Task<RegistryCheckResult> VerifyAsync(RegistryCheckRequest request, CancellationToken ct = default)
         {
             var number = RegistryNumber.Normalize(request.EnterpriseNumber);
             if (!IsWellFormed(number))
-                return new RegistryCheckResult(RegistryStatus.Rejected, null, "The number must be TR, a province code 01-81 and 10 digits (e.g. TR061234567890).");
+                return new RegistryCheckResult(RegistryStatus.Rejected, null, RegistryNumber.Message(_demo));
             if (request.StoredFileName == null)
                 return new RegistryCheckResult(RegistryStatus.Rejected, null, "A proof document is required for manual verification.");
 
