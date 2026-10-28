@@ -19,7 +19,9 @@ namespace TOP4HoneyChains.Web.Filters
         private static readonly HashSet<string> Open = new(StringComparer.OrdinalIgnoreCase)
         {
             "Account.Logout", "Account.Login", "Account.AccessDenied", "Home.SetLanguage",
-            "Notices.Accept", "Notices.SendCode", "Notices.Public", "Account.FirstPassword"
+            "Notices.Accept", "Notices.SendCode", "Notices.Public", "Account.FirstPassword",
+            // D-86: on a demo site the codes for the notice confirmation are read in the demo SMS inbox
+            "Demo.Inbox"
         };
 
         private readonly NoticeService _notices;

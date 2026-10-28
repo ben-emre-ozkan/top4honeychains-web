@@ -37,7 +37,7 @@
                                             @n.Version
                                             @if (n.IsDraft)
                                             {
-                                                <span class="badge bg-warning-subtle text-dark border">@L["Notice.Draft"]</span>
+                                                <span class="badge bg-warning-subtle text-dark border">@L[Demo.Enabled ? "Notice.DraftDemo" : "Notice.Draft"]</span>
                                             }
                                             @if (n.RetiredAt != null)
                                             {

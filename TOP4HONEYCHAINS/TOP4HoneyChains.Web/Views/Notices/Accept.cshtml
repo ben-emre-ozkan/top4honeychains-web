@@ -21,7 +21,7 @@ else
             @(p.Org?.DisplayName ?? "TOP4HoneyChains") <small class="text-muted">@p.Notice.Version</small>
             @if (p.Notice.IsDraft)
             {
-                <span class="au-badge-draft" data-draft>@L["Notice.Draft"]</span>
+                <span class="au-badge-draft" data-draft>@L[Demo.Enabled ? "Notice.DraftDemo" : "Notice.Draft"]</span>
             }
         </h2>
         <div class="au-notice" tabindex="0" id="notice-@p.Notice.NoticeId" lang="@p.Notice.Language">@p.Notice.Body</div>

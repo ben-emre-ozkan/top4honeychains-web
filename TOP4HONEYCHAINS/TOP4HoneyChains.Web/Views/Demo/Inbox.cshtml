@@ -1,0 +1,52 @@
+@using System.Text.RegularExpressions
+@model List<TOP4HoneyChains.Web.Controllers.DemoController.InboxRow>
+@{
+    ViewData["Title"] = L["Demo.Inbox"].Value;
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    // the text is encoded first; then the 6-digit codes are set in bold
+    string Highlight(string text) => Regex.Replace(System.Net.WebUtility.HtmlEncode(text), @"\b\d{6}\b", "<strong class=\"demo-code\">$0</strong>");
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex flex-wrap justify-content-between align-items-start gap-2">
+                        <div>
+                            <h4 class="card-title mb-1">@L["Demo.Inbox"]</h4>
+                            <p class="card-title-desc mb-2">@L["Demo.InboxHelp"]</p>
+                            @if (ViewBag.OrgName is string org)
+                            {
+                                <p class="small text-muted mb-2" id="demo-inbox-org">@L["Demo.InboxOrg"]: <strong>@org</strong></p>
+                            }
+                        </div>
+                        <a class="btn btn-outline-secondary btn-sm" href="/Demo/Inbox" id="demo-inbox-refresh"><i class="bx bx-refresh"></i> @L["Demo.Refresh"]</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered small" id="demo-inbox">
+                            <thead class="table-light">
+                                <tr><th>@L["Sms.Time"]</th><th>@L["Sms.Purpose"]</th><th>@L["Sms.To"]</th><th>@L["Sms.Text"]</th></tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var m in Model)
+                                {
+                                    <tr>
+                                        <td class="text-nowrap"><span data-utc="@m.At.ToString("o")">@m.At.ToLocalTime().ToString("dd.MM.yyyy HH:mm:ss")</span></td>
+                                        <td>@L["Sms.Purpose." + m.Purpose]@if (m.OrgName != null) {<div class="text-muted">@m.OrgName</div>}</td>
+                                        <td class="text-nowrap">@m.ToMasked</td>
+                                        <td class="sms-text" style="white-space:pre-wrap">@Html.Raw(Highlight(m.Text))</td>
+                                    </tr>
+                                }
+                                @if (Model.Count == 0)
+                                {
+                                    <tr><td colspan="4" class="text-muted">@L["Sms.NoMessages"]</td></tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

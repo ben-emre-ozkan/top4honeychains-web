@@ -20,10 +20,12 @@ namespace TOP4HoneyChains.Web.Controllers
         private readonly ICurrentOrg _current;
         private readonly AuditWriter _audit;
         private readonly IWebHostEnvironment _env;
+        private readonly bool _demo;
 
         public RegistryController(TOP4HoneyChainsContext context, IRegistryVerifier verifier, ManualRegistryVerifier manual,
-            ICurrentOrg current, AuditWriter audit, IWebHostEnvironment env)
+            ICurrentOrg current, AuditWriter audit, IWebHostEnvironment env, DemoMode demo)
         {
+            _demo = demo.Enabled;
             _context = context;
             _verifier = verifier;
             _manual = manual;
@@ -108,7 +110,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 return NotFound();
             if (!_verifier.IsWellFormed(enterpriseNumber ?? ""))
             {
-                TempData["Error"] = "The number must be TR, a province code 01-81 and 10 digits (e.g. TR061234567890).";
+                TempData["Error"] = RegistryNumber.Message(_demo);
                 return RedirectToAction(nameof(Edit), new { id });
             }
             string? stored = null, sha = null;

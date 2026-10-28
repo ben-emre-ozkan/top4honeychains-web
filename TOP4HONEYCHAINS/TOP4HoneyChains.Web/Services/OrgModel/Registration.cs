@@ -69,10 +69,12 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         private readonly ICurrentOrg _current;
         private readonly Permissions _permissions;
         private readonly SmsOptions _sms;
+        private readonly bool _demo;
 
         public RegistrationService(TOP4HoneyChainsContext context, IMessageService messages, Places places, NoticeService notices,
-            TimeProvider clock, ICurrentOrg current, Permissions permissions, IOptions<SmsOptions> sms)
+            TimeProvider clock, ICurrentOrg current, Permissions permissions, IOptions<SmsOptions> sms, DemoMode demo)
         {
+            _demo = demo.Enabled;
             _sms = sms.Value;
             _context = context;
             _messages = messages;
@@ -135,8 +137,8 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         {
             var errors = new List<string>();
             var number = RegistryNumber.Normalize(f.RegistryNumber);
-            if (!RegistryNumber.IsWellFormed(number))
-                errors.Add("The number must be TR, a province code 01-81 and 10 digits (e.g. TR061234567890).");
+            if (!RegistryNumber.IsWellFormed(number, _demo))
+                errors.Add(RegistryNumber.Message(_demo));
             else if (await _context.BeekeeperRegistry.AnyAsync(r => r.RegistryNumber == number && r.BeekeeperId != (f.BeekeeperId ?? "")))
                 errors.Add("A beekeeper with this registry number is already registered. Find it and re-verify instead.");
 
@@ -219,7 +221,7 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             string kind;
             if (f.IsNew)
             {
-                beekeeper = new Beekeeper { BeekeeperId = Guid.NewGuid().ToString(), BeekeeperBusinessNumber = await BusinessNumbers.NextAsync(_context, now.Year), IsActive = true };
+                beekeeper = new Beekeeper { BeekeeperId = Guid.NewGuid().ToString(), BeekeeperBusinessNumber = await BusinessNumbers.NextAsync(_context, now.Year, RegistryNumber.CountryOf(c.RegistryNumber!)), IsActive = true };
                 _context.Beekeepers.Add(beekeeper);
                 kind = RegistrationKind.New;
             }
@@ -341,12 +343,12 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         private static string? Trim(string? s, int max) => string.IsNullOrWhiteSpace(s) ? null : s.Trim().Length > max ? s.Trim()[..max] : s.Trim();
     }
 
-    // Business numbers TR-BEE-{year}-{nnnnnn}, the next free one
+    // Business numbers TR-BEE-{year}-{nnnnnn}, the next free one (D-86: AR-, PL-, LV-BEE-… for the demo numbers of partner countries)
     public static class BusinessNumbers
     {
-        public static async Task<string> NextAsync(TOP4HoneyChainsContext db, int year)
+        public static async Task<string> NextAsync(TOP4HoneyChainsContext db, int year, string country = "TR")
         {
-            var prefix = $"TR-BEE-{year}-";
+            var prefix = $"{country}-BEE-{year}-";
             var count = await db.Beekeepers.CountAsync(b => b.BeekeeperBusinessNumber.Contains($"BEE-{year}-"));
             for (var n = count + 1; ; n++)
             {

@@ -21,7 +21,7 @@ else
         @Model.Notice.Version
         @if (Model.Notice.IsDraft)
         {
-            <span class="au-badge-draft" data-draft>@L["Notice.Draft"]</span>
+            <span class="au-badge-draft" data-draft>@L[Demo.Enabled ? "Notice.DraftDemo" : "Notice.Draft"]</span>
         }
     </p>
     <div class="au-notice" tabindex="0" id="public-notice" lang="@Model.Notice.Language">@Model.Notice.Body</div>
@@ -36,7 +36,7 @@ else
             @L["Consent." + c.Purpose]
             @if (c.IsDraft)
             {
-                <span class="au-badge-draft">@L["Notice.Draft"]</span>
+                <span class="au-badge-draft">@L[Demo.Enabled ? "Notice.DraftDemo" : "Notice.Draft"]</span>
             }
         </h2>
         <div class="au-notice" tabindex="0" lang="@c.Language">@c.Body</div>

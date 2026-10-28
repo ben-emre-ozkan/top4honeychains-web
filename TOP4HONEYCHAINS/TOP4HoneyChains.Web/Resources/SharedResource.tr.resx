@@ -9051,4 +9051,28 @@
   <data name="Retention" xml:space="preserve">
     <value>Saklama</value>
   </data>
+  <data name="Demo.Banner" xml:space="preserve">
+    <value>Demo ortamı – gerçek SMS gönderilmez. Tüm adlar ve kayıtlar test verisidir.</value>
+  </data>
+  <data name="Demo.InboxLink" xml:space="preserve">
+    <value>Demo SMS kutusu</value>
+  </data>
+  <data name="Demo.Inbox" xml:space="preserve">
+    <value>Demo SMS kutusu</value>
+  </data>
+  <data name="Demo.InboxHelp" xml:space="preserve">
+    <value>Demo ortamının "gönderdiği" SMS'ler: etkin kurumunuzun işlemlerindeki kodlar ve giriş bilgileri ile sizin gönderdikleriniz. Canlı sitede bu mesajlar yalnızca kişinin telefonuna gider.</value>
+  </data>
+  <data name="Demo.InboxOrg" xml:space="preserve">
+    <value>Etkin kurum</value>
+  </data>
+  <data name="Demo.Refresh" xml:space="preserve">
+    <value>Yenile</value>
+  </data>
+  <data name="Notice.DraftDemo" xml:space="preserve">
+    <value>DEMO METİN – onaylı değil</value>
+  </data>
+  <data name="The number must be TR, a province code 01-81 and 10 digits (e.g. TR061234567890); in this demo also AR-DEMO-, PL-DEMO- or LV-DEMO- and 6 digits (e.g. AR-DEMO-000123)." xml:space="preserve">
+    <value>Numara TR, 01-81 arası il kodu ve 10 haneden oluşmalı (ör. TR061234567890); bu demoda AR-DEMO-, PL-DEMO- veya LV-DEMO- ve 6 hane de olabilir (ör. AR-DEMO-000123).</value>
+  </data>
 </root>

@@ -9051,4 +9051,28 @@
   <data name="Retention" xml:space="preserve">
     <value>Retention</value>
   </data>
+  <data name="Demo.Banner" xml:space="preserve">
+    <value>Demo environment – no real SMS. All names and records are test data.</value>
+  </data>
+  <data name="Demo.InboxLink" xml:space="preserve">
+    <value>Demo SMS inbox</value>
+  </data>
+  <data name="Demo.Inbox" xml:space="preserve">
+    <value>Demo SMS inbox</value>
+  </data>
+  <data name="Demo.InboxHelp" xml:space="preserve">
+    <value>The SMS messages the demo "sent": codes and sign-in details from the flows of your active organization, and the ones you sent yourself. On the live site these messages reach only the person's phone.</value>
+  </data>
+  <data name="Demo.InboxOrg" xml:space="preserve">
+    <value>Active organization</value>
+  </data>
+  <data name="Demo.Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="Notice.DraftDemo" xml:space="preserve">
+    <value>DEMO TEXT – not approved</value>
+  </data>
+  <data name="The number must be TR, a province code 01-81 and 10 digits (e.g. TR061234567890); in this demo also AR-DEMO-, PL-DEMO- or LV-DEMO- and 6 digits (e.g. AR-DEMO-000123)." xml:space="preserve">
+    <value>The number must be TR, a province code 01-81 and 10 digits (e.g. TR061234567890); in this demo also AR-DEMO-, PL-DEMO- or LV-DEMO- and 6 digits (e.g. AR-DEMO-000123).</value>
+  </data>
 </root>
