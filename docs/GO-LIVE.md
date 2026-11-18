@@ -124,6 +124,10 @@ Please set up for the TOP4HoneyChains site on IIS:
 - The partner test pack `TOP4-ortak-test-paketi-2026-10-28` (guides, checklists, feedback templates, credential sheets) goes to the coordinator; the credential sheets are never committed.
 - Rebuild the demo package with every new release (`DEMO_EXPORT_DIR` and `DEMO_CREDENTIALS_DIR` for the export test, `docs/partner-test/build.mjs` for the guides).
 
+### Local live-like cast (D-88, the developer's local copy only; nothing of it goes live)
+- The local copy has no demo accounts or `[DEMO]` records any more. Presentations use a fictional, live-like cast (`tools/live-like/cast.json`: a district directorate, a processing and packing plant, an accredited laboratory, a beekeepers' association, a shop, a platform operator and a consumer) and its history, built through the application by `dotnet run --project tools/live-like` (stop `run-demo.ps1` first). The logins file is written to the Downloads folder, never to the repository.
+- The cast is removed by `cleanup-live-like-cast.ps1` next to the database backup (outside the repository; without `-Commit` it only counts). Neither the tool nor the cleanup script is part of the deployment, and `Sms:PhonePageKey` exists only in the developer's user secrets.
+
 ## 2. Deployment day (in this order)
 1. [ ] **Back up the production database** (full backup) and confirm it restores. The backup stays on the DB server and never goes into the repo or the deploy package.
 2. [ ] Back up the current live site folder, including server-only uploads (`wwwroot/assets/videos/parameters/`, and `App_Data/ccp-files/`, `App_Data/org-documents/`, `App_Data/registry-proofs/`, `App_Data/intake-forms/`, `App_Data/lab-reports/`, `App_Data/consents/` once they exist, D-19, D-22, D-41, D-42, D-43).

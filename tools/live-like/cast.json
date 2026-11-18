@@ -1,0 +1,51 @@
+{
+  "_comment": "D-88: the live-like cast of the local copy. Fictional organizations and people; no password here (all accounts use the local practice password, kept outside the repository). Built through the app by tools/live-like (LiveLike.csproj); run-demo.ps1 prints each person's phone page link from this file.",
+  "operator": { "user": "selin.aydin", "name": "Selin Aydın", "role": "Platform administrator", "phone": "+90 555 000 01 01" },
+  "orgs": [
+    { "key": "directorate", "name": "Yeşiltepe İlçe Tarım ve Orman Müdürlüğü", "legal": "T.C. Tarım ve Orman Bakanlığı Yeşiltepe İlçe Tarım ve Orman Müdürlüğü", "province": "Ordu", "district": "Altınordu", "capabilities": [ "BeekeeperRegistration" ] },
+    { "key": "plant", "name": "Yaylakent Bal Gıda A.Ş.", "legal": "Yaylakent Bal Gıda Sanayi ve Ticaret Anonim Şirketi", "province": "Ordu", "district": "Ünye", "capabilities": [ "Processing", "Packing" ] },
+    { "key": "lab", "name": "Anadolu Gıda Analiz Laboratuvarı", "legal": "Anadolu Gıda Analiz Laboratuvarı Ltd. Şti.", "province": "Ankara", "district": "Yenimahalle", "capabilities": [ "Laboratory" ], "accreditation": "AB-9471-T" },
+    { "key": "association", "name": "Yeşiltepe Arıcılar Birliği", "legal": "Yeşiltepe Arıcılar Birliği", "province": "Ordu", "district": "Gölköy", "capabilities": [ "Association" ] },
+    { "key": "shop", "name": "Çarşı Market", "legal": "Çarşı Market Gıda Ticaret Ltd. Şti.", "province": "İstanbul", "district": "Kadıköy", "capabilities": [ "Retail" ] }
+  ],
+  "people": [
+    { "user": "selin.aydin", "name": "Selin Aydın", "org": "platform", "role": "OrgAdmin", "title": "Platform administrator", "phone": "+90 555 000 01 01" },
+    { "user": "murat.kaya", "name": "Murat Kaya", "org": "directorate", "role": "RegistrationOfficer", "title": "Beekeeper registration officer", "phone": "+90 555 000 02 01" },
+    { "user": "elif.sahin", "name": "Elif Şahin", "org": "directorate", "role": "ComplianceOfficer", "title": "Compliance Officer", "phone": "+90 555 000 02 02" },
+    { "user": "hasan.demir", "name": "Hasan Demir", "org": "plant", "role": "SampleAcceptanceOfficer", "title": "Reception officer", "phone": "+90 555 000 03 01" },
+    { "user": "zeynep.arslan", "name": "Zeynep Arslan", "org": "plant", "role": "Staff", "title": "Production staff", "phone": "+90 555 000 03 02" },
+    { "user": "mehmet.ozturk", "name": "Mehmet Öztürk", "org": "plant", "role": "QualityApprover", "title": "Quality Assurance Officer", "phone": "+90 555 000 03 03" },
+    { "user": "ayse.yilmaz", "name": "Ayşe Yılmaz", "org": "plant", "role": "ComplianceOfficer", "title": "Compliance Officer", "phone": "+90 555 000 03 04" },
+    { "user": "burak.celik", "name": "Burak Çelik", "org": "plant", "role": "OrgAdmin", "title": "Organization administrator", "phone": "+90 555 000 03 05" },
+    { "user": "can.yildiz", "name": "Can Yıldız", "org": "lab", "role": "Analyst", "title": "Analyst", "phone": "+90 555 000 04 01" },
+    { "user": "deniz.koc", "name": "Deniz Koç", "org": "lab", "role": "LabManager", "title": "Laboratory manager", "phone": "+90 555 000 04 02" },
+    { "user": "kemal.erdem", "name": "Kemal Erdem", "org": "lab", "role": "ComplianceOfficer", "title": "Compliance Officer", "phone": "+90 555 000 04 03" },
+    { "user": "fatma.aksoy", "name": "Fatma Aksoy", "org": "association", "role": "OrgAdmin", "title": "Organization administrator", "phone": "+90 555 000 05 01" },
+    { "user": "emre.dogan", "name": "Emre Doğan", "org": "association", "role": "FieldInspector", "title": "Field inspector", "phone": "+90 555 000 05 02" },
+    { "user": "leyla.cetin", "name": "Leyla Çetin", "org": "association", "role": "ComplianceOfficer", "title": "Compliance Officer", "phone": "+90 555 000 05 03" },
+    { "user": "gizem.polat", "name": "Gizem Polat", "org": "shop", "role": "Staff", "title": "Store staff", "phone": "+90 555 000 06 01" },
+    { "user": "okan.kurt", "name": "Okan Kurt", "org": "shop", "role": "QualityApprover", "title": "Quality Assurance Officer", "phone": "+90 555 000 06 02" },
+    { "user": "serkan.tas", "name": "Serkan Taş", "org": "shop", "role": "ComplianceOfficer", "title": "Compliance Officer", "phone": "+90 555 000 06 03" }
+  ],
+  "consumer": { "user": "seda.gunes", "name": "Seda Güneş", "phone": "+90 555 000 07 01" },
+  "beekeepers": [
+    { "key": "registered", "name": "Ali Yazıcı", "first": "Ali", "last": "Yazıcı", "birth": "1968-04-12", "registry": "TR520401200187", "phone": "+90 555 000 08 01", "district": "Perşembe", "locality": "Kirazlı", "lat": "41.0412", "lng": "37.7695", "hives": "64",
+      "_apiary2": "a second apiary, added by the registration officer on the registration form (one production record per apiary, season and honey type)",
+      "apiary2": { "district": "Ünye", "locality": "Yeşilkent", "lat": "41.1035", "lng": "37.2558", "hives": "40" } },
+    { "key": "new", "name": "Hatice Turan", "first": "Hatice", "last": "Turan", "birth": "1975-09-03", "registry": "TR520401200233", "phone": "+90 555 000 08 02", "district": "Fatsa", "locality": "Yalıköy", "lat": "41.0193", "lng": "37.4904", "hives": "38" }
+  ],
+  "history": {
+    "period": { "title": "2026 Chestnut Honey Harvest Season", "start": "2026-06-01", "end": "2026-12-31" },
+    "honeyType": "Chestnut Honey",
+    "botanical": "Chestnut (Castanea sativa)",
+    "_values": "chestnut honey: values that differ from docs/partner-test/values.json (electrical conductivity of chestnut honey is at least 0.8 mS/cm)",
+    "values": { "CCP 1|Electrical Conductivity": "1.24", "CCP 1|Proline": "640", "CCP 1|Sensory Analysis": "Dark amber, typical bitter chestnut taste and smell" },
+    "batchTitle": "Yaylakent Kestane Balı 2026/1",
+    "deliveries": [
+      { "daysAgo": 24, "apiary": 1, "containers": [ { "net": "24.6", "gross": "26.0", "originSeal": "YAB-2026-0412" }, { "net": "23.9", "gross": "25.3", "originSeal": "YAB-2026-0413" } ] },
+      { "daysAgo": 17, "apiary": 2, "containers": [ { "net": "25.1", "gross": "26.5", "originSeal": "YAB-2026-0431" }, { "net": "22.4", "gross": "23.8", "originSeal": "YAB-2026-0432" } ] }
+    ],
+    "shipKg": "40",
+    "lab": { "reportPrefix": "AGA-2026-" }
+  }
+}
