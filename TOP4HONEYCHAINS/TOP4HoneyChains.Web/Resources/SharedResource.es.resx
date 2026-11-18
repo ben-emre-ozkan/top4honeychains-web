@@ -9574,4 +9574,64 @@
     <value>se eliminan</value>
     <comment>D-87: draft for partner review</comment>
   </data>
+  <data name="Area.Batch" xml:space="preserve">
+    <value>Crear partidas (Nueva partida)</value>
+  </data>
+  <data name="Batch.New" xml:space="preserve">
+    <value>Nueva partida</value>
+  </data>
+  <data name="Batch.NewHelp" xml:space="preserve">
+    <value>Elija los lotes y los kilogramos de cada uno que entran en la partida. Solo se muestran los lotes de su organización con todos los puntos de control completados y aprobados y a los que aún les queda miel. La partida pertenece a su organización; sus puntos de control se asignan enseguida y aparecen en Mis tareas.</value>
+  </data>
+  <data name="Batch.Name" xml:space="preserve">
+    <value>Nombre de la partida</value>
+  </data>
+  <data name="Batch.NamePlaceholder" xml:space="preserve">
+    <value>p. ej. Miel de castaño 2026/1</value>
+  </data>
+  <data name="Batch.Use" xml:space="preserve">
+    <value>Usar</value>
+  </data>
+  <data name="Batch.Left" xml:space="preserve">
+    <value>Disponible (kg)</value>
+  </data>
+  <data name="Batch.Kg" xml:space="preserve">
+    <value>Kilogramos para esta partida</value>
+  </data>
+  <data name="Batch.Create" xml:space="preserve">
+    <value>Crear partida</value>
+  </data>
+  <data name="Batch.NoLots" xml:space="preserve">
+    <value>Todavía no hay ningún lote listo para una partida. Un lote está listo cuando todos sus puntos de control están completados y aprobados.</value>
+  </data>
+  <data name="Work.Kind.NewBatch" xml:space="preserve">
+    <value>Lotes listos para una partida</value>
+  </data>
+  <data name="Only a processing or packing organization creates batches." xml:space="preserve">
+    <value>Solo una organización que procesa o envasa miel crea partidas.</value>
+  </data>
+  <data name="Batches are created by {0} of the organization." xml:space="preserve">
+    <value>Las partidas las crea {0} de la organización.</value>
+  </data>
+  <data name="The title can be at most {0} characters." xml:space="preserve">
+    <value>El título puede tener como máximo {0} caracteres.</value>
+  </data>
+  <data name="Enter the production date." xml:space="preserve">
+    <value>Introduzca la fecha de producción.</value>
+  </data>
+  <data name="The production date cannot be in the future." xml:space="preserve">
+    <value>La fecha de producción no puede ser futura.</value>
+  </data>
+  <data name="Choose at least one lot and the kilograms to use." xml:space="preserve">
+    <value>Elija al menos un lote y los kilogramos que se usarán.</value>
+  </data>
+  <data name="Lot #{0} cannot be used: it is not your organization's, or not all its CCPs are completed and approved, or nothing is left." xml:space="preserve">
+    <value>El lote #{0} no se puede usar: no es de su organización, no todos sus PCC están completados y aprobados o no queda nada.</value>
+  </data>
+  <data name="Lot #{0}: enter the kilograms to use." xml:space="preserve">
+    <value>Lote #{0}: introduzca los kilogramos que se usarán.</value>
+  </data>
+  <data name="Batch created with {0} control points; they are in My work." xml:space="preserve">
+    <value>Partida creada con {0} puntos de control; están en Mis tareas.</value>
+  </data>
 </root>

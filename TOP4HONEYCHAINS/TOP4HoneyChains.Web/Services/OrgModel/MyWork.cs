@@ -22,10 +22,12 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         private readonly Permissions _perm;
         private readonly LabService _lab;
         private readonly ComplianceService _compliance;
+        private readonly PlantBatchService _plant;
 
         public MyWorkService(TOP4HoneyChainsContext context, ICurrentOrg current, OrgScope scope, CcpResponsibilityService resp,
-            CustodyService custody, IConfiguration config, Permissions perm, LabService lab, ComplianceService compliance)
+            CustodyService custody, IConfiguration config, Permissions perm, LabService lab, ComplianceService compliance, PlantBatchService plant)
         {
+            _plant = plant;
             _lab = lab;
             _compliance = compliance;
             _perm = perm;
@@ -120,6 +122,15 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             {
                 if (b.FinalizeRequestedByUserId != null && _perm.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Finalize, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Approve, active.OrgRole))
                     items.Add(new Item("Finalize", b.FinalHoneyProductionTitle ?? $"#{b.FinalHoneyProductionId}", null, $"/OrgWorkspace/Batch/{b.FinalHoneyProductionId}", b.FinalizeRequestedAt));
+            }
+
+            // D-88: lots ready for a batch, for the roles that create batches
+            if (PlantBatchService.Denied(active, _perm) == null)
+            {
+                var ready = await _plant.EligibleLotsAsync(active.OrgId);
+                if (ready.Count > 0)
+                    items.Add(new Item("NewBatch", string.Join(", ", ready.Take(6).Select(l => "#" + l.LotId)) + (ready.Count > 6 ? " …" : ""),
+                        $"{ready.Sum(l => l.Left):0.##} kg", "/OrgWorkspace/NewBatch", null));
             }
         }
 

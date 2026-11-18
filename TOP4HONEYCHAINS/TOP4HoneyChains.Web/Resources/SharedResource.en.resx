@@ -9450,4 +9450,64 @@
   <data name="Ret.consumerfeedback.Then" xml:space="preserve">
     <value>deleted</value>
   </data>
+  <data name="Area.Batch" xml:space="preserve">
+    <value>Create batches (New batch)</value>
+  </data>
+  <data name="Batch.New" xml:space="preserve">
+    <value>New batch</value>
+  </data>
+  <data name="Batch.NewHelp" xml:space="preserve">
+    <value>Choose the lots and the kilograms of each that go into the batch. Only your organization's lots whose control points are all completed and approved, and that still have honey left, are listed. The batch belongs to your organization; its control points are assigned at once and appear in My work.</value>
+  </data>
+  <data name="Batch.Name" xml:space="preserve">
+    <value>Batch name</value>
+  </data>
+  <data name="Batch.NamePlaceholder" xml:space="preserve">
+    <value>e.g. Chestnut honey 2026/1</value>
+  </data>
+  <data name="Batch.Use" xml:space="preserve">
+    <value>Use</value>
+  </data>
+  <data name="Batch.Left" xml:space="preserve">
+    <value>Left (kg)</value>
+  </data>
+  <data name="Batch.Kg" xml:space="preserve">
+    <value>Kilograms for this batch</value>
+  </data>
+  <data name="Batch.Create" xml:space="preserve">
+    <value>Create batch</value>
+  </data>
+  <data name="Batch.NoLots" xml:space="preserve">
+    <value>No lot is ready for a batch yet. A lot is ready when all its control points are completed and approved.</value>
+  </data>
+  <data name="Work.Kind.NewBatch" xml:space="preserve">
+    <value>Lots ready for a batch</value>
+  </data>
+  <data name="Only a processing or packing organization creates batches." xml:space="preserve">
+    <value>Only a processing or packing organization creates batches.</value>
+  </data>
+  <data name="Batches are created by {0} of the organization." xml:space="preserve">
+    <value>Batches are created by {0} of the organization.</value>
+  </data>
+  <data name="The title can be at most {0} characters." xml:space="preserve">
+    <value>The title can be at most {0} characters.</value>
+  </data>
+  <data name="Enter the production date." xml:space="preserve">
+    <value>Enter the production date.</value>
+  </data>
+  <data name="The production date cannot be in the future." xml:space="preserve">
+    <value>The production date cannot be in the future.</value>
+  </data>
+  <data name="Choose at least one lot and the kilograms to use." xml:space="preserve">
+    <value>Choose at least one lot and the kilograms to use.</value>
+  </data>
+  <data name="Lot #{0} cannot be used: it is not your organization's, or not all its CCPs are completed and approved, or nothing is left." xml:space="preserve">
+    <value>Lot #{0} cannot be used: it is not your organization's, or not all its CCPs are completed and approved, or nothing is left.</value>
+  </data>
+  <data name="Lot #{0}: enter the kilograms to use." xml:space="preserve">
+    <value>Lot #{0}: enter the kilograms to use.</value>
+  </data>
+  <data name="Batch created with {0} control points; they are in My work." xml:space="preserve">
+    <value>Batch created with {0} control points; they are in My work.</value>
+  </data>
 </root>

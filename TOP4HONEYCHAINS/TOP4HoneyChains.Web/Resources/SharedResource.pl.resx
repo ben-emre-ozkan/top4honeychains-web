@@ -9574,4 +9574,64 @@
     <value>usuwane</value>
     <comment>D-87: draft for partner review</comment>
   </data>
+  <data name="Area.Batch" xml:space="preserve">
+    <value>Tworzenie partii końcowych (Nowa partia końcowa)</value>
+  </data>
+  <data name="Batch.New" xml:space="preserve">
+    <value>Nowa partia końcowa</value>
+  </data>
+  <data name="Batch.NewHelp" xml:space="preserve">
+    <value>Wybierz partie surowca i liczbę kilogramów z każdej, które wejdą do partii końcowej. Widoczne są tylko partie Twojej organizacji, których wszystkie punkty kontrolne są zakończone i zatwierdzone i w których został jeszcze miód. Partia końcowa należy do Twojej organizacji; jej punkty kontrolne są przypisywane od razu i pojawiają się w Mojej pracy.</value>
+  </data>
+  <data name="Batch.Name" xml:space="preserve">
+    <value>Nazwa partii końcowej</value>
+  </data>
+  <data name="Batch.NamePlaceholder" xml:space="preserve">
+    <value>np. Miód kasztanowy 2026/1</value>
+  </data>
+  <data name="Batch.Use" xml:space="preserve">
+    <value>Użyj</value>
+  </data>
+  <data name="Batch.Left" xml:space="preserve">
+    <value>Pozostało (kg)</value>
+  </data>
+  <data name="Batch.Kg" xml:space="preserve">
+    <value>Kilogramy do tej partii końcowej</value>
+  </data>
+  <data name="Batch.Create" xml:space="preserve">
+    <value>Utwórz partię końcową</value>
+  </data>
+  <data name="Batch.NoLots" xml:space="preserve">
+    <value>Żadna partia nie jest jeszcze gotowa do partii końcowej. Partia jest gotowa, gdy wszystkie jej punkty kontrolne są zakończone i zatwierdzone.</value>
+  </data>
+  <data name="Work.Kind.NewBatch" xml:space="preserve">
+    <value>Partie gotowe do partii końcowej</value>
+  </data>
+  <data name="Only a processing or packing organization creates batches." xml:space="preserve">
+    <value>Partie końcowe tworzy tylko organizacja przetwarzająca lub pakująca miód.</value>
+  </data>
+  <data name="Batches are created by {0} of the organization." xml:space="preserve">
+    <value>Partie końcowe tworzy {0} organizacji.</value>
+  </data>
+  <data name="The title can be at most {0} characters." xml:space="preserve">
+    <value>Tytuł może mieć najwyżej {0} znaków.</value>
+  </data>
+  <data name="Enter the production date." xml:space="preserve">
+    <value>Wpisz datę produkcji.</value>
+  </data>
+  <data name="The production date cannot be in the future." xml:space="preserve">
+    <value>Data produkcji nie może być w przyszłości.</value>
+  </data>
+  <data name="Choose at least one lot and the kilograms to use." xml:space="preserve">
+    <value>Wybierz co najmniej jedną partię i liczbę kilogramów.</value>
+  </data>
+  <data name="Lot #{0} cannot be used: it is not your organization's, or not all its CCPs are completed and approved, or nothing is left." xml:space="preserve">
+    <value>Partii #{0} nie można użyć: nie należy do Twojej organizacji, nie wszystkie jej KPK są zakończone i zatwierdzone albo nic nie zostało.</value>
+  </data>
+  <data name="Lot #{0}: enter the kilograms to use." xml:space="preserve">
+    <value>Partia #{0}: wpisz liczbę kilogramów.</value>
+  </data>
+  <data name="Batch created with {0} control points; they are in My work." xml:space="preserve">
+    <value>Partia końcowa utworzona z {0} punktami kontrolnymi; są w Mojej pracy.</value>
+  </data>
 </root>

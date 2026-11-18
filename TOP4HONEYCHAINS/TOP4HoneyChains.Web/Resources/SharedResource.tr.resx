@@ -9450,4 +9450,64 @@
   <data name="Ret.consumerfeedback.Then" xml:space="preserve">
     <value>silinir</value>
   </data>
+  <data name="Area.Batch" xml:space="preserve">
+    <value>Parti oluşturma (Yeni parti)</value>
+  </data>
+  <data name="Batch.New" xml:space="preserve">
+    <value>Yeni parti</value>
+  </data>
+  <data name="Batch.NewHelp" xml:space="preserve">
+    <value>Partiye girecek lotları ve her birinden kaç kilogram kullanılacağını seçin. Yalnızca kurumunuza ait, tüm kontrol noktaları tamamlanıp onaylanmış ve hâlâ balı kalan lotlar listelenir. Parti kurumunuza aittir; kontrol noktaları hemen atanır ve İşlerim'de görünür.</value>
+  </data>
+  <data name="Batch.Name" xml:space="preserve">
+    <value>Parti adı</value>
+  </data>
+  <data name="Batch.NamePlaceholder" xml:space="preserve">
+    <value>örn. Kestane balı 2026/1</value>
+  </data>
+  <data name="Batch.Use" xml:space="preserve">
+    <value>Kullan</value>
+  </data>
+  <data name="Batch.Left" xml:space="preserve">
+    <value>Kalan (kg)</value>
+  </data>
+  <data name="Batch.Kg" xml:space="preserve">
+    <value>Bu partiye giren kilogram</value>
+  </data>
+  <data name="Batch.Create" xml:space="preserve">
+    <value>Partiyi oluştur</value>
+  </data>
+  <data name="Batch.NoLots" xml:space="preserve">
+    <value>Henüz partiye hazır lot yok. Bir lot, tüm kontrol noktaları tamamlanıp onaylandığında hazır olur.</value>
+  </data>
+  <data name="Work.Kind.NewBatch" xml:space="preserve">
+    <value>Partiye hazır lotlar</value>
+  </data>
+  <data name="Only a processing or packing organization creates batches." xml:space="preserve">
+    <value>Partileri yalnızca işleme veya paketleme yapan bir kurum oluşturur.</value>
+  </data>
+  <data name="Batches are created by {0} of the organization." xml:space="preserve">
+    <value>Partileri kurumun {0} rolündeki kişileri oluşturur.</value>
+  </data>
+  <data name="The title can be at most {0} characters." xml:space="preserve">
+    <value>Başlık en fazla {0} karakter olabilir.</value>
+  </data>
+  <data name="Enter the production date." xml:space="preserve">
+    <value>Üretim tarihini girin.</value>
+  </data>
+  <data name="The production date cannot be in the future." xml:space="preserve">
+    <value>Üretim tarihi gelecekte olamaz.</value>
+  </data>
+  <data name="Choose at least one lot and the kilograms to use." xml:space="preserve">
+    <value>En az bir lot ve kullanılacak kilogramı seçin.</value>
+  </data>
+  <data name="Lot #{0} cannot be used: it is not your organization's, or not all its CCPs are completed and approved, or nothing is left." xml:space="preserve">
+    <value>Lot #{0} kullanılamaz: kurumunuza ait değil, tüm KKN'leri tamamlanıp onaylanmamış ya da hiç bal kalmamış.</value>
+  </data>
+  <data name="Lot #{0}: enter the kilograms to use." xml:space="preserve">
+    <value>Lot #{0}: kullanılacak kilogramı girin.</value>
+  </data>
+  <data name="Batch created with {0} control points; they are in My work." xml:space="preserve">
+    <value>Parti {0} kontrol noktasıyla oluşturuldu; kontrol noktaları İşlerim'de.</value>
+  </data>
 </root>

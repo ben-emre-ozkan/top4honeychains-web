@@ -114,7 +114,7 @@ A user joins an org through a **membership** with one org role. One user can hol
 | `Analyst` | Receives samples at the lab, enters lab results, submits the report | Laboratory |
 | `LabManager` | Receives samples, approves or returns lab reports | Laboratory |
 
-Platform administrators are users in the Identity role `Administrator` with an `OrgAdmin` membership in the platform org (D-32). With the flag on they are **read-only on business data** (D-35): they manage organizations, members, verification, configuration, the registry, and (for now) batches (§5). A PublicAuthority member gets read access through the capability, not through a role.
+Platform administrators are users in the Identity role `Administrator` with an `OrgAdmin` membership in the platform org (D-32). With the flag on they are **read-only on business data** (D-35): they manage organizations, members, verification, configuration and the registry (§5); they take no part in the honey's journey (D-88). A PublicAuthority member gets read access through the capability, not through a role.
 
 ---
 
@@ -147,6 +147,7 @@ The defaults come from two editable tables plus a few fixed rules. Both tables a
 | Shipments | Staff, OrgAdmin (send) | Staff, OrgAdmin (confirm or reject receipt) | Staff, OrgAdmin, QualityApprover | holder of the quantity; receiver Verified; no capability check |
 | Storefront (consents) | OrgAdmin | – | OrgAdmin | Association, beekeeper linked to it |
 | Recall report | – | – | all roles | own lots and batches, or the association's beekeepers |
+| Batch (D-88, 030) | Staff, OrgAdmin (create a batch: "New batch" in My organization) | – | – | Verified org with Processing or Packing; only own lots whose CCPs are all done and approved and that have honey left |
 | Finalize | Staff, OrgAdmin (request) | QualityApprover (confirm) | – | batch owner |
 | Consumer feedback (D-87, 029) | OrgAdmin, QualityApprover, ComplianceOfficer (mark read, answer, close) | – | OrgAdmin, QualityApprover, ComplianceOfficer | the batch owner; the consumer's pseudonym only; suspected fakes also read-only for the platform administrator |
 | CCP read (per CCP) | – | – | all roles | the read rule in §5.3 |
@@ -157,7 +158,7 @@ An org reads: the CCPs it is responsible for; the earlier CCPs of the same lot o
 
 ### 5.4 Fixed rules (not configurable)
 
-- **Batches:** creating a batch, its composition, setting its owner and assigning its CCPs are **platform-admin only** for now (`FinalHoneyProductionsController` is `[Authorize(Roles = "Administrator")]`, D-73). Lots are created by intake (all lot CCPs are assigned automatically) or by an administrator.
+- **Batches (D-88):** the owning organization creates its batch ("New batch" in My organization, right "Batch" Enter): it chooses its own eligible lots and the kilograms of each; the batch belongs to it, gets its legacy wholesaler record (created automatically for an organization with Processing, Packing or Wholesale) and every batch CCP that has a row in the CCP responsibility matrix. The administrator's old batch screens (`FinalHoneyProductionsController`) are no longer in the menu; the routes stay for corrections. Lots are created by intake (all lot CCPs are assigned automatically).
 - **Four-eyes:** the approver of a CCP record must not be a person who recorded its values or who marked it "Not applicable" (D-75); the person who requested finalizing cannot confirm it; the approver of a lab report must not be its analyst. A platform administrator can give a one-person org a four-eyes exemption (flagged on the record and in the audit log); lab results never get it. My work offers only the approvals the four-eyes rule allows.
 - **Corrections after approval or finalize:** only a platform administrator requests one; a second platform administrator decides it (`CCPMonitoringController.RequestCorrection` / `DecideCorrection`). There is no "corrected" note on Honey Story.
 - **Order:** lot CCP 0–3, batch CCP 4–10 (`CriticalControlPoints.AppliesTo`). A lot joins a batch only when all its CCPs are done and approved. Every batch CCP, **including CCP 10 storage at the plant**, must be completed (or not applicable) and approved before finalizing (`CcpIntegrityService.GetFinalizeBlockersAsync`). Only finalized batches ship. Finalized batches and their lots are locked; there is no unfinalize (D-14).
@@ -169,7 +170,7 @@ An org reads: the CCPs it is responsible for; the earlier CCPs of the same lot o
 
 - **Intake.** The SampleAcceptanceOfficer of a Processing org records the delivery from the beekeeper: quantity, province/district, origin country, a photo or PDF of the signed delivery form (stored with SHA-256), optionally an SMS. The lot is created with that org as owner and every lot CCP (0–3) is assigned.
 - **Lot CCPs.** CCP 0 by the SampleAcceptanceOfficer, then the lab (§7) fills CCP 1, then Staff enter CCP 2–3; each approved by a QualityApprover.
-- **Batches** are created, composed, given an owner and their CCPs (4–10) by a platform administrator; the owner's Staff enter and its QualityApprover approves them. Finalize: Staff or OrgAdmin request, a QualityApprover (another person) confirms; origin shares are stored at that moment.
+- **Batches** are created by the processing or packing organization from its own approved lots ("New batch", D-88): the batch is its own and CCP 4–10 are assigned at once; its Staff enter them and its QualityApprover approves them. Finalize: Staff or OrgAdmin request, a QualityApprover (another person) confirms; origin shares are stored at that moment.
 - **Shipments** move a quantity of a finalized batch. Custody of that quantity moves only when the receiver confirms receipt. Each later holder records its own **CCP 10 storage record** (`HolderStorageRecords`) after receipt, approved by its QualityApprover.
 - **Recall report**: from a batch to all upstream lots, apiaries and beekeepers, and to every downstream shipment.
 
@@ -182,7 +183,7 @@ flowchart LR
     C0 --> LAB
     LAB -- approved report --> C1[CCP 1]
     C1 --> C23[CCP 2-3]
-    C23 --> BATCH[Batch<br/>created by platform admin]
+    C23 --> BATCH[Batch<br/>New batch by the plant]
     BATCH -- CCP 4-10 incl. storage at plant --> FIN[Finalize<br/>request + four-eyes confirm]
     FIN --> SHP{Receipt confirmed?}
     SHP -- yes, custody moves --> HOLD[Wholesale / Retail<br/>own CCP 10 storage record]

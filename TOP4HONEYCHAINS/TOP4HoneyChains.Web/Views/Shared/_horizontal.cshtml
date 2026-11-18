@@ -225,6 +225,9 @@
                                 </div>
                             </li>
 
+                            @if (!orgModelOn)
+                            {
+                            @* D-88: with the organization model the owning organization creates its batches; the routes stay for corrections *@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle arrow-none @Cur("final")" href="#" id="topnav-finalprod" role="button"
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -234,6 +237,7 @@
                                     <a href="/FinalHoneyProductions/Index" class="dropdown-item">@L["Menu.FinalHoneyProductions"]</a>
                                 </div>
                             </li>
+                            }
 
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle arrow-none @Cur("ccp")" href="#" id="topnav-ccp" role="button"
@@ -319,7 +323,7 @@
      data-one="@L["Work.NewOne"]" data-many="@L["Work.NewMany"]" data-waiting="@L["Work.WaitingCount"]"></div>
 @if (memberMenu || (orgModelOn && isPanelAdmin))
 {
-    var kindNames = new[] { "Approve", "LabApprove", "Finalize", "Confirm", "Receive", "Results", "Verify", "Registry", "Evidence", "Correction", "Enter" }
+    var kindNames = new[] { "Approve", "LabApprove", "Finalize", "Confirm", "Receive", "Results", "Verify", "Registry", "Evidence", "Correction", "Sheet", "Enter", "NewBatch" }
         .ToDictionary(k => k, k => L["Work.Kind." + k].Value);
     <script type="application/json" id="work-kinds">@Html.Raw(System.Text.Json.JsonSerializer.Serialize(kindNames))</script>
 }

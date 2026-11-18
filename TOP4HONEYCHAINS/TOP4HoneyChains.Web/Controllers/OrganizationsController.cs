@@ -96,6 +96,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 org.Capabilities.Add(new OrgCapability { Capability = c, AddedByUserId = _current.UserId });
             _context.Organizations.Add(org);
             await _context.SaveChangesAsync();
+            await LegacyWholesalers.EnsureAsync(_context, org.OrgId);   // D-88
             TempData["Success"] = "Organization created. It stays Pending until it is verified.";
             return RedirectToAction(nameof(Details), new { id = org.OrgId });
         }
@@ -235,6 +236,7 @@ namespace TOP4HoneyChains.Web.Controllers
                     AddedByUserId = _current.UserId
                 });
                 await _context.SaveChangesAsync();
+                await LegacyWholesalers.EnsureAsync(_context, id);   // D-88
                 TempData["Success"] = $"Capability {capability} added.";
             }
             return RedirectToAction(nameof(Details), new { id });

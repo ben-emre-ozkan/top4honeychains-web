@@ -47,7 +47,9 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                 (A.Evidence, A.Approve, new[] { OrgRoles.ComplianceOfficer }),
                 // D-87 (029)
                 (A.ConsumerFeedback, A.Read, new[] { OrgRoles.OrgAdmin, OrgRoles.QualityApprover, OrgRoles.ComplianceOfficer }),
-                (A.ConsumerFeedback, A.Enter, new[] { OrgRoles.OrgAdmin, OrgRoles.QualityApprover, OrgRoles.ComplianceOfficer })
+                (A.ConsumerFeedback, A.Enter, new[] { OrgRoles.OrgAdmin, OrgRoles.QualityApprover, OrgRoles.ComplianceOfficer }),
+                // D-88 (030)
+                (A.Batch, A.Enter, new[] { OrgRoles.Staff, OrgRoles.OrgAdmin })
             };
             foreach (var (area, action, roles) in rows)
                 foreach (var r in roles)

@@ -112,6 +112,7 @@ builder.Services.AddScoped<LabService>();
 builder.Services.AddScoped<StorefrontService>();
 builder.Services.AddScoped<StorefrontPage>();
 builder.Services.AddScoped<MyWorkService>();
+builder.Services.AddScoped<PlantBatchService>();   // D-88: "New batch" of the processing or packing organization
 builder.Services.AddScoped<ISmsSender, LoggingSmsSender>();
 // D-78 P1 (D78-SPEC 5): SMS through a provider chosen in Sms:Provider (Fake, Logging, Netgsm, IletiMerkezi), one-time codes.
 // The application refuses to start with an invalid SMS configuration (e.g. the fake provider in Production without Sms:AllowFake).
