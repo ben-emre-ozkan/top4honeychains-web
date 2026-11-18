@@ -37,6 +37,11 @@
                             }
                         </div>
                     }
+                    @if (ViewBag.SameDayLot is int sameDayLot)
+                    {
+                        @* D-88 follow-up: several deliveries per apiary are allowed; the same honey type on the same day is only pointed out *@
+                        <div class="alert alert-warning" role="status" id="same-day-warning">@Msg.T($"Lot #{sameDayLot} is a delivery of the same honey type from this apiary on the same day. Check that this is another delivery.")</div>
+                    }
 
                     @if (bk != null)
                     {

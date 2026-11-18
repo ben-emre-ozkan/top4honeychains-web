@@ -35,6 +35,10 @@ namespace TOP4HoneyChains.Web.Controllers
             ViewBag.Beekeeper = bk;
             ViewBag.Labs = await LabsAsync();
             ViewBag.CodeSent = codeSent;
+            // D-88 follow-up: several deliveries per apiary and period are allowed; the same honey type from the same apiary on the same
+            // day is pointed out, never refused
+            ViewBag.SameDayLot = form.ApiaryId > 0 && form.HoneyTypeId > 0 && form.DeliveryDate != null
+                ? await SameDayLotAsync(form.ApiaryId, form.HoneyTypeId, form.DeliveryDate.Value) : null;
             ViewBag.HasPhone = !string.IsNullOrWhiteSpace(bk?.BeekeeperPhoneNumber);
             var sms = HttpContext.RequestServices.GetRequiredService<IOptions<SmsOptions>>().Value;
             ViewBag.DemoMessage = sms.IsFake && sms.DemoPanel && sentTo != null
@@ -43,6 +47,11 @@ namespace TOP4HoneyChains.Web.Controllers
             ViewBag.Action = "Create";
             return View("CreateCustody", form);
         }
+
+        // D-88 follow-up: a lot of the same apiary and honey type delivered on the same day (a soft warning only); null when there is none
+        private Task<int?> SameDayLotAsync(int apiaryId, int honeyTypeId, DateOnly date) =>
+            _context.RawHoneyProductions.Where(r => r.RawHoneyProductionApiaryId == apiaryId && r.RawHoneyProductionHoneyType == honeyTypeId && r.RawHoneyProductionDate == date)
+                .OrderByDescending(r => r.RawHoneyProductionId).Select(r => (int?)r.RawHoneyProductionId).FirstOrDefaultAsync();
 
         // the delivery fields, as for the legacy intake, plus the laboratory and the counter-samples
         private async Task<List<string>> CheckDeliveryAsync(IntakeForm f, Beekeeper? bk)
@@ -73,8 +82,6 @@ namespace TOP4HoneyChains.Web.Controllers
                 errors.Add("Enter where the counter-sample is kept (at most 200 characters).");
             if (f.RetainUntil == null || f.RetainUntil <= DateOnly.FromDateTime(DateTime.Today))
                 errors.Add("Enter until when the counter-sample is kept (a future date).");
-            if (await _context.RawHoneyProductions.AnyAsync(r => r.RawHoneyProductionApiaryId == f.ApiaryId && r.RawHoneyProductionPeriodId == f.PeriodId && r.RawHoneyProductionHoneyType == f.HoneyTypeId))
-                errors.Add("This apiary already has a production record for the selected period and honey type.");
             errors.AddRange(Custody.CheckContainers(f));
             return errors;
         }

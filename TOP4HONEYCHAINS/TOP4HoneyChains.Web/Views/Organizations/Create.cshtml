@@ -57,6 +57,28 @@
                             }
                         </div>
 
+                        @* D-88 follow-up: a laboratory's accreditation is entered with the organization, not in a second step *@
+                        <fieldset class="border rounded p-3 mb-3" id="lab-accreditation">
+                            <legend class="fs-6 mb-1">@L["Org.LabAccreditation"]</legend>
+                            <p class="small text-muted mb-2">@L["Org.LabAccreditationHelp"]</p>
+                            <div class="row g-2 align-items-end">
+                                <div class="col-md-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="isAccredited" value="true" id="isAccredited" @(ViewBag.IsAccredited == true ? "checked" : "") />
+                                        <label class="form-check-label" for="isAccredited">@L["Org.IsAccredited"]</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label" for="accreditationNumber">@L["Org.AccreditationNumber"]</label>
+                                    <input class="form-control" name="accreditationNumber" id="accreditationNumber" maxlength="100" value="@ViewBag.AccreditationNumber" />
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label" for="accreditationValidUntil">@L["Org.AccreditationValidUntil"]</label>
+                                    <input class="form-control" type="date" name="accreditationValidUntil" id="accreditationValidUntil" value="@ViewBag.AccreditationValidUntil" />
+                                </div>
+                            </div>
+                        </fieldset>
+
                         <button type="submit" class="btn btn-success">@L["Org.Create"]</button>
                         <a asp-action="Index" class="btn btn-secondary">@L["Org.Cancel"]</a>
                     </form>

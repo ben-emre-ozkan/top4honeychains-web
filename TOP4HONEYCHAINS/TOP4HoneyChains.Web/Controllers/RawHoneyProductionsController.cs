@@ -157,17 +157,13 @@ namespace TOP4HoneyChains.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(RawHoneyProduction rawHoneyProduction)
         {
-            // 🔎 Business Rule Kontrolü
-            bool exists = await _context.RawHoneyProductions.AnyAsync(r =>
-                r.RawHoneyProductionApiaryId == rawHoneyProduction.RawHoneyProductionApiaryId &&
-                r.RawHoneyProductionPeriodId == rawHoneyProduction.RawHoneyProductionPeriodId &&
-                r.RawHoneyProductionHoneyType == rawHoneyProduction.RawHoneyProductionHoneyType);
-
-            if (exists)
-            {
-                ModelState.AddModelError(string.Empty,
-                    "This apiary already has a production record for the selected period and honey type.");
-            }
+            // D-89: an apiary may deliver several times in a period (each record its own lot); the same honey type from the same
+            // apiary on the same day is pointed out after saving, never refused
+            var sameDay = rawHoneyProduction.RawHoneyProductionDate is DateOnly day
+                ? await _context.RawHoneyProductions.Where(r => r.RawHoneyProductionApiaryId == rawHoneyProduction.RawHoneyProductionApiaryId
+                        && r.RawHoneyProductionHoneyType == rawHoneyProduction.RawHoneyProductionHoneyType && r.RawHoneyProductionDate == day)
+                    .OrderByDescending(r => r.RawHoneyProductionId).Select(r => (int?)r.RawHoneyProductionId).FirstOrDefaultAsync()
+                : null;
             if (!_flags.OrgRoleModel)
                 rawHoneyProduction.OriginCountry = null;   // v1.0 form: the database default (TR) applies
             else if (!Origin.IsKnown(rawHoneyProduction.OriginCountry))
@@ -178,6 +174,8 @@ namespace TOP4HoneyChains.Web.Controllers
             {
                 _context.Add(rawHoneyProduction);
                 await _context.SaveChangesAsync();
+                if (sameDay != null)
+                    TempData["Info"] = $"Lot #{sameDay} is a delivery of the same honey type from this apiary on the same day. Check that this is another delivery.";
 
                 return RedirectToAction("RawHoneyProductionByApiary",
                         new { id = rawHoneyProduction.RawHoneyProductionApiaryId });

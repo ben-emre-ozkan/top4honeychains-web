@@ -9751,4 +9751,31 @@
   <data name="Phone.Note" xml:space="preserve">
     <value>Solo los mensajes de prueba de este número. No se envía ningún SMS real.</value>
   </data>
+  <data name="Org.LabAccreditation" xml:space="preserve">
+    <value>Acreditación del laboratorio</value>
+  </data>
+  <data name="Org.LabAccreditationHelp" xml:space="preserve">
+    <value>Solo con la capacidad Laboratorio. Un laboratorio acreditado necesita su número de acreditación.</value>
+  </data>
+  <data name="Org.IsAccredited" xml:space="preserve">
+    <value>El laboratorio está acreditado</value>
+  </data>
+  <data name="Org.AccreditationNumber" xml:space="preserve">
+    <value>Número de acreditación</value>
+  </data>
+  <data name="Org.AccreditationValidUntil" xml:space="preserve">
+    <value>Acreditación válida hasta</value>
+  </data>
+  <data name="Accreditation applies only to an organization with the Laboratory capability." xml:space="preserve">
+    <value>La acreditación solo se aplica a una organización con la capacidad Laboratorio.</value>
+  </data>
+  <data name="The accreditation number can be at most 100 characters." xml:space="preserve">
+    <value>El número de acreditación puede tener como máximo 100 caracteres.</value>
+  </data>
+  <data name="Lot #{0} is a delivery of the same honey type from this apiary on the same day." xml:space="preserve">
+    <value>El lote #{0} es una entrega del mismo tipo de miel de este apiario el mismo día.</value>
+  </data>
+  <data name="Check that this is another delivery." xml:space="preserve">
+    <value>Compruebe que se trata de otra entrega.</value>
+  </data>
 </root>

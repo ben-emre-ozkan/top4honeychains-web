@@ -71,7 +71,8 @@ namespace TOP4HoneyChains.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Policy = AuthPolicies.PlatformAdmin)]
-        public async Task<IActionResult> Create([Bind("DisplayName,LegalName,TaxNo,Province,District,LegacyWholesalerId")] Organization org, string[]? capabilities)
+        public async Task<IActionResult> Create([Bind("DisplayName,LegalName,TaxNo,Province,District,LegacyWholesalerId")] Organization org, string[]? capabilities,
+            bool isAccredited, string? accreditationNumber, DateOnly? accreditationValidUntil)
         {
             capabilities ??= Array.Empty<string>();
             var known = await _context.Capabilities.Select(c => c.Code).ToListAsync();
@@ -79,6 +80,15 @@ namespace TOP4HoneyChains.Web.Controllers
                 ModelState.AddModelError("", "Choose at least one capability.");
             if (capabilities.Any(c => !known.Contains(c)) || capabilities.Contains(Capabilities.PlatformAdmin))
                 ModelState.AddModelError("", "Unknown or reserved capability.");
+            // D-88 follow-up: the accreditation of a laboratory, in the same form
+            accreditationNumber = string.IsNullOrWhiteSpace(accreditationNumber) ? null : accreditationNumber.Trim();
+            var laboratory = capabilities.Contains(Capabilities.Laboratory);
+            if (isAccredited && !laboratory)
+                ModelState.AddModelError("", "Accreditation applies only to an organization with the Laboratory capability.");
+            else if (isAccredited && accreditationNumber == null)
+                ModelState.AddModelError("", "An accredited laboratory needs an accreditation number.");
+            else if (accreditationNumber?.Length > 100)
+                ModelState.AddModelError("", "The accreditation number can be at most 100 characters.");
             if (org.LegacyWholesalerId != null && await _context.Organizations.AnyAsync(o => o.LegacyWholesalerId == org.LegacyWholesalerId))
                 ModelState.AddModelError("LegacyWholesalerId", "This wholesaler is already linked to an organization.");
             CheckPlace(org.Province, org.District, null, null);
@@ -87,13 +97,22 @@ namespace TOP4HoneyChains.Web.Controllers
             {
                 await FillCreateListsAsync();
                 ViewBag.Selected = capabilities;
+                ViewBag.IsAccredited = isAccredited;
+                ViewBag.AccreditationNumber = accreditationNumber;
+                ViewBag.AccreditationValidUntil = accreditationValidUntil?.ToString("yyyy-MM-dd");
                 return View(org);
             }
 
             org.Status = OrgStatus.Pending;
             org.CreatedByUserId = _current.UserId;
             foreach (var c in capabilities.Distinct())
-                org.Capabilities.Add(new OrgCapability { Capability = c, AddedByUserId = _current.UserId });
+                org.Capabilities.Add(new OrgCapability
+                {
+                    Capability = c, AddedByUserId = _current.UserId,
+                    IsAccredited = c == Capabilities.Laboratory && isAccredited,
+                    AccreditationNumber = c == Capabilities.Laboratory ? accreditationNumber : null,
+                    AccreditationValidUntil = c == Capabilities.Laboratory ? accreditationValidUntil : null
+                });
             _context.Organizations.Add(org);
             await _context.SaveChangesAsync();
             await LegacyWholesalers.EnsureAsync(_context, org.OrgId);   // D-88
