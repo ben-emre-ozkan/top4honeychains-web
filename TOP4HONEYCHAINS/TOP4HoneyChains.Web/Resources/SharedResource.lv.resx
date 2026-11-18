@@ -9498,4 +9498,80 @@
     <value>Atsauksme tika slēgta.</value>
     <comment>D-87: draft for partner review</comment>
   </data>
+  <data name="Users.Kind" xml:space="preserve">
+    <value>Konta veids</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Users.AllKinds" xml:space="preserve">
+    <value>Visi konti</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Users.Kind.staff" xml:space="preserve">
+    <value>Darbinieks</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Users.Kind.beekeeper" xml:space="preserve">
+    <value>Biškopis</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Users.Kind.consumer" xml:space="preserve">
+    <value>Patērētājs</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Users.LockConsumer" xml:space="preserve">
+    <value>Bloķēt</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Users.ConsumerLocked" xml:space="preserve">
+    <value>Bloķēts</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer account locked." xml:space="preserve">
+    <value>Patērētāja konts bloķēts.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer account deleted (anonymised)." xml:space="preserve">
+    <value>Patērētāja konts dzēsts (anonimizēts).</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Home.Kpi.Consumers" xml:space="preserve">
+    <value>Patērētāju konti</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Home.Kpi.Empty.Consumers" xml:space="preserve">
+    <value>Vēl nav patērētāju kontu</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Ret.consumers.Data" xml:space="preserve">
+    <value>Patērētāju konti</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Ret.consumers.Kept" xml:space="preserve">
+    <value>{0} gadus pēc pēdējās pieteikšanās</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Ret.consumers.Then" xml:space="preserve">
+    <value>dzēsts kā to darītu patērētājs (konts anonimizēts, atsauksmes paliek ar pseidonīmu)</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Ret.consumersaved.Data" xml:space="preserve">
+    <value>Šo patērētāju kontu saglabātais medus</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Ret.consumersaved.Then" xml:space="preserve">
+    <value>dzēsts kopā ar kontu</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Ret.consumerfeedback.Data" xml:space="preserve">
+    <value>Slēgtās patērētāju atsauksmes</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Ret.consumerfeedback.Kept" xml:space="preserve">
+    <value>{0} gadus pēc slēgšanas</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Ret.consumerfeedback.Then" xml:space="preserve">
+    <value>dzēsts</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
 </root>

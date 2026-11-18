@@ -9393,4 +9393,61 @@
   <data name="The feedback was closed." xml:space="preserve">
     <value>Geri bildirim kapatıldı.</value>
   </data>
+  <data name="Users.Kind" xml:space="preserve">
+    <value>Hesap türü</value>
+  </data>
+  <data name="Users.AllKinds" xml:space="preserve">
+    <value>Tüm hesaplar</value>
+  </data>
+  <data name="Users.Kind.staff" xml:space="preserve">
+    <value>Çalışan</value>
+  </data>
+  <data name="Users.Kind.beekeeper" xml:space="preserve">
+    <value>Arıcı</value>
+  </data>
+  <data name="Users.Kind.consumer" xml:space="preserve">
+    <value>Tüketici</value>
+  </data>
+  <data name="Users.LockConsumer" xml:space="preserve">
+    <value>Kilitle</value>
+  </data>
+  <data name="Users.ConsumerLocked" xml:space="preserve">
+    <value>Kilitli</value>
+  </data>
+  <data name="Consumer account locked." xml:space="preserve">
+    <value>Tüketici hesabı kilitlendi.</value>
+  </data>
+  <data name="Consumer account deleted (anonymised)." xml:space="preserve">
+    <value>Tüketici hesabı silindi (anonimleştirildi).</value>
+  </data>
+  <data name="Home.Kpi.Consumers" xml:space="preserve">
+    <value>Tüketici hesapları</value>
+  </data>
+  <data name="Home.Kpi.Empty.Consumers" xml:space="preserve">
+    <value>Henüz tüketici hesabı yok</value>
+  </data>
+  <data name="Ret.consumers.Data" xml:space="preserve">
+    <value>Tüketici hesapları</value>
+  </data>
+  <data name="Ret.consumers.Kept" xml:space="preserve">
+    <value>son girişten {0} yıl sonrasına kadar</value>
+  </data>
+  <data name="Ret.consumers.Then" xml:space="preserve">
+    <value>tüketicinin silmesi gibi silinir (hesap anonimleştirilir, geri bildirim takma kodla kalır)</value>
+  </data>
+  <data name="Ret.consumersaved.Data" xml:space="preserve">
+    <value>Bu tüketici hesaplarının kayıtlı balları</value>
+  </data>
+  <data name="Ret.consumersaved.Then" xml:space="preserve">
+    <value>hesapla birlikte silinir</value>
+  </data>
+  <data name="Ret.consumerfeedback.Data" xml:space="preserve">
+    <value>Kapatılmış tüketici geri bildirimleri</value>
+  </data>
+  <data name="Ret.consumerfeedback.Kept" xml:space="preserve">
+    <value>kapatıldıktan {0} yıl sonrasına kadar</value>
+  </data>
+  <data name="Ret.consumerfeedback.Then" xml:space="preserve">
+    <value>silinir</value>
+  </data>
 </root>

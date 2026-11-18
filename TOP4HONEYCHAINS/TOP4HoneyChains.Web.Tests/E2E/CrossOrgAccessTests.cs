@@ -165,8 +165,8 @@ namespace TOP4HoneyChains.Web.Tests.E2E
 
             // and B's work list shows nothing of A
             var work = await users[OrgRoles.QualityApprover].HtmlAsync("/MyWork/Index");
-            // anti-forgery tokens and the file version hashes (?v=…) can contain "XA" by chance; only the content counts
-            work = System.Text.RegularExpressions.Regex.Replace(work, "name=\"__RequestVerificationToken\"[^>]*value=\"[^\"]*\"|value=\"[^\"]*\"[^>]*name=\"__RequestVerificationToken\"|[?&]v=[A-Za-z0-9_-]+", "");
+            // anti-forgery tokens (also the tour's data-token) and the file version hashes (?v=…) can contain "XA" by chance; only the content counts
+            work = System.Text.RegularExpressions.Regex.Replace(work, "name=\"__RequestVerificationToken\"[^>]*value=\"[^\"]*\"|value=\"[^\"]*\"[^>]*name=\"__RequestVerificationToken\"|data-token=\"[^\"]*\"|[?&]v=[A-Za-z0-9_-]+", "");
             Assert.DoesNotContain("XA", work);
         }
     }

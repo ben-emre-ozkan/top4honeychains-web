@@ -9498,4 +9498,80 @@
     <value>El comentario se cerró.</value>
     <comment>D-87: draft for partner review</comment>
   </data>
+  <data name="Users.Kind" xml:space="preserve">
+    <value>Tipo de cuenta</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Users.AllKinds" xml:space="preserve">
+    <value>Todas las cuentas</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Users.Kind.staff" xml:space="preserve">
+    <value>Personal</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Users.Kind.beekeeper" xml:space="preserve">
+    <value>Apicultor</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Users.Kind.consumer" xml:space="preserve">
+    <value>Consumidor</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Users.LockConsumer" xml:space="preserve">
+    <value>Bloquear</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Users.ConsumerLocked" xml:space="preserve">
+    <value>Bloqueada</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer account locked." xml:space="preserve">
+    <value>Cuenta de consumidor bloqueada.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer account deleted (anonymised)." xml:space="preserve">
+    <value>Cuenta de consumidor eliminada (anonimizada).</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Home.Kpi.Consumers" xml:space="preserve">
+    <value>Cuentas de consumidor</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Home.Kpi.Empty.Consumers" xml:space="preserve">
+    <value>Aún no hay cuentas de consumidor</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Ret.consumers.Data" xml:space="preserve">
+    <value>Cuentas de consumidor</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Ret.consumers.Kept" xml:space="preserve">
+    <value>{0} años después del último acceso</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Ret.consumers.Then" xml:space="preserve">
+    <value>se eliminan como si lo hiciera el consumidor (cuenta anonimizada, comentarios con el seudónimo)</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Ret.consumersaved.Data" xml:space="preserve">
+    <value>Mieles guardadas de esas cuentas de consumidor</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Ret.consumersaved.Then" xml:space="preserve">
+    <value>se eliminan con la cuenta</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Ret.consumerfeedback.Data" xml:space="preserve">
+    <value>Comentarios de consumidores cerrados</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Ret.consumerfeedback.Kept" xml:space="preserve">
+    <value>{0} años después de cerrarse</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Ret.consumerfeedback.Then" xml:space="preserve">
+    <value>se eliminan</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
 </root>

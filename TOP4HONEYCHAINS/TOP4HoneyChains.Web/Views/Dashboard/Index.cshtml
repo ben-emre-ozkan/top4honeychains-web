@@ -21,8 +21,9 @@
         ("Batches", "processing", f.Kpis.BatchesFinalized, "/FinalHoneyProductions/Index"),
         ("Reports", "lab", f.Kpis.ApprovedLabReports, Model.OrgModel ? "/Samples/Index" : null),
         ("Waiting", "foureyes", f.Kpis.ApprovalsWaiting, Model.OrgModel ? "#ah-waiting" : null),
-        ("Orgs", "verified", f.Kpis.VerifiedOrganizations, Model.OrgModel ? "/Organizations/Index" : null)
-    };
+        ("Orgs", "verified", f.Kpis.VerifiedOrganizations, Model.OrgModel ? "/Organizations/Index" : null),
+        ("Consumers", "qr", f.Kpis.ConsumerAccounts, "/UserManagement/Index?kind=consumer")
+    }.Where(k => k.Key != "Consumers" || k.Value != null).ToArray();   // D-87: only while consumer accounts are switched on
     var mapAreas = f.Provinces.Select(p => new TurkeyMapArea(p.Plate, p.Apiaries > 0 ? p.Apiaries : 0.5, L["Home.Map.Tip", p.Beekeepers, p.Apiaries].Value)).ToList();
     var maxApiaries = f.Provinces.Count == 0 ? 0 : f.Provinces.Max(p => p.Apiaries);
     string When(DateTime? at) => at?.ToString(at.Value.Date == DateTime.Today ? "HH:mm" : "d MMM, HH:mm", culture) ?? "";

@@ -15,9 +15,7 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         public int MinFillSeconds { get; set; } = 3;
         public int FeedbackPerBatchPerDay { get; set; } = 1;
         public int FeedbackPerDay { get; set; } = 5;
-        // retention (dry run, D-84): accounts after the last sign-in (O-19), feedback after it was closed
-        public int AccountRetentionYears { get; set; } = 2;
-        public int FeedbackRetentionYears { get; set; } = 3;
+        // retention: Retention:ConsumerAccountYears and Retention:ConsumerFeedbackYears (dry run only, D-84)
         // global ceilings of the rate limiter (requests per minute), the same for every client: behind Cloudflare and IIS the app
         // does not resolve forwarded headers, so it cannot tell clients apart by address (GO-LIVE)
         public int SignUpPerMinute { get; set; } = 10;

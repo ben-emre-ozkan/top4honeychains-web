@@ -9393,4 +9393,61 @@
   <data name="The feedback was closed." xml:space="preserve">
     <value>The feedback was closed.</value>
   </data>
+  <data name="Users.Kind" xml:space="preserve">
+    <value>Account kind</value>
+  </data>
+  <data name="Users.AllKinds" xml:space="preserve">
+    <value>All accounts</value>
+  </data>
+  <data name="Users.Kind.staff" xml:space="preserve">
+    <value>Staff</value>
+  </data>
+  <data name="Users.Kind.beekeeper" xml:space="preserve">
+    <value>Beekeeper</value>
+  </data>
+  <data name="Users.Kind.consumer" xml:space="preserve">
+    <value>Consumer</value>
+  </data>
+  <data name="Users.LockConsumer" xml:space="preserve">
+    <value>Lock</value>
+  </data>
+  <data name="Users.ConsumerLocked" xml:space="preserve">
+    <value>Locked</value>
+  </data>
+  <data name="Consumer account locked." xml:space="preserve">
+    <value>Consumer account locked.</value>
+  </data>
+  <data name="Consumer account deleted (anonymised)." xml:space="preserve">
+    <value>Consumer account deleted (anonymised).</value>
+  </data>
+  <data name="Home.Kpi.Consumers" xml:space="preserve">
+    <value>Consumer accounts</value>
+  </data>
+  <data name="Home.Kpi.Empty.Consumers" xml:space="preserve">
+    <value>No consumer account yet</value>
+  </data>
+  <data name="Ret.consumers.Data" xml:space="preserve">
+    <value>Consumer accounts</value>
+  </data>
+  <data name="Ret.consumers.Kept" xml:space="preserve">
+    <value>{0} years after the last sign-in</value>
+  </data>
+  <data name="Ret.consumers.Then" xml:space="preserve">
+    <value>deleted as by the consumer (account anonymised, feedback kept under the pseudonym)</value>
+  </data>
+  <data name="Ret.consumersaved.Data" xml:space="preserve">
+    <value>Saved honeys of these consumer accounts</value>
+  </data>
+  <data name="Ret.consumersaved.Then" xml:space="preserve">
+    <value>deleted with the account</value>
+  </data>
+  <data name="Ret.consumerfeedback.Data" xml:space="preserve">
+    <value>Closed consumer feedback</value>
+  </data>
+  <data name="Ret.consumerfeedback.Kept" xml:space="preserve">
+    <value>{0} years after it was closed</value>
+  </data>
+  <data name="Ret.consumerfeedback.Then" xml:space="preserve">
+    <value>deleted</value>
+  </data>
 </root>

@@ -753,6 +753,108 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+CREATE TABLE [dbo].[ConsumerAccounts](
+	[UserId] [nvarchar](450) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[Pseudonym] [varchar](12) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[Language] [varchar](5) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[AgeConfirmedAt] [datetime2](7) NOT NULL,
+	[NoticeId] [int] NULL,
+	[NoticeVersion] [varchar](40) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[CreatedAt] [datetime2](7) NOT NULL,
+	[LastSignInAt] [datetime2](7) NULL,
+	[Status] [varchar](20) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+ CONSTRAINT [PK_ConsumerAccounts] PRIMARY KEY CLUSTERED 
+(
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+)
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [UX_ConsumerAccounts_Pseudonym] ON [dbo].[ConsumerAccounts]
+(
+	[Pseudonym] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+GO
+ALTER TABLE [dbo].[ConsumerAccounts] ADD  CONSTRAINT [DF_ConsumerAccounts_CreatedAt]  DEFAULT (sysutcdatetime()) FOR [CreatedAt]
+GO
+ALTER TABLE [dbo].[ConsumerAccounts] ADD  CONSTRAINT [DF_ConsumerAccounts_Status]  DEFAULT ('Active') FOR [Status]
+GO
+ALTER TABLE [dbo].[ConsumerAccounts]  WITH CHECK ADD  CONSTRAINT [CK_ConsumerAccounts_Status] CHECK  (([Status]='Locked' OR [Status]='Active'))
+GO
+ALTER TABLE [dbo].[ConsumerAccounts] CHECK CONSTRAINT [CK_ConsumerAccounts_Status]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ConsumerFeedback](
+	[FeedbackId] [int] IDENTITY(1,1) NOT NULL,
+	[ConsumerUserId] [nvarchar](450) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[Pseudonym] [varchar](12) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[FinalHoneyProductionId] [int] NOT NULL,
+	[OrgId] [int] NOT NULL,
+	[Category] [varchar](30) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[Message] [nvarchar](1000) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[Language] [varchar](5) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[CreatedAt] [datetime2](7) NOT NULL,
+	[Status] [varchar](20) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[ReadAt] [datetime2](7) NULL,
+	[ReadByUserId] [nvarchar](450) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[Answer] [nvarchar](1000) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[AnsweredAt] [datetime2](7) NULL,
+	[AnsweredByUserId] [nvarchar](450) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[ClosedAt] [datetime2](7) NULL,
+	[ClosedByUserId] [nvarchar](450) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+ CONSTRAINT [PK_ConsumerFeedback] PRIMARY KEY CLUSTERED 
+(
+	[FeedbackId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+)
+GO
+CREATE NONCLUSTERED INDEX [IX_ConsumerFeedback_Consumer] ON [dbo].[ConsumerFeedback]
+(
+	[ConsumerUserId] ASC,
+	[CreatedAt] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+GO
+CREATE NONCLUSTERED INDEX [IX_ConsumerFeedback_Org] ON [dbo].[ConsumerFeedback]
+(
+	[OrgId] ASC,
+	[Status] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+GO
+ALTER TABLE [dbo].[ConsumerFeedback] ADD  CONSTRAINT [DF_ConsumerFeedback_CreatedAt]  DEFAULT (sysutcdatetime()) FOR [CreatedAt]
+GO
+ALTER TABLE [dbo].[ConsumerFeedback] ADD  CONSTRAINT [DF_ConsumerFeedback_Status]  DEFAULT ('New') FOR [Status]
+GO
+ALTER TABLE [dbo].[ConsumerFeedback]  WITH CHECK ADD  CONSTRAINT [CK_ConsumerFeedback_Category] CHECK  (([Category]='Other' OR [Category]='SuspectedFake' OR [Category]='PackagingLabel' OR [Category]='TextureCrystallization' OR [Category]='TasteSmell'))
+GO
+ALTER TABLE [dbo].[ConsumerFeedback] CHECK CONSTRAINT [CK_ConsumerFeedback_Category]
+GO
+ALTER TABLE [dbo].[ConsumerFeedback]  WITH CHECK ADD  CONSTRAINT [CK_ConsumerFeedback_Status] CHECK  (([Status]='Closed' OR [Status]='Answered' OR [Status]='Read' OR [Status]='New'))
+GO
+ALTER TABLE [dbo].[ConsumerFeedback] CHECK CONSTRAINT [CK_ConsumerFeedback_Status]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ConsumerSavedBatches](
+	[ConsumerUserId] [nvarchar](450) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[FinalHoneyProductionId] [int] NOT NULL,
+	[SavedAt] [datetime2](7) NOT NULL,
+ CONSTRAINT [PK_ConsumerSavedBatches] PRIMARY KEY CLUSTERED 
+(
+	[ConsumerUserId] ASC,
+	[FinalHoneyProductionId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+)
+GO
+ALTER TABLE [dbo].[ConsumerSavedBatches] ADD  CONSTRAINT [DF_ConsumerSavedBatches_SavedAt]  DEFAULT (sysutcdatetime()) FOR [SavedAt]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[ContainerSealEvents](
 	[EventId] [int] IDENTITY(1,1) NOT NULL,
 	[ContainerId] [int] NOT NULL,
@@ -1620,9 +1722,13 @@ ALTER TABLE [dbo].[Notices] ADD  CONSTRAINT [DF_Notices_IsDraft]  DEFAULT ((0)) 
 GO
 ALTER TABLE [dbo].[Notices] ADD  CONSTRAINT [DF_Notices_PublishedAt]  DEFAULT (sysutcdatetime()) FOR [PublishedAt]
 GO
-ALTER TABLE [dbo].[Notices]  WITH CHECK ADD  CONSTRAINT [CK_Notices_Audience] CHECK  (([Audience]='All' OR [Audience]='Member' OR [Audience]='Beekeeper'))
+ALTER TABLE [dbo].[Notices]  WITH NOCHECK ADD  CONSTRAINT [CK_Notices_Audience] CHECK  (([Audience]='All' OR [Audience]='Member' OR [Audience]='Beekeeper'))
 GO
-ALTER TABLE [dbo].[Notices] CHECK CONSTRAINT [CK_Notices_Audience]
+ALTER TABLE [dbo].[Notices] NOCHECK CONSTRAINT [CK_Notices_Audience]
+GO
+ALTER TABLE [dbo].[Notices]  WITH CHECK ADD  CONSTRAINT [CK_Notices_Audience2] CHECK  (([Audience]='Consumer' OR [Audience]='All' OR [Audience]='Member' OR [Audience]='Beekeeper'))
+GO
+ALTER TABLE [dbo].[Notices] CHECK CONSTRAINT [CK_Notices_Audience2]
 GO
 ALTER TABLE [dbo].[Notices]  WITH CHECK ADD  CONSTRAINT [CK_Notices_Kind] CHECK  (([Kind]='Attestation' OR [Kind]='TermsOfUse' OR [Kind]='ConsentText' OR [Kind]='PrivacyNotice'))
 GO
@@ -2516,6 +2622,36 @@ ALTER TABLE [dbo].[Consents]  WITH CHECK ADD  CONSTRAINT [FK_Consents_Registerin
 REFERENCES [dbo].[Organizations] ([OrgId])
 GO
 ALTER TABLE [dbo].[Consents] CHECK CONSTRAINT [FK_Consents_RegisteringOrg]
+GO
+ALTER TABLE [dbo].[ConsumerAccounts]  WITH CHECK ADD  CONSTRAINT [FK_ConsumerAccounts_Notices] FOREIGN KEY([NoticeId])
+REFERENCES [dbo].[Notices] ([NoticeId])
+GO
+ALTER TABLE [dbo].[ConsumerAccounts] CHECK CONSTRAINT [FK_ConsumerAccounts_Notices]
+GO
+ALTER TABLE [dbo].[ConsumerFeedback]  WITH CHECK ADD  CONSTRAINT [FK_ConsumerFeedback_ConsumerAccounts] FOREIGN KEY([ConsumerUserId])
+REFERENCES [dbo].[ConsumerAccounts] ([UserId])
+GO
+ALTER TABLE [dbo].[ConsumerFeedback] CHECK CONSTRAINT [FK_ConsumerFeedback_ConsumerAccounts]
+GO
+ALTER TABLE [dbo].[ConsumerFeedback]  WITH CHECK ADD  CONSTRAINT [FK_ConsumerFeedback_FinalHoneyProductions] FOREIGN KEY([FinalHoneyProductionId])
+REFERENCES [dbo].[FinalHoneyProductions] ([FinalHoneyProductionId])
+GO
+ALTER TABLE [dbo].[ConsumerFeedback] CHECK CONSTRAINT [FK_ConsumerFeedback_FinalHoneyProductions]
+GO
+ALTER TABLE [dbo].[ConsumerFeedback]  WITH CHECK ADD  CONSTRAINT [FK_ConsumerFeedback_Organizations] FOREIGN KEY([OrgId])
+REFERENCES [dbo].[Organizations] ([OrgId])
+GO
+ALTER TABLE [dbo].[ConsumerFeedback] CHECK CONSTRAINT [FK_ConsumerFeedback_Organizations]
+GO
+ALTER TABLE [dbo].[ConsumerSavedBatches]  WITH CHECK ADD  CONSTRAINT [FK_ConsumerSavedBatches_ConsumerAccounts] FOREIGN KEY([ConsumerUserId])
+REFERENCES [dbo].[ConsumerAccounts] ([UserId])
+GO
+ALTER TABLE [dbo].[ConsumerSavedBatches] CHECK CONSTRAINT [FK_ConsumerSavedBatches_ConsumerAccounts]
+GO
+ALTER TABLE [dbo].[ConsumerSavedBatches]  WITH CHECK ADD  CONSTRAINT [FK_ConsumerSavedBatches_FinalHoneyProductions] FOREIGN KEY([FinalHoneyProductionId])
+REFERENCES [dbo].[FinalHoneyProductions] ([FinalHoneyProductionId])
+GO
+ALTER TABLE [dbo].[ConsumerSavedBatches] CHECK CONSTRAINT [FK_ConsumerSavedBatches_FinalHoneyProductions]
 GO
 ALTER TABLE [dbo].[ContainerSealEvents]  WITH CHECK ADD  CONSTRAINT [FK_ContainerSealEvents_Containers] FOREIGN KEY([ContainerId])
 REFERENCES [dbo].[Containers] ([ContainerId])

@@ -9,7 +9,9 @@ namespace TOP4HoneyChains.Web.Services
 {
     // D-72: the admin home (Dashboard/Index). Figures come from real data only; a null figure means the data does not
     // exist in this mode (the organization tables are used only with the organization model) and the page shows an empty state.
-    public record AdminKpis(int? LotsThisMonth, int? BatchesFinalized, int? ApprovedLabReports, int? ApprovalsWaiting, int? VerifiedOrganizations);
+    // D-87: ConsumerAccounts is null while Features:ConsumerAccounts is off
+    public record AdminKpis(int? LotsThisMonth, int? BatchesFinalized, int? ApprovedLabReports, int? ApprovalsWaiting, int? VerifiedOrganizations,
+        int? ConsumerAccounts = null);
 
     // One step of the chain strip: Apiary, Delivery, Laboratory, Processing, Shelf; Waiting = items currently at that step
     public record AdminChainStep(string Key, int? Waiting, string Url);
@@ -38,7 +40,7 @@ namespace TOP4HoneyChains.Web.Services
         private readonly FeatureFlags _flags;
         private readonly IConfiguration _config;
 
-        public AdminHomeService(TOP4HoneyChainsContext context, IMemoryCache cache, IOptions<FeatureFlags> flags, IConfiguration config)
+        public AdminHomeService(TOP4HoneyChainsContext context, IMemoryCache cache, IOptionsSnapshot<FeatureFlags> flags, IConfiguration config)
         {
             _context = context;
             _config = config;
@@ -49,7 +51,7 @@ namespace TOP4HoneyChains.Web.Services
         public bool OrgModel => _flags.OrgRoleModel;
 
         public async Task<AdminHomeFigures> FiguresAsync() =>
-            (await _cache.GetOrCreateAsync(CacheKey + OrgModel, async entry =>
+            (await _cache.GetOrCreateAsync(CacheKey + OrgModel + _flags.ConsumerAccounts, async entry =>
             {
                 entry.AbsoluteExpirationRelativeToNow = CacheFor;
                 var monthStart = DateOnly.FromDateTime(DateTime.Today).AddDays(1 - DateTime.Today.Day);
@@ -58,7 +60,8 @@ namespace TOP4HoneyChains.Web.Services
                     await _context.FinalHoneyProductions.CountAsync(f => f.FinalHoneyProductionIsFinalized),
                     OrgModel ? await _context.LabReports.CountAsync(r => r.Status == LabReportStatus.Approved) : null,
                     OrgModel ? (await WaitingAsync()).Count : null,
-                    OrgModel ? await _context.Organizations.CountAsync(o => o.Status == OrgStatus.Verified) : null);
+                    OrgModel ? await _context.Organizations.CountAsync(o => o.Status == OrgStatus.Verified) : null,
+                    _flags.ConsumerAccounts ? await _context.ConsumerAccounts.CountAsync() : null);
                 var (provinces, unlocated) = await ProvincesAsync();
                 return new AdminHomeFigures(kpis, await ChainAsync(), provinces, unlocated);
             }))!;

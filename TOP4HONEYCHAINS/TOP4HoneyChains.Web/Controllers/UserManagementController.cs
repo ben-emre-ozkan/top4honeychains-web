@@ -45,10 +45,20 @@ namespace TOP4HoneyChains.Web.Controllers
             ? new List<string> { Services.OrgModel.CurrentOrg.AdminRole }
             : _roleManager.Roles.Select(r => r.Name!).Where(n => n != RetiredSampleAcceptanceRole).ToList();
 
-        // USER LIST
-        public IActionResult Index()
+        // USER LIST. D-87: the account kind of every user (staff, beekeeper, consumer) with a filter
+        public async Task<IActionResult> Index(string? kind)
         {
             var users = _userManager.Users.ToList();
+            var consumers = await Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToDictionaryAsync(_context.ConsumerAccounts, c => c.UserId, c => c);
+            var beekeepers = (await Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync(_context.BeekeeperAccounts.Select(b => b.UserId))).ToHashSet();
+            string KindOf(Models.Identity.ApplicationUser u) => consumers.ContainsKey(u.Id) || ConsumerService.IsDeletedConsumer(u.UserName) ? ConsumerRules.Consumer
+                : beekeepers.Contains(u.Id) ? ConsumerRules.Beekeeper : ConsumerRules.Staff;
+            var kinds = users.ToDictionary(u => u.Id, KindOf);
+            if (kind != null && ConsumerRules.Kinds.Contains(kind))
+                users = users.Where(u => kinds[u.Id] == kind).ToList();
+            ViewBag.Kinds = kinds;
+            ViewBag.Consumers = consumers;
+            ViewBag.Kind = kind;
 
             ViewBag.Controller = "User Management";
             ViewBag.Action = "Users";
@@ -133,11 +143,37 @@ namespace TOP4HoneyChains.Web.Controllers
             return View(model);
         }
 
+        // D-87: lock a consumer account (it can no longer sign in; its data stays); Unlock opens it again
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> LockConsumer(string id)
+        {
+            var account = await Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.FirstOrDefaultAsync(_context.ConsumerAccounts, c => c.UserId == id);
+            var user = await _userManager.FindByIdAsync(id);
+            if (account == null || user == null)
+                return NotFound();
+            account.Status = Models.Entities.ConsumerAccountStatus.Locked;
+            await _context.SaveChangesAsync();
+            await _userManager.SetLockoutEnabledAsync(user, true);
+            await _userManager.SetLockoutEndDateAsync(user, DateTimeOffset.MaxValue);
+            await _userManager.UpdateSecurityStampAsync(user);
+            await _audit.WriteAsync("Lock", "ConsumerAccounts", account.Pseudonym);
+            TempData["success"] = "Consumer account locked.";
+            return RedirectToAction("Index", new { kind = ConsumerRules.Consumer });
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
+            // D-87: a consumer account is anonymised, not removed: its feedback stays with the organizations under the pseudonym
+            if (user != null && await ConsumerRules.IsConsumerAsync(_context, user.Id))
+            {
+                await HttpContext.RequestServices.GetRequiredService<ConsumerService>().DeleteAsync(user.Id, _userManager.GetUserId(User));
+                TempData["success"] = "Consumer account deleted (anonymised).";
+                return RedirectToAction("Index", new { kind = ConsumerRules.Consumer });
+            }
 
             // D-75: never your own account; every deletion is in the audit log
             if (user != null && user.Id == _userManager.GetUserId(User))
@@ -201,6 +237,15 @@ namespace TOP4HoneyChains.Web.Controllers
             var lockedUntil = user.LockoutEnd;
             await _userManager.SetLockoutEndDateAsync(user, null);
             await _userManager.ResetAccessFailedCountAsync(user);
+            // D-87: unlocking a consumer account also opens it again
+            if (await Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.FirstOrDefaultAsync(_context.ConsumerAccounts, c => c.UserId == id) is { } consumer)
+            {
+                consumer.Status = Models.Entities.ConsumerAccountStatus.Active;
+                await _context.SaveChangesAsync();
+                await _audit.WriteAsync("Unlock", "ConsumerAccounts", consumer.Pseudonym);   // the pseudonym, not the user name
+                TempData["success"] = "Account unlocked.";
+                return RedirectToAction("Index", new { kind = ConsumerRules.Consumer });
+            }
             await _audit.WriteAsync("Unlock", "AspNetUsers", user.Id, new { user.UserName, LockoutEnd = lockedUntil }, new { LockoutEnd = (DateTimeOffset?)null });
             TempData["success"] = "Account unlocked.";
             return RedirectToAction("Index");
