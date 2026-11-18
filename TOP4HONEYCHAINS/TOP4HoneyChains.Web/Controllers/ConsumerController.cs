@@ -206,6 +206,34 @@ namespace TOP4HoneyChains.Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // ---------------------------------------------------------------- feedback to the producer
+
+        [HttpGet]
+        public async Task<IActionResult> Feedback(Guid qr)
+        {
+            var batch = await _consumers.PublicBatchAsync(qr);
+            if (batch == null)
+                return NotFound();
+            ViewBag.Section = "Home";
+            return View(batch);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Feedback")]
+        [EnableRateLimiting(RateFeedback)]
+        public async Task<IActionResult> FeedbackPost(Guid qr, string? category, string? message)
+        {
+            var (feedback, error) = await _consumers.SendFeedbackAsync(Me, qr, category, message);
+            if (feedback == null)
+            {
+                TempData["Error"] = error;
+                return RedirectToAction(nameof(Feedback), new { qr });
+            }
+            TempData["Success"] = "Your feedback was sent to the producer.";
+            return RedirectToAction(nameof(Index));
+        }
+
         // ---------------------------------------------------------------- account
 
         public async Task<IActionResult> Account()

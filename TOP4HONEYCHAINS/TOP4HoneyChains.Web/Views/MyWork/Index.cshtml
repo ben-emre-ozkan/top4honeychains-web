@@ -15,10 +15,10 @@
         "Approve" => "mdi-check-decagram", "LabApprove" => "mdi-flask-outline", "Finalize" => "mdi-package-variant-closed",
         "Confirm" => "mdi-truck-check-outline", "Receive" => "mdi-inbox-arrow-down-outline", "Results" => "mdi-test-tube",
         "Verify" => "mdi-shield-check-outline", "Registry" => "mdi-card-account-details-outline", "Evidence" => "mdi-file-certificate-outline", "Correction" => "mdi-pencil-circle-outline",
-        "Review" => "mdi-clipboard-search-outline", "Request" => "mdi-account-question-outline",
+        "Review" => "mdi-clipboard-search-outline", "Request" => "mdi-account-question-outline", "Feedback" => "mdi-message-reply-text-outline",
         _ => "mdi-clipboard-edit-outline"
     };
-    var order = new[] { "Approve", "LabApprove", "Finalize", "Confirm", "Receive", "Results", "Verify", "Registry", "Evidence", "Review", "Request", "Correction", "Enter" };
+    var order = new[] { "Approve", "LabApprove", "Finalize", "Confirm", "Receive", "Results", "Verify", "Registry", "Evidence", "Review", "Request", "Feedback", "Correction", "Enter" };
     var groups = items.GroupBy(i => i.Kind).OrderBy(g => Array.IndexOf(order, g.Key)).ToList();
     // D-67: the person's full name when the account has one (name claims), otherwise the user name
     var fullName = User.FindFirst("full_name")?.Value

@@ -9297,4 +9297,100 @@
   <data name="Tour.Consumer.Account" xml:space="preserve">
     <value>Hesap: şifre, dil, şifre kurtarma için telefon, verileriniz dosya olarak ve hesabın silinmesi.</value>
   </data>
+  <data name="Consumer.Feedback.Help" xml:space="preserve">
+    <value>Mesajınız bu balı üreten kuruma gider. Kurum yalnızca kodunuzu görür, kullanıcı adınızı veya telefonunuzu asla görmez; geri bildiriminiz hiçbir zaman herkese açık olmaz.</value>
+  </data>
+  <data name="Consumer.Feedback.About" xml:space="preserve">
+    <value>Konu nedir?</value>
+  </data>
+  <data name="Consumer.Feedback.Message" xml:space="preserve">
+    <value>Mesajınız (en fazla 1000 karakter)</value>
+  </data>
+  <data name="Consumer.Feedback.NoPersonalData" xml:space="preserve">
+    <value>Lütfen mesaja kişisel veri (ad, telefon numarası, adres) yazmayın.</value>
+  </data>
+  <data name="Consumer.Feedback.Send" xml:space="preserve">
+    <value>Geri bildirim gönder</value>
+  </data>
+  <data name="Your feedback was sent to the producer." xml:space="preserve">
+    <value>Geri bildiriminiz üreticiye gönderildi.</value>
+  </data>
+  <data name="Feedback.Title" xml:space="preserve">
+    <value>Tüketici geri bildirimleri</value>
+  </data>
+  <data name="Feedback.Help" xml:space="preserve">
+    <value>Tüketicilerin kurumunuzun balları hakkındaki geri bildirimleri. Yalnızca tüketicinin kodunu görürsünüz. Geri bildirimler hiçbir zaman herkese açık değildir.</value>
+  </data>
+  <data name="Feedback.AdminHelp" xml:space="preserve">
+    <value>Tüm kurumlardan sahte olabilir veya kavanoz açılmış bildirimleri. Yalnızca okunur; yanıtı kurum verir.</value>
+  </data>
+  <data name="Feedback.All" xml:space="preserve">
+    <value>Tümü</value>
+  </data>
+  <data name="Feedback.Empty" xml:space="preserve">
+    <value>Geri bildirim yok.</value>
+  </data>
+  <data name="Feedback.Consumer" xml:space="preserve">
+    <value>Tüketici</value>
+  </data>
+  <data name="Feedback.Category" xml:space="preserve">
+    <value>Konu</value>
+  </data>
+  <data name="Feedback.Message" xml:space="preserve">
+    <value>Mesaj</value>
+  </data>
+  <data name="Feedback.PseudonymOnly" xml:space="preserve">
+    <value>Tüketici yalnızca koduyla gösterilir. Yanıtta kişisel veri istemeyin.</value>
+  </data>
+  <data name="Feedback.SuspectedFakeBadge" xml:space="preserve">
+    <value>Platform yöneticisine de iletildi</value>
+  </data>
+  <data name="Feedback.MarkRead" xml:space="preserve">
+    <value>Okundu olarak işaretle</value>
+  </data>
+  <data name="Feedback.YourAnswer" xml:space="preserve">
+    <value>Tüketiciye yanıtınız</value>
+  </data>
+  <data name="Feedback.AnswerHelp" xml:space="preserve">
+    <value>En fazla 1000 karakter. Tüketici yanıtı kendi sayfasında okur.</value>
+  </data>
+  <data name="Feedback.SendAnswer" xml:space="preserve">
+    <value>Yanıtı gönder</value>
+  </data>
+  <data name="Feedback.Close" xml:space="preserve">
+    <value>Kapat</value>
+  </data>
+  <data name="Feedback.BackToList" xml:space="preserve">
+    <value>Listeye dön</value>
+  </data>
+  <data name="Feedback.Status.New" xml:space="preserve">
+    <value>Yeni</value>
+  </data>
+  <data name="Feedback.Status.Read" xml:space="preserve">
+    <value>Okundu</value>
+  </data>
+  <data name="Feedback.Status.Answered" xml:space="preserve">
+    <value>Yanıtlandı</value>
+  </data>
+  <data name="Feedback.Status.Closed" xml:space="preserve">
+    <value>Kapatıldı</value>
+  </data>
+  <data name="Work.Kind.Feedback" xml:space="preserve">
+    <value>Tüketici geri bildirimi</value>
+  </data>
+  <data name="Area.ConsumerFeedback" xml:space="preserve">
+    <value>Tüketici geri bildirimleri</value>
+  </data>
+  <data name="Write an answer of at most 1000 characters." xml:space="preserve">
+    <value>En fazla 1000 karakterlik bir yanıt yazın.</value>
+  </data>
+  <data name="This feedback is closed." xml:space="preserve">
+    <value>Bu geri bildirim kapatıldı.</value>
+  </data>
+  <data name="The answer was sent to the consumer." xml:space="preserve">
+    <value>Yanıt tüketiciye gönderildi.</value>
+  </data>
+  <data name="The feedback was closed." xml:space="preserve">
+    <value>Geri bildirim kapatıldı.</value>
+  </data>
 </root>

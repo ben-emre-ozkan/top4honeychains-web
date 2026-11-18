@@ -565,3 +565,6 @@ body.app-skin .dataTables_paginate .pagination { flex-wrap: wrap; justify-conten
     body.app-skin .table-cards .decide-form input[name=reason] { flex: 1 1 100%; min-height: 44px; font-size: 16px; }
     body.app-skin .table-cards .decide-form .btn { flex: 1 1 0; justify-content: center; }
 }
+
+/* D-87: consumer feedback text keeps its line breaks */
+.feedback-text { white-space: pre-wrap; overflow-wrap: anywhere; }

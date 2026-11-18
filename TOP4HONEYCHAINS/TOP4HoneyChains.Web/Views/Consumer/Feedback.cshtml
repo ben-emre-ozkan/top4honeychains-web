@@ -1,0 +1,24 @@
+@model TOP4HoneyChains.Web.Models.Entities.FinalHoneyProduction
+@using TOP4HoneyChains.Web.Models.Entities
+@{
+    // D-87: feedback to the producer: a category and plain text, no photos, no ratings
+    ViewBag.Title = L["Consumer.Story.Feedback"].Value;
+}
+<h1>@L["Consumer.Story.Feedback"]</h1>
+<div class="me-card" id="feedback-card">
+    <h3><a class="b-link" href="/honeystory/@Model.FinalHoneyProductionQR">@Model.FinalHoneyProductionTitle</a></h3>
+    <p class="me-muted">@L["Consumer.Feedback.Help"]</p>
+    <form asp-action="Feedback" asp-route-qr="@Model.FinalHoneyProductionQR" method="post" class="me-form" id="feedback-form">
+        <fieldset class="consumer-categories">
+            <legend>@L["Consumer.Feedback.About"]</legend>
+            @foreach (var c in ConsumerFeedbackCategory.All)
+            {
+                <label class="consumer-category"><input type="radio" name="category" value="@c" required /> @L["Consumer.Category." + c]</label>
+            }
+        </fieldset>
+        <label for="message">@L["Consumer.Feedback.Message"]</label>
+        <textarea id="message" name="message" rows="6" maxlength="1000" required></textarea>
+        <small class="me-muted" id="no-personal-data">@L["Consumer.Feedback.NoPersonalData"]</small>
+        <button type="submit" class="b-btn b-btn-honey">@L["Consumer.Feedback.Send"]</button>
+    </form>
+</div>

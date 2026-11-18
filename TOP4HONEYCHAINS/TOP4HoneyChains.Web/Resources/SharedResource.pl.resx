@@ -9370,4 +9370,132 @@
     <value>Konto: hasło, język, telefon do odzyskiwania hasła, Twoje dane jako plik i usunięcie konta.</value>
     <comment>D-87: draft for partner review</comment>
   </data>
+  <data name="Consumer.Feedback.Help" xml:space="preserve">
+    <value>Twoja wiadomość trafi do organizacji, która wyprodukowała ten miód. Widzi ona tylko Twój kod, nigdy nazwy użytkownika ani telefonu, a Twoja opinia nigdy nie jest publiczna.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Feedback.About" xml:space="preserve">
+    <value>Czego to dotyczy?</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Feedback.Message" xml:space="preserve">
+    <value>Twoja wiadomość (najwyżej 1000 znaków)</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Feedback.NoPersonalData" xml:space="preserve">
+    <value>Prosimy nie wpisywać w wiadomości danych osobowych (imion, numerów telefonu, adresów).</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Feedback.Send" xml:space="preserve">
+    <value>Wyślij opinię</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Your feedback was sent to the producer." xml:space="preserve">
+    <value>Twoja opinia została wysłana do producenta.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Title" xml:space="preserve">
+    <value>Opinie konsumentów</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Help" xml:space="preserve">
+    <value>Opinie konsumentów o miodach Twojej organizacji. Widzisz tylko kod konsumenta. Opinie nigdy nie są publiczne.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.AdminHelp" xml:space="preserve">
+    <value>Zgłoszenia podejrzenia podróbki lub otwartego słoika ze wszystkich organizacji. Tylko do odczytu; odpowiada organizacja.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.All" xml:space="preserve">
+    <value>Wszystkie</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Empty" xml:space="preserve">
+    <value>Brak opinii.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Consumer" xml:space="preserve">
+    <value>Konsument</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Category" xml:space="preserve">
+    <value>Dotyczy</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Message" xml:space="preserve">
+    <value>Wiadomość</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.PseudonymOnly" xml:space="preserve">
+    <value>Konsument jest pokazany tylko swoim kodem. Nie proś w odpowiedzi o dane osobowe.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.SuspectedFakeBadge" xml:space="preserve">
+    <value>Wysłano też do administratora platformy</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.MarkRead" xml:space="preserve">
+    <value>Oznacz jako przeczytane</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.YourAnswer" xml:space="preserve">
+    <value>Twoja odpowiedź dla konsumenta</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.AnswerHelp" xml:space="preserve">
+    <value>Najwyżej 1000 znaków. Konsument przeczyta ją na swojej stronie.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.SendAnswer" xml:space="preserve">
+    <value>Wyślij odpowiedź</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Close" xml:space="preserve">
+    <value>Zamknij</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.BackToList" xml:space="preserve">
+    <value>Wróć do listy</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Status.New" xml:space="preserve">
+    <value>Nowe</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Status.Read" xml:space="preserve">
+    <value>Przeczytane</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Status.Answered" xml:space="preserve">
+    <value>Odpowiedziano</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Status.Closed" xml:space="preserve">
+    <value>Zamknięte</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Work.Kind.Feedback" xml:space="preserve">
+    <value>Opinie konsumentów</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Area.ConsumerFeedback" xml:space="preserve">
+    <value>Opinie konsumentów</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Write an answer of at most 1000 characters." xml:space="preserve">
+    <value>Napisz odpowiedź o długości najwyżej 1000 znaków.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="This feedback is closed." xml:space="preserve">
+    <value>Ta opinia jest zamknięta.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="The answer was sent to the consumer." xml:space="preserve">
+    <value>Odpowiedź została wysłana do konsumenta.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="The feedback was closed." xml:space="preserve">
+    <value>Opinia została zamknięta.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
 </root>

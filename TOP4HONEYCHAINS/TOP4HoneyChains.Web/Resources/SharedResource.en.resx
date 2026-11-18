@@ -9297,4 +9297,100 @@
   <data name="Tour.Consumer.Account" xml:space="preserve">
     <value>Account: password, language, a phone for password recovery, your data as a file, and deleting the account.</value>
   </data>
+  <data name="Consumer.Feedback.Help" xml:space="preserve">
+    <value>Your message goes to the organization that produced this honey. It sees only your code, never your user name or phone, and your feedback is never public.</value>
+  </data>
+  <data name="Consumer.Feedback.About" xml:space="preserve">
+    <value>What is it about?</value>
+  </data>
+  <data name="Consumer.Feedback.Message" xml:space="preserve">
+    <value>Your message (at most 1000 characters)</value>
+  </data>
+  <data name="Consumer.Feedback.NoPersonalData" xml:space="preserve">
+    <value>Please do not write personal data (names, phone numbers, addresses) in the message.</value>
+  </data>
+  <data name="Consumer.Feedback.Send" xml:space="preserve">
+    <value>Send feedback</value>
+  </data>
+  <data name="Your feedback was sent to the producer." xml:space="preserve">
+    <value>Your feedback was sent to the producer.</value>
+  </data>
+  <data name="Feedback.Title" xml:space="preserve">
+    <value>Consumer feedback</value>
+  </data>
+  <data name="Feedback.Help" xml:space="preserve">
+    <value>Feedback from consumers about your organization's honeys. You see only the consumer's code. Feedback is never public.</value>
+  </data>
+  <data name="Feedback.AdminHelp" xml:space="preserve">
+    <value>Reports of a suspected fake or opened jar, from every organization. Read only; the organization answers.</value>
+  </data>
+  <data name="Feedback.All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Feedback.Empty" xml:space="preserve">
+    <value>No feedback.</value>
+  </data>
+  <data name="Feedback.Consumer" xml:space="preserve">
+    <value>Consumer</value>
+  </data>
+  <data name="Feedback.Category" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Feedback.Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="Feedback.PseudonymOnly" xml:space="preserve">
+    <value>The consumer is shown by their code only. Do not ask for personal data in the answer.</value>
+  </data>
+  <data name="Feedback.SuspectedFakeBadge" xml:space="preserve">
+    <value>Also sent to the platform administrator</value>
+  </data>
+  <data name="Feedback.MarkRead" xml:space="preserve">
+    <value>Mark as read</value>
+  </data>
+  <data name="Feedback.YourAnswer" xml:space="preserve">
+    <value>Your answer to the consumer</value>
+  </data>
+  <data name="Feedback.AnswerHelp" xml:space="preserve">
+    <value>At most 1000 characters. The consumer reads it on their consumer home.</value>
+  </data>
+  <data name="Feedback.SendAnswer" xml:space="preserve">
+    <value>Send answer</value>
+  </data>
+  <data name="Feedback.Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Feedback.BackToList" xml:space="preserve">
+    <value>Back to the list</value>
+  </data>
+  <data name="Feedback.Status.New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="Feedback.Status.Read" xml:space="preserve">
+    <value>Read</value>
+  </data>
+  <data name="Feedback.Status.Answered" xml:space="preserve">
+    <value>Answered</value>
+  </data>
+  <data name="Feedback.Status.Closed" xml:space="preserve">
+    <value>Closed</value>
+  </data>
+  <data name="Work.Kind.Feedback" xml:space="preserve">
+    <value>Consumer feedback</value>
+  </data>
+  <data name="Area.ConsumerFeedback" xml:space="preserve">
+    <value>Consumer feedback</value>
+  </data>
+  <data name="Write an answer of at most 1000 characters." xml:space="preserve">
+    <value>Write an answer of at most 1000 characters.</value>
+  </data>
+  <data name="This feedback is closed." xml:space="preserve">
+    <value>This feedback is closed.</value>
+  </data>
+  <data name="The answer was sent to the consumer." xml:space="preserve">
+    <value>The answer was sent to the consumer.</value>
+  </data>
+  <data name="The feedback was closed." xml:space="preserve">
+    <value>The feedback was closed.</value>
+  </data>
 </root>

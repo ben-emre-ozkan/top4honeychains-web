@@ -9370,4 +9370,132 @@
     <value>Konts: parole, valoda, tālrunis paroles atjaunošanai, jūsu dati failā un konta dzēšana.</value>
     <comment>D-87: draft for partner review</comment>
   </data>
+  <data name="Consumer.Feedback.Help" xml:space="preserve">
+    <value>Jūsu ziņa nonāk pie organizācijas, kas ražoja šo medu. Tā redz tikai jūsu kodu, nekad lietotājvārdu vai tālruni, un jūsu atsauksme nekad nav publiska.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Feedback.About" xml:space="preserve">
+    <value>Par ko tas ir?</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Feedback.Message" xml:space="preserve">
+    <value>Jūsu ziņa (ne vairāk kā 1000 rakstzīmes)</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Feedback.NoPersonalData" xml:space="preserve">
+    <value>Lūdzu, nerakstiet ziņā personas datus (vārdus, tālruņa numurus, adreses).</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Feedback.Send" xml:space="preserve">
+    <value>Nosūtīt atsauksmi</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Your feedback was sent to the producer." xml:space="preserve">
+    <value>Jūsu atsauksme tika nosūtīta ražotājam.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Title" xml:space="preserve">
+    <value>Patērētāju atsauksmes</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Help" xml:space="preserve">
+    <value>Patērētāju atsauksmes par jūsu organizācijas medu. Jūs redzat tikai patērētāja kodu. Atsauksmes nekad nav publiskas.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.AdminHelp" xml:space="preserve">
+    <value>Ziņojumi par aizdomām par viltojumu vai atvērtu burku no visām organizācijām. Tikai lasīšanai; atbild organizācija.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.All" xml:space="preserve">
+    <value>Visas</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Empty" xml:space="preserve">
+    <value>Nav atsauksmju.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Consumer" xml:space="preserve">
+    <value>Patērētājs</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Category" xml:space="preserve">
+    <value>Tēma</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Message" xml:space="preserve">
+    <value>Ziņa</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.PseudonymOnly" xml:space="preserve">
+    <value>Patērētājs tiek rādīts tikai ar kodu. Atbildē neprasiet personas datus.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.SuspectedFakeBadge" xml:space="preserve">
+    <value>Nosūtīts arī platformas administratoram</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.MarkRead" xml:space="preserve">
+    <value>Atzīmēt kā izlasītu</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.YourAnswer" xml:space="preserve">
+    <value>Jūsu atbilde patērētājam</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.AnswerHelp" xml:space="preserve">
+    <value>Ne vairāk kā 1000 rakstzīmes. Patērētājs to izlasa savā lapā.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.SendAnswer" xml:space="preserve">
+    <value>Nosūtīt atbildi</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Close" xml:space="preserve">
+    <value>Slēgt</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.BackToList" xml:space="preserve">
+    <value>Atpakaļ uz sarakstu</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Status.New" xml:space="preserve">
+    <value>Jauns</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Status.Read" xml:space="preserve">
+    <value>Izlasīts</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Status.Answered" xml:space="preserve">
+    <value>Atbildēts</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Status.Closed" xml:space="preserve">
+    <value>Slēgts</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Work.Kind.Feedback" xml:space="preserve">
+    <value>Patērētāju atsauksmes</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Area.ConsumerFeedback" xml:space="preserve">
+    <value>Patērētāju atsauksmes</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Write an answer of at most 1000 characters." xml:space="preserve">
+    <value>Uzrakstiet atbildi ne garāku par 1000 rakstzīmēm.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="This feedback is closed." xml:space="preserve">
+    <value>Šī atsauksme ir slēgta.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="The answer was sent to the consumer." xml:space="preserve">
+    <value>Atbilde tika nosūtīta patērētājam.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="The feedback was closed." xml:space="preserve">
+    <value>Atsauksme tika slēgta.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
 </root>
