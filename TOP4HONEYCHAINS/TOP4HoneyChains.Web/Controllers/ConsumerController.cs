@@ -362,7 +362,7 @@ namespace TOP4HoneyChains.Web.Controllers
         {
             var data = await _consumers.ExportAsync(Me.UserId);
             Response.Headers.CacheControl = "no-store";
-            return File(JsonSerializer.SerializeToUtf8Bytes(data, new JsonSerializerOptions { WriteIndented = true }), "application/json",
+            return File(JsonSerializer.SerializeToUtf8Bytes(data, new JsonSerializerOptions { WriteIndented = true, PropertyNamingPolicy = JsonNamingPolicy.CamelCase }), "application/json",
                 $"top4honeychains-my-data-{Me.Pseudonym}.json");
         }
 
