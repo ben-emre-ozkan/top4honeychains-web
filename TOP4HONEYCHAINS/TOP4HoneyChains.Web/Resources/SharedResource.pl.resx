@@ -9697,4 +9697,43 @@
   <data name="Reg78.NoAssociation" xml:space="preserve">
     <value>Bez związku</value>
   </data>
+  <data name="Menu.Setup" xml:space="preserve">
+    <value>Konfiguracja</value>
+  </data>
+  <data name="Menu.Oversight" xml:space="preserve">
+    <value>Nadzór</value>
+  </data>
+  <data name="Menu.ReferenceData" xml:space="preserve">
+    <value>Dane referencyjne</value>
+  </data>
+  <data name="Records.Title" xml:space="preserve">
+    <value>Rejestry</value>
+  </data>
+  <data name="Records.Help" xml:space="preserve">
+    <value>Partie surowca i partie końcowe wszystkich organizacji, tylko do odczytu. Organizacje wprowadzają i zatwierdzają swoje zapisy; wartość zmienia się wyłącznie przez korektę zatwierdzoną przez drugiego administratora.</value>
+  </data>
+  <data name="Records.AllOrgs" xml:space="preserve">
+    <value>Wszystkie organizacje</value>
+  </data>
+  <data name="Records.Show" xml:space="preserve">
+    <value>Pokaż</value>
+  </data>
+  <data name="Records.Latest" xml:space="preserve">
+    <value>Wyświetlono ostatnie {0}.</value>
+  </data>
+  <data name="Records.QuickHint" xml:space="preserve">
+    <value>partie surowca i partie końcowe, tylko odczyt</value>
+  </data>
+  <data name="RefData.Honey" xml:space="preserve">
+    <value>Miód</value>
+  </data>
+  <data name="RefData.Help" xml:space="preserve">
+    <value>Listy, które oferują formularze. Ich tłumaczenia są w Konfiguracja → Tłumaczenia danych referencyjnych.</value>
+  </data>
+  <data name="Tour.Admin.Setup" xml:space="preserve">
+    <value>Konfiguracja: organizacje, funkcje, role i uprawnienia, odpowiedzialności za KPK, rejestr pszczelarzy i dane referencyjne.</value>
+  </data>
+  <data name="Tour.Admin.Oversight" xml:space="preserve">
+    <value>Nadzór: rejestry, dziennik audytu, użytkownicy, informacje, retencja danych i korekty. Dane biznesowe są dla Ciebie tylko do odczytu.</value>
+  </data>
 </root>

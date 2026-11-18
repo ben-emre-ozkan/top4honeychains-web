@@ -9573,4 +9573,43 @@
   <data name="Reg78.NoAssociation" xml:space="preserve">
     <value>Birlik yok</value>
   </data>
+  <data name="Menu.Setup" xml:space="preserve">
+    <value>Kurulum</value>
+  </data>
+  <data name="Menu.Oversight" xml:space="preserve">
+    <value>Denetim</value>
+  </data>
+  <data name="Menu.ReferenceData" xml:space="preserve">
+    <value>Referans veriler</value>
+  </data>
+  <data name="Records.Title" xml:space="preserve">
+    <value>Kayıtlar</value>
+  </data>
+  <data name="Records.Help" xml:space="preserve">
+    <value>Tüm kurumların lotları ve partileri, salt okunur. Kayıtları kurumlar girer ve onaylar; bir değer yalnızca ikinci bir yöneticinin onayladığı bir düzeltmeyle değişir.</value>
+  </data>
+  <data name="Records.AllOrgs" xml:space="preserve">
+    <value>Tüm kurumlar</value>
+  </data>
+  <data name="Records.Show" xml:space="preserve">
+    <value>Göster</value>
+  </data>
+  <data name="Records.Latest" xml:space="preserve">
+    <value>En son {0} kayıt gösteriliyor.</value>
+  </data>
+  <data name="Records.QuickHint" xml:space="preserve">
+    <value>lotlar ve partiler, salt okunur</value>
+  </data>
+  <data name="RefData.Honey" xml:space="preserve">
+    <value>Bal</value>
+  </data>
+  <data name="RefData.Help" xml:space="preserve">
+    <value>Formların sunduğu listeler. Çevirileri Kurulum → Referans verisi çevirileri altındadır.</value>
+  </data>
+  <data name="Tour.Admin.Setup" xml:space="preserve">
+    <value>Kurulum: kurumlar, yetenekler, roller ve izinler, KKN sorumlulukları, arıcı kaydı ve referans veriler.</value>
+  </data>
+  <data name="Tour.Admin.Oversight" xml:space="preserve">
+    <value>Denetim: kayıtlar, denetim kaydı, kullanıcılar, bildirimler, veri saklama ve düzeltmeler. İş verileri sizin için salt okunurdur.</value>
+  </data>
 </root>

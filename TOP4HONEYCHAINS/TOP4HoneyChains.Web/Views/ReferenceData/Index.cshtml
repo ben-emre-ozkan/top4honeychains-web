@@ -1,0 +1,39 @@
+@{
+    // D-88: Set-up → Reference data: the lists the platform administrator maintains, in one place
+    ViewData["Title"] = L["Menu.ReferenceData"];
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var groups = new[]
+    {
+        (L["RefData.Honey"].Value, "mdi-beehive-outline", new[] { ("/HoneyTypes/Index", L["Menu.HoneyTypes"].Value), ("/RawHoneyProductionPeriods/Index", L["Menu.RawHoneyProductionPeriods"].Value) }),
+        (L["Menu.Beekeepers"].Value, "mdi-account-group-outline", new[] { ("/BeekeeperEducationLevels/Index", L["Menu.EducationLevels"].Value), ("/BeekeepingPurposeTypes/Index", L["Menu.BeekeepingPurposeTypes"].Value), ("/BeekeepingTypes/Index", L["Menu.BeekeepingTypes"].Value) }),
+        (L["Menu.CriticalControlPoints"].Value, "mdi-timeline-text-outline", new[] { ("/CriticalControlPoints/Index", L["Menu.CriticalControlPoints"].Value), ("/CriticalControlPointParameterCategories/Index", L["Menu.ParameterCategories"].Value), ("/CriticalControlPointParameters/Index", L["Menu.Parameters"].Value) })
+    };
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid" id="reference-data-page">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-1">@L["Menu.ReferenceData"]</h4>
+                    <p class="text-muted mb-0">@L["RefData.Help"]</p>
+                </div>
+            </div>
+            <div class="row g-3">
+                @foreach (var (title, icon, links) in groups)
+                {
+                    <div class="col-md-4">
+                        <section class="card h-100">
+                            <div class="card-body">
+                                <h2 class="h5"><i class="mdi @icon me-1" aria-hidden="true"></i>@title</h2>
+                                <ul class="list-unstyled mb-0">
+                                    @foreach (var (url, text) in links) { <li class="mb-1"><a href="@url">@text</a></li> }
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</body>

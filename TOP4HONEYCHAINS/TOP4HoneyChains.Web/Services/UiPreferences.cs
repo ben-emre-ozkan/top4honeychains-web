@@ -109,7 +109,11 @@ namespace TOP4HoneyChains.Web.Services
             if (admin)
             {
                 steps.Add(new("dashboard", "Tour.Admin.Dashboard"));
+                // the v1.0 menu has the data menu; with the organization model the menu has Set-up and Oversight (D-88); the tour
+                // leaves out the steps whose menu item is not on the page
                 steps.Add(new("data", "Tour.Admin.Data"));
+                steps.Add(new("setup", "Tour.Admin.Setup"));
+                steps.Add(new("oversight", "Tour.Admin.Oversight"));
             }
             else
             {

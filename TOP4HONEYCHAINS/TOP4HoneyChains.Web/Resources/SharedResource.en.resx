@@ -9573,4 +9573,43 @@
   <data name="Reg78.NoAssociation" xml:space="preserve">
     <value>No association</value>
   </data>
+  <data name="Menu.Setup" xml:space="preserve">
+    <value>Set-up</value>
+  </data>
+  <data name="Menu.Oversight" xml:space="preserve">
+    <value>Oversight</value>
+  </data>
+  <data name="Menu.ReferenceData" xml:space="preserve">
+    <value>Reference data</value>
+  </data>
+  <data name="Records.Title" xml:space="preserve">
+    <value>Records</value>
+  </data>
+  <data name="Records.Help" xml:space="preserve">
+    <value>The lots and batches of every organization, read-only. The organizations enter and approve their records; a value is changed only through a correction approved by a second administrator.</value>
+  </data>
+  <data name="Records.AllOrgs" xml:space="preserve">
+    <value>All organizations</value>
+  </data>
+  <data name="Records.Show" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="Records.Latest" xml:space="preserve">
+    <value>The latest {0} are shown.</value>
+  </data>
+  <data name="Records.QuickHint" xml:space="preserve">
+    <value>lots and batches, read-only</value>
+  </data>
+  <data name="RefData.Honey" xml:space="preserve">
+    <value>Honey</value>
+  </data>
+  <data name="RefData.Help" xml:space="preserve">
+    <value>The lists the forms offer. Their translations are under Set-up → Translations of reference data.</value>
+  </data>
+  <data name="Tour.Admin.Setup" xml:space="preserve">
+    <value>Set-up: organizations, capabilities, roles and permissions, CCP responsibilities, the beekeeper registry and the reference data.</value>
+  </data>
+  <data name="Tour.Admin.Oversight" xml:space="preserve">
+    <value>Oversight: records, the audit log, users, notices, data retention and corrections. Business data is read-only for you.</value>
+  </data>
 </root>

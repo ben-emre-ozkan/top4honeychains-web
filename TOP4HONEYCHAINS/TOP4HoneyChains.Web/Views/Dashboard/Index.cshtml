@@ -164,8 +164,17 @@
                         <div class="ah-card ah-quick ah-in" style="--i: 9">
                             <h2 class="ah-h2">@L["Home.Quick.Title"]</h2>
                             <div class="ah-actions">
-                                <a class="ah-action" href="/Beekeepers/Create" id="qa-beekeeper"><span aria-hidden="true"><partial name="_LandingIcon" model="@("apiary")" /></span><b>@L["Home.Quick.Beekeeper"]</b></a>
-                                <a class="ah-action" href="/Wholesalers/Index" id="qa-batch"><span aria-hidden="true"><partial name="_LandingIcon" model="@("processing")" /></span><b>@L["Home.Quick.Batch"]</b><small>@L["Home.Quick.BatchHint"]</small></a>
+                                @if (Model.OrgModel)
+                                {
+                                    @* D-88: with the organization model the administrator sets up and oversees; organizations enter the data *@
+                                    <a class="ah-action" href="/Organizations/Index" id="qa-orgs"><span aria-hidden="true"><partial name="_LandingIcon" model="@("verified")" /></span><b>@L["Org.Organizations"]</b></a>
+                                    <a class="ah-action" href="/Records/Index" id="qa-records"><span aria-hidden="true"><partial name="_LandingIcon" model="@("processing")" /></span><b>@L["Records.Title"]</b><small>@L["Records.QuickHint"]</small></a>
+                                }
+                                else
+                                {
+                                    <a class="ah-action" href="/Beekeepers/Create" id="qa-beekeeper"><span aria-hidden="true"><partial name="_LandingIcon" model="@("apiary")" /></span><b>@L["Home.Quick.Beekeeper"]</b></a>
+                                    <a class="ah-action" href="/Wholesalers/Index" id="qa-batch"><span aria-hidden="true"><partial name="_LandingIcon" model="@("processing")" /></span><b>@L["Home.Quick.Batch"]</b><small>@L["Home.Quick.BatchHint"]</small></a>
+                                }
                                 @if (Model.OrgModel)
                                 {
                                     <a class="ah-action" href="/Registry/Index" id="qa-registry"><span aria-hidden="true"><partial name="_LandingIcon" model="@("verified")" /></span><b>@L["Home.Quick.Registry"]</b></a>

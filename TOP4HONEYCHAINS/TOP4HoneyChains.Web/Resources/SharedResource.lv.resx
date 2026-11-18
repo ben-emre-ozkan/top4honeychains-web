@@ -9697,4 +9697,43 @@
   <data name="Reg78.NoAssociation" xml:space="preserve">
     <value>Bez biedrības</value>
   </data>
+  <data name="Menu.Setup" xml:space="preserve">
+    <value>Iestatīšana</value>
+  </data>
+  <data name="Menu.Oversight" xml:space="preserve">
+    <value>Uzraudzība</value>
+  </data>
+  <data name="Menu.ReferenceData" xml:space="preserve">
+    <value>Atsauces dati</value>
+  </data>
+  <data name="Records.Title" xml:space="preserve">
+    <value>Ieraksti</value>
+  </data>
+  <data name="Records.Help" xml:space="preserve">
+    <value>Visu organizāciju partijas un gala partijas, tikai lasīšanai. Organizācijas ievada un apstiprina savus ierakstus; vērtību maina tikai ar labojumu, ko apstiprina otrs administrators.</value>
+  </data>
+  <data name="Records.AllOrgs" xml:space="preserve">
+    <value>Visas organizācijas</value>
+  </data>
+  <data name="Records.Show" xml:space="preserve">
+    <value>Rādīt</value>
+  </data>
+  <data name="Records.Latest" xml:space="preserve">
+    <value>Parādīti jaunākie {0}.</value>
+  </data>
+  <data name="Records.QuickHint" xml:space="preserve">
+    <value>partijas un gala partijas, tikai lasīšanai</value>
+  </data>
+  <data name="RefData.Honey" xml:space="preserve">
+    <value>Medus</value>
+  </data>
+  <data name="RefData.Help" xml:space="preserve">
+    <value>Saraksti, ko piedāvā veidlapas. To tulkojumi ir sadaļā Iestatīšana → Atsauces datu tulkojumi.</value>
+  </data>
+  <data name="Tour.Admin.Setup" xml:space="preserve">
+    <value>Iestatīšana: organizācijas, kompetences, lomas un atļaujas, KKP atbildība, biškopju reģistrs un atsauces dati.</value>
+  </data>
+  <data name="Tour.Admin.Oversight" xml:space="preserve">
+    <value>Uzraudzība: ieraksti, audita žurnāls, lietotāji, paziņojumi, datu glabāšana un labojumi. Uzņēmējdarbības dati jums ir tikai lasāmi.</value>
+  </data>
 </root>

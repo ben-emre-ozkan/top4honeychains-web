@@ -120,7 +120,7 @@ Platform administrators are users in the Identity role `Administrator` with an `
 
 ## 5. Permission matrix
 
-The defaults come from two editable tables plus a few fixed rules. Both tables are edited by platform administrators (Organizations → Roles and permissions, and CCP responsibilities); changes act at once.
+The defaults come from two editable tables plus a few fixed rules. Both tables are edited by platform administrators (Set-up → Roles and permissions, and CCP responsibilities); changes act at once.
 
 **Write needs, everywhere:** the org is Verified, has the required capability, owns (or holds) the item, and the user's active role has the right. The approver must not be the person who entered (four-eyes, §5.4). Platform administrators never enter or approve business data.
 
@@ -361,7 +361,7 @@ CCP responsibility is data (`CcpResponsibilities`, `CcpResponsibilityCapabilitie
 | CCP 7–9 | Packing | batch owner | Staff | QualityApprover |
 | CCP 10 | Wholesale, Retail or Packing | batch owner (holders: their own storage record) | Staff | QualityApprover |
 
-Lab rights (receive samples, enter, approve) are not in this table: they come from `RolePermissions` (areas Samples and LabResults, §5.2), edited on Organizations → Roles and permissions (D-56).
+Lab rights (receive samples, enter, approve) are not in this table: they come from `RolePermissions` (areas Samples and LabResults, §5.2), edited on Set-up → Roles and permissions (D-56).
 
 Other settings: `Features:OrgRoleModel`; `OrgModel:AssociationVerifier` (`PlatformAdmin` / `CentralAssociation`); the four-eyes exemption per organization (set by a platform administrator, default off, PQ-07). A registry grace period and an SMS provider switch from the design are not settings in the code.
 

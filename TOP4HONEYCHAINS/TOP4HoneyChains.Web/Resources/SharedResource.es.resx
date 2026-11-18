@@ -9697,4 +9697,43 @@
   <data name="Reg78.NoAssociation" xml:space="preserve">
     <value>Sin asociación</value>
   </data>
+  <data name="Menu.Setup" xml:space="preserve">
+    <value>Configuración</value>
+  </data>
+  <data name="Menu.Oversight" xml:space="preserve">
+    <value>Supervisión</value>
+  </data>
+  <data name="Menu.ReferenceData" xml:space="preserve">
+    <value>Datos de referencia</value>
+  </data>
+  <data name="Records.Title" xml:space="preserve">
+    <value>Registros</value>
+  </data>
+  <data name="Records.Help" xml:space="preserve">
+    <value>Los lotes y las partidas de todas las organizaciones, solo lectura. Las organizaciones registran y aprueban sus datos; un valor solo cambia mediante una corrección aprobada por un segundo administrador.</value>
+  </data>
+  <data name="Records.AllOrgs" xml:space="preserve">
+    <value>Todas las organizaciones</value>
+  </data>
+  <data name="Records.Show" xml:space="preserve">
+    <value>Mostrar</value>
+  </data>
+  <data name="Records.Latest" xml:space="preserve">
+    <value>Se muestran los {0} más recientes.</value>
+  </data>
+  <data name="Records.QuickHint" xml:space="preserve">
+    <value>lotes y partidas, solo lectura</value>
+  </data>
+  <data name="RefData.Honey" xml:space="preserve">
+    <value>Miel</value>
+  </data>
+  <data name="RefData.Help" xml:space="preserve">
+    <value>Las listas que ofrecen los formularios. Sus traducciones están en Configuración → Traducciones de datos de referencia.</value>
+  </data>
+  <data name="Tour.Admin.Setup" xml:space="preserve">
+    <value>Configuración: organizaciones, capacidades, roles y permisos, responsabilidades de PCC, el registro de apicultores y los datos de referencia.</value>
+  </data>
+  <data name="Tour.Admin.Oversight" xml:space="preserve">
+    <value>Supervisión: registros, el registro de auditoría, usuarios, avisos, conservación de datos y correcciones. Los datos de negocio son de solo lectura para usted.</value>
+  </data>
 </root>
