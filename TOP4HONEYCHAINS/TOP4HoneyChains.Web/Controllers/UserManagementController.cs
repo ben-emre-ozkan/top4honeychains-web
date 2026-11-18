@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using TOP4HoneyChains.Web.Models.Identity;
 using TOP4HoneyChains.Web.Models.UsersManagement;
 using TOP4HoneyChains.Web.Models.ViewModels;
+using TOP4HoneyChains.Web.Services.OrgModel;
 
 namespace TOP4HoneyChains.Web.Controllers
 {
@@ -15,6 +16,7 @@ namespace TOP4HoneyChains.Web.Controllers
         private readonly Services.OrgModel.FeatureFlags _flags;
         private readonly Services.OrgModel.AuditWriter _audit;
         private readonly Services.OrgModel.CredentialService _credentials;
+        private readonly Data.TOP4HoneyChainsContext _context;
 
         // A global role that was found in the received database and is used nowhere in the code (an organization role
         // of the same name exists, given per organization); not offered for new users
@@ -25,8 +27,10 @@ namespace TOP4HoneyChains.Web.Controllers
             RoleManager<IdentityRole> roleManager,
             Microsoft.Extensions.Options.IOptions<Services.OrgModel.FeatureFlags> flags,
             Services.OrgModel.AuditWriter audit,
-            Services.OrgModel.CredentialService credentials)
+            Services.OrgModel.CredentialService credentials,
+            Data.TOP4HoneyChainsContext context)
         {
+            _context = context;
             _credentials = credentials;
             _userManager = userManager;
             _roleManager = roleManager;
@@ -170,6 +174,12 @@ namespace TOP4HoneyChains.Web.Controllers
                 TempData["error"] = "Use your profile to change your own password.";
                 return RedirectToAction("Index");
             }
+            // D-87: consumers set their own password; issued sign-in details would make them a managed account
+            if (await ConsumerRules.IsConsumerAsync(_context, user.Id))
+            {
+                TempData["error"] = ConsumerRules.NoRoleForConsumers;
+                return RedirectToAction("Index");
+            }
             var issued = await _credentials.IssueBySmsAsync(user, string.IsNullOrWhiteSpace(phone) ? user.PhoneNumber ?? "" : phone,
                 System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName, _userManager.GetUserId(User),
                 Services.OrgModel.CredentialService.SignInLink(HttpContext));
@@ -213,6 +223,11 @@ namespace TOP4HoneyChains.Web.Controllers
             if (user == null)
             {
                 TempData["error"] = "Password update failed: user not found.";
+                return RedirectToAction("Index");
+            }
+            if (await ConsumerRules.IsConsumerAsync(_context, user.Id))
+            {
+                TempData["error"] = ConsumerRules.NoRoleForConsumers;   // D-87: a consumer sets their own password
                 return RedirectToAction("Index");
             }
 

@@ -17,6 +17,8 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         // D-78 P2 (D-81): the delivery with sealed containers, a jar per container and the beekeeper's SMS confirmation;
         // off = the intake works as before
         public bool CustodyIntake { get; set; }
+        // D-87: consumer accounts (sign-up, the consumer area, saving honeys, feedback); off until the consumer notice is approved
+        public bool ConsumerAccounts { get; set; }
     }
 
     public record ActiveMembership(

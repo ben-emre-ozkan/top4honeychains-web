@@ -430,6 +430,12 @@ namespace TOP4HoneyChains.Web.Controllers
                     TempData["Error"] = "No user with this user name.";
                     return RedirectToAction(nameof(Details), new { id });
                 }
+                // D-87: a consumer account never becomes a member
+                if (await ConsumerRules.IsConsumerAsync(_context, user.Id))
+                {
+                    TempData["Error"] = ConsumerRules.NoRoleForConsumers;
+                    return RedirectToAction(nameof(Details), new { id });
+                }
             }
             else
             {

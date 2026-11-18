@@ -22,6 +22,10 @@ public partial class TOP4HoneyChainsContext
     public virtual DbSet<DeliveryCorrection> DeliveryCorrections { get; set; }
     public virtual DbSet<DataSubjectRequest> DataSubjectRequests { get; set; }
     public virtual DbSet<ComplianceReview> ComplianceReviews { get; set; }
+    // D-87 (migration 029)
+    public virtual DbSet<ConsumerAccount> ConsumerAccounts { get; set; }
+    public virtual DbSet<ConsumerSavedBatch> ConsumerSavedBatches { get; set; }
+    public virtual DbSet<ConsumerFeedback> ConsumerFeedback { get; set; }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder)
     {
@@ -224,6 +228,44 @@ public partial class TOP4HoneyChainsContext
         });
 
         modelBuilder.Entity<OrgDocument>(entity => entity.Property(e => e.AgreementKind).IsUnicode(false));
+
+        // D-87 (migration 029)
+        modelBuilder.Entity<ConsumerAccount>(entity =>
+        {
+            entity.ToTable("ConsumerAccounts");
+            entity.Property(e => e.Pseudonym).IsUnicode(false);
+            entity.Property(e => e.Language).IsUnicode(false);
+            entity.Property(e => e.NoticeVersion).IsUnicode(false);
+            entity.Property(e => e.Status).IsUnicode(false).HasDefaultValue(ConsumerAccountStatus.Active);
+            entity.Property(e => e.CreatedAt).HasDefaultValueSql("SYSUTCDATETIME()");
+            entity.HasIndex(e => e.Pseudonym).IsUnique();
+            entity.HasOne<Notice>().WithMany().HasForeignKey(e => e.NoticeId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<ConsumerSavedBatch>(entity =>
+        {
+            entity.ToTable("ConsumerSavedBatches");
+            entity.HasKey(e => new { e.ConsumerUserId, e.FinalHoneyProductionId });
+            entity.Property(e => e.SavedAt).HasDefaultValueSql("SYSUTCDATETIME()");
+            entity.HasOne<ConsumerAccount>().WithMany().HasForeignKey(e => e.ConsumerUserId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne(e => e.Batch).WithMany().HasForeignKey(e => e.FinalHoneyProductionId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<ConsumerFeedback>(entity =>
+        {
+            entity.ToTable("ConsumerFeedback");
+            entity.HasKey(e => e.FeedbackId);
+            entity.Property(e => e.Pseudonym).IsUnicode(false);
+            entity.Property(e => e.Category).IsUnicode(false);
+            entity.Property(e => e.Language).IsUnicode(false);
+            entity.Property(e => e.Status).IsUnicode(false).HasDefaultValue(ConsumerFeedbackStatus.New);
+            entity.Property(e => e.CreatedAt).HasDefaultValueSql("SYSUTCDATETIME()");
+            entity.HasIndex(e => new { e.OrgId, e.Status });
+            entity.HasIndex(e => new { e.ConsumerUserId, e.CreatedAt });
+            entity.HasOne<ConsumerAccount>().WithMany().HasForeignKey(e => e.ConsumerUserId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne(e => e.Batch).WithMany().HasForeignKey(e => e.FinalHoneyProductionId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne(e => e.Org).WithMany().HasForeignKey(e => e.OrgId).OnDelete(DeleteBehavior.Restrict);
+        });
 
         modelBuilder.Entity<Consent>(entity =>
         {

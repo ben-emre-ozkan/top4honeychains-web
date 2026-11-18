@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using TOP4HoneyChains.Web.Models.Identity;
 using TOP4HoneyChains.Web.Models.ViewModels;
@@ -71,12 +72,23 @@ namespace TOP4HoneyChains.Web.Controllers
             && await Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.AnyAsync(
                 _context.BeekeeperAccounts, a => a.UserId == userId && a.Status == Models.Entities.BeekeeperAccountStatus.Active);
 
+        // D-87: consumer accounts, while Features:ConsumerAccounts is on (they open only the consumer area /Consumer)
+        private bool ConsumersOn =>
+            HttpContext.RequestServices.GetRequiredService<Microsoft.Extensions.Options.IOptionsSnapshot<FeatureFlags>>().Value.ConsumerAccounts;
+
+        // D-87: a consumer is sent back only to a local page inside the consumer boundary (its area or a Honey Story)
+        public static bool IsConsumerReturnUrl(string? url) =>
+            !string.IsNullOrEmpty(url) && url.StartsWith('/') && !url.StartsWith("//") && !url.StartsWith("/\\")
+            && (url.StartsWith("/Consumer", StringComparison.OrdinalIgnoreCase) || url.StartsWith("/honeystory/", StringComparison.OrdinalIgnoreCase));
+
         [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> Login()
         {
             if (User.Identity?.IsAuthenticated == true)
             {
+                if (ConsumersOn && _userManager.GetUserId(User) is string consumerId && await ConsumerRules.IsConsumerAsync(_context, consumerId))
+                    return RedirectToAction("Index", "Consumer");
                 if (User.IsInRole(PanelRole))
                     return RedirectToAction("Index", "Dashboard");
                 if (await _currentOrg.GetAsync() != null)
@@ -136,6 +148,18 @@ namespace TOP4HoneyChains.Web.Controllers
                 {
                     await _audit.WriteAsync("Login", "AspNetUsers", user.Id, userId: user.Id, userName: user.UserName);
                     return RedirectToAction("Index", "Me");
+                }
+
+                // D-87: a consumer account (switch on, account not locked) lands on the consumer home; the audit names the pseudonym only
+                if (user != null && ConsumersOn
+                    && await _context.ConsumerAccounts.FirstOrDefaultAsync(c => c.UserId == user.Id) is { } consumer
+                    && consumer.Status == Models.Entities.ConsumerAccountStatus.Active)
+                {
+                    consumer.LastSignInAt = DateTime.UtcNow;
+                    await _context.SaveChangesAsync();
+                    await _audit.WriteAsync("Login", "ConsumerAccounts", consumer.Pseudonym, userId: user.Id, userName: consumer.Pseudonym);
+                    Response.Cookies.Append(ConsumerMarker.Name, "1", ConsumerMarker.Options(Request.IsHttps));
+                    return IsConsumerReturnUrl(returnUrl) ? LocalRedirect(returnUrl!) : RedirectToAction("Index", "Consumer");
                 }
 
                 // Valid credentials, but no access to the panel: don't keep the session
@@ -379,6 +403,7 @@ namespace TOP4HoneyChains.Web.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
+            Response.Cookies.Delete(ConsumerMarker.Name);   // D-87
             return RedirectToAction("Login");
         }
 
