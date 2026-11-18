@@ -67,6 +67,8 @@ namespace TOP4HoneyChains.Web.Controllers
             "lots" => string.Format(_l["Ret.lots.Kept"].Value, o.ProductYears, o.BestBeforeYears),
             "consents" => string.Format(_l["Ret.consents.Kept"].Value, o.ProofYears),
             "accounts" => string.Format(_l["Ret.accounts.Kept"].Value, o.FormerMemberYears),
+            "consumers" or "consumersaved" => string.Format(_l["Ret.consumers.Kept"].Value, o.ConsumerAccountYears),   // D-87
+            "consumerfeedback" => string.Format(_l["Ret.consumerfeedback.Kept"].Value, o.ConsumerFeedbackYears),
             "audit" => string.Format(_l["Ret.Years"].Value, o.AuditYears),
             _ => _l[$"Ret.{key}.Kept"].Value
         };

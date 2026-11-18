@@ -9078,4 +9078,376 @@
   <data name="Demo.RegistryHelp" xml:space="preserve">
     <value>In this demo also AR-DEMO-, PL-DEMO- or LV-DEMO- and 6 digits (e.g. AR-DEMO-000123).</value>
   </data>
+  <data name="Consumer.LoginHint" xml:space="preserve">
+    <value>New here?</value>
+  </data>
+  <data name="Consumer.LoginHintLink" xml:space="preserve">
+    <value>Create a free consumer account</value>
+  </data>
+  <data name="Consumer.LoginHintStaff" xml:space="preserve">
+    <value>Staff accounts are created by the organizations.</value>
+  </data>
+  <data name="Notice.ForConsumers" xml:space="preserve">
+    <value>For consumers</value>
+  </data>
+  <data name="Consumer.NoticeLink" xml:space="preserve">
+    <value>Privacy notice for consumers</value>
+  </data>
+  <data name="Consumer.SignUp.Title" xml:space="preserve">
+    <value>Create a consumer account</value>
+  </data>
+  <data name="Consumer.SignUp.Intro" xml:space="preserve">
+    <value>Keep the honeys you bought, send feedback to the producer and read the answers. The Honey Story stays open to everyone without an account.</value>
+  </data>
+  <data name="Consumer.SignUp.UserNameHelp" xml:space="preserve">
+    <value>3 to 40 letters, digits, dots, dashes or underscores. Do not use your real name or e-mail address.</value>
+  </data>
+  <data name="Consumer.SignUp.Phone" xml:space="preserve">
+    <value>Mobile phone (optional)</value>
+  </data>
+  <data name="Consumer.SignUp.PhoneHelp" xml:space="preserve">
+    <value>With a verified phone you can reset a forgotten password by SMS code. Without a phone a forgotten password cannot be recovered. We never send e-mail.</value>
+  </data>
+  <data name="Consumer.SignUp.Adult" xml:space="preserve">
+    <value>I am 18 or older.</value>
+  </data>
+  <data name="Consumer.SignUp.AcceptNotice" xml:space="preserve">
+    <value>I have read and accept the</value>
+  </data>
+  <data name="Consumer.SignUp.Submit" xml:space="preserve">
+    <value>Create account</value>
+  </data>
+  <data name="Consumer.SignUp.HaveAccount" xml:space="preserve">
+    <value>Already have an account?</value>
+  </data>
+  <data name="Consumer.Title" xml:space="preserve">
+    <value>My honeys</value>
+  </data>
+  <data name="Consumer.Nav.Home" xml:space="preserve">
+    <value>My honeys</value>
+  </data>
+  <data name="Consumer.Nav.Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="Consumer.Pseudonym" xml:space="preserve">
+    <value>Your code</value>
+  </data>
+  <data name="Consumer.PseudonymHelp" xml:space="preserve">
+    <value>Producers see only this code, never your user name or phone.</value>
+  </data>
+  <data name="Consumer.Account.Who" xml:space="preserve">
+    <value>Your account</value>
+  </data>
+  <data name="Consumer.Account.RemovePhone" xml:space="preserve">
+    <value>Remove the phone</value>
+  </data>
+  <data name="Consumer.Account.MyData" xml:space="preserve">
+    <value>My data</value>
+  </data>
+  <data name="Consumer.Account.MyDataHelp" xml:space="preserve">
+    <value>Download everything the platform keeps about your account: the account, your saved honeys and your feedback with the answers (JSON file).</value>
+  </data>
+  <data name="Consumer.Account.Download" xml:space="preserve">
+    <value>Download my data</value>
+  </data>
+  <data name="Consumer.Account.Delete" xml:space="preserve">
+    <value>Delete my account</value>
+  </data>
+  <data name="Consumer.Account.DeleteHelp" xml:space="preserve">
+    <value>Your account and your saved honeys are deleted, and your user name and phone are removed. Feedback you sent stays with the producer under your code only, without your user name or phone. This cannot be undone.</value>
+  </data>
+  <data name="Consumer.Account.DeletePassword" xml:space="preserve">
+    <value>Your password, to confirm</value>
+  </data>
+  <data name="Consumer.Account.DeleteButton" xml:space="preserve">
+    <value>Delete my account for good</value>
+  </data>
+  <data name="Consumer.Deleted" xml:space="preserve">
+    <value>Your consumer account was deleted.</value>
+  </data>
+  <data name="Consumer.MyHoneys" xml:space="preserve">
+    <value>Saved honeys</value>
+  </data>
+  <data name="Consumer.NoHoneys" xml:space="preserve">
+    <value>No honey saved yet.</value>
+  </data>
+  <data name="Consumer.Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="Consumer.HowToAdd" xml:space="preserve">
+    <value>To add a honey, scan the QR code on the jar and press Save to My honeys at the bottom of its Honey Story.</value>
+  </data>
+  <data name="Consumer.MyFeedback" xml:space="preserve">
+    <value>My feedback</value>
+  </data>
+  <data name="Consumer.NoFeedback" xml:space="preserve">
+    <value>No feedback sent yet.</value>
+  </data>
+  <data name="Consumer.Answer" xml:space="preserve">
+    <value>Answer from the producer</value>
+  </data>
+  <data name="Consumer.VerifyHelp" xml:space="preserve">
+    <value>Check that a laboratory report on a label is genuine and approved.</value>
+  </data>
+  <data name="Consumer.Category.TasteSmell" xml:space="preserve">
+    <value>Taste or smell</value>
+  </data>
+  <data name="Consumer.Category.TextureCrystallization" xml:space="preserve">
+    <value>Texture or crystallization</value>
+  </data>
+  <data name="Consumer.Category.PackagingLabel" xml:space="preserve">
+    <value>Packaging or label</value>
+  </data>
+  <data name="Consumer.Category.SuspectedFake" xml:space="preserve">
+    <value>Suspected fake or opened jar</value>
+  </data>
+  <data name="Consumer.Category.Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="Consumer.Status.New" xml:space="preserve">
+    <value>Sent</value>
+  </data>
+  <data name="Consumer.Status.Read" xml:space="preserve">
+    <value>Read by the producer</value>
+  </data>
+  <data name="Consumer.Status.Answered" xml:space="preserve">
+    <value>Answered</value>
+  </data>
+  <data name="Consumer.Status.Closed" xml:space="preserve">
+    <value>Closed</value>
+  </data>
+  <data name="Choose a user name of 3 to 40 letters, digits, dots, dashes or underscores." xml:space="preserve">
+    <value>Choose a user name of 3 to 40 letters, digits, dots, dashes or underscores.</value>
+  </data>
+  <data name="Consumer accounts are for people aged 18 or older." xml:space="preserve">
+    <value>Consumer accounts are for people aged 18 or older.</value>
+  </data>
+  <data name="Read and accept the privacy notice for consumers." xml:space="preserve">
+    <value>Read and accept the privacy notice for consumers.</value>
+  </data>
+  <data name="The privacy notice for consumers is not available; sign-up is closed." xml:space="preserve">
+    <value>The privacy notice for consumers is not available; sign-up is closed.</value>
+  </data>
+  <data name="The form was sent too quickly. Check the fields and send it again." xml:space="preserve">
+    <value>The form was sent too quickly. Check the fields and send it again.</value>
+  </data>
+  <data name="Your consumer account is ready." xml:space="preserve">
+    <value>Your consumer account is ready.</value>
+  </data>
+  <data name="The phone number was removed. Without it a forgotten password cannot be recovered." xml:space="preserve">
+    <value>The phone number was removed. Without it a forgotten password cannot be recovered.</value>
+  </data>
+  <data name="The password is not correct; the account was not deleted." xml:space="preserve">
+    <value>The password is not correct; the account was not deleted.</value>
+  </data>
+  <data name="A consumer account cannot be given a role or an organization membership." xml:space="preserve">
+    <value>A consumer account cannot be given a role or an organization membership.</value>
+  </data>
+  <data name="This honey has no public story." xml:space="preserve">
+    <value>This honey has no public story.</value>
+  </data>
+  <data name="Choose what your feedback is about." xml:space="preserve">
+    <value>Choose what your feedback is about.</value>
+  </data>
+  <data name="Write your message." xml:space="preserve">
+    <value>Write your message.</value>
+  </data>
+  <data name="The message is longer than 1000 characters." xml:space="preserve">
+    <value>The message is longer than 1000 characters.</value>
+  </data>
+  <data name="You have already sent feedback about this honey today." xml:space="preserve">
+    <value>You have already sent feedback about this honey today.</value>
+  </data>
+  <data name="You have reached the limit of feedback messages for today." xml:space="preserve">
+    <value>You have reached the limit of feedback messages for today.</value>
+  </data>
+  <data name="This honey has no producer on the platform to receive feedback." xml:space="preserve">
+    <value>This honey has no producer on the platform to receive feedback.</value>
+  </data>
+  <data name="Consumer.Story.Title" xml:space="preserve">
+    <value>Bought this honey?</value>
+  </data>
+  <data name="Consumer.Story.Save" xml:space="preserve">
+    <value>Save to My honeys</value>
+  </data>
+  <data name="Consumer.Story.Saved" xml:space="preserve">
+    <value>Saved in My honeys</value>
+  </data>
+  <data name="Consumer.Story.SaveHelp" xml:space="preserve">
+    <value>Only you see your saved honeys. The platform does not record which stories you open.</value>
+  </data>
+  <data name="Consumer.Story.Feedback" xml:space="preserve">
+    <value>Send feedback to the producer</value>
+  </data>
+  <data name="Consumer.Story.Anon" xml:space="preserve">
+    <value>With a free consumer account you can keep this honey and write to its producer.</value>
+  </data>
+  <data name="The honey was saved to My honeys." xml:space="preserve">
+    <value>The honey was saved to My honeys.</value>
+  </data>
+  <data name="The honey was removed from My honeys." xml:space="preserve">
+    <value>The honey was removed from My honeys.</value>
+  </data>
+  <data name="Tour.Consumer.Honeys" xml:space="preserve">
+    <value>My honeys: the honeys you saved from their Honey Story. Open a story again or remove it here.</value>
+  </data>
+  <data name="Tour.Consumer.Feedback" xml:space="preserve">
+    <value>My feedback: what you wrote to producers and their answers. Producers see only your code.</value>
+  </data>
+  <data name="Tour.Consumer.Account" xml:space="preserve">
+    <value>Account: password, language, a phone for password recovery, your data as a file, and deleting the account.</value>
+  </data>
+  <data name="Consumer.Feedback.Help" xml:space="preserve">
+    <value>Your message goes to the organization that produced this honey. It sees only your code, never your user name or phone, and your feedback is never public.</value>
+  </data>
+  <data name="Consumer.Feedback.About" xml:space="preserve">
+    <value>What is it about?</value>
+  </data>
+  <data name="Consumer.Feedback.Message" xml:space="preserve">
+    <value>Your message (at most 1000 characters)</value>
+  </data>
+  <data name="Consumer.Feedback.NoPersonalData" xml:space="preserve">
+    <value>Please do not write personal data (names, phone numbers, addresses) in the message.</value>
+  </data>
+  <data name="Consumer.Feedback.Send" xml:space="preserve">
+    <value>Send feedback</value>
+  </data>
+  <data name="Your feedback was sent to the producer." xml:space="preserve">
+    <value>Your feedback was sent to the producer.</value>
+  </data>
+  <data name="Feedback.Title" xml:space="preserve">
+    <value>Consumer feedback</value>
+  </data>
+  <data name="Feedback.Help" xml:space="preserve">
+    <value>Feedback from consumers about your organization's honeys. You see only the consumer's code. Feedback is never public.</value>
+  </data>
+  <data name="Feedback.AdminHelp" xml:space="preserve">
+    <value>Reports of a suspected fake or opened jar, from every organization. Read only; the organization answers.</value>
+  </data>
+  <data name="Feedback.All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Feedback.Empty" xml:space="preserve">
+    <value>No feedback.</value>
+  </data>
+  <data name="Feedback.Consumer" xml:space="preserve">
+    <value>Consumer</value>
+  </data>
+  <data name="Feedback.Category" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Feedback.Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="Feedback.PseudonymOnly" xml:space="preserve">
+    <value>The consumer is shown by their code only. Do not ask for personal data in the answer.</value>
+  </data>
+  <data name="Feedback.SuspectedFakeBadge" xml:space="preserve">
+    <value>Also sent to the platform administrator</value>
+  </data>
+  <data name="Feedback.MarkRead" xml:space="preserve">
+    <value>Mark as read</value>
+  </data>
+  <data name="Feedback.YourAnswer" xml:space="preserve">
+    <value>Your answer to the consumer</value>
+  </data>
+  <data name="Feedback.AnswerHelp" xml:space="preserve">
+    <value>At most 1000 characters. The consumer reads it on their consumer home.</value>
+  </data>
+  <data name="Feedback.SendAnswer" xml:space="preserve">
+    <value>Send answer</value>
+  </data>
+  <data name="Feedback.Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Feedback.BackToList" xml:space="preserve">
+    <value>Back to the list</value>
+  </data>
+  <data name="Feedback.Status.New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="Feedback.Status.Read" xml:space="preserve">
+    <value>Read</value>
+  </data>
+  <data name="Feedback.Status.Answered" xml:space="preserve">
+    <value>Answered</value>
+  </data>
+  <data name="Feedback.Status.Closed" xml:space="preserve">
+    <value>Closed</value>
+  </data>
+  <data name="Work.Kind.Feedback" xml:space="preserve">
+    <value>Consumer feedback</value>
+  </data>
+  <data name="Area.ConsumerFeedback" xml:space="preserve">
+    <value>Consumer feedback</value>
+  </data>
+  <data name="Write an answer of at most 1000 characters." xml:space="preserve">
+    <value>Write an answer of at most 1000 characters.</value>
+  </data>
+  <data name="This feedback is closed." xml:space="preserve">
+    <value>This feedback is closed.</value>
+  </data>
+  <data name="The answer was sent to the consumer." xml:space="preserve">
+    <value>The answer was sent to the consumer.</value>
+  </data>
+  <data name="The feedback was closed." xml:space="preserve">
+    <value>The feedback was closed.</value>
+  </data>
+  <data name="Users.Kind" xml:space="preserve">
+    <value>Account kind</value>
+  </data>
+  <data name="Users.AllKinds" xml:space="preserve">
+    <value>All accounts</value>
+  </data>
+  <data name="Users.Kind.staff" xml:space="preserve">
+    <value>Staff</value>
+  </data>
+  <data name="Users.Kind.beekeeper" xml:space="preserve">
+    <value>Beekeeper</value>
+  </data>
+  <data name="Users.Kind.consumer" xml:space="preserve">
+    <value>Consumer</value>
+  </data>
+  <data name="Users.LockConsumer" xml:space="preserve">
+    <value>Lock</value>
+  </data>
+  <data name="Users.ConsumerLocked" xml:space="preserve">
+    <value>Locked</value>
+  </data>
+  <data name="Consumer account locked." xml:space="preserve">
+    <value>Consumer account locked.</value>
+  </data>
+  <data name="Consumer account deleted (anonymised)." xml:space="preserve">
+    <value>Consumer account deleted (anonymised).</value>
+  </data>
+  <data name="Home.Kpi.Consumers" xml:space="preserve">
+    <value>Consumer accounts</value>
+  </data>
+  <data name="Home.Kpi.Empty.Consumers" xml:space="preserve">
+    <value>No consumer account yet</value>
+  </data>
+  <data name="Ret.consumers.Data" xml:space="preserve">
+    <value>Consumer accounts</value>
+  </data>
+  <data name="Ret.consumers.Kept" xml:space="preserve">
+    <value>{0} years after the last sign-in</value>
+  </data>
+  <data name="Ret.consumers.Then" xml:space="preserve">
+    <value>deleted as by the consumer (account anonymised, feedback kept under the pseudonym)</value>
+  </data>
+  <data name="Ret.consumersaved.Data" xml:space="preserve">
+    <value>Saved honeys of these consumer accounts</value>
+  </data>
+  <data name="Ret.consumersaved.Then" xml:space="preserve">
+    <value>deleted with the account</value>
+  </data>
+  <data name="Ret.consumerfeedback.Data" xml:space="preserve">
+    <value>Closed consumer feedback</value>
+  </data>
+  <data name="Ret.consumerfeedback.Kept" xml:space="preserve">
+    <value>{0} years after it was closed</value>
+  </data>
+  <data name="Ret.consumerfeedback.Then" xml:space="preserve">
+    <value>deleted</value>
+  </data>
 </root>

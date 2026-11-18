@@ -144,3 +144,6 @@ a.ah-event-subject { color: var(--b-trust); }
     .ah-kpi, .ah-kpi::after, .ah-hx, .ah-hx::after, .ah-list a, .ah-action { transition: none; }
     .ah-kpi:not(.is-empty):hover, .ah-list a:hover, .ah-action:hover, .ah-node-link:hover .ah-hx { transform: none; }
 }
+
+/* D-87: a sixth figure (consumer accounts) on wide screens */
+@media (min-width: 1200px) { .ah-kpis:has(> li:nth-child(6)) { grid-template-columns: repeat(6, minmax(0, 1fr)); } }

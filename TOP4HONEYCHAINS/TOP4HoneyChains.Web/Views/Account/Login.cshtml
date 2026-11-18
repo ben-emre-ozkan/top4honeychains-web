@@ -1,4 +1,5 @@
 @model TOP4HoneyChains.Web.Models.ViewModels.LoginViewModel
+@inject Microsoft.Extensions.Options.IOptionsSnapshot<TOP4HoneyChains.Web.Services.OrgModel.FeatureFlags> Flags
 @{
     ViewBag.Title = L["Login"].Value;
     Layout = "~/Views/Shared/_AuthLayout.cshtml";
@@ -59,3 +60,13 @@
         <div class="au-alert au-alert-ok" role="status">@loginSuccess</div>
     }
 </form>
+
+@* D-87: a quiet way in for consumers; staff accounts are created by the organizations *@
+@if (Flags.Value.ConsumerAccounts)
+{
+    <p class="au-sub au-consumer-hint" id="consumer-signup-hint">
+        @L["Consumer.LoginHint"]
+        <a class="au-link b-link" href="/Consumer/SignUp@(TOP4HoneyChains.Web.Controllers.AccountController.IsConsumerReturnUrl(returnUrl) ? "?returnUrl=" + Uri.EscapeDataString(returnUrl) : "")">@L["Consumer.LoginHintLink"]</a>
+        <br /><small>@L["Consumer.LoginHintStaff"]</small>
+    </p>
+}

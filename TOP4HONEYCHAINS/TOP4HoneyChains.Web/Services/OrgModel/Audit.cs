@@ -204,9 +204,15 @@ VALUES ({rec.At}, {rec.UserId}, {rec.UserName}, {rec.OrgId}, {rec.Action}, {rec.
             }
         }
 
+        private static readonly HashSet<string> NotLogged = new(StringComparer.OrdinalIgnoreCase) { "ConsumerAccounts", "ConsumerSavedBatches", "ConsumerFeedback" };
+
         private static (EntityEntry Entry, string? Action, string Entity, string? Key, string? Old, string? New) Describe(EntityEntry e)
         {
             var entity = e.Metadata.GetTableName() ?? e.Metadata.ClrType.Name;
+            // D-87: consumer tables never go into the log with their values (pseudonymous messages, saved honeys); the feedback
+            // workflow writes explicit entries with ids only
+            if (NotLogged.Contains(entity))
+                return (e, null, entity, null, null, null);
             switch (e.State)
             {
                 case EntityState.Added:

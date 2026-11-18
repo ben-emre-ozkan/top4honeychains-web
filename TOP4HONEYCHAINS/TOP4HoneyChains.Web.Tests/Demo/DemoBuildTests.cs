@@ -169,12 +169,12 @@ namespace TOP4HoneyChains.Web.Tests.Demo
             }
         }
 
-        // every constraint and trigger the schema switches on is on and trusted again after loading the rows
+        // every constraint and trigger the schema switches on is on and trusted again after loading the rows (025 and 029 leave one old check off on purpose)
         private static async Task<bool> DemoDatabaseIsCheckedAsync(string cs)
         {
             await using var conn = new Microsoft.Data.SqlClient.SqlConnection(cs);
             await conn.OpenAsync();
-            var off = Convert.ToInt32(await new Microsoft.Data.SqlClient.SqlCommand(@"SELECT (SELECT COUNT(*) FROM sys.check_constraints WHERE is_not_trusted = 1 AND name <> 'CK_Consents_Purpose')
+            var off = Convert.ToInt32(await new Microsoft.Data.SqlClient.SqlCommand(@"SELECT (SELECT COUNT(*) FROM sys.check_constraints WHERE is_not_trusted = 1 AND name NOT IN ('CK_Consents_Purpose', 'CK_Notices_Audience'))
                 + (SELECT COUNT(*) FROM sys.foreign_keys WHERE is_not_trusted = 1) + (SELECT COUNT(*) FROM sys.triggers WHERE is_disabled = 1)", conn).ExecuteScalarAsync());
             return off == 0;
         }

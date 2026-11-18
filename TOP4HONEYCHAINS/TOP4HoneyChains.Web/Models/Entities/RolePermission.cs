@@ -40,6 +40,8 @@ namespace TOP4HoneyChains.Web.Models.Entities
         // D-78 P3 (migration 025): read the beekeepers' asking prices of owned lots; read the organization's audit entries
         public const string Price = "Price";
         public const string OrgAudit = "OrgAudit";
+        // D-87 (migration 029): read consumer feedback about the organization's batches; answer it (Enter)
+        public const string ConsumerFeedback = "ConsumerFeedback";
 
         public const string Enter = "Enter";
         public const string Approve = "Approve";
@@ -58,7 +60,8 @@ namespace TOP4HoneyChains.Web.Models.Entities
             (Registration, new[] { Enter, Read }),
             (Evidence, new[] { Approve }),
             (Price, new[] { Read }),
-            (OrgAudit, new[] { Read })
+            (OrgAudit, new[] { Read }),
+            (ConsumerFeedback, new[] { Enter, Read })
         };
     }
 }

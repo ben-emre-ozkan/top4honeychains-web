@@ -51,13 +51,15 @@ namespace TOP4HoneyChains.Web.Services
         // ---------------------------------------------------------------- first-use tour (7.1): 3-5 steps per role
 
         // the role whose tour the signed-in user meets: the beekeeper portal, the platform administrator, or the active membership
-        public async Task<string?> TourRoleAsync(bool beekeeper)
+        public async Task<string?> TourRoleAsync(bool beekeeper, bool consumer = false)
         {
             var user = _http.HttpContext?.User;
             if (user?.Identity?.IsAuthenticated != true)
                 return null;
             if (beekeeper)
                 return "Beekeeper";
+            if (consumer)
+                return "Consumer";   // D-87
             if (user.IsInRole("Administrator"))
                 return "Administrator";
             return (await _current.GetAsync())?.OrgRole;
@@ -92,8 +94,11 @@ namespace TOP4HoneyChains.Web.Services
         // Target: the data-tour key of a menu item (never a URL, so the page names no entry the role does not have)
         public record TourStep(string Target, string TextKey);
 
-        public static List<TourStep> TourFor(string? orgRole, bool admin, bool beekeeper)
+        public static List<TourStep> TourFor(string? orgRole, bool admin, bool beekeeper, bool consumer = false)
         {
+            // D-87: the consumer area, three steps
+            if (consumer)
+                return new() { new("consumer-honeys", "Tour.Consumer.Honeys"), new("consumer-feedback", "Tour.Consumer.Feedback"), new("consumer-account", "Tour.Consumer.Account") };
             if (beekeeper)
                 return new()
                 {

@@ -9078,4 +9078,500 @@
   <data name="Demo.RegistryHelp" xml:space="preserve">
     <value>W tej wersji demonstracyjnej także AR-DEMO-, PL-DEMO- lub LV-DEMO- i 6 cyfr (np. AR-DEMO-000123).</value>
   </data>
+  <data name="Consumer.LoginHint" xml:space="preserve">
+    <value>Pierwszy raz tutaj?</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.LoginHintLink" xml:space="preserve">
+    <value>Załóż bezpłatne konto konsumenta</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.LoginHintStaff" xml:space="preserve">
+    <value>Konta pracowników zakładają organizacje.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Notice.ForConsumers" xml:space="preserve">
+    <value>Dla konsumentów</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.NoticeLink" xml:space="preserve">
+    <value>Informacja o prywatności dla konsumentów</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.SignUp.Title" xml:space="preserve">
+    <value>Załóż konto konsumenta</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.SignUp.Intro" xml:space="preserve">
+    <value>Zapisuj kupione miody, wysyłaj opinie producentowi i czytaj odpowiedzi. Historia Miodu pozostaje dostępna dla wszystkich bez konta.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.SignUp.UserNameHelp" xml:space="preserve">
+    <value>Od 3 do 40 liter, cyfr, kropek, myślników lub podkreśleń. Nie używaj prawdziwego imienia ani adresu e-mail.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.SignUp.Phone" xml:space="preserve">
+    <value>Telefon komórkowy (opcjonalnie)</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.SignUp.PhoneHelp" xml:space="preserve">
+    <value>Ze zweryfikowanym telefonem możesz zresetować zapomniane hasło kodem SMS. Bez telefonu zapomnianego hasła nie da się odzyskać. Nigdy nie wysyłamy e-maili.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.SignUp.Adult" xml:space="preserve">
+    <value>Mam ukończone 18 lat.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.SignUp.AcceptNotice" xml:space="preserve">
+    <value>Przeczytałem(-am) i akceptuję:</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.SignUp.Submit" xml:space="preserve">
+    <value>Załóż konto</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.SignUp.HaveAccount" xml:space="preserve">
+    <value>Masz już konto?</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Title" xml:space="preserve">
+    <value>Moje miody</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Nav.Home" xml:space="preserve">
+    <value>Moje miody</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Nav.Account" xml:space="preserve">
+    <value>Konto</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Pseudonym" xml:space="preserve">
+    <value>Twój kod</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.PseudonymHelp" xml:space="preserve">
+    <value>Producenci widzą tylko ten kod, nigdy Twojej nazwy użytkownika ani telefonu.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Account.Who" xml:space="preserve">
+    <value>Twoje konto</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Account.RemovePhone" xml:space="preserve">
+    <value>Usuń telefon</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Account.MyData" xml:space="preserve">
+    <value>Moje dane</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Account.MyDataHelp" xml:space="preserve">
+    <value>Pobierz wszystko, co platforma przechowuje o Twoim koncie: konto, zapisane miody oraz opinie z odpowiedziami (plik JSON).</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Account.Download" xml:space="preserve">
+    <value>Pobierz moje dane</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Account.Delete" xml:space="preserve">
+    <value>Usuń moje konto</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Account.DeleteHelp" xml:space="preserve">
+    <value>Twoje konto i zapisane miody zostaną usunięte, a nazwa użytkownika i telefon wymazane. Wysłane opinie pozostaną u producenta tylko z Twoim kodem, bez nazwy użytkownika i telefonu. Tego nie można cofnąć.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Account.DeletePassword" xml:space="preserve">
+    <value>Twoje hasło, aby potwierdzić</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Account.DeleteButton" xml:space="preserve">
+    <value>Usuń moje konto na zawsze</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Deleted" xml:space="preserve">
+    <value>Twoje konto konsumenta zostało usunięte.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.MyHoneys" xml:space="preserve">
+    <value>Zapisane miody</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.NoHoneys" xml:space="preserve">
+    <value>Nie zapisano jeszcze żadnego miodu.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Remove" xml:space="preserve">
+    <value>Usuń</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.HowToAdd" xml:space="preserve">
+    <value>Aby dodać miód, zeskanuj kod QR na słoiku i naciśnij Zapisz w Moich miodach na dole jego Historii Miodu.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.MyFeedback" xml:space="preserve">
+    <value>Moje opinie</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.NoFeedback" xml:space="preserve">
+    <value>Nie wysłano jeszcze żadnej opinii.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Answer" xml:space="preserve">
+    <value>Odpowiedź producenta</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.VerifyHelp" xml:space="preserve">
+    <value>Sprawdź, czy raport laboratoryjny z etykiety jest prawdziwy i zatwierdzony.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Category.TasteSmell" xml:space="preserve">
+    <value>Smak lub zapach</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Category.TextureCrystallization" xml:space="preserve">
+    <value>Konsystencja lub krystalizacja</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Category.PackagingLabel" xml:space="preserve">
+    <value>Opakowanie lub etykieta</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Category.SuspectedFake" xml:space="preserve">
+    <value>Podejrzenie podróbki lub otwarty słoik</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Category.Other" xml:space="preserve">
+    <value>Inne</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Status.New" xml:space="preserve">
+    <value>Wysłano</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Status.Read" xml:space="preserve">
+    <value>Przeczytane przez producenta</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Status.Answered" xml:space="preserve">
+    <value>Odpowiedziano</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Status.Closed" xml:space="preserve">
+    <value>Zamknięte</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Choose a user name of 3 to 40 letters, digits, dots, dashes or underscores." xml:space="preserve">
+    <value>Wybierz nazwę użytkownika od 3 do 40 liter, cyfr, kropek, myślników lub podkreśleń.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer accounts are for people aged 18 or older." xml:space="preserve">
+    <value>Konta konsumenta są dla osób, które ukończyły 18 lat.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Read and accept the privacy notice for consumers." xml:space="preserve">
+    <value>Przeczytaj i zaakceptuj informację o prywatności dla konsumentów.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="The privacy notice for consumers is not available; sign-up is closed." xml:space="preserve">
+    <value>Informacja o prywatności dla konsumentów jest niedostępna; rejestracja jest zamknięta.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="The form was sent too quickly. Check the fields and send it again." xml:space="preserve">
+    <value>Formularz został wysłany zbyt szybko. Sprawdź pola i wyślij go ponownie.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Your consumer account is ready." xml:space="preserve">
+    <value>Twoje konto konsumenta jest gotowe.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="The phone number was removed. Without it a forgotten password cannot be recovered." xml:space="preserve">
+    <value>Numer telefonu został usunięty. Bez niego zapomnianego hasła nie da się odzyskać.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="The password is not correct; the account was not deleted." xml:space="preserve">
+    <value>Hasło jest nieprawidłowe; konto nie zostało usunięte.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="A consumer account cannot be given a role or an organization membership." xml:space="preserve">
+    <value>Kontu konsumenta nie można nadać roli ani członkostwa w organizacji.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="This honey has no public story." xml:space="preserve">
+    <value>Ten miód nie ma publicznej historii.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Choose what your feedback is about." xml:space="preserve">
+    <value>Wybierz, czego dotyczy Twoja opinia.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Write your message." xml:space="preserve">
+    <value>Napisz wiadomość.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="The message is longer than 1000 characters." xml:space="preserve">
+    <value>Wiadomość ma ponad 1000 znaków.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="You have already sent feedback about this honey today." xml:space="preserve">
+    <value>Dziś wysłałeś(-aś) już opinię o tym miodzie.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="You have reached the limit of feedback messages for today." xml:space="preserve">
+    <value>Osiągnięto dzisiejszy limit opinii.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="This honey has no producer on the platform to receive feedback." xml:space="preserve">
+    <value>Ten miód nie ma na platformie producenta, który mógłby przyjąć opinię.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Story.Title" xml:space="preserve">
+    <value>Kupiłeś(-aś) ten miód?</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Story.Save" xml:space="preserve">
+    <value>Zapisz w Moich miodach</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Story.Saved" xml:space="preserve">
+    <value>Zapisano w Moich miodach</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Story.SaveHelp" xml:space="preserve">
+    <value>Tylko Ty widzisz zapisane miody. Platforma nie zapisuje, które historie otwierasz.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Story.Feedback" xml:space="preserve">
+    <value>Wyślij opinię producentowi</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Story.Anon" xml:space="preserve">
+    <value>Z bezpłatnym kontem konsumenta możesz zapisać ten miód i napisać do producenta.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="The honey was saved to My honeys." xml:space="preserve">
+    <value>Miód zapisano w Moich miodach.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="The honey was removed from My honeys." xml:space="preserve">
+    <value>Miód usunięto z Moich miodów.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Tour.Consumer.Honeys" xml:space="preserve">
+    <value>Moje miody: miody zapisane z ich Historii Miodu. Tutaj możesz ponownie otworzyć historię lub ją usunąć.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Tour.Consumer.Feedback" xml:space="preserve">
+    <value>Moje opinie: to, co napisałeś(-aś) producentom, i ich odpowiedzi. Producenci widzą tylko Twój kod.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Tour.Consumer.Account" xml:space="preserve">
+    <value>Konto: hasło, język, telefon do odzyskiwania hasła, Twoje dane jako plik i usunięcie konta.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Feedback.Help" xml:space="preserve">
+    <value>Twoja wiadomość trafi do organizacji, która wyprodukowała ten miód. Widzi ona tylko Twój kod, nigdy nazwy użytkownika ani telefonu, a Twoja opinia nigdy nie jest publiczna.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Feedback.About" xml:space="preserve">
+    <value>Czego to dotyczy?</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Feedback.Message" xml:space="preserve">
+    <value>Twoja wiadomość (najwyżej 1000 znaków)</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Feedback.NoPersonalData" xml:space="preserve">
+    <value>Prosimy nie wpisywać w wiadomości danych osobowych (imion, numerów telefonu, adresów).</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Feedback.Send" xml:space="preserve">
+    <value>Wyślij opinię</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Your feedback was sent to the producer." xml:space="preserve">
+    <value>Twoja opinia została wysłana do producenta.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Title" xml:space="preserve">
+    <value>Opinie konsumentów</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Help" xml:space="preserve">
+    <value>Opinie konsumentów o miodach Twojej organizacji. Widzisz tylko kod konsumenta. Opinie nigdy nie są publiczne.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.AdminHelp" xml:space="preserve">
+    <value>Zgłoszenia podejrzenia podróbki lub otwartego słoika ze wszystkich organizacji. Tylko do odczytu; odpowiada organizacja.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.All" xml:space="preserve">
+    <value>Wszystkie</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Empty" xml:space="preserve">
+    <value>Brak opinii.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Consumer" xml:space="preserve">
+    <value>Konsument</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Category" xml:space="preserve">
+    <value>Dotyczy</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Message" xml:space="preserve">
+    <value>Wiadomość</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.PseudonymOnly" xml:space="preserve">
+    <value>Konsument jest pokazany tylko swoim kodem. Nie proś w odpowiedzi o dane osobowe.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.SuspectedFakeBadge" xml:space="preserve">
+    <value>Wysłano też do administratora platformy</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.MarkRead" xml:space="preserve">
+    <value>Oznacz jako przeczytane</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.YourAnswer" xml:space="preserve">
+    <value>Twoja odpowiedź dla konsumenta</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.AnswerHelp" xml:space="preserve">
+    <value>Najwyżej 1000 znaków. Konsument przeczyta ją na swojej stronie.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.SendAnswer" xml:space="preserve">
+    <value>Wyślij odpowiedź</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Close" xml:space="preserve">
+    <value>Zamknij</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.BackToList" xml:space="preserve">
+    <value>Wróć do listy</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Status.New" xml:space="preserve">
+    <value>Nowe</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Status.Read" xml:space="preserve">
+    <value>Przeczytane</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Status.Answered" xml:space="preserve">
+    <value>Odpowiedziano</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Feedback.Status.Closed" xml:space="preserve">
+    <value>Zamknięte</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Work.Kind.Feedback" xml:space="preserve">
+    <value>Opinie konsumentów</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Area.ConsumerFeedback" xml:space="preserve">
+    <value>Opinie konsumentów</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Write an answer of at most 1000 characters." xml:space="preserve">
+    <value>Napisz odpowiedź o długości najwyżej 1000 znaków.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="This feedback is closed." xml:space="preserve">
+    <value>Ta opinia jest zamknięta.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="The answer was sent to the consumer." xml:space="preserve">
+    <value>Odpowiedź została wysłana do konsumenta.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="The feedback was closed." xml:space="preserve">
+    <value>Opinia została zamknięta.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Users.Kind" xml:space="preserve">
+    <value>Rodzaj konta</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Users.AllKinds" xml:space="preserve">
+    <value>Wszystkie konta</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Users.Kind.staff" xml:space="preserve">
+    <value>Pracownik</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Users.Kind.beekeeper" xml:space="preserve">
+    <value>Pszczelarz</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Users.Kind.consumer" xml:space="preserve">
+    <value>Konsument</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Users.LockConsumer" xml:space="preserve">
+    <value>Zablokuj</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Users.ConsumerLocked" xml:space="preserve">
+    <value>Zablokowane</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer account locked." xml:space="preserve">
+    <value>Konto konsumenta zostało zablokowane.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer account deleted (anonymised)." xml:space="preserve">
+    <value>Konto konsumenta usunięte (zanonimizowane).</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Home.Kpi.Consumers" xml:space="preserve">
+    <value>Konta konsumentów</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Home.Kpi.Empty.Consumers" xml:space="preserve">
+    <value>Brak kont konsumentów</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Ret.consumers.Data" xml:space="preserve">
+    <value>Konta konsumentów</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Ret.consumers.Kept" xml:space="preserve">
+    <value>{0} lat po ostatnim logowaniu</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Ret.consumers.Then" xml:space="preserve">
+    <value>usuwane jak przez konsumenta (konto zanonimizowane, opinie z pseudonimem)</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Ret.consumersaved.Data" xml:space="preserve">
+    <value>Zapisane miody tych kont konsumentów</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Ret.consumersaved.Then" xml:space="preserve">
+    <value>usuwane razem z kontem</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Ret.consumerfeedback.Data" xml:space="preserve">
+    <value>Zamknięte opinie konsumentów</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Ret.consumerfeedback.Kept" xml:space="preserve">
+    <value>{0} lat po zamknięciu</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Ret.consumerfeedback.Then" xml:space="preserve">
+    <value>usuwane</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
 </root>

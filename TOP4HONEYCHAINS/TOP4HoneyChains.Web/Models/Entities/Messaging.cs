@@ -233,7 +233,9 @@ namespace TOP4HoneyChains.Web.Models.Entities
         public const string Beekeeper = "Beekeeper";
         public const string Member = "Member";
         public const string All = "All";
-        public static readonly string[] Values = { Beekeeper, Member, All };
+        // D-87 (migration 029): the notice for consumer accounts
+        public const string Consumer = "Consumer";
+        public static readonly string[] Values = { Beekeeper, Member, All, Consumer };
     }
 
     public static class AcceptanceMethod

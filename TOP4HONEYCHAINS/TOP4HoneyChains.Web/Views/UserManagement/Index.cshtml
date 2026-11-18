@@ -7,6 +7,10 @@
 @{
     ViewData["Title"] = L["Users"].Value;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    // D-87: the account kind of every user, and the consumer accounts' pseudonym and status
+    var kinds = ViewBag.Kinds as Dictionary<string, string> ?? new();
+    var consumerRows = ViewBag.Consumers as Dictionary<string, TOP4HoneyChains.Web.Models.Entities.ConsumerAccount> ?? new();
+    var kindFilter = ViewBag.Kind as string;
 }
 
 @section AddToHead {
@@ -43,6 +47,14 @@
 
                             </p>
 
+                            <nav class="d-flex flex-wrap gap-2 small mb-2" id="user-kind-filter" aria-label="@L["Users.Kind"]">
+                                <a href="/UserManagement/Index" class="@(kindFilter == null ? "fw-bold" : "")">@L["Users.AllKinds"]</a>
+                                @foreach (var k in TOP4HoneyChains.Web.Services.OrgModel.ConsumerRules.Kinds)
+                                {
+                                    <a href="/UserManagement/Index?kind=@k" class="@(kindFilter == k ? "fw-bold" : "")">@L["Users.Kind." + k]</a>
+                                }
+                            </nav>
+
                             <table id="datatable-buttons"
                                    class="table table-striped table-bordered dt-responsive nowrap"
                                    style="width:100%">
@@ -53,6 +65,7 @@
 
                                         <th>@L["User Name"]</th>
                                         <th>@L["Email"]</th>
+                                        <th>@L["Users.Kind"]</th>
                                         <th>@L["Role"]</th>
                                         <th style="width:220px">@L["Actions"]</th>
 
@@ -66,6 +79,9 @@
                                     {
 
                                         var roles = await UserManager.GetRolesAsync(user);
+                                        var kind = kinds.TryGetValue(user.Id, out var k2) ? k2 : TOP4HoneyChains.Web.Services.OrgModel.ConsumerRules.Staff;
+                                        consumerRows.TryGetValue(user.Id, out var consumerRow);
+                                        var isConsumer = kind == TOP4HoneyChains.Web.Services.OrgModel.ConsumerRules.Consumer;
 
                                         <tr>
 
@@ -74,6 +90,18 @@
                                             <td>@user.UserName @if (user.LockoutEnd != null && user.LockoutEnd > DateTimeOffset.UtcNow) {<span class="badge bg-danger-subtle text-danger border ms-1 user-locked" title="@user.LockoutEnd.Value.ToLocalTime().ToString("dd.MM.yyyy HH:mm")"><i class="mdi mdi-lock-outline"></i> @L["Locked"]</span>}</td>
 
                                             <td>@user.Email</td>
+
+                                            <td data-kind="@kind">
+                                                <span class="badge bg-light text-dark border user-kind">@L["Users.Kind." + kind]</span>
+                                                @if (consumerRow != null)
+                                                {
+                                                    <code class="ms-1">@consumerRow.Pseudonym</code>
+                                                    @if (consumerRow.Status == TOP4HoneyChains.Web.Models.Entities.ConsumerAccountStatus.Locked)
+                                                    {
+                                                        <span class="badge bg-danger-subtle text-danger border ms-1 consumer-locked">@L["Users.ConsumerLocked"]</span>
+                                                    }
+                                                }
+                                            </td>
 
                                             <td>
 
@@ -87,6 +115,28 @@
                                             <td>
 
                                                 <div class="d-flex gap-2">
+                                                    @if (isConsumer)
+                                                    {
+                                                        @* D-87: consumers set their own password and phone; the administrator locks, unlocks or deletes *@
+                                                        @if (consumerRow != null && consumerRow.Status == TOP4HoneyChains.Web.Models.Entities.ConsumerAccountStatus.Active)
+                                                        {
+                                                            <form asp-action="LockConsumer" asp-route-id="@user.Id" method="post" class="m-0">
+                                                                <button type="submit" class="btn btn-sm btn-outline-danger lock-consumer"><i class="mdi mdi-lock-outline"></i> @L["Users.LockConsumer"]</button>
+                                                            </form>
+                                                        }
+                                                        else if (consumerRow != null)
+                                                        {
+                                                            <form asp-action="Unlock" asp-route-id="@user.Id" method="post" class="m-0">
+                                                                <button type="submit" class="btn btn-sm btn-outline-success unlock-user"><i class="mdi mdi-lock-open-variant-outline"></i> @L["Unlock"]</button>
+                                                            </form>
+                                                        }
+                                                        @if (consumerRow != null)
+                                                        {
+                                                            <button class="btn btn-sm btn-danger" onclick="deleteUser('@user.Id')">@L["Delete"]</button>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
 
                                                     <button class="btn btn-warning btn-sm"
                                                             data-bs-toggle="modal"
@@ -115,6 +165,7 @@
                                                         @L["Delete"]
 
                                                     </button>
+                                                    }
 
                                                 </div>
 

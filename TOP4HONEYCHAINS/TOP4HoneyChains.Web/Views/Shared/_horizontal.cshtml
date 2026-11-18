@@ -30,7 +30,7 @@
         {
             ["work"] = new[] { "MyWork", "CCPMonitoring" }, ["org"] = new[] { "OrgWorkspace", "Organizations" }, ["intake"] = new[] { "Intake" },
             ["samples"] = new[] { "Samples", "LabReports" }, ["shipments"] = new[] { "Shipments" }, ["storefronts"] = new[] { "Storefronts" },
-            ["registration"] = new[] { "Registration" }
+            ["registration"] = new[] { "Registration" }, ["feedback"] = new[] { "ConsumerFeedback" }
         }
         : new Dictionary<string, string[]>
         {
@@ -50,7 +50,7 @@
         ["work"] = (L["Work.Title"].Value, "/MyWork/Index"), ["org"] = (L["Org.MyOrganization"].Value, "/OrgWorkspace/Index"),
         ["intake"] = (L["Cust.Intakes"].Value, "/Intake/Index"), ["samples"] = (L["Lab.Samples"].Value, "/Samples/Index"),
         ["shipments"] = (L["Cust.Shipments"].Value, "/Shipments/Index"), ["storefronts"] = (L["P5.Storefronts"].Value, "/Storefronts/Index"),
-        ["registration"] = (L["Reg78.Title"].Value, "/Registration/Index"),
+        ["registration"] = (L["Reg78.Title"].Value, "/Registration/Index"), ["feedback"] = (L["Feedback.Title"].Value, "/ConsumerFeedback"),
         ["dashboard"] = (L["Menu.Dashboard"].Value, "/Dashboard/Index"), ["beekeepers"] = (L["Menu.Beekeepers"].Value, null),
         ["raw"] = (L["Menu.RawHoneyProduction"].Value, null), ["wholesalers"] = (L["Menu.Wholesalers"].Value, "/Wholesalers/Index"),
         ["final"] = (L["Menu.FinalHoneyProductions"].Value, "/FinalHoneyProductions/Index"), ["ccp"] = (L["Menu.CriticalControlPoints"].Value, null),
@@ -167,6 +167,11 @@
                             @if (menuActive != null && TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Compliance(menuActive))
                             {
                                 <li class="nav-item"><a class="nav-link @Cur("compliance")" aria-current="@Aria("compliance")" href="/Compliance" id="menu-compliance" data-tour="compliance"><i class="mdi mdi-scale-balance" aria-hidden="true"></i>@L["Co.Title"]</a></li>
+                            }
+                            @if (menuActive != null && TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.ConsumerFeedback(menuActive, MenuPermissions)
+                                 && Context.RequestServices.GetRequiredService<Microsoft.Extensions.Options.IOptionsSnapshot<TOP4HoneyChains.Web.Services.OrgModel.FeatureFlags>>().Value.ConsumerAccounts)
+                            {
+                                <li class="nav-item"><a class="nav-link @Cur("feedback")" aria-current="@Aria("feedback")" href="/ConsumerFeedback" id="menu-consumer-feedback"><i class="mdi mdi-message-reply-text-outline" aria-hidden="true"></i>@L["Feedback.Title"]</a></li>
                             }
                             @if (menuActive != null && TOP4HoneyChains.Web.Services.OrgModel.MemberMenu.Storefronts(menuActive, MenuPermissions))
                             {

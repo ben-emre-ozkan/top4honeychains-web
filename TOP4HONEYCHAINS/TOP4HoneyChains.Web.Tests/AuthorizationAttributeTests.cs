@@ -9,13 +9,13 @@ namespace TOP4HoneyChains.Web.Tests
     // action or its controller), or [AllowAnonymous]. Anonymous actions are limited to a known list.
     public class AuthorizationAttributeTests
     {
-        // Public by design: sign-in, password reset, public Honey Story, storefront, report verification, language
+        // Public by design: sign-in, password reset, public Honey Story, storefront, report verification, language, consumer sign-up and the consumer's private story state (D-87)
         private static readonly HashSet<string> PublicActions = new()
         {
             "Account.Login", "Account.ForgotPassword", "Account.ResetPassword", "Account.AccessDenied",
             "Dashboard.Error", "Dashboard.Status", "Home.Index", "Home.SetLanguage",
             "HoneyStory.ParameterDetails", "HoneyStory.Index", "HoneyStory.BatchQRCode", "HoneyStory.Image", "HoneyStory.Details",
-            "Storefront.Index", "Storefront.Qr", "Verify.Index", "Notices.Public", "Account.SendResetCode", "Account.ResetWithCode",
+            "Storefront.Index", "Storefront.Qr", "Verify.Index", "Notices.Public", "Consumer.SignUp", "Consumer.State", "Account.SendResetCode", "Account.ResetWithCode",
             // D-78 P4: the scene gallery, answered only in Development (404 elsewhere)
             "Dev.Scenes"
         };

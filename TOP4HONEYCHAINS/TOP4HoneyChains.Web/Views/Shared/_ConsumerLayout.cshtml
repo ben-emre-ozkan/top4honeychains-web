@@ -1,0 +1,64 @@
+@* D-87: the consumer area /Consumer. One column, the public honey-foam style of the beekeeper portal (brand.css + me.css),
+   no panel menu, works at 390 px. The header shows the pseudonym only. *@
+@using TOP4HoneyChains.Web.Models.Entities
+@inject TOP4HoneyChains.Web.Services.UiPreferences Ui
+@{
+    var lang = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+    var section = ViewBag.Section as string ?? "Home";
+    var me = ViewBag.Consumer as ConsumerAccount;
+    var error = TempData["Error"] as string;
+    var success = TempData["Success"] as string;
+    var sections = new[] { ("Home", "Index", "Consumer.Nav.Home", "consumer-home"), ("Account", "Account", "Consumer.Nav.Account", "consumer-account") };
+}
+<!doctype html>
+<html lang="@lang" data-user="@Ui.UserKey" data-scenes="@(await Ui.ShowAnimationsAsync() ? "on" : "off")">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title | TOP4HoneyChains</title>
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#FFFFFF">
+    <partial name="~/Views/Shared/_Favicons.cshtml" />
+    <link href="~/css/brand.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/css/me.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/css/honey-mark.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/css/honey-scene.css" rel="stylesheet" asp-append-version="true">
+</head>
+<body class="me consumer">
+    <header class="me-top">
+        <a class="me-brand b-link" href="/Consumer" aria-label="TOP4HoneyChains"><img src="~/img/brand/top4-wordmark-w3.svg" alt="TOP4HoneyChains" width="177" height="13"></a>
+        <span class="me-who" id="consumer-pseudonym" title="@L["Consumer.PseudonymHelp"]">@me?.Pseudonym</span>
+        <form asp-controller="Account" asp-action="Logout" method="post" class="me-out">
+            <button type="submit" class="b-btn b-btn-ghost me-btn-sm">@L["Menu.Logout"]</button>
+        </form>
+    </header>
+    <nav class="me-nav" aria-label="@L["Consumer.Title"]">
+        @foreach (var (key, action, label, tour) in sections)
+        {
+            <a href="/Consumer/@(action == "Index" ? "" : action)" data-tour="@tour" class="me-tab @(key == section ? "is-current" : "")" @(key == section ? "aria-current=page" : "")>@L[label]</a>
+        }
+    </nav>
+    <main class="me-main" id="main">
+        @if (!string.IsNullOrEmpty(error))
+        {
+            <div class="me-alert me-alert-error" role="alert" id="flash-error">@Msg.T(error)<button type="button" class="me-alert-close" aria-label="@L["Close"]">×</button></div>
+        }
+        @if (!string.IsNullOrEmpty(success))
+        {
+            <div class="me-alert me-alert-ok" role="status" id="flash-success">@Msg.T(success)<button type="button" class="me-alert-close" aria-label="@L["Close"]">×</button></div>
+        }
+        @RenderBody()
+    </main>
+    <footer class="me-foot">
+        <a class="b-link" href="/privacy?for=consumer">@L["Consumer.NoticeLink"]</a> ·
+        @string.Format(L["Land.Footer.Rights"].Value, DateTime.Now.Year)
+    </footer>
+    <script>
+        document.querySelectorAll('.me-alert-close').forEach(function (b) { b.addEventListener('click', function () { b.parentElement.remove(); }); });
+    </script>
+    <script src="~/js/honey-scene.js" asp-append-version="true"></script>
+    <partial name="_Tour" model="false" />
+    <script src="~/js/honey-tour.js" asp-append-version="true"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -42,6 +42,7 @@ Paths are relative to `TOP4HONEYCHAINS/TOP4HoneyChains.Web/`. This document desc
 | SampleAcceptanceOfficer | 0 | no (a DB row only; GO-LIVE step 6 asks who created it) |
 
 - `RoleManagementController` and `UserManagementController` manage global roles. There are no policies, no resource-based handlers and no org scoping.
+- Update (D-78 P3, D-87): beside staff accounts there are two account kinds without roles or memberships: beekeeper accounts (`BeekeeperAccounts`, portal `/Me`) and consumer accounts (`ConsumerAccounts`, area `/Consumer`: saved honeys and feedback to the producer, pseudonym only towards organizations). Both are kept in their own area by the account-kind boundary (§14). The unused global role `Consumer` above is not used by them.
 
 ### 2.2 Domain tables
 
@@ -147,6 +148,7 @@ The defaults come from two editable tables plus a few fixed rules. Both tables a
 | Storefront (consents) | OrgAdmin | – | OrgAdmin | Association, beekeeper linked to it |
 | Recall report | – | – | all roles | own lots and batches, or the association's beekeepers |
 | Finalize | Staff, OrgAdmin (request) | QualityApprover (confirm) | – | batch owner |
+| Consumer feedback (D-87, 029) | OrgAdmin, QualityApprover, ComplianceOfficer (mark read, answer, close) | – | OrgAdmin, QualityApprover, ComplianceOfficer | the batch owner; the consumer's pseudonym only; suspected fakes also read-only for the platform administrator |
 | CCP read (per CCP) | – | – | all roles | the read rule in §5.3 |
 
 ### 5.3 Read along the chain
@@ -372,6 +374,7 @@ Other settings: `Features:OrgRoleModel`; `OrgModel:AssociationVerifier` (`Platfo
 - **Resource-based handlers:** `OrganizationAuthorizationHandler` (read, manage documents, verify) and `CcpAuthorizationHandler` (read, enter, approve a CCP of a lot or batch, built on `CcpResponsibilityService` in `Services/OrgModel/Responsibility.cs`, plus four-eyes through `CcpRecorders`).
 - **Inline checks** for everything else: intake, samples, lab reports, shipments and receipt, storage records, finalize request/confirm, storefront consents and recall check the active membership, the org status and capability, ownership or custody, and `Permissions` (RolePermissions) in the controller or in `Services/OrgModel/` (`Lab.cs`, `Custody.cs`). There are no `ShipmentReceiveRequirement` or `BatchFinalizeRequirement` handlers.
 - **Org scoping of queries.** `OrgScope` (in `Authorization.cs`) gives the lots and batches an org may list; administrators and verified public authorities read all.
+- **Account-kind boundary** (D-78 P3, D-87). Beekeeper and consumer accounts reach only their own area (`/Me`, `/Consumer`), a few account actions and the public pages; everything else answers 403 (`BeekeeperBoundaryMiddleware`). They can never be given a role or a membership.
 - **Tests.** `TOP4HoneyChains.Web.Tests` (unit and `Category=E2E`, the app hosted with the flag on against a throw-away database, D-46).
 
 ---

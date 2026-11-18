@@ -21,6 +21,9 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         public int ProofYears { get; set; } = 3;
         public int FormerMemberYears { get; set; } = 2;
         public int AuditYears { get; set; } = 10;
+        // D-87: consumer accounts (and their saved lists) after the last sign-in (O-19); consumer feedback after it was closed
+        public int ConsumerAccountYears { get; set; } = 2;
+        public int ConsumerFeedbackYears { get; set; } = 3;
     }
 
     public class RetentionService
@@ -115,6 +118,15 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                   AND NOT EXISTS (SELECT 1 FROM dbo.Memberships m WHERE m.UserId = u.Id AND (m.RevokedAt IS NULL OR m.RevokedAt >= @cutoff))
                   AND NOT EXISTS (SELECT 1 FROM dbo.AspNetUserRoles ur JOIN dbo.AspNetRoles r ON r.Id = ur.RoleId WHERE ur.UserId = u.Id AND r.Name = N'Administrator')
                   AND NOT EXISTS (SELECT 1 FROM dbo.BeekeeperAccounts b WHERE b.UserId = u.Id)", new SqlParameter("@cutoff", memberCutoff))));
+            // D-87: counted only (the job does not delete them yet)
+            var consumerCutoff = Now.AddYears(-_options.ConsumerAccountYears);
+            const string StaleConsumers = "FROM dbo.ConsumerAccounts c WHERE COALESCE(c.LastSignInAt, c.CreatedAt) < @cutoff";
+            rules.Add(new("consumers", false, consumerCutoff, await CountAsync("SELECT COUNT(*) AS Value " + StaleConsumers, new SqlParameter("@cutoff", consumerCutoff))));
+            rules.Add(new("consumersaved", false, consumerCutoff, await CountAsync(
+                "SELECT COUNT(*) AS Value FROM dbo.ConsumerSavedBatches s WHERE s.ConsumerUserId IN (SELECT c.UserId " + StaleConsumers + ")", new SqlParameter("@cutoff", consumerCutoff))));
+            var feedbackCutoff = Now.AddYears(-_options.ConsumerFeedbackYears);
+            rules.Add(new("consumerfeedback", false, feedbackCutoff, await CountAsync(
+                "SELECT COUNT(*) AS Value FROM dbo.ConsumerFeedback f WHERE f.Status = 'Closed' AND f.ClosedAt < @cutoff", new SqlParameter("@cutoff", feedbackCutoff))));
             var auditCutoff = Now.AddYears(-_options.AuditYears);
             rules.Add(new("audit", false, auditCutoff, await CountAsync("SELECT COUNT(*) AS Value FROM dbo.AuditEntries WHERE At < @cutoff", new SqlParameter("@cutoff", auditCutoff))));
             return rules;

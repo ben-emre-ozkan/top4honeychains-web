@@ -275,3 +275,10 @@
     .hs-hero-glow, .hs-verified.is-sealed .hs-verified-icon, .hs-verified.is-sealed .hs-verified-icon::after, .hs-verified.is-sealed .hs-verified-sweep { animation: none; }
     .hs-jline-fill, .hs-jcard, .hs-jbg, .hs-jnode::after, .hs-bar-run, .hs-fill, .hs-bar-zone { transition: none; }
 }
+
+/* D-87: save and feedback for consumer accounts */
+.hs-consumer { margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--b-line, #F2E3C6); }
+.hs-consumer-title { font-size: 18px; margin: 0 0 4px; }
+.hs-action-soft { background: var(--b-foam, #FFFBF0); color: var(--b-ink, #574A40); border: 1.5px solid var(--b-honey, #FFB547); }
+.hs-action-soft.is-saved { background: var(--b-cream, #FFF4D6); }
+.hs-consumer-anon { margin-top: 12px; font-size: 15px; color: var(--b-muted, #7B6A5C); }

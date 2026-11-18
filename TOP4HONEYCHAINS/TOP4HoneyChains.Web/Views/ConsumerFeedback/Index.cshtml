@@ -1,0 +1,62 @@
+@model List<TOP4HoneyChains.Web.Models.Entities.ConsumerFeedback>
+@using TOP4HoneyChains.Web.Models.Entities
+@{
+    // D-87: consumer feedback about the organization's batches (the pseudonym only)
+    ViewData["Title"] = L["Feedback.Title"];
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var status = ViewBag.Status as string;
+    var admin = ViewBag.Admin == true;
+}
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">@L["Feedback.Title"]</h4>
+                    <p class="card-title-desc">@L[admin ? "Feedback.AdminHelp" : "Feedback.Help"]</p>
+                    <nav class="d-flex flex-wrap gap-2 small mb-3" id="feedback-filter">
+                        <a href="/ConsumerFeedback" class="@(status == null ? "fw-bold" : "")">@L["Feedback.All"]</a>
+                        @foreach (var s in ConsumerFeedbackStatus.All)
+                        {
+                            <a href="/ConsumerFeedback?status=@s" class="@(status == s ? "fw-bold" : "")">@L["Feedback.Status." + s]</a>
+                        }
+                    </nav>
+                    @if (Model.Count == 0)
+                    {
+                        <p class="text-muted" id="feedback-empty">@L["Feedback.Empty"]</p>
+                    }
+                    else
+                    {
+                        <div class="table-responsive"><table class="table table-sm align-top table-cards" id="feedback-list">
+                            <thead>
+                                <tr>
+                                    <th>@L["Org.Date"]</th><th>@L["Feedback.Consumer"]</th><th>@L["Cust.Batch"]</th><th>@L["Feedback.Category"]</th><th>@L["Org.Status"]</th>
+                                    @if (admin)
+                                    {
+                                        <th>@L["Organization"]</th>
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var f in Model)
+                                {
+                                    <tr class="feedback-row" data-feedback="@f.FeedbackId" data-status="@f.Status">
+                                        <td data-label="@L["Org.Date"]" class="text-nowrap">@f.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</td>
+                                        <td data-label="@L["Feedback.Consumer"]"><code>@f.Pseudonym</code></td>
+                                        <td data-label="@L["Cust.Batch"]"><a href="/ConsumerFeedback/Details/@f.FeedbackId">@f.Batch?.FinalHoneyProductionTitle</a></td>
+                                        <td data-label="@L["Feedback.Category"]">@L["Consumer.Category." + f.Category]</td>
+                                        <td data-label="@L["Org.Status"]"><span class="badge @(f.Status == ConsumerFeedbackStatus.New ? "bg-warning text-dark" : "bg-light text-dark border")">@L["Feedback.Status." + f.Status]</span></td>
+                                        @if (admin)
+                                        {
+                                            <td data-label="@L["Organization"]">@f.Org?.DisplayName</td>
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table></div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

@@ -73,6 +73,9 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                 .Where(a => a.UserId == userId && a.Status == BeekeeperAccountStatus.Active).Select(a => a.BeekeeperId).FirstOrDefaultAsync();
             if (beekeeperId != null)
                 audience = NoticeAudience.Beekeeper;
+            // D-87: a consumer account gets the consumers' notice (accepted at sign-up)
+            else if (await _context.ConsumerAccounts.AsNoTracking().AnyAsync(c => c.UserId == userId))
+                audience = NoticeAudience.Consumer;
             var orgIds = await _context.Memberships.AsNoTracking()
                 .Where(m => m.UserId == userId && m.Status == MembershipStatus.Active)
                 .Select(m => m.OrgId).Distinct().ToListAsync();

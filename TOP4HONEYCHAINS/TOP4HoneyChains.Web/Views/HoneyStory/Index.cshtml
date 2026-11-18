@@ -4,6 +4,7 @@
 @using TOP4HoneyChains.Web.Models.ViewModels.HoneyStory
 @model HoneyStoryViewModel
 @inject IWebHostEnvironment Env
+@inject Microsoft.Extensions.Options.IOptionsSnapshot<TOP4HoneyChains.Web.Services.OrgModel.FeatureFlags> Flags
 @{
     // Public Honey Story opened from the QR code on the jar. Sections, order and wording follow the mobile app's
     // honey story (header, origins, apiary locations, source composition, quality at a glance, lab report, process
@@ -557,6 +558,24 @@
     </section>
     <a class="hs-action" href="/verify-report">@L["Sf.VerifyReport"]</a>
 
+    @* D-87: the same HTML for everyone (nothing user-specific, so it can never land in a shared cache). The consumer's state
+       (signed in, saved) comes from a private no-store endpoint, asked only when the consumer marker cookie is present, so
+       anonymous visitors make no extra request. *@
+    @if (Flags.Value.ConsumerAccounts)
+    {
+        var storyUrl = Uri.EscapeDataString("/honeystory/" + Model.BatchQR);
+        <section class="hs-consumer" id="consumer-actions" data-qr="@Model.BatchQR">
+            <h2 class="hs-consumer-title">@L["Consumer.Story.Title"]</h2>
+            <a class="hs-action hs-action-soft" id="consumer-save" href="/Consumer/Save?qr=@Model.BatchQR" data-saved-text="@L["Consumer.Story.Saved"]">@L["Consumer.Story.Save"]</a>
+            <a class="hs-action hs-action-soft" id="consumer-feedback" href="/Consumer/Feedback?qr=@Model.BatchQR">@L["Consumer.Story.Feedback"]</a>
+            <p class="hs-consumer-anon" id="consumer-anon">
+                @L["Consumer.Story.Anon"]
+                <a href="/Account/Login?ReturnUrl=@storyUrl">@L["Login.LoginButton"]</a> ·
+                <a href="/Consumer/SignUp?returnUrl=@storyUrl">@L["Consumer.LoginHintLink"]</a>
+            </p>
+        </section>
+    }
+
 </main>
 
 <footer class="sf-footer">
@@ -567,6 +586,10 @@
 <script src="~/js/honey-mark.js" asp-append-version="true" defer></script>
 <script src="~/js/tmap.js" asp-append-version="true" defer></script>
 <script src="~/js/honeystory.js" asp-append-version="true" defer></script>
+@if (Flags.Value.ConsumerAccounts)
+{
+    <script src="~/js/consumer-story.js" asp-append-version="true" defer></script>
+}
 <script>
     // source chips: show the values of one source in both lab sections
     document.querySelectorAll('.hs-chip').forEach(function (chip) {

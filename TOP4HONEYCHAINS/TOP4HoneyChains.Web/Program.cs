@@ -161,6 +161,33 @@ builder.Services.AddScoped<RetentionService>();
 builder.Services.AddHostedService<RetentionScheduler>();
 builder.Services.AddScoped<ComplianceService>();
 builder.Services.AddScoped<IAuthorizationHandler, TOP4HoneyChains.Web.Filters.BeekeeperSelfHandler>();
+// D-87: consumer accounts (Features:ConsumerAccounts) and the rate limits of sign-up, sign-in and feedback. The app does not resolve
+// forwarded headers (Cloudflare and IIS in front), so the limits are global ceilings plus per-account limits, never per address.
+builder.Services.Configure<ConsumerOptions>(builder.Configuration.GetSection("Consumers"));
+builder.Services.AddScoped<ConsumerService>();
+{
+    static System.Threading.RateLimiting.FixedWindowRateLimiterOptions PerMinute(int permits) =>
+        new() { PermitLimit = Math.Max(1, permits), Window = TimeSpan.FromMinutes(1), QueueLimit = 0 };
+    // the limits come from the options when a limiter is first created (the configuration is complete by then)
+    static ConsumerOptions Limits(HttpContext ctx) => ctx.RequestServices.GetRequiredService<IOptionsMonitor<ConsumerOptions>>().CurrentValue;
+    builder.Services.AddRateLimiter(o =>
+    {
+        o.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+        o.AddPolicy(TOP4HoneyChains.Web.Controllers.ConsumerController.RateSignUp,
+            ctx => System.Threading.RateLimiting.RateLimitPartition.GetFixedWindowLimiter("all", _ => PerMinute(Limits(ctx).SignUpPerMinute)));
+        o.AddPolicy(TOP4HoneyChains.Web.Controllers.ConsumerController.RateSignIn,
+            ctx => System.Threading.RateLimiting.RateLimitPartition.GetFixedWindowLimiter("all", _ => PerMinute(Limits(ctx).SignInPerMinute)));
+        // feedback: per account (the endpoint requires a signed-in consumer) ...
+        o.AddPolicy(TOP4HoneyChains.Web.Controllers.ConsumerController.RateFeedback,
+            ctx => System.Threading.RateLimiting.RateLimitPartition.GetFixedWindowLimiter(
+                ctx.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? "anonymous", _ => PerMinute(Limits(ctx).FeedbackPerAccountPerMinute)));
+        // ... and a global ceiling for all accounts together
+        o.GlobalLimiter = System.Threading.RateLimiting.PartitionedRateLimiter.Create<HttpContext, string>(ctx =>
+            ctx.GetEndpoint()?.Metadata.GetMetadata<Microsoft.AspNetCore.RateLimiting.EnableRateLimitingAttribute>()?.PolicyName == TOP4HoneyChains.Web.Controllers.ConsumerController.RateFeedback
+                ? System.Threading.RateLimiting.RateLimitPartition.GetFixedWindowLimiter("feedback-all", _ => PerMinute(Limits(ctx).FeedbackPerMinute))
+                : System.Threading.RateLimiting.RateLimitPartition.GetNoLimiter("none"));
+    });
+}
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy(AuthPolicies.PanelUser, p => p.RequireAuthenticatedUser().AddRequirements(new PanelUserRequirement()));
@@ -252,6 +279,7 @@ app.UseRouting();
 }
 app.UseRequestLocalization(localizationOptions);
 app.UseAuthentication();
+app.UseRateLimiter();   // D-87: after authentication, so the feedback limit can be kept per account
 // D-78 P3: a beekeeper account reaches only its portal and the public pages (403 elsewhere)
 app.UseMiddleware<TOP4HoneyChains.Web.Filters.BeekeeperBoundaryMiddleware>();
 app.UseAuthorization();

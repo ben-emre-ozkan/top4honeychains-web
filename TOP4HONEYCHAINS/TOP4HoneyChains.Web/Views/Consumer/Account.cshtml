@@ -1,0 +1,102 @@
+@model TOP4HoneyChains.Web.Models.Entities.ConsumerAccount
+@using TOP4HoneyChains.Web.Services.Messaging
+@{
+    // D-87: the consumer's account page: password, language, phone, my data, delete
+    ViewBag.Title = L["Consumer.Nav.Account"].Value;
+    var pending = ViewBag.PendingPhone as string;
+    var phone = ViewBag.Phone as string;
+    var names = new Dictionary<string, string> { ["tr"] = "Türkçe", ["en"] = "English", ["es"] = "Español", ["pl"] = "Polski", ["lv"] = "Latviešu" };
+}
+<h1>@L["Consumer.Nav.Account"]</h1>
+
+<div class="me-card" id="account-summary">
+    <h3>@L["Consumer.Account.Who"]</h3>
+    <p class="m-0">@L["Login.Username"]: <strong>@ViewBag.UserName</strong></p>
+    <p class="m-0">@L["Consumer.Pseudonym"]: <code>@Model.Pseudonym</code></p>
+    <p class="me-muted">@L["Consumer.PseudonymHelp"]</p>
+</div>
+
+<div class="me-card" id="phone-card">
+    <h3>@L["Me.Phone"]</h3>
+    @if (phone != null)
+    {
+        <p class="m-0"><code id="current-phone">@phone</code></p>
+        <form asp-action="RemovePhone" method="post" class="me-form" id="remove-phone-form">
+            <button type="submit" class="b-btn b-btn-ghost">@L["Consumer.Account.RemovePhone"]</button>
+        </form>
+    }
+    else
+    {
+        <p class="me-muted" id="no-phone">@L["Consumer.SignUp.PhoneHelp"]</p>
+    }
+    @if (pending == null)
+    {
+        <form asp-action="Phone" method="post" class="me-form" id="phone-form">
+            <label for="phone">@L["Me.NewPhone"]</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" required />
+            <button type="submit" class="b-btn b-btn-ghost">@L["Me.SendCode"]</button>
+        </form>
+    }
+    else
+    {
+        <form asp-action="VerifyPhone" method="post" class="me-form" id="verify-phone-form">
+            <input type="hidden" name="phone" value="@pending" />
+            <label for="code">@L["Me.CodeTo"] <code>@pending</code></label>
+            <input id="code" name="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" required />
+            <button type="submit" class="b-btn b-btn-honey">@L["Me.Verify"]</button>
+        </form>
+    }
+</div>
+
+<div class="me-card">
+    <h3>@L["Me.Language"]</h3>
+    <form asp-action="Language" method="post" class="me-form" id="language-form">
+        <select name="language" aria-label="@L["Me.Language"]">
+            @foreach (var code in SmsTemplates.Languages)
+            {
+                <option value="@code" selected="@(code == Model.Language)">@names[code]</option>
+            }
+        </select>
+        <button type="submit" class="b-btn b-btn-ghost">@L["Me.Save"]</button>
+    </form>
+</div>
+
+<div class="me-card">
+    <h3>@L["Scene.Switch"]</h3>
+    <p class="me-muted">@L["Scene.SwitchHelp"]</p>
+    <form asp-controller="Account" asp-action="Animations" method="post" class="me-form" id="animations-form">
+        <input type="hidden" name="show" value="@(ViewBag.ShowAnimations == true ? "false" : "true")" />
+        <input type="hidden" name="returnUrl" value="/Consumer/Account" />
+        <button type="submit" class="b-btn b-btn-ghost" role="switch" aria-checked="@(ViewBag.ShowAnimations == true ? "true" : "false")">@(ViewBag.ShowAnimations == true ? L["Scene.TurnOff"] : L["Scene.TurnOn"])</button>
+    </form>
+    <button type="button" class="b-btn b-btn-ghost" data-tour-open>@L["Tour.Open"]</button>
+</div>
+
+<div class="me-card">
+    <h3>@L["Me.Password"]</h3>
+    <form asp-action="Password" method="post" class="me-form" id="password-form">
+        <label for="currentPassword">@L["Me.CurrentPassword"]</label>
+        <input id="currentPassword" name="currentPassword" type="password" autocomplete="current-password" required />
+        <label for="newPassword">@L["Me.NewPassword"]</label>
+        <input id="newPassword" name="newPassword" type="password" autocomplete="new-password" minlength="10" required />
+        <label for="confirmPassword">@L["Me.ConfirmPassword"]</label>
+        <input id="confirmPassword" name="confirmPassword" type="password" autocomplete="new-password" minlength="10" required />
+        <button type="submit" class="b-btn b-btn-honey">@L["Me.ChangePassword"]</button>
+    </form>
+</div>
+
+<div class="me-card" id="my-data">
+    <h3>@L["Consumer.Account.MyData"]</h3>
+    <p class="me-muted">@L["Consumer.Account.MyDataHelp"]</p>
+    <a class="b-btn b-btn-ghost" href="/Consumer/Download" id="download-data">@L["Consumer.Account.Download"]</a>
+</div>
+
+<div class="me-card me-card-danger" id="delete-account">
+    <h3>@L["Consumer.Account.Delete"]</h3>
+    <p>@L["Consumer.Account.DeleteHelp"]</p>
+    <form asp-action="Delete" method="post" class="me-form" id="delete-form">
+        <label for="deletePassword">@L["Consumer.Account.DeletePassword"]</label>
+        <input id="deletePassword" name="password" type="password" autocomplete="current-password" required />
+        <button type="submit" class="b-btn b-btn-ghost me-btn-danger">@L["Consumer.Account.DeleteButton"]</button>
+    </form>
+</div>

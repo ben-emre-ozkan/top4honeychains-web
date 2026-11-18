@@ -58,6 +58,9 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             // D-78 P3 (4.8): sampling-quality items without a review and open data-subject requests, for the Compliance Officer
             if (active.OrgRole == OrgRoles.ComplianceOfficer)
                 await ComplianceItemsAsync(active.OrgId, items);
+            // D-87: consumer feedback not yet answered or closed
+            if (MemberMenu.ConsumerFeedback(active, _perm))
+                await FeedbackItemsAsync(f => f.OrgId == active.OrgId && (f.Status == ConsumerFeedbackStatus.New || f.Status == ConsumerFeedbackStatus.Read), items);
             if (OrganizationAuthorizationHandler.IsCentralVerifier(_config, active))
                 foreach (var o in await PendingOrgsAsync(o => o.Capabilities.Any(c => c.Capability == Capabilities.Association)))
                     items.Add(new Item("Verify", o.DisplayName, null, $"/Organizations/Details/{o.OrgId}", o.CreatedAt));
@@ -188,8 +191,18 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                 items.Add(new Item("Request", r.SubjectName, r.DueOn.ToString("dd.MM.yyyy"), "/Compliance#requests", r.ReceivedOn.ToDateTime(TimeOnly.MinValue)));
         }
 
+        // D-87: one item per feedback; organizations and administrators see the pseudonym only
+        private async Task FeedbackItemsAsync(System.Linq.Expressions.Expression<Func<ConsumerFeedback, bool>> filter, List<Item> items)
+        {
+            foreach (var f in await _context.ConsumerFeedback.AsNoTracking().Where(filter).OrderBy(f => f.CreatedAt)
+                         .Select(f => new { f.FeedbackId, f.Pseudonym, f.Category, f.CreatedAt, Batch = f.Batch!.FinalHoneyProductionTitle }).ToListAsync())
+                items.Add(new Item("Feedback", $"{f.Pseudonym} · {f.Batch}", null, $"/ConsumerFeedback/Details/{f.FeedbackId}", f.CreatedAt, "Consumer.Category." + f.Category));
+        }
+
         private async Task AdminItemsAsync(List<Item> items)
         {
+            // D-87: reports of a suspected fake or opened jar also reach the platform administrator until they are closed
+            await FeedbackItemsAsync(f => f.Category == ConsumerFeedbackCategory.SuspectedFake && f.Status != ConsumerFeedbackStatus.Closed, items);
             if (await _context.Organizations.AsNoTracking().Where(o => o.IsPlatform).Select(o => (int?)o.OrgId).FirstOrDefaultAsync() is int platformId)
                 await EvidenceItemsAsync(platformId, items);
             // C6 / O-16: with the central-association setting, associations are verified by the central association, not here
@@ -240,6 +253,10 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
 
         // D-78 P3: the Compliance section (4.8), for the organization's Compliance Officer
         public static bool Compliance(ActiveMembership a) => a.OrgRole == OrgRoles.ComplianceOfficer;
+
+        // D-87: consumer feedback about the organization's batches
+        public static bool ConsumerFeedback(ActiveMembership a, Permissions p) =>
+            p.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.ConsumerFeedback, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Read, a.OrgRole);
 
         public static bool Storefronts(ActiveMembership a, Permissions p) =>
             a.Has(Capabilities.Association) && p.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Storefront, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Read, a.OrgRole);
