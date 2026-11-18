@@ -9264,4 +9264,37 @@
   <data name="This honey has no producer on the platform to receive feedback." xml:space="preserve">
     <value>This honey has no producer on the platform to receive feedback.</value>
   </data>
+  <data name="Consumer.Story.Title" xml:space="preserve">
+    <value>Bought this honey?</value>
+  </data>
+  <data name="Consumer.Story.Save" xml:space="preserve">
+    <value>Save to My honeys</value>
+  </data>
+  <data name="Consumer.Story.Saved" xml:space="preserve">
+    <value>Saved in My honeys</value>
+  </data>
+  <data name="Consumer.Story.SaveHelp" xml:space="preserve">
+    <value>Only you see your saved honeys. The platform does not record which stories you open.</value>
+  </data>
+  <data name="Consumer.Story.Feedback" xml:space="preserve">
+    <value>Send feedback to the producer</value>
+  </data>
+  <data name="Consumer.Story.Anon" xml:space="preserve">
+    <value>With a free consumer account you can keep this honey and write to its producer.</value>
+  </data>
+  <data name="The honey was saved to My honeys." xml:space="preserve">
+    <value>The honey was saved to My honeys.</value>
+  </data>
+  <data name="The honey was removed from My honeys." xml:space="preserve">
+    <value>The honey was removed from My honeys.</value>
+  </data>
+  <data name="Tour.Consumer.Honeys" xml:space="preserve">
+    <value>My honeys: the honeys you saved from their Honey Story. Open a story again or remove it here.</value>
+  </data>
+  <data name="Tour.Consumer.Feedback" xml:space="preserve">
+    <value>My feedback: what you wrote to producers and their answers. Producers see only your code.</value>
+  </data>
+  <data name="Tour.Consumer.Account" xml:space="preserve">
+    <value>Account: password, language, a phone for password recovery, your data as a file, and deleting the account.</value>
+  </data>
 </root>

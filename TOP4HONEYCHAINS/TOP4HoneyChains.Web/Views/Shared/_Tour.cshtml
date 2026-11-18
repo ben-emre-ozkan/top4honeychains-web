@@ -6,13 +6,15 @@
 @if (User.Identity?.IsAuthenticated == true)
 {
     var admin = User.IsInRole("Administrator");
-    var active = Model || admin ? null : await TourOrg.GetAsync();
-    var role = await Ui.TourRoleAsync(Model);
+    // D-87: the consumer area sets ViewBag.Consumer on every page
+    bool consumer = ViewData["Consumer"] != null;
+    var active = Model || admin || consumer ? null : await TourOrg.GetAsync();
+    var role = await Ui.TourRoleAsync(Model, consumer);
     if (role != null)
     {
         // D-84: whether this user has seen the role's tour is kept on the server (UserSettings.ToursSeen)
         var seen = await Ui.TourSeenAsync(role);
-        var steps = TOP4HoneyChains.Web.Services.UiPreferences.TourFor(active?.OrgRole, admin, Model)
+        var steps = TOP4HoneyChains.Web.Services.UiPreferences.TourFor(active?.OrgRole, admin, Model, consumer)
             .Select(s => new { target = s.Target, text = L[s.TextKey].Value });
         <script type="application/json" id="hs-tour" data-key="@Ui.UserKey:@role" data-seen="@(seen ? "true" : "false")"
                 data-url="/Account/TourSeen" data-token="@(seen ? null : TourTokens.GetAndStoreTokens(Context).RequestToken)"

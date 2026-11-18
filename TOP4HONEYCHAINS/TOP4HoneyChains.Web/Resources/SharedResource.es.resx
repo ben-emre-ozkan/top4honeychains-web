@@ -9326,4 +9326,48 @@
     <value>Esta miel no tiene en la plataforma un productor que reciba comentarios.</value>
     <comment>D-87: draft for partner review</comment>
   </data>
+  <data name="Consumer.Story.Title" xml:space="preserve">
+    <value>¿Compró esta miel?</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Story.Save" xml:space="preserve">
+    <value>Guardar en Mis mieles</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Story.Saved" xml:space="preserve">
+    <value>Guardada en Mis mieles</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Story.SaveHelp" xml:space="preserve">
+    <value>Solo usted ve sus mieles guardadas. La plataforma no registra qué historias abre.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Story.Feedback" xml:space="preserve">
+    <value>Enviar un comentario al productor</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Story.Anon" xml:space="preserve">
+    <value>Con una cuenta de consumidor gratuita puede guardar esta miel y escribir a su productor.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="The honey was saved to My honeys." xml:space="preserve">
+    <value>La miel se guardó en Mis mieles.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="The honey was removed from My honeys." xml:space="preserve">
+    <value>La miel se quitó de Mis mieles.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Tour.Consumer.Honeys" xml:space="preserve">
+    <value>Mis mieles: las mieles que guardó desde su Historia de la Miel. Desde aquí puede volver a abrir una historia o quitarla.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Tour.Consumer.Feedback" xml:space="preserve">
+    <value>Mis comentarios: lo que escribió a los productores y sus respuestas. Los productores solo ven su código.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Tour.Consumer.Account" xml:space="preserve">
+    <value>Cuenta: contraseña, idioma, un teléfono para recuperar la contraseña, sus datos en un archivo y la eliminación de la cuenta.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
 </root>

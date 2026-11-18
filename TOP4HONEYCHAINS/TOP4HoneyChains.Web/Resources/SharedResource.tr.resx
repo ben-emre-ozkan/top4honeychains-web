@@ -9264,4 +9264,37 @@
   <data name="This honey has no producer on the platform to receive feedback." xml:space="preserve">
     <value>Bu balın platformda geri bildirim alabilecek bir üreticisi yok.</value>
   </data>
+  <data name="Consumer.Story.Title" xml:space="preserve">
+    <value>Bu balı aldınız mı?</value>
+  </data>
+  <data name="Consumer.Story.Save" xml:space="preserve">
+    <value>Ballarıma kaydet</value>
+  </data>
+  <data name="Consumer.Story.Saved" xml:space="preserve">
+    <value>Ballarımda kayıtlı</value>
+  </data>
+  <data name="Consumer.Story.SaveHelp" xml:space="preserve">
+    <value>Kayıtlı ballarınızı yalnızca siz görürsünüz. Platform hangi hikâyeleri açtığınızı kaydetmez.</value>
+  </data>
+  <data name="Consumer.Story.Feedback" xml:space="preserve">
+    <value>Üreticiye geri bildirim gönder</value>
+  </data>
+  <data name="Consumer.Story.Anon" xml:space="preserve">
+    <value>Ücretsiz bir tüketici hesabıyla bu balı saklayabilir ve üreticisine yazabilirsiniz.</value>
+  </data>
+  <data name="The honey was saved to My honeys." xml:space="preserve">
+    <value>Bal, Ballarım listesine kaydedildi.</value>
+  </data>
+  <data name="The honey was removed from My honeys." xml:space="preserve">
+    <value>Bal, Ballarım listesinden kaldırıldı.</value>
+  </data>
+  <data name="Tour.Consumer.Honeys" xml:space="preserve">
+    <value>Ballarım: Bal Hikâyesinden kaydettiğiniz ballar. Bir hikâyeyi buradan yeniden açabilir veya kaldırabilirsiniz.</value>
+  </data>
+  <data name="Tour.Consumer.Feedback" xml:space="preserve">
+    <value>Geri bildirimlerim: üreticilere yazdıklarınız ve yanıtları. Üreticiler yalnızca kodunuzu görür.</value>
+  </data>
+  <data name="Tour.Consumer.Account" xml:space="preserve">
+    <value>Hesap: şifre, dil, şifre kurtarma için telefon, verileriniz dosya olarak ve hesabın silinmesi.</value>
+  </data>
 </root>

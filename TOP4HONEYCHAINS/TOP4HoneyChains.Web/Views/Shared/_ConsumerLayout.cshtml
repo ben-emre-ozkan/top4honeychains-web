@@ -57,7 +57,7 @@
         document.querySelectorAll('.me-alert-close').forEach(function (b) { b.addEventListener('click', function () { b.parentElement.remove(); }); });
     </script>
     <script src="~/js/honey-scene.js" asp-append-version="true"></script>
-    <partial name="_Tour" model="true" />
+    <partial name="_Tour" model="false" />
     <script src="~/js/honey-tour.js" asp-append-version="true"></script>
     @RenderSection("scripts", required: false)
 </body>

@@ -1,0 +1,21 @@
+@model TOP4HoneyChains.Web.Models.Entities.FinalHoneyProduction
+@{
+    // D-87: saving a honey is an explicit choice of the consumer
+    ViewBag.Title = L["Consumer.Story.Save"].Value;
+}
+<h1>@L["Consumer.Story.Save"]</h1>
+<div class="me-card" id="save-card">
+    <h3><a class="b-link" href="/honeystory/@Model.FinalHoneyProductionQR">@Model.FinalHoneyProductionTitle</a></h3>
+    @if (ViewBag.Saved == true)
+    {
+        <p id="already-saved">@L["Consumer.Story.Saved"]</p>
+        <a class="b-btn b-btn-ghost" href="/Consumer">@L["Consumer.Nav.Home"]</a>
+    }
+    else
+    {
+        <p class="me-muted">@L["Consumer.Story.SaveHelp"]</p>
+        <form asp-action="Save" asp-route-qr="@Model.FinalHoneyProductionQR" method="post" class="me-form" id="save-form">
+            <button type="submit" class="b-btn b-btn-honey">@L["Consumer.Story.Save"]</button>
+        </form>
+    }
+</div>

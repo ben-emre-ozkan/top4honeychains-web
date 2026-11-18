@@ -9326,4 +9326,48 @@
     <value>Šim medum platformā nav ražotāja, kas varētu saņemt atsauksmi.</value>
     <comment>D-87: draft for partner review</comment>
   </data>
+  <data name="Consumer.Story.Title" xml:space="preserve">
+    <value>Nopirkāt šo medu?</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Story.Save" xml:space="preserve">
+    <value>Saglabāt manā medū</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Story.Saved" xml:space="preserve">
+    <value>Saglabāts manā medū</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Story.SaveHelp" xml:space="preserve">
+    <value>Saglabāto medu redzat tikai jūs. Platforma nereģistrē, kurus stāstus jūs atverat.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Story.Feedback" xml:space="preserve">
+    <value>Nosūtīt atsauksmi ražotājam</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Story.Anon" xml:space="preserve">
+    <value>Ar bezmaksas patērētāja kontu varat saglabāt šo medu un rakstīt tā ražotājam.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="The honey was saved to My honeys." xml:space="preserve">
+    <value>Medus tika saglabāts manā medū.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="The honey was removed from My honeys." xml:space="preserve">
+    <value>Medus tika noņemts no mana medus.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Tour.Consumer.Honeys" xml:space="preserve">
+    <value>Mans medus: medus, ko saglabājāt no tā Medus stāsta. Šeit varat atkal atvērt stāstu vai to noņemt.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Tour.Consumer.Feedback" xml:space="preserve">
+    <value>Manas atsauksmes: ko rakstījāt ražotājiem, un viņu atbildes. Ražotāji redz tikai jūsu kodu.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Tour.Consumer.Account" xml:space="preserve">
+    <value>Konts: parole, valoda, tālrunis paroles atjaunošanai, jūsu dati failā un konta dzēšana.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
 </root>

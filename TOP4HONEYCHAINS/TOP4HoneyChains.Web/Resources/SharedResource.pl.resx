@@ -9326,4 +9326,48 @@
     <value>Ten miód nie ma na platformie producenta, który mógłby przyjąć opinię.</value>
     <comment>D-87: draft for partner review</comment>
   </data>
+  <data name="Consumer.Story.Title" xml:space="preserve">
+    <value>Kupiłeś(-aś) ten miód?</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Story.Save" xml:space="preserve">
+    <value>Zapisz w Moich miodach</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Story.Saved" xml:space="preserve">
+    <value>Zapisano w Moich miodach</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Story.SaveHelp" xml:space="preserve">
+    <value>Tylko Ty widzisz zapisane miody. Platforma nie zapisuje, które historie otwierasz.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Story.Feedback" xml:space="preserve">
+    <value>Wyślij opinię producentowi</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Consumer.Story.Anon" xml:space="preserve">
+    <value>Z bezpłatnym kontem konsumenta możesz zapisać ten miód i napisać do producenta.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="The honey was saved to My honeys." xml:space="preserve">
+    <value>Miód zapisano w Moich miodach.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="The honey was removed from My honeys." xml:space="preserve">
+    <value>Miód usunięto z Moich miodów.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Tour.Consumer.Honeys" xml:space="preserve">
+    <value>Moje miody: miody zapisane z ich Historii Miodu. Tutaj możesz ponownie otworzyć historię lub ją usunąć.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Tour.Consumer.Feedback" xml:space="preserve">
+    <value>Moje opinie: to, co napisałeś(-aś) producentom, i ich odpowiedzi. Producenci widzą tylko Twój kod.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
+  <data name="Tour.Consumer.Account" xml:space="preserve">
+    <value>Konto: hasło, język, telefon do odzyskiwania hasła, Twoje dane jako plik i usunięcie konta.</value>
+    <comment>D-87: draft for partner review</comment>
+  </data>
 </root>

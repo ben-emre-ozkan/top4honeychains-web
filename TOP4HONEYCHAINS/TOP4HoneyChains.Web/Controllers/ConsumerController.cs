@@ -158,6 +158,54 @@ namespace TOP4HoneyChains.Web.Controllers
             return View(Me);
         }
 
+        // ---------------------------------------------------------------- my honeys
+
+        // The consumer's own state for a public Honey Story: private, never stored by any cache. Anonymous visitors and other
+        // account kinds get "not signed in" (the story script asks only when the consumer marker cookie is present).
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<IActionResult> State(Guid qr)
+        {
+            Response.Headers.CacheControl = "no-store, private";
+            Response.Headers.Vary = "Cookie";
+            var me = await _consumers.OfAsync(_users.GetUserId(User));
+            if (me == null || me.Status != ConsumerAccountStatus.Active)
+                return Json(new { signedIn = false });
+            return Json(new { signedIn = true, saved = await _consumers.IsSavedAsync(me.UserId, qr) });
+        }
+
+        // saving is explicit: a confirmation page, then a POST (opening a story is never recorded)
+        [HttpGet]
+        public async Task<IActionResult> Save(Guid qr)
+        {
+            var batch = await _consumers.PublicBatchAsync(qr);
+            if (batch == null)
+                return NotFound();
+            ViewBag.Section = "Home";
+            ViewBag.Saved = await _consumers.IsSavedAsync(Me.UserId, qr);
+            return View(batch);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Save")]
+        public async Task<IActionResult> SavePost(Guid qr)
+        {
+            if (!await _consumers.SaveAsync(Me.UserId, qr))
+                return NotFound();
+            TempData["Success"] = "The honey was saved to My honeys.";
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Remove(Guid qr)
+        {
+            await _consumers.RemoveAsync(Me.UserId, qr);
+            TempData["Success"] = "The honey was removed from My honeys.";
+            return RedirectToAction(nameof(Index));
+        }
+
         // ---------------------------------------------------------------- account
 
         public async Task<IActionResult> Account()

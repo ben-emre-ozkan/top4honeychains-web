@@ -527,7 +527,8 @@ namespace TOP4HoneyChains.Web.Controllers
             var beekeeper = await TOP4HoneyChains.Web.Filters.BeekeeperBoundaryMiddleware.IsBeekeeperAsync(userId, services.GetRequiredService<TOP4HoneyChains.Web.Data.TOP4HoneyChainsContext>(),
                 services.GetRequiredService<Microsoft.Extensions.Caching.Memory.IMemoryCache>());
             var ui = services.GetRequiredService<Services.UiPreferences>();
-            if (await ui.TourRoleAsync(beekeeper) is not string role)
+            var consumer = !beekeeper && await ConsumerRules.IsConsumerAsync(_context, userId);   // D-87
+            if (await ui.TourRoleAsync(beekeeper, consumer) is not string role)
                 return NoContent();
             await ui.MarkTourSeenAsync(userId, role);
             return NoContent();
