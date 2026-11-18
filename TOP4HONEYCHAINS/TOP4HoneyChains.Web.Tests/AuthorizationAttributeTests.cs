@@ -17,7 +17,9 @@ namespace TOP4HoneyChains.Web.Tests
             "HoneyStory.ParameterDetails", "HoneyStory.Index", "HoneyStory.BatchQRCode", "HoneyStory.Image", "HoneyStory.Details",
             "Storefront.Index", "Storefront.Qr", "Verify.Index", "Notices.Public", "Consumer.SignUp", "Consumer.State", "Account.SendResetCode", "Account.ResetWithCode",
             // D-78 P4: the scene gallery, answered only in Development (404 elsewhere)
-            "Dev.Scenes"
+            "Dev.Scenes",
+            // D-88: the phone page of the fake SMS provider: only with the fake provider, never in Production, only with the key (404 otherwise)
+            "Phone.Index", "Phone.Messages"
         };
 
         public static IEnumerable<object[]> Actions() =>

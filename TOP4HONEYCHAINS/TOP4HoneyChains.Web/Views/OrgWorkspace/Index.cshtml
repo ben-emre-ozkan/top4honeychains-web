@@ -116,6 +116,10 @@
                                                asp-route-rawHoneyProductionId="@l.RawHoneyProductionId" asp-route-ccpId="@a.RawHoneyCCPAssignmentCCP"
                                                class="btn btn-sm @Chip(a.RawHoneyCCPAssignmentStatus, a.ApprovedAt) me-1 mb-1 ccp-chip" data-ccp="@a.CCP?.Code">@Ref.Code(a.CCP?.Code) @(a.ApprovedAt != null ? "✓" : "")</a>
                                         }
+                                        @if (l.RawHoneyCCPAssignments.Any(a => can.Contains(a.RawHoneyCCPAssignmentCCP) && ControlSheets.OnSheet("raw", a.CCP?.Code)))
+                                        {
+                                            <a href="@ControlSheets.Url("raw", l.RawHoneyProductionId)" class="btn btn-sm btn-outline-primary mb-1 sheet-link"><i class="mdi mdi-clipboard-list-outline me-1" aria-hidden="true"></i>@L["Sheet.Title"]</a>
+                                        }
                                     </td>
                                 </tr>
                             }
@@ -130,7 +134,14 @@
 
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">@L["Org.Batches"]</h5>
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+                        <h5 class="card-title mb-0">@L["Org.Batches"]</h5>
+                        @if (ViewBag.CanCreateBatch == true)
+                        {
+                            @* D-88: the organization creates its own batch *@
+                            <a asp-action="NewBatch" class="btn btn-sm btn-success" id="link-new-batch"><i class="mdi mdi-plus me-1" aria-hidden="true"></i>@L["Batch.New"]</a>
+                        }
+                    </div>
                     <div class="table-responsive"><table class="table table-sm table-bordered" id="batches">
                         <thead><tr><th>#</th><th>@L["Org.Title"]</th><th>@L["Org.Date"]</th><th>@L["Org.Total"]</th><th>@L["Org.Status"]</th><th>@L["Org.Ccps"]</th><th></th></tr></thead>
                         <tbody>
@@ -149,6 +160,10 @@
                                             <a asp-controller="CCPMonitoring" asp-action="FinalHoneyProductionManageCCP"
                                                asp-route-finalHoneyProductionId="@b.FinalHoneyProductionId" asp-route-ccpId="@a.FinalHoneyCCPAssignmentCCP"
                                                class="btn btn-sm @Chip(a.FinalHoneyCCPAssignmentStatus, a.ApprovedAt) me-1 mb-1 ccp-chip" data-ccp="@a.CCP?.Code">@Ref.Code(a.CCP?.Code) @(a.ApprovedAt != null ? "✓" : "")</a>
+                                        }
+                                        @if (can.Count > 0)
+                                        {
+                                            <a href="@ControlSheets.Url("batch", b.FinalHoneyProductionId)" class="btn btn-sm btn-outline-primary mb-1 sheet-link"><i class="mdi mdi-clipboard-list-outline me-1" aria-hidden="true"></i>@L["Sheet.Title"]</a>
                                         }
                                     </td>
                                     <td class="text-nowrap"><a asp-action="Batch" asp-route-id="@b.FinalHoneyProductionId" class="btn btn-sm btn-primary">@L["Org.Open"]</a> <a asp-controller="Flow" asp-action="Batch" asp-route-id="@b.FinalHoneyProductionId" class="btn btn-sm btn-outline-secondary flow-link">@L["Flow.Title"]</a></td>

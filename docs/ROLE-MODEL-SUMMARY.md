@@ -26,6 +26,7 @@ Only **licensed or platform-verified** organizations enter data in the honey cha
   - Important steps need the approval of a second person: CCP values, lab results and finalizing a batch.
   - Platform management can grant an exemption to one-person organizations. The exemption does not apply to lab results, and every approval given under the exemption is recorded.
   - A finalized batch is never reopened; a correction is made only with a correction record that states the reason.
+  - *Update 18 November 2026 (D-88):* the processing or packing organization creates its own batches from its approved lots, and its staff enter the control points of a lot or batch on one control sheet that the quality approver approves in one action. Platform management sets the platform up and oversees it; it takes no part in the honey's journey.
 
 ## What the beekeeper gains
 - **Own storefront page.** Built only from verified data and published after the beekeeper's recorded consent (KVKK).

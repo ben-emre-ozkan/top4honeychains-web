@@ -30,7 +30,7 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             var html = WebUtility.HtmlDecode(await response.Content.ReadAsStringAsync());
 
             foreach (var id in new[] { "ah-title", "kpi-lots", "kpi-batches", "kpi-reports", "kpi-waiting", "kpi-orgs", "chain-apiary", "chain-delivery",
-                                       "chain-lab", "chain-processing", "chain-shelf", "ah-map", "ah-waiting", "ah-activity", "qa-beekeeper", "qa-batch" })
+                                       "chain-lab", "chain-processing", "chain-shelf", "ah-map", "ah-waiting", "ah-activity", "qa-orgs", "qa-records" })
                 Assert.Contains($"id=\"{id}\"", html);
             Assert.Contains("data-hero", html);                 // the chain strip runs the landing's light path
             Assert.Contains(name, html);                        // the greeting names the admin

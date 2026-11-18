@@ -9574,4 +9574,181 @@
     <value>usuwane</value>
     <comment>D-87: draft for partner review</comment>
   </data>
+  <data name="Area.Batch" xml:space="preserve">
+    <value>Tworzenie partii końcowych (Nowa partia końcowa)</value>
+  </data>
+  <data name="Batch.New" xml:space="preserve">
+    <value>Nowa partia końcowa</value>
+  </data>
+  <data name="Batch.NewHelp" xml:space="preserve">
+    <value>Wybierz partie surowca i liczbę kilogramów z każdej, które wejdą do partii końcowej. Widoczne są tylko partie Twojej organizacji, których wszystkie punkty kontrolne są zakończone i zatwierdzone i w których został jeszcze miód. Partia końcowa należy do Twojej organizacji; jej punkty kontrolne są przypisywane od razu i pojawiają się w Mojej pracy.</value>
+  </data>
+  <data name="Batch.Name" xml:space="preserve">
+    <value>Nazwa partii końcowej</value>
+  </data>
+  <data name="Batch.NamePlaceholder" xml:space="preserve">
+    <value>np. Miód kasztanowy 2026/1</value>
+  </data>
+  <data name="Batch.Use" xml:space="preserve">
+    <value>Użyj</value>
+  </data>
+  <data name="Batch.Left" xml:space="preserve">
+    <value>Pozostało (kg)</value>
+  </data>
+  <data name="Batch.Kg" xml:space="preserve">
+    <value>Kilogramy do tej partii końcowej</value>
+  </data>
+  <data name="Batch.Create" xml:space="preserve">
+    <value>Utwórz partię końcową</value>
+  </data>
+  <data name="Batch.NoLots" xml:space="preserve">
+    <value>Żadna partia nie jest jeszcze gotowa do partii końcowej. Partia jest gotowa, gdy wszystkie jej punkty kontrolne są zakończone i zatwierdzone.</value>
+  </data>
+  <data name="Work.Kind.NewBatch" xml:space="preserve">
+    <value>Partie gotowe do partii końcowej</value>
+  </data>
+  <data name="Only a processing or packing organization creates batches." xml:space="preserve">
+    <value>Partie końcowe tworzy tylko organizacja przetwarzająca lub pakująca miód.</value>
+  </data>
+  <data name="Batches are created by {0} of the organization." xml:space="preserve">
+    <value>Partie końcowe tworzy {0} organizacji.</value>
+  </data>
+  <data name="The title can be at most {0} characters." xml:space="preserve">
+    <value>Tytuł może mieć najwyżej {0} znaków.</value>
+  </data>
+  <data name="Enter the production date." xml:space="preserve">
+    <value>Wpisz datę produkcji.</value>
+  </data>
+  <data name="The production date cannot be in the future." xml:space="preserve">
+    <value>Data produkcji nie może być w przyszłości.</value>
+  </data>
+  <data name="Choose at least one lot and the kilograms to use." xml:space="preserve">
+    <value>Wybierz co najmniej jedną partię i liczbę kilogramów.</value>
+  </data>
+  <data name="Lot #{0} cannot be used: it is not your organization's, or not all its CCPs are completed and approved, or nothing is left." xml:space="preserve">
+    <value>Partii #{0} nie można użyć: nie należy do Twojej organizacji, nie wszystkie jej KPK są zakończone i zatwierdzone albo nic nie zostało.</value>
+  </data>
+  <data name="Lot #{0}: enter the kilograms to use." xml:space="preserve">
+    <value>Partia #{0}: wpisz liczbę kilogramów.</value>
+  </data>
+  <data name="Batch created with {0} control points; they are in My work." xml:space="preserve">
+    <value>Partia końcowa utworzona z {0} punktami kontrolnymi; są w Mojej pracy.</value>
+  </data>
+  <data name="Sheet.Title" xml:space="preserve">
+    <value>Arkusz kontrolny</value>
+  </data>
+  <data name="Sheet.Lot" xml:space="preserve">
+    <value>Partia #{0}</value>
+  </data>
+  <data name="Sheet.Help" xml:space="preserve">
+    <value>Wszystkie punkty kontrolne na jednej stronie. Każdy zachowuje własny zapis, status i zatwierdzenie; obowiązują te same kontrole co na stronie pojedynczego punktu kontrolnego.</value>
+  </data>
+  <data name="Sheet.NothingSaved" xml:space="preserve">
+    <value>Nic nie zapisano. Popraw te punkty i zapisz arkusz ponownie:</value>
+  </data>
+  <data name="Sheet.Save" xml:space="preserve">
+    <value>Zapisz arkusz</value>
+  </data>
+  <data name="Sheet.OpenSingle" xml:space="preserve">
+    <value>Otwórz tylko ten punkt kontrolny</value>
+  </data>
+  <data name="Sheet.OpenSheet" xml:space="preserve">
+    <value>Otwórz arkusz kontrolny</value>
+  </data>
+  <data name="Sheet.ApproveTitle" xml:space="preserve">
+    <value>Zatwierdź arkusz</value>
+  </data>
+  <data name="Sheet.ApproveHelp" xml:space="preserve">
+    <value>Sprawdź wszystkie wartości powyżej. Jedno kliknięcie zatwierdza każdy wymieniony tu punkt kontrolny jako osobny zapis; własnych wpisów nigdy nie zatwierdzasz.</value>
+  </data>
+  <data name="Sheet.WillApprove" xml:space="preserve">
+    <value>Do zatwierdzenia:</value>
+  </data>
+  <data name="Sheet.CannotApprove" xml:space="preserve">
+    <value>Nie zatwierdzasz:</value>
+  </data>
+  <data name="Sheet.Approve" xml:space="preserve">
+    <value>Zatwierdź wszystkie wymienione</value>
+  </data>
+  <data name="Control sheet saved." xml:space="preserve">
+    <value>Arkusz kontrolny zapisany.</value>
+  </data>
+  <data name="Nothing on this sheet can be recorded by you." xml:space="preserve">
+    <value>Nie możesz niczego zapisać w tym arkuszu.</value>
+  </data>
+  <data name="Nothing on this sheet waits for your approval." xml:space="preserve">
+    <value>Nic w tym arkuszu nie czeka na Twoje zatwierdzenie.</value>
+  </data>
+  <data name="The sheet has values outside their limits; confirm them to approve." xml:space="preserve">
+    <value>Arkusz ma wartości poza limitem; potwierdź je, aby zatwierdzić.</value>
+  </data>
+  <data name="Approved: {0}." xml:space="preserve">
+    <value>Zatwierdzono: {0}.</value>
+  </data>
+  <data name="Approved: {0} (four-eyes exemption flagged in the audit log)." xml:space="preserve">
+    <value>Zatwierdzono: {0} (wyjątek od zasady czterech oczu oznaczono w dzienniku audytu).</value>
+  </data>
+  <data name="ControlSheet" xml:space="preserve">
+    <value>Arkusz kontrolny</value>
+  </data>
+  <data name="Reg78.Association" xml:space="preserve">
+    <value>Związek pszczelarzy (opcjonalnie)</value>
+  </data>
+  <data name="Reg78.NoAssociation" xml:space="preserve">
+    <value>Bez związku</value>
+  </data>
+  <data name="Menu.Setup" xml:space="preserve">
+    <value>Konfiguracja</value>
+  </data>
+  <data name="Menu.Oversight" xml:space="preserve">
+    <value>Nadzór</value>
+  </data>
+  <data name="Menu.ReferenceData" xml:space="preserve">
+    <value>Dane referencyjne</value>
+  </data>
+  <data name="Records.Title" xml:space="preserve">
+    <value>Rejestry</value>
+  </data>
+  <data name="Records.Help" xml:space="preserve">
+    <value>Partie surowca i partie końcowe wszystkich organizacji, tylko do odczytu. Organizacje wprowadzają i zatwierdzają swoje zapisy; wartość zmienia się wyłącznie przez korektę zatwierdzoną przez drugiego administratora.</value>
+  </data>
+  <data name="Records.AllOrgs" xml:space="preserve">
+    <value>Wszystkie organizacje</value>
+  </data>
+  <data name="Records.Show" xml:space="preserve">
+    <value>Pokaż</value>
+  </data>
+  <data name="Records.Latest" xml:space="preserve">
+    <value>Wyświetlono ostatnie {0}.</value>
+  </data>
+  <data name="Records.QuickHint" xml:space="preserve">
+    <value>partie surowca i partie końcowe, tylko odczyt</value>
+  </data>
+  <data name="RefData.Honey" xml:space="preserve">
+    <value>Miód</value>
+  </data>
+  <data name="RefData.Help" xml:space="preserve">
+    <value>Listy, które oferują formularze. Ich tłumaczenia są w Konfiguracja → Tłumaczenia danych referencyjnych.</value>
+  </data>
+  <data name="Tour.Admin.Setup" xml:space="preserve">
+    <value>Konfiguracja: organizacje, funkcje, role i uprawnienia, odpowiedzialności za KPK, rejestr pszczelarzy i dane referencyjne.</value>
+  </data>
+  <data name="Tour.Admin.Oversight" xml:space="preserve">
+    <value>Nadzór: rejestry, dziennik audytu, użytkownicy, informacje, retencja danych i korekty. Dane biznesowe są dla Ciebie tylko do odczytu.</value>
+  </data>
+  <data name="Phone.Title" xml:space="preserve">
+    <value>Wiadomości</value>
+  </data>
+  <data name="Phone.SoundOff" xml:space="preserve">
+    <value>Dźwięk wyłączony</value>
+  </data>
+  <data name="Phone.SoundOn" xml:space="preserve">
+    <value>Dźwięk włączony</value>
+  </data>
+  <data name="Phone.Empty" xml:space="preserve">
+    <value>Brak wiadomości. Nowe wiadomości pojawią się tu same.</value>
+  </data>
+  <data name="Phone.Note" xml:space="preserve">
+    <value>Tylko wiadomości testowe tego numeru. Żaden prawdziwy SMS nie jest wysyłany.</value>
+  </data>
 </root>

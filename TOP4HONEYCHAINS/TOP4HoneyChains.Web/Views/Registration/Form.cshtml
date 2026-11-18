@@ -83,6 +83,13 @@
                             <div class="col-md-4"><label class="form-label" for="EducationLevelId">@L["Education Level"]</label><select class="form-select" asp-for="EducationLevelId" asp-items="ViewBag.Education"><option value="">@L["-- Select --"]</option></select></div>
                             <div class="col-md-4"><label class="form-label" for="PurposeTypeId">@L["Beekeeping Purpose Type"]</label><select class="form-select" asp-for="PurposeTypeId" asp-items="ViewBag.Purposes"><option value="">@L["-- Select --"]</option></select></div>
                             <div class="col-md-4"><label class="form-label" for="BeekeepingTypeId">@L["Beekeeping Type"]</label><select class="form-select" asp-for="BeekeepingTypeId" asp-items="ViewBag.Types"><option value="">@L["-- Select --"]</option></select></div>
+                            @* D-88: the beekeeper's association, linked at registration *@
+                            <div class="col-md-4">
+                                <label class="form-label" for="AssociationOrgId">@L["Reg78.Association"]</label>
+                                <select class="form-select" id="AssociationOrgId" name="AssociationOrgId" asp-items="ViewBag.Associations">
+                                    <option value="">@L["Reg78.NoAssociation"]</option>
+                                </select>
+                            </div>
                         </div>
 
                         <h5 class="mt-4">3. @L["Reg78.Apiary"]</h5>

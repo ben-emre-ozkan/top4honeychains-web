@@ -22,10 +22,12 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         private readonly Permissions _perm;
         private readonly LabService _lab;
         private readonly ComplianceService _compliance;
+        private readonly PlantBatchService _plant;
 
         public MyWorkService(TOP4HoneyChainsContext context, ICurrentOrg current, OrgScope scope, CcpResponsibilityService resp,
-            CustodyService custody, IConfiguration config, Permissions perm, LabService lab, ComplianceService compliance)
+            CustodyService custody, IConfiguration config, Permissions perm, LabService lab, ComplianceService compliance, PlantBatchService plant)
         {
+            _plant = plant;
             _lab = lab;
             _compliance = compliance;
             _perm = perm;
@@ -72,47 +74,67 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         // an approval is offered only when the four-eyes rule would allow it (not to whoever recorded or marked it).
         private async Task CcpItemsAsync(ActiveMembership active, List<Item> items)
         {
+            // D-88: the CCPs of a control sheet (lot CCP 2–3, batch CCP 4–10) are one item per lot or batch and action, opening the sheet
+            var sheets = new Dictionary<(string Action, string Kind, int Id), (string Label, List<string?> Codes, DateTime? Since)>();
+            void Add(string action, string kind, int id, string label, int ccpId, string? code, DateTime? since)
+            {
+                if (!ControlSheets.OnSheet(kind, code))
+                {
+                    var url = kind == "raw"
+                        ? $"/CCPMonitoring/RawHoneyProductionManageCCP?rawHoneyProductionId={id}&ccpId={ccpId}"
+                        : $"/CCPMonitoring/FinalHoneyProductionManageCCP?finalHoneyProductionId={id}&ccpId={ccpId}";
+                    items.Add(new Item(action, $"{code} · {label}", kind == "raw" ? "lot" : "batch", url, since));
+                    return;
+                }
+                var key = (action, kind, id);
+                if (!sheets.TryGetValue(key, out var sheet))
+                    sheets[key] = sheet = (label, new List<string?>(), since);
+                sheet.Codes.Add(code);
+                if (since != null && (sheet.Since == null || since < sheet.Since))
+                    sheets[key] = (sheet.Label, sheet.Codes, since);
+            }
+
             var lots = await (await _scope.VisibleLotsAsync())
                 .SelectMany(r => r.RawHoneyCCPAssignments.Select(a => new { r.RawHoneyProductionId, a.RawHoneyCCPAssignmentCCP, a.RawHoneyCCPAssignmentStatus, a.ApprovedAt, a.CCP!.Code, a.RawHoneyCCPAssignmentStartDate }))
                 .Where(a => (a.RawHoneyCCPAssignmentStatus != AssignmentStatusIds.Completed && a.RawHoneyCCPAssignmentStatus != AssignmentStatusIds.NotApplicable) || a.ApprovedAt == null)
                 .Take(400).ToListAsync();
-            foreach (var a in lots)
+            foreach (var a in lots.OrderBy(a => a.RawHoneyCCPAssignmentCCP))
             {
                 var status = a.RawHoneyCCPAssignmentStatus;
                 var done = status is AssignmentStatusIds.Completed or AssignmentStatusIds.NotApplicable;
                 if (done && !await _resp.RequiresApprovalAsync(a.RawHoneyCCPAssignmentCCP))
                     continue;
                 var access = await _resp.AccessAsync("raw", a.RawHoneyProductionId, a.RawHoneyCCPAssignmentCCP);
-                var url = $"/CCPMonitoring/RawHoneyProductionManageCCP?rawHoneyProductionId={a.RawHoneyProductionId}&ccpId={a.RawHoneyCCPAssignmentCCP}";
                 if (status == AssignmentStatusIds.Submitted || done)
                 {
                     if (access.Approve && await MayApproveAsync(active, "raw", a.RawHoneyProductionId, a.RawHoneyCCPAssignmentCCP))
-                        items.Add(new Item("Approve", $"{a.Code} · #{a.RawHoneyProductionId}", "lot", url, a.RawHoneyCCPAssignmentStartDate));
+                        Add("Approve", "raw", a.RawHoneyProductionId, $"#{a.RawHoneyProductionId}", a.RawHoneyCCPAssignmentCCP, a.Code, a.RawHoneyCCPAssignmentStartDate);
                 }
                 else if (access.Enter)
-                    items.Add(new Item("Enter", $"{a.Code} · #{a.RawHoneyProductionId}", "lot", url, a.RawHoneyCCPAssignmentStartDate));
+                    Add("Enter", "raw", a.RawHoneyProductionId, $"#{a.RawHoneyProductionId}", a.RawHoneyCCPAssignmentCCP, a.Code, a.RawHoneyCCPAssignmentStartDate);
             }
             var batches = await (await _scope.VisibleBatchesAsync())
                 .Where(f => !f.FinalHoneyProductionIsFinalized)
                 .SelectMany(f => f.FinalHoneyCCPAssignments.Select(a => new { f.FinalHoneyProductionId, f.FinalHoneyProductionTitle, a.FinalHoneyCCPAssignmentCCP, a.FinalHoneyCCPAssignmentStatus, a.ApprovedAt, a.CCP!.Code, a.FinalHoneyCCPAssignmentStartDate }))
                 .Where(a => (a.FinalHoneyCCPAssignmentStatus != AssignmentStatusIds.Completed && a.FinalHoneyCCPAssignmentStatus != AssignmentStatusIds.NotApplicable) || a.ApprovedAt == null)
                 .Take(400).ToListAsync();
-            foreach (var a in batches)
+            foreach (var a in batches.OrderBy(a => a.FinalHoneyCCPAssignmentCCP))
             {
                 var status = a.FinalHoneyCCPAssignmentStatus;
                 var done = status is AssignmentStatusIds.Completed or AssignmentStatusIds.NotApplicable;
                 if (done && !await _resp.RequiresApprovalAsync(a.FinalHoneyCCPAssignmentCCP))
                     continue;
                 var access = await _resp.AccessAsync("batch", a.FinalHoneyProductionId, a.FinalHoneyCCPAssignmentCCP);
-                var url = $"/CCPMonitoring/FinalHoneyProductionManageCCP?finalHoneyProductionId={a.FinalHoneyProductionId}&ccpId={a.FinalHoneyCCPAssignmentCCP}";
                 if (status == AssignmentStatusIds.Submitted || done)
                 {
                     if (access.Approve && await MayApproveAsync(active, "batch", a.FinalHoneyProductionId, a.FinalHoneyCCPAssignmentCCP))
-                        items.Add(new Item("Approve", $"{a.Code} · {a.FinalHoneyProductionTitle}", "batch", url, a.FinalHoneyCCPAssignmentStartDate));
+                        Add("Approve", "batch", a.FinalHoneyProductionId, a.FinalHoneyProductionTitle ?? $"#{a.FinalHoneyProductionId}", a.FinalHoneyCCPAssignmentCCP, a.Code, a.FinalHoneyCCPAssignmentStartDate);
                 }
                 else if (access.Enter)
-                    items.Add(new Item("Enter", $"{a.Code} · {a.FinalHoneyProductionTitle}", "batch", url, a.FinalHoneyCCPAssignmentStartDate));
+                    Add("Enter", "batch", a.FinalHoneyProductionId, a.FinalHoneyProductionTitle ?? $"#{a.FinalHoneyProductionId}", a.FinalHoneyCCPAssignmentCCP, a.Code, a.FinalHoneyCCPAssignmentStartDate);
             }
+            foreach (var ((action, kind, id), sheet) in sheets)
+                items.Add(new Item(action, $"{ControlSheets.Codes(sheet.Codes)} · {sheet.Label}", kind == "raw" ? "lot" : "batch", ControlSheets.Url(kind, id), sheet.Since));
 
             // Finalize: requests to confirm (QualityApprover) and batches ready to request (Staff, OrgAdmin)
             var own = await (await _scope.OwnedBatchesAsync(active.OrgId)).Where(f => !f.FinalHoneyProductionIsFinalized).ToListAsync();
@@ -120,6 +142,15 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             {
                 if (b.FinalizeRequestedByUserId != null && _perm.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Finalize, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Approve, active.OrgRole))
                     items.Add(new Item("Finalize", b.FinalHoneyProductionTitle ?? $"#{b.FinalHoneyProductionId}", null, $"/OrgWorkspace/Batch/{b.FinalHoneyProductionId}", b.FinalizeRequestedAt));
+            }
+
+            // D-88: lots ready for a batch, for the roles that create batches
+            if (PlantBatchService.Denied(active, _perm) == null)
+            {
+                var ready = await _plant.EligibleLotsAsync(active.OrgId);
+                if (ready.Count > 0)
+                    items.Add(new Item("NewBatch", string.Join(", ", ready.Take(6).Select(l => "#" + l.LotId)) + (ready.Count > 6 ? " …" : ""),
+                        $"{ready.Sum(l => l.Left):0.##} kg", "/OrgWorkspace/NewBatch", null));
             }
         }
 

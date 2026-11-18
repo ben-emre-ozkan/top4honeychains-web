@@ -9450,4 +9450,181 @@
   <data name="Ret.consumerfeedback.Then" xml:space="preserve">
     <value>silinir</value>
   </data>
+  <data name="Area.Batch" xml:space="preserve">
+    <value>Parti oluşturma (Yeni parti)</value>
+  </data>
+  <data name="Batch.New" xml:space="preserve">
+    <value>Yeni parti</value>
+  </data>
+  <data name="Batch.NewHelp" xml:space="preserve">
+    <value>Partiye girecek lotları ve her birinden kaç kilogram kullanılacağını seçin. Yalnızca kurumunuza ait, tüm kontrol noktaları tamamlanıp onaylanmış ve hâlâ balı kalan lotlar listelenir. Parti kurumunuza aittir; kontrol noktaları hemen atanır ve İşlerim'de görünür.</value>
+  </data>
+  <data name="Batch.Name" xml:space="preserve">
+    <value>Parti adı</value>
+  </data>
+  <data name="Batch.NamePlaceholder" xml:space="preserve">
+    <value>örn. Kestane balı 2026/1</value>
+  </data>
+  <data name="Batch.Use" xml:space="preserve">
+    <value>Kullan</value>
+  </data>
+  <data name="Batch.Left" xml:space="preserve">
+    <value>Kalan (kg)</value>
+  </data>
+  <data name="Batch.Kg" xml:space="preserve">
+    <value>Bu partiye giren kilogram</value>
+  </data>
+  <data name="Batch.Create" xml:space="preserve">
+    <value>Partiyi oluştur</value>
+  </data>
+  <data name="Batch.NoLots" xml:space="preserve">
+    <value>Henüz partiye hazır lot yok. Bir lot, tüm kontrol noktaları tamamlanıp onaylandığında hazır olur.</value>
+  </data>
+  <data name="Work.Kind.NewBatch" xml:space="preserve">
+    <value>Partiye hazır lotlar</value>
+  </data>
+  <data name="Only a processing or packing organization creates batches." xml:space="preserve">
+    <value>Partileri yalnızca işleme veya paketleme yapan bir kurum oluşturur.</value>
+  </data>
+  <data name="Batches are created by {0} of the organization." xml:space="preserve">
+    <value>Partileri kurumun {0} rolündeki kişileri oluşturur.</value>
+  </data>
+  <data name="The title can be at most {0} characters." xml:space="preserve">
+    <value>Başlık en fazla {0} karakter olabilir.</value>
+  </data>
+  <data name="Enter the production date." xml:space="preserve">
+    <value>Üretim tarihini girin.</value>
+  </data>
+  <data name="The production date cannot be in the future." xml:space="preserve">
+    <value>Üretim tarihi gelecekte olamaz.</value>
+  </data>
+  <data name="Choose at least one lot and the kilograms to use." xml:space="preserve">
+    <value>En az bir lot ve kullanılacak kilogramı seçin.</value>
+  </data>
+  <data name="Lot #{0} cannot be used: it is not your organization's, or not all its CCPs are completed and approved, or nothing is left." xml:space="preserve">
+    <value>Lot #{0} kullanılamaz: kurumunuza ait değil, tüm KKN'leri tamamlanıp onaylanmamış ya da hiç bal kalmamış.</value>
+  </data>
+  <data name="Lot #{0}: enter the kilograms to use." xml:space="preserve">
+    <value>Lot #{0}: kullanılacak kilogramı girin.</value>
+  </data>
+  <data name="Batch created with {0} control points; they are in My work." xml:space="preserve">
+    <value>Parti {0} kontrol noktasıyla oluşturuldu; kontrol noktaları İşlerim'de.</value>
+  </data>
+  <data name="Sheet.Title" xml:space="preserve">
+    <value>Kontrol formu</value>
+  </data>
+  <data name="Sheet.Lot" xml:space="preserve">
+    <value>Lot #{0}</value>
+  </data>
+  <data name="Sheet.Help" xml:space="preserve">
+    <value>Tüm kontrol noktaları tek sayfada. Her biri kendi kaydını, durumunu ve onayını korur; tek bir kontrol noktasının sayfasındaki denetimlerin aynısı uygulanır.</value>
+  </data>
+  <data name="Sheet.NothingSaved" xml:space="preserve">
+    <value>Hiçbir şey kaydedilmedi. Şu noktaları düzeltip formu yeniden kaydedin:</value>
+  </data>
+  <data name="Sheet.Save" xml:space="preserve">
+    <value>Formu kaydet</value>
+  </data>
+  <data name="Sheet.OpenSingle" xml:space="preserve">
+    <value>Bu kontrol noktasını ayrı aç</value>
+  </data>
+  <data name="Sheet.OpenSheet" xml:space="preserve">
+    <value>Kontrol formunu aç</value>
+  </data>
+  <data name="Sheet.ApproveTitle" xml:space="preserve">
+    <value>Formu onayla</value>
+  </data>
+  <data name="Sheet.ApproveHelp" xml:space="preserve">
+    <value>Yukarıdaki tüm değerleri kontrol edin. Tek tıklama, burada listelenen her kontrol noktasını ayrı bir kayıt olarak onaylar; kendi girdiğiniz kayıtları siz onaylayamazsınız.</value>
+  </data>
+  <data name="Sheet.WillApprove" xml:space="preserve">
+    <value>Onaylanacaklar:</value>
+  </data>
+  <data name="Sheet.CannotApprove" xml:space="preserve">
+    <value>Sizin onaylamadıklarınız:</value>
+  </data>
+  <data name="Sheet.Approve" xml:space="preserve">
+    <value>Listelenenlerin hepsini onayla</value>
+  </data>
+  <data name="Control sheet saved." xml:space="preserve">
+    <value>Kontrol formu kaydedildi.</value>
+  </data>
+  <data name="Nothing on this sheet can be recorded by you." xml:space="preserve">
+    <value>Bu formda sizin girebileceğiniz bir şey yok.</value>
+  </data>
+  <data name="Nothing on this sheet waits for your approval." xml:space="preserve">
+    <value>Bu formda onayınızı bekleyen bir şey yok.</value>
+  </data>
+  <data name="The sheet has values outside their limits; confirm them to approve." xml:space="preserve">
+    <value>Formda sınır dışında değerler var; onaylamak için bunları teyit edin.</value>
+  </data>
+  <data name="Approved: {0}." xml:space="preserve">
+    <value>Onaylandı: {0}.</value>
+  </data>
+  <data name="Approved: {0} (four-eyes exemption flagged in the audit log)." xml:space="preserve">
+    <value>Onaylandı: {0} (dört göz muafiyeti denetim kaydında işaretlendi).</value>
+  </data>
+  <data name="ControlSheet" xml:space="preserve">
+    <value>Kontrol formu</value>
+  </data>
+  <data name="Reg78.Association" xml:space="preserve">
+    <value>Arıcılar birliği (isteğe bağlı)</value>
+  </data>
+  <data name="Reg78.NoAssociation" xml:space="preserve">
+    <value>Birlik yok</value>
+  </data>
+  <data name="Menu.Setup" xml:space="preserve">
+    <value>Kurulum</value>
+  </data>
+  <data name="Menu.Oversight" xml:space="preserve">
+    <value>Denetim</value>
+  </data>
+  <data name="Menu.ReferenceData" xml:space="preserve">
+    <value>Referans veriler</value>
+  </data>
+  <data name="Records.Title" xml:space="preserve">
+    <value>Kayıtlar</value>
+  </data>
+  <data name="Records.Help" xml:space="preserve">
+    <value>Tüm kurumların lotları ve partileri, salt okunur. Kayıtları kurumlar girer ve onaylar; bir değer yalnızca ikinci bir yöneticinin onayladığı bir düzeltmeyle değişir.</value>
+  </data>
+  <data name="Records.AllOrgs" xml:space="preserve">
+    <value>Tüm kurumlar</value>
+  </data>
+  <data name="Records.Show" xml:space="preserve">
+    <value>Göster</value>
+  </data>
+  <data name="Records.Latest" xml:space="preserve">
+    <value>En son {0} kayıt gösteriliyor.</value>
+  </data>
+  <data name="Records.QuickHint" xml:space="preserve">
+    <value>lotlar ve partiler, salt okunur</value>
+  </data>
+  <data name="RefData.Honey" xml:space="preserve">
+    <value>Bal</value>
+  </data>
+  <data name="RefData.Help" xml:space="preserve">
+    <value>Formların sunduğu listeler. Çevirileri Kurulum → Referans verisi çevirileri altındadır.</value>
+  </data>
+  <data name="Tour.Admin.Setup" xml:space="preserve">
+    <value>Kurulum: kurumlar, yetenekler, roller ve izinler, KKN sorumlulukları, arıcı kaydı ve referans veriler.</value>
+  </data>
+  <data name="Tour.Admin.Oversight" xml:space="preserve">
+    <value>Denetim: kayıtlar, denetim kaydı, kullanıcılar, bildirimler, veri saklama ve düzeltmeler. İş verileri sizin için salt okunurdur.</value>
+  </data>
+  <data name="Phone.Title" xml:space="preserve">
+    <value>Mesajlar</value>
+  </data>
+  <data name="Phone.SoundOff" xml:space="preserve">
+    <value>Ses kapalı</value>
+  </data>
+  <data name="Phone.SoundOn" xml:space="preserve">
+    <value>Ses açık</value>
+  </data>
+  <data name="Phone.Empty" xml:space="preserve">
+    <value>Henüz mesaj yok. Yeni mesajlar burada kendiliğinden görünür.</value>
+  </data>
+  <data name="Phone.Note" xml:space="preserve">
+    <value>Yalnızca bu numaranın test mesajları. Gerçek SMS gönderilmez.</value>
+  </data>
 </root>

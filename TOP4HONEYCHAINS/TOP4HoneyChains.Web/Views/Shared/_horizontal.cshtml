@@ -32,6 +32,17 @@
             ["samples"] = new[] { "Samples", "LabReports" }, ["shipments"] = new[] { "Shipments" }, ["storefronts"] = new[] { "Storefronts" },
             ["registration"] = new[] { "Registration" }, ["feedback"] = new[] { "ConsumerFeedback" }
         }
+        : orgModelOn
+        ? new Dictionary<string, string[]>
+        {
+            // D-88: the administrator's Set-up and Oversight
+            ["work"] = new[] { "MyWork" }, ["dashboard"] = new[] { "Dashboard" },
+            ["setup"] = new[] { "Organizations", "Capabilities", "Permissions", "CcpResponsibilities", "Registry", "ReferenceData", "ReferenceTranslations",
+                "CriticalControlPoints", "CriticalControlPointParameterCategories", "CriticalControlPointParameters", "CriticalControlPointParameterContents",
+                "HoneyTypes", "RawHoneyProductionPeriods", "BeekeeperEducationLevels", "BeekeepingPurposeTypes", "BeekeepingTypes", "RoleManagement" },
+            ["oversight"] = new[] { "Records", "Audit", "UserManagement", "Notices", "Retention", "Sms", "CCPMonitoring", "FinalHoneyProductions", "RawHoneyProductions",
+                "Beekeepers", "Apiaries", "Wholesalers", "Flow", "Recall", "Shipments", "Samples", "LabReports", "Storefronts", "OrgWorkspace", "Intake", "Registration" }
+        }
         : new Dictionary<string, string[]>
         {
             ["dashboard"] = new[] { "Dashboard" }, ["beekeepers"] = new[] { "Beekeepers", "Apiaries", "BeekeeperEducationLevels", "BeekeepingPurposeTypes", "BeekeepingTypes", "Registry" },
@@ -54,7 +65,8 @@
         ["dashboard"] = (L["Menu.Dashboard"].Value, "/Dashboard/Index"), ["beekeepers"] = (L["Menu.Beekeepers"].Value, null),
         ["raw"] = (L["Menu.RawHoneyProduction"].Value, null), ["wholesalers"] = (L["Menu.Wholesalers"].Value, "/Wholesalers/Index"),
         ["final"] = (L["Menu.FinalHoneyProductions"].Value, "/FinalHoneyProductions/Index"), ["ccp"] = (L["Menu.CriticalControlPoints"].Value, null),
-        ["users"] = (L["Menu.UserManagement"].Value, null), ["orgs"] = (L["Org.Organizations"].Value, null)
+        ["users"] = (L["Menu.UserManagement"].Value, null), ["orgs"] = (L["Org.Organizations"].Value, null),
+        ["setup"] = (L["Menu.Setup"].Value, null), ["oversight"] = (L["Menu.Oversight"].Value, null)
     };
     var crumbSection = groups.Keys.Where(g => Cur(g).Length > 0).Select(g => sectionNames.TryGetValue(g, out var n) ? n : default).FirstOrDefault();
     var pageTitle = (ViewData["Title"] ?? ViewBag.Title)?.ToString();
@@ -179,6 +191,47 @@
                             }
                         </ul>
                         }
+                        else if (orgModelOn)
+                        {
+                            // D-88: the platform administrator sets the platform up and oversees it; no business data entry in the menu
+                        <ul class="navbar-nav" id="admin-menu">
+                            <li class="nav-item"><a class="nav-link @Cur("work")" aria-current="@Aria("work")" href="/MyWork/Index" data-work-link data-work-scope="@workScope"><i class="mdi mdi-clipboard-check-outline" aria-hidden="true"></i>@L["Work.Title"]<span class="work-badge" data-work-badge hidden></span></a></li>
+                            <li class="nav-item"><a class="nav-link @Cur("dashboard")" aria-current="@Aria("dashboard")" href="/Dashboard/Index" data-tour="dashboard"><i class="mdi mdi-view-dashboard" aria-hidden="true"></i>@L["Menu.Dashboard"]</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle arrow-none @Cur("setup")" href="#" id="topnav-setup" data-tour="setup" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="mdi mdi-cog-outline" aria-hidden="true"></i>@L["Menu.Setup"]
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="topnav-setup">
+                                    <a href="/Organizations/Index" class="dropdown-item">@L["Org.Organizations"]</a>
+                                    <a href="/Capabilities/Index" class="dropdown-item">@L["Org.Capabilities"]</a>
+                                    <a href="/Permissions/Index" class="dropdown-item">@L["Roles and permissions"]</a>
+                                    <a href="/CcpResponsibilities/Index" class="dropdown-item">@L["Resp.Title"]</a>
+                                    <a href="/Registry/Index" class="dropdown-item">@L["Reg.Title"]</a>
+                                    <a href="/ReferenceData/Index" class="dropdown-item" id="menu-reference-data">@L["Menu.ReferenceData"]</a>
+                                    <a href="/ReferenceTranslations/Index" class="dropdown-item">@L["Translations of reference data"]</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle arrow-none @Cur("oversight")" href="#" id="topnav-oversight" data-tour="oversight" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="mdi mdi-shield-search" aria-hidden="true"></i>@L["Menu.Oversight"]
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="topnav-oversight">
+                                    <a href="/Records/Index" class="dropdown-item" id="menu-records">@L["Records.Title"]</a>
+                                    <a href="/Audit/Index" class="dropdown-item">@L["Audit.Title"]</a>
+                                    <a href="/UserManagement/Index" class="dropdown-item">@L["Menu.Users"]</a>
+                                    <a href="/Notices/Index" class="dropdown-item" id="menu-notices">@L["Notice.AdminTitle"]</a>
+                                    <a href="/Retention/Index" class="dropdown-item" id="menu-retention">@L["Ret.Title"]</a>
+                                    <a href="/CCPMonitoring/Corrections" class="dropdown-item">@L["Corr.Title"]</a>
+                                    @if (MenuSmsOptions.Value.IsFake)
+                                    {
+                                        <a href="/Sms/Outbox" class="dropdown-item" id="menu-sms-outbox">@L["Sms.Outbox"]</a>
+                                    }
+                                </div>
+                            </li>
+                        </ul>
+                        }
                         else
                         {
                         <ul class="navbar-nav">
@@ -266,29 +319,6 @@
                                 </div>
                             </li>
 
-                            @if (orgModelOn)
-                            {
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle arrow-none @Cur("orgs")" href="#" id="topnav-orgs" role="button" data-work-glow
-                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="mdi mdi-domain" aria-hidden="true"></i>@L["Org.Organizations"]<span class="work-badge" data-work-badge hidden></span>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="topnav-orgs">
-                                        <a href="/MyWork/Index" class="dropdown-item" data-work-link data-work-scope="@workScope">@L["Work.Title"]<span class="work-badge" data-work-badge hidden></span></a>
-                                        <a href="/Organizations/Index" class="dropdown-item">@L["Org.Organizations"]</a>
-                                        <a href="/Capabilities/Index" class="dropdown-item">@L["Org.Capabilities"]</a>
-                                        <a href="/Registry/Index" class="dropdown-item">@L["Reg.Title"]</a>
-                                        <a href="/Registration/Index" class="dropdown-item" id="menu-registration-admin">@L["Reg78.Title"]</a>
-                                        <a href="/Permissions/Index" class="dropdown-item">@L["Roles and permissions"]</a>
-                                        <a href="/CcpResponsibilities/Index" class="dropdown-item">@L["Resp.Title"]</a>
-                                        <a href="/CCPMonitoring/Corrections" class="dropdown-item">@L["Corr.Title"]</a>
-                                        <a href="/Shipments/Index" class="dropdown-item">@L["Cust.Shipments"]</a>
-                                        <a href="/Samples/Index" class="dropdown-item">@L["Lab.Samples"]</a>
-                                        <a href="/Storefronts/Index" class="dropdown-item">@L["P5.Storefronts"]</a>
-                                        <a href="/OrgWorkspace/Index" class="dropdown-item">@L["Org.MyOrganization"]</a>
-                                    </div>
-                                </li>
-                            }
                         </ul>
                         }
                     </div>
@@ -319,7 +349,7 @@
      data-one="@L["Work.NewOne"]" data-many="@L["Work.NewMany"]" data-waiting="@L["Work.WaitingCount"]"></div>
 @if (memberMenu || (orgModelOn && isPanelAdmin))
 {
-    var kindNames = new[] { "Approve", "LabApprove", "Finalize", "Confirm", "Receive", "Results", "Verify", "Registry", "Evidence", "Correction", "Enter" }
+    var kindNames = new[] { "Approve", "LabApprove", "Finalize", "Confirm", "Receive", "Results", "Verify", "Registry", "Evidence", "Correction", "Enter", "NewBatch" }
         .ToDictionary(k => k, k => L["Work.Kind." + k].Value);
     <script type="application/json" id="work-kinds">@Html.Raw(System.Text.Json.JsonSerializer.Serialize(kindNames))</script>
 }

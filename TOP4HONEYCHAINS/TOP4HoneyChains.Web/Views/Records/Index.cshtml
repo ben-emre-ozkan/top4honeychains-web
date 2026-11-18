@@ -1,0 +1,105 @@
+@using TOP4HoneyChains.Web.Controllers
+@using TOP4HoneyChains.Web.Services.OrgModel
+@{
+    // D-88: the administrator's read-only view of lots and batches (Oversight → Records)
+    ViewData["Title"] = L["Records.Title"];
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var tab = ViewBag.Tab as string ?? "batches";
+    var org = ViewBag.Org as int?;
+    var orgs = ViewBag.Orgs as List<RecordsController.OrgOption> ?? new();
+    var batches = ViewBag.Batches as List<RecordsController.BatchRow> ?? new();
+    var lots = ViewBag.Lots as List<RecordsController.LotRow> ?? new();
+    string Progress(int done, int all) => all == 0 ? "–" : $"{done}/{all}";
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid" id="records-page">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-1">@L["Records.Title"]</h4>
+                    <p class="text-muted mb-3">@L["Records.Help"]</p>
+                    <div class="d-flex flex-wrap justify-content-between align-items-end gap-2">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item"><a class="nav-link @(tab == "batches" ? "active" : "")" aria-current="@(tab == "batches" ? "page" : null)" href="/Records/Index?tab=batches@(org != null ? "&org=" + org : "")" id="tab-batches">@L["Org.Batches"]</a></li>
+                            <li class="nav-item"><a class="nav-link @(tab == "lots" ? "active" : "")" aria-current="@(tab == "lots" ? "page" : null)" href="/Records/Index?tab=lots@(org != null ? "&org=" + org : "")" id="tab-lots">@L["Org.RawLots"]</a></li>
+                        </ul>
+                        <form method="get" action="/Records/Index" class="d-flex gap-2 align-items-end" id="records-filter">
+                            <input type="hidden" name="tab" value="@tab" />
+                            <div>
+                                <label class="form-label small mb-0" for="records-org">@L["Organization"]</label>
+                                <select class="form-select form-select-sm" name="org" id="records-org">
+                                    <option value="">@L["Records.AllOrgs"]</option>
+                                    @foreach (var o in orgs) { <option value="@o.OrgId" selected="@(org == o.OrgId)">@o.Name</option> }
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-sm btn-outline-primary">@L["Records.Show"]</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    @if (tab == "batches")
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-sm align-middle" id="records-batches">
+                                <thead><tr><th>#</th><th>@L["Org.Title"]</th><th>@L["Organization"]</th><th>@L["Org.Date"]</th><th class="text-end">@L["Org.Total"]</th><th>@L["Org.Status"]</th><th>@L["Org.Ccps"]</th><th></th></tr></thead>
+                                <tbody>
+                                    @foreach (var b in batches)
+                                    {
+                                        <tr data-batch-id="@b.Id">
+                                            <td>@b.Id</td>
+                                            <td>@b.Title</td>
+                                            <td>@(b.Owner ?? "–")</td>
+                                            <td>@b.Date?.ToString("dd.MM.yyyy")</td>
+                                            <td class="text-end">@b.Kg?.ToString("0.##")</td>
+                                            <td>@(b.Finalized ? L["Org.Finalized"] : L["Org.Draft"])</td>
+                                            <td>@Progress(b.Done, b.Ccps)</td>
+                                            <td class="text-nowrap">
+                                                <a href="/FinalHoneyProductions/Details/@b.Id" class="btn btn-sm btn-outline-secondary">@L["Details"]</a>
+                                                @if (b.Ccps > 0) { <a href="@ControlSheets.Url("batch", b.Id)" class="btn btn-sm btn-outline-secondary">@L["Sheet.Title"]</a> }
+                                                <a href="/Flow/Batch/@b.Id" class="btn btn-sm btn-outline-secondary">@L["Flow.Title"]</a>
+                                                @if (b.Finalized) { <a href="/honeystory/@b.Qr.ToString().ToUpperInvariant()" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary">@L["Open the Honey Story"]</a> }
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (!batches.Any()) { <tr><td colspan="8" class="text-muted">@L["Org.None"]</td></tr> }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-sm align-middle" id="records-lots">
+                                <thead><tr><th>#</th><th>@L["Organization"]</th><th>@L["Org.HoneyType"]</th><th>@L["Org.Date"]</th><th class="text-end">@L["Org.Amount"]</th><th>@L["Org.Ccps"]</th><th>@L["Org.Batches"]</th><th></th></tr></thead>
+                                <tbody>
+                                    @foreach (var l in lots)
+                                    {
+                                        <tr data-lot-id="@l.Id">
+                                            <td>@l.Id</td>
+                                            <td>@(l.Owner ?? "–")</td>
+                                            <td>@Ref.T("HoneyType", l.HoneyTypeId, "Title", l.HoneyType)</td>
+                                            <td>@l.Date?.ToString("dd.MM.yyyy")</td>
+                                            <td class="text-end">@l.Kg?.ToString("0.##")</td>
+                                            <td>@Progress(l.Done, l.Ccps)</td>
+                                            <td>@l.Batches</td>
+                                            <td class="text-nowrap">
+                                                @if (l.Ccps > 0) { <a href="@ControlSheets.Url("raw", l.Id)" class="btn btn-sm btn-outline-secondary">@L["Sheet.Title"]</a> }
+                                                <a href="/Flow/Lot/@l.Id" class="btn btn-sm btn-outline-secondary">@L["Flow.Title"]</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (!lots.Any()) { <tr><td colspan="8" class="text-muted">@L["Org.None"]</td></tr> }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    <p class="small text-muted mb-0">@L["Records.Latest", RecordsController.Max]</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

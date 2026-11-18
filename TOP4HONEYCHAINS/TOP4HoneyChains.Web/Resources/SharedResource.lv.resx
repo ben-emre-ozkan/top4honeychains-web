@@ -9574,4 +9574,181 @@
     <value>dzēsts</value>
     <comment>D-87: draft for partner review</comment>
   </data>
+  <data name="Area.Batch" xml:space="preserve">
+    <value>Gala partiju izveide (Jauna gala partija)</value>
+  </data>
+  <data name="Batch.New" xml:space="preserve">
+    <value>Jauna gala partija</value>
+  </data>
+  <data name="Batch.NewHelp" xml:space="preserve">
+    <value>Izvēlieties partijas un katras partijas kilogramus, kas tiks iekļauti gala partijā. Redzamas tikai jūsu organizācijas partijas, kuru visi kontrolpunkti ir pabeigti un apstiprināti un kurās vēl ir medus. Gala partija pieder jūsu organizācijai; tās kontrolpunkti tiek piešķirti uzreiz un parādās sadaļā Mans darbs.</value>
+  </data>
+  <data name="Batch.Name" xml:space="preserve">
+    <value>Gala partijas nosaukums</value>
+  </data>
+  <data name="Batch.NamePlaceholder" xml:space="preserve">
+    <value>piem., Kastaņu medus 2026/1</value>
+  </data>
+  <data name="Batch.Use" xml:space="preserve">
+    <value>Izmantot</value>
+  </data>
+  <data name="Batch.Left" xml:space="preserve">
+    <value>Atlikums (kg)</value>
+  </data>
+  <data name="Batch.Kg" xml:space="preserve">
+    <value>Kilogrami šai gala partijai</value>
+  </data>
+  <data name="Batch.Create" xml:space="preserve">
+    <value>Izveidot gala partiju</value>
+  </data>
+  <data name="Batch.NoLots" xml:space="preserve">
+    <value>Neviena partija vēl nav gatava gala partijai. Partija ir gatava, kad visi tās kontrolpunkti ir pabeigti un apstiprināti.</value>
+  </data>
+  <data name="Work.Kind.NewBatch" xml:space="preserve">
+    <value>Gala partijai gatavas partijas</value>
+  </data>
+  <data name="Only a processing or packing organization creates batches." xml:space="preserve">
+    <value>Gala partijas izveido tikai organizācija, kas pārstrādā vai iepako medu.</value>
+  </data>
+  <data name="Batches are created by {0} of the organization." xml:space="preserve">
+    <value>Gala partijas izveido organizācijas {0}.</value>
+  </data>
+  <data name="The title can be at most {0} characters." xml:space="preserve">
+    <value>Nosaukumā var būt ne vairāk kā {0} rakstzīmes.</value>
+  </data>
+  <data name="Enter the production date." xml:space="preserve">
+    <value>Ievadiet ražošanas datumu.</value>
+  </data>
+  <data name="The production date cannot be in the future." xml:space="preserve">
+    <value>Ražošanas datums nevar būt nākotnē.</value>
+  </data>
+  <data name="Choose at least one lot and the kilograms to use." xml:space="preserve">
+    <value>Izvēlieties vismaz vienu partiju un izmantojamos kilogramus.</value>
+  </data>
+  <data name="Lot #{0} cannot be used: it is not your organization's, or not all its CCPs are completed and approved, or nothing is left." xml:space="preserve">
+    <value>Partiju #{0} nevar izmantot: tā nepieder jūsu organizācijai, ne visi tās KKP ir pabeigti un apstiprināti, vai nekas nav atlicis.</value>
+  </data>
+  <data name="Lot #{0}: enter the kilograms to use." xml:space="preserve">
+    <value>Partija #{0}: ievadiet izmantojamos kilogramus.</value>
+  </data>
+  <data name="Batch created with {0} control points; they are in My work." xml:space="preserve">
+    <value>Gala partija izveidota ar {0} kontrolpunktiem; tie ir sadaļā Mans darbs.</value>
+  </data>
+  <data name="Sheet.Title" xml:space="preserve">
+    <value>Kontroles lapa</value>
+  </data>
+  <data name="Sheet.Lot" xml:space="preserve">
+    <value>Partija #{0}</value>
+  </data>
+  <data name="Sheet.Help" xml:space="preserve">
+    <value>Visi kontrolpunkti vienā lapā. Katram ir savs ieraksts, statuss un apstiprinājums; tiek veiktas tās pašas pārbaudes kā viena kontrolpunkta lapā.</value>
+  </data>
+  <data name="Sheet.NothingSaved" xml:space="preserve">
+    <value>Nekas netika saglabāts. Izlabojiet šos punktus un saglabājiet lapu vēlreiz:</value>
+  </data>
+  <data name="Sheet.Save" xml:space="preserve">
+    <value>Saglabāt lapu</value>
+  </data>
+  <data name="Sheet.OpenSingle" xml:space="preserve">
+    <value>Atvērt tikai šo kontrolpunktu</value>
+  </data>
+  <data name="Sheet.OpenSheet" xml:space="preserve">
+    <value>Atvērt kontroles lapu</value>
+  </data>
+  <data name="Sheet.ApproveTitle" xml:space="preserve">
+    <value>Apstiprināt lapu</value>
+  </data>
+  <data name="Sheet.ApproveHelp" xml:space="preserve">
+    <value>Pārbaudiet visas augstāk norādītās vērtības. Viens klikšķis apstiprina katru šeit uzskaitīto kontrolpunktu kā atsevišķu ierakstu; savus ierakstus jūs nekad neapstiprināt.</value>
+  </data>
+  <data name="Sheet.WillApprove" xml:space="preserve">
+    <value>Apstiprināmie:</value>
+  </data>
+  <data name="Sheet.CannotApprove" xml:space="preserve">
+    <value>Jūs neapstiprināt:</value>
+  </data>
+  <data name="Sheet.Approve" xml:space="preserve">
+    <value>Apstiprināt visus uzskaitītos</value>
+  </data>
+  <data name="Control sheet saved." xml:space="preserve">
+    <value>Kontroles lapa saglabāta.</value>
+  </data>
+  <data name="Nothing on this sheet can be recorded by you." xml:space="preserve">
+    <value>Šajā lapā jūs neko nevarat ierakstīt.</value>
+  </data>
+  <data name="Nothing on this sheet waits for your approval." xml:space="preserve">
+    <value>Nekas šajā lapā negaida jūsu apstiprinājumu.</value>
+  </data>
+  <data name="The sheet has values outside their limits; confirm them to approve." xml:space="preserve">
+    <value>Lapā ir vērtības ārpus robežām; apstipriniet tās, lai apstiprinātu.</value>
+  </data>
+  <data name="Approved: {0}." xml:space="preserve">
+    <value>Apstiprināts: {0}.</value>
+  </data>
+  <data name="Approved: {0} (four-eyes exemption flagged in the audit log)." xml:space="preserve">
+    <value>Apstiprināts: {0} (četru acu principa izņēmums atzīmēts audita žurnālā).</value>
+  </data>
+  <data name="ControlSheet" xml:space="preserve">
+    <value>Kontroles lapa</value>
+  </data>
+  <data name="Reg78.Association" xml:space="preserve">
+    <value>Biškopju biedrība (nav obligāti)</value>
+  </data>
+  <data name="Reg78.NoAssociation" xml:space="preserve">
+    <value>Bez biedrības</value>
+  </data>
+  <data name="Menu.Setup" xml:space="preserve">
+    <value>Iestatīšana</value>
+  </data>
+  <data name="Menu.Oversight" xml:space="preserve">
+    <value>Uzraudzība</value>
+  </data>
+  <data name="Menu.ReferenceData" xml:space="preserve">
+    <value>Atsauces dati</value>
+  </data>
+  <data name="Records.Title" xml:space="preserve">
+    <value>Ieraksti</value>
+  </data>
+  <data name="Records.Help" xml:space="preserve">
+    <value>Visu organizāciju partijas un gala partijas, tikai lasīšanai. Organizācijas ievada un apstiprina savus ierakstus; vērtību maina tikai ar labojumu, ko apstiprina otrs administrators.</value>
+  </data>
+  <data name="Records.AllOrgs" xml:space="preserve">
+    <value>Visas organizācijas</value>
+  </data>
+  <data name="Records.Show" xml:space="preserve">
+    <value>Rādīt</value>
+  </data>
+  <data name="Records.Latest" xml:space="preserve">
+    <value>Parādīti jaunākie {0}.</value>
+  </data>
+  <data name="Records.QuickHint" xml:space="preserve">
+    <value>partijas un gala partijas, tikai lasīšanai</value>
+  </data>
+  <data name="RefData.Honey" xml:space="preserve">
+    <value>Medus</value>
+  </data>
+  <data name="RefData.Help" xml:space="preserve">
+    <value>Saraksti, ko piedāvā veidlapas. To tulkojumi ir sadaļā Iestatīšana → Atsauces datu tulkojumi.</value>
+  </data>
+  <data name="Tour.Admin.Setup" xml:space="preserve">
+    <value>Iestatīšana: organizācijas, kompetences, lomas un atļaujas, KKP atbildība, biškopju reģistrs un atsauces dati.</value>
+  </data>
+  <data name="Tour.Admin.Oversight" xml:space="preserve">
+    <value>Uzraudzība: ieraksti, audita žurnāls, lietotāji, paziņojumi, datu glabāšana un labojumi. Uzņēmējdarbības dati jums ir tikai lasāmi.</value>
+  </data>
+  <data name="Phone.Title" xml:space="preserve">
+    <value>Ziņas</value>
+  </data>
+  <data name="Phone.SoundOff" xml:space="preserve">
+    <value>Skaņa izslēgta</value>
+  </data>
+  <data name="Phone.SoundOn" xml:space="preserve">
+    <value>Skaņa ieslēgta</value>
+  </data>
+  <data name="Phone.Empty" xml:space="preserve">
+    <value>Ziņu vēl nav. Jaunas ziņas šeit parādīsies pašas.</value>
+  </data>
+  <data name="Phone.Note" xml:space="preserve">
+    <value>Tikai šī numura testa ziņas. Īsta īsziņa netiek sūtīta.</value>
+  </data>
 </root>

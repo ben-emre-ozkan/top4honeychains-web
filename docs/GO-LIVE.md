@@ -124,6 +124,10 @@ Please set up for the TOP4HoneyChains site on IIS:
 - The partner test pack `TOP4-ortak-test-paketi-2026-10-28` (guides, checklists, feedback templates, credential sheets) goes to the coordinator; the credential sheets are never committed.
 - Rebuild the demo package with every new release (`DEMO_EXPORT_DIR` and `DEMO_CREDENTIALS_DIR` for the export test, `docs/partner-test/build.mjs` for the guides).
 
+### Local live-like cast (D-88, the developer's local copy only; nothing of it goes live)
+- The local copy has no demo accounts or `[DEMO]` records any more. Presentations use a fictional, live-like cast (`tools/live-like/cast.json`: a district directorate, a processing and packing plant, an accredited laboratory, a beekeepers' association, a shop, a platform operator and a consumer) and its history, built through the application by `dotnet run --project tools/live-like` (stop `run-demo.ps1` first). The logins file is written to the Downloads folder, never to the repository.
+- The cast is removed by `cleanup-live-like-cast.ps1` next to the database backup (outside the repository; without `-Commit` it only counts). Neither the tool nor the cleanup script is part of the deployment, and `Sms:PhonePageKey` exists only in the developer's user secrets.
+
 ## 2. Deployment day (in this order)
 1. [ ] **Back up the production database** (full backup) and confirm it restores. The backup stays on the DB server and never goes into the repo or the deploy package.
 2. [ ] Back up the current live site folder, including server-only uploads (`wwwroot/assets/videos/parameters/`, and `App_Data/ccp-files/`, `App_Data/org-documents/`, `App_Data/registry-proofs/`, `App_Data/intake-forms/`, `App_Data/lab-reports/`, `App_Data/consents/` once they exist, D-19, D-22, D-41, D-42, D-43).
@@ -158,6 +162,7 @@ Please set up for the TOP4HoneyChains site on IIS:
    - `027_d78_tours_seen.sql` ([D-84](DECISIONS.md)): adds the nullable `UserSettings.ToursSeen` (the first-use tour's "seen" marks). No row is changed.
    - `028_d78_retention.sql` ([D-84](DECISIONS.md), D78-SPEC 6.3): replaces the append-only triggers of `OneTimeCodes`, `SmsMessages` and `LotPrices` with versions that let the retention job through (session value `top4.retention`, set only by the job) for rows past their period. No row is changed; the job itself stays off.
    - `029_d87_consumer_accounts.sql` ([D-87](DECISIONS.md)): adds `ConsumerAccounts`, `ConsumerSavedBatches` and `ConsumerFeedback`, widens the notice audience check with `Consumer` (the old check stays, disabled, as 025 did), adds the permissions "Consumer feedback" Read and Enter for OrgAdmin, QualityApprover and ComplianceOfficer and seeds the draft consumer privacy notice in five languages. Additive and idempotent; run with `sqlcmd -I -f 65001`. The "maximum key length" warning for `PK_ConsumerSavedBatches` is expected (user ids are 36 characters).
+   - `030_d88_plant_batches.sql` ([D-88](DECISIONS.md)): adds the right "Batch" Enter (create a batch) for Staff and OrgAdmin. Without it nobody can create a batch once the organization model is on, because the administrator's batch screens are no longer in the menu. Insert-only and idempotent; run with `sqlcmd -I -f 65001`.
 5. [ ] Review users in the **Administrator** role on production and remove unknown accounts. The register role-escalation bug was live until this deployment.
 6. [ ] Also review who created the roles `Consumer`, `Wholesaler` and `SampleAcceptanceOfficer`, and any users in them. No code uses these global roles (D-60; the organization role `SampleAcceptanceOfficer` is a different thing); once reviewed they can be deleted (owner's decision, not done by a script).
 7. [ ] Make sure at least one known admin account exists with the new, strong password.
@@ -189,6 +194,7 @@ Please set up for the TOP4HoneyChains site on IIS:
 - [ ] Audit log: after a few admin actions, `/Audit` lists them (login, creates, updates) and "Verify hash chain" reports that all rows verify; an `UPDATE` on `AuditEntries` with the app's DB login is refused (D-34, D-39).
 - [ ] Error page: as an anonymous user, open `/Dashboard/Error`. Expect the "Something went wrong" page with a reference, not a login redirect. (Unhandled errors are logged with the same reference; `/honeystory/qrcode` no longer fails, it returns 404 for unknown codes.)
 - [ ] Deleting a lookup value that is in use shows "This record is in use and cannot be deleted." (no 500).
+- [ ] `/phone/<anything>/905550000101` answers 404: the phone page of the fake SMS provider (D-88) exists only with `Sms:Provider=Fake` outside Production. `Sms:PhonePageKey` is not set on the server.
 
 ## 4. Rollback
 - Restore the previous site folder.

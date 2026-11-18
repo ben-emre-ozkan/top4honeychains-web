@@ -42,6 +42,8 @@ namespace TOP4HoneyChains.Web.Models.Entities
         public const string OrgAudit = "OrgAudit";
         // D-87 (migration 029): read consumer feedback about the organization's batches; answer it (Enter)
         public const string ConsumerFeedback = "ConsumerFeedback";
+        // D-88 (migration 030): create a batch from the organization's own lots ("New batch" in My organization)
+        public const string Batch = "Batch";
 
         public const string Enter = "Enter";
         public const string Approve = "Approve";
@@ -56,6 +58,7 @@ namespace TOP4HoneyChains.Web.Models.Entities
             (Shipments, new[] { Enter, Approve, Read }),
             (Storefront, new[] { Enter, Read }),
             (Recall, new[] { Read }),
+            (Batch, new[] { Enter }),
             (Finalize, new[] { Enter, Approve }),
             (Registration, new[] { Enter, Read }),
             (Evidence, new[] { Approve }),

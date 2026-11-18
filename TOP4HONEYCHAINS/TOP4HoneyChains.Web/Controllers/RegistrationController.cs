@@ -222,6 +222,10 @@ namespace TOP4HoneyChains.Web.Controllers
             ViewBag.SignInEnabled = _signIn.Enabled;
             ViewBag.Education = new SelectList(await _context.BeekeeperEducationLevels.AsNoTracking().ToListAsync(), "BeekeeperEducationLevelId", "BeekeeperEducationLevelTitle", form.EducationLevelId).Translated(HttpContext, "EducationLevel", "Title");
             ViewBag.Purposes = new SelectList(await _context.BeekeepingPurposeTypes.AsNoTracking().ToListAsync(), "BeekeepingPurposeTypeId", "BeekeepingPurposeTypeTitle", form.PurposeTypeId).Translated(HttpContext, "BeekeepingPurposeType", "Title");
+            // D-88: the verified associations the beekeeper can be linked to
+            ViewBag.Associations = new SelectList(await _context.Organizations.AsNoTracking()
+                .Where(o => !o.IsPlatform && o.Status == OrgStatus.Verified && o.Capabilities.Any(c => c.Capability == Capabilities.Association))
+                .OrderBy(o => o.DisplayName).ToListAsync(), "OrgId", "DisplayName", form.AssociationOrgId);
             ViewBag.Types = new SelectList(await _context.BeekeepingTypes.AsNoTracking().ToListAsync(), "BeekeepingTypeId", "BeekeepingTypeTitle", form.BeekeepingTypeId).Translated(HttpContext, "BeekeepingType", "Title");
             ViewBag.Apiaries = form.IsNew ? new List<Apiary>() : await _context.Apiaries.AsNoTracking().Where(a => a.ApiaryBeekeeperId == form.BeekeeperId).ToListAsync();
             ViewBag.Notice = await HttpContext.RequestServices.GetRequiredService<NoticeService>().CurrentAsync(NoticeKind.PrivacyNotice, NoticeAudience.Beekeeper, null, null, form.Language);

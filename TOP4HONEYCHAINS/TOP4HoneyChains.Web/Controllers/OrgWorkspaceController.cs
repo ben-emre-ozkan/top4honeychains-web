@@ -72,9 +72,71 @@ namespace TOP4HoneyChains.Web.Controllers
             ViewBag.Lots = lots;
             ViewBag.Batches = batches;
             ViewBag.Readable = readable;
+            ViewBag.CanCreateBatch = PlantBatchService.Denied(ViewBag.Active as ActiveMembership, Perm) == null;
             ViewBag.Controller = "My organization";
             ViewBag.Action = "Index";
             return View();
+        }
+
+        // ---------------------------------------------------------------- new batch (D-88)
+
+        public class NewBatchModel
+        {
+            public string? Title { get; set; }
+            public DateOnly? Date { get; set; }
+            public List<PlantBatchService.Lot> Lots { get; set; } = new();
+            // the kilograms entered per lot (only for ticked lots on a post)
+            public Dictionary<int, decimal> Amounts { get; set; } = new();
+            public HashSet<int> Chosen { get; set; } = new();
+            public List<string> Problems { get; set; } = new();
+        }
+
+        private PlantBatchService Batches => HttpContext.RequestServices.GetRequiredService<PlantBatchService>();
+
+        public async Task<IActionResult> NewBatch()
+        {
+            var active = await _current.GetAsync();
+            if (PlantBatchService.Denied(active, Perm) is string denied)
+            {
+                TempData["Error"] = denied;
+                return RedirectToAction(nameof(Index));
+            }
+            var lots = await Batches.EligibleLotsAsync(active!.OrgId);
+            ViewBag.Controller = "My organization";
+            ViewBag.Action = "New batch";
+            return View(new NewBatchModel
+            {
+                Date = DateOnly.FromDateTime(DateTime.Today),
+                Lots = lots,
+                Amounts = lots.ToDictionary(l => l.LotId, l => l.Left)
+            });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> NewBatch(string? title, DateOnly? date, int[]? lots, [FromForm(Name = "kg")] Dictionary<int, decimal>? kg)
+        {
+            var active = await _current.GetAsync();
+            if (PlantBatchService.Denied(active, Perm) is string denied)
+            {
+                TempData["Error"] = denied;
+                return RedirectToAction(nameof(Index));
+            }
+            kg ??= new();
+            var chosen = (lots ?? Array.Empty<int>()).Distinct().ToList();
+            var amounts = chosen.ToDictionary(id => id, id => kg.TryGetValue(id, out var v) ? v : 0m);
+            var eligible = await Batches.EligibleLotsAsync(active!.OrgId);
+            var problems = PlantBatchService.Check(title, date, amounts, eligible, DateOnly.FromDateTime(DateTime.Today));
+            if (problems.Count > 0)
+            {
+                ViewBag.Controller = "My organization";
+                ViewBag.Action = "New batch";
+                var shown = eligible.ToDictionary(l => l.LotId, l => kg.TryGetValue(l.LotId, out var v) ? v : l.Left);
+                return View(new NewBatchModel { Title = title, Date = date, Lots = eligible, Amounts = shown, Chosen = chosen.ToHashSet(), Problems = problems });
+            }
+            var created = await Batches.CreateAsync(active.OrgId, title!, date!.Value, amounts);
+            TempData["Success"] = $"Batch created with {created.CcpCount} control points; they are in My work.";
+            return RedirectToAction(nameof(Batch), new { id = created.BatchId });
         }
 
         // Switches the active membership; the cookie only holds a choice, every request re-checks it

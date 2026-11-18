@@ -6,6 +6,12 @@
 
 <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
 
+@if (TOP4HoneyChains.Web.Services.OrgModel.ControlSheets.OnSheet(Model.OwnerKind, Model.CCPCode))
+{
+    @* D-88: the control sheet with the record's other CCPs *@
+    <a href="@TOP4HoneyChains.Web.Services.OrgModel.ControlSheets.Url(Model.OwnerKind, Model.OwnerId)" class="btn btn-sm btn-outline-primary mb-3" id="open-sheet"><i class="mdi mdi-clipboard-list-outline me-1" aria-hidden="true"></i>@L["Sheet.OpenSheet"]</a>
+}
+
 @if (Model.LockReason != null)
 {
     <div class="alert alert-warning">

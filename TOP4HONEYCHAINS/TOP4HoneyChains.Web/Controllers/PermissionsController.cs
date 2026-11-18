@@ -256,6 +256,7 @@ namespace TOP4HoneyChains.Web.Controllers
             foreach (var c in wanted.Where(c => org.Capabilities.All(x => x.Capability != c)))
                 org.Capabilities.Add(new OrgCapability { Capability = c, AddedByUserId = _current.UserId });
             await _context.SaveChangesAsync();
+            await LegacyWholesalers.EnsureAsync(_context, orgId);   // D-88
             TempData["Success"] = $"Capabilities of {org.DisplayName} saved.";
             return RedirectToAction(nameof(Index), new { tab = "capabilities" });
         }
