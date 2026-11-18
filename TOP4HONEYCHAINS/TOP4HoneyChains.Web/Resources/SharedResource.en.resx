@@ -9612,4 +9612,19 @@
   <data name="Tour.Admin.Oversight" xml:space="preserve">
     <value>Oversight: records, the audit log, users, notices, data retention and corrections. Business data is read-only for you.</value>
   </data>
+  <data name="Phone.Title" xml:space="preserve">
+    <value>Messages</value>
+  </data>
+  <data name="Phone.SoundOff" xml:space="preserve">
+    <value>Sound off</value>
+  </data>
+  <data name="Phone.SoundOn" xml:space="preserve">
+    <value>Sound on</value>
+  </data>
+  <data name="Phone.Empty" xml:space="preserve">
+    <value>No messages yet. New messages appear here by themselves.</value>
+  </data>
+  <data name="Phone.Note" xml:space="preserve">
+    <value>Test messages of this number only. No real SMS is sent.</value>
+  </data>
 </root>

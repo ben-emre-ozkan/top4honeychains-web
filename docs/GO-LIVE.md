@@ -190,6 +190,7 @@ Please set up for the TOP4HoneyChains site on IIS:
 - [ ] Audit log: after a few admin actions, `/Audit` lists them (login, creates, updates) and "Verify hash chain" reports that all rows verify; an `UPDATE` on `AuditEntries` with the app's DB login is refused (D-34, D-39).
 - [ ] Error page: as an anonymous user, open `/Dashboard/Error`. Expect the "Something went wrong" page with a reference, not a login redirect. (Unhandled errors are logged with the same reference; `/honeystory/qrcode` no longer fails, it returns 404 for unknown codes.)
 - [ ] Deleting a lookup value that is in use shows "This record is in use and cannot be deleted." (no 500).
+- [ ] `/phone/<anything>/905550000101` answers 404: the phone page of the fake SMS provider (D-88) exists only with `Sms:Provider=Fake` outside Production. `Sms:PhonePageKey` is not set on the server.
 
 ## 4. Rollback
 - Restore the previous site folder.

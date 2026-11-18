@@ -9612,4 +9612,19 @@
   <data name="Tour.Admin.Oversight" xml:space="preserve">
     <value>Denetim: kayıtlar, denetim kaydı, kullanıcılar, bildirimler, veri saklama ve düzeltmeler. İş verileri sizin için salt okunurdur.</value>
   </data>
+  <data name="Phone.Title" xml:space="preserve">
+    <value>Mesajlar</value>
+  </data>
+  <data name="Phone.SoundOff" xml:space="preserve">
+    <value>Ses kapalı</value>
+  </data>
+  <data name="Phone.SoundOn" xml:space="preserve">
+    <value>Ses açık</value>
+  </data>
+  <data name="Phone.Empty" xml:space="preserve">
+    <value>Henüz mesaj yok. Yeni mesajlar burada kendiliğinden görünür.</value>
+  </data>
+  <data name="Phone.Note" xml:space="preserve">
+    <value>Yalnızca bu numaranın test mesajları. Gerçek SMS gönderilmez.</value>
+  </data>
 </root>

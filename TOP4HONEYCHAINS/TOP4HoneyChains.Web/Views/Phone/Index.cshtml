@@ -1,0 +1,129 @@
+@{
+    // D-88: the phone page of the fake SMS provider: one number's test messages, newest on top, refreshed every 3 seconds,
+    // a short sound for a new message once sound is switched on (browsers allow sound only after a tap). No TOP4 menus.
+    Layout = null;
+    var lang = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+    string sender = ViewBag.Sender as string ?? "TOP4HONEY";
+}
+<!doctype html>
+<html lang="@lang">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="referrer" content="no-referrer">
+    <meta name="theme-color" content="#2b231d">
+    <title>@L["Phone.Title"] · @ViewBag.Number</title>
+    <style>
+        :root { --bg: #f2efe9; --bar: #2b231d; --bubble: #ffffff; --ink: #1f1a17; --muted: #7a7068; --accent: #f5a524; --new: #fff6e0; }
+        @@media (prefers-color-scheme: dark) { :root { --bg: #15120f; --bubble: #26201b; --ink: #f3ede6; --muted: #a59a90; --new: #3a2c12; } }
+        * { box-sizing: border-box; }
+        html, body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+        .bar { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; gap: 12px; padding: max(12px, env(safe-area-inset-top)) 16px 12px; background: var(--bar); color: #fff; }
+        .avatar { flex: none; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: #2b231d; font-weight: 800; }
+        .who { font-weight: 700; }
+        .num { font-size: 13px; opacity: .75; }
+        .grow { flex: 1; min-width: 0; }
+        #sound { flex: none; border: 1px solid rgba(255,255,255,.35); background: transparent; color: #fff; border-radius: 999px; padding: 6px 12px; font: inherit; font-size: 14px; }
+        #sound[aria-pressed="true"] { background: var(--accent); color: #2b231d; border-color: var(--accent); }
+        main { padding: 12px 16px 24px; display: flex; flex-direction: column; gap: 10px; max-width: 640px; margin: 0 auto; }
+        .msg { align-self: flex-start; max-width: 92%; background: var(--bubble); border-radius: 18px 18px 18px 4px; padding: 10px 14px; box-shadow: 0 1px 2px rgba(0,0,0,.08); white-space: pre-wrap; overflow-wrap: anywhere; }
+        .msg.is-new { background: var(--new); animation: pop .35s ease-out; }
+        .msg time { display: block; margin-top: 4px; font-size: 12px; color: var(--muted); text-align: right; }
+        .msg strong.code { font-size: 1.25em; letter-spacing: .08em; }
+        .msg a { color: inherit; }
+        #empty { text-align: center; color: var(--muted); padding: 32px 16px; margin: 0; }
+        footer { text-align: center; color: var(--muted); font-size: 12px; padding: 0 16px max(16px, env(safe-area-inset-bottom)); }
+        @@keyframes pop { from { transform: scale(.96); opacity: .4; } to { transform: none; opacity: 1; } }
+        @@media (prefers-reduced-motion: reduce) { .msg.is-new { animation: none; } }
+    </style>
+</head>
+<body>
+    <header class="bar">
+        <div class="avatar" aria-hidden="true">T4</div>
+        <div class="grow">
+            <div class="who">@sender</div>
+            <div class="num" id="phone-number">@ViewBag.Number</div>
+        </div>
+        <button type="button" id="sound" aria-pressed="false" data-on="@L["Phone.SoundOn"]" data-off="@L["Phone.SoundOff"]">@L["Phone.SoundOff"]</button>
+    </header>
+    <main id="messages" aria-live="polite" aria-label="@L["Phone.Title"]"></main>
+    <p id="empty">@L["Phone.Empty"]</p>
+    <footer>@L["Phone.Note"]</footer>
+    <script>
+        (function () {
+            var list = document.getElementById('messages'), empty = document.getElementById('empty'), button = document.getElementById('sound');
+            var seen = 0, firstLoad = true, audio = null, soundOn = false;
+            var when = new Intl.DateTimeFormat(document.documentElement.lang || undefined, { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+
+            function ping() {
+                if (navigator.vibrate) navigator.vibrate(80);
+                if (!soundOn || !audio) return;
+                var t = audio.currentTime;
+                [880, 1320].forEach(function (f, i) {
+                    var o = audio.createOscillator(), g = audio.createGain(), s = t + i * 0.13;
+                    o.type = 'sine'; o.frequency.value = f;
+                    g.gain.setValueAtTime(0.0001, s);
+                    g.gain.exponentialRampToValueAtTime(0.25, s + 0.01);
+                    g.gain.exponentialRampToValueAtTime(0.0001, s + 0.18);
+                    o.connect(g); g.connect(audio.destination);
+                    o.start(s); o.stop(s + 0.2);
+                });
+            }
+
+            // the text as plain text; web addresses become links and a six-digit code is set in bold
+            function fill(el, text) {
+                var re = /(https?:\/\/[^\s]+)|(\b\d{6}\b)/g, i = 0, m;
+                while ((m = re.exec(text))) {
+                    el.appendChild(document.createTextNode(text.slice(i, m.index)));
+                    var part;
+                    if (m[1]) { part = document.createElement('a'); part.href = m[1]; part.target = '_blank'; part.rel = 'noopener noreferrer'; }
+                    else { part = document.createElement('strong'); part.className = 'code'; }
+                    part.textContent = m[0];
+                    el.appendChild(part);
+                    i = m.index + m[0].length;
+                }
+                el.appendChild(document.createTextNode(text.slice(i)));
+            }
+
+            function show(rows) {
+                var fresh = rows.filter(function (r) { return r.id > seen; }).sort(function (a, b) { return a.id - b.id; });
+                fresh.forEach(function (r) {
+                    var item = document.createElement('div');
+                    item.className = 'msg' + (firstLoad ? '' : ' is-new');
+                    item.dataset.id = r.id;
+                    fill(item, r.text || '');
+                    var time = document.createElement('time');
+                    time.dateTime = r.at;
+                    time.textContent = when.format(new Date(r.at));
+                    item.appendChild(time);
+                    list.insertBefore(item, list.firstChild);
+                    seen = Math.max(seen, r.id);
+                });
+                if (fresh.length && !firstLoad) ping();
+                firstLoad = false;
+                empty.hidden = list.children.length > 0;
+            }
+
+            function poll() {
+                fetch(location.pathname.replace(/\/$/, '') + '/messages', { cache: 'no-store', credentials: 'omit' })
+                    .then(function (r) { return r.ok ? r.json() : []; })
+                    .then(show)
+                    .catch(function () { })
+                    .then(function () { setTimeout(poll, 3000); });
+            }
+
+            button.addEventListener('click', function () {
+                if (!audio) { var A = window.AudioContext || window.webkitAudioContext; if (A) audio = new A(); }
+                if (audio && audio.state === 'suspended') audio.resume();
+                soundOn = !soundOn;
+                button.setAttribute('aria-pressed', soundOn ? 'true' : 'false');
+                button.textContent = soundOn ? button.dataset.on : button.dataset.off;
+                if (soundOn) ping();
+            });
+
+            poll();
+        })();
+    </script>
+</body>
+</html>

@@ -9736,4 +9736,19 @@
   <data name="Tour.Admin.Oversight" xml:space="preserve">
     <value>Nadzór: rejestry, dziennik audytu, użytkownicy, informacje, retencja danych i korekty. Dane biznesowe są dla Ciebie tylko do odczytu.</value>
   </data>
+  <data name="Phone.Title" xml:space="preserve">
+    <value>Wiadomości</value>
+  </data>
+  <data name="Phone.SoundOff" xml:space="preserve">
+    <value>Dźwięk wyłączony</value>
+  </data>
+  <data name="Phone.SoundOn" xml:space="preserve">
+    <value>Dźwięk włączony</value>
+  </data>
+  <data name="Phone.Empty" xml:space="preserve">
+    <value>Brak wiadomości. Nowe wiadomości pojawią się tu same.</value>
+  </data>
+  <data name="Phone.Note" xml:space="preserve">
+    <value>Tylko wiadomości testowe tego numeru. Żaden prawdziwy SMS nie jest wysyłany.</value>
+  </data>
 </root>

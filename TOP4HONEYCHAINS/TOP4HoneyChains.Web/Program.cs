@@ -124,6 +124,8 @@ builder.Services.Configure<TOP4HoneyChains.Web.Services.Messaging.SmsOptions>(bu
         throw new InvalidOperationException("SMS configuration: " + string.Join(" ", errors));
 }
 builder.Services.AddSingleton(TimeProvider.System);
+// D-88: the key of the test phone page (/phone/{key}/{number}); only used while the fake provider is on, outside Production
+builder.Services.AddSingleton(new TOP4HoneyChains.Web.Services.Messaging.PhonePageKey(builder.Configuration["Sms:PhonePageKey"]));
 builder.Services.AddSingleton<TOP4HoneyChains.Web.Services.Messaging.FakeSmsStore>();
 builder.Services.AddSingleton<TOP4HoneyChains.Web.Services.Messaging.FakeSmsGateway>();
 builder.Services.AddSingleton<TOP4HoneyChains.Web.Services.Messaging.LoggingSmsGateway>();
@@ -227,6 +229,19 @@ builder.Services.AddControllersWithViews(options =>
 builder.Logging.AddProvider(new ErrorFileLoggerProvider(Path.Combine(builder.Environment.ContentRootPath, "App_Data", "logs")));
 
 var app = builder.Build();
+
+// D-88: the phone page's link, printed once the addresses are known (fake provider outside Production only)
+if (TOP4HoneyChains.Web.Services.Messaging.PhonePage.Available(app.Services.GetRequiredService<Microsoft.Extensions.Options.IOptions<TOP4HoneyChains.Web.Services.Messaging.SmsOptions>>().Value, app.Environment))
+{
+    var phoneKey = app.Services.GetRequiredService<TOP4HoneyChains.Web.Services.Messaging.PhonePageKey>();
+    app.Lifetime.ApplicationStarted.Register(() =>
+    {
+        foreach (var url in app.Urls)
+            Console.WriteLine("Test SMS phone page: " + TOP4HoneyChains.Web.Services.Messaging.PhonePage.Link(url, phoneKey.Value, "<number, digits only, e.g. 905550000101>"));
+        if (phoneKey.Generated)
+            Console.WriteLine("  (a new key at every start; run-demo.ps1 keeps one in dotnet user-secrets as Sms:PhonePageKey)");
+    });
+}
 
 if (!app.Environment.IsDevelopment())
 {
