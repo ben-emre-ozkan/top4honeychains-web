@@ -1,42 +1,76 @@
-// D-86: walks the partner test scenario "Follow one honey" through a LOCAL demo site, as the testers do it, with the demo accounts of
-// one country. It checks that the guide's steps work and saves one screenshot per step outside the repository.
-//   WALK_BASE=http://localhost:5256 WALK_COUNTRY=AR PARTNER_PACK=<pack folder> node walkthrough.mjs
-// - Runs only against localhost (a local demo site on a demo database, never the live site).
-// - Passwords are read at run time from <pack>\<country folder>\credentials.txt and never printed.
-// - SMS codes and sign-in details are read in the demo SMS inbox, like a tester reads them.
+// D-86, updated for D-88: walks the partner test scenario "Follow one honey" on the LOCAL app as the people of the live-like cast
+// (tools/live-like/cast.json), never the platform administrator: a new beekeeper is registered (code read on the beekeeper's phone
+// page), signs in to the portal and sets the asking price, delivers in sealed containers, CCP 0, the laboratory, the lot's control
+// sheet (CCP 2–3), New batch in the plant, the batch's control sheet (CCP 4–10), finalizing by two people, the shipment to the shop
+// with its storage record, the public Honey Story, and a consumer who creates an account from the story, saves the honey and sends
+// feedback that the plant answers. It checks that the steps work and saves one screenshot per step outside the repository.
+//   node docs/partner-test/walkthrough.mjs        (run-demo.ps1 running on http://localhost:5255; WALK_LANG=en|tr|es|pl|lv)
+// - Runs only against localhost (the local app on the local database, never the live site).
+// - The practice password and the phone page key are read at run time from Downloads\TOP4-local-logins.txt and never printed.
+// - Each run registers its own beekeeper (registry number TR5204013000NN, phone +90 555 000 09 NN) and consumer (zz_walk_NN), with
+//   NN unused so far; the cast's cleanup script removes them together with the cast.
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
+const repo = path.resolve(here, '..', '..');
 const { chromium } = await import(new URL('../manual/node_modules/playwright-core/index.mjs', import.meta.url));
-const BASE = (process.env.WALK_BASE || 'http://localhost:5256').replace(/\/$/, '');
-if (!/^http:\/\/localhost(:\d+)?$/.test(BASE)) throw new Error('walkthrough.mjs runs against a local demo site only');
-const COUNTRY = (process.env.WALK_COUNTRY || 'AR').toUpperCase();
+const BASE = (process.env.WALK_BASE || 'http://localhost:5255').replace(/\/$/, '');
+if (!/^http:\/\/localhost(:\d+)?$/.test(BASE)) throw new Error('walkthrough.mjs runs against the local app only');
 const LANG = process.env.WALK_LANG || 'en';
-const PACK = process.env.PARTNER_PACK;
-const FOLDERS = { AR: 'AR-Argentina', PL: 'PL-Poland', LV: 'LV-Latvia', TR: 'TR-Turkiye' };
-const OUT = path.join(os.tmpdir(), `top4-walkthrough-${COUNTRY.toLowerCase()}`);
+const OUT = path.join(os.tmpdir(), 'top4-walkthrough');
 fs.rmSync(OUT, { recursive: true, force: true });
 fs.mkdirSync(OUT, { recursive: true });
 
-const manifest = JSON.parse(fs.readFileSync(path.join(here, 'demo-manifest.json'), 'utf8'));
+const cast = JSON.parse(fs.readFileSync(path.join(repo, 'tools', 'live-like', 'cast.json'), 'utf8'));
 const values = JSON.parse(fs.readFileSync(path.join(here, 'values.json'), 'utf8'));
-const country = manifest.Countries[COUNTRY];
-const prefix = COUNTRY.toLowerCase();
-const PLAN = {
-    AR: { registry: 'AR-DEMO-0002', phone: '+54 9 343 455-03', district: 'Paraná', locality: 'Oro Verde', lat: '-31.8250', lng: '-60.5170', origin: 'AR', botanical: 'Multifloral', countryName: 'Argentina', price: '5400' },
-    PL: { registry: 'PL-DEMO-0002', phone: '+48 512 000 3', district: 'Puławy', locality: 'Żyrzyn', lat: '51.4990', lng: '22.0910', origin: 'PL', botanical: 'Multifloral', countryName: 'Polska', price: '39' },
-    LV: { registry: 'LV-DEMO-0002', phone: '+371 2000 03', district: 'Jelgava', locality: 'Ozolnieki', lat: '56.6890', lng: '23.7790', origin: 'LV', botanical: 'Multifloral', countryName: 'Latvija', price: '9.8' },
-    TR: { registry: 'TR4800000002', phone: '+90 555 000 93 ', district: 'Milas', locality: 'Kırcağız', lat: '37.3160', lng: '27.7840', origin: 'TR', botanical: 'Thyme', countryName: 'Türkiye', price: '660' },
-}[COUNTRY];
+const logins = fs.readFileSync(path.join(os.homedir(), 'Downloads', 'TOP4-local-logins.txt'), 'utf8');
+const PASSWORD = logins.match(/^Password:\s+(\S+)/m)[1];   // kept in memory only
+const KEY = logins.match(/\/phone\/([A-Za-z0-9_-]{16,64})\//)[1];
+const user = (role, org) => cast.people.find(p => p.role === role && p.org === org).user;
+const orgName = key => cast.orgs.find(o => o.key === key).name;
 
-// ---- credentials (kept in memory only)
-const passwords = {};
-for (const line of fs.readFileSync(path.join(PACK, FOLDERS[COUNTRY], 'credentials.txt'), 'utf8').split(/\r?\n/)) {
-    const m = line.match(/(\S+)\s+([A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4})\s*$/);
-    if (m) passwords[m[1]] = m[2];
+// reference data and counts only (never rows with personal data), on the local database
+function sql(query) {
+    return execFileSync('sqlcmd', ['-S', '(localdb)\\MSSQLLocalDB', '-d', 'TOP4HoneyChainsDb', '-E', '-b', '-W', '-h', '-1', '-s', '|', '-f', '65001', '-Q', 'SET NOCOUNT ON; ' + query],
+        { encoding: 'utf8' }).split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+}
+const params = Object.fromEntries(sql('SELECT p.ParameterId, c.Code, LTRIM(RTRIM(p.ParameterName)), p.DataType FROM dbo.CriticalControlPointParameters p JOIN dbo.CriticalControlPoints c ON c.Id = p.CCPId')
+    .filter(l => /^\d+\|/.test(l)).map(l => { const [id, code, name, type] = l.split('|'); return [id, { code, name, type }]; }));
+const idOf = query => sql(query).find(l => /^\d+$/.test(l));
+const honeyTypeId = idOf(`SELECT HoneyTypeId FROM dbo.HoneyTypes WHERE HoneyTypeTitle = N'${cast.history.honeyType.replace(/'/g, "''")}'`);
+const periodId = idOf(`SELECT RawHoneyProductionPeriodId FROM dbo.RawHoneyProductionPeriods WHERE RawHoneyProductionPeriodTitle = N'${cast.history.period.title.replace(/'/g, "''")}'`);
+const orgId = key => idOf(`SELECT OrgId FROM dbo.Organizations WHERE IsPlatform = 0 AND DisplayName = N'${orgName(key).replace(/'/g, "''")}'`);
+if (!honeyTypeId || !periodId || !orgId('plant')) throw new Error('the live-like cast is not in the local database: run tools/live-like first');
+
+// this run's beekeeper and consumer: the first NN whose registry number, phone and user name are all unused
+const tag = (() => {
+    const start = Date.now() % 90;
+    for (let i = 0; i < 90; i++) {
+        const nn = String((start + i) % 90 + 10);
+        const used = sql(`SELECT (SELECT COUNT(*) FROM dbo.BeekeeperRegistry WHERE RegistryNumber = N'TR52040130${nn.padStart(4, '0')}') + (SELECT COUNT(*) FROM dbo.Beekeepers WHERE BeekeeperPhoneNumber IN (N'+9055500009${nn}', N'+90 555 000 09 ${nn}')) + (SELECT COUNT(*) FROM dbo.AspNetUsers WHERE UserName = N'zz_walk_${nn}')`)[0];
+        if (used === '0') return nn;
+    }
+    throw new Error('no unused walkthrough number left');
+})();
+const bee = { registry: `TR52040130${tag.padStart(4, '0')}`, first: 'Arif', last: 'Deneme', birth: '1979-04-12', phone: `+90 555 000 09 ${tag}`, district: 'Fatsa', locality: 'Yavşan', hives: '30', lat: '41.0310', lng: '37.5120' };
+const beeDigits = bee.phone.replace(/\D/g, '');
+const CONSUMER = `zz_walk_${tag}`;
+const BATCH_TITLE = `Yaylakent Kestane Balı 2026/W${tag}`;
+const REPORT = `${cast.history.lab.reportPrefix}W${tag}`;
+
+function value(id) {
+    const p = params[id];
+    const key = `${p.code}|${p.name}`;
+    if (cast.history.values?.[key]) return cast.history.values[key];
+    if (p.type === 'Number') return values.numbers[key];
+    if (values.texts[key]) return values.texts[key].replace('{country}', 'Türkiye').replace('{botanical}', cast.history.botanical);
+    if (p.code === 'CCP 0') return p.type === 'YesNo' ? values.ccp0.yesNo
+        : Object.entries(values.ccp0).find(([k]) => k !== 'yesNo' && k !== 'text' && p.name.startsWith(k))?.[1] ?? values.ccp0.text;
+    return p.type === 'YesNo' ? values.otherYesNo : '';
 }
 
 const browser = await (async () => {
@@ -44,187 +78,200 @@ const browser = await (async () => {
     throw new Error('no browser');
 })();
 const log = (...a) => console.log(...a);
-let stepNo = 0;
 const results = [];
+let stepNo = 0;
 
-async function settle(page) {
-    await page.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {});
-    await page.waitForTimeout(150);
-}
+async function settle(page) { await page.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {}); }
 async function flash(page) {
-    return page.evaluate(() => [...document.querySelectorAll('#flash-success, #flash-error, .alert-success, .alert-danger, .au-alert, .text-danger.validation-summary-errors')]
-        .map(e => e.innerText.trim()).filter(Boolean).join(' / ').slice(0, 300));
+    return page.evaluate(() => [...document.querySelectorAll('#flash-success, #flash-error, .alert-danger')]
+        .map(e => e.innerText.replace(/\s*×\s*$/, '').trim()).filter(Boolean).join(' / ').slice(0, 300));
 }
-async function submit(page, locator) { await Promise.all([page.waitForLoadState('load'), locator.click()]); await settle(page); }
+// a step succeeded when the page shows a success message and no error
+async function success(page) {
+    const ok = await page.locator('#flash-success').count() > 0 && await page.locator('#flash-error, #db-update-error').count() === 0;
+    const text = await flash(page);
+    if (!ok) throw new Error(text || 'no success message');
+    return text;
+}
+async function submit(page, locator) { await Promise.all([page.waitForLoadState('load'), locator.first().click()]); await settle(page); }
+async function newPage(mobile = false) {
+    const context = await browser.newContext(mobile ? { viewport: { width: 390, height: 844 }, isMobile: true, locale: LANG }
+        : { viewport: { width: 1440, height: 900 }, locale: LANG, reducedMotion: 'reduce' });
+    const page = await context.newPage();
+    page.setDefaultTimeout(20000);
+    page.on('dialog', d => d.accept());
+    await page.goto(`${BASE}/Home/SetLanguage?culture=${LANG}&returnUrl=${encodeURIComponent('/')}`);
+    return page;
+}
+async function signIn(page, name, password) {
+    await page.goto(`${BASE}/Account/Login`);
+    await page.fill('#UserName', name);
+    await page.fill('#Password', password);
+    await Promise.all([page.waitForLoadState('load'), page.click('.au-submit')]);
+    await settle(page);
+    return !/\/Account\/Login/i.test(new URL(page.url()).pathname);
+}
 
 const actors = {};
-async function actor(user, password) {
-    if (actors[user]) return actors[user];
-    const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, locale: LANG, reducedMotion: 'reduce' });
-    const page = await context.newPage();
-    page.setDefaultTimeout(15000);
-    page.on('dialog', d => d.accept());
-    await page.goto(`${BASE}/Home/SetLanguage?culture=${LANG}&returnUrl=${encodeURIComponent('/Account/Login')}`);
-    await page.fill('#UserName', user);
-    await page.fill('#Password', password ?? passwords[user]);
-    await Promise.all([page.waitForURL(u => !/\/Account\/Login/i.test(u.pathname)), page.click('.au-submit')]);
-    await settle(page);
-    actors[user] = page;
-    await notices(page);
+async function actor(name) {
+    if (actors[name]) return actors[name];
+    const page = await newPage();
+    if (!await signIn(page, name, PASSWORD)) throw new Error(`${name} could not sign in`);
+    if (/\/Notices\/Accept/i.test(page.url())) {   // the notice gate, when it is switched on
+        await page.locator('#notice-accept input[name=read]').check();
+        await submit(page, page.locator('#notice-accept button[type=submit]').last());
+    }
+    actors[name] = page;
     return page;
 }
 
-// the newest message in the demo SMS inbox that matches
-async function inbox(page, re) {
-    // like a tester: the inbox opens in a new tab, the form stays as it is
-    const tab = await page.context().newPage();
-    await tab.goto(`${BASE}/Demo/Inbox`);
-    const texts = await tab.locator('#demo-inbox tbody td.sms-text').allInnerTexts();
-    await tab.close();
-    const found = texts.find(t => re.test(t));
-    if (!found) throw new Error(`no message matching ${re} in the demo SMS inbox`);
-    return found;
+// the phone page of the beekeeper's number, open like a messaging app: the newest message after the last one read
+const phone = { page: null, seen: 0 };
+async function nextMessage(re = /\b\d{6}\b/) {
+    if (!phone.page) {
+        phone.page = await newPage(true);
+        await phone.page.goto(`${BASE}/phone/${KEY}/${beeDigits}`);
+        await phone.page.waitForTimeout(1000);
+        phone.seen = Math.max(0, ...await phone.page.locator('.msg').evaluateAll(els => els.map(e => +e.dataset.id)));
+        return null;
+    }
+    const deadline = Date.now() + 15000;
+    while (Date.now() < deadline) {
+        const fresh = await phone.page.locator('.msg').evaluateAll(els => els.map(e => ({ id: +e.dataset.id, text: e.innerText })));
+        const hit = fresh.filter(m => m.id > phone.seen && re.test(m.text)).sort((a, b) => b.id - a.id)[0];
+        if (hit) { phone.seen = hit.id; return hit.text; }
+        await phone.page.waitForTimeout(500);
+    }
+    throw new Error(`no new message matching ${re} on the beekeeper's phone page`);
 }
 const codeIn = t => t.match(/\b\d{6}\b/)[0];
 
-// the notice gate at the first sign-in (Notices:Enforce on the demo site)
-async function notices(page) {
-    if (!/\/Notices\/Accept/i.test(page.url())) return;
-    if (await page.locator('#notice-send-code').count()) {
-        await submit(page, page.locator('#notice-send-code button[type=submit]'));
-        await page.fill('#code', codeIn(await inbox(page, /\b\d{6}\b/)));
-    }
-    await page.locator('#notice-accept input[name=read]').check();
-    await submit(page, page.locator('#notice-accept button[type=submit]').last());
-    if (/\/Notices\/Accept/i.test(page.url())) throw new Error('notice not accepted: ' + await flash(page));
+// what appears in someone's My work next (matched by the item's link)
+async function workOf(who, re) {
+    const page = await actor(who);
+    await page.goto(`${BASE}/MyWork/Index`); await settle(page);
+    const items = await page.locator('.work-item').evaluateAll(els => els.map(e => ({ text: e.innerText.replace(/\s+/g, ' ').trim(), href: e.getAttribute('href') || '' })));
+    const hit = items.find(i => re.test(i.href) || re.test(i.text));
+    if (!hit) throw new Error(`nothing for ${re} in the My work of ${who}`);
+    return `next: ${who} → ${hit.text}`;
 }
 
+// who: a cast user name (signed in in its own browser), or { label, page } for the beekeeper and the consumer
 async function step(title, who, fn) {
     stepNo++;
-    const page = await actor(who);
+    const page = typeof who === 'string' ? await actor(who) : who?.page ?? null;
+    const label = typeof who === 'string' ? who : who?.label ?? '-';
     const started = Date.now();
+    const shot = `${String(stepNo).padStart(2, '0')}-${title.replace(/[^\w]+/g, '-').replace(/-+$/, '').toLowerCase()}.png`;
     try {
         const note = await fn(page);
-        await page.screenshot({ path: path.join(OUT, `${String(stepNo).padStart(2, '0')}-${title.replace(/[^\w]+/g, '-').toLowerCase()}.png`) });
-        results.push({ n: stepNo, title, who, ok: true, note: note || '' });
-        log(`${String(stepNo).padStart(2)} ok   ${title} (${who}, ${((Date.now() - started) / 1000).toFixed(1)} s) ${note || ''}`);
+        if (page) await page.screenshot({ path: path.join(OUT, shot) });
+        const seconds = +((Date.now() - started) / 1000).toFixed(1);
+        results.push({ n: stepNo, title, who: label, ok: true, seconds, note: note || '' });
+        log(`${String(stepNo).padStart(2)} ok   ${seconds.toFixed(1).padStart(5)} s  ${title} (${label}) ${note || ''}`);
     } catch (e) {
-        await page.screenshot({ path: path.join(OUT, `${String(stepNo).padStart(2, '0')}-FAILED.png`), fullPage: true }).catch(() => {});
-        results.push({ n: stepNo, title, who, ok: false, note: e.message.split(String.fromCharCode(10))[0] });
-        log(`${String(stepNo).padStart(2)} FAIL ${title} (${who}): ${e.message.split('\n')[0]}`);
+        if (page) await page.screenshot({ path: path.join(OUT, `${String(stepNo).padStart(2, '0')}-FAILED.png`), fullPage: true }).catch(() => {});
+        results.push({ n: stepNo, title, who: label, ok: false, note: e.message.split('\n')[0] });
+        log(`${String(stepNo).padStart(2)} FAIL ${title}: ${e.message.split('\n')[0]}`);
         throw e;
     }
 }
 
-// fills a CCP page with the suggested values; returns the number of parameters
-async function fillCcp(page, ccpCode) {
-    const params = manifest.Parameters.filter(p => p.Ccp === ccpCode && p.Type !== 'File');
-    for (const p of params) {
-        const box = page.locator(`.ccp-param[data-parameter-id="${p.Id}"]`);
-        if (!await box.count()) continue;
-        const key = `${p.Ccp}|${p.Name.trim()}`;
-        let v;
-        if (p.Type === 'Number') v = values.numbers[key];
-        else if (values.texts[key]) v = values.texts[key].replace('{country}', PLAN.countryName).replace('{botanical}', PLAN.botanical);
-        else if (p.Ccp === 'CCP 0') v = p.Type === 'YesNo' ? values.ccp0.yesNo
-            : Object.entries(values.ccp0).find(([k]) => k !== 'yesNo' && k !== 'text' && p.Name.startsWith(k))?.[1] ?? values.ccp0.text;
-        else v = values.otherYesNo;
-        const select = box.locator('select');
-        if (await select.count()) await select.first().selectOption(v);
+// fills the CCP inputs of a page (one CCP or a control sheet) with the suggested values
+async function fillCcpBoxes(page) {
+    const ids = await page.locator('.ccp-param[data-parameter-id]').evaluateAll(els => els.map(e => e.dataset.parameterId));
+    for (const id of ids) {
+        const v = value(id);
+        if (!v) continue;
+        const box = page.locator(`.ccp-param[data-parameter-id="${id}"]`);
+        if (await box.locator('select').count()) await box.locator('select').first().selectOption(v);
         else await box.locator('input[type=text]').first().fill(v);
     }
-    return params.length;
+    return ids.length;
 }
-const ccpId = code => ({ 'CCP 0': 1, 'CCP 1': 2, 'CCP 2': 3, 'CCP 3': 4, 'CCP 4': 5, 'CCP 5': 6, 'CCP 6': 7, 'CCP 7': 8, 'CCP 8': 9, 'CCP 9': 10, 'CCP 10': 11 })[code];
-async function saveCcp(page, kind, owner, code) {
-    const url = kind === 'raw' ? `/CCPMonitoring/RawHoneyProductionManageCCP?rawHoneyProductionId=${owner}&ccpId=${ccpId(code)}`
-        : `/CCPMonitoring/FinalHoneyProductionManageCCP?finalHoneyProductionId=${owner}&ccpId=${ccpId(code)}`;
-    await page.goto(BASE + url); await settle(page);
-    const n = await fillCcp(page, code);
-    await submit(page, page.locator('form.field-form button[type=submit], form[action*="ManageCCP"] button[type=submit]').first());
-    const f = await flash(page);
-    if (!/saved/i.test(f)) throw new Error(`${code}: ${f}`);
-    return `${n} values`;
-}
-async function approveCcp(page, kind, owner, code) {
-    const url = kind === 'raw' ? `/CCPMonitoring/RawHoneyProductionManageCCP?rawHoneyProductionId=${owner}&ccpId=${ccpId(code)}`
-        : `/CCPMonitoring/FinalHoneyProductionManageCCP?finalHoneyProductionId=${owner}&ccpId=${ccpId(code)}`;
-    await page.goto(BASE + url); await settle(page);
-    await submit(page, page.locator('#approve-form button[type=submit]').first());
-    const f = await flash(page);
-    if (!/approved/i.test(f)) throw new Error(`${code} approval: ${f}`);
+// the approve button; when values are outside their limits the page asks to confirm in a dialog
+async function approveWithDialog(page, button, dialog) {
+    const navigation = page.waitForNavigation({ timeout: 4000 }).then(() => true).catch(() => false);
+    await page.locator(button).click();
+    if (!await navigation) await Promise.all([page.waitForNavigation(), page.locator(`${dialog} .oolc-confirm`).click()]);
+    await settle(page);
 }
 
-const U = k => `${prefix}.${k}`;
-const tag = String(Date.now() % 90 + 10);
-const registry = PLAN.registry + tag;
-const phone = PLAN.phone + tag;
-let regId, business, lot, intake, batch, qr, beePassword;
+const reg = user('RegistrationOfficer', 'directorate'), sao = user('SampleAcceptanceOfficer', 'plant'), staff = user('Staff', 'plant'), qa = user('QualityApprover', 'plant');
+const analyst = user('Analyst', 'lab'), labManager = user('LabManager', 'lab'), shop = user('Staff', 'shop'), shopQa = user('QualityApprover', 'shop');
+let business, lot, batch, composite, qr, portal, story;
 
 try {
-    // 1. registration
-    await step('Register a beekeeper', U('registration'), async page => {
+    await nextMessage();   // the beekeeper's phone page is open before anything is sent
+
+    // 1. registration by the directorate's registration officer, confirmed with the code from the beekeeper's phone
+    await step('Register a beekeeper', reg, async page => {
         await page.goto(`${BASE}/Registration/Index`); await settle(page);
-        await page.fill('#number', registry);
+        await page.fill('#number', bee.registry);
         await submit(page, page.locator('#registration-find button[type=submit]'));
         if (!/Registration\/New/.test(page.url())) throw new Error('find: ' + await flash(page));
-        await page.fill('#FirstName', '[DEMO] Walk');
-        await page.fill('#LastName', 'Through ' + tag);
-        await page.fill('#BirthDate', '1980-05-17');
-        await page.fill('#Phone', phone);
-        await page.selectOption('#Language', LANG === 'en' ? ({ AR: 'es', PL: 'pl', LV: 'lv', TR: 'tr' })[COUNTRY] : LANG).catch(() => {});
-        await page.selectOption('#ap-province', { label: country.Province });
+        await page.fill('#FirstName', bee.first);
+        await page.fill('#LastName', bee.last);
+        await page.fill('#BirthDate', bee.birth);
+        await page.fill('#Phone', bee.phone);
+        await page.selectOption('#Language', 'tr').catch(() => {});
+        await page.selectOption('#AssociationOrgId', orgId('association'));
+        await page.selectOption('#ap-province', { label: 'Ordu' });
         await page.waitForFunction(() => document.getElementById('ap-district').options.length > 1);
-        await page.selectOption('#ap-district', { label: PLAN.district });
-        await page.fill('#ap-locality', PLAN.locality);
-        await page.fill('#ApiaryHives', '24');
-        await page.fill('#ApiaryLocationLatitude', PLAN.lat);
-        await page.fill('#ApiaryLocationLongitude', PLAN.lng);
-        await page.check('#PublicName');
-        await page.check('#PortalNotifications');
-        await page.check('#Attest');
-        if (await page.locator('#IssueSignIn').count()) await page.check('#IssueSignIn');
+        await page.selectOption('#ap-district', { label: bee.district });
+        await page.fill('#ap-locality', bee.locality);
+        await page.fill('#ApiaryHives', bee.hives);
+        await page.fill('#ApiaryLocationLatitude', bee.lat);
+        await page.fill('#ApiaryLocationLongitude', bee.lng);
+        for (const box of ['#PublicName', '#PortalNotifications', '#Attest', '#IssueSignIn']) if (await page.locator(box).count()) await page.check(box);
         await submit(page, page.locator('#registration-send'));
         if (!await page.locator('#Code').count()) throw new Error('code not sent: ' + (await page.locator('#registration-errors').innerText().catch(() => '')));
-        await page.fill('#Code', codeIn(await inbox(page, /\b\d{6}\b/)));
+        await page.fill('#Code', codeIn(await nextMessage()));
         await submit(page, page.locator('#registration-confirm'));
-        const f = await flash(page);
-        if (!/registered/i.test(f)) throw new Error(f);
-        regId = page.url().split('/').pop();
-        business = (await page.evaluate(() => document.body.innerText)).match(/[A-Z]{2}-BEE-DEMO-\d{6}/)[0];
-        return `${business}; ${f}`;
+        const f = await success(page);
+        business = (await page.evaluate(() => document.body.innerText)).match(/TR-BEE-\d{4}-\d{6}/)?.[0];
+        return `${bee.registry}, ${bee.phone}; ${f}`;
     });
 
-    // 2. sign-in details for the portal (if not sent with the registration)
-    await step('Sign-in details for the beekeeper portal', U('registration'), async page => {
-        let sms = await inbox(page, new RegExp(business)).catch(() => null);
-        if (!sms) {
-            await page.goto(`${BASE}/Registration/Details/${regId}`); await settle(page);
-            await submit(page, page.locator('#issue-sign-in button[type=submit]'));
-            sms = await inbox(page, new RegExp(business));
+    // 2. the beekeeper reads the sign-in details on the phone and chooses a password
+    await step('The beekeeper signs in to the portal', { label: 'the beekeeper' }, async () => {
+        const sms = await nextMessage(/TR-BEE-\d{4}-\d{6}/);
+        business = sms.match(/TR-BEE-\d{4}-\d{6}/)[0];
+        portal = await newPage(true);
+        let ok = false;
+        for (const candidate of sms.match(/(?<![A-Za-z0-9-])[A-HJ-NP-Za-km-z2-9]{10}(?![A-Za-z0-9-])/g) || [])
+            if (await signIn(portal, business, candidate)) { ok = true; break; }
+        if (!ok) throw new Error('the temporary password did not work');
+        if (/FirstPassword/i.test(portal.url())) {
+            const fields = portal.locator('input[type=password]');
+            await fields.nth(0).fill(PASSWORD); await fields.nth(1).fill(PASSWORD);
+            await submit(portal, portal.locator('form button[type=submit]'));
         }
-        const candidates = sms.match(/(?<![A-Za-z0-9-])[ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789]{10}(?![A-Za-z0-9-])/g) || [];
-        beePassword = candidates;
-        return `${candidates.length} candidate(s) for the temporary password`;
+        await portal.screenshot({ path: path.join(OUT, `${String(stepNo).padStart(2, '0')}-portal.png`) });
+        return `portal account ${business}`;
     });
 
-    // 3. delivery with two containers, confirmed by the beekeeper's SMS code
-    await step('Record a delivery with sealed containers', U('reception'), async page => {
+    // 3. the delivery in sealed containers, confirmed by the beekeeper's code
+    await step('Record a delivery with sealed containers', sao, async page => {
         await page.goto(`${BASE}/Intake/Create?number=${encodeURIComponent(business)}`); await settle(page);
-        await page.selectOption('#HoneyTypeId', { index: 1 }).catch(() => {});
-        await page.selectOption('#OriginCountry', PLAN.origin).catch(() => {});
+        if (!(await page.locator('#ApiaryId').inputValue())) await page.locator('#ApiaryId').selectOption({ index: 1 });
+        await page.selectOption('#HoneyTypeId', honeyTypeId);
+        await page.selectOption('#PeriodId', periodId);
         const prov = page.locator('select[data-province-select]').first();
-        await prov.selectOption({ label: country.Province });
+        await prov.selectOption({ label: 'Ordu' });
         const did = await prov.getAttribute('data-province-select');
         await page.waitForFunction(id => document.getElementById(id).options.length > 1, did);
-        await page.locator('#' + did).selectOption({ label: PLAN.district });
-        await page.selectOption('#LabOrgId', { label: (await page.locator('#LabOrgId option').allInnerTexts()).find(o => o.includes(country.Orgs.lab.Name)) });
-        await page.fill('#CounterLocation', '[DEMO] Shelf B2');
+        await page.locator('#' + did).selectOption({ label: bee.district });
+        if (!(await page.locator('#DeliveryDate').inputValue())) await page.fill('#DeliveryDate', new Date().toISOString().slice(0, 10));
+        await page.selectOption('#OriginCountry', 'TR').catch(() => {});
+        await page.selectOption('#LabOrgId', orgId('lab'));
+        if (!(await page.locator('#RetainUntil').inputValue())) { const d = new Date(); d.setFullYear(d.getFullYear() + 2); await page.fill('#RetainUntil', d.toISOString().slice(0, 10)); }
+        await page.fill('#CounterLocation', 'Numune arşivi, raf B2');
         if (await page.locator('#containers tbody tr').count() < 2) await page.click('#add-container');
         const rows = page.locator('#containers tbody tr');
         const plan = [
-            { net: '22', gross: '23.4', sealed: true, origin: `${COUNTRY}-W-${tag}1`, jar: `${COUNTRY}-WJ-${tag}1`, counter: `${COUNTRY}-WK-${tag}1`, reseal: `${COUNTRY}-WP-${tag}1` },
-            { net: '19.5', gross: '20.8', sealed: false, plant: `${COUNTRY}-WP-${tag}2`, jar: `${COUNTRY}-WJ-${tag}2`, counter: `${COUNTRY}-WK-${tag}2`, reseal: `${COUNTRY}-WP-${tag}3` },
+            { net: '24.2', gross: '25.6', origin: `YAB-2026-W${tag}1`, jar: `YBG-J-W${tag}1`, counter: `YBG-K-W${tag}1`, reseal: `YBG-P-W${tag}1` },
+            { net: '20.9', gross: '22.3', origin: `YAB-2026-W${tag}2`, jar: `YBG-J-W${tag}2`, counter: `YBG-K-W${tag}2`, reseal: `YBG-P-W${tag}2` }
         ];
         for (let i = 0; i < plan.length; i++) {
             const r = rows.nth(i), p = plan[i];
@@ -232,8 +279,7 @@ try {
             await f('Kind').selectOption({ index: 0 });
             await f('NetKg').fill(p.net);
             await f('GrossKg').fill(p.gross);
-            if (p.sealed) { await f('ArrivedSealed').check(); await f('OriginSeal').fill(p.origin); await f('OriginSealIntact').check(); }
-            else { await f('ArrivedSealed').uncheck(); await f('PlantSeal').fill(p.plant); }
+            await f('ArrivedSealed').check(); await f('OriginSeal').fill(p.origin); await f('OriginSealIntact').check();
             await f('JarSeal').fill(p.jar);
             await f('CounterSeal').fill(p.counter);
             await f('CapIntact').check();
@@ -241,210 +287,198 @@ try {
         }
         await submit(page, page.locator('#intake-send'));
         if (!await page.locator('#Code').count()) throw new Error('code not sent: ' + (await page.locator('#intake-errors').innerText().catch(() => '')));
-        await page.fill('#Code', codeIn(await inbox(page, /\b\d{6}\b/)));
+        await page.fill('#Code', codeIn(await nextMessage()));
         await submit(page, page.locator('#intake-confirm'));
-        intake = page.url().split('/').pop();
-        const f = await flash(page);
-        return `intake ${intake}: ${f}`;
+        const f = await success(page);
+        lot = f.match(/#(\d+)/)?.[1];
+        if (!lot) throw new Error('no lot number: ' + f);
+        return `${f} ${await workOf(sao, new RegExp(`rawHoneyProductionId=${lot}&ccpId=1`))}`;
     });
 
-    // 4. the beekeeper: portal, own password, asking price
-    await step('Beekeeper sets the asking price', U('reception'), async () => {
-        let page;
-        for (const candidate of beePassword) {
-            const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, locale: LANG });
-            page = await context.newPage();
-            page.on('dialog', d => d.accept());
-            await page.goto(`${BASE}/Home/SetLanguage?culture=${LANG}&returnUrl=${encodeURIComponent('/Account/Login')}`);
-            await page.fill('#UserName', business);
-            await page.fill('#Password', candidate);
-            await Promise.all([page.waitForLoadState('load'), page.click('.au-submit')]);
-            if (!/\/Account\/Login/i.test(new URL(page.url()).pathname)) break;
-            await context.close(); page = null;
-        }
-        if (!page) throw new Error('the temporary password did not work');
-        if (/FirstPassword/i.test(page.url())) {
-            const pw = 'Walk-' + Math.random().toString(36).slice(2, 10) + '-Demo';
-            const fields = page.locator('input[type=password]');
-            await fields.nth(0).fill(pw); await fields.nth(1).fill(pw);
-            await submit(page, page.locator('form button[type=submit]').first());
-        }
-        await notices(page);
-        await page.goto(`${BASE}/Me/Deliveries`); await settle(page);
-        const form = page.locator('form:has(input[name=pricePerKg])').first();
-        await form.locator('input[name=pricePerKg]').fill(PLAN.price);
-        await submit(page, form.locator('button[type=submit]'));
-        const f = await flash(page);
-        lot = await form.locator('input[name=lotId]').inputValue().catch(() => null) ?? lot;
-        await page.screenshot({ path: path.join(OUT, '04b-portal.png') });
-        if (!/saved/i.test(f)) throw new Error(f);
-        return f;
+    // 4. the beekeeper enters the asking price for this delivery in the portal
+    await step('The beekeeper sets the asking price', { label: 'the beekeeper' }, async () => {
+        await portal.goto(`${BASE}/Me/Deliveries`); await settle(portal);
+        const form = portal.locator(`form.price-form:has(input[name=lotId][value="${lot}"])`);
+        await form.locator('input[name=pricePerKg]').fill('650');
+        await submit(portal, form.locator('button[type=submit]'));
+        await portal.screenshot({ path: path.join(OUT, `${String(stepNo).padStart(2, '0')}-asking-price.png`) });
+        return await success(portal);
     });
-    lot = lot || (await (async () => { const p = actors[U('reception')]; await p.goto(`${BASE}/Intake/Details/${intake}`); return (await p.content()).match(/rawHoneyProductionId=(\d+)/)?.[1]; })());
 
-    // 5. CCP 0 entered and approved
-    await step('CCP 0 entered', U('reception'), page => saveCcp(page, 'raw', lot, 'CCP 0'));
-    await step('CCP 0 approved', U('quality'), page => approveCcp(page, 'raw', lot, 'CCP 0'));
+    // 5. CCP 0
+    await step('CCP 0 entered', sao, async page => {
+        await page.goto(`${BASE}/CCPMonitoring/RawHoneyProductionManageCCP?rawHoneyProductionId=${lot}&ccpId=1`); await settle(page);
+        const n = await fillCcpBoxes(page);
+        await submit(page, page.locator('form.field-form button[type=submit]'));
+        return `${n} values; ${await success(page)} ${await workOf(qa, new RegExp(`rawHoneyProductionId=${lot}&ccpId=1`))}`;
+    });
+    await step('CCP 0 approved', qa, async page => {
+        await page.goto(`${BASE}/CCPMonitoring/RawHoneyProductionManageCCP?rawHoneyProductionId=${lot}&ccpId=1`); await settle(page);
+        await approveWithDialog(page, '#approve-button', '#oolc-approve-form');
+        return await success(page);
+    });
 
-    // 6. lab reception, composite, results, approval
-    await step('Lab receives the jars', U('analyst'), async page => {
+    // 6. the laboratory: reception of the jars, composite, results, approval by the lab manager (completes CCP 1)
+    await step('Lab receives the jars and makes the composite', analyst, async page => {
         for (let i = 0; i < 4; i++) {
             await page.goto(`${BASE}/Samples/Index`); await settle(page);
             const form = page.locator('form.receive-jar-form').first();
             if (!await form.count()) break;
             for (const name of ['sealMatches', 'labelIntact', 'capIntact']) await form.locator(`input[name=${name}][value=true]`).check();
-            await submit(page, form.locator('button[type=submit]').first());
+            await submit(page, form.locator('button[type=submit]'));
         }
         await page.goto(`${BASE}/Samples/Index`); await settle(page);
-        await submit(page, page.locator('#composite-ready button[type=submit], form[action*="Composite"] button[type=submit]').first());
+        await submit(page, page.locator('#composite-ready button[type=submit], form[action*="Composite"] button[type=submit]'));
         if (!/LabReports\/Edit/.test(page.url())) throw new Error('composite: ' + await flash(page));
-        return page.url();
+        composite = page.url().split('/').pop();
+        return 'composite sample, report form open';
     });
-    await step('Lab results entered and submitted', U('analyst'), async page => {
-        await page.fill('#reportNumber', `DEMO-${COUNTRY}-WALK-${tag}`);
+    await step('Lab results entered and submitted', analyst, async page => {
+        await page.fill('#reportNumber', REPORT);
         await page.fill('#issuedOn', new Date().toISOString().slice(0, 10));
-        for (const p of manifest.Parameters.filter(x => x.Ccp === 'CCP 1' && x.Type !== 'File')) {
-            const input = page.locator(`[name="values[${p.Id}]"]`);
-            const v = p.Type === 'Number' ? values.numbers[`CCP 1|${p.Name.trim()}`] : values.texts[`CCP 1|${p.Name.trim()}`] ?? 'Yes';
-            if ((await input.evaluate(e => e.tagName)) === 'SELECT') await input.selectOption(v); else await input.fill(v);
+        const ids = await page.locator('[name^="values["]').evaluateAll(els => els.map(e => e.name.match(/\d+/)[0]));
+        for (const id of ids) {
+            const input = page.locator(`[name="values[${id}]"]`);
+            if ((await input.evaluate(e => e.tagName)) === 'SELECT') await input.selectOption(value(id)); else await input.fill(value(id));
         }
-        await page.setInputFiles('#reportFile', path.join(PACK, FOLDERS[COUNTRY], 'demo-lab-report.pdf'));
-        await submit(page, page.locator('#required-save, #report-form button[type=submit]').first());
+        const pdf = path.join(os.tmpdir(), `walkthrough-${REPORT}.pdf`);
+        fs.writeFileSync(pdf, '%PDF-1.4\n1 0 obj<</Type/Catalog>>endobj\ntrailer<</Root 1 0 R>>\n%%EOF\n');
+        await page.setInputFiles('#reportFile', pdf);
+        await submit(page, page.locator('#required-save, #report-form button[type=submit]'));
+        fs.rmSync(pdf, { force: true });
         await submit(page, page.locator('#submit-report'));
-        const f = await flash(page);
-        if (!/submitted/i.test(f)) throw new Error(f);
-        return f;
+        return `${ids.length} results; ${await success(page)} ${await workOf(labManager, new RegExp(`LabReports/Edit/${composite}`))}`;
     });
-    const reportUrl = actors[U('analyst')].url();
-    await step('Lab report approved', U('labmanager'), async page => {
-        await page.goto(reportUrl); await settle(page);
+    await step('Lab report approved', labManager, async page => {
+        await page.goto(`${BASE}/LabReports/Edit/${composite}`); await settle(page);
         await submit(page, page.locator('#approve-report'));
-        const f = await flash(page);
-        if (!/approved/i.test(f)) throw new Error(f);
-        return f;
+        return `${await success(page)} ${await workOf(staff, new RegExp(`kind=raw&id=${lot}`))}`;
     });
 
-    // 7. CCP 2-3
-    for (const code of ['CCP 2', 'CCP 3']) {
-        await step(`${code} entered`, U('staff'), page => saveCcp(page, 'raw', lot, code));
-        await step(`${code} approved`, U('quality'), page => approveCcp(page, 'raw', lot, code));
-    }
+    // 7. the lot's control sheet (CCP 2–3): entered by the plant's staff, approved in one action by the QA officer
+    await step('Lot control sheet (CCP 2-3) entered', staff, async page => {
+        await page.goto(`${BASE}/CCPMonitoring/Sheet?kind=raw&id=${lot}`); await settle(page);
+        const n = await fillCcpBoxes(page);
+        await submit(page, page.locator('#sheet-save'));
+        return `${n} values; ${await success(page)} ${await workOf(qa, new RegExp(`kind=raw&id=${lot}`))}`;
+    });
+    await step('Lot control sheet approved', qa, async page => {
+        await page.goto(`${BASE}/CCPMonitoring/Sheet?kind=raw&id=${lot}`); await settle(page);
+        await approveWithDialog(page, '#sheet-approve-button', '#oolc-sheet-approve-form');
+        return `${await success(page)} ${await workOf(staff, /OrgWorkspace\/NewBatch/)}`;
+    });
 
-    // 8. the batch (platform administrator)
-    await step('Batch created by the administrator', U('admin'), async page => {
-        const plant = country.Orgs.plant.Name;
-        await page.goto(`${BASE}/Wholesalers/Index`); await settle(page);
-        const ws = await page.evaluate(name => {
-            const row = [...document.querySelectorAll('tr')].find(r => r.innerText.includes(name));
-            const a = row && [...row.querySelectorAll('a')].find(x => /wholesalerId=|Details\/|Edit\//.test(x.href));
-            return a ? (a.href.match(/wholesalerId=(\d+)/) || a.href.match(/\/(\d+)(\?|$)/))[1] : null;
-        }, plant);
-        await page.goto(`${BASE}/FinalHoneyProductions/Create?wholesalerId=${ws}`); await settle(page);
-        await page.fill('#FinalHoneyProductionTitle', `[DEMO] Walkthrough ${tag}`);
-        await page.fill('#FinalHoneyProductionDate', new Date().toISOString().slice(0, 10));
-        await submit(page, page.locator('form[action*="/FinalHoneyProductions/Create"] button[type=submit]').first());
-        batch = page.url().match(/ManageBatch\/(\d+)/)?.[1];
+    // 8. the plant creates the batch from its approved lot
+    await step('New batch in the plant', staff, async page => {
+        await page.goto(`${BASE}/OrgWorkspace/Index`); await settle(page);
+        await submit(page, page.locator('#link-new-batch'));
+        for (const id of await page.locator('#new-batch-lots tbody tr').evaluateAll(els => els.map(e => e.dataset.lotId)))
+            if (id !== lot) await page.locator(`#use-${id}`).uncheck();
+        await page.fill('#batch-title', BATCH_TITLE);
+        await submit(page, page.locator('#new-batch-submit'));
+        batch = page.url().match(/\/OrgWorkspace\/Batch\/(\d+)/)?.[1];
         if (!batch) throw new Error('batch: ' + await flash(page));
-        await page.locator(`input[name="usedAmounts[${lot}]"]`).fill('41.5');
-        await page.evaluate(() => document.getElementById('manageBatchForm').submit());
-        await settle(page);
-        await page.goto(`${BASE}/FinalHoneyProductions/ManageCCP/${batch}`); await settle(page);
-        await page.evaluate(() => document.querySelectorAll('input[name=SelectedCCPIds]').forEach(i => { i.checked = true; i.dispatchEvent(new Event('change', { bubbles: true })); }));
-        await submit(page, page.locator('form:has(input[name=SelectedCCPIds]) button[type=submit]').first());
-        await page.goto(`${BASE}/FinalHoneyProductions/Edit/${batch}`); await settle(page);
-        await page.selectOption('#OwnerOrgId', { label: plant });
-        await submit(page, page.locator('form:has(#OwnerOrgId) button[type=submit]').first());
-        return `batch ${batch}`;
+        return `${await success(page)} ${await workOf(staff, new RegExp(`kind=batch&id=${batch}`))}`;
     });
 
-    // 9. batch CCP 4-10
-    for (const code of ['CCP 4', 'CCP 5', 'CCP 6', 'CCP 7', 'CCP 8', 'CCP 9', 'CCP 10']) {
-        await step(`${code} entered`, U('staff'), page => saveCcp(page, 'batch', batch, code));
-        await step(`${code} approved`, U('quality'), page => approveCcp(page, 'batch', batch, code));
-    }
-
-    // 10. finalize
-    await step('Finalizing requested', U('staff'), async page => {
-        await page.goto(`${BASE}/OrgWorkspace/Batch/${batch}`); await settle(page);
-        await submit(page, page.locator('#request-finalize button[type=submit], #request-finalize').first());
-        return await flash(page);
+    // 9. the batch's control sheet (CCP 4–10)
+    await step('Batch control sheet (CCP 4-10) entered', staff, async page => {
+        await page.goto(`${BASE}/CCPMonitoring/Sheet?kind=batch&id=${batch}`); await settle(page);
+        const n = await fillCcpBoxes(page);
+        await submit(page, page.locator('#sheet-save'));
+        return `${n} values; ${await success(page)} ${await workOf(qa, new RegExp(`kind=batch&id=${batch}`))}`;
     });
-    await step('Batch finalized (sealed)', U('quality'), async page => {
+    await step('Batch control sheet approved', qa, async page => {
+        await page.goto(`${BASE}/CCPMonitoring/Sheet?kind=batch&id=${batch}`); await settle(page);
+        await approveWithDialog(page, '#sheet-approve-button', '#oolc-sheet-approve-form');
+        return await success(page);
+    });
+
+    // 10. finalizing by two people
+    await step('Finalizing requested', staff, async page => {
         await page.goto(`${BASE}/OrgWorkspace/Batch/${batch}`); await settle(page);
-        await submit(page, page.locator('#confirm-finalize button[type=submit], #confirm-finalize').first());
-        const f = await flash(page);
-        if (!/finalized/i.test(f)) throw new Error(f);
-        qr = (await page.content()).match(/honeystory\/([0-9a-f-]{36})/i)?.[1];
-        return `${f} QR ${qr ? 'found' : 'missing'}`;
+        await submit(page, page.locator('#request-finalize'));
+        return `${await success(page)} ${await workOf(qa, new RegExp(`OrgWorkspace/Batch/${batch}`))}`;
+    });
+    await step('Batch finalized (sealed)', qa, async page => {
+        await page.goto(`${BASE}/OrgWorkspace/Batch/${batch}`); await settle(page);
+        await submit(page, page.locator('#confirm-finalize'));
+        const f = await success(page);
+        qr = (await page.content()).match(/honeystory\/([0-9A-Fa-f-]{36})/)?.[1];
+        if (!qr) throw new Error('no Honey Story link after finalizing');
+        return f;
     });
 
     // 11. ship, receive, store
-    await step('Shipment to the shop', U('staff'), async page => {
+    await step('Shipment to the shop', staff, async page => {
         await page.goto(`${BASE}/Shipments/Create?batchId=${batch}`); await settle(page);
-        await page.selectOption('#toOrgId', { label: country.Orgs.shop.Name });
-        await page.fill('#quantity', '12');
+        await page.selectOption('#toOrgId', orgId('shop'));
+        await page.fill('#quantity', '15');
         await submit(page, page.locator('#ship-form button[type=submit]'));
-        return await flash(page);
+        return `${await success(page)} ${await workOf(shop, new RegExp(BATCH_TITLE.replace(/[/]/g, '.')))}`;
     });
-    await step('Shop confirms receipt', U('shop'), async page => {
+    await step('Shop confirms receipt', shop, async page => {
         await page.goto(`${BASE}/Shipments/Index`); await settle(page);
-        await submit(page, page.locator('#incoming form.decide-form button[name=confirm][value=true]').first());
-        return await flash(page);
+        await submit(page, page.locator('#incoming form.decide-form button[name=confirm][value=true]'));
+        return await success(page);
     });
-    await step('Shop records storage (CCP 10)', U('shop'), async page => {
+    await step('Shop records storage (CCP 10)', shop, async page => {
         await page.goto(`${BASE}/Shipments/Storage?batchId=${batch}`); await settle(page);
-        for (const p of manifest.Parameters.filter(x => x.Ccp === 'CCP 10'))
-            await page.locator(`[name="values[${p.Id}]"]`).fill(values.numbers[`CCP 10|${p.Name.trim()}`]);
+        const ids = await page.locator('#storage-form [name^="values["]').evaluateAll(els => els.map(e => e.name.match(/\d+/)[0]));
+        for (const id of ids) await page.locator(`#storage-form [name="values[${id}]"]`).fill(value(id));
         await submit(page, page.locator('#storage-form button[type=submit]'));
-        return await flash(page);
+        return `${await success(page)} ${await workOf(shopQa, new RegExp(`Storage\\?batchId=${batch}|CCP 10 · ${BATCH_TITLE.replace(/[/]/g, '.')}`))}`;
     });
-    await step('Shop approves storage', U('shopquality'), async page => {
+    await step('Shop approves storage', shopQa, async page => {
         await page.goto(`${BASE}/Shipments/Storage?batchId=${batch}`); await settle(page);
-        await submit(page, page.locator('#storage-approve-form button[type=submit]').first());
-        return await flash(page);
+        await submit(page, page.locator('#storage-approve-form button[type=submit]'));
+        return await success(page);
     });
 
-    // 12. Compliance Officer: the plant's sampling quality, then the directorate's signed photo
-    async function switchTo(page, orgName) {
-        const form = page.locator('form.role-switch-form').filter({ hasText: orgName }).first();
-        if (await form.locator('button[disabled]').count()) return;
-        await Promise.all([page.waitForNavigation(),
-            page.evaluate(name => [...document.querySelectorAll('form.role-switch-form')].find(f => f.innerText.includes(name)).submit(), orgName)]);
-        await settle(page);
-    }
-    await step('Compliance Officer reviews sampling quality', U('compliance'), async page => {
-        await switchTo(page, country.Orgs.plant.Name);
-        await page.goto(`${BASE}/Compliance/Index`); await settle(page);
-        const review = page.locator('form.review-form').first();
-        if (await review.count()) {
-            await page.evaluate(() => document.querySelectorAll('details:has(form.review-form)').forEach(d => d.open = true));
-            await review.locator('input[name=outcome][value=InOrder]').check();
-            await review.locator('textarea[name=finding]').fill('[DEMO] Checked the rejected jar and its replacement.');
-            await submit(page, review.locator('button[type=submit]'));
-        }
-        return await flash(page);
+    // 12. the consumer: the public Honey Story on a phone, an account from the story, save, feedback, the plant's answer
+    story = await newPage(true);
+    await step('Consumer opens the Honey Story', { label: 'anyone, without signing in', page: story }, async page => {
+        await page.goto(`${BASE}/honeystory/${qr}`); await settle(page);
+        if (!(await page.evaluate(() => document.body.innerText)).includes(`${bee.first} ${bee.last}`)) throw new Error('the Honey Story does not name the beekeeper');
+        return 'beekeeper named';
     });
-    await step('Compliance Officer accepts a signed photo', U('compliance'), async page => {
-        await switchTo(page, country.Orgs.authority.Name);
-        await page.goto(`${BASE}/Registration/Details/${country.Beekeepers.b3.RegistrationId}`); await settle(page);
-        if (!await page.locator('#evidence-review').count()) return 'already reviewed (seeded item used before)';
-        await submit(page, page.locator('#evidence-review button[name=accept][value=true]').first());
-        return await flash(page);
+    await step('Consumer creates an account and saves the honey', { label: CONSUMER, page: story }, async page => {
+        await submit(page, page.locator('#consumer-anon a[href*="/Consumer/SignUp"]'));
+        await page.fill('#UserName', CONSUMER);
+        await page.fill('#Password', PASSWORD);
+        await page.fill('#ConfirmPassword', PASSWORD);
+        await page.selectOption('#Language', LANG).catch(() => {});
+        await page.locator('input[name=IsAdult][type=checkbox]').check();
+        await page.locator('input[name=AcceptNotice][type=checkbox]').check();
+        await page.waitForTimeout(3500);   // the form refuses a sending faster than a person types
+        await submit(page, page.locator('#consumer-signup-form button[type=submit]'));
+        await submit(page, page.locator('#consumer-save'));
+        await submit(page, page.locator('#save-form button[type=submit]'));
+        return `${CONSUMER}: ${await success(page)}`;
     });
-
-    // 13. the consumer
-    await step('Consumer opens the Honey Story', U('staff'), async page => {
-        const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, locale: LANG });
-        const p = await ctx.newPage();
-        await p.goto(`${BASE}/honeystory/${qr}`); await settle(p);
-        const text = await p.evaluate(() => document.body.innerText);
-        await p.screenshot({ path: path.join(OUT, '99-honey-story.png'), fullPage: true });
-        await ctx.close();
-        if (!text.includes('[DEMO] Walk')) throw new Error('the Honey Story does not name the beekeeper');
-        return 'name shown';
+    await step('Consumer sends feedback', { label: CONSUMER, page: story }, async page => {
+        await page.goto(`${BASE}/Consumer/Feedback?qr=${qr}`); await settle(page);
+        const category = page.locator('select[name=category]');
+        if (await category.count()) await category.selectOption({ index: 1 }); else await page.locator('input[name=category]').first().check();
+        await page.fill('#message', 'Lovely chestnut honey. Does it crystallize, and how should I store it?');
+        await submit(page, page.locator('#feedback-form button[type=submit]'));
+        return `${await success(page)} ${await workOf(qa, /ConsumerFeedback\/Details/)}`;
+    });
+    await step('The plant answers the feedback', qa, async page => {
+        await page.goto(`${BASE}/ConsumerFeedback`); await settle(page);
+        const href = await page.locator('a[href*="/ConsumerFeedback/Details/"]').filter({ hasText: BATCH_TITLE }).first().getAttribute('href');
+        await page.goto(BASE + href); await settle(page);
+        await page.fill('#answer', 'Thank you! Chestnut honey crystallizes slowly. Keep it closed at room temperature, away from sunlight.');
+        await submit(page, page.locator('#answer-form button[type=submit]'));
+        return await success(page);
+    });
+    await step('The consumer reads the answer', { label: CONSUMER, page: story }, async page => {
+        await page.goto(`${BASE}/Consumer`); await settle(page);
+        if (!/crystallizes slowly/.test(await page.locator('#my-feedback').innerText())) throw new Error('the answer is not shown to the consumer');
+        return 'answer shown under My feedback';
     });
 } finally {
-    fs.writeFileSync(path.join(OUT, 'results.json'), JSON.stringify({ country: COUNTRY, lang: LANG, results }, null, 2));
+    fs.writeFileSync(path.join(OUT, 'results.json'), JSON.stringify({ lang: LANG, registry: bee.registry, phone: bee.phone, consumer: CONSUMER, lot, batch, results }, null, 2));
     log(`screenshots and results.json in ${OUT}`);
     await browser.close();
 }

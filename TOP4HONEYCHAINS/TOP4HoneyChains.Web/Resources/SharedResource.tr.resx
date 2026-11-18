@@ -9627,4 +9627,31 @@
   <data name="Phone.Note" xml:space="preserve">
     <value>Yalnızca bu numaranın test mesajları. Gerçek SMS gönderilmez.</value>
   </data>
+  <data name="Org.LabAccreditation" xml:space="preserve">
+    <value>Laboratuvar akreditasyonu</value>
+  </data>
+  <data name="Org.LabAccreditationHelp" xml:space="preserve">
+    <value>Yalnızca Laboratuvar yeteneğiyle. Akredite laboratuvar için akreditasyon numarası gerekir.</value>
+  </data>
+  <data name="Org.IsAccredited" xml:space="preserve">
+    <value>Laboratuvar akredite</value>
+  </data>
+  <data name="Org.AccreditationNumber" xml:space="preserve">
+    <value>Akreditasyon numarası</value>
+  </data>
+  <data name="Org.AccreditationValidUntil" xml:space="preserve">
+    <value>Akreditasyon geçerlilik sonu</value>
+  </data>
+  <data name="Accreditation applies only to an organization with the Laboratory capability." xml:space="preserve">
+    <value>Akreditasyon yalnızca Laboratuvar yeteneği olan bir kuruluş için geçerlidir.</value>
+  </data>
+  <data name="The accreditation number can be at most 100 characters." xml:space="preserve">
+    <value>Akreditasyon numarası en fazla 100 karakter olabilir.</value>
+  </data>
+  <data name="Lot #{0} is a delivery of the same honey type from this apiary on the same day." xml:space="preserve">
+    <value>Lot #{0}, bu arılıktan aynı gün aynı bal türünde yapılmış bir teslimattır.</value>
+  </data>
+  <data name="Check that this is another delivery." xml:space="preserve">
+    <value>Bunun ayrı bir teslimat olduğunu kontrol edin.</value>
+  </data>
 </root>

@@ -9627,4 +9627,31 @@
   <data name="Phone.Note" xml:space="preserve">
     <value>Test messages of this number only. No real SMS is sent.</value>
   </data>
+  <data name="Org.LabAccreditation" xml:space="preserve">
+    <value>Laboratory accreditation</value>
+  </data>
+  <data name="Org.LabAccreditationHelp" xml:space="preserve">
+    <value>Only with the Laboratory capability. An accredited laboratory needs its accreditation number.</value>
+  </data>
+  <data name="Org.IsAccredited" xml:space="preserve">
+    <value>The laboratory is accredited</value>
+  </data>
+  <data name="Org.AccreditationNumber" xml:space="preserve">
+    <value>Accreditation number</value>
+  </data>
+  <data name="Org.AccreditationValidUntil" xml:space="preserve">
+    <value>Accreditation valid until</value>
+  </data>
+  <data name="Accreditation applies only to an organization with the Laboratory capability." xml:space="preserve">
+    <value>Accreditation applies only to an organization with the Laboratory capability.</value>
+  </data>
+  <data name="The accreditation number can be at most 100 characters." xml:space="preserve">
+    <value>The accreditation number can be at most 100 characters.</value>
+  </data>
+  <data name="Lot #{0} is a delivery of the same honey type from this apiary on the same day." xml:space="preserve">
+    <value>Lot #{0} is a delivery of the same honey type from this apiary on the same day.</value>
+  </data>
+  <data name="Check that this is another delivery." xml:space="preserve">
+    <value>Check that this is another delivery.</value>
+  </data>
 </root>

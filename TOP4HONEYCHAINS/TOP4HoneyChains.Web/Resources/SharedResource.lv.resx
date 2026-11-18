@@ -9751,4 +9751,31 @@
   <data name="Phone.Note" xml:space="preserve">
     <value>Tikai šī numura testa ziņas. Īsta īsziņa netiek sūtīta.</value>
   </data>
+  <data name="Org.LabAccreditation" xml:space="preserve">
+    <value>Laboratorijas akreditācija</value>
+  </data>
+  <data name="Org.LabAccreditationHelp" xml:space="preserve">
+    <value>Tikai ar kompetenci Laboratorija. Akreditētai laboratorijai nepieciešams akreditācijas numurs.</value>
+  </data>
+  <data name="Org.IsAccredited" xml:space="preserve">
+    <value>Laboratorija ir akreditēta</value>
+  </data>
+  <data name="Org.AccreditationNumber" xml:space="preserve">
+    <value>Akreditācijas numurs</value>
+  </data>
+  <data name="Org.AccreditationValidUntil" xml:space="preserve">
+    <value>Akreditācija derīga līdz</value>
+  </data>
+  <data name="Accreditation applies only to an organization with the Laboratory capability." xml:space="preserve">
+    <value>Akreditācija attiecas tikai uz organizāciju ar kompetenci Laboratorija.</value>
+  </data>
+  <data name="The accreditation number can be at most 100 characters." xml:space="preserve">
+    <value>Akreditācijas numurā var būt ne vairāk kā 100 rakstzīmju.</value>
+  </data>
+  <data name="Lot #{0} is a delivery of the same honey type from this apiary on the same day." xml:space="preserve">
+    <value>Partija #{0} ir tā paša medus veida piegāde no šīs dravas tajā pašā dienā.</value>
+  </data>
+  <data name="Check that this is another delivery." xml:space="preserve">
+    <value>Pārbaudiet, vai tā ir cita piegāde.</value>
+  </data>
 </root>

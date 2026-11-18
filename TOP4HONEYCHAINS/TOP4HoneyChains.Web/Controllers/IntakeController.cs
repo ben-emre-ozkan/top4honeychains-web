@@ -193,8 +193,6 @@ namespace TOP4HoneyChains.Web.Controllers
                 error = "Attach the photo of the signed delivery form.";
             else if (fileError != null)
                 error = fileError;
-            else if (await _context.RawHoneyProductions.AnyAsync(r => r.RawHoneyProductionApiaryId == apiaryId && r.RawHoneyProductionPeriodId == periodId && r.RawHoneyProductionHoneyType == honeyTypeId))
-                error = "This apiary already has a production record for the selected period and honey type.";
 
             if (error != null)
             {
@@ -202,6 +200,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 return RedirectToAction(nameof(Create), new { number });
             }
 
+            // D-88 follow-up: several deliveries per apiary and period; the same honey type on the same day is pointed out after saving
+            var sameDay = await SameDayLotAsync(apiaryId, honeyTypeId, deliveryDate!.Value);
             var (stored, sha) = await FileStore.SaveAsync(_env, IntakeForms, deliveryForm!);
             int newLotId;
             var org = await _context.Organizations.AsNoTracking().FirstAsync(o => o.OrgId == active.OrgId);
@@ -258,6 +258,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 await _context.SaveChangesAsync();
                 await transaction.CommitAsync();
                 TempData["Success"] = $"Delivery recorded as lot #{lot.RawHoneyProductionId}.";
+                if (sameDay != null)
+                    TempData["Info"] = $"Lot #{sameDay} is a delivery of the same honey type from this apiary on the same day. Check that this is another delivery.";
                 newLotId = lot.RawHoneyProductionId;
             }
             catch
