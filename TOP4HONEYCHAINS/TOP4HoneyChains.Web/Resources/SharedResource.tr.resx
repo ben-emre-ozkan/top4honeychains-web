@@ -9510,4 +9510,67 @@
   <data name="Batch created with {0} control points; they are in My work." xml:space="preserve">
     <value>Parti {0} kontrol noktasıyla oluşturuldu; kontrol noktaları İşlerim'de.</value>
   </data>
+  <data name="Sheet.Title" xml:space="preserve">
+    <value>Kontrol formu</value>
+  </data>
+  <data name="Sheet.Lot" xml:space="preserve">
+    <value>Lot #{0}</value>
+  </data>
+  <data name="Sheet.Help" xml:space="preserve">
+    <value>Tüm kontrol noktaları tek sayfada. Her biri kendi kaydını, durumunu ve onayını korur; tek bir kontrol noktasının sayfasındaki denetimlerin aynısı uygulanır.</value>
+  </data>
+  <data name="Sheet.NothingSaved" xml:space="preserve">
+    <value>Hiçbir şey kaydedilmedi. Şu noktaları düzeltip formu yeniden kaydedin:</value>
+  </data>
+  <data name="Sheet.Save" xml:space="preserve">
+    <value>Formu kaydet</value>
+  </data>
+  <data name="Sheet.OpenSingle" xml:space="preserve">
+    <value>Bu kontrol noktasını ayrı aç</value>
+  </data>
+  <data name="Sheet.OpenSheet" xml:space="preserve">
+    <value>Kontrol formunu aç</value>
+  </data>
+  <data name="Sheet.ApproveTitle" xml:space="preserve">
+    <value>Formu onayla</value>
+  </data>
+  <data name="Sheet.ApproveHelp" xml:space="preserve">
+    <value>Yukarıdaki tüm değerleri kontrol edin. Tek tıklama, burada listelenen her kontrol noktasını ayrı bir kayıt olarak onaylar; kendi girdiğiniz kayıtları siz onaylayamazsınız.</value>
+  </data>
+  <data name="Sheet.WillApprove" xml:space="preserve">
+    <value>Onaylanacaklar:</value>
+  </data>
+  <data name="Sheet.CannotApprove" xml:space="preserve">
+    <value>Sizin onaylamadıklarınız:</value>
+  </data>
+  <data name="Sheet.Approve" xml:space="preserve">
+    <value>Listelenenlerin hepsini onayla</value>
+  </data>
+  <data name="Control sheet saved." xml:space="preserve">
+    <value>Kontrol formu kaydedildi.</value>
+  </data>
+  <data name="Nothing on this sheet can be recorded by you." xml:space="preserve">
+    <value>Bu formda sizin girebileceğiniz bir şey yok.</value>
+  </data>
+  <data name="Nothing on this sheet waits for your approval." xml:space="preserve">
+    <value>Bu formda onayınızı bekleyen bir şey yok.</value>
+  </data>
+  <data name="The sheet has values outside their limits; confirm them to approve." xml:space="preserve">
+    <value>Formda sınır dışında değerler var; onaylamak için bunları teyit edin.</value>
+  </data>
+  <data name="Approved: {0}." xml:space="preserve">
+    <value>Onaylandı: {0}.</value>
+  </data>
+  <data name="Approved: {0} (four-eyes exemption flagged in the audit log)." xml:space="preserve">
+    <value>Onaylandı: {0} (dört göz muafiyeti denetim kaydında işaretlendi).</value>
+  </data>
+  <data name="ControlSheet" xml:space="preserve">
+    <value>Kontrol formu</value>
+  </data>
+  <data name="Reg78.Association" xml:space="preserve">
+    <value>Arıcılar birliği (isteğe bağlı)</value>
+  </data>
+  <data name="Reg78.NoAssociation" xml:space="preserve">
+    <value>Birlik yok</value>
+  </data>
 </root>

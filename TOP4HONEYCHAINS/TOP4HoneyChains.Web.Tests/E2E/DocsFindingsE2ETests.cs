@@ -166,7 +166,8 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             var s = await SeedAsync();
             var qa1 = await MemberAsync("e2e_d75_qa1_" + s.Suffix, s.Processor, OrgRoles.QualityApprover);
             var qa2 = await MemberAsync("e2e_d75_qa2_" + s.Suffix, s.Processor, OrgRoles.QualityApprover);
-            var url = $"rawHoneyProductionId={s.LotNa}&amp;ccpId={s.Ccp2}";
+            // D-88: lot CCP 2–3 are offered as one item that opens the lot's control sheet
+            var url = $"/CCPMonitoring/Sheet?kind=raw&amp;id={s.LotNa}";
 
             Assert.DoesNotContain(url, await qa1.HtmlAsync("/MyWork/Index"));
             Assert.Contains(url, await qa2.HtmlAsync("/MyWork/Index"));

@@ -29,6 +29,11 @@
                            asp-route-finalHoneyProductionId="@Model.FinalHoneyProductionId" asp-route-ccpId="@a.FinalHoneyCCPAssignmentCCP"
                            class="btn btn-sm @(done(a.FinalHoneyCCPAssignmentStatus, a.ApprovedAt, a.FinalHoneyCCPAssignmentCCP) ? "btn-success" : "btn-secondary") me-1 mb-1">@Ref.Code(a.CCP?.Code)</a>
                     }
+                    @if (batchCan.Count > 0)
+                    {
+                        @* D-88: every batch CCP on one page *@
+                        <div class="mt-2"><a href="@TOP4HoneyChains.Web.Services.OrgModel.ControlSheets.Url("batch", Model.FinalHoneyProductionId)" class="btn btn-primary" id="open-sheet"><i class="mdi mdi-clipboard-list-outline me-1" aria-hidden="true"></i>@L["Sheet.OpenSheet"]</a></div>
+                    }
 
                     <h5 class="card-title mt-4">@L["Org.SourceLots"]</h5>
                     <p class="small text-muted">@L["Org.SourceLotsHelp"]</p>

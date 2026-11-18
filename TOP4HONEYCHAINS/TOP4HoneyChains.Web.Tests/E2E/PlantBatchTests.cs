@@ -119,7 +119,8 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             Assert.Equal(expected, batch.FinalHoneyCCPAssignments.Select(a => a.FinalHoneyCCPAssignmentCCP).OrderBy(i => i).ToList());
             Assert.All(batch.FinalHoneyCCPAssignments, a => Assert.Equal(AssignmentStatusIds.Assigned, a.FinalHoneyCCPAssignmentStatus));
             Assert.False(batch.FinalHoneyProductionIsFinalized);
-            Assert.Contains($"finalHoneyProductionId={batchId}", await staff.HtmlAsync("/MyWork/Index"));
+            // D-88: the batch's CCPs are one My work item that opens the control sheet
+            Assert.Contains($"/CCPMonitoring/Sheet?kind=batch&amp;id={batchId}", await staff.HtmlAsync("/MyWork/Index"));
 
             // 40 kg are left of the lot, so it is offered again with that amount
             Assert.Contains("value=\"40\"", await staff.HtmlAsync("/OrgWorkspace/NewBatch"));

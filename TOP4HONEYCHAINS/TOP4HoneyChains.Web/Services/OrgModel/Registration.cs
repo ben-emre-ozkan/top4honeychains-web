@@ -45,6 +45,8 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         public string? FallbackReason { get; set; }
         // O-15: only offered while Features:BeekeeperAccounts is on
         public bool IssueSignIn { get; set; }
+        // D-88: the beekeeper's association (optional), linked at registration instead of by the platform administrator
+        public int? AssociationOrgId { get; set; }
 
         public bool IsNew => string.IsNullOrEmpty(BeekeeperId);
         public bool HasApiary => ApiaryLatitude != null || ApiaryLongitude != null || !string.IsNullOrWhiteSpace(ApiaryProvince)
@@ -183,6 +185,9 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                     errors.Add(placeError);
             }
 
+            if (f.AssociationOrgId != null && !await _context.Organizations.AnyAsync(o => o.OrgId == f.AssociationOrgId && !o.IsPlatform
+                    && o.Status == OrgStatus.Verified && o.Capabilities.Any(c => c.Capability == Capabilities.Association)))
+                errors.Add("Choose an organization with the Association capability.");
             if (!f.Attest)
                 errors.Add("Confirm the attestation: you have seen the identity document and the registry record.");
             if (!SmsTemplates.Languages.Contains(f.Language ?? ""))
@@ -201,7 +206,7 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                 f.ApiaryLatitude?.ToString("0.#########", CultureInfo.InvariantCulture) ?? "", f.ApiaryLongitude?.ToString("0.#########", CultureInfo.InvariantCulture) ?? "",
                 f.ApiaryProvince ?? "", f.ApiaryDistrictId?.ToString(CultureInfo.InvariantCulture) ?? "", f.ApiaryLocality?.Trim() ?? "",
                 f.ApiaryHives?.ToString(CultureInfo.InvariantCulture) ?? "", f.PublicName ? "name:yes" : "name:no", f.PortalNotifications ? "sms:yes" : "sms:no"
-            }));
+            }.Concat(f.AssociationOrgId is int association ? new[] { "association:" + association.ToString(CultureInfo.InvariantCulture) } : Array.Empty<string>())));
 
         public static string SubjectKey(RegistrationForm f) => f.BeekeeperId ?? f.DraftKey!;
 
@@ -297,6 +302,21 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                     DocumentStoredFileName = evidence?.Stored, DocumentOriginalFileName = evidence?.Original is string d ? Trim(d, 260) : null, DocumentSha256 = evidence?.Sha256,
                     RecordedByUserId = officerUserId, RecordedAt = now
                 });
+            }
+            // D-88: the association chosen at registration; an earlier link ends (history kept)
+            if (f.AssociationOrgId is int associationId)
+            {
+                var today = DateOnly.FromDateTime(now);
+                var link = await _context.BeekeeperAssociations.FirstOrDefaultAsync(a => a.BeekeeperId == beekeeper.BeekeeperId && a.ValidTo == null);
+                if (link?.AssociationOrgId != associationId)
+                {
+                    if (link != null)
+                        link.ValidTo = today;
+                    _context.BeekeeperAssociations.Add(new BeekeeperAssociation
+                    {
+                        BeekeeperId = beekeeper.BeekeeperId!, AssociationOrgId = associationId, ValidFrom = today, CreatedByUserId = officerUserId
+                    });
+                }
             }
             await _context.SaveChangesAsync();
             await transaction.CommitAsync();

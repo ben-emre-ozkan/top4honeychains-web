@@ -127,7 +127,7 @@
                                         </div>
                                     }
                                     <input type="file" class="form-control shadow-sm" accept=".pdf,.jpg,.jpeg,.png,.webp" data-camera="@(Model.OrgModelOn ? L["Mob.Camera"].Value : null)"
-                                           name="Groups[@i].Parameters[@j].File" />
+                                           name="@Html.NameFor(m => m.Groups[i].Parameters[j].File)" />
                                     <small class="text-muted">@UploadValidatorRule</small>
                                 </div>
                                 break;

@@ -9634,4 +9634,67 @@
   <data name="Batch created with {0} control points; they are in My work." xml:space="preserve">
     <value>Gala partija izveidota ar {0} kontrolpunktiem; tie ir sadaļā Mans darbs.</value>
   </data>
+  <data name="Sheet.Title" xml:space="preserve">
+    <value>Kontroles lapa</value>
+  </data>
+  <data name="Sheet.Lot" xml:space="preserve">
+    <value>Partija #{0}</value>
+  </data>
+  <data name="Sheet.Help" xml:space="preserve">
+    <value>Visi kontrolpunkti vienā lapā. Katram ir savs ieraksts, statuss un apstiprinājums; tiek veiktas tās pašas pārbaudes kā viena kontrolpunkta lapā.</value>
+  </data>
+  <data name="Sheet.NothingSaved" xml:space="preserve">
+    <value>Nekas netika saglabāts. Izlabojiet šos punktus un saglabājiet lapu vēlreiz:</value>
+  </data>
+  <data name="Sheet.Save" xml:space="preserve">
+    <value>Saglabāt lapu</value>
+  </data>
+  <data name="Sheet.OpenSingle" xml:space="preserve">
+    <value>Atvērt tikai šo kontrolpunktu</value>
+  </data>
+  <data name="Sheet.OpenSheet" xml:space="preserve">
+    <value>Atvērt kontroles lapu</value>
+  </data>
+  <data name="Sheet.ApproveTitle" xml:space="preserve">
+    <value>Apstiprināt lapu</value>
+  </data>
+  <data name="Sheet.ApproveHelp" xml:space="preserve">
+    <value>Pārbaudiet visas augstāk norādītās vērtības. Viens klikšķis apstiprina katru šeit uzskaitīto kontrolpunktu kā atsevišķu ierakstu; savus ierakstus jūs nekad neapstiprināt.</value>
+  </data>
+  <data name="Sheet.WillApprove" xml:space="preserve">
+    <value>Apstiprināmie:</value>
+  </data>
+  <data name="Sheet.CannotApprove" xml:space="preserve">
+    <value>Jūs neapstiprināt:</value>
+  </data>
+  <data name="Sheet.Approve" xml:space="preserve">
+    <value>Apstiprināt visus uzskaitītos</value>
+  </data>
+  <data name="Control sheet saved." xml:space="preserve">
+    <value>Kontroles lapa saglabāta.</value>
+  </data>
+  <data name="Nothing on this sheet can be recorded by you." xml:space="preserve">
+    <value>Šajā lapā jūs neko nevarat ierakstīt.</value>
+  </data>
+  <data name="Nothing on this sheet waits for your approval." xml:space="preserve">
+    <value>Nekas šajā lapā negaida jūsu apstiprinājumu.</value>
+  </data>
+  <data name="The sheet has values outside their limits; confirm them to approve." xml:space="preserve">
+    <value>Lapā ir vērtības ārpus robežām; apstipriniet tās, lai apstiprinātu.</value>
+  </data>
+  <data name="Approved: {0}." xml:space="preserve">
+    <value>Apstiprināts: {0}.</value>
+  </data>
+  <data name="Approved: {0} (four-eyes exemption flagged in the audit log)." xml:space="preserve">
+    <value>Apstiprināts: {0} (četru acu principa izņēmums atzīmēts audita žurnālā).</value>
+  </data>
+  <data name="ControlSheet" xml:space="preserve">
+    <value>Kontroles lapa</value>
+  </data>
+  <data name="Reg78.Association" xml:space="preserve">
+    <value>Biškopju biedrība (nav obligāti)</value>
+  </data>
+  <data name="Reg78.NoAssociation" xml:space="preserve">
+    <value>Bez biedrības</value>
+  </data>
 </root>

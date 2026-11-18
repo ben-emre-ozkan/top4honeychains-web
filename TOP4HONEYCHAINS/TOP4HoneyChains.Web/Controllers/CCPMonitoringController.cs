@@ -19,7 +19,7 @@ namespace TOP4HoneyChains.Web.Controllers
     // Administrators (v1.0); with Features:OrgRoleModel also organization members, checked per record
     // by CcpAuthorizationHandler (read / enter / approve)
     [Authorize(Policy = AuthPolicies.PanelUser)]
-    public class CCPMonitoringController : Controller
+    public partial class CCPMonitoringController : Controller
     {
         private const string FileFolder = "App_Data/ccp-files";
 
@@ -755,26 +755,69 @@ namespace TOP4HoneyChains.Web.Controllers
         // Returns null on success, or the list of errors (nothing saved).
         private async Task<List<string>?> SaveValuesAsync(Owner owner, int ownerId, int ccpId, List<CCPParameterGroup>? groups)
         {
-            var assignment = await FindAssignmentAsync(owner, ownerId, ccpId);
-            if (assignment == null)
-                return new() { "This CCP is not assigned here, so no values can be recorded." };
-            if (await LockReasonAsync(owner, ownerId) is string lockReason)
-                return new() { lockReason };
-            if (assignment.Status == AssignmentStatusIds.NotApplicable)
-                return new() { "This CCP is marked \"Not applicable\". Remove that mark first to record values." };
-            var enter = await AuthorizeAsync(owner, ownerId, ccpId, CcpOperations.Enter);
-            if (!enter.Succeeded)
-                return new() { ReasonOf(enter) ?? "Your role can read this CCP but not record it." };
-            var active = await _current.GetAsync();
-            var changed = false;
+            var (assignment, refused) = await CheckEntryAsync(owner, ownerId, ccpId);
+            if (refused != null)
+                return new() { refused };
 
             var parameters = (await LoadParametersAsync(ccpId)).ToDictionary(p => p.ParameterId);
-            var posted = (groups ?? new()).SelectMany(g => g.Parameters ?? new())
+            var posted = PostedInputs(parameters, groups);
+            var errors = await ValidateValuesAsync(parameters, posted);
+            if (errors.Count > 0)
+                return errors;
+
+            var files = new FileChanges(Path.Combine(_env.ContentRootPath, FileFolder));
+            await using var transaction = await _context.Database.BeginTransactionAsync();
+            try
+            {
+                await StoreValuesAsync(owner, ownerId, ccpId, assignment!, parameters, posted, files);
+                await transaction.CommitAsync();
+            }
+            catch
+            {
+                files.RollBack();
+                throw;
+            }
+            files.Commit();
+            return null;
+        }
+
+        // D-88: the checks before values of one CCP record may be stored; the refusal, or the assignment
+        private async Task<(AssignmentRef? Assignment, string? Refused)> CheckEntryAsync(Owner owner, int ownerId, int ccpId)
+        {
+            var assignment = await FindAssignmentAsync(owner, ownerId, ccpId);
+            if (assignment == null)
+                return (null, "This CCP is not assigned here, so no values can be recorded.");
+            if (await LockReasonAsync(owner, ownerId) is string lockReason)
+                return (null, lockReason);
+            if (assignment.Status == AssignmentStatusIds.NotApplicable)
+                return (null, "This CCP is marked \"Not applicable\". Remove that mark first to record values.");
+            var enter = await AuthorizeAsync(owner, ownerId, ccpId, CcpOperations.Enter);
+            if (!enter.Succeeded)
+                return (null, ReasonOf(enter) ?? "Your role can read this CCP but not record it.");
+            return (assignment, null);
+        }
+
+        // the posted inputs of one CCP: parameters of other CCPs ignored, one input per parameter
+        private static List<CCPParameterInput> PostedInputs(Dictionary<int, CriticalControlPointParameter> parameters, List<CCPParameterGroup>? groups) =>
+            (groups ?? new()).SelectMany(g => g.Parameters ?? new())
                 .Where(p => parameters.ContainsKey(p.ParameterId))   // ignore ids of other CCPs
                 .GroupBy(p => p.ParameterId).Select(g => g.First())
                 .ToList();
 
-            // 1) validate everything first
+        // New and replaced uploads of a save: new files are removed when the save fails, replaced ones when it succeeds
+        private sealed class FileChanges
+        {
+            public string Dir { get; }
+            public List<string> New { get; } = new();
+            public List<string> Obsolete { get; } = new();
+            public FileChanges(string dir) => Dir = dir;
+            public void RollBack() { foreach (var f in New) TryDelete(Path.Combine(Dir, f)); }
+            public void Commit() { foreach (var f in Obsolete) TryDelete(Path.Combine(Dir, Path.GetFileName(f))); }
+        }
+
+        // 1) the values of one CCP, checked by data type and length; the inputs are trimmed. Errors in English (translated when shown).
+        private static async Task<List<string>> ValidateValuesAsync(Dictionary<int, CriticalControlPointParameter> parameters, List<CCPParameterInput> posted)
+        {
             var errors = new List<string>();
             foreach (var input in posted)
             {
@@ -813,16 +856,17 @@ namespace TOP4HoneyChains.Web.Controllers
                 if (input.Notes?.Length > 500)
                     errors.Add($"{name}: the notes can be at most 500 characters.");
             }
-            if (errors.Count > 0)
-                return errors;
+            return errors;
+        }
 
-            // 2) store
-            var dir = Path.Combine(_env.ContentRootPath, FileFolder);
-            var newFiles = new List<string>();
-            var obsoleteFiles = new List<string>();
-
-            await using var transaction = await _context.Database.BeginTransactionAsync();
-            try
+        // 2) to 4): stores the validated values of one CCP inside the caller's transaction, then refreshes the range flags and
+        // the status. Uploaded files are recorded in files (removed again by the caller when the save fails).
+        private async Task StoreValuesAsync(Owner owner, int ownerId, int ccpId, AssignmentRef assignment,
+            Dictionary<int, CriticalControlPointParameter> parameters, List<CCPParameterInput> posted, FileChanges files)
+        {
+            var active = await _current.GetAsync();
+            var changed = false;
+            var dir = files.Dir;
             {
                 var existingLogs = await LogsOf(owner, ownerId, ccpId).ToListAsync();
                 foreach (var input in posted)
@@ -842,10 +886,10 @@ namespace TOP4HoneyChains.Web.Controllers
                             var stored = Guid.NewGuid().ToString("N") + UploadValidator.SafeDocumentExtension(input.File);
                             await using (var fs = new FileStream(Path.Combine(dir, stored), FileMode.CreateNew))
                                 await input.File.CopyToAsync(fs);
-                            newFiles.Add(stored);
+                            files.New.Add(stored);
 
                             if (log?.StoredFileName != null)
-                                obsoleteFiles.Add(log.StoredFileName);
+                                files.Obsolete.Add(log.StoredFileName);
                             log ??= NewLog(owner, ownerId, ccpId, p.ParameterId);
                             changed = true;
                             log.RecordedByUserId = _current.UserId;
@@ -859,7 +903,7 @@ namespace TOP4HoneyChains.Web.Controllers
                         else if (input.RemoveFile && log != null)
                         {
                             if (log.StoredFileName != null)
-                                obsoleteFiles.Add(log.StoredFileName);
+                                files.Obsolete.Add(log.StoredFileName);
                             _context.CriticalControlPointMonitoringLogs.Remove(log);
                             changed = true;
                         }
@@ -916,18 +960,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 assignment.EndDate = complete ? (assignment.EndDate ?? DateTime.Now) : null;
 
                 await _context.SaveChangesAsync();
-                await transaction.CommitAsync();
             }
-            catch
-            {
-                foreach (var f in newFiles)
-                    TryDelete(Path.Combine(dir, f));
-                throw;
-            }
-
-            foreach (var f in obsoleteFiles)
-                TryDelete(Path.Combine(dir, Path.GetFileName(f)));
-            return null;
         }
 
         // In-range flags of all values of a lot/batch CCP; siblings are the numeric values of the same record

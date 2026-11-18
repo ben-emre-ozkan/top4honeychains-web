@@ -142,6 +142,48 @@ namespace TOP4HoneyChains.Web.Tests.E2E
 
         private static Dictionary<string, string> Op(Dictionary<string, string> form, string op) => new(form) { ["op"] = op };
 
+        // D-88: the registration officer links the beekeeper's association; the SMS code covers the choice; no administrator step
+        [Fact]
+        public async Task The_officer_links_the_beekeepers_association_at_registration()
+        {
+            var d = await DirectorateAsync("reg88");
+            var association = await _app.CreateOrgAsync("zz_test reg88 Arıcılar Birliği", null, (Capabilities.Association, null));
+            var lab = await _app.CreateOrgAsync("zz_test reg88 Lab", null, (Capabilities.Laboratory, "ZZ-88"));
+            Assert.Contains($"value=\"{association}\"", await d.Officer.HtmlAsync("/Registration/New?registryNumber=TR281234508801"));
+
+            var form = await FormAsync("TR281234508801", "0532 000 88 01", "Zz Yayla");
+            Assert.Contains("Choose an organization with the Association capability.",
+                await BodyAsync(await d.Officer.PostAsync("/Registration/Submit", Op(new Dictionary<string, string>(form) { ["AssociationOrgId"] = lab.ToString() }, "send"), "/Registration/New")));
+
+            form["AssociationOrgId"] = association.ToString();
+            var sent = await BodyAsync(await d.Officer.PostAsync("/Registration/Submit", Op(form, "send"), "/Registration/New"));
+            form["DraftKey"] = DraftKeyOf(sent);
+            var code = Regex.Match((await LastSmsAsync(form["DraftKey"])).BodyStored, @"\b\d{6}\b").Value;
+            // another association after the code was sent voids the code; a new code confirms the registration
+            Assert.Contains("The details changed after the code was sent", await BodyAsync(await d.Officer.PostAsync("/Registration/Submit",
+                Op(new Dictionary<string, string>(form) { ["AssociationOrgId"] = "", ["Code"] = code }, "confirm"), "/Registration/New")));
+            HttpResponseMessage confirmed;
+            try
+            {
+                _app.Clock.Advance(TimeSpan.FromSeconds(61));
+                await d.Officer.PostAsync("/Registration/Submit", Op(form, "send"), "/Registration/New");
+                code = Regex.Match((await LastSmsAsync(form["DraftKey"])).BodyStored, @"\b\d{6}\b").Value;
+                confirmed = await d.Officer.PostAsync("/Registration/Submit", Op(new Dictionary<string, string>(form) { ["Code"] = code }, "confirm"), "/Registration/New");
+            }
+            finally
+            {
+                _app.Clock.Reset();
+            }
+            Assert.Equal("The beekeeper is registered and verified.", await d.Officer.FlashAfterAsync(confirmed));
+
+            var regId = int.Parse(confirmed.Headers.Location!.ToString().Split('/').Last());
+            var beekeeperId = await _app.WithContextAsync(db => db.BeekeeperRegistrations.Where(r => r.RegistrationId == regId).Select(r => r.BeekeeperId).FirstAsync());
+            var link = Assert.Single(await _app.WithContextAsync(db => db.BeekeeperAssociations.Where(a => a.BeekeeperId == beekeeperId).ToListAsync()));
+            Assert.Equal(association, link.AssociationOrgId);
+            Assert.Null(link.ValidTo);
+            Assert.Equal(d.OfficerId, link.CreatedByUserId);
+        }
+
         [Fact]
         public async Task The_registry_number_format_and_province_are_checked()
         {

@@ -323,7 +323,7 @@
      data-one="@L["Work.NewOne"]" data-many="@L["Work.NewMany"]" data-waiting="@L["Work.WaitingCount"]"></div>
 @if (memberMenu || (orgModelOn && isPanelAdmin))
 {
-    var kindNames = new[] { "Approve", "LabApprove", "Finalize", "Confirm", "Receive", "Results", "Verify", "Registry", "Evidence", "Correction", "Sheet", "Enter", "NewBatch" }
+    var kindNames = new[] { "Approve", "LabApprove", "Finalize", "Confirm", "Receive", "Results", "Verify", "Registry", "Evidence", "Correction", "Enter", "NewBatch" }
         .ToDictionary(k => k, k => L["Work.Kind." + k].Value);
     <script type="application/json" id="work-kinds">@Html.Raw(System.Text.Json.JsonSerializer.Serialize(kindNames))</script>
 }
