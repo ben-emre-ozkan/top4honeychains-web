@@ -9078,4 +9078,190 @@
   <data name="Demo.RegistryHelp" xml:space="preserve">
     <value>Bu demoda AR-DEMO-, PL-DEMO- veya LV-DEMO- ve 6 hane de olabilir (ör. AR-DEMO-000123).</value>
   </data>
+  <data name="Consumer.LoginHint" xml:space="preserve">
+    <value>Yeni misiniz?</value>
+  </data>
+  <data name="Consumer.LoginHintLink" xml:space="preserve">
+    <value>Ücretsiz tüketici hesabı oluşturun</value>
+  </data>
+  <data name="Consumer.LoginHintStaff" xml:space="preserve">
+    <value>Çalışan hesaplarını kurumlar açar.</value>
+  </data>
+  <data name="Notice.ForConsumers" xml:space="preserve">
+    <value>Tüketiciler için</value>
+  </data>
+  <data name="Consumer.NoticeLink" xml:space="preserve">
+    <value>Tüketiciler için aydınlatma metni</value>
+  </data>
+  <data name="Consumer.SignUp.Title" xml:space="preserve">
+    <value>Tüketici hesabı oluşturun</value>
+  </data>
+  <data name="Consumer.SignUp.Intro" xml:space="preserve">
+    <value>Aldığınız balları saklayın, üreticiye geri bildirim gönderin ve yanıtları okuyun. Bal Hikâyesi hesap olmadan da herkese açık kalır.</value>
+  </data>
+  <data name="Consumer.SignUp.UserNameHelp" xml:space="preserve">
+    <value>3 ile 40 arasında harf, rakam, nokta, tire veya alt çizgi. Gerçek adınızı veya e-posta adresinizi kullanmayın.</value>
+  </data>
+  <data name="Consumer.SignUp.Phone" xml:space="preserve">
+    <value>Cep telefonu (isteğe bağlı)</value>
+  </data>
+  <data name="Consumer.SignUp.PhoneHelp" xml:space="preserve">
+    <value>Doğrulanmış bir telefonla unuttuğunuz şifreyi SMS koduyla yenileyebilirsiniz. Telefon olmadan unutulan şifre kurtarılamaz. E-posta hiç göndermeyiz.</value>
+  </data>
+  <data name="Consumer.SignUp.Adult" xml:space="preserve">
+    <value>18 yaşında veya daha büyüğüm.</value>
+  </data>
+  <data name="Consumer.SignUp.AcceptNotice" xml:space="preserve">
+    <value>Okudum ve kabul ediyorum:</value>
+  </data>
+  <data name="Consumer.SignUp.Submit" xml:space="preserve">
+    <value>Hesap oluştur</value>
+  </data>
+  <data name="Consumer.SignUp.HaveAccount" xml:space="preserve">
+    <value>Hesabınız var mı?</value>
+  </data>
+  <data name="Consumer.Title" xml:space="preserve">
+    <value>Ballarım</value>
+  </data>
+  <data name="Consumer.Nav.Home" xml:space="preserve">
+    <value>Ballarım</value>
+  </data>
+  <data name="Consumer.Nav.Account" xml:space="preserve">
+    <value>Hesap</value>
+  </data>
+  <data name="Consumer.Pseudonym" xml:space="preserve">
+    <value>Kodunuz</value>
+  </data>
+  <data name="Consumer.PseudonymHelp" xml:space="preserve">
+    <value>Üreticiler yalnızca bu kodu görür; kullanıcı adınızı veya telefonunuzu asla görmez.</value>
+  </data>
+  <data name="Consumer.Account.Who" xml:space="preserve">
+    <value>Hesabınız</value>
+  </data>
+  <data name="Consumer.Account.RemovePhone" xml:space="preserve">
+    <value>Telefonu kaldır</value>
+  </data>
+  <data name="Consumer.Account.MyData" xml:space="preserve">
+    <value>Verilerim</value>
+  </data>
+  <data name="Consumer.Account.MyDataHelp" xml:space="preserve">
+    <value>Platformun hesabınız hakkında tuttuğu her şeyi indirin: hesap, kayıtlı ballarınız ve yanıtlarıyla birlikte geri bildirimleriniz (JSON dosyası).</value>
+  </data>
+  <data name="Consumer.Account.Download" xml:space="preserve">
+    <value>Verilerimi indir</value>
+  </data>
+  <data name="Consumer.Account.Delete" xml:space="preserve">
+    <value>Hesabımı sil</value>
+  </data>
+  <data name="Consumer.Account.DeleteHelp" xml:space="preserve">
+    <value>Hesabınız ve kayıtlı ballarınız silinir; kullanıcı adınız ve telefonunuz kaldırılır. Gönderdiğiniz geri bildirimler, kullanıcı adınız veya telefonunuz olmadan yalnızca kodunuzla üreticide kalır. Bu işlem geri alınamaz.</value>
+  </data>
+  <data name="Consumer.Account.DeletePassword" xml:space="preserve">
+    <value>Onaylamak için şifreniz</value>
+  </data>
+  <data name="Consumer.Account.DeleteButton" xml:space="preserve">
+    <value>Hesabımı kalıcı olarak sil</value>
+  </data>
+  <data name="Consumer.Deleted" xml:space="preserve">
+    <value>Tüketici hesabınız silindi.</value>
+  </data>
+  <data name="Consumer.MyHoneys" xml:space="preserve">
+    <value>Kayıtlı ballar</value>
+  </data>
+  <data name="Consumer.NoHoneys" xml:space="preserve">
+    <value>Henüz kayıtlı bal yok.</value>
+  </data>
+  <data name="Consumer.Remove" xml:space="preserve">
+    <value>Kaldır</value>
+  </data>
+  <data name="Consumer.HowToAdd" xml:space="preserve">
+    <value>Bal eklemek için kavanozdaki QR kodu okutun ve Bal Hikâyesinin altındaki Ballarıma kaydet düğmesine basın.</value>
+  </data>
+  <data name="Consumer.MyFeedback" xml:space="preserve">
+    <value>Geri bildirimlerim</value>
+  </data>
+  <data name="Consumer.NoFeedback" xml:space="preserve">
+    <value>Henüz geri bildirim gönderilmedi.</value>
+  </data>
+  <data name="Consumer.Answer" xml:space="preserve">
+    <value>Üreticinin yanıtı</value>
+  </data>
+  <data name="Consumer.VerifyHelp" xml:space="preserve">
+    <value>Bir etiketteki laboratuvar raporunun gerçek ve onaylı olduğunu kontrol edin.</value>
+  </data>
+  <data name="Consumer.Category.TasteSmell" xml:space="preserve">
+    <value>Tat veya koku</value>
+  </data>
+  <data name="Consumer.Category.TextureCrystallization" xml:space="preserve">
+    <value>Kıvam veya kristalleşme</value>
+  </data>
+  <data name="Consumer.Category.PackagingLabel" xml:space="preserve">
+    <value>Ambalaj veya etiket</value>
+  </data>
+  <data name="Consumer.Category.SuspectedFake" xml:space="preserve">
+    <value>Sahte olabilir veya kavanoz açılmış</value>
+  </data>
+  <data name="Consumer.Category.Other" xml:space="preserve">
+    <value>Diğer</value>
+  </data>
+  <data name="Consumer.Status.New" xml:space="preserve">
+    <value>Gönderildi</value>
+  </data>
+  <data name="Consumer.Status.Read" xml:space="preserve">
+    <value>Üretici okudu</value>
+  </data>
+  <data name="Consumer.Status.Answered" xml:space="preserve">
+    <value>Yanıtlandı</value>
+  </data>
+  <data name="Consumer.Status.Closed" xml:space="preserve">
+    <value>Kapatıldı</value>
+  </data>
+  <data name="Choose a user name of 3 to 40 letters, digits, dots, dashes or underscores." xml:space="preserve">
+    <value>3 ile 40 arasında harf, rakam, nokta, tire veya alt çizgiden oluşan bir kullanıcı adı seçin.</value>
+  </data>
+  <data name="Consumer accounts are for people aged 18 or older." xml:space="preserve">
+    <value>Tüketici hesapları 18 yaş ve üzeri içindir.</value>
+  </data>
+  <data name="Read and accept the privacy notice for consumers." xml:space="preserve">
+    <value>Tüketiciler için aydınlatma metnini okuyup kabul edin.</value>
+  </data>
+  <data name="The privacy notice for consumers is not available; sign-up is closed." xml:space="preserve">
+    <value>Tüketiciler için aydınlatma metni yayında değil; kayıt kapalı.</value>
+  </data>
+  <data name="The form was sent too quickly. Check the fields and send it again." xml:space="preserve">
+    <value>Form çok hızlı gönderildi. Alanları kontrol edip yeniden gönderin.</value>
+  </data>
+  <data name="Your consumer account is ready." xml:space="preserve">
+    <value>Tüketici hesabınız hazır.</value>
+  </data>
+  <data name="The phone number was removed. Without it a forgotten password cannot be recovered." xml:space="preserve">
+    <value>Telefon numarası kaldırıldı. Telefon olmadan unutulan şifre kurtarılamaz.</value>
+  </data>
+  <data name="The password is not correct; the account was not deleted." xml:space="preserve">
+    <value>Şifre doğru değil; hesap silinmedi.</value>
+  </data>
+  <data name="A consumer account cannot be given a role or an organization membership." xml:space="preserve">
+    <value>Tüketici hesabına rol veya kurum üyeliği verilemez.</value>
+  </data>
+  <data name="This honey has no public story." xml:space="preserve">
+    <value>Bu balın herkese açık bir hikâyesi yok.</value>
+  </data>
+  <data name="Choose what your feedback is about." xml:space="preserve">
+    <value>Geri bildiriminizin konusunu seçin.</value>
+  </data>
+  <data name="Write your message." xml:space="preserve">
+    <value>Mesajınızı yazın.</value>
+  </data>
+  <data name="The message is longer than 1000 characters." xml:space="preserve">
+    <value>Mesaj 1000 karakterden uzun.</value>
+  </data>
+  <data name="You have already sent feedback about this honey today." xml:space="preserve">
+    <value>Bugün bu bal hakkında zaten geri bildirim gönderdiniz.</value>
+  </data>
+  <data name="You have reached the limit of feedback messages for today." xml:space="preserve">
+    <value>Bugünkü geri bildirim sınırına ulaştınız.</value>
+  </data>
+  <data name="This honey has no producer on the platform to receive feedback." xml:space="preserve">
+    <value>Bu balın platformda geri bildirim alabilecek bir üreticisi yok.</value>
+  </data>
 </root>

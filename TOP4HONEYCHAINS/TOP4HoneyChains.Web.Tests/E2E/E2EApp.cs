@@ -62,7 +62,12 @@ namespace TOP4HoneyChains.Web.Tests.E2E
                 ["Features:OrgRoleModel"] = "true",
                 ["App:PublicBaseUrl"] = "http://localhost",
                 ["Sms:Provider"] = "Fake",
-                ["Sms:DailyLimit"] = "2000"
+                ["Sms:DailyLimit"] = "2000",
+                // D-87: the suite signs in and signs up far more often than people do
+                ["Consumers:SignInPerMinute"] = "100000",
+                ["Consumers:SignUpPerMinute"] = "10000",
+                ["Consumers:FeedbackPerMinute"] = "10000",
+                ["Consumers:FeedbackPerAccountPerMinute"] = "1000"
             };
             AddSettings(settings);
             builder.ConfigureAppConfiguration((_, config) => config.AddInMemoryCollection(settings));

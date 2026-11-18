@@ -44,3 +44,15 @@ code { overflow-wrap: anywhere; }
     .me-top { padding: 14px 24px; }
     .me-nav { justify-content: center; }
 }
+
+/* D-87: the consumer area (same portal style) */
+.consumer-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.consumer-list > li { display: grid; gap: 4px; padding: 10px 0; border-top: 1px solid var(--b-line); }
+.consumer-list > li:first-child { border-top: 0; padding-top: 0; }
+.consumer-honey-title { font-weight: 700; }
+.consumer-inline { margin: 0; }
+.consumer-message { margin: 4px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.consumer-answer { background: var(--b-foam); border-left: 3px solid var(--b-honey); padding: 8px 10px; border-radius: 8px; }
+.consumer-answer p { margin: 4px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.me-card-danger { border-color: #E3B4A6; }
+.me-btn-danger { color: #8A2E1D; border-color: #C98B79; }

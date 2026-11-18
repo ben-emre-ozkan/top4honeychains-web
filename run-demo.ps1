@@ -21,6 +21,7 @@ $settings = [ordered]@{
     'Features__OrgRoleModel'               = 'true'
     'Features__CustodyIntake'              = 'true'
     'Features__BeekeeperAccounts'          = 'true'
+    'Features__ConsumerAccounts'           = 'true'
 }
 
 $startInfo = New-Object System.Diagnostics.ProcessStartInfo

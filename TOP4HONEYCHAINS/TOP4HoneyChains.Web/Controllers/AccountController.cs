@@ -108,6 +108,7 @@ namespace TOP4HoneyChains.Web.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Microsoft.AspNetCore.RateLimiting.EnableRateLimiting(ConsumerController.RateSignIn)]   // D-87: a global ceiling; per account, the lockout
         public async Task<IActionResult> Login(LoginViewModel model, string? returnUrl = null)
         {
             if (!ModelState.IsValid)

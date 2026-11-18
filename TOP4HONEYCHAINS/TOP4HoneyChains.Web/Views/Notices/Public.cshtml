@@ -3,12 +3,18 @@
     ViewBag.Title = L["Notice.PublicTitle"].Value;
     Layout = "~/Views/Shared/_AuthLayout.cshtml";
     var forBeekeepers = Model.Audience == TOP4HoneyChains.Web.Models.Entities.NoticeAudience.Beekeeper;
+    // D-87: the notice for consumer accounts
+    var forConsumers = Model.Audience == TOP4HoneyChains.Web.Models.Entities.NoticeAudience.Consumer;
+    var audiences = new[] { ("member", "Notice.ForUsers", !forBeekeepers && !forConsumers), ("beekeeper", "Notice.ForBeekeepers", forBeekeepers), ("consumer", "Notice.ForConsumers", forConsumers) };
 }
 
 <h1 class="au-title">@L["Notice.PublicTitle"]</h1>
-<p class="au-sub">
-    @(forBeekeepers ? L["Notice.ForBeekeepers"] : L["Notice.ForUsers"])
-    · <a class="au-link" href="/privacy?for=@(forBeekeepers ? "member" : "beekeeper")">@(forBeekeepers ? L["Notice.ForUsers"] : L["Notice.ForBeekeepers"])</a>
+<p class="au-sub" id="notice-audiences">
+    @L[audiences.First(a => a.Item3).Item2]
+    @foreach (var (key, label, current) in audiences.Where(a => !a.Item3))
+    {
+        <text> · </text><a class="au-link" href="/privacy?for=@key">@L[label]</a>
+    }
 </p>
 
 @if (Model.Notice == null)

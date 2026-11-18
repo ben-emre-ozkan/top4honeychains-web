@@ -113,7 +113,7 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             var consumer = await UserClient.LoginAsync(_app, "zz_test_bnd_consumer");
             var probes = Probes();
             Assert.True(probes.Count > 150, $"only {probes.Count} actions found");
-            var wrong = await NotBlockedAsync(consumer, ConsumerAllowed, "Consumer", "/");
+            var wrong = await NotBlockedAsync(consumer, ConsumerAllowed, "Consumer", "/Consumer/Account");
             Assert.True(wrong.Count == 0, "not blocked for a consumer: " + string.Join("; ", wrong));
             // the public pages stay open
             Assert.Equal(200, await consumer.StatusAsync("/"));

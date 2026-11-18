@@ -1,0 +1,87 @@
+@model TOP4HoneyChains.Web.Services.OrgModel.ConsumerSignUp
+@using TOP4HoneyChains.Web.Services.Messaging
+@{
+    // D-87: the consumer sign-up. Only these fields exist; no e-mail; the phone is optional.
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+    var notice = ViewBag.Notice as TOP4HoneyChains.Web.Models.Entities.Notice;
+    var returnUrl = ViewBag.ReturnUrl as string;
+    var names = new Dictionary<string, string> { ["tr"] = "Türkçe", ["en"] = "English", ["es"] = "Español", ["pl"] = "Polski", ["lv"] = "Latviešu" };
+}
+@section AddToHead {
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+}
+
+<h1 class="au-title">@L["Consumer.SignUp.Title"]</h1>
+<p class="au-sub">@L["Consumer.SignUp.Intro"]</p>
+
+<form asp-controller="Consumer" asp-action="SignUp" asp-route-returnUrl="@returnUrl" method="post" class="au-form" id="consumer-signup-form" novalidate>
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="formTime" value="@ViewBag.FormTime" />
+    @* a field people never see; bots fill it *@
+    <div class="au-hp" aria-hidden="true">
+        <label for="website">Website</label>
+        <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <div class="au-field">
+        <label for="UserName">@L["Login.Username"]</label>
+        <input id="UserName" name="UserName" value="@Model.UserName" autocomplete="username" autocapitalize="none" spellcheck="false" required minlength="3" maxlength="40" />
+        <small class="au-help">@L["Consumer.SignUp.UserNameHelp"]</small>
+    </div>
+    <div class="au-field">
+        <label for="Password">@L["Login.Password"]</label>
+        <input id="Password" name="Password" type="password" autocomplete="new-password" required minlength="10" />
+    </div>
+    <div class="au-field">
+        <label for="ConfirmPassword">@L["Me.ConfirmPassword"]</label>
+        <input id="ConfirmPassword" name="ConfirmPassword" type="password" autocomplete="new-password" required minlength="10" />
+    </div>
+    <div class="au-field">
+        <label for="Language">@L["Me.Language"]</label>
+        <select id="Language" name="Language">
+            @foreach (var code in SmsTemplates.Languages)
+            {
+                <option value="@code" selected="@(code == Model.Language)">@names[code]</option>
+            }
+        </select>
+    </div>
+    <div class="au-field">
+        <label for="PhoneNumber">@L["Consumer.SignUp.Phone"]</label>
+        <input id="PhoneNumber" name="PhoneNumber" type="tel" value="@Model.PhoneNumber" autocomplete="tel" />
+        <small class="au-help" id="phone-help">@L["Consumer.SignUp.PhoneHelp"]</small>
+    </div>
+
+    <label class="au-check">
+        <input type="checkbox" name="IsAdult" value="true" checked="@Model.IsAdult" required />
+        <span>@L["Consumer.SignUp.Adult"]</span>
+    </label>
+    <label class="au-check">
+        <input type="checkbox" name="AcceptNotice" value="true" checked="@Model.AcceptNotice" required />
+        <span>@L["Consumer.SignUp.AcceptNotice"] <a class="au-link b-link" href="/privacy?for=consumer" target="_blank" rel="noopener">@L["Consumer.NoticeLink"]</a>
+            @if (notice?.IsDraft == true)
+            {
+                <span class="au-badge-draft">@L[Demo.Enabled ? "Notice.DraftDemo" : "Notice.Draft"]</span>
+            }
+        </span>
+    </label>
+    <input type="hidden" name="IsAdult" value="false" />
+    <input type="hidden" name="AcceptNotice" value="false" />
+
+    <button class="b-btn b-btn-honey au-submit" type="submit">@L["Consumer.SignUp.Submit"]</button>
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="au-alert au-alert-error" role="alert" id="signup-errors">
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <div>@Msg.T(error.ErrorMessage)</div>
+            }
+        </div>
+    }
+</form>
+
+<p class="au-sub">
+    @L["Consumer.SignUp.HaveAccount"]
+    <a class="au-link b-link" href="/Account/Login@(returnUrl != null ? "?ReturnUrl=" + Uri.EscapeDataString(returnUrl) : "")">@L["Login.LoginButton"]</a>
+</p>
+<p class="au-sub"><small>@L["Consumer.LoginHintStaff"]</small></p>

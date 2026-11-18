@@ -132,7 +132,9 @@ namespace TOP4HoneyChains.Web.Controllers
         [HttpGet("/privacy")]
         public async Task<IActionResult> Public(string? @for, int? org)
         {
-            var audience = string.Equals(@for, "member", StringComparison.OrdinalIgnoreCase) ? NoticeAudience.Member : NoticeAudience.Beekeeper;
+            var audience = string.Equals(@for, "member", StringComparison.OrdinalIgnoreCase) ? NoticeAudience.Member
+                : string.Equals(@for, "consumer", StringComparison.OrdinalIgnoreCase) ? NoticeAudience.Consumer   // D-87
+                : NoticeAudience.Beekeeper;
             var notice = await _notices.CurrentAsync(NoticeKind.PrivacyNotice, audience, null, null);
             var consents = new List<Notice>();
             if (audience == NoticeAudience.Beekeeper)

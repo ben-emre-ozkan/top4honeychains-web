@@ -1,0 +1,67 @@
+@model TOP4HoneyChains.Web.Models.Entities.ConsumerAccount
+@using TOP4HoneyChains.Web.Services.OrgModel
+@{
+    // D-87: the consumer home: my honeys, my feedback with the answers, how to add a honey, verify a lab report
+    ViewBag.Title = L["Consumer.Title"].Value;
+    var honeys = ViewBag.Honeys as List<ConsumerHoney> ?? new();
+    var feedback = ViewBag.Feedback as List<ConsumerFeedbackView> ?? new();
+}
+<h1>@L["Consumer.Title"]</h1>
+
+<section class="me-card" id="my-honeys" data-tour="consumer-honeys">
+    <h3>@L["Consumer.MyHoneys"]</h3>
+    @if (honeys.Count == 0)
+    {
+        <p class="me-muted" id="no-honeys">@L["Consumer.NoHoneys"]</p>
+    }
+    else
+    {
+        <ul class="consumer-list">
+            @foreach (var h in honeys)
+            {
+                <li class="consumer-honey" data-qr="@h.Qr">
+                    <a class="b-link consumer-honey-title" href="/honeystory/@h.Qr">@h.Title</a>
+                    <span class="me-muted">@h.Plant@if (h.ProductionDate != null) {<text> · @h.ProductionDate.Value.ToString("dd.MM.yyyy")</text>}</span>
+                    <form asp-action="Remove" asp-route-qr="@h.Qr" method="post" class="consumer-inline">
+                        <button type="submit" class="b-btn b-btn-ghost me-btn-sm" aria-label="@L["Consumer.Remove"]: @h.Title">@L["Consumer.Remove"]</button>
+                    </form>
+                </li>
+            }
+        </ul>
+    }
+    <p class="me-muted" id="how-to-add">@L["Consumer.HowToAdd"]</p>
+</section>
+
+<section class="me-card" id="my-feedback" data-tour="consumer-feedback">
+    <h3>@L["Consumer.MyFeedback"]</h3>
+    @if (feedback.Count == 0)
+    {
+        <p class="me-muted" id="no-feedback">@L["Consumer.NoFeedback"]</p>
+    }
+    else
+    {
+        <ul class="consumer-list">
+            @foreach (var f in feedback)
+            {
+                <li class="consumer-feedback" data-feedback="@f.FeedbackId">
+                    <a class="b-link" href="/honeystory/@f.Qr">@f.BatchTitle</a>
+                    <span class="me-muted">@L["Consumer.Category." + f.Category] · @f.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy") · @L["Consumer.Status." + f.Status]</span>
+                    <p class="consumer-message">@f.Message</p>
+                    @if (f.Answer != null)
+                    {
+                        <div class="consumer-answer">
+                            <strong>@L["Consumer.Answer"]</strong>
+                            <p>@f.Answer</p>
+                        </div>
+                    }
+                </li>
+            }
+        </ul>
+    }
+</section>
+
+<section class="me-card" id="verify-link">
+    <h3>@L["Ver.Title"]</h3>
+    <p class="me-muted">@L["Consumer.VerifyHelp"]</p>
+    <a class="b-btn b-btn-ghost" href="/verify-report">@L["Ver.Check"]</a>
+</section>

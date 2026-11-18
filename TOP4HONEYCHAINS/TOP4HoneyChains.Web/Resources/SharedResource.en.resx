@@ -9078,4 +9078,190 @@
   <data name="Demo.RegistryHelp" xml:space="preserve">
     <value>In this demo also AR-DEMO-, PL-DEMO- or LV-DEMO- and 6 digits (e.g. AR-DEMO-000123).</value>
   </data>
+  <data name="Consumer.LoginHint" xml:space="preserve">
+    <value>New here?</value>
+  </data>
+  <data name="Consumer.LoginHintLink" xml:space="preserve">
+    <value>Create a free consumer account</value>
+  </data>
+  <data name="Consumer.LoginHintStaff" xml:space="preserve">
+    <value>Staff accounts are created by the organizations.</value>
+  </data>
+  <data name="Notice.ForConsumers" xml:space="preserve">
+    <value>For consumers</value>
+  </data>
+  <data name="Consumer.NoticeLink" xml:space="preserve">
+    <value>Privacy notice for consumers</value>
+  </data>
+  <data name="Consumer.SignUp.Title" xml:space="preserve">
+    <value>Create a consumer account</value>
+  </data>
+  <data name="Consumer.SignUp.Intro" xml:space="preserve">
+    <value>Keep the honeys you bought, send feedback to the producer and read the answers. The Honey Story stays open to everyone without an account.</value>
+  </data>
+  <data name="Consumer.SignUp.UserNameHelp" xml:space="preserve">
+    <value>3 to 40 letters, digits, dots, dashes or underscores. Do not use your real name or e-mail address.</value>
+  </data>
+  <data name="Consumer.SignUp.Phone" xml:space="preserve">
+    <value>Mobile phone (optional)</value>
+  </data>
+  <data name="Consumer.SignUp.PhoneHelp" xml:space="preserve">
+    <value>With a verified phone you can reset a forgotten password by SMS code. Without a phone a forgotten password cannot be recovered. We never send e-mail.</value>
+  </data>
+  <data name="Consumer.SignUp.Adult" xml:space="preserve">
+    <value>I am 18 or older.</value>
+  </data>
+  <data name="Consumer.SignUp.AcceptNotice" xml:space="preserve">
+    <value>I have read and accept the</value>
+  </data>
+  <data name="Consumer.SignUp.Submit" xml:space="preserve">
+    <value>Create account</value>
+  </data>
+  <data name="Consumer.SignUp.HaveAccount" xml:space="preserve">
+    <value>Already have an account?</value>
+  </data>
+  <data name="Consumer.Title" xml:space="preserve">
+    <value>My honeys</value>
+  </data>
+  <data name="Consumer.Nav.Home" xml:space="preserve">
+    <value>My honeys</value>
+  </data>
+  <data name="Consumer.Nav.Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="Consumer.Pseudonym" xml:space="preserve">
+    <value>Your code</value>
+  </data>
+  <data name="Consumer.PseudonymHelp" xml:space="preserve">
+    <value>Producers see only this code, never your user name or phone.</value>
+  </data>
+  <data name="Consumer.Account.Who" xml:space="preserve">
+    <value>Your account</value>
+  </data>
+  <data name="Consumer.Account.RemovePhone" xml:space="preserve">
+    <value>Remove the phone</value>
+  </data>
+  <data name="Consumer.Account.MyData" xml:space="preserve">
+    <value>My data</value>
+  </data>
+  <data name="Consumer.Account.MyDataHelp" xml:space="preserve">
+    <value>Download everything the platform keeps about your account: the account, your saved honeys and your feedback with the answers (JSON file).</value>
+  </data>
+  <data name="Consumer.Account.Download" xml:space="preserve">
+    <value>Download my data</value>
+  </data>
+  <data name="Consumer.Account.Delete" xml:space="preserve">
+    <value>Delete my account</value>
+  </data>
+  <data name="Consumer.Account.DeleteHelp" xml:space="preserve">
+    <value>Your account and your saved honeys are deleted, and your user name and phone are removed. Feedback you sent stays with the producer under your code only, without your user name or phone. This cannot be undone.</value>
+  </data>
+  <data name="Consumer.Account.DeletePassword" xml:space="preserve">
+    <value>Your password, to confirm</value>
+  </data>
+  <data name="Consumer.Account.DeleteButton" xml:space="preserve">
+    <value>Delete my account for good</value>
+  </data>
+  <data name="Consumer.Deleted" xml:space="preserve">
+    <value>Your consumer account was deleted.</value>
+  </data>
+  <data name="Consumer.MyHoneys" xml:space="preserve">
+    <value>Saved honeys</value>
+  </data>
+  <data name="Consumer.NoHoneys" xml:space="preserve">
+    <value>No honey saved yet.</value>
+  </data>
+  <data name="Consumer.Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="Consumer.HowToAdd" xml:space="preserve">
+    <value>To add a honey, scan the QR code on the jar and press Save to My honeys at the bottom of its Honey Story.</value>
+  </data>
+  <data name="Consumer.MyFeedback" xml:space="preserve">
+    <value>My feedback</value>
+  </data>
+  <data name="Consumer.NoFeedback" xml:space="preserve">
+    <value>No feedback sent yet.</value>
+  </data>
+  <data name="Consumer.Answer" xml:space="preserve">
+    <value>Answer from the producer</value>
+  </data>
+  <data name="Consumer.VerifyHelp" xml:space="preserve">
+    <value>Check that a laboratory report on a label is genuine and approved.</value>
+  </data>
+  <data name="Consumer.Category.TasteSmell" xml:space="preserve">
+    <value>Taste or smell</value>
+  </data>
+  <data name="Consumer.Category.TextureCrystallization" xml:space="preserve">
+    <value>Texture or crystallization</value>
+  </data>
+  <data name="Consumer.Category.PackagingLabel" xml:space="preserve">
+    <value>Packaging or label</value>
+  </data>
+  <data name="Consumer.Category.SuspectedFake" xml:space="preserve">
+    <value>Suspected fake or opened jar</value>
+  </data>
+  <data name="Consumer.Category.Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="Consumer.Status.New" xml:space="preserve">
+    <value>Sent</value>
+  </data>
+  <data name="Consumer.Status.Read" xml:space="preserve">
+    <value>Read by the producer</value>
+  </data>
+  <data name="Consumer.Status.Answered" xml:space="preserve">
+    <value>Answered</value>
+  </data>
+  <data name="Consumer.Status.Closed" xml:space="preserve">
+    <value>Closed</value>
+  </data>
+  <data name="Choose a user name of 3 to 40 letters, digits, dots, dashes or underscores." xml:space="preserve">
+    <value>Choose a user name of 3 to 40 letters, digits, dots, dashes or underscores.</value>
+  </data>
+  <data name="Consumer accounts are for people aged 18 or older." xml:space="preserve">
+    <value>Consumer accounts are for people aged 18 or older.</value>
+  </data>
+  <data name="Read and accept the privacy notice for consumers." xml:space="preserve">
+    <value>Read and accept the privacy notice for consumers.</value>
+  </data>
+  <data name="The privacy notice for consumers is not available; sign-up is closed." xml:space="preserve">
+    <value>The privacy notice for consumers is not available; sign-up is closed.</value>
+  </data>
+  <data name="The form was sent too quickly. Check the fields and send it again." xml:space="preserve">
+    <value>The form was sent too quickly. Check the fields and send it again.</value>
+  </data>
+  <data name="Your consumer account is ready." xml:space="preserve">
+    <value>Your consumer account is ready.</value>
+  </data>
+  <data name="The phone number was removed. Without it a forgotten password cannot be recovered." xml:space="preserve">
+    <value>The phone number was removed. Without it a forgotten password cannot be recovered.</value>
+  </data>
+  <data name="The password is not correct; the account was not deleted." xml:space="preserve">
+    <value>The password is not correct; the account was not deleted.</value>
+  </data>
+  <data name="A consumer account cannot be given a role or an organization membership." xml:space="preserve">
+    <value>A consumer account cannot be given a role or an organization membership.</value>
+  </data>
+  <data name="This honey has no public story." xml:space="preserve">
+    <value>This honey has no public story.</value>
+  </data>
+  <data name="Choose what your feedback is about." xml:space="preserve">
+    <value>Choose what your feedback is about.</value>
+  </data>
+  <data name="Write your message." xml:space="preserve">
+    <value>Write your message.</value>
+  </data>
+  <data name="The message is longer than 1000 characters." xml:space="preserve">
+    <value>The message is longer than 1000 characters.</value>
+  </data>
+  <data name="You have already sent feedback about this honey today." xml:space="preserve">
+    <value>You have already sent feedback about this honey today.</value>
+  </data>
+  <data name="You have reached the limit of feedback messages for today." xml:space="preserve">
+    <value>You have reached the limit of feedback messages for today.</value>
+  </data>
+  <data name="This honey has no producer on the platform to receive feedback." xml:space="preserve">
+    <value>This honey has no producer on the platform to receive feedback.</value>
+  </data>
 </root>

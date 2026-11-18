@@ -127,3 +127,9 @@ body.au { margin: 0; font-family: var(--b-text); font-size: 16px; line-height: 1
     .au-facts { grid-template-columns: 1fr; gap: 2px; }
     .au-facts dd { margin-bottom: 10px; }
 }
+
+/* D-87: consumer sign-up */
+.au-hp { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+.au-help { color: var(--b-muted); font-size: 13px; }
+.au-field select { width: 100%; min-height: 50px; padding: 0 12px; font: inherit; font-size: 16px; color: var(--b-ink); background: var(--b-card); border: 1.5px solid #A88456; border-radius: 14px; }
+.au-consumer-hint { margin-top: 18px; }
