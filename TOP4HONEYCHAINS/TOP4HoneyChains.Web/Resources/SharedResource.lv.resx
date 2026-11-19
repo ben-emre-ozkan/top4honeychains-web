@@ -9862,4 +9862,16 @@
   <data name="Me.PriceAfterDelivery" xml:space="preserve">
     <value>Piegāžu vēl nav. Pēc pirmās piegādes šeit, sadaļā Manas piegādes, ievadiet savu cenu par kg.</value>
   </data>
+  <data name="Reg93.AddApiary" xml:space="preserve">
+    <value>Pievienot dravu</value>
+  </data>
+  <data name="Reg93.RemoveApiary" xml:space="preserve">
+    <value>Noņemt</value>
+  </data>
+  <data name="Reg93.ApiaryNumber" xml:space="preserve">
+    <value>Drava</value>
+  </data>
+  <data name="Reg93.CoordinatesHelp" xml:space="preserve">
+    <value>Ierakstiet šīs dravas koordinātas (karte augstāk nosaka pirmo dravu).</value>
+  </data>
 </root>

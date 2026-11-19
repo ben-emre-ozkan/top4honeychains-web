@@ -110,6 +110,16 @@
                         </div>
                         <div class="no-print mt-2"><partial name="~/Views/Apiaries/_LocationPicker.cshtml" /></div>
                         <partial name="_ApiaryPlace" model="@(new TOP4HoneyChains.Web.Models.ViewModels.ApiaryPlaceField("ApiaryProvince", "ApiaryDistrictId", "ApiaryLocality", Model.ApiaryProvince, Model.ApiaryDistrictId, Model.ApiaryLocality, "ApiaryLocationLatitude", "ApiaryLocationLongitude", null, Model.IsNew))" />
+                        <div id="more-apiaries">
+                            @for (var m = 0; m < Model.MoreApiaries.Count; m++)
+                            {
+                                <partial name="_MoreApiary" model="@((m.ToString(System.Globalization.CultureInfo.InvariantCulture), Model.MoreApiaries[m]))" />
+                            }
+                        </div>
+                        <template id="more-apiary-template">
+                            <partial name="_MoreApiary" model="@(("0", new TOP4HoneyChains.Web.Services.OrgModel.MoreApiary()))" />
+                        </template>
+                        <button type="button" class="btn btn-outline-primary btn-sm mt-2 no-print" id="add-apiary"><i class="ri-add-line"></i> @L["Reg93.AddApiary"]</button>
 
                         <h5 class="mt-4">4. @L["Reg78.NoticeAndConsent"]</h5>
                         @if (notice != null)
@@ -196,5 +206,6 @@
         <script src="~/assets/libs/leaflet/leaflet.js" asp-append-version="true"></script>
         <script src="~/js/apiary-map.js" asp-append-version="true"></script>
         <script src="~/js/apiary-place.js" asp-append-version="true"></script>
+        <script src="~/js/more-apiaries.js" asp-append-version="true"></script>
     }
 </body>

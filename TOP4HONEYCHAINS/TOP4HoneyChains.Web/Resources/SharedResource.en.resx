@@ -9738,4 +9738,16 @@
   <data name="Me.PriceAfterDelivery" xml:space="preserve">
     <value>No delivery yet. After your first delivery, you enter your price per kg here under My deliveries.</value>
   </data>
+  <data name="Reg93.AddApiary" xml:space="preserve">
+    <value>Add apiary</value>
+  </data>
+  <data name="Reg93.RemoveApiary" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="Reg93.ApiaryNumber" xml:space="preserve">
+    <value>Apiary</value>
+  </data>
+  <data name="Reg93.CoordinatesHelp" xml:space="preserve">
+    <value>Type the coordinates of this apiary (the map above sets the first apiary).</value>
+  </data>
 </root>

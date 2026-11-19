@@ -9862,4 +9862,16 @@
   <data name="Me.PriceAfterDelivery" xml:space="preserve">
     <value>Todavía no hay entregas. Después de su primera entrega, introduzca aquí su precio por kg, en Mis entregas.</value>
   </data>
+  <data name="Reg93.AddApiary" xml:space="preserve">
+    <value>Añadir colmenar</value>
+  </data>
+  <data name="Reg93.RemoveApiary" xml:space="preserve">
+    <value>Quitar</value>
+  </data>
+  <data name="Reg93.ApiaryNumber" xml:space="preserve">
+    <value>Colmenar</value>
+  </data>
+  <data name="Reg93.CoordinatesHelp" xml:space="preserve">
+    <value>Escriba las coordenadas de este colmenar (el mapa de arriba fija el primer colmenar).</value>
+  </data>
 </root>

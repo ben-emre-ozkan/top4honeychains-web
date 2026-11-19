@@ -9862,4 +9862,16 @@
   <data name="Me.PriceAfterDelivery" xml:space="preserve">
     <value>Nie ma jeszcze dostaw. Po pierwszej dostawie wpiszesz tutaj, w sekcji Moje dostawy, swoją cenę za kg.</value>
   </data>
+  <data name="Reg93.AddApiary" xml:space="preserve">
+    <value>Dodaj pasiekę</value>
+  </data>
+  <data name="Reg93.RemoveApiary" xml:space="preserve">
+    <value>Usuń</value>
+  </data>
+  <data name="Reg93.ApiaryNumber" xml:space="preserve">
+    <value>Pasieka</value>
+  </data>
+  <data name="Reg93.CoordinatesHelp" xml:space="preserve">
+    <value>Wpisz współrzędne tej pasieki (mapa powyżej ustawia pierwszą pasiekę).</value>
+  </data>
 </root>

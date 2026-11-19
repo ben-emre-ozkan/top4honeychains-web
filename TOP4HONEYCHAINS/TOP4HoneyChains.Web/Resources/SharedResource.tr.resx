@@ -9738,4 +9738,16 @@
   <data name="Me.PriceAfterDelivery" xml:space="preserve">
     <value>Henüz teslimatınız yok. İlk teslimatınızdan sonra kilogram fiyatınızı burada, Teslimatlarım bölümünde girersiniz.</value>
   </data>
+  <data name="Reg93.AddApiary" xml:space="preserve">
+    <value>Arılık ekle</value>
+  </data>
+  <data name="Reg93.RemoveApiary" xml:space="preserve">
+    <value>Kaldır</value>
+  </data>
+  <data name="Reg93.ApiaryNumber" xml:space="preserve">
+    <value>Arılık</value>
+  </data>
+  <data name="Reg93.CoordinatesHelp" xml:space="preserve">
+    <value>Bu arılığın koordinatlarını yazın (yukarıdaki harita ilk arılığı belirler).</value>
+  </data>
 </root>

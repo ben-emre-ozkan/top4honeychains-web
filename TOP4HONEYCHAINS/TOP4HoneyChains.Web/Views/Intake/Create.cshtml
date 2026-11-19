@@ -31,10 +31,15 @@
                             <div class="row">
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label required" for="apiaryId">@L["Org.Apiary"]</label>
-                                    <select name="apiaryId" id="apiaryId" class="form-select">
+                                    @* D-93: every apiary with its hives; with more than one the officer chooses (no pre-selection) *@
+                                    <select name="apiaryId" id="apiaryId" class="form-select" required>
+                                        @if (bk.Apiaries.Count > 1)
+                                        {
+                                            <option value="">@L["-- Select --"]</option>
+                                        }
                                         @foreach (var a in bk.Apiaries.OrderBy(a => a.ApiaryTitle))
                                         {
-                                            <option value="@a.ApiaryId">@a.ApiaryTitle</option>
+                                            <option value="@a.ApiaryId">@a.ApiaryTitle · @a.ApiaryBeehivesCount @L["Reg78.Hives"]</option>
                                         }
                                     </select>
                                 </div>
