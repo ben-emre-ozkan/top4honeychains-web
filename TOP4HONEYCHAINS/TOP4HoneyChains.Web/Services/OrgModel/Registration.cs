@@ -403,6 +403,17 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
 
         public bool Enabled => _flags.BeekeeperAccounts;
 
+        // D-91: sign-in details already sent and still waiting for the beekeeper's first sign-in (not expired). Sending them again
+        // sets a new temporary password, so the earlier SMS stops working: the officer must say so explicitly.
+        public async Task<CredentialService.Pending?> PendingAsync(string beekeeperId)
+        {
+            var userId = await _context.BeekeeperAccounts.Where(a => a.BeekeeperId == beekeeperId).Select(a => a.UserId).FirstOrDefaultAsync();
+            if (userId == null)
+                return null;
+            var pending = await _credentials.PendingAsync(userId);
+            return pending is { Expired: false } ? pending : null;
+        }
+
         public async Task<CredentialService.IssueResult> IssueAsync(Beekeeper beekeeper, string officerUserId, string link)
         {
             if (!Enabled)

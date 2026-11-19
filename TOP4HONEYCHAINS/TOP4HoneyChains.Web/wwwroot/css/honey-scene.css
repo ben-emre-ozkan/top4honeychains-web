@@ -140,3 +140,10 @@ html[data-scenes="off"] .hs.is-playing .hs-art *, html[data-scenes="off"] .hs.is
 .tour-skip { min-height: 36px; padding: 6px 4px; border: 0; background: none; color: var(--b-muted, #7B6A5C); text-decoration: underline; cursor: pointer; }
 .tour-btn:focus-visible, .tour-skip:focus-visible { outline: 3px solid var(--b-focus, #0B7A75); outline-offset: 2px; }
 .tour-target { outline: 3px solid var(--b-honey, #FFB547) !important; outline-offset: 3px; border-radius: 8px; }
+
+/* D-91: info button next to a label (TagHelpers/InfoTipTagHelper.cs): the scene replay button, a little smaller; the note opens in the flow */
+.info-tip-btn { width: 24px; height: 24px; margin-left: 4px; vertical-align: text-bottom; }
+.info-tip-btn[aria-expanded="true"] { background: var(--b-foam, #FFFBF0); border-color: var(--b-honey, #FFB547); }
+.info-tip-note { display: block; max-width: 46ch; margin: 4px 0 8px; padding: 6px 10px; border-left: 3px solid var(--b-honey, #FFB547); border-radius: 6px;
+    background: var(--b-foam, #FFFBF0); color: var(--b-ink, #574A40); font-size: 13px; font-weight: 400; line-height: 1.45; white-space: normal; text-align: left; }
+.info-tip-note[hidden] { display: none; }

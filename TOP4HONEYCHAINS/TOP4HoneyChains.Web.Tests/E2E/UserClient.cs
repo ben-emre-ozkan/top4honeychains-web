@@ -63,6 +63,15 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             return m.Groups[1].Value;
         }
 
+        // D-91: a form token taken now and posted later (an out-of-date page in another tab)
+        public Task<string> FormTokenAsync(string fromUrl) => TokenAsync(fromUrl);
+
+        public async Task<HttpResponseMessage> PostWithTokenAsync(string url, Dictionary<string, string> form, string token)
+        {
+            form["__RequestVerificationToken"] = token;
+            return await _http.PostAsync(url, new FormUrlEncodedContent(form));
+        }
+
         // a form with repeated names (checkbox lists)
         public async Task<HttpResponseMessage> PostPairsAsync(string url, IEnumerable<KeyValuePair<string, string>> pairs, string tokenFrom)
         {

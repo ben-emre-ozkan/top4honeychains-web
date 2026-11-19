@@ -97,5 +97,15 @@ if ($Lan) {
 Write-Host ''
 
 $process = [System.Diagnostics.Process]::Start($startInfo)
-$process.WaitForExit()
+# D-91: wait in short slices so Ctrl+C reaches this script, and stop the whole tree on the way out: `dotnet run` starts the app
+# as a child process, which otherwise kept running (and kept port 5255) after Ctrl+C
+try {
+    while (-not $process.WaitForExit(500)) { }
+}
+finally {
+    if (-not $process.HasExited) { & taskkill /PID $process.Id /T /F 2>$null | Out-Null }
+    Get-NetTCPConnection -LocalPort 5255 -State Listen -ErrorAction SilentlyContinue |
+        ForEach-Object { Get-Process -Id $_.OwningProcess -ErrorAction SilentlyContinue } |
+        Where-Object { $_.ProcessName -eq 'TOP4HoneyChains.Web' } | Stop-Process -Force -ErrorAction SilentlyContinue
+}
 exit $process.ExitCode

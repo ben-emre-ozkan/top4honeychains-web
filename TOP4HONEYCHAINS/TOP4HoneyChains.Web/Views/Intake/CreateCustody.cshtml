@@ -22,7 +22,7 @@
 
                     <form asp-action="Create" method="get" class="row g-2 align-items-end mb-4 field-form" id="find-beekeeper">
                         <div class="col-md-5">
-                            <label class="form-label fw-semibold" for="number">@L["Cust.BeekeeperNumber"]</label>
+                            <label class="form-label fw-semibold" for="number">@L["Cust.BeekeeperNumber"]</label><info-tip key="Cust.Info.Number" about="@L["Cust.BeekeeperNumber"].Value" />
                             <input name="number" id="number" class="form-control" value="@Model.Number" maxlength="50" autocomplete="off" autocapitalize="characters" />
                         </div>
                         <div class="col-md-2"><button type="submit" class="btn btn-outline-primary">@L["Cust.Find"]</button></div>
@@ -94,8 +94,10 @@
                                 <table class="table table-sm align-middle" id="containers">
                                     <thead class="table-light">
                                         <tr>
-                                            <th>#</th><th>@L["Ci.Kind"]</th><th>@L["Ci.NetKg"]</th><th>@L["Ci.GrossKg"]</th><th>@L["Ci.Arrival"]</th>
-                                            <th>@L["Ci.JarSeal"]</th><th>@L["Ci.CounterSeal"]</th><th>@L["Ci.Cap"]</th><th>@L["Ci.Reseal"]</th><th></th>
+                                            <th>#</th><th>@L["Ci.Kind"]</th><th>@L["Ci.NetKg"]</th><th>@L["Ci.GrossKg"]</th>
+                                            <th>@L["Ci.Arrival"]<info-tip key="Ci.Info.Arrival" about="@L["Ci.Arrival"].Value" /></th>
+                                            <th>@L["Ci.JarSeal"]<info-tip key="Ci.Info.Jars" about="@L["Ci.JarSeal"].Value" /></th><th>@L["Ci.CounterSeal"]</th><th>@L["Ci.Cap"]</th>
+                                            <th>@L["Ci.Reseal"]<info-tip key="Ci.Info.Reseal" about="@L["Ci.Reseal"].Value" /></th><th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -114,20 +116,30 @@
                                                 </td>
                                                 <td><input class="form-control form-control-sm net-kg" data-field="NetKg" name="Containers[@i].NetKg" value="@r.NetKg" inputmode="decimal" size="6" aria-label="@L["Ci.NetKg"]" /></td>
                                                 <td><input class="form-control form-control-sm" data-field="GrossKg" name="Containers[@i].GrossKg" value="@r.GrossKg" inputmode="decimal" size="6" aria-label="@L["Ci.GrossKg"]" /></td>
-                                                <td style="min-width: 15rem">
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input arrived-sealed" type="checkbox" data-field="ArrivedSealed" name="Containers[@i].ArrivedSealed" value="true" checked="@r.ArrivedSealed" id="sealed-@i" />
-                                                        <label class="form-check-label small" for="sealed-@i">@L["Ci.ArrivedSealed"]</label>
+                                                <td style="min-width: 17rem">
+                                                    @* D-91: a choice per container; "arrived sealed" keeps data-field="ArrivedSealed" (value true), "arrived unsealed"
+                                                       posts false under the same name (data-name, renumbered by js/intake-containers.js) *@
+                                                    <div role="radiogroup" aria-label="@L["Ci.Arrival"]" class="arrival-choice">
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input arrived-sealed" type="radio" data-field="ArrivedSealed" name="Containers[@i].ArrivedSealed" value="true" checked="@r.ArrivedSealed" id="sealed-@i" />
+                                                            <label class="form-check-label small" for="sealed-@i">@L["Ci.ArrivedSealed"]</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input arrived-unsealed" type="radio" data-name="ArrivedSealed" name="Containers[@i].ArrivedSealed" value="false" checked="@(!r.ArrivedSealed)" id="unsealed-@i" />
+                                                            <label class="form-check-label small" for="unsealed-@i">@L["Ci.ArrivedUnsealed"]</label>
+                                                        </div>
                                                     </div>
                                                     <div class="origin @(r.ArrivedSealed ? "" : "d-none")">
-                                                        <input class="form-control form-control-sm mb-1" data-field="OriginSeal" name="Containers[@i].OriginSeal" value="@r.OriginSeal" placeholder="@L["Ci.OriginSeal"]" maxlength="50" />
+                                                        <label class="form-label small mb-0" for="origin-@i">@L["Ci.OriginSeal"]</label>
+                                                        <input class="form-control form-control-sm mb-1" data-field="OriginSeal" name="Containers[@i].OriginSeal" value="@r.OriginSeal" maxlength="50" id="origin-@i" />
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox" data-field="OriginSealIntact" name="Containers[@i].OriginSealIntact" value="true" checked="@(r.OriginSealIntact || !r.ArrivedSealed)" id="intact-@i" />
                                                             <label class="form-check-label small" for="intact-@i">@L["Ci.OriginIntact"]</label>
                                                         </div>
                                                     </div>
                                                     <div class="plant @(r.ArrivedSealed ? "d-none" : "")">
-                                                        <input class="form-control form-control-sm" data-field="PlantSeal" name="Containers[@i].PlantSeal" value="@r.PlantSeal" placeholder="@L["Ci.PlantSeal"]" maxlength="50" />
+                                                        <label class="form-label small mb-0" for="plant-@i">@L["Ci.PlantSeal"]</label>
+                                                        <input class="form-control form-control-sm" data-field="PlantSeal" name="Containers[@i].PlantSeal" value="@r.PlantSeal" maxlength="50" id="plant-@i" />
                                                     </div>
                                                 </td>
                                                 <td><input class="form-control form-control-sm" data-field="JarSeal" name="Containers[@i].JarSeal" value="@r.JarSeal" maxlength="50" aria-label="@L["Ci.JarSeal"]" /></td>
@@ -159,7 +171,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-5 mb-3">
-                                    <label class="form-label required" for="CounterLocation">@L["Ci.CounterLocation"]</label>
+                                    <label class="form-label required" for="CounterLocation">@L["Ci.CounterLocation"]</label><info-tip key="Ci.Info.CounterLocation" about="@L["Ci.CounterLocation"].Value" />
                                     <input name="CounterLocation" id="CounterLocation" class="form-control" value="@Model.CounterLocation" maxlength="200" />
                                 </div>
                                 <div class="col-md-3 mb-3">

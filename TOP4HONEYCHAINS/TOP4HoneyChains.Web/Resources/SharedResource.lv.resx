@@ -130,7 +130,7 @@
     <value>Izglītības Līmeņi</value>
   </data>
   <data name="Menu.BeekeepingPurposeTypes" xml:space="preserve">
-    <value>Biškopības Mērķa Veidi</value>
+    <value>Galvenie ražošanas mērķi</value>
   </data>
   <data name="Menu.BeekeepingTypes" xml:space="preserve">
     <value>Biškopības Veidi</value>
@@ -1405,7 +1405,7 @@
     <value>Šis lauks ir obligāts.</value>
   </data>
   <data name="Beekeeping Purpose Types" xml:space="preserve">
-    <value>Biškopības mērķa veidi</value>
+    <value>Galvenie ražošanas mērķi</value>
   </data>
   <data name="The user already has this role in the organization." xml:space="preserve">
     <value>Lietotājam organizācijā jau ir šī loma.</value>
@@ -2569,7 +2569,7 @@
     <value>Šim biškopim jau ir aktīva piekrišana; lai reģistrētu jaunu, vispirms atsauciet esošo.</value>
   </data>
   <data name="Beekeeping Purpose Type" xml:space="preserve">
-    <value>Biškopības mērķa veids</value>
+    <value>Galvenais ražošanas mērķis</value>
   </data>
   <data name="Showing _START_ to _END_ of _TOTAL_ entries" xml:space="preserve">
     <value>Rāda _START_ līdz _END_ no _TOTAL_ ierakstiem</value>
@@ -3202,7 +3202,7 @@
     <value>KKP piešķiršana</value>
   </data>
   <data name="Purpose Type" xml:space="preserve">
-    <value>Mērķa veids</value>
+    <value>Galvenais ražošanas mērķis</value>
   </data>
   <data name="not accredited" xml:space="preserve">
     <value>nav akreditēta</value>
@@ -7639,10 +7639,10 @@
     <value>Reģistra numurs</value>
   </data>
   <data name="Reg78.RegistryHelp" xml:space="preserve">
-    <value>TR, provinces kods un 10 cipari. Salīdzina ar pārvaldes provinci.</value>
+    <value>TR, provinces 2 ciparu numura zīmes kods un 10 cipari.</value>
   </data>
   <data name="Reg78.MismatchReason" xml:space="preserve">
-    <value>Ja numurs pieder citai provincei: iemesls</value>
+    <value>Ja numurs reģistrēts citā provincē, ierakstiet iemeslu</value>
   </data>
   <data name="Reg78.Identity" xml:space="preserve">
     <value>Biškopis</value>
@@ -7672,7 +7672,7 @@
     <value>Ļaujiet biškopim izlasīt šo paziņojumu vai nolasiet to skaļi:</value>
   </data>
   <data name="Reg78.ConsentPublicName" xml:space="preserve">
-    <value>Biškopis piekrīt, ka viņa vārds tiek rādīts publiskajās lapās (nav obligāti; citādi tiek rādīts neitrāls kods)</value>
+    <value>Biškopis piekrīt, ka viņa vārds tiek rādīts publiskajās lapās (nav obligāti)</value>
   </data>
   <data name="Reg78.ConsentSms" xml:space="preserve">
     <value>Biškopis piekrīt SMS paziņojumiem par piegādēm un laboratorijas rezultātiem (nav obligāti)</value>
@@ -7861,7 +7861,7 @@
     <value>Tvertnes un paraugi</value>
   </data>
   <data name="Ci.ContainersHelp" xml:space="preserve">
-    <value>Viena rinda katrai tvertnei. Noplombētai tvertnei pārbaudiet plombu. Bez plombas: biškopja klātbūtnē uzlieciet uzņēmuma plombu. Tad atveriet, piepildiet parauga un kontrolparauga burku, pārbaudiet, ka vāciņa poga ir nospiesta, un tvertni noplombējiet no jauna.</value>
+    <value>Viena rinda katrai tvertnei (kanna, spainis vai muca). Katrai: izvēlieties, kā tā atvesta, piepildiet parauga un kontrolparauga burku, pārbaudiet, ka vāciņa poga ir nospiesta, un tvertni noplombējiet no jauna.</value>
   </data>
   <data name="Ci.Kind" xml:space="preserve">
     <value>Veids</value>
@@ -7891,16 +7891,16 @@
     <value>Pienākot</value>
   </data>
   <data name="Ci.ArrivedSealed" xml:space="preserve">
-    <value>pienāca noplombēta</value>
+    <value>Atvesta ar plombu</value>
   </data>
   <data name="Ci.OriginSeal" xml:space="preserve">
-    <value>Plombas numurs</value>
+    <value>Plombas numurs, ar kuru tā atvesta</value>
   </data>
   <data name="Ci.OriginIntact" xml:space="preserve">
-    <value>plomba neskarta</value>
+    <value>Pārbaudīts: plomba ir neskarta</value>
   </data>
   <data name="Ci.PlantSeal" xml:space="preserve">
-    <value>Tagad uzliktā uzņēmuma plomba</value>
+    <value>Jaunā plomba, uzlikta tagad biškopja klātbūtnē</value>
   </data>
   <data name="Ci.JarSeal" xml:space="preserve">
     <value>Burkas plomba</value>
@@ -8833,52 +8833,52 @@
     <value>Rādīt ekskursiju</value>
   </data>
   <data name="Tour.Work" xml:space="preserve">
-    <value>Mans darbs parāda, kas jūs gaida: vērtības ievadīšanai vai apstiprināšanai, piegādes, paraugi, pierādījumi.</value>
+    <value>Mans darbs ir jūsu darāmo darbu saraksts: šeit parādās viss, kas jūs gaida. Sāciet dienu šeit, piemēram, ar vērtību, kas jāievada, vai ierakstu, kas jāapstiprina.</value>
   </data>
   <data name="Tour.Org" xml:space="preserve">
-    <value>Mana organizācija: jūsu partijas, loma un organizācijas lapa.</value>
+    <value>Mana organizācija rāda jūsu organizācijas lapu, jūsu lomu un tās partijas un gala partijas. Šeit pārbaudiet, piemēram, kuras partijas vēl ir atvērtas.</value>
   </data>
   <data name="Tour.Intake" xml:space="preserve">
-    <value>Piegādes: reģistrējiet katru kannu ar plombu un ņemiet paraugu no katras; biškopis apstiprina ar SMS.</value>
+    <value>Piegādes (pieņemšana) ir vieta, kur pieņemat medu no biškopja. Atrodiet biškopi pēc numura, ierakstiet katru tvertni ar tās plombu un no katras piepildiet parauga burku; biškopis apstiprina, nolasot jums kodu no SMS.</value>
   </data>
   <data name="Tour.Samples" xml:space="preserve">
-    <value>Paraugi: nosūtītās burkas un to statuss laboratorijā.</value>
+    <value>Paraugi un laboratorija rāda nosūtītās burkas un to, kur tās atrodas. Piemēram, šeit redzams, kad laboratorija burku pieņēma vai noraidīja bojātas plombas dēļ.</value>
   </data>
   <data name="Tour.Lab" xml:space="preserve">
-    <value>Paraugi un laboratorija: pieņemiet burkas (plomba, etiķete, vāciņš), ievadiet rezultātus, apstipriniet pārskatus.</value>
+    <value>Paraugi un laboratorija rāda visas jūsu laboratorijas burkas un pārskatus. Jūsu pirmais darbs ir apstiprināt analītiķu iesniegtos pārskatus vai atgriezt kādu, piemēram, ja vērtība šķiet kļūdaina.</value>
   </data>
   <data name="Tour.Registration" xml:space="preserve">
-    <value>Biškopju reģistrācija: reģistrējiet biškopjus un viņu dravas; biškopis apstiprina ar SMS.</value>
+    <value>Biškopju reģistrācija ir vieta, kur reģistrējat biškopjus un viņu dravas. Ierakstiet reģistra numuru, biškopja datus un dravu, nosūtiet SMS kodu un ierakstiet kodu, ko biškopis jums nolasa.</value>
   </data>
   <data name="Tour.Compliance" xml:space="preserve">
-    <value>Atbilstība: pārskati, parakstītie foto, datu pieprasījumi un audita žurnāls.</value>
+    <value>Atbilstība ir jūsu pārbaužu galds: parakstīti foto, kvalitātes pārskati, datu pieprasījumi un audita žurnāls. Sāciet ar to, kas gaida jūsu lēmumu, piemēram, piegādi, kas apstiprināta ar parakstītu foto, nevis SMS kodu.</value>
   </data>
   <data name="Tour.Shipments" xml:space="preserve">
-    <value>Sūtījumi: nosūtiet pabeigtu partiju nākamajai organizācijai; atbildība pāriet pēc apstiprinājuma.</value>
+    <value>Sūtījumi un krājumi rāda medu, ko jūsu organizācija nosūta, saņem un tur krājumā. Veikals sāk ar ienākoša sūtījuma apstiprināšanu, kad burkas pienāk; fasētājs nosūta pabeigtu gala partiju pircējam.</value>
   </data>
   <data name="Tour.Ccp" xml:space="preserve">
-    <value>Kontrolpunkti (KKP), kas gaida jūsu vērtības vai apstiprinājumu, ir sadaļā Mans darbs.</value>
+    <value>Mans darbs rāda kontrolpunktus (KKP), kas gaida jūsu vērtības. Atveriet vienu un ievadiet, ko pārbaudījāt, piemēram, pārbaudi dravā; pēc tam to apstiprina kvalitātes nodrošināšanas speciālists.</value>
   </data>
   <data name="Tour.Menu" xml:space="preserve">
-    <value>Jūsu izvēlne: valoda, profils, ekskursija vēlreiz un animāciju slēdzis.</value>
+    <value>Jūsu izvēlnē (augšā pa labi) ir valoda, profils un parole, šī ekskursija un animāciju slēdzis. Šeit nomainiet valodu, piemēram, uz angļu.</value>
   </data>
   <data name="Tour.Admin.Dashboard" xml:space="preserve">
-    <value>Panelis: kas gaida platformu un jaunākās darbības.</value>
+    <value>Informācijas panelis rāda, kas jūs gaida kā platformas operatoru, un jaunākās darbības. Sāciet šeit, piemēram, ar organizāciju, kas gaida pārbaudi.</value>
   </data>
   <data name="Tour.Admin.Data" xml:space="preserve">
-    <value>Biškopji, dravas un atsauču saraksti.</value>
+    <value>Biškopji, dravas un platformas references saraksti. Šeit atrodiet biškopi, piemēram, pēc reģistra numura.</value>
   </data>
   <data name="Tour.Me.Deliveries" xml:space="preserve">
-    <value>Jūsu piegādes ar kannām un plombām; šeit norādiet savu cenu.</value>
+    <value>Manas piegādes rāda piegādāto medu ar katru tvertni un tās plombu. Ievadiet šeit savu cenu par kilogramu, piemēram, pagājušās nedēļas kastaņu medum.</value>
   </data>
   <data name="Tour.Me.Samples" xml:space="preserve">
-    <value>Jūsu paraugu burkas un rezultāti, kad tie apstiprināti.</value>
+    <value>Paraugi un laboratorija rāda no jūsu tvertnēm ņemtās paraugu burkas. Rezultāti parādās šeit, kad laboratorija apstiprina savu pārskatu.</value>
   </data>
   <data name="Tour.Me.Privacy" xml:space="preserve">
-    <value>Jūsu piekrišanas: dodiet vai atsauciet jebkurā laikā.</value>
+    <value>Privātums un piekrišanas rāda, kam esat piekritis, piemēram, vārda rādīšanai publiskajās lapās. Katru piekrišanu varat dot vai atsaukt jebkurā laikā.</value>
   </data>
   <data name="Tour.Me.Account" xml:space="preserve">
-    <value>Tālrunis, valoda, parole un animāciju slēdzis.</value>
+    <value>Kontā ir jūsu tālrunis, valoda un parole. Pirmajā pieteikšanās reizē nomainiet paroli šeit.</value>
   </data>
   <data name="Only a processing organization takes samples." xml:space="preserve">
     <value>Paraugus ņem tikai pārstrādes organizācija.</value>
@@ -9359,15 +9359,15 @@
     <comment>D-87: draft for partner review</comment>
   </data>
   <data name="Tour.Consumer.Honeys" xml:space="preserve">
-    <value>Mans medus: medus, ko saglabājāt no tā Medus stāsta. Šeit varat atkal atvērt stāstu vai to noņemt.</value>
+    <value>Saglabātais medus apkopo medu, ko saglabājāt no tā Medus stāsta. Noskenējiet burkas QR kodu un saglabājiet medu; tā stāstu šeit varat atvērt jebkurā laikā.</value>
     <comment>D-87: draft for partner review</comment>
   </data>
   <data name="Tour.Consumer.Feedback" xml:space="preserve">
-    <value>Manas atsauksmes: ko rakstījāt ražotājiem, un viņu atbildes. Ražotāji redz tikai jūsu kodu.</value>
+    <value>Manas atsauksmes rāda, ko rakstījāt ražotājiem, un viņu atbildes. Ražotāji redz tikai jūsu kodu, nekad vārdu vai e-pastu.</value>
     <comment>D-87: draft for partner review</comment>
   </data>
   <data name="Tour.Consumer.Account" xml:space="preserve">
-    <value>Konts: parole, valoda, tālrunis paroles atjaunošanai, jūsu dati failā un konta dzēšana.</value>
+    <value>Konts: parole, valoda, tālrunis paroles atjaunošanai, jūsu dati failā un konta dzēšana. Sāciet, pievienojot tālruni, lai varētu atjaunot aizmirstu paroli.</value>
     <comment>D-87: draft for partner review</comment>
   </data>
   <data name="Consumer.Feedback.Help" xml:space="preserve">
@@ -9731,10 +9731,10 @@
     <value>Saraksti, ko piedāvā veidlapas. To tulkojumi ir sadaļā Iestatīšana → Atsauces datu tulkojumi.</value>
   </data>
   <data name="Tour.Admin.Setup" xml:space="preserve">
-    <value>Iestatīšana: organizācijas, kompetences, lomas un atļaujas, KKP atbildība, biškopju reģistrs un atsauces dati.</value>
+    <value>Iestatīšana ir vieta, kur veidojat platformu: organizācijas, to iespējas, lomas, KKP atbildība un references dati. Sāciet, izveidojot organizāciju, piemēram, rajona pārvaldi, ar tās pirmo administratoru.</value>
   </data>
   <data name="Tour.Admin.Oversight" xml:space="preserve">
-    <value>Uzraudzība: ieraksti, audita žurnāls, lietotāji, paziņojumi, datu glabāšana un labojumi. Uzņēmējdarbības dati jums ir tikai lasāmi.</value>
+    <value>Uzraudzībā varat lasīt visu: ierakstus, audita žurnālu, lietotājus, paziņojumus, datu glabāšanu un labojumus. Uzņēmējdarbības datus jūs nemaināt; kļūdainai vērtībai pieprasiet labojumu, ko apstiprina otrs administrators.</value>
   </data>
   <data name="Phone.Title" xml:space="preserve">
     <value>Ziņas</value>
@@ -9777,5 +9777,86 @@
   </data>
   <data name="Check that this is another delivery." xml:space="preserve">
     <value>Pārbaudiet, vai tā ir cita piegāde.</value>
+  </data>
+  <data name="Login.FormOutdated" xml:space="preserve">
+    <value>Šī pieteikšanās lapa bija novecojusi, jo kāds citā cilnē pieteicās vai izrakstījās. Lūdzu, piesakieties vēlreiz.</value>
+  </data>
+  <data name="Login.SignedInAs" xml:space="preserve">
+    <value>Šajā pārlūkā jūs esat pieteicies kā {0}.</value>
+  </data>
+  <data name="Login.SignedInAsHelp" xml:space="preserve">
+    <value>Lai pieteiktos kā cita persona (piemēram, biškopis ar datiem no SMS), vispirms izrakstieties.</value>
+  </data>
+  <data name="Login.ContinueAs" xml:space="preserve">
+    <value>Turpināt kā {0}</value>
+  </data>
+  <data name="Login.SignOutToSwitch" xml:space="preserve">
+    <value>Izrakstīties, lai pieteiktos kā cita persona</value>
+  </data>
+  <data name="Reg91.SignInSent" xml:space="preserve">
+    <value>Pieteikšanās dati tika nosūtīti ar SMS {0}. Tie ir derīgi līdz {1}: biškopis piesakās ar šo SMS.</value>
+  </data>
+  <data name="Reg91.SendAgainTick" xml:space="preserve">
+    <value>Sūtīt jaunus datus: iepriekšējā SMS pagaidu parole vairs nedarbosies.</value>
+  </data>
+  <data name="Reg91.SendAgainButton" xml:space="preserve">
+    <value>Sūtīt jaunus pieteikšanās datus</value>
+  </data>
+  <data name="The sign-in details were already sent and are still valid." xml:space="preserve">
+    <value>Pieteikšanās dati jau ir nosūtīti un joprojām ir derīgi.</value>
+  </data>
+  <data name="The beekeeper signs in with that SMS." xml:space="preserve">
+    <value>Biškopis piesakās ar šo SMS.</value>
+  </data>
+  <data name="To send new ones, tick the box: the earlier temporary password then stops working." xml:space="preserve">
+    <value>Lai nosūtītu jaunus, atzīmējiet lodziņu: iepriekšējā pagaidu parole vairs nedarbosies.</value>
+  </data>
+  <data name="Info.More" xml:space="preserve">
+    <value>Vairāk informācijas</value>
+  </data>
+  <data name="Tour.Lab.Analyst" xml:space="preserve">
+    <value>Paraugi un laboratorija ir jūsu darba saraksts. Vispirms pieņemiet katru burku (plombas numurs, etiķete, vāciņš), tad ievadiet rezultātus, piemēram, mitrumu un HMF, un iesniedziet pārskatu apstiprināšanai.</value>
+  </data>
+  <data name="Tour.Approve" xml:space="preserve">
+    <value>Mans darbs rāda kontrolpunktu (KKP) ierakstus, ko iesnieguši jūsu kolēģi. Pārbaudiet katru un apstipriniet vai atgrieziet, piemēram, šodienas piegādes pieņemšanas pārbaudi; neviens neapstiprina savu ierakstu.</value>
+  </data>
+  <data name="Reg78.Info.Registry" xml:space="preserve">
+    <value>TR + provinces numura zīmes kods (2 cipari) + 10 cipari, piem., TR520401200241. Provinces kodu salīdzina ar jūsu pārvaldes provinci.</value>
+  </data>
+  <data name="Reg78.Info.Mismatch" xml:space="preserve">
+    <value>Ja numurs sākas ar citas provinces kodu (piemēram, klejojošs biškopis, reģistrēts Ordu, kuram šeit ir drava), ierakstiet īsu iemeslu. To glabā kopā ar reģistrāciju.</value>
+  </data>
+  <data name="Reg78.Info.PublicName" xml:space="preserve">
+    <value>Bez šīs piekrišanas publiskajās lapās, piemēram, Medus stāstā, vārda vietā redzams nemainīgs kods, piemēram, BK-7F3K9Q2M. Tas visur ir tas pats kods, tāpēc medus paliek piesaistīts vienam biškopim, viņu nenosaucot.</value>
+  </data>
+  <data name="Reg78.Info.Education" xml:space="preserve">
+    <value>Izsekojamībai nav vajadzīgs; atstājiet tukšu, ja vien biškopis nevēlas, lai to ieraksta.</value>
+  </data>
+  <data name="Reg78.Info.Purpose" xml:space="preserve">
+    <value>Biškopja galvenais produkts, piemēram, medus. Izvēlieties vienu; tas neierobežo, ko biškopis var piegādāt.</value>
+  </data>
+  <data name="Reg78.Info.NoPhone" xml:space="preserve">
+    <value>Bez mobilā tālruņa biškopis nevar apstiprināt ar SMS kodu. Izdrukājiet veidlapu, ļaujiet biškopim to parakstīt un augšupielādējiet foto; tad reģistrācija gaida atbilstības speciālista lēmumu.</value>
+  </data>
+  <data name="Reg78.Info.Language" xml:space="preserve">
+    <value>Biškopis saņems SMS kodu un turpmākās ziņas šajā valodā.</value>
+  </data>
+  <data name="Cust.Info.Number" xml:space="preserve">
+    <value>Ierakstiet biškopja reģistra numuru (piem., TR520401200241) vai saimniecības numuru un nospiediet Atrast. Pēc tam veidlapā parādās viņa dravas.</value>
+  </data>
+  <data name="Ci.ArrivedUnsealed" xml:space="preserve">
+    <value>Atvesta bez plombas</value>
+  </data>
+  <data name="Ci.Info.Arrival" xml:space="preserve">
+    <value>Izvēlieties, kā tvertne atvesta. Ar plombu: ierakstiet plombas numuru, ar kuru tā atvesta, un apstipriniet, ka plomba ir neskarta. Bez plombas: noplombējiet to tagad biškopja klātbūtnē un ierakstiet jaunās plombas numuru. Plomba sasaista tvertni ar tās paraugu burkām un ar piegādi, ko apstiprina biškopis, tāpēc vēlāk medu nevar apmainīt.</value>
+  </data>
+  <data name="Ci.Info.Jars" xml:space="preserve">
+    <value>No katras tvertnes piepildiet divas burkas: parauga burka nonāk laboratorijā, kontrolparauga burka paliek pie jums, ja kāds rezultāts tiek apstrīdēts. Noplombējiet katru burku un ierakstiet tās plombas numuru.</value>
+  </data>
+  <data name="Ci.Info.Reseal" xml:space="preserve">
+    <value>Ņemot paraugus, tvertne tiek atvērta. Noplombējiet to no jauna un ierakstiet jaunās plombas numuru; tvertne paliek ar šo plombu, līdz to izmanto.</value>
+  </data>
+  <data name="Ci.Info.CounterLocation" xml:space="preserve">
+    <value>Kur glabā kontrolparaugu burkas, piem., “Aukstā telpa 2, plaukts B”. Glabājiet tās līdz blakus norādītajam datumam, ja kāds rezultāts tiek apstrīdēts.</value>
   </data>
 </root>

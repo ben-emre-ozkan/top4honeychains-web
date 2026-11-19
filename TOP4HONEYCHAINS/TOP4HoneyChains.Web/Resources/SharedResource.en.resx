@@ -130,7 +130,7 @@
     <value>Education Levels</value>
   </data>
   <data name="Menu.BeekeepingPurposeTypes" xml:space="preserve">
-    <value>Beekeeping Purpose Types</value>
+    <value>Main purposes</value>
   </data>
   <data name="Menu.BeekeepingTypes" xml:space="preserve">
     <value>Beekeeping Types</value>
@@ -1633,7 +1633,7 @@
     <value>Not specified</value>
   </data>
   <data name="Purpose Type" xml:space="preserve">
-    <value>Purpose Type</value>
+    <value>Main purpose</value>
   </data>
   <data name="Beekeeping Type" xml:space="preserve">
     <value>Beekeeping Type</value>
@@ -1648,7 +1648,7 @@
     <value>Optional. JPG, PNG or WEBP, at most 8 MB. Leave empty to keep the current photo.</value>
   </data>
   <data name="Beekeeping Purpose Type" xml:space="preserve">
-    <value>Beekeeping Purpose Type</value>
+    <value>Main purpose</value>
   </data>
   <data name="Change the status with Deactivate / Activate in the beekeepers list (beekeepers do not sign in, so their login stays locked)." xml:space="preserve">
     <value>Change the status with Deactivate / Activate in the beekeepers list (beekeepers do not sign in, so their login stays locked).</value>
@@ -1714,7 +1714,7 @@
     <value>Update the selected purpose type.</value>
   </data>
   <data name="Beekeeping Purpose Types" xml:space="preserve">
-    <value>Beekeeping Purpose Types</value>
+    <value>Main purposes</value>
   </data>
   <data name="Create Beekeeping Type" xml:space="preserve">
     <value>Create Beekeeping Type</value>
@@ -7639,10 +7639,10 @@
     <value>Registry number</value>
   </data>
   <data name="Reg78.RegistryHelp" xml:space="preserve">
-    <value>TR, the province plate code and 10 digits. Compared with the directorate's province.</value>
+    <value>TR, the province's 2-digit plate code and 10 digits.</value>
   </data>
   <data name="Reg78.MismatchReason" xml:space="preserve">
-    <value>If the number belongs to another province: the reason</value>
+    <value>If the number is registered in another province, write the reason</value>
   </data>
   <data name="Reg78.Identity" xml:space="preserve">
     <value>The beekeeper</value>
@@ -7672,7 +7672,7 @@
     <value>Let the beekeeper read this notice, or read it aloud:</value>
   </data>
   <data name="Reg78.ConsentPublicName" xml:space="preserve">
-    <value>The beekeeper agrees that their name is shown on public pages (optional; without it a neutral code is shown)</value>
+    <value>The beekeeper agrees that their name is shown on public pages (optional)</value>
   </data>
   <data name="Reg78.ConsentSms" xml:space="preserve">
     <value>The beekeeper agrees to SMS notifications about deliveries and lab results (optional)</value>
@@ -7861,7 +7861,7 @@
     <value>Containers and samples</value>
   </data>
   <data name="Ci.ContainersHelp" xml:space="preserve">
-    <value>One row per container. A sealed container: check its seal. An unsealed one: apply a plant seal in front of the beekeeper. Then open it, fill the sample jar and the counter-sample jar, check the cap button is down, and seal the container again.</value>
+    <value>One row per container (tin, bucket or drum). For each one: choose how it arrived, fill a sample jar and a counter-sample jar, check the cap button is down, and seal the container again.</value>
   </data>
   <data name="Ci.Kind" xml:space="preserve">
     <value>Type</value>
@@ -7891,16 +7891,16 @@
     <value>On arrival</value>
   </data>
   <data name="Ci.ArrivedSealed" xml:space="preserve">
-    <value>arrived sealed</value>
+    <value>Arrived sealed</value>
   </data>
   <data name="Ci.OriginSeal" xml:space="preserve">
-    <value>Seal number</value>
+    <value>Number of the seal it came with</value>
   </data>
   <data name="Ci.OriginIntact" xml:space="preserve">
-    <value>seal intact</value>
+    <value>I checked: the seal is intact</value>
   </data>
   <data name="Ci.PlantSeal" xml:space="preserve">
-    <value>Plant seal applied now</value>
+    <value>New seal, put on now in front of the beekeeper</value>
   </data>
   <data name="Ci.JarSeal" xml:space="preserve">
     <value>Jar seal</value>
@@ -8833,52 +8833,52 @@
     <value>Show the tour</value>
   </data>
   <data name="Tour.Work" xml:space="preserve">
-    <value>My work lists what waits for you: values to enter or approve, deliveries, samples, evidence.</value>
+    <value>My work is your to-do list: everything waiting for you shows up here. Start your day here, for example with a value to enter or a record to approve.</value>
   </data>
   <data name="Tour.Org" xml:space="preserve">
-    <value>My organization: your lots and batches, your role, and the organization's page.</value>
+    <value>My organization shows your organization's page, your role, and the lots and batches it holds. Check here, for example, which lots are still open.</value>
   </data>
   <data name="Tour.Intake" xml:space="preserve">
-    <value>Deliveries: record each tin with its seal and take a sample from every tin; the beekeeper confirms by SMS.</value>
+    <value>Deliveries (intake) is where you take in honey from a beekeeper. Find the beekeeper by number, record each tin with its seal and fill a sample jar from every tin; the beekeeper confirms by reading out the code from their SMS.</value>
   </data>
   <data name="Tour.Samples" xml:space="preserve">
-    <value>Samples: the jars you sent and their status at the laboratory.</value>
+    <value>Samples and lab shows the jars you sent and where they are. For example, see when the laboratory received a jar, or rejected it because of a broken seal.</value>
   </data>
   <data name="Tour.Lab" xml:space="preserve">
-    <value>Samples and lab: receive jars (seal, label, cap), enter results, approve reports.</value>
+    <value>Samples and lab shows every jar and report of your laboratory. Your first job is to approve the reports your analysts submit, or return one, for example when a value looks wrong.</value>
   </data>
   <data name="Tour.Registration" xml:space="preserve">
-    <value>Beekeeper registration: register beekeepers and their apiaries; the beekeeper confirms by SMS.</value>
+    <value>Beekeeper registration is where you register beekeepers and their apiaries. Type the registry number, enter the beekeeper's details and apiary, send the SMS code and type in the code the beekeeper reads out to you.</value>
   </data>
   <data name="Tour.Compliance" xml:space="preserve">
-    <value>Compliance: reviews, signed photos, data requests and the organization's audit log.</value>
+    <value>Compliance is your review desk: signed photos, quality reviews, data requests and the audit log. Start with what waits for your decision, for example a delivery confirmed with a signed photo instead of an SMS code.</value>
   </data>
   <data name="Tour.Shipments" xml:space="preserve">
-    <value>Shipments: send a finalized batch to the next organization; custody moves when it confirms.</value>
+    <value>Shipments and stock shows the honey your organization sends, receives and holds. A shop starts by confirming an incoming shipment when the jars arrive; a packer sends a finalized batch to its buyer.</value>
   </data>
   <data name="Tour.Ccp" xml:space="preserve">
-    <value>The control points (CCP) waiting for your values or your approval are in My work.</value>
+    <value>My work lists the control points (CCP) waiting for your values. Open one and enter what you checked, for example the check at an apiary; a quality approver then approves it.</value>
   </data>
   <data name="Tour.Menu" xml:space="preserve">
-    <value>Your menu: language, profile, the tour again, and the animations switch.</value>
+    <value>Your menu (top right) holds your language, profile and password, this tour, and the animations switch. Change the language here, for example to Turkish.</value>
   </data>
   <data name="Tour.Admin.Dashboard" xml:space="preserve">
-    <value>The dashboard: what waits for the platform, and the latest activity.</value>
+    <value>The dashboard shows what waits for you as platform operator and the latest activity. Start here, for example with an organization waiting to be verified.</value>
   </data>
   <data name="Tour.Admin.Data" xml:space="preserve">
-    <value>Beekeepers, apiaries and the reference lists.</value>
+    <value>Beekeepers, apiaries and the reference lists of the platform. Look up a beekeeper here, for example by registry number.</value>
   </data>
   <data name="Tour.Me.Deliveries" xml:space="preserve">
-    <value>Your deliveries with their tins and seals; enter your price here.</value>
+    <value>My deliveries shows the honey you delivered, with each tin and its seal. Enter your price per kilogram here, for example for last week's chestnut honey.</value>
   </data>
   <data name="Tour.Me.Samples" xml:space="preserve">
-    <value>Your sample jars and the laboratory results once they are approved.</value>
+    <value>Samples and lab shows the sample jars taken from your tins. The laboratory results appear here once the laboratory has approved its report.</value>
   </data>
   <data name="Tour.Me.Privacy" xml:space="preserve">
-    <value>Your consents: give or withdraw them at any time.</value>
+    <value>Privacy and consents shows what you agreed to, for example showing your name on public pages. You can give or withdraw each consent at any time.</value>
   </data>
   <data name="Tour.Me.Account" xml:space="preserve">
-    <value>Your phone, language, password and the animations switch.</value>
+    <value>Account holds your phone, language and password. Change your password here the first time you sign in.</value>
   </data>
   <data name="Only a processing organization takes samples." xml:space="preserve">
     <value>Only a processing organization takes samples.</value>
@@ -9289,13 +9289,13 @@
     <value>The honey was removed from My honeys.</value>
   </data>
   <data name="Tour.Consumer.Honeys" xml:space="preserve">
-    <value>My honeys: the honeys you saved from their Honey Story. Open a story again or remove it here.</value>
+    <value>Saved honeys keeps the honeys you saved from their Honey Story. Scan the QR code on a jar and save the honey; you can open its story again here at any time.</value>
   </data>
   <data name="Tour.Consumer.Feedback" xml:space="preserve">
-    <value>My feedback: what you wrote to producers and their answers. Producers see only your code.</value>
+    <value>My feedback shows what you wrote to producers and their answers. Producers see only your code, never your name or e-mail.</value>
   </data>
   <data name="Tour.Consumer.Account" xml:space="preserve">
-    <value>Account: password, language, a phone for password recovery, your data as a file, and deleting the account.</value>
+    <value>Account: password, language, a phone for password recovery, your data as a file, and deleting the account. Start by adding a phone, so you can reset a forgotten password.</value>
   </data>
   <data name="Consumer.Feedback.Help" xml:space="preserve">
     <value>Your message goes to the organization that produced this honey. It sees only your code, never your user name or phone, and your feedback is never public.</value>
@@ -9607,10 +9607,10 @@
     <value>The lists the forms offer. Their translations are under Set-up → Translations of reference data.</value>
   </data>
   <data name="Tour.Admin.Setup" xml:space="preserve">
-    <value>Set-up: organizations, capabilities, roles and permissions, CCP responsibilities, the beekeeper registry and the reference data.</value>
+    <value>Set-up is where you build the platform: organizations, their capabilities, roles, CCP responsibilities and reference data. Start by creating an organization, for example a district directorate, with its first administrator.</value>
   </data>
   <data name="Tour.Admin.Oversight" xml:space="preserve">
-    <value>Oversight: records, the audit log, users, notices, data retention and corrections. Business data is read-only for you.</value>
+    <value>In Oversight you can read everything: records, the audit log, users, notices, data retention and corrections. You cannot change business data; for a wrong value, request a correction that a second administrator approves.</value>
   </data>
   <data name="Phone.Title" xml:space="preserve">
     <value>Messages</value>
@@ -9653,5 +9653,86 @@
   </data>
   <data name="Check that this is another delivery." xml:space="preserve">
     <value>Check that this is another delivery.</value>
+  </data>
+  <data name="Login.FormOutdated" xml:space="preserve">
+    <value>This sign-in page was out of date because someone signed in or out in another tab. Please sign in again.</value>
+  </data>
+  <data name="Login.SignedInAs" xml:space="preserve">
+    <value>You are signed in as {0} in this browser.</value>
+  </data>
+  <data name="Login.SignedInAsHelp" xml:space="preserve">
+    <value>To sign in as someone else (for example a beekeeper with the details from the SMS), sign out first.</value>
+  </data>
+  <data name="Login.ContinueAs" xml:space="preserve">
+    <value>Continue as {0}</value>
+  </data>
+  <data name="Login.SignOutToSwitch" xml:space="preserve">
+    <value>Sign out to sign in as someone else</value>
+  </data>
+  <data name="Reg91.SignInSent" xml:space="preserve">
+    <value>The sign-in details were sent by SMS on {0}. They are valid until {1}: the beekeeper signs in with that SMS.</value>
+  </data>
+  <data name="Reg91.SendAgainTick" xml:space="preserve">
+    <value>Send new details: the temporary password in the earlier SMS stops working.</value>
+  </data>
+  <data name="Reg91.SendAgainButton" xml:space="preserve">
+    <value>Send new sign-in details</value>
+  </data>
+  <data name="The sign-in details were already sent and are still valid." xml:space="preserve">
+    <value>The sign-in details were already sent and are still valid.</value>
+  </data>
+  <data name="The beekeeper signs in with that SMS." xml:space="preserve">
+    <value>The beekeeper signs in with that SMS.</value>
+  </data>
+  <data name="To send new ones, tick the box: the earlier temporary password then stops working." xml:space="preserve">
+    <value>To send new ones, tick the box: the earlier temporary password then stops working.</value>
+  </data>
+  <data name="Info.More" xml:space="preserve">
+    <value>More information</value>
+  </data>
+  <data name="Tour.Lab.Analyst" xml:space="preserve">
+    <value>Samples and lab is your bench list. First receive each jar (seal number, label, cap), then enter the results, for example moisture and HMF, and submit the report.</value>
+  </data>
+  <data name="Tour.Approve" xml:space="preserve">
+    <value>My work lists the control point (CCP) records your colleagues submitted. Check each one and approve it or send it back, for example the intake check of today's delivery; nobody approves their own entry.</value>
+  </data>
+  <data name="Reg78.Info.Registry" xml:space="preserve">
+    <value>TR + the province's plate code (2 digits) + 10 digits, e.g. TR520401200241. The plate code is compared with your directorate's province.</value>
+  </data>
+  <data name="Reg78.Info.Mismatch" xml:space="preserve">
+    <value>If the number starts with another province's plate code (for example, a migratory beekeeper registered in Ordu who keeps an apiary here), write a short reason. It is kept with the registration.</value>
+  </data>
+  <data name="Reg78.Info.PublicName" xml:space="preserve">
+    <value>Without this consent, public pages such as the Honey Story show a fixed code like BK-7F3K9Q2M instead of the name. It is the same code everywhere, so the honey stays traceable to one beekeeper without naming them.</value>
+  </data>
+  <data name="Reg78.Info.Education" xml:space="preserve">
+    <value>Not needed for traceability; leave it empty unless the beekeeper wants it recorded.</value>
+  </data>
+  <data name="Reg78.Info.Purpose" xml:space="preserve">
+    <value>The beekeeper's main product, such as honey. Choose one; it does not limit what the beekeeper can deliver.</value>
+  </data>
+  <data name="Reg78.Info.NoPhone" xml:space="preserve">
+    <value>Without a mobile phone the beekeeper cannot confirm with an SMS code. Print the form, let the beekeeper sign it and upload a photo; the registration then waits for your Compliance Officer.</value>
+  </data>
+  <data name="Reg78.Info.Language" xml:space="preserve">
+    <value>The beekeeper receives the SMS code and later messages in this language.</value>
+  </data>
+  <data name="Cust.Info.Number" xml:space="preserve">
+    <value>Type the beekeeper's registry number (e.g. TR520401200241) or business number and press Find. The beekeeper's apiaries then appear in the form.</value>
+  </data>
+  <data name="Ci.ArrivedUnsealed" xml:space="preserve">
+    <value>Arrived unsealed</value>
+  </data>
+  <data name="Ci.Info.Arrival" xml:space="preserve">
+    <value>Choose how the container arrived. Arrived sealed: type the number of the seal it came with and confirm the seal is intact. Arrived unsealed: seal it now in front of the beekeeper and type the new seal number. The seal ties the container to its sample jars and to the delivery the beekeeper confirms, so the honey cannot be swapped later.</value>
+  </data>
+  <data name="Ci.Info.Jars" xml:space="preserve">
+    <value>From every container fill two jars: the sample jar goes to the laboratory, the counter-sample jar stays with you in case a result is disputed. Seal each jar and type its seal number.</value>
+  </data>
+  <data name="Ci.Info.Reseal" xml:space="preserve">
+    <value>Taking the samples opens the container. Seal it again and type the new seal number; the container keeps this seal until it is used.</value>
+  </data>
+  <data name="Ci.Info.CounterLocation" xml:space="preserve">
+    <value>Where the counter-sample jars are stored, e.g. “Cold room 2, shelf B”. Keep them until the date next to it, in case a result is disputed.</value>
   </data>
 </root>

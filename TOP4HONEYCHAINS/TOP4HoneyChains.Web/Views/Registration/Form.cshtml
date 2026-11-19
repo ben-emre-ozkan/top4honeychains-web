@@ -48,12 +48,12 @@
                         <h5 class="mt-2">1. @L["Reg78.Registry"]</h5>
                         <div class="row g-2">
                             <div class="col-md-4">
-                                <label class="form-label required" for="RegistryNumber">@L["Reg78.RegistryNumber"]</label>
-                                <input class="form-control" asp-for="RegistryNumber" placeholder="TR061234567890" autocomplete="off" />
+                                <label class="form-label required" for="RegistryNumber">@L["Reg78.RegistryNumber"]</label><info-tip key="Reg78.Info.Registry" about="@L["Reg78.RegistryNumber"].Value" />
+                                <input class="form-control" asp-for="RegistryNumber" placeholder="TR520401200241" autocomplete="off" />
                                 <div class="form-text">@L["Reg78.RegistryHelp"]@if (Demo.Enabled) {<text> </text><span id="registry-demo-help">@L["Demo.RegistryHelp"]</span>}</div>
                             </div>
                             <div class="col-md-8">
-                                <label class="form-label" for="ProvinceMismatchReason">@L["Reg78.MismatchReason"]</label>
+                                <label class="form-label" for="ProvinceMismatchReason">@L["Reg78.MismatchReason"]</label><info-tip key="Reg78.Info.Mismatch" about="@L["Reg78.MismatchReason"].Value" />
                                 <input class="form-control" asp-for="ProvinceMismatchReason" maxlength="300" />
                             </div>
                         </div>
@@ -68,11 +68,11 @@
                                 <input class="form-control" asp-for="Phone" type="tel" placeholder="+90 532 123 45 67" />
                                 <div class="form-check mt-1">
                                     <input class="form-check-input" type="checkbox" asp-for="NoPhone" />
-                                    <label class="form-check-label small" for="NoPhone">@L["Reg78.NoPhone"]</label>
+                                    <label class="form-check-label small" for="NoPhone">@L["Reg78.NoPhone"]</label><info-tip key="Reg78.Info.NoPhone" about="@L["Reg78.NoPhone"].Value" />
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label" for="Language">@L["Reg78.Language"]</label>
+                                <label class="form-label" for="Language">@L["Reg78.Language"]</label><info-tip key="Reg78.Info.Language" about="@L["Reg78.Language"].Value" />
                                 <select class="form-select" asp-for="Language">
                                     @foreach (var (code, name) in languages)
                                     {
@@ -80,9 +80,9 @@
                                     }
                                 </select>
                             </div>
-                            <div class="col-md-4"><label class="form-label" for="EducationLevelId">@L["Education Level"]</label><select class="form-select" asp-for="EducationLevelId" asp-items="ViewBag.Education"><option value="">@L["-- Select --"]</option></select></div>
-                            <div class="col-md-4"><label class="form-label" for="PurposeTypeId">@L["Beekeeping Purpose Type"]</label><select class="form-select" asp-for="PurposeTypeId" asp-items="ViewBag.Purposes"><option value="">@L["-- Select --"]</option></select></div>
-                            <div class="col-md-4"><label class="form-label" for="BeekeepingTypeId">@L["Beekeeping Type"]</label><select class="form-select" asp-for="BeekeepingTypeId" asp-items="ViewBag.Types"><option value="">@L["-- Select --"]</option></select></div>
+                            <div class="col-md-4"><label class="form-label" for="EducationLevelId">@L["Education Level"] <span class="text-muted fw-normal">@L["(optional)"]</span></label><info-tip key="Reg78.Info.Education" about="@L["Education Level"].Value" /><select class="form-select" asp-for="EducationLevelId" asp-items="ViewBag.Education"><option value="">@L["-- Select --"]</option></select></div>
+                            <div class="col-md-4"><label class="form-label" for="PurposeTypeId">@L["Beekeeping Purpose Type"] <span class="text-muted fw-normal">@L["(optional)"]</span></label><info-tip key="Reg78.Info.Purpose" about="@L["Beekeeping Purpose Type"].Value" /><select class="form-select" asp-for="PurposeTypeId" asp-items="ViewBag.Purposes"><option value="">@L["-- Select --"]</option></select></div>
+                            <div class="col-md-4"><label class="form-label" for="BeekeepingTypeId">@L["Beekeeping Type"] <span class="text-muted fw-normal">@L["(optional)"]</span></label><select class="form-select" asp-for="BeekeepingTypeId" asp-items="ViewBag.Types"><option value="">@L["-- Select --"]</option></select></div>
                             @* D-88: the beekeeper's association, linked at registration *@
                             <div class="col-md-4">
                                 <label class="form-label" for="AssociationOrgId">@L["Reg78.Association"]</label>
@@ -124,7 +124,7 @@
                         }
                         <div class="form-check mt-2">
                             <input class="form-check-input" type="checkbox" asp-for="PublicName" />
-                            <label class="form-check-label" for="PublicName">@L["Reg78.ConsentPublicName"]</label>
+                            <label class="form-check-label" for="PublicName">@L["Reg78.ConsentPublicName"]</label><info-tip key="Reg78.Info.PublicName" about="@L["Reg78.ConsentPublicName"].Value" />
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" asp-for="PortalNotifications" />

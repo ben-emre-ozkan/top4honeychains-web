@@ -130,7 +130,7 @@
     <value>Poziomy Edukacji</value>
   </data>
   <data name="Menu.BeekeepingPurposeTypes" xml:space="preserve">
-    <value>Typy Celów Pszczelarstwa</value>
+    <value>Główne cele produkcji</value>
   </data>
   <data name="Menu.BeekeepingTypes" xml:space="preserve">
     <value>Typy Pszczelarstwa</value>
@@ -2344,7 +2344,7 @@
     <value>Limity parametru</value>
   </data>
   <data name="Purpose Type" xml:space="preserve">
-    <value>Typ celu</value>
+    <value>Główny cel produkcji</value>
   </data>
   <data name="Fully Completed" xml:space="preserve">
     <value>W pełni ukończone</value>
@@ -3979,7 +3979,7 @@
     <value>Wysyłka została odrzucona; ilość pozostaje u nadawcy.</value>
   </data>
   <data name="Beekeeping Purpose Type" xml:space="preserve">
-    <value>Typ celu pszczelarstwa</value>
+    <value>Główny cel produkcji</value>
   </data>
   <data name="Raw Honey Production Periods" xml:space="preserve">
     <value>Okresy produkcji surowego miodu</value>
@@ -4162,7 +4162,7 @@
     <value>Produkcje surowego miodu</value>
   </data>
   <data name="Beekeeping Purpose Types" xml:space="preserve">
-    <value>Typy celów pszczelarstwa</value>
+    <value>Główne cele produkcji</value>
   </data>
   <data name="Enter wholesaler company and contact information." xml:space="preserve">
     <value>Wprowadź dane firmy hurtownika i dane kontaktowe.</value>
@@ -7639,10 +7639,10 @@
     <value>Numer rejestrowy</value>
   </data>
   <data name="Reg78.RegistryHelp" xml:space="preserve">
-    <value>TR, kod prowincji i 10 cyfr. Porównywany z prowincją dyrekcji.</value>
+    <value>TR, 2-cyfrowy kod tablic rejestracyjnych prowincji i 10 cyfr.</value>
   </data>
   <data name="Reg78.MismatchReason" xml:space="preserve">
-    <value>Jeśli numer należy do innej prowincji: powód</value>
+    <value>Jeśli numer jest zarejestrowany w innej prowincji, wpisz powód</value>
   </data>
   <data name="Reg78.Identity" xml:space="preserve">
     <value>Pszczelarz</value>
@@ -7672,7 +7672,7 @@
     <value>Daj pszczelarzowi tę informację do przeczytania lub przeczytaj ją na głos:</value>
   </data>
   <data name="Reg78.ConsentPublicName" xml:space="preserve">
-    <value>Pszczelarz zgadza się na pokazywanie imienia i nazwiska na stronach publicznych (opcjonalnie; inaczej pokazywany jest neutralny kod)</value>
+    <value>Pszczelarz zgadza się na pokazywanie imienia i nazwiska na stronach publicznych (opcjonalnie)</value>
   </data>
   <data name="Reg78.ConsentSms" xml:space="preserve">
     <value>Pszczelarz zgadza się na powiadomienia SMS o dostawach i wynikach badań (opcjonalnie)</value>
@@ -7861,7 +7861,7 @@
     <value>Pojemniki i próbki</value>
   </data>
   <data name="Ci.ContainersHelp" xml:space="preserve">
-    <value>Jeden wiersz na pojemnik. Zaplombowany: sprawdź plombę. Bez plomby: załóż plombę zakładu przy pszczelarzu. Następnie otwórz, napełnij słoik próbki i próbki kontrolnej, sprawdź, czy przycisk wieczka jest wciśnięty, i ponownie zaplombuj pojemnik.</value>
+    <value>Jeden wiersz na pojemnik (puszka, wiadro lub beczka). Dla każdego: wybierz, jak dotarł, napełnij słoik próbki i próbki kontrolnej, sprawdź, czy przycisk wieczka jest wciśnięty, i ponownie zaplombuj pojemnik.</value>
   </data>
   <data name="Ci.Kind" xml:space="preserve">
     <value>Rodzaj</value>
@@ -7891,16 +7891,16 @@
     <value>Przy przyjęciu</value>
   </data>
   <data name="Ci.ArrivedSealed" xml:space="preserve">
-    <value>przyjechał zaplombowany</value>
+    <value>Dotarł z plombą</value>
   </data>
   <data name="Ci.OriginSeal" xml:space="preserve">
-    <value>Numer plomby</value>
+    <value>Numer plomby, z którą dotarł</value>
   </data>
   <data name="Ci.OriginIntact" xml:space="preserve">
-    <value>plomba nienaruszona</value>
+    <value>Sprawdzone: plomba jest nienaruszona</value>
   </data>
   <data name="Ci.PlantSeal" xml:space="preserve">
-    <value>Plomba zakładu założona teraz</value>
+    <value>Nowa plomba, założona teraz przy pszczelarzu</value>
   </data>
   <data name="Ci.JarSeal" xml:space="preserve">
     <value>Plomba słoika</value>
@@ -8833,52 +8833,52 @@
     <value>Pokaż oprowadzenie</value>
   </data>
   <data name="Tour.Work" xml:space="preserve">
-    <value>Moja praca pokazuje, co na Ciebie czeka: wartości do wpisania lub zatwierdzenia, dostawy, próbki, dowody.</value>
+    <value>Moja praca to Twoja lista zadań: wszystko, co na Ciebie czeka, pojawia się tutaj. Zaczynaj tu dzień, np. od wartości do wpisania lub zapisu do zatwierdzenia.</value>
   </data>
   <data name="Tour.Org" xml:space="preserve">
-    <value>Moja organizacja: Twoje partie, Twoja rola i strona organizacji.</value>
+    <value>Moja organizacja pokazuje stronę Twojej organizacji, Twoją rolę oraz jej partie surowego miodu i partie końcowe. Sprawdź tu np., które partie są jeszcze otwarte.</value>
   </data>
   <data name="Tour.Intake" xml:space="preserve">
-    <value>Dostawy: zapisz każdą puszkę z plombą i pobierz próbkę z każdej; pszczelarz potwierdza SMS-em.</value>
+    <value>Dostawy (przyjęcie) to miejsce, gdzie przyjmujesz miód od pszczelarza. Znajdź pszczelarza po numerze, zapisz każdy pojemnik z jego plombą i napełnij z każdego słoik próbki; pszczelarz potwierdza, odczytując Ci kod z SMS-a.</value>
   </data>
   <data name="Tour.Samples" xml:space="preserve">
-    <value>Próbki: wysłane słoiki i ich status w laboratorium.</value>
+    <value>Próbki i laboratorium pokazuje wysłane słoiki i to, gdzie są. Zobaczysz tu np., kiedy laboratorium przyjęło słoik albo odrzuciło go z powodu zerwanej plomby.</value>
   </data>
   <data name="Tour.Lab" xml:space="preserve">
-    <value>Próbki i laboratorium: przyjmuj słoiki (plomba, etykieta, wieczko), wpisuj wyniki, zatwierdzaj raporty.</value>
+    <value>Próbki i laboratorium pokazuje wszystkie słoiki i raporty Twojego laboratorium. Twoje pierwsze zadanie to zatwierdzanie raportów analityków albo zwrot raportu, np. gdy wartość wygląda na błędną.</value>
   </data>
   <data name="Tour.Registration" xml:space="preserve">
-    <value>Rejestracja pszczelarzy: rejestruj pszczelarzy i ich pasieki; pszczelarz potwierdza SMS-em.</value>
+    <value>Rejestracja pszczelarzy to miejsce, gdzie rejestrujesz pszczelarzy i ich pasieki. Wpisz numer rejestrowy, dane pszczelarza i pasieki, wyślij kod SMS i wpisz kod, który pszczelarz Ci odczyta.</value>
   </data>
   <data name="Tour.Compliance" xml:space="preserve">
-    <value>Zgodność: oceny, zdjęcia podpisów, żądania dotyczące danych i dziennik audytu.</value>
+    <value>Zgodność to Twoje biurko przeglądów: podpisane zdjęcia, przeglądy jakości, wnioski o dane i dziennik audytu. Zacznij od spraw czekających na Twoją decyzję, np. dostawy potwierdzonej podpisanym zdjęciem zamiast kodu SMS.</value>
   </data>
   <data name="Tour.Shipments" xml:space="preserve">
-    <value>Wysyłki: wyślij sfinalizowaną partię do kolejnej organizacji; piecza przechodzi po potwierdzeniu.</value>
+    <value>Wysyłki i zapasy pokazuje miód, który Twoja organizacja wysyła, przyjmuje i ma na stanie. Sklep zaczyna od potwierdzenia przychodzącej wysyłki, gdy dotrą słoiki; pakownia wysyła sfinalizowaną partię końcową do odbiorcy.</value>
   </data>
   <data name="Tour.Ccp" xml:space="preserve">
-    <value>Punkty kontrolne (KPK) czekające na Twoje wartości lub zatwierdzenie są w Mojej pracy.</value>
+    <value>Moja praca pokazuje punkty kontrolne (KPK) czekające na Twoje wartości. Otwórz jeden i wpisz, co sprawdziłeś(-aś), np. kontrolę w pasiece; potem zatwierdza go specjalista ds. zapewnienia jakości.</value>
   </data>
   <data name="Tour.Menu" xml:space="preserve">
-    <value>Twoje menu: język, profil, ponowne oprowadzenie i przełącznik animacji.</value>
+    <value>Twoje menu (w prawym górnym rogu) zawiera język, profil i hasło, to oprowadzenie i przełącznik animacji. Tu zmienisz język, np. na angielski.</value>
   </data>
   <data name="Tour.Admin.Dashboard" xml:space="preserve">
-    <value>Pulpit: co czeka na platformę i ostatnia aktywność.</value>
+    <value>Panel pokazuje, co czeka na Ciebie jako operatora platformy, oraz ostatnią aktywność. Zacznij tutaj, np. od organizacji czekającej na weryfikację.</value>
   </data>
   <data name="Tour.Admin.Data" xml:space="preserve">
-    <value>Pszczelarze, pasieki i listy referencyjne.</value>
+    <value>Pszczelarze, pasieki i listy referencyjne platformy. Znajdź tu pszczelarza, np. po numerze rejestrowym.</value>
   </data>
   <data name="Tour.Me.Deliveries" xml:space="preserve">
-    <value>Twoje dostawy z puszkami i plombami; tu podajesz swoją cenę.</value>
+    <value>Moje dostawy pokazuje dostarczony miód z każdym pojemnikiem i jego plombą. Wpisz tu swoją cenę za kilogram, np. za miód kasztanowy z zeszłego tygodnia.</value>
   </data>
   <data name="Tour.Me.Samples" xml:space="preserve">
-    <value>Twoje słoiki z próbkami i wyniki po zatwierdzeniu.</value>
+    <value>Próbki i laboratorium pokazuje słoiki próbek pobrane z Twoich pojemników. Wyniki pojawią się tutaj, gdy laboratorium zatwierdzi swój raport.</value>
   </data>
   <data name="Tour.Me.Privacy" xml:space="preserve">
-    <value>Twoje zgody: udzielaj lub wycofuj w każdej chwili.</value>
+    <value>Prywatność i zgody pokazuje, na co się zgodziłeś(-aś), np. na pokazywanie imienia i nazwiska na stronach publicznych. Każdej zgody możesz udzielić lub ją wycofać w dowolnej chwili.</value>
   </data>
   <data name="Tour.Me.Account" xml:space="preserve">
-    <value>Telefon, język, hasło i przełącznik animacji.</value>
+    <value>Konto zawiera Twój telefon, język i hasło. Przy pierwszym logowaniu zmień tu hasło.</value>
   </data>
   <data name="Only a processing organization takes samples." xml:space="preserve">
     <value>Próbki pobiera tylko organizacja przetwarzająca.</value>
@@ -9359,15 +9359,15 @@
     <comment>D-87: draft for partner review</comment>
   </data>
   <data name="Tour.Consumer.Honeys" xml:space="preserve">
-    <value>Moje miody: miody zapisane z ich Historii Miodu. Tutaj możesz ponownie otworzyć historię lub ją usunąć.</value>
+    <value>Zapisane miody zbiera miody zapisane z ich Historii Miodu. Zeskanuj kod QR ze słoika i zapisz miód; jego historię otworzysz tu ponownie w każdej chwili.</value>
     <comment>D-87: draft for partner review</comment>
   </data>
   <data name="Tour.Consumer.Feedback" xml:space="preserve">
-    <value>Moje opinie: to, co napisałeś(-aś) producentom, i ich odpowiedzi. Producenci widzą tylko Twój kod.</value>
+    <value>Moje opinie pokazuje, co napisałeś(-aś) producentom, i ich odpowiedzi. Producenci widzą tylko Twój kod, nigdy imienia ani adresu e-mail.</value>
     <comment>D-87: draft for partner review</comment>
   </data>
   <data name="Tour.Consumer.Account" xml:space="preserve">
-    <value>Konto: hasło, język, telefon do odzyskiwania hasła, Twoje dane jako plik i usunięcie konta.</value>
+    <value>Konto: hasło, język, telefon do odzyskiwania hasła, Twoje dane w pliku i usunięcie konta. Zacznij od dodania telefonu, aby móc zresetować zapomniane hasło.</value>
     <comment>D-87: draft for partner review</comment>
   </data>
   <data name="Consumer.Feedback.Help" xml:space="preserve">
@@ -9731,10 +9731,10 @@
     <value>Listy, które oferują formularze. Ich tłumaczenia są w Konfiguracja → Tłumaczenia danych referencyjnych.</value>
   </data>
   <data name="Tour.Admin.Setup" xml:space="preserve">
-    <value>Konfiguracja: organizacje, funkcje, role i uprawnienia, odpowiedzialności za KPK, rejestr pszczelarzy i dane referencyjne.</value>
+    <value>Konfiguracja to miejsce, gdzie budujesz platformę: organizacje, ich możliwości, role, odpowiedzialność za KPK i dane referencyjne. Zacznij od utworzenia organizacji, np. powiatowej dyrekcji, z jej pierwszym administratorem.</value>
   </data>
   <data name="Tour.Admin.Oversight" xml:space="preserve">
-    <value>Nadzór: rejestry, dziennik audytu, użytkownicy, informacje, retencja danych i korekty. Dane biznesowe są dla Ciebie tylko do odczytu.</value>
+    <value>W Nadzorze możesz wszystko odczytać: rejestry, dziennik audytu, użytkowników, informacje, retencję danych i korekty. Danych biznesowych nie zmieniasz; błędną wartość zgłoś wnioskiem o korektę, który zatwierdza drugi administrator.</value>
   </data>
   <data name="Phone.Title" xml:space="preserve">
     <value>Wiadomości</value>
@@ -9777,5 +9777,86 @@
   </data>
   <data name="Check that this is another delivery." xml:space="preserve">
     <value>Sprawdź, czy to inna dostawa.</value>
+  </data>
+  <data name="Login.FormOutdated" xml:space="preserve">
+    <value>Ta strona logowania była nieaktualna, bo ktoś zalogował się lub wylogował w innej karcie. Zaloguj się ponownie.</value>
+  </data>
+  <data name="Login.SignedInAs" xml:space="preserve">
+    <value>W tej przeglądarce jesteś zalogowany jako {0}.</value>
+  </data>
+  <data name="Login.SignedInAsHelp" xml:space="preserve">
+    <value>Aby zalogować się jako ktoś inny (na przykład pszczelarz z danymi z SMS-a), najpierw się wyloguj.</value>
+  </data>
+  <data name="Login.ContinueAs" xml:space="preserve">
+    <value>Kontynuuj jako {0}</value>
+  </data>
+  <data name="Login.SignOutToSwitch" xml:space="preserve">
+    <value>Wyloguj się, aby zalogować się jako ktoś inny</value>
+  </data>
+  <data name="Reg91.SignInSent" xml:space="preserve">
+    <value>Dane logowania wysłano SMS-em {0}. Są ważne do {1}: pszczelarz loguje się danymi z tego SMS-a.</value>
+  </data>
+  <data name="Reg91.SendAgainTick" xml:space="preserve">
+    <value>Wyślij nowe dane: hasło tymczasowe z poprzedniego SMS-a przestanie działać.</value>
+  </data>
+  <data name="Reg91.SendAgainButton" xml:space="preserve">
+    <value>Wyślij nowe dane logowania</value>
+  </data>
+  <data name="The sign-in details were already sent and are still valid." xml:space="preserve">
+    <value>Dane logowania zostały już wysłane i nadal są ważne.</value>
+  </data>
+  <data name="The beekeeper signs in with that SMS." xml:space="preserve">
+    <value>Pszczelarz loguje się danymi z tego SMS-a.</value>
+  </data>
+  <data name="To send new ones, tick the box: the earlier temporary password then stops working." xml:space="preserve">
+    <value>Aby wysłać nowe, zaznacz pole: poprzednie hasło tymczasowe przestanie działać.</value>
+  </data>
+  <data name="Info.More" xml:space="preserve">
+    <value>Więcej informacji</value>
+  </data>
+  <data name="Tour.Lab.Analyst" xml:space="preserve">
+    <value>Próbki i laboratorium to Twoja lista pracy. Najpierw przyjmij każdy słoik (numer plomby, etykieta, wieczko), potem wpisz wyniki, np. wilgotność i HMF, i wyślij raport do zatwierdzenia.</value>
+  </data>
+  <data name="Tour.Approve" xml:space="preserve">
+    <value>Moja praca pokazuje zapisy punktów kontrolnych (KPK) przesłane przez współpracowników. Sprawdź każdy i zatwierdź go lub zwróć, np. kontrolę przyjęcia dzisiejszej dostawy; nikt nie zatwierdza własnego wpisu.</value>
+  </data>
+  <data name="Reg78.Info.Registry" xml:space="preserve">
+    <value>TR + kod tablic rejestracyjnych prowincji (2 cyfry) + 10 cyfr, np. TR520401200241. Kod prowincji jest porównywany z prowincją Twojej dyrekcji.</value>
+  </data>
+  <data name="Reg78.Info.Mismatch" xml:space="preserve">
+    <value>Jeśli numer zaczyna się od kodu innej prowincji (np. pszczelarz wędrowny zarejestrowany w Ordu, który ma tu pasiekę), wpisz krótki powód. Jest on przechowywany razem z rejestracją.</value>
+  </data>
+  <data name="Reg78.Info.PublicName" xml:space="preserve">
+    <value>Bez tej zgody strony publiczne, np. Historia Miodu, pokazują zamiast imienia i nazwiska stały kod, np. BK-7F3K9Q2M. Wszędzie jest to ten sam kod, więc miód pozostaje przypisany do jednego pszczelarza bez podawania nazwiska.</value>
+  </data>
+  <data name="Reg78.Info.Education" xml:space="preserve">
+    <value>Niepotrzebne do identyfikowalności; zostaw puste, chyba że pszczelarz chce, aby zostało zapisane.</value>
+  </data>
+  <data name="Reg78.Info.Purpose" xml:space="preserve">
+    <value>Główny produkt pszczelarza, np. miód. Wybierz jeden; nie ogranicza to tego, co pszczelarz może dostarczyć.</value>
+  </data>
+  <data name="Reg78.Info.NoPhone" xml:space="preserve">
+    <value>Bez telefonu komórkowego pszczelarz nie może potwierdzić kodem SMS. Wydrukuj formularz, daj go pszczelarzowi do podpisu i prześlij zdjęcie; rejestracja czeka wtedy na specjalistę ds. zgodności.</value>
+  </data>
+  <data name="Reg78.Info.Language" xml:space="preserve">
+    <value>Pszczelarz otrzyma kod SMS i późniejsze wiadomości w tym języku.</value>
+  </data>
+  <data name="Cust.Info.Number" xml:space="preserve">
+    <value>Wpisz numer rejestrowy pszczelarza (np. TR520401200241) lub numer gospodarstwa i naciśnij Znajdź. Następnie w formularzu pojawią się jego pasieki.</value>
+  </data>
+  <data name="Ci.ArrivedUnsealed" xml:space="preserve">
+    <value>Dotarł bez plomby</value>
+  </data>
+  <data name="Ci.Info.Arrival" xml:space="preserve">
+    <value>Wybierz, jak dotarł pojemnik. Z plombą: wpisz numer plomby, z którą dotarł, i potwierdź, że jest nienaruszona. Bez plomby: zaplombuj go teraz przy pszczelarzu i wpisz numer nowej plomby. Plomba wiąże pojemnik z jego słoikami próbek i z dostawą potwierdzaną przez pszczelarza, więc miodu nie można później podmienić.</value>
+  </data>
+  <data name="Ci.Info.Jars" xml:space="preserve">
+    <value>Z każdego pojemnika napełnij dwa słoiki: słoik próbki trafia do laboratorium, słoik próbki kontrolnej zostaje u Ciebie na wypadek sporu o wynik. Zaplombuj każdy słoik i wpisz numer jego plomby.</value>
+  </data>
+  <data name="Ci.Info.Reseal" xml:space="preserve">
+    <value>Pobranie próbek otwiera pojemnik. Zaplombuj go ponownie i wpisz numer nowej plomby; pojemnik zachowuje tę plombę, dopóki nie zostanie użyty.</value>
+  </data>
+  <data name="Ci.Info.CounterLocation" xml:space="preserve">
+    <value>Gdzie przechowywane są słoiki próbek kontrolnych, np. „Chłodnia 2, regał B”. Przechowuj je do daty obok, na wypadek sporu o wynik.</value>
   </data>
 </root>

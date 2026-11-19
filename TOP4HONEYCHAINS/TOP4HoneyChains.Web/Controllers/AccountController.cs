@@ -87,14 +87,23 @@ namespace TOP4HoneyChains.Web.Controllers
         {
             if (User.Identity?.IsAuthenticated == true)
             {
+                // D-91: someone is signed in in this browser (an officer, say, while the beekeeper wants to sign in): the page says
+                // who it is and offers to continue or to sign out, instead of silently opening that person's start page
+                string? home = null;
                 if (ConsumersOn && _userManager.GetUserId(User) is string consumerId && await ConsumerRules.IsConsumerAsync(_context, consumerId))
-                    return RedirectToAction("Index", "Consumer");
-                if (User.IsInRole(PanelRole))
-                    return RedirectToAction("Index", "Dashboard");
-                if (await _currentOrg.GetAsync() != null)
-                    return RedirectToAction("Index", "OrgWorkspace");
-                if (_userManager.GetUserId(User) is string signedIn && await IsBeekeeperAsync(signedIn))
-                    return RedirectToAction("Index", "Me");
+                    home = "/Consumer";
+                else if (User.IsInRole(PanelRole))
+                    home = "/Dashboard/Index";
+                else if (await _currentOrg.GetAsync() != null)
+                    home = "/OrgWorkspace/Index";
+                else if (_userManager.GetUserId(User) is string signedIn && await IsBeekeeperAsync(signedIn))
+                    home = "/Me";
+                if (home != null)
+                {
+                    ViewBag.SignedInAs = User.Identity.Name;
+                    ViewBag.ContinueUrl = home;
+                    return View();
+                }
 
                 // A non-admin session (e.g. from before D-01) would loop via AccessDenied.
                 // Redirect after signing out so the form's anti-forgery token is issued anonymously.
@@ -107,10 +116,18 @@ namespace TOP4HoneyChains.Web.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [IgnoreAntiforgeryToken]   // checked below, so that an out-of-date form gets a fresh one instead of an error page (D-91)
         [Microsoft.AspNetCore.RateLimiting.EnableRateLimiting(ConsumerController.RateSignIn)]   // D-87: a global ceiling; per account, the lockout
         public async Task<IActionResult> Login(LoginViewModel model, string? returnUrl = null)
         {
+            // D-91: a sign-in form opened before someone signed in or out in another tab carries an outdated token. That is not
+            // an attack worth an error page: show a fresh form with a plain message (no sign-in happens with the old token).
+            var antiforgery = HttpContext.RequestServices.GetRequiredService<Microsoft.AspNetCore.Antiforgery.IAntiforgery>();
+            if (!await antiforgery.IsRequestValidAsync(HttpContext))
+            {
+                TempData[LoginErrorKey] = _localizer["Login.FormOutdated"].Value;
+                return Url.IsLocalUrl(returnUrl) ? RedirectToAction(nameof(Login), new { ReturnUrl = returnUrl }) : RedirectToAction(nameof(Login));
+            }
             if (!ModelState.IsValid)
                 return View(model);
 
