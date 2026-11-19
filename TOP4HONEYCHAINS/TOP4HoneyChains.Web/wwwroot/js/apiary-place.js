@@ -2,7 +2,7 @@
    user picks one), and a preview of the generated title "Province – District – Locality". The server generates the title. */
 (function () {
     'use strict';
-    document.querySelectorAll('.apiary-place').forEach(function (box) {
+    var init = function (box) {
         var province = box.querySelector('.ap-province');
         var district = box.querySelector('.ap-district');
         var locality = box.querySelector('.ap-locality');
@@ -56,5 +56,8 @@
         if (lat) lat.addEventListener('change', propose);
         if (lng) lng.addEventListener('change', propose);
         load().then(propose);
-    });
+    };
+    // D-93: blocks added later ("Add apiary") are set up with window.initApiaryPlace
+    window.initApiaryPlace = init;
+    document.querySelectorAll('.apiary-place').forEach(init);
 })();

@@ -60,10 +60,16 @@
                             <div class="row">
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label required" for="ApiaryId">@L["Org.Apiary"]</label>
-                                    <select name="ApiaryId" id="ApiaryId" class="form-select">
-                                        @foreach (var a in bk.Apiaries.Where(a => a.ApiaryIsActive).OrderBy(a => a.ApiaryTitle))
+                                    @* D-93: every active apiary with its hives; with more than one the officer chooses (no pre-selection) *@
+                                    @{ var activeApiaries = bk.Apiaries.Where(a => a.ApiaryIsActive).OrderBy(a => a.ApiaryTitle).ToList(); }
+                                    <select name="ApiaryId" id="ApiaryId" class="form-select" required>
+                                        @if (activeApiaries.Count > 1)
                                         {
-                                            <option value="@a.ApiaryId" selected="@(a.ApiaryId == Model.ApiaryId)">@a.ApiaryTitle</option>
+                                            <option value="">@L["-- Select --"]</option>
+                                        }
+                                        @foreach (var a in activeApiaries)
+                                        {
+                                            <option value="@a.ApiaryId" selected="@(a.ApiaryId == Model.ApiaryId)">@a.ApiaryTitle · @a.ApiaryBeehivesCount @L["Reg78.Hives"]</option>
                                         }
                                     </select>
                                 </div>

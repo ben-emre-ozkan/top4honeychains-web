@@ -1,0 +1,48 @@
+@model (string Index, TOP4HoneyChains.Web.Services.OrgModel.MoreApiary Apiary)
+@inject TOP4HoneyChains.Web.Services.Places PlaceList
+@using System.Globalization
+@* D-93: one more apiary block of the registration form; wwwroot/js/more-apiaries.js clones, numbers and removes these blocks *@
+@{
+    var i = Model.Index;
+    var a = Model.Apiary;
+    var p = "MoreApiaries_" + i + "_";
+    var inv = CultureInfo.InvariantCulture;
+}
+<fieldset class="more-apiary border rounded p-2 mt-3" data-index="@i">
+    <div class="d-flex justify-content-between align-items-center mb-1">
+        <legend class="h6 mb-0 w-auto">@L["Reg93.ApiaryNumber"] <span class="more-apiary-n"></span></legend>
+        <button type="button" class="btn btn-outline-danger btn-sm remove-apiary no-print">@L["Reg93.RemoveApiary"]</button>
+    </div>
+    <div class="row g-2">
+        <div class="col-md-4"><label class="form-label required" for="@(p)Latitude">@L["Location Latitude"]</label><input class="form-control" id="@(p)Latitude" name="MoreApiaries[@i].Latitude" value="@a.Latitude?.ToString("0.#########", inv)" inputmode="decimal" /></div>
+        <div class="col-md-4"><label class="form-label required" for="@(p)Longitude">@L["Location Longitude"]</label><input class="form-control" id="@(p)Longitude" name="MoreApiaries[@i].Longitude" value="@a.Longitude?.ToString("0.#########", inv)" inputmode="decimal" /></div>
+        <div class="col-md-4"><label class="form-label required" for="@(p)Hives">@L["Beehives Count"]</label><input class="form-control" id="@(p)Hives" name="MoreApiaries[@i].Hives" value="@a.Hives" type="number" min="1" max="10000" /></div>
+    </div>
+    <div class="form-text">@L["Reg93.CoordinatesHelp"]</div>
+    <div class="apiary-place mt-2" data-lat="@(p)Latitude" data-lng="@(p)Longitude" data-district="@a.DistrictId"
+         data-districts-url="/Places/Districts" data-province-url="/Places/ProvinceAt">
+        <div class="row g-2">
+            <div class="col-md-4">
+                <label class="form-label required" for="@(p)Province">@L["Province"]</label>
+                <select class="form-select ap-province" id="@(p)Province" name="MoreApiaries[@i].Province">
+                    <option value="">@L["-- Select --"]</option>
+                    @foreach (var pl in PlaceList.All())
+                    {
+                        <option value="@pl.Code" selected="@(pl.Code == a.Province)">@pl.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label required" for="@(p)DistrictId">@L["District"]</label>
+                <select class="form-select ap-district" id="@(p)DistrictId" name="MoreApiaries[@i].DistrictId">
+                    <option value="">@L["-- Select --"]</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label required" for="@(p)Locality">@L["Apiary.Locality"]</label>
+                <input class="form-control ap-locality" id="@(p)Locality" name="MoreApiaries[@i].Locality" value="@a.Locality" maxlength="60" placeholder="@L["Apiary.LocalityExample"]" />
+            </div>
+        </div>
+        <div class="form-text mt-1">@L["Apiary.TitleHelp"] <strong class="ap-preview" aria-live="polite"></strong></div>
+    </div>
+</fieldset>

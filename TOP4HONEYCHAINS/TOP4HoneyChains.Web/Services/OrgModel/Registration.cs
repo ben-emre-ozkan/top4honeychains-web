@@ -35,6 +35,8 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         public int? ApiaryDistrictId { get; set; }
         public string? ApiaryLocality { get; set; }
         public short? ApiaryHives { get; set; }
+        // D-93: more apiaries in the same registration ("Add apiary"); a block left completely empty is ignored
+        public List<MoreApiary> MoreApiaries { get; set; } = new();
 
         // optional consents (never pre-ticked) and the officer's attestation
         public bool PublicName { get; set; }
@@ -53,6 +55,18 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                                  || ApiaryDistrictId != null || !string.IsNullOrWhiteSpace(ApiaryLocality) || ApiaryHives != null;
     }
 
+    public class MoreApiary
+    {
+        public decimal? Latitude { get; set; }
+        public decimal? Longitude { get; set; }
+        public string? Province { get; set; }
+        public int? DistrictId { get; set; }
+        public string? Locality { get; set; }
+        public short? Hives { get; set; }
+        public bool IsEmpty => Latitude == null && Longitude == null && string.IsNullOrWhiteSpace(Province) && DistrictId == null
+                               && string.IsNullOrWhiteSpace(Locality) && Hives == null;
+    }
+
     // The organization a registration is recorded for: the officer's directorate, or the platform for its administrators
     public record Registrar(int OrgId, string OrgName, string? OrgProvince, bool IsPlatformAdmin);
 
@@ -60,7 +74,8 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
     {
         public const string EvidenceFolder = "App_Data/registration-evidence";
 
-        public record Checked(string? RegistryNumber, string? PhoneE164, bool? ProvinceMatches, string? ApiaryProvinceName, string? ApiaryDistrictName);
+        public record Checked(string? RegistryNumber, string? PhoneE164, bool? ProvinceMatches, string? ApiaryProvinceName, string? ApiaryDistrictName,
+            IReadOnlyList<(MoreApiary Apiary, string Province, string District)>? More = null);
         public record Saved(int RegistrationId, string BeekeeperId);
 
         private readonly TOP4HoneyChainsContext _context;
@@ -185,6 +200,22 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                     errors.Add(placeError);
             }
 
+            f.MoreApiaries = (f.MoreApiaries ?? new()).Where(m => m != null && !m.IsEmpty).ToList();
+            var more = new List<(MoreApiary, string, string)>();
+            for (var i = 0; i < f.MoreApiaries.Count; i++)
+            {
+                var m = f.MoreApiaries[i];
+                if (m.Latitude is not (>= -90 and <= 90) || m.Longitude is not (>= -180 and <= 180) || (m.Latitude == 0 && m.Longitude == 0))
+                    errors.Add("Set the apiary location on the map or type its coordinates.");
+                if (m.Hives is not (>= 1 and <= 10000))
+                    errors.Add("The beehive count must be between 1 and 10000.");
+                var (mp, md, me) = await ApiaryTitles.ResolveAsync(_context, m.Province, m.DistrictId, m.Locality);
+                if (me != null)
+                    errors.Add(me);
+                else
+                    more.Add((m, mp!, md!));
+            }
+
             if (f.AssociationOrgId != null && !await _context.Organizations.AnyAsync(o => o.OrgId == f.AssociationOrgId && !o.IsPlatform
                     && o.Status == OrgStatus.Verified && o.Capabilities.Any(c => c.Capability == Capabilities.Association)))
                 errors.Add("Choose an organization with the Association capability.");
@@ -192,7 +223,7 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                 errors.Add("Confirm the attestation: you have seen the identity document and the registry record.");
             if (!SmsTemplates.Languages.Contains(f.Language ?? ""))
                 f.Language = SmsTemplates.DefaultLanguage;
-            return (errors.Count == 0 ? new Checked(number, e164, provinceMatches, apiaryProvince, apiaryDistrict) : null, errors);
+            return (errors.Count == 0 ? new Checked(number, e164, provinceMatches, apiaryProvince, apiaryDistrict, more) : null, errors);
         }
 
         // exactly what the SMS code confirms (D78-SPEC 4.1 step 6): changing any of it voids the code
@@ -206,7 +237,10 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                 f.ApiaryLatitude?.ToString("0.#########", CultureInfo.InvariantCulture) ?? "", f.ApiaryLongitude?.ToString("0.#########", CultureInfo.InvariantCulture) ?? "",
                 f.ApiaryProvince ?? "", f.ApiaryDistrictId?.ToString(CultureInfo.InvariantCulture) ?? "", f.ApiaryLocality?.Trim() ?? "",
                 f.ApiaryHives?.ToString(CultureInfo.InvariantCulture) ?? "", f.PublicName ? "name:yes" : "name:no", f.PortalNotifications ? "sms:yes" : "sms:no"
-            }.Concat(f.AssociationOrgId is int association ? new[] { "association:" + association.ToString(CultureInfo.InvariantCulture) } : Array.Empty<string>())));
+            }.Concat(f.MoreApiaries.Select(m => string.Join(",", "apiary",
+                m.Latitude?.ToString("0.#########", CultureInfo.InvariantCulture) ?? "", m.Longitude?.ToString("0.#########", CultureInfo.InvariantCulture) ?? "",
+                m.Province ?? "", m.DistrictId?.ToString(CultureInfo.InvariantCulture) ?? "", m.Locality?.Trim() ?? "", m.Hives?.ToString(CultureInfo.InvariantCulture) ?? "")))
+             .Concat(f.AssociationOrgId is int association ? new[] { "association:" + association.ToString(CultureInfo.InvariantCulture) } : Array.Empty<string>())));
 
         public static string SubjectKey(RegistrationForm f) => f.BeekeeperId ?? f.DraftKey!;
 
@@ -257,6 +291,13 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             if (c.ApiaryProvinceName != null)
                 _context.Apiaries.Add(await NewApiaryAsync(beekeeper.BeekeeperId!, f.ApiaryLatitude!.Value, f.ApiaryLongitude!.Value, f.ApiaryProvince!,
                     f.ApiaryDistrictId!.Value, f.ApiaryLocality!, f.ApiaryHives!.Value, c.ApiaryProvinceName, c.ApiaryDistrictName!));
+            foreach (var (m, provinceName, districtName) in c.More ?? Array.Empty<(MoreApiary, string, string)>())
+            {
+                // saved one by one so that UniqueAsync sees the titles added before it
+                await _context.SaveChangesAsync();
+                _context.Apiaries.Add(await NewApiaryAsync(beekeeper.BeekeeperId!, m.Latitude!.Value, m.Longitude!.Value, m.Province!,
+                    m.DistrictId!.Value, m.Locality!, m.Hives!.Value, provinceName, districtName));
+            }
 
             var attestation = await _notices.CurrentAsync(NoticeKind.Attestation, NoticeAudience.Member, null, null);
             var registration = new BeekeeperRegistration
