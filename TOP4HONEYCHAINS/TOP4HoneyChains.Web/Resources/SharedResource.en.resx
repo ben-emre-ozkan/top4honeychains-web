@@ -8296,7 +8296,7 @@
     <value>To do</value>
   </data>
   <data name="Me.NoPrice" xml:space="preserve">
-    <value>{0} delivery(ies) without your price</value>
+    <value>Enter your price per kg: {0} delivery(ies) without a price</value>
   </data>
   <data name="Me.NoticeToAccept" xml:space="preserve">
     <value>A privacy notice to read and confirm</value>
@@ -8326,7 +8326,7 @@
     <value>Position</value>
   </data>
   <data name="Me.DeliveriesHelp" xml:space="preserve">
-    <value>Your deliveries as the plants recorded them, with their containers and seals. Enter your asking price per kg; you can change it until the lot is in a finalized batch.</value>
+    <value>Your deliveries as the receiving organization recorded them, with their containers and seals. Enter your asking price per kg; you can change it until the lot is in a finalized batch.</value>
   </data>
   <data name="Me.Corrected" xml:space="preserve">
     <value>corrected by the platform</value>
@@ -9734,5 +9734,8 @@
   </data>
   <data name="Ci.Info.CounterLocation" xml:space="preserve">
     <value>Where the counter-sample jars are stored, e.g. “Cold room 2, shelf B”. Keep them until the date next to it, in case a result is disputed.</value>
+  </data>
+  <data name="Me.PriceAfterDelivery" xml:space="preserve">
+    <value>No delivery yet. After your first delivery, you enter your price per kg here under My deliveries.</value>
   </data>
 </root>

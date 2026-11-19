@@ -147,6 +147,8 @@ namespace TOP4HoneyChains.Web.Controllers
                     ModelState.AddModelError("", _localizer["Login.TemporaryExpired"]);
                     return View(model);
                 }
+                if (user != null)
+                    await ApplyPreferredLanguageAsync(user.Id);
                 if (user != null && await _userManager.IsInRoleAsync(user, PanelRole))
                 {
                     await _audit.WriteAsync("Login", "AspNetUsers", user.Id, userId: user.Id, userName: user.UserName);
@@ -190,6 +192,19 @@ namespace TOP4HoneyChains.Web.Controllers
             // which user names exist or are locked (non-admin accounts are locked, D-09)
             ModelState.AddModelError("", _localizer["Login.Invalid"]);
             return View(model);
+        }
+
+        // D-92: a beekeeper's portal opens in the beekeeper's own (SMS) language, a consumer's in theirs, unless this browser already
+        // has a chosen language (the culture cookie decides before the browser's Accept-Language)
+        private async Task ApplyPreferredLanguageAsync(string userId)
+        {
+            if (Request.Cookies.ContainsKey(Microsoft.AspNetCore.Localization.CookieRequestCultureProvider.DefaultCookieName))
+                return;
+            var language = await _context.BeekeeperAccounts.Where(a => a.UserId == userId && a.Status == Models.Entities.BeekeeperAccountStatus.Active)
+                    .Join(_context.Beekeepers, a => a.BeekeeperId, b => b.BeekeeperId, (a, b) => b.PreferredLanguage).FirstOrDefaultAsync()
+                ?? await _context.ConsumerAccounts.Where(c => c.UserId == userId).Select(c => c.Language).FirstOrDefaultAsync();
+            if (language != null && HomeController.Languages.Contains(language))
+                HomeController.WriteCultureCookie(Response, language);
         }
 
         [AllowAnonymous]

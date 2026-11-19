@@ -76,7 +76,7 @@
         }
         else
         {
-            <form asp-action="Price" method="post" class="me-form price-form" data-kg="@d.Intake.Quantity.ToString(inv)" data-confirm="@L["Me.ConfirmTotal"]">
+            <form asp-action="Price" method="post" class="me-form price-form" data-kg="@d.Intake.Quantity.ToString(inv)" data-dec="@System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator" data-confirm="@L["Me.ConfirmTotal"]">
                 <input type="hidden" name="lotId" value="@lotId" />
                 <label for="price-@lotId">@L["Me.PricePerKg"]</label>
                 <div class="me-inline">
@@ -109,7 +109,7 @@
 }
 @if (!Model.Any())
 {
-    <p class="me-muted">@L["Org.None"]</p>
+    <p class="me-muted" id="me-no-delivery">@L["Me.PriceAfterDelivery"]</p>
 }
 @section scripts {
     <script>
@@ -118,7 +118,7 @@
             f.addEventListener('submit', function (e) {
                 var price = parseFloat((f.elements.pricePerKg.value || '').replace(',', '.'));
                 if (!(price > 0)) return;
-                var total = (price * parseFloat(f.dataset.kg)).toFixed(2) + ' ' + f.elements.currency.value;
+                var total = (price * parseFloat(f.dataset.kg)).toFixed(2).replace('.', f.dataset.dec || '.') + ' ' + f.elements.currency.value;   // D-92: the page's decimal sign
                 if (!confirm(f.dataset.confirm.replace('{0}', total))) e.preventDefault();
             });
         });

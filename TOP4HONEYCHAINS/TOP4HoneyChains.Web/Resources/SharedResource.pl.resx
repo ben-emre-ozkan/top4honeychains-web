@@ -8296,7 +8296,7 @@
     <value>Do zrobienia</value>
   </data>
   <data name="Me.NoPrice" xml:space="preserve">
-    <value>Dostawy bez Twojej ceny: {0}</value>
+    <value>Wpisz swoją cenę za kg: {0} dostaw(y) bez ceny</value>
   </data>
   <data name="Me.NoticeToAccept" xml:space="preserve">
     <value>Informacja o danych do przeczytania i potwierdzenia</value>
@@ -8326,7 +8326,7 @@
     <value>Położenie</value>
   </data>
   <data name="Me.DeliveriesHelp" xml:space="preserve">
-    <value>Twoje dostawy tak, jak zapisały je zakłady, z pojemnikami i plombami. Podaj swoją cenę za kg; możesz ją zmieniać, dopóki partia nie trafi do sfinalizowanej partii gotowej.</value>
+    <value>Twoje dostawy zapisane przez organizację przyjmującą, z pojemnikami i plombami. Wpisz swoją cenę za kg; możesz ją zmieniać, dopóki partia nie trafi do zamkniętej partii końcowej.</value>
   </data>
   <data name="Me.Corrected" xml:space="preserve">
     <value>poprawiona przez platformę</value>
@@ -9858,5 +9858,8 @@
   </data>
   <data name="Ci.Info.CounterLocation" xml:space="preserve">
     <value>Gdzie przechowywane są słoiki próbek kontrolnych, np. „Chłodnia 2, regał B”. Przechowuj je do daty obok, na wypadek sporu o wynik.</value>
+  </data>
+  <data name="Me.PriceAfterDelivery" xml:space="preserve">
+    <value>Nie ma jeszcze dostaw. Po pierwszej dostawie wpiszesz tutaj, w sekcji Moje dostawy, swoją cenę za kg.</value>
   </data>
 </root>

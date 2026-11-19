@@ -8296,7 +8296,7 @@
     <value>Pendiente</value>
   </data>
   <data name="Me.NoPrice" xml:space="preserve">
-    <value>{0} entrega(s) sin su precio</value>
+    <value>Introduzca su precio por kg: {0} entrega(s) sin precio</value>
   </data>
   <data name="Me.NoticeToAccept" xml:space="preserve">
     <value>Un aviso de privacidad para leer y confirmar</value>
@@ -8326,7 +8326,7 @@
     <value>Posición</value>
   </data>
   <data name="Me.DeliveriesHelp" xml:space="preserve">
-    <value>Sus entregas tal como las registraron las plantas, con sus envases y precintos. Indique su precio por kg; puede cambiarlo hasta que el lote esté en un lote de producción finalizado.</value>
+    <value>Sus entregas tal como las registró la organización receptora, con sus envases y precintos. Introduzca su precio por kg; puede cambiarlo hasta que el lote esté en un lote final cerrado.</value>
   </data>
   <data name="Me.Corrected" xml:space="preserve">
     <value>corregida por la plataforma</value>
@@ -9858,5 +9858,8 @@
   </data>
   <data name="Ci.Info.CounterLocation" xml:space="preserve">
     <value>Dónde se guardan los frascos de contramuestra, p. ej. «Cámara fría 2, estante B». Consérvelos hasta la fecha de al lado, por si se discute un resultado.</value>
+  </data>
+  <data name="Me.PriceAfterDelivery" xml:space="preserve">
+    <value>Todavía no hay entregas. Después de su primera entrega, introduzca aquí su precio por kg, en Mis entregas.</value>
   </data>
 </root>

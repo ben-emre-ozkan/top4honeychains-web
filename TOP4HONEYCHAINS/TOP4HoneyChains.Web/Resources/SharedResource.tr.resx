@@ -8296,7 +8296,7 @@
     <value>Yapılacaklar</value>
   </data>
   <data name="Me.NoPrice" xml:space="preserve">
-    <value>Fiyat girilmemiş {0} teslimat</value>
+    <value>Kilogram fiyatınızı girin: fiyatı olmayan {0} teslimat</value>
   </data>
   <data name="Me.NoticeToAccept" xml:space="preserve">
     <value>Okunup onaylanacak bir aydınlatma metni</value>
@@ -8326,7 +8326,7 @@
     <value>Konum</value>
   </data>
   <data name="Me.DeliveriesHelp" xml:space="preserve">
-    <value>Teslimatlarınız, işletmelerin kaydettiği şekilde kapları ve mühürleriyle. Kilogram başına istediğiniz fiyatı girin; lot sonlandırılmış bir partiye girene kadar değiştirebilirsiniz.</value>
+    <value>Teslimatlarınız, teslim alan kurumun kaydettiği şekilde, kapları ve mühürleriyle. Kilogram başına istediğiniz fiyatı girin; lot kesinleşmiş bir partiye girene kadar değiştirebilirsiniz.</value>
   </data>
   <data name="Me.Corrected" xml:space="preserve">
     <value>platform tarafından düzeltildi</value>
@@ -9734,5 +9734,8 @@
   </data>
   <data name="Ci.Info.CounterLocation" xml:space="preserve">
     <value>Şahit numune kavanozlarının saklandığı yer, örneğin “Soğuk oda 2, B rafı”. Bir sonuca itiraz edilirse diye yanındaki tarihe kadar saklayın.</value>
+  </data>
+  <data name="Me.PriceAfterDelivery" xml:space="preserve">
+    <value>Henüz teslimatınız yok. İlk teslimatınızdan sonra kilogram fiyatınızı burada, Teslimatlarım bölümünde girersiniz.</value>
   </data>
 </root>
