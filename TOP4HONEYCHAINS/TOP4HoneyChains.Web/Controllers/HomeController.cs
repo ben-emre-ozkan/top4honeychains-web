@@ -46,11 +46,8 @@ namespace TOP4HoneyChains.Web.Controllers
 
         public static readonly string[] Languages = { "tr", "en", "es", "pl", "lv" };
 
-        public IActionResult SetLanguage(string culture, string returnUrl)
-        {
-            if (!Languages.Contains(culture))
-                culture = "tr";
-            Response.Cookies.Append(
+        public static void WriteCultureCookie(HttpResponse response, string culture) =>
+            response.Cookies.Append(
                 CookieRequestCultureProvider.DefaultCookieName,
                 CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
                 new CookieOptions
@@ -60,6 +57,11 @@ namespace TOP4HoneyChains.Web.Controllers
                     IsEssential = true
                 });
 
+        public IActionResult SetLanguage(string culture, string returnUrl)
+        {
+            if (!Languages.Contains(culture))
+                culture = "tr";
+            WriteCultureCookie(Response, culture);
             // Only redirect within the site; an empty or external returnUrl goes to the start page
             if (string.IsNullOrEmpty(returnUrl) || !Url.IsLocalUrl(returnUrl))
                 returnUrl = "/";

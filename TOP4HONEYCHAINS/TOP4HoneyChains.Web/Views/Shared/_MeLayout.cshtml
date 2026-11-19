@@ -29,6 +29,8 @@
     <header class="me-top">
         <a class="me-brand b-link" href="/Me" aria-label="TOP4HoneyChains"><img src="~/img/brand/top4-wordmark-w3.svg" alt="TOP4HoneyChains" width="177" height="13"></a>
         <span class="me-who">@me?.BeekeeperFirstName @me?.BeekeeperLastName</span>
+        @* D-92: the portal has its own language switch *@
+        <div class="me-lang"><partial name="_LanguageSwitch" /></div>
         <form asp-controller="Account" asp-action="Logout" method="post" class="me-out">
             <button type="submit" class="b-btn b-btn-ghost me-btn-sm">@L["Menu.Logout"]</button>
         </form>

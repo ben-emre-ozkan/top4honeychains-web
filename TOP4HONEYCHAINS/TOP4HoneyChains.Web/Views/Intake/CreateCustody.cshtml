@@ -106,8 +106,9 @@
                                             var r = rows[i];
                                             <tr class="container-row">
                                                 <td class="row-no">@(i + 1)</td>
-                                                <td>
-                                                    <select class="form-select form-select-sm" data-field="Kind" name="Containers[@i].Kind" aria-label="@L["Ci.Kind"]">
+                                                @* D-92: wide enough to read the chosen type in every language *@
+                                                <td class="kind-cell" style="min-width: 8.5rem">
+                                                    <select class="form-select form-select-sm" style="min-width: 8rem" data-field="Kind" name="Containers[@i].Kind" aria-label="@L["Ci.Kind"]">
                                                         @foreach (var k in ContainerKind.All)
                                                         {
                                                             <option value="@k" selected="@(k == r.Kind)">@L["Ci.Kind." + k]</option>

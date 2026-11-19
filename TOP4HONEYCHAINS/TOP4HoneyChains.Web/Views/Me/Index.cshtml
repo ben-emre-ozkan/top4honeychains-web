@@ -12,6 +12,11 @@
 <p class="me-sub">@Model.BeekeeperBusinessNumber</p>
 <honey-scene name="journey" trigger="first" class="me-journey" />
 
+@if (deliveries.Count == 0)
+{
+    @* D-92: where the price goes, before the first delivery *@
+    <p class="me-muted" id="me-no-delivery">@L["Me.PriceAfterDelivery"]</p>
+}
 @if (noPrice > 0 || notices > 0)
 {
     <div class="me-card" id="me-open-items">

@@ -8296,7 +8296,7 @@
     <value>Darāmais</value>
   </data>
   <data name="Me.NoPrice" xml:space="preserve">
-    <value>Piegādes bez jūsu cenas: {0}</value>
+    <value>Ievadiet savu cenu par kg: {0} piegāde(s) bez cenas</value>
   </data>
   <data name="Me.NoticeToAccept" xml:space="preserve">
     <value>Privātuma paziņojums, kas jāizlasa un jāapstiprina</value>
@@ -8326,7 +8326,7 @@
     <value>Atrašanās vieta</value>
   </data>
   <data name="Me.DeliveriesHelp" xml:space="preserve">
-    <value>Jūsu piegādes, kā tās reģistrēja uzņēmumi, ar tvertnēm un plombām. Norādiet savu cenu par kg; to var mainīt, līdz partija ir pabeigtā gatavās produkcijas partijā.</value>
+    <value>Jūsu piegādes, kā tās reģistrēja saņēmēja organizācija, ar traukiem un plombām. Ievadiet savu cenu par kg; to var mainīt, līdz partija nonāk pabeigtā gala partijā.</value>
   </data>
   <data name="Me.Corrected" xml:space="preserve">
     <value>platformas izlabota</value>
@@ -9858,5 +9858,8 @@
   </data>
   <data name="Ci.Info.CounterLocation" xml:space="preserve">
     <value>Kur glabā kontrolparaugu burkas, piem., “Aukstā telpa 2, plaukts B”. Glabājiet tās līdz blakus norādītajam datumam, ja kāds rezultāts tiek apstrīdēts.</value>
+  </data>
+  <data name="Me.PriceAfterDelivery" xml:space="preserve">
+    <value>Piegāžu vēl nav. Pēc pirmās piegādes šeit, sadaļā Manas piegādes, ievadiet savu cenu par kg.</value>
   </data>
 </root>

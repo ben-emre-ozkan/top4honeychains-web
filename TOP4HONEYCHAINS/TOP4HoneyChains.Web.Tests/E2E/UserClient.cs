@@ -25,6 +25,7 @@ namespace TOP4HoneyChains.Web.Tests.E2E
         public static async Task<UserClient> LoginAsync(E2EApp app, string userName)
         {
             var client = new UserClient(app.CreateClient(new WebApplicationFactoryClientOptions { AllowAutoRedirect = false, HandleCookies = true }), userName);
+            await client.ChooseEnglishAsync();
             var response = await client.PostAsync("/Account/Login", new() { ["UserName"] = userName, ["Password"] = E2EApp.Password }, "/Account/Login");
             Assert.True(response.StatusCode == HttpStatusCode.Redirect, $"login of {userName} failed: {(int)response.StatusCode}");
             Assert.DoesNotContain("/Account/Login", response.Headers.Location?.ToString() ?? "");
@@ -35,11 +36,16 @@ namespace TOP4HoneyChains.Web.Tests.E2E
         public static async Task<(UserClient Client, HttpResponseMessage Response)> SignInAsync(E2EApp app, string userName, string password)
         {
             var client = new UserClient(app.CreateClient(new WebApplicationFactoryClientOptions { AllowAutoRedirect = false, HandleCookies = true }), userName);
+            await client.ChooseEnglishAsync();
             var response = await client.PostAsync("/Account/Login", new() { ["UserName"] = userName, ["Password"] = password }, "/Account/Login");
             return (client, response);
         }
 
         public async Task<HttpResponseMessage> GetAsync(string url) => await _http.GetAsync(url);
+
+        // D-92: a beekeeper's portal opens in the beekeeper's SMS language unless the browser chose one; the tests choose English
+        // with the language switch, as a person would
+        private Task ChooseEnglishAsync() => _http.GetAsync("/Home/SetLanguage?culture=en&returnUrl=%2F");
 
         // a POST without an antiforgery token (a forged request)
         public async Task<HttpResponseMessage> RawPostAsync(string url) => await _http.PostAsync(url, new FormUrlEncodedContent(new Dictionary<string, string>()));
