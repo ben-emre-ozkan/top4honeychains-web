@@ -17,7 +17,7 @@ using TOP4HoneyChains.Web.Models.Entities;
 using TOP4HoneyChains.Web.Models.Identity;
 using TOP4HoneyChains.Web.Services.OrgModel;
 
-// D-88: builds the live-like cast (cast.json) and its history in the LOCAL database through the application, hosted in-process
+// D-88 (Şile cast since D-90): builds the live-like cast (cast.json) and its history in the LOCAL database through the application, hosted in-process
 // with the settings of run-demo.ps1. Only the platform operator's account is made with the app's own user services (the first
 // administrator cannot be made through a page); the operator then creates the organizations and members on the app's pages, every
 // member signs in with the details from the SMS on the phone page and sets the practice password, and the history (two deliveries
@@ -99,29 +99,23 @@ foreach (var o in cast.GetProperty("orgs").EnumerateArray())
     var name = o.GetProperty("name").GetString()!;
     var caps = o.GetProperty("capabilities").EnumerateArray().Select(x => x.GetString()!).ToList();
     var accreditation = o.TryGetProperty("accreditation", out var a) ? a.GetString() : null;
-    // an accredited laboratory: the accreditation is entered when the capability is added, so the organization starts with
-    // another capability that is removed again (all on the organization's page)
-    var initial = accreditation != null ? new List<string> { Capabilities.Retail } : caps;
     var form = new List<KeyValuePair<string, string>>
     {
         new("DisplayName", name), new("LegalName", o.GetProperty("legal").GetString()!),
         new("Province", o.GetProperty("province").GetString()!), new("District", o.GetProperty("district").GetString()!)
     };
-    form.AddRange(initial.Select(cap => new KeyValuePair<string, string>("capabilities", cap)));
+    form.AddRange(caps.Select(cap => new KeyValuePair<string, string>("capabilities", cap)));
+    // D-89: an accredited laboratory's accreditation is entered in the same form
+    if (accreditation != null)
+        form.AddRange(new KeyValuePair<string, string>[]
+        {
+            new("isAccredited", "true"), new("accreditationNumber", accreditation),
+            new("accreditationValidUntil", DateTime.Today.AddYears(3).ToString("yyyy-MM-dd", inv))
+        });
     var created = await operatorClient.PostAsync("/Organizations/Create", form, "/Organizations/Create");
     var id = int.Parse(Regex.Match(created.Headers.Location?.ToString() ?? "", @"/Organizations/Details/(\d+)").Groups[1].Value is { Length: > 0 } s ? s
-        : throw new InvalidOperationException($"{name}: not created: {await operatorClient.FlashAfterAsync(created)}"), inv);
+        : throw new InvalidOperationException($"{name}: not created: {Errors(await created.Content.ReadAsStringAsync())}"), inv);
     orgIds[key] = id;
-    if (accreditation != null)
-    {
-        Expect(await operatorClient.PostFlashAsync($"/Organizations/AddCapability/{id}", new()
-        {
-            new("capability", Capabilities.Laboratory), new("isAccredited", "true"), new("accreditationNumber", accreditation),
-            new("accreditationValidUntil", DateTime.Today.AddYears(3).ToString("yyyy-MM-dd", inv))
-        }, $"/Organizations/Details/{id}"), "added", $"{name} laboratory");
-        Expect(await operatorClient.PostFlashAsync($"/Organizations/RemoveCapability/{id}", new() { new("capability", Capabilities.Retail) }, $"/Organizations/Details/{id}"),
-            "removed", $"{name} temporary capability");
-    }
     var document = Pdf(accreditation != null ? "Akreditasyon sertifikasi" : "Faaliyet belgesi", name, o.GetProperty("legal").GetString()!,
         $"{o.GetProperty("district").GetString()} / {o.GetProperty("province").GetString()}");
     Expect(await operatorClient.FlashAfterAsync(await operatorClient.PostMultipartAsync("/Organizations/UploadDocument",
@@ -163,12 +157,13 @@ var officer = await As(User("RegistrationOfficer", "directorate"));
 var found = await officer.PostAsync("/Registration/Find", new() { new("number", bee.GetProperty("registry").GetString()!) }, "/Registration/Index");
 if (!(found.Headers.Location?.ToString() ?? "").StartsWith("/Registration/New", StringComparison.Ordinal))
     throw new InvalidOperationException("registration did not start: " + await officer.FlashAfterAsync(found));
-var beeDistrict = await Db(db => db.Districts.Where(d => d.ProvinceCode == "52" && d.Name == bee.GetProperty("district").GetString()).Select(d => d.DistrictId).FirstAsync());
+var beeProvince = bee.GetProperty("provinceCode").GetString()!;
+var beeDistrict = await Db(db => db.Districts.Where(d => d.ProvinceCode == beeProvince && d.Name == bee.GetProperty("district").GetString()).Select(d => d.DistrictId).FirstAsync());
 var registration = new List<KeyValuePair<string, string>>
 {
     new("RegistryNumber", bee.GetProperty("registry").GetString()!), new("FirstName", bee.GetProperty("first").GetString()!), new("LastName", bee.GetProperty("last").GetString()!),
     new("BirthDate", bee.GetProperty("birth").GetString()!), new("Phone", bee.GetProperty("phone").GetString()!), new("Language", "tr"),
-    new("ApiaryLatitude", bee.GetProperty("lat").GetString()!), new("ApiaryLongitude", bee.GetProperty("lng").GetString()!), new("ApiaryProvince", "52"),
+    new("ApiaryLatitude", bee.GetProperty("lat").GetString()!), new("ApiaryLongitude", bee.GetProperty("lng").GetString()!), new("ApiaryProvince", beeProvince),
     new("ApiaryDistrictId", beeDistrict.ToString(inv)), new("ApiaryLocality", bee.GetProperty("locality").GetString()!), new("ApiaryHives", bee.GetProperty("hives").GetString()!),
     new("PublicName", "true"), new("PortalNotifications", "true"), new("Attest", "true"), new("IssueSignIn", "true"),
     new("AssociationOrgId", orgIds["association"].ToString(inv))
@@ -191,12 +186,12 @@ var again = await officer.PostAsync("/Registration/Find", new() { new("number", 
 var reverifyUrl = again.Headers.Location?.ToString() ?? "";
 if (!reverifyUrl.StartsWith("/Registration/Reverify", StringComparison.Ordinal))
     throw new InvalidOperationException("second apiary: the beekeeper was not found: " + await officer.FlashAfterAsync(again));
-var secondDistrict = await Db(db => db.Districts.Where(d => d.ProvinceCode == "52" && d.Name == second.GetProperty("district").GetString()).Select(d => d.DistrictId).FirstAsync());
+var secondDistrict = await Db(db => db.Districts.Where(d => d.ProvinceCode == beeProvince && d.Name == second.GetProperty("district").GetString()).Select(d => d.DistrictId).FirstAsync());
 var update = registration.Where(p => !p.Key.StartsWith("Apiary", StringComparison.Ordinal) && p.Key != "IssueSignIn").ToList();
 update.AddRange(new KeyValuePair<string, string>[]
 {
     new("BeekeeperId", registered.BeekeeperId), new("ApiaryLatitude", second.GetProperty("lat").GetString()!), new("ApiaryLongitude", second.GetProperty("lng").GetString()!),
-    new("ApiaryProvince", "52"), new("ApiaryDistrictId", secondDistrict.ToString(inv)), new("ApiaryLocality", second.GetProperty("locality").GetString()!),
+    new("ApiaryProvince", beeProvince), new("ApiaryDistrictId", secondDistrict.ToString(inv)), new("ApiaryLocality", second.GetProperty("locality").GetString()!),
     new("ApiaryHives", second.GetProperty("hives").GetString()!)
 });
 var updateSent = WebUtility.HtmlDecode(await (await officer.PostAsync("/Registration/Submit", With(update, ("op", "send")), reverifyUrl)).Content.ReadAsStringAsync());
@@ -208,14 +203,16 @@ var apiaries = await Db(db => db.Apiaries.Where(x => x.ApiaryBeekeeperId == regi
 Log($"second apiary added ({apiaries.Count} apiaries)");
 
 // ---- 4. two deliveries, the lab, CCP 0-3 (lot control sheet) for each lot
-var reception = await As(User("SampleAcceptanceOfficer", "plant"));
-var staff = await As(User("Staff", "plant"));
-var quality = await As(User("QualityApprover", "plant"));
+// D-90: the association receives, samples, processes and packs (capabilities Association, Processing, Packing)
+var reception = await As(User("SampleAcceptanceOfficer", "association"));
+var staff = await As(User("Staff", "association"));
+var quality = await As(User("QualityApprover", "association"));
 var analyst = await As(User("Analyst", "lab"));
 var labManager = await As(User("LabManager", "lab"));
 var honeyType = await Db(db => db.HoneyTypes.Where(h => h.HoneyTypeTitle == history.GetProperty("honeyType").GetString()).Select(h => h.HoneyTypeId).FirstAsync());
 var lots = new List<(int Lot, decimal Kg)>();
-var sealNo = 24101;
+var seals = history.GetProperty("seals");
+var sealNo = seals.GetProperty("first").GetInt32();
 var deliveryNo = 0;
 foreach (var d in history.GetProperty("deliveries").EnumerateArray())
 {
@@ -224,9 +221,9 @@ foreach (var d in history.GetProperty("deliveries").EnumerateArray())
     var form = new List<KeyValuePair<string, string>>
     {
         new("Number", registered.BeekeeperBusinessNumber!), new("ApiaryId", apiaries[d.GetProperty("apiary").GetInt32() - 1].ToString(inv)), new("HoneyTypeId", honeyType.ToString(inv)),
-        new("PeriodId", period.ToString(inv)), new("DeliveryDate", date.ToString("yyyy-MM-dd", inv)), new("Province", "Ordu"),
+        new("PeriodId", period.ToString(inv)), new("DeliveryDate", date.ToString("yyyy-MM-dd", inv)), new("Province", bee.GetProperty("province").GetString()!),
         new("District", (d.GetProperty("apiary").GetInt32() == 1 ? bee : second).GetProperty("district").GetString()!), new("OriginCountry", "TR"), new("LabOrgId", orgIds["lab"].ToString(inv)),
-        new("CounterLocation", "Numune arşivi, raf B2"), new("RetainUntil", DateTime.Today.AddYears(2).ToString("yyyy-MM-dd", inv))
+        new("CounterLocation", history.GetProperty("counterLocation").GetString()!), new("RetainUntil", DateTime.Today.AddYears(2).ToString("yyyy-MM-dd", inv))
     };
     var i = 0;
     decimal kg = 0;
@@ -237,8 +234,8 @@ foreach (var d in history.GetProperty("deliveries").EnumerateArray())
         {
             new($"Containers[{i}].Kind", "Tin"), new($"Containers[{i}].NetKg", c.GetProperty("net").GetString()!), new($"Containers[{i}].GrossKg", c.GetProperty("gross").GetString()!),
             new($"Containers[{i}].ArrivedSealed", "true"), new($"Containers[{i}].OriginSeal", c.GetProperty("originSeal").GetString()!), new($"Containers[{i}].OriginSealIntact", "true"),
-            new($"Containers[{i}].JarSeal", $"YBG-J-{n}"), new($"Containers[{i}].CounterSeal", $"YBG-K-{n}"), new($"Containers[{i}].CapIntact", "true"),
-            new($"Containers[{i}].Reseal", $"YBG-P-{n}")
+            new($"Containers[{i}].JarSeal", seals.GetProperty("jar").GetString() + n), new($"Containers[{i}].CounterSeal", seals.GetProperty("counter").GetString() + n),
+            new($"Containers[{i}].CapIntact", "true"), new($"Containers[{i}].Reseal", seals.GetProperty("reseal").GetString() + n)
         });
         kg += decimal.Parse(c.GetProperty("net").GetString()!, inv);
         i++;
@@ -286,7 +283,7 @@ foreach (var d in history.GetProperty("deliveries").EnumerateArray())
     Log($"delivery {deliveryNo}: lot {lot}, {kg.ToString("0.##", inv)} kg, lab report {reportNumber}, CCP 0-3 approved");
 }
 
-// ---- 5. the batch: New batch by the plant, the batch control sheet, finalizing by two people
+// ---- 5. the batch: New batch by the association, the batch control sheet, finalizing by two people
 var newBatch = new List<KeyValuePair<string, string>> { new("title", history.GetProperty("batchTitle").GetString()!), new("date", DateTime.Today.AddDays(-10).ToString("yyyy-MM-dd", inv)) };
 foreach (var (lot, kg) in lots)
 {
@@ -479,7 +476,7 @@ async Task WriteLoginsAsync()
         [OrgRoles.FieldInspector] = "Field inspector", [OrgRoles.RegistrationOfficer] = "Beekeeper registration officer", [OrgRoles.ComplianceOfficer] = "Compliance Officer"
     };
     var b = new StringBuilder();
-    b.AppendLine("TOP4HoneyChains - local logins (live-like cast, D-88)");
+    b.AppendLine("TOP4HoneyChains - local logins (live-like cast, D-88; Şile, D-90)");
     b.AppendLine("=====================================================");
     b.AppendLine();
     b.AppendLine("Address:   http://localhost:5255");
@@ -501,7 +498,7 @@ async Task WriteLoginsAsync()
     var next = cast.GetProperty("beekeepers").EnumerateArray().First(x => x.GetProperty("key").GetString() == "new");
     b.AppendLine("Not registered yet (for a live registration):");
     b.AppendLine($"  {next.GetProperty("name").GetString()}, born {next.GetProperty("birth").GetString()}, registry number {next.GetProperty("registry").GetString()}, phone {next.GetProperty("phone").GetString()},");
-    b.AppendLine($"  apiary Ordu / {next.GetProperty("district").GetString()} / {next.GetProperty("locality").GetString()} ({next.GetProperty("lat").GetString()}, {next.GetProperty("lng").GetString()}), {next.GetProperty("hives").GetString()} hives");
+    b.AppendLine($"  apiary {next.GetProperty("province").GetString()} / {next.GetProperty("district").GetString()} / {next.GetProperty("locality").GetString()} ({next.GetProperty("lat").GetString()}, {next.GetProperty("lng").GetString()}), {next.GetProperty("hives").GetString()} hives");
     b.AppendLine($"  Phone page: {Link(next.GetProperty("phone").GetString()!)}");
     b.AppendLine();
     b.AppendLine($"History:   two deliveries of {bee.GetProperty("name").GetString()} (lots {string.Join(", ", lots.Select(l => "#" + l.Lot))}), batch \"{history.GetProperty("batchTitle").GetString()}\" (#{batchId}) finalized,");
@@ -509,10 +506,10 @@ async Task WriteLoginsAsync()
     b.AppendLine($"           Honey Story: http://localhost:5255/honeystory/{qr.ToString().ToUpperInvariant()}");
     b.AppendLine();
     b.AppendLine("Four-eyes pairs (always two different people)");
-    b.AppendLine($"- Delivery and CCP 0:   {User("SampleAcceptanceOfficer", "plant")} records   -> {User("QualityApprover", "plant")} approves CCP 0");
+    b.AppendLine($"- Delivery and CCP 0:   {User("SampleAcceptanceOfficer", "association")} records   -> {User("QualityApprover", "association")} approves CCP 0");
     b.AppendLine($"- Lab report:           {User("Analyst", "lab")} enters        -> {User("LabManager", "lab")} approves");
-    b.AppendLine($"- Control sheets:       {User("Staff", "plant")} enters      -> {User("QualityApprover", "plant")} approves (CCP 2-3 per lot, CCP 4-10 per batch)");
-    b.AppendLine($"- New batch, finalize:  {User("Staff", "plant")} creates and requests -> {User("QualityApprover", "plant")} confirms");
+    b.AppendLine($"- Control sheets:       {User("Staff", "association")} enters      -> {User("QualityApprover", "association")} approves (CCP 2-3 per lot, CCP 4-10 per batch)");
+    b.AppendLine($"- New batch, finalize:  {User("Staff", "association")} creates and requests -> {User("QualityApprover", "association")} confirms");
     b.AppendLine($"- Shop storage:         {User("Staff", "shop")} records      -> {User("QualityApprover", "shop")} approves");
     b.AppendLine($"- Registration photo:   {User("RegistrationOfficer", "directorate")} uploads -> {User("ComplianceOfficer", "directorate")} accepts (only without a phone)");
     b.AppendLine();

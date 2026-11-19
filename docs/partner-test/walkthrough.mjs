@@ -1,13 +1,13 @@
-// D-86, updated for D-88: walks the partner test scenario "Follow one honey" on the LOCAL app as the people of the live-like cast
+// D-86, updated for D-88 and the Şile cast of D-90: walks the partner test scenario "Follow one honey" on the LOCAL app as the people of the live-like cast
 // (tools/live-like/cast.json), never the platform administrator: a new beekeeper is registered (code read on the beekeeper's phone
 // page), signs in to the portal and sets the asking price, delivers in sealed containers, CCP 0, the laboratory, the lot's control
-// sheet (CCP 2–3), New batch in the plant, the batch's control sheet (CCP 4–10), finalizing by two people, the shipment to the shop
+// sheet (CCP 2–3), New batch in the association, the batch's control sheet (CCP 4–10), finalizing by two people, the shipment to the shop
 // with its storage record, the public Honey Story, and a consumer who creates an account from the story, saves the honey and sends
-// feedback that the plant answers. It checks that the steps work and saves one screenshot per step outside the repository.
+// feedback that the association answers. It checks that the steps work and saves one screenshot per step outside the repository.
 //   node docs/partner-test/walkthrough.mjs        (run-demo.ps1 running on http://localhost:5255; WALK_LANG=en|tr|es|pl|lv)
 // - Runs only against localhost (the local app on the local database, never the live site).
 // - The practice password and the phone page key are read at run time from Downloads\TOP4-local-logins.txt and never printed.
-// - Each run registers its own beekeeper (registry number TR5204013000NN, phone +90 555 000 09 NN) and consumer (zz_walk_NN), with
+// - Each run registers its own beekeeper (registry number TR3445901300NN, phone +90 555 000 11 NN) and consumer (zz_walk_NN), with
 //   NN unused so far; the cast's cleanup script removes them together with the cast.
 import fs from 'node:fs';
 import os from 'node:os';
@@ -44,22 +44,22 @@ const idOf = query => sql(query).find(l => /^\d+$/.test(l));
 const honeyTypeId = idOf(`SELECT HoneyTypeId FROM dbo.HoneyTypes WHERE HoneyTypeTitle = N'${cast.history.honeyType.replace(/'/g, "''")}'`);
 const periodId = idOf(`SELECT RawHoneyProductionPeriodId FROM dbo.RawHoneyProductionPeriods WHERE RawHoneyProductionPeriodTitle = N'${cast.history.period.title.replace(/'/g, "''")}'`);
 const orgId = key => idOf(`SELECT OrgId FROM dbo.Organizations WHERE IsPlatform = 0 AND DisplayName = N'${orgName(key).replace(/'/g, "''")}'`);
-if (!honeyTypeId || !periodId || !orgId('plant')) throw new Error('the live-like cast is not in the local database: run tools/live-like first');
+if (!honeyTypeId || !periodId || !orgId('association')) throw new Error('the live-like cast is not in the local database: run tools/live-like first');
 
 // this run's beekeeper and consumer: the first NN whose registry number, phone and user name are all unused
 const tag = (() => {
     const start = Date.now() % 90;
     for (let i = 0; i < 90; i++) {
         const nn = String((start + i) % 90 + 10);
-        const used = sql(`SELECT (SELECT COUNT(*) FROM dbo.BeekeeperRegistry WHERE RegistryNumber = N'TR52040130${nn.padStart(4, '0')}') + (SELECT COUNT(*) FROM dbo.Beekeepers WHERE BeekeeperPhoneNumber IN (N'+9055500009${nn}', N'+90 555 000 09 ${nn}')) + (SELECT COUNT(*) FROM dbo.AspNetUsers WHERE UserName = N'zz_walk_${nn}')`)[0];
+        const used = sql(`SELECT (SELECT COUNT(*) FROM dbo.BeekeeperRegistry WHERE RegistryNumber = N'TR34459013${nn.padStart(4, '0')}') + (SELECT COUNT(*) FROM dbo.Beekeepers WHERE BeekeeperPhoneNumber IN (N'+9055500011${nn}', N'+90 555 000 11 ${nn}')) + (SELECT COUNT(*) FROM dbo.AspNetUsers WHERE UserName = N'zz_walk_${nn}')`)[0];
         if (used === '0') return nn;
     }
     throw new Error('no unused walkthrough number left');
 })();
-const bee = { registry: `TR52040130${tag.padStart(4, '0')}`, first: 'Arif', last: 'Deneme', birth: '1979-04-12', phone: `+90 555 000 09 ${tag}`, district: 'Fatsa', locality: 'Yavşan', hives: '30', lat: '41.0310', lng: '37.5120' };
+const bee = { registry: `TR34459013${tag.padStart(4, '0')}`, first: 'Arif', last: 'Deneme', birth: '1979-04-12', phone: `+90 555 000 11 ${tag}`, province: 'İstanbul', district: 'Şile', locality: 'Hacıllı', hives: '30', lat: '41.0950', lng: '29.7380' };
 const beeDigits = bee.phone.replace(/\D/g, '');
 const CONSUMER = `zz_walk_${tag}`;
-const BATCH_TITLE = `Yaylakent Kestane Balı 2026/W${tag}`;
+const BATCH_TITLE = `Şile Kestane Balı 2026/W${tag}`;
 const REPORT = `${cast.history.lab.reportPrefix}W${tag}`;
 
 function value(id) {
@@ -197,7 +197,7 @@ async function approveWithDialog(page, button, dialog) {
     await settle(page);
 }
 
-const reg = user('RegistrationOfficer', 'directorate'), sao = user('SampleAcceptanceOfficer', 'plant'), staff = user('Staff', 'plant'), qa = user('QualityApprover', 'plant');
+const reg = user('RegistrationOfficer', 'directorate'), sao = user('SampleAcceptanceOfficer', 'association'), staff = user('Staff', 'association'), qa = user('QualityApprover', 'association');
 const analyst = user('Analyst', 'lab'), labManager = user('LabManager', 'lab'), shop = user('Staff', 'shop'), shopQa = user('QualityApprover', 'shop');
 let business, lot, batch, composite, qr, portal, story;
 
@@ -216,7 +216,7 @@ try {
         await page.fill('#Phone', bee.phone);
         await page.selectOption('#Language', 'tr').catch(() => {});
         await page.selectOption('#AssociationOrgId', orgId('association'));
-        await page.selectOption('#ap-province', { label: 'Ordu' });
+        await page.selectOption('#ap-province', { label: bee.province });
         await page.waitForFunction(() => document.getElementById('ap-district').options.length > 1);
         await page.selectOption('#ap-district', { label: bee.district });
         await page.fill('#ap-locality', bee.locality);
@@ -258,7 +258,7 @@ try {
         await page.selectOption('#HoneyTypeId', honeyTypeId);
         await page.selectOption('#PeriodId', periodId);
         const prov = page.locator('select[data-province-select]').first();
-        await prov.selectOption({ label: 'Ordu' });
+        await prov.selectOption({ label: bee.province });
         const did = await prov.getAttribute('data-province-select');
         await page.waitForFunction(id => document.getElementById(id).options.length > 1, did);
         await page.locator('#' + did).selectOption({ label: bee.district });
@@ -266,12 +266,12 @@ try {
         await page.selectOption('#OriginCountry', 'TR').catch(() => {});
         await page.selectOption('#LabOrgId', orgId('lab'));
         if (!(await page.locator('#RetainUntil').inputValue())) { const d = new Date(); d.setFullYear(d.getFullYear() + 2); await page.fill('#RetainUntil', d.toISOString().slice(0, 10)); }
-        await page.fill('#CounterLocation', 'Numune arşivi, raf B2');
+        await page.fill('#CounterLocation', cast.history.counterLocation);
         if (await page.locator('#containers tbody tr').count() < 2) await page.click('#add-container');
         const rows = page.locator('#containers tbody tr');
         const plan = [
-            { net: '24.2', gross: '25.6', origin: `YAB-2026-W${tag}1`, jar: `YBG-J-W${tag}1`, counter: `YBG-K-W${tag}1`, reseal: `YBG-P-W${tag}1` },
-            { net: '20.9', gross: '22.3', origin: `YAB-2026-W${tag}2`, jar: `YBG-J-W${tag}2`, counter: `YBG-K-W${tag}2`, reseal: `YBG-P-W${tag}2` }
+            { net: '24.2', gross: '25.6', origin: `SAB-2026-W${tag}1`, jar: `SAB-J-W${tag}1`, counter: `SAB-K-W${tag}1`, reseal: `SAB-P-W${tag}1` },
+            { net: '20.9', gross: '22.3', origin: `SAB-2026-W${tag}2`, jar: `SAB-J-W${tag}2`, counter: `SAB-K-W${tag}2`, reseal: `SAB-P-W${tag}2` }
         ];
         for (let i = 0; i < plan.length; i++) {
             const r = rows.nth(i), p = plan[i];
@@ -355,7 +355,7 @@ try {
         return `${await success(page)} ${await workOf(staff, new RegExp(`kind=raw&id=${lot}`))}`;
     });
 
-    // 7. the lot's control sheet (CCP 2–3): entered by the plant's staff, approved in one action by the QA officer
+    // 7. the lot's control sheet (CCP 2–3): entered by the association's staff, approved in one action by the QA officer
     await step('Lot control sheet (CCP 2-3) entered', staff, async page => {
         await page.goto(`${BASE}/CCPMonitoring/Sheet?kind=raw&id=${lot}`); await settle(page);
         const n = await fillCcpBoxes(page);
@@ -368,8 +368,8 @@ try {
         return `${await success(page)} ${await workOf(staff, /OrgWorkspace\/NewBatch/)}`;
     });
 
-    // 8. the plant creates the batch from its approved lot
-    await step('New batch in the plant', staff, async page => {
+    // 8. the association creates the batch from its approved lot
+    await step('New batch in the association', staff, async page => {
         await page.goto(`${BASE}/OrgWorkspace/Index`); await settle(page);
         await submit(page, page.locator('#link-new-batch'));
         for (const id of await page.locator('#new-batch-lots tbody tr').evaluateAll(els => els.map(e => e.dataset.lotId)))
@@ -435,7 +435,7 @@ try {
         return await success(page);
     });
 
-    // 12. the consumer: the public Honey Story on a phone, an account from the story, save, feedback, the plant's answer
+    // 12. the consumer: the public Honey Story on a phone, an account from the story, save, feedback, the association's answer
     story = await newPage(true);
     await step('Consumer opens the Honey Story', { label: 'anyone, without signing in', page: story }, async page => {
         await page.goto(`${BASE}/honeystory/${qr}`); await settle(page);
@@ -464,7 +464,7 @@ try {
         await submit(page, page.locator('#feedback-form button[type=submit]'));
         return `${await success(page)} ${await workOf(qa, /ConsumerFeedback\/Details/)}`;
     });
-    await step('The plant answers the feedback', qa, async page => {
+    await step('The association answers the feedback', qa, async page => {
         await page.goto(`${BASE}/ConsumerFeedback`); await settle(page);
         const href = await page.locator('a[href*="/ConsumerFeedback/Details/"]').filter({ hasText: BATCH_TITLE }).first().getAttribute('href');
         await page.goto(BASE + href); await settle(page);

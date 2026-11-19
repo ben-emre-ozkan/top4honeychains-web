@@ -1,7 +1,7 @@
-// D-88: the end-to-end check in a browser, as the people of the live-like cast (never the platform administrator): a new beekeeper is
+// D-88 (Şile cast since D-90): the end-to-end check in a browser, as the people of the live-like cast (never the platform administrator): a new beekeeper is
 // registered, delivers chestnut honey in sealed containers (code read on the beekeeper's phone page), CCP 0, the laboratory, the lot's
 // control sheet, New batch, the batch's control sheet, finalizing, the shipment to the shop with its storage record, the public Honey
-// Story, and a consumer who creates an account from the story, saves the honey and sends feedback that the plant answers.
+// Story, and a consumer who creates an account from the story, saves the honey and sends feedback that the association answers.
 //   node tools/live-like/walk.mjs            (run-demo.ps1 running; English pages)
 // - Runs only against localhost. The password and the phone page key are read from the logins file in Downloads, never printed.
 // - Saves no screenshots. Writes the steps it did (labels, URLs, messages, timings) as JSON to WALK_OUT when set.
@@ -25,7 +25,7 @@ const bee = cast.beekeepers.find(b => b.key === 'new');
 const beeDigits = bee.phone.replace(/\D/g, '');
 const user = (role, org) => cast.people.find(p => p.role === role && p.org === org).user;
 const orgName = key => cast.orgs.find(o => o.key === key).name;
-const BATCH_TITLE = process.env.WALK_BATCH || 'Yaylakent Kestane Balı 2026/2';
+const BATCH_TITLE = process.env.WALK_BATCH || 'Şile Kestane Balı 2026/2';
 const CONSUMER = process.env.WALK_CONSUMER || 'ece.kaplan';
 
 // the parameters (reference data only): id -> CCP code, name, data type
@@ -179,7 +179,7 @@ async function approveWithDialog(page, buttonSelector, dialogSelector) {
     current.urls.push(new URL(page.url()).pathname + new URL(page.url()).search);
 }
 
-const reg = user('RegistrationOfficer', 'directorate'), sao = user('SampleAcceptanceOfficer', 'plant'), staff = user('Staff', 'plant'), qa = user('QualityApprover', 'plant');
+const reg = user('RegistrationOfficer', 'directorate'), sao = user('SampleAcceptanceOfficer', 'association'), staff = user('Staff', 'association'), qa = user('QualityApprover', 'association');
 const analyst = user('Analyst', 'lab'), labManager = user('LabManager', 'lab'), shop = user('Staff', 'shop'), shopQa = user('QualityApprover', 'shop');
 let business, portalUser, lot, intake, batch, qr, composite;
 
@@ -195,7 +195,7 @@ try {
         await fill(page, '#Phone', bee.phone);
         await choose(page, '#Language', 'Türkçe').catch(() => {});
         await choose(page, '#AssociationOrgId', orgName('association'));
-        await choose(page, '#ap-province', 'Ordu');
+        await choose(page, '#ap-province', bee.province);
         await page.waitForFunction(() => document.getElementById('ap-district').options.length > 1);
         await choose(page, '#ap-district', bee.district);
         await fill(page, '#ap-locality', bee.locality);
@@ -259,21 +259,21 @@ try {
         await choose(page, '#HoneyTypeId', cast.history.honeyType);
         await choose(page, '#PeriodId', cast.history.period.title);
         const prov = page.locator('select[data-province-select]').first();
-        await prov.selectOption({ label: 'Ordu' });
+        await prov.selectOption({ label: bee.province });
         const did = await prov.getAttribute('data-province-select');
         await page.waitForFunction(id => document.getElementById(id).options.length > 1, did);
         await page.locator('#' + did).selectOption({ label: bee.district });
-        current.did.push({ type: 'choose', label: 'Province / District', value: `Ordu / ${bee.district}` });
+        current.did.push({ type: 'choose', label: 'Province / District', value: `${bee.province} / ${bee.district}` });
         if (!(await page.locator('#DeliveryDate').inputValue())) await fill(page, '#DeliveryDate', new Date().toISOString().slice(0, 10));
         await page.selectOption('#OriginCountry', 'TR').catch(() => {});
         await choose(page, '#LabOrgId', orgName('lab'));
         if (!(await page.locator('#RetainUntil').inputValue())) { const d = new Date(); d.setFullYear(d.getFullYear() + 2); await fill(page, '#RetainUntil', d.toISOString().slice(0, 10)); }
-        await fill(page, '#CounterLocation', 'Numune arşivi, raf B2');
+        await fill(page, '#CounterLocation', cast.history.counterLocation);
         if (await page.locator('#containers tbody tr').count() < 2) { await page.click('#add-container'); current.did.push({ type: 'click', label: 'Add container' }); }
         const rows = page.locator('#containers tbody tr');
         const plan = [
-            { net: '23.8', gross: '25.2', origin: 'YAB-2026-0517', jar: 'YBG-J-24201', counter: 'YBG-K-24201', reseal: 'YBG-P-24201' },
-            { net: '21.6', gross: '23.0', origin: 'YAB-2026-0518', jar: 'YBG-J-24202', counter: 'YBG-K-24202', reseal: 'YBG-P-24202' }
+            { net: '23.8', gross: '25.2', origin: 'SAB-2026-0517', jar: 'SAB-J-34201', counter: 'SAB-K-34201', reseal: 'SAB-P-34201' },
+            { net: '21.6', gross: '23.0', origin: 'SAB-2026-0518', jar: 'SAB-J-34202', counter: 'SAB-K-34202', reseal: 'SAB-P-34202' }
         ];
         for (let i = 0; i < plan.length; i++) {
             const r = rows.nth(i), p = plan[i];
@@ -286,7 +286,7 @@ try {
             await f('CounterSeal').fill(p.counter);
             await f('CapIntact').check();
             await f('Reseal').fill(p.reseal);
-            current.did.push({ type: 'type', label: `Container ${i + 1}`, value: `net ${p.net} kg, gross ${p.gross} kg, arrived sealed ${p.origin} (intact), sample jar ${p.jar}, counter-sample ${p.counter}, cap intact, new plant seal ${p.reseal}` });
+            current.did.push({ type: 'type', label: `Container ${i + 1}`, value: `net ${p.net} kg, gross ${p.gross} kg, arrived sealed ${p.origin} (intact), sample jar ${p.jar}, counter-sample ${p.counter}, cap intact, new seal after sampling ${p.reseal}` });
         }
         await press(page, '#intake-send');
         if (!await page.locator('#Code').count()) throw new Error('code not sent: ' + await errorsOf(page));
@@ -476,7 +476,7 @@ try {
         current.result = await flash(story);
         facts.records.consumer = CONSUMER;
     });
-    await step('The consumer sends feedback to the plant', null, async () => {
+    await step('The consumer sends feedback to the association', null, async () => {
         await story.goto(`${BASE}/Consumer/Feedback?qr=${qr}`); await settle(story);
         current.urls.push(new URL(story.url()).pathname + new URL(story.url()).search);
         const category = story.locator('select[name=category]');
@@ -491,11 +491,11 @@ try {
         current.result = await flash(story);
         await workOf(qa, /ConsumerFeedback\/Details/);
     });
-    await step('The plant answers the feedback', qa, async page => {
+    await step('The association answers the feedback', qa, async page => {
         const item = current.next[0] ?? await workOf(qa, /ConsumerFeedback\/Details/);
         await go(page, '/ConsumerFeedback');
         await go(page, (await page.locator('a[href*="/ConsumerFeedback/Details/"]').first().getAttribute('href')));
-        await fill(page, '#answer', 'Thank you! It is raw chestnut honey from Ordu, only filtered. Keep it closed at room temperature, away from sunlight.');
+        await fill(page, '#answer', 'Thank you! It is raw chestnut honey from Şile, only filtered. Keep it closed at room temperature, away from sunlight.');
         await press(page, '#answer-form button[type=submit]');
         await result(page, /answer/i);
     });

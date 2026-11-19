@@ -125,7 +125,7 @@ Please set up for the TOP4HoneyChains site on IIS:
 - Rebuild the demo package with every new release (`DEMO_EXPORT_DIR` and `DEMO_CREDENTIALS_DIR` for the export test, `docs/partner-test/build.mjs` for the guides).
 
 ### Local live-like cast (D-88, the developer's local copy only; nothing of it goes live)
-- The local copy has no demo accounts or `[DEMO]` records any more. Presentations use a fictional, live-like cast (`tools/live-like/cast.json`: a district directorate, a processing and packing plant, an accredited laboratory, a beekeepers' association, a shop, a platform operator and a consumer) and its history, built through the application by `dotnet run --project tools/live-like` (stop `run-demo.ps1` first). The logins file is written to the Downloads folder, never to the repository.
+- The local copy has no demo accounts or `[DEMO]` records any more. Presentations use a live-like cast (`tools/live-like/cast.json`; since D-90: a district directorate, the beekeepers' association Şile Arıcılar Birliği (a real name; it receives, samples, processes and packs with the capabilities Association, Processing and Packing), a fictional accredited laboratory, a shop, a platform operator and a consumer; all people are fictional) and its history, built through the application by `dotnet run --project tools/live-like` (stop `run-demo.ps1` first). The logins file is written to the Downloads folder, never to the repository.
 - The cast is removed by `cleanup-live-like-cast.ps1` next to the database backup (outside the repository; without `-Commit` it only counts). Neither the tool nor the cleanup script is part of the deployment, and `Sms:PhonePageKey` exists only in the developer's user secrets.
 
 ## 2. Deployment day (in this order)
