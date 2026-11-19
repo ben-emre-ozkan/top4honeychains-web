@@ -544,7 +544,7 @@
     <value>e-posta</value>
   </data>
   <data name="Org.Password" xml:space="preserve">
-    <value>parola</value>
+    <value>şifre</value>
   </data>
   <data name="Org.AddMember" xml:space="preserve">
     <value>Üye ekle</value>
@@ -745,13 +745,13 @@
     <value>Onayla</value>
   </data>
   <data name="Invalid password" xml:space="preserve">
-    <value>Geçersiz parola</value>
+    <value>Geçersiz şifre</value>
   </data>
   <data name="Phone number updated." xml:space="preserve">
     <value>Telefon numarası güncellendi.</value>
   </data>
   <data name="Password changed." xml:space="preserve">
-    <value>Parola değiştirildi.</value>
+    <value>Şifre değiştirildi.</value>
   </data>
   <data name="Please select a file." xml:space="preserve">
     <value>Lütfen bir dosya seçin.</value>
@@ -778,16 +778,16 @@
     <value>Geçerli bir rol seçin.</value>
   </data>
   <data name="Password update failed: enter the new password twice (identical)." xml:space="preserve">
-    <value>Parola güncellenemedi: yeni parolayı iki kez (aynı) girin.</value>
+    <value>Şifre güncellenemedi: yeni şifreyi iki kez (aynı) girin.</value>
   </data>
   <data name="Password update failed: user not found." xml:space="preserve">
-    <value>Parola güncellenemedi: kullanıcı bulunamadı.</value>
+    <value>Şifre güncellenemedi: kullanıcı bulunamadı.</value>
   </data>
   <data name="Password updated successfully." xml:space="preserve">
-    <value>Parola güncellendi.</value>
+    <value>Şifre güncellendi.</value>
   </data>
   <data name="Password update failed." xml:space="preserve">
-    <value>Parola güncellenemedi.</value>
+    <value>Şifre güncellenemedi.</value>
   </data>
   <data name="A video file is required." xml:space="preserve">
     <value>Bir video dosyası gerekli.</value>
@@ -1090,7 +1090,7 @@
     <value>Bu kullanıcı adıyla kullanıcı yok.</value>
   </data>
   <data name="Enter an existing user name, or a new user name, e-mail and password." xml:space="preserve">
-    <value>Mevcut bir kullanıcı adı ya da yeni kullanıcı adı, e-posta ve parola girin.</value>
+    <value>Mevcut bir kullanıcı adı ya da yeni kullanıcı adı, e-posta ve şifre girin.</value>
   </data>
   <data name="The user already has this role in the organization." xml:space="preserve">
     <value>Kullanıcının kurumda bu rolü zaten var.</value>
@@ -1237,7 +1237,7 @@
     <value>Bu KKN'nin nerede uygulanacağını seçin.</value>
   </data>
   <data name="Password is required" xml:space="preserve">
-    <value>Parola zorunludur</value>
+    <value>Şifre zorunludur</value>
   </data>
   <data name="The amount is required." xml:space="preserve">
     <value>Miktar zorunludur.</value>
@@ -2176,7 +2176,7 @@
     <value>Bal işleme ve paketleme aşamaları boyunca izlenen Kritik Kontrol Noktaları.</value>
   </data>
   <data name="Change Password" xml:space="preserve">
-    <value>Parolayı Değiştir</value>
+    <value>Şifreyi Değiştir</value>
   </data>
   <data name="Last" xml:space="preserve">
     <value>Son</value>
@@ -2905,7 +2905,7 @@
     <value>KKN Sürecine Genel Bakış</value>
   </data>
   <data name="New Password" xml:space="preserve">
-    <value>Yeni Parola</value>
+    <value>Yeni Şifre</value>
   </data>
   <data name="Delete Production Period" xml:space="preserve">
     <value>Üretim Dönemini Sil</value>
@@ -2965,7 +2965,7 @@
     <value>Toplam Ham Bal</value>
   </data>
   <data name="Reset Password" xml:space="preserve">
-    <value>Parolayı Sıfırla</value>
+    <value>Şifreyi Sıfırla</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Vazgeç</value>
@@ -3178,10 +3178,10 @@
     <value>Bu parti kesinleştirilsin mi?</value>
   </data>
   <data name="Create New Password" xml:space="preserve">
-    <value>Yeni Parola Oluştur</value>
+    <value>Yeni Şifre Oluştur</value>
   </data>
   <data name="Reset User Password" xml:space="preserve">
-    <value>Kullanıcı Parolasını Sıfırla</value>
+    <value>Kullanıcı Şifresini Sıfırla</value>
   </data>
   <data name="no maximum" xml:space="preserve">
     <value>en büyük değer yok</value>
@@ -3253,7 +3253,7 @@
     <value>Türkiye ve Arjantin</value>
   </data>
   <data name="Current Password" xml:space="preserve">
-    <value>Mevcut Parola</value>
+    <value>Mevcut Şifre</value>
   </data>
   <data name="Beekeeper" xml:space="preserve">
     <value>Arıcı</value>
@@ -3343,7 +3343,7 @@
     <value>Rol Adı</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Parola</value>
+    <value>Şifre</value>
   </data>
   <data name="Beehives" xml:space="preserve">
     <value>Kovanlar</value>
@@ -3703,7 +3703,7 @@
     <value>Bal izlenebilirliğinin korunması için &lt;strong&gt;arıcılar hiçbir zaman silinmez&lt;/strong&gt;. Bir arıcıyı kullanımdan kaldırmak için &lt;strong&gt;pasifleştirin&lt;/strong&gt;: arıcının kaydı, arılıkları ve bal üretimleri korunur, satır gri olarak &lt;em&gt;Pasif&lt;/em&gt; şeklinde gösterilir ve arıcının girişi kilitlenir. &lt;strong&gt;Etkinleştir&lt;/strong&gt; arıcıyı geri getirir. Arıcılar web paneline giriş yapmaz, bu yüzden girişleri her durumda kilitli kalır.</value>
   </data>
   <data name="Enter password" xml:space="preserve">
-    <value>Parolayı girin</value>
+    <value>Şifreyi girin</value>
   </data>
   <data name="Final Batches" xml:space="preserve">
     <value>Partiler</value>
@@ -3931,7 +3931,7 @@
     <value>Tehlikeli İşlem</value>
   </data>
   <data name="Enter new password" xml:space="preserve">
-    <value>Yeni parolayı girin</value>
+    <value>Yeni şifreyi girin</value>
   </data>
   <data name="Update the selected parameter category details." xml:space="preserve">
     <value>Seçili parametre kategorisinin bilgilerini güncelleyin.</value>
@@ -4159,7 +4159,7 @@
     <value>Video Yükle</value>
   </data>
   <data name="Update Password" xml:space="preserve">
-    <value>Parolayı Güncelle</value>
+    <value>Şifreyi Güncelle</value>
   </data>
   <data name="Beekeeper Contribution Breakdown" xml:space="preserve">
     <value>Arıcı Katkı Dağılımı</value>
@@ -4999,7 +4999,7 @@
     <value>Telefon numarası yok</value>
   </data>
   <data name="Confirm Password" xml:space="preserve">
-    <value>Parolayı onaylayın</value>
+    <value>Şifreyi onaylayın</value>
   </data>
   <data name="Choose a province from the list." xml:space="preserve">
     <value>Listeden bir il seçin.</value>
