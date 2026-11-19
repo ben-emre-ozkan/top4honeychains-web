@@ -62,7 +62,24 @@ Design note only: no workflow code changes come with D-90. The owner visited Şi
 9. Which laboratory do you use for each kind of test, and do they send a PDF report with an accreditation number?
 10. Do you print the labels yourselves? Which printer and label size, and should the QR code be on every jar?
 
-## 4. Rough effort (development and tests; manuals and translations extra)
+## 4. Registration fields (D-91, design only)
+
+**Purposes (today: one "Main purpose").** The reference table `BeekeepingPurposeTypes` has Honey, Pollen, Royal jelly, Propolis, Beeswax, Queen rearing and Pollination. A beekeeper often produces several of these, but `Beekeepers.BeekeeperBeekeepingPurposeTypeId` holds one. Since D-91 the field is labelled "Main purpose" / "Ana üretim amacı".
+- Proposal:
+  - A link table `BeekeeperPurposes(BeekeeperId, PurposeTypeId)` (additive migration), shown as checkboxes, with the main purpose kept as one of the ticked items.
+  - Two new reference rows: **Bee venom (apitoxin)** and **Colony / package-bee sales**.
+- Data migration: copy each beekeeper's current single purpose into the link table (62 rows in the local copy, all "Honey Production"). Keep the old column read-only for one release, then stop writing it.
+
+**"Beekeeping type" mixes three dimensions.** `BeekeepingTypes` holds Stationary, Migratory, Organic, Conventional, Commercial and Hobby, but a beekeeper gets only one, so "organic and migratory" cannot be recorded.
+- Proposal: three separate single-choice fields:
+  - **Scale:** commercial or hobby.
+  - **Method:** conventional or organic. Organic gets an optional certificate number and validity date, because it is a claim buyers rely on.
+  - **Mobility:** stationary or migratory.
+- Data migration: map each old value to its own dimension and leave the other two empty for the beekeeper or officer to complete. In the local copy that is 61 Migratory → mobility, 1 Commercial → scale, and 5 empty. Report the beekeepers with empty dimensions in the registration officer's My work, as optional, never blocking.
+- **Data minimization:** all of these stay optional, like education level (D-91). Traceability needs none of them.
+- **Effort:** about 2 days for both, including translations.
+
+## 5. Rough effort (development and tests; manuals and translations extra)
 
 | Part | Effort |
 |---|---|

@@ -251,6 +251,7 @@ namespace TOP4HoneyChains.Web.Controllers
             ViewBag.IsOfficer = r.OfficerUserId == _current.UserId;
             ViewBag.CanRegister = await _registration.RegistrarAsync() is Registrar reg && (reg.IsPlatformAdmin || reg.OrgId == r.RegisteringOrgId);
             ViewBag.SignInEnabled = _signIn.Enabled;
+            ViewBag.SignInPending = _signIn.Enabled && r.BeekeeperId != null ? await _signIn.PendingAsync(r.BeekeeperId) : null;
             ViewBag.Controller = "Registration";
             return View(r);
         }
@@ -328,7 +329,7 @@ namespace TOP4HoneyChains.Web.Controllers
         // O-15: the beekeeper's sign-in, later than the registration (only with Features:BeekeeperAccounts)
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> IssueSignIn(int id)
+        public async Task<IActionResult> IssueSignIn(int id, bool again = false)
         {
             var r = await _context.BeekeeperRegistrations.AsNoTracking().Include(x => x.Beekeeper).FirstOrDefaultAsync(x => x.RegistrationId == id);
             var registrar = await _registration.RegistrarAsync();
@@ -336,6 +337,9 @@ namespace TOP4HoneyChains.Web.Controllers
                 return NotFound();
             if (r.Method != AcceptanceMethod.SmsCode || r.EvidenceStatus != EvidenceStatus.Accepted)
                 TempData["Error"] = "A sign-in needs a registration confirmed by the SMS code (O-17: no account without a mobile phone).";
+            // D-91: a second send replaces the temporary password of the first SMS; only on purpose
+            else if (!again && await _signIn.PendingAsync(r.BeekeeperId!) != null)
+                TempData["Error"] = "The sign-in details were already sent and are still valid. The beekeeper signs in with that SMS. To send new ones, tick the box: the earlier temporary password then stops working.";
             else
             {
                 var issued = await _signIn.IssueAsync(r.Beekeeper!, _current.UserId!, CredentialService.SignInLink(HttpContext));

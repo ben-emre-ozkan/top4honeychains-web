@@ -80,9 +80,27 @@
 
                     @if (ViewBag.CanRegister == true && ViewBag.SignInEnabled == true && Model.Method == AcceptanceMethod.SmsCode && Model.EvidenceStatus == EvidenceStatus.Accepted)
                     {
-                        <form asp-action="IssueSignIn" asp-route-id="@Model.RegistrationId" method="post" class="mt-3">
-                            <button type="submit" class="btn btn-outline-primary" id="issue-sign-in"><i class="mdi mdi-message-lock-outline"></i> @L["Reg78.IssueSignInButton"]</button>
-                        </form>
+                        @* D-91: sent details stay valid; a second send replaces their temporary password, so it needs a tick *@
+                        if (ViewBag.SignInPending is TOP4HoneyChains.Web.Services.OrgModel.CredentialService.Pending pending)
+                        {
+                            <div class="alert alert-info mt-3 mb-2" id="sign-in-sent" role="status">
+                                <i class="mdi mdi-message-check-outline" aria-hidden="true"></i>
+                                @L["Reg91.SignInSent", pending.Issue.IssuedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm"), pending.Issue.ExpiresAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")]
+                            </div>
+                            <form asp-action="IssueSignIn" asp-route-id="@Model.RegistrationId" method="post" class="mt-2" id="issue-sign-in-again">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" name="again" value="true" id="again" required />
+                                    <label class="form-check-label" for="again">@L["Reg91.SendAgainTick"]</label>
+                                </div>
+                                <button type="submit" class="btn btn-outline-secondary" id="issue-sign-in"><i class="mdi mdi-message-lock-outline"></i> @L["Reg91.SendAgainButton"]</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <form asp-action="IssueSignIn" asp-route-id="@Model.RegistrationId" method="post" class="mt-3">
+                                <button type="submit" class="btn btn-outline-primary" id="issue-sign-in"><i class="mdi mdi-message-lock-outline"></i> @L["Reg78.IssueSignInButton"]</button>
+                            </form>
+                        }
                     }
 
                     <h5 class="mt-4">@L["Reg78.Apiaries"]</h5>

@@ -13,6 +13,21 @@
 }
 
 <h1 class="au-title">@L["Login.WelcomeBack"]</h1>
+
+@if (ViewBag.SignedInAs is string signedInAs)
+{
+    @* D-91: someone is already signed in in this browser: say who, and offer to continue or to sign out *@
+    <div class="au-alert au-alert-ok" role="status" id="signed-in-as">@L["Login.SignedInAs", signedInAs]</div>
+    <p class="au-sub">@L["Login.SignedInAsHelp"]</p>
+    <a class="b-btn b-btn-honey au-submit" id="signed-in-continue" href="@ViewBag.ContinueUrl">@L["Login.ContinueAs", signedInAs]</a>
+    <a class="b-btn au-submit mt-2" id="signed-in-sign-out" href="/Account/Logout">@L["Login.SignOutToSwitch"]</a>
+    @if (TempData[TOP4HoneyChains.Web.Controllers.AccountController.LoginErrorKey] is string signedInError)
+    {
+        <div class="au-alert au-alert-error mt-3" role="alert">@signedInError</div>
+    }
+    return;
+}
+
 <p class="au-sub">@L["Login.SignInContinue"]</p>
 
 <form asp-action="Login" asp-controller="Account" asp-route-ReturnUrl="@(string.IsNullOrEmpty(returnUrl) ? null : returnUrl)" method="post" class="au-form" id="login-form">
