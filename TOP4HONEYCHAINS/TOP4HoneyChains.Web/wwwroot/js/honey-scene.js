@@ -102,3 +102,31 @@
     // the gallery and tests can play a scene on demand
     window.honeyScene = { play: play, finish: finishAll };
 })();
+
+/* D-91: info buttons (TagHelpers/InfoTipTagHelper.cs). A disclosure: the button (click, tap, Enter, Space) shows or hides the
+   note below it; Escape closes the note and puts the focus back on its button. No hover-only behaviour. */
+(function () {
+    'use strict';
+    function set(button, open) {
+        var note = document.getElementById(button.getAttribute('aria-controls'));
+        if (!note) return;
+        note.hidden = !open;
+        button.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    document.addEventListener('click', function (e) {
+        var button = e.target.closest && e.target.closest('[data-info-tip]');
+        if (button) set(button, button.getAttribute('aria-expanded') !== 'true');
+    });
+    document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape') return;
+        var open = document.querySelectorAll('[data-info-tip][aria-expanded="true"]');
+        if (!open.length) return;
+        var focused = null;
+        open.forEach(function (button) {
+            var note = document.getElementById(button.getAttribute('aria-controls'));
+            if (document.activeElement === button || (note && note.contains(document.activeElement))) focused = button;
+            set(button, false);
+        });
+        if (focused) focused.focus();
+    });
+})();

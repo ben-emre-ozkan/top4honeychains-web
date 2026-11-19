@@ -72,7 +72,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="BeekeeperEducationLevelId" class="form-label">@L["Education Level"] <span class="text-muted fw-normal">@L["(optional)"]</span></label>
+                            <label asp-for="BeekeeperEducationLevelId" class="form-label">@L["Education Level"] <span class="text-muted fw-normal">@L["(optional)"]</span></label><info-tip key="Reg78.Info.Education" about="@L["Education Level"].Value" />
                             <select asp-for="BeekeeperEducationLevelId" class="form-select"
                                     asp-items="ViewBag.BeekeeperEducationLevelId">
                                 <option value="">@L["Not specified"]</option>
@@ -81,7 +81,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="BeekeeperBeekeepingPurposeTypeId" class="form-label">@L["Beekeeping Purpose Type"] <span class="text-muted fw-normal">@L["(optional)"]</span></label>
+                            <label asp-for="BeekeeperBeekeepingPurposeTypeId" class="form-label">@L["Beekeeping Purpose Type"] <span class="text-muted fw-normal">@L["(optional)"]</span></label><info-tip key="Reg78.Info.Purpose" about="@L["Beekeeping Purpose Type"].Value" />
                             <select asp-for="BeekeeperBeekeepingPurposeTypeId" class="form-select"
                                     asp-items="ViewBag.BeekeeperBeekeepingPurposeTypeId">
                                 <option value="">@L["Not specified"]</option>

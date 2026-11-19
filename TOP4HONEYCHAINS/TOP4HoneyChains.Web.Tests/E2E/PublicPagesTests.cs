@@ -38,7 +38,7 @@ namespace TOP4HoneyChains.Web.Tests.E2E
 
         // D-78 P4 (D78-SPEC 4.11): two labelled logo groups in every language; partners are never shown as funders
         [Theory]
-        [InlineData("tr", "Proje paydaşları", "Fonlayan kuruluşlar")]
+        [InlineData("tr", "Proje paydaşları", "Fonlayan kurumlar")]
         [InlineData("en", "Project partners", "Funding organizations")]
         [InlineData("es", "Socios del proyecto", "Entidades financiadoras")]
         [InlineData("pl", "Partnerzy projektu", "Instytucje finansujące")]

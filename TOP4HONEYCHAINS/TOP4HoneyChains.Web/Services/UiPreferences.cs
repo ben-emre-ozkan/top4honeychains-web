@@ -117,7 +117,13 @@ namespace TOP4HoneyChains.Web.Services
             }
             else
             {
-                steps.Add(new("work", "Tour.Work"));
+                // D-91: the quality approver's and the field inspector's job is in My work, so their first step tells that story
+                steps.Add(new("work", orgRole switch
+                {
+                    OrgRoles.QualityApprover => "Tour.Approve",
+                    OrgRoles.FieldInspector => "Tour.Ccp",
+                    _ => "Tour.Work"
+                }));
                 steps.Add(new("org", "Tour.Org"));
                 switch (orgRole)
                 {
@@ -126,6 +132,8 @@ namespace TOP4HoneyChains.Web.Services
                         steps.Add(new("samples", "Tour.Samples"));
                         break;
                     case OrgRoles.Analyst:
+                        steps.Add(new("samples", "Tour.Lab.Analyst"));
+                        break;
                     case OrgRoles.LabManager:
                         steps.Add(new("samples", "Tour.Lab"));
                         break;
@@ -139,8 +147,7 @@ namespace TOP4HoneyChains.Web.Services
                     case OrgRoles.Staff:
                         steps.Add(new("shipments", "Tour.Shipments"));
                         break;
-                    default:   // FieldInspector, QualityApprover
-                        steps.Add(new("work", "Tour.Ccp"));
+                    default:   // FieldInspector, QualityApprover: told in the first step
                         break;
                 }
             }

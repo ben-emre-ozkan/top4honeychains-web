@@ -130,7 +130,7 @@
     <value>Niveles de Educación</value>
   </data>
   <data name="Menu.BeekeepingPurposeTypes" xml:space="preserve">
-    <value>Tipos de Propósito de Apicultura</value>
+    <value>Finalidades principales</value>
   </data>
   <data name="Menu.BeekeepingTypes" xml:space="preserve">
     <value>Tipos de Apicultura</value>
@@ -2344,7 +2344,7 @@
     <value>Límites del parámetro</value>
   </data>
   <data name="Purpose Type" xml:space="preserve">
-    <value>Tipo de propósito</value>
+    <value>Finalidad principal</value>
   </data>
   <data name="Fully Completed" xml:space="preserve">
     <value>Completamente terminadas</value>
@@ -3979,7 +3979,7 @@
     <value>Envío rechazado; la cantidad permanece en poder del remitente.</value>
   </data>
   <data name="Beekeeping Purpose Type" xml:space="preserve">
-    <value>Tipo de propósito de apicultura</value>
+    <value>Finalidad principal</value>
   </data>
   <data name="Raw Honey Production Periods" xml:space="preserve">
     <value>Períodos de producción de miel cruda</value>
@@ -4162,7 +4162,7 @@
     <value>Producciones de miel cruda</value>
   </data>
   <data name="Beekeeping Purpose Types" xml:space="preserve">
-    <value>Tipos de propósito de apicultura</value>
+    <value>Finalidades principales</value>
   </data>
   <data name="Enter wholesaler company and contact information." xml:space="preserve">
     <value>Introduzca los datos de la empresa mayorista y de contacto.</value>
@@ -7639,10 +7639,10 @@
     <value>Número de registro</value>
   </data>
   <data name="Reg78.RegistryHelp" xml:space="preserve">
-    <value>TR, el código de provincia y 10 dígitos. Se compara con la provincia de la dirección.</value>
+    <value>TR, el código de placa de la provincia (2 dígitos) y 10 dígitos.</value>
   </data>
   <data name="Reg78.MismatchReason" xml:space="preserve">
-    <value>Si el número es de otra provincia: el motivo</value>
+    <value>Si el número está registrado en otra provincia, escriba el motivo</value>
   </data>
   <data name="Reg78.Identity" xml:space="preserve">
     <value>El apicultor</value>
@@ -7672,7 +7672,7 @@
     <value>Deje que el apicultor lea este aviso o léalo en voz alta:</value>
   </data>
   <data name="Reg78.ConsentPublicName" xml:space="preserve">
-    <value>El apicultor acepta que su nombre aparezca en las páginas públicas (opcional; si no, se muestra un código neutro)</value>
+    <value>El apicultor acepta que su nombre aparezca en las páginas públicas (opcional)</value>
   </data>
   <data name="Reg78.ConsentSms" xml:space="preserve">
     <value>El apicultor acepta avisos por SMS sobre entregas y resultados de laboratorio (opcional)</value>
@@ -7861,7 +7861,7 @@
     <value>Envases y muestras</value>
   </data>
   <data name="Ci.ContainersHelp" xml:space="preserve">
-    <value>Una fila por envase. Un envase precintado: compruebe su precinto. Uno sin precinto: aplique un precinto de la planta delante del apicultor. Luego ábralo, llene el frasco de muestra y el de contramuestra, compruebe que el botón de la tapa está abajo y vuelva a precintar el envase.</value>
+    <value>Una fila por envase (lata, cubo o bidón). Para cada uno: elija cómo llegó, llene el frasco de muestra y el de contramuestra, compruebe que el botón de la tapa está abajo y vuelva a precintar el envase.</value>
   </data>
   <data name="Ci.Kind" xml:space="preserve">
     <value>Tipo</value>
@@ -7891,16 +7891,16 @@
     <value>A la llegada</value>
   </data>
   <data name="Ci.ArrivedSealed" xml:space="preserve">
-    <value>llegó precintado</value>
+    <value>Llegó precintado</value>
   </data>
   <data name="Ci.OriginSeal" xml:space="preserve">
-    <value>Número de precinto</value>
+    <value>Número del precinto con el que llegó</value>
   </data>
   <data name="Ci.OriginIntact" xml:space="preserve">
-    <value>precinto intacto</value>
+    <value>Comprobado: el precinto está intacto</value>
   </data>
   <data name="Ci.PlantSeal" xml:space="preserve">
-    <value>Precinto de planta aplicado ahora</value>
+    <value>Precinto nuevo, puesto ahora delante del apicultor</value>
   </data>
   <data name="Ci.JarSeal" xml:space="preserve">
     <value>Precinto del frasco</value>
@@ -8833,52 +8833,52 @@
     <value>Ver el recorrido</value>
   </data>
   <data name="Tour.Work" xml:space="preserve">
-    <value>Mi trabajo enumera lo que le espera: valores que registrar o aprobar, entregas, muestras, evidencias.</value>
+    <value>Mis tareas es su lista de pendientes: todo lo que le espera aparece aquí. Empiece el día aquí, por ejemplo con un valor que registrar o un registro que aprobar.</value>
   </data>
   <data name="Tour.Org" xml:space="preserve">
-    <value>Mi organización: sus lotes y lotes de producción, su rol y la página de la organización.</value>
+    <value>Mi organización muestra la página de su organización, su rol y los lotes y partidas que tiene. Compruebe aquí, por ejemplo, qué lotes siguen abiertos.</value>
   </data>
   <data name="Tour.Intake" xml:space="preserve">
-    <value>Entregas: registre cada lata con su precinto y tome una muestra de cada lata; el apicultor confirma por SMS.</value>
+    <value>Entregas (recepción) es donde recibe la miel de un apicultor. Busque al apicultor por su número, registre cada envase con su precinto y llene un frasco de muestra de cada uno; el apicultor confirma leyéndole el código de su SMS.</value>
   </data>
   <data name="Tour.Samples" xml:space="preserve">
-    <value>Muestras: los frascos enviados y su estado en el laboratorio.</value>
+    <value>Muestras y laboratorio muestra los frascos que envió y dónde están. Por ejemplo, vea cuándo el laboratorio recibió un frasco o lo rechazó por un precinto roto.</value>
   </data>
   <data name="Tour.Lab" xml:space="preserve">
-    <value>Muestras y laboratorio: reciba frascos (precinto, etiqueta, tapa), registre resultados, apruebe informes.</value>
+    <value>Muestras y laboratorio muestra todos los frascos e informes de su laboratorio. Su primera tarea es aprobar los informes que envían sus analistas, o devolver uno, por ejemplo si un valor parece erróneo.</value>
   </data>
   <data name="Tour.Registration" xml:space="preserve">
-    <value>Registro de apicultores: registre apicultores y sus colmenares; el apicultor confirma por SMS.</value>
+    <value>Registro de apicultores es donde registra a los apicultores y sus colmenares. Escriba el número de registro, introduzca los datos del apicultor y su colmenar, envíe el código SMS y escriba el código que el apicultor le lee.</value>
   </data>
   <data name="Tour.Compliance" xml:space="preserve">
-    <value>Cumplimiento: revisiones, fotos firmadas, solicitudes de datos y el registro de auditoría.</value>
+    <value>Cumplimiento es su mesa de revisión: fotos firmadas, revisiones de calidad, solicitudes de datos y el registro de auditoría. Empiece por lo que espera su decisión, por ejemplo una entrega confirmada con foto firmada en lugar de código SMS.</value>
   </data>
   <data name="Tour.Shipments" xml:space="preserve">
-    <value>Envíos: envíe un lote finalizado a la siguiente organización; la custodia pasa cuando confirma.</value>
+    <value>Envíos y existencias muestra la miel que su organización envía, recibe y tiene. Una tienda empieza confirmando un envío entrante cuando llegan los tarros; un envasador envía una partida finalizada a su comprador.</value>
   </data>
   <data name="Tour.Ccp" xml:space="preserve">
-    <value>Los puntos de control (PCC) que esperan sus valores o su aprobación están en Mi trabajo.</value>
+    <value>Mis tareas lista los puntos de control (PCC) que esperan sus valores. Abra uno y registre lo que comprobó, por ejemplo el control en un colmenar; después lo aprueba un responsable de calidad.</value>
   </data>
   <data name="Tour.Menu" xml:space="preserve">
-    <value>Su menú: idioma, perfil, el recorrido de nuevo y las animaciones.</value>
+    <value>Su menú (arriba a la derecha) tiene el idioma, el perfil y la contraseña, este recorrido y las animaciones. Cambie aquí el idioma, por ejemplo a inglés.</value>
   </data>
   <data name="Tour.Admin.Dashboard" xml:space="preserve">
-    <value>El panel: lo que espera a la plataforma y la actividad reciente.</value>
+    <value>El panel muestra lo que le espera como operador de la plataforma y la actividad reciente. Empiece aquí, por ejemplo con una organización pendiente de verificar.</value>
   </data>
   <data name="Tour.Admin.Data" xml:space="preserve">
-    <value>Apicultores, colmenares y las listas de referencia.</value>
+    <value>Apicultores, colmenares y las listas de referencia de la plataforma. Busque aquí a un apicultor, por ejemplo por su número de registro.</value>
   </data>
   <data name="Tour.Me.Deliveries" xml:space="preserve">
-    <value>Sus entregas con latas y precintos; indique aquí su precio.</value>
+    <value>Mis entregas muestra la miel que entregó, con cada envase y su precinto. Introduzca aquí su precio por kilo, por ejemplo para la miel de castaño de la semana pasada.</value>
   </data>
   <data name="Tour.Me.Samples" xml:space="preserve">
-    <value>Sus frascos de muestra y los resultados una vez aprobados.</value>
+    <value>Muestras y laboratorio muestra los frascos de muestra tomados de sus envases. Los resultados aparecen aquí cuando el laboratorio aprueba su informe.</value>
   </data>
   <data name="Tour.Me.Privacy" xml:space="preserve">
-    <value>Sus consentimientos: otórguelos o retírelos cuando quiera.</value>
+    <value>Privacidad y consentimientos muestra lo que ha autorizado, por ejemplo mostrar su nombre en las páginas públicas. Puede dar o retirar cada consentimiento cuando quiera.</value>
   </data>
   <data name="Tour.Me.Account" xml:space="preserve">
-    <value>Su teléfono, idioma, contraseña y las animaciones.</value>
+    <value>Cuenta tiene su teléfono, idioma y contraseña. Cambie aquí su contraseña la primera vez que entre.</value>
   </data>
   <data name="Only a processing organization takes samples." xml:space="preserve">
     <value>Solo una organización de procesamiento toma muestras.</value>
@@ -9359,15 +9359,15 @@
     <comment>D-87: draft for partner review</comment>
   </data>
   <data name="Tour.Consumer.Honeys" xml:space="preserve">
-    <value>Mis mieles: las mieles que guardó desde su Historia de la Miel. Desde aquí puede volver a abrir una historia o quitarla.</value>
+    <value>Mieles guardadas reúne las mieles que guardó desde su Historia de la Miel. Escanee el código QR de un tarro y guarde la miel; puede volver a abrir su historia aquí cuando quiera.</value>
     <comment>D-87: draft for partner review</comment>
   </data>
   <data name="Tour.Consumer.Feedback" xml:space="preserve">
-    <value>Mis comentarios: lo que escribió a los productores y sus respuestas. Los productores solo ven su código.</value>
+    <value>Mis comentarios muestra lo que escribió a los productores y sus respuestas. Los productores solo ven su código, nunca su nombre ni su correo.</value>
     <comment>D-87: draft for partner review</comment>
   </data>
   <data name="Tour.Consumer.Account" xml:space="preserve">
-    <value>Cuenta: contraseña, idioma, un teléfono para recuperar la contraseña, sus datos en un archivo y la eliminación de la cuenta.</value>
+    <value>Cuenta: contraseña, idioma, un teléfono para recuperar la contraseña, sus datos en un archivo y eliminar la cuenta. Empiece añadiendo un teléfono para poder restablecer una contraseña olvidada.</value>
     <comment>D-87: draft for partner review</comment>
   </data>
   <data name="Consumer.Feedback.Help" xml:space="preserve">
@@ -9731,10 +9731,10 @@
     <value>Las listas que ofrecen los formularios. Sus traducciones están en Configuración → Traducciones de datos de referencia.</value>
   </data>
   <data name="Tour.Admin.Setup" xml:space="preserve">
-    <value>Configuración: organizaciones, capacidades, roles y permisos, responsabilidades de PCC, el registro de apicultores y los datos de referencia.</value>
+    <value>Configuración es donde monta la plataforma: organizaciones, sus capacidades, roles, responsabilidades de PCC y datos de referencia. Empiece creando una organización, por ejemplo una dirección comarcal, con su primer administrador.</value>
   </data>
   <data name="Tour.Admin.Oversight" xml:space="preserve">
-    <value>Supervisión: registros, el registro de auditoría, usuarios, avisos, conservación de datos y correcciones. Los datos de negocio son de solo lectura para usted.</value>
+    <value>En Supervisión puede leerlo todo: registros, el registro de auditoría, usuarios, avisos, conservación de datos y correcciones. No puede cambiar datos de negocio; para un valor erróneo, solicite una corrección que aprueba un segundo administrador.</value>
   </data>
   <data name="Phone.Title" xml:space="preserve">
     <value>Mensajes</value>
@@ -9777,5 +9777,86 @@
   </data>
   <data name="Check that this is another delivery." xml:space="preserve">
     <value>Compruebe que se trata de otra entrega.</value>
+  </data>
+  <data name="Login.FormOutdated" xml:space="preserve">
+    <value>Esta página de inicio de sesión estaba desactualizada porque alguien inició o cerró sesión en otra pestaña. Vuelva a iniciar sesión.</value>
+  </data>
+  <data name="Login.SignedInAs" xml:space="preserve">
+    <value>En este navegador ha iniciado sesión como {0}.</value>
+  </data>
+  <data name="Login.SignedInAsHelp" xml:space="preserve">
+    <value>Para iniciar sesión como otra persona (por ejemplo, un apicultor con los datos del SMS), cierre sesión primero.</value>
+  </data>
+  <data name="Login.ContinueAs" xml:space="preserve">
+    <value>Continuar como {0}</value>
+  </data>
+  <data name="Login.SignOutToSwitch" xml:space="preserve">
+    <value>Cerrar sesión para entrar como otra persona</value>
+  </data>
+  <data name="Reg91.SignInSent" xml:space="preserve">
+    <value>Los datos de acceso se enviaron por SMS el {0}. Son válidos hasta el {1}: el apicultor inicia sesión con ese SMS.</value>
+  </data>
+  <data name="Reg91.SendAgainTick" xml:space="preserve">
+    <value>Enviar datos nuevos: la contraseña temporal del SMS anterior deja de funcionar.</value>
+  </data>
+  <data name="Reg91.SendAgainButton" xml:space="preserve">
+    <value>Enviar nuevos datos de acceso</value>
+  </data>
+  <data name="The sign-in details were already sent and are still valid." xml:space="preserve">
+    <value>Los datos de acceso ya se enviaron y siguen siendo válidos.</value>
+  </data>
+  <data name="The beekeeper signs in with that SMS." xml:space="preserve">
+    <value>El apicultor inicia sesión con ese SMS.</value>
+  </data>
+  <data name="To send new ones, tick the box: the earlier temporary password then stops working." xml:space="preserve">
+    <value>Para enviar otros nuevos, marque la casilla: la contraseña temporal anterior dejará de funcionar.</value>
+  </data>
+  <data name="Info.More" xml:space="preserve">
+    <value>Más información</value>
+  </data>
+  <data name="Tour.Lab.Analyst" xml:space="preserve">
+    <value>Muestras y laboratorio es su lista de trabajo. Primero reciba cada frasco (número de precinto, etiqueta, tapa), luego registre los resultados, por ejemplo humedad e HMF, y envíe el informe a aprobación.</value>
+  </data>
+  <data name="Tour.Approve" xml:space="preserve">
+    <value>Mis tareas lista los registros de puntos de control (PCC) que enviaron sus compañeros. Revise cada uno y apruébelo o devuélvalo, por ejemplo el control de recepción de la entrega de hoy; nadie aprueba lo que registró.</value>
+  </data>
+  <data name="Reg78.Info.Registry" xml:space="preserve">
+    <value>TR + el código de placa de la provincia (2 dígitos) + 10 dígitos, p. ej. TR520401200241. El código de placa se compara con la provincia de su dirección.</value>
+  </data>
+  <data name="Reg78.Info.Mismatch" xml:space="preserve">
+    <value>Si el número empieza por el código de placa de otra provincia (por ejemplo, un apicultor trashumante registrado en Ordu que tiene un colmenar aquí), escriba un motivo breve. Se guarda con el registro.</value>
+  </data>
+  <data name="Reg78.Info.PublicName" xml:space="preserve">
+    <value>Sin este consentimiento, las páginas públicas como la Historia de la Miel muestran un código fijo como BK-7F3K9Q2M en lugar del nombre. Es el mismo código en todas partes, así la miel sigue ligada a un apicultor sin nombrarlo.</value>
+  </data>
+  <data name="Reg78.Info.Education" xml:space="preserve">
+    <value>No hace falta para la trazabilidad; déjelo vacío salvo que el apicultor quiera que conste.</value>
+  </data>
+  <data name="Reg78.Info.Purpose" xml:space="preserve">
+    <value>El producto principal del apicultor, por ejemplo miel. Elija solo uno; no limita lo que el apicultor puede entregar.</value>
+  </data>
+  <data name="Reg78.Info.NoPhone" xml:space="preserve">
+    <value>Sin móvil, el apicultor no puede confirmar con un código SMS. Imprima el formulario, pida al apicultor que lo firme y suba una foto; el registro queda pendiente del Responsable de cumplimiento.</value>
+  </data>
+  <data name="Reg78.Info.Language" xml:space="preserve">
+    <value>El apicultor recibe el código SMS y los mensajes posteriores en este idioma.</value>
+  </data>
+  <data name="Cust.Info.Number" xml:space="preserve">
+    <value>Escriba el número de registro del apicultor (p. ej. TR520401200241) o su número de explotación y pulse Buscar. Luego aparecen sus colmenares en el formulario.</value>
+  </data>
+  <data name="Ci.ArrivedUnsealed" xml:space="preserve">
+    <value>Llegó sin precinto</value>
+  </data>
+  <data name="Ci.Info.Arrival" xml:space="preserve">
+    <value>Elija cómo llegó el envase. Llegó precintado: escriba el número del precinto con el que llegó y confirme que está intacto. Llegó sin precinto: precíntelo ahora delante del apicultor y escriba el número del precinto nuevo. El precinto une el envase con sus frascos de muestra y con la entrega que confirma el apicultor, así la miel no puede cambiarse después.</value>
+  </data>
+  <data name="Ci.Info.Jars" xml:space="preserve">
+    <value>De cada envase llene dos frascos: el de muestra va al laboratorio y el de contramuestra se queda con usted por si se discute un resultado. Precinte cada frasco y escriba su número de precinto.</value>
+  </data>
+  <data name="Ci.Info.Reseal" xml:space="preserve">
+    <value>Al tomar las muestras se abre el envase. Vuelva a precintarlo y escriba el número del precinto nuevo; el envase lo conserva hasta que se use.</value>
+  </data>
+  <data name="Ci.Info.CounterLocation" xml:space="preserve">
+    <value>Dónde se guardan los frascos de contramuestra, p. ej. «Cámara fría 2, estante B». Consérvelos hasta la fecha de al lado, por si se discute un resultado.</value>
   </data>
 </root>
