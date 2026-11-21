@@ -2,7 +2,8 @@
 // TOP4HoneyChains user manual builder.
 // content/<lang>/manual.md (Markdown) -> dist/TOP4HoneyChains_User_Manual_<LANG>.docx -> .pdf
 // The script adds the cover with the partners and supporters board, the contents table with page numbers,
-// chapter numbers, figure numbers, page header and footer, and the closing "Partners and supporters" page.
+// chapter numbers, numbered captions of figures and tables, cross-references, page header and footer,
+// and the closing "Partners and supporters" page.
 //
 // usage:  node build.mjs <lang ...|all> [--no-pdf] [--engine=word|libreoffice]
 // The Markdown conventions are described in ../BRIEF.md (section "Writing format").
@@ -16,7 +17,7 @@ import { marked } from 'marked';
 import JSZip from 'jszip';
 import {
   AlignmentType, Bookmark, BorderStyle, Document, ExternalHyperlink, Footer, Header, HeadingLevel, HorizontalPositionRelativeFrom,
-  ImageRun, LevelFormat, LineRuleType, Packer, PageBreak, PageNumber, Paragraph, SectionType, ShadingType, Tab, Table, TableCell, TableLayoutType,
+  ImageRun, InternalHyperlink, LevelFormat, LineRuleType, Packer, PageBreak, PageNumber, Paragraph, SectionType, ShadingType, Tab, Table, TableCell, TableLayoutType,
   TableOfContents, TableRow, TabStopType, TextRun, TextWrappingType, VerticalAlign, VerticalPositionRelativeFrom, WidthType,
 } from 'docx';
 
@@ -83,6 +84,57 @@ const clean = s => String(s ?? '').replace(/&(amp|lt|gt|quot|#39|nbsp);/g, m => 
 const plain = tokens => (tokens || []).map(t => (t.tokens ? plain(t.tokens) : t.type === 'br' ? ' ' : clean(t.text ?? ''))).join('');
 const norm = s => s.normalize('NFKC').replace(/\s+/g, '').toLowerCase();
 
+/* Trailing attributes of a heading, a caption or a picture's text: {#id}, {-} or {.unnumbered}, in any order. */
+function attrs(s) {
+  const str = String(s ?? ''), m = str.match(/\s*\{([^{}]*)\}\s*$/);
+  if (!m || !/^\s*(?:(?:#[\w:.-]+|-|\.unnumbered)\s*)+$/.test(m[1])) return { text: str, id: null, unnumbered: false };
+  return { text: str.slice(0, m.index), id: (m[1].match(/#([\w:.-]+)/) || [])[1] || null, unnumbered: /(^|\s)(-|\.unnumbered)(?=\s|$)/.test(m[1]) };
+}
+/* Word bookmark names: a letter first, then letters, digits and underscores, at most 40 characters. */
+const bm = id => { let b = String(id).replace(/[^A-Za-z0-9_]/g, '_'); if (!/^[A-Za-z]/.test(b)) b = `a_${b}`; return b.slice(0, 40); };
+const isCaptionPara = (t, word) => !!t && (t.type === 'paragraph' || t.type === 'text') && (t.text || '').startsWith(`${word}: `);
+const onlyFigure = b => !!b && (b.type === 'paragraph' || b.type === 'text') && (b.tokens || []).some(k => k.type === 'image') && !plain((b.tokens || []).filter(k => k.type !== 'image')).trim();
+
+/* Captions written on their own line: "Table: ..." just above a table (or just below it), "Figure: ..." just below a picture.
+   They are attached to the table or picture, and every captioned table and figure is numbered in reading order,
+   so that a link such as [Table](#tbl-roles) can print "Table 3". Heading ids are collected for links such as [Ground rules](#ground-rules). */
+function prepare(tokens, st) {
+  const real = tokens.filter(t => t.type !== 'space');
+  real.forEach((t, i) => {
+    if (t.type === 'list') t.items.forEach(it => prepare(it.tokens, st));
+    if (t.type === 'blockquote') prepare(t.tokens, st);
+    for (const word of ['Table', 'Figure']) {
+      if (!isCaptionPara(t, word)) continue;
+      const a = attrs(t.text.slice(word.length + 1).trim()), cap = { text: a.text.trim(), id: a.id }, prev = real[i - 1], next = real[i + 1];
+      if (word === 'Table') {
+        if (next && next.type === 'table' && !next.caption) next.caption = cap;
+        else if (prev && prev.type === 'table' && !prev.caption) prev.caption = cap;
+        else { st.warn(`"Table: ${cap.text}" is not right above or below a table`); continue; }
+      } else {
+        const imgs = onlyFigure(prev) ? prev.tokens.filter(k => k.type === 'image') : [];
+        if (imgs.length === 1) imgs[0].caption = cap;
+        else { st.warn(`"Figure: ${cap.text}" does not follow a single picture on its own line`); continue; }
+      }
+      t.type = 'space';                                                   // the caption line itself is not printed again
+    }
+  });
+}
+function number(tokens, st) {
+  for (const t of tokens) {
+    if (t.type === 'heading') { const a = attrs(t.text); if (a.id) st.labels.set(a.id, { kind: 'section' }); }
+    else if (t.type === 'table') { if (t.caption) { t.n = ++st.tables; if (t.caption.id) st.labels.set(t.caption.id, { kind: 'table', n: t.n }); } }
+    else if (t.type === 'list') t.items.forEach(it => number(it.tokens, st));
+    else if (t.type === 'blockquote') number(t.tokens, st);
+    else if (t.type === 'paragraph' || t.type === 'text') {
+      for (const k of t.tokens || []) {
+        if (k.type !== 'image') continue;
+        if (!k.caption) { const a = attrs(clean(k.text || '').trim()); k.caption = { text: a.text.trim(), id: a.id }; }
+        if (k.caption.text) { k.n = ++st.figures; if (k.caption.id) st.labels.set(k.caption.id, { kind: 'figure', n: k.n }); }
+      }
+    }
+  }
+}
+
 function readContent(lang) {
   const file = path.join(ROOT, 'content', lang, 'manual.md');
   if (!fs.existsSync(file)) throw new Error(`no content for "${lang}": ${path.relative(ROOT, file)} is missing`);
@@ -102,7 +154,7 @@ function readContent(lang) {
 function makeRenderer(S, st) {
   const T = (s, o = {}) => new TextRun({
     text: clean(s), bold: o.bold, italics: o.italics, strike: o.strike, size: o.code ? Math.max(16, (o.size ?? 22) - 2) : o.size,
-    color: o.link ? C.label : o.color, underline: o.link ? {} : undefined, font: o.code ? MONO : undefined,
+    color: o.link || o.xref ? C.label : o.color, underline: o.link ? {} : undefined, font: o.code ? MONO : undefined,
     shading: o.code ? { type: ShadingType.CLEAR, fill: C.code } : undefined,
   });
 
@@ -115,7 +167,15 @@ function makeRenderer(S, st) {
         case 'del': out.push(...runs(t.tokens, { ...o, strike: true })); break;
         case 'codespan': out.push(T(t.text, { ...o, code: true })); break;
         case 'br': out.push(new TextRun({ break: 1 })); break;
-        case 'link': out.push(new ExternalHyperlink({ link: t.href, children: runs(t.tokens, { ...o, link: true }) })); break;
+        case 'link': {
+          if (!t.href.startsWith('#')) { out.push(new ExternalHyperlink({ link: t.href, children: runs(t.tokens, { ...o, link: true }) })); break; }
+          const id = decodeURI(t.href.slice(1)), target = st.labels.get(id);
+          if (!target) { st.warn(`link to "#${id}": no heading, table or figure has this id`); out.push(...runs(t.tokens, o)); break; }
+          if (target.kind === 'section') { out.push(new InternalHyperlink({ anchor: bm(id), children: runs(t.tokens, { ...o, xref: true }) })); break; }
+          const text = plain(t.tokens).trim(), n = String(target.n);           // [Table](#tbl-x) -> "Table 3"; [{n}. tabula](#tbl-x) -> "3. tabula"
+          out.push(new InternalHyperlink({ anchor: bm(id), children: [T(text.includes('{n}') ? text.replace('{n}', n) : text ? `${text} ${n}` : n, { ...o, xref: true })] }));
+          break;
+        }
         case 'html': break;                                             // comments and raw HTML stay out of the document
         case 'image': st.warn(`image inside a line of text is not supported: ${t.href}`); break;
         default: if (t.tokens && t.tokens.length) out.push(...runs(t.tokens, o)); else if (t.text) out.push(T(t.text, o));
@@ -157,7 +217,8 @@ function makeRenderer(S, st) {
     wc = Math.min(wc, avail); let hc = wc * h / w;
     if (hc > MAX_FIGURE_H_CM) { hc = MAX_FIGURE_H_CM; wc = hc * w / h; }
     if (wc < 4 && !hint) st.warn(`figure ${rel} comes out only ${wc.toFixed(1)} cm wide: check screenshot_scale and viewport_width in the front matter`);
-    const caption = clean(img.text || '').trim(), n = caption ? ++st.figures : 0;
+    const caption = img.caption?.text || '', n = img.n;
+    if (!caption) st.warn(`picture ${rel} has no caption: every figure needs one (its text in ![...], or a "Figure: ..." line below it)`);
     const out = [new Paragraph({
       alignment: AlignmentType.CENTER, indent, keepNext: !!caption, spacing: { before: 140, after: caption ? 70 : 220 },
       children: [new ImageRun({
@@ -166,13 +227,11 @@ function makeRenderer(S, st) {
       })],
     })];
     if (caption) {
-      const [pre, post] = S.figure.replace('{n}', n).split('{text}');
-      out.push(new Paragraph({ style: 'Caption', indent, children: [new TextRun({ text: pre, bold: true, italics: false }), new TextRun({ text: caption + (post || '') })] }));
+      const [pre, post] = S.figure.replace('{n}', n).split('{text}'), label = new TextRun({ text: pre, bold: true, italics: false });
+      out.push(new Paragraph({ style: 'Caption', indent, children: [img.caption.id ? new Bookmark({ id: bm(img.caption.id), children: [label] }) : label, ...runs(marked.Lexer.lexInline(caption)), ...(post ? [new TextRun({ text: post })] : [])] }));
     }
     return out;
   }
-
-  const onlyFigure = b => !!b && (b.type === 'paragraph' || b.type === 'text') && (b.tokens || []).some(k => k.type === 'image') && !plain((b.tokens || []).filter(k => k.type !== 'image')).trim();
 
   function figureRow(imgs, ctx) {
     const n = imgs.length, col = Math.floor(ctx.width / n), none = { top: NONE, bottom: NONE, left: NONE, right: NONE };
@@ -247,19 +306,26 @@ function makeRenderer(S, st) {
 
   function table(t, ctx) {
     const n = t.header.length, len = c => Math.min(42, Math.max(6, plain(c.tokens).length));
+    const size = n >= 8 ? 15 : n >= 6 ? 18 : 20, pad = n >= 8 ? 45 : 110;              // wide tables (for example a rights matrix) use smaller type
     const weight = t.header.map((hd, i) => Math.max(len(hd), ...t.rows.map(r => (r[i] ? len(r[i]) : 0))));
     const sum = weight.reduce((a, b) => a + b, 0);
-    let widths = weight.map(wt => Math.max(Math.round(ctx.width * 0.12), Math.round(ctx.width * wt / sum)));
+    let widths = weight.map(wt => Math.max(Math.round(ctx.width * Math.min(0.12, 0.6 / n)), Math.round(ctx.width * wt / sum)));
     const scale = ctx.width / widths.reduce((a, b) => a + b, 0); widths = widths.map(x => Math.floor(x * scale));
     widths[n - 1] += ctx.width - widths.reduce((a, b) => a + b, 0);
     const edge = { style: BorderStyle.SINGLE, size: 4, color: C.rule };
     const align = i => ({ center: AlignmentType.CENTER, right: AlignmentType.RIGHT }[t.align?.[i]] ?? AlignmentType.LEFT);
     const cell = (c, i, o) => new TableCell({
-      width: { size: widths[i], type: WidthType.DXA }, verticalAlign: VerticalAlign.CENTER, margins: { top: 70, bottom: 70, left: 110, right: 110 },
+      width: { size: widths[i], type: WidthType.DXA }, verticalAlign: VerticalAlign.CENTER, margins: { top: n >= 8 ? 40 : 70, bottom: n >= 8 ? 40 : 70, left: pad, right: pad },
       shading: o.fill ? { type: ShadingType.CLEAR, fill: o.fill } : undefined, borders: { top: edge, bottom: edge, left: edge, right: edge },
-      children: [new Paragraph({ alignment: align(i), spacing: { after: 0 }, children: runs(c.tokens, { size: 20, bold: o.head, color: o.head ? 'FFFFFF' : undefined }) })],
+      children: [new Paragraph({ alignment: align(i), spacing: { after: 0, line: n >= 8 ? 220 : 260, lineRule: LineRuleType.AUTO }, children: runs(c.tokens, { size, bold: o.head, color: o.head ? 'FFFFFF' : undefined }) })],
     });
+    const head = [];
+    if (t.caption && t.caption.text) {
+      const [pre, post] = S.table.replace('{n}', t.n).split('{text}'), label = new TextRun({ text: pre, bold: true, italics: false });
+      head.push(new Paragraph({ style: 'TableCaption', keepNext: true, indent: ctx.left ? { left: ctx.left } : undefined, children: [t.caption.id ? new Bookmark({ id: bm(t.caption.id), children: [label] }) : label, ...runs(marked.Lexer.lexInline(t.caption.text)), ...(post ? [new TextRun({ text: post })] : [])] }));
+    } else st.warn(`a table has no caption: write "Table: ..." on the line above it (table starting "${t.header.slice(0, 3).map(c => plain(c.tokens)).join(' | ')}")`);
     return [
+      ...head,
       new Table({
         width: { size: ctx.width, type: WidthType.DXA }, columnWidths: widths, layout: TableLayoutType.FIXED,
         indent: ctx.left ? { size: ctx.left, type: WidthType.DXA } : undefined,
@@ -268,17 +334,16 @@ function makeRenderer(S, st) {
           ...t.rows.map((r, j) => new TableRow({ cantSplit: true, children: t.header.map((_, i) => cell(r[i] || { tokens: [] }, i, { fill: j % 2 ? C.zebra : undefined })) })),
         ],
       }),
-      gap(160),
+      gap(260),
     ];
   }
 
   function heading(t) {
-    const unnumbered = /\s*\{-\}\s*$/.test(t.text), raw = t.text.replace(/\s*\{-\}\s*$/, '');
-    const tokens = marked.Lexer.lexInline(raw), title = plain(tokens).trim();
+    const a = attrs(t.text), unnumbered = a.unnumbered, tokens = marked.Lexer.lexInline(a.text.trim()), title = plain(tokens).trim();
     if (t.depth === 1) { st.chapterNumbered = !unnumbered; if (!unnumbered) { st.h1++; st.h2 = 0; } }
     const num = t.depth === 1 ? (unnumbered ? '' : String(st.h1)) : t.depth === 2 && st.chapterNumbered && !unnumbered ? `${st.h1}.${++st.h2}` : '';
-    if (t.depth > 2) return [new Paragraph({ heading: t.depth === 3 ? HeadingLevel.HEADING_3 : HeadingLevel.HEADING_4, children: runs(tokens) })];
-    const id = `_Toc${String(st.entries.length + 1).padStart(6, '0')}`;
+    if (t.depth > 2) return [new Paragraph({ heading: t.depth === 3 ? HeadingLevel.HEADING_3 : HeadingLevel.HEADING_4, children: a.id ? [new Bookmark({ id: bm(a.id), children: runs(tokens) })] : runs(tokens) })];
+    const id = a.id ? bm(a.id) : `_Toc${String(st.entries.length + 1).padStart(6, '0')}`;
     st.entries.push({ level: t.depth, title: num ? `${num}  ${title}` : title, id });
     const p = new Paragraph({
       heading: t.depth === 1 ? HeadingLevel.HEADING_1 : HeadingLevel.HEADING_2, pageBreakBefore: t.depth === 1,
@@ -391,12 +456,13 @@ function partnersPage(S, lang, R) {
 function buildDocument(lang, content, pages) {
   const S = STRINGS[lang]; if (!S) throw new Error(`no strings for language "${lang}" in build/strings.json`);
   const st = {
-    dir: content.dir, entries: [], missing: [], warnings: [], gaps: new WeakSet(), chapters: new WeakSet(), h1: 0, h2: 0, chapterNumbered: false, lists: 0, figures: 0, images: 0,
+    dir: content.dir, entries: [], missing: [], warnings: [], gaps: new WeakSet(), chapters: new WeakSet(), labels: new Map(), h1: 0, h2: 0, chapterNumbered: false, lists: 0, figures: 0, tables: 0, images: 0,
     shotScale: parseFloat(content.meta.screenshot_scale) || 2, viewport: parseFloat(content.meta.viewport_width) || 1100,
     warn(msg) { if (!this.warnings.includes(msg)) this.warnings.push(msg); },
   };
-  const R = makeRenderer(S, st);
-  const body = R.blocks(marked.lexer(content.src), { left: 0, width: BODY_W, level: 0 });
+  const R = makeRenderer(S, st), tokens = marked.lexer(content.src);
+  prepare(tokens, st); number(tokens, st);
+  const body = R.blocks(tokens, { left: 0, width: BODY_W, level: 0 });
   const closing = partnersPage(S, lang, R);
   const flow = [...body, ...closing].filter((b, i, all) => !(st.gaps.has(b) && (i === all.length - 1 || st.chapters.has(all[i + 1]))));
   const title = content.meta.title || S.manual_title, subtitle = content.meta.subtitle || S.subtitle;
@@ -438,6 +504,7 @@ function buildDocument(lang, content, pages) {
       },
       paragraphStyles: [
         { id: 'Caption', name: 'caption', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { size: 19, italics: true, color: C.grey }, paragraph: { alignment: AlignmentType.CENTER, spacing: { after: 260 } } },
+        { id: 'TableCaption', name: 'Table Caption', basedOn: 'Normal', next: 'Normal', run: { size: 19, italics: true, color: C.grey }, paragraph: { spacing: { before: 200, after: 90 }, keepNext: true } },
         { id: 'ContentsTitle', name: 'Contents Title', basedOn: 'Normal', next: 'Normal', run: { font: SERIF, size: 46, bold: true, color: C.brown }, paragraph: { spacing: { after: 300 }, border: { bottom: { style: BorderStyle.SINGLE, size: 12, color: C.line, space: 8 } } } },
         { id: 'TOC1', name: 'toc 1', basedOn: 'Normal', next: 'Normal', run: { bold: true, color: C.brown, size: 23 }, paragraph: { spacing: { before: 200, after: 50 } } },
         { id: 'TOC2', name: 'toc 2', basedOn: 'Normal', next: 'Normal', run: { size: 22 }, paragraph: { indent: { left: 380 }, spacing: { after: 30 } } },
@@ -501,14 +568,19 @@ function sofficePdf(soffice, docx, pdf) {
   if (made !== pdf) fs.renameSync(made, pdf);
 }
 
-/* The text of every page of a PDF, without spaces and in lower case. */
+/* The text of every page of a PDF, without spaces and in lower case; text.pictures[i] counts the pictures drawn on page i + 1. */
 async function pageTexts(pdf) {
   const quiet = { log: console.log, warn: console.warn }; console.log = console.warn = () => {};       // the PDF reader prints notes about drawing; only text is read here
   let pdfjs; try { pdfjs = await import('pdfjs-dist/legacy/build/pdf.mjs'); } finally { Object.assign(console, quiet); }
   const task = pdfjs.getDocument({ data: new Uint8Array(fs.readFileSync(pdf)), verbosity: 0 }), doc = await task.promise;
-  const text = [];
-  for (let p = 1; p <= doc.numPages; p++) { const tc = await (await doc.getPage(p)).getTextContent(); text.push(norm(tc.items.map(i => i.str).join(''))); }
+  const text = [], pictures = [], paint = new Set([pdfjs.OPS.paintImageXObject, pdfjs.OPS.paintInlineImageXObject, pdfjs.OPS.paintImageMaskXObject].filter(x => x !== undefined));
+  for (let p = 1; p <= doc.numPages; p++) {
+    const page = await doc.getPage(p), tc = await page.getTextContent();
+    text.push(norm(tc.items.map(i => i.str).join('')));
+    try { pictures.push((await page.getOperatorList()).fnArray.filter(f => paint.has(f)).length); } catch { pictures.push(0); }
+  }
   await task.destroy?.();
+  text.pictures = pictures;
   return text;
 }
 
@@ -556,11 +628,21 @@ for (const lang of langs) {
       if (round === 0 && found.pages.join() !== pages.join()) { pages = found.pages; continue; }          // the numbers moved a heading: write once more with the final pages
       found.notFound.forEach(t => notes.push(`contents: no page found for "${t}"`));
       const fixed = [BRAND, content.meta.title || STRINGS[lang].manual_title, content.meta.subtitle || STRINGS[lang].subtitle, DATA.project.platform_url.replace(/^https?:\/\//, '')].map(norm);
-      text.forEach((t, i) => { if (i > 0 && fixed.reduce((s, f) => s.replace(f, ''), t).replace(/[\d·]/g, '').length < 3) notes.push(`page ${i + 1} is empty: look for a forced page break or a picture that leaves a gap`); });
+      const body = t => fixed.reduce((s, f) => s.replace(f, ''), t).replace(/[\d·]/g, '');
+      text.forEach((t, i) => { if (i > 0 && body(t).length < 3) notes.push(`page ${i + 1} is empty: look for a forced page break or a picture that leaves a gap`); });
+      // the last page of a chapter that holds only a few lines (the header logo is the one picture on a page of text)
+      let chapterStart = -1;
+      built.st.entries.forEach((e, k) => {
+        if (e.level !== 1) return;
+        const first = found.pages[k] - 1, last = first - 1;                // page indexes: this chapter's first page, the page before it
+        if (chapterStart >= 0 && last > chapterStart && body(text[last]).length < 320 && (text.pictures[last] ?? 0) <= 1)
+          notes.push(`page ${last + 1} holds only a few lines before "${e.title}" starts: shorten or rearrange the end of the chapter before it`);
+        chapterStart = first;
+      });
       break;
     }
     const st = built.st;
-    console.log(`${lang}: ${path.relative(ROOT, out)}${engine ? ` + .pdf (${total ? `${total} pages, ` : ''}${engine.name})` : ''}, ${st.entries.length} headings, ${st.figures} figures`);
+    console.log(`${lang}: ${path.relative(ROOT, out)}${engine ? ` + .pdf (${total ? `${total} pages, ` : ''}${engine.name})` : ''}, ${st.entries.length} headings, ${st.figures} figures, ${st.tables} tables`);
     [...notes, ...st.warnings].forEach(w => console.log(`  ! ${w}`));
     if (st.missing.length) { failed = true; console.log(`  ! ${st.missing.length} image(s) missing:`); [...new Set(st.missing)].forEach(m => console.log(`    - ${m}`)); }
   } catch (e) { failed = true; console.log(`${lang}: FAILED\n  ${e.message}`); }

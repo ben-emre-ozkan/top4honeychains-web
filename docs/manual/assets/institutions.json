@@ -103,7 +103,7 @@
     {
       "id": "ari",
       "country": "tr",
-      "logo": "logos/tarimorman.png",
+      "logo": "logos/ari.png",
       "name": {
         "en": "Apiculture Research Institute",
         "es": "Apiculture Research Institute",
@@ -111,12 +111,12 @@
         "lv": "Apiculture Research Institute",
         "tr": "Arıcılık Araştırma Enstitüsü"
       },
-      "note": "The institute belongs to the Ministry of Agriculture and Forestry; the logo is the Ministry emblem. The file is only 100x100 px: keep it small."
+      "note": "Logo supplied by the project (docs/brand/partners): the institute with the name of the Ministry of Agriculture and Forestry. The file is only 90 px high: keep it small."
     },
     {
       "id": "inta",
       "country": "ar",
-      "logo": "logos/inta_on_navy.png",
+      "logo": "logos/inta.png",
       "name": {
         "en": "INTA",
         "es": "INTA",
@@ -125,7 +125,7 @@
         "tr": "INTA"
       },
       "full_name": "Instituto Nacional de Tecnología Agropecuaria",
-      "note": "Only a white version of the logo is available, so it is supplied on a dark plate. Do not place logos/inta_white.png on a light background."
+      "note": "Logo supplied by the project (docs/brand/partners): the INTA mark only; the supplied full logo has white texts for dark backgrounds."
     },
     {
       "id": "nexco",
@@ -142,7 +142,7 @@
     {
       "id": "cng",
       "country": "ar",
-      "logo": null,
+      "logo": "logos/cng.png",
       "name": {
         "en": "CNORTEGRANDE Cooperative",
         "es": "Cooperativa Agropecuaria y Apícola Norte Grande Limitada",
@@ -150,12 +150,12 @@
         "lv": "CNORTEGRANDE Cooperative",
         "tr": "CNORTEGRANDE Kooperatifi"
       },
-      "note": "No logo file: set the name as plain text. Do not invent a logo."
+      "note": "Logo supplied by the project (docs/brand/partners)."
     },
     {
       "id": "alimentos",
       "country": "ar",
-      "logo": null,
+      "logo": "logos/alimentos.png",
       "name": {
         "en": "Alimentos Naturales Natural Foods S.A.",
         "es": "Alimentos Naturales Natural Foods S.A.",
@@ -163,7 +163,7 @@
         "lv": "Alimentos Naturales Natural Foods S.A.",
         "tr": "Alimentos Naturales Natural Foods S.A."
       },
-      "note": "No logo file: set the name as plain text. Do not invent a logo."
+      "note": "Logo supplied by the project (docs/brand/partners): the ALELUYA brand mark of Alimentos Naturales Natural Foods S.A., from the PDF the partner sent."
     },
     {
       "id": "uekat",
@@ -232,7 +232,7 @@
     {
       "id": "inta",
       "country": "ar",
-      "logo": "logos/inta_on_navy.png",
+      "logo": "logos/inta.png",
       "name": "INTA",
       "full_name": "Instituto Nacional de Tecnología Agropecuaria"
     }
@@ -294,5 +294,12 @@
       "pl": "Umowa o udzielenie dotacji nr 862665",
       "lv": "Dotāciju nolīgums Nr. 862665"
     }
+  },
+  "programme": {
+    "id": "ict-agri-food",
+    "logo": "logos/ict_agri_food.png",
+    "name": "ICT-AGRI-FOOD ERA-NET Cofund",
+    "call": "2022 Joint Call",
+    "note": "Logo supplied by the project (docs/brand/programme). Shown on the cover, as the coordinator asked in his review of 11 October 2026."
   }
 }
