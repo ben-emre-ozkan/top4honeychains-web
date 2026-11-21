@@ -8287,7 +8287,7 @@
     <value>Lotes con mi miel</value>
   </data>
   <data name="Me.Nav.Stories" xml:space="preserve">
-    <value>Mis páginas Honey Story</value>
+    <value>Mis páginas de Historia de la miel</value>
   </data>
   <data name="Me.Nav.Apiaries" xml:space="preserve">
     <value>Mis colmenares</value>
@@ -8383,7 +8383,7 @@
     <value>Mi parte</value>
   </data>
   <data name="Me.Story" xml:space="preserve">
-    <value>Honey Story</value>
+    <value>Historia de la miel</value>
   </data>
   <data name="Me.OpenStory" xml:space="preserve">
     <value>Abrir la página pública</value>
@@ -8419,7 +8419,7 @@
     <value>Mi página pública de apicultor</value>
   </data>
   <data name="Me.ConsentHelp.PublicName" xml:space="preserve">
-    <value>Sin él, Honey Story muestra un código neutro en lugar de su nombre.</value>
+    <value>Sin él, la Historia de la miel muestra un código neutro en lugar de su nombre.</value>
   </data>
   <data name="Me.ConsentHelp.PortalNotifications" xml:space="preserve">
     <value>Mensajes informativos además de los códigos de confirmación.</value>

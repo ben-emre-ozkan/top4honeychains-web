@@ -8287,7 +8287,7 @@
     <value>Partie z moim miodem</value>
   </data>
   <data name="Me.Nav.Stories" xml:space="preserve">
-    <value>Moje strony Honey Story</value>
+    <value>Moje strony Historii miodu</value>
   </data>
   <data name="Me.Nav.Apiaries" xml:space="preserve">
     <value>Moje pasieki</value>
@@ -8383,7 +8383,7 @@
     <value>Mój udział</value>
   </data>
   <data name="Me.Story" xml:space="preserve">
-    <value>Honey Story</value>
+    <value>Historia miodu</value>
   </data>
   <data name="Me.OpenStory" xml:space="preserve">
     <value>Otwórz stronę publiczną</value>
@@ -8419,7 +8419,7 @@
     <value>Moja publiczna strona pszczelarza</value>
   </data>
   <data name="Me.ConsentHelp.PublicName" xml:space="preserve">
-    <value>Bez niej Honey Story pokazuje neutralny kod zamiast Twojego nazwiska.</value>
+    <value>Bez niej Historia miodu pokazuje neutralny kod zamiast Twojego nazwiska.</value>
   </data>
   <data name="Me.ConsentHelp.PortalNotifications" xml:space="preserve">
     <value>Wiadomości informacyjne poza kodami potwierdzającymi.</value>
