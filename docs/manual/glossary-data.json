@@ -1,0 +1,7342 @@
+{
+ "intro": "One row per term of the manuals, one column per language. A text taken from the application (its resource files or reference translations, what the screen shows) is written as it is. A text the translators chose is marked **(?)** where they were not sure that a native professional reader would use it; each partner is asked to confirm or correct the terms of its own language. The Turkish terms were approved by a native speaker on 21 November 2026.",
+ "terms": [
+  {
+   "en": "Accredited laboratory",
+   "tr": {
+    "text": "Akredite laboratuvar",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "Laboratorio acreditado",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Akredytowane laboratorium",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Akreditēta laboratorija",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Asking price",
+   "tr": {
+    "text": "İstenen fiyat",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Precio solicitado",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Cena oczekiwana",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Prasītā cena",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Audit log",
+   "tr": {
+    "text": "Denetim kaydı",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Registro de auditoría",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Dziennik audytu",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Audita žurnāls",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Batch",
+   "tr": {
+    "text": "Parti",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Partida",
+    "unsure": true,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Partia końcowa",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Gala partija",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Beekeeper (record)",
+   "tr": {
+    "text": "Arıcı (kaydı)",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Apicultor (registro de apicultor)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Pszczelarz (rekord)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Biškopis (ieraksts)",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Beekeeper page",
+   "tr": {
+    "text": "Arıcı sayfası",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Página de apicultor",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Strona pszczelarza",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Biškopja lapa",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Beekeeper portal",
+   "tr": {
+    "text": "Arıcı alanı",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "Portal del apicultor",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Portal pszczelarza",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Biškopja portāls",
+    "unsure": true,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Beekeeper registration",
+   "tr": {
+    "text": "Arıcı kaydı",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Inscripción del apicultor (menú y capacidad: Registro de apicultores)",
+    "unsure": true,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Rejestracja pszczelarza",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Biškopju reģistrācija",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Business number",
+   "tr": {
+    "text": "İşletme numarası",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "Número de explotación",
+    "unsure": true,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Numer działalności",
+    "unsure": true,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Saimniecības numurs",
+    "unsure": true,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Capability",
+   "tr": {
+    "text": "Yetenek",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Capacidad",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Funkcja",
+    "unsure": true,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Kompetence",
+    "unsure": true,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "CCP",
+   "tr": {
+    "text": "KKN",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "PCC (punto crítico de control)",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "KPK (krytyczny punkt kontroli)",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "KKP",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Composite sample",
+   "tr": {
+    "text": "Karışım numunesi",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Muestra compuesta",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Próbka zbiorcza",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Kopparaugs",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Consent",
+   "tr": {
+    "text": "Rıza",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Consentimiento",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zgoda",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Piekrišana",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Container",
+   "tr": {
+    "text": "Kap",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Envase",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Pojemnik",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Tvertne",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Content fingerprint",
+   "tr": {
+    "text": "İçerik parmak izi",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "Huella del contenido",
+    "unsure": true,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Odcisk treści",
+    "unsure": true,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Satura nospiedums",
+    "unsure": true,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Control sheet",
+   "tr": {
+    "text": "Kontrol formu",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Hoja de control",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Arkusz kontrolny",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Kontroles lapa",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Counter-sample",
+   "tr": {
+    "text": "Şahit numune",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Contramuestra",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Próbka kontrolna",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Kontrolparaugs",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Critical limit",
+   "tr": {
+    "text": "Kritik limit",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "Límite crítico",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Limit krytyczny",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Kritiskā robežvērtība",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Custody",
+   "tr": {
+    "text": "Muhafaza",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Custodia",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Piecza",
+    "unsure": true,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Turējums",
+    "unsure": true,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Data",
+   "tr": {
+    "text": "Veri",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Datos",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Dane",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Dati",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Data controller",
+   "tr": {
+    "text": "Veri sorumlusu",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Responsable del tratamiento",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Administrator danych",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Datu pārzinis",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Data rights",
+   "tr": {
+    "text": "Veri hakları",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "Derechos sobre los datos",
+    "unsure": true,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Prawa do danych",
+    "unsure": true,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Datu tiesības",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Data-subject request",
+   "tr": {
+    "text": "İlgili kişi başvurusu",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Solicitud del interesado (pantalla: Solicitudes de los interesados)",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Żądanie osoby, której dane dotyczą",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Datu subjekta pieprasījums",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Delivery correction",
+   "tr": {
+    "text": "Teslimat düzeltmesi",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "Corrección de una entrega",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Korekta dostawy",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Piegādes labojums",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Finalize",
+   "tr": {
+    "text": "Kesinleştirme",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Finalizar",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zatwierdzić ostatecznie (ostateczne zatwierdzenie)",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Pabeigt (fiksēt)",
+    "unsure": true,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Food-analysis laboratory",
+   "tr": {
+    "text": "Gıda analiz laboratuvarı",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Laboratorio de análisis de alimentos",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Laboratorium analiz żywności",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Pārtikas analīžu laboratorija",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Four-eyes exemption",
+   "tr": {
+    "text": "Dört göz muafiyeti",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Exención de los cuatro ojos (pantalla: Exención de la doble verificación (cuatro ojos))",
+    "unsure": true,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Wyjątek od zasady czterech oczu",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Četru acu principa izņēmums",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Four-eyes principle",
+   "tr": {
+    "text": "Dört göz ilkesi",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "Principio de los cuatro ojos",
+    "unsure": true,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Zasada czterech oczu",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Četru acu princips",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Ground rules",
+   "tr": {
+    "text": "Temel kurallar",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Reglas básicas",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zasady podstawowe",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Pamatnoteikumi",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "HACCP",
+   "tr": {
+    "text": "HACCP",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "HACCP",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "HACCP",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "HACCP",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Holder",
+   "tr": {
+    "text": "Partiyi elinde bulunduran kurum (kısa: elinde bulunduran)",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Poseedor",
+    "unsure": true,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Posiadacz",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Turētājs",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Honey Story",
+   "tr": {
+    "text": "Bal Hikâyesi",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Historia de la miel",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Historia miodu",
+    "unsure": true,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Medus stāsts",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "In-house laboratory",
+   "tr": {
+    "text": "Kurum içi laboratuvar",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Laboratorio propio",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Laboratorium wewnętrzne",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Iekšējā laboratorija",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Lab report",
+   "tr": {
+    "text": "Laboratuvar raporu",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Informe de laboratorio",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Raport laboratoryjny",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Laboratorijas pārskats",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Lot",
+   "tr": {
+    "text": "Lot",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Lote",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Partia (partia surowego miodu)",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Partija",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Membership",
+   "tr": {
+    "text": "Üyelik",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "Membresía",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Członkostwo",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Dalība",
+    "unsure": true,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "My work",
+   "tr": {
+    "text": "İşlerim",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Mis tareas",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Moja praca",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Mans darbs",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Neutral code",
+   "tr": {
+    "text": "Nötr kod",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Código neutro",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Neutralny kod",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Neitrāls kods",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Not applicable",
+   "tr": {
+    "text": "Uygulanamaz",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "No aplicable",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Nie dotyczy",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Nav piemērojams",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Organisation",
+   "tr": {
+    "text": "Kurum",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Organización",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Organizacja",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Organizācija",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Parameter",
+   "tr": {
+    "text": "Parametre",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Parámetro",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Parametr",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Parametrs",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Privacy notice",
+   "tr": {
+    "text": "Aydınlatma metni",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Aviso de privacidad",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Informacja o danych",
+    "unsure": true,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Privātuma paziņojums",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Read",
+   "tr": {
+    "text": "Okuma",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Leer",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Odczyt",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Lasīt",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Recall report",
+   "tr": {
+    "text": "Geri çağırma raporu",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Informe de retiro",
+    "unsure": true,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Raport z wycofania",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Atsaukšanas pārskats",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Registry number (AKS)",
+   "tr": {
+    "text": "Kayıt numarası (AKS)",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Número de registro (AKS)",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Numer rejestrowy (AKS)",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Reģistra numurs (AKS)",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Retention",
+   "tr": {
+    "text": "Saklama",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Conservación (de datos)",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Przechowywanie danych",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Glabāšana",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Role",
+   "tr": {
+    "text": "Rol",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Rol",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Rola",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Loma",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Seal",
+   "tr": {
+    "text": "Mühür",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Precinto",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Plomba",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Plomba",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Seal event",
+   "tr": {
+    "text": "Mühür kaydı",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "Evento de precinto",
+    "unsure": true,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Zdarzenie plomby",
+    "unsure": true,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Plombas notikums",
+    "unsure": true,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Signed photo",
+   "tr": {
+    "text": "İmzalı fotoğraf",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Foto firmada",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zdjęcie podpisanego formularza",
+    "unsure": true,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Parakstīts foto",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "SMS code",
+   "tr": {
+    "text": "SMS kodu",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Código SMS",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Kod SMS",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "SMS kods",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Tamper-evident cap",
+   "tr": {
+    "text": "Emniyet halkalı kapak",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "Tapa de seguridad inviolable",
+    "unsure": true,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Wieczko gwarancyjne",
+    "unsure": true,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Vāciņš ar atvēršanas kontroli",
+    "unsure": true,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Verified limit",
+   "tr": {
+    "text": "Doğrulanmış limit",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Límite verificado",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zweryfikowany limit",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Pārbaudīta robežvērtība",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Within limit / Out of limit",
+   "tr": {
+    "text": "Limit içinde / Limit dışında",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Dentro del límite / Fuera del límite",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "W granicach limitu / Poza limitem",
+    "unsure": true,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Robežās / ārpus robežām",
+    "unsure": true,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Worst value",
+   "tr": {
+    "text": "En olumsuz değer",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "Peor valor",
+    "unsure": true,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Najgorsza wartość",
+    "unsure": true,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Sliktākā vērtība",
+    "unsure": true,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Beekeeper registration officer",
+   "tr": {
+    "text": "Arıcı Kayıt Görevlisi",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Responsable de registro de apicultores",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Specjalista ds. rejestracji pszczelarzy",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Biškopju reģistrācijas speciālists",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Sample acceptance officer",
+   "tr": {
+    "text": "Numune kabul sorumlusu",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Responsable de recepción de muestras",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Pracownik przyjmujący próbki",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Paraugu pieņemšanas speciālists",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Analyst",
+   "tr": {
+    "text": "Analist",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Analista",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Analityk",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Analītiķis",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Lab manager",
+   "tr": {
+    "text": "Laboratuvar müdürü",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Responsable de laboratorio",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Kierownik laboratorium",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Laboratorijas vadītājs",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Staff",
+   "tr": {
+    "text": "Çalışan",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Personal",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Pracownik",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Darbinieks",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Field inspector",
+   "tr": {
+    "text": "Saha denetçisi",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Inspector de campo",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Inspektor terenowy",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Lauka inspektors",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Quality Assurance Officer",
+   "tr": {
+    "text": "Kalite Güvence Sorumlusu",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Responsable de aseguramiento de la calidad",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Specjalista ds. zapewnienia jakości",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Kvalitātes nodrošināšanas speciālists",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Organization admin",
+   "tr": {
+    "text": "Kurum yöneticisi",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Administrador de la organización",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Administrator organizacji",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Organizācijas administrators",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Compliance Officer",
+   "tr": {
+    "text": "Uyum Sorumlusu",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Responsable de cumplimiento",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Specjalista ds. zgodności",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Atbilstības speciālists",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Platform administrator",
+   "tr": {
+    "text": "Platform yöneticisi",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Administrador de la plataforma",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Administrator platformy",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Platformas administrators",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Beekeeper",
+   "tr": {
+    "text": "Arıcı",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Apicultor",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Biškopis",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Pszczelarz",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Consumer",
+   "tr": {
+    "text": "Tüketici",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Consumidor",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Konsument",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Patērētājs",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Visitor",
+   "tr": {
+    "text": "Ziyaretçi",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "Visitante",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Odwiedzający",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Apmeklētājs",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Role short names RO, SAO, An, LM, St, FI, QAO, OA, CO, PA, Bk, Con, Vis",
+   "tr": {
+    "text": "AKG, NKS, An, LM, Çal, SD, KGS, KY, US, PY, Ar, Tük, Zi",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "RO, SAO, An, LM, St, FI, QAO, OA, CO, PA, Bk, Con, Vis",
+    "unsure": true,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "RO, SAO, An, LM, St, FI, QAO, OA, CO, PA, Bk, Con, Vis (skróty pozostają w wersji angielskiej)",
+    "unsure": true,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "BRS, PPS, An, LabV, Db, LI, KNS, OA, AS, PA, Bk, Pat, Apm",
+    "unsure": true,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Association (capability)",
+   "tr": {
+    "text": "Birlik",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Asociación",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Stowarzyszenie",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Biedrība",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Processing (capability)",
+   "tr": {
+    "text": "İşleme",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Procesamiento",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Przetwarzanie",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Apstrāde",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Packing (capability)",
+   "tr": {
+    "text": "Paketleme",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Envasado",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Konfekcjonowanie",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Iepakošana",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Laboratory (capability)",
+   "tr": {
+    "text": "Laboratuvar",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Laboratorio",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Laboratorium",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Laboratorija",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Wholesale (capability)",
+   "tr": {
+    "text": "Toptan Satış",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Comercio mayorista",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Handel hurtowy",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Vairumtirdzniecība",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Retail (capability)",
+   "tr": {
+    "text": "Perakende",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Comercio minorista",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Handel detaliczny",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Mazumtirdzniecība",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Beekeeper registration (capability)",
+   "tr": {
+    "text": "Arıcı kaydı",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Registro de apicultores",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Rejestracja pszczelarzy",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Biškopju reģistrācija",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Central association (capability)",
+   "tr": {
+    "text": "Merkez Birlik",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Asociación central",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Związek centralny",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Centrālā biedrība",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Public authority (capability)",
+   "tr": {
+    "text": "Kamu Otoritesi",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Autoridad pública",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Organ publiczny",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Valsts iestāde",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Beekeeping enterprise (capability)",
+   "tr": {
+    "text": "Arıcılık İşletmesi",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Explotación apícola",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Pszczelarstwo",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Biškopības saimniecība",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Platform administration (capability)",
+   "tr": {
+    "text": "Platform yönetimi",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Administrator platformy",
+    "unsure": true,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Platformas administrēšana",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Administrador de la plataforma",
+    "unsure": true,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Organization capabilities (tab and translation list)",
+   "tr": {
+    "text": "Kurum yetkinlikleri",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Capacidades de la organización",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Funkcje organizacji",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Organizācijas kompetences",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "CCP 0 Primary Audit",
+   "tr": {
+    "text": "KKN 0 Ön Denetim",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "KPK 0 Audyt wstępny",
+    "unsure": true,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "KKP 0 Sākotnējais audits",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "PCC 0 Auditoría primaria",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "CCP 1 Sampling and Preliminary Acceptance Tests",
+   "tr": {
+    "text": "KKN 1 Numune Alma ve Ön Kabul Testleri",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "KPK 1 Pobieranie próbek i wstępne badania odbiorcze",
+    "unsure": true,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "KKP 1 Paraugu ņemšana un sākotnējie pieņemšanas testi",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "PCC 1 Muestreo y pruebas preliminares de aceptación",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "CCP 2 Temperature Monitoring",
+   "tr": {
+    "text": "KKN 2 Sıcaklık İzleme",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "KPK 2 Monitorowanie temperatury",
+    "unsure": true,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "KKP 2 Temperatūras uzraudzība",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "PCC 2 Monitoreo de la temperatura",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "CCP 3 Filter Condition Control",
+   "tr": {
+    "text": "KKN 3 Filtre Durumu Kontrolü",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "KPK 3 Kontrola stanu filtra",
+    "unsure": true,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "KKP 3 Filtra stāvokļa kontrole",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "PCC 3 Control del estado del filtro",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "CCP 4 Homogeneity Control",
+   "tr": {
+    "text": "KKN 4 Homojenlik Kontrolü",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "KPK 4 Kontrola jednorodności",
+    "unsure": true,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "KKP 4 Viendabīguma kontrole",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "PCC 4 Control de la homogeneidad",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "CCP 5 Time and Temperature Control",
+   "tr": {
+    "text": "KKN 5 Süre ve Sıcaklık Kontrolü",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "KPK 5 Kontrola czasu i temperatury",
+    "unsure": true,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "KKP 5 Laika un temperatūras kontrole",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "PCC 5 Control de tiempo y temperatura",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "CCP 6 Foam and Sediment Removal",
+   "tr": {
+    "text": "KKN 6 Köpük ve Tortu Giderme",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "KPK 6 Usuwanie piany i osadu",
+    "unsure": true,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "KKP 6 Putu un nogulšņu noņemšana",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "PCC 6 Eliminación de espuma y sedimentos",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "CCP 7 Quantity Control",
+   "tr": {
+    "text": "KKN 7 Miktar Kontrolü",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "KPK 7 Kontrola ilości",
+    "unsure": true,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "KKP 7 Daudzuma kontrole",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "PCC 7 Control de la cantidad",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "CCP 8 Label Accuracy Verification",
+   "tr": {
+    "text": "KKN 8 Etiket Doğruluğu Kontrolü",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "KPK 8 Weryfikacja poprawności etykiety",
+    "unsure": true,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "KKP 8 Marķējuma precizitātes pārbaude",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "PCC 8 Verificación de la exactitud de la etiqueta",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "CCP 9 Packaging Integrity Check",
+   "tr": {
+    "text": "KKN 9 Ambalaj Bütünlüğü Kontrolü",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "KPK 9 Kontrola integralności opakowania",
+    "unsure": true,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "KKP 9 Iepakojuma integritātes pārbaude",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "PCC 9 Control de la integridad del envase",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "CCP 10 Temperature and Humidity Monitoring",
+   "tr": {
+    "text": "KKN 10 Sıcaklık ve Nem İzleme",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "KPK 10 Monitorowanie temperatury i wilgotności",
+    "unsure": true,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "KKP 10 Temperatūras un mitruma uzraudzība",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "PCC 10 Monitoreo de temperatura y humedad",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Stations: Apiary, Delivery, Lab, Processing, Shelf",
+   "tr": {
+    "text": "Arılık, Teslim, Laboratuvar, İşleme, Raf",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Colmenar, Entrega, Laboratorio, Procesamiento, Estantería",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Etapy: Pasieka, Dostawa, Laboratorium, Przetwarzanie, Półka",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Stacijas: Drava, Piegāde, Laboratorija, Apstrāde, Plaukts",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "My organization",
+   "tr": {
+    "text": "Kurumum",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Mi organización",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Moja organizacja",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Mana organizācija",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Deliveries (intake)",
+   "tr": {
+    "text": "Teslim almalar",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Entregas (recepción)",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Dostawy (przyjęcie)",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Piegādes (pieņemšana)",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Samples and lab",
+   "tr": {
+    "text": "Numuneler ve laboratuvar",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Muestras y laboratorio",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Próbki i laboratorium",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Paraugi un laboratorija",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Shipments and stock",
+   "tr": {
+    "text": "Sevkiyatlar ve stok",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Envíos y existencias",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Wysyłki i zapasy",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Sūtījumi un krājumi",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Beekeeper pages",
+   "tr": {
+    "text": "Arıcı sayfaları",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Páginas de apicultores",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Strony pszczelarzy",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Biškopju lapas",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Consumer feedback",
+   "tr": {
+    "text": "Tüketici geri bildirimleri",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Comentarios de consumidores",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Opinie konsumentów",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Patērētāju atsauksmes",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Compliance",
+   "tr": {
+    "text": "Uyum",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Cumplimiento",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zgodność",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Atbilstība",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Compliance > Audit entries",
+   "tr": {
+    "text": "Uyum > Denetim kaydı",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Cumplimiento > Registros de auditoría",
+    "unsure": true,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zgodność > Wpisy audytu",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Atbilstība > Audita ieraksti",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Dashboard",
+   "tr": {
+    "text": "Panel",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Panel",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Panel",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Informācijas Panelis",
+    "unsure": true,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Set-up",
+   "tr": {
+    "text": "Kurulum",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Configuración",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Konfiguracja",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Iestatīšana",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Oversight",
+   "tr": {
+    "text": "Gözetim",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Supervisión",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Nadzór",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Uzraudzība",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Set-up > Organizations",
+   "tr": {
+    "text": "Kurulum > Kurumlar",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Configuración > Organizaciones",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Konfiguracja > Organizacje",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Iestatīšana > Organizācijas",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Set-up > Roles and permissions",
+   "tr": {
+    "text": "Kurulum > Roller ve yetkiler",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Configuración > Roles y permisos",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Konfiguracja > Role i uprawnienia",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Iestatīšana > Lomas un atļaujas",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Set-up > CCP responsibilities",
+   "tr": {
+    "text": "Kurulum > KKN sorumlulukları",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Configuración > Responsabilidades de PCC",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Konfiguracja > Odpowiedzialności za KPK",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Iestatīšana > KKP atbildība",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Set-up > Reference data",
+   "tr": {
+    "text": "Kurulum > Referans veriler",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Configuración > Datos de referencia",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Konfiguracja > Dane referencyjne",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Iestatīšana > Atsauces dati",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Set-up > Translations of reference data",
+   "tr": {
+    "text": "Kurulum > Referans verisi çevirileri",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Configuración > Traducciones de datos de referencia",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Konfiguracja > Tłumaczenia danych referencyjnych",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Iestatīšana > Atsauces datu tulkojumi",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Set-up > Beekeeper registry and associations",
+   "tr": {
+    "text": "Kurulum > Arıcı kaydı ve birlikler",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Configuración > Registro de apicultores y asociaciones",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Konfiguracja > Rejestr pszczelarzy i stowarzyszenia",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Iestatīšana > Biškopju reģistrs un biedrības",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Oversight > Users",
+   "tr": {
+    "text": "Gözetim > Kullanıcılar",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Supervisión > Usuarios",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Nadzór > Użytkownicy",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Uzraudzība > Lietotāji",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Oversight > Records",
+   "tr": {
+    "text": "Gözetim > Kayıtlar",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Supervisión > Registros",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Nadzór > Rejestry",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Uzraudzība > Ieraksti",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Oversight > Audit log",
+   "tr": {
+    "text": "Gözetim > Denetim kaydı",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Supervisión > Registro de auditoría",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Nadzór > Dziennik audytu",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Uzraudzība > Audita žurnāls",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Oversight > Corrections",
+   "tr": {
+    "text": "Gözetim > Düzeltmeler",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Supervisión > Correcciones",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Nadzór > Korekty",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Uzraudzība > Labojumi",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Oversight > Notices and consent texts",
+   "tr": {
+    "text": "Gözetim > Aydınlatma ve rıza metinleri",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Supervisión > Avisos y textos de consentimiento",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Nadzór > Informacje i treści zgód",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Uzraudzība > Paziņojumi un piekrišanas teksti",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Oversight > Data retention",
+   "tr": {
+    "text": "Gözetim > Veri saklama",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Supervisión > Conservación de datos",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Nadzór > Przechowywanie danych",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Uzraudzība > Datu glabāšana",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "My beekeeper area",
+   "tr": {
+    "text": "Arıcı alanım",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Mi área de apicultor",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Mój obszar pszczelarza",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Mana biškopja sadaļa",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "My deliveries",
+   "tr": {
+    "text": "Teslimatlarım",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Mis entregas",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Moje dostawy",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Manas piegādes",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Batches with my honey",
+   "tr": {
+    "text": "Balımın olduğu partiler",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Lotes con mi miel",
+    "unsure": true,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Partie z moim miodem",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Partijas ar manu medu",
+    "unsure": true,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "My Honey Story pages",
+   "tr": {
+    "text": "Bal Hikâyesi sayfalarım",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Mis páginas de Historia de la miel",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Moje strony Historii miodu",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Manas Medus stāsta lapas",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "My apiaries",
+   "tr": {
+    "text": "Arılıklarım",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Mis colmenares",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Moje pasieki",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Manas dravas",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Privacy and consents",
+   "tr": {
+    "text": "Gizlilik ve onaylar",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Privacidad y consentimientos",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Prywatność i zgody",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Privātums un piekrišanas",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "My honeys",
+   "tr": {
+    "text": "Ballarım",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Mis mieles",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Moje miody",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Mans medus",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Sign in",
+   "tr": {
+    "text": "Giriş yap",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zaloguj się",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Iniciar sesión",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Pieteikties",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Log In",
+   "tr": {
+    "text": "Giriş Yap",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Iniciar sesión",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zaloguj się",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Pieteikties",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Logout",
+   "tr": {
+    "text": "Çıkış Yap",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Cerrar Sesión",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Wyloguj się",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Izrakstīties",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Verify a lab report",
+   "tr": {
+    "text": "Laboratuvar raporu doğrula",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Verificar un informe de laboratorio",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zweryfikuj raport laboratoryjny",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Pārbaudīt laboratorijas pārskatu",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Values to enter",
+   "tr": {
+    "text": "Girilecek değerler",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Valores por ingresar",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Wartości do wprowadzenia",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Ievadāmās vērtības",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Values to approve",
+   "tr": {
+    "text": "Onaylanacak değerler",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Valores por aprobar",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Wartości do zatwierdzenia",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Apstiprināmās vērtības",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Samples to receive",
+   "tr": {
+    "text": "Teslim alınacak numuneler",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Muestras por recibir",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Próbki do przyjęcia",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Saņemamie paraugi",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Lab results to enter",
+   "tr": {
+    "text": "Girilecek laboratuvar sonuçları",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Resultados de laboratorio por ingresar",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Ievadāmie laboratorijas rezultāti",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Wyniki laboratoryjne do wprowadzenia",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Send code",
+   "tr": {
+    "text": "Kod gönder",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Enviar código",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Wyślij kod",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Sūtīt kodu",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Code from the SMS (6 digits)",
+   "tr": {
+    "text": "SMS'teki kod (6 hane)",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Código del SMS (6 dígitos)",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Kod z SMS (6 cyfr)",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Kods no SMS (6 cipari)",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Confirm the registration",
+   "tr": {
+    "text": "Kaydı onayla",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Confirmar el registro",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Potwierdź rejestrację",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Apstiprināt reģistrāciju",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Confirm the delivery",
+   "tr": {
+    "text": "Teslimatı onayla",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Confirmar la entrega",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Potwierdź dostawę",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Apstiprināt piegādi",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Record a delivery",
+   "tr": {
+    "text": "Teslim al",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Registrar una entrega",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zarejestruj dostawę",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Reģistrēt piegādi",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Add a container",
+   "tr": {
+    "text": "Kap ekle",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Añadir un envase",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Dodaj pojemnik",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Pievienot tvertni",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Jar seal",
+   "tr": {
+    "text": "Kavanoz mührü",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Precinto del frasco",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Plomba słoika",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Burkas plomba",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Counter-sample seal",
+   "tr": {
+    "text": "Şahit numune mührü",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Precinto de contramuestra",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Plomba próbki kontrolnej",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Kontrolparauga plomba",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "New seal after sampling",
+   "tr": {
+    "text": "Numuneden sonra yeni mühür",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Precinto nuevo tras el muestreo",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Nowa plomba po pobraniu",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Jaunā plomba pēc paraugu ņemšanas",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Save Monitoring Logs",
+   "tr": {
+    "text": "İzleme Kayıtlarını Kaydet",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Guardar registros de monitoreo",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zapisz zapisy monitorowania",
+    "unsure": true,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Saglabāt uzraudzības ierakstus",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Record the reception",
+   "tr": {
+    "text": "Kabulü kaydet",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zapisz przyjęcie",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Reģistrēt pieņemšanu",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Registrar la recepción",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Make the composite",
+   "tr": {
+    "text": "Karışım numunesini oluştur",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Utwórz próbkę zbiorczą",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Izveidot kopparaugu",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Hacer la muestra compuesta",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Submit for approval",
+   "tr": {
+    "text": "Onaya gönder",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Enviar para aprobación",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Prześlij do zatwierdzenia",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Iesniegt apstiprināšanai",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Approve",
+   "tr": {
+    "text": "Onayla",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zatwierdź",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Apstiprināt",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Aprobar",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Return",
+   "tr": {
+    "text": "Geri gönder",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Devolver",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zwróć",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Atgriezt",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Reject",
+   "tr": {
+    "text": "Reddet",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Odrzuć",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Noraidīt",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Rechazar",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Save the sheet",
+   "tr": {
+    "text": "Formu kaydet",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Guardar la hoja",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zapisz arkusz",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Saglabāt lapu",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Approve all listed",
+   "tr": {
+    "text": "Listelenenlerin hepsini onayla",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Aprobar todo lo de la lista",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zatwierdź wszystkie wymienione",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Apstiprināt visus uzskaitītos",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "New batch",
+   "tr": {
+    "text": "Yeni parti",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Nueva partida",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Nowa partia",
+    "unsure": true,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Jauna gala partija",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Create batch",
+   "tr": {
+    "text": "Partiyi oluştur",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Crear partida",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Utwórz partię końcową",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Izveidot gala partiju",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Request finalizing",
+   "tr": {
+    "text": "Kesinleştirme talep et",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Solicitar la finalización",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Wnioskuj o ostateczne zatwierdzenie",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Pieprasīt pabeigšanu (fiksēšanu)",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Confirm and finalize",
+   "tr": {
+    "text": "Onayla ve kesinleştir",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Confirmar y finalizar",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Potwierdź i zatwierdź ostatecznie",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Apstiprināt un pabeigt (fiksēt)",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Missing before finalizing:",
+   "tr": {
+    "text": "Kesinleştirmeden önce eksik olanlar:",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Falta antes de finalizar:",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Brakuje przed ostatecznym zatwierdzeniem:",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Trūkst pirms pabeigšanas (fiksēšanas):",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Ship",
+   "tr": {
+    "text": "Sevk et",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Enviar",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Wyślij",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Nosūtīt",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "To (shipment form; the label map gives 'Sonra' from another key)",
+   "tr": {
+    "text": "Alıcı",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "A",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Na",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Uz",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Confirm receipt",
+   "tr": {
+    "text": "Teslimi onayla",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Confirmar recepción",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Potwierdź odbiór",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Apstiprināt saņemšanu",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Batches you hold",
+   "tr": {
+    "text": "Elinizdeki partiler",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Partidas en su poder",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Posiadane partie końcowe",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Jūsu turējumā esošās gala partijas",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Open the Honey Story",
+   "tr": {
+    "text": "Bal Hikâyesini aç",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Otwórz Historię miodu",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Abrir la Historia de la miel",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Atvērt medus stāstu",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Download QR",
+   "tr": {
+    "text": "QR'ı indir",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Pobierz kod QR",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Descargar QR",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Lejupielādēt QR",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Record consent",
+   "tr": {
+    "text": "Rıza kaydet",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zarejestruj zgodę",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Registrar consentimiento",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Reģistrēt piekrišanu",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Withdraw consent",
+   "tr": {
+    "text": "Rızayı geri çek",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Wycofaj zgodę",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Retirar consentimiento",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Atsaukt piekrišanu",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Review signed photos",
+   "tr": {
+    "text": "İmzalı fotoğrafları incele",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Revisar fotos firmadas",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Sprawdź zdjęcia podpisów",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Pārbaudīt parakstītos foto",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Record a request",
+   "tr": {
+    "text": "Başvuru kaydet",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Registrar una solicitud",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zapisz żądanie",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Reģistrēt pieprasījumu",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Request (data-subject request field; the label map gives 'Talep et')",
+   "tr": {
+    "text": "Başvuru",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Solicitar",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Złóż wniosek",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Pieprasīt",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Received (data-subject request field; the label map gives 'Teslim alındı')",
+   "tr": {
+    "text": "Alındı",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Recibido",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Odebrana",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Saņemts",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Received by (data-subject request field; the label map gives 'Teslim alan')",
+   "tr": {
+    "text": "Geliş yolu",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Recibido por",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Przyjął(ęła)",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Saņēma",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "consent withdrawal",
+   "tr": {
+    "text": "onay geri çekme",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "retirada del consentimiento",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "wycofanie zgody",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "piekrišanas atsaukums",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Enter price",
+   "tr": {
+    "text": "Fiyat gir",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Indicar precio",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Podaj cenę",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Norādīt cenu",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Save to My honeys",
+   "tr": {
+    "text": "Ballarıma kaydet",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Guardar en Mis mieles",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zapisz w Moich miodach",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Saglabāt manā medū",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Send feedback to the producer",
+   "tr": {
+    "text": "Üreticiye geri bildirim gönder",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Enviar un comentario al productor",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Wyślij opinię producentowi",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Nosūtīt atsauksmi ražotājam",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Create a free consumer account",
+   "tr": {
+    "text": "Ücretsiz tüketici hesabı oluşturun",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Cree una cuenta de consumidor gratuita",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Załóż bezpłatne konto konsumenta",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Izveidojiet bezmaksas patērētāja kontu",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Verify hash chain",
+   "tr": {
+    "text": "Hash zincirini doğrula",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Verificar la cadena de hash",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zweryfikuj łańcuch skrótów",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Pārbaudīt jaucējvērtību ķēdi",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Hash (audit log column)",
+   "tr": {
+    "text": "Hash",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Hash",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Skrót",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Jaucējvērtība",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Final batch (Applies To option)",
+   "tr": {
+    "text": "Parti",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Partida final",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Partia końcowa",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Gala partija",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Temperature (°C) (CCP 10 parameter)",
+   "tr": {
+    "text": "Sıcaklık (°C)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "Temperatura (°C)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Temperatura (°C)",
+    "unsure": true,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Temperatūra (°C)",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Run retention now",
+   "tr": {
+    "text": "Saklamayı şimdi çalıştır",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Ejecutar la conservación ahora",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Uruchom przechowywanie teraz",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Palaist glabāšanu tagad",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Dry-run report (CSV)",
+   "tr": {
+    "text": "Deneme raporu (CSV)",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Informe de simulación (CSV)",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Raport przebiegu próbnego (CSV)",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Izmēģinājuma pārskats (CSV)",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Publish a new version",
+   "tr": {
+    "text": "Yeni sürüm yayımla",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Publicar una versión nueva",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Opublikuj nową wersję",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Publicēt jaunu versiju",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Request a correction",
+   "tr": {
+    "text": "Düzeltme iste",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Pedir una corrección",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zgłoś korektę",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Pieprasīt labojumu",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Approve and apply",
+   "tr": {
+    "text": "Onayla ve uygula",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Aprobar y aplicar",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zatwierdź i zastosuj",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Apstiprināt un piemērot",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Process flow",
+   "tr": {
+    "text": "Süreç akışı",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Flujo del proceso",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Przebieg procesu",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Procesa plūsma",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Tested by an accredited lab",
+   "tr": {
+    "text": "Akredite laboratuvarda test edildi",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Analizado por un laboratorio acreditado",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zbadane przez akredytowane laboratorium",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Testēts akreditētā laboratorijā",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "All control points approved",
+   "tr": {
+    "text": "Tüm kontrol noktaları onaylı",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Todos los puntos de control aprobados",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Wszystkie punkty kontrolne zatwierdzone",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Visi kontroles punkti apstiprināti",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Within verified limits",
+   "tr": {
+    "text": "Doğrulanmış limitler içinde",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Dentro de los límites verificados",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "W granicach zweryfikowanych limitów",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Pārbaudīto robežvērtību robežās",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Apiary",
+   "es": {
+    "text": "Colmenar (estación, inscripción, portal); algunos campos y menús dicen Apiario/Apiarios",
+    "unsure": true,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Arılık",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Pasieka",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Drava",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Plant",
+   "es": {
+    "text": "Planta",
+    "unsure": false,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "Tesis",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Zakład",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "uzņēmums",
+    "unsure": true,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Sample jar",
+   "es": {
+    "text": "Frasco de muestra",
+    "unsure": false,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "Numune kavanozu",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Słoik z próbką",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Parauga burka",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Delivery",
+   "es": {
+    "text": "Entrega",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Teslim",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Dostawa",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Piegāde",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Shipment",
+   "es": {
+    "text": "Envío",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Sevkiyat",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Wysyłka",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Sūtījums",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Value-chain activities",
+   "es": {
+    "text": "Actividades de la cadena de valor",
+    "unsure": false,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "Değer zinciri faaliyetleri",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Czynności w łańcuchu wartości",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "vērtību ķēdes darbības",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Pseudonym",
+   "es": {
+    "text": "Seudónimo",
+    "unsure": false,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "Takma ad",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Pseudonim",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "pseidonīms",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Fingerprint (hash)",
+   "es": {
+    "text": "Huella (hash)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "Parmak izi (hash)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Odcisk (skrót)",
+    "unsure": true,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "nospiedums (jaucējvērtība)",
+    "unsure": true,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Hash chain",
+   "es": {
+    "text": "Cadena de hash",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Hash zinciri",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Łańcuch skrótów",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "jaucējvērtību ķēde",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "access / correction / deletion / objection / consent withdrawal",
+   "es": {
+    "text": "acceso / rectificación / supresión / oposición / retirada del consentimiento",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "erişim / düzeltme / silme / itiraz / onay geri çekme",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "dostęp / sprostowanie / usunięcie / sprzeciw / wycofanie zgody",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "piekļuve / labošana / dzēšana / iebildums / piekrišanas atsaukums",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "GDPR",
+   "es": {
+    "text": "RGPD",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "VDAR",
+    "unsure": false,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "GDPR",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "RODO (GDPR)",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Role chip",
+   "es": {
+    "text": "Indicador de rol",
+    "unsure": true,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "Rol etiketi",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Wskaźnik roli",
+    "unsure": true,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "lomas žetons",
+    "unsure": true,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Primary audit",
+   "es": {
+    "text": "Auditoría primaria",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Ön denetim",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Audyt wstępny",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "sākotnējais audits",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Association",
+   "es": {
+    "text": "Asociación",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Stowarzyszenie",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Biedrība",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Birlik",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Processing",
+   "es": {
+    "text": "Procesamiento",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Przetwarzanie",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Apstrāde",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "İşleme",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Packing",
+   "es": {
+    "text": "Envasado",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Konfekcjonowanie",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Iepakošana",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Paketleme",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Laboratory",
+   "es": {
+    "text": "Laboratorio",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Laboratorium",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Laboratorija",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Laboratuvar",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Wholesale",
+   "es": {
+    "text": "Comercio mayorista",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Handel hurtowy",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Vairumtirdzniecība",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Toptan Satış",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Retail",
+   "es": {
+    "text": "Comercio minorista",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Handel detaliczny",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Mazumtirdzniecība",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Perakende",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Central association",
+   "es": {
+    "text": "Asociación central",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Związek centralny",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Centrālā biedrība",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Merkez Birlik",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Public authority",
+   "es": {
+    "text": "Autoridad pública",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Organ publiczny",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Valsts iestāde",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Kamu Otoritesi",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Beekeeping enterprise",
+   "es": {
+    "text": "Explotación apícola",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Pszczelarstwo",
+    "unsure": true,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Biškopības saimniecība",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Arıcılık İşletmesi",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Platform administration (reserved capability)",
+   "es": {
+    "text": "Administrador de la plataforma",
+    "unsure": true,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Platform Yöneticisi",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Administrator platformy",
+    "unsure": true,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Platformas administrators",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "CCP 0 Primary Audit (Pre-Production)",
+   "es": {
+    "text": "PCC 0 Auditoría primaria (Preproducción)",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "KKN 0 Ön Denetim (Üretim Öncesi)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "KPK 0 Audyt wstępny (Etap przedprodukcyjny)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "KKP 0 Sākotnējais audits (Pirmsražošana)",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "CCP 1 Sampling and Preliminary Acceptance Tests (Raw Honey Reception)",
+   "es": {
+    "text": "PCC 1 Muestreo y pruebas preliminares de aceptación (Recepción de miel cruda)",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "KKN 1 Numune Alma ve Ön Kabul Testleri (Ham Bal Kabulü)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "KPK 1 Pobieranie próbek i wstępne badania odbiorcze (Przyjęcie surowego miodu)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "KKP 1 Paraugu ņemšana un sākotnējie pieņemšanas testi (Neapstrādāta medus pieņemšana)",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "CCP 2 Temperature Monitoring (Heating)",
+   "es": {
+    "text": "PCC 2 Monitoreo de la temperatura (Calentamiento)",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "KKN 2 Sıcaklık İzleme (Isıtma)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "KPK 2 Monitorowanie temperatury (Podgrzewanie)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "KKP 2 Temperatūras uzraudzība (Karsēšana)",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "CCP 3 Filter Condition Control (Filtration)",
+   "es": {
+    "text": "PCC 3 Control del estado del filtro (Filtración)",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "KKN 3 Filtre Durumu Kontrolü (Süzme)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "KPK 3 Kontrola stanu filtra (Filtracja)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "KKP 3 Filtra stāvokļa kontrole (Filtrēšana)",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "CCP 4 Homogeneity Control (Homogenization & Mixing)",
+   "es": {
+    "text": "PCC 4 Control de la homogeneidad (Homogeneización y mezcla)",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "KKN 4 Homojenlik Kontrolü (Homojenizasyon ve Karıştırma)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "KPK 4 Kontrola jednorodności (Homogenizacja i mieszanie)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "KKP 4 Viendabīguma kontrole (Homogenizēšana un sajaukšana)",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "CCP 5 Time and Temperature Control (Pasteurization)",
+   "es": {
+    "text": "PCC 5 Control de tiempo y temperatura (Pasteurización)",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "KKN 5 Süre ve Sıcaklık Kontrolü (Pastörizasyon)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "KPK 5 Kontrola czasu i temperatury (Pasteryzacja)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "KKP 5 Laika un temperatūras kontrole (Pasterizācija)",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "CCP 6 Foam and Sediment Removal (Settling (Clarification))",
+   "es": {
+    "text": "PCC 6 Eliminación de espuma y sedimentos (Decantación (clarificación))",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "KKN 6 Köpük ve Tortu Giderme (Dinlendirme (Durultma))",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "KPK 6 Usuwanie piany i osadu (Odstawanie (klarowanie))",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "KKP 6 Putu un nogulšņu noņemšana (Nostādināšana (dzidrināšana))",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "CCP 7 Quantity Control (Filling)",
+   "es": {
+    "text": "PCC 7 Control de la cantidad (Llenado)",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "KKN 7 Miktar Kontrolü (Dolum)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "KPK 7 Kontrola ilości (Rozlew)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "KKP 7 Daudzuma kontrole (Pildīšana)",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "CCP 8 Label Accuracy Verification (Labeling)",
+   "es": {
+    "text": "PCC 8 Verificación de la exactitud de la etiqueta (Etiquetado)",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "KKN 8 Etiket Doğruluğu Kontrolü (Etiketleme)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "KPK 8 Weryfikacja poprawności etykiety (Etykietowanie)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "KKP 8 Marķējuma precizitātes pārbaude (Marķēšana)",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "CCP 9 Packaging Integrity Check (Packaging)",
+   "es": {
+    "text": "PCC 9 Control de la integridad del envase (Envasado)",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "KKN 9 Ambalaj Bütünlüğü Kontrolü (Ambalajlama)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "KPK 9 Kontrola integralności opakowania (Pakowanie)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "KKP 9 Iepakojuma integritātes pārbaude (Iepakošana)",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "CCP 10 Temperature and Humidity Monitoring (Storage)",
+   "es": {
+    "text": "PCC 10 Monitoreo de temperatura y humedad (Almacenamiento)",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "KKN 10 Sıcaklık ve Nem İzleme (Depolama)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "KPK 10 Monitorowanie temperatury i wilgotności (Przechowywanie)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "KKP 10 Temperatūras un mitruma uzraudzība (Uzglabāšana)",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Beekeeper registration (menu)",
+   "es": {
+    "text": "Registro de apicultores",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Rejestracja pszczelarzy",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Biškopju reģistrācija",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Arıcı kaydı",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Set-up > Capabilities",
+   "es": {
+    "text": "Configuración > Capacidades",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Konfiguracja > Funkcje",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Kurulum > Yetenekler",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Iestatīšana > Kompetences",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Home (portal)",
+   "es": {
+    "text": "Inicio",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Sākums",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Ana Sayfa",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Strona główna",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Account",
+   "es": {
+    "text": "Cuenta",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Konto",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Konts",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Hesap",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Sign in / Log In",
+   "es": {
+    "text": "Iniciar sesión",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Pieteikties",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Giriş yap / Giriş Yap",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Zaloguj się / Zaloguj się",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Forgot your password?",
+   "es": {
+    "text": "¿Olvidaste tu contraseña?",
+    "unsure": true,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zapomniałeś hasła?",
+    "unsure": true,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Şifrenizi mi unuttunuz?",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Aizmirsāt paroli?",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Add apiary / Add an apiary",
+   "es": {
+    "text": "Añadir colmenar / Añadir un colmenar",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Arılık ekle / Arılık ekle",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Dodaj pasiekę / Dodaj pasiekę",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Pievienot dravu / Pievienot dravu",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "To (shipment form)",
+   "es": {
+    "text": "Destinatario",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Sonra",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Na",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Uz",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Report code",
+   "es": {
+    "text": "Código del informe",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Kod raportu",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Pārskata kods",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Rapor kodu",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Check",
+   "es": {
+    "text": "Consultar",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Sorgula",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Sprawdź",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Pārbaudīt",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Verification",
+   "es": {
+    "text": "Verificación",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Doğrulama",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Weryfikacja",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Pārbaude",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Verify / Request documents / Suspend / Reinstate",
+   "es": {
+    "text": "Verificar / Solicitar documentos / Suspender / Restablecer",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Doğrula / Belge iste / Askıya al / Yeniden etkinleştir",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Zweryfikuj / Zażądaj dokumentów / Zawieś / Przywróć",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Pārbaudīt / Pieprasīt dokumentus / Apturēt / Atjaunot",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Pending / Verified / Suspended",
+   "es": {
+    "text": "Pendiente / Verificada / Suspendida",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Bekliyor / Doğrulandı / Askıda",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Oczekująca / Zweryfikowana / Zawieszona",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Gaida / Pārbaudīta / Apturēta",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Role permissions",
+   "es": {
+    "text": "Permisos por rol",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Lomu atļaujas",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Rol yetkileri",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Uprawnienia ról",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Enter / Approve / Read (permission columns)",
+   "es": {
+    "text": "Introducir / Aprobar / Leer",
+    "unsure": true,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Giriş / Onayla / Okuma",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "Wprowadzanie / Zatwierdzenie / Odczyt",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Ievadīt / Apstiprināt / Lasīt",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Responsible organization",
+   "es": {
+    "text": "Organización responsable",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Sorumlu kurum",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Organizacja odpowiedzialna",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Atbildīgā organizācija",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Roles that enter values",
+   "es": {
+    "text": "Roles que ingresan valores",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Değer giren roller",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Role wprowadzające wartości",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Lomas, kas ievada vērtības",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Roles that approve",
+   "es": {
+    "text": "Roles que aprueban",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Onaylayan roller",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Role zatwierdzające",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Lomas, kas apstiprina",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Received by (data-subject request)",
+   "es": {
+    "text": "Recibida por",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Saņemts pa",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Teslim alan",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Przyjął(ęła)",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Corrections to decide",
+   "es": {
+    "text": "Correcciones por decidir",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Korekty do rozstrzygnięcia",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Karar bekleyen düzeltmeler",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Izlemjamie labojumi",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "DRAFT",
+   "es": {
+    "text": "BORRADOR",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "TASLAK",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "PROJEKT",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "PROJEKTS",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Recall (deliveries list)",
+   "es": {
+    "text": "Retiro",
+    "unsure": true,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Geri çağırma",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Wycofanie",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Atsaukšana",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Finalize (approval mechanism line)",
+   "es": {
+    "text": "Finalizar",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Kesinleştirme",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zatwierdź ostatecznie",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Pabeigt (fiksēt)",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Beekeeper (role)",
+   "pl": {
+    "text": "Pszczelarz",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Arıcı",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Apicultor",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Biškopis",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Pre-Production",
+   "pl": {
+    "text": "Przed produkcją",
+    "unsure": true,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "Üretim Öncesi",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "Preproducción",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Pirmsražošana",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Raw Honey Reception",
+   "pl": {
+    "text": "Przyjęcie surowego miodu",
+    "unsure": true,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "Ham Bal Kabulü",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "Recepción de miel cruda",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Neapstrādāta medus pieņemšana",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Heating",
+   "pl": {
+    "text": "Podgrzewanie",
+    "unsure": true,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "Isıtma",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "Calentamiento",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Karsēšana",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Filtration",
+   "pl": {
+    "text": "Filtracja",
+    "unsure": true,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "Süzme",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "Filtración",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Filtrēšana",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Homogenization & Mixing",
+   "pl": {
+    "text": "Homogenizacja i mieszanie",
+    "unsure": true,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "Homojenizasyon ve Karıştırma",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "Homogeneización y mezcla",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Homogenizēšana un sajaukšana",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Pasteurization",
+   "pl": {
+    "text": "Pasteryzacja",
+    "unsure": true,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "Pastörizasyon",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "Pasteurización",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Pasterizācija",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Settling (Clarification)",
+   "pl": {
+    "text": "Odstawanie (klarowanie)",
+    "unsure": true,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "Dinlendirme (Durultma)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "Decantación (clarificación)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Nostādināšana (dzidrināšana)",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Filling",
+   "pl": {
+    "text": "Rozlew",
+    "unsure": true,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "Dolum",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "Llenado",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Pildīšana",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Labeling",
+   "pl": {
+    "text": "Etykietowanie",
+    "unsure": true,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "Etiketleme",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "Etiquetado",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Marķēšana",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Packaging",
+   "pl": {
+    "text": "Pakowanie",
+    "unsure": true,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "Ambalajlama",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "Envasado",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Iepakošana",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Storage (stage)",
+   "pl": {
+    "text": "Przechowywanie",
+    "unsure": true,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "Depolama",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Almacenamiento",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Uzglabāšana",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Home (beekeeper portal)",
+   "pl": {
+    "text": "Start",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Ana Sayfa",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Inicio",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Sākums",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Profile",
+   "pl": {
+    "text": "Profil",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Profils",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Profil",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Perfil",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Show the tour",
+   "pl": {
+    "text": "Pokaż oprowadzenie",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Rādīt ekskursiju",
+    "unsure": true,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Turu göster",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Ver el recorrido",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Show animations",
+   "pl": {
+    "text": "Pokazuj animacje",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Rādīt animācijas",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Animasyonları göster",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Mostrar animaciones",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Username",
+   "pl": {
+    "text": "Nazwa użytkownika",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Lietotājvārds",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Kullanıcı Adı",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Nombre de usuario",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Password",
+   "pl": {
+    "text": "Hasło",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Parole",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Şifre",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Contraseña",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Choose your password",
+   "pl": {
+    "text": "Ustaw swoje hasło",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Şifrenizi belirleyin",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Elija su contraseña",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Izvēlieties savu paroli",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Read and confirm",
+   "pl": {
+    "text": "Przeczytaj i potwierdź",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Oku ve onayla",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Leer y confirmar",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Izlasīt un apstiprināt",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Lab results",
+   "pl": {
+    "text": "Wyniki laboratoryjne",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Laboratuvar sonuçları",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Resultados de laboratorio",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Laboratorijas rezultāti",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Find or register",
+   "pl": {
+    "text": "Znajdź lub zarejestruj",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Bul veya kaydet",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Buscar o registrar",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Atrast vai reģistrēt",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Register a beekeeper",
+   "pl": {
+    "text": "Zarejestruj pszczelarza",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Arıcı kaydet",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Registrar un apicultor",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Reģistrēt biškopi",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Approve (column on Role permissions)",
+   "pl": {
+    "text": "Zatwierdzenie",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Onayla",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Aprobar",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Apstiprināt",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Enter (column on Role permissions)",
+   "pl": {
+    "text": "Wprowadzanie",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Giriş",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Introducir",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Ievadīt",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Accept",
+   "pl": {
+    "text": "Akceptuj",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Kabul et",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Aceptar",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Pieņemt",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Incoming shipments",
+   "pl": {
+    "text": "Wysyłki przychodzące",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Gelen sevkiyatlar",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Envíos entrantes",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Ienākošie sūtījumi",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Received by",
+   "pl": {
+    "text": "Przyjął(ęła)",
+    "unsure": true,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Teslim alan",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Recibido por",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Saņēma",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Request (field of a data-subject request)",
+   "pl": {
+    "text": "Żądanie",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Talep et",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Solicitar",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Pieprasīt",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Request (button of a correction)",
+   "pl": {
+    "text": "Złóż wniosek",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Talep et",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Solicitar",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Pieprasīt",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Pending",
+   "pl": {
+    "text": "Oczekująca",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Gaida",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Bekliyor",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Pendiente",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Verified (organisation status)",
+   "pl": {
+    "text": "Zweryfikowana",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Doğrulandı",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Verificada",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Pārbaudīta",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Suspended",
+   "pl": {
+    "text": "Zawieszona",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Apturēta",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Askıda",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Suspendida",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Accepted (evidence status)",
+   "pl": {
+    "text": "Zaakceptowany",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Kabul",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Aceptado",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Pieņemts",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Verified (registry number status)",
+   "pl": {
+    "text": "Zweryfikowano",
+    "unsure": true,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Doğrulandı",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Verificada",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Pārbaudīta",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Open (button)",
+   "pl": {
+    "text": "Otwórz",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Aç",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Abrir",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Atvērts",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Revoke",
+   "pl": {
+    "text": "Cofnij",
+    "unsure": true,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "İptal et",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Revocar",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Atsaukt",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Bought this honey?",
+   "pl": {
+    "text": "Kupiłeś(-aś) ten miód?",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Bu balı aldınız mı?",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "¿Compró esta miel?",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Nopirkāt šo medu?",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Temperature (°C)",
+   "pl": {
+    "text": "Temperatura (°C)",
+    "unsure": true,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "Sıcaklık (°C)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "Temperatura (°C)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Temperatūra (°C)",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Verify report (Honey Story)",
+   "pl": {
+    "text": "Sprawdź raport",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "… raporunu doğrula",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "Verificar el informe",
+    "unsure": true,
+    "source": "translated"
+   },
+   "lv": {
+    "text": "Pārbaudīt pārskatu",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Not approved by you:",
+   "pl": {
+    "text": "Nie zatwierdzasz:",
+    "unsure": true,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Sizin onaylamadıklarınız:",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "No los aprueba usted:",
+    "unsure": false,
+    "source": "interface"
+   },
+   "lv": {
+    "text": "Jūs neapstiprināt:",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Role short names (RO, SAO, An, LM, St, FI, QAO, OA, CO, PA, Bk, Con, Vis)",
+   "lv": {
+    "text": "BRS, PPS, An, LabV, Db, LI, KNS, OA, AS, PA, Bk, Pat, Apm",
+    "unsure": true,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "AKG, NKS, An, LM, Çal, SD, KGS, KY, US, PY, Ar, Tük, Zi",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "RO, SAO, An, LM, St, FI, QAO, OA, CO, PA, Bk, Con, Vis",
+    "unsure": true,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "RO, SAO, An, LM, St, FI, QAO, OA, CO, PA, Bk, Con, Vis (skróty pozostają w wersji angielskiej)",
+    "unsure": true,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "Apiary (station)",
+   "lv": {
+    "text": "Drava",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Arılık",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Apiario",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Pasieka",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Delivery (station)",
+   "lv": {
+    "text": "Piegāde",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Teslim",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Entrega",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Dostawa",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Lab (station)",
+   "lv": {
+    "text": "Laboratorija",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Laboratuvar",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Laboratorio",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Laboratorium",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Processing (station)",
+   "lv": {
+    "text": "Apstrāde",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "İşleme",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Procesamiento",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Przetwarzanie",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Shelf (station)",
+   "lv": {
+    "text": "Plaukts",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Raf",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Estantería",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Półka",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Send a new code",
+   "lv": {
+    "text": "Sūtīt jaunu kodu",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Yeni kod gönder",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Enviar un código nuevo",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Wyślij nowy kod",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Raw honey lot",
+   "lv": {
+    "text": "Neapstrādāta medus partija",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Ham bal lotu",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Lote de miel cruda",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Partia surowego miodu",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Verified (organisation)",
+   "lv": {
+    "text": "Pārbaudīta",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Doğrulandı",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Verificada",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zweryfikowana",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Verify",
+   "lv": {
+    "text": "Pārbaudīt",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Doğrula",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Verificar",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zweryfikuj",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Request documents",
+   "lv": {
+    "text": "Pieprasīt dokumentus",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Belge iste",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Solicitar documentos",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zażądaj dokumentów",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Suspend",
+   "lv": {
+    "text": "Apturēt",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Askıya al",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Suspender",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zawieś",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Reinstate",
+   "lv": {
+    "text": "Atjaunot",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Yeniden etkinleştir",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Restablecer",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Przywróć",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Roles and permissions",
+   "lv": {
+    "text": "Lomas un atļaujas",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Roller ve yetkiler",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Roles y permisos",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Role i uprawnienia",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "CCP responsibilities",
+   "lv": {
+    "text": "KKP atbildība",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "KKN sorumlulukları",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Responsabilidades de PCC",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Odpowiedzialności za KPK",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Reference data",
+   "lv": {
+    "text": "Atsauces dati",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Referans veriler",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Datos de referencia",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Dane referencyjne",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Notices and consent texts",
+   "lv": {
+    "text": "Paziņojumi un piekrišanas teksti",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Aydınlatma ve rıza metinleri",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Avisos y textos de consentimiento",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Informacje i treści zgód",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Data-subject requests",
+   "lv": {
+    "text": "Datu subjektu pieprasījumi",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "İlgili kişi başvuruları",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Solicitudes de los interesados",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Żądania osób, których dane dotyczą",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Read only",
+   "lv": {
+    "text": "Tikai lasāms",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Salt okunur",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Solo lectura",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Tylko do odczytu",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Open (button in the Set-up lists)",
+   "lv": {
+    "text": "Atvērt",
+    "unsure": false,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Aç",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Abrir",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Otwarte",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Reviews (My work group)",
+   "lv": {
+    "text": "Pārskati",
+    "unsure": true,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "İncelemeler",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Revisiones",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Oceny",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "Verified (registry number)",
+   "lv": {
+    "text": "Pārbaudīta",
+    "unsure": true,
+    "source": "interface"
+   },
+   "tr": {
+    "text": "Doğrulandı",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Verificada",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Zweryfikowana",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "plant (processing and packing plant)",
+   "lv": {
+    "text": "uzņēmums (apstrādes un iepakošanas uzņēmums)",
+    "unsure": true,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "tesis (işleme ve paketleme tesisi)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "planta (planta de procesamiento y envasado)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "zakład (zakład przetwarzający i konfekcjonujący)",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "sample jar",
+   "lv": {
+    "text": "parauga burka",
+    "unsure": false,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "Numune kavanozu",
+    "unsure": false,
+    "source": "interface"
+   },
+   "es": {
+    "text": "Frasco de muestra",
+    "unsure": false,
+    "source": "interface"
+   },
+   "pl": {
+    "text": "Słoik z próbką",
+    "unsure": false,
+    "source": "interface"
+   }
+  },
+  {
+   "en": "value-chain activities",
+   "lv": {
+    "text": "vērtību ķēdes darbības",
+    "unsure": false,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "değer zinciri faaliyetleri",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "actividades de la cadena de valor",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "czynności w łańcuchu wartości",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "first person / second person",
+   "lv": {
+    "text": "pirmā persona / otrā persona",
+    "unsure": false,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "birinci kişi / ikinci kişi",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "primera persona / segunda persona, distinta",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "pierwsza osoba / druga osoba",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "role chip",
+   "lv": {
+    "text": "lomas žetons",
+    "unsure": true,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "rol etiketi",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "indicador de rol",
+    "unsure": true,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "wskaźnik roli",
+    "unsure": true,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "hash chain",
+   "lv": {
+    "text": "jaucējvērtību ķēde",
+    "unsure": false,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "hash zinciri",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "cadena de hash",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "łańcuch skrótów",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "fingerprint (file, SHA-256)",
+   "lv": {
+    "text": "nospiedums",
+    "unsure": true,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "parmak izi (dosya, SHA-256)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "huella SHA-256",
+    "unsure": true,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "odcisk (pliku, SHA-256)",
+    "unsure": true,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "pseudonym",
+   "lv": {
+    "text": "pseidonīms",
+    "unsure": false,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "takma ad",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "seudónimo",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "pseudonim",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "upstream / downstream",
+   "lv": {
+    "text": "augšupējā ķēde / lejupējā ķēde",
+    "unsure": false,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "kaynak / sevkiyatlar",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "aguas arriba / aguas abajo",
+    "unsure": true,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "w górę łańcucha / w dół łańcucha",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "best-before date",
+   "lv": {
+    "text": "minimālā derīguma termiņš",
+    "unsure": false,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "son tüketim tarihi",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "fecha de consumo preferente",
+    "unsure": true,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "data minimalnej trwałości",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "data minimisation",
+   "lv": {
+    "text": "datu minimizēšana",
+    "unsure": false,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "veri en aza indirme",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "minimizar los datos",
+    "unsure": true,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "minimalizacja danych",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "tin, bucket, drum, barrel",
+   "lv": {
+    "text": "kanna, spainis, muca, buča",
+    "unsure": true,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "teneke, kova, varil, fıçı",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "lata, balde, tambor, barril",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "puszka, wiadro, bęben, beczka",
+    "unsure": true,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "wholesaler / retailer",
+   "lv": {
+    "text": "vairumtirgotājs / mazumtirgotājs",
+    "unsure": false,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "toptancı / perakendeci",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "mayorista / minorista",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "hurtownik / detalista",
+    "unsure": false,
+    "source": "translated"
+   }
+  },
+  {
+   "en": "operator (of the server or platform)",
+   "lv": {
+    "text": "uzturētājs",
+    "unsure": true,
+    "source": "translated"
+   },
+   "tr": {
+    "text": "işletmeci",
+    "unsure": false,
+    "source": "translated"
+   },
+   "es": {
+    "text": "operador (del servidor o de la plataforma)",
+    "unsure": false,
+    "source": "translated"
+   },
+   "pl": {
+    "text": "operator (serwera lub platformy)",
+    "unsure": false,
+    "source": "translated"
+   }
+  }
+ ]
+}

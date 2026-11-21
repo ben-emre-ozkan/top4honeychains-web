@@ -1,0 +1,20 @@
+{
+  "name": "top4honeychains-manual-builder",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Builds the TOP4HoneyChains user manuals (Word and PDF) from Markdown.",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs all",
+    "board": "node ../assets/board/render_board.mjs"
+  },
+  "dependencies": {
+    "docx": "9.8.1",
+    "jszip": "3.10.1",
+    "marked": "16.4.2",
+    "pdfjs-dist": "4.10.38"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

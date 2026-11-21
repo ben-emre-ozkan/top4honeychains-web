@@ -24,19 +24,34 @@ using TOP4HoneyChains.Web.Services.OrgModel;
 // of the registered beekeeper, the lab, the control sheets, one finalized batch, a shipment to the shop) goes through the pages as
 // the person who does it. Writes the logins file to Downloads. Never prints a password.
 //   dotnet run --project tools/live-like            (stop run-demo.ps1 first)
+// The user manuals (docs/manual/capture/setup-db.ps1) build the same cast in their own fictional-only database: LIVE_LIKE_DATABASE
+// (only TOP4HoneyChainsDb_Manual besides the default), LIVE_LIKE_CONTENT_ROOT (the app's files go there, not to the web project's
+// App_Data), LIVE_LIKE_LOGINS (the logins file), LIVE_LIKE_PASSWORD (the practice password), LIVE_LIKE_BASE_URL (links in the SMS)
+// and LIVE_LIKE_CAST (a copy of cast.json with fictional organisation names; only for the manual's database).
 const string Server = @"(localdb)\MSSQLLocalDB";
-const string Database = "TOP4HoneyChainsDb";
+var Database = Environment.GetEnvironmentVariable("LIVE_LIKE_DATABASE") is { Length: > 0 } dbName ? dbName : "TOP4HoneyChainsDb";
+if (Database is not ("TOP4HoneyChainsDb" or "TOP4HoneyChainsDb_Manual"))
+    throw new InvalidOperationException("LIVE_LIKE_DATABASE may only name TOP4HoneyChainsDb_Manual.");
+var manualRun = Database != "TOP4HoneyChainsDb";
 var inv = CultureInfo.InvariantCulture;
 var watch = Stopwatch.StartNew();
 
 var repo = FindRepo();
 var webDir = Path.Combine(repo, "TOP4HONEYCHAINS", "TOP4HoneyChains.Web");
-using var castJson = JsonDocument.Parse(File.ReadAllText(Path.Combine(repo, "tools", "live-like", "cast.json"), Encoding.UTF8));
+var castFile = manualRun && Environment.GetEnvironmentVariable("LIVE_LIKE_CAST") is { Length: > 0 } cf ? cf : Path.Combine(repo, "tools", "live-like", "cast.json");
+using var castJson = JsonDocument.Parse(File.ReadAllText(castFile, Encoding.UTF8));
 var cast = castJson.RootElement;
 var values = JsonDocument.Parse(File.ReadAllText(Path.Combine(repo, "docs", "partner-test", "values.json"), Encoding.UTF8)).RootElement;
 var downloads = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
-var loginsFile = Path.Combine(downloads, "TOP4-local-logins.txt");
-var password = PracticePassword(downloads) ?? throw new InvalidOperationException("No practice password found in Downloads (TOP4-local-logins.txt or TOP4-presenter-logins.txt).");
+var loginsFile = manualRun
+    ? Environment.GetEnvironmentVariable("LIVE_LIKE_LOGINS") is { Length: > 0 } lf ? lf : throw new InvalidOperationException("Set LIVE_LIKE_LOGINS for " + Database + ".")
+    : Path.Combine(downloads, "TOP4-local-logins.txt");
+var password = (manualRun ? Environment.GetEnvironmentVariable("LIVE_LIKE_PASSWORD") : PracticePassword(downloads))
+               ?? throw new InvalidOperationException(manualRun ? "Set LIVE_LIKE_PASSWORD." : "No practice password found in Downloads (TOP4-local-logins.txt or TOP4-presenter-logins.txt).");
+var contentRoot = manualRun
+    ? Environment.GetEnvironmentVariable("LIVE_LIKE_CONTENT_ROOT") is { Length: > 0 } cr && File.Exists(Path.Combine(cr, "appsettings.json")) ? cr : throw new InvalidOperationException("Set LIVE_LIKE_CONTENT_ROOT to a folder with the app's appsettings files.")
+    : null;
+var baseUrl = Environment.GetEnvironmentVariable("LIVE_LIKE_BASE_URL") is { Length: > 0 } bu ? bu : "http://localhost:5255";
 var connectionString = $"Server={Server};Database={Database};Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=True";
 
 // ---- guards: the local copy only, the app stopped, no cast yet
@@ -48,7 +63,7 @@ await using (var c = new SqlConnection(connectionString))
     await using var r = await cmd.ExecuteReaderAsync();
     await r.ReadAsync();
     if (r.IsDBNull(0) || r.GetInt32(0) != 1 || r.GetString(1) != Database)
-        throw new InvalidOperationException("Runs only on the LocalDB database TOP4HoneyChainsDb.");
+        throw new InvalidOperationException("Runs only on the LocalDB database " + Database + ".");
     if (r.GetInt32(2) > 0)
         throw new InvalidOperationException("The cast exists already. Run the cleanup script next to the backup first.");
 }
@@ -58,9 +73,9 @@ if (System.Net.NetworkInformation.IPGlobalProperties.GetIPGlobalProperties().Get
 var phoneKey = PhonePageKey(webDir);
 // the test host finds the web project through MvcTestingAppManifest.json in the current directory
 Directory.SetCurrentDirectory(AppContext.BaseDirectory);
-await using var app = new LocalApp(webDir, connectionString, phoneKey);
+await using var app = new LocalApp(contentRoot ?? webDir, connectionString, phoneKey, baseUrl);
 _ = app.Server;
-Log("app started in-process on the local copy");
+Log("app started in-process on " + Database);
 
 T Svc<T>(IServiceScope s) where T : notnull => s.ServiceProvider.GetRequiredService<T>();
 async Task<TResult> Db<TResult>(Func<TOP4HoneyChainsContext, Task<TResult>> work)
@@ -629,13 +644,14 @@ static byte[] PdfBytes(string title, string[] lines)
 
 sealed class LocalApp : WebApplicationFactory<web::Program>
 {
-    private readonly string _contentRoot, _connection, _phoneKey;
+    private readonly string _contentRoot, _connection, _phoneKey, _baseUrl;
 
-    public LocalApp(string contentRoot, string connection, string phoneKey)
+    public LocalApp(string contentRoot, string connection, string phoneKey, string baseUrl)
     {
         _contentRoot = contentRoot;
         _connection = connection;
         _phoneKey = phoneKey;
+        _baseUrl = baseUrl;
     }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
@@ -647,7 +663,7 @@ sealed class LocalApp : WebApplicationFactory<web::Program>
             ["ConnectionStrings:DefaultConnection"] = _connection,
             ["Features:OrgRoleModel"] = "true", ["Features:CustodyIntake"] = "true", ["Features:BeekeeperAccounts"] = "true", ["Features:ConsumerAccounts"] = "true",
             ["Sms:Provider"] = "Fake", ["Sms:AllowFake"] = "true", ["Sms:PhonePageKey"] = _phoneKey,
-            ["App:PublicBaseUrl"] = "http://localhost:5255"
+            ["App:PublicBaseUrl"] = _baseUrl
         };
         builder.ConfigureAppConfiguration((_, config) => config.AddInMemoryCollection(settings));
     }

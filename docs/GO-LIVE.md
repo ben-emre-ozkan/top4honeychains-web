@@ -85,6 +85,7 @@ The seeds in `db/migrations/002_ccp_integrity.sql` come from the Turkish Food Co
 
 ### Organization model and audit log (D-22 to D-39)
 - [ ] `Features:OrgRoleModel` is **on** at go-live (owner, 2026-11-21; replaces [D-33](DECISIONS.md)). Set it in the server config; the default in `appsettings.json` stays `false`. What it needs is listed in "Feature switches on at go-live" below.
+- [ ] **User manuals**: the user manuals in `docs/manual` describe the platform with all four feature switches on, as the live server runs them (see "Feature switches on at go-live").
 - [x] The audit log is **on** from go-live, independent of the flag ([D-34](DECISIONS.md)); migration 004 creates the table and its append-only trigger.
 - [ ] The app's DB login is **not** `db_owner` (a `db_owner` can disable the trigger). On the LocalDB copy the IIS identity `DefaultAppPool` exists as a DB user; confirm the real one. Give it only the rights the app needs (`db_datareader`, `db_datawriter`, `EXECUTE` if needed) ([D-39](DECISIONS.md)).
 - [ ] `DENY UPDATE, DELETE ON dbo.AuditEntries TO [<app user>];` for that login.

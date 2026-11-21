@@ -1,77 +1,27 @@
-# TOP4HoneyChains user manual
+# TOP4HoneyChains user manuals
 
-The user manual of the TOP4HoneyChains web platform in the five UI languages. English is the master; Turkish is reviewed; Spanish, Polish and Latvian are drafts for partner review.
+This folder holds everything that makes the user manuals of the web platform: the text (Markdown, one folder per language), the screenshots, the template that turns them into Word and PDF files, and the institution block (partners and supporters).
 
-| Language | Sources | PDF |
-|---|---|---|
-| English (master) | [en/](en/README.md) | `dist/TOP4HoneyChains-User-Manual-EN.pdf` |
-| Türkçe | [tr/](tr/README.md) | `dist/TOP4HoneyChains-User-Manual-TR.pdf` |
-| Español (draft) | [es/](es/README.md) | `dist/TOP4HoneyChains-User-Manual-ES.pdf` |
-| Polski (draft) | [pl/](pl/README.md) | `dist/TOP4HoneyChains-User-Manual-PL.pdf` |
-| Latviešu (draft) | [lv/](lv/README.md) | `dist/TOP4HoneyChains-User-Manual-LV.pdf` |
-
-## Source of truth
-
-The manual describes the application as it runs with `Features:OrgRoleModel = true` and the D-78 switches on (`Features:CustodyIntake`, `Features:BeekeeperAccounts`); chapter 15 lists the switches and what they change while off. It was written from the code (controllers, views, permission checks, `db/migrations`, in particular `013_role_permissions.sql` and `015_ccp0_reception_officer.sql`). UI labels and messages are taken from `TOP4HONEYCHAINS/TOP4HoneyChains.Web/Resources/SharedResource.<lang>.resx`; role, capability, status and CCP names from the reference translations in the database. When the application changes, update the English chapter first, then the same section in the other languages.
-
-## Structure
-
-Each language folder has the same files, the same headings and the same anchors (`{#anchor}` after a heading), so links and screenshots line up across languages:
-
-1. About TOP4HoneyChains
-2. Capabilities, organizations and roles (with the permission matrix)
-3. Getting started
-4. The end-to-end flow
-5. – 13. One chapter per role (12 Beekeeper registration officer, 13 Compliance Officer)
-14. The beekeeper portal
-15. Platform administrator
-16. Trust and privacy
-17. Glossary and FAQ
-
-## Figures, tables and references
-
-The build numbers figures and tables in order and writes the captions in each language ("Figure 3. …", "Tabla 5. …"); the lists of figures and tables follow the contents. In the sources (the keywords stay in English in every language):
-
-- a screenshot is a `<!-- SHOT: <id> -->` line followed by a line `Figure: <caption>`; its anchor is `#fig-<id>`;
-- a table is preceded by a line `Table: <caption> {#tbl-<id>}` and a blank line;
-- a reference is a link `[Figure](#fig-<id>)` or `[Table](#tbl-<id>)`; the build replaces its text with the number.
-
-The build reports any figure or table without a caption and any reference to an unknown id ("problems" in its output must be 0).
-
-## Cover and logos
-
-The cover shows the platform logo, the project and the ICT-AGRI-FOOD 2022 call, the programme logo with an acknowledgement line, and the consortium partners. The logos come from `docs/brand/`:
-
-- `programme/`: the ICT-AGRI-FOOD ERA-NET Cofund logo, shown prominently with the acknowledgement line (text per language in `build.mjs`, provisional until the wording is confirmed);
-- `partners/`: the consortium partners' logos, in file-name order (`01-…` to `09-…`), in a strip along the bottom captioned "Consortium" in each language, all at the same height;
-- `funders/` (optional, not present yet): the funding agencies' logos, shown as a second strip captioned "Funding", and `acknowledgement.<lang>.md` or `acknowledgement.md`, which replaces the acknowledgement line. Partner logos are never shown as funders.
-
-`docs/brand/partners/README.md` says where each logo comes from and which ones need a better file.
-
-## Planned application changes and review
-
-[PLANNED-APP-CHANGES.md](PLANNED-APP-CHANGES.md) lists the application changes the review asked for; all but the multi-country origin map (A8) shipped with D-78 (D-84); [REVIEW-RESPONSE-2026-10.md](REVIEW-RESPONSE-2026-10.md) answers the review of October 2026 comment by comment.
+- Start with `BRIEF.md`: goal, rules, phases, writing format.
+- Build: `cd build`, `npm install`, `node build.mjs en` (or `tr`, `es`, `pl`, `lv`, `all`). Results are written to `dist/`.
+- Layout sample: `sample/`.
 
 ## Screenshots
 
-Wherever a screen helps, the text has a line `<!-- SHOT: <id> -->`. [shots.yml](shots.yml) is the capture list: for each shot the page, role, [DEMO] record, UI state, viewport, what to highlight and the file name `img/<lang>/<id>.png`. The capture script `capture.mjs` in this folder takes the shots against the local demo environment:
+The pictures come from the platform's own run on a database with fictional data only (`TOP4HoneyChainsDb_Manual`, the Şile cast of `tools/live-like`). Never take pictures from the local copy of the live database.
 
-```
-node capture.mjs            # all five languages
-node capture.mjs tr en      # only some
-```
+1. Once: `powershell -ExecutionPolicy Bypass -File capture\setup-db.ps1` (stop `run-demo.ps1` first). It builds the database and keeps a backup for resets; the practice password goes to `capture/.env.local` (untracked).
+2. `cd capture`, `npm install`, `npx playwright install chromium`, then `node capture.mjs en`. Every run restores the backup, starts the app on port 5256 and carries one honey through the whole journey, taking each picture where the step happens (about 3 minutes). `--only=03,04` takes only those chapters' pictures.
+3. `capturepp.ps1 stop` stops the app afterwards.
 
-It reads the demo users' credentials at run time from the untracked `demo_users.txt` at the repository root; they are never stored in this folder or in the repository. The build inserts each image where its marker is and leaves out a marker whose image is missing.
+## Changing the institutions
 
-## Building the PDFs
+Names, order and logos are in `assets/institutions.json` and `assets/logos/`. After a change run `node assets/board/render_board.mjs` (it uses the Playwright installed in `capture/`) to redraw the board on the cover, then build again. Logos are the institutions' own files: do not redraw or recolour them.
 
-Requires Node.js and Chrome, Edge or Chromium on the machine.
+## Credits
 
-```
-cd docs/manual
-npm install
-node build.mjs            # all five languages
-node build.mjs tr en      # only some
-```
+The board uses the open fonts Instrument Serif, Instrument Sans and Bricolage Grotesque (SIL Open Font License 1.1). The pages use Calibri, Cambria and Consolas, which come with Microsoft Office; LibreOffice replaces them with Carlito, Caladea and its own fixed-width font. Sources of the logo files are listed in `assets/README.md`.
 
-Set `MANUAL_DATE=YYYY-MM-DD` to print a fixed version date on the cover (default: today). The build renders each language to `dist/TOP4HoneyChains-User-Manual-<LANG>.html` and `.pdf`: a cover (W3 logo, "TÜBİTAK TOP4HoneyChains", title, language, version date, draft note for ES/PL/LV), a table of contents, and the chapters in the honey-foam palette and the app's fonts. If the PDF step fails, the HTML is still written.
+## Glossary
+
+`glossary-data.json` holds the terms of the manuals in five languages (from the interface where it has the term, otherwise chosen by the translators; unsure terms are marked). `python build/glossary.py` writes `glossary.md` and `dist/TOP4HoneyChains_Glossary.docx` (one table, unsure terms marked with (?)), which goes out with the PDFs for the partners to check.
