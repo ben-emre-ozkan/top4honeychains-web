@@ -153,9 +153,9 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             using (var scope = _app.Services.CreateScope())
                 Assert.False((await scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>().FindByNameAsync("zz_test_cons_acc"))!.PhoneNumberConfirmed);
             await client.PostAsync("/Consumer/VerifyPhone", new() { ["phone"] = "+905320007701", ["code"] = code }, "/Consumer/Account");
-            Assert.Contains("+905320007701", WebUtility.HtmlDecode(await client.HtmlAsync("/Consumer/Account")));
+            Assert.Contains("+90 532 000 77 01", WebUtility.HtmlDecode(await client.HtmlAsync("/Consumer/Account")));   // D-94: shown with spaces
             await client.PostAsync("/Consumer/RemovePhone", new(), "/Consumer/Account");
-            Assert.DoesNotContain("+905320007701", WebUtility.HtmlDecode(await client.HtmlAsync("/Consumer/Account")));
+            Assert.DoesNotContain("+90 532 000 77 01", WebUtility.HtmlDecode(await client.HtmlAsync("/Consumer/Account")));
 
             await client.PostAsync("/Consumer/Language", new() { ["language"] = "pl" }, "/Consumer/Account");
             Assert.Equal("pl", (await AccountAsync("zz_test_cons_acc"))!.Language);

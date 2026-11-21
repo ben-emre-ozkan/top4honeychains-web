@@ -13,7 +13,7 @@
     // pages that need a query parameter return 404 after switching language (FB-34)
     var languageReturnUrl = $"{Context.Request.PathBase}{Context.Request.Path}{Context.Request.QueryString}";
     var sceneOn = await MenuUi.ShowAnimationsAsync();
-    var languages = new[] { ("en", "English", "us_flag.jpg"), ("tr", "Türkçe", "turkey_flag.jpg"), ("es", "Español", "argentina_flag.jpg"), ("pl", "Polski", "poland_flag.jpg"), ("lv", "Latviešu", "latvia_flag.jpg") };
+    var languages = new[] { ("en", "English", "uk_flag.svg"), ("tr", "Türkçe", "turkey_flag.jpg"), ("es", "Español", "argentina_flag.jpg"), ("pl", "Polski", "poland_flag.jpg"), ("lv", "Latviešu", "latvia_flag.jpg") };
     var (_, lang, flag) = languages.FirstOrDefault(l => l.Item1 == culture, languages[0]);
 
     // With Features:OrgRoleModel, organization members (no Administrator role) get their own menu
