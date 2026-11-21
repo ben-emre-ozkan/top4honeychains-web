@@ -1,20 +1,24 @@
 # Outline of the user manual (all languages)
 
-Source: `inventory.md` and the running application (fictional database `TOP4HoneyChainsDb_Manual`, Şile cast). The manual describes the platform with the organization model, custody intake, beekeeper accounts and consumer accounts switched on (open question 1 of the inventory).
+Source: `inventory.md` and the running application (fictional database `TOP4HoneyChainsDb_Manual`, the Şile cast with fictional organisation names). The manual describes the platform with the organization model, custody intake, beekeeper accounts and consumer accounts switched on (owner's decision of 21 November 2026, recorded in `docs/GO-LIVE.md`). Phase 1b (21 November 2026) added the conceptual and reference chapters of the October manual, updated to the code of D-94.
 
 Chapters follow the journey of the honey. Picture names are `<chapter>-<number>-<name>.png`; `capture/capture.mjs` takes every one of them. Phone-sized pictures are marked (phone).
 
 The journey that `capture.mjs` carries out (each picture is taken where the step happens):
-Hatice Turan is registered (murat.kaya) → delivers chestnut honey in two tins (hasan.demir) → CCP 0 entered (hasan.demir) and approved (mehmet.ozturk) → the laboratory receives the jars, makes the composite sample, enters results (can.yildiz), the lab manager approves (deniz.koc) → lot control sheet entered (zeynep.arslan), approved (mehmet.ozturk) → new batch (zeynep.arslan) → batch control sheet entered and approved → finalizing requested and confirmed → shipment to Çarşı Market, receipt and storage (gizem.polat), storage approved (okan.kurt) → Honey Story on a phone → a consumer saves the honey and sends feedback → the association answers (mehmet.ozturk). The beekeeper portal is shown with the beekeeper Ali Yazıcı, who already has two deliveries.
+Hatice Turan is registered (murat.kaya) → delivers chestnut honey in two tins (hasan.demir) → CCP 0 entered (hasan.demir) and approved (mehmet.ozturk) → the laboratory receives the jars, makes the composite sample, enters results (can.yildiz), the lab manager approves (deniz.koc) → lot control sheet entered (zeynep.arslan), approved (mehmet.ozturk) → new batch (zeynep.arslan) → batch control sheet entered and approved → finalizing requested and confirmed → shipment to Çarşı Market (retailer), receipt and storage (gizem.polat), storage approved (okan.kurt) → Honey Story on a phone → a consumer saves the honey and sends feedback → the association answers (mehmet.ozturk). The beekeeper portal is shown with the beekeeper Ali Yazıcı, who already has two deliveries.
 
 ## About this manual {-}
 Who it is for, how it is organised (chapters per role along the journey), conventions (bold labels, numbered steps, numbered marks in pictures, menu paths), the sample data in the pictures is fictional.
 
 ## 1 The platform at a glance
-- What TOP4HoneyChains is for. The journey of the honey in five steps. Who does what (table of roles). The control points (table CCP 0 to CCP 10, who enters, who approves). What the consumer sees. Four-eyes rule.
-- Pictures: 01-01-home (the public start page).
+- What the platform is for (project, partner countries, funding by the EU and the national agencies; definition of data). The journey of the honey: what people do, what the platform records, first and second person. Who the platform is for (table incl. consumer and visitor). The control points (table CCP 0 to CCP 10). The four-eyes principle (table of first and second person). What the consumer reads.
+- Pictures: 01-01-home (the public start page), 01-02-flow (process flow of the finalized batch).
 
-## 2 Getting started
+## 2 Capabilities, organisations and roles
+- What decides what you may do. Capabilities as abilities. Value-chain activities and platform records. Organisation types and status. The role table (13 roles incl. Beekeeper, Consumer, Visitor). Data rights (CRUD + Approve) with notes. Permission matrix per platform activity. What an administrator can change. Ground rules. Memberships.
+- Pictures: none (tables).
+
+## 3 Getting started
 | Task | Pictures |
 |---|---|
 | Open the platform and choose the language | 02-01-language (sign-in page, language links marked) |
@@ -27,7 +31,7 @@ Who it is for, how it is organised (chapters per role along the journey), conven
 | Reset a forgotten password | 02-11-forgot-password |
 | Sign out | (02-08) |
 
-## 3 Beekeeper registration officer
+## 4 Beekeeper registration officer
 | Task | Pictures |
 |---|---|
 | Find a beekeeper or start a registration | 03-01-registration-list |
@@ -36,7 +40,7 @@ Who it is for, how it is organised (chapters per role along the journey), conven
 | Send the beekeeper the sign-in details | 03-07-details |
 | Registration without a mobile phone (signed photo) | (text only) |
 
-## 4 Sample acceptance officer: honey delivery
+## 5 Sample acceptance officer: honey delivery
 | Task | Pictures |
 |---|---|
 | See the deliveries | 04-01-deliveries |
@@ -44,7 +48,7 @@ Who it is for, how it is organised (chapters per role along the journey), conven
 | Print the labels | 04-06-delivery, 04-07-labels |
 | Enter CCP 0 (primary audit) | 04-08-my-work, 04-09-ccp0 |
 
-## 5 Laboratory: analyst and lab manager
+## 6 Laboratory: analyst and lab manager
 | Task | Pictures |
 |---|---|
 | Receive the sample jars | 05-01-my-work, 05-02-receive |
@@ -54,7 +58,7 @@ Who it is for, how it is organised (chapters per role along the journey), conven
 | Approve or return a report (lab manager) | 05-06-approve |
 | Verify a lab report | 05-07-verify (public page) |
 
-## 6 Staff: processing and packing
+## 7 Staff: processing and packing
 | Task | Pictures |
 |---|---|
 | See your lots and batches | 06-01-my-organization |
@@ -64,7 +68,7 @@ Who it is for, how it is organised (chapters per role along the journey), conven
 | Request finalizing | 06-05-request |
 | Ship honey to another organization | 06-06-shipments, 06-07-ship |
 
-## 7 Quality Assurance Officer
+## 8 Quality Assurance Officer
 | Task | Pictures |
 |---|---|
 | Approve CCP 0 | 07-01-my-work, 07-02-approve-ccp0 |
@@ -72,21 +76,26 @@ Who it is for, how it is organised (chapters per role along the journey), conven
 | Finalize a batch | 07-04-finalize, 07-05-finalized |
 | Answer consumer feedback | 07-06-feedback |
 
-## 8 Shop: receiving and storing honey
+## 9 Wholesaler and retailer: receiving and storing honey
 | Task | Pictures |
 |---|---|
 | Confirm a shipment | 08-01-incoming |
 | Record the storage conditions (CCP 10) | 08-02-storage |
 | Approve the storage record (Quality Assurance Officer) | 08-03-approve-storage |
 
-## 9 Organization admin and Compliance Officer
+## 10 Organization admin
 | Task | Pictures |
 |---|---|
 | See your organization's page and documents | 09-01-organization |
 | Publish a beekeeper page (association) | 09-02-beekeeper-pages |
-| Supervise as Compliance Officer | 09-03-compliance |
 
-## 10 Beekeeper portal (phone)
+## 11 Compliance Officer
+| Task | Pictures |
+|---|---|
+| Overview: tasks and where to find them | 09-03-compliance |
+| Review a signed photo; review the sampling quality; handle a data-subject request; record a consent withdrawal; check the approval mechanism; keep agreements and documents; keep the data controller details; read the organisation's audit entries; what happens next | (text and tables) |
+
+## 12 Beekeeper portal (phone)
 | Task | Pictures |
 |---|---|
 | Sign in and read the start page | 10-01-home (phone) |
@@ -95,7 +104,7 @@ Who it is for, how it is organised (chapters per role along the journey), conven
 | Manage your consents | 10-05-privacy (phone) |
 | Account: phone, language, password | 10-06-account (phone) |
 
-## 11 The Honey Story page (phone)
+## 13 The Honey Story page (phone)
 | Part | Pictures |
 |---|---|
 | Open the page from the QR code | 11-01-top (phone) |
@@ -104,7 +113,7 @@ Who it is for, how it is organised (chapters per role along the journey), conven
 | Lab results | 11-04-lab (phone) |
 | Process checks | 11-05-process (phone) |
 
-## 12 Consumer account (phone)
+## 14 Consumer account (phone)
 | Task | Pictures |
 |---|---|
 | Create an account | 12-01-sign-up (phone) |
@@ -112,7 +121,7 @@ Who it is for, how it is organised (chapters per role along the journey), conven
 | Send feedback to the producer | 12-03-feedback (phone) |
 | Read the answer, manage your account | 12-04-my-honeys (phone), 12-05-account (phone) |
 
-## 13 Platform administration
+## 15 Platform administration
 | Task | Pictures |
 |---|---|
 | The dashboard | 13-01-dashboard |
@@ -122,12 +131,26 @@ Who it is for, how it is organised (chapters per role along the journey), conven
 | Users and sign-in details | 13-07-users |
 | Records, audit log, corrections | 13-08-records, 13-09-audit |
 | Notices and translations | 13-10-notices, 13-11-translations |
+| Change the status of an organisation; capabilities; four-eyes exemption; revoke a membership; data controller | (13-04) |
+| Change the rights of a role; who enters and approves a control point | (13-05, 13-06) |
+| Edit a control point or a parameter; set the limits; mark limits as verified | 13-12-limits |
+| Maintain and translate the lists of the forms | (13-11) |
+| Verify a registry number; change a beekeeper's association | 13-13-registry |
+| Request and decide a correction; correct the facts of a delivery | (text) |
+| Open the recall report | 13-14-recall |
+| Publish a new version of a notice | (13-10) |
+| Check the data retention report | 13-15-retention |
+| Search the audit log; check the hash chain | (13-09) |
+| Settings in the server configuration | (table) |
 
-## 14 Problems and questions
-Text only: locked account (5 attempts, 15 minutes), temporary password expired (72 hours), no SMS code, the code was refused (details changed after sending, 5 minutes), a menu item is missing (role, capability, organization not verified), a value outside its limit (confirm dialog), a lot that does not appear in New batch, a finalized batch cannot be changed, file too large or wrong type, seal numbers must be different.
+## 16 Trust and privacy
+Text and tables: the audit log and its hash chain; records that do not change; codes and file fingerprints; notices, consents and the data controller; what the public can read; how long data is kept; consumer accounts and pseudonyms.
+
+## 17 Problems and questions
+Text only (Phase 1 questions plus the October questions that still apply): locked account (5 attempts, 15 minutes), temporary password expired (72 hours), no SMS code, the code was refused (details changed after sending, 5 minutes), a menu item is missing (role, capability, organization not verified), a value outside its limit (confirm dialog), a lot that does not appear in New batch, a finalized batch cannot be changed, file too large or wrong type, seal numbers must be different.
 
 ## Glossary {-}
-Terms of the interface: batch, lot, CCP, control sheet, composite sample, counter-sample, four-eyes, Honey Story, business number, registry number (AKS), seal, finalize, capability, role, organization, consent.
+Terms of the interface and of the conceptual chapters: batch, lot, CCP, control sheet, composite sample, counter-sample, four-eyes, Honey Story, business number, registry number (AKS), seal, finalize, capability, role, organization, consent.
 
 ## Left out (and why)
 - Pages for development and demonstrations only: SMS outbox, the phone page, the demo inbox.

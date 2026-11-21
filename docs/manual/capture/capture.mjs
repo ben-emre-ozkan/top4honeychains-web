@@ -702,6 +702,28 @@ try {
         await snap(page, '13-10-notices');
         await go(page, '/ReferenceTranslations/Index');
         await snap(page, '13-11-translations');
+        // Phase 1b: the limits of a parameter, the registry, the recall report, data retention, the process flow of the batch
+        // the parameter list is paged: open the limits of Electrical Conductivity by its number in the reference data
+        const ecId = Object.keys(params).find(id => params[id].name === 'Electrical Conductivity');
+        if (!ecId) throw new Error('no parameter Electrical Conductivity');
+        await go(page, `/CriticalControlPointParameters/Limits/${ecId}`);
+        await snap(page, '13-12-limits', { scroll: 'top' });
+        if (business) {
+            await go(page, '/Registry/Index');
+            const regHref = await page.locator('a[href*="/Registry/Edit/"]').evaluateAll((as, b) => as.map(a => [a.getAttribute('href'), a.closest('tr')?.innerText || ''])
+                .find(([, row]) => row.includes(b))?.[0], business);
+            if (!regHref) throw new Error('no registry row for ' + business);
+            await go(page, regHref);
+            await snap(page, '13-13-registry', { scroll: 'top' });
+        }
+        if (batch) {
+            await go(page, `/Recall/Batch/${batch}`);
+            await snap(page, '13-14-recall', { scroll: 'top' });
+            await go(page, `/Flow/Batch/${batch}`);
+            await snap(page, '01-02-flow', { scroll: 'top' });
+        }
+        await go(page, '/Retention/Index');
+        await snap(page, '13-15-retention', { scroll: 'top' });
     }
     // pictures over about 400 KB are stored with a palette (BRIEF.md: keep a picture under about 400 KB)
     const shrink = spawnSync('python', [path.join(HERE, 'shrink.py'), SCREENS], { encoding: 'utf8' });
