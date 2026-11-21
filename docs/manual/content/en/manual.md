@@ -20,7 +20,7 @@ Read chapter 2 first, then the chapter of your role.
 - Steps are numbered. When a picture has a numbered mark, the number is the number of the step that uses that control.
 - Text that you type is written like this: `TR-BEE-2026-000002`.
 
-The people, organisations, beekeepers and values in the pictures are sample data. Only the directorate and the association use real names of the Şile district; everybody else is invented.
+The people, organisations, beekeepers and values in the pictures are sample data: every name of a person or an organisation is invented. Only the villages and districts of the apiaries are real places.
 
 # The platform at a glance
 
@@ -156,6 +156,8 @@ The marks in the picture show:
 
 The user menu has these items:
 
+Table: The parts of the screen {#tbl-screen}
+
 | Item | What it does |
 | --- | --- |
 | **Profile** | Shows your user name and lets you verify your mobile phone and change your password. |
@@ -200,6 +202,8 @@ Open the user menu and select **Logout**. On a shared computer, always sign out 
 
 The Beekeeper registration officer of a district directorate registers beekeepers on the platform. A registration confirms three things: the national registry number, the beekeeper's mobile phone (by a code sent to it) and your attestation that you have seen the identity document and the registry record.
 
+Table: Tasks of the beekeeper registration officer {#tbl-tasks-ro}
+
 | Task | Where |
 | --- | --- |
 | Find a beekeeper or start a registration | **Beekeeper registration** |
@@ -238,6 +242,8 @@ Do this with the beekeeper in front of you, with their identity document and mob
 ![Consents, attestation and the button that sends the code](screens/03-04-form-consents.png)
 
 The fields of sections 1 and 2:
+
+Table: The fields of the registration form {#tbl-reg-fields}
 
 | Field | What to enter | Required |
 | --- | --- | --- |
@@ -292,6 +298,8 @@ If the beekeeper has no mobile phone, tick **The beekeeper has no mobile phone (
 
 The Sample acceptance officer of a plant records each honey delivery. Every container is recorded with its seals, a sample jar and a counter-sample jar are filled from it and sealed, and the beekeeper confirms the whole delivery with a code sent by SMS. Each delivery becomes a raw honey lot of your organisation.
 
+Table: Tasks of the sample acceptance officer {#tbl-tasks-sao}
+
 | Task | Where |
 | --- | --- |
 | See the deliveries | **Deliveries (intake)** |
@@ -327,6 +335,8 @@ Select **Deliveries (intake)** in the menu. The list shows each lot with its dat
 
 The fields of section 1:
 
+Table: The fields of a delivery {#tbl-delivery-fields}
+
 | Field | What to enter | Required |
 | --- | --- | --- |
 | **Apiary** | where the honey comes from | yes |
@@ -336,6 +346,8 @@ The fields of section 1:
 | **Province**, **District** | the origin of the honey | yes |
 
 The columns of section 2, one row per container:
+
+Table: The columns of the table Containers and samples {#tbl-containers}
 
 | Column | What to enter |
 | --- | --- |
@@ -401,6 +413,8 @@ The Quality Assurance Officer approves it next (chapter 7). **CCP 1** also appea
 # Laboratory: analyst and lab manager
 
 The laboratory checks the seal of each sample jar on arrival, makes a composite sample of each lot, enters the results with the signed report and lets the Lab manager approve them. The approved report becomes CCP 1 of the lot.
+
+Table: Tasks in the laboratory {#tbl-tasks-lab}
 
 | Task | Who | Where |
 | --- | --- | --- |
@@ -473,6 +487,8 @@ Anyone can check a report without signing in: open **Verify a lab report** on th
 # Staff: processing and packing
 
 Staff of a plant fill in the control sheets of the lots and the batches, put approved lots together into batches, request the finalizing of a batch and ship honey to other organisations.
+
+Table: Tasks of the staff {#tbl-tasks-staff}
 
 | Task | Where |
 | --- | --- |
@@ -554,6 +570,8 @@ A shipment reserves its quantity at once; custody moves when the receiver confir
 
 The Quality Assurance Officer approves what others entered: CCP 0 of each delivery, the control sheets of lots and batches, the finalizing of batches and, in a shop, the storage records. The officer also answers consumer feedback. You never approve a record you entered yourself.
 
+Table: Tasks of the Quality Assurance Officer {#tbl-tasks-qao}
+
 | Task | Where |
 | --- | --- |
 | Approve CCP 0 | **My work > Values to approve** |
@@ -613,6 +631,8 @@ The consumer reads the answer on their **My honeys** page. Use **Mark as read** 
 # Shop: receiving and storing honey
 
 The staff of a shop confirm the honey that arrives and record its storage conditions (CCP 10). The shop's Quality Assurance Officer approves the storage record.
+
+Table: Tasks in the shop {#tbl-tasks-shop}
 
 | Task | Who | Where |
 | --- | --- | --- |
@@ -797,6 +817,8 @@ The producer sees only your code, never your user name or phone.
 
 Platform administrators set up the organisations and their members, decide who enters and approves each control point, and oversee the records. They do not enter business data. Their menu has **My work**, **Dashboard**, **Set-up** and **Oversight**.
 
+Table: Tasks of the platform administrator {#tbl-tasks-admin}
+
 | Task | Where |
 | --- | --- |
 | Follow the chain | **Dashboard** |
@@ -912,6 +934,8 @@ Documents of an organisation can be PDF files up to 10 MB or JPG, PNG or WEBP pi
 Ask the person who gave you your sign-in details to send new ones. Consumers without a phone cannot recover their account.
 
 # Glossary {-}
+
+Table: Terms used in this manual {#tbl-glossary}
 
 | Term | Meaning |
 | --- | --- |

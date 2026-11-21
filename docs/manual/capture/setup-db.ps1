@@ -2,7 +2,8 @@
 #   1. the schema of db/demo/schema.sql (the live schema), no rows;
 #   2. the reference tables of the local database, without any link to a person (the same list as the demo database, D-86);
 #   3. the platform organization;
-#   4. the Şile cast and its history (tools/live-like/cast.json), recorded through the application by tools/live-like;
+#   4. the Şile cast and its history (tools/live-like/cast.json), recorded through the application by tools/live-like, with fictional
+#      names for the two real organisations of the cast (the manual shows no real organisation; places may stay real);
 #   5. a backup and a copy of the app's files, so that every screenshot run starts from the same state (reset.ps1).
 # Nothing else is read from the local database. The app's files (lab reports, documents) go to the manual's own folder
 # (%LOCALAPPDATA%\TOP4-manual\app), never to the web project's App_Data.
@@ -92,6 +93,13 @@ Copy-Item (Join-Path $web 'appsettings.json'), (Join-Path $web 'appsettings.Deve
 
 # ---- 5. the cast, through the application
 Write-Host '5. cast (tools/live-like)'
+# The manual's copy of the cast: the directorate and the association get invented names (checked on the web on 2026-11-21: no
+# organisation or place is called "Akçakovan"). The demo cast in tools/live-like/cast.json stays as it is.
+$castText = Get-Content (Join-Path $repo 'tools\live-like\cast.json') -Raw -Encoding UTF8
+foreach ($pair in (Get-Content (Join-Path $here 'fictional-names.json') -Raw -Encoding UTF8 | ConvertFrom-Json).PSObject.Properties) { $castText = $castText.Replace($pair.Name, $pair.Value) }
+$manualCast = Join-Path $work 'cast.json'
+[System.IO.File]::WriteAllText($manualCast, $castText, (New-Object System.Text.UTF8Encoding($false)))
+$env:LIVE_LIKE_CAST = $manualCast
 $env:LIVE_LIKE_DATABASE = $db
 $env:LIVE_LIKE_CONTENT_ROOT = $appRoot
 $env:LIVE_LIKE_LOGINS = Join-Path $work 'logins.txt'
@@ -103,7 +111,7 @@ try {
     & dotnet run --no-build --project (Join-Path $repo 'tools\live-like') | Tee-Object -Variable castLog | Write-Host
     if ($LASTEXITCODE -ne 0) { throw 'the cast tool failed' }
 } finally {
-    'LIVE_LIKE_DATABASE', 'LIVE_LIKE_CONTENT_ROOT', 'LIVE_LIKE_LOGINS', 'LIVE_LIKE_PASSWORD', 'LIVE_LIKE_BASE_URL' | ForEach-Object { Remove-Item "env:$_" -ErrorAction SilentlyContinue }
+    'LIVE_LIKE_DATABASE', 'LIVE_LIKE_CONTENT_ROOT', 'LIVE_LIKE_LOGINS', 'LIVE_LIKE_PASSWORD', 'LIVE_LIKE_BASE_URL', 'LIVE_LIKE_CAST' | ForEach-Object { Remove-Item "env:$_" -ErrorAction SilentlyContinue }
 }
 $qr = ([regex]::Match(($castLog -join "`n"), '/honeystory/([0-9A-F-]{36})')).Groups[1].Value
 if (-not $qr) { throw 'no Honey Story address in the cast log' }

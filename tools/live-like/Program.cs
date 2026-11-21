@@ -26,7 +26,8 @@ using TOP4HoneyChains.Web.Services.OrgModel;
 //   dotnet run --project tools/live-like            (stop run-demo.ps1 first)
 // The user manuals (docs/manual/capture/setup-db.ps1) build the same cast in their own fictional-only database: LIVE_LIKE_DATABASE
 // (only TOP4HoneyChainsDb_Manual besides the default), LIVE_LIKE_CONTENT_ROOT (the app's files go there, not to the web project's
-// App_Data), LIVE_LIKE_LOGINS (the logins file), LIVE_LIKE_PASSWORD (the practice password) and LIVE_LIKE_BASE_URL (links in the SMS).
+// App_Data), LIVE_LIKE_LOGINS (the logins file), LIVE_LIKE_PASSWORD (the practice password), LIVE_LIKE_BASE_URL (links in the SMS)
+// and LIVE_LIKE_CAST (a copy of cast.json with fictional organisation names; only for the manual's database).
 const string Server = @"(localdb)\MSSQLLocalDB";
 var Database = Environment.GetEnvironmentVariable("LIVE_LIKE_DATABASE") is { Length: > 0 } dbName ? dbName : "TOP4HoneyChainsDb";
 if (Database is not ("TOP4HoneyChainsDb" or "TOP4HoneyChainsDb_Manual"))
@@ -37,7 +38,8 @@ var watch = Stopwatch.StartNew();
 
 var repo = FindRepo();
 var webDir = Path.Combine(repo, "TOP4HONEYCHAINS", "TOP4HoneyChains.Web");
-using var castJson = JsonDocument.Parse(File.ReadAllText(Path.Combine(repo, "tools", "live-like", "cast.json"), Encoding.UTF8));
+var castFile = manualRun && Environment.GetEnvironmentVariable("LIVE_LIKE_CAST") is { Length: > 0 } cf ? cf : Path.Combine(repo, "tools", "live-like", "cast.json");
+using var castJson = JsonDocument.Parse(File.ReadAllText(castFile, Encoding.UTF8));
 var cast = castJson.RootElement;
 var values = JsonDocument.Parse(File.ReadAllText(Path.Combine(repo, "docs", "partner-test", "values.json"), Encoding.UTF8)).RootElement;
 var downloads = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");

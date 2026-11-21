@@ -26,7 +26,10 @@ const env = Object.fromEntries(fs.readFileSync(path.join(HERE, '.env.local'), 'u
     .filter(l => /^[A-Z_]+=/.test(l)).map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]));
 const PASSWORD = env.MANUAL_PASSWORD;
 const BASE = `http://localhost:${env.MANUAL_PORT || 5256}`;
-const cast = JSON.parse(fs.readFileSync(path.join(REPO, 'tools', 'live-like', 'cast.json'), 'utf8'));
+// the manual's copy of the cast, with fictional organisation names (written by setup-db.ps1)
+const CAST_FILE = path.join(process.env.LOCALAPPDATA || '', 'TOP4-manual', 'cast.json');
+if (!fs.existsSync(CAST_FILE)) throw new Error('Run setup-db.ps1 first: ' + CAST_FILE + ' is missing.');
+const cast = JSON.parse(fs.readFileSync(CAST_FILE, 'utf8'));
 const values = JSON.parse(fs.readFileSync(path.join(REPO, 'docs', 'partner-test', 'values.json'), 'utf8'));
 const person = (role, org) => cast.people.find(p => p.role === role && p.org === org);
 const digitsOf = phone => phone.replace(/\D/g, '');
@@ -702,8 +705,7 @@ try {
     }
     // pictures over about 400 KB are stored with a palette (BRIEF.md: keep a picture under about 400 KB)
     const shrink = spawnSync('python', [path.join(HERE, 'shrink.py'), SCREENS], { encoding: 'utf8' });
-    if (shrink.status !== 0) log('  shrink.py did not run (Python with Pillow is needed): ' + (shrink.stderr || '').split('
-')[0]); else if (shrink.stdout.trim()) log(shrink.stdout.trimEnd());
+    if (shrink.status !== 0) log('  shrink.py did not run (Python with Pillow is needed): ' + (shrink.stderr || '').split(/\r?\n/)[0]); else if (shrink.stdout.trim()) log(shrink.stdout.trimEnd());
     log(`done in ${Math.round((Date.now() - started) / 1000)} s: business ${business}, lot ${lot}, batch ${batch}`);
 } finally {
     await browser.close();

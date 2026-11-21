@@ -265,7 +265,7 @@ Legacy pages reachable only with `OrgRoleModel` off (v1.0 admin data-entry menu)
   - D-88 deleted those records and demo accounts, so `capture.mjs` and `demo-setup.mjs` no longer run.
 - **`tools/live-like`** (Şile cast, D-88/D-90; `cast.json`, `Program.cs`, `walk.mjs`):
   - Realistic fictional people, 4 organizations, 2 beekeepers, a consumer, and a full history up to a finalized batch with a Honey Story.
-  - "Şile Arıcılar Birliği" is a real association name, used with the owner's consent.
+  - "Şile Arıcılar Birliği" is a real association name, used with the owner's consent. The manual's database renames it and the directorate to "Akçakovan Arıcılar Birliği" and "Akçakovan İlçe Tarım ve Orman Müdürlüğü" (`capture/fictional-names.json`, decision of 2026-11-21).
   - Built through the app (`dotnet run --project tools/live-like`, about 17 s); logins are written to `~/Downloads/TOP4-local-logins.txt`.
   - **It writes into `TOP4HoneyChainsDb`**: the name is hard-coded and any other database is refused. So the cast sits next to real data. `run-demo.ps1` and `walk.mjs` also hard-code that database.
 - **The D-86 demo database: the only fictional-only path today** (GO-LIVE L121-125):
@@ -326,5 +326,5 @@ Dates are the last commit.
 3. **Audience and split.** One manual per role (as today, 17 chapters), or shorter task guides per role? Do the consumer and the beekeeper get their own short guides?
 4. **Languages for this edition.** All five, with es, pl and lv as drafts again, or EN and TR first?
 5. **Output formats.** Word (.docx) and PDF per language. Build the .docx with python-docx or Word COM (both available), or install LibreOffice/pandoc? Keep the existing HTML/PDF `build.mjs` look?
-6. **"Şile Arıcılar Birliği"** is a real association. Is it fine in published manual screenshots, or only in local demos?
+6. **"Şile Arıcılar Birliği"** is a real association. Is it fine in published manual screenshots, or only in local demos? *Decided 2026-11-21: fictional organisation names only in the manual.*
 7. **Stale material.** Retire or update `docs/test/END-TO-END-SCENARIO.md`, the old `capture.mjs` / `demo-setup.mjs`, and the partner-test steps D2/D3 as part of this work?
