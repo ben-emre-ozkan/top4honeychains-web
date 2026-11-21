@@ -1,3 +1,4 @@
-node_modules/
-build/
-dist/*.html
+build/node_modules/
+capture/node_modules/
+capture/.env.local
+dist/

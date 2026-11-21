@@ -1,0 +1,298 @@
+{
+  "project": {
+    "name": "TOP4HoneyChains",
+    "full_title": "Trustable and Sustainable Open Platform for Smart Honey Value Chains",
+    "platform_url": "https://top4honeychains.intalalab.net",
+    "logo": "logos/top4honeychains_logo.png"
+  },
+  "countries": {
+    "tr": {
+      "flag": "flags/tr.png",
+      "name": {
+        "en": "Türkiye",
+        "tr": "Türkiye",
+        "es": "Turquía",
+        "pl": "Turcja",
+        "lv": "Turcija"
+      },
+      "label": {
+        "en": "TÜRKİYE",
+        "tr": "TÜRKİYE",
+        "es": "TURQUÍA",
+        "pl": "TURCJA",
+        "lv": "TURCIJA"
+      }
+    },
+    "ar": {
+      "flag": "flags/ar.png",
+      "name": {
+        "en": "Argentina",
+        "tr": "Arjantin",
+        "es": "Argentina",
+        "pl": "Argentyna",
+        "lv": "Argentīna"
+      },
+      "label": {
+        "en": "ARGENTINA",
+        "tr": "ARJANTİN",
+        "es": "ARGENTINA",
+        "pl": "ARGENTYNA",
+        "lv": "ARGENTĪNA"
+      }
+    },
+    "pl": {
+      "flag": "flags/pl.png",
+      "name": {
+        "en": "Poland",
+        "tr": "Polonya",
+        "es": "Polonia",
+        "pl": "Polska",
+        "lv": "Polija"
+      },
+      "label": {
+        "en": "POLAND",
+        "tr": "POLONYA",
+        "es": "POLONIA",
+        "pl": "POLSKA",
+        "lv": "POLIJA"
+      }
+    },
+    "lv": {
+      "flag": "flags/lv.png",
+      "name": {
+        "en": "Latvia",
+        "tr": "Letonya",
+        "es": "Letonia",
+        "pl": "Łotwa",
+        "lv": "Latvija"
+      },
+      "label": {
+        "en": "LATVIA",
+        "tr": "LETONYA",
+        "es": "LETONIA",
+        "pl": "ŁOTWA",
+        "lv": "LATVIJA"
+      }
+    }
+  },
+  "partners": [
+    {
+      "id": "bogazici",
+      "country": "tr",
+      "logo": "logos/bogazici.png",
+      "name": {
+        "en": "Boğaziçi University",
+        "es": "Boğaziçi University",
+        "pl": "Boğaziçi University",
+        "lv": "Boğaziçi University",
+        "tr": "Boğaziçi Üniversitesi"
+      }
+    },
+    {
+      "id": "isik",
+      "country": "tr",
+      "logo": "logos/isik.png",
+      "name": {
+        "en": "Işık University",
+        "es": "Işık University",
+        "pl": "Işık University",
+        "lv": "Işık University",
+        "tr": "Işık Üniversitesi"
+      }
+    },
+    {
+      "id": "ari",
+      "country": "tr",
+      "logo": "logos/tarimorman.png",
+      "name": {
+        "en": "Apiculture Research Institute",
+        "es": "Apiculture Research Institute",
+        "pl": "Apiculture Research Institute",
+        "lv": "Apiculture Research Institute",
+        "tr": "Arıcılık Araştırma Enstitüsü"
+      },
+      "note": "The institute belongs to the Ministry of Agriculture and Forestry; the logo is the Ministry emblem. The file is only 100x100 px: keep it small."
+    },
+    {
+      "id": "inta",
+      "country": "ar",
+      "logo": "logos/inta_on_navy.png",
+      "name": {
+        "en": "INTA",
+        "es": "INTA",
+        "pl": "INTA",
+        "lv": "INTA",
+        "tr": "INTA"
+      },
+      "full_name": "Instituto Nacional de Tecnología Agropecuaria",
+      "note": "Only a white version of the logo is available, so it is supplied on a dark plate. Do not place logos/inta_white.png on a light background."
+    },
+    {
+      "id": "nexco",
+      "country": "ar",
+      "logo": "logos/nexco.png",
+      "name": {
+        "en": "NEXCO S.A",
+        "es": "NEXCO S.A",
+        "pl": "NEXCO S.A",
+        "lv": "NEXCO S.A",
+        "tr": "NEXCO S.A"
+      }
+    },
+    {
+      "id": "cng",
+      "country": "ar",
+      "logo": null,
+      "name": {
+        "en": "CNORTEGRANDE Cooperative",
+        "es": "Cooperativa Agropecuaria y Apícola Norte Grande Limitada",
+        "pl": "CNORTEGRANDE Cooperative",
+        "lv": "CNORTEGRANDE Cooperative",
+        "tr": "CNORTEGRANDE Kooperatifi"
+      },
+      "note": "No logo file: set the name as plain text. Do not invent a logo."
+    },
+    {
+      "id": "alimentos",
+      "country": "ar",
+      "logo": null,
+      "name": {
+        "en": "Alimentos Naturales Natural Foods S.A.",
+        "es": "Alimentos Naturales Natural Foods S.A.",
+        "pl": "Alimentos Naturales Natural Foods S.A.",
+        "lv": "Alimentos Naturales Natural Foods S.A.",
+        "tr": "Alimentos Naturales Natural Foods S.A."
+      },
+      "note": "No logo file: set the name as plain text. Do not invent a logo."
+    },
+    {
+      "id": "uekat",
+      "country": "pl",
+      "logo": "logos/uekat.png",
+      "name": {
+        "en": "University of Economics in Katowice",
+        "es": "University of Economics in Katowice",
+        "pl": "Uniwersytet Ekonomiczny w Katowicach",
+        "lv": "University of Economics in Katowice",
+        "tr": "Katowice Ekonomi Üniversitesi"
+      }
+    },
+    {
+      "id": "lbtu",
+      "country": "lv",
+      "logo": "logos/lbtu.png",
+      "name": {
+        "en": "Latvia University of Life Sciences and Technologies",
+        "es": "Latvia University of Life Sciences and Technologies",
+        "pl": "Latvia University of Life Sciences and Technologies",
+        "lv": "Latvijas Biozinātņu un tehnoloģiju universitāte",
+        "tr": "Letonya Yaşam Bilimleri ve Teknolojileri Üniversitesi"
+      }
+    }
+  ],
+  "partner_order_by_country": [
+    "tr",
+    "pl",
+    "lv",
+    "ar"
+  ],
+  "funders": [
+    {
+      "id": "eu",
+      "logo": "flags/eu.png",
+      "name": {
+        "en": "European Union",
+        "tr": "Avrupa Birliği",
+        "es": "Unión Europea",
+        "pl": "Unia Europejska",
+        "lv": "Eiropas Savienība"
+      }
+    },
+    {
+      "id": "tubitak",
+      "country": "tr",
+      "logo": "logos/tubitak.png",
+      "name": "TÜBİTAK",
+      "full_name": "Türkiye Bilimsel ve Teknolojik Araştırma Kurumu"
+    },
+    {
+      "id": "ncbr",
+      "country": "pl",
+      "logo": "logos/ncbr.png",
+      "name": "NCBR",
+      "full_name": "Narodowe Centrum Badań i Rozwoju"
+    },
+    {
+      "id": "lzp",
+      "country": "lv",
+      "logo": "logos/lzp.png",
+      "name": "LZP",
+      "full_name": "Latvijas Zinātnes padome"
+    },
+    {
+      "id": "inta",
+      "country": "ar",
+      "logo": "logos/inta_on_navy.png",
+      "name": "INTA",
+      "full_name": "Instituto Nacional de Tecnología Agropecuaria"
+    }
+  ],
+  "text": {
+    "headline": {
+      "en": "An international collaboration",
+      "tr": "Uluslararası bir iş birliği",
+      "es": "Una colaboración internacional",
+      "pl": "Współpraca międzynarodowa",
+      "lv": "Starptautiska sadarbība"
+    },
+    "support": {
+      "en": "Supported by the European Union and partner countries.",
+      "tr": "Avrupa Birliği ve paydaş ülkeler tarafından desteklenmiştir.",
+      "es": "Con el apoyo de la Unión Europea y los países socios.",
+      "pl": "Przy wsparciu Unii Europejskiej i krajów partnerskich.",
+      "lv": "Ar Eiropas Savienības un partnervalstu atbalstu."
+    },
+    "funding_statement": {
+      "en": "This project has received funding from the European Union's Horizon 2020 research and innovation programme under grant agreement No 862665 (ICT-AGRI-FOOD ERA-NET Cofund).",
+      "tr": "Bu proje, Avrupa Birliği'nin Horizon 2020 araştırma ve inovasyon programından 862665 sayılı hibe sözleşmesi (ICT-AGRI-FOOD ERA-NET Cofund) kapsamında destek almıştır.",
+      "es": "Este proyecto ha recibido financiación del programa de investigación e innovación Horizonte 2020 de la Unión Europea en virtud del acuerdo de subvención n.º 862665 (ICT-AGRI-FOOD ERA-NET Cofund).",
+      "pl": "Projekt otrzymał finansowanie z programu Unii Europejskiej w zakresie badań naukowych i innowacji „Horyzont 2020” na podstawie umowy o udzielenie dotacji nr 862665 (ICT-AGRI-FOOD ERA-NET Cofund).",
+      "lv": "Šis projekts ir saņēmis finansējumu no Eiropas Savienības pētniecības un inovācijas programmas “Apvārsnis 2020” saskaņā ar dotāciju nolīgumu Nr. 862665 (ICT-AGRI-FOOD ERA-NET Cofund)."
+    },
+    "count_countries": {
+      "en": "countries",
+      "tr": "ülke",
+      "es": "países",
+      "pl": "kraje",
+      "lv": "valstis"
+    },
+    "count_partners": {
+      "en": "partners",
+      "tr": "kurum",
+      "es": "socios",
+      "pl": "partnerów",
+      "lv": "partneri"
+    },
+    "eu_name": {
+      "en": "European Union",
+      "tr": "Avrupa Birliği",
+      "es": "Unión Europea",
+      "pl": "Unia Europejska",
+      "lv": "Eiropas Savienība"
+    },
+    "eu_programme": {
+      "en": "Horizon 2020 · ICT-AGRI-FOOD ERA-NET Cofund",
+      "tr": "Horizon 2020 · ICT-AGRI-FOOD ERA-NET Cofund",
+      "es": "Horizonte 2020 · ICT-AGRI-FOOD ERA-NET Cofund",
+      "pl": "Horyzont 2020 · ICT-AGRI-FOOD ERA-NET Cofund",
+      "lv": "Apvārsnis 2020 · ICT-AGRI-FOOD ERA-NET Cofund"
+    },
+    "eu_grant": {
+      "en": "Grant Agreement No 862665",
+      "tr": "Hibe Sözleşmesi No 862665",
+      "es": "Acuerdo de subvención n.º 862665",
+      "pl": "Umowa o udzielenie dotacji nr 862665",
+      "lv": "Dotāciju nolīgums Nr. 862665"
+    }
+  }
+}

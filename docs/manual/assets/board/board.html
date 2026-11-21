@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>TOP4HoneyChains institution board</title>
+<!-- The partners and supporters board for the cover of the user manuals: same institutions and order as the opening board of the launch film.
+     Data comes from ../institutions.json (injected by render_board.mjs as window.DATA). Output: board_<lang>.jpg, 1000 CSS px wide = 17 cm on the page. -->
+<style>
+@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;src:url(fonts/instrument-serif-latin-ext-400-italic.woff2) format('woff2');
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;src:url(fonts/instrument-serif-latin-400-italic.woff2) format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-stretch:75% 100%;src:url(fonts/bricolage-grotesque-latin-ext-standard-normal.woff2) format('woff2-variations');
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-stretch:75% 100%;src:url(fonts/bricolage-grotesque-latin-standard-normal.woff2) format('woff2-variations');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:400 700;font-stretch:75% 100%;src:url(fonts/instrument-sans-latin-ext-standard-normal.woff2) format('woff2-variations');
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:400 700;font-stretch:75% 100%;src:url(fonts/instrument-sans-latin-standard-normal.woff2) format('woff2-variations');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+:root{--brown:#4F3F1B;--label:#9A6A0E;--gold:#D6A02C;--serif:'Instrument Serif',Georgia,serif;--grot:'Bricolage Grotesque','Inter',sans-serif;--sans:'Instrument Sans','Inter',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#fff}
+body{width:1000px;font-family:var(--sans);color:var(--brown);-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision;font-synthesis:none;font-variant-ligatures:none;font-feature-settings:"liga" 0,"clig" 0,"calt" 0,"dlig" 0}
+#board{position:relative;width:1000px;padding:30px 30px 28px;border-radius:26px;overflow:hidden;border:1.5px solid rgba(214,160,44,.5);
+  background:radial-gradient(ellipse 85% 70% at 50% 32%, #FFFDF6 0%, #FFF8EA 52%, #F9EDCF 100%)}
+#comb{position:absolute;inset:0;width:100%;height:100%}
+#in{position:relative}
+
+.head{display:flex;align-items:flex-end;justify-content:space-between;height:44px}
+.head h1{font-family:var(--serif);font-style:italic;font-weight:400;font-size:44px;line-height:44px;letter-spacing:-.014em;white-space:nowrap}
+.count{font-family:var(--grot);font-weight:800;font-stretch:88%;font-size:21px;line-height:30px;letter-spacing:-.01em;color:var(--brown);white-space:nowrap}
+.count b{font-size:34px;font-weight:800;letter-spacing:-.03em;margin:0 5px 0 0;vertical-align:-2px;
+  background:linear-gradient(120deg,#E7B33C 0%,#C98F1F 55%,#A8700C 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.count i{font-style:normal;display:inline-block;width:18px}
+
+.row{display:flex;gap:22px;margin-top:20px}
+.group{display:flex;flex-direction:column;gap:9px;min-width:0}
+.gh{display:flex;align-items:center;gap:9px;height:21px}
+.flag{display:block;flex:none;height:19px;border-radius:2.5px;box-shadow:0 0 0 1px rgba(79,63,27,.22),0 2px 5px rgba(79,63,27,.14)}
+.cn{font-weight:700;font-size:12.5px;letter-spacing:.2em;color:var(--label);white-space:nowrap}
+.ln{flex:1;height:1.5px;background:linear-gradient(90deg,rgba(214,160,44,.85),rgba(214,160,44,.14))}
+.tiles{display:flex;gap:11px}
+.tile{flex:1 1 0;min-width:0;height:126px;border-radius:13px;background:#fff;box-shadow:0 9px 22px rgba(79,63,27,.11),0 1px 3px rgba(79,63,27,.08);
+  display:flex;flex-direction:column;align-items:center;padding:9px 10px 8px}
+.mark{flex:none;height:70px;display:flex;align-items:center;justify-content:center}
+.mark img{display:block}
+.name{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:650;font-stretch:88%;font-size:15px;line-height:17px;letter-spacing:0;text-wrap:balance}
+.tile.text{justify-content:center;padding:10px 14px}
+.tname{text-align:center;font-family:var(--grot);font-weight:760;font-stretch:86%;font-size:20px;line-height:1.12;letter-spacing:-.012em;text-wrap:balance}
+
+.rule{height:1.5px;margin-top:24px;background:linear-gradient(90deg,rgba(214,160,44,.95),rgba(214,160,44,.95) 60%,rgba(214,160,44,.2))}
+.sup{margin-top:15px;font-family:var(--serif);font-style:italic;font-size:31px;line-height:34px;letter-spacing:-.012em;white-space:nowrap}
+.band{display:flex;gap:24px;margin-top:15px;align-items:flex-end}
+.eu{flex:none;display:flex;align-items:center;gap:15px}
+.eu .flag{height:88px;border-radius:4px}
+.eut{white-space:nowrap}
+.e1{font-family:var(--grot);font-weight:800;font-stretch:88%;font-size:28px;line-height:1;letter-spacing:-.02em}
+.e2{margin-top:9px;font-weight:650;font-stretch:90%;font-size:13.5px;line-height:1.1;color:#5A4820}
+.e3{margin-top:6px;font-weight:600;font-stretch:90%;font-size:12.5px;line-height:1.1;color:#7A5C16}
+.funders{flex:1;display:flex;gap:10px;min-width:0}
+.fu{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:7px}
+.fu .gh{height:18px;gap:6px}
+.fu .flag{height:16px;border-radius:2px}
+.fu .cn{font-size:10px;letter-spacing:.09em}
+.ftile{height:63px;border-radius:11px;background:#fff;box-shadow:0 8px 20px rgba(79,63,27,.11),0 1px 3px rgba(79,63,27,.08);display:flex;align-items:center;justify-content:center}
+.ftile img{display:block}
+</style>
+</head>
+<body>
+<div id="board"><svg id="comb" xmlns="http://www.w3.org/2000/svg"></svg><div id="in"></div></div>
+<script>
+/* Box each mark is fitted into, in CSS px: [max width, max height]. Marks keep their own proportions. */
+const BOX = { bogazici: [68, 68], isik: [224, 48], ari: [64, 64], uekat: [196, 64], lbtu: [86, 68], inta: [172, 56], nexco: [166, 56] };
+const FBOX = { tubitak: [70, 47], ncbr: [92, 30], lzp: [80, 47], inta: [92, 31] };
+const RATIO = { eu: 1.5, tr: 1.5, ar: 1.6, pl: 1.6, lv: 2 };
+const ROWS = [[['tr', 3]], [['pl', 1], ['lv', 1], ['count', 1]], [['ar', 4]]];   // rows of [country, number of tiles]
+
+function h(tag, cls, parent, html) { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; if (parent) parent.appendChild(e); return e; }
+function flag(parent, c) { const im = h('img', 'flag', parent); im.src = '../flags/' + c + '.png'; im.alt = ''; return im; }
+function mark(parent, src, box) {
+  const im = h('img', '', parent); im.src = '../' + src; im.alt = '';
+  return new Promise(res => { im.onload = () => { const k = Math.min(box[0] / im.naturalWidth, box[1] / im.naturalHeight); im.style.width = (im.naturalWidth * k).toFixed(1) + 'px'; im.style.height = (im.naturalHeight * k).toFixed(1) + 'px'; res(); }; im.onerror = res; });
+}
+function honeycomb(svg, w, hgt, r) {
+  const dx = Math.sqrt(3) * r, dy = 1.5 * r; let d = '';
+  for (let row = -1; row * dy < hgt + r; row++) for (let col = -1; col * dx < w + dx; col++) {
+    const cx = col * dx + (row & 1 ? dx / 2 : 0), cy = row * dy;
+    for (let i = 0; i < 6; i++) { const a = Math.PI / 180 * (60 * i - 30); d += (i ? 'L' : 'M') + (cx + r * Math.cos(a)).toFixed(1) + ' ' + (cy + r * Math.sin(a)).toFixed(1); }
+    d += 'Z';
+  }
+  svg.setAttribute('viewBox', `0 0 ${w} ${hgt}`); svg.setAttribute('preserveAspectRatio', 'none');
+  svg.innerHTML = `<path d="${d}" fill="none" stroke="rgba(214,160,44,.13)" stroke-width="1"/>`;
+}
+
+async function build(D, lang) {
+  document.documentElement.lang = lang;
+  const T = k => D.text[k][lang], root = document.getElementById('in'), jobs = [];
+  root.innerHTML = '';
+  const head = h('div', 'head', root); h('h1', '', head, T('headline'));
+  for (const row of ROWS) {
+    const r = h('div', 'row', root);
+    for (const [c, n] of row) {
+      const g = h('div', 'group', r); g.style.flex = `${n} 1 0`;
+      if (c === 'count') {
+        g.style.justifyContent = 'flex-end';
+        const box = h('div', 'tile text', g); box.style.background = 'transparent'; box.style.boxShadow = 'none'; box.style.flex = 'none';
+        h('div', 'count', box, `<b>4</b>${T('count_countries')}<i></i><b>9</b>${T('count_partners')}`);
+        continue;
+      }
+      const gh = h('div', 'gh', g); flag(gh, c); h('div', 'cn', gh, D.countries[c].label[lang]); h('div', 'ln', gh);
+      const tiles = h('div', 'tiles', g);
+      for (const p of D.partners.filter(p => p.country === c)) {
+        const t = h('div', 'tile' + (p.logo ? '' : ' text'), tiles);
+        if (p.logo) { jobs.push(mark(h('div', 'mark', t), p.logo, BOX[p.id])); h('div', 'name', t, p.name[lang]); }
+        else h('div', 'tname', t, p.name[lang]);
+      }
+    }
+  }
+  h('div', 'rule', root); h('div', 'sup', root, T('support'));
+  const band = h('div', 'band', root), eu = h('div', 'eu', band); flag(eu, 'eu');
+  const et = h('div', 'eut', eu); h('div', 'e1', et, T('eu_name')); h('div', 'e2', et, T('eu_programme')); h('div', 'e3', et, T('eu_grant'));
+  const fs = h('div', 'funders', band);
+  for (const f of D.funders.filter(f => f.id !== 'eu')) {
+    const u = h('div', 'fu', fs), gh = h('div', 'gh', u); flag(gh, f.country); h('div', 'cn', gh, D.countries[f.country].label[lang]);
+    jobs.push(mark(h('div', 'ftile', u), f.logo, FBOX[f.id]));
+  }
+  await Promise.all(jobs); await document.fonts.ready;
+  /* long plain-text names: step the size down until the tile holds them */
+  for (const el of document.querySelectorAll('.tname')) { let s = 20; while (s > 13 && (el.scrollHeight > 96 || el.scrollWidth > el.parentElement.clientWidth - 24)) { s -= .5; el.style.fontSize = s + 'px'; } }
+  for (const el of document.querySelectorAll('.name')) { let s = 15; while (s > 12 && el.scrollHeight > el.clientHeight + 1) { s -= .5; el.style.fontSize = s + 'px'; el.style.lineHeight = (s + 2) + 'px'; } }
+  const b = document.getElementById('board'); honeycomb(document.getElementById('comb'), b.offsetWidth, b.offsetHeight, 30);
+  return { width: b.offsetWidth, height: b.offsetHeight };
+}
+if (window.DATA) build(window.DATA, new URLSearchParams(location.search).get('lang') || 'en');
+</script>
+</body>
+</html>

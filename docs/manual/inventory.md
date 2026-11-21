@@ -71,7 +71,7 @@ All users sign in on `/Account/Login` (`AccountController.cs:121-195`). The acco
 | Organization member | The admin adds a member and issues sign-in details by SMS (10-character temporary password, valid 72 h). | `/MyWork` | Items from `Services/OrgModel/MyWork.cs`: CCP sheets to enter or approve, new batch, finalize, receive samples, enter or approve lab results, confirm shipments, evidence, compliance, feedback. Items show only once the organization is verified. When empty: links to My organization and the allowed areas. |
 | Beekeeper | The registration officer ticks "Also send the sign-in details" or uses "Send sign-in details" on the registration page. User name = business number (TR-BEE-…). | `/Me` (returnUrl ignored) | Hello, deliveries, deliveries without a price (to-do), last lab result, batch count, notices. Language = the SMS language unless the browser chose one (D-92). |
 | Consumer | Self sign-up at `/Consumer/SignUp`, linked from Login ("New here? Create a free consumer account"). | `/Consumer` (or back to the Honey Story they came from) | Saved honeys and My feedback. |
-| Anyone with issued credentials | — | `/Account/FirstPassword` first | Set your own password, then the landing page above. |
+| Anyone with issued credentials | - | `/Account/FirstPassword` first | Set your own password, then the landing page above. |
 
 - **Already signed in:** opening Login shows "Continue as {name}" (D-91).
 - **Notice gate:** pending notices are accepted at `/Notices/Accept`; signing roles confirm with an SMS code.
@@ -136,7 +136,7 @@ Views are `Views/<Controller>/<Action>.cshtml` unless noted.
 |---|---|---|---|
 | /Samples | Index | SampleAcceptanceOfficer, OrgAdmin, Analyst, LabManager | Sent and Received lists. **Receive** a jar (seal match, label, cap): Analyst or LabManager of a verified Laboratory. **Composite** builds the composite sample from received jars. |
 | /LabReports/Edit/{id} | Edit | Analyst, then LabManager | Analyst: enter values, report number and PDF; Save; Submit. LabManager: approve or return (four-eyes). Blocked until CCP 0 is approved. Download the PDF. |
-| /Samples/Create?lotId= | Create | — | Legacy lots only; custody lots redirect to the delivery. |
+| /Samples/Create?lotId= | Create | - | Legacy lots only; custody lots redirect to the delivery. |
 
 The analyst's daily entry point is **My work** (Results and LabApprove items).
 
@@ -280,6 +280,8 @@ Legacy pages reachable only with `OrgRoleModel` off (v1.0 admin data-entry menu)
   - a step that creates schema plus reference data without the [DEMO] cast and marker (e.g. reuse `DemoApp` up to the seed);
   - the cleanup script lives outside the repo.
 
+- **Done for the manuals (Phase 1, 2026-11-21):** `capture/setup-db.ps1` builds `TOP4HoneyChainsDb_Manual` on LocalDB: the schema of `db/demo/schema.sql`, the reference tables of the local database without any person id (the D-86 list), the platform organisation, then the Şile cast through the app with `tools/live-like` (new environment overrides: database, content root, logins file, password, public address). The app's files go to `%LOCALAPPDATA%\TOP4-manualpp`, not to the web project's `App_Data`. `capture/app.ps1` resets and starts that run on port 5256; `capture/capture.mjs` takes the pictures. No row of the local database other than reference data is read.
+
 ## 5. Existing manuals and guides
 
 Dates are the last commit.
@@ -292,7 +294,7 @@ Dates are the last commit.
 | `docs/OZET-TR.md`, `docs/CCP-CURRENT.md` | 2026-10-09 | Turkish summary; CCP state. | About 60–65%. |
 | `docs/RELEASE-NOTES-D78.md`, `SURUM-NOTLARI-D78.md` | 2026-10-28 | D-78 to D-85 notes. | Accurate for that release. |
 | `docs/ROLE-MODEL.md` | 2026-11-18 | Role model. | About 90%. |
-| `docs/test/END-TO-END-SCENARIO.md`, `demo_files/DEMO-WALKTHROUGH.md` (untracked) | 2026-10-08 / — | Old scenarios. | Obsolete: the [DEMO] records and the admin batch flow are gone. |
+| `docs/test/END-TO-END-SCENARIO.md`, `demo_files/DEMO-WALKTHROUGH.md` (untracked) | 2026-10-08 / - | Old scenarios. | Obsolete: the [DEMO] records and the admin batch flow are gone. |
 | `~/Downloads/TOP4-walkthrough-facts.md` (outside the repo) | 2026-11-19 | Owner's hands-on guide for the Şile cast, EN and TR labels. | Current up to D-91; D-92 and D-93 not in it. |
 
 `docs/DECISIONS.md` has no row for D-92 (the D-92 commit exists).
