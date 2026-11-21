@@ -845,7 +845,7 @@ CCP 0 records the primary audit of the delivery: hygiene, water, pest control an
 
 ![Saving CCP 0](screens/04-11-ccp0-save.png)
 
-The Quality Assurance Officer approves it next ([Approve CCP 0](#sec-approve-ccp0)). **CCP 1** also appears in your list: it is filled in by the laboratory's approved report, you do not enter it.
+The Quality Assurance Officer approves it next ([Approve CCP 0](#sec-approve-ccp0)). **CCP 1** is filled in by the laboratory's approved report; you do not enter it.
 
 > [!TIP]
 > If a control point does not apply, open **This CCP does not apply here (mark as "Not applicable")** and give the reason.
@@ -1283,7 +1283,7 @@ Each organisation is the data controller for the personal data it records. Its d
 2. Under **Data controller**, enter the **Legal name**, the **Contact (e-mail or phone)**, the **Address** and, where it applies, the **VERBİS** registration number.
 3. Select **Save**.
 
-Only you and the platform administrators can change these details. The organisation page marks them **missing** until a legal name is entered. Beekeepers find these details in their portal under **Who holds your data**.
+Only you and the platform administrators can change these details. The organisation page marks them **missing** until a legal name is entered. **Privacy notice** opens the public privacy notice that names your organisation as data controller. Beekeepers find these details in their portal under **Who holds your data**.
 
 ## Read the organisation's audit entries {#co-audit}
 
@@ -1881,7 +1881,7 @@ Table: Fields of a notice {#tbl-admin-notice-fields}
 | Field | What to enter | Required |
 | --- | --- | --- |
 | **Kind** | **Privacy notice**, **Consent text**, **Terms of use** or **Officer's attestation** | Yes |
-| **For** | **Beekeepers**, **Users**, **Everyone**, or consumers | Yes |
+| **For** | **Beekeepers**, **Users**, **Everyone** or **Consumers** | Yes |
 | **Organization** | TOP4HoneyChains for the platform's own text, or the organisation whose text it is | Yes |
 | **Consent purpose** | For a consent text: **Name on public pages** or **SMS notifications** | For a consent text |
 | **Version** | A name for the version, at most 40 characters, for example 2026-12 | Yes |

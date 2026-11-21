@@ -36,6 +36,14 @@ const digitsOf = phone => phone.replace(/\D/g, '');
 const orgName = key => cast.orgs.find(o => o.key === key).name;
 const bee = cast.beekeepers.find(b => b.key === 'new');            // Hatice Turan: registered, delivers and uses the portal during the run
 const CONSUMER = 'petekci42';
+// the consumer's feedback and the producer's answer, written in the language of the pictures
+const FEEDBACK = {
+    en: { message: 'Very nice chestnut honey. Is it raw, and how should I store it?', answer: 'Thank you! It is raw chestnut honey from Şile, only filtered. Keep it closed at room temperature, away from sunlight.' },
+    tr: { message: 'Çok güzel bir kestane balı. Ham mı, nasıl saklamalıyım?', answer: "Teşekkürler! Şile'den ham kestane balı, yalnızca süzüldü. Kapağı kapalı olarak oda sıcaklığında, güneş görmeyen bir yerde saklayın." },
+    es: { message: 'Muy rica miel de castaño. ¿Es cruda? ¿Cómo debo guardarla?', answer: '¡Gracias! Es miel de castaño cruda de Şile, solo filtrada. Guárdela cerrada a temperatura ambiente, lejos del sol.' },
+    pl: { message: 'Bardzo dobry miód kasztanowy. Czy jest surowy i jak go przechowywać?', answer: 'Dziękujemy! To surowy miód kasztanowy z Şile, tylko przecedzony. Przechowuj go zamknięty w temperaturze pokojowej, z dala od słońca.' },
+    lv: { message: 'Ļoti garšīgs kastaņu medus. Vai tas ir neapstrādāts, un kā to uzglabāt?', answer: 'Paldies! Tas ir neapstrādāts kastaņu medus no Šiles, tikai filtrēts. Uzglabājiet to aizvērtu istabas temperatūrā, prom no saules.' },
+};
 const BATCH_TITLE = 'Şile Kestane Balı 2026/2';
 const log = (...a) => console.log(...a);
 const want = chapter => !ONLY || ONLY.split(',').includes(chapter);
@@ -51,6 +59,13 @@ if (!ONLY && fs.existsSync(SCREENS)) for (const f of fs.readdirSync(SCREENS)) if
 const phoneKey = execFileSync('dotnet', ['user-secrets', 'list', '--project', WEB], { encoding: 'utf8' }).match(/^Sms:PhonePageKey = (.+)$/m)?.[1].trim();
 if (!phoneKey) throw new Error('no phone page key in the user secrets of the web project');
 
+// one number from the manual's database (reference data: the id of a honey type or a production period)
+const refId = q => {
+    const v = execFileSync('sqlcmd', ['-S', '(localdb)\\MSSQLLocalDB', '-d', 'TOP4HoneyChainsDb_Manual', '-E', '-b', '-W', '-h', '-1', '-f', '65001', '-Q', 'SET NOCOUNT ON; ' + q], { encoding: 'utf8' })
+        .split(/\r?\n/).map(l => l.trim()).find(l => /^\d+$/.test(l));
+    if (!v) throw new Error('not found: ' + q);
+    return v;
+};
 // the parameters (reference data, no personal data): id -> CCP code, name, data type
 const params = Object.fromEntries(execFileSync('sqlcmd', ['-S', '(localdb)\\MSSQLLocalDB', '-d', 'TOP4HoneyChainsDb_Manual', '-E', '-b', '-W', '-h', '-1', '-s', '|', '-f', '65001', '-Q',
     'SET NOCOUNT ON; SELECT p.ParameterId, c.Code, LTRIM(RTRIM(p.ParameterName)), p.DataType FROM dbo.CriticalControlPointParameters p JOIN dbo.CriticalControlPoints c ON c.Id = p.CCPId'],
@@ -376,8 +391,9 @@ try {
         await press(page, '#find-beekeeper button[type=submit]');
         const h5 = page.locator('#custody-form h5'), form = page.locator('#custody-form');
         if (!(await page.locator('#ApiaryId').inputValue())) await page.locator('#ApiaryId').selectOption({ index: 1 });
-        await page.selectOption('#HoneyTypeId', { label: cast.history.honeyType });
-        await page.selectOption('#PeriodId', { label: cast.history.period.title });
+        // by id, not by label: the labels are translated in every language but English (Phase 2)
+        await page.selectOption('#HoneyTypeId', refId(`SELECT HoneyTypeId FROM dbo.HoneyTypes WHERE HoneyTypeTitle = N'${cast.history.honeyType}'`));
+        await page.selectOption('#PeriodId', refId(`SELECT RawHoneyProductionPeriodId FROM dbo.RawHoneyProductionPeriods WHERE RawHoneyProductionPeriodTitle = N'${cast.history.period.title}'`));
         const prov = page.locator('select[data-province-select]').first();
         await prov.selectOption({ label: bee.province });
         const did = await prov.getAttribute('data-province-select');
@@ -643,14 +659,14 @@ try {
         await press(story, '#save-form button[type=submit]');
         await go(story, `/Consumer/Feedback?qr=${qr}`);
         await story.locator('input[name=category]').first().check();
-        await story.fill('#message', 'Very nice chestnut honey. Is it raw, and how should I store it?');
+        await story.fill('#message', FEEDBACK[LANG].message);
         if (want('12')) await snapPhone(story, '12-03-feedback');
         await press(story, '#feedback-form button[type=submit]');
 
         const page = await signIn(qa);
         await go(page, '/ConsumerFeedback');
         await go(page, await page.locator('a[href*="/ConsumerFeedback/Details/"]').first().getAttribute('href'));
-        await page.fill('#answer', 'Thank you! It is raw chestnut honey from Şile, only filtered. Keep it closed at room temperature, away from sunlight.');
+        await page.fill('#answer', FEEDBACK[LANG].answer);
         if (want('07')) await snap(page, '07-06-feedback', { marks: [[page.locator('#answer'), 2], [page.locator('#answer-form button[type=submit]'), 3]] });
         await press(page, '#answer-form button[type=submit]');
 
