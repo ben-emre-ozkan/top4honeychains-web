@@ -518,7 +518,7 @@ You always work in **one** membership at a time. The menu, the tasks in **My wor
 
 To switch to another membership:
 
-1. Select the role chip in the top bar: it shows the organisation and the role, for example "Sample plant · Staff" ([Find your way on the screen](#sec-screen)). A list headed **Your roles** shows every active membership; the current one is marked.
+1. Select the role chip in the top bar: it shows the organisation and the role, for example "Akçakovan Arıcılar Birliği · Staff" ([Find your way on the screen](#sec-screen)). A list headed **Your roles** shows every active membership; the current one is marked.
 2. Select another membership. The platform opens **My organization** in the new membership.
 
 

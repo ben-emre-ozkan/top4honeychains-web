@@ -132,7 +132,11 @@ async function snap(page, name, { crop, part, marks = [], margin = 16, scroll, k
     if (scroll) await page.waitForTimeout(150);
     const top = part ? part.from : crop;
     // a part of a form is cut out below the fixed header: the header is hidden for that picture (it is not in the cut-out)
-    if (part) await page.addStyleTag({ content: '#page-topbar, .app-top, .topnav { visibility: hidden !important; }' });
+    if (part) {
+        // also every other fixed or sticky element (a corner of the top bar showed as a light box over the section number)
+        await page.evaluate(() => document.querySelectorAll('body *').forEach(e => { if (['fixed', 'sticky'].includes(getComputedStyle(e).position)) e.setAttribute('data-shot-hide', ''); }));
+        await page.addStyleTag({ content: '#page-topbar, .app-top, .topnav, [data-shot-hide] { visibility: hidden !important; }' });
+    }
     if (top) {
         await top.evaluate(e => e.scrollIntoView({ block: 'start' }));
         const h = part ? 0 : await headerBottom(page);
@@ -149,7 +153,10 @@ async function snap(page, name, { crop, part, marks = [], margin = 16, scroll, k
         if (end > view.height) log(`  note: ${name} is cut at the window bottom (${Math.round(end - y)} px tall)`);
         fs.mkdirSync(SCREENS, { recursive: true });
         await page.screenshot({ path: path.join(SCREENS, `${name}.png`), clip });
-        await page.evaluate(() => document.querySelectorAll('style').forEach(st => { if (st.textContent.includes('visibility: hidden !important')) st.remove(); }));
+        await page.evaluate(() => {
+            document.querySelectorAll('style').forEach(st => { if (st.textContent.includes('visibility: hidden !important')) st.remove(); });
+            document.querySelectorAll('[data-shot-hide]').forEach(e => e.removeAttribute('data-shot-hide'));
+        });
     } else await shot(page, LANG, name, crop ? { crop, margin } : {});
     await clearMarks(page);
 }
@@ -267,7 +274,7 @@ try {
         if (want('01')) await snap(page, '01-01-home');
         await go(page, '/Account/Login');
         if (want('02')) {
-            await snap(page, '02-01-language', { marks: [[page.locator('a[href*="SetLanguage?culture=tr"]').locator('xpath=..'), 1]] });
+            await snap(page, '02-01-language', { marks: [[page.locator(`a[href*="SetLanguage?culture=${LANG === 'tr' ? 'en' : 'tr'}"]`).locator('xpath=..'), 1]] });
             await page.fill('#UserName', sao);
             await page.fill('#Password', 'password-hidden');
             await snap(page, '02-02-sign-in', { crop: page.locator('form').first(),
