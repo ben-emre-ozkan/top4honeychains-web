@@ -208,9 +208,11 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                 .ToList();
         }
 
-        public Task<List<NoticeAcceptance>> AcceptedNoticesAsync(string beekeeperId, string userId) =>
-            _context.NoticeAcceptances.AsNoTracking().Include(a => a.Notice)
-                .Where(a => a.BeekeeperId == beekeeperId || a.UserId == userId).OrderByDescending(a => a.At).ToListAsync();
+        // D-95: a notice version accepted at registration and again by the account is listed once (its latest acceptance)
+        public async Task<List<NoticeAcceptance>> AcceptedNoticesAsync(string beekeeperId, string userId) =>
+            (await _context.NoticeAcceptances.AsNoTracking().Include(a => a.Notice)
+                .Where(a => a.BeekeeperId == beekeeperId || a.UserId == userId).OrderByDescending(a => a.At).ToListAsync())
+                .GroupBy(a => a.NoticeId).Select(g => g.First()).ToList();
 
         public static string Money(decimal value, string currency) => $"{value.ToString("0.00", CultureInfo.CurrentCulture)} {currency}";
     }

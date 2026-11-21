@@ -585,6 +585,9 @@
   <data name="Reg.FormatHelp" xml:space="preserve">
     <value>Format TR, a province code 01-81 and 10 digits. A proof document (registry printout or photo) is required.</value>
   </data>
+  <data name="Reg.ListHelp" xml:space="preserve">
+    <value>Each beekeeper is a record on the platform; a beekeeper registered with a mobile phone can also sign in to the beekeeper area. A registry number is verified when the beekeeper confirms the registration with the SMS code, or when the Compliance Officer accepts the signed photo. Here a platform administrator checks a number entered later, with a proof document, and changes the association.</value>
+  </data>
   <data name="Reg.Submit" xml:space="preserve">
     <value>Submit</value>
   </data>
@@ -7362,6 +7365,9 @@
   <data name="Notice.Audience.All" xml:space="preserve">
     <value>Everyone</value>
   </data>
+  <data name="Notice.Audience.Consumer" xml:space="preserve">
+    <value>Consumers</value>
+  </data>
   <data name="Notice.IsDraft" xml:space="preserve">
     <value>Draft (not yet approved by the data-protection office)</value>
   </data>
@@ -8957,6 +8963,9 @@
   </data>
   <data name="Ret.Years" xml:space="preserve">
     <value>{0} years</value>
+  </data>
+  <data name="Ret.OneYear" xml:space="preserve">
+    <value>1 year</value>
   </data>
   <data name="Ret.codes.Kept" xml:space="preserve">
     <value>{0} days</value>

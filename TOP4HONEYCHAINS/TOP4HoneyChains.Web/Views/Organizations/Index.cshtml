@@ -40,7 +40,7 @@
                             {
                                 var badge = o.Status switch { OrgStatus.Verified => "bg-success", OrgStatus.Suspended => "bg-danger", _ => "bg-warning text-dark" };
                                 <tr data-org-id="@o.OrgId">
-                                    <td>@o.DisplayName @if (o.IsPlatform) { <span class="badge bg-dark ms-1">@L["platform"]</span> } @if (o.LegacyWholesalerId != null) { <span class="badge bg-light text-dark border ms-1" title="@L["Created from a wholesaler record"]">@L["Wholesaler"]</span> }</td>
+                                    <td>@o.DisplayName @if (o.IsPlatform) { <span class="badge bg-dark ms-1">@L["platform"]</span> }@* D-95: no "Wholesaler" tag; the link to a wholesaler record is internal (every plant gets one, D-88) and matches no capability *@</td>
                                     <td>@string.Join(", ", o.Capabilities.Select(c => Ref.Capability(c.Capability)))</td>
                                     <td><span class="badge @badge org-status">@L[o.Status ?? ""]</span></td>
                                     <td>@o.Province</td>

@@ -585,6 +585,9 @@
   <data name="Reg.FormatHelp" xml:space="preserve">
     <value>Biçim: TR, 01-81 arası il kodu ve 10 hane. Kanıt belgesi (kayıt çıktısı veya fotoğraf) zorunludur.</value>
   </data>
+  <data name="Reg.ListHelp" xml:space="preserve">
+    <value>Her arıcı platformda bir kayıttır; cep telefonuyla kaydedilen arıcı arıcı alanına da giriş yapabilir. Kayıt numarası, arıcı kaydı SMS koduyla onayladığında veya Uyum Sorumlusu imzalı fotoğrafı kabul ettiğinde doğrulanır. Burada platform yöneticisi sonradan girilen bir numarayı kanıt belgesiyle kontrol eder ve birliği değiştirir.</value>
+  </data>
   <data name="Reg.Submit" xml:space="preserve">
     <value>Gönder</value>
   </data>
@@ -7362,6 +7365,9 @@
   <data name="Notice.Audience.All" xml:space="preserve">
     <value>Herkes</value>
   </data>
+  <data name="Notice.Audience.Consumer" xml:space="preserve">
+    <value>Tüketiciler</value>
+  </data>
   <data name="Notice.IsDraft" xml:space="preserve">
     <value>Taslak (henüz KVKK birimince onaylanmadı)</value>
   </data>
@@ -8957,6 +8963,9 @@
   </data>
   <data name="Ret.Years" xml:space="preserve">
     <value>{0} yıl</value>
+  </data>
+  <data name="Ret.OneYear" xml:space="preserve">
+    <value>1 yıl</value>
   </data>
   <data name="Ret.codes.Kept" xml:space="preserve">
     <value>{0} gün</value>

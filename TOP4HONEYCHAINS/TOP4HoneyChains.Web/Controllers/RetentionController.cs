@@ -58,18 +58,21 @@ namespace TOP4HoneyChains.Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // D-95: "1 year", not "1 years"
+        private string Years(int n) => n == 1 ? _l["Ret.OneYear"].Value : string.Format(_l["Ret.Years"].Value, n);
+
         [NonAction]
         public string Kept(string key, RetentionOptions o) => key switch
         {
             "codes" => string.Format(_l["Ret.codes.Kept"].Value, o.OneTimeCodeDays),
-            "sms" => string.Format(_l["Ret.Years"].Value, o.SmsYears),
-            "prices" => string.Format(_l["Ret.Years"].Value, o.PriceYears),
+            "sms" => Years(o.SmsYears),
+            "prices" => Years(o.PriceYears),
             "lots" => string.Format(_l["Ret.lots.Kept"].Value, o.ProductYears, o.BestBeforeYears),
             "consents" => string.Format(_l["Ret.consents.Kept"].Value, o.ProofYears),
             "accounts" => string.Format(_l["Ret.accounts.Kept"].Value, o.FormerMemberYears),
             "consumers" or "consumersaved" => string.Format(_l["Ret.consumers.Kept"].Value, o.ConsumerAccountYears),   // D-87
             "consumerfeedback" => string.Format(_l["Ret.consumerfeedback.Kept"].Value, o.ConsumerFeedbackYears),
-            "audit" => string.Format(_l["Ret.Years"].Value, o.AuditYears),
+            "audit" => Years(o.AuditYears),
             _ => _l[$"Ret.{key}.Kept"].Value
         };
     }
