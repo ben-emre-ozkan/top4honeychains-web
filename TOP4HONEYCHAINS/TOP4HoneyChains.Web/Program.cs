@@ -45,9 +45,12 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.AccessDeniedPath = "/Account/AccessDenied";
 });
 
+// D-94: English is written for the partners in British English: British dates ("21 November 2026"), not US ones
+var english = new CultureInfo("en");
+english.DateTimeFormat = (DateTimeFormatInfo)CultureInfo.GetCultureInfo("en-GB").DateTimeFormat.Clone();
 var supportedCultures = new[]
 {
-    new CultureInfo("en"),
+    english,
     new CultureInfo("tr"),
     new CultureInfo("es"),
     new CultureInfo("pl"),

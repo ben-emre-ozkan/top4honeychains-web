@@ -29,8 +29,17 @@
     <header class="me-top">
         <a class="me-brand b-link" href="/Me" aria-label="TOP4HoneyChains"><img src="~/img/brand/top4-wordmark-w3.svg" alt="TOP4HoneyChains" width="177" height="13"></a>
         <span class="me-who">@me?.BeekeeperFirstName @me?.BeekeeperLastName</span>
-        @* D-92: the portal has its own language switch *@
-        <div class="me-lang"><partial name="_LanguageSwitch" /></div>
+        @* D-92: the portal has its own language switch; D-94: one compact select, as narrow as the panel's menu (a button for browsers without JavaScript) *@
+        <form class="me-lang" method="get" action="@Url.Action("SetLanguage", "Home")">
+            <input type="hidden" name="returnUrl" value="@(Context.Request.Path + Context.Request.QueryString)" />
+            <select name="culture" aria-label="@L["Language"]" data-lang-select>
+                @foreach (var (code, name) in new[] { ("tr", "Türkçe"), ("en", "English"), ("es", "Español"), ("pl", "Polski"), ("lv", "Latviešu") })
+                {
+                    <option value="@code" lang="@code" selected="@(code == lang)">@name</option>
+                }
+            </select>
+            <noscript><button type="submit" class="b-btn b-btn-ghost me-btn-sm">OK</button></noscript>
+        </form>
         <form asp-controller="Account" asp-action="Logout" method="post" class="me-out">
             <button type="submit" class="b-btn b-btn-ghost me-btn-sm">@L["Menu.Logout"]</button>
         </form>
@@ -54,6 +63,7 @@
     </main>
     <footer class="me-foot">@string.Format(L["Land.Footer.Rights"].Value, DateTime.Now.Year)</footer>
     <script>
+        document.querySelectorAll('[data-lang-select]').forEach(function (s) { s.addEventListener('change', function () { s.form.submit(); }); });
         document.querySelectorAll('.me-alert-close').forEach(function (b) { b.addEventListener('click', function () { b.parentElement.remove(); }); });
     </script>
     <script src="~/js/honey-scene.js" asp-append-version="true"></script>

@@ -28,6 +28,21 @@ namespace TOP4HoneyChains.Web.Services
                 .Where(l => !known || ((l.HoneyTypeId == null || l.HoneyTypeId == honey!.HoneyTypeId) && (l.HoneyClass == null || l.HoneyClass == honey!.HoneyClass)))
                 .OrderBy(l => l.HoneyTypeId != null).ThenBy(l => l.HoneyClass).ThenBy(l => l.LimitId)
                 .ToList();
+
+            // D-94: for a known honey only the main limit that applies is shown. As in CcpLimitEvaluator, a row for the
+            // honey type beats one for the honey class, which beats one for every honey; so a less specific main row is
+            // dropped once a more specific one without a condition exists (chestnut: "≥ 0.8 mS/cm", not "≤ 0.8; ≥ 0.8").
+            if (known)
+            {
+                static bool IsMain(CriticalControlPointParameterLimit l) => l.RatioWithParameterId == null && l.SumWithParameterId == null;
+                static int Level(CriticalControlPointParameterLimit l) => l.HoneyTypeId != null ? 2 : l.HoneyClass != null ? 1 : 0;
+                var unconditional = rows.Where(l => IsMain(l) && l.ConditionParameterId == null).ToList();
+                if (unconditional.Count > 0)
+                {
+                    var level = unconditional.Max(Level);
+                    rows = rows.Where(l => !IsMain(l) || Level(l) >= level).ToList();
+                }
+            }
             var unit = UnitSymbol(p);
             var parts = new List<string>();
 

@@ -4,6 +4,9 @@ body.me { margin: 0; background: var(--b-paper); color: var(--b-ink); font-famil
 .me-brand img { display: block; height: 13px; width: auto; }
 .me-who { flex: 1; text-align: right; font-weight: 600; color: var(--b-heading); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .me-out { margin: 0; }
+/* D-94: the portal's language switch is one compact select */
+.me-lang { margin: 0; display: flex; gap: 4px; align-items: center; }
+.me-lang select { padding: 5px 6px; font-size: 14px; border: 1px solid var(--b-input-line, var(--b-line)); border-radius: 8px; background: #fff; color: var(--b-ink); max-width: 110px; }
 .me-btn-sm { padding: 6px 12px; font-size: 14px; }
 .me-nav { display: flex; gap: 4px; overflow-x: auto; padding: 8px 12px; background: var(--b-white, #fff); border-bottom: 1px solid var(--b-line); scrollbar-width: thin; }
 .me-tab { flex: 0 0 auto; padding: 8px 12px; border-radius: 999px; color: var(--b-ink-2); text-decoration: none; font-size: 15px; }
@@ -33,6 +36,8 @@ body.me { margin: 0; background: var(--b-paper); color: var(--b-ink); font-famil
 .me-form { display: grid; gap: 8px; margin-top: 8px; }
 .me-form label { font-size: 14px; color: var(--b-ink-2); }
 .me-form input, .me-form select { width: 100%; box-sizing: border-box; padding: 10px 12px; border: 1px solid var(--b-input-line); border-radius: 10px; font-size: 16px; background: #fff; }
+/* D-94: radio buttons and check boxes keep their own size and stay next to their label */
+.me-form input[type="radio"], .me-form input[type="checkbox"] { width: auto; flex: 0 0 auto; margin: 0; padding: 0; }
 .me-inline { display: grid; grid-template-columns: 1fr 110px; gap: 8px; }
 .me-alert { display: flex; justify-content: space-between; gap: 12px; padding: 10px 14px; border-radius: 10px; margin-bottom: 12px; }
 .me-alert-close { background: none; border: 0; font-size: 20px; line-height: 1; cursor: pointer; color: inherit; }

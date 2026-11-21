@@ -20,7 +20,7 @@
     <h3>@L["Me.Phone"]</h3>
     @if (phone != null)
     {
-        <p class="m-0"><code id="current-phone">@phone</code></p>
+        <p class="m-0"><code id="current-phone">@TOP4HoneyChains.Web.Services.PhoneNumberPolicy.Display(phone)</code></p>
         <form asp-action="RemovePhone" method="post" class="me-form" id="remove-phone-form">
             <button type="submit" class="b-btn b-btn-ghost">@L["Consumer.Account.RemovePhone"]</button>
         </form>
@@ -41,7 +41,7 @@
     {
         <form asp-action="VerifyPhone" method="post" class="me-form" id="verify-phone-form">
             <input type="hidden" name="phone" value="@pending" />
-            <label for="code">@L["Me.CodeTo"] <code>@pending</code></label>
+            <label for="code">@L["Me.CodeTo"] <code>@TOP4HoneyChains.Web.Services.PhoneNumberPolicy.Display(pending)</code></label>
             <input id="code" name="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" required />
             <button type="submit" class="b-btn b-btn-honey">@L["Me.Verify"]</button>
         </form>

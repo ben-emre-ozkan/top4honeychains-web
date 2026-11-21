@@ -93,7 +93,7 @@
                                             <td>
                                                 @if (!string.IsNullOrWhiteSpace(item.WholesalerPhone))
                                                 {
-                                                    @item.WholesalerPhone
+                                                    @TOP4HoneyChains.Web.Services.PhoneNumberPolicy.Display(item.WholesalerPhone)
                                                 }
                                                 else
                                                 {
