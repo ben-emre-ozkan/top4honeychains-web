@@ -361,7 +361,7 @@
     <value>Melnraksts</value>
   </data>
   <data name="Org.Open" xml:space="preserve">
-    <value>Atvērts</value>
+    <value>Atvērt</value>
   </data>
   <data name="Org.ChipLegend" xml:space="preserve">
     <value>Zaļš ar ✓ = apstiprināts · dzeltens = iesniegts, gaida apstiprinājumu · pelēks = atvērts · ar kontūru = nav piemērojams</value>
@@ -6340,7 +6340,7 @@
     <value>Jauns biškopis</value>
   </data>
   <data name="Home.Quick.Batch" xml:space="preserve">
-    <value>Jauna partija</value>
+    <value>Jauna gala partija</value>
   </data>
   <data name="Home.Quick.BatchHint" xml:space="preserve">
     <value>Vispirms izvēlieties vairumtirgotāju</value>
@@ -8287,7 +8287,7 @@
     <value>Partijas ar manu medu</value>
   </data>
   <data name="Me.Nav.Stories" xml:space="preserve">
-    <value>Manas Honey Story lapas</value>
+    <value>Manas Medus stāsta lapas</value>
   </data>
   <data name="Me.Nav.Apiaries" xml:space="preserve">
     <value>Manas dravas</value>
@@ -8383,7 +8383,7 @@
     <value>Mana daļa</value>
   </data>
   <data name="Me.Story" xml:space="preserve">
-    <value>Honey Story</value>
+    <value>Medus stāsts</value>
   </data>
   <data name="Me.OpenStory" xml:space="preserve">
     <value>Atvērt publisko lapu</value>
@@ -8419,7 +8419,7 @@
     <value>Mana publiskā biškopja lapa</value>
   </data>
   <data name="Me.ConsentHelp.PublicName" xml:space="preserve">
-    <value>Bez tās Honey Story jūsu vārda vietā rāda neitrālu kodu.</value>
+    <value>Bez tās Medus stāsts jūsu vārda vietā rāda neitrālu kodu.</value>
   </data>
   <data name="Me.ConsentHelp.PortalNotifications" xml:space="preserve">
     <value>Informatīvas ziņas papildus apstiprinājuma kodiem.</value>

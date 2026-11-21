@@ -1354,7 +1354,7 @@
     <value>Elinizdeki partiler</value>
   </data>
   <data name="Cust.HoldingsHelp" xml:space="preserve">
-    <value>Kurumunuzun sahibi olduğu veya teslim aldığı kesinleşmiş partiler. Sevkiyat miktarı hemen ayırır; emanet alıcı onaylayınca geçer.</value>
+    <value>Kurumunuzun sahibi olduğu veya teslim aldığı kesinleşmiş partiler. Sevkiyat miktarı hemen ayırır; muhafaza, alıcı onaylayınca ona geçer.</value>
   </data>
   <data name="Cust.Held" xml:space="preserve">
     <value>Eldeki (kg)</value>
@@ -1414,7 +1414,7 @@
     <value>Tüm sevkiyatlar (platform yöneticileri için salt okunur).</value>
   </data>
   <data name="Cust.StorageHelp" xml:space="preserve">
-    <value>Elindeki miktar için emanetçinin kaydettiği depolama koşulları:</value>
+    <value>Elindeki miktar için partiyi elinde bulunduran kurumun kaydettiği depolama koşulları:</value>
   </data>
   <data name="Cust.Value" xml:space="preserve">
     <value>Değer</value>
@@ -1447,10 +1447,10 @@
     <value>Diğer kurumlar arasındaki {0} sevkiyat gösterilmiyor.</value>
   </data>
   <data name="Cust.Holders" xml:space="preserve">
-    <value>Şu anki emanetçiler</value>
+    <value>Şu an partiyi elinde bulunduran kurumlar</value>
   </data>
   <data name="Cust.Holder" xml:space="preserve">
-    <value>Emanetçi</value>
+    <value>Elinde bulunduran</value>
   </data>
   <data name="Cust.Owner" xml:space="preserve">
     <value>Sahip</value>
@@ -1504,7 +1504,7 @@
     <value>Bu partiden en çok {0} kg sevk edebilirsiniz.</value>
   </data>
   <data name="Shipment created; custody moves when the receiver confirms it." xml:space="preserve">
-    <value>Sevkiyat oluşturuldu; emanet alıcı onaylayınca geçer.</value>
+    <value>Sevkiyat oluşturuldu; muhafaza, alıcı onaylayınca ona geçer.</value>
   </data>
   <data name="This shipment was already decided." xml:space="preserve">
     <value>Bu sevkiyat için zaten karar verildi.</value>
@@ -1603,7 +1603,7 @@
     <value>Mühür bozuk: reddet</value>
   </data>
   <data name="Lab.Custody" xml:space="preserve">
-    <value>Gözetim zinciri</value>
+    <value>Muhafaza zinciri</value>
   </data>
   <data name="Lab.Results" xml:space="preserve">
     <value>Sonuçlar</value>
@@ -4579,7 +4579,7 @@
     <value>Ayrıntı</value>
   </data>
   <data name="HolderStorageValues" xml:space="preserve">
-    <value>Emanetçi depolama değerleri</value>
+    <value>Elinde bulunduran kurumun depolama değerleri</value>
   </data>
   <data name="LabReports" xml:space="preserve">
     <value>Laboratuvar raporları</value>
@@ -4645,7 +4645,7 @@
     <value>Ham kaynaklar: {0}</value>
   </data>
   <data name="HolderStorageRecords" xml:space="preserve">
-    <value>Emanetçi depolama kayıtları</value>
+    <value>Elinde bulunduran kurumun depolama kayıtları</value>
   </data>
   <data name="Consumer" xml:space="preserve">
     <value>Tüketici</value>
@@ -4660,7 +4660,7 @@
     <value>Roller</value>
   </data>
   <data name="Holder" xml:space="preserve">
-    <value>Emanetçi</value>
+    <value>Partiyi elinde bulunduran kurum</value>
   </data>
   <data name="Apiary Location Longitude" xml:space="preserve">
     <value>Arılık konumu boylamı</value>
@@ -4747,7 +4747,7 @@
     <value>Parti QR kodu</value>
   </data>
   <data name="SampleCustodyEvents" xml:space="preserve">
-    <value>Numune gözetim olayları</value>
+    <value>Numune muhafaza olayları</value>
   </data>
   <data name="Parameter Id" xml:space="preserve">
     <value>Parametre</value>
@@ -6673,7 +6673,7 @@
     <value>Elde tutulan miktar (kg)</value>
   </data>
   <data name="Audit.F.HolderOrgId" xml:space="preserve">
-    <value>Elinde tutan kurum</value>
+    <value>Partiyi elinde bulunduran kurum</value>
   </data>
   <data name="Audit.F.HoneyType" xml:space="preserve">
     <value>Bal türü</value>
@@ -9586,7 +9586,7 @@
     <value>Kurulum</value>
   </data>
   <data name="Menu.Oversight" xml:space="preserve">
-    <value>Denetim</value>
+    <value>Gözetim</value>
   </data>
   <data name="Menu.ReferenceData" xml:space="preserve">
     <value>Referans veriler</value>
@@ -9619,7 +9619,7 @@
     <value>Kurulum, platformu kurduğunuz yerdir: kurumlar, yetenekleri, roller, KKN sorumlulukları ve referans veriler. Bir kurum oluşturarak başlayın, örneğin bir ilçe tarım müdürlüğü, ve ilk yöneticisini ekleyin.</value>
   </data>
   <data name="Tour.Admin.Oversight" xml:space="preserve">
-    <value>Denetim menüsünden her şeyi okuyabilirsiniz: kayıtlar, denetim kaydı, kullanıcılar, metinler, veri saklama ve düzeltmeler. İş verilerini değiştiremezsiniz; yanlış bir değer için düzeltme isteyin, ikinci bir yönetici onaylar.</value>
+    <value>Gözetim menüsünden her şeyi okuyabilirsiniz: kayıtlar, denetim kaydı, kullanıcılar, metinler, veri saklama ve düzeltmeler. İş verilerini değiştiremezsiniz; yanlış bir değer için düzeltme isteyin, ikinci bir yönetici onaylar.</value>
   </data>
   <data name="Phone.Title" xml:space="preserve">
     <value>Mesajlar</value>
