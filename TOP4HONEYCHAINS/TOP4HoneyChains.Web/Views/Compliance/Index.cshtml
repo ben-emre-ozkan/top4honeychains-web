@@ -196,7 +196,8 @@
                     <h5 class="card-title">@L["Notice.DataController"]</h5>
                     <p class="mb-1">@(org.DataControllerName ?? "–") · @(org.DataControllerContact ?? "–")</p>
                     <a href="/Organizations/Details/@org.OrgId" class="btn btn-sm btn-outline-secondary">@L["Co.EditController"]</a>
-                    <a href="/Notices" class="btn btn-sm btn-outline-secondary">@L["Notice.Title"]</a>
+                    @* D-95: the public notice with this organisation as data controller (the notice list is for platform administrators) *@
+                    <a href="/privacy?org=@org.OrgId" class="btn btn-sm btn-outline-secondary" target="_blank">@L["Notice.Title"]</a>
                 </div>
             </div>
 
@@ -210,7 +211,7 @@
                             <tbody>
                                 @foreach (var a in audit)
                                 {
-                                    <tr><td class="text-nowrap">@a.At.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</td><td>@a.UserName</td><td>@a.Action · @a.Entity @a.EntityKey</td></tr>
+                                    <tr><td class="text-nowrap">@a.At.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</td><td>@a.UserName</td><td>@* D-95: the readable labels of the audit log *@@L[a.Action] · @L[a.Entity]@if (a.EntityKey != null) {<text> #@a.EntityKey</text>}@if (a.Flags != null) { <span class="badge bg-warning text-dark ms-1">@string.Join(", ", a.Flags.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).Select(f => L[f].Value))</span> }</td></tr>
                                 }
                                 @if (!audit.Any()) { <tr><td colspan="3" class="text-muted">@L["Org.None"]</td></tr> }
                             </tbody>

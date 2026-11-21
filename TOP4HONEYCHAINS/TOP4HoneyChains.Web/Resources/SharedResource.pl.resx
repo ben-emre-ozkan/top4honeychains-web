@@ -585,6 +585,9 @@
   <data name="Reg.FormatHelp" xml:space="preserve">
     <value>Format: TR, kod prowincji 01-81 i 10 cyfr. Wymagany jest dokument potwierdzający (wydruk z rejestru lub zdjęcie).</value>
   </data>
+  <data name="Reg.ListHelp" xml:space="preserve">
+    <value>Każdy pszczelarz jest rekordem na platformie; pszczelarz zarejestrowany z telefonem komórkowym może też logować się do obszaru pszczelarza. Numer w rejestrze jest weryfikowany, gdy pszczelarz potwierdza rejestrację kodem SMS albo gdy Specjalista ds. zgodności zaakceptuje podpisane zdjęcie. Tutaj administrator platformy sprawdza numer wprowadzony później, z dokumentem potwierdzającym, i zmienia stowarzyszenie.</value>
+  </data>
   <data name="Reg.Submit" xml:space="preserve">
     <value>Prześlij</value>
   </data>
@@ -7362,6 +7365,9 @@
   <data name="Notice.Audience.All" xml:space="preserve">
     <value>Wszyscy</value>
   </data>
+  <data name="Notice.Audience.Consumer" xml:space="preserve">
+    <value>Konsumenci</value>
+  </data>
   <data name="Notice.IsDraft" xml:space="preserve">
     <value>Projekt (jeszcze niezatwierdzony przez zespół ochrony danych)</value>
   </data>
@@ -8957,6 +8963,9 @@
   </data>
   <data name="Ret.Years" xml:space="preserve">
     <value>{0} lat</value>
+  </data>
+  <data name="Ret.OneYear" xml:space="preserve">
+    <value>1 rok</value>
   </data>
   <data name="Ret.codes.Kept" xml:space="preserve">
     <value>{0} dni</value>

@@ -110,7 +110,8 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                     if (access.Approve && await MayApproveAsync(active, "raw", a.RawHoneyProductionId, a.RawHoneyCCPAssignmentCCP))
                         Add("Approve", "raw", a.RawHoneyProductionId, $"#{a.RawHoneyProductionId}", a.RawHoneyCCPAssignmentCCP, a.Code, a.RawHoneyCCPAssignmentStartDate);
                 }
-                else if (access.Enter)
+                // D-95: CCP 1 is filled by the laboratory's approved report; it is not a task of the plant's roles
+                else if (access.Enter && a.Code != "CCP 1")
                     Add("Enter", "raw", a.RawHoneyProductionId, $"#{a.RawHoneyProductionId}", a.RawHoneyCCPAssignmentCCP, a.Code, a.RawHoneyCCPAssignmentStartDate);
             }
             var batches = await (await _scope.VisibleBatchesAsync())
@@ -168,7 +169,9 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             if (_perm.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.LabResults, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Enter, active.OrgRole))
             {
                 var samples = await _context.Samples.AsNoTracking().Include(s => s.Report)
-                    .Where(s => s.LabOrgId == active.OrgId && s.Status == SampleStatus.Received && (s.Report == null || s.Report.Status == LabReportStatus.Draft)).ToListAsync();
+                    .Where(s => s.LabOrgId == active.OrgId && s.Status == SampleStatus.Received && (s.Report == null || s.Report.Status == LabReportStatus.Draft)
+                        // D-95: a jar that went into a composite sample is analysed through the composite, not on its own
+                        && !_context.SampleSources.Any(src => src.SourceSampleId == s.SampleId && _context.Samples.Any(c => c.SampleId == src.CompositeSampleId && c.Status != SampleStatus.Rejected))).ToListAsync();
                 var waiting = await _lab.LotsWaitingForCcp0Async(samples.Select(s => s.RawHoneyProductionId));
                 foreach (var s in samples)
                     items.Add(new Item("Results", s.SampleCode, s.Report?.ReturnReason, $"/LabReports/Edit/{s.SampleId}", s.ReceivedAt,

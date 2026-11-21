@@ -585,6 +585,9 @@
   <data name="Reg.FormatHelp" xml:space="preserve">
     <value>Formato: TR, un código de provincia 01-81 y 10 dígitos. Se requiere un documento probatorio (impresión del registro o foto).</value>
   </data>
+  <data name="Reg.ListHelp" xml:space="preserve">
+    <value>Cada apicultor es un registro en la plataforma; un apicultor registrado con un teléfono móvil también puede iniciar sesión en el área de apicultor. El número de registro se verifica cuando el apicultor confirma el registro con el código SMS, o cuando el Responsable de cumplimiento acepta la foto firmada. Aquí un administrador de la plataforma comprueba un número ingresado más tarde, con un documento probatorio, y cambia la asociación.</value>
+  </data>
   <data name="Reg.Submit" xml:space="preserve">
     <value>Enviar</value>
   </data>
@@ -7362,6 +7365,9 @@
   <data name="Notice.Audience.All" xml:space="preserve">
     <value>Todos</value>
   </data>
+  <data name="Notice.Audience.Consumer" xml:space="preserve">
+    <value>Consumidores</value>
+  </data>
   <data name="Notice.IsDraft" xml:space="preserve">
     <value>Borrador (aún no aprobado por la oficina de protección de datos)</value>
   </data>
@@ -8957,6 +8963,9 @@
   </data>
   <data name="Ret.Years" xml:space="preserve">
     <value>{0} años</value>
+  </data>
+  <data name="Ret.OneYear" xml:space="preserve">
+    <value>1 año</value>
   </data>
   <data name="Ret.codes.Kept" xml:space="preserve">
     <value>{0} días</value>

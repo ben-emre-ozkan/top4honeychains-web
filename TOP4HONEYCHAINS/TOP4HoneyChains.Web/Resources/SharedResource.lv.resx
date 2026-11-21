@@ -585,6 +585,9 @@
   <data name="Reg.FormatHelp" xml:space="preserve">
     <value>Formāts: TR, provinces kods 01–81 un 10 cipari. Nepieciešams apliecinošs dokuments (reģistra izdruka vai fotoattēls).</value>
   </data>
+  <data name="Reg.ListHelp" xml:space="preserve">
+    <value>Katrs biškopis ir ieraksts platformā; biškopis, kas reģistrēts ar mobilo tālruni, var arī pieteikties biškopja sadaļā. Reģistra numurs tiek pārbaudīts, kad biškopis apstiprina reģistrāciju ar SMS kodu vai kad Atbilstības speciālists pieņem parakstīto fotoattēlu. Šeit platformas administrators pārbauda vēlāk ievadītu numuru ar apliecinošu dokumentu un maina biedrību.</value>
+  </data>
   <data name="Reg.Submit" xml:space="preserve">
     <value>Iesniegt</value>
   </data>
@@ -7362,6 +7365,9 @@
   <data name="Notice.Audience.All" xml:space="preserve">
     <value>Visi</value>
   </data>
+  <data name="Notice.Audience.Consumer" xml:space="preserve">
+    <value>Patērētāji</value>
+  </data>
   <data name="Notice.IsDraft" xml:space="preserve">
     <value>Projekts (datu aizsardzības nodaļa vēl nav apstiprinājusi)</value>
   </data>
@@ -8957,6 +8963,9 @@
   </data>
   <data name="Ret.Years" xml:space="preserve">
     <value>{0} gadi</value>
+  </data>
+  <data name="Ret.OneYear" xml:space="preserve">
+    <value>1 gads</value>
   </data>
   <data name="Ret.codes.Kept" xml:space="preserve">
     <value>{0} dienas</value>

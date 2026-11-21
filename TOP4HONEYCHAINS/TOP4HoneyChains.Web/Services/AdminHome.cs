@@ -91,7 +91,9 @@ namespace TOP4HoneyChains.Web.Services
             var atDelivery = await lots.CountAsync(r => _context.LotIntakes.Any(i => i.RawHoneyProductionId == r.RawHoneyProductionId)
                 && r.RawHoneyCCPAssignments.Any(a => a.RawHoneyCCPAssignmentCCP == ccp0
                     && a.RawHoneyCCPAssignmentStatus != AssignmentStatusIds.Completed && a.RawHoneyCCPAssignmentStatus != AssignmentStatusIds.NotApplicable));
-            var atLab = await _context.Samples.CountAsync(s => s.Status != SampleStatus.Rejected && (s.Report == null || s.Report.Status != LabReportStatus.Approved));
+            // D-95: jars that went into a composite sample are counted through the composite
+            var atLab = await _context.Samples.CountAsync(s => s.Status != SampleStatus.Rejected && (s.Report == null || s.Report.Status != LabReportStatus.Approved)
+                && !_context.SampleSources.Any(src => src.SourceSampleId == s.SampleId && _context.Samples.Any(c => c.SampleId == src.CompositeSampleId && c.Status != SampleStatus.Rejected)));
             var toShelf = await _context.Shipments.CountAsync(s => s.Status == ShipmentStatus.Pending)
                 + await _context.HolderStorageRecords.CountAsync(r => r.Status == AssignmentStatusIds.Submitted);
             return new()

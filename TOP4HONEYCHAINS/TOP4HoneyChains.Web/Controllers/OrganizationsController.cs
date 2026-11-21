@@ -232,6 +232,9 @@ namespace TOP4HoneyChains.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        // D-95: the capability's name on screen, not its code, in the message
+        private string CapabilityName(string code) => HttpContext.RequestServices.GetRequiredService<TOP4HoneyChains.Web.Services.RefText>().Capability(code);
+
         [Authorize(Policy = AuthPolicies.PlatformAdmin)]
         public async Task<IActionResult> AddCapability(int id, string capability, bool isAccredited, string? accreditationNumber, DateOnly? accreditationValidUntil)
         {
@@ -256,7 +259,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 });
                 await _context.SaveChangesAsync();
                 await LegacyWholesalers.EnsureAsync(_context, id);   // D-88
-                TempData["Success"] = $"Capability {capability} added.";
+                TempData["Success"] = $"Capability {CapabilityName(capability)} added.";
             }
             return RedirectToAction(nameof(Details), new { id });
         }
@@ -281,7 +284,7 @@ namespace TOP4HoneyChains.Web.Controllers
             {
                 _context.OrgCapabilities.Remove(cap);
                 await _context.SaveChangesAsync();
-                TempData["Success"] = $"Capability {capability} removed.";
+                TempData["Success"] = $"Capability {CapabilityName(capability)} removed.";
             }
             return RedirectToAction(nameof(Details), new { id });
         }
