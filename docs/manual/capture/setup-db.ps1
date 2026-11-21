@@ -124,6 +124,10 @@ $known = ($castUsers + 'seda.gunes' | ForEach-Object { "N'$_'" }) -join ','
 $leak = [int](Invoke-Sql $db "SELECT COUNT(*) FROM dbo.AspNetUsers m WHERE m.UserName NOT IN ($known) AND m.UserName NOT LIKE 'TR-BEE-%' AND EXISTS (SELECT 1 FROM [$source].dbo.AspNetUsers s WHERE s.UserName = m.UserName)")
 if ($leak) { throw "$leak account(s) of the local database found in the manual database" }
 
+# ---- 5b. the sample production period in the other four languages (as an administrator would translate it)
+& sqlcmd -S $server -d $db -E -I -b -f 65001 -i (Join-Path $here 'period-names.sql') | Write-Host
+if ($LASTEXITCODE -ne 0) { throw 'period-names.sql failed' }
+
 # ---- 6. the state every screenshot run starts from
 Write-Host '6. backup'
 $bak = Join-Path $work "$db.bak"

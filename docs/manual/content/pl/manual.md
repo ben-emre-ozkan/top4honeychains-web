@@ -1303,7 +1303,7 @@ Portal pszczelarza jest przygotowany z myślą o telefonie. Dzięki niemu pszcze
 
 ## Odczytaj stronę startową
 
-Po zalogowaniu pszczelarz widzi stronę **Start**: dostawy, partie końcowe z jego miodem, ostatnią dostawę i ostatni wynik laboratoryjny. **Do zrobienia** wymienia dostawy bez ceny. Menu zawiera pozycje **Start**, **Moje dostawy**, **Próbki i laboratorium**, **Partie z moim miodem**, **Moje strony Honey Story**, **Moje pasieki**, **Prywatność i zgody** oraz **Konto**. Łącza języków i **Wyloguj się** znajdują się u góry.
+Po zalogowaniu pszczelarz widzi stronę **Start**: dostawy, partie końcowe z jego miodem, ostatnią dostawę i ostatni wynik laboratoryjny. **Do zrobienia** wymienia dostawy bez ceny. Menu zawiera pozycje **Start**, **Moje dostawy**, **Próbki i laboratorium**, **Partie z moim miodem**, **Moje strony Historii miodu**, **Moje pasieki**, **Prywatność i zgody** oraz **Konto**. Łącza języków i **Wyloguj się** znajdują się u góry.
 
 ![Strona startowa portalu pszczelarza](screens/10-01-home.png "width=42%")
 
@@ -1319,7 +1319,7 @@ Możesz zmienić cenę za pomocą przycisku **Zmień cenę**, dopóki partia nie
 
 ## Przeglądaj wyniki badań, partie końcowe i strony Historii miodu
 
-**Próbki i laboratorium** pokazuje każdy słoik z próbką z Twoich dostaw. Wartości laboratoryjne pojawiają się, gdy laboratorium zatwierdzi swój raport. **Partie z moim miodem** pokazuje Twój udział w każdej partii końcowej, a **Moje strony Honey Story** otwiera ich strony publiczne.
+**Próbki i laboratorium** pokazuje każdy słoik z próbką z Twoich dostaw. Wartości laboratoryjne pojawiają się, gdy laboratorium zatwierdzi swój raport. **Partie z moim miodem** pokazuje Twój udział w każdej partii końcowej, a **Moje strony Historii miodu** otwiera ich strony publiczne.
 
 ![Wyniki laboratoryjne w portalu](screens/10-04-samples.png "width=42%")
 

@@ -135,7 +135,7 @@ async function snap(page, name, { crop, part, marks = [], margin = 16, scroll, k
     if (part) {
         // also every other fixed or sticky element (a corner of the top bar showed as a light box over the section number)
         await page.evaluate(() => document.querySelectorAll('body *').forEach(e => { if (['fixed', 'sticky'].includes(getComputedStyle(e).position)) e.setAttribute('data-shot-hide', ''); }));
-        await page.addStyleTag({ content: '#page-topbar, .app-top, .topnav, [data-shot-hide] { visibility: hidden !important; }' });
+        await page.addStyleTag({ content: '#page-topbar, .app-top, .topnav, [data-shot-hide], .honey-mark, .b-brand-mark { visibility: hidden !important; opacity: 0 !important; }' });
     }
     if (top) {
         await top.evaluate(e => e.scrollIntoView({ block: 'start' }));
@@ -151,6 +151,8 @@ async function snap(page, name, { crop, part, marks = [], margin = 16, scroll, k
         const x = Math.max(0, w.x - margin), y = Math.max(0, a.y - margin);
         const clip = { x, y, width: Math.min(view.width, w.x + w.width + margin) - x, height: Math.min(view.height, end) - y };
         if (end > view.height) log(`  note: ${name} is cut at the window bottom (${Math.round(end - y)} px tall)`);
+        if (process.env.DEBUG_SHOT) log('  debug ' + name + ': ' + await page.evaluate(([px, py]) => document.elementsFromPoint(px, py).slice(0, 4)
+            .map(e => { const o = e.closest('svg') || e; const a = o.parentElement; return `${e.tagName.toLowerCase()} in ${o.tagName.toLowerCase()}.${[...o.classList].join('.')} ${getComputedStyle(o).position} parent ${a?.tagName.toLowerCase()}#${a?.id}.${[...(a?.classList||[])].join('.')} ${getComputedStyle(a).position}`; }).join(' | '), [x + 8, y + 8]));
         fs.mkdirSync(SCREENS, { recursive: true });
         await page.screenshot({ path: path.join(SCREENS, `${name}.png`), clip });
         await page.evaluate(() => {

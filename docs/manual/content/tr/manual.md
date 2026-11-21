@@ -72,7 +72,7 @@ Table: Balın yolculuğu: platformun kaydettikleri {#tbl-journey-records}
 | Teslim | Her kap için bir satır içeren bir teslimat: ağırlık, gelişteki mühürler, mühür numaralarıyla numune kavanozu ve şahit numune kavanozu ve yeni mühür. Teslimat bir ham bal lotu olur. Ardından ön denetim, KKN 0. | **Numune kabul sorumlusu** | Teslimatı: arıcı, SMS koduyla (veya **Uyum Sorumlusu**'nun incelediği imzalı bir formla). KKN 0'ı: bir **Kalite Güvence Sorumlusu**. |
 | Laboratuvar | Her kavanozun kabul kontrolü, karışım numunesi, sonuçlar, imzalı rapor (PDF) ve parmak izi. Onaylanan sonuçlar lotun KKN 1'i olur. | **Analist** | **Laboratuvar müdürü** |
 | İşleme | Her lotun kontrol formu (KKN 2 ve 3), lotları ve kilogramlarıyla parti, partinin kontrol formu (KKN 4 ile 10 arası), kesinleştirme talebi. | **Çalışan** (parti ve talep için **Kurum yöneticisi** de) | **Kalite Güvence Sorumlusu** formları onaylar ve kesinleştirmeyi onaylar. |
-| Raf | Sevkiyat, teslim alınması ve her emanetçideki depolama koşulları (KKN 10). Parti kesinleştirildiğinde Bal Hikâyesi herkese açılır. | Emanetçinin Çalışanı veya Kurum yöneticisi; depolama kaydı için Çalışan | Alıcı sevkiyatı teyit eder. Alıcının bir Kalite Güvence Sorumlusu depolama kaydını onaylar. |
+| Raf | Sevkiyat, teslim alınması ve partiyi elinde bulunduran her kurumdaki depolama koşulları (KKN 10). Parti kesinleştirildiğinde Bal Hikâyesi herkese açılır. | Partiyi elinde bulunduran kurumun Çalışanı veya Kurum yöneticisi; depolama kaydı için Çalışan | Alıcı sevkiyatı teyit eder. Alıcının bir Kalite Güvence Sorumlusu depolama kaydını onaylar. |
 
 Bir adım, ancak ondan önceki adım gerektiği yerde onaylandığında başlayabilir:
 
@@ -130,7 +130,7 @@ Table: Kritik kontrol noktaları ve varsayılan sorumlular {#tbl-ccps}
 | KKN 7 | Miktar Kontrolü | Dolum | Parti | Paketleme | **Çalışan** | **Kalite Güvence Sorumlusu** |
 | KKN 8 | Etiket Doğruluğu Kontrolü | Etiketleme | Parti | Paketleme | **Çalışan** | **Kalite Güvence Sorumlusu** |
 | KKN 9 | Ambalaj Bütünlüğü Kontrolü | Ambalajlama | Parti | Paketleme | **Çalışan** | **Kalite Güvence Sorumlusu** |
-| KKN 10 | Sıcaklık ve Nem İzleme | Depolama | Parti | Toptan Satış, Perakende veya Paketleme | Emanetçinin **Çalışan**'ı | Emanetçinin **Kalite Güvence Sorumlusu** |
+| KKN 10 | Sıcaklık ve Nem İzleme | Depolama | Parti | Toptan Satış, Perakende veya Paketleme | Partiyi elinde bulunduran kurumun **Çalışan**'ı | Partiyi elinde bulunduran kurumun **Kalite Güvence Sorumlusu** |
 
 KKN 1, laboratuvar müdürü raporu onayladığında tamamlanır. Tesis KKN 1'e kendi değerlerini de kaydettiyse, tesisin bir Kalite Güvence Sorumlusu bunu onaylar.
 
@@ -152,7 +152,7 @@ Table: Her kaydın birinci ve ikinci kişisi {#tbl-four-eyes}
 | Laboratuvar sonuçları (KKN 1) | **Analist** | **Laboratuvar müdürü** |
 | Bir partiyi kesinleştirme | **Çalışan** veya **Kurum yöneticisi** talep eder (**Kesinleştirme talep et**) | **Kalite Güvence Sorumlusu** onaylar (**Onayla ve kesinleştir**) |
 | Sevkiyat | Gönderenin Çalışanı veya Kurum yöneticisi | Alıcının Çalışanı veya Kurum yöneticisi teslim almayı teyit eder |
-| Bir emanetçideki depolama kaydı (KKN 10) | Emanetçinin **Çalışan**'ı | Emanetçinin **Kalite Güvence Sorumlusu** |
+| Partiyi elinde bulunduran bir kurumdaki depolama kaydı (KKN 10) | Partiyi elinde bulunduran kurumun **Çalışan**'ı | Partiyi elinde bulunduran kurumun **Kalite Güvence Sorumlusu** |
 | Teyit edilmiş bir teslimatın veya onaylanmış bir değerin düzeltilmesi | Bir platform yöneticisi gerekçesiyle talep eder | İkinci bir platform yöneticisi karar verir |
 
 "Hiç kimse kendi girdiği kaydı onaylamaz" kuralı ve "Laboratuvar sonuçlarını her zaman ikinci bir kişi onaylar" kuralı temel kurallardır ([Temel kurallar](#ground-rules)). **Roller ve yetkiler** sayfasında gösterilirler ve hiçbir rol ayarı bunları değiştiremez.
@@ -224,7 +224,7 @@ Bu nedenle kendi balını işleyen, dolduran ve depolayan bir tesisin **İşleme
 
 **Arıcılar kurum değil, kişidir.** Platformda bir arıcı, bir veya daha fazla arılığı olan bir **Arıcı kaydı** ile temsil edilir. Arıcının üyeliği yoktur. Arıcı alanı açıksa arıcının bu kayda bağlı kişisel bir hesabı olabilir ([Arıcı alanı](#ch-portal)).
 
-**Platform.** Platform yöneticisi, bir kuruma verebileceğiniz bir yetenek değildir. Platformu işleten kişiler için bir kullanıcı hesabının genel rolüdür ([Platform yönetimi](#ch-admin)). Platformun kendi kurumu, ayrılmış **Platform Yöneticisi** yeteneğini taşır; başka hiçbir kurum bu yeteneği alamaz ve yetenek kaldırılamaz.
+**Platform.** Platform yöneticisi, bir kuruma verebileceğiniz bir yetenek değildir. Platformu işleten kişiler için bir kullanıcı hesabının genel rolüdür ([Platform yönetimi](#ch-admin)). Platformun kendi kurumu, ayrılmış **Platform yönetimi** yeteneğini taşır; başka hiçbir kurum bu yeteneği alamaz ve yetenek kaldırılamaz.
 
 ## Değer zinciri faaliyetleri ve platform kayıtları {#activities}
 
@@ -264,7 +264,7 @@ Table: Tipik kurumlar, yetenekleri ve üyelerinin rolleri {#tbl-org-types}
 | Perakendeci | **Perakende** | Kurum yöneticisi, Çalışan, Kalite Güvence Sorumlusu, Uyum Sorumlusu |
 | Merkez arıcılar birliği | **Merkez Birlik** | Kurum yöneticisi, Uyum Sorumlusu |
 | Bakanlık veya denetim kuruluşu | **Kamu Otoritesi** | Kurum yöneticisi, Uyum Sorumlusu (ikisi de salt okunur) |
-| Platform işletmecisi | **Platform Yöneticisi** (ayrılmış) | Platform yöneticileri |
+| Platform işletmecisi | **Platform yönetimi** (ayrılmış) | Platform yöneticileri |
 
 Kendi tesisini işleten bir birliğin **İşleme** ve **Paketleme** yetenekleri de vardır; o zaman bir tesisin rolleri de olur. Küçük bir kurumda Kurum yöneticisi, ikinci bir üyelikle Uyum Sorumlusu da olabilir; dört göz kuralları yine geçerlidir ([Dört göz ilkesi](#four-eyes)).
 
@@ -336,7 +336,7 @@ Table: Rol ve kayıt başına varsayılan veri hakları (CRUD + Onay) {#tbl-crud
 | Parti | · | R | R | R | CR ¹⁸ | R | R ¹⁸ | CR ¹⁸ | R | RUD ¹¹ | R ¹⁹ | R ¹⁵ | R ¹⁵ |
 | Kesinleştirme (talep, onay) | · | · | · | · | C | · | A | C | · | R | · | · | · |
 | Sevkiyat | · | R ¹² | R ¹² | R ¹² | CRA ²⁰ | R ¹² | R | CRA ²⁰ | R | R | · | · | · |
-| Emanetçideki depolama kaydı (KKN 10) | · | R | R | R | CRUD ¹⁶ | R | RA | R | R | R | · | · | · |
+| Partiyi elinde bulunduran kurumdaki depolama kaydı (KKN 10) | · | R | R | R | CRUD ¹⁶ | R | RA | R | R | R | · | · | · |
 | Bir lotun istenen fiyatı | · | · | · | · | · | · | · | R ²¹ | R ²¹ | R | CR ²¹ | · ²² | · ²² |
 | Arıcı rızası | CR ²³ | · | · | · | · | · | · | CRU ²⁴ | U ²³ | R | CRU ²³ | · | R ²⁵ |
 | Aydınlatma metni (metin, sürüm) | R | R | R | R | R | R | R | R | R | CR ²⁶ | R | R | R |
@@ -353,7 +353,7 @@ Table: Rol ve kayıt başına varsayılan veri hakları (CRUD + Onay) {#tbl-crud
 Notlar:
 
 1. Bir Arıcı Kayıt Görevlisi arıcıları kendi ofisi için kaydeder ve yalnızca o ofisin kayıtlarını okur. Tek bir kayıt birden çok arılık ekleyebilir (**Arılık ekle**) ve arıcının birliğini seçebilir (**Arıcılar birliği (isteğe bağlı)**); arıcının SMS kodu bunların hepsini kapsar. Doğrulanan bilgiler (kimlik, kayıt numarası, telefon) yalnızca aynı arıcının yeniden teyit edilen yeni bir kaydıyla değişir.
-2. Yalnızca kurumun üzerinde çalıştığı kayıtlar aracılığıyla okunur (teslimatlar, kontrol formları, geri çağırma raporu). Bir partinin sonraki emanetçisi verilerini arıcı ve arılık adları olmadan okur. Bir birliğin Kurum yöneticisi, üye arıcılarının listesini **Arıcı sayfaları** altında okur.
+2. Yalnızca kurumun üzerinde çalıştığı kayıtlar aracılığıyla okunur (teslimatlar, kontrol formları, geri çağırma raporu). Partiyi sonradan elinde bulunduran kurum verilerini arıcı ve arılık adları olmadan okur. Bir birliğin Kurum yöneticisi, üye arıcılarının listesini **Arıcı sayfaları** altında okur.
 3. Yöneticiler kayıt numaralarını ve birlik bağlantılarını **Kurulum > Arıcı kaydı ve birlikler** altında kontrol eder ve arıcı ve arılık verilerini düzeltir. Arıcılar ve arılıklar hiçbir zaman silinmez, yalnızca pasifleştirilir.
 4. Arıcı kendi cep telefonunu, dilini ve şifresini arıcı alanında **Hesap** altında değiştirir.
 5. Yalnızca herkese açık sayfalarda (kesinleştirilmiş bir partinin Bal Hikâyesi ve yayımlanmış bir arıcı sayfası): arıcının adı yalnızca rızasıyla, yoksa nötr bir kod; arılığın ili; hiçbir zaman koordinatlar veya iletişim bilgileri değil ([Güven ve gizlilik](#ch-trust)).
@@ -372,7 +372,7 @@ Notlar:
 18. **Yeni parti**: **İşleme** veya **Paketleme** yeteneği olan bir kurumun Çalışanı ve Kurum yöneticisi, bütün kontrol noktaları tamamlanmış ve onaylanmış kendi lotlarından bir parti oluşturur. Parti kontrol noktalarını hemen alır. Kalite Güvence Sorumlusu'nun partiyi onaylaması kesinleştirme onayıdır (bkz. Kesinleştirme satırı).
 19. Arıcının kendi balını içeren partiler: adı, arıcının payı, durumu ve Bal Hikâyesi bağlantısı. Diğer arıcıların adları veya fiyatları asla gösterilmez.
 20. **C** = kurumun elinde tuttuğu kesinleştirilmiş bir partiyi sevk etmek; **A** = kurumun teslim aldığı bir sevkiyatı teyit etmek veya reddetmek.
-21. Arıcı teslim ettiği her lot için bir istenen fiyat girer ve lot kesinleştirilmiş bir partiye girene kadar fiyatı değiştirir (yeni bir giriş; geçmiş kalır). Lot sahibinin Kurum yöneticisi ve Uyum Sorumlusu ve platform yöneticileri fiyatı okur. Bir birliğin Kurum yöneticisi fiyatı yalnızca arıcı buna rıza verdiyse okur. Çalışanlar, laboratuvarlar ve sonraki emanetçiler fiyatı hiçbir zaman okumaz.
+21. Arıcı teslim ettiği her lot için bir istenen fiyat girer ve lot kesinleştirilmiş bir partiye girene kadar fiyatı değiştirir (yeni bir giriş; geçmiş kalır). Lot sahibinin Kurum yöneticisi ve Uyum Sorumlusu ve platform yöneticileri fiyatı okur. Bir birliğin Kurum yöneticisi fiyatı yalnızca arıcı buna rıza verdiyse okur. Çalışanlar, laboratuvarlar ve partiyi sonradan elinde bulunduran kurumlar fiyatı hiçbir zaman okumaz.
 22. Herkese açık sayfalar ve geri çağırma raporu hiçbir fiyat göstermez.
 23. Kayıt görevlisi kayıtta verilen rızaları kaydeder. Arıcı isteğe bağlı bir rızayı (herkese açık sayfalarda ad, mesajlar, birlik için fiyatlar) arıcı alanında verir veya geri çeker ve arıcı sayfası rızasını orada geri çekebilir. Uyum Sorumlusu kâğıt üzerinde veya telefonla gelen bir geri çekmeyi kaydeder. Geri çekme hemen geçerli olur.
 24. Yalnızca birlikler: herkese açık bir arıcı sayfası için rızayı imzalı rıza belgesiyle kaydetmek (C) ve geri çekmek (U).
@@ -392,7 +392,7 @@ Notlar:
 
 **Kanıt dosyalarını kim indirir.** İmzalı teslimat formları, kayıt fotoğrafları, rıza belgeleri ve kurum belgeleri yalnızca onları kaydeden rol (Numune kabul sorumlusu, Arıcı Kayıt Görevlisi veya rızalar için birliğin Kurum yöneticisi), kurumun Kurum yöneticisi ve Uyum Sorumlusu ve platform yöneticileri tarafından indirilir. Aynı kurumun başka bir rolü "Bu sayfayı açamazsınız" (403) iletisini alır; başka bir kurum "Bu sayfa bulunamadı" (404) iletisini alır. Her indirme denetim kaydına yazılır.
 
-**Neler silinebilir.** Üyeler yalnızca kendi verilerini onaylanmadan önce temizler: KKN değerleri ve depolama değerleri. Laboratuvar raporları hiçbir zaman silinmez; bir taslak değiştirilir veya geri gönderilir. Tüketiciler kendi hesaplarını siler ve kayıtlı balları kaldırır. Yöneticiler kesinleştirmeden önce lotları ve partileri, arılık fotoğraflarını, referans verilerini ve kullanıcı hesaplarını siler (kendi hesaplarını asla; bir tüketici hesabı anonim hâle getirilir). Arıcılar, arılıklar, kurumlar, belgeler, üyelikler, rızalar, kayıtlar, kaplar, mühür olayları, numune kavanozları, laboratuvar raporları, sevkiyatlar, fiyat girişleri, aydınlatma metinleri, kabuller ve denetim kayıtları hiçbir zaman silinmez.
+**Neler silinebilir.** Üyeler yalnızca kendi verilerini onaylanmadan önce temizler: KKN değerleri ve depolama değerleri. Laboratuvar raporları hiçbir zaman silinmez; bir taslak değiştirilir veya geri gönderilir. Tüketiciler kendi hesaplarını siler ve kayıtlı balları kaldırır. Yöneticiler kesinleştirmeden önce lotları ve partileri, arılık fotoğraflarını, referans verilerini ve kullanıcı hesaplarını siler (kendi hesaplarını asla; bir tüketici hesabı anonim hâle getirilir). Arıcılar, arılıklar, kurumlar, belgeler, üyelikler, rızalar, kayıtlar, kaplar, mühür kayıtları, numune kavanozları, laboratuvar raporları, sevkiyatlar, fiyat girişleri, aydınlatma metinleri, kabuller ve denetim kayıtları hiçbir zaman silinmez.
 
 ## Yetki matrisi {#permission-matrix}
 
@@ -418,9 +418,9 @@ Table: Platform faaliyeti ve rol başına varsayılan haklar {#tbl-permissions}
 | Tesiste KKN 10 depolama | Toptan Satış, Perakende veya Paketleme (parti sahibi) | · | R | R | R | C | R | A | R | R | R | · | R | R |
 | Kesinleştirme talep etmek | İşleme veya Paketleme (sahip) | · | · | · | · | F | · | · | F | · | · | · | · | · |
 | Kesinleştirmeyi onaylamak | İşleme veya Paketleme (sahip) | · | · | · | · | · | · | F | · | · | · | · | · | · |
-| Bir partiyi sevk etmek | İşleme, Paketleme, Toptan Satış veya Perakende (emanetçi) | · | · | · | · | C | · | R | C | R | R | · | · | · |
+| Bir partiyi sevk etmek | İşleme, Paketleme, Toptan Satış veya Perakende (elinde bulunduran) | · | · | · | · | C | · | R | C | R | R | · | · | · |
 | Teslim alınan bir sevkiyatı teyit etmek veya reddetmek | İşleme, Paketleme, Toptan Satış veya Perakende (alıcı) | · | · | · | · | A | · | R | A | R | R | · | · | · |
-| Alıcıdaki KKN 10 depolama kaydı | Toptan Satış, Perakende veya Paketleme (emanetçi) | · | R | R | R | C | R | A | R | R | R | · | · | · |
+| Alıcıdaki KKN 10 depolama kaydı | Toptan Satış, Perakende veya Paketleme (elinde bulunduran) | · | R | R | R | C | R | A | R | R | R | · | · | · |
 | Geri çağırma raporu (kendi kapsamı) | Yok | · | R | R | R | R | R | R | R | R | R (tümü) | · | · | · |
 | İstenen fiyatı girmek veya değiştirmek | Yok | · | · | · | · | · | · | · | · | · | · | C | · | · |
 | Kendi lotlarının istenen fiyatlarını okumak | İşleme (lot sahibi) | · | · | · | · | · | · | · | R | R | R | R | · | · |
@@ -450,7 +450,7 @@ Table: Platform faaliyeti ve rol başına varsayılan haklar {#tbl-permissions}
 
 Notlar:
 
-- **Kontrol noktalarını okuma (R)**: bir rol, kurumunun yer aldığı lotların ve partilerin kontrol noktalarını okur: sahip veya sorumlu kurum olarak, aynı lotun veya partinin sonraki bir kontrol noktasının sahibi olarak, lotu içeren bir partinin sahibi veya sonraki emanetçisi olarak ya da doğrulanmış bir kamu otoritesi olarak. Bir emanetçi partinin ve lotlarının kontrol noktalarını **salt okunur** olarak okur. Diğer her kurum "Bu sayfayı açamazsınız" (403) iletisini alır.
+- **Kontrol noktalarını okuma (R)**: bir rol, kurumunun yer aldığı lotların ve partilerin kontrol noktalarını okur: sahip veya sorumlu kurum olarak, aynı lotun veya partinin sonraki bir kontrol noktasının sahibi olarak, lotu içeren bir partinin sahibi veya partiyi sonradan elinde bulunduran kurum olarak ya da doğrulanmış bir kamu otoritesi olarak. Partiyi elinde bulunduran bir kurum, partinin ve lotlarının kontrol noktalarını **salt okunur** olarak okur. Diğer her kurum "Bu sayfayı açamazsınız" (403) iletisini alır.
 - **KKN 1** onaylanan laboratuvar raporundan doldurulur. Giriş rolleri yalnızca raporun kapsamadığı KKN 1 parametreleri için kullanılır.
 - **Sayfalar yalnızca menüyü değil, okuma hakkını da kontrol eder.** Bir sayfanın okuma hakkı olmayan bir rol (örneğin **Sevkiyatlar ve stok** veya **Arıcı sayfaları**), sayfayı açabilecek rolleri belirten bir iletiyle geri gönderilir.
 - Yönetici **KKN 0**'ı tesis yerine arıcının birliğine verebilir (**Kurulum > KKN sorumlulukları**, KKN 0, **Lotun arıcısının birliği**, **Birlik** yeteneği, **Saha denetçisi** rolü). Bu varsayılan değildir.
@@ -466,12 +466,12 @@ Table: Bir platform yöneticisinin değiştirebilecekleri {#tbl-admin-changeable
 |---|---|---|
 | Rol yetkileri | **Kurulum > Roller ve yetkiler**, **Rol yetkileri** sekmesi | Her rol için: her kontrol noktası için **Giriş**, **Onayla** ve **Okuma**; ve şu işlevler: **Teslim alma** (Giriş, Okuma), **Numuneler (alma / laboratuvarda teslim alma)** (Giriş, Onayla, Okuma), **Laboratuvar sonuçları** (Giriş, Onayla, Okuma), **Sevkiyatlar (gönderme / teslimi onaylama)** (Giriş, Onayla, Okuma), **Arıcı sayfaları (rıza)** (Giriş, Okuma), **Geri çağırma raporu** (Okuma), **Parti oluşturma (Yeni parti)** (Giriş), **Parti kesinleştirme (talep / onay)** (Giriş, Onayla), **Arıcı kaydı** (Giriş, Okuma), **İmzalı fotoğraf kanıtı (kabul veya ret)** (Onayla), **Arıcıların istediği fiyatlar** (Okuma), **Kurumun denetim kaydı** (Okuma), **Tüketici geri bildirimleri** (Giriş, Okuma). Her hakta en az bir rol kalır. |
 | KKN sorumlulukları | **Kurulum > KKN sorumlulukları** | Her kontrol noktası için: **Sorumlu kurum** (**Lotun / partinin sahibi kurum** veya lotlar için **Lotun arıcısının birliği**), gerektirdiği yetenekler, **Değer giren roller**, **Onaylayan roller** ve **Değerler başka bir kişinin onayını gerektirir (dört göz)** seçeneği. Değişiklikler hemen geçerli olur. |
-| Yetenekler | **Kurulum > Kurumlar** (kurum oluştururken ve kurum sayfasında); **Kurulum > Yetenekler** | Yetenek vermek veya kaldırmak (en az biri kalır; **Platform Yöneticisi** ayrılmıştır). Bir laboratuvar için: akredite olup olmadığı, akreditasyon numarası ve geçerlilik tarihi. |
+| Yetenekler | **Kurulum > Kurumlar** (kurum oluştururken ve kurum sayfasında); **Kurulum > Yetenekler** | Yetenek vermek veya kaldırmak (en az biri kalır; **Platform yönetimi** ayrılmıştır). Bir laboratuvar için: akredite olup olmadığı, akreditasyon numarası ve geçerlilik tarihi. |
 | Dört göz muafiyeti | Kurum sayfası, **Dört göz muafiyeti** | Tek bir kurum için: üyeleri kendi KKN kayıtlarını ve depolama kayıtlarını onaylayabilir ve kendi kesinleştirme taleplerini onaylayabilir. Bu tür her onay denetim kaydında işaretlenir. Laboratuvar sonuçları veya kanıtlar için asla. |
 | Kurum durumu | Kurum sayfası, **Doğrulama** | **Doğrula**, **Belge iste**, **Askıya al**, **Yeniden etkinleştir** ([Kurum durumu](#org-status)). |
 | Veri sorumlusu bilgileri | Kurum sayfası, **Veri sorumlusu** | Kurumun veri sorumlusu olarak adı, adresi ve iletişim bilgileri (Uyum Sorumlusu da tutar). |
-| Üyelikler ve kullanıcılar | Kurum sayfası, **Üyeler**; **Kurulum > Roller ve yetkiler**, **Üyeler** sekmesi; **Denetim > Kullanıcılar** | Üyelik eklemek ve iptal etmek; SMS ile giriş bilgileri veya ilk şifreyle kullanıcı oluşturmak; yeni giriş bilgileri göndermek; hesapların kilidini açmak ve hesapları silmek; tüketici hesaplarını kilitlemek, kilidini açmak ve silmek. |
-| Aydınlatma ve rıza metinleri | **Denetim > Aydınlatma ve rıza metinleri** | Bir aydınlatma veya rıza metninin yeni sürümünü yayımlamak. |
+| Üyelikler ve kullanıcılar | Kurum sayfası, **Üyeler**; **Kurulum > Roller ve yetkiler**, **Üyeler** sekmesi; **Gözetim > Kullanıcılar** | Üyelik eklemek ve iptal etmek; SMS ile giriş bilgileri veya ilk şifreyle kullanıcı oluşturmak; yeni giriş bilgileri göndermek; hesapların kilidini açmak ve hesapları silmek; tüketici hesaplarını kilitlemek, kilidini açmak ve silmek. |
+| Aydınlatma ve rıza metinleri | **Gözetim > Aydınlatma ve rıza metinleri** | Bir aydınlatma veya rıza metninin yeni sürümünü yayımlamak. |
 | Kontrol noktaları, parametreler, limitler | **Kurulum > Referans veriler** | Parametreler, veri türleri, zorunlu sorular, limitler, "Limitler doğrulandı". |
 | Referans veriler ve çeviriler | **Kurulum > Referans veriler**; **Kurulum > Referans verisi çevirileri** | Bal türleri, dönemler ve formların sunduğu diğer listeler ve bunların her dildeki adları. |
 | Arıcı kaydı | **Kurulum > Arıcı kaydı ve birlikler** | Kayıt numaralarını doğrulamak; bir arıcının birlik bağlantısını düzeltmek. |
@@ -487,8 +487,8 @@ Bu kurallar platformun içine yerleşiktir. Hiçbir ayar bunları kapatamaz.
 - **Kesinleştirmede ve depolama kayıtlarında dört göz**: kesinleştirmeyi talep eden kişi onu onaylayamaz ve bir depolama kaydını giren kişi onu onaylayamaz (kurumun muafiyeti yoksa).
 - **Düzeltmelerde dört göz**: bir düzeltmeyi talep eden yönetici ona karar veremez.
 - **Bir kod tam olarak gönderildiği şeyi teyit eder**: arıcının SMS kodu kaydı (her arılık ve birlikle birlikte) veya teslimatı (kaplar, ağırlıklar, bal türü, numuneler, her mühür numarası) bağlar. Gönderdikten sonraki her değişiklik kodu geçersiz kılar.
-- **Teslimat bilgileri değişmez**: kaplara ve mühür olaylarına yalnızca ekleme yapılabilir. Teyit edilmiş bir teslimatın bilgileri yalnızca iki yöneticinin yaptığı bir düzeltmeyle değişir ve arıcı SMS ile bilgilendirilir.
-- **Her kaptan bir numune**: her kap, kurcalamaya karşı güvenlikli kapaklı, kendi mühürlü numune kavanozunu ve şahit numunesini alır. Laboratuvar mührü, etiketi ve kapağı kontrol eder ve herhangi bir kontrol başarısız olursa kavanozu reddeder.
+- **Teslimat bilgileri değişmez**: kaplara ve mühür kayıtlarına yalnızca ekleme yapılabilir. Teyit edilmiş bir teslimatın bilgileri yalnızca iki yöneticinin yaptığı bir düzeltmeyle değişir ve arıcı SMS ile bilgilendirilir.
+- **Her kaptan bir numune**: her kap, emniyet halkalı kapaklı, kendi mühürlü numune kavanozunu ve şahit numunesini alır. Laboratuvar mührü, etiketi ve kapağı kontrol eder ve herhangi bir kontrol başarısız olursa kavanozu reddeder.
 - **Her değişiklik onayı kaldırır**: veriyi değiştirmek mevcut bir onayı siler. Limitlerinin dışındaki değerler onaylanırken açıkça teyit edilmelidir.
 - **Laboratuvar sonuçları numuneyi izler**: sonuçlar yalnızca teslim alınmış bir numune için ve yalnızca lotun KKN 0'ı tamamlandıktan sonra girilir. Onaylanmış bir rapor değiştirilemez.
 - **Tesis kendi partilerini oluşturur**: yalnızca bütün kontrol noktaları tamamlanmış ve onaylanmış kendi lotlarından ve yalnızca içlerinde bal kalmışsa.
@@ -1004,7 +1004,7 @@ Bir şey eksikse sayfa onu **Kesinleştirmeden önce eksik olanlar:** altında l
 
 ![Bir partinin bir kısmını bir perakendeciye sevk etme](screens/06-08-ship.png "width=70%")
 
-Bir sevkiyat miktarını hemen ayırır; gözetim, alıcı sevkiyatı teyit ettiğinde el değiştirir.
+Bir sevkiyat miktarını hemen ayırır; muhafaza, alıcı sevkiyatı teyit ettiğinde el değiştirir.
 
 # Kalite Güvence Sorumlusu {#ch-qao}
 
@@ -1409,7 +1409,7 @@ Kayıtlı ballarınızı yalnızca siz görürsünüz. Platform hangi hikâyeler
 
 # Platform yönetimi {#ch-admin}
 
-Platform yöneticileri kurumları ve üyelerini ayarlar, her kontrol noktasını kimin girip onaylayacağına karar verir ve kayıtları gözetir. İş verisi girmezler. Menülerinde **İşlerim**, **Panel**, **Kurulum** ve **Denetim** bulunur.
+Platform yöneticileri kurumları ve üyelerini ayarlar, her kontrol noktasını kimin girip onaylayacağına karar verir ve kayıtları gözetir. İş verisi girmezler. Menülerinde **İşlerim**, **Panel**, **Kurulum** ve **Gözetim** bulunur.
 
 Table: Platform yöneticisinin görevleri {#tbl-tasks-admin}
 
@@ -1419,9 +1419,9 @@ Table: Platform yöneticisinin görevleri {#tbl-tasks-admin}
 | Bir kurum oluşturmak ve doğrulamak, üye eklemek | **Kurulum > Kurumlar** |
 | Roller ve haklar | **Kurulum > Roller ve yetkiler** |
 | Her kontrol noktasını kimin girip onaylayacağı | **Kurulum > KKN sorumlulukları** |
-| Kullanıcılar ve giriş bilgileri | **Denetim > Kullanıcılar** |
-| Kayıtlar, denetim kaydı, düzeltmeler | **Denetim** |
-| Aydınlatma metinleri, çeviriler, referans veriler | **Denetim > Aydınlatma ve rıza metinleri**, **Kurulum** |
+| Kullanıcılar ve giriş bilgileri | **Gözetim > Kullanıcılar** |
+| Kayıtlar, denetim kaydı, düzeltmeler | **Gözetim** |
+| Aydınlatma metinleri, çeviriler, referans veriler | **Gözetim > Aydınlatma ve rıza metinleri**, **Kurulum** |
 
 ## Zinciri panelde izleyin
 
@@ -1461,13 +1461,13 @@ Kurumun sayfasında, **Üyeler** altında bir **Mevcut kullanıcı adı** girin 
 
 ## Kullanıcıları ve giriş bilgilerini yönetin
 
-**Denetim > Kullanıcılar** bütün hesapları listeler: çalışanlar, arıcılar ve tüketiciler. **Yeni Kullanıcı Ekle** bir hesap oluşturur; **Girişi SMS ile gönder** yeni giriş bilgileri gönderir; **Şifreyi Sıfırla** yeni bir şifre belirler; **Sil** bir hesabı kaldırır.
+**Gözetim > Kullanıcılar** bütün hesapları listeler: çalışanlar, arıcılar ve tüketiciler. **Yeni Kullanıcı Ekle** bir hesap oluşturur; **Girişi SMS ile gönder** yeni giriş bilgileri gönderir; **Şifreyi Sıfırla** yeni bir şifre belirler; **Sil** bir hesabı kaldırır.
 
 ![Kullanıcı yönetimi](screens/13-07-users.png)
 
 ## Kayıtları gözetin {#sec-oversee}
 
-**Denetim > Kayıtlar** her kurumun lotlarını ve partilerini salt okunur olarak gösterir. **Denetim > Denetim kaydı** her değişikliği gösterir; kayda yalnızca ekleme yapılabilir ve **Hash zincirini doğrula** hiçbir girdinin değiştirilmediğini veya kaldırılmadığını kontrol eder. **Denetim > Düzeltmeler** değer düzeltmelerini listeler: bir değer ancak ikinci bir yönetici düzeltmeyi onayladığında değişir.
+**Gözetim > Kayıtlar** her kurumun lotlarını ve partilerini salt okunur olarak gösterir. **Gözetim > Denetim kaydı** her değişikliği gösterir; kayda yalnızca ekleme yapılabilir ve **Hash zincirini doğrula** hiçbir girdinin değiştirilmediğini veya kaldırılmadığını kontrol eder. **Gözetim > Düzeltmeler** değer düzeltmelerini listeler: bir değer ancak ikinci bir yönetici düzeltmeyi onayladığında değişir.
 
 ![Kayıtlar](screens/13-08-records.png)
 
@@ -1475,7 +1475,7 @@ Kurumun sayfasında, **Üyeler** altında bir **Mevcut kullanıcı adı** girin 
 
 ## Aydınlatma metinleri, çeviriler ve referans veriler {#sec-notices}
 
-**Denetim > Aydınlatma ve rıza metinleri** aydınlatma metinlerinin ve rıza metinlerinin sürümlerini listeler. Metinler yayımlandıktan sonra hiçbir zaman değiştirilmez: bunun yerine **Yeni sürüm yayımla** seçin. **Kurulum > Referans veriler** formların sunduğu listeleri (bal türleri, dönemler, kontrol noktaları ve parametreleri), **Kurulum > Referans verisi çevirileri** ise bunların beş dildeki adlarını tutar.
+**Gözetim > Aydınlatma ve rıza metinleri** aydınlatma metinlerinin ve rıza metinlerinin sürümlerini listeler. Metinler yayımlandıktan sonra hiçbir zaman değiştirilmez: bunun yerine **Yeni sürüm yayımla** seçin. **Kurulum > Referans veriler** formların sunduğu listeleri (bal türleri, dönemler, kontrol noktaları ve parametreleri), **Kurulum > Referans verisi çevirileri** ise bunların beş dildeki adlarını tutar.
 
 ![Aydınlatma ve rıza metinleri](screens/13-10-notices.png)
 
@@ -1496,11 +1496,11 @@ Table: Yönetim görevlerinin başladığı yerler {#tbl-admin-more}
 | Bal türleri, üretim dönemleri ve arıcı listeleri | **Kurulum > Referans veriler** |
 | Beş dildeki adlar | **Kurulum > Referans verisi çevirileri** |
 | Arıcıların kayıt numaraları ve birlikleri | **Kurulum > Arıcı kaydı ve birlikler** |
-| Düzeltmeler | **Denetim > Düzeltmeler** ve **İşlerim** |
-| Geri çağırma raporu | **Denetim > Kayıtlar**, ardından **Süreç akışı** |
-| Aydınlatma ve rıza metinleri | **Denetim > Aydınlatma ve rıza metinleri** |
-| Veri saklama | **Denetim > Veri saklama** |
-| Denetim kaydı | **Denetim > Denetim kaydı** |
+| Düzeltmeler | **Gözetim > Düzeltmeler** ve **İşlerim** |
+| Geri çağırma raporu | **Gözetim > Kayıtlar**, ardından **Süreç akışı** |
+| Aydınlatma ve rıza metinleri | **Gözetim > Aydınlatma ve rıza metinleri** |
+| Veri saklama | **Gözetim > Veri saklama** |
+| Denetim kaydı | **Gözetim > Denetim kaydı** |
 
 ## Bir kurumun durumunu değiştirin {#sec-admin-org-status}
 
@@ -1805,21 +1805,21 @@ Sayfa "Birlik kaydedildi." gösterir. Önceki birlik geçmişte kalır. Birlik a
 
 Onaylanmış, kilitlenmiş veya kesinleştirilmiş bir değer yanlışsa ve kurum onu artık değiştiremiyorsa bir düzeltme talep edin. Platform yöneticileri iş verilerini düzenlemez; bir değer ancak ikinci bir yönetici düzeltmeyi onayladığında değişir (bkz. [Dört göz ilkesi](#four-eyes)).
 
-1. **Denetim > Kayıtlar** seçin ve lotu veya partiyi bulun (**Partiler** veya **Ham bal lotları** sekmesi).
+1. **Gözetim > Kayıtlar** seçin ve lotu veya partiyi bulun (**Partiler** veya **Ham bal lotları** sekmesi).
 2. **Süreç akışı**, ardından kontrol noktasının kodunu seçin. Bir **Kontrol formu** üzerinden **Bu kontrol noktasını ayrı aç** düğmesini kullanın.
 3. **Düzeltmeler** kutusunda parametreyi seçin.
 4. Yeni değeri girin: bir **sayı** veya **veya metin** alanında metin.
 5. **Gerekçe** girin.
 6. **Talep et** seçin.
 
-Sayfa "Düzeltme talep edildi; başka bir platform yöneticisinin onaylaması gerekir." gösterir. Talep **Denetim > Düzeltmeler** altında ve diğer yöneticilerin **İşlerim** sayfasında **Karar bekleyen düzeltmeler** altında görünür. Dosya değerleri bu yolla düzeltilemez. Kesinleştirilmiş bir kayıt, kilidi açılmadan düzeltilir.
+Sayfa "Düzeltme talep edildi; başka bir platform yöneticisinin onaylaması gerekir." gösterir. Talep **Gözetim > Düzeltmeler** altında ve diğer yöneticilerin **İşlerim** sayfasında **Karar bekleyen düzeltmeler** altında görünür. Dosya değerleri bu yolla düzeltilemez. Kesinleştirilmiş bir kayıt, kilidi açılmadan düzeltilir.
 
 
 ## Bir düzeltmeye karar verin {#sec-admin-correction-decide}
 
 Başka bir yöneticinin talep ettiği bir düzeltmeye karar verin. Kendi talebinize karar veremezsiniz.
 
-1. **Denetim > Düzeltmeler** (veya **İşlerim** sayfasında **Karar bekleyen düzeltmeler** altındaki öğeyi) seçin.
+1. **Gözetim > Düzeltmeler** (veya **İşlerim** sayfasında **Karar bekleyen düzeltmeler** altındaki öğeyi) seçin.
 2. **Kayıt**, **Parametre**, **Eski değer**, **Yeni değer**, **Gerekçe** ve **Talep eden** bilgilerini okuyun.
 3. **Onayla ve uygula** seçin veya **not (reddetmek için zorunlu)** alanına bir not yazın ve **Reddet** seçin.
 
@@ -1829,7 +1829,7 @@ Sayfa "Düzeltme uygulandı." veya "Düzeltme reddedildi." gösterir. Hem talep 
 
 Teyit edilmiş bir teslimatın bilgilerini yalnızca kayıttaki bir hata için düzeltin; örneğin yanlış bir mühür numarası veya ağırlık. Arıcı bu bilgileri bir kodla teyit ettiği için özgün kayıt okunabilir kalır ve arıcı SMS ile bilgilendirilir.
 
-1. **Denetim > Kayıtlar**, **Ham bal lotları** sekmesini seçin ve lotun yanındaki **Süreç akışı** seçin.
+1. **Gözetim > Kayıtlar**, **Ham bal lotları** sekmesini seçin ve lotun yanındaki **Süreç akışı** seçin.
 2. **Geri çağırma raporu**, ardından lotun yanındaki **Teslim** seçin.
 3. **Bu teslimatın düzeltmeleri** altında **Düzeltme iste** seçin.
 4. Yanlış olan alanları değiştirin: **Teslim tarihi** ve her kap için **Tür**, **Net kg**, **Brüt kg** ve mühürler (**Gelişte**, **Kavanoz mührü**, **Şahit numune mührü**, **Numuneden sonra yeni mühür**).
@@ -1851,7 +1851,7 @@ Sayfa "Düzeltme uygulandı; arıcıya SMS ile bilgi verildi." veya "Düzeltme r
 
 Bir partinin veya lotun izinin sürülmesi gerektiğinde geri çağırma raporunu açın; örneğin bir laboratuvar bulgusundan veya bir tüketicinin sahte olduğundan şüphelendiği bir bildirimden sonra.
 
-1. **Denetim > Kayıtlar** seçin ve partiyi veya lotu bulun.
+1. **Gözetim > Kayıtlar** seçin ve partiyi veya lotu bulun.
 2. **Süreç akışı** seçin.
 3. **Geri çağırma raporu** seçin.
 
@@ -1859,7 +1859,7 @@ Rapor üç bölümden oluşur:
 
 - **Kaynak: lotlar, arıcılar ve teslim formları**: lotlar, arılıklar, arıcılar ve teslimatlar; kaplı teslimatlar için her kap mühür geçmişi, numune kavanozları, **Kap başına laboratuvar değerleri** ve **Onaylanan içerik** bilgisinin **onaydan beri değişmedi** olup olmadığıyla birlikte.
 - **Partiler**: balı kullanan partiler, sahibi ve miktarıyla.
-- **Sevkiyatlar**: sevkiyatlar ve her birinin elindeki miktarla birlikte **Şu anki emanetçiler**.
+- **Sevkiyatlar**: sevkiyatlar ve her birinin elindeki miktarla birlikte **Şu an partiyi elinde bulunduran kurumlar**.
 
 Platform yöneticisi olarak her bölümü okursunuz. Bir kurumun üyesi yalnızca kurumun okuyabildiklerini okur ve rapor gizli satırları sayar. Fiyatlar hiçbir zaman raporda yer almaz. Yazdırmak için **Yazdır**, tablo dosyası olarak indirmek için **CSV** seçin.
 
@@ -1870,7 +1870,7 @@ Platform yöneticisi olarak her bölümü okursunuz. Bir kurumun üyesi yalnızc
 
 Bir aydınlatma metni, bir rıza metni, kullanım koşulları veya görevli beyanı değiştiğinde ya da kişisel verilerin korunması birimi bir taslağı onayladığında yeni bir sürüm yayımlayın. Metinler yayımlandıktan sonra hiçbir zaman değiştirilmez.
 
-1. **Denetim > Aydınlatma ve rıza metinleri** seçin. Liste her metni **Tür**, **Kimin için**, **Kurum**, **Sürüm**, **Dil**, **Yayımlanma** tarihi ve kaç kişinin metni **Kabul** ettiğiyle gösterir.
+1. **Gözetim > Aydınlatma ve rıza metinleri** seçin. Liste her metni **Tür**, **Kimin için**, **Kurum**, **Sürüm**, **Dil**, **Yayımlanma** tarihi ve kaç kişinin metni **Kabul** ettiğiyle gösterir.
 2. Metnin yanındaki **Yeni sürüm** (form o metinle başlar) veya yeni bir metin için **Yeni sürüm yayımla** seçin.
 3. [Tablo](#tbl-admin-notice-fields) içindeki alanları doldurun.
 4. Metin onaylanmamışken **Taslak (henüz KVKK birimince onaylanmadı)** kutusunu işaretleyin. Onaylanmış metin için işareti kaldırın.
@@ -1898,7 +1898,7 @@ Sayfa "Metin yayımlandı; bu metnin önceki sürümü yürürlükten kaldırıl
 
 İlk saklama çalıştırmasına karar verilmeden önce ve sonrasında zaman zaman raporu kontrol edin. Rapor, platformun her veri türünü ne kadar süre sakladığını ve kaç satırın süresini doldurduğunu gösterir.
 
-1. **Denetim > Veri saklama** seçin.
+1. **Gözetim > Veri saklama** seçin.
 2. Durumu okuyun: **Kapalı: ilk çalıştırma sahibin kararıdır** veya **Saklama çalıştırması açık** ve **Son çalıştırma:**.
 3. [Tablo](#tbl-retention) içindeki satırları okuyun: **Veri**, **Saklama süresi**, **Sonra**, **Şu tarihten eski**, **Satır** ve **Çalıştırma** (**bu satırları değiştirir** veya **yalnızca sayar (karar O-14)**).
 4. Sayıları sahibe iletmek üzere indirmek için **Deneme raporu (CSV)** seçin.
@@ -1920,7 +1920,7 @@ Sayfa kaç kodun silindiğini, kaç SMS mesajının temizlendiğini ve kaç fiya
 
 Kimin neyi ne zaman değiştirdiğini bulmak için denetim kaydında arama yapın; örneğin bir düzeltmeye karar vermeden önce veya bir kurum bir onay hakkında soru sorduğunda. Kayda yalnızca ekleme yapılabilir: içindeki hiçbir şey değiştirilmez veya silinmez.
 
-1. **Denetim > Denetim kaydı** seçin.
+1. **Gözetim > Denetim kaydı** seçin.
 2. Listeyi daraltın: kayıt türünü (veya **tüm tablolar**) seçin ve bir **İşlem**, bir **kullanıcı adı** veya `SelfApproved` gibi bir işaret girin.
 3. **Filtrele** seçin.
 4. Satırları okuyun: **Ne zaman**, **Kim**, **İşlem**, **Kayıt** ve **Değişiklikler**. **Eski** ve **Yeni** değerleri saklandıkları gibi okumak için **Ham veriyi göster** seçin.
@@ -1932,7 +1932,7 @@ Arayabileceğiniz işaretler arasında `SelfApproved` (dört göz muafiyetiyle v
 
 Bir denetimden veya teftişten önce ya da kaydın bozulmadığından şüphe ettiğinizde denetim kaydını kontrol edin. Her girdi kendisinden önceki girdinin parmak izini (hash) tutar; bu yüzden değiştirilen veya kaldırılan bir girdi zinciri kırar.
 
-1. **Denetim > Denetim kaydı** seçin.
+1. **Gözetim > Denetim kaydı** seçin.
 2. **Hash zincirini doğrula** seçin.
 
 Sayfa "Hash zinciri: … satırın tümü doğrulandı." gösterir. Bir girdi değiştirilmiş veya kaldırılmışsa bunun yerine ilk kırık satırı belirtir, örneğin "Hash zinciri: … numaralı satır yazıldıktan sonra değiştirilmiş.". Kırık bir zinciri hemen platformun işletmecisine ve sahibine bildirin.
@@ -1948,7 +1948,7 @@ Table: Sunucu yapılandırmasındaki ayarlar {#tbl-admin-settings}
 
 | Ayar (adı) | Neye karar verir | Varsayılan |
 | --- | --- | --- |
-| Kurum modeli (`Features:OrgRoleModel`) | Kurumlar, üyelikler, roller ve **Kurulum** ile **Denetim** menüleri | Kapalı |
+| Kurum modeli (`Features:OrgRoleModel`) | Kurumlar, üyelikler, roller ve **Kurulum** ile **Gözetim** menüleri | Kapalı |
 | Kaplı teslimatlar (`Features:CustodyIntake`) | Her kaptan bir numune kavanozu alınan, mühürlü kaplardaki teslimatlar | Kapalı |
 | Arıcı alanı (`Features:BeekeeperAccounts`) | Arıcılar giriş bilgileri alabilir ve arıcı alanını kullanabilir | Kapalı |
 | Tüketici hesapları (`Features:ConsumerAccounts`) | Tüketiciler hesap oluşturabilir, bal kaydedebilir ve geri bildirim gönderebilir | Kapalı |
@@ -1972,7 +1972,7 @@ Bu bölüm, platformun kayıtlarını değişikliğe karşı nasıl koruduğunu 
 
 Bir iş kaydındaki her değişiklik, değişikliğin kendisiyle aynı adımda denetim kaydına yazılır: her kaydetme, onay, kesinleştirme, sevkiyat ve düzeltme. Platform ayrıca oturum açmalar, kullanıcı ve yetki değişiklikleri, doğrulamalar, kanıt dosyası indirmeleri ve saklama işinin çalıştırmaları için girdiler yazar. Tüketici hesapları istisnadır: geri bildirimler için kayıt yalnızca sayıları tutar, tüketicinin verilerini asla tutmaz (bkz. [Tüketici hesapları ve takma adlar](#trust-consumers)).
 
-Platform yöneticileri kaydı **Denetim > Denetim kaydı** altında okur. Bir Uyum Sorumlusu kendi kurumunun son girdilerini **Uyum** sayfasında okur (bkz. [Kurumun denetim kayıtlarını okuyun](#co-audit)).
+Platform yöneticileri kaydı **Gözetim > Denetim kaydı** altında okur. Bir Uyum Sorumlusu kendi kurumunun son girdilerini **Uyum** sayfasında okur (bkz. [Kurumun denetim kayıtlarını okuyun](#co-audit)).
 
 Table: Denetim kaydının her satırının gösterdikleri {#tbl-audit-columns}
 
@@ -2007,13 +2007,13 @@ Table: Kilitli olan veya yalnızca ekleme yapılabilen kayıtlar {#tbl-locked}
 
 | Kayıt | Kural |
 | --- | --- |
-| Denetim kaydı, kapların mühür geçmişi, numune alma kalitesi incelemeleri, kayıtlar, istenen fiyatlar, verilen giriş bilgileri, SMS mesajları, aydınlatma metinleri ve kabulleri | Yalnızca ekleme yapılabilir. Yeni bir fiyat, yeni bir mühür olayı veya yeni bir metin sürümü yeni bir satırdır. |
+| Denetim kaydı, kapların mühür geçmişi, numune alma kalitesi incelemeleri, kayıtlar, istenen fiyatlar, verilen giriş bilgileri, SMS mesajları, aydınlatma metinleri ve kabulleri | Yalnızca ekleme yapılabilir. Yeni bir fiyat, yeni bir mühür kaydı veya yeni bir metin sürümü yeni bir satırdır. |
 | Kaplar ve teyit edilmiş bir teslimatın bilgileri (tarih, ağırlıklar, mühür numaraları) | Kaydedildikten sonra kilitlidir. Bunları yalnızca iki platform yöneticisinin yaptığı bir düzeltme değiştirir; eski ve yeni içerik ve parmak izleri saklanır ve arıcı bilgilendirme SMS'i alır. |
 | Onaylanmış bir kontrol noktası kaydı | Onayını yalnızca değerleri aynı kaldıkça korur. Değişen bir kayıt yeni bir onay gerektirir. |
 | Onaylanmış bir rapordaki laboratuvar sonuçları | Lotun KKN 1 değerleri olur ve düzenlenemez. |
 | Kesinleştirilmiş bir parti ve lotları | Kilitlidir. Bir değer yalnızca ikinci bir platform yöneticisinin onayladığı bir düzeltmeyle değişir; düzeltme partinin kilidini hiçbir zaman açmaz. |
 
-Platform yöneticileri düzeltmeleri **Denetim > Düzeltmeler** altında listeler (bkz. [Kayıtları gözetin](#sec-oversee)). Bir düzeltmeyi talep eden kişi onu hiçbir zaman onaylamaz.
+Platform yöneticileri düzeltmeleri **Gözetim > Düzeltmeler** altında listeler (bkz. [Kayıtları gözetin](#sec-oversee)). Bir düzeltmeyi talep eden kişi onu hiçbir zaman onaylamaz.
 
 ## Kodlar ve dosya parmak izleri {#trust-codes}
 
@@ -2046,7 +2046,7 @@ Platform kullanıcılar, arıcılar ve tüketiciler için aydınlatma metinleri 
 - Arıcılar kendi aydınlatma metinlerini kayıtta okur ve SMS kodlarıyla veya imzalı formda onaylar.
 - Tüketiciler hesap oluştururken tüketici aydınlatma metnini kabul eder.
 
-Aydınlatma metinleri sürümlüdür ve yayımlandıktan sonra hiçbir zaman değiştirilmez. Yeni bir sürüm herkese yeniden sorulur ve önceki kabuller kanıt olarak kalır. Kişisel verilerin korunması biriminin henüz onaylamadığı bir metin **TASLAK** işaretini taşır. Platform yöneticileri yeni sürümleri **Denetim > Aydınlatma ve rıza metinleri** altında yayımlar (bkz. [Aydınlatma metinleri, çeviriler ve referans veriler](#sec-notices)). Herkese açık **Gizlilik ve rıza** sayfası geçerli aydınlatma metinlerini herkese, oturum açmadan gösterir.
+Aydınlatma metinleri sürümlüdür ve yayımlandıktan sonra hiçbir zaman değiştirilmez. Yeni bir sürüm herkese yeniden sorulur ve önceki kabuller kanıt olarak kalır. Kişisel verilerin korunması biriminin henüz onaylamadığı bir metin **TASLAK** işaretini taşır. Platform yöneticileri yeni sürümleri **Gözetim > Aydınlatma ve rıza metinleri** altında yayımlar (bkz. [Aydınlatma metinleri, çeviriler ve referans veriler](#sec-notices)). Herkese açık **Gizlilik ve rıza** sayfası geçerli aydınlatma metinlerini herkese, oturum açmadan gösterir.
 
 ### Veri sorumlusu
 
@@ -2093,7 +2093,7 @@ Rıza işleminden önce kaydedilmiş arıcılar, ad rızası verene kadar kodlar
 
 ## Veriler ne kadar süre saklanır {#trust-retention}
 
-Her veri türünün bir saklama süresi vardır. Platform yöneticileri süreleri **Denetim > Veri saklama** altında okur (bkz. [Platform yönetimi](#ch-admin)).
+Her veri türünün bir saklama süresi vardır. Platform yöneticileri süreleri **Gözetim > Veri saklama** altında okur (bkz. [Platform yönetimi](#ch-admin)).
 
 Table: Saklama süreleri ve sonrasında olanlar {#tbl-retention}
 
@@ -2274,7 +2274,7 @@ Table: Bu kılavuzda kullanılan terimler {#tbl-glossary}
 | Kontrol formu | Bir lotun veya partinin bütün kontrol noktaları tek sayfada. |
 | Şahit numune | Her kabın, sonraki bir kontrol için tesiste saklanan ikinci mühürlü kavanozu. |
 | Kritik limit | Bir parametre için izin verilen en küçük değer, en büyük değer veya ikisi. |
-| Gözetim | Malların kimin elinde olduğu. Gözetim, alıcı bir sevkiyatı teyit ettiğinde el değiştirir. |
+| Muhafaza | Malların kimin elinde olduğu. Muhafaza, alıcı bir sevkiyatı teyit ettiğinde el değiştirir. |
 | Veri | İnsanların platforma kaydettiği şeyler: ölçülen değerler ve sorulara verilen yanıtlar. |
 | Veri sorumlusu | Kaydettiği kişisel verilerden sorumlu olan ve aydınlatma metninde belirtilen kurum. |
 | Veri hakları | Bir rolün platformdaki bir kayıt türüyle yapabildikleri: oluşturma, okuma, güncelleme, silme ve onaylama ([Tablo](#tbl-crud)). |
@@ -2286,7 +2286,7 @@ Table: Bu kılavuzda kullanılan terimler {#tbl-glossary}
 | Dört göz ilkesi | Her kayıt bir kişi tarafından girilir ve ikinci, farklı bir kişi tarafından onaylanır veya teyit edilir ([Dört göz ilkesi](#four-eyes)). |
 | Temel kurallar | Hiçbir rol ayarının kapatamadığı, **Roller ve yetkiler** sayfasında gösterilen kurallar. |
 | HACCP | Hazard Analysis and Critical Control Points: kontrol noktalarının dayandığı gıda güvenliği yöntemi. |
-| Emanetçi | Teyit edilmiş bir sevkiyattan sonra bir partinin bir miktarını elinde tutan kurum. |
+| Partiyi elinde bulunduran kurum | Teyit edilmiş bir sevkiyattan sonra bir partinin bir miktarını elinde tutan kurum. |
 | Bal Hikâyesi | Kesinleştirilmiş bir partinin, kavanozdaki QR kodla açılan herkese açık sayfası. |
 | Kurum içi laboratuvar | Lotun sahibi olan kuruma ait bir laboratuvar. |
 | Laboratuvar raporu | Laboratuvarın imzalı raporu (PDF ve değerler) ve herkese açık 12 karakterlik rapor kodu. |
@@ -2299,15 +2299,15 @@ Table: Bu kılavuzda kullanılan terimler {#tbl-glossary}
 | Parametre | Bir kontrol noktasında kaydedilen tek bir veri öğesi, örneğin nem veya sıcaklık. |
 | Aydınlatma metni | Kişisel verilerin nasıl işlendiğini ve veri sorumlusunun kim olduğunu söyleyen metin. Sürümleri vardır; yayımlanmış bir sürüm hiçbir zaman değiştirilmez. |
 | Okuma | Kayıtları değiştirmeden açma ve okuma hakkı. |
-| Geri çağırma raporu | Bir partinin veya lotun kaynağındaki (lotlar, teslimatlar, raporlar) ve sonrasındaki (sevkiyatlar, emanetçiler) her şeyin listesi. |
+| Geri çağırma raporu | Bir partinin veya lotun kaynağındaki (lotlar, teslimatlar, raporlar) ve sonrasındaki (sevkiyatlar, partiyi elinde bulunduran kurumlar) her şeyin listesi. |
 | Kayıt numarası (AKS) | Arıcının ulusal kayıt sistemindeki numarası. |
 | Saklama | Her veri türünün ne kadar süre saklandığı. Silme çalıştırması, platform sahibi onaylayana kadar kapalıdır. |
 | Rol | Bir kişinin bir kurum için yaptığı iş, örneğin Analist veya Kalite Güvence Sorumlusu. |
 | Mühür | Bir kaptaki veya kavanozdaki numaralı mühür. Her mühür numarası bir kez kullanılır. |
-| Mühür olayı | Bir kabın veya kavanozun mühür geçmişindeki bir adım: gelişte kontrol edildi, tesis mührü takıldı, numune için açıldı, yeniden mühürlendi. Mühür olaylarına yalnızca ekleme yapılabilir. |
+| Mühür kaydı | Bir kabın veya kavanozun mühür geçmişindeki bir adım: gelişte kontrol edildi, tesis mührü takıldı, numune için açıldı, yeniden mühürlendi. Mühür kayıtlarına yalnızca ekleme yapılabilir. |
 | İmzalı fotoğraf | SMS kodu mümkün olmadığında kullanılan, arıcının imzaladığı bir formun fotoğrafı. Uyum Sorumlusu kabul veya reddeder. |
 | SMS kodu | SMS ile gönderilen ve tam olarak gönderildiği içeriği teyit eden 6 haneli bir kod. 5 dakika geçerlidir. |
-| Kurcalamaya karşı güvenlikli kapak | Kavanoz açıldığında yukarı kalkan bir düğmesi olan numune kavanozu kapağı. Kavanoz mühürlenirken ve teslim alınırken düğme aşağıda olmalıdır. |
+| Emniyet halkalı kapak | Kavanoz açıldığında yukarı kalkan bir düğmesi olan numune kavanozu kapağı. Kavanoz mühürlenirken ve teslim alınırken düğme aşağıda olmalıdır. |
 | Doğrulanmış limit | Proje tarafından teyit edilmiş bir limit. Bal Hikâyesi'nde yalnızca doğrulanmış limitler limit içinde veya dışında hükmü verir. |
 | Limit içinde / Limit dışında | Bir değerin kritik limitiyle karşılaştırılması. Limit dışındaki değerler kaydedilebilir; Kalite Güvence Sorumlusu onaylarken bunları teyit eder ve değerler işaretli kalır. |
-| En kötü değer | Kavanozlar tek tek analiz edildiğinde lotun her parametre için değeri: limitinin en çok dışında kalan veya limitine en yakın kap değeri. |
+| En olumsuz değer | Kavanozlar tek tek analiz edildiğinde lotun her parametre için değeri: limitinin en çok dışında kalan veya limitine en yakın kap değeri. |

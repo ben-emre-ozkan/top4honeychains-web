@@ -21,3 +21,7 @@ Names, order and logos are in `assets/institutions.json` and `assets/logos/`. Af
 ## Credits
 
 The board uses the open fonts Instrument Serif, Instrument Sans and Bricolage Grotesque (SIL Open Font License 1.1). The pages use Calibri, Cambria and Consolas, which come with Microsoft Office; LibreOffice replaces them with Carlito, Caladea and its own fixed-width font. Sources of the logo files are listed in `assets/README.md`.
+
+## Glossary
+
+`glossary-data.json` holds the terms of the manuals in five languages (from the interface where it has the term, otherwise chosen by the translators; unsure terms are marked). `python build/glossary.py` writes `glossary.md` and `dist/TOP4HoneyChains_Glossary.docx` (one table, unsure terms marked with (?)), which goes out with the PDFs for the partners to check.

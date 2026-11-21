@@ -1302,7 +1302,7 @@ El portal del apicultor está pensado para el celular. Con él, los apicultores 
 
 ## Leer la página de inicio
 
-Después de iniciar sesión, el apicultor ve **Inicio**: las entregas, las partidas con su miel, la última entrega y el último resultado de laboratorio. **Pendiente** enumera las entregas sin precio. El menú tiene **Inicio**, **Mis entregas**, **Muestras y laboratorio**, **Lotes con mi miel**, **Mis páginas Honey Story**, **Mis colmenares**, **Privacidad y consentimientos** y **Cuenta**. Los enlaces de idioma y **Cerrar Sesión** están arriba.
+Después de iniciar sesión, el apicultor ve **Inicio**: las entregas, las partidas con su miel, la última entrega y el último resultado de laboratorio. **Pendiente** enumera las entregas sin precio. El menú tiene **Inicio**, **Mis entregas**, **Muestras y laboratorio**, **Lotes con mi miel**, **Mis páginas de Historia de la miel**, **Mis colmenares**, **Privacidad y consentimientos** y **Cuenta**. Los enlaces de idioma y **Cerrar Sesión** están arriba.
 
 ![La página de inicio del portal del apicultor](screens/10-01-home.png "width=42%")
 
@@ -1318,7 +1318,7 @@ Puede cambiar el precio con **Cambiar precio** hasta que el lote está en una pa
 
 ## Ver resultados de laboratorio, partidas y páginas de la Historia de la miel
 
-**Muestras y laboratorio** muestra cada frasco de muestra de sus entregas. Los valores de laboratorio aparecen una vez que el laboratorio aprobó su informe. **Lotes con mi miel** muestra su participación en cada partida, y **Mis páginas Honey Story** abre sus páginas públicas.
+**Muestras y laboratorio** muestra cada frasco de muestra de sus entregas. Los valores de laboratorio aparecen una vez que el laboratorio aprobó su informe. **Lotes con mi miel** muestra su participación en cada partida, y **Mis páginas de Historia de la miel** abre sus páginas públicas.
 
 ![Resultados de laboratorio en el portal](screens/10-04-samples.png "width=42%")
 

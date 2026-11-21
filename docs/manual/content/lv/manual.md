@@ -214,7 +214,7 @@ Table: Kompetences: ko organizācija spēj darīt {#tbl-capabilities}
 Dažas darbības pārbauda gan kompetenci, gan lomu:
 
 - piegādes reģistrēšanai un paraugu ņemšanai vajadzīga **Apstrāde**;
-- gala partijas izveidei (**Jauna partija**), pabeigšanas pieprasīšanai un apstiprināšanai vajadzīga **Apstrāde** vai **Iepakošana**;
+- gala partijas izveidei (**Jauna gala partija**), pabeigšanas pieprasīšanai un apstiprināšanai vajadzīga **Apstrāde** vai **Iepakošana**;
 - nosūtīšanai un saņemta sūtījuma apstiprināšanai vajadzīga **Apstrāde**, **Iepakošana**, **Vairumtirdzniecība** vai **Mazumtirdzniecība**;
 - paraugu burku pieņemšanai un laboratorijas rezultātu ievadīšanai vajadzīga **Laboratorija**;
 - sadaļai **Biškopju lapas** vajadzīga **Biedrība**;
@@ -224,7 +224,7 @@ Tāpēc uzņēmumam, kas pats apstrādā, pilda un uzglabā savu medu, vajadzīg
 
 **Biškopji ir cilvēki, nevis organizācijas.** Platformā biškopi pārstāv **biškopja ieraksts** ar vienu vai vairākām dravām. Biškopim nav dalības. Ja biškopja portāls ir ieslēgts, biškopim var būt personīgs konts, kas piesaistīts šim ierakstam ([Biškopja portāls](#ch-portal)).
 
-**Platforma.** Platformas administrators nav kompetence, ko var piešķirt organizācijai. Tā ir lietotāja konta globāla loma cilvēkiem, kas uztur platformu ([Platformas administrēšana](#ch-admin)). Platformas organizācijai ir rezervētā kompetence **Platformas administrators**; neviena cita organizācija to nevar saņemt, un to nevar noņemt.
+**Platforma.** Platformas administrators nav kompetence, ko var piešķirt organizācijai. Tā ir lietotāja konta globāla loma cilvēkiem, kas uztur platformu ([Platformas administrēšana](#ch-admin)). Platformas organizācijai ir rezervētā kompetence **Platformas administrēšana**; neviena cita organizācija to nevar saņemt, un to nevar noņemt.
 
 ## Vērtību ķēdes darbības un platformas ieraksti {#activities}
 
@@ -264,7 +264,7 @@ Table: Tipiskas organizācijas, to kompetences un to dalībnieku lomas {#tbl-org
 | Mazumtirgotājs | **Mazumtirdzniecība** | Organizācijas administrators, Darbinieks, Kvalitātes nodrošināšanas speciālists, Atbilstības speciālists |
 | Centrālā biškopju biedrība | **Centrālā biedrība** | Organizācijas administrators, Atbilstības speciālists |
 | Ministrija vai inspekcijas iestāde | **Valsts iestāde** | Organizācijas administrators, Atbilstības speciālists (abi tikai lasa) |
-| Platformas uzturētājs | **Platformas administrators** (rezervēta) | Platformas administratori |
+| Platformas uzturētājs | **Platformas administrēšana** (rezervēta) | Platformas administratori |
 
 Biedrībai, kas vada savu uzņēmumu, ir arī **Apstrāde** un **Iepakošana**, un tad arī uzņēmuma lomas. Mazā organizācijā organizācijas administrators ar otru dalību var būt arī atbilstības speciālists; četru acu noteikumi joprojām ir spēkā ([Četru acu princips](#four-eyes)).
 
@@ -362,14 +362,14 @@ Piezīmes:
 8. Reģistrācijas speciālists nosūta biškopja pieteikšanās datus pa SMS (ja biškopja portāls ir ieslēgts). Platformas administratori izveido dalībnieku kontus ar pieteikšanās datiem pa SMS vai ar sākotnējo paroli, nosūta jaunus pieteikšanās datus, atbloķē kontus un dzēš kontus (nekad savu). Neviens nelasa paroli pēc tās nosūtīšanas.
 9. Patērētājs izveido kontu, maina paroli, valodu un mobilo tālruni, lejupielādē savus datus, saglabā un noņem medu un dzēš kontu. Dzēšana noņem saglabāto sarakstu un anonimizē kontu; atsauksmes paliek organizācijā tikai ar pseidonīmu.
 10. Piegādes reģistrēšana izveido partiju. Tai vajadzīga pārbaudīta organizācija ar kompetenci **Apstrāde**.
-11. Partijas un gala partijas izveido uzņēmums (piegāde, **Jauna partija**). Administratori uztur to pamatdatus labojumiem. Piegādes fakti (datums, tvertnes, svari, plombu numuri) mainās tikai ar piegādes labojumu, ko izlemj otrs administrators, un biškopis tiek informēts pa SMS. Kad partija ir pabeigtā (fiksētā) gala partijā, nekas vairs nemainās. Partiju vai gala partiju var dzēst tikai pirms pabeigšanas, un izmantotu partiju dzēst nevar. Administratori nevar pabeigt (fiksēt).
+11. Partijas un gala partijas izveido uzņēmums (piegāde, **Jauna gala partija**). Administratori uztur to pamatdatus labojumiem. Piegādes fakti (datums, tvertnes, svari, plombu numuri) mainās tikai ar piegādes labojumu, ko izlemj otrs administrators, un biškopis tiek informēts pa SMS. Kad partija ir pabeigtā (fiksētā) gala partijā, nekas vairs nemainās. Partiju vai gala partiju var dzēst tikai pirms pabeigšanas, un izmantotu partiju dzēst nevar. Administratori nevar pabeigt (fiksēt).
 12. Tikai atsaukšanas pārskatā.
 13. **A** = pieņemt parauga burku pēc plombas, etiķetes un vāciņa pārbaudes vai to noraidīt, norādot iemeslu.
 14. Analītiķis izveido pārskatu, saglabā un maina to, kamēr tas ir melnraksts, un to iesniedz. Laboratorijas vadītājs to apstiprina vai atgriež. Apstiprinātu pārskatu mainīt nevar.
 15. Tikai apstiprināti laboratorijas rezultāti un pabeigtas (fiksētas) gala partijas kontroles punkti Medus stāstā un lapā **Pārbaudīt laboratorijas pārskatu**; biškopim viņa paša paraugu apstiprinātie rezultāti.
 16. Ievadīt vērtības (C), mainīt vai notīrīt tās (U, D) un atzīmēt "Nav piemērojams", līdz ieraksts ir apstiprināts vai bloķēts. Noklusējuma ievadītāju lomas: paraugu pieņemšanas speciālists KKP 0, darbinieks KKP 1 līdz 10 (KKP 1 aizpilda no apstiprinātā laboratorijas pārskata). Lauka inspektors ievada KKP 0 tikai tad, ja administrators piešķir KKP 0 biedrībai.
 17. Apstiprinātus vai bloķētus datus administratori maina tikai ar labojumu, ko pieprasa viens administrators un izlemj otrs.
-18. **Jauna partija**: organizācijas ar kompetenci **Apstrāde** vai **Iepakošana** darbinieks un organizācijas administrators izveido gala partiju no savām partijām, kuru kontroles punkti visi ir pabeigti un apstiprināti. Gala partija uzreiz saņem savus kontroles punktus. Kvalitātes nodrošināšanas speciālista gala partijas apstiprinājums ir pabeigšanas apstiprinājums (skatīt rindu Pabeigšana).
+18. **Jauna gala partija**: organizācijas ar kompetenci **Apstrāde** vai **Iepakošana** darbinieks un organizācijas administrators izveido gala partiju no savām partijām, kuru kontroles punkti visi ir pabeigti un apstiprināti. Gala partija uzreiz saņem savus kontroles punktus. Kvalitātes nodrošināšanas speciālista gala partijas apstiprinājums ir pabeigšanas apstiprinājums (skatīt rindu Pabeigšana).
 19. Gala partijas, kurās ir biškopja paša medus: nosaukums, biškopja daļa, statuss un saite uz Medus stāstu. Nekad citu biškopju vārdi vai cenas.
 20. **C** = nosūtīt pabeigtu (fiksētu) gala partiju, kas ir organizācijas turējumā; **A** = apstiprināt vai noraidīt sūtījumu, ko organizācija saņem.
 21. Biškopis ievada prasīto cenu katrai piegādātajai partijai un to maina (jauns ieraksts; vēsture paliek), līdz partija ir pabeigtā (fiksētā) gala partijā. To lasa partijas īpašnieka organizācijas administrators un atbilstības speciālists un platformas administratori. Biedrības organizācijas administrators to lasa tikai tad, ja biškopis tam devis piekrišanu. Darbinieki, laboratorijas un vēlākie turētāji to nekad nelasa.
@@ -412,7 +412,7 @@ Table: Noklusējuma tiesības pa darbībām platformā un lomām {#tbl-permissio
 | Ievadīt laboratorijas rezultātus, iesniegt pārskatu | Laboratorija | · | R | C | R | R | R | R | R | R | R | R | R | R |
 | Apstiprināt vai atgriezt laboratorijas pārskatu | Laboratorija | · | R | R | A | R | R | R | R | R | R | R | R | R |
 | Partijas kontroles lapa (KKP 2 un 3) | Apstrāde (partijas īpašnieks) | · | R | R | R | C | R | A | R | R | R | · | R | R |
-| Izveidot gala partiju (**Jauna partija**) | Apstrāde vai Iepakošana | · | · | · | · | C | · | · | C | · | · | · | · | · |
+| Izveidot gala partiju (**Jauna gala partija**) | Apstrāde vai Iepakošana | · | · | · | · | C | · | · | C | · | · | · | · | · |
 | Gala partijas kontroles lapa, KKP 4 līdz 6 | Apstrāde (gala partijas īpašnieks) | · | R | R | R | C | R | A | R | R | R | · | R | R |
 | Gala partijas kontroles lapa, KKP 7 līdz 9 | Iepakošana (gala partijas īpašnieks) | · | R | R | R | C | R | A | R | R | R | · | R | R |
 | KKP 10 uzglabāšana uzņēmumā | Vairumtirdzniecība, Mazumtirdzniecība vai Iepakošana (gala partijas īpašnieks) | · | R | R | R | C | R | A | R | R | R | · | R | R |
@@ -466,7 +466,7 @@ Table: Ko platformas administrators var mainīt {#tbl-admin-changeable}
 |---|---|---|
 | Lomu atļaujas | **Iestatīšana > Lomas un atļaujas**, cilne **Lomu atļaujas** | Katrai lomai: **Ievadīt**, **Apstiprināt** un **Lasīt** katram kontroles punktam; un šīs funkcijas: **Partiju pieņemšana** (Ievadīt, Lasīt), **Paraugi (ņemšana / pieņemšana laboratorijā)** (Ievadīt, Apstiprināt, Lasīt), **Laboratorijas rezultāti** (Ievadīt, Apstiprināt, Lasīt), **Sūtījumi (nosūtīt / apstiprināt saņemšanu)** (Ievadīt, Apstiprināt, Lasīt), **Biškopju lapas (piekrišana)** (Ievadīt, Lasīt), **Atsaukšanas pārskats** (Lasīt), **Gala partiju izveide (Jauna gala partija)** (Ievadīt), **Gala partiju pabeigšana (pieprasīt / apstiprināt)** (Ievadīt, Apstiprināt), **Biškopju reģistrācija** (Ievadīt, Lasīt), **Parakstīta foto pierādījums (pieņemt vai noraidīt)** (Apstiprināt), **Biškopju prasītās cenas** (Lasīt), **Organizācijas audita ieraksti** (Lasīt), **Patērētāju atsauksmes** (Ievadīt, Lasīt). Katrai tiesībai paliek vismaz viena loma. |
 | KKP atbildība | **Iestatīšana > KKP atbildība** | Katram kontroles punktam: **Atbildīgā organizācija** (**Organizācija, kurai pieder partija / gala partija** vai, partijām, **Partijas biškopja biedrība**), tai vajadzīgās kompetences, **Lomas, kas ievada vērtības**, **Lomas, kas apstiprina** un vai **Vērtības jāapstiprina citai personai (četru acu princips)**. Izmaiņas stājas spēkā nekavējoties. |
-| Kompetences | **Iestatīšana > Organizācijas** (veidojot organizāciju un tās lapā); **Iestatīšana > Kompetences** | Piešķirt vai noņemt kompetences (vismaz viena paliek; **Platformas administrators** ir rezervēta). Laboratorijai: akreditēta vai nav, akreditācijas numurs un derīguma termiņš. |
+| Kompetences | **Iestatīšana > Organizācijas** (veidojot organizāciju un tās lapā); **Iestatīšana > Kompetences** | Piešķirt vai noņemt kompetences (vismaz viena paliek; **Platformas administrēšana** ir rezervēta). Laboratorijai: akreditēta vai nav, akreditācijas numurs un derīguma termiņš. |
 | Četru acu principa izņēmums | Organizācijas lapa, **Četru acu principa izņēmums** | Vienai organizācijai: tās dalībnieki drīkst apstiprināt savus KKP ierakstus un uzglabāšanas ierakstus un apstiprināt savu pabeigšanas pieprasījumu. Katrs šāds apstiprinājums tiek atzīmēts audita žurnālā. Nekad laboratorijas rezultātiem vai pierādījumiem. |
 | Organizācijas statuss | Organizācijas lapa, **Pārbaude** | **Pārbaudīt**, **Pieprasīt dokumentus**, **Apturēt**, **Atjaunot** ([Organizācijas statuss](#org-status)). |
 | Datu pārziņa ziņas | Organizācijas lapa, **Datu pārzinis** | Organizācijas kā datu pārziņa nosaukums, adrese un kontaktinformācija (to uztur arī tās atbilstības speciālists). |
@@ -967,7 +967,7 @@ Kvalitātes nodrošināšanas speciālists apstiprina lapu ([Apstiprināt kontro
 
 Partija ir gatava gala partijai, kad visi tās kontroles punkti ir pabeigti un apstiprināti.
 
-1. Sadaļā **Mana organizācija** izvēlieties **Jauna partija**.
+1. Sadaļā **Mana organizācija** izvēlieties **Jauna gala partija**.
 2. Ievadiet **Gala partijas nosaukums**, piemēram, `Şile Kestane Balı 2026/2`, un pārbaudiet **Ražošanas datums**.
 3. Atzīmējiet **Izmantot** katrai partijai, kas nonāk gala partijā, un pārbaudiet **Kilogrami šai gala partijai**.
 4. Izvēlieties **Izveidot gala partiju**.
@@ -1305,7 +1305,7 @@ Biškopja portāls ir veidots tālrunim. Ar to biškopji seko savām piegādēm,
 
 ## Lasīt sākumlapu
 
-Pēc pieteikšanās biškopis redz lapu **Sākums**: piegādes, gala partijas ar viņa medu, pēdējo piegādi un pēdējo laboratorijas rezultātu. **Darāmais** uzskaita piegādes bez cenas. Izvēlnē ir **Sākums**, **Manas piegādes**, **Paraugi un laboratorija**, **Partijas ar manu medu**, **Manas Honey Story lapas**, **Manas dravas**, **Privātums un piekrišanas** un **Konts**. Valodu saites un **Izrakstīties** atrodas augšdaļā.
+Pēc pieteikšanās biškopis redz lapu **Sākums**: piegādes, gala partijas ar viņa medu, pēdējo piegādi un pēdējo laboratorijas rezultātu. **Darāmais** uzskaita piegādes bez cenas. Izvēlnē ir **Sākums**, **Manas piegādes**, **Paraugi un laboratorija**, **Partijas ar manu medu**, **Manas Medus stāsta lapas**, **Manas dravas**, **Privātums un piekrišanas** un **Konts**. Valodu saites un **Izrakstīties** atrodas augšdaļā.
 
 ![Biškopja portāla sākumlapa](screens/10-01-home.png "width=42%")
 
@@ -1321,7 +1321,7 @@ Cenu var mainīt ar **Mainīt cenu**, līdz partija ir pabeigtā (fiksētā) gal
 
 ## Skatīt laboratorijas rezultātus, gala partijas un Medus stāsta lapas
 
-**Paraugi un laboratorija** rāda katru jūsu piegāžu parauga burku. Laboratorijas vērtības parādās, kad laboratorija ir apstiprinājusi savu pārskatu. **Partijas ar manu medu** rāda jūsu daļu katrā gala partijā, un **Manas Honey Story lapas** atver to publiskās lapas.
+**Paraugi un laboratorija** rāda katru jūsu piegāžu parauga burku. Laboratorijas vērtības parādās, kad laboratorija ir apstiprinājusi savu pārskatu. **Partijas ar manu medu** rāda jūsu daļu katrā gala partijā, un **Manas Medus stāsta lapas** atver to publiskās lapas.
 
 ![Laboratorijas rezultāti portālā](screens/10-04-samples.png "width=42%")
 
@@ -1442,7 +1442,7 @@ Table: Platformas administratora uzdevumi {#tbl-tasks-admin}
 
    ![Jauna organizācija](screens/13-03-new-organization.png)
 
-4. Atveriet organizāciju ar **Atvērts**. Augšupielādējiet tās dokumentus un pievienojiet atbilstības speciālistu, pēc tam zem **Pārbaude** izvēlieties **Pārbaudīt**. Norādot iemeslu, iespējams arī **Pieprasīt dokumentus** un **Apturēt**.
+4. Atveriet organizāciju ar **Atvērt**. Augšupielādējiet tās dokumentus un pievienojiet atbilstības speciālistu, pēc tam zem **Pārbaude** izvēlieties **Pārbaudīt**. Norādot iemeslu, iespējams arī **Pieprasīt dokumentus** un **Apturēt**.
 
 ![Organizācijas lapa administratoram](screens/13-04-organization-details.png)
 
@@ -1491,7 +1491,7 @@ Table: Kur sākas administrēšanas uzdevumi {#tbl-admin-more}
 
 | Uzdevums | Kur |
 | --- | --- |
-| Mainīt organizācijas statusu, tās kompetences, izņēmumu, datu pārzini un dalībniekus | **Iestatīšana > Organizācijas**, pēc tam **Atvērts** |
+| Mainīt organizācijas statusu, tās kompetences, izņēmumu, datu pārzini un dalībniekus | **Iestatīšana > Organizācijas**, pēc tam **Atvērt** |
 | Mainīt lomas tiesības | **Iestatīšana > Lomas un atļaujas**, cilne **Lomu atļaujas** |
 | Mainīt, kas ievada un apstiprina kontroles punktu | **Iestatīšana > KKP atbildība** |
 | Kontroles punkti, parametri un robežvērtības | **Iestatīšana > Atsauces dati** |
@@ -1518,7 +1518,7 @@ Table: Statusa pogas organizācijas lapā {#tbl-admin-status-actions}
 | **Atjaunot** | Apturēta | Nekas vairāk | Pārbaudīta |
 
 1. Izvēlieties **Iestatīšana > Organizācijas**.
-2. Blakus organizācijai izvēlieties **Atvērts**.
+2. Blakus organizācijai izvēlieties **Atvērt**.
 3. Zem **Pārbaude** ierakstiet iemeslu vai piezīmi teksta laukā. Iemesls ir obligāts, lai apturētu un lai pieprasītu dokumentus; tas var būt ne garāks par 500 rakstzīmēm.
 4. Izvēlieties **Pārbaudīt**, **Pieprasīt dokumentus**, **Apturēt** vai **Atjaunot**.
 
@@ -1534,7 +1534,7 @@ Apturēta organizācija saglabā visus savus datus, bet tās dalībnieki nevar i
 
 Pievienojiet kompetenci, kad organizācija ķēdē uzņemas jaunu darbu, piemēram, biškopības saimniecība, kas sāk iepakot un pārdot savu medu. Kompetences izskaidro [{n}. tabula](#tbl-capabilities).
 
-1. Atveriet organizāciju (**Iestatīšana > Organizācijas**, pēc tam **Atvērts**).
+1. Atveriet organizāciju (**Iestatīšana > Organizācijas**, pēc tam **Atvērt**).
 2. Zem **Kompetences** izvēlieties kompetenci sarakstā.
 3. Laboratorijai atzīmējiet **akreditēta (laboratorija)**, ja tā ir akreditēta, un ievadiet **akreditācijas Nr.** un datumu, līdz kuram akreditācija ir derīga. Akreditētai laboratorijai vajadzīgs numurs.
 4. Izvēlieties **Pievienot kompetenci**.
@@ -1774,7 +1774,7 @@ Izmantojiet šo uzdevumu, kad reģistra numurs jāievada vai jāmaina vēlāk ar
 Lai ievadītu numuru:
 
 1. Izvēlieties **Iestatīšana > Biškopju reģistrs un biedrības**.
-2. Blakus biškopim izvēlieties **Atvērts**.
+2. Blakus biškopim izvēlieties **Atvērt**.
 3. Zem **Reģistrācijas pārbaude** ievadiet **Numurs**: TR, provinces kods no 01 līdz 81 un 10 cipari, piemēram, TR061234567890.
 4. Pievienojiet apliecinošo dokumentu (reģistra ieraksta izdruku vai foto).
 5. Izvēlieties **Iesniegt**.
@@ -1797,7 +1797,7 @@ Lapa rāda "Reģistrācijas numurs pārbaudīts." vai "Pieprasījums noraidīts.
 Reģistrācijas speciālists izvēlas biškopja biedrību reģistrācijas veidlapā. Mainiet to šeit tikai tad, kad biškopis pāriet uz citu biedrību vai kad izvēle bija nepareiza.
 
 1. Izvēlieties **Iestatīšana > Biškopju reģistrs un biedrības**.
-2. Blakus biškopim izvēlieties **Atvērts**.
+2. Blakus biškopim izvēlieties **Atvērt**.
 3. Laukā **Biedrība** izvēlieties pārbaudītu organizāciju ar biedrības kompetenci vai **(nav)**.
 4. Izvēlieties **Saglabāt**.
 
