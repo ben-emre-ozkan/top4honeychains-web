@@ -97,7 +97,7 @@
                                         <div class="mb-2">
                                             <small class="text-uppercase text-muted">@L["Phone"]</small>
                                             <div class="fw-bold">
-                                                @(string.IsNullOrEmpty(Model.WholesalerPhone) ? "—" : Model.WholesalerPhone)
+                                                @(string.IsNullOrEmpty(Model.WholesalerPhone) ? "—" : TOP4HoneyChains.Web.Services.PhoneNumberPolicy.Display(Model.WholesalerPhone))
                                             </div>
                                         </div>
 

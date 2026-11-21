@@ -55,7 +55,7 @@
                                         }
                                     </label>
 
-                                    <input asp-for="PhoneNumber"
+                                    <input asp-for="PhoneNumber" value="@TOP4HoneyChains.Web.Services.PhoneNumberPolicy.Display(Model.PhoneNumber)"
                                            class="form-control"
                                            placeholder="+90 5xx xxx xxxx" />
                                     <div class="form-text">@L["Phone.Help"]</div>

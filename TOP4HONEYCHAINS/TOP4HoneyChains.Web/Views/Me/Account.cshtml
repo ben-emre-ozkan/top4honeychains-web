@@ -9,7 +9,7 @@
 
 <div class="me-card">
     <h3>@L["Me.Phone"]</h3>
-    <p class="m-0"><code>@Model.BeekeeperPhoneNumber</code></p>
+    <p class="m-0"><code>@TOP4HoneyChains.Web.Services.PhoneNumberPolicy.Display(Model.BeekeeperPhoneNumber)</code></p>
     @if (pending == null)
     {
         <form asp-action="Phone" method="post" class="me-form" id="phone-form">
@@ -22,7 +22,7 @@
     {
         <form asp-action="VerifyPhone" method="post" class="me-form" id="verify-phone-form">
             <input type="hidden" name="phone" value="@pending" />
-            <label for="code">@L["Me.CodeTo"] <code>@pending</code></label>
+            <label for="code">@L["Me.CodeTo"] <code>@TOP4HoneyChains.Web.Services.PhoneNumberPolicy.Display(pending)</code></label>
             <input id="code" name="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" required />
             <button type="submit" class="b-btn b-btn-honey">@L["Me.Verify"]</button>
         </form>
