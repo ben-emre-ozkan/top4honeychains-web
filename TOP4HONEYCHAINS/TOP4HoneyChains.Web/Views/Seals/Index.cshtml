@@ -106,10 +106,10 @@
 
                     <h5 class="mt-4">@L["Seal.Codes"]</h5>
                     <form method="get" class="row g-2 align-items-end mb-2" id="code-filter">
-                        <div class="col-sm-3"><label class="form-label" for="q">@L["Seal.Search"]</label><input name="q" id="q" value="@ViewBag.Q" class="form-control" autocapitalize="characters" /></div>
+                        <div class="col-sm-3"><label class="form-label" for="seal-q">@L["Seal.Search"]</label><input name="q" id="seal-q" value="@ViewBag.Q" class="form-control" autocapitalize="characters" /></div>
                         <div class="col-sm-3">
-                            <label class="form-label" for="status">@L["Seal.State"]</label>
-                            <select name="status" id="status" class="form-select">
+                            <label class="form-label" for="seal-status">@L["Seal.State"]</label>
+                            <select name="status" id="seal-status" class="form-select">
                                 <option value="">@L["Seal.All"]</option>
                                 @foreach (var st in SealStatus.All)
                                 {
@@ -118,8 +118,8 @@
                             </select>
                         </div>
                         <div class="col-sm-3">
-                            <label class="form-label" for="kind">@L["Seal.Kind"]</label>
-                            <select name="kind" id="kind" class="form-select">
+                            <label class="form-label" for="seal-kind">@L["Seal.Kind"]</label>
+                            <select name="kind" id="seal-kind" class="form-select">
                                 <option value="">@L["Seal.All"]</option>
                                 @foreach (var k in SealKind.All)
                                 {
@@ -152,7 +152,7 @@
                                             <span>@c.Sample.SampleCode</span>
                                         }
                                     </td>
-                                    <td>@(c.BrokenAt ?? c.UsedAt)?.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</td>
+                                    <td>@((c.BrokenAt ?? c.UsedAt)?.ToLocalTime().ToString("dd.MM.yyyy HH:mm"))</td>
                                 </tr>
                             }
                             @if (codes.Count == 0)

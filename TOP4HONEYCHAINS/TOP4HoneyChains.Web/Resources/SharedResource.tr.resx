@@ -10093,10 +10093,10 @@
     <value>{0} mührü zaten kullanıldı.</value>
   </data>
   <data name="Seal {0} is a numbered plastic seal; a seal label is needed here." xml:space="preserve">
-    <value>{0} numaralı plastik mühür; burada mühür etiketi gerekir.</value>
+    <value>{0} plastik mühürdür; burada mühür etiketi gerekir.</value>
   </data>
   <data name="Seal {0} is a seal label; a numbered plastic seal is needed here." xml:space="preserve">
-    <value>{0} bir mühür etiketi; burada numaralı plastik mühür gerekir.</value>
+    <value>{0} bir mühür etiketidir; burada numaralı plastik mühür gerekir.</value>
   </data>
   <data name="Scan or type the code of the association's container." xml:space="preserve">
     <value>Birliğin kabının kodunu okutun veya yazın.</value>

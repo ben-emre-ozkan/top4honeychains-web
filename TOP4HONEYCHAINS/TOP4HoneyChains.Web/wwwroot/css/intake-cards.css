@@ -74,3 +74,5 @@ details.ci-info summary::-webkit-details-marker { display: none; }
 @media (prefers-reduced-motion: reduce) { .ci-card.ci-enter, .ci-card.ci-leave, .ci-when.ci-show { animation: none; } .ci-tile, .ci-dot { transition: none; } }
 html[data-scenes="off"] .ci-card.ci-enter, html[data-scenes="off"] .ci-card.ci-leave, html[data-scenes="off"] .ci-when.ci-show { animation: none; }
 .ci-section [hidden], .ci-card [hidden] { display: none !important; }
+/* legends of the choices read as field labels, not as headings */
+.ci-section legend, .ci-card legend { float: none; width: auto; font-size: 15px; font-weight: 600; margin-bottom: 8px; color: var(--b-ink, #574A40); }

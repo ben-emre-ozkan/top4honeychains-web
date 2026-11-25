@@ -105,7 +105,7 @@
                 });
                 if (box && j.ok) {
                     var tare = card.querySelector('[data-tare]');
-                    if (tare) tare.textContent = j.tare ? cards.getAttribute('data-tare').replace('{0}', j.tare) : '';
+                    if (tare) tare.textContent = j.tare ? cards.getAttribute('data-tare').split('{0}').join(j.tare) : '';
                     mark(input, true, cards.getAttribute('data-box-ok').replace('{0}', j.kindText + (j.name ? ' · ' + j.name : '')));
                     var kind = card.querySelector('[data-field=Kind]');
                     if (kind) kind.value = j.kind;

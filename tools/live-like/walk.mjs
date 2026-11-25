@@ -16,7 +16,9 @@ import { fileURLToPath } from 'node:url';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const repo = path.resolve(here, '..', '..');
-const { chromium } = await import(new URL('../../docs/manual/node_modules/playwright-core/index.mjs', import.meta.url));
+// playwright-core of the manual kit (docs/manual/capture since the kit moved there; the old place still works)
+const { chromium } = await import(new URL('../../docs/manual/capture/node_modules/playwright-core/index.mjs', import.meta.url))
+    .catch(() => import(new URL('../../docs/manual/node_modules/playwright-core/index.mjs', import.meta.url)));
 const BASE = (process.env.WALK_BASE || 'http://localhost:5255').replace(/\/$/, '');
 if (!/^http:\/\/localhost(:\d+)?$/.test(BASE)) throw new Error('walk.mjs runs against the local app only');
 const cast = JSON.parse(fs.readFileSync(path.join(here, 'cast.json'), 'utf8'));
@@ -275,6 +277,9 @@ try {
     });
 
     await step('Record the delivery in sealed containers (code from the beekeeper\'s phone)', sao, async page => {
+        // D-97: free seal labels and a permanent container from the seal pool (read first: the same browser tab records the delivery)
+        const free = await freeCodes(sao);
+        if (free.labels.length < 6 || !free.box) throw new Error('the seal pool has too few free codes: issue seal labels on the Seals page');
         await go(page, '/Intake/Index');
         await press(page, '#new-intake');
         if (await page.locator('input[name=number]').count() && !await page.locator('#ApiaryId').count()) {
@@ -301,8 +306,6 @@ try {
         if (!(await page.locator('#RetainUntil').inputValue())) { const d = new Date(); d.setFullYear(d.getFullYear() + 2); await fill(page, '#RetainUntil', d.toISOString().slice(0, 10)); }
         await fill(page, '#CounterLocation', cast.history.counterLocation);
         // D-97: one card per container; the codes come from the seal pool (free codes after the ones reserved for the guide)
-        const free = await freeCodes(sao);
-        if (free.labels.length < 6 || !free.box) throw new Error('the seal pool has too few free codes: issue seal labels on the Seals page');
         current.did.push({ type: 'choose', label: await page.locator('input[name=CapType]:checked').evaluate(e => e.closest('.ci-tile').querySelector('.ci-tile-title').innerText.trim()), value: 'SafetyButton' });
         if (await page.locator('[data-card]').count() < 2) { await page.click('#add-container'); current.did.push({ type: 'click', label: 'Add container' }); }
         const cards = page.locator('#ci-cards [data-card]');
@@ -340,7 +343,7 @@ try {
         await press(page, '#intake-confirm');
         intake = page.url().match(/\/(\d+)(\?|$)/)?.[1];
         current.result = await flash(page) || page.url();
-        lot = current.result.match(/lot #(\d+)/)?.[1] ?? (await page.content()).match(/(?:lotId|rawHoneyProductionId)=(\d+)/)?.[1];
+        lot = current.result.match(/#(\d+)/)?.[1] ?? (await page.content()).match(/(?:lotId|rawHoneyProductionId)=(\d+)/)?.[1];
         if (!lot) throw new Error('no lot number after the delivery: ' + current.result);
         facts.records.intake = intake; facts.records.lot = lot;
         await workOf(sao, new RegExp(`${ccp(0)} · #${lot}`));
@@ -362,13 +365,14 @@ try {
     await step('Laboratory receives the jars and makes the composite sample', analyst, async page => {
         await go(page, '/Samples/Index');
         for (let i = 0; i < 4; i++) {
-            const form = page.locator('form.receive-jar-form').first();
+            const form = page.locator(`tr:has-text("S-${lot}-C") form.receive-jar-form`).first();   // this walk's jars only
             if (!await form.count()) break;
             for (const name of ['sealMatches', 'labelIntact', 'capIntact']) await form.locator(`input[name=${name}][value=true]`).check();
             current.did.push({ type: 'tick', label: 'Seal matches · Label intact · Cap intact: Yes' });
-            await press(page, 'form.receive-jar-form button[type=submit]');
+            await press(page, `tr:has-text("S-${lot}-C") form.receive-jar-form button[type=submit]`);
         }
-        await press(page, '#composite-ready button[type=submit], form[action*="Composite"] button[type=submit]');
+        // the composite of this walk's lot (other lots of the cast may be ready too)
+        await press(page, `form.composite-form:has(input[name=lotId][value="${lot}"]) button[type=submit]`);
         if (!/LabReports\/Edit/.test(page.url())) throw new Error('composite: ' + await flash(page));
         composite = page.url().split('/').pop();
         current.result = 'composite sample, report form open';
@@ -476,7 +480,7 @@ try {
         current.did.push({ type: 'type', label: `${ids.length} values (temperature 18, relative humidity 55)` });
         await press(page, '#storage-form button[type=submit]');
         await result(page, /saved/i);
-        await workOf(shopQa, /CCP 10/);
+        await workOf(shopQa, new RegExp(ccp(10)));
     });
     await step('The shop\'s QA officer approves storage', shopQa, async page => {
         await go(page, `/Shipments/Storage?batchId=${batch}`);

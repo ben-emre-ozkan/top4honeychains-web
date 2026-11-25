@@ -229,6 +229,24 @@ var lots = new List<(int Lot, decimal Kg)>();
 var seals = history.GetProperty("seals");
 var sealNo = seals.GetProperty("first").GetInt32();
 var deliveryNo = 0;
+// D-97: the history's seals come from the association's seal pool: the harvest seals as numbered plastic seals, the jar labels
+// and the closing seals as seal labels (the codes of cast.json, put into the pool the way an administrator's batch would be)
+{
+    var deliveries = history.GetProperty("deliveries").EnumerateArray().ToList();
+    var origins = deliveries.SelectMany(d => d.GetProperty("containers").EnumerateArray().Select(c => c.GetProperty("originSeal").GetString()!)).ToList();
+    var labels = Enumerable.Range(sealNo, origins.Count)
+        .SelectMany(n => new[] { "jar", "counter", "reseal" }.Select(k => seals.GetProperty(k).GetString() + n.ToString(inv))).ToList();
+    foreach (var (kind, codes) in new[] { (SealKind.Plastic, origins), (SealKind.Label, labels) })
+        await Db(async db =>
+        {
+            var batch = new SealBatch { OrgId = orgIds["association"], Kind = kind, FirstCode = codes[0], LastCode = codes[^1], CodeCount = codes.Count,
+                IssuedByUserId = "live-like", IssuedAt = DateTime.UtcNow, Note = "cast history" };
+            foreach (var code in codes)
+                batch.Codes.Add(new SealCode { OrgId = batch.OrgId, Code = code, Kind = kind, Status = SealStatus.Issued });
+            db.SealBatches.Add(batch);
+            return await db.SaveChangesAsync();
+        });
+}
 foreach (var d in history.GetProperty("deliveries").EnumerateArray())
 {
     deliveryNo++;
@@ -238,7 +256,8 @@ foreach (var d in history.GetProperty("deliveries").EnumerateArray())
         new("Number", registered.BeekeeperBusinessNumber!), new("ApiaryId", apiaries[d.GetProperty("apiary").GetInt32() - 1].ToString(inv)), new("HoneyTypeId", honeyType.ToString(inv)),
         new("PeriodId", period.ToString(inv)), new("DeliveryDate", date.ToString("yyyy-MM-dd", inv)), new("Province", bee.GetProperty("province").GetString()!),
         new("District", (d.GetProperty("apiary").GetInt32() == 1 ? bee : second).GetProperty("district").GetString()!), new("OriginCountry", "TR"), new("LabOrgId", orgIds["lab"].ToString(inv)),
-        new("CounterLocation", history.GetProperty("counterLocation").GetString()!), new("RetainUntil", DateTime.Today.AddYears(2).ToString("yyyy-MM-dd", inv))
+        new("CounterLocation", history.GetProperty("counterLocation").GetString()!), new("RetainUntil", DateTime.Today.AddYears(2).ToString("yyyy-MM-dd", inv)),
+        new("CapType", JarCap.SafetyButton)
     };
     var i = 0;
     decimal kg = 0;
@@ -247,10 +266,11 @@ foreach (var d in history.GetProperty("deliveries").EnumerateArray())
         var n = sealNo++;
         form.AddRange(new KeyValuePair<string, string>[]
         {
+            new($"Containers[{i}].Closure", ClosureKind.SealLabel),
             new($"Containers[{i}].Kind", "Tin"), new($"Containers[{i}].NetKg", c.GetProperty("net").GetString()!), new($"Containers[{i}].GrossKg", c.GetProperty("gross").GetString()!),
             new($"Containers[{i}].ArrivedSealed", "true"), new($"Containers[{i}].OriginSeal", c.GetProperty("originSeal").GetString()!), new($"Containers[{i}].OriginSealIntact", "true"),
             new($"Containers[{i}].JarSeal", seals.GetProperty("jar").GetString() + n), new($"Containers[{i}].CounterSeal", seals.GetProperty("counter").GetString() + n),
-            new($"Containers[{i}].CapIntact", "true"), new($"Containers[{i}].Reseal", seals.GetProperty("reseal").GetString() + n)
+            new($"Containers[{i}].CapIntact", "true"), new($"Containers[{i}].ClosingSeal", seals.GetProperty("reseal").GetString() + n)
         });
         kg += decimal.Parse(c.GetProperty("net").GetString()!, inv);
         i++;
