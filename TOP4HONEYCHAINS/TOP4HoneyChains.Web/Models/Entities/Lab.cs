@@ -56,6 +56,10 @@ namespace TOP4HoneyChains.Web.Models.Entities
 
         public bool? JarCapIntactAtSealing { get; set; }
 
+        // D-97 (migration 033): the jar's cap (JarCap; null = before D-97): the reception check asks "button down" or "ring unbroken"
+        [StringLength(20)]
+        public string? CapType { get; set; }
+
         public bool? JarCapIntactAtReception { get; set; }
 
         public bool? LabelIntactAtReception { get; set; }

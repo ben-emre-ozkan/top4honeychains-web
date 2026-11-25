@@ -1,0 +1,221 @@
+@using TOP4HoneyChains.Web.Models.Entities
+@using TOP4HoneyChains.Web.Controllers
+@{
+    ViewData["Title"] = L["Seal.Title"];
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var counts = ViewBag.Counts as Dictionary<string, int> ?? new();
+    var codes = ViewBag.Codes as List<SealCode> ?? new();
+    var batches = ViewBag.Batches as List<SealBatch> ?? new();
+    var boxes = ViewBag.Boxes as List<SealsController.BoxRow> ?? new();
+    var isAdmin = ViewBag.IsAdmin == true;
+    int N(string kind, string status) => counts.TryGetValue(kind + "|" + status, out var n) ? n : 0;
+}
+@* D-97: the organization's seal pool (seal labels issued by the platform, purchased plastic seals) and its permanent containers *@
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">@L["Seal.Title"]</h4>
+                    <p class="card-title-desc">@L["Seal.Help"]</p>
+                    <partial name="_SceneNow" />
+
+                    <div class="row g-3 mb-3" id="seal-counts">
+                        @foreach (var kind in SealKind.All)
+                        {
+                            <div class="col-md-6">
+                                <div class="ci-panel h-100">
+                                    <div class="fw-bold mb-1"><i class="mdi @(kind == SealKind.Label ? "mdi-qrcode" : "mdi-lock-outline")" aria-hidden="true"></i> @L["Seal.Kind." + kind]</div>
+                                    <div class="d-flex flex-wrap gap-3">
+                                        <span><strong class="fs-4" data-count="@kind-Issued">@N(kind, SealStatus.Issued)</strong> @L["Seal.Status.Issued"]</span>
+                                        <span><strong class="fs-5">@N(kind, SealStatus.Used)</strong> @L["Seal.Status.Used"]</span>
+                                        <span><strong class="fs-5">@N(kind, SealStatus.Broken)</strong> @L["Seal.Status.Broken"]</span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <aside class="ci-info">
+                        <i class="mdi mdi-package-variant-closed ci-info-icon" aria-hidden="true"></i>
+                        <div><strong>@L["Seal.Materials.Title"]</strong><p>@L["Seal.Materials"]</p></div>
+                    </aside>
+
+                    @if (isAdmin)
+                    {
+                        <div class="row g-3 mb-2">
+                            <div class="col-lg-6">
+                                <form asp-action="Issue" method="post" class="ci-panel h-100 field-form" id="issue-form">
+                                    <h6 class="fw-bold"><i class="mdi mdi-qrcode-plus" aria-hidden="true"></i> @L["Seal.Issue"]</h6>
+                                    <p class="small text-muted">@L["Seal.IssueHelp"]</p>
+                                    <div class="row g-2 align-items-end">
+                                        <div class="col-4"><label class="form-label" for="count">@L["Seal.Count"]</label><input type="number" min="1" max="500" name="count" id="count" value="50" class="form-control" /></div>
+                                        <div class="col-8"><label class="form-label" for="issue-note">@L["Seal.Note"]</label><input name="note" id="issue-note" maxlength="200" class="form-control" /></div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mt-2" id="issue-labels">@L["Seal.IssueButton"]</button>
+                                </form>
+                            </div>
+                            <div class="col-lg-6">
+                                <form asp-action="AddRange" method="post" class="ci-panel h-100 field-form" id="range-form">
+                                    <h6 class="fw-bold"><i class="mdi mdi-lock-plus-outline" aria-hidden="true"></i> @L["Seal.Range"]</h6>
+                                    <p class="small text-muted">@L["Seal.RangeHelp"]</p>
+                                    <div class="row g-2 align-items-end">
+                                        <div class="col-4"><label class="form-label" for="prefix">@L["Seal.Prefix"]</label><input name="prefix" id="prefix" maxlength="20" class="form-control" placeholder="SAB-P-" autocapitalize="characters" /></div>
+                                        <div class="col-4"><label class="form-label" for="from">@L["Seal.From"]</label><input name="from" id="from" inputmode="numeric" maxlength="12" class="form-control" /></div>
+                                        <div class="col-4"><label class="form-label" for="to">@L["Seal.To"]</label><input name="to" id="to" inputmode="numeric" maxlength="12" class="form-control" /></div>
+                                        <div class="col-12"><label class="form-label" for="range-note">@L["Seal.Note"]</label><input name="note" id="range-note" maxlength="200" class="form-control" /></div>
+                                    </div>
+                                    <button type="submit" class="btn btn-outline-primary mt-2" id="add-range">@L["Seal.AddButton"]</button>
+                                </form>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="small text-muted" id="seal-admin-only">@L["Seal.OnlyAdmin"]</p>
+                    }
+
+                    <h5 class="mt-4">@L["Seal.Batches"]</h5>
+                    <div class="table-responsive"><table class="table table-sm table-bordered" id="seal-batches">
+                        <thead><tr><th>@L["Seal.Batch"]</th><th>@L["Seal.Kind"]</th><th>@L["Seal.Codes"]</th><th>@L["Org.Date"]</th><th>@L["Seal.Note"]</th><th></th></tr></thead>
+                        <tbody>
+                            @foreach (var b in batches)
+                            {
+                                <tr>
+                                    <td>#@b.BatchId</td>
+                                    <td>@L["Seal.Kind." + b.Kind]</td>
+                                    <td><code>@b.FirstCode</code> – <code>@b.LastCode</code> (@b.CodeCount)</td>
+                                    <td>@b.IssuedAt.ToLocalTime().ToString("dd.MM.yyyy")</td>
+                                    <td>@b.Note</td>
+                                    <td class="text-nowrap">
+                                        @if (b.Kind == SealKind.Label)
+                                        {
+                                            <a asp-action="Print" asp-route-batchId="@b.BatchId" target="_blank" rel="noopener" class="btn btn-sm btn-outline-secondary">@L["Ci.LabelsA4"]</a>
+                                            <a asp-action="Print" asp-route-batchId="@b.BatchId" asp-route-size="label" target="_blank" rel="noopener" class="btn btn-sm btn-outline-secondary">@L["Ci.LabelsSingle"]</a>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                            @if (batches.Count == 0)
+                            {
+                                <tr><td colspan="6" class="text-muted">@L["Org.None"]</td></tr>
+                            }
+                        </tbody>
+                    </table></div>
+
+                    <h5 class="mt-4">@L["Seal.Codes"]</h5>
+                    <form method="get" class="row g-2 align-items-end mb-2" id="code-filter">
+                        <div class="col-sm-3"><label class="form-label" for="q">@L["Seal.Search"]</label><input name="q" id="q" value="@ViewBag.Q" class="form-control" autocapitalize="characters" /></div>
+                        <div class="col-sm-3">
+                            <label class="form-label" for="status">@L["Seal.State"]</label>
+                            <select name="status" id="status" class="form-select">
+                                <option value="">@L["Seal.All"]</option>
+                                @foreach (var st in SealStatus.All)
+                                {
+                                    <option value="@st" selected="@(ViewBag.Status == st)">@L["Seal.Status." + st]</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <label class="form-label" for="kind">@L["Seal.Kind"]</label>
+                            <select name="kind" id="kind" class="form-select">
+                                <option value="">@L["Seal.All"]</option>
+                                @foreach (var k in SealKind.All)
+                                {
+                                    <option value="@k" selected="@(ViewBag.Kind == k)">@L["Seal.Kind." + k]</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-sm-3"><button type="submit" class="btn btn-outline-primary">@L["Seal.Search"]</button></div>
+                    </form>
+                    <div class="table-responsive"><table class="table table-sm table-bordered" id="seal-codes">
+                        <thead><tr><th>@L["Seal.Code"]</th><th>@L["Seal.Kind"]</th><th>@L["Seal.State"]</th><th>@L["Seal.UsedOn"]</th><th>@L["Org.Date"]</th></tr></thead>
+                        <tbody>
+                            @foreach (var c in codes)
+                            {
+                                <tr data-code="@c.Code" data-status="@c.Status">
+                                    <td><code>@c.Code</code></td>
+                                    <td>@L["Seal.Kind." + c.Kind]</td>
+                                    <td><span class="badge @(c.Status == SealStatus.Issued ? "bg-success" : c.Status == SealStatus.Used ? "bg-primary" : "bg-secondary")">@L["Seal.Status." + c.Status]</span></td>
+                                    <td>
+                                        @if (c.UsedAs != null)
+                                        {
+                                            <span>@L["Seal.Use." + c.UsedAs]</span>
+                                        }
+                                        @if (c.Container != null)
+                                        {
+                                            <a asp-controller="Intake" asp-action="Details" asp-route-id="@c.Container.IntakeId">@c.Container.ContainerCode</a>
+                                        }
+                                        else if (c.Sample != null)
+                                        {
+                                            <span>@c.Sample.SampleCode</span>
+                                        }
+                                    </td>
+                                    <td>@(c.BrokenAt ?? c.UsedAt)?.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</td>
+                                </tr>
+                            }
+                            @if (codes.Count == 0)
+                            {
+                                <tr><td colspan="5" class="text-muted">@L["Org.None"]</td></tr>
+                            }
+                        </tbody>
+                    </table></div>
+
+                    <h5 class="mt-4" id="containers">@L["Seal.Containers"]</h5>
+                    <p class="small text-muted">@L["Seal.ContainersHelp"]</p>
+                    @if (isAdmin)
+                    {
+                        <form asp-action="Register" method="post" class="ci-panel field-form" id="register-form">
+                            <h6 class="fw-bold"><i class="mdi mdi-barrel-outline" aria-hidden="true"></i> @L["Seal.Register"]</h6>
+                            <div class="row g-2 align-items-end">
+                                <div class="col-sm-3">
+                                    <label class="form-label" for="box-kind">@L["Ci.Kind"]</label>
+                                    <select name="kind" id="box-kind" class="form-select">
+                                        @foreach (var k in ContainerKind.All)
+                                        {
+                                            <option value="@k">@L["Ci.Kind." + k]</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-sm-3"><label class="form-label" for="box-name">@L["Seal.Name"]</label><input name="name" id="box-name" maxlength="100" class="form-control" /></div>
+                                <div class="col-sm-2"><label class="form-label" for="box-capacity">@L["Seal.Capacity"]</label><input name="capacityKg" id="box-capacity" inputmode="decimal" class="form-control" /></div>
+                                <div class="col-sm-2"><label class="form-label" for="box-tare">@L["Seal.Tare"]</label><input name="tareKg" id="box-tare" inputmode="decimal" class="form-control" /></div>
+                                <div class="col-sm-2"><button type="submit" class="btn btn-primary w-100" id="register-box">@L["Seal.RegisterButton"]</button></div>
+                            </div>
+                        </form>
+                    }
+                    <div class="d-flex gap-2 mb-2">
+                        <a asp-action="Print" asp-route-what="containers" target="_blank" rel="noopener" class="btn btn-sm btn-outline-secondary">@L["Ci.LabelsA4"]</a>
+                        <a asp-action="Print" asp-route-what="containers" asp-route-size="label" target="_blank" rel="noopener" class="btn btn-sm btn-outline-secondary">@L["Ci.LabelsSingle"]</a>
+                    </div>
+                    <div class="table-responsive"><table class="table table-sm table-bordered" id="org-containers">
+                        <thead><tr><th>@L["Seal.Code"]</th><th>@L["Ci.Kind"]</th><th>@L["Seal.Name"]</th><th>@L["Seal.Capacity"]</th><th>@L["Seal.Tare"]</th><th>@L["Seal.Uses"]</th><th>@L["Seal.LastUse"]</th></tr></thead>
+                        <tbody>
+                            @foreach (var b in boxes)
+                            {
+                                <tr data-box="@b.Box.Code">
+                                    <td><a asp-action="Box" asp-route-id="@b.Box.OrgContainerId"><code>@b.Box.Code</code></a></td>
+                                    <td>@L["Ci.Kind." + b.Box.Kind]</td>
+                                    <td>@b.Box.Name</td>
+                                    <td>@b.Box.CapacityKg?.ToString("0.##")</td>
+                                    <td>@b.Box.TareKg?.ToString("0.##")</td>
+                                    <td>@b.Uses</td>
+                                    <td>@b.LastUse?.ToString("dd.MM.yyyy")</td>
+                                </tr>
+                            }
+                            @if (boxes.Count == 0)
+                            {
+                                <tr><td colspan="7" class="text-muted">@L["Org.None"]</td></tr>
+                            }
+                        </tbody>
+                    </table></div>
+                </div>
+            </div>
+            <a asp-controller="Intake" asp-action="Index" class="btn btn-link app-back"><i class="mdi mdi-arrow-left" aria-hidden="true"></i> @L["Org.Back"]</a>
+        </div>
+    </div>
+    @section scripts {
+        <link rel="stylesheet" href="~/css/intake-cards.css" asp-append-version="true" />
+    }
+</body>

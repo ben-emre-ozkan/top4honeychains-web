@@ -17,12 +17,14 @@ namespace TOP4HoneyChains.Web.TagHelpers
     [HtmlTargetElement("honey-scene", TagStructure = TagStructure.WithoutEndTag)]
     public class HoneySceneTagHelper : TagHelper
     {
-        public static readonly string[] Names = { "sample", "delivery", "seal", "send", "reception", "ship", "empty", "journey" };
+        public static readonly string[] Names = { "sample", "delivery", "seal", "send", "reception", "ship", "empty", "journey", "label", "plastic", "scan", "button", "ring" };
 
         // timeline length per scene (ms); 7.2: at most 1.5 s
         public static readonly IReadOnlyDictionary<string, int> Durations = new Dictionary<string, int>
         {
-            ["sample"] = 1200, ["delivery"] = 1300, ["seal"] = 1000, ["send"] = 1200, ["reception"] = 1200, ["ship"] = 1200, ["empty"] = 1000, ["journey"] = 1400
+            ["sample"] = 1200, ["delivery"] = 1300, ["seal"] = 1000, ["send"] = 1200, ["reception"] = 1200, ["ship"] = 1200, ["empty"] = 1000, ["journey"] = 1400,
+            // D-97: the closing options and the jar caps
+            ["label"] = 1400, ["plastic"] = 1000, ["scan"] = 1200, ["button"] = 1200, ["ring"] = 1300
         };
 
         private static readonly ConcurrentDictionary<string, string> Templates = new();

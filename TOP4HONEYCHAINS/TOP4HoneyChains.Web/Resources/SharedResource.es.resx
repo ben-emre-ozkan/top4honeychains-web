@@ -7855,7 +7855,7 @@
     <value>Periodo de producción</value>
   </data>
   <data name="Ci.Help" xml:space="preserve">
-    <value>Registre cada envase de la entrega con su precinto, tome una muestra de cada envase y luego el apicultor lo confirma todo con un código SMS.</value>
+    <value>Registre cada envase en tres pasos cortos: el envase, sus dos frascos de muestra y su precinto de cierre. Luego el apicultor lo confirma todo con un código SMS.</value>
   </data>
   <data name="Ci.NoPhone" xml:space="preserve">
     <value>sin móvil: solo foto firmada</value>
@@ -7867,7 +7867,7 @@
     <value>Envases y muestras</value>
   </data>
   <data name="Ci.ContainersHelp" xml:space="preserve">
-    <value>Una fila por envase (lata, cubo o bidón). Para cada uno: elija cómo llegó, llene el frasco de muestra y el de contramuestra, compruebe que el botón de la tapa está abajo y vuelva a precintar el envase.</value>
+    <value>Elija una vez la tapa de los frascos de muestra para toda la entrega. Luego complete una tarjeta por envase.</value>
   </data>
   <data name="Ci.Kind" xml:space="preserve">
     <value>Tipo</value>
@@ -7897,10 +7897,10 @@
     <value>A la llegada</value>
   </data>
   <data name="Ci.ArrivedSealed" xml:space="preserve">
-    <value>Llegó precintado</value>
+    <value>Precintado en la cosecha por el inspector de campo</value>
   </data>
   <data name="Ci.OriginSeal" xml:space="preserve">
-    <value>Número del precinto con el que llegó</value>
+    <value>Código del precinto puesto en la cosecha</value>
   </data>
   <data name="Ci.OriginIntact" xml:space="preserve">
     <value>Comprobado: el precinto está intacto</value>
@@ -7909,22 +7909,22 @@
     <value>Precinto nuevo, puesto ahora delante del apicultor</value>
   </data>
   <data name="Ci.JarSeal" xml:space="preserve">
-    <value>Precinto del frasco</value>
+    <value>Etiqueta de precinto del frasco de muestra</value>
   </data>
   <data name="Ci.CounterSeal" xml:space="preserve">
-    <value>Precinto de contramuestra</value>
+    <value>Etiqueta de precinto del frasco de contramuestra</value>
   </data>
   <data name="Ci.Cap" xml:space="preserve">
     <value>Tapa intacta</value>
   </data>
   <data name="Ci.CapHelp" xml:space="preserve">
-    <value>Tapa de seguridad: marque solo si el botón está abajo. Una tapa saltada indica que el frasco se abrió: deséchelo y llene uno nuevo.</value>
+    <value>Tapa con botón de seguridad: marque solo si el botón está abajo. Un botón levantado indica que el frasco se abrió: deséchelo y llene uno nuevo.</value>
   </data>
   <data name="Ci.Reseal" xml:space="preserve">
     <value>Precinto nuevo tras el muestreo</value>
   </data>
   <data name="Ci.Remove" xml:space="preserve">
-    <value>Quitar la fila</value>
+    <value>Quitar el envase</value>
   </data>
   <data name="Ci.AddContainer" xml:space="preserve">
     <value>Añadir un envase</value>
@@ -7945,7 +7945,7 @@
     <value>El apicultor confirma</value>
   </data>
   <data name="Ci.SendHelp" xml:space="preserve">
-    <value>El apicultor recibe un SMS con su organización, la fecha, los envases, los kilos, el tipo de miel, el número de muestras y un código. Cualquier cambio tras el envío exige un código nuevo.</value>
+    <value>El apicultor recibe un SMS con su organización, la fecha, los envases, los kilos, el tipo de miel, el número de muestras y un código. El código cubre también cada código de envase, de precinto y la tapa de los frascos. Cualquier cambio tras el envío exige un código nuevo.</value>
   </data>
   <data name="Ci.NotPresent" xml:space="preserve">
     <value>Si el apicultor no está presente, llámele: leerá el código de su teléfono.</value>
@@ -8005,10 +8005,10 @@
     <value>Frascos de muestra</value>
   </data>
   <data name="Ci.Seal.Checked" xml:space="preserve">
-    <value>Precinto de origen comprobado</value>
+    <value>Precinto comprobado a la llegada</value>
   </data>
   <data name="Ci.Seal.Applied" xml:space="preserve">
-    <value>Precinto de planta aplicado</value>
+    <value>Precinto aplicado</value>
   </data>
   <data name="Ci.Seal.Broken" xml:space="preserve">
     <value>Precinto roto</value>
@@ -9854,13 +9854,13 @@
     <value>Escriba el número de registro del apicultor (p. ej. TR520401200241) o su número de explotación y pulse Buscar. Luego aparecen sus colmenares en el formulario.</value>
   </data>
   <data name="Ci.ArrivedUnsealed" xml:space="preserve">
-    <value>Llegó sin precinto</value>
+    <value>Llegó sin precinto (lo normal)</value>
   </data>
   <data name="Ci.Info.Arrival" xml:space="preserve">
-    <value>Elija cómo llegó el envase. Llegó precintado: escriba el número del precinto con el que llegó y confirme que está intacto. Llegó sin precinto: precíntelo ahora delante del apicultor y escriba el número del precinto nuevo. El precinto une el envase con sus frascos de muestra y con la entrega que confirma el apicultor, así la miel no puede cambiarse después.</value>
+    <value>Lo normal es que el envase llegue sin precinto: tome las muestras y luego ciérrelo con un solo precinto. Elija “precintado en la cosecha” solo si el inspector de campo de la asociación lo precintó en el apiario con un precinto del stock de la asociación; compruebe que el precinto está intacto.</value>
   </data>
   <data name="Ci.Info.Jars" xml:space="preserve">
-    <value>De cada envase llene dos frascos: el de muestra va al laboratorio y el de contramuestra se queda con usted por si se discute un resultado. Precinte cada frasco y escriba su número de precinto.</value>
+    <value>Llene dos frascos de este envase. Ponga en cada uno una etiqueta de precinto del stock sobre la tapa y el frasco: el de muestra va al laboratorio, el de contramuestra se queda con usted por si se discute un resultado.</value>
   </data>
   <data name="Ci.Info.Reseal" xml:space="preserve">
     <value>Al tomar las muestras se abre el envase. Vuelva a precintarlo y escriba el número del precinto nuevo; el envase lo conserva hasta que se use.</value>
@@ -9882,5 +9882,407 @@
   </data>
   <data name="Reg93.CoordinatesHelp" xml:space="preserve">
     <value>Escriba las coordenadas de este colmenar (el mapa de arriba fija el primer colmenar).</value>
+  </data>
+  <data name="Ci.JarSetup" xml:space="preserve">
+    <value>Frascos de muestra de esta entrega</value>
+  </data>
+  <data name="Ci.CapType" xml:space="preserve">
+    <value>Tapa de los frascos de muestra</value>
+  </data>
+  <data name="Ci.Cap.SafetyButton" xml:space="preserve">
+    <value>Tapa con botón de seguridad</value>
+  </data>
+  <data name="Ci.Cap.SafetyButton.Help" xml:space="preserve">
+    <value>Tapa al vacío, como en los frascos de comida para bebés: el botón queda abajo solo mientras hay vacío.</value>
+  </data>
+  <data name="Ci.Cap.TamperRing" xml:space="preserve">
+    <value>Tapa con anillo de seguridad</value>
+  </data>
+  <data name="Ci.Cap.TamperRing.Help" xml:space="preserve">
+    <value>El anillo bajo la tapa se rompe cuando se abre la tapa.</value>
+  </data>
+  <data name="Ci.InfoCard.Button.Title" xml:space="preserve">
+    <value>Tapa con botón de seguridad: cómo cerrar el frasco</value>
+  </data>
+  <data name="Ci.InfoCard.Button" xml:space="preserve">
+    <value>El botón queda abajo solo con vacío en el frasco. Después de llenarlo, haga el vacío con una bomba de vacío manual hasta que el botón baje. Nunca caliente la miel para lograr el vacío: el calor sube el HMF y baja la diastasa, y la muestra ya no mostraría la miel tal como se entregó.</value>
+  </data>
+  <data name="Ci.InfoCard.Ring.Title" xml:space="preserve">
+    <value>Tapa con anillo: cómo cerrar el frasco</value>
+  </data>
+  <data name="Ci.InfoCard.Ring" xml:space="preserve">
+    <value>Gire la tapa hasta que el anillo quede firme debajo. Un anillo entero muestra que el frasco no se abrió; un anillo roto, que sí.</value>
+  </data>
+  <data name="Ci.InfoCard.Closure.Title" xml:space="preserve">
+    <value>Cómo se cierra un envase</value>
+  </data>
+  <data name="Ci.InfoCard.Closure" xml:space="preserve">
+    <value>Los apicultores traen sus propias latas y cubos, y la mayoría llega sin precinto. Primero tome las muestras y luego cierre el envase con un solo precinto delante del apicultor. Elija para cada envase:</value>
+  </data>
+  <data name="Ci.InfoCard.Closure.Pool" xml:space="preserve">
+    <value>Las etiquetas de precinto y los precintos plásticos vienen del stock de precintos de su organización; cada código se usa una vez.</value>
+  </data>
+  <data name="Ci.Closure" xml:space="preserve">
+    <value>¿Cómo se cierra?</value>
+  </data>
+  <data name="Ci.Closure.SealLabel" xml:space="preserve">
+    <value>Envase del apicultor + etiqueta de precinto</value>
+  </data>
+  <data name="Ci.Closure.SealLabel.Short" xml:space="preserve">
+    <value>Etiqueta numerada con QR sobre tapa y cuerpo. Sirve para cualquier envase.</value>
+  </data>
+  <data name="Ci.Closure.SealLabel.Help" xml:space="preserve">
+    <value>Una etiqueta numerada con QR, emitida por la plataforma e impresa de antemano en papel de seguridad VOID. Va sobre la tapa y el cuerpo y se rompe o deja marcas VOID si alguien la quita. Sirve para cualquier envase.</value>
+  </data>
+  <data name="Ci.Closure.PlasticSeal" xml:space="preserve">
+    <value>Envase del apicultor + precinto plástico numerado</value>
+  </data>
+  <data name="Ci.Closure.PlasticSeal.Short" xml:space="preserve">
+    <value>Pasa por el asa o un orificio de la tapa; se cierra una vez.</value>
+  </data>
+  <data name="Ci.Closure.PlasticSeal.Help" xml:space="preserve">
+    <value>Para envases con asa u orificio en la tapa: el precinto numerado comprado pasa por ahí y se cierra; solo se abre cortándolo.</value>
+  </data>
+  <data name="Ci.Closure.OrgContainer" xml:space="preserve">
+    <value>Envase permanente de la asociación</value>
+  </data>
+  <data name="Ci.Closure.OrgContainer.Short" xml:space="preserve">
+    <value>Registrado una vez; escanee o escriba su código TK.</value>
+  </data>
+  <data name="Ci.Closure.OrgContainer.Help" xml:space="preserve">
+    <value>El envase propio de la asociación, registrado una vez con un código permanente y QR. En la entrega escanee o escriba su código; su página muestra cada uso. Igual se cierra con un precinto del stock.</value>
+  </data>
+  <data name="Ci.Info.Closure" xml:space="preserve">
+    <value>El envase se cierra una vez, después del muestreo, delante del apicultor. El precinto viene del stock de su organización.</value>
+  </data>
+  <data name="Ci.Step.Container" xml:space="preserve">
+    <value>Envase</value>
+  </data>
+  <data name="Ci.Step.Samples" xml:space="preserve">
+    <value>Muestras</value>
+  </data>
+  <data name="Ci.Step.Closing" xml:space="preserve">
+    <value>Cierre</value>
+  </data>
+  <data name="Ci.BoxCode" xml:space="preserve">
+    <value>Código del envase de la asociación</value>
+  </data>
+  <data name="Ci.BoxOk" xml:space="preserve">
+    <value>Registrado: {0}</value>
+  </data>
+  <data name="Ci.TareHint" xml:space="preserve">
+    <value>Peso vacío {0} kg: neto = bruto − {0}</value>
+  </data>
+  <data name="Ci.CapCheck.SafetyButton" xml:space="preserve">
+    <value>Botón abajo</value>
+  </data>
+  <data name="Ci.CapCheck.TamperRing" xml:space="preserve">
+    <value>Anillo entero</value>
+  </data>
+  <data name="Ci.CapCheckBoth" xml:space="preserve">
+    <value>en los dos frascos</value>
+  </data>
+  <data name="Ci.Info.CapCheck" xml:space="preserve">
+    <value>Revise los dos frascos después de cerrarlos. Un botón levantado o un anillo roto indica que el frasco se abrió: deséchelo y llene uno nuevo.</value>
+  </data>
+  <data name="Ci.ClosingHelp" xml:space="preserve">
+    <value>Después del muestreo, cierre el envase delante del apicultor y escanee o escriba el precinto.</value>
+  </data>
+  <data name="Ci.ClosingSeal.SealLabel" xml:space="preserve">
+    <value>Código de la etiqueta de precinto</value>
+  </data>
+  <data name="Ci.ClosingSeal.PlasticSeal" xml:space="preserve">
+    <value>Número del precinto plástico</value>
+  </data>
+  <data name="Ci.ClosingSeal.OrgContainer" xml:space="preserve">
+    <value>Código del precinto (etiqueta o plástico)</value>
+  </data>
+  <data name="Ci.SealOk" xml:space="preserve">
+    <value>En el stock y sin usar</value>
+  </data>
+  <data name="Ci.SealDup" xml:space="preserve">
+    <value>Este código ya se usa en esta entrega.</value>
+  </data>
+  <data name="Ci.Confirms.Title" xml:space="preserve">
+    <value>Lo que confirma el apicultor</value>
+  </data>
+  <data name="Ci.Confirms" xml:space="preserve">
+    <value>El código SMS confirma exactamente esta lista: cada código de envase, cada código de precinto y la tapa de los frascos. Si algo cambia después, el registro ya no coincide con la confirmación.</value>
+  </data>
+  <data name="Lab.CheckCap.SafetyButton" xml:space="preserve">
+    <value>El botón está abajo</value>
+  </data>
+  <data name="Lab.CheckCap.TamperRing" xml:space="preserve">
+    <value>El anillo de seguridad está entero</value>
+  </data>
+  <data name="Lab.Info.Reception.Title" xml:space="preserve">
+    <value>Antes de aceptar un frasco</value>
+  </data>
+  <data name="Lab.Info.Reception" xml:space="preserve">
+    <value>Responda tres controles: el código de la etiqueta coincide con el registro, la etiqueta está intacta (sin roturas ni marcas VOID) y la tapa está cerrada (botón abajo o anillo entero). Cualquier “no” rechaza el frasco, porque pudo abrirse en el camino. La planta toma entonces un frasco nuevo del mismo envase, que sigue cerrado con su precinto; la contramuestra queda en la planta para una disputa.</value>
+  </data>
+  <data name="Scene.label" xml:space="preserve">
+    <value>La etiqueta de precinto va sobre tapa y cuerpo. Si se despega, se rompe y deja marcas VOID.</value>
+  </data>
+  <data name="Scene.plastic" xml:space="preserve">
+    <value>Un precinto plástico numerado pasa por el asa y se cierra.</value>
+  </data>
+  <data name="Scene.scan" xml:space="preserve">
+    <value>El envase de la asociación se escanea por su código QR.</value>
+  </data>
+  <data name="Scene.button" xml:space="preserve">
+    <value>Botón abajo: el frasco está cerrado. Botón levantado: el frasco se abrió.</value>
+  </data>
+  <data name="Scene.ring" xml:space="preserve">
+    <value>Anillo entero: el frasco está cerrado. Anillo roto: el frasco se abrió.</value>
+  </data>
+  <data name="Seal.Title" xml:space="preserve">
+    <value>Stock de precintos y envases</value>
+  </data>
+  <data name="Seal.Help" xml:space="preserve">
+    <value>Cada precinto usado en una entrega viene de este stock: etiquetas de precinto emitidas por la plataforma y precintos plásticos numerados comprados. Cada código se usa una vez; aquí ve qué códigos están libres, dónde se usó cada uno y cuáles se abrieron.</value>
+  </data>
+  <data name="Seal.Kind" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="Seal.Kind.Label" xml:space="preserve">
+    <value>Etiqueta de precinto</value>
+  </data>
+  <data name="Seal.Kind.Plastic" xml:space="preserve">
+    <value>Precinto plástico numerado</value>
+  </data>
+  <data name="Seal.Status.Issued" xml:space="preserve">
+    <value>Libre</value>
+  </data>
+  <data name="Seal.Status.Used" xml:space="preserve">
+    <value>Usado</value>
+  </data>
+  <data name="Seal.Status.Broken" xml:space="preserve">
+    <value>Abierto</value>
+  </data>
+  <data name="Seal.Use.Origin" xml:space="preserve">
+    <value>en la cosecha</value>
+  </data>
+  <data name="Seal.Use.Closing" xml:space="preserve">
+    <value>cierre</value>
+  </data>
+  <data name="Seal.Use.Jar" xml:space="preserve">
+    <value>frasco de muestra</value>
+  </data>
+  <data name="Seal.Use.CounterJar" xml:space="preserve">
+    <value>frasco de contramuestra</value>
+  </data>
+  <data name="Seal.Materials.Title" xml:space="preserve">
+    <value>Materiales a tener a mano</value>
+  </data>
+  <data name="Seal.Materials" xml:space="preserve">
+    <value>Papel de seguridad VOID (100 × 50 mm) para las etiquetas de precinto, precintos plásticos numerados para asas, frascos de muestra con tapa de botón o de anillo de seguridad y una bomba de vacío manual para las tapas de botón.</value>
+  </data>
+  <data name="Seal.Issue" xml:space="preserve">
+    <value>Emitir etiquetas de precinto</value>
+  </data>
+  <data name="Seal.IssueHelp" xml:space="preserve">
+    <value>La plataforma asigna los siguientes números libres (TS-…). Imprímalos en papel VOID antes de las entregas.</value>
+  </data>
+  <data name="Seal.Count" xml:space="preserve">
+    <value>Cantidad de etiquetas</value>
+  </data>
+  <data name="Seal.Note" xml:space="preserve">
+    <value>Nota</value>
+  </data>
+  <data name="Seal.IssueButton" xml:space="preserve">
+    <value>Emitir</value>
+  </data>
+  <data name="Seal.Range" xml:space="preserve">
+    <value>Agregar precintos plásticos comprados</value>
+  </data>
+  <data name="Seal.RangeHelp" xml:space="preserve">
+    <value>Ingrese el rango impreso en los precintos: un prefijo opcional y el primer y último número.</value>
+  </data>
+  <data name="Seal.Prefix" xml:space="preserve">
+    <value>Prefijo</value>
+  </data>
+  <data name="Seal.From" xml:space="preserve">
+    <value>Primer número</value>
+  </data>
+  <data name="Seal.To" xml:space="preserve">
+    <value>Último número</value>
+  </data>
+  <data name="Seal.AddButton" xml:space="preserve">
+    <value>Agregar al stock</value>
+  </data>
+  <data name="Seal.OnlyAdmin" xml:space="preserve">
+    <value>Solo el administrador de la organización emite precintos y registra envases.</value>
+  </data>
+  <data name="Seal.Batches" xml:space="preserve">
+    <value>Lotes</value>
+  </data>
+  <data name="Seal.Batch" xml:space="preserve">
+    <value>Lote</value>
+  </data>
+  <data name="Seal.Codes" xml:space="preserve">
+    <value>Códigos</value>
+  </data>
+  <data name="Seal.Code" xml:space="preserve">
+    <value>Código</value>
+  </data>
+  <data name="Seal.State" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="Seal.UsedOn" xml:space="preserve">
+    <value>Usado en</value>
+  </data>
+  <data name="Seal.Search" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="Seal.All" xml:space="preserve">
+    <value>Todos</value>
+  </data>
+  <data name="Seal.Containers" xml:space="preserve">
+    <value>Envases permanentes</value>
+  </data>
+  <data name="Seal.ContainersHelp" xml:space="preserve">
+    <value>Los envases propios de la asociación, registrados una vez. Fije a cada uno la etiqueta impresa con el código y el QR; en la entrega se escanea o se escribe, y su página muestra cada uso.</value>
+  </data>
+  <data name="Seal.Register" xml:space="preserve">
+    <value>Registrar un envase</value>
+  </data>
+  <data name="Seal.Name" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="Seal.Capacity" xml:space="preserve">
+    <value>Capacidad (kg)</value>
+  </data>
+  <data name="Seal.Tare" xml:space="preserve">
+    <value>Peso vacío (kg)</value>
+  </data>
+  <data name="Seal.RegisterButton" xml:space="preserve">
+    <value>Registrar</value>
+  </data>
+  <data name="Seal.Uses" xml:space="preserve">
+    <value>Usos</value>
+  </data>
+  <data name="Seal.LastUse" xml:space="preserve">
+    <value>Último uso</value>
+  </data>
+  <data name="Seal.BoxUses" xml:space="preserve">
+    <value>Todos los usos</value>
+  </data>
+  <data name="Seal.PrintHelp" xml:space="preserve">
+    <value>Imprima en papel de seguridad VOID.</value>
+  </data>
+  <data name="Seal.VoidNote" xml:space="preserve">
+    <value>NO QUITAR · VOID</value>
+  </data>
+  <data name="Choose the cap of the sample jars." xml:space="preserve">
+    <value>Elija la tapa de los frascos de muestra.</value>
+  </data>
+  <data name="Container {0}: choose how the container is closed." xml:space="preserve">
+    <value>Envase {0}: elija cómo se cierra el envase.</value>
+  </data>
+  <data name="Container {0}: {1}" xml:space="preserve">
+    <value>Envase {0}: {1}</value>
+  </data>
+  <data name="Container {0}: enter the code of the seal the field inspector put on at harvest." xml:space="preserve">
+    <value>Envase {0}: ingrese el código del precinto que el inspector de campo puso en la cosecha.</value>
+  </data>
+  <data name="Container {0}: enter the seal label codes of the sample jar and of the counter-sample jar." xml:space="preserve">
+    <value>Envase {0}: ingrese los códigos de las etiquetas del frasco de muestra y del frasco de contramuestra.</value>
+  </data>
+  <data name="Container {0}: the tamper ring of the jar's cap must be unbroken. A broken ring: discard the jar and fill a new one." xml:space="preserve">
+    <value>Envase {0}: el anillo de seguridad de la tapa debe estar entero. Si está roto, deseche el frasco y llene uno nuevo.</value>
+  </data>
+  <data name="Container {0}: the button of the jar's cap must be down. A raised button: discard the jar and fill a new one." xml:space="preserve">
+    <value>Envase {0}: el botón de la tapa debe estar abajo. Si está levantado, deseche el frasco y llene uno nuevo.</value>
+  </data>
+  <data name="Container {0}: enter the closing seal, applied after sampling in front of the beekeeper." xml:space="preserve">
+    <value>Envase {0}: ingrese el precinto de cierre, puesto después del muestreo delante del apicultor.</value>
+  </data>
+  <data name="Container {0}: seal codes have at most 50 characters." xml:space="preserve">
+    <value>Envase {0}: los códigos de precinto tienen como máximo 50 caracteres.</value>
+  </data>
+  <data name="Every seal code of the delivery must be different." xml:space="preserve">
+    <value>Cada código de precinto de la entrega debe ser distinto.</value>
+  </data>
+  <data name="Each association container can be recorded only once per delivery." xml:space="preserve">
+    <value>Cada envase de la asociación se registra una sola vez por entrega.</value>
+  </data>
+  <data name="Seal {0} is not in the seal pool of your organization." xml:space="preserve">
+    <value>El precinto {0} no está en el stock de precintos de su organización.</value>
+  </data>
+  <data name="Seal {0} was already used on {1}." xml:space="preserve">
+    <value>El precinto {0} ya se usó en {1}.</value>
+  </data>
+  <data name="Seal {0} was already used." xml:space="preserve">
+    <value>El precinto {0} ya se usó.</value>
+  </data>
+  <data name="Seal {0} is a numbered plastic seal; a seal label is needed here." xml:space="preserve">
+    <value>El precinto {0} es un precinto plástico numerado; aquí se necesita una etiqueta de precinto.</value>
+  </data>
+  <data name="Seal {0} is a seal label; a numbered plastic seal is needed here." xml:space="preserve">
+    <value>El precinto {0} es una etiqueta; aquí se necesita un precinto plástico numerado.</value>
+  </data>
+  <data name="Scan or type the code of the association's container." xml:space="preserve">
+    <value>Escanee o escriba el código del envase de la asociación.</value>
+  </data>
+  <data name="Container {0} is not registered for your organization." xml:space="preserve">
+    <value>El envase {0} no está registrado para su organización.</value>
+  </data>
+  <data name="Container {0} is retired." xml:space="preserve">
+    <value>El envase {0} está retirado.</value>
+  </data>
+  <data name="A seal code of the delivery was used meanwhile; record the delivery again." xml:space="preserve">
+    <value>Un código de precinto de la entrega se usó mientras tanto; registre la entrega de nuevo.</value>
+  </data>
+  <data name="The seal codes of this delivery come from the seal pool and cannot be corrected." xml:space="preserve">
+    <value>Los códigos de precinto de esta entrega vienen del stock y no se pueden corregir.</value>
+  </data>
+  <data name="The tamper ring of the jar's cap must be unbroken. A broken ring: discard the jar and fill a new one." xml:space="preserve">
+    <value>El anillo de seguridad de la tapa debe estar entero. Si está roto, deseche el frasco y llene uno nuevo.</value>
+  </data>
+  <data name="The button of the jar's cap must be down. A raised button: discard the jar and fill a new one." xml:space="preserve">
+    <value>El botón de la tapa debe estar abajo. Si está levantado, deseche el frasco y llene uno nuevo.</value>
+  </data>
+  <data name="Only the organization administrator and the roles that record or read deliveries can open the seal pool." xml:space="preserve">
+    <value>Solo el administrador de la organización y los roles que registran o leen entregas pueden abrir el stock de precintos.</value>
+  </data>
+  <data name="Issue between 1 and 500 seal labels at a time." xml:space="preserve">
+    <value>Emita entre 1 y 500 etiquetas por vez.</value>
+  </data>
+  <data name="{0} seal labels issued: {1} to {2}. Print them on VOID label stock." xml:space="preserve">
+    <value>{0} etiquetas de precinto emitidas: {1} a {2}. Imprímalas en papel VOID.</value>
+  </data>
+  <data name="{0} plastic seals added to the pool: {1} to {2}." xml:space="preserve">
+    <value>{0} precintos plásticos agregados al stock: {1} a {2}.</value>
+  </data>
+  <data name="Container {0} registered. Print its label and fix it to the container." xml:space="preserve">
+    <value>Envase {0} registrado. Imprima su etiqueta y fíjela al envase.</value>
+  </data>
+  <data name="The prefix has at most 20 letters, digits or hyphens." xml:space="preserve">
+    <value>El prefijo tiene como máximo 20 letras, dígitos o guiones.</value>
+  </data>
+  <data name="Enter the first and the last number of the seals (digits only)." xml:space="preserve">
+    <value>Ingrese el primer y el último número de los precintos (solo dígitos).</value>
+  </data>
+  <data name="The last number cannot be lower than the first." xml:space="preserve">
+    <value>El último número no puede ser menor que el primero.</value>
+  </data>
+  <data name="At most 1000 seals per range." xml:space="preserve">
+    <value>Como máximo 1000 precintos por rango.</value>
+  </data>
+  <data name="TS- and TK- are kept for the platform's seal labels and containers." xml:space="preserve">
+    <value>TS- y TK- están reservados para las etiquetas de precinto y los envases de la plataforma.</value>
+  </data>
+  <data name="Some of these seals are already in a seal pool (first: {0})." xml:space="preserve">
+    <value>Algunos de estos precintos ya están en un stock (el primero: {0}).</value>
+  </data>
+  <data name="Choose the kind of container." xml:space="preserve">
+    <value>Elija el tipo de envase.</value>
+  </data>
+  <data name="The name has at most 100 characters." xml:space="preserve">
+    <value>El nombre tiene como máximo 100 caracteres.</value>
+  </data>
+  <data name="Enter the capacity and the empty weight in kg (or leave them empty)." xml:space="preserve">
+    <value>Ingrese la capacidad y el peso vacío en kg (o déjelos vacíos).</value>
   </data>
 </root>

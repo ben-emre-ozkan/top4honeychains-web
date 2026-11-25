@@ -1,0 +1,81 @@
+@using TOP4HoneyChains.Web.Models.Entities
+@using TOP4HoneyChains.Web.Controllers
+@{
+    Layout = null;
+    var size = (string)ViewBag.Size;
+    var batch = ViewBag.Batch as SealBatch;
+    var boxes = ViewBag.Boxes as List<OrgContainer>;
+    var org = (string)ViewBag.OrgName;
+}
+@* D-97: seal labels of a batch (to print on tamper-evident VOID label stock, applied across lid and body, or cap and jar) or the
+   labels of the organization's permanent containers. size=a4: 2 x 5 labels of 100 x 50 mm per A4 sheet; size=label: one per page.
+   The QR holds the code only, so a USB scanner types exactly the code into the delivery form. *@
+<!doctype html>
+<html lang="@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@(batch != null ? L["Seal.Kind.Label"].Value + " · " + batch.FirstCode : L["Seal.Containers"].Value)</title>
+    <meta name="robots" content="noindex">
+    <style>
+        @if (size == "label")
+        {
+            <text>@@page { size: 100mm 50mm; margin: 0; }</text>
+        }
+        else
+        {
+            <text>@@page { size: A4; margin: 10mm 5mm; }</text>
+        }
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: #000; background: #fff; }
+        .sheet { display: flex; flex-wrap: wrap; @(size == "label" ? "" : "width: 200mm;") }
+        .label { width: 100mm; height: 50mm; padding: 3mm 4mm; display: flex; gap: 3mm; overflow: hidden; border: 0.2mm dashed #bbb; page-break-inside: avoid; break-inside: avoid; }
+        @if (size == "label")
+        {
+            <text>.label { border: 0; page-break-after: always; break-after: page; }</text>
+        }
+        .qr { width: 32mm; height: 32mm; flex: 0 0 32mm; }
+        .qr svg { width: 100%; height: 100%; }
+        .txt { display: flex; flex-direction: column; justify-content: space-between; min-width: 0; }
+        .code { font-size: 17pt; font-weight: 700; letter-spacing: .03em; font-family: "Courier New", monospace; }
+        .kind { font-size: 8pt; text-transform: uppercase; letter-spacing: .08em; color: #333; }
+        .line { font-size: 9pt; line-height: 1.25; overflow-wrap: anywhere; }
+        .void { font-size: 8pt; font-weight: 700; letter-spacing: .2em; color: #444; border-top: 0.3mm solid #000; padding-top: 1mm; }
+        .tools { padding: 8px; font-size: 14px; }
+        @@media print { .tools { display: none; } .label { border-color: transparent; } }
+    </style>
+</head>
+<body>
+    <div class="tools"><button type="button" onclick="window.print()">@L["Reg78.Print"]</button> · @org · @L["Seal.PrintHelp"]</div>
+    <div class="sheet" id="labels">
+        @if (batch != null)
+        {
+            foreach (var c in batch.Codes.OrderBy(c => c.Code))
+            {
+                <div class="label seal-label">
+                    <div class="qr">@Html.Raw(IntakeController.QrSvg(c.Code))</div>
+                    <div class="txt">
+                        <div><div class="kind">@L["Seal.Kind.Label"]</div><div class="code">@c.Code</div></div>
+                        <div class="line">@org</div>
+                        <div class="void">@L["Seal.VoidNote"]</div>
+                    </div>
+                </div>
+            }
+        }
+        else if (boxes != null)
+        {
+            foreach (var b in boxes)
+            {
+                <div class="label box-label">
+                    <div class="qr">@Html.Raw(IntakeController.QrSvg(b.Code))</div>
+                    <div class="txt">
+                        <div><div class="kind">@L["Ci.Closure.OrgContainer"] · @L["Ci.Kind." + b.Kind]</div><div class="code">@b.Code</div></div>
+                        <div class="line">@org@(b.Name != null ? " · " + b.Name : "")</div>
+                        <div class="line">@(b.TareKg != null ? L["Seal.Tare"].Value + ": " + b.TareKg.Value.ToString("0.##") : "")</div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</body>
+</html>

@@ -24,7 +24,8 @@ namespace TOP4HoneyChains.Web.Tests.E2E
                 d[p + "Kind"] = c.Kind!;
                 d[p + "NetKg"] = c.NetKg!.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
                 if (c.GrossKg != null) d[p + "GrossKg"] = c.GrossKg.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
-                d[p + "ArrivalSeal"] = c.ArrivalSeal!;
+                if (c.ArrivalSeal != null)
+                    d[p + "ArrivalSeal"] = c.ArrivalSeal;
                 d[p + "JarSeal"] = c.JarSeal!;
                 d[p + "CounterSeal"] = c.CounterSeal!;
                 d[p + "Reseal"] = c.Reseal!;
@@ -64,13 +65,13 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             {
                 d["DeliveryDate"] = DateTime.Today.AddDays(-1).ToString("yyyy-MM-dd");
                 d["Containers[0].NetKg"] = "24";
-                d["Containers[1].JarSeal"] = "ci12-J1-fixed";
             });
             Assert.Contains("/Account/AccessDenied", (await p.Sao.PostAsync($"/Intake/RequestCorrection/{intakeId}", correction, details)).Headers.Location?.ToString());
             Assert.False(await _app.WithContextAsync(db => db.DeliveryCorrections.AnyAsync(c => c.IntakeId == intakeId)));
             Assert.Contains("A reason is required for a correction.", await admin1.PostFlashAsync($"/Intake/RequestCorrection/{intakeId}", CorrectionForm(stored, null), details));
             Assert.Contains("The correction does not change anything.", await admin1.PostFlashAsync($"/Intake/RequestCorrection/{intakeId}", CorrectionForm(stored, "zz"), details));
-            Assert.Contains("Every seal number of the delivery must be different.", await admin1.PostFlashAsync($"/Intake/RequestCorrection/{intakeId}",
+            // D-97: the seal codes come from the pool and were confirmed by the beekeeper; a correction keeps them
+            Assert.Contains("The seal codes of this delivery come from the seal pool and cannot be corrected.", await admin1.PostFlashAsync($"/Intake/RequestCorrection/{intakeId}",
                 CorrectionForm(stored, "zz", d => d["Containers[1].JarSeal"] = "ci12-R0"), details));
             Assert.Contains("Correction requested", await admin1.PostFlashAsync($"/Intake/RequestCorrection/{intakeId}", correction, details));
             Assert.Contains("already waits", await admin1.PostFlashAsync($"/Intake/RequestCorrection/{intakeId}", correction, details));
@@ -92,14 +93,14 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             Assert.NotEqual(oldHash, row.NewContentSha256.Trim());
             Assert.Equal(49m, await _app.WithContextAsync(db => db.RawHoneyProductions.Where(r => r.RawHoneyProductionId == lot).Select(r => r.RawHoneyProductionAmount).FirstAsync()));
             Assert.Equal(24m, after.Containers.Single(c => c.Seq == 1).NetWeightKg);
-            Assert.Equal("ci12-J1-fixed", after.Containers.Single(c => c.Seq == 2).Samples.Single().SealNumber);
+            Assert.Equal("CI12-J1", after.Containers.Single(c => c.Seq == 2).Samples.Single().SealNumber);
             using (var scope = _app.Services.CreateScope())
                 Assert.True(await scope.ServiceProvider.GetRequiredService<CustodyIntakeService>().ContentMatchesAsync(intakeId));
             // the original stays readable
             var original = DeliveryCorrectionService.FromJson(row.OldContent);
-            Assert.Equal((25m, "ci12-J1"), (original.Containers[0].Net, original.Containers[1].JarSeal));
+            Assert.Equal((25m, "CI12-J1"), (original.Containers[0].Net, original.Containers[1].JarSeal));
             var page = WebUtility.HtmlDecode(await p.Sao.HtmlAsync(details));
-            Assert.Contains("ci12-J1-fixed", page);
+            Assert.Contains("CI12-J1", page);
             Assert.Contains("data-status=\"Applied\"", page);
             Assert.Contains("id=\"content-verified\"", page);
             // the beekeeper is told; the audit chain has the correction and the changed rows

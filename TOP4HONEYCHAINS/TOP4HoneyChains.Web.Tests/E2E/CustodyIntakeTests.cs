@@ -33,6 +33,8 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             var lab = await _app.CreateOrgAsync($"zz_test {tag} lab", null, (Capabilities.Laboratory, "zz-acc"));
             await _app.AddMemberAsync(org, await _app.CreateUserAsync($"zz_test_{tag}_sao"), OrgRoles.SampleAcceptanceOfficer);
             await _app.AddMemberAsync(org, await _app.CreateUserAsync($"zz_test_{tag}_co"), OrgRoles.ComplianceOfficer);
+            // D-97: the plant's seal pool holds the codes the forms of these tests use (also the repeat suffixes and the new jars)
+            await SealPoolAsync(_app, org, SealKind.Label, PoolCodes(tag));
             var (bkId, apiaryId, honey, period, district) = await _app.WithContextAsync(async db =>
             {
                 var bk = new Beekeeper
@@ -52,17 +54,34 @@ namespace TOP4HoneyChains.Web.Tests.E2E
                 $"TR-BEE-2026-zz{tag}", bkId!, apiaryId, honey, period, district, tag);
         }
 
+        internal static IEnumerable<string> PoolCodes(string tag) =>
+            from kind in new[] { "O", "J", "K", "R", "N" } from i in Enumerable.Range(0, 4) from suffix in new[] { "", "B", "C", "K" }
+            select $"{tag}-{kind}{i}{suffix}".ToUpperInvariant();
+
+        // D-97: codes put into an organization's seal pool directly (the pool page is tested in D97SealPoolTests)
+        internal static Task SealPoolAsync(E2EApp app, int orgId, string kind, IEnumerable<string> codes) => app.WithContextAsync(async db =>
+        {
+            var list = codes.ToList();
+            var batch = new SealBatch { OrgId = orgId, Kind = kind, FirstCode = list[0], LastCode = list[^1], CodeCount = list.Count, IssuedByUserId = "seed", IssuedAt = DateTime.UtcNow };
+            foreach (var c in list)
+                batch.Codes.Add(new SealCode { OrgId = orgId, Code = c, Kind = kind, Status = SealStatus.Issued });
+            db.SealBatches.Add(batch);
+            return await db.SaveChangesAsync();
+        });
+
         private Dictionary<string, string> Form(Plant p, int containers = 2, Action<int, Dictionary<string, string>>? change = null)
         {
             var f = new Dictionary<string, string>
             {
                 ["Number"] = p.BusinessNumber, ["ApiaryId"] = p.ApiaryId.ToString(), ["HoneyTypeId"] = p.HoneyTypeId.ToString(), ["PeriodId"] = p.PeriodId.ToString(),
                 ["DeliveryDate"] = DateTime.Today.ToString("yyyy-MM-dd"), ["Province"] = "Giresun", ["District"] = p.District, ["OriginCountry"] = "TR",
-                ["LabOrgId"] = p.LabId.ToString(), ["CounterLocation"] = "zz_test cold room", ["RetainUntil"] = DateTime.Today.AddYears(2).ToString("yyyy-MM-dd")
+                ["LabOrgId"] = p.LabId.ToString(), ["CounterLocation"] = "zz_test cold room", ["RetainUntil"] = DateTime.Today.AddYears(2).ToString("yyyy-MM-dd"),
+                ["CapType"] = JarCap.SafetyButton
             };
             for (var i = 0; i < containers; i++)
             {
                 var c = $"Containers[{i}].";
+                f[c + "Closure"] = ClosureKind.SealLabel;
                 f[c + "Kind"] = "Tin";
                 f[c + "NetKg"] = "25";
                 f[c + "GrossKg"] = "26.5";
@@ -73,11 +92,11 @@ namespace TOP4HoneyChains.Web.Tests.E2E
                     f[c + "OriginSealIntact"] = "true";
                 }
                 else
-                    f[c + "PlantSeal"] = $"{p.Tag}-P{i}";
+                    f[c + "ArrivedSealed"] = "false";
                 f[c + "JarSeal"] = $"{p.Tag}-J{i}";
                 f[c + "CounterSeal"] = $"{p.Tag}-K{i}";
                 f[c + "CapIntact"] = "true";
-                f[c + "Reseal"] = $"{p.Tag}-R{i}";
+                f[c + "ClosingSeal"] = $"{p.Tag}-R{i}";
                 change?.Invoke(i, f);
             }
             return f;
@@ -136,7 +155,7 @@ namespace TOP4HoneyChains.Web.Tests.E2E
 
             // any change after sending voids the code
             var code = Regex.Match(sms.BodyStored, @"\b\d{6}\b").Value;
-            var changed = new Dictionary<string, string>(form) { ["DraftKey"] = draft, ["Code"] = code, ["Containers[1].Reseal"] = "ci1-other" };
+            var changed = new Dictionary<string, string>(form) { ["DraftKey"] = draft, ["Code"] = code, ["Containers[1].ClosingSeal"] = "ci1-R3" };
             Assert.Contains("The details changed after the code was sent", await BodyAsync(await p.Sao.PostAsync("/Intake/Record", Op(changed, "confirm"), "/Intake/Index")));
 
             HttpResponseMessage confirmed;
@@ -167,12 +186,21 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             Assert.Equal(new[] { $"L{lot}-C1", $"L{lot}-C2" }, intake.Containers.OrderBy(c => c.Seq).Select(c => c.ContainerCode));
 
             var sealed0 = intake.Containers.Single(c => c.Seq == 1);
-            Assert.Equal("ci1-O0", sealed0.OriginSealNumber);
+            Assert.Equal("CI1-O0", sealed0.OriginSealNumber);
+            Assert.Equal(ClosureKind.SealLabel, sealed0.Closure);
             Assert.Equal(new[] { SealEvent.Checked, SealEvent.Broken, SealEvent.Applied }, sealed0.SealEvents.OrderBy(e => e.EventId).Select(e => e.Event));
+            // D-97: an unsealed container gets one seal, after sampling
             var unsealed = intake.Containers.Single(c => c.Seq == 2);
             Assert.Null(unsealed.OriginSealNumber);
-            Assert.Equal(new[] { "ci1-P1", "ci1-P1", "ci1-R1" }, unsealed.SealEvents.OrderBy(e => e.EventId).Select(e => e.SealNumber));
-            Assert.Equal("ci1-R1", CustodyIntakeService.CurrentSeal(unsealed.SealEvents));
+            Assert.Equal(new[] { "CI1-R1" }, unsealed.SealEvents.OrderBy(e => e.EventId).Select(e => e.SealNumber));
+            Assert.Equal("CI1-R1", CustodyIntakeService.CurrentSeal(unsealed.SealEvents));
+            Assert.Equal(JarCap.SafetyButton, intake.JarCapType);
+            // the pool: origin seal opened, closing seals and jar labels used, each on its container or jar
+            var pool = await _app.WithContextAsync(db => db.SealCodes.Where(s => s.OrgId == p.OrgId && s.Status != SealStatus.Issued).ToListAsync());
+            Assert.Equal((SealStatus.Broken, SealUse.Origin), pool.Where(s => s.Code == "CI1-O0").Select(s => (s.Status, s.UsedAs)).Single());
+            Assert.Equal((SealStatus.Used, SealUse.Closing, (int?)unsealed.ContainerId), pool.Where(s => s.Code == "CI1-R1").Select(s => (s.Status, s.UsedAs, s.ContainerId)).Single());
+            Assert.Equal(SealUse.CounterJar, pool.Single(s => s.Code == "CI1-K0").UsedAs);
+            Assert.Equal(7, pool.Count);
 
             // a jar from every container: jar -> container -> intake -> content hash
             Assert.All(intake.Containers, c =>
@@ -180,6 +208,7 @@ namespace TOP4HoneyChains.Web.Tests.E2E
                 var jar = Assert.Single(c.Samples);
                 Assert.Equal(SampleKind.Container, jar.Kind);
                 Assert.True(jar.JarCapIntactAtSealing);
+                Assert.Equal(JarCap.SafetyButton, jar.CapType);
                 Assert.Equal(p.LabId, jar.LabOrgId);
                 Assert.Equal(SampleStatus.Sent, jar.Status);
                 Assert.Equal($"S-{lot}-C{c.Seq}", jar.SampleCode);
@@ -189,8 +218,9 @@ namespace TOP4HoneyChains.Web.Tests.E2E
                 var custody = scope.ServiceProvider.GetRequiredService<CustodyIntakeService>();
                 Assert.True(await custody.ContentMatchesAsync(intakeId));
                 var stored = await custody.StoredContentAsync(intakeId);
-                Assert.Contains("ci1-J0", stored!.Canonical());
-                Assert.Contains("ci1-R1", stored.Canonical());
+                Assert.StartsWith("intake2|", stored!.Canonical());
+                Assert.Contains("CI1-J0", stored.Canonical());
+                Assert.Contains("CI1-R1", stored.Canonical());
                 Assert.Equal(intake.ContentSha256, stored.Hash());
             }
 
@@ -238,12 +268,12 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             async Task<string> SendAsync(Dictionary<string, string> f) =>
                 await BodyAsync(await p.Sao.PostAsync("/Intake/Record", Op(f, "send"), $"/Intake/Create?number={p.BusinessNumber}"));
 
-            Assert.Contains("Container 1: the jar's cap must be intact (button down) when sealed.",
+            Assert.Contains("Container 1: the button of the jar&#x27;s cap must be down.".Replace("&#x27;", "'"),
                 await SendAsync(Form(p, 1, (i, f) => f.Remove($"Containers[{i}].CapIntact"))));
-            Assert.Contains("Every seal number of the delivery must be different.",
-                await SendAsync(Form(p, 2, (i, f) => f[$"Containers[{i}].JarSeal"] = "ci2-same")));
-            Assert.Contains("Container 2: apply a plant seal in front of the beekeeper and enter its number.",
-                await SendAsync(Form(p, 2, (i, f) => { if (i == 1) f.Remove($"Containers[{i}].PlantSeal"); })));
+            Assert.Contains("Every seal code of the delivery must be different.",
+                await SendAsync(Form(p, 2, (i, f) => f[$"Containers[{i}].JarSeal"] = "ci2-J3")));
+            Assert.Contains("Container 2: enter the closing seal, applied after sampling in front of the beekeeper.",
+                await SendAsync(Form(p, 2, (i, f) => { if (i == 1) f.Remove($"Containers[{i}].ClosingSeal"); })));
             Assert.Contains("Container 1: enter the net weight (more than 0 kg).",
                 await SendAsync(Form(p, 1, (i, f) => f[$"Containers[{i}].NetKg"] = "0")));
             Assert.Contains("Record at least one container.", await SendAsync(Form(p, 0)));

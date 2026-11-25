@@ -21,15 +21,15 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             Assert.Contains("recall-content-verified", html);
             Assert.DoesNotContain("recall-content-changed", html);
             Assert.Equal(2, System.Text.RegularExpressions.Regex.Matches(html, "class=\"recall-container\"").Count);
-            foreach (var s in new[] { $"L{lot}-C1", $"L{lot}-C2", "ci9-O0", "ci9-R0", "ci9-P1", "ci9-R1", $"S-{lot}-C1", "ci9-J1", "Origin seal checked", "Seal broken" })
+            foreach (var s in new[] { $"L{lot}-C1", $"L{lot}-C2", "CI9-O0", "CI9-R0", "CI9-R1", $"S-{lot}-C1", "CI9-J1", "Seal checked on arrival", "Seal broken" })
                 Assert.Contains(s, html);
             Assert.Contains($"L{lot}-C2", WebUtility.HtmlDecode(await p.Sao.HtmlAsync($"/Recall/Batch/{batch}")));
 
             var csv = await (await p.Sao.GetAsync($"/Recall/Lot/{lot}?format=csv")).Content.ReadAsStringAsync();
             Assert.Contains("unchanged since confirmation", csv);
-            Assert.Contains($"Container,L{lot}-C1,Tin,ci9-R0,25", csv);
-            Assert.Contains("Origin seal checked ci9-O0", csv);
-            Assert.Contains($"Sample jar,S-{lot}-C2,L{lot}-C2,ci9-J1", csv);
+            Assert.Contains($"Container,L{lot}-C1,Tin,CI9-R0,25", csv);
+            Assert.Contains("Seal checked on arrival CI9-O0", csv);
+            Assert.Contains($"Sample jar,S-{lot}-C2,L{lot}-C2,CI9-J1", csv);
 
             // another organization does not get the report
             var other = await PlantAsync("ci9x");

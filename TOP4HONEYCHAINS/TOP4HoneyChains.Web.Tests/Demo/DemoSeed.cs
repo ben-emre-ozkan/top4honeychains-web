@@ -267,17 +267,29 @@ namespace TOP4HoneyChains.Web.Tests.Demo
             var honey = await Db(db => db.HoneyTypes.Where(h => h.HoneyTypeTitle == c.HoneyType).Select(h => h.HoneyTypeId).FirstAsync());
             var period = await Db(db => db.RawHoneyProductionPeriods.Where(p => p.RawHoneyProductionPeriodTitle == DemoReference.DemoPeriodTitle).Select(p => p.RawHoneyProductionPeriodId).FirstAsync());
             var seal = (string kind, int n) => $"{c.Code}-{kind}-{n:D4}";
+            // D-97: the plant's seal pool (seal labels issued by the platform), from which every seal of the delivery comes
+            var poolCodes = new[] { seal("O", 1001), seal("J", 2001), seal("K", 2001), seal("P", 3001), seal("J", 2002), seal("K", 2002), seal("P", 3003),
+                seal("J", 2003), seal("K", 2003), seal("P", 3004) };
+            await Db(async db =>
+            {
+                var pool = new SealBatch { OrgId = Org(DemoCountries.Plant), Kind = SealKind.Label, FirstCode = poolCodes[0], LastCode = poolCodes[^1], CodeCount = poolCodes.Length,
+                    IssuedByUserId = "seed", IssuedAt = DateTime.UtcNow, Note = "[DEMO]" };
+                foreach (var code in poolCodes)
+                    pool.Codes.Add(new SealCode { OrgId = pool.OrgId, Code = code, Kind = SealKind.Label, Status = SealStatus.Issued });
+                db.SealBatches.Add(pool);
+                return await db.SaveChangesAsync();
+            });
             var intake = new Dictionary<string, string>
             {
                 ["Number"] = b1.BusinessNumber, ["ApiaryId"] = b1.ApiaryId.ToString(Inv), ["HoneyTypeId"] = honey.ToString(Inv), ["PeriodId"] = period.ToString(Inv),
                 ["DeliveryDate"] = _today.AddDays(-7).ToString("yyyy-MM-dd", Inv), ["Province"] = m.Province, ["District"] = b1.District, ["OriginCountry"] = c.Code,
                 ["LabOrgId"] = Org(DemoCountries.Lab).ToString(Inv), ["CounterLocation"] = "[DEMO] Counter-sample shelf A3",
-                ["RetainUntil"] = _today.AddYears(2).ToString("yyyy-MM-dd", Inv),
-                ["Containers[0].Kind"] = "Tin", ["Containers[0].NetKg"] = "24.5", ["Containers[0].GrossKg"] = "25.9",
+                ["RetainUntil"] = _today.AddYears(2).ToString("yyyy-MM-dd", Inv), ["CapType"] = JarCap.SafetyButton,
+                ["Containers[0].Closure"] = ClosureKind.SealLabel, ["Containers[0].Kind"] = "Tin", ["Containers[0].NetKg"] = "24.5", ["Containers[0].GrossKg"] = "25.9",
                 ["Containers[0].ArrivedSealed"] = "true", ["Containers[0].OriginSeal"] = seal("O", 1001), ["Containers[0].OriginSealIntact"] = "true",
-                ["Containers[0].JarSeal"] = seal("J", 2001), ["Containers[0].CounterSeal"] = seal("K", 2001), ["Containers[0].CapIntact"] = "true", ["Containers[0].Reseal"] = seal("P", 3001),
-                ["Containers[1].Kind"] = "Tin", ["Containers[1].NetKg"] = "23.75", ["Containers[1].GrossKg"] = "25.1", ["Containers[1].PlantSeal"] = seal("P", 3002),
-                ["Containers[1].JarSeal"] = seal("J", 2002), ["Containers[1].CounterSeal"] = seal("K", 2002), ["Containers[1].CapIntact"] = "true", ["Containers[1].Reseal"] = seal("P", 3003)
+                ["Containers[0].JarSeal"] = seal("J", 2001), ["Containers[0].CounterSeal"] = seal("K", 2001), ["Containers[0].CapIntact"] = "true", ["Containers[0].ClosingSeal"] = seal("P", 3001),
+                ["Containers[1].Closure"] = ClosureKind.SealLabel, ["Containers[1].Kind"] = "Tin", ["Containers[1].NetKg"] = "23.75", ["Containers[1].GrossKg"] = "25.1", ["Containers[1].ArrivedSealed"] = "false",
+                ["Containers[1].JarSeal"] = seal("J", 2002), ["Containers[1].CounterSeal"] = seal("K", 2002), ["Containers[1].CapIntact"] = "true", ["Containers[1].ClosingSeal"] = seal("P", 3003)
             };
             var sent = await BodyAsync(await sao.PostAsync("/Intake/Record", new(intake) { ["op"] = "send" }, $"/Intake/Create?number={b1.BusinessNumber}"));
             if (!sent.Contains("id=\"intake-confirm\""))

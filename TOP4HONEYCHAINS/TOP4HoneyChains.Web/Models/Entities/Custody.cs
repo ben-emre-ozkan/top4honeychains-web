@@ -72,6 +72,10 @@ namespace TOP4HoneyChains.Web.Models.Entities
 
         public bool? ContainersRecorded { get; set; }
 
+        // D-97 (migration 033): the cap of the delivery's sample jars (JarCap; null = recorded before D-97)
+        [StringLength(20)]
+        public string? JarCapType { get; set; }
+
         public bool IsLegacy => ContainersRecorded != true;
 
         public virtual ICollection<Container> Containers { get; set; } = new List<Container>();

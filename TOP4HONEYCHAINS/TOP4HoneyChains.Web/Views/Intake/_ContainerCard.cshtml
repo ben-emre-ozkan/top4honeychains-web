@@ -1,0 +1,143 @@
+@model TOP4HoneyChains.Web.Models.ViewModels.ContainerCardModel
+@using TOP4HoneyChains.Web.Models.Entities
+@{
+    // D-97: one container of the delivery as a card in three short steps. i is the index, or "__i__" in the template that
+    // js/intake-containers.js copies for a new container. Fields that do not apply to the chosen option are hidden (and disabled).
+    var i = Model.Index;
+    var r = Model.Row;
+    var closure = ClosureKind.All.Contains(r.Closure ?? "") ? r.Closure! : ClosureKind.SealLabel;
+    var box = closure == ClosureKind.OrgContainer;
+    var button = Model.CapType != JarCap.TamperRing;
+    string Hide(bool show) => show ? "" : "hidden";
+}
+<article class="ci-card" data-card>
+    <header class="ci-card-head">
+        <span class="ci-card-title"><i class="mdi mdi-barrel-outline" aria-hidden="true"></i> @L["Ci.Container"] <b class="ci-card-no">@Model.Number</b></span>
+        <span class="ci-card-sum small text-muted" data-sum></span>
+        <button type="button" class="btn btn-sm btn-outline-danger ci-remove" aria-label="@L["Ci.Remove"]" title="@L["Ci.Remove"]"><i class="mdi mdi-close" aria-hidden="true"></i></button>
+    </header>
+    <ol class="ci-steps">
+        <li class="ci-step" data-step="1">
+            <div class="ci-step-head"><span class="ci-dot" aria-hidden="true">1</span> @L["Ci.Step.Container"]</div>
+            <div class="ci-step-body">
+                <fieldset class="ci-closure">
+                    <legend class="form-label fw-semibold">@L["Ci.Closure"]<info-tip key="Ci.Info.Closure" about="@L["Ci.Closure"].Value" /></legend>
+                    <div class="ci-tiles">
+                        @foreach (var (value, scene) in new[] { (ClosureKind.SealLabel, "label"), (ClosureKind.PlasticSeal, "plastic"), (ClosureKind.OrgContainer, "scan") })
+                        {
+                            <label class="ci-tile" data-scene-on-pick="@scene">
+                                <input type="radio" class="ci-tile-input" name="Containers[@i].Closure" value="@value" checked="@(closure == value)" data-field="Closure" />
+                                <span class="hs hs-@scene ci-ill" data-duration="@TOP4HoneyChains.Web.TagHelpers.HoneySceneTagHelper.Durations[scene]">@Html.Raw(TOP4HoneyChains.Web.TagHelpers.HoneySceneTagHelper.Template(scene).Replace("<svg ", "<svg class=\"hs-art\" aria-hidden=\"true\" focusable=\"false\" ", StringComparison.Ordinal))</span>
+                                <span class="ci-tile-title">@L["Ci.Closure." + value]</span>
+                                <span class="ci-tile-help">@L["Ci.Closure." + value + ".Short"]</span>
+                            </label>
+                        }
+                    </div>
+                </fieldset>
+
+                <div class="ci-when" data-when="box" @Hide(box)>
+                    <label class="form-label" for="c@(i)-box">@L["Ci.BoxCode"]</label>
+                    <div class="input-group ci-code">
+                        <span class="input-group-text"><i class="mdi mdi-qrcode-scan" aria-hidden="true"></i></span>
+                        <input class="form-control ci-box" id="c@(i)-box" name="Containers[@i].OrgContainerCode" data-field="OrgContainerCode" value="@r.OrgContainerCode" maxlength="80"
+                               autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="TK-0001" disabled="@(!box)" />
+                    </div>
+                    <div class="ci-state small" data-state aria-live="polite"></div>
+                </div>
+
+                <div class="row g-2">
+                    <div class="col-sm-4 ci-when" data-when="own" @Hide(!box)>
+                        <label class="form-label" for="c@(i)-kind">@L["Ci.Kind"]</label>
+                        <select class="form-select" id="c@(i)-kind" name="Containers[@i].Kind" data-field="Kind" disabled="@box">
+                            @foreach (var k in ContainerKind.All)
+                            {
+                                <option value="@k" selected="@(k == r.Kind)">@L["Ci.Kind." + k]</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-6 col-sm-4">
+                        <label class="form-label required" for="c@(i)-net">@L["Ci.NetKg"]</label>
+                        <input class="form-control net-kg" id="c@(i)-net" name="Containers[@i].NetKg" data-field="NetKg" value="@r.NetKg" inputmode="decimal" />
+                    </div>
+                    <div class="col-6 col-sm-4">
+                        <label class="form-label" for="c@(i)-gross">@L["Ci.GrossKg"]</label>
+                        <input class="form-control" id="c@(i)-gross" name="Containers[@i].GrossKg" data-field="GrossKg" value="@r.GrossKg" inputmode="decimal" />
+                        <div class="form-text" data-tare></div>
+                    </div>
+                </div>
+
+                <fieldset class="mt-3">
+                    <legend class="form-label fw-semibold">@L["Ci.Arrival"]<info-tip key="Ci.Info.Arrival" about="@L["Ci.Arrival"].Value" /></legend>
+                    <div class="ci-seg" role="radiogroup">
+                        <label class="ci-seg-opt"><input type="radio" name="Containers[@i].ArrivedSealed" data-field="ArrivedSealed" value="false" checked="@(!r.ArrivedSealed)" /> <span>@L["Ci.ArrivedUnsealed"]</span></label>
+                        <label class="ci-seg-opt"><input type="radio" name="Containers[@i].ArrivedSealed" data-field="ArrivedSealed" value="true" checked="@r.ArrivedSealed" /> <span>@L["Ci.ArrivedSealed"]</span></label>
+                    </div>
+                    <div class="ci-when mt-2" data-when="sealed" @Hide(r.ArrivedSealed)>
+                        <label class="form-label" for="c@(i)-origin">@L["Ci.OriginSeal"]</label>
+                        <div class="input-group ci-code">
+                            <span class="input-group-text"><i class="mdi mdi-qrcode-scan" aria-hidden="true"></i></span>
+                            <input class="form-control ci-seal" data-use="origin" id="c@(i)-origin" name="Containers[@i].OriginSeal" data-field="OriginSeal" value="@r.OriginSeal" maxlength="80"
+                                   autocomplete="off" autocapitalize="characters" spellcheck="false" disabled="@(!r.ArrivedSealed)" />
+                        </div>
+                        <div class="ci-state small" data-state aria-live="polite"></div>
+                        <div class="form-check mt-1">
+                            <input class="form-check-input" type="checkbox" id="c@(i)-intact" name="Containers[@i].OriginSealIntact" data-field="OriginSealIntact" value="true" checked="@(r.OriginSealIntact || !r.ArrivedSealed)" disabled="@(!r.ArrivedSealed)" />
+                            <label class="form-check-label" for="c@(i)-intact">@L["Ci.OriginIntact"]</label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </li>
+
+        <li class="ci-step" data-step="2">
+            <div class="ci-step-head"><span class="ci-dot" aria-hidden="true">2</span> @L["Ci.Step.Samples"]<info-tip key="Ci.Info.Jars" about="@L["Ci.Step.Samples"].Value" /></div>
+            <div class="ci-step-body">
+                <div class="row g-2">
+                    <div class="col-sm-6">
+                        <label class="form-label required" for="c@(i)-jar">@L["Ci.JarSeal"]</label>
+                        <div class="input-group ci-code">
+                            <span class="input-group-text"><i class="mdi mdi-qrcode-scan" aria-hidden="true"></i></span>
+                            <input class="form-control ci-seal" data-use="jar" id="c@(i)-jar" name="Containers[@i].JarSeal" data-field="JarSeal" value="@r.JarSeal" maxlength="80"
+                                   autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="TS-000000" />
+                        </div>
+                        <div class="ci-state small" data-state aria-live="polite"></div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label required" for="c@(i)-counter">@L["Ci.CounterSeal"]</label>
+                        <div class="input-group ci-code">
+                            <span class="input-group-text"><i class="mdi mdi-qrcode-scan" aria-hidden="true"></i></span>
+                            <input class="form-control ci-seal" data-use="jar" id="c@(i)-counter" name="Containers[@i].CounterSeal" data-field="CounterSeal" value="@r.CounterSeal" maxlength="80"
+                                   autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="TS-000000" />
+                        </div>
+                        <div class="ci-state small" data-state aria-live="polite"></div>
+                    </div>
+                </div>
+                <div class="form-check ci-capcheck mt-2">
+                    <input class="form-check-input" type="checkbox" id="c@(i)-cap" name="Containers[@i].CapIntact" data-field="CapIntact" value="true" checked="@r.CapIntact" />
+                    <label class="form-check-label fw-semibold" for="c@(i)-cap"><span data-cap-text="@JarCap.SafetyButton" @Hide(button)>@L["Ci.CapCheck." + JarCap.SafetyButton]</span><span data-cap-text="@JarCap.TamperRing" @Hide(!button)>@L["Ci.CapCheck." + JarCap.TamperRing]</span>
+                        <span class="fw-normal text-muted">· @L["Ci.CapCheckBoth"]</span></label>
+                    <info-tip key="Ci.Info.CapCheck" about="@L["Ci.Cap"].Value" />
+                </div>
+            </div>
+        </li>
+
+        <li class="ci-step" data-step="3">
+            <div class="ci-step-head"><span class="ci-dot" aria-hidden="true">3</span> @L["Ci.Step.Closing"]</div>
+            <div class="ci-step-body">
+                <p class="small text-muted mb-2">@L["Ci.ClosingHelp"]</p>
+                <label class="form-label required" for="c@(i)-closing">
+                    @foreach (var value in ClosureKind.All)
+                    {
+                        <span data-closing-text="@value" @Hide(closure == value)>@L["Ci.ClosingSeal." + value]</span>
+                    }
+                </label>
+                <div class="input-group ci-code">
+                    <span class="input-group-text"><i class="mdi mdi-qrcode-scan" aria-hidden="true"></i></span>
+                    <input class="form-control ci-seal" data-use="closing" id="c@(i)-closing" name="Containers[@i].ClosingSeal" data-field="ClosingSeal" value="@r.ClosingSeal" maxlength="80"
+                           autocomplete="off" autocapitalize="characters" spellcheck="false" />
+                </div>
+                <div class="ci-state small" data-state aria-live="polite"></div>
+            </div>
+        </li>
+    </ol>
+</article>

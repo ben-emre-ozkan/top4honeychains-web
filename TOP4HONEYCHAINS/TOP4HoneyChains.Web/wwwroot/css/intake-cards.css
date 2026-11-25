@@ -1,0 +1,76 @@
+/* D-97: the delivery step "Containers and samples": a card per container in three steps, illustrated choices, info cards.
+   Motion only where it helps (a card arriving, a field appearing, a choice's illustration once); none with reduced motion or
+   "Show animations" off. */
+
+.ci-stepper { display: flex; flex-wrap: wrap; gap: 8px 20px; list-style: none; padding: 0; margin: 4px 0 18px; font-weight: 600; color: var(--b-ink, #574A40); }
+.ci-stepper li { display: flex; align-items: center; gap: 8px; }
+.ci-stepper li + li::before { content: ""; width: 28px; height: 2px; background: var(--b-line, #F2E3C6); margin-right: 4px; }
+.ci-num { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: #FFB547; color: #3a2c20; font-weight: 700; font-size: 14px; flex: 0 0 auto; }
+.ci-section { margin: 0 0 28px; }
+.ci-h { display: flex; align-items: center; gap: 10px; margin: 8px 0 10px; }
+
+.ci-panel { border: 1px solid var(--b-line, #F2E3C6); border-radius: 14px; padding: 14px 16px; background: var(--b-foam, #FFFBF0); margin-bottom: 14px; }
+
+/* illustrated choices: a radio per tile; the whole tile is the label */
+.ci-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.ci-tiles-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 640px; }
+@media (max-width: 720px) { .ci-tiles, .ci-tiles-2 { grid-template-columns: 1fr; } }
+.ci-tile { position: relative; display: flex; flex-direction: column; gap: 4px; padding: 10px 12px 12px; border: 2px solid var(--b-line, #F2E3C6); border-radius: 12px; background: #fff; cursor: pointer; transition: border-color .15s, box-shadow .15s, transform .15s; }
+.ci-tile:hover { border-color: #FFB547; }
+.ci-tile-input { position: absolute; top: 10px; right: 10px; width: 18px; height: 18px; accent-color: #0B7A75; }
+.ci-tile:has(.ci-tile-input:checked) { border-color: #0B7A75; box-shadow: 0 0 0 3px rgba(11, 122, 117, .15); }
+.ci-tile:has(.ci-tile-input:focus-visible) { outline: 3px solid var(--b-focus, #0B7A75); outline-offset: 2px; }
+.ci-tile-title { font-weight: 700; color: var(--b-ink, #574A40); line-height: 1.25; padding-right: 22px; }
+.ci-tile-help { font-size: 13px; color: #6b5d52; line-height: 1.35; }
+.ci-ill { display: block; margin: 0; }
+.ci-ill .hs-art { width: 100%; max-width: 220px; }
+
+/* info cards at the critical points */
+.ci-info { display: flex; gap: 12px; align-items: flex-start; border-left: 4px solid #0B7A75; background: #E8F8F7; border-radius: 10px; padding: 10px 14px; margin: 10px 0 14px; color: #1f3b3a; }
+.ci-info p { margin: 4px 0 0; }
+.ci-info-icon { font-size: 22px; line-height: 1; color: #0B7A75; }
+details.ci-info { display: block; }
+details.ci-info summary { cursor: pointer; list-style: none; display: flex; align-items: center; gap: 8px; }
+details.ci-info summary::-webkit-details-marker { display: none; }
+.ci-info-list { margin: 0 0 8px; padding-left: 18px; }
+.ci-info-list li { margin-bottom: 4px; }
+.ci-info-warn { border-left-color: #B03A2E; background: #FCEBD2; color: #4a2a20; }
+.ci-info-warn .ci-info-icon { color: #B03A2E; }
+
+/* the container cards */
+.ci-card { border: 1px solid var(--b-line, #F2E3C6); border-radius: 16px; background: #fff; box-shadow: 0 2px 10px rgba(87, 74, 64, .06); margin: 0 0 16px; overflow: hidden; }
+.ci-card-head { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: #FFF4D6; border-bottom: 1px solid var(--b-line, #F2E3C6); }
+.ci-card-title { font-weight: 700; font-size: 16px; color: var(--b-ink, #574A40); white-space: nowrap; }
+.ci-card-sum { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ci-steps { list-style: none; margin: 0; padding: 6px 14px 4px; counter-reset: none; }
+.ci-step { position: relative; padding: 8px 0 12px 38px; }
+.ci-step + .ci-step { border-top: 1px dashed var(--b-line, #F2E3C6); }
+.ci-step-head { font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+.ci-dot { position: absolute; left: 0; top: 7px; width: 26px; height: 26px; border-radius: 50%; border: 2px solid #FFB547; background: #fff; color: #8C5E2E; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; transition: background .2s, border-color .2s, color .2s; }
+.ci-step.is-done .ci-dot { background: #0B7A75; border-color: #0B7A75; color: #fff; font-size: 0; }
+.ci-step.is-done .ci-dot::after { content: "\2713"; font-size: 14px; }
+.ci-seg { display: inline-flex; flex-wrap: wrap; gap: 6px; }
+.ci-seg-opt { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border: 1.5px solid var(--b-line, #F2E3C6); border-radius: 999px; cursor: pointer; background: #fff; }
+.ci-seg-opt:has(input:checked) { border-color: #0B7A75; background: #E8F8F7; }
+.ci-code .form-control { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .03em; text-transform: uppercase; }
+.ci-state { min-height: 1.3em; margin-top: 2px; }
+.ci-state.is-ok { color: #0B7A75; }
+.ci-state.is-bad { color: #B03A2E; font-weight: 600; }
+.ci-code .form-control.is-ok { border-color: #0B7A75; }
+.ci-code .form-control.is-bad { border-color: #B03A2E; }
+.ci-capcheck { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 10px; background: var(--b-foam, #FFFBF0); }
+.ci-capcheck .form-check-input { margin: 0; width: 20px; height: 20px; }
+.ci-confirm-list { margin-top: 8px; font-size: 14px; }
+.ci-confirm-list ol { margin: 0; padding-left: 20px; }
+.ci-confirm-list code { color: #1f3b3a; background: #fff; padding: 0 4px; border-radius: 4px; }
+
+/* motion: a card arrives, a field appears, a card leaves */
+.ci-card.ci-enter { animation: ci-enter .35s cubic-bezier(.2, .7, .2, 1) both; }
+.ci-card.ci-leave { animation: ci-leave .25s ease-in both; }
+.ci-when.ci-show { animation: ci-show .25s ease-out both; }
+@keyframes ci-enter { from { opacity: 0; transform: translateY(14px) scale(.98); } to { opacity: 1; transform: none; } }
+@keyframes ci-leave { to { opacity: 0; transform: translateX(24px); } }
+@keyframes ci-show { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .ci-card.ci-enter, .ci-card.ci-leave, .ci-when.ci-show { animation: none; } .ci-tile, .ci-dot { transition: none; } }
+html[data-scenes="off"] .ci-card.ci-enter, html[data-scenes="off"] .ci-card.ci-leave, html[data-scenes="off"] .ci-when.ci-show { animation: none; }
+.ci-section [hidden], .ci-card [hidden] { display: none !important; }
