@@ -7855,7 +7855,7 @@
     <value>Okres produkcji</value>
   </data>
   <data name="Ci.Help" xml:space="preserve">
-    <value>Zapisz każdy pojemnik dostawy z jego plombą, pobierz próbkę z każdego pojemnika, a potem pszczelarz potwierdza całość kodem SMS.</value>
+    <value>Zapisz każdy pojemnik w trzech krótkich krokach: pojemnik, jego dwa słoiki próbek i plomba zamykająca. Potem pszczelarz potwierdza całość kodem SMS.</value>
   </data>
   <data name="Ci.NoPhone" xml:space="preserve">
     <value>brak telefonu: tylko zdjęcie podpisu</value>
@@ -7867,7 +7867,7 @@
     <value>Pojemniki i próbki</value>
   </data>
   <data name="Ci.ContainersHelp" xml:space="preserve">
-    <value>Jeden wiersz na pojemnik (puszka, wiadro lub beczka). Dla każdego: wybierz, jak dotarł, napełnij słoik próbki i próbki kontrolnej, sprawdź, czy przycisk wieczka jest wciśnięty, i ponownie zaplombuj pojemnik.</value>
+    <value>Wybierz wieczko słoików próbek raz dla całej dostawy. Potem wypełnij jedną kartę na każdy pojemnik.</value>
   </data>
   <data name="Ci.Kind" xml:space="preserve">
     <value>Rodzaj</value>
@@ -7897,10 +7897,10 @@
     <value>Przy przyjęciu</value>
   </data>
   <data name="Ci.ArrivedSealed" xml:space="preserve">
-    <value>Dotarł z plombą</value>
+    <value>Zaplombowany przy zbiorze przez inspektora terenowego</value>
   </data>
   <data name="Ci.OriginSeal" xml:space="preserve">
-    <value>Numer plomby, z którą dotarł</value>
+    <value>Kod plomby założonej przy zbiorze</value>
   </data>
   <data name="Ci.OriginIntact" xml:space="preserve">
     <value>Sprawdzone: plomba jest nienaruszona</value>
@@ -7909,22 +7909,22 @@
     <value>Nowa plomba, założona teraz przy pszczelarzu</value>
   </data>
   <data name="Ci.JarSeal" xml:space="preserve">
-    <value>Plomba słoika</value>
+    <value>Etykieta plombująca słoika próbki</value>
   </data>
   <data name="Ci.CounterSeal" xml:space="preserve">
-    <value>Plomba próbki kontrolnej</value>
+    <value>Etykieta plombująca słoika próbki kontrolnej</value>
   </data>
   <data name="Ci.Cap" xml:space="preserve">
     <value>Wieczko nienaruszone</value>
   </data>
   <data name="Ci.CapHelp" xml:space="preserve">
-    <value>Wieczko z zabezpieczeniem: zaznacz tylko, gdy przycisk jest wciśnięty. Wyskoczony przycisk oznacza otwarcie słoika: wyrzuć go i napełnij nowy.</value>
+    <value>Wieczko z przyciskiem bezpieczeństwa: zaznacz tylko, gdy przycisk jest wciśnięty. Podniesiony przycisk oznacza otwarcie słoika: wyrzuć go i napełnij nowy.</value>
   </data>
   <data name="Ci.Reseal" xml:space="preserve">
     <value>Nowa plomba po pobraniu</value>
   </data>
   <data name="Ci.Remove" xml:space="preserve">
-    <value>Usuń wiersz</value>
+    <value>Usuń pojemnik</value>
   </data>
   <data name="Ci.AddContainer" xml:space="preserve">
     <value>Dodaj pojemnik</value>
@@ -7945,7 +7945,7 @@
     <value>Pszczelarz potwierdza</value>
   </data>
   <data name="Ci.SendHelp" xml:space="preserve">
-    <value>Pszczelarz dostaje SMS z nazwą organizacji, datą, pojemnikami, kilogramami, rodzajem miodu, liczbą próbek i kodem. Każda zmiana po wysłaniu wymaga nowego kodu.</value>
+    <value>Pszczelarz dostaje SMS z nazwą organizacji, datą, pojemnikami, kilogramami, rodzajem miodu, liczbą próbek i kodem. Kod obejmuje też każdy kod pojemnika, kod plomby i wieczko słoików. Każda zmiana po wysłaniu wymaga nowego kodu.</value>
   </data>
   <data name="Ci.NotPresent" xml:space="preserve">
     <value>Jeśli pszczelarza nie ma na miejscu, zadzwoń: odczyta kod z telefonu.</value>
@@ -8005,10 +8005,10 @@
     <value>Słoiki z próbkami</value>
   </data>
   <data name="Ci.Seal.Checked" xml:space="preserve">
-    <value>Sprawdzono plombę z pochodzenia</value>
+    <value>Sprawdzono plombę przy dostawie</value>
   </data>
   <data name="Ci.Seal.Applied" xml:space="preserve">
-    <value>Założono plombę zakładu</value>
+    <value>Założono plombę</value>
   </data>
   <data name="Ci.Seal.Broken" xml:space="preserve">
     <value>Plomba zerwana</value>
@@ -9854,13 +9854,13 @@
     <value>Wpisz numer rejestrowy pszczelarza (np. TR520401200241) lub numer gospodarstwa i naciśnij Znajdź. Następnie w formularzu pojawią się jego pasieki.</value>
   </data>
   <data name="Ci.ArrivedUnsealed" xml:space="preserve">
-    <value>Dotarł bez plomby</value>
+    <value>Dotarł bez plomby (zwykle)</value>
   </data>
   <data name="Ci.Info.Arrival" xml:space="preserve">
-    <value>Wybierz, jak dotarł pojemnik. Z plombą: wpisz numer plomby, z którą dotarł, i potwierdź, że jest nienaruszona. Bez plomby: zaplombuj go teraz przy pszczelarzu i wpisz numer nowej plomby. Plomba wiąże pojemnik z jego słoikami próbek i z dostawą potwierdzaną przez pszczelarza, więc miodu nie można później podmienić.</value>
+    <value>Zwykle pojemnik dociera bez plomby: pobierz próbki, potem zamknij go jedną plombą. Wybierz „zaplombowany przy zbiorze” tylko wtedy, gdy inspektor terenowy stowarzyszenia zaplombował go w pasiece plombą z puli stowarzyszenia; sprawdź, czy plomba jest nienaruszona.</value>
   </data>
   <data name="Ci.Info.Jars" xml:space="preserve">
-    <value>Z każdego pojemnika napełnij dwa słoiki: słoik próbki trafia do laboratorium, słoik próbki kontrolnej zostaje u Ciebie na wypadek sporu o wynik. Zaplombuj każdy słoik i wpisz numer jego plomby.</value>
+    <value>Napełnij z tego pojemnika dwa słoiki. Na każdy naklej etykietę plombującą z puli na wieczko i słoik: słoik próbki trafia do laboratorium, słoik próbki kontrolnej zostaje u Ciebie na wypadek sporu o wynik.</value>
   </data>
   <data name="Ci.Info.Reseal" xml:space="preserve">
     <value>Pobranie próbek otwiera pojemnik. Zaplombuj go ponownie i wpisz numer nowej plomby; pojemnik zachowuje tę plombę, dopóki nie zostanie użyty.</value>
@@ -9882,5 +9882,407 @@
   </data>
   <data name="Reg93.CoordinatesHelp" xml:space="preserve">
     <value>Wpisz współrzędne tej pasieki (mapa powyżej ustawia pierwszą pasiekę).</value>
+  </data>
+  <data name="Ci.JarSetup" xml:space="preserve">
+    <value>Słoiki próbek tej dostawy</value>
+  </data>
+  <data name="Ci.CapType" xml:space="preserve">
+    <value>Wieczko słoików próbek</value>
+  </data>
+  <data name="Ci.Cap.SafetyButton" xml:space="preserve">
+    <value>Wieczko z przyciskiem bezpieczeństwa</value>
+  </data>
+  <data name="Ci.Cap.SafetyButton.Help" xml:space="preserve">
+    <value>Wieczko próżniowe jak na słoikach z jedzeniem dla niemowląt: przycisk pozostaje wciśnięty tylko przy podciśnieniu.</value>
+  </data>
+  <data name="Ci.Cap.TamperRing" xml:space="preserve">
+    <value>Wieczko z pierścieniem gwarancyjnym</value>
+  </data>
+  <data name="Ci.Cap.TamperRing.Help" xml:space="preserve">
+    <value>Pierścień pod wieczkiem odrywa się przy otwarciu.</value>
+  </data>
+  <data name="Ci.InfoCard.Button.Title" xml:space="preserve">
+    <value>Wieczko z przyciskiem: jak zamknąć słoik</value>
+  </data>
+  <data name="Ci.InfoCard.Button" xml:space="preserve">
+    <value>Przycisk pozostaje wciśnięty tylko przy podciśnieniu w słoiku. Po napełnieniu odciągnij powietrze ręczną pompką próżniową, aż przycisk się wciśnie. Nigdy nie podgrzewaj miodu, aby uzyskać podciśnienie: ciepło podnosi HMF i obniża diastazę, więc próbka nie pokazywałaby miodu takiego, jaki dostarczono.</value>
+  </data>
+  <data name="Ci.InfoCard.Ring.Title" xml:space="preserve">
+    <value>Wieczko z pierścieniem: jak zamknąć słoik</value>
+  </data>
+  <data name="Ci.InfoCard.Ring" xml:space="preserve">
+    <value>Dokręć wieczko, aż pierścień ściśle pod nim przylega. Cały pierścień pokazuje, że słoika nie otwierano; zerwany, że otwierano.</value>
+  </data>
+  <data name="Ci.InfoCard.Closure.Title" xml:space="preserve">
+    <value>Jak zamyka się pojemnik</value>
+  </data>
+  <data name="Ci.InfoCard.Closure" xml:space="preserve">
+    <value>Pszczelarze przywożą własne puszki i wiadra, większość bez plomby. Najpierw pobierz próbki, potem zamknij pojemnik jedną plombą przy pszczelarzu. Wybierz dla każdego pojemnika:</value>
+  </data>
+  <data name="Ci.InfoCard.Closure.Pool" xml:space="preserve">
+    <value>Etykiety plombujące i plomby plastikowe pochodzą z puli plomb Twojej organizacji; każdy kod używa się raz.</value>
+  </data>
+  <data name="Ci.Closure" xml:space="preserve">
+    <value>Jak jest zamykany?</value>
+  </data>
+  <data name="Ci.Closure.SealLabel" xml:space="preserve">
+    <value>Pojemnik pszczelarza + etykieta plombująca</value>
+  </data>
+  <data name="Ci.Closure.SealLabel.Short" xml:space="preserve">
+    <value>Numerowana etykieta z QR na wieku i korpusie. Pasuje do każdego pojemnika.</value>
+  </data>
+  <data name="Ci.Closure.SealLabel.Help" xml:space="preserve">
+    <value>Numerowana etykieta z kodem QR, wydana przez platformę i wydrukowana wcześniej na zabezpieczającym materiale VOID. Nakleja się ją na wieko i korpus; przy próbie zdjęcia rwie się lub zostawia ślady VOID. Pasuje do każdego pojemnika.</value>
+  </data>
+  <data name="Ci.Closure.PlasticSeal" xml:space="preserve">
+    <value>Pojemnik pszczelarza + numerowana plomba plastikowa</value>
+  </data>
+  <data name="Ci.Closure.PlasticSeal.Short" xml:space="preserve">
+    <value>Przez uchwyt lub otwór w wieku; zamyka się raz.</value>
+  </data>
+  <data name="Ci.Closure.PlasticSeal.Help" xml:space="preserve">
+    <value>Dla pojemników z uchwytem lub otworem w wieku: kupiona numerowana plomba przechodzi przez nie i się zatrzaskuje; otworzyć ją można tylko przecinając.</value>
+  </data>
+  <data name="Ci.Closure.OrgContainer" xml:space="preserve">
+    <value>Stały pojemnik stowarzyszenia</value>
+  </data>
+  <data name="Ci.Closure.OrgContainer.Short" xml:space="preserve">
+    <value>Zarejestrowany raz; zeskanuj lub wpisz jego kod TK.</value>
+  </data>
+  <data name="Ci.Closure.OrgContainer.Help" xml:space="preserve">
+    <value>Własny pojemnik stowarzyszenia, zarejestrowany raz ze stałym kodem i QR. Przy dostawie zeskanuj lub wpisz jego kod; jego strona pokazuje każde użycie. Nadal zamyka się go plombą z puli.</value>
+  </data>
+  <data name="Ci.Info.Closure" xml:space="preserve">
+    <value>Pojemnik zamyka się raz, po pobraniu próbek, przy pszczelarzu. Plomba pochodzi z puli Twojej organizacji.</value>
+  </data>
+  <data name="Ci.Step.Container" xml:space="preserve">
+    <value>Pojemnik</value>
+  </data>
+  <data name="Ci.Step.Samples" xml:space="preserve">
+    <value>Próbki</value>
+  </data>
+  <data name="Ci.Step.Closing" xml:space="preserve">
+    <value>Zamknięcie</value>
+  </data>
+  <data name="Ci.BoxCode" xml:space="preserve">
+    <value>Kod pojemnika stowarzyszenia</value>
+  </data>
+  <data name="Ci.BoxOk" xml:space="preserve">
+    <value>Zarejestrowany: {0}</value>
+  </data>
+  <data name="Ci.TareHint" xml:space="preserve">
+    <value>Masa pustego {0} kg: netto = brutto − {0}</value>
+  </data>
+  <data name="Ci.CapCheck.SafetyButton" xml:space="preserve">
+    <value>Przycisk wciśnięty</value>
+  </data>
+  <data name="Ci.CapCheck.TamperRing" xml:space="preserve">
+    <value>Pierścień nienaruszony</value>
+  </data>
+  <data name="Ci.CapCheckBoth" xml:space="preserve">
+    <value>na obu słoikach</value>
+  </data>
+  <data name="Ci.Info.CapCheck" xml:space="preserve">
+    <value>Sprawdź oba słoiki po zamknięciu. Podniesiony przycisk lub zerwany pierścień oznacza, że słoik otwierano: wyrzuć go i napełnij nowy.</value>
+  </data>
+  <data name="Ci.ClosingHelp" xml:space="preserve">
+    <value>Po pobraniu próbek zamknij pojemnik przy pszczelarzu i zeskanuj lub wpisz plombę.</value>
+  </data>
+  <data name="Ci.ClosingSeal.SealLabel" xml:space="preserve">
+    <value>Kod etykiety plombującej</value>
+  </data>
+  <data name="Ci.ClosingSeal.PlasticSeal" xml:space="preserve">
+    <value>Numer plomby plastikowej</value>
+  </data>
+  <data name="Ci.ClosingSeal.OrgContainer" xml:space="preserve">
+    <value>Kod plomby (etykieta lub plastikowa)</value>
+  </data>
+  <data name="Ci.SealOk" xml:space="preserve">
+    <value>W puli i nieużyta</value>
+  </data>
+  <data name="Ci.SealDup" xml:space="preserve">
+    <value>Ten kod jest już użyty w tej dostawie.</value>
+  </data>
+  <data name="Ci.Confirms.Title" xml:space="preserve">
+    <value>Co potwierdza pszczelarz</value>
+  </data>
+  <data name="Ci.Confirms" xml:space="preserve">
+    <value>Kod SMS potwierdza dokładnie tę listę: każdy kod pojemnika, każdy kod plomby i wieczko słoików. Jeśli coś się później zmieni, zapis przestaje zgadzać się z potwierdzeniem.</value>
+  </data>
+  <data name="Lab.CheckCap.SafetyButton" xml:space="preserve">
+    <value>Przycisk jest wciśnięty</value>
+  </data>
+  <data name="Lab.CheckCap.TamperRing" xml:space="preserve">
+    <value>Pierścień gwarancyjny jest nienaruszony</value>
+  </data>
+  <data name="Lab.Info.Reception.Title" xml:space="preserve">
+    <value>Zanim przyjmiesz słoik</value>
+  </data>
+  <data name="Lab.Info.Reception" xml:space="preserve">
+    <value>Odpowiedz na trzy kontrole: kod etykiety zgadza się z zapisem, etykieta jest nienaruszona (bez rozdarć i śladów VOID) i wieczko jest zamknięte (przycisk wciśnięty lub pierścień cały). Każde „nie” odrzuca słoik, bo mógł zostać otwarty po drodze. Zakład pobiera wtedy nowy słoik z tego samego pojemnika, nadal zamkniętego plombą; próbka kontrolna zostaje w zakładzie na wypadek sporu.</value>
+  </data>
+  <data name="Scene.label" xml:space="preserve">
+    <value>Etykieta plombująca idzie przez wieko i korpus. Zerwana rwie się i zostawia ślady VOID.</value>
+  </data>
+  <data name="Scene.plastic" xml:space="preserve">
+    <value>Numerowana plomba plastikowa przechodzi przez uchwyt i się zatrzaskuje.</value>
+  </data>
+  <data name="Scene.scan" xml:space="preserve">
+    <value>Pojemnik stowarzyszenia skanuje się po kodzie QR.</value>
+  </data>
+  <data name="Scene.button" xml:space="preserve">
+    <value>Przycisk wciśnięty: słoik zamknięty. Podniesiony: słoik otwierano.</value>
+  </data>
+  <data name="Scene.ring" xml:space="preserve">
+    <value>Pierścień cały: słoik zamknięty. Zerwany: słoik otwierano.</value>
+  </data>
+  <data name="Seal.Title" xml:space="preserve">
+    <value>Pula plomb i pojemniki</value>
+  </data>
+  <data name="Seal.Help" xml:space="preserve">
+    <value>Każda plomba użyta przy dostawie pochodzi z tej puli: etykiety plombujące wydane przez platformę i kupione numerowane plomby plastikowe. Każdy kod używa się raz; tu widać, które kody są wolne, gdzie każdy użyto i które otwarto.</value>
+  </data>
+  <data name="Seal.Kind" xml:space="preserve">
+    <value>Rodzaj</value>
+  </data>
+  <data name="Seal.Kind.Label" xml:space="preserve">
+    <value>Etykieta plombująca</value>
+  </data>
+  <data name="Seal.Kind.Plastic" xml:space="preserve">
+    <value>Numerowana plomba plastikowa</value>
+  </data>
+  <data name="Seal.Status.Issued" xml:space="preserve">
+    <value>Wolna</value>
+  </data>
+  <data name="Seal.Status.Used" xml:space="preserve">
+    <value>Użyta</value>
+  </data>
+  <data name="Seal.Status.Broken" xml:space="preserve">
+    <value>Otwarta</value>
+  </data>
+  <data name="Seal.Use.Origin" xml:space="preserve">
+    <value>przy zbiorze</value>
+  </data>
+  <data name="Seal.Use.Closing" xml:space="preserve">
+    <value>zamknięcie</value>
+  </data>
+  <data name="Seal.Use.Jar" xml:space="preserve">
+    <value>słoik próbki</value>
+  </data>
+  <data name="Seal.Use.CounterJar" xml:space="preserve">
+    <value>słoik próbki kontrolnej</value>
+  </data>
+  <data name="Seal.Materials.Title" xml:space="preserve">
+    <value>Materiały pod ręką</value>
+  </data>
+  <data name="Seal.Materials" xml:space="preserve">
+    <value>Zabezpieczający materiał etykietowy VOID (100 × 50 mm) na etykiety plombujące, numerowane plomby plastikowe do uchwytów, słoiki na próbki z wieczkiem z przyciskiem lub z pierścieniem oraz ręczna pompka próżniowa do wieczek z przyciskiem.</value>
+  </data>
+  <data name="Seal.Issue" xml:space="preserve">
+    <value>Wydaj etykiety plombujące</value>
+  </data>
+  <data name="Seal.IssueHelp" xml:space="preserve">
+    <value>Platforma nadaje kolejne wolne numery (TS-…). Wydrukuj je na materiale VOID przed dostawami.</value>
+  </data>
+  <data name="Seal.Count" xml:space="preserve">
+    <value>Liczba etykiet</value>
+  </data>
+  <data name="Seal.Note" xml:space="preserve">
+    <value>Notatka</value>
+  </data>
+  <data name="Seal.IssueButton" xml:space="preserve">
+    <value>Wydaj</value>
+  </data>
+  <data name="Seal.Range" xml:space="preserve">
+    <value>Dodaj kupione plomby plastikowe</value>
+  </data>
+  <data name="Seal.RangeHelp" xml:space="preserve">
+    <value>Wpisz zakres nadrukowany na plombach: opcjonalny prefiks oraz pierwszy i ostatni numer.</value>
+  </data>
+  <data name="Seal.Prefix" xml:space="preserve">
+    <value>Prefiks</value>
+  </data>
+  <data name="Seal.From" xml:space="preserve">
+    <value>Pierwszy numer</value>
+  </data>
+  <data name="Seal.To" xml:space="preserve">
+    <value>Ostatni numer</value>
+  </data>
+  <data name="Seal.AddButton" xml:space="preserve">
+    <value>Dodaj do puli</value>
+  </data>
+  <data name="Seal.OnlyAdmin" xml:space="preserve">
+    <value>Tylko administrator organizacji wydaje plomby i rejestruje pojemniki.</value>
+  </data>
+  <data name="Seal.Batches" xml:space="preserve">
+    <value>Partie</value>
+  </data>
+  <data name="Seal.Batch" xml:space="preserve">
+    <value>Partia</value>
+  </data>
+  <data name="Seal.Codes" xml:space="preserve">
+    <value>Kody</value>
+  </data>
+  <data name="Seal.Code" xml:space="preserve">
+    <value>Kod</value>
+  </data>
+  <data name="Seal.State" xml:space="preserve">
+    <value>Stan</value>
+  </data>
+  <data name="Seal.UsedOn" xml:space="preserve">
+    <value>Użyta na</value>
+  </data>
+  <data name="Seal.Search" xml:space="preserve">
+    <value>Szukaj</value>
+  </data>
+  <data name="Seal.All" xml:space="preserve">
+    <value>Wszystkie</value>
+  </data>
+  <data name="Seal.Containers" xml:space="preserve">
+    <value>Stałe pojemniki</value>
+  </data>
+  <data name="Seal.ContainersHelp" xml:space="preserve">
+    <value>Własne pojemniki stowarzyszenia, rejestrowane raz. Przymocuj do każdego wydrukowaną etykietę z kodem i QR; przy dostawie skanuje się go lub wpisuje, a jego strona pokazuje każde użycie.</value>
+  </data>
+  <data name="Seal.Register" xml:space="preserve">
+    <value>Zarejestruj pojemnik</value>
+  </data>
+  <data name="Seal.Name" xml:space="preserve">
+    <value>Nazwa</value>
+  </data>
+  <data name="Seal.Capacity" xml:space="preserve">
+    <value>Pojemność (kg)</value>
+  </data>
+  <data name="Seal.Tare" xml:space="preserve">
+    <value>Masa pustego (kg)</value>
+  </data>
+  <data name="Seal.RegisterButton" xml:space="preserve">
+    <value>Zarejestruj</value>
+  </data>
+  <data name="Seal.Uses" xml:space="preserve">
+    <value>Użycia</value>
+  </data>
+  <data name="Seal.LastUse" xml:space="preserve">
+    <value>Ostatnie użycie</value>
+  </data>
+  <data name="Seal.BoxUses" xml:space="preserve">
+    <value>Wszystkie użycia</value>
+  </data>
+  <data name="Seal.PrintHelp" xml:space="preserve">
+    <value>Drukuj na zabezpieczającym materiale VOID.</value>
+  </data>
+  <data name="Seal.VoidNote" xml:space="preserve">
+    <value>NIE ZDEJMOWAĆ · VOID</value>
+  </data>
+  <data name="Choose the cap of the sample jars." xml:space="preserve">
+    <value>Wybierz wieczko słoików próbek.</value>
+  </data>
+  <data name="Container {0}: choose how the container is closed." xml:space="preserve">
+    <value>Pojemnik {0}: wybierz, jak pojemnik jest zamykany.</value>
+  </data>
+  <data name="Container {0}: {1}" xml:space="preserve">
+    <value>Pojemnik {0}: {1}</value>
+  </data>
+  <data name="Container {0}: enter the code of the seal the field inspector put on at harvest." xml:space="preserve">
+    <value>Pojemnik {0}: wpisz kod plomby założonej przez inspektora terenowego przy zbiorze.</value>
+  </data>
+  <data name="Container {0}: enter the seal label codes of the sample jar and of the counter-sample jar." xml:space="preserve">
+    <value>Pojemnik {0}: wpisz kody etykiet słoika próbki i słoika próbki kontrolnej.</value>
+  </data>
+  <data name="Container {0}: the tamper ring of the jar's cap must be unbroken. A broken ring: discard the jar and fill a new one." xml:space="preserve">
+    <value>Pojemnik {0}: pierścień gwarancyjny wieczka musi być cały. Zerwany: wyrzuć słoik i napełnij nowy.</value>
+  </data>
+  <data name="Container {0}: the button of the jar's cap must be down. A raised button: discard the jar and fill a new one." xml:space="preserve">
+    <value>Pojemnik {0}: przycisk wieczka musi być wciśnięty. Podniesiony: wyrzuć słoik i napełnij nowy.</value>
+  </data>
+  <data name="Container {0}: enter the closing seal, applied after sampling in front of the beekeeper." xml:space="preserve">
+    <value>Pojemnik {0}: wpisz plombę zamykającą, założoną po pobraniu próbek przy pszczelarzu.</value>
+  </data>
+  <data name="Container {0}: seal codes have at most 50 characters." xml:space="preserve">
+    <value>Pojemnik {0}: kody plomb mają najwyżej 50 znaków.</value>
+  </data>
+  <data name="Every seal code of the delivery must be different." xml:space="preserve">
+    <value>Każdy kod plomby w dostawie musi być inny.</value>
+  </data>
+  <data name="Each association container can be recorded only once per delivery." xml:space="preserve">
+    <value>Każdy pojemnik stowarzyszenia można zapisać tylko raz na dostawę.</value>
+  </data>
+  <data name="Seal {0} is not in the seal pool of your organization." xml:space="preserve">
+    <value>Plomby {0} nie ma w puli plomb Twojej organizacji.</value>
+  </data>
+  <data name="Seal {0} was already used on {1}." xml:space="preserve">
+    <value>Plombę {0} użyto już na {1}.</value>
+  </data>
+  <data name="Seal {0} was already used." xml:space="preserve">
+    <value>Plombę {0} już użyto.</value>
+  </data>
+  <data name="Seal {0} is a numbered plastic seal; a seal label is needed here." xml:space="preserve">
+    <value>Plomba {0} jest plastikowa; tu potrzebna jest etykieta plombująca.</value>
+  </data>
+  <data name="Seal {0} is a seal label; a numbered plastic seal is needed here." xml:space="preserve">
+    <value>Plomba {0} jest etykietą; tu potrzebna jest numerowana plomba plastikowa.</value>
+  </data>
+  <data name="Scan or type the code of the association's container." xml:space="preserve">
+    <value>Zeskanuj lub wpisz kod pojemnika stowarzyszenia.</value>
+  </data>
+  <data name="Container {0} is not registered for your organization." xml:space="preserve">
+    <value>Pojemnik {0} nie jest zarejestrowany dla Twojej organizacji.</value>
+  </data>
+  <data name="Container {0} is retired." xml:space="preserve">
+    <value>Pojemnik {0} jest wycofany.</value>
+  </data>
+  <data name="A seal code of the delivery was used meanwhile; record the delivery again." xml:space="preserve">
+    <value>Kod plomby z tej dostawy został w międzyczasie użyty; zapisz dostawę ponownie.</value>
+  </data>
+  <data name="The seal codes of this delivery come from the seal pool and cannot be corrected." xml:space="preserve">
+    <value>Kody plomb tej dostawy pochodzą z puli i nie można ich poprawić.</value>
+  </data>
+  <data name="The tamper ring of the jar's cap must be unbroken. A broken ring: discard the jar and fill a new one." xml:space="preserve">
+    <value>Pierścień gwarancyjny wieczka musi być cały. Zerwany: wyrzuć słoik i napełnij nowy.</value>
+  </data>
+  <data name="The button of the jar's cap must be down. A raised button: discard the jar and fill a new one." xml:space="preserve">
+    <value>Przycisk wieczka musi być wciśnięty. Podniesiony: wyrzuć słoik i napełnij nowy.</value>
+  </data>
+  <data name="Only the organization administrator and the roles that record or read deliveries can open the seal pool." xml:space="preserve">
+    <value>Pulę plomb mogą otworzyć tylko administrator organizacji i role, które zapisują lub czytają dostawy.</value>
+  </data>
+  <data name="Issue between 1 and 500 seal labels at a time." xml:space="preserve">
+    <value>Wydawaj od 1 do 500 etykiet naraz.</value>
+  </data>
+  <data name="{0} seal labels issued: {1} to {2}. Print them on VOID label stock." xml:space="preserve">
+    <value>Wydano {0} etykiet plombujących: od {1} do {2}. Wydrukuj je na materiale VOID.</value>
+  </data>
+  <data name="{0} plastic seals added to the pool: {1} to {2}." xml:space="preserve">
+    <value>Dodano do puli {0} plomb plastikowych: od {1} do {2}.</value>
+  </data>
+  <data name="Container {0} registered. Print its label and fix it to the container." xml:space="preserve">
+    <value>Zarejestrowano pojemnik {0}. Wydrukuj jego etykietę i przymocuj ją do pojemnika.</value>
+  </data>
+  <data name="The prefix has at most 20 letters, digits or hyphens." xml:space="preserve">
+    <value>Prefiks ma najwyżej 20 liter, cyfr lub łączników.</value>
+  </data>
+  <data name="Enter the first and the last number of the seals (digits only)." xml:space="preserve">
+    <value>Wpisz pierwszy i ostatni numer plomb (tylko cyfry).</value>
+  </data>
+  <data name="The last number cannot be lower than the first." xml:space="preserve">
+    <value>Ostatni numer nie może być mniejszy niż pierwszy.</value>
+  </data>
+  <data name="At most 1000 seals per range." xml:space="preserve">
+    <value>Najwyżej 1000 plomb w zakresie.</value>
+  </data>
+  <data name="TS- and TK- are kept for the platform's seal labels and containers." xml:space="preserve">
+    <value>TS- i TK- są zarezerwowane dla etykiet plombujących i pojemników platformy.</value>
+  </data>
+  <data name="Some of these seals are already in a seal pool (first: {0})." xml:space="preserve">
+    <value>Część tych plomb jest już w puli (pierwsza: {0}).</value>
+  </data>
+  <data name="Choose the kind of container." xml:space="preserve">
+    <value>Wybierz rodzaj pojemnika.</value>
+  </data>
+  <data name="The name has at most 100 characters." xml:space="preserve">
+    <value>Nazwa ma najwyżej 100 znaków.</value>
+  </data>
+  <data name="Enter the capacity and the empty weight in kg (or leave them empty)." xml:space="preserve">
+    <value>Wpisz pojemność i masę pustego pojemnika w kg (lub zostaw puste).</value>
   </data>
 </root>

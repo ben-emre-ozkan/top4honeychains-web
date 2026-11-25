@@ -71,6 +71,15 @@
                     <div class="card-body">
                         <h4 class="card-title">@L["Lab.ReceivedSamples"]</h4>
                         <p class="card-title-desc">@L["Lab.ReceivedHelp"]</p>
+                        @if (canReceive)
+                        {
+                            @* D-97: what the three reception checks look at and what a failed check means *@
+                            <link rel="stylesheet" href="~/css/intake-cards.css" asp-append-version="true" />
+                            <aside class="ci-info" id="reception-info">
+                                <i class="mdi mdi-lightbulb-on-outline ci-info-icon" aria-hidden="true"></i>
+                                <div><strong>@L["Lab.Info.Reception.Title"]</strong><p>@L["Lab.Info.Reception"]</p></div>
+                            </aside>
+                        }
                         <div class="table-responsive"><table class="table table-sm table-bordered" id="lab-samples">
                             <thead><tr><th>@L["Lab.Sample"]</th><th>@L["Cust.From"]</th><th>@L["Lab.SealNumber"]</th><th>@L["Org.Status"]</th><th>@L["Lab.Report"]</th><th></th></tr></thead>
                             <tbody>
@@ -87,7 +96,7 @@
                                             {
                                                 <form asp-action="Receive" method="post" class="receive-jar-form small">
                                                     <input type="hidden" name="id" value="@s.SampleId" />
-                                                    @foreach (var (field, label) in new[] { ("sealMatches", L["Lab.CheckSeal"].Value), ("labelIntact", L["Lab.CheckLabel"].Value), ("capIntact", L["Lab.CheckCap"].Value) })
+                                                    @foreach (var (field, label) in new[] { ("sealMatches", L["Lab.CheckSeal"].Value), ("labelIntact", L["Lab.CheckLabel"].Value), ("capIntact", L[s.CapType != null ? "Lab.CheckCap." + s.CapType : "Lab.CheckCap"].Value) })
                                                     {
                                                         <div class="d-flex align-items-center gap-2 mb-1">
                                                             <span class="flex-grow-1">@label</span>

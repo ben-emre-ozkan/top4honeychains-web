@@ -147,3 +147,43 @@ html[data-scenes="off"] .hs.is-playing .hs-art *, html[data-scenes="off"] .hs.is
 .info-tip-note { display: block; max-width: 46ch; margin: 4px 0 8px; padding: 6px 10px; border-left: 3px solid var(--b-honey, #FFB547); border-radius: 6px;
     background: var(--b-foam, #FFFBF0); color: var(--b-ink, #574A40); font-size: 13px; font-weight: 400; line-height: 1.45; white-space: normal; text-align: left; }
 .info-tip-note[hidden] { display: none; }
+
+/* ---------------------------------------------------------------- D-97 seal label: applied, then peeled: it tears and leaves VOID marks (1.4 s) */
+.hs-label.is-playing .p-label { animation: hs-label-on 1.4s both; }
+.hs-label.is-playing .p-top { animation: hs-label-top 1.4s both; }
+.hs-label.is-playing .p-flap { animation: hs-label-flap 1.4s both; transform-origin: 0% 100%; }
+.hs-label.is-playing .p-void { animation: hs-label-void 1.4s both; }
+.hs-label.is-playing .p-warn { animation: hs-tick-at-90 1.4s both; transform-origin: 50% 50%; }
+@keyframes hs-label-on { 0% { transform: translateX(46px); opacity: 0; } 30%, 100% { transform: none; opacity: 1; } }
+@keyframes hs-label-top { 0% { transform: translateX(46px); opacity: 0; } 30%, 52% { transform: none; opacity: 1; } 56%, 100% { transform: none; opacity: 0; } }
+@keyframes hs-label-flap { 0%, 52% { transform: scaleY(.2); opacity: 0; } 56% { opacity: 1; } 80%, 100% { transform: none; opacity: 1; } }
+@keyframes hs-label-void { 0%, 66% { opacity: 0; } 80%, 100% { opacity: 1; } }
+
+/* ---------------------------------------------------------------- D-97 numbered plastic seal locks through the handle (1.0 s) */
+.hs-plastic.is-playing .p-strap { animation: hs-seal-strap 1s both; }
+.hs-plastic.is-playing .p-tag { animation: hs-seal-tag 1s both; transform-origin: 0% 50%; }
+.hs-plastic.is-playing .p-tick { animation: hs-tick-at-80 1s both; transform-origin: 50% 50%; }
+
+/* ---------------------------------------------------------------- D-97 the association's container: its QR code is scanned (1.2 s) */
+.hs-scan.is-playing .p-gun { animation: hs-scan-gun 1.2s both; }
+.hs-scan.is-playing .p-beam { animation: hs-scan-beam 1.2s both; transform-origin: 100% 50%; }
+.hs-scan.is-playing .p-tick { animation: hs-tick-at-90 1.2s both; transform-origin: 50% 50%; }
+@keyframes hs-scan-gun { 0% { transform: translateX(40px); opacity: 0; } 30%, 100% { transform: none; opacity: 1; } }
+@keyframes hs-scan-beam { 0%, 32% { transform: scaleX(0); opacity: 0; } 46% { transform: scaleX(1); opacity: 1; } 56% { transform: translateY(-8px); } 68% { transform: translateY(8px); } 80% { transform: none; opacity: 1; } 90%, 100% { opacity: 0; } }
+
+/* ---------------------------------------------------------------- D-97 safety-button cap: the button pops up when the vacuum is lost (1.2 s) */
+.hs-button.is-playing .p-ok { animation: hs-tick-at-25 1.2s both; transform-origin: 50% 50%; }
+.hs-button.is-playing .p-btn { animation: hs-button-pop 1.2s both; transform-origin: 50% 100%; }
+.hs-button.is-playing .p-warn { animation: hs-tick-at-90 1.2s both; transform-origin: 50% 50%; }
+@keyframes hs-tick-at-25 { 0%, 20% { transform: scale(.6); opacity: 0; } 28%, 100% { transform: scale(1); opacity: 1; } }
+@keyframes hs-button-pop { 0%, 50% { transform: scaleY(.15); } 64% { transform: scaleY(1.25); } 72%, 100% { transform: none; } }
+
+/* ---------------------------------------------------------------- D-97 tamper-ring cap: the cap is turned and the ring breaks (1.3 s) */
+.hs-ring.is-playing .p-ok { animation: hs-tick-at-25 1.3s both; transform-origin: 50% 50%; }
+.hs-ring.is-playing .p-cap { animation: hs-ring-cap 1.3s both; transform-origin: 50% 50%; }
+.hs-ring.is-playing .p-ringl { animation: hs-ring-left 1.3s both; transform-origin: 0% 50%; }
+.hs-ring.is-playing .p-ringr { animation: hs-ring-right 1.3s both; transform-origin: 100% 50%; }
+.hs-ring.is-playing .p-warn { animation: hs-tick-at-90 1.3s both; transform-origin: 50% 50%; }
+@keyframes hs-ring-cap { 0%, 30% { transform: translateY(6px); } 40% { transform: translateY(4px) rotate(-4deg); } 50% { transform: translateY(2px) rotate(4deg); } 62%, 100% { transform: none; } }
+@keyframes hs-ring-left { 0%, 56% { transform: translateX(4px); } 66%, 100% { transform: rotate(6deg); } }
+@keyframes hs-ring-right { 0%, 56% { transform: translateX(-4px); } 66%, 100% { transform: rotate(-6deg); } }

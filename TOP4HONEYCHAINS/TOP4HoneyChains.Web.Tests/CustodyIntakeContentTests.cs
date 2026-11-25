@@ -13,6 +13,7 @@ namespace TOP4HoneyChains.Web.Tests
         private static IntakeContent Content(params ContainerContent[] containers) =>
             new("bk-1", 7, 3, 2, "TR", new DateOnly(2026, 10, 27), "Giresun", "Bulancak", 11, "cold room", new DateOnly(2028, 10, 27), containers);
 
+
         [Fact]
         public void The_canonical_content_lists_every_container_with_all_its_seal_numbers()
         {
@@ -47,36 +48,45 @@ namespace TOP4HoneyChains.Web.Tests
             Assert.NotEqual(original.Hash(), changed.Hash());
         }
 
-        private static List<string> Check(params ContainerRow[] rows) =>
-            new CustodyIntakeService(null!, TimeProvider.System).CheckContainers(new IntakeForm { Containers = rows.ToList() });
-
-        private static ContainerRow Row(string tag, bool sealedOnArrival = true) => new()
-        {
-            Kind = ContainerKind.Tin, NetKg = 25, GrossKg = 26, ArrivedSealed = sealedOnArrival, OriginSeal = sealedOnArrival ? tag + "-O" : null, OriginSealIntact = sealedOnArrival,
-            PlantSeal = sealedOnArrival ? null : tag + "-P", JarSeal = tag + "-J", CounterSeal = tag + "-K", CapIntact = true, Reseal = tag + "-R"
-        };
+        // D-97: a delivery recorded since D-97 binds the jar cap, the closure, the association container's code and one closing seal
+        private static ContainerContent Labelled(string tag, string closure = ClosureKind.SealLabel, string? box = null) =>
+            new("Tin", 25m, 26.5m, null, null, null, $"{tag}-J", $"{tag}-K", true, $"{tag}-C", closure, box);
 
         [Fact]
-        public void Container_rows_need_weight_seals_an_intact_cap_and_different_seal_numbers()
+        public void A_d97_delivery_binds_the_cap_the_closure_and_every_code_and_old_deliveries_keep_their_text()
         {
-            Assert.Empty(Check(Row("A"), Row("B", sealedOnArrival: false)));
-            Assert.Contains("Record at least one container.", Check());
-            var popped = Row("A");
-            popped.CapIntact = false;
-            Assert.Contains(Check(popped), e => e.StartsWith("Container 1: the jar's cap must be intact"));
-            var light = Row("A");
-            light.NetKg = 0;
-            Assert.Contains("Container 1: enter the net weight (more than 0 kg).", Check(light));
-            var heavy = Row("A");
-            heavy.GrossKg = 10;
-            Assert.Contains("Container 1: the gross weight cannot be lower than the net weight.", Check(heavy));
-            var unsealed = Row("B", sealedOnArrival: false);
-            unsealed.PlantSeal = " ";
-            Assert.Contains("Container 2: apply a plant seal in front of the beekeeper and enter its number.", Check(Row("A"), unsealed));
-            var twin = Row("B");
-            twin.JarSeal = "a-j";   // case does not make a seal different
-            Assert.Contains("Every seal number of the delivery must be different.", Check(Row("A"), twin));
-            Assert.Contains("At most 100 containers per delivery.", Check(Enumerable.Range(0, 101).Select(i => Row("T" + i)).ToArray()));
+            var v2 = Content(Labelled("A"), Labelled("B", ClosureKind.OrgContainer, "TK-0001")) with { CapType = JarCap.SafetyButton };
+            Assert.Equal("intake2|bk-1|7|3|2|TR|2026-10-27|Giresun|Bulancak|11|cold room|2028-10-27|SafetyButton"
+                + "|C1:SealLabel;;Tin;25;26.5;;;A-J;A-K;1;A-C|C2:OrgContainer;TK-0001;Tin;25;26.5;;;B-J;B-K;1;B-C", v2.Canonical());
+            Assert.NotEqual(v2.Hash(), (v2 with { CapType = JarCap.TamperRing }).Hash());
+            Assert.NotEqual(v2.Hash(), (Content(Labelled("A"), Labelled("B", ClosureKind.OrgContainer, "TK-0002")) with { CapType = JarCap.SafetyButton }).Hash());
+            Assert.NotEqual(v2.Hash(), (Content(Labelled("A", ClosureKind.PlasticSeal), Labelled("B", ClosureKind.OrgContainer, "TK-0001")) with { CapType = JarCap.SafetyButton }).Hash());
+            // a delivery recorded before D-97 (no cap type) keeps the canonical text the beekeeper confirmed
+            Assert.StartsWith("intake|", Content(Tin("A")).Canonical());
+        }
+
+        [Theory]
+        [InlineData(" ts-000123 ", "TS-000123")]
+        [InlineData("https://example.invalid/s/TS-000124", "TS-000124")]
+        [InlineData("SAB-P-35 001", "SAB-P-35001")]
+        [InlineData("   ", null)]
+        public void A_typed_or_scanned_code_is_normalized(string raw, string? code) => Assert.Equal(code, SealPoolService.Normalize(raw));
+
+        [Fact]
+        public void A_seal_must_be_in_the_pool_unused_and_of_the_right_kind()
+        {
+            var pools = new[] { 5 };
+            var free = new SealCode { Code = "TS-000001", OrgId = 5, Kind = SealKind.Label, Status = SealStatus.Issued };
+            Assert.Null(SealPoolService.Refusal("TS-000001", free, pools, null));
+            Assert.Equal("Seal TS-000009 is not in the seal pool of your organization.", SealPoolService.Refusal("TS-000009", null, pools, null));
+            Assert.Equal("Seal TS-000001 is not in the seal pool of your organization.", SealPoolService.Refusal("TS-000001", free, new[] { 6 }, null));
+            var used = new SealCode { Code = "TS-000002", OrgId = 5, Kind = SealKind.Label, Status = SealStatus.Used, Container = new Container { ContainerCode = "L9-C1" } };
+            Assert.Equal("Seal TS-000002 was already used on L9-C1.", SealPoolService.Refusal("TS-000002", used, pools, null));
+            var plastic = new SealCode { Code = "P-1", OrgId = 5, Kind = SealKind.Plastic, Status = SealStatus.Issued };
+            Assert.Equal("Seal P-1 is a numbered plastic seal; a seal label is needed here.", SealPoolService.Refusal("P-1", plastic, pools, SealPoolService.ClosingKinds(ClosureKind.SealLabel)));
+            Assert.Equal("Seal TS-000001 is a seal label; a numbered plastic seal is needed here.", SealPoolService.Refusal("TS-000001", free, pools, SealPoolService.ClosingKinds(ClosureKind.PlasticSeal)));
+            // the association's container takes either kind
+            Assert.Null(SealPoolService.Refusal("P-1", plastic, pools, SealPoolService.ClosingKinds(ClosureKind.OrgContainer)));
         }
 
         private static ContainerSealEvent E(int id, string ev, string seal) => new() { EventId = id, Event = ev, SealNumber = seal };

@@ -7855,7 +7855,7 @@
     <value>Üretim dönemi</value>
   </data>
   <data name="Ci.Help" xml:space="preserve">
-    <value>Teslimattaki her kabı mührüyle kaydedin, her kaptan numune alın; ardından arıcı hepsini SMS koduyla onaylar.</value>
+    <value>Her kabı üç kısa adımda kaydedin: kap, iki numune kavanozu ve kapatma mührü. Ardından arıcı hepsini SMS koduyla onaylar.</value>
   </data>
   <data name="Ci.NoPhone" xml:space="preserve">
     <value>cep telefonu yok: yalnızca imzalı fotoğraf</value>
@@ -7867,7 +7867,7 @@
     <value>Kaplar ve numuneler</value>
   </data>
   <data name="Ci.ContainersHelp" xml:space="preserve">
-    <value>Her kap (teneke, kova veya varil) için bir satır. Her birinde: nasıl geldiğini seçin, numune ve şahit numune kavanozunu doldurun, kapak düğmesinin aşağıda olduğunu kontrol edin ve kabı yeniden mühürleyin.</value>
+    <value>Numune kavanozlarının kapağını tüm teslimat için bir kez seçin. Ardından her kap için bir kart doldurun.</value>
   </data>
   <data name="Ci.Kind" xml:space="preserve">
     <value>Tür</value>
@@ -7897,10 +7897,10 @@
     <value>Gelişte</value>
   </data>
   <data name="Ci.ArrivedSealed" xml:space="preserve">
-    <value>Mühürlü geldi</value>
+    <value>Hasatta saha denetçisi mühürledi</value>
   </data>
   <data name="Ci.OriginSeal" xml:space="preserve">
-    <value>Geldiği mührün numarası</value>
+    <value>Hasatta takılan mührün kodu</value>
   </data>
   <data name="Ci.OriginIntact" xml:space="preserve">
     <value>Kontrol ettim: mühür sağlam</value>
@@ -7909,22 +7909,22 @@
     <value>Arıcının önünde şimdi takılan yeni mühür</value>
   </data>
   <data name="Ci.JarSeal" xml:space="preserve">
-    <value>Kavanoz mührü</value>
+    <value>Numune kavanozunun mühür etiketi</value>
   </data>
   <data name="Ci.CounterSeal" xml:space="preserve">
-    <value>Şahit numune mührü</value>
+    <value>Şahit numune kavanozunun mühür etiketi</value>
   </data>
   <data name="Ci.Cap" xml:space="preserve">
     <value>Kapak sağlam</value>
   </data>
   <data name="Ci.CapHelp" xml:space="preserve">
-    <value>Güvenlik kapağı: yalnızca düğme aşağıdayken işaretleyin. Fırlamış kapak kavanozun açıldığını gösterir: kavanozu atın ve yenisini doldurun.</value>
+    <value>Güvenlik düğmeli kapak: Yalnızca düğme aşağıdayken işaretleyin. Düğmesi kalkmış kapak kavanozun açıldığını gösterir: Kavanozu atın ve yenisini doldurun.</value>
   </data>
   <data name="Ci.Reseal" xml:space="preserve">
     <value>Numuneden sonra yeni mühür</value>
   </data>
   <data name="Ci.Remove" xml:space="preserve">
-    <value>Satırı kaldır</value>
+    <value>Kabı kaldır</value>
   </data>
   <data name="Ci.AddContainer" xml:space="preserve">
     <value>Kap ekle</value>
@@ -7945,7 +7945,7 @@
     <value>Arıcı onaylar</value>
   </data>
   <data name="Ci.SendHelp" xml:space="preserve">
-    <value>Arıcıya kurumunuz, tarih, kaplar, kilogram, bal türü, numune sayısı ve bir kod içeren SMS gider. Gönderdikten sonra bir şey değişirse yeni kod gerekir.</value>
+    <value>Arıcıya kurumunuz, tarih, kaplar, kilogram, bal türü, numune sayısı ve bir kod içeren SMS gider. Kod her kap kodunu, mühür kodunu ve kavanoz kapağını da kapsar. Gönderdikten sonra bir şey değişirse yeni kod gerekir.</value>
   </data>
   <data name="Ci.NotPresent" xml:space="preserve">
     <value>Arıcı burada değilse onu arayın: kodu telefonundan okur.</value>
@@ -8005,10 +8005,10 @@
     <value>Numune kavanozları</value>
   </data>
   <data name="Ci.Seal.Checked" xml:space="preserve">
-    <value>Menşe mührü kontrol edildi</value>
+    <value>Gelişte mühür kontrol edildi</value>
   </data>
   <data name="Ci.Seal.Applied" xml:space="preserve">
-    <value>İşletme mührü takıldı</value>
+    <value>Mühür takıldı</value>
   </data>
   <data name="Ci.Seal.Broken" xml:space="preserve">
     <value>Mühür açıldı</value>
@@ -9730,13 +9730,13 @@
     <value>Arıcının kayıt numarasını (örneğin TR520401200241) veya işletme numarasını yazıp Bul'a basın. Ardından arıcının arılıkları formda çıkar.</value>
   </data>
   <data name="Ci.ArrivedUnsealed" xml:space="preserve">
-    <value>Mühürsüz geldi</value>
+    <value>Mühürsüz geldi (olağan)</value>
   </data>
   <data name="Ci.Info.Arrival" xml:space="preserve">
-    <value>Kabın nasıl geldiğini seçin. Mühürlü geldiyse geldiği mührün numarasını yazın ve mührün sağlam olduğunu onaylayın. Mühürsüz geldiyse arıcının önünde şimdi mühürleyin ve yeni mührün numarasını yazın. Mühür, kabı numune kavanozlarına ve arıcının onayladığı teslimata bağlar; böylece bal sonradan değiştirilemez.</value>
+    <value>Kap normalde mühürsüz gelir: Numuneleri alın, sonra tek bir mühürle kapatın. “Hasatta mühürlendi” seçeneğini yalnızca birliğin saha denetçisi kabı arılıkta birliğin havuzundan bir mühürle kapattıysa seçin; mührün sağlam olduğunu kontrol edin.</value>
   </data>
   <data name="Ci.Info.Jars" xml:space="preserve">
-    <value>Her kaptan iki kavanoz doldurun: numune kavanozu laboratuvara gider, şahit numune kavanozu bir sonuca itiraz edilirse diye sizde kalır. Her kavanozu mühürleyip mühür numarasını yazın.</value>
+    <value>Bu kaptan iki kavanoz doldurun. Her birine kapak ile kavanozun üzerinden havuzdan bir mühür etiketi yapıştırın: Numune kavanozu laboratuvara gider, şahit numune kavanozu bir sonuca itiraz edilirse diye sizde kalır.</value>
   </data>
   <data name="Ci.Info.Reseal" xml:space="preserve">
     <value>Numune alırken kap açılır. Kabı yeniden mühürleyin ve yeni mührün numarasını yazın; kap kullanılana kadar bu mühürle kalır.</value>
@@ -9758,5 +9758,407 @@
   </data>
   <data name="Reg93.CoordinatesHelp" xml:space="preserve">
     <value>Bu arılığın koordinatlarını yazın (yukarıdaki harita ilk arılığı belirler).</value>
+  </data>
+  <data name="Ci.JarSetup" xml:space="preserve">
+    <value>Bu teslimatın numune kavanozları</value>
+  </data>
+  <data name="Ci.CapType" xml:space="preserve">
+    <value>Numune kavanozlarının kapağı</value>
+  </data>
+  <data name="Ci.Cap.SafetyButton" xml:space="preserve">
+    <value>Güvenlik düğmeli kapak</value>
+  </data>
+  <data name="Ci.Cap.SafetyButton.Help" xml:space="preserve">
+    <value>Bebek maması kavanozlarındaki gibi vakumlu kapak: Düğme yalnızca vakum varken aşağıda kalır.</value>
+  </data>
+  <data name="Ci.Cap.TamperRing" xml:space="preserve">
+    <value>Emniyet halkalı kapak</value>
+  </data>
+  <data name="Ci.Cap.TamperRing.Help" xml:space="preserve">
+    <value>Kapak açılınca kapağın altındaki halka kopar.</value>
+  </data>
+  <data name="Ci.InfoCard.Button.Title" xml:space="preserve">
+    <value>Güvenlik düğmeli kapak: Kavanoz nasıl kapatılır?</value>
+  </data>
+  <data name="Ci.InfoCard.Button" xml:space="preserve">
+    <value>Düğme yalnızca kavanozda vakum varken aşağıda kalır. Doldurduktan sonra düğme aşağı inene kadar el tipi vakum pompasıyla vakum yapın. Vakum için balı asla ısıtmayın: Isı HMF'yi yükseltir, diastazı düşürür ve numune balı teslim edildiği gibi göstermez.</value>
+  </data>
+  <data name="Ci.InfoCard.Ring.Title" xml:space="preserve">
+    <value>Emniyet halkalı kapak: Kavanoz nasıl kapatılır?</value>
+  </data>
+  <data name="Ci.InfoCard.Ring" xml:space="preserve">
+    <value>Halka kapağın altına tam oturana kadar kapağı çevirin. Kopmamış halka kavanozun açılmadığını gösterir; kopmuş halka açıldığını gösterir.</value>
+  </data>
+  <data name="Ci.InfoCard.Closure.Title" xml:space="preserve">
+    <value>Kap nasıl kapatılır?</value>
+  </data>
+  <data name="Ci.InfoCard.Closure" xml:space="preserve">
+    <value>Arıcılar kendi teneke ve kovalarını getirir; çoğu mühürsüz gelir. Önce numuneleri alın, sonra kabı arıcının önünde tek bir mühürle kapatın. Her kap için seçin:</value>
+  </data>
+  <data name="Ci.InfoCard.Closure.Pool" xml:space="preserve">
+    <value>Mühür etiketleri ve plastik mühürler kurumunuzun mühür havuzundan gelir; her kod bir kez kullanılır.</value>
+  </data>
+  <data name="Ci.Closure" xml:space="preserve">
+    <value>Nasıl kapatılıyor?</value>
+  </data>
+  <data name="Ci.Closure.SealLabel" xml:space="preserve">
+    <value>Arıcının kabı + mühür etiketi</value>
+  </data>
+  <data name="Ci.Closure.SealLabel.Short" xml:space="preserve">
+    <value>Kapak ile gövde üzerine QR kodlu numaralı etiket. Her kapta kullanılır.</value>
+  </data>
+  <data name="Ci.Closure.SealLabel.Help" xml:space="preserve">
+    <value>Platformun verdiği, önceden VOID güvenlik etiketine basılmış, QR kodlu numaralı etiket. Kapak ile gövdenin üzerinden yapıştırılır; sökülmeye çalışılırsa yırtılır veya VOID izi bırakır. Her kapta kullanılır.</value>
+  </data>
+  <data name="Ci.Closure.PlasticSeal" xml:space="preserve">
+    <value>Arıcının kabı + numaralı plastik mühür</value>
+  </data>
+  <data name="Ci.Closure.PlasticSeal.Short" xml:space="preserve">
+    <value>Kulptan veya kapak deliğinden geçer; bir kez kilitlenir.</value>
+  </data>
+  <data name="Ci.Closure.PlasticSeal.Help" xml:space="preserve">
+    <value>Kulplu veya kapağında delik olan kaplar için: Satın alınmış numaralı mühür oradan geçirilip kilitlenir; ancak kesilerek açılabilir.</value>
+  </data>
+  <data name="Ci.Closure.OrgContainer" xml:space="preserve">
+    <value>Birliğin kalıcı kabı</value>
+  </data>
+  <data name="Ci.Closure.OrgContainer.Short" xml:space="preserve">
+    <value>Bir kez kaydedilir; TK kodunu okutun veya yazın.</value>
+  </data>
+  <data name="Ci.Closure.OrgContainer.Help" xml:space="preserve">
+    <value>Birliğin kendi kabı; kalıcı bir kod ve QR ile bir kez kaydedilir. Teslimatta kodunu okutun veya yazın; sayfası her kullanımı gösterir. Yine de havuzdan bir mühürle kapatılır.</value>
+  </data>
+  <data name="Ci.Info.Closure" xml:space="preserve">
+    <value>Kap numune alındıktan sonra arıcının önünde bir kez kapatılır. Mühür kurumunuzun mühür havuzundan gelir.</value>
+  </data>
+  <data name="Ci.Step.Container" xml:space="preserve">
+    <value>Kap</value>
+  </data>
+  <data name="Ci.Step.Samples" xml:space="preserve">
+    <value>Numuneler</value>
+  </data>
+  <data name="Ci.Step.Closing" xml:space="preserve">
+    <value>Kapatma</value>
+  </data>
+  <data name="Ci.BoxCode" xml:space="preserve">
+    <value>Birliğin kabının kodu</value>
+  </data>
+  <data name="Ci.BoxOk" xml:space="preserve">
+    <value>Kayıtlı: {0}</value>
+  </data>
+  <data name="Ci.TareHint" xml:space="preserve">
+    <value>Boş ağırlık {0} kg: Net = brüt − {0}</value>
+  </data>
+  <data name="Ci.CapCheck.SafetyButton" xml:space="preserve">
+    <value>Düğme aşağıda</value>
+  </data>
+  <data name="Ci.CapCheck.TamperRing" xml:space="preserve">
+    <value>Halka kopmamış</value>
+  </data>
+  <data name="Ci.CapCheckBoth" xml:space="preserve">
+    <value>iki kavanozda da</value>
+  </data>
+  <data name="Ci.Info.CapCheck" xml:space="preserve">
+    <value>Kapattıktan sonra iki kavanozu da kontrol edin. Düğmesi kalkmış kapak veya kopmuş halka kavanozun açıldığını gösterir: Kavanozu atın ve yenisini doldurun.</value>
+  </data>
+  <data name="Ci.ClosingHelp" xml:space="preserve">
+    <value>Numuneyi aldıktan sonra kabı arıcının önünde kapatın ve mührü okutun veya yazın.</value>
+  </data>
+  <data name="Ci.ClosingSeal.SealLabel" xml:space="preserve">
+    <value>Mühür etiketinin kodu</value>
+  </data>
+  <data name="Ci.ClosingSeal.PlasticSeal" xml:space="preserve">
+    <value>Plastik mührün numarası</value>
+  </data>
+  <data name="Ci.ClosingSeal.OrgContainer" xml:space="preserve">
+    <value>Mühür kodu (etiket veya plastik mühür)</value>
+  </data>
+  <data name="Ci.SealOk" xml:space="preserve">
+    <value>Havuzda ve kullanılmamış</value>
+  </data>
+  <data name="Ci.SealDup" xml:space="preserve">
+    <value>Bu kod bu teslimatta zaten kullanıldı.</value>
+  </data>
+  <data name="Ci.Confirms.Title" xml:space="preserve">
+    <value>Arıcının onayladıkları</value>
+  </data>
+  <data name="Ci.Confirms" xml:space="preserve">
+    <value>SMS kodu tam olarak bu listeyi onaylar: Her kap kodu, her mühür kodu ve kavanoz kapağı. Sonradan bir şey değişirse kayıt onayla artık eşleşmez.</value>
+  </data>
+  <data name="Lab.CheckCap.SafetyButton" xml:space="preserve">
+    <value>Düğme aşağıda</value>
+  </data>
+  <data name="Lab.CheckCap.TamperRing" xml:space="preserve">
+    <value>Halka kopmamış</value>
+  </data>
+  <data name="Lab.Info.Reception.Title" xml:space="preserve">
+    <value>Bir kavanozu kabul etmeden önce</value>
+  </data>
+  <data name="Lab.Info.Reception" xml:space="preserve">
+    <value>Üç kontrolü yanıtlayın: Mühür etiketinin kodu kayıtla aynı, etiket sağlam (yırtık veya VOID izi yok) ve kapak kapalı (düğme aşağıda veya halka kopmamış). Herhangi bir “hayır” kavanozu reddeder, çünkü yolda açılmış olabilir. İşletme bu durumda hâlâ mührüyle kapalı olan aynı kaptan yeni bir kavanoz alır; şahit numune itiraz için işletmede kalır.</value>
+  </data>
+  <data name="Scene.label" xml:space="preserve">
+    <value>Mühür etiketi kapak ile gövdenin üzerinden yapıştırılır. Sökülünce yırtılır ve VOID izi bırakır.</value>
+  </data>
+  <data name="Scene.plastic" xml:space="preserve">
+    <value>Numaralı plastik mühür kulptan geçirilip kilitlenir.</value>
+  </data>
+  <data name="Scene.scan" xml:space="preserve">
+    <value>Birliğin kabı QR koduyla okutulur.</value>
+  </data>
+  <data name="Scene.button" xml:space="preserve">
+    <value>Düğme aşağıda: Kavanoz kapalı. Düğme kalkmış: Kavanoz açılmış.</value>
+  </data>
+  <data name="Scene.ring" xml:space="preserve">
+    <value>Halka sağlam: Kavanoz kapalı. Halka kopmuş: Kavanoz açılmış.</value>
+  </data>
+  <data name="Seal.Title" xml:space="preserve">
+    <value>Mühür havuzu ve kaplar</value>
+  </data>
+  <data name="Seal.Help" xml:space="preserve">
+    <value>Teslimatta kullanılan her mühür bu havuzdan gelir: Platformun verdiği mühür etiketleri ve satın alınmış numaralı plastik mühürler. Her kod bir kez kullanılır; burada hangi kodların boşta olduğunu, her birinin nerede kullanıldığını ve hangilerinin açıldığını görürsünüz.</value>
+  </data>
+  <data name="Seal.Kind" xml:space="preserve">
+    <value>Tür</value>
+  </data>
+  <data name="Seal.Kind.Label" xml:space="preserve">
+    <value>Mühür etiketi</value>
+  </data>
+  <data name="Seal.Kind.Plastic" xml:space="preserve">
+    <value>Numaralı plastik mühür</value>
+  </data>
+  <data name="Seal.Status.Issued" xml:space="preserve">
+    <value>Boşta</value>
+  </data>
+  <data name="Seal.Status.Used" xml:space="preserve">
+    <value>Kullanıldı</value>
+  </data>
+  <data name="Seal.Status.Broken" xml:space="preserve">
+    <value>Açıldı</value>
+  </data>
+  <data name="Seal.Use.Origin" xml:space="preserve">
+    <value>hasatta</value>
+  </data>
+  <data name="Seal.Use.Closing" xml:space="preserve">
+    <value>kapatma</value>
+  </data>
+  <data name="Seal.Use.Jar" xml:space="preserve">
+    <value>numune kavanozu</value>
+  </data>
+  <data name="Seal.Use.CounterJar" xml:space="preserve">
+    <value>şahit numune kavanozu</value>
+  </data>
+  <data name="Seal.Materials.Title" xml:space="preserve">
+    <value>Hazır bulundurulacak malzemeler</value>
+  </data>
+  <data name="Seal.Materials" xml:space="preserve">
+    <value>Mühür etiketleri için VOID güvenlik etiketi (100 × 50 mm), kulplar için numaralı plastik mühürler, güvenlik düğmeli veya emniyet halkalı kapaklı numune kavanozları ve düğmeli kapaklar için el tipi vakum pompası.</value>
+  </data>
+  <data name="Seal.Issue" xml:space="preserve">
+    <value>Mühür etiketi ver</value>
+  </data>
+  <data name="Seal.IssueHelp" xml:space="preserve">
+    <value>Platform sıradaki boş numaraları (TS-…) verir. Teslimatlardan önce bunları VOID güvenlik etiketine basın.</value>
+  </data>
+  <data name="Seal.Count" xml:space="preserve">
+    <value>Etiket sayısı</value>
+  </data>
+  <data name="Seal.Note" xml:space="preserve">
+    <value>Not</value>
+  </data>
+  <data name="Seal.IssueButton" xml:space="preserve">
+    <value>Ver</value>
+  </data>
+  <data name="Seal.Range" xml:space="preserve">
+    <value>Satın alınan plastik mühürleri ekle</value>
+  </data>
+  <data name="Seal.RangeHelp" xml:space="preserve">
+    <value>Mühürlerin üzerinde basılı aralığı girin: İsteğe bağlı bir ön ek, ilk ve son numara.</value>
+  </data>
+  <data name="Seal.Prefix" xml:space="preserve">
+    <value>Ön ek</value>
+  </data>
+  <data name="Seal.From" xml:space="preserve">
+    <value>İlk numara</value>
+  </data>
+  <data name="Seal.To" xml:space="preserve">
+    <value>Son numara</value>
+  </data>
+  <data name="Seal.AddButton" xml:space="preserve">
+    <value>Havuza ekle</value>
+  </data>
+  <data name="Seal.OnlyAdmin" xml:space="preserve">
+    <value>Mühürleri yalnızca kurum yöneticisi verir ve kapları yalnızca o kaydeder.</value>
+  </data>
+  <data name="Seal.Batches" xml:space="preserve">
+    <value>Partiler</value>
+  </data>
+  <data name="Seal.Batch" xml:space="preserve">
+    <value>Parti</value>
+  </data>
+  <data name="Seal.Codes" xml:space="preserve">
+    <value>Kodlar</value>
+  </data>
+  <data name="Seal.Code" xml:space="preserve">
+    <value>Kod</value>
+  </data>
+  <data name="Seal.State" xml:space="preserve">
+    <value>Durum</value>
+  </data>
+  <data name="Seal.UsedOn" xml:space="preserve">
+    <value>Kullanıldığı yer</value>
+  </data>
+  <data name="Seal.Search" xml:space="preserve">
+    <value>Ara</value>
+  </data>
+  <data name="Seal.All" xml:space="preserve">
+    <value>Tümü</value>
+  </data>
+  <data name="Seal.Containers" xml:space="preserve">
+    <value>Kalıcı kaplar</value>
+  </data>
+  <data name="Seal.ContainersHelp" xml:space="preserve">
+    <value>Birliğin bir kez kaydedilen kendi kapları. Kodlu ve QR'lı basılı etiketi her birine sabitleyin; teslimatta okutulur veya yazılır ve sayfası her kullanımı gösterir.</value>
+  </data>
+  <data name="Seal.Register" xml:space="preserve">
+    <value>Kap kaydet</value>
+  </data>
+  <data name="Seal.Name" xml:space="preserve">
+    <value>Ad</value>
+  </data>
+  <data name="Seal.Capacity" xml:space="preserve">
+    <value>Kapasite (kg)</value>
+  </data>
+  <data name="Seal.Tare" xml:space="preserve">
+    <value>Boş ağırlık (kg)</value>
+  </data>
+  <data name="Seal.RegisterButton" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="Seal.Uses" xml:space="preserve">
+    <value>Kullanım</value>
+  </data>
+  <data name="Seal.LastUse" xml:space="preserve">
+    <value>Son kullanım</value>
+  </data>
+  <data name="Seal.BoxUses" xml:space="preserve">
+    <value>Tüm kullanımlar</value>
+  </data>
+  <data name="Seal.PrintHelp" xml:space="preserve">
+    <value>VOID güvenlik etiketine basın.</value>
+  </data>
+  <data name="Seal.VoidNote" xml:space="preserve">
+    <value>SÖKMEYİN · VOID</value>
+  </data>
+  <data name="Choose the cap of the sample jars." xml:space="preserve">
+    <value>Numune kavanozlarının kapağını seçin.</value>
+  </data>
+  <data name="Container {0}: choose how the container is closed." xml:space="preserve">
+    <value>Kap {0}: Kabın nasıl kapatıldığını seçin.</value>
+  </data>
+  <data name="Container {0}: {1}" xml:space="preserve">
+    <value>Kap {0}: {1}</value>
+  </data>
+  <data name="Container {0}: enter the code of the seal the field inspector put on at harvest." xml:space="preserve">
+    <value>Kap {0}: Saha denetçisinin hasatta taktığı mührün kodunu girin.</value>
+  </data>
+  <data name="Container {0}: enter the seal label codes of the sample jar and of the counter-sample jar." xml:space="preserve">
+    <value>Kap {0}: Numune kavanozunun ve şahit numune kavanozunun mühür etiketi kodlarını girin.</value>
+  </data>
+  <data name="Container {0}: the tamper ring of the jar's cap must be unbroken. A broken ring: discard the jar and fill a new one." xml:space="preserve">
+    <value>Kap {0}: Kavanoz kapağının halkası kopmamış olmalı. Halka kopmuşsa kavanozu atın ve yenisini doldurun.</value>
+  </data>
+  <data name="Container {0}: the button of the jar's cap must be down. A raised button: discard the jar and fill a new one." xml:space="preserve">
+    <value>Kap {0}: Kavanoz kapağının düğmesi aşağıda olmalı. Düğmesi kalkmış kapak: Kavanozu atın ve yenisini doldurun.</value>
+  </data>
+  <data name="Container {0}: enter the closing seal, applied after sampling in front of the beekeeper." xml:space="preserve">
+    <value>Kap {0}: Numuneden sonra arıcının önünde takılan kapatma mührünü girin.</value>
+  </data>
+  <data name="Container {0}: seal codes have at most 50 characters." xml:space="preserve">
+    <value>Kap {0}: Mühür kodları en fazla 50 karakterdir.</value>
+  </data>
+  <data name="Every seal code of the delivery must be different." xml:space="preserve">
+    <value>Teslimattaki her mühür kodu farklı olmalı.</value>
+  </data>
+  <data name="Each association container can be recorded only once per delivery." xml:space="preserve">
+    <value>Birliğin her kabı bir teslimatta yalnızca bir kez kaydedilebilir.</value>
+  </data>
+  <data name="Seal {0} is not in the seal pool of your organization." xml:space="preserve">
+    <value>{0} mührü kurumunuzun mühür havuzunda yok.</value>
+  </data>
+  <data name="Seal {0} was already used on {1}." xml:space="preserve">
+    <value>{0} mührü zaten {1} için kullanıldı.</value>
+  </data>
+  <data name="Seal {0} was already used." xml:space="preserve">
+    <value>{0} mührü zaten kullanıldı.</value>
+  </data>
+  <data name="Seal {0} is a numbered plastic seal; a seal label is needed here." xml:space="preserve">
+    <value>{0} plastik mühürdür; burada mühür etiketi gerekir.</value>
+  </data>
+  <data name="Seal {0} is a seal label; a numbered plastic seal is needed here." xml:space="preserve">
+    <value>{0} bir mühür etiketidir; burada numaralı plastik mühür gerekir.</value>
+  </data>
+  <data name="Scan or type the code of the association's container." xml:space="preserve">
+    <value>Birliğin kabının kodunu okutun veya yazın.</value>
+  </data>
+  <data name="Container {0} is not registered for your organization." xml:space="preserve">
+    <value>{0} kabı kurumunuz için kayıtlı değil.</value>
+  </data>
+  <data name="Container {0} is retired." xml:space="preserve">
+    <value>{0} kabı kullanımdan kaldırıldı.</value>
+  </data>
+  <data name="A seal code of the delivery was used meanwhile; record the delivery again." xml:space="preserve">
+    <value>Teslimattaki bir mühür kodu bu arada kullanıldı; teslimatı yeniden kaydedin.</value>
+  </data>
+  <data name="The seal codes of this delivery come from the seal pool and cannot be corrected." xml:space="preserve">
+    <value>Bu teslimatın mühür kodları mühür havuzundan gelir ve düzeltilemez.</value>
+  </data>
+  <data name="The tamper ring of the jar's cap must be unbroken. A broken ring: discard the jar and fill a new one." xml:space="preserve">
+    <value>Kavanoz kapağının halkası kopmamış olmalı. Halka kopmuşsa kavanozu atın ve yenisini doldurun.</value>
+  </data>
+  <data name="The button of the jar's cap must be down. A raised button: discard the jar and fill a new one." xml:space="preserve">
+    <value>Kavanoz kapağının düğmesi aşağıda olmalı. Düğmesi kalkmış kapak: Kavanozu atın ve yenisini doldurun.</value>
+  </data>
+  <data name="Only the organization administrator and the roles that record or read deliveries can open the seal pool." xml:space="preserve">
+    <value>Mühür havuzunu yalnızca kurum yöneticisi ile teslimat kaydeden veya okuyan roller açabilir.</value>
+  </data>
+  <data name="Issue between 1 and 500 seal labels at a time." xml:space="preserve">
+    <value>Bir seferde 1 ile 500 arasında mühür etiketi verin.</value>
+  </data>
+  <data name="{0} seal labels issued: {1} to {2}. Print them on VOID label stock." xml:space="preserve">
+    <value>{0} mühür etiketi verildi: {1} - {2}. Bunları VOID güvenlik etiketine basın.</value>
+  </data>
+  <data name="{0} plastic seals added to the pool: {1} to {2}." xml:space="preserve">
+    <value>Havuza {0} plastik mühür eklendi: {1} - {2}.</value>
+  </data>
+  <data name="Container {0} registered. Print its label and fix it to the container." xml:space="preserve">
+    <value>{0} kabı kaydedildi. Etiketini basıp kaba sabitleyin.</value>
+  </data>
+  <data name="The prefix has at most 20 letters, digits or hyphens." xml:space="preserve">
+    <value>Ön ek en fazla 20 harf, rakam veya kısa çizgiden oluşur.</value>
+  </data>
+  <data name="Enter the first and the last number of the seals (digits only)." xml:space="preserve">
+    <value>Mühürlerin ilk ve son numarasını girin (yalnızca rakam).</value>
+  </data>
+  <data name="The last number cannot be lower than the first." xml:space="preserve">
+    <value>Son numara ilkinden küçük olamaz.</value>
+  </data>
+  <data name="At most 1000 seals per range." xml:space="preserve">
+    <value>Bir aralıkta en fazla 1000 mühür olur.</value>
+  </data>
+  <data name="TS- and TK- are kept for the platform's seal labels and containers." xml:space="preserve">
+    <value>TS- ve TK- platformun mühür etiketleri ve kapları için ayrılmıştır.</value>
+  </data>
+  <data name="Some of these seals are already in a seal pool (first: {0})." xml:space="preserve">
+    <value>Bu mühürlerin bazıları zaten bir mühür havuzunda (ilki: {0}).</value>
+  </data>
+  <data name="Choose the kind of container." xml:space="preserve">
+    <value>Kap türünü seçin.</value>
+  </data>
+  <data name="The name has at most 100 characters." xml:space="preserve">
+    <value>Ad en fazla 100 karakterdir.</value>
+  </data>
+  <data name="Enter the capacity and the empty weight in kg (or leave them empty)." xml:space="preserve">
+    <value>Kapasiteyi ve boş ağırlığı kg olarak girin (veya boş bırakın).</value>
   </data>
 </root>

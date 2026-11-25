@@ -1,0 +1,54 @@
+@model TOP4HoneyChains.Web.Models.Entities.OrgContainer
+@using TOP4HoneyChains.Web.Models.Entities
+@using TOP4HoneyChains.Web.Controllers
+@{
+    ViewData["Title"] = Model.Code;
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var uses = ViewBag.Uses as List<Container> ?? new();
+}
+@* D-97: one permanent container of the organization and every delivery it carried *@
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex flex-wrap gap-4 align-items-start">
+                        <div style="width: 120px" aria-hidden="true">@Html.Raw(IntakeController.QrSvg(Model.Code))</div>
+                        <div>
+                            <div class="text-muted small text-uppercase">@L["Ci.Closure.OrgContainer"]</div>
+                            <h4 class="card-title mb-1"><code id="box-code">@Model.Code</code></h4>
+                            <div>@L["Ci.Kind." + Model.Kind]@(Model.Name != null ? " · " + Model.Name : "")</div>
+                            <div class="small text-muted">
+                                @if (Model.CapacityKg != null) { <span>@L["Seal.Capacity"]: @Model.CapacityKg.Value.ToString("0.##")</span> }
+                                @if (Model.TareKg != null) { <span> · @L["Seal.Tare"]: @Model.TareKg.Value.ToString("0.##")</span> }
+                            </div>
+                        </div>
+                    </div>
+
+                    <h5 class="mt-4">@L["Seal.BoxUses"]</h5>
+                    <div class="table-responsive"><table class="table table-sm table-bordered" id="box-uses">
+                        <thead><tr><th>@L["Org.Date"]</th><th>@L["Ci.Container"]</th><th>@L["Ci.NetKg"]</th><th>@L["Ci.SealHistory"]</th><th>@L["Ci.Jars"]</th></tr></thead>
+                        <tbody>
+                            @foreach (var c in uses)
+                            {
+                                <tr>
+                                    <td>@c.Intake?.DeliveryDate.ToString("dd.MM.yyyy")</td>
+                                    <td><a asp-controller="Intake" asp-action="Details" asp-route-id="@c.IntakeId">@c.ContainerCode</a></td>
+                                    <td>@c.NetWeightKg.ToString("0.##")</td>
+                                    <td>@foreach (var e in c.SealEvents.OrderBy(e => e.EventId)) { <div>@L["Ci.Seal." + e.Event] <code>@e.SealNumber</code></div> }</td>
+                                    <td>@foreach (var s in c.Samples.OrderBy(s => s.SampleId)) { <div>@s.SampleCode · <code>@s.SealNumber</code></div> }</td>
+                                </tr>
+                            }
+                            @if (uses.Count == 0)
+                            {
+                                <tr><td colspan="5" class="text-muted">@L["Org.None"]</td></tr>
+                            }
+                        </tbody>
+                    </table></div>
+                </div>
+            </div>
+            <a asp-action="Index" class="btn btn-link app-back"><i class="mdi mdi-arrow-left" aria-hidden="true"></i> @L["Org.Back"]</a>
+        </div>
+    </div>
+</body>

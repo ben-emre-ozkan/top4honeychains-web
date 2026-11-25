@@ -901,6 +901,8 @@ CREATE TABLE [dbo].[Containers](
 	[OriginSealIntact] [bit] NULL,
 	[CreatedByUserId] [nvarchar](450) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
 	[CreatedAt] [datetime2](7) NOT NULL,
+	[Closure] [varchar](20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[OrgContainerId] [int] NULL,
  CONSTRAINT [PK_Containers] PRIMARY KEY CLUSTERED 
 (
 	[ContainerId] ASC
@@ -911,6 +913,13 @@ CREATE NONCLUSTERED INDEX [IX_Containers_Intake] ON [dbo].[Containers]
 (
 	[IntakeId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+GO
+CREATE NONCLUSTERED INDEX [IX_Containers_OrgContainerId] ON [dbo].[Containers]
+(
+	[OrgContainerId] ASC
+)
+WHERE ([OrgContainerId] IS NOT NULL)
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
 GO
 CREATE UNIQUE NONCLUSTERED INDEX [UX_Containers_Code] ON [dbo].[Containers]
 (
@@ -924,6 +933,10 @@ CREATE UNIQUE NONCLUSTERED INDEX [UX_Containers_LotSeq] ON [dbo].[Containers]
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
 GO
 ALTER TABLE [dbo].[Containers] ADD  CONSTRAINT [DF_Containers_CreatedAt]  DEFAULT (sysutcdatetime()) FOR [CreatedAt]
+GO
+ALTER TABLE [dbo].[Containers]  WITH CHECK ADD  CONSTRAINT [CK_Containers_Closure] CHECK  (([Closure] IS NULL OR ([Closure]='OrgContainer' OR [Closure]='PlasticSeal' OR [Closure]='SealLabel')))
+GO
+ALTER TABLE [dbo].[Containers] CHECK CONSTRAINT [CK_Containers_Closure]
 GO
 ALTER TABLE [dbo].[Containers]  WITH CHECK ADD  CONSTRAINT [CK_Containers_Kind] CHECK  (([Kind]='Other' OR [Kind]='Ibc' OR [Kind]='Bucket' OR [Kind]='Drum' OR [Kind]='Tin'))
 GO
@@ -1535,6 +1548,7 @@ CREATE TABLE [dbo].[LotIntakes](
 	[ReviewedAt] [datetime2](7) NULL,
 	[ReviewReason] [nvarchar](500) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 	[ContainersRecorded] [bit] NULL,
+	[JarCapType] [varchar](20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
  CONSTRAINT [PK_LotIntakes] PRIMARY KEY CLUSTERED 
 (
 	[IntakeId] ASC
@@ -1556,6 +1570,10 @@ GO
 ALTER TABLE [dbo].[LotIntakes]  WITH CHECK ADD  CONSTRAINT [CK_LotIntakes_Confirmation] CHECK  ((([ConfirmationMethod] IS NULL OR ([ConfirmationMethod]='SignedPhoto' OR [ConfirmationMethod]='SmsCode')) AND ([EvidenceStatus] IS NULL OR ([EvidenceStatus]='Rejected' OR [EvidenceStatus]='PendingReview' OR [EvidenceStatus]='Accepted'))))
 GO
 ALTER TABLE [dbo].[LotIntakes] CHECK CONSTRAINT [CK_LotIntakes_Confirmation]
+GO
+ALTER TABLE [dbo].[LotIntakes]  WITH CHECK ADD  CONSTRAINT [CK_LotIntakes_JarCapType] CHECK  (([JarCapType] IS NULL OR ([JarCapType]='TamperRing' OR [JarCapType]='SafetyButton')))
+GO
+ALTER TABLE [dbo].[LotIntakes] CHECK CONSTRAINT [CK_LotIntakes_JarCapType]
 GO
 ALTER TABLE [dbo].[LotIntakes]  WITH CHECK ADD  CONSTRAINT [CK_LotIntakes_Quantity] CHECK  (([Quantity]>(0)))
 GO
@@ -1800,6 +1818,39 @@ GO
 ALTER TABLE [dbo].[OrgCapabilities] ADD  CONSTRAINT [DF_OrgCapabilities_IsAccredited]  DEFAULT ((0)) FOR [IsAccredited]
 GO
 ALTER TABLE [dbo].[OrgCapabilities] ADD  CONSTRAINT [DF_OrgCapabilities_AddedAt]  DEFAULT (sysutcdatetime()) FOR [AddedAt]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[OrgContainers](
+	[OrgContainerId] [int] IDENTITY(1,1) NOT NULL,
+	[OrgId] [int] NOT NULL,
+	[Code] [varchar](30) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[Kind] [nvarchar](20) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[Name] [nvarchar](100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[CapacityKg] [decimal](10, 2) NULL,
+	[TareKg] [decimal](10, 2) NULL,
+	[IsActive] [bit] NOT NULL,
+	[CreatedByUserId] [nvarchar](450) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[CreatedAt] [datetime2](7) NOT NULL,
+ CONSTRAINT [PK_OrgContainers] PRIMARY KEY CLUSTERED 
+(
+	[OrgContainerId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+)
+GO
+CREATE NONCLUSTERED INDEX [IX_OrgContainers_OrgId] ON [dbo].[OrgContainers]
+(
+	[OrgId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [UX_OrgContainers_Code] ON [dbo].[OrgContainers]
+(
+	[Code] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+GO
+ALTER TABLE [dbo].[OrgContainers] ADD  CONSTRAINT [DF_OrgContainers_IsActive]  DEFAULT ((1)) FOR [IsActive]
 GO
 SET ANSI_NULLS ON
 GO
@@ -2187,6 +2238,7 @@ CREATE TABLE [dbo].[Samples](
 	[JarCapIntactAtReception] [bit] NULL,
 	[LabelIntactAtReception] [bit] NULL,
 	[SealNumberMatches] [bit] NULL,
+	[CapType] [varchar](20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
  CONSTRAINT [PK_Samples] PRIMARY KEY CLUSTERED 
 (
 	[SampleId] ASC
@@ -2218,6 +2270,10 @@ ALTER TABLE [dbo].[Samples] ADD  CONSTRAINT [DF_Samples_Status]  DEFAULT (N'Sent
 GO
 ALTER TABLE [dbo].[Samples] ADD  CONSTRAINT [DF_Samples_TakenAt]  DEFAULT (sysutcdatetime()) FOR [TakenAt]
 GO
+ALTER TABLE [dbo].[Samples]  WITH CHECK ADD  CONSTRAINT [CK_Samples_CapType] CHECK  (([CapType] IS NULL OR ([CapType]='TamperRing' OR [CapType]='SafetyButton')))
+GO
+ALTER TABLE [dbo].[Samples] CHECK CONSTRAINT [CK_Samples_CapType]
+GO
 ALTER TABLE [dbo].[Samples]  WITH CHECK ADD  CONSTRAINT [CK_Samples_Kind] CHECK  (([Kind] IS NULL OR ([Kind]='Composite' OR [Kind]='Container')))
 GO
 ALTER TABLE [dbo].[Samples] CHECK CONSTRAINT [CK_Samples_Kind]
@@ -2229,6 +2285,83 @@ GO
 ALTER TABLE [dbo].[Samples]  WITH CHECK ADD  CONSTRAINT [CK_Samples_Status] CHECK  (([Status]=N'Rejected' OR [Status]=N'Received' OR [Status]=N'Sent'))
 GO
 ALTER TABLE [dbo].[Samples] CHECK CONSTRAINT [CK_Samples_Status]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[SealBatches](
+	[BatchId] [int] IDENTITY(1,1) NOT NULL,
+	[OrgId] [int] NOT NULL,
+	[Kind] [varchar](20) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[FirstCode] [varchar](50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[LastCode] [varchar](50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[CodeCount] [int] NOT NULL,
+	[Note] [nvarchar](200) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[IssuedByUserId] [nvarchar](450) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[IssuedAt] [datetime2](7) NOT NULL,
+ CONSTRAINT [PK_SealBatches] PRIMARY KEY CLUSTERED 
+(
+	[BatchId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+)
+GO
+ALTER TABLE [dbo].[SealBatches]  WITH CHECK ADD  CONSTRAINT [CK_SealBatches_Kind] CHECK  (([Kind]='Plastic' OR [Kind]='Label'))
+GO
+ALTER TABLE [dbo].[SealBatches] CHECK CONSTRAINT [CK_SealBatches_Kind]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[SealCodes](
+	[SealCodeId] [int] IDENTITY(1,1) NOT NULL,
+	[BatchId] [int] NOT NULL,
+	[OrgId] [int] NOT NULL,
+	[Code] [varchar](50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[Kind] [varchar](20) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[Status] [varchar](20) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[UsedAs] [varchar](20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[ContainerId] [int] NULL,
+	[SampleId] [int] NULL,
+	[UsedByUserId] [nvarchar](450) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[UsedAt] [datetime2](7) NULL,
+	[BrokenAt] [datetime2](7) NULL,
+ CONSTRAINT [PK_SealCodes] PRIMARY KEY CLUSTERED 
+(
+	[SealCodeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+)
+GO
+CREATE NONCLUSTERED INDEX [IX_SealCodes_BatchId] ON [dbo].[SealCodes]
+(
+	[BatchId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+GO
+CREATE NONCLUSTERED INDEX [IX_SealCodes_Org_Status] ON [dbo].[SealCodes]
+(
+	[OrgId] ASC,
+	[Status] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [UX_SealCodes_Code] ON [dbo].[SealCodes]
+(
+	[Code] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+GO
+ALTER TABLE [dbo].[SealCodes] ADD  CONSTRAINT [DF_SealCodes_Status]  DEFAULT ('Issued') FOR [Status]
+GO
+ALTER TABLE [dbo].[SealCodes]  WITH CHECK ADD  CONSTRAINT [CK_SealCodes_Kind] CHECK  (([Kind]='Plastic' OR [Kind]='Label'))
+GO
+ALTER TABLE [dbo].[SealCodes] CHECK CONSTRAINT [CK_SealCodes_Kind]
+GO
+ALTER TABLE [dbo].[SealCodes]  WITH CHECK ADD  CONSTRAINT [CK_SealCodes_Status] CHECK  (([Status]='Broken' OR [Status]='Used' OR [Status]='Issued'))
+GO
+ALTER TABLE [dbo].[SealCodes] CHECK CONSTRAINT [CK_SealCodes_Status]
+GO
+ALTER TABLE [dbo].[SealCodes]  WITH CHECK ADD  CONSTRAINT [CK_SealCodes_UsedAs] CHECK  (([UsedAs] IS NULL OR ([UsedAs]='CounterJar' OR [UsedAs]='Jar' OR [UsedAs]='Closing' OR [UsedAs]='Origin')))
+GO
+ALTER TABLE [dbo].[SealCodes] CHECK CONSTRAINT [CK_SealCodes_UsedAs]
 GO
 SET ANSI_NULLS ON
 GO
@@ -2663,6 +2796,11 @@ REFERENCES [dbo].[LotIntakes] ([IntakeId])
 GO
 ALTER TABLE [dbo].[Containers] CHECK CONSTRAINT [FK_Containers_LotIntakes]
 GO
+ALTER TABLE [dbo].[Containers]  WITH CHECK ADD  CONSTRAINT [FK_Containers_OrgContainers] FOREIGN KEY([OrgContainerId])
+REFERENCES [dbo].[OrgContainers] ([OrgContainerId])
+GO
+ALTER TABLE [dbo].[Containers] CHECK CONSTRAINT [FK_Containers_OrgContainers]
+GO
 ALTER TABLE [dbo].[Containers]  WITH CHECK ADD  CONSTRAINT [FK_Containers_RawHoneyProductions] FOREIGN KEY([RawHoneyProductionId])
 REFERENCES [dbo].[RawHoneyProductions] ([RawHoneyProductionId])
 GO
@@ -2923,6 +3061,11 @@ REFERENCES [dbo].[Organizations] ([OrgId])
 GO
 ALTER TABLE [dbo].[OrgCapabilities] CHECK CONSTRAINT [FK_OrgCapabilities_Org]
 GO
+ALTER TABLE [dbo].[OrgContainers]  WITH CHECK ADD  CONSTRAINT [FK_OrgContainers_Organizations] FOREIGN KEY([OrgId])
+REFERENCES [dbo].[Organizations] ([OrgId])
+GO
+ALTER TABLE [dbo].[OrgContainers] CHECK CONSTRAINT [FK_OrgContainers_Organizations]
+GO
 ALTER TABLE [dbo].[OrgDocuments]  WITH CHECK ADD  CONSTRAINT [FK_OrgDocuments_Org] FOREIGN KEY([OrgId])
 REFERENCES [dbo].[Organizations] ([OrgId])
 GO
@@ -3028,6 +3171,31 @@ ALTER TABLE [dbo].[Samples]  WITH CHECK ADD  CONSTRAINT [FK_Samples_TakingOrg] F
 REFERENCES [dbo].[Organizations] ([OrgId])
 GO
 ALTER TABLE [dbo].[Samples] CHECK CONSTRAINT [FK_Samples_TakingOrg]
+GO
+ALTER TABLE [dbo].[SealBatches]  WITH CHECK ADD  CONSTRAINT [FK_SealBatches_Organizations] FOREIGN KEY([OrgId])
+REFERENCES [dbo].[Organizations] ([OrgId])
+GO
+ALTER TABLE [dbo].[SealBatches] CHECK CONSTRAINT [FK_SealBatches_Organizations]
+GO
+ALTER TABLE [dbo].[SealCodes]  WITH CHECK ADD  CONSTRAINT [FK_SealCodes_Containers] FOREIGN KEY([ContainerId])
+REFERENCES [dbo].[Containers] ([ContainerId])
+GO
+ALTER TABLE [dbo].[SealCodes] CHECK CONSTRAINT [FK_SealCodes_Containers]
+GO
+ALTER TABLE [dbo].[SealCodes]  WITH CHECK ADD  CONSTRAINT [FK_SealCodes_Organizations] FOREIGN KEY([OrgId])
+REFERENCES [dbo].[Organizations] ([OrgId])
+GO
+ALTER TABLE [dbo].[SealCodes] CHECK CONSTRAINT [FK_SealCodes_Organizations]
+GO
+ALTER TABLE [dbo].[SealCodes]  WITH CHECK ADD  CONSTRAINT [FK_SealCodes_Samples] FOREIGN KEY([SampleId])
+REFERENCES [dbo].[Samples] ([SampleId])
+GO
+ALTER TABLE [dbo].[SealCodes] CHECK CONSTRAINT [FK_SealCodes_Samples]
+GO
+ALTER TABLE [dbo].[SealCodes]  WITH CHECK ADD  CONSTRAINT [FK_SealCodes_SealBatches] FOREIGN KEY([BatchId])
+REFERENCES [dbo].[SealBatches] ([BatchId])
+GO
+ALTER TABLE [dbo].[SealCodes] CHECK CONSTRAINT [FK_SealCodes_SealBatches]
 GO
 ALTER TABLE [dbo].[Shipments]  WITH CHECK ADD  CONSTRAINT [FK_Shipments_Batch] FOREIGN KEY([FinalHoneyProductionId])
 REFERENCES [dbo].[FinalHoneyProductions] ([FinalHoneyProductionId])
@@ -3349,6 +3517,27 @@ BEGIN
 END;
 GO
 ALTER TABLE [dbo].[SampleSources] ENABLE TRIGGER [TR_SampleSources_InsertOnly]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- a used code never goes back to the pool
+CREATE   TRIGGER [dbo].[TR_SealCodes_OneWay] ON [dbo].[SealCodes] AFTER UPDATE, DELETE
+AS
+BEGIN
+    SET NOCOUNT ON;
+    IF EXISTS (SELECT 1 FROM deleted d LEFT JOIN inserted i ON i.SealCodeId = d.SealCodeId
+               WHERE i.SealCodeId IS NULL AND d.Status <> 'Issued')
+        THROW 50001, N'A used seal code cannot be deleted.', 1;
+    IF EXISTS (SELECT 1 FROM deleted d JOIN inserted i ON i.SealCodeId = d.SealCodeId
+               WHERE i.Code <> d.Code OR i.OrgId <> d.OrgId
+                  OR (d.Status = 'Used' AND i.Status = 'Issued') OR (d.Status = 'Broken' AND i.Status <> 'Broken'))
+        THROW 50001, N'A seal code cannot be renamed or returned to the pool.', 1;
+END;
+GO
+ALTER TABLE [dbo].[SealCodes] ENABLE TRIGGER [TR_SealCodes_OneWay]
 GO
 SET ANSI_NULLS ON
 GO

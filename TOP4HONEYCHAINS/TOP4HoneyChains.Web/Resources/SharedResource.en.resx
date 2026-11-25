@@ -7855,7 +7855,7 @@
     <value>Production period</value>
   </data>
   <data name="Ci.Help" xml:space="preserve">
-    <value>Record each container of the delivery with its seal, take a sample from every container, then the beekeeper confirms everything with an SMS code.</value>
+    <value>Record each container in three short steps: the container, its two sample jars and its closing seal. Then the beekeeper confirms everything with an SMS code.</value>
   </data>
   <data name="Ci.NoPhone" xml:space="preserve">
     <value>no mobile phone: signed photo only</value>
@@ -7867,7 +7867,7 @@
     <value>Containers and samples</value>
   </data>
   <data name="Ci.ContainersHelp" xml:space="preserve">
-    <value>One row per container (tin, bucket or drum). For each one: choose how it arrived, fill a sample jar and a counter-sample jar, check the cap button is down, and seal the container again.</value>
+    <value>Choose the cap of the sample jars once for the whole delivery. Then fill one card per container.</value>
   </data>
   <data name="Ci.Kind" xml:space="preserve">
     <value>Type</value>
@@ -7897,10 +7897,10 @@
     <value>On arrival</value>
   </data>
   <data name="Ci.ArrivedSealed" xml:space="preserve">
-    <value>Arrived sealed</value>
+    <value>Sealed at harvest by the field inspector</value>
   </data>
   <data name="Ci.OriginSeal" xml:space="preserve">
-    <value>Number of the seal it came with</value>
+    <value>Code of the seal put on at harvest</value>
   </data>
   <data name="Ci.OriginIntact" xml:space="preserve">
     <value>I checked: the seal is intact</value>
@@ -7909,22 +7909,22 @@
     <value>New seal, put on now in front of the beekeeper</value>
   </data>
   <data name="Ci.JarSeal" xml:space="preserve">
-    <value>Jar seal</value>
+    <value>Seal label of the sample jar</value>
   </data>
   <data name="Ci.CounterSeal" xml:space="preserve">
-    <value>Counter-sample seal</value>
+    <value>Seal label of the counter-sample jar</value>
   </data>
   <data name="Ci.Cap" xml:space="preserve">
     <value>Cap intact</value>
   </data>
   <data name="Ci.CapHelp" xml:space="preserve">
-    <value>Tamper-evident cap: tick only when the button is down. A popped cap means the jar was opened: discard it and fill a new jar.</value>
+    <value>Safety-button cap: tick only when the button is down. A cap with a raised button means the jar was opened: discard it and fill a new jar.</value>
   </data>
   <data name="Ci.Reseal" xml:space="preserve">
     <value>New seal after sampling</value>
   </data>
   <data name="Ci.Remove" xml:space="preserve">
-    <value>Remove the row</value>
+    <value>Remove the container</value>
   </data>
   <data name="Ci.AddContainer" xml:space="preserve">
     <value>Add a container</value>
@@ -7945,7 +7945,7 @@
     <value>The beekeeper confirms</value>
   </data>
   <data name="Ci.SendHelp" xml:space="preserve">
-    <value>The beekeeper gets an SMS with your organization, the date, the containers, the kilograms, the honey type and the number of samples, and a code. Changing anything after sending needs a new code.</value>
+    <value>The beekeeper gets an SMS with your organization, the date, the containers, the kilograms, the honey type, the number of samples and a code. The code also covers every container code, seal code and the jar cap. Changing anything after sending needs a new code.</value>
   </data>
   <data name="Ci.NotPresent" xml:space="preserve">
     <value>If the beekeeper is not present, call them: they read the code from their phone.</value>
@@ -8005,10 +8005,10 @@
     <value>Sample jars</value>
   </data>
   <data name="Ci.Seal.Checked" xml:space="preserve">
-    <value>Origin seal checked</value>
+    <value>Seal checked on arrival</value>
   </data>
   <data name="Ci.Seal.Applied" xml:space="preserve">
-    <value>Plant seal applied</value>
+    <value>Seal applied</value>
   </data>
   <data name="Ci.Seal.Broken" xml:space="preserve">
     <value>Seal broken</value>
@@ -9730,13 +9730,13 @@
     <value>Type the beekeeper's registry number (e.g. TR520401200241) or business number and press Find. The beekeeper's apiaries then appear in the form.</value>
   </data>
   <data name="Ci.ArrivedUnsealed" xml:space="preserve">
-    <value>Arrived unsealed</value>
+    <value>Arrived unsealed (normal)</value>
   </data>
   <data name="Ci.Info.Arrival" xml:space="preserve">
-    <value>Choose how the container arrived. Arrived sealed: type the number of the seal it came with and confirm the seal is intact. Arrived unsealed: seal it now in front of the beekeeper and type the new seal number. The seal ties the container to its sample jars and to the delivery the beekeeper confirms, so the honey cannot be swapped later.</value>
+    <value>Normally the container arrives unsealed: take the samples, then close it with one seal. Choose “sealed at harvest” only when the association's field inspector sealed it at the apiary with a seal from the association's pool; check that the seal is intact.</value>
   </data>
   <data name="Ci.Info.Jars" xml:space="preserve">
-    <value>From every container fill two jars: the sample jar goes to the laboratory, the counter-sample jar stays with you in case a result is disputed. Seal each jar and type its seal number.</value>
+    <value>Fill two jars from this container. Put a seal label from the pool over cap and jar on each: the sample jar goes to the laboratory, the counter-sample jar stays with you in case a result is disputed.</value>
   </data>
   <data name="Ci.Info.Reseal" xml:space="preserve">
     <value>Taking the samples opens the container. Seal it again and type the new seal number; the container keeps this seal until it is used.</value>
@@ -9758,5 +9758,407 @@
   </data>
   <data name="Reg93.CoordinatesHelp" xml:space="preserve">
     <value>Type the coordinates of this apiary (the map above sets the first apiary).</value>
+  </data>
+  <data name="Ci.JarSetup" xml:space="preserve">
+    <value>Sample jars of this delivery</value>
+  </data>
+  <data name="Ci.CapType" xml:space="preserve">
+    <value>Cap of the sample jars</value>
+  </data>
+  <data name="Ci.Cap.SafetyButton" xml:space="preserve">
+    <value>Safety-button cap</value>
+  </data>
+  <data name="Ci.Cap.SafetyButton.Help" xml:space="preserve">
+    <value>Vacuum cap, as on baby-food jars: the button stays down only while there is a vacuum.</value>
+  </data>
+  <data name="Ci.Cap.TamperRing" xml:space="preserve">
+    <value>Tamper-ring cap</value>
+  </data>
+  <data name="Ci.Cap.TamperRing.Help" xml:space="preserve">
+    <value>The ring under the cap breaks off when the cap is opened.</value>
+  </data>
+  <data name="Ci.InfoCard.Button.Title" xml:space="preserve">
+    <value>Safety-button cap: how to close the jar</value>
+  </data>
+  <data name="Ci.InfoCard.Button" xml:space="preserve">
+    <value>The button stays down only with a vacuum in the jar. After filling, draw the vacuum with a hand vacuum pump until the button goes down. Never heat the honey to get a vacuum: heat raises HMF and lowers diastase, so the sample would no longer show the honey as delivered.</value>
+  </data>
+  <data name="Ci.InfoCard.Ring.Title" xml:space="preserve">
+    <value>Tamper-ring cap: how to close the jar</value>
+  </data>
+  <data name="Ci.InfoCard.Ring" xml:space="preserve">
+    <value>Turn the cap until the ring sits tight under it. An unbroken ring shows the jar has not been opened; a broken ring means it was.</value>
+  </data>
+  <data name="Ci.InfoCard.Closure.Title" xml:space="preserve">
+    <value>How a container is closed</value>
+  </data>
+  <data name="Ci.InfoCard.Closure" xml:space="preserve">
+    <value>Beekeepers bring their own tins and buckets, and most arrive unsealed. Take the samples first, then close the container with one seal in front of the beekeeper. Choose per container:</value>
+  </data>
+  <data name="Ci.InfoCard.Closure.Pool" xml:space="preserve">
+    <value>Seal labels and plastic seals come from your organization's seal pool; each code is used once.</value>
+  </data>
+  <data name="Ci.Closure" xml:space="preserve">
+    <value>How is it closed?</value>
+  </data>
+  <data name="Ci.Closure.SealLabel" xml:space="preserve">
+    <value>Beekeeper's container + seal label</value>
+  </data>
+  <data name="Ci.Closure.SealLabel.Short" xml:space="preserve">
+    <value>Numbered label with QR across lid and body. Works on any container.</value>
+  </data>
+  <data name="Ci.Closure.SealLabel.Help" xml:space="preserve">
+    <value>A numbered label with a QR code, issued by the platform and printed in advance on tamper-evident VOID label stock. It goes across lid and body and tears or leaves VOID marks if someone removes it. Works on any container.</value>
+  </data>
+  <data name="Ci.Closure.PlasticSeal" xml:space="preserve">
+    <value>Beekeeper's container + numbered plastic seal</value>
+  </data>
+  <data name="Ci.Closure.PlasticSeal.Short" xml:space="preserve">
+    <value>Through a handle or a lid hole; it locks once.</value>
+  </data>
+  <data name="Ci.Closure.PlasticSeal.Help" xml:space="preserve">
+    <value>For containers with a handle or a lid hole: the purchased numbered seal goes through it and locks; it can only be opened by cutting it.</value>
+  </data>
+  <data name="Ci.Closure.OrgContainer" xml:space="preserve">
+    <value>Association's permanent container</value>
+  </data>
+  <data name="Ci.Closure.OrgContainer.Short" xml:space="preserve">
+    <value>Registered once; scan or type its TK code.</value>
+  </data>
+  <data name="Ci.Closure.OrgContainer.Help" xml:space="preserve">
+    <value>The association's own container, registered once with a permanent code and QR. Scan or type its code at the delivery; its page shows every use. It is still closed with a seal from the pool.</value>
+  </data>
+  <data name="Ci.Info.Closure" xml:space="preserve">
+    <value>The container is closed once, after sampling, in front of the beekeeper. The seal comes from your organization's seal pool.</value>
+  </data>
+  <data name="Ci.Step.Container" xml:space="preserve">
+    <value>Container</value>
+  </data>
+  <data name="Ci.Step.Samples" xml:space="preserve">
+    <value>Samples</value>
+  </data>
+  <data name="Ci.Step.Closing" xml:space="preserve">
+    <value>Closing</value>
+  </data>
+  <data name="Ci.BoxCode" xml:space="preserve">
+    <value>Code of the association's container</value>
+  </data>
+  <data name="Ci.BoxOk" xml:space="preserve">
+    <value>Registered: {0}</value>
+  </data>
+  <data name="Ci.TareHint" xml:space="preserve">
+    <value>Empty weight {0} kg: net = gross − {0}</value>
+  </data>
+  <data name="Ci.CapCheck.SafetyButton" xml:space="preserve">
+    <value>Button down</value>
+  </data>
+  <data name="Ci.CapCheck.TamperRing" xml:space="preserve">
+    <value>Ring unbroken</value>
+  </data>
+  <data name="Ci.CapCheckBoth" xml:space="preserve">
+    <value>on both jars</value>
+  </data>
+  <data name="Ci.Info.CapCheck" xml:space="preserve">
+    <value>Check both jars after closing them. A raised button or a broken ring means the jar was opened: discard it and fill a new one.</value>
+  </data>
+  <data name="Ci.ClosingHelp" xml:space="preserve">
+    <value>After sampling, close the container in front of the beekeeper and scan or type the seal.</value>
+  </data>
+  <data name="Ci.ClosingSeal.SealLabel" xml:space="preserve">
+    <value>Seal label code</value>
+  </data>
+  <data name="Ci.ClosingSeal.PlasticSeal" xml:space="preserve">
+    <value>Number of the plastic seal</value>
+  </data>
+  <data name="Ci.ClosingSeal.OrgContainer" xml:space="preserve">
+    <value>Seal code (label or plastic seal)</value>
+  </data>
+  <data name="Ci.SealOk" xml:space="preserve">
+    <value>In the pool and unused</value>
+  </data>
+  <data name="Ci.SealDup" xml:space="preserve">
+    <value>This code is already used in this delivery.</value>
+  </data>
+  <data name="Ci.Confirms.Title" xml:space="preserve">
+    <value>What the beekeeper confirms</value>
+  </data>
+  <data name="Ci.Confirms" xml:space="preserve">
+    <value>The SMS code confirms exactly this list: every container code, every seal code and the jar cap. If anything changes later, the record no longer matches the confirmation.</value>
+  </data>
+  <data name="Lab.CheckCap.SafetyButton" xml:space="preserve">
+    <value>The button is down</value>
+  </data>
+  <data name="Lab.CheckCap.TamperRing" xml:space="preserve">
+    <value>The tamper ring is unbroken</value>
+  </data>
+  <data name="Lab.Info.Reception.Title" xml:space="preserve">
+    <value>Before you accept a jar</value>
+  </data>
+  <data name="Lab.Info.Reception" xml:space="preserve">
+    <value>Answer three checks: the seal label code matches the record, the label is intact (no tear, no VOID marks), and the cap is closed (button down or ring unbroken). Any “no” rejects the jar, because it may have been opened on the way. The plant then takes a new jar from the same container, which is still closed with its seal; the counter-sample stays with the plant for a dispute.</value>
+  </data>
+  <data name="Scene.label" xml:space="preserve">
+    <value>A seal label goes across lid and body. Peeled off, it tears and leaves VOID marks.</value>
+  </data>
+  <data name="Scene.plastic" xml:space="preserve">
+    <value>A numbered plastic seal goes through the handle and locks.</value>
+  </data>
+  <data name="Scene.scan" xml:space="preserve">
+    <value>The association's container is scanned by its QR code.</value>
+  </data>
+  <data name="Scene.button" xml:space="preserve">
+    <value>Button down: the jar is closed. A raised button: the jar was opened.</value>
+  </data>
+  <data name="Scene.ring" xml:space="preserve">
+    <value>Ring unbroken: the jar is closed. A broken ring: the jar was opened.</value>
+  </data>
+  <data name="Seal.Title" xml:space="preserve">
+    <value>Seal pool and containers</value>
+  </data>
+  <data name="Seal.Help" xml:space="preserve">
+    <value>Every seal used at a delivery comes from this pool: seal labels issued by the platform and purchased numbered plastic seals. Each code is used once; here you see which codes are free, where each one was used and which were opened.</value>
+  </data>
+  <data name="Seal.Kind" xml:space="preserve">
+    <value>Kind</value>
+  </data>
+  <data name="Seal.Kind.Label" xml:space="preserve">
+    <value>Seal label</value>
+  </data>
+  <data name="Seal.Kind.Plastic" xml:space="preserve">
+    <value>Numbered plastic seal</value>
+  </data>
+  <data name="Seal.Status.Issued" xml:space="preserve">
+    <value>Free</value>
+  </data>
+  <data name="Seal.Status.Used" xml:space="preserve">
+    <value>Used</value>
+  </data>
+  <data name="Seal.Status.Broken" xml:space="preserve">
+    <value>Opened</value>
+  </data>
+  <data name="Seal.Use.Origin" xml:space="preserve">
+    <value>at harvest</value>
+  </data>
+  <data name="Seal.Use.Closing" xml:space="preserve">
+    <value>closing</value>
+  </data>
+  <data name="Seal.Use.Jar" xml:space="preserve">
+    <value>sample jar</value>
+  </data>
+  <data name="Seal.Use.CounterJar" xml:space="preserve">
+    <value>counter-sample jar</value>
+  </data>
+  <data name="Seal.Materials.Title" xml:space="preserve">
+    <value>Materials to keep at hand</value>
+  </data>
+  <data name="Seal.Materials" xml:space="preserve">
+    <value>Tamper-evident VOID label stock (100 × 50 mm) for the seal labels, numbered plastic seals for handles, sample jars with safety-button or tamper-ring caps, and a hand vacuum pump for the button caps.</value>
+  </data>
+  <data name="Seal.Issue" xml:space="preserve">
+    <value>Issue seal labels</value>
+  </data>
+  <data name="Seal.IssueHelp" xml:space="preserve">
+    <value>The platform gives the next free numbers (TS-…). Print them on VOID label stock before the deliveries.</value>
+  </data>
+  <data name="Seal.Count" xml:space="preserve">
+    <value>Number of labels</value>
+  </data>
+  <data name="Seal.Note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="Seal.IssueButton" xml:space="preserve">
+    <value>Issue</value>
+  </data>
+  <data name="Seal.Range" xml:space="preserve">
+    <value>Add purchased plastic seals</value>
+  </data>
+  <data name="Seal.RangeHelp" xml:space="preserve">
+    <value>Enter the range printed on the seals: an optional prefix and the first and last number.</value>
+  </data>
+  <data name="Seal.Prefix" xml:space="preserve">
+    <value>Prefix</value>
+  </data>
+  <data name="Seal.From" xml:space="preserve">
+    <value>First number</value>
+  </data>
+  <data name="Seal.To" xml:space="preserve">
+    <value>Last number</value>
+  </data>
+  <data name="Seal.AddButton" xml:space="preserve">
+    <value>Add to the pool</value>
+  </data>
+  <data name="Seal.OnlyAdmin" xml:space="preserve">
+    <value>Only the organization administrator issues seals and registers containers.</value>
+  </data>
+  <data name="Seal.Batches" xml:space="preserve">
+    <value>Batches</value>
+  </data>
+  <data name="Seal.Batch" xml:space="preserve">
+    <value>Batch</value>
+  </data>
+  <data name="Seal.Codes" xml:space="preserve">
+    <value>Codes</value>
+  </data>
+  <data name="Seal.Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="Seal.State" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="Seal.UsedOn" xml:space="preserve">
+    <value>Used on</value>
+  </data>
+  <data name="Seal.Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Seal.All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Seal.Containers" xml:space="preserve">
+    <value>Permanent containers</value>
+  </data>
+  <data name="Seal.ContainersHelp" xml:space="preserve">
+    <value>The association's own containers, registered once. Fix the printed label with the code and QR to each one; at a delivery it is scanned or typed, and its page shows every use.</value>
+  </data>
+  <data name="Seal.Register" xml:space="preserve">
+    <value>Register a container</value>
+  </data>
+  <data name="Seal.Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Seal.Capacity" xml:space="preserve">
+    <value>Capacity (kg)</value>
+  </data>
+  <data name="Seal.Tare" xml:space="preserve">
+    <value>Empty weight (kg)</value>
+  </data>
+  <data name="Seal.RegisterButton" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="Seal.Uses" xml:space="preserve">
+    <value>Uses</value>
+  </data>
+  <data name="Seal.LastUse" xml:space="preserve">
+    <value>Last use</value>
+  </data>
+  <data name="Seal.BoxUses" xml:space="preserve">
+    <value>Every use</value>
+  </data>
+  <data name="Seal.PrintHelp" xml:space="preserve">
+    <value>Print on tamper-evident VOID label stock.</value>
+  </data>
+  <data name="Seal.VoidNote" xml:space="preserve">
+    <value>DO NOT REMOVE · VOID</value>
+  </data>
+  <data name="Choose the cap of the sample jars." xml:space="preserve">
+    <value>Choose the cap of the sample jars.</value>
+  </data>
+  <data name="Container {0}: choose how the container is closed." xml:space="preserve">
+    <value>Container {0}: choose how the container is closed.</value>
+  </data>
+  <data name="Container {0}: {1}" xml:space="preserve">
+    <value>Container {0}: {1}</value>
+  </data>
+  <data name="Container {0}: enter the code of the seal the field inspector put on at harvest." xml:space="preserve">
+    <value>Container {0}: enter the code of the seal the field inspector put on at harvest.</value>
+  </data>
+  <data name="Container {0}: enter the seal label codes of the sample jar and of the counter-sample jar." xml:space="preserve">
+    <value>Container {0}: enter the seal label codes of the sample jar and of the counter-sample jar.</value>
+  </data>
+  <data name="Container {0}: the tamper ring of the jar's cap must be unbroken. A broken ring: discard the jar and fill a new one." xml:space="preserve">
+    <value>Container {0}: the tamper ring of the jar's cap must be unbroken. A broken ring: discard the jar and fill a new one.</value>
+  </data>
+  <data name="Container {0}: the button of the jar's cap must be down. A raised button: discard the jar and fill a new one." xml:space="preserve">
+    <value>Container {0}: the button of the jar's cap must be down. A raised button: discard the jar and fill a new one.</value>
+  </data>
+  <data name="Container {0}: enter the closing seal, applied after sampling in front of the beekeeper." xml:space="preserve">
+    <value>Container {0}: enter the closing seal, applied after sampling in front of the beekeeper.</value>
+  </data>
+  <data name="Container {0}: seal codes have at most 50 characters." xml:space="preserve">
+    <value>Container {0}: seal codes have at most 50 characters.</value>
+  </data>
+  <data name="Every seal code of the delivery must be different." xml:space="preserve">
+    <value>Every seal code of the delivery must be different.</value>
+  </data>
+  <data name="Each association container can be recorded only once per delivery." xml:space="preserve">
+    <value>Each association container can be recorded only once per delivery.</value>
+  </data>
+  <data name="Seal {0} is not in the seal pool of your organization." xml:space="preserve">
+    <value>Seal {0} is not in the seal pool of your organization.</value>
+  </data>
+  <data name="Seal {0} was already used on {1}." xml:space="preserve">
+    <value>Seal {0} was already used on {1}.</value>
+  </data>
+  <data name="Seal {0} was already used." xml:space="preserve">
+    <value>Seal {0} was already used.</value>
+  </data>
+  <data name="Seal {0} is a numbered plastic seal; a seal label is needed here." xml:space="preserve">
+    <value>Seal {0} is a numbered plastic seal; a seal label is needed here.</value>
+  </data>
+  <data name="Seal {0} is a seal label; a numbered plastic seal is needed here." xml:space="preserve">
+    <value>Seal {0} is a seal label; a numbered plastic seal is needed here.</value>
+  </data>
+  <data name="Scan or type the code of the association's container." xml:space="preserve">
+    <value>Scan or type the code of the association's container.</value>
+  </data>
+  <data name="Container {0} is not registered for your organization." xml:space="preserve">
+    <value>Container {0} is not registered for your organization.</value>
+  </data>
+  <data name="Container {0} is retired." xml:space="preserve">
+    <value>Container {0} is retired.</value>
+  </data>
+  <data name="A seal code of the delivery was used meanwhile; record the delivery again." xml:space="preserve">
+    <value>A seal code of the delivery was used meanwhile; record the delivery again.</value>
+  </data>
+  <data name="The seal codes of this delivery come from the seal pool and cannot be corrected." xml:space="preserve">
+    <value>The seal codes of this delivery come from the seal pool and cannot be corrected.</value>
+  </data>
+  <data name="The tamper ring of the jar's cap must be unbroken. A broken ring: discard the jar and fill a new one." xml:space="preserve">
+    <value>The tamper ring of the jar's cap must be unbroken. A broken ring: discard the jar and fill a new one.</value>
+  </data>
+  <data name="The button of the jar's cap must be down. A raised button: discard the jar and fill a new one." xml:space="preserve">
+    <value>The button of the jar's cap must be down. A raised button: discard the jar and fill a new one.</value>
+  </data>
+  <data name="Only the organization administrator and the roles that record or read deliveries can open the seal pool." xml:space="preserve">
+    <value>Only the organization administrator and the roles that record or read deliveries can open the seal pool.</value>
+  </data>
+  <data name="Issue between 1 and 500 seal labels at a time." xml:space="preserve">
+    <value>Issue between 1 and 500 seal labels at a time.</value>
+  </data>
+  <data name="{0} seal labels issued: {1} to {2}. Print them on VOID label stock." xml:space="preserve">
+    <value>{0} seal labels issued: {1} to {2}. Print them on VOID label stock.</value>
+  </data>
+  <data name="{0} plastic seals added to the pool: {1} to {2}." xml:space="preserve">
+    <value>{0} plastic seals added to the pool: {1} to {2}.</value>
+  </data>
+  <data name="Container {0} registered. Print its label and fix it to the container." xml:space="preserve">
+    <value>Container {0} registered. Print its label and fix it to the container.</value>
+  </data>
+  <data name="The prefix has at most 20 letters, digits or hyphens." xml:space="preserve">
+    <value>The prefix has at most 20 letters, digits or hyphens.</value>
+  </data>
+  <data name="Enter the first and the last number of the seals (digits only)." xml:space="preserve">
+    <value>Enter the first and the last number of the seals (digits only).</value>
+  </data>
+  <data name="The last number cannot be lower than the first." xml:space="preserve">
+    <value>The last number cannot be lower than the first.</value>
+  </data>
+  <data name="At most 1000 seals per range." xml:space="preserve">
+    <value>At most 1000 seals per range.</value>
+  </data>
+  <data name="TS- and TK- are kept for the platform's seal labels and containers." xml:space="preserve">
+    <value>TS- and TK- are kept for the platform's seal labels and containers.</value>
+  </data>
+  <data name="Some of these seals are already in a seal pool (first: {0})." xml:space="preserve">
+    <value>Some of these seals are already in a seal pool (first: {0}).</value>
+  </data>
+  <data name="Choose the kind of container." xml:space="preserve">
+    <value>Choose the kind of container.</value>
+  </data>
+  <data name="The name has at most 100 characters." xml:space="preserve">
+    <value>The name has at most 100 characters.</value>
+  </data>
+  <data name="Enter the capacity and the empty weight in kg (or leave them empty)." xml:space="preserve">
+    <value>Enter the capacity and the empty weight in kg (or leave them empty).</value>
   </data>
 </root>

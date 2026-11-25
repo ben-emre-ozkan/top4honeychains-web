@@ -107,6 +107,15 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                     return (null, string.Format(CultureInfo.InvariantCulture, "Container {0}: enter the net weight (more than 0 kg).", n));
                 if (c.GrossKg != null && c.GrossKg < c.NetKg)
                     return (null, string.Format(CultureInfo.InvariantCulture, "Container {0}: the gross weight cannot be lower than the net weight.", n));
+                if (o.Closure != null)
+                {
+                    // D-97: the codes come from the seal pool and were confirmed by the beekeeper; a correction keeps them
+                    static string? N(string? x) => SealPoolService.Normalize(x);
+                    if (N(arrival) != N(o.OriginSeal) || N(jar) != N(o.JarSeal) || N(counter) != N(o.CounterSeal) || N(reseal) != N(o.Reseal))
+                        return (null, "The seal codes of this delivery come from the seal pool and cannot be corrected.");
+                    rows.Add(o with { Kind = o.Closure == ClosureKind.OrgContainer ? o.Kind : c.Kind!, Net = c.NetKg!.Value, Gross = c.GrossKg });
+                    continue;
+                }
                 if (arrival == null || jar == null || counter == null || reseal == null)
                     return (null, string.Format(CultureInfo.InvariantCulture, "Container {0}: every seal number is required.", n));
                 if (new[] { arrival, jar, counter, reseal }.Any(s => s.Length > 50))

@@ -144,6 +144,7 @@ builder.Services.AddScoped<AccountGateFilter>();
 builder.Services.AddScoped<CredentialService>();
 builder.Services.AddScoped<RegistrationService>();
 builder.Services.AddScoped<BeekeeperSignIn>();
+builder.Services.AddScoped<SealPoolService>();
 builder.Services.AddScoped<CustodyIntakeService>();
 builder.Services.AddScoped<DeliveryCorrectionService>();
 builder.Services.Configure<PublicNameOptions>(builder.Configuration.GetSection("PublicNames"));

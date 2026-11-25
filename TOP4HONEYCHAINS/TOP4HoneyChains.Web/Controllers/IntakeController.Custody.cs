@@ -82,7 +82,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 errors.Add("Enter where the counter-sample is kept (at most 200 characters).");
             if (f.RetainUntil == null || f.RetainUntil <= DateOnly.FromDateTime(DateTime.Today))
                 errors.Add("Enter until when the counter-sample is kept (a future date).");
-            errors.AddRange(Custody.CheckContainers(f));
+            if (await _current.GetAsync() is { } active)
+                errors.AddRange(await Custody.CheckContainersAsync(f, active.OrgId, bk?.BeekeeperId));
             return errors;
         }
 
@@ -145,7 +146,16 @@ namespace TOP4HoneyChains.Web.Controllers
                         return await CustodyFormAsync(form, bk, codeSent: true);
                     }
                     var org = await _context.Organizations.AsNoTracking().FirstAsync(o => o.OrgId == active.OrgId);
-                    var saved = await Custody.SaveAsync(form, content, active.OrgId, org.LegacyWholesalerId, _current.UserId!, verified.CodeId, null);
+                    CustodyIntakeService.Saved saved;
+                    try
+                    {
+                        saved = await Custody.SaveAsync(form, content, active.OrgId, org.LegacyWholesalerId, _current.UserId!, verified.CodeId, null);
+                    }
+                    catch (InvalidOperationException e) when (e.Message.StartsWith("A seal code", StringComparison.Ordinal))
+                    {
+                        ModelState.AddModelError("", e.Message);
+                        return await CustodyFormAsync(form, bk, codeSent: false);
+                    }
                     TempData["Success"] = $"Delivery confirmed by the beekeeper and recorded as lot #{saved.LotId}.";
                     TempData["Scene"] = "delivery";   // D-78 P4: the truck unloads the sealed tins
                     return RedirectToAction(nameof(Details), new { id = saved.IntakeId });
@@ -212,6 +222,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 .Include(i => i.RawHoneyProduction!).ThenInclude(r => r.RawHoneyProductionHoneyTypeNavigation)
                 .Include(i => i.Containers).ThenInclude(c => c.SealEvents)
                 .Include(i => i.Containers).ThenInclude(c => c.Samples).ThenInclude(s => s.LabOrg)
+                .Include(i => i.Containers).ThenInclude(c => c.OrgContainer)
                 .FirstOrDefaultAsync(i => i.IntakeId == id);
             if (intake == null || !await MaySeeIntakeAsync(intake))
                 return NotFound();

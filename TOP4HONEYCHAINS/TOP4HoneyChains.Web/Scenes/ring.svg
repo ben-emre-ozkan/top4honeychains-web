@@ -1,0 +1,14 @@
+<svg viewBox="0 0 320 120" width="320" height="120">
+  <rect x="0" y="0" width="320" height="120" rx="16" fill="#FFF4D6"/>
+  <path d="M24 104H296" stroke="#EBD5A8" stroke-width="2" stroke-linecap="round"/>
+  <rect x="78" y="56" width="56" height="48" rx="10" fill="#FFB547" stroke="#574A40" stroke-width="2"/>
+  <rect x="74" y="34" width="64" height="14" rx="4" fill="#FFFBF0" stroke="#574A40" stroke-width="2"/>
+  <rect x="76" y="48" width="60" height="6" rx="2" fill="#FFE7AE" stroke="#574A40" stroke-width="1.6"/>
+  <path d="M86 51H90M96 51H100M106 51H110M116 51H120M126 51H130" stroke="#574A40" stroke-width="1.2"/>
+  <g class="p-ok"><circle cx="106" cy="20" r="8" fill="#E8F8F7" stroke="#0B7A75" stroke-width="2"/><path d="M102 20.5L105 23.5L110 18" fill="none" stroke="#0B7A75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <rect x="186" y="56" width="56" height="48" rx="10" fill="#FFB547" stroke="#574A40" stroke-width="2"/>
+  <g class="p-ringl"><rect x="184" y="50" width="26" height="6" rx="2" fill="#FFE7AE" stroke="#574A40" stroke-width="1.6"/></g>
+  <g class="p-ringr"><rect x="218" y="50" width="26" height="6" rx="2" fill="#FFE7AE" stroke="#574A40" stroke-width="1.6"/></g>
+  <g class="p-cap"><rect x="182" y="28" width="64" height="14" rx="4" fill="#FFFBF0" stroke="#574A40" stroke-width="2"/></g>
+  <g class="p-warn"><circle cx="262" cy="22" r="8" fill="#FCEBD2" stroke="#B03A2E" stroke-width="2"/><path d="M262 17.5V23M262 26.5V27" stroke="#B03A2E" stroke-width="2.2" stroke-linecap="round"/></g>
+</svg>

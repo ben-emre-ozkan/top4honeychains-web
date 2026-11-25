@@ -1,0 +1,17 @@
+<svg viewBox="0 0 320 120" width="320" height="120">
+  <rect x="0" y="0" width="320" height="120" rx="16" fill="#FFF4D6"/>
+  <path d="M24 104H296" stroke="#EBD5A8" stroke-width="2" stroke-linecap="round"/>
+  <rect x="104" y="44" width="92" height="60" rx="5" fill="#FFFBF0" stroke="#574A40" stroke-width="2"/>
+  <rect x="98" y="34" width="104" height="12" rx="4" fill="#FFE7AE" stroke="#574A40" stroke-width="2"/>
+  <path d="M112 70H156" stroke="#EBD5A8" stroke-width="6" stroke-linecap="round"/>
+  <g class="p-void"><path d="M166 37L170 31M171 37L175 31M176 37L180 31M181 37L185 31M186 37L190 31" stroke="#B03A2E" stroke-width="1.6" stroke-linecap="round"/></g>
+  <g class="p-label">
+    <rect x="164" y="40" width="30" height="36" rx="2" fill="#FFFFFF" stroke="#574A40" stroke-width="1.8"/>
+    <rect x="169" y="45" width="12" height="12" fill="#574A40"/>
+    <rect x="171" y="47" width="3" height="3" fill="#FFFFFF"/><rect x="176" y="47" width="3" height="3" fill="#FFFFFF"/><rect x="171" y="52" width="3" height="3" fill="#FFFFFF"/>
+    <path d="M169 63H189M169 68H184" stroke="#574A40" stroke-width="1.6" stroke-linecap="round"/>
+  </g>
+  <g class="p-top"><rect x="164" y="28" width="30" height="12" rx="2" fill="#FFFFFF" stroke="#574A40" stroke-width="1.8"/></g>
+  <g class="p-flap"><path d="M164 40L194 40L204 22L176 16Z" fill="#FFFFFF" stroke="#574A40" stroke-width="1.8" stroke-linejoin="round"/><path d="M176 30L198 27" stroke="#B03A2E" stroke-width="1.4" stroke-dasharray="2 2"/></g>
+  <g class="p-warn"><circle cx="226" cy="34" r="9" fill="#FCEBD2" stroke="#B03A2E" stroke-width="2"/><path d="M226 29V35M226 38.5V39" stroke="#B03A2E" stroke-width="2.2" stroke-linecap="round"/></g>
+</svg>

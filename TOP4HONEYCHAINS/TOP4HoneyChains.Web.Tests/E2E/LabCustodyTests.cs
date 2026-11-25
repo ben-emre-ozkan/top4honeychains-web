@@ -99,11 +99,17 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             };
             Assert.Contains("Only the organization that holds the lot", await lab.Analyst.PostFlashAsync("/Samples/Resample", Resample(c1, "ci6-N1", "ci6-N2"), "/Samples/Index"));
             Assert.Contains("only when the container's jar was rejected", await p.Sao.PostFlashAsync("/Samples/Resample", Resample(c2, "ci6-N1", "ci6-N2"), $"/Intake/Details/{intakeId}"));
-            Assert.Contains("Every seal number of the delivery must be different.", await p.Sao.PostFlashAsync("/Samples/Resample", Resample(c1, "ci6-J0", "ci6-N2"), $"/Intake/Details/{intakeId}"));
+            // D-97: the new jar labels and the new closing seal come from the pool and must be unused
+            Assert.Contains("Seal CI6-J0 was already used", await p.Sao.PostFlashAsync("/Samples/Resample", Resample(c1, "ci6-J0", "ci6-N2"), $"/Intake/Details/{intakeId}"));
+            Assert.Contains("Seal ZZ-NOT-IN-POOL is not in the seal pool of your organization.", await p.Sao.PostFlashAsync("/Samples/Resample", Resample(c1, "ci6-N1", "zz-not-in-pool"), $"/Intake/Details/{intakeId}"));
             Assert.Contains("class=\"border rounded p-2 mt-1 resample-form\"", await p.Sao.HtmlAsync($"/Intake/Details/{intakeId}"));
             Assert.Contains($"New jar S-{lot}-C1-2 sent", await p.Sao.PostFlashAsync("/Samples/Resample", Resample(c1, "ci6-N1", "ci6-N2"), $"/Intake/Details/{intakeId}"));
             var events = await _app.WithContextAsync(db => db.ContainerSealEvents.Where(e => e.ContainerId == c1).OrderBy(e => e.EventId).Select(e => e.Event + ":" + e.SealNumber).ToListAsync());
-            Assert.Equal(new[] { "Checked:ci6-O0", "Broken:ci6-O0", "Applied:ci6-R0", "Broken:ci6-R0", "Applied:ci6-N2" }, events);
+            Assert.Equal(new[] { "Checked:CI6-O0", "Broken:CI6-O0", "Applied:CI6-R0", "Broken:CI6-R0", "Applied:CI6-N2" }, events);
+            var codes = await _app.WithContextAsync(db => db.SealCodes.Where(s => s.Code == "CI6-R0" || s.Code == "CI6-N2" || s.Code == "CI6-N1K").ToDictionaryAsync(s => s.Code, s => s.Status + ":" + s.UsedAs));
+            Assert.Equal("Broken:Closing", codes["CI6-R0"]);
+            Assert.Equal("Used:Closing", codes["CI6-N2"]);
+            Assert.Equal("Used:CounterJar", codes["CI6-N1K"]);
             using (var scope = _app.Services.CreateScope())
                 Assert.True(await scope.ServiceProvider.GetRequiredService<CustodyIntakeService>().ContentMatchesAsync(intakeId));   // the confirmed content stays the proof
             var newJar = (await JarsAsync(lot)).Single(s => s.SampleCode == $"S-{lot}-C1-2");

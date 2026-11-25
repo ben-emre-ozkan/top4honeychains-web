@@ -3,7 +3,7 @@
 @* What failed at reception: the seal of a legacy sample; for a container jar (D-78 P2) the seal number, the label or the cap *@
 @if (Model.Kind == SampleKind.Container)
 {
-    @foreach (var (failed, label) in new[] { (Model.SealNumberMatches == false, L["Lab.CheckSeal"].Value), (Model.LabelIntactAtReception == false, L["Lab.CheckLabel"].Value), (Model.JarCapIntactAtReception == false, L["Lab.CheckCap"].Value) })
+    @foreach (var (failed, label) in new[] { (Model.SealNumberMatches == false, L["Lab.CheckSeal"].Value), (Model.LabelIntactAtReception == false, L["Lab.CheckLabel"].Value), (Model.JarCapIntactAtReception == false, L[Model.CapType != null ? "Lab.CheckCap." + Model.CapType : "Lab.CheckCap"].Value) })
     {
         if (failed)
         {

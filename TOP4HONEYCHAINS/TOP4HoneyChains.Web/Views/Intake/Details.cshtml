@@ -88,6 +88,10 @@
                             <a class="btn btn-sm btn-outline-secondary" href="/Intake/Labels/@Model.IntakeId?size=a4" target="_blank" rel="noopener" id="labels-a4"><i class="mdi mdi-printer"></i> @L["Ci.LabelsA4"]</a>
                             <a class="btn btn-sm btn-outline-secondary" href="/Intake/Labels/@Model.IntakeId?size=label" target="_blank" rel="noopener" id="labels-label"><i class="mdi mdi-label-outline"></i> @L["Ci.LabelsSingle"]</a>
                         </div>
+                        @if (Model.JarCapType != null)
+                        {
+                            <p class="small mb-2" id="jar-cap">@L["Ci.CapType"]: <strong>@L["Ci.Cap." + Model.JarCapType]</strong></p>
+                        }
                         <div class="table-responsive">
                             <table class="table table-sm" id="intake-containers">
                                 <thead class="table-light"><tr><th>@L["Ci.Container"]</th><th>@L["Ci.Kind"]</th><th>@L["Ci.NetKg"]</th><th>@L["Ci.SealHistory"]</th><th>@L["Ci.Jars"]</th></tr></thead>
@@ -96,7 +100,16 @@
                                     {
                                         <tr>
                                             <td><strong>@c.ContainerCode</strong></td>
-                                            <td>@L["Ci.Kind." + c.Kind]</td>
+                                            <td>@L["Ci.Kind." + c.Kind]
+                                                @if (c.Closure != null)
+                                                {
+                                                    <div class="small text-muted closure" data-closure="@c.Closure">@L["Ci.Closure." + c.Closure]</div>
+                                                }
+                                                @if (c.OrgContainer != null)
+                                                {
+                                                    <div class="small"><a href="/Seals/Box/@c.OrgContainerId"><code>@c.OrgContainer.Code</code></a></div>
+                                                }
+                                            </td>
                                             <td>@c.NetWeightKg.ToString("0.##")</td>
                                             <td class="small">
                                                 @foreach (var e in c.SealEvents.OrderBy(e => e.EventId))
@@ -126,8 +139,8 @@
                                                         <div class="fw-semibold mb-1">@L["Ci.Resample"]</div>
                                                         <input name="jarSeal" class="form-control form-control-sm mb-1" maxlength="50" required placeholder="@L["Ci.JarSeal"]" aria-label="@L["Ci.JarSeal"]" />
                                                         <input name="counterSeal" class="form-control form-control-sm mb-1" maxlength="50" required placeholder="@L["Ci.CounterSeal"]" aria-label="@L["Ci.CounterSeal"]" />
-                                                        <label class="d-block mb-1"><input type="checkbox" name="capIntact" value="true" required /> @L["Ci.Cap"]</label>
-                                                        <input name="reseal" class="form-control form-control-sm mb-1" maxlength="50" required placeholder="@L["Ci.Reseal"]" aria-label="@L["Ci.Reseal"]" />
+                                                        <label class="d-block mb-1"><input type="checkbox" name="capIntact" value="true" required /> @(c.Closure != null && Model.JarCapType != null ? L["Ci.CapCheck." + Model.JarCapType] : L["Ci.Cap"])</label>
+                                                        <input name="reseal" class="form-control form-control-sm mb-1" maxlength="80" required placeholder="@(c.Closure != null ? L["Ci.ClosingSeal." + c.Closure] : L["Ci.Reseal"])" aria-label="@(c.Closure != null ? L["Ci.ClosingSeal." + c.Closure] : L["Ci.Reseal"])" />
                                                         <button type="submit" class="btn btn-sm btn-outline-primary ib"><partial name="_ActionIcon" model="@("seal")" /> @L["Ci.ResampleButton"]</button>
                                                     </form>
                                                 }

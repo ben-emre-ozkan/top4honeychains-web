@@ -3,6 +3,9 @@
 // control sheet, New batch, the batch's control sheet, finalizing, the shipment to the shop with its storage record, the public Honey
 // Story, and a consumer who creates an account from the story, saves the honey and sends feedback that the association answers.
 //   node tools/live-like/walk.mjs            (run-demo.ps1 running; English pages)
+//   WALK_LANG=tr node tools/live-like/walk.mjs   (the same walk on Turkish pages; D-97)
+// - D-97: the delivery takes its seal labels and the association's container from the seal pool, never the codes reserved for the
+//   owner's guide (TS-000001 to TS-000030, TK-0001 to TK-0003).
 // - Runs only against localhost. The password and the phone page key are read from the logins file in Downloads, never printed.
 // - Saves no screenshots. Writes the steps it did (labels, URLs, messages, timings) as JSON to WALK_OUT when set.
 import fs from 'node:fs';
@@ -13,7 +16,9 @@ import { fileURLToPath } from 'node:url';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const repo = path.resolve(here, '..', '..');
-const { chromium } = await import(new URL('../../docs/manual/node_modules/playwright-core/index.mjs', import.meta.url));
+// playwright-core of the manual kit (docs/manual/capture since the kit moved there; the old place still works)
+const { chromium } = await import(new URL('../../docs/manual/capture/node_modules/playwright-core/index.mjs', import.meta.url))
+    .catch(() => import(new URL('../../docs/manual/node_modules/playwright-core/index.mjs', import.meta.url)));
 const BASE = (process.env.WALK_BASE || 'http://localhost:5255').replace(/\/$/, '');
 if (!/^http:\/\/localhost(:\d+)?$/.test(BASE)) throw new Error('walk.mjs runs against the local app only');
 const cast = JSON.parse(fs.readFileSync(path.join(here, 'cast.json'), 'utf8'));
@@ -27,6 +32,12 @@ const user = (role, org) => cast.people.find(p => p.role === role && p.org === o
 const orgName = key => cast.orgs.find(o => o.key === key).name;
 const BATCH_TITLE = process.env.WALK_BATCH || 'Şile Kestane Balı 2026/2';
 const CONSUMER = process.env.WALK_CONSUMER || 'ece.kaplan';
+const LANG = process.env.WALK_LANG || 'en';
+if (!['en', 'tr', 'es', 'pl', 'lv'].includes(LANG)) throw new Error('WALK_LANG: en, tr, es, pl or lv');
+const RESERVED_LABELS = 'TS-000030', RESERVED_BOXES = 'TK-0003';
+// reference ids (no personal data): the honey type and the production period of the cast, chosen by id so any language works
+const refId = sql => execFileSync('sqlcmd', ['-S', '(localdb)\\MSSQLLocalDB', '-d', 'TOP4HoneyChainsDb', '-E', '-b', '-W', '-h', '-1', '-f', '65001', '-Q', 'SET NOCOUNT ON; ' + sql],
+    { encoding: 'utf8' }).split(/\r?\n/).map(l => l.trim()).find(l => /^\d+$/.test(l));
 
 // the parameters (reference data only): id -> CCP code, name, data type
 const params = Object.fromEntries(execFileSync('sqlcmd', ['-S', '(localdb)\\MSSQLLocalDB', '-d', 'TOP4HoneyChainsDb', '-E', '-b', '-W', '-h', '-1', '-s', '|', '-f', '65001', '-Q',
@@ -66,10 +77,10 @@ async function errorsOf(page) {
 const actors = {};
 async function actor(name) {
     if (actors[name]) return actors[name];
-    const context = await browser.newContext({ viewport: { width: 1366, height: 900 }, locale: 'en', reducedMotion: 'reduce' });
+    const context = await browser.newContext({ viewport: { width: 1366, height: 900 }, locale: LANG, reducedMotion: 'reduce' });
     const page = await context.newPage();
     page.setDefaultTimeout(20000);
-    await page.goto(`${BASE}/Home/SetLanguage?culture=en&returnUrl=${encodeURIComponent('/Account/Login')}`);
+    await page.goto(`${BASE}/Home/SetLanguage?culture=${LANG}&returnUrl=${encodeURIComponent('/Account/Login')}`);
     await page.fill('#UserName', name);
     await page.fill('#Password', PASSWORD);
     await Promise.all([page.waitForURL(u => !/\/Account\/Login/i.test(u.pathname)), page.click('.au-submit')]);
@@ -82,7 +93,7 @@ async function actor(name) {
 const phones = {};
 async function phonePage(digits) {
     if (phones[digits]) return phones[digits];
-    const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, locale: 'en' });
+    const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, locale: LANG });
     const page = await context.newPage();
     await page.goto(`${BASE}/phone/${KEY}/${digits}`);
     await page.waitForTimeout(1500);
@@ -140,9 +151,17 @@ async function press(page, selector) {
 async function result(page, expect) {
     const f = await flash(page);
     current.result = f || current.result;
+    // D-97: on other languages a success message (and no error) is the check; the English texts are checked on English pages
+    if (expect && LANG !== 'en') {
+        const ok = await page.locator('#flash-success').count() && !await page.locator('#flash-error').count();
+        if (!ok) throw new Error(`expected a success message, got "${f}" ${await errorsOf(page)}`);
+        return f;
+    }
     if (expect && !expect.test(f)) throw new Error(`expected ${expect}, got "${f}" ${await errorsOf(page)}`);
     return f;
 }
+// a CCP code on My work: "CCP 0" in English, the language's own abbreviation elsewhere (KKN 0, PCC 0, ...)
+const ccp = n => `\\S+ ${n}`;
 // what appears in someone's My work next
 async function workOf(who, re) {
     const page = await actor(who);
@@ -177,6 +196,16 @@ async function approveWithDialog(page, buttonSelector, dialogSelector) {
     }
     await settle(page);
     current.urls.push(new URL(page.url()).pathname + new URL(page.url()).search);
+}
+
+// D-97: free seal labels and the association's last permanent container, read from the Seals page (never the guide's reserved codes)
+async function freeCodes(who) {
+    const page = await actor(who);
+    await page.goto(`${BASE}/Seals/Index?status=Issued&kind=Label`); await settle(page);
+    const labels = (await page.locator('#seal-codes tr[data-code]').evaluateAll(els => els.map(e => e.dataset.code)))
+        .filter(c => /^TS-\d{6}$/.test(c) && c > RESERVED_LABELS).sort();
+    const boxes = (await page.locator('#org-containers tr[data-box]').evaluateAll(els => els.map(e => e.dataset.box))).filter(c => c > RESERVED_BOXES).sort();
+    return { labels, box: boxes[boxes.length - 1] };
 }
 
 const reg = user('RegistrationOfficer', 'directorate'), sao = user('SampleAcceptanceOfficer', 'association'), staff = user('Staff', 'association'), qa = user('QualityApprover', 'association');
@@ -222,11 +251,11 @@ try {
         const sms = await nextMessage(beeDigits, /TR-BEE-\d{4}-\d{6}/);
         current.did.push({ type: 'phone', label: 'SMS with the sign-in details', value: sms.replace(/(?<![A-Za-z0-9-])[A-HJ-NP-Za-km-z2-9]{10}(?![A-Za-z0-9-])/g, '(temporary password)') });
         portalUser = sms.match(/TR-BEE-\d{4}-\d{6}/)?.[0] || business;
-        const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, locale: 'en' });
+        const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, locale: LANG });
         const page = await context.newPage();
         let ok = false;
         for (const candidate of sms.match(/(?<![A-Za-z0-9-])[A-HJ-NP-Za-km-z2-9]{10}(?![A-Za-z0-9-])/g) || []) {
-            await page.goto(`${BASE}/Home/SetLanguage?culture=en&returnUrl=${encodeURIComponent('/Account/Login')}`);
+            await page.goto(`${BASE}/Home/SetLanguage?culture=${LANG}&returnUrl=${encodeURIComponent('/Account/Login')}`);
             await page.fill('#UserName', portalUser);
             await page.fill('#Password', candidate);
             await Promise.all([page.waitForLoadState('load'), page.click('.au-submit')]);
@@ -248,6 +277,9 @@ try {
     });
 
     await step('Record the delivery in sealed containers (code from the beekeeper\'s phone)', sao, async page => {
+        // D-97: free seal labels and a permanent container from the seal pool (read first: the same browser tab records the delivery)
+        const free = await freeCodes(sao);
+        if (free.labels.length < 6 || !free.box) throw new Error('the seal pool has too few free codes: issue seal labels on the Seals page');
         await go(page, '/Intake/Index');
         await press(page, '#new-intake');
         if (await page.locator('input[name=number]').count() && !await page.locator('#ApiaryId').count()) {
@@ -256,8 +288,12 @@ try {
         }
         if (!(await page.locator('#ApiaryId').inputValue())) await page.locator('#ApiaryId').selectOption({ index: 1 });
         current.did.push({ type: 'choose', label: await labelOf(page, '#ApiaryId'), value: (await page.locator('#ApiaryId option:checked').innerText()).trim() });
-        await choose(page, '#HoneyTypeId', cast.history.honeyType);
-        await choose(page, '#PeriodId', cast.history.period.title);
+        const honeyId = refId(`SELECT HoneyTypeId FROM dbo.HoneyTypes WHERE HoneyTypeTitle = N'${cast.history.honeyType.replace(/'/g, "''")}'`);
+        const periodId = refId(`SELECT MAX(RawHoneyProductionPeriodId) FROM dbo.RawHoneyProductionPeriods WHERE RawHoneyProductionPeriodTitle = N'${cast.history.period.title.replace(/'/g, "''")}'`);
+        await page.selectOption('#HoneyTypeId', honeyId);
+        current.did.push({ type: 'choose', label: await labelOf(page, '#HoneyTypeId'), value: (await page.locator('#HoneyTypeId option:checked').innerText()).trim() });
+        await page.selectOption('#PeriodId', periodId);
+        current.did.push({ type: 'choose', label: await labelOf(page, '#PeriodId'), value: (await page.locator('#PeriodId option:checked').innerText()).trim() });
         const prov = page.locator('select[data-province-select]').first();
         await prov.selectOption({ label: bee.province });
         const did = await prov.getAttribute('data-province-select');
@@ -269,25 +305,36 @@ try {
         await choose(page, '#LabOrgId', orgName('lab'));
         if (!(await page.locator('#RetainUntil').inputValue())) { const d = new Date(); d.setFullYear(d.getFullYear() + 2); await fill(page, '#RetainUntil', d.toISOString().slice(0, 10)); }
         await fill(page, '#CounterLocation', cast.history.counterLocation);
-        if (await page.locator('#containers tbody tr').count() < 2) { await page.click('#add-container'); current.did.push({ type: 'click', label: 'Add container' }); }
-        const rows = page.locator('#containers tbody tr');
+        // D-97: one card per container; the codes come from the seal pool (free codes after the ones reserved for the guide)
+        current.did.push({ type: 'choose', label: await page.locator('input[name=CapType]:checked').evaluate(e => e.closest('.ci-tile').querySelector('.ci-tile-title').innerText.trim()), value: 'SafetyButton' });
+        if (await page.locator('[data-card]').count() < 2) { await page.click('#add-container'); current.did.push({ type: 'click', label: 'Add container' }); }
+        const cards = page.locator('#ci-cards [data-card]');
         const plan = [
-            { net: '23.8', gross: '25.2', origin: 'SAB-2026-0517', jar: 'SAB-J-34201', counter: 'SAB-K-34201', reseal: 'SAB-P-34201' },
-            { net: '21.6', gross: '23.0', origin: 'SAB-2026-0518', jar: 'SAB-J-34202', counter: 'SAB-K-34202', reseal: 'SAB-P-34202' }
+            { closure: 'SealLabel', net: '23.8', gross: '25.2', jar: free.labels[0], counter: free.labels[1], closing: free.labels[2] },
+            { closure: 'OrgContainer', box: free.box, net: '21.6', gross: '23.0', jar: free.labels[3], counter: free.labels[4], closing: free.labels[5] }
         ];
         for (let i = 0; i < plan.length; i++) {
-            const r = rows.nth(i), p = plan[i];
-            const f = n => r.locator(`[data-field="${n}"]`);
-            await f('Kind').selectOption({ index: 0 });
+            const card = cards.nth(i), p = plan[i];
+            const f = n => card.locator(`[data-field="${n}"]`);
+            await card.locator(`[data-field="Closure"][value="${p.closure}"]`).check();
+            const closureText = (await card.locator(`[data-field="Closure"][value="${p.closure}"]`).evaluate(e => e.closest('.ci-tile').querySelector('.ci-tile-title').innerText)).trim();
+            if (p.box) {
+                await f('OrgContainerCode').fill(p.box);
+                await card.locator('.ci-box.is-ok').waitFor({ timeout: 8000 });
+            } else await f('Kind').selectOption({ index: 0 });
             await f('NetKg').fill(p.net);
             await f('GrossKg').fill(p.gross);
-            await f('ArrivedSealed').check(); await f('OriginSeal').fill(p.origin); await f('OriginSealIntact').check();
-            await f('JarSeal').fill(p.jar);
-            await f('CounterSeal').fill(p.counter);
+            await card.locator('[data-field="ArrivedSealed"][value="false"]').check();
+            for (const [field, code] of [['JarSeal', p.jar], ['CounterSeal', p.counter], ['ClosingSeal', p.closing]]) {
+                await f(field).fill(code);
+                await card.locator(`[data-field="${field}"].is-ok`).waitFor({ timeout: 8000 });   // the live check: in the pool, unused
+            }
             await f('CapIntact').check();
-            await f('Reseal').fill(p.reseal);
-            current.did.push({ type: 'type', label: `Container ${i + 1}`, value: `net ${p.net} kg, gross ${p.gross} kg, arrived sealed ${p.origin} (intact), sample jar ${p.jar}, counter-sample ${p.counter}, cap intact, new seal after sampling ${p.reseal}` });
+            if (await card.locator('.ci-step.is-done').count() !== 3) throw new Error(`container ${i + 1}: not every step is marked done`);
+            current.did.push({ type: 'type', label: `Container ${i + 1}`, value: `${closureText}${p.box ? ' ' + p.box : ''}, net ${p.net} kg, gross ${p.gross} kg, arrived unsealed, sample jar ${p.jar}, counter-sample ${p.counter}, button down, closing seal ${p.closing}` });
         }
+        const confirms = (await page.locator('#ci-confirm-list').innerText()).replace(/\s+/g, ' ');
+        for (const code of [free.box, ...free.labels.slice(0, 6)]) if (!confirms.includes(code)) throw new Error(`${code} is missing from what the beekeeper confirms`);
         await press(page, '#intake-send');
         if (!await page.locator('#Code').count()) throw new Error('code not sent: ' + await errorsOf(page));
         const sms = await nextMessage(beeDigits);
@@ -296,10 +343,10 @@ try {
         await press(page, '#intake-confirm');
         intake = page.url().match(/\/(\d+)(\?|$)/)?.[1];
         current.result = await flash(page) || page.url();
-        lot = current.result.match(/lot #(\d+)/)?.[1] ?? (await page.content()).match(/(?:lotId|rawHoneyProductionId)=(\d+)/)?.[1];
+        lot = current.result.match(/#(\d+)/)?.[1] ?? (await page.content()).match(/(?:lotId|rawHoneyProductionId)=(\d+)/)?.[1];
         if (!lot) throw new Error('no lot number after the delivery: ' + current.result);
         facts.records.intake = intake; facts.records.lot = lot;
-        await workOf(sao, new RegExp(`CCP 0 · #${lot}`));
+        await workOf(sao, new RegExp(`${ccp(0)} · #${lot}`));
     });
 
     await step('CCP 0 (primary audit) entered', sao, async page => {
@@ -307,7 +354,7 @@ try {
         await fillCcpBoxes(page);
         await press(page, 'form.field-form button[type=submit]');
         await result(page, /saved/i);
-        await workOf(qa, new RegExp(`CCP 0 · #${lot}`));
+        await workOf(qa, new RegExp(`${ccp(0)} · #${lot}`));
     });
     await step('CCP 0 approved', qa, async page => {
         await go(page, `/CCPMonitoring/RawHoneyProductionManageCCP?rawHoneyProductionId=${lot}&ccpId=1`);
@@ -318,13 +365,14 @@ try {
     await step('Laboratory receives the jars and makes the composite sample', analyst, async page => {
         await go(page, '/Samples/Index');
         for (let i = 0; i < 4; i++) {
-            const form = page.locator('form.receive-jar-form').first();
+            const form = page.locator(`tr:has-text("S-${lot}-C") form.receive-jar-form`).first();   // this walk's jars only
             if (!await form.count()) break;
             for (const name of ['sealMatches', 'labelIntact', 'capIntact']) await form.locator(`input[name=${name}][value=true]`).check();
             current.did.push({ type: 'tick', label: 'Seal matches · Label intact · Cap intact: Yes' });
-            await press(page, 'form.receive-jar-form button[type=submit]');
+            await press(page, `tr:has-text("S-${lot}-C") form.receive-jar-form button[type=submit]`);
         }
-        await press(page, '#composite-ready button[type=submit], form[action*="Composite"] button[type=submit]');
+        // the composite of this walk's lot (other lots of the cast may be ready too)
+        await press(page, `form.composite-form:has(input[name=lotId][value="${lot}"]) button[type=submit]`);
         if (!/LabReports\/Edit/.test(page.url())) throw new Error('composite: ' + await flash(page));
         composite = page.url().split('/').pop();
         current.result = 'composite sample, report form open';
@@ -432,7 +480,7 @@ try {
         current.did.push({ type: 'type', label: `${ids.length} values (temperature 18, relative humidity 55)` });
         await press(page, '#storage-form button[type=submit]');
         await result(page, /saved/i);
-        await workOf(shopQa, /CCP 10/);
+        await workOf(shopQa, new RegExp(ccp(10)));
     });
     await step('The shop\'s QA officer approves storage', shopQa, async page => {
         await go(page, `/Shipments/Storage?batchId=${batch}`);
@@ -442,9 +490,9 @@ try {
 
     let story;
     await step('Public Honey Story (phone, no sign-in)', null, async () => {
-        const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, locale: 'en' });
+        const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, locale: LANG });
         story = await context.newPage();
-        await story.goto(`${BASE}/Home/SetLanguage?culture=en&returnUrl=${encodeURIComponent('/honeystory/' + qr)}`);
+        await story.goto(`${BASE}/Home/SetLanguage?culture=${LANG}&returnUrl=${encodeURIComponent('/honeystory/' + qr)}`);
         await settle(story);
         current.urls.push(new URL(story.url()).pathname);
         const text = await story.evaluate(() => document.body.innerText);

@@ -25,10 +25,13 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         private readonly TOP4HoneyChainsContext _context;
         private readonly LabOptions _options;
 
-        public LabCustodyService(TOP4HoneyChainsContext context, IOptionsSnapshot<LabOptions> options)
+        private readonly SealPoolService? _pool;
+
+        public LabCustodyService(TOP4HoneyChainsContext context, IOptionsSnapshot<LabOptions> options, SealPoolService? pool = null)
         {
             _context = context;
             _options = options.Value;
+            _pool = pool;
         }
 
         public string Mode => string.Equals(_options.AnalysisMode, LabAnalysisMode.PerContainer, StringComparison.OrdinalIgnoreCase)
@@ -175,9 +178,31 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                 return (null, "Enter the seal numbers of the new jar, of its counter-sample and the new seal of the container.");
             if (jarSeal.Length > 50 || counterSeal.Length > 50 || reseal.Length > 50)
                 return (null, "Seal numbers have at most 50 characters.");
-            if (!capIntact)
-                return (null, "The jar's cap must be intact (button down) when sealed. A popped cap: discard the jar and fill a new one.");
             var lotId = container.RawHoneyProductionId;
+            var last = jars[^1];
+            // D-97: a container closed since D-97 takes the new jar labels and the new closing seal from the seal pool
+            var capType = container.Closure != null
+                ? await _context.LotIntakes.Where(i => i.IntakeId == container.IntakeId).Select(i => i.JarCapType).FirstOrDefaultAsync() : null;
+            if (!capIntact)
+                return (null, capType == JarCap.TamperRing
+                    ? "The tamper ring of the jar's cap must be unbroken. A broken ring: discard the jar and fill a new one."
+                    : capType == JarCap.SafetyButton
+                        ? "The button of the jar's cap must be down. A raised button: discard the jar and fill a new one."
+                        : "The jar's cap must be intact (button down) when sealed. A popped cap: discard the jar and fill a new one.");
+            Dictionary<string, SealCode>? pool = null;
+            if (container.Closure != null && _pool != null)
+            {
+                jarSeal = SealPoolService.Normalize(jarSeal)!;
+                counterSeal = SealPoolService.Normalize(counterSeal)!;
+                reseal = SealPoolService.Normalize(reseal)!;
+                var pools = new[] { last.TakingOrgId };
+                foreach (var (code, kinds) in new (string, string[]?)[] { (jarSeal, new[] { SealKind.Label }), (counterSeal, new[] { SealKind.Label }), (reseal, SealPoolService.ClosingKinds(container.Closure)) })
+                    if (await _pool.RefusalAsync(code, pools, kinds) is string refusal)
+                        return (null, refusal);
+                if (new[] { jarSeal, counterSeal, reseal }.Distinct().Count() < 3)
+                    return (null, "Every seal code of the delivery must be different.");
+                pool = await _pool.TrackAsync(new[] { jarSeal, counterSeal, reseal });
+            }
             var used = await _context.ContainerSealEvents.Where(e => e.Container!.RawHoneyProductionId == lotId).Select(e => e.SealNumber)
                 .Concat(_context.Samples.Where(s => s.RawHoneyProductionId == lotId).Select(s => s.SealNumber))
                 .Concat(_context.Samples.Where(s => s.RawHoneyProductionId == lotId).Select(s => s.CounterSealNumber)).ToListAsync();
@@ -185,7 +210,6 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             if (fresh.Distinct(StringComparer.OrdinalIgnoreCase).Count() < 3 || fresh.Any(n => used.Contains(n, StringComparer.OrdinalIgnoreCase)))
                 return (null, "Every seal number of the delivery must be different.");
 
-            var last = jars[^1];
             var now = DateTime.UtcNow;
             var current = CustodyIntakeService.CurrentSeal(container.SealEvents);
             _context.ContainerSealEvents.Add(new ContainerSealEvent { ContainerId = containerId, Event = SealEvent.Broken, SealNumber = current ?? "-", UserId = userId, At = now, Note = "Opened for a new sample" });
@@ -205,10 +229,19 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                 JarCapIntactAtSealing = true,
                 TakenByUserId = userId,
                 TakenAt = now,
-                Status = SampleStatus.Sent
+                Status = SampleStatus.Sent,
+                CapType = capType
             };
             jar.Events.Add(new SampleCustodyEvent { Event = SampleStatus.Sent, FromOrgId = jar.TakingOrgId, ToOrgId = jar.LabOrgId, UserId = userId, At = now });
             _context.Samples.Add(jar);
+            if (pool != null)
+            {
+                if (current != null && await _context.SealCodes.FirstOrDefaultAsync(s => s.Code == current) is { } opened)
+                    SealPoolService.Break(opened, now);
+                SealPoolService.Use(pool[jarSeal], SealUse.Jar, userId, now, sample: jar);
+                SealPoolService.Use(pool[counterSeal], SealUse.CounterJar, userId, now, sample: jar);
+                SealPoolService.Use(pool[reseal], SealUse.Closing, userId, now, container);
+            }
             await _context.SaveChangesAsync();
             return (jar, null);
         }

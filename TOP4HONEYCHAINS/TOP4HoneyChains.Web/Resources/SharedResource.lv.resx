@@ -7855,7 +7855,7 @@
     <value>Ražošanas periods</value>
   </data>
   <data name="Ci.Help" xml:space="preserve">
-    <value>Reģistrējiet katru piegādes tvertni ar tās plombu, paņemiet paraugu no katras tvertnes, pēc tam biškopis visu apstiprina ar SMS kodu.</value>
+    <value>Reģistrējiet katru tvertni trīs īsos soļos: tvertne, tās divas paraugu burkas un aizvēršanas plomba. Pēc tam biškopis visu apstiprina ar SMS kodu.</value>
   </data>
   <data name="Ci.NoPhone" xml:space="preserve">
     <value>nav mobilā tālruņa: tikai parakstīts foto</value>
@@ -7867,7 +7867,7 @@
     <value>Tvertnes un paraugi</value>
   </data>
   <data name="Ci.ContainersHelp" xml:space="preserve">
-    <value>Viena rinda katrai tvertnei (kanna, spainis vai muca). Katrai: izvēlieties, kā tā atvesta, piepildiet parauga un kontrolparauga burku, pārbaudiet, ka vāciņa poga ir nospiesta, un tvertni noplombējiet no jauna.</value>
+    <value>Izvēlieties paraugu burku vāciņu vienreiz visai piegādei. Pēc tam aizpildiet vienu karti katrai tvertnei.</value>
   </data>
   <data name="Ci.Kind" xml:space="preserve">
     <value>Veids</value>
@@ -7897,10 +7897,10 @@
     <value>Pienākot</value>
   </data>
   <data name="Ci.ArrivedSealed" xml:space="preserve">
-    <value>Atvesta ar plombu</value>
+    <value>Ražas laikā noplombējis lauka inspektors</value>
   </data>
   <data name="Ci.OriginSeal" xml:space="preserve">
-    <value>Plombas numurs, ar kuru tā atvesta</value>
+    <value>Ražas laikā uzliktās plombas kods</value>
   </data>
   <data name="Ci.OriginIntact" xml:space="preserve">
     <value>Pārbaudīts: plomba ir neskarta</value>
@@ -7909,22 +7909,22 @@
     <value>Jaunā plomba, uzlikta tagad biškopja klātbūtnē</value>
   </data>
   <data name="Ci.JarSeal" xml:space="preserve">
-    <value>Burkas plomba</value>
+    <value>Parauga burkas plombas uzlīme</value>
   </data>
   <data name="Ci.CounterSeal" xml:space="preserve">
-    <value>Kontrolparauga plomba</value>
+    <value>Kontrolparauga burkas plombas uzlīme</value>
   </data>
   <data name="Ci.Cap" xml:space="preserve">
     <value>Vāciņš neskarts</value>
   </data>
   <data name="Ci.CapHelp" xml:space="preserve">
-    <value>Drošības vāciņš: atzīmējiet tikai tad, ja poga ir nospiesta. Izlēkusi poga nozīmē, ka burka atvērta: izmetiet to un piepildiet jaunu.</value>
+    <value>Vāciņš ar drošības pogu: atzīmējiet tikai tad, ja poga ir nospiesta. Pacelta poga nozīmē, ka burka atvērta: izmetiet to un piepildiet jaunu.</value>
   </data>
   <data name="Ci.Reseal" xml:space="preserve">
     <value>Jaunā plomba pēc paraugu ņemšanas</value>
   </data>
   <data name="Ci.Remove" xml:space="preserve">
-    <value>Noņemt rindu</value>
+    <value>Noņemt tvertni</value>
   </data>
   <data name="Ci.AddContainer" xml:space="preserve">
     <value>Pievienot tvertni</value>
@@ -7945,7 +7945,7 @@
     <value>Biškopis apstiprina</value>
   </data>
   <data name="Ci.SendHelp" xml:space="preserve">
-    <value>Biškopis saņem SMS ar jūsu organizāciju, datumu, tvertnēm, kilogramiem, medus veidu, paraugu skaitu un kodu. Jebkurai izmaiņai pēc nosūtīšanas vajadzīgs jauns kods.</value>
+    <value>Biškopis saņem SMS ar jūsu organizāciju, datumu, tvertnēm, kilogramiem, medus veidu, paraugu skaitu un kodu. Kods aptver arī katru tvertnes kodu, plombas kodu un burku vāciņu. Jebkurai izmaiņai pēc nosūtīšanas vajadzīgs jauns kods.</value>
   </data>
   <data name="Ci.NotPresent" xml:space="preserve">
     <value>Ja biškopis nav klāt, piezvaniet viņam: viņš nolasīs kodu no tālruņa.</value>
@@ -8005,10 +8005,10 @@
     <value>Paraugu burkas</value>
   </data>
   <data name="Ci.Seal.Checked" xml:space="preserve">
-    <value>Izcelsmes plomba pārbaudīta</value>
+    <value>Plomba pārbaudīta ierodoties</value>
   </data>
   <data name="Ci.Seal.Applied" xml:space="preserve">
-    <value>Uzlikta uzņēmuma plomba</value>
+    <value>Uzlikta plomba</value>
   </data>
   <data name="Ci.Seal.Broken" xml:space="preserve">
     <value>Plomba noņemta</value>
@@ -9854,13 +9854,13 @@
     <value>Ierakstiet biškopja reģistra numuru (piem., TR520401200241) vai saimniecības numuru un nospiediet Atrast. Pēc tam veidlapā parādās viņa dravas.</value>
   </data>
   <data name="Ci.ArrivedUnsealed" xml:space="preserve">
-    <value>Atvesta bez plombas</value>
+    <value>Atvesta bez plombas (parasti)</value>
   </data>
   <data name="Ci.Info.Arrival" xml:space="preserve">
-    <value>Izvēlieties, kā tvertne atvesta. Ar plombu: ierakstiet plombas numuru, ar kuru tā atvesta, un apstipriniet, ka plomba ir neskarta. Bez plombas: noplombējiet to tagad biškopja klātbūtnē un ierakstiet jaunās plombas numuru. Plomba sasaista tvertni ar tās paraugu burkām un ar piegādi, ko apstiprina biškopis, tāpēc vēlāk medu nevar apmainīt.</value>
+    <value>Parasti tvertne ierodas bez plombas: paņemiet paraugus, tad aizveriet to ar vienu plombu. Izvēlieties “noplombēta ražas laikā” tikai tad, ja biedrības lauka inspektors to noplombēja dravā ar plombu no biedrības krājuma; pārbaudiet, ka plomba ir neskarta.</value>
   </data>
   <data name="Ci.Info.Jars" xml:space="preserve">
-    <value>No katras tvertnes piepildiet divas burkas: parauga burka nonāk laboratorijā, kontrolparauga burka paliek pie jums, ja kāds rezultāts tiek apstrīdēts. Noplombējiet katru burku un ierakstiet tās plombas numuru.</value>
+    <value>No šīs tvertnes piepildiet divas burkas. Katrai uzlīmējiet plombas uzlīmi no krājuma pāri vāciņam un burkai: parauga burka nonāk laboratorijā, kontrolparauga burka paliek pie jums, ja kāds rezultāts tiek apstrīdēts.</value>
   </data>
   <data name="Ci.Info.Reseal" xml:space="preserve">
     <value>Ņemot paraugus, tvertne tiek atvērta. Noplombējiet to no jauna un ierakstiet jaunās plombas numuru; tvertne paliek ar šo plombu, līdz to izmanto.</value>
@@ -9882,5 +9882,407 @@
   </data>
   <data name="Reg93.CoordinatesHelp" xml:space="preserve">
     <value>Ierakstiet šīs dravas koordinātas (karte augstāk nosaka pirmo dravu).</value>
+  </data>
+  <data name="Ci.JarSetup" xml:space="preserve">
+    <value>Šīs piegādes paraugu burkas</value>
+  </data>
+  <data name="Ci.CapType" xml:space="preserve">
+    <value>Paraugu burku vāciņš</value>
+  </data>
+  <data name="Ci.Cap.SafetyButton" xml:space="preserve">
+    <value>Vāciņš ar drošības pogu</value>
+  </data>
+  <data name="Ci.Cap.SafetyButton.Help" xml:space="preserve">
+    <value>Vakuuma vāciņš kā bērnu pārtikas burkām: poga paliek nospiesta tikai tad, ja ir vakuums.</value>
+  </data>
+  <data name="Ci.Cap.TamperRing" xml:space="preserve">
+    <value>Vāciņš ar drošības gredzenu</value>
+  </data>
+  <data name="Ci.Cap.TamperRing.Help" xml:space="preserve">
+    <value>Gredzens zem vāciņa atdalās, kad vāciņu atver.</value>
+  </data>
+  <data name="Ci.InfoCard.Button.Title" xml:space="preserve">
+    <value>Vāciņš ar drošības pogu: kā aizvērt burku</value>
+  </data>
+  <data name="Ci.InfoCard.Button" xml:space="preserve">
+    <value>Poga paliek nospiesta tikai tad, ja burkā ir vakuums. Pēc piepildīšanas izveidojiet vakuumu ar rokas vakuumsūkni, līdz poga nolaižas. Nekad nesildiet medu vakuuma dēļ: siltums paaugstina HMF un pazemina diastāzi, un paraugs vairs nerādītu medu tādu, kāds tas piegādāts.</value>
+  </data>
+  <data name="Ci.InfoCard.Ring.Title" xml:space="preserve">
+    <value>Vāciņš ar gredzenu: kā aizvērt burku</value>
+  </data>
+  <data name="Ci.InfoCard.Ring" xml:space="preserve">
+    <value>Grieziet vāciņu, līdz gredzens cieši pieguļ zem tā. Vesels gredzens rāda, ka burka nav atvērta; pārrauts, ka ir.</value>
+  </data>
+  <data name="Ci.InfoCard.Closure.Title" xml:space="preserve">
+    <value>Kā aizver tvertni</value>
+  </data>
+  <data name="Ci.InfoCard.Closure" xml:space="preserve">
+    <value>Biškopji atved savas kannas un spaiņus, un lielākā daļa ierodas bez plombas. Vispirms paņemiet paraugus, tad aizveriet tvertni ar vienu plombu biškopja klātbūtnē. Izvēlieties katrai tvertnei:</value>
+  </data>
+  <data name="Ci.InfoCard.Closure.Pool" xml:space="preserve">
+    <value>Plombu uzlīmes un plastmasas plombas nāk no jūsu organizācijas plombu krājuma; katru kodu izmanto vienreiz.</value>
+  </data>
+  <data name="Ci.Closure" xml:space="preserve">
+    <value>Kā to aizver?</value>
+  </data>
+  <data name="Ci.Closure.SealLabel" xml:space="preserve">
+    <value>Biškopja tvertne + plombas uzlīme</value>
+  </data>
+  <data name="Ci.Closure.SealLabel.Short" xml:space="preserve">
+    <value>Numurēta uzlīme ar QR pāri vākam un korpusam. Der jebkurai tvertnei.</value>
+  </data>
+  <data name="Ci.Closure.SealLabel.Help" xml:space="preserve">
+    <value>Numurēta uzlīme ar QR kodu, ko izsniedz platforma un iepriekš izdrukā uz VOID drošības uzlīmju materiāla. To uzlīmē pāri vākam un korpusam; ja to noņem, tā saplīst vai atstāj VOID pēdas. Der jebkurai tvertnei.</value>
+  </data>
+  <data name="Ci.Closure.PlasticSeal" xml:space="preserve">
+    <value>Biškopja tvertne + numurēta plastmasas plomba</value>
+  </data>
+  <data name="Ci.Closure.PlasticSeal.Short" xml:space="preserve">
+    <value>Caur rokturi vai vāka caurumu; aizslēdzas vienreiz.</value>
+  </data>
+  <data name="Ci.Closure.PlasticSeal.Help" xml:space="preserve">
+    <value>Tvertnēm ar rokturi vai vāka caurumu: iegādātā numurētā plomba tiek izvērta cauri un aizslēgta; to var atvērt tikai pārgriežot.</value>
+  </data>
+  <data name="Ci.Closure.OrgContainer" xml:space="preserve">
+    <value>Biedrības pastāvīgā tvertne</value>
+  </data>
+  <data name="Ci.Closure.OrgContainer.Short" xml:space="preserve">
+    <value>Reģistrēta vienreiz; noskenējiet vai ierakstiet tās TK kodu.</value>
+  </data>
+  <data name="Ci.Closure.OrgContainer.Help" xml:space="preserve">
+    <value>Biedrības pašas tvertne, reģistrēta vienreiz ar pastāvīgu kodu un QR. Piegādē noskenējiet vai ierakstiet tās kodu; tās lapa rāda katru izmantošanu. To joprojām aizver ar plombu no krājuma.</value>
+  </data>
+  <data name="Ci.Info.Closure" xml:space="preserve">
+    <value>Tvertni aizver vienreiz pēc paraugu ņemšanas biškopja klātbūtnē. Plomba nāk no jūsu organizācijas krājuma.</value>
+  </data>
+  <data name="Ci.Step.Container" xml:space="preserve">
+    <value>Tvertne</value>
+  </data>
+  <data name="Ci.Step.Samples" xml:space="preserve">
+    <value>Paraugi</value>
+  </data>
+  <data name="Ci.Step.Closing" xml:space="preserve">
+    <value>Aizvēršana</value>
+  </data>
+  <data name="Ci.BoxCode" xml:space="preserve">
+    <value>Biedrības tvertnes kods</value>
+  </data>
+  <data name="Ci.BoxOk" xml:space="preserve">
+    <value>Reģistrēta: {0}</value>
+  </data>
+  <data name="Ci.TareHint" xml:space="preserve">
+    <value>Tukšas tvertnes svars {0} kg: neto = bruto − {0}</value>
+  </data>
+  <data name="Ci.CapCheck.SafetyButton" xml:space="preserve">
+    <value>Poga nospiesta</value>
+  </data>
+  <data name="Ci.CapCheck.TamperRing" xml:space="preserve">
+    <value>Gredzens vesels</value>
+  </data>
+  <data name="Ci.CapCheckBoth" xml:space="preserve">
+    <value>abām burkām</value>
+  </data>
+  <data name="Ci.Info.CapCheck" xml:space="preserve">
+    <value>Pēc aizvēršanas pārbaudiet abas burkas. Pacelta poga vai pārrauts gredzens nozīmē, ka burka atvērta: izmetiet to un piepildiet jaunu.</value>
+  </data>
+  <data name="Ci.ClosingHelp" xml:space="preserve">
+    <value>Pēc paraugu ņemšanas aizveriet tvertni biškopja klātbūtnē un noskenējiet vai ierakstiet plombu.</value>
+  </data>
+  <data name="Ci.ClosingSeal.SealLabel" xml:space="preserve">
+    <value>Plombas uzlīmes kods</value>
+  </data>
+  <data name="Ci.ClosingSeal.PlasticSeal" xml:space="preserve">
+    <value>Plastmasas plombas numurs</value>
+  </data>
+  <data name="Ci.ClosingSeal.OrgContainer" xml:space="preserve">
+    <value>Plombas kods (uzlīme vai plastmasas)</value>
+  </data>
+  <data name="Ci.SealOk" xml:space="preserve">
+    <value>Krājumā un neizmantota</value>
+  </data>
+  <data name="Ci.SealDup" xml:space="preserve">
+    <value>Šis kods šajā piegādē jau izmantots.</value>
+  </data>
+  <data name="Ci.Confirms.Title" xml:space="preserve">
+    <value>Ko biškopis apstiprina</value>
+  </data>
+  <data name="Ci.Confirms" xml:space="preserve">
+    <value>SMS kods apstiprina tieši šo sarakstu: katru tvertnes kodu, katru plombas kodu un burku vāciņu. Ja vēlāk kaut kas mainās, ieraksts vairs nesakrīt ar apstiprinājumu.</value>
+  </data>
+  <data name="Lab.CheckCap.SafetyButton" xml:space="preserve">
+    <value>Poga ir nospiesta</value>
+  </data>
+  <data name="Lab.CheckCap.TamperRing" xml:space="preserve">
+    <value>Drošības gredzens ir vesels</value>
+  </data>
+  <data name="Lab.Info.Reception.Title" xml:space="preserve">
+    <value>Pirms pieņemat burku</value>
+  </data>
+  <data name="Lab.Info.Reception" xml:space="preserve">
+    <value>Atbildiet uz trim pārbaudēm: uzlīmes kods sakrīt ar ierakstu, uzlīme ir neskarta (nav plīsumu vai VOID pēdu) un vāciņš ir aizvērts (poga nospiesta vai gredzens vesels). Jebkurš “nē” noraida burku, jo tā ceļā varēja tikt atvērta. Uzņēmums tad paņem jaunu burku no tās pašas tvertnes, kas joprojām ir aizvērta ar plombu; kontrolparaugs paliek uzņēmumā strīda gadījumam.</value>
+  </data>
+  <data name="Scene.label" xml:space="preserve">
+    <value>Plombas uzlīme iet pāri vākam un korpusam. Noplēsta tā saplīst un atstāj VOID pēdas.</value>
+  </data>
+  <data name="Scene.plastic" xml:space="preserve">
+    <value>Numurēta plastmasas plomba tiek izvērta caur rokturi un aizslēgta.</value>
+  </data>
+  <data name="Scene.scan" xml:space="preserve">
+    <value>Biedrības tvertni noskenē pēc tās QR koda.</value>
+  </data>
+  <data name="Scene.button" xml:space="preserve">
+    <value>Poga nospiesta: burka aizvērta. Pacelta poga: burka atvērta.</value>
+  </data>
+  <data name="Scene.ring" xml:space="preserve">
+    <value>Gredzens vesels: burka aizvērta. Pārrauts gredzens: burka atvērta.</value>
+  </data>
+  <data name="Seal.Title" xml:space="preserve">
+    <value>Plombu krājums un tvertnes</value>
+  </data>
+  <data name="Seal.Help" xml:space="preserve">
+    <value>Katra piegādē izmantotā plomba nāk no šī krājuma: platformas izsniegtas plombu uzlīmes un iegādātas numurētas plastmasas plombas. Katru kodu izmanto vienreiz; šeit redzams, kuri kodi ir brīvi, kur katrs izmantots un kuri atvērti.</value>
+  </data>
+  <data name="Seal.Kind" xml:space="preserve">
+    <value>Veids</value>
+  </data>
+  <data name="Seal.Kind.Label" xml:space="preserve">
+    <value>Plombas uzlīme</value>
+  </data>
+  <data name="Seal.Kind.Plastic" xml:space="preserve">
+    <value>Numurēta plastmasas plomba</value>
+  </data>
+  <data name="Seal.Status.Issued" xml:space="preserve">
+    <value>Brīva</value>
+  </data>
+  <data name="Seal.Status.Used" xml:space="preserve">
+    <value>Izmantota</value>
+  </data>
+  <data name="Seal.Status.Broken" xml:space="preserve">
+    <value>Atvērta</value>
+  </data>
+  <data name="Seal.Use.Origin" xml:space="preserve">
+    <value>ražas laikā</value>
+  </data>
+  <data name="Seal.Use.Closing" xml:space="preserve">
+    <value>aizvēršana</value>
+  </data>
+  <data name="Seal.Use.Jar" xml:space="preserve">
+    <value>parauga burka</value>
+  </data>
+  <data name="Seal.Use.CounterJar" xml:space="preserve">
+    <value>kontrolparauga burka</value>
+  </data>
+  <data name="Seal.Materials.Title" xml:space="preserve">
+    <value>Materiāli, kam jābūt pie rokas</value>
+  </data>
+  <data name="Seal.Materials" xml:space="preserve">
+    <value>VOID drošības uzlīmju materiāls (100 × 50 mm) plombu uzlīmēm, numurētas plastmasas plombas rokturiem, paraugu burkas ar drošības pogas vai gredzena vāciņu un rokas vakuumsūknis pogu vāciņiem.</value>
+  </data>
+  <data name="Seal.Issue" xml:space="preserve">
+    <value>Izsniegt plombu uzlīmes</value>
+  </data>
+  <data name="Seal.IssueHelp" xml:space="preserve">
+    <value>Platforma piešķir nākamos brīvos numurus (TS-…). Izdrukājiet tos uz VOID materiāla pirms piegādēm.</value>
+  </data>
+  <data name="Seal.Count" xml:space="preserve">
+    <value>Uzlīmju skaits</value>
+  </data>
+  <data name="Seal.Note" xml:space="preserve">
+    <value>Piezīme</value>
+  </data>
+  <data name="Seal.IssueButton" xml:space="preserve">
+    <value>Izsniegt</value>
+  </data>
+  <data name="Seal.Range" xml:space="preserve">
+    <value>Pievienot iegādātās plastmasas plombas</value>
+  </data>
+  <data name="Seal.RangeHelp" xml:space="preserve">
+    <value>Ievadiet uz plombām uzdrukāto diapazonu: neobligātu prefiksu un pirmo un pēdējo numuru.</value>
+  </data>
+  <data name="Seal.Prefix" xml:space="preserve">
+    <value>Prefikss</value>
+  </data>
+  <data name="Seal.From" xml:space="preserve">
+    <value>Pirmais numurs</value>
+  </data>
+  <data name="Seal.To" xml:space="preserve">
+    <value>Pēdējais numurs</value>
+  </data>
+  <data name="Seal.AddButton" xml:space="preserve">
+    <value>Pievienot krājumam</value>
+  </data>
+  <data name="Seal.OnlyAdmin" xml:space="preserve">
+    <value>Plombas izsniedz un tvertnes reģistrē tikai organizācijas administrators.</value>
+  </data>
+  <data name="Seal.Batches" xml:space="preserve">
+    <value>Partijas</value>
+  </data>
+  <data name="Seal.Batch" xml:space="preserve">
+    <value>Partija</value>
+  </data>
+  <data name="Seal.Codes" xml:space="preserve">
+    <value>Kodi</value>
+  </data>
+  <data name="Seal.Code" xml:space="preserve">
+    <value>Kods</value>
+  </data>
+  <data name="Seal.State" xml:space="preserve">
+    <value>Stāvoklis</value>
+  </data>
+  <data name="Seal.UsedOn" xml:space="preserve">
+    <value>Izmantota</value>
+  </data>
+  <data name="Seal.Search" xml:space="preserve">
+    <value>Meklēt</value>
+  </data>
+  <data name="Seal.All" xml:space="preserve">
+    <value>Visi</value>
+  </data>
+  <data name="Seal.Containers" xml:space="preserve">
+    <value>Pastāvīgās tvertnes</value>
+  </data>
+  <data name="Seal.ContainersHelp" xml:space="preserve">
+    <value>Biedrības pašas tvertnes, reģistrētas vienreiz. Piestipriniet katrai izdrukāto uzlīmi ar kodu un QR; piegādē to noskenē vai ieraksta, un tās lapa rāda katru izmantošanu.</value>
+  </data>
+  <data name="Seal.Register" xml:space="preserve">
+    <value>Reģistrēt tvertni</value>
+  </data>
+  <data name="Seal.Name" xml:space="preserve">
+    <value>Nosaukums</value>
+  </data>
+  <data name="Seal.Capacity" xml:space="preserve">
+    <value>Ietilpība (kg)</value>
+  </data>
+  <data name="Seal.Tare" xml:space="preserve">
+    <value>Tukšas tvertnes svars (kg)</value>
+  </data>
+  <data name="Seal.RegisterButton" xml:space="preserve">
+    <value>Reģistrēt</value>
+  </data>
+  <data name="Seal.Uses" xml:space="preserve">
+    <value>Izmantošanas</value>
+  </data>
+  <data name="Seal.LastUse" xml:space="preserve">
+    <value>Pēdējā izmantošana</value>
+  </data>
+  <data name="Seal.BoxUses" xml:space="preserve">
+    <value>Visas izmantošanas</value>
+  </data>
+  <data name="Seal.PrintHelp" xml:space="preserve">
+    <value>Drukājiet uz VOID drošības materiāla.</value>
+  </data>
+  <data name="Seal.VoidNote" xml:space="preserve">
+    <value>NENOŅEMT · VOID</value>
+  </data>
+  <data name="Choose the cap of the sample jars." xml:space="preserve">
+    <value>Izvēlieties paraugu burku vāciņu.</value>
+  </data>
+  <data name="Container {0}: choose how the container is closed." xml:space="preserve">
+    <value>Tvertne {0}: izvēlieties, kā tvertni aizver.</value>
+  </data>
+  <data name="Container {0}: {1}" xml:space="preserve">
+    <value>Tvertne {0}: {1}</value>
+  </data>
+  <data name="Container {0}: enter the code of the seal the field inspector put on at harvest." xml:space="preserve">
+    <value>Tvertne {0}: ievadiet plombas kodu, ko lauka inspektors uzlika ražas laikā.</value>
+  </data>
+  <data name="Container {0}: enter the seal label codes of the sample jar and of the counter-sample jar." xml:space="preserve">
+    <value>Tvertne {0}: ievadiet parauga burkas un kontrolparauga burkas uzlīmju kodus.</value>
+  </data>
+  <data name="Container {0}: the tamper ring of the jar's cap must be unbroken. A broken ring: discard the jar and fill a new one." xml:space="preserve">
+    <value>Tvertne {0}: burkas vāciņa drošības gredzenam jābūt veselam. Ja tas pārrauts, izmetiet burku un piepildiet jaunu.</value>
+  </data>
+  <data name="Container {0}: the button of the jar's cap must be down. A raised button: discard the jar and fill a new one." xml:space="preserve">
+    <value>Tvertne {0}: burkas vāciņa pogai jābūt nospiestai. Ja tā pacelta, izmetiet burku un piepildiet jaunu.</value>
+  </data>
+  <data name="Container {0}: enter the closing seal, applied after sampling in front of the beekeeper." xml:space="preserve">
+    <value>Tvertne {0}: ievadiet aizvēršanas plombu, kas uzlikta pēc paraugu ņemšanas biškopja klātbūtnē.</value>
+  </data>
+  <data name="Container {0}: seal codes have at most 50 characters." xml:space="preserve">
+    <value>Tvertne {0}: plombu kodi ir ne garāki par 50 rakstzīmēm.</value>
+  </data>
+  <data name="Every seal code of the delivery must be different." xml:space="preserve">
+    <value>Katram piegādes plombas kodam jābūt atšķirīgam.</value>
+  </data>
+  <data name="Each association container can be recorded only once per delivery." xml:space="preserve">
+    <value>Katru biedrības tvertni piegādē var reģistrēt tikai vienreiz.</value>
+  </data>
+  <data name="Seal {0} is not in the seal pool of your organization." xml:space="preserve">
+    <value>Plombas {0} nav jūsu organizācijas plombu krājumā.</value>
+  </data>
+  <data name="Seal {0} was already used on {1}." xml:space="preserve">
+    <value>Plomba {0} jau izmantota: {1}.</value>
+  </data>
+  <data name="Seal {0} was already used." xml:space="preserve">
+    <value>Plomba {0} jau izmantota.</value>
+  </data>
+  <data name="Seal {0} is a numbered plastic seal; a seal label is needed here." xml:space="preserve">
+    <value>Plomba {0} ir plastmasas plomba; šeit vajadzīga plombas uzlīme.</value>
+  </data>
+  <data name="Seal {0} is a seal label; a numbered plastic seal is needed here." xml:space="preserve">
+    <value>Plomba {0} ir uzlīme; šeit vajadzīga numurēta plastmasas plomba.</value>
+  </data>
+  <data name="Scan or type the code of the association's container." xml:space="preserve">
+    <value>Noskenējiet vai ierakstiet biedrības tvertnes kodu.</value>
+  </data>
+  <data name="Container {0} is not registered for your organization." xml:space="preserve">
+    <value>Tvertne {0} nav reģistrēta jūsu organizācijai.</value>
+  </data>
+  <data name="Container {0} is retired." xml:space="preserve">
+    <value>Tvertne {0} ir izņemta no lietošanas.</value>
+  </data>
+  <data name="A seal code of the delivery was used meanwhile; record the delivery again." xml:space="preserve">
+    <value>Kāds piegādes plombas kods pa to laiku izmantots; reģistrējiet piegādi vēlreiz.</value>
+  </data>
+  <data name="The seal codes of this delivery come from the seal pool and cannot be corrected." xml:space="preserve">
+    <value>Šīs piegādes plombu kodi nāk no krājuma, un tos nevar labot.</value>
+  </data>
+  <data name="The tamper ring of the jar's cap must be unbroken. A broken ring: discard the jar and fill a new one." xml:space="preserve">
+    <value>Burkas vāciņa drošības gredzenam jābūt veselam. Ja tas pārrauts, izmetiet burku un piepildiet jaunu.</value>
+  </data>
+  <data name="The button of the jar's cap must be down. A raised button: discard the jar and fill a new one." xml:space="preserve">
+    <value>Burkas vāciņa pogai jābūt nospiestai. Ja tā pacelta, izmetiet burku un piepildiet jaunu.</value>
+  </data>
+  <data name="Only the organization administrator and the roles that record or read deliveries can open the seal pool." xml:space="preserve">
+    <value>Plombu krājumu var atvērt tikai organizācijas administrators un lomas, kas reģistrē vai lasa piegādes.</value>
+  </data>
+  <data name="Issue between 1 and 500 seal labels at a time." xml:space="preserve">
+    <value>Izsniedziet no 1 līdz 500 uzlīmēm vienā reizē.</value>
+  </data>
+  <data name="{0} seal labels issued: {1} to {2}. Print them on VOID label stock." xml:space="preserve">
+    <value>Izsniegtas {0} plombu uzlīmes: no {1} līdz {2}. Izdrukājiet tās uz VOID materiāla.</value>
+  </data>
+  <data name="{0} plastic seals added to the pool: {1} to {2}." xml:space="preserve">
+    <value>Krājumam pievienotas {0} plastmasas plombas: no {1} līdz {2}.</value>
+  </data>
+  <data name="Container {0} registered. Print its label and fix it to the container." xml:space="preserve">
+    <value>Tvertne {0} reģistrēta. Izdrukājiet tās uzlīmi un piestipriniet to tvertnei.</value>
+  </data>
+  <data name="The prefix has at most 20 letters, digits or hyphens." xml:space="preserve">
+    <value>Prefiksā ir ne vairāk kā 20 burti, cipari vai defises.</value>
+  </data>
+  <data name="Enter the first and the last number of the seals (digits only)." xml:space="preserve">
+    <value>Ievadiet plombu pirmo un pēdējo numuru (tikai cipari).</value>
+  </data>
+  <data name="The last number cannot be lower than the first." xml:space="preserve">
+    <value>Pēdējais numurs nevar būt mazāks par pirmo.</value>
+  </data>
+  <data name="At most 1000 seals per range." xml:space="preserve">
+    <value>Ne vairāk kā 1000 plombu vienā diapazonā.</value>
+  </data>
+  <data name="TS- and TK- are kept for the platform's seal labels and containers." xml:space="preserve">
+    <value>TS- un TK- ir rezervēti platformas plombu uzlīmēm un tvertnēm.</value>
+  </data>
+  <data name="Some of these seals are already in a seal pool (first: {0})." xml:space="preserve">
+    <value>Dažas no šīm plombām jau ir krājumā (pirmā: {0}).</value>
+  </data>
+  <data name="Choose the kind of container." xml:space="preserve">
+    <value>Izvēlieties tvertnes veidu.</value>
+  </data>
+  <data name="The name has at most 100 characters." xml:space="preserve">
+    <value>Nosaukumā ir ne vairāk kā 100 rakstzīmes.</value>
+  </data>
+  <data name="Enter the capacity and the empty weight in kg (or leave them empty)." xml:space="preserve">
+    <value>Ievadiet ietilpību un tukšas tvertnes svaru kg (vai atstājiet tukšu).</value>
   </data>
 </root>

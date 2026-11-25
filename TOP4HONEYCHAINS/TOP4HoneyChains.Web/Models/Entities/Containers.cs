@@ -40,6 +40,15 @@ namespace TOP4HoneyChains.Web.Models.Entities
 
         public DateTime CreatedAt { get; set; }
 
+        // D-97 (migration 033): how the container was closed (ClosureKind; null = recorded before D-97) and, for the association's
+        // own container, which one
+        [StringLength(20)]
+        public string? Closure { get; set; }
+
+        public int? OrgContainerId { get; set; }
+
+        public virtual OrgContainer? OrgContainer { get; set; }
+
         public virtual LotIntake? Intake { get; set; }
         public virtual ICollection<ContainerSealEvent> SealEvents { get; set; } = new List<ContainerSealEvent>();
         public virtual ICollection<Sample> Samples { get; set; } = new List<Sample>();

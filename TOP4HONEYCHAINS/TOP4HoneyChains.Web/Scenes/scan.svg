@@ -1,0 +1,13 @@
+<svg viewBox="0 0 320 120" width="320" height="120">
+  <rect x="0" y="0" width="320" height="120" rx="16" fill="#FFF4D6"/>
+  <path d="M24 104H296" stroke="#EBD5A8" stroke-width="2" stroke-linecap="round"/>
+  <rect x="70" y="30" width="86" height="74" rx="8" fill="#FFE7AE" stroke="#574A40" stroke-width="2"/>
+  <path d="M70 48H156M70 86H156" stroke="#574A40" stroke-width="1.6"/>
+  <path d="M84 22H142" stroke="#574A40" stroke-width="4" stroke-linecap="round"/>
+  <path d="M84 60l7-4 7 4v8l-7 4-7-4z" fill="#FFB547" stroke="#574A40" stroke-width="1.5" stroke-linejoin="round"/>
+  <rect x="112" y="54" width="28" height="28" rx="2" fill="#FFFFFF" stroke="#574A40" stroke-width="1.6"/>
+  <path d="M116 58h7v7h-7zM129 58h7v7h-7zM116 71h7v7h-7zM129 71h3v3h-3zM133 75h3v3h-3z" fill="#574A40"/>
+  <g class="p-gun"><path d="M226 50L262 44L266 58L232 62Z" fill="#574A40"/><path d="M240 60L246 84L256 82L252 58Z" fill="#574A40"/></g>
+  <g class="p-beam"><path d="M226 54L140 56L140 80L226 58Z" fill="#0B7A75" opacity=".22"/><path d="M140 68H226" stroke="#0B7A75" stroke-width="1.6"/></g>
+  <g class="p-tick"><circle cx="184" cy="32" r="8" fill="#E8F8F7" stroke="#0B7A75" stroke-width="2"/><path d="M180 32.5L183 35.5L188 30" fill="none" stroke="#0B7A75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg>
