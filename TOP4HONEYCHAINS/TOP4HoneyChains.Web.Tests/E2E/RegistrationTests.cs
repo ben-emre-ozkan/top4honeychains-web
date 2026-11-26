@@ -193,7 +193,7 @@ namespace TOP4HoneyChains.Web.Tests.E2E
 
             // an Ankara number (06) at a Giresun directorate needs a reason
             var form = await FormAsync("TR061234500002", "+905320000402", "Kale Mevkii");
-            Assert.Contains("The registry number belongs to another province than the directorate.", await BodyAsync(await d.Officer.PostAsync("/Registration/Submit", Op(form, "send"), "/Registration/New")));
+            Assert.Contains("The holding identification number belongs to another province than the directorate.", await BodyAsync(await d.Officer.PostAsync("/Registration/Submit", Op(form, "send"), "/Registration/New")));
             form["ProvinceMismatchReason"] = "zz_test apiary across the border";
             Assert.Contains("id=\"registration-confirm\"", await BodyAsync(await d.Officer.PostAsync("/Registration/Submit", Op(form, "send"), "/Registration/New")));
 
@@ -238,7 +238,7 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             await _app.AddMemberAsync(d.OrgId, await _app.CreateUserAsync("zz_test_reg3_staff"), OrgRoles.Staff);
             Assert.Equal(403, await (await UserClient.LoginAsync(_app, "zz_test_reg3_staff")).StatusAsync($"/Registration/Evidence/{regId}"));
             Assert.Equal(404, await sao.StatusAsync($"/Registration/Evidence/{regId}"));
-            Assert.Equal("Evidence accepted; the registry number is verified.",
+            Assert.Equal("Evidence accepted; the holding identification number is verified.",
                 await d.Co.PostFlashAsync($"/Registration/Review/{regId}", new() { ["accept"] = "true" }, $"/Registration/Details/{regId}"));
             Assert.Equal(RegistryStatus.Verified, await _app.WithContextAsync(db => db.BeekeeperRegistry.Where(x => x.BeekeeperId == r.BeekeeperId).Select(x => x.Status).FirstAsync()));
             Assert.Equal(AcceptanceMethod.SignedPhoto, await _app.WithContextAsync(db => db.NoticeAcceptances.Where(a => a.BeekeeperId == r.BeekeeperId).Select(a => a.Method).FirstAsync()));

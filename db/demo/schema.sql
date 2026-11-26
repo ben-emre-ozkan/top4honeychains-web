@@ -371,6 +371,25 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+CREATE TABLE [dbo].[BeekeeperHoneyTypes](
+	[BeekeeperId] [nvarchar](450) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[HoneyTypeId] [int] NOT NULL,
+ CONSTRAINT [PK_BeekeeperHoneyTypes] PRIMARY KEY NONCLUSTERED 
+(
+	[BeekeeperId] ASC,
+	[HoneyTypeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+)
+GO
+CREATE NONCLUSTERED INDEX [IX_BeekeeperHoneyTypes_HoneyTypeId] ON [dbo].[BeekeeperHoneyTypes]
+(
+	[HoneyTypeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[BeekeeperRegistrations](
 	[RegistrationId] [int] IDENTITY(1,1) NOT NULL,
 	[BeekeeperId] [nvarchar](450) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
@@ -1461,16 +1480,47 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+CREATE TABLE [dbo].[HoneyTypeMerges](
+	[MergeId] [int] IDENTITY(1,1) NOT NULL,
+	[SourceHoneyTypeId] [int] NOT NULL,
+	[SourceTitle] [nvarchar](100) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[SourceClass] [nvarchar](20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[TargetHoneyTypeId] [int] NOT NULL,
+	[MergedAt] [datetime2](7) NOT NULL,
+	[MergedByUserId] [nvarchar](450) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+ CONSTRAINT [PK_HoneyTypeMerges] PRIMARY KEY CLUSTERED 
+(
+	[MergeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+)
+GO
+CREATE NONCLUSTERED INDEX [IX_HoneyTypeMerges_Target] ON [dbo].[HoneyTypeMerges]
+(
+	[TargetHoneyTypeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [UX_HoneyTypeMerges_Source] ON [dbo].[HoneyTypeMerges]
+(
+	[SourceHoneyTypeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[HoneyTypes](
 	[HoneyTypeId] [int] IDENTITY(1,1) NOT NULL,
-	[HoneyTypeTitle] [varchar](50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[HoneyTypeTitle] [nvarchar](100) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
 	[HoneyTypeDescription] [nvarchar](250) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 	[HoneyClass] [nvarchar](20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[CreatedAt] [datetime2](7) NULL,
+	[CreatedByUserId] [nvarchar](450) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[CreatedByOrgId] [int] NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[HoneyTypeId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF),
-UNIQUE NONCLUSTERED 
+ CONSTRAINT [UQ_HoneyTypes_HoneyTypeTitle] UNIQUE NONCLUSTERED 
 (
 	[HoneyTypeTitle] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
@@ -2713,6 +2763,16 @@ REFERENCES [dbo].[Organizations] ([OrgId])
 GO
 ALTER TABLE [dbo].[BeekeeperAssociations] CHECK CONSTRAINT [FK_BeekeeperAssociations_Org]
 GO
+ALTER TABLE [dbo].[BeekeeperHoneyTypes]  WITH CHECK ADD  CONSTRAINT [FK_BeekeeperHoneyTypes_Beekeepers] FOREIGN KEY([BeekeeperId])
+REFERENCES [dbo].[Beekeepers] ([BeekeeperId])
+GO
+ALTER TABLE [dbo].[BeekeeperHoneyTypes] CHECK CONSTRAINT [FK_BeekeeperHoneyTypes_Beekeepers]
+GO
+ALTER TABLE [dbo].[BeekeeperHoneyTypes]  WITH CHECK ADD  CONSTRAINT [FK_BeekeeperHoneyTypes_HoneyTypes] FOREIGN KEY([HoneyTypeId])
+REFERENCES [dbo].[HoneyTypes] ([HoneyTypeId])
+GO
+ALTER TABLE [dbo].[BeekeeperHoneyTypes] CHECK CONSTRAINT [FK_BeekeeperHoneyTypes_HoneyTypes]
+GO
 ALTER TABLE [dbo].[BeekeeperRegistrations]  WITH CHECK ADD  CONSTRAINT [FK_BeekeeperRegistrations_Beekeepers] FOREIGN KEY([BeekeeperId])
 REFERENCES [dbo].[Beekeepers] ([BeekeeperId])
 GO
@@ -3047,6 +3107,16 @@ ALTER TABLE [dbo].[HolderStorageValues]  WITH CHECK ADD  CONSTRAINT [FK_HolderSt
 REFERENCES [dbo].[HolderStorageRecords] ([RecordId])
 GO
 ALTER TABLE [dbo].[HolderStorageValues] CHECK CONSTRAINT [FK_HolderStorageValues_Record]
+GO
+ALTER TABLE [dbo].[HoneyTypeMerges]  WITH CHECK ADD  CONSTRAINT [FK_HoneyTypeMerges_HoneyTypes] FOREIGN KEY([TargetHoneyTypeId])
+REFERENCES [dbo].[HoneyTypes] ([HoneyTypeId])
+GO
+ALTER TABLE [dbo].[HoneyTypeMerges] CHECK CONSTRAINT [FK_HoneyTypeMerges_HoneyTypes]
+GO
+ALTER TABLE [dbo].[HoneyTypes]  WITH CHECK ADD  CONSTRAINT [FK_HoneyTypes_Organizations] FOREIGN KEY([CreatedByOrgId])
+REFERENCES [dbo].[Organizations] ([OrgId])
+GO
+ALTER TABLE [dbo].[HoneyTypes] CHECK CONSTRAINT [FK_HoneyTypes_Organizations]
 GO
 ALTER TABLE [dbo].[LabReports]  WITH CHECK ADD  CONSTRAINT [FK_LabReports_Lab] FOREIGN KEY([LabOrgId])
 REFERENCES [dbo].[Organizations] ([OrgId])
@@ -3576,6 +3646,8 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
+-- ---------------------------------------------------------------- the delivery lock lets a merge through
+
 CREATE   TRIGGER [dbo].[TR_RawHoneyProductions_DeliveryLocked] ON [dbo].[RawHoneyProductions] AFTER UPDATE
 AS
 BEGIN
@@ -3588,7 +3660,11 @@ BEGIN
         JOIN inserted n ON n.RawHoneyProductionId = d.RawHoneyProductionId
         JOIN dbo.LotIntakes i ON i.RawHoneyProductionId = d.RawHoneyProductionId AND i.ContainersRecorded = 1
         WHERE ISNULL(d.RawHoneyProductionApiaryId, -1) <> ISNULL(n.RawHoneyProductionApiaryId, -1)
-           OR ISNULL(d.RawHoneyProductionHoneyType, -1) <> ISNULL(n.RawHoneyProductionHoneyType, -1)
+           -- D-98: a merged honey type moves to its target only inside the merge
+           OR (ISNULL(d.RawHoneyProductionHoneyType, -1) <> ISNULL(n.RawHoneyProductionHoneyType, -1)
+               AND NOT (SESSION_CONTEXT(N'top4.honey_type_merge') IS NOT NULL
+                        AND EXISTS (SELECT 1 FROM dbo.HoneyTypeMerges m
+                                    WHERE m.SourceHoneyTypeId = d.RawHoneyProductionHoneyType AND m.TargetHoneyTypeId = n.RawHoneyProductionHoneyType)))
            OR ISNULL(d.RawHoneyProductionPeriodId, -1) <> ISNULL(n.RawHoneyProductionPeriodId, -1)
            OR ISNULL(d.OriginCountry, '') <> ISNULL(n.OriginCountry, '')
            -- amount and date change only through a confirmed delivery correction

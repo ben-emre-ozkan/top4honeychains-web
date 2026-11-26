@@ -35,7 +35,9 @@
 
     <div class="au-field">
         <label asp-for="UserName">@L["Login.Username"]</label>
-        <input asp-for="UserName" placeholder="@L["Login.UsernamePlaceholder"]" autocomplete="username" autocapitalize="none" spellcheck="false" />
+        <input asp-for="UserName" placeholder="@L["Login.UsernamePlaceholder"]" autocomplete="username" autocapitalize="none" spellcheck="false" aria-describedby="login-beekeeper-hint" />
+        @* D-98: a beekeeper's user name is the platform number *@
+        <small class="au-sub d-block" id="login-beekeeper-hint">@L["Login.BeekeeperHint"]</small>
         <span asp-validation-for="UserName" class="au-field-error"></span>
     </div>
 

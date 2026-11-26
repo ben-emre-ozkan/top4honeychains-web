@@ -23,6 +23,7 @@ namespace TOP4HoneyChains.Web.Controllers
         private bool CustodyOn => HttpContext.RequestServices.GetRequiredService<IOptionsSnapshot<FeatureFlags>>().Value.CustodyIntake;
         private CustodyIntakeService Custody => HttpContext.RequestServices.GetRequiredService<CustodyIntakeService>();
         private IMessageService Messages => HttpContext.RequestServices.GetRequiredService<IMessageService>();
+        private HoneyTypeCatalog HoneyTypes => HttpContext.RequestServices.GetRequiredService<HoneyTypeCatalog>();
 
         private Task<List<Organization>> LabsAsync() =>
             _context.Organizations.AsNoTracking()
@@ -33,6 +34,9 @@ namespace TOP4HoneyChains.Web.Controllers
         {
             await FillListsAsync();
             ViewBag.Beekeeper = bk;
+            // D-98: the official number first, the platform number second
+            ViewBag.BeekeeperRegistry = bk == null ? null : await _context.BeekeeperRegistry.Where(r => r.BeekeeperId == bk.BeekeeperId && r.Status == RegistryStatus.Verified)
+                .Select(r => r.RegistryNumber).FirstOrDefaultAsync();
             ViewBag.Labs = await LabsAsync();
             ViewBag.CodeSent = codeSent;
             // D-88 follow-up: several deliveries per apiary and period are allowed; the same honey type from the same apiary on the same
@@ -64,8 +68,9 @@ namespace TOP4HoneyChains.Web.Controllers
                 errors.Add("No active beekeeper with this number.");
             else if (bk.Apiaries.All(a => a.ApiaryId != f.ApiaryId))
                 errors.Add("Choose one of the beekeeper's apiaries.");
-            if (!await _context.HoneyTypes.AnyAsync(h => h.HoneyTypeId == f.HoneyTypeId))
-                errors.Add("Unknown honey type.");
+            // D-98: an existing honey type, or "Other" with a new name and class (sample acceptance officers)
+            if (await HoneyTypes.CheckChoiceAsync(f.HoneyTypeId, f.NewHoneyTypeName, f.NewHoneyTypeClass) is string honeyError)
+                errors.Add(honeyError);
             if (!await _context.RawHoneyProductionPeriods.AnyAsync(p => p.RawHoneyProductionPeriodId == f.PeriodId))
                 errors.Add("The production period is required.");
             if (f.DeliveryDate == null || f.DeliveryDate > DateOnly.FromDateTime(DateTime.Today))
@@ -128,9 +133,9 @@ namespace TOP4HoneyChains.Web.Controllers
             {
                 case OpSend:
                 {
-                    var values = await DeliveryValuesAsync(content, active.OrgName, bk.PreferredLanguage);
+                    var values = await DeliveryValuesAsync(content, active.OrgName, bk.PreferredLanguage, form.HoneyTypeId == HoneyTypeCatalog.Other ? form.NewHoneyTypeName?.Trim() : null);
                     var sent = await Messages.SendCodeAsync(new CodeRequest(SmsPurpose.IntakeConfirm, "Intake", form.DraftKey!, bk.BeekeeperPhoneNumber!,
-                        bk.PreferredLanguage, content.Hash(), values, _current.UserId, active.OrgId));
+                        bk.PreferredLanguage, CustodyIntakeService.ConfirmHash(form, content), values, _current.UserId, active.OrgId));
                     if (!sent.Ok)
                         ModelState.AddModelError("", sent.Error!);
                     else
@@ -139,7 +144,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 }
                 case OpConfirm:
                 {
-                    var verified = await Messages.VerifyCodeAsync(SmsPurpose.IntakeConfirm, "Intake", form.DraftKey!, form.Code, content.Hash(), _current.UserId);
+                    var verified = await Messages.VerifyCodeAsync(SmsPurpose.IntakeConfirm, "Intake", form.DraftKey!, form.Code, CustodyIntakeService.ConfirmHash(form, content), _current.UserId);
                     if (!verified.Ok)
                     {
                         ModelState.AddModelError("", verified.Error!);
@@ -185,7 +190,7 @@ namespace TOP4HoneyChains.Web.Controllers
         }
 
         // M3 placeholders in the beekeeper's language (honey type name, container words, numbers)
-        private async Task<Dictionary<string, string>> DeliveryValuesAsync(IntakeContent content, string orgName, string? language)
+        private async Task<Dictionary<string, string>> DeliveryValuesAsync(IntakeContent content, string orgName, string? language, string? newHoneyType = null)
         {
             var lang = SmsTemplates.Language(language);
             var culture = new CultureInfo(lang);
@@ -195,7 +200,7 @@ namespace TOP4HoneyChains.Web.Controllers
             try
             {
                 CultureInfo.CurrentUICulture = culture;
-                honey = HttpContext.RequestServices.GetRequiredService<RefText>().HoneyType(content.HoneyTypeId, title);
+                honey = newHoneyType ?? HttpContext.RequestServices.GetRequiredService<RefText>().HoneyType(content.HoneyTypeId, title);
             }
             finally
             {

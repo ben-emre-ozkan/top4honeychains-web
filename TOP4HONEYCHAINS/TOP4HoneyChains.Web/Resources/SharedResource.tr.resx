@@ -568,13 +568,13 @@
     <value>Arıcı kaydı ve birlikler</value>
   </data>
   <data name="Reg.BusinessNo" xml:space="preserve">
-    <value>İşletme no.</value>
+    <value>Platform no.</value>
   </data>
   <data name="Reg.Beekeeper" xml:space="preserve">
     <value>Arıcı</value>
   </data>
   <data name="Reg.RegistryNo" xml:space="preserve">
-    <value>Kayıt no.</value>
+    <value>İşletme tanımlama no.</value>
   </data>
   <data name="Reg.Association" xml:space="preserve">
     <value>Birlik</value>
@@ -586,7 +586,7 @@
     <value>Biçim: TR, 01-81 arası il kodu ve 10 hane. Kanıt belgesi (kayıt çıktısı veya fotoğraf) zorunludur.</value>
   </data>
   <data name="Reg.ListHelp" xml:space="preserve">
-    <value>Her arıcı platformda bir kayıttır; cep telefonuyla kaydedilen arıcı arıcı alanına da giriş yapabilir. Kayıt numarası, arıcı kaydı SMS koduyla onayladığında veya Uyum Sorumlusu imzalı fotoğrafı kabul ettiğinde doğrulanır. Burada platform yöneticisi sonradan girilen bir numarayı kanıt belgesiyle kontrol eder ve birliği değiştirir.</value>
+    <value>Her arıcı platformda bir kayıttır; cep telefonuyla kaydedilen arıcı, kullanıcı adı olarak platform numarasıyla arıcı alanına da giriş yapabilir. İşletme tanımlama numarası, arıcı kaydı SMS koduyla onayladığında veya Uyum Sorumlusu imzalı fotoğrafı kabul ettiğinde doğrulanır. Burada platform yöneticisi sonradan girilen bir numarayı kanıt belgesiyle kontrol eder ve birliği değiştirir.</value>
   </data>
   <data name="Reg.Submit" xml:space="preserve">
     <value>Gönder</value>
@@ -1309,10 +1309,10 @@
     <value>Teslim al</value>
   </data>
   <data name="Cust.NewIntakeHelp" xml:space="preserve">
-    <value>Arıcıyı işletme veya kayıt numarasıyla bulun, ardından teslimi imzalı teslim formunun fotoğrafıyla girin.</value>
+    <value>Arıcıyı işletme tanımlama numarası veya platform numarasıyla bulun, ardından teslimi imzalı teslim formunun fotoğrafıyla girin.</value>
   </data>
   <data name="Cust.BeekeeperNumber" xml:space="preserve">
-    <value>Arıcı işletme veya kayıt numarası</value>
+    <value>Arıcının işletme tanımlama numarası veya platform numarası</value>
   </data>
   <data name="Cust.Find" xml:space="preserve">
     <value>Bul</value>
@@ -1798,7 +1798,7 @@
     <value>Arıcı sayfaları</value>
   </data>
   <data name="P5.StorefrontsHelp" xml:space="preserve">
-    <value>Üyenin herkese açık sayfası yalnızca kayıtlı rıza ve doğrulanmış kayıt numarasıyla yayımlanır; rıza geri çekilince sayfa hemen yayından kalkar.</value>
+    <value>Üyenin herkese açık sayfası yalnızca kayıtlı rıza ve doğrulanmış işletme tanımlama numarasıyla yayımlanır; rıza geri çekilince sayfa hemen yayından kalkar.</value>
   </data>
   <data name="P5.Consent" xml:space="preserve">
     <value>Rıza</value>
@@ -1822,7 +1822,7 @@
     <value>yayında değil</value>
   </data>
   <data name="P5.NeedsRegistry" xml:space="preserve">
-    <value>doğrulanmış kayıt numarası gerekli</value>
+    <value>doğrulanmış işletme tanımlama numarası gerekli</value>
   </data>
   <data name="P5.RecordConsent" xml:space="preserve">
     <value>Rıza kaydet</value>
@@ -1930,7 +1930,7 @@
     <value>Doğrulanacak kurumlar</value>
   </data>
   <data name="Work.Kind.Registry" xml:space="preserve">
-    <value>Doğrulanacak kayıt numaraları</value>
+    <value>Doğrulanacak işletme tanımlama numaraları</value>
   </data>
   <data name="Work.Kind.Correction" xml:space="preserve">
     <value>Karar bekleyen düzeltmeler</value>
@@ -2746,7 +2746,7 @@
     <value>Fotoğraf yüklenmedi.</value>
   </data>
   <data name="Business Number" xml:space="preserve">
-    <value>İşletme Numarası</value>
+    <value>Platform numarası</value>
   </data>
   <data name="Add Role" xml:space="preserve">
     <value>Rol Ekle</value>
@@ -2761,7 +2761,7 @@
     <value>Ara:</value>
   </data>
   <data name="Registry number:" xml:space="preserve">
-    <value>Kayıt numarası:</value>
+    <value>İşletme tanımlama numarası:</value>
   </data>
   <data name="Beekeeping Type Title" xml:space="preserve">
     <value>Arıcılık Türü Adı</value>
@@ -3637,7 +3637,7 @@
     <value>muaf</value>
   </data>
   <data name="Beekeeper Business Number" xml:space="preserve">
-    <value>Arıcı İşletme Numarası</value>
+    <value>Arıcının platform numarası</value>
   </data>
   <data name="Enter processing step" xml:space="preserve">
     <value>İşlem adımını girin</value>
@@ -5164,7 +5164,7 @@
     <value>Yetenek listesinin kendisi sabittir: yeni bir yetenek için veritabanı betiği ve kod değişikliği gerekir.</value>
   </data>
   <data name="Cap.Uses.Beekeeping" xml:space="preserve">
-    <value>Arıcının işletmesi. Sisteme giriş yapmaz; doğrulanmış kayıt numarası lotları arıcıya bağlar ve ili gösterir.</value>
+    <value>Arıcının işletmesi. Sisteme giriş yapmaz; doğrulanmış işletme tanımlama numarası lotları arıcıya bağlar ve ili gösterir.</value>
   </data>
   <data name="Cap.Uses.Association" xml:space="preserve">
     <value>Üye arıcılarını bağlar, rızalarını kaydedip arıcı sayfalarını yayımlar ve geri çağırma raporlarında üyelerinin lotlarını görür; yönetici atarsa saha denetçisi KKN 0'ı yapabilir.</value>
@@ -6319,7 +6319,7 @@
     <value>Kurum</value>
   </data>
   <data name="Home.Wait.Kind.registry" xml:space="preserve">
-    <value>İşletme kayıt numarası</value>
+    <value>İşletme tanımlama numarası</value>
   </data>
   <data name="Home.Wait.Kind.correction" xml:space="preserve">
     <value>Düzeltme</value>
@@ -6373,7 +6373,7 @@
     <value>Kurum</value>
   </data>
   <data name="Home.Act.Kind.registry" xml:space="preserve">
-    <value>İşletme kayıt numarası</value>
+    <value>İşletme tanımlama numarası</value>
   </data>
   <data name="Home.Act.Entered" xml:space="preserve">
     <value>giren: {0}</value>
@@ -6553,7 +6553,7 @@
     <value>Doğum tarihi</value>
   </data>
   <data name="Audit.F.BusinessNumber" xml:space="preserve">
-    <value>İşletme numarası</value>
+    <value>Platform numarası</value>
   </data>
   <data name="Audit.F.Capability" xml:space="preserve">
     <value>Yetkinlik</value>
@@ -6622,7 +6622,7 @@
     <value>Giren</value>
   </data>
   <data name="Audit.F.EnterpriseNumber" xml:space="preserve">
-    <value>İşletme kayıt numarası</value>
+    <value>İşletme tanımlama numarası</value>
   </data>
   <data name="Audit.F.Event" xml:space="preserve">
     <value>Olay</value>
@@ -6817,7 +6817,7 @@
     <value>Kaydeden</value>
   </data>
   <data name="Audit.F.RegistryNumber" xml:space="preserve">
-    <value>Kayıt numarası</value>
+    <value>İşletme tanımlama numarası</value>
   </data>
   <data name="Audit.F.RejectReason" xml:space="preserve">
     <value>Ret gerekçesi</value>
@@ -7135,7 +7135,7 @@
     <value>İmzalı fotoğraf kanıtı (kabul veya ret)</value>
   </data>
   <data name="Cap.Uses.BeekeeperRegistration" xml:space="preserve">
-    <value>İlçe tarım müdürlüğü: arıcı kayıt görevlileri arıcıları ve arılıklarını kaydeder, kayıt numarasını kontrol eder, kimliği ve rızayı SMS koduyla (veya imzalı fotoğrafla) doğrular ve giriş bilgilerini verir.</value>
+    <value>İlçe tarım müdürlüğü: Arıcı kayıt görevlileri arıcıları ve arılıklarını kaydeder, işletme tanımlama numarasını kontrol eder, kimliği ve rızayı SMS koduyla (veya imzalı fotoğrafla) doğrular ve giriş bilgilerini verir.</value>
   </data>
   <data name="Org.NoComplianceOfficer" xml:space="preserve">
     <value>Bu kurumun henüz Uyum Sorumlusu yok. Her kurum en az bir kişi belirler (ikinci bir üyelikle kurum yöneticisi de olabilir).</value>
@@ -7570,7 +7570,7 @@
     <value>Arıcılık amacı</value>
   </data>
   <data name="Registry Number" xml:space="preserve">
-    <value>Kayıt numarası</value>
+    <value>İşletme tanımlama numarası</value>
   </data>
   <data name="Work.Kind.Evidence" xml:space="preserve">
     <value>İmzalı fotoğrafları incele</value>
@@ -7579,16 +7579,16 @@
     <value>Arıcı kaydı</value>
   </data>
   <data name="Reg78.Help" xml:space="preserve">
-    <value>Kurumunuzun kaydettiği arıcılar. Her kayıt kayıt numarası, arıcının telefonuna giden SMS kodu ve sizin beyanınızla doğrulanır.</value>
+    <value>Kurumunuzun kaydettiği arıcılar. Her kayıt işletme tanımlama numarası, arıcının telefonuna giden SMS kodu ve sizin beyanınızla doğrulanır.</value>
   </data>
   <data name="Reg78.FindLabel" xml:space="preserve">
-    <value>Kayıt numarası (AKS) veya işletme numarası</value>
+    <value>İşletme tanımlama numarası (AKS) veya platform numarası</value>
   </data>
   <data name="Reg78.Find" xml:space="preserve">
     <value>Bul veya kaydet</value>
   </data>
   <data name="Reg78.FindHelp" xml:space="preserve">
-    <value>Kayıtlı bir arıcı yeniden doğrulanır; yeni bir kayıt numarası yeni bir kayıt başlatır.</value>
+    <value>Kayıtlı bir arıcı yeniden doğrulanır; yeni bir işletme tanımlama numarası yeni bir kayıt başlatır.</value>
   </data>
   <data name="Reg78.Date" xml:space="preserve">
     <value>Tarih</value>
@@ -7747,7 +7747,7 @@
     <value>İmzalı fotoğrafın incelenmesi</value>
   </data>
   <data name="Reg78.ReviewHelp" xml:space="preserve">
-    <value>Fotoğrafı açın ve kayıtla karşılaştırın: kimlik, kayıt numarası, arıcının tercihleri ve imza. Bu kaydı siz girmediniz.</value>
+    <value>Fotoğrafı açın ve kayıtla karşılaştırın: Kimlik, işletme tanımlama numarası, arıcının tercihleri ve imza. Bu kaydı siz girmediniz.</value>
   </data>
   <data name="Reg78.ReviewReason" xml:space="preserve">
     <value>Not (ret için zorunlu)</value>
@@ -8854,7 +8854,7 @@
     <value>Numuneler ve laboratuvar, laboratuvarınızın tüm kavanozlarını ve raporlarını gösterir. İlk işiniz analistlerin gönderdiği raporları onaylamak; örneğin bir değer yanlış görünüyorsa raporu geri gönderin.</value>
   </data>
   <data name="Tour.Registration" xml:space="preserve">
-    <value>Arıcı kaydı, arıcıları ve arılıklarını kaydettiğiniz yerdir. Kayıt numarasını yazın, arıcının bilgilerini ve arılığını girin, SMS kodunu gönderin ve arıcının size okuduğu kodu girin.</value>
+    <value>Arıcı kaydı, arıcıları ve arılıklarını kaydettiğiniz yerdir. İşletme tanımlama numarasını yazın, arıcının bilgilerini, bal türlerini ve arılığını girin, SMS kodunu gönderin ve arıcının size okuduğu kodu girin.</value>
   </data>
   <data name="Tour.Compliance" xml:space="preserve">
     <value>Uyum, inceleme masanızdır: imzalı fotoğraflar, kalite incelemeleri, veri başvuruları ve denetim kaydı. Karar bekleyenlerle başlayın; örneğin SMS kodu yerine imzalı fotoğrafla onaylanmış bir teslimat.</value>
@@ -8872,7 +8872,7 @@
     <value>Panel, platform yöneticisi olarak sizi bekleyenleri ve son hareketleri gösterir. Buradan başlayın; örneğin doğrulanmayı bekleyen bir kurum.</value>
   </data>
   <data name="Tour.Admin.Data" xml:space="preserve">
-    <value>Arıcılar, arılıklar ve platformun referans listeleri. Bir arıcıyı buradan bulun, örneğin kayıt numarasıyla.</value>
+    <value>Arıcılar, arılıklar ve platformun referans listeleri. Bir arıcıyı buradan bulun, örneğin işletme tanımlama numarasıyla.</value>
   </data>
   <data name="Tour.Me.Deliveries" xml:space="preserve">
     <value>Teslimatlarım, teslim ettiğiniz balı her teneke ve mührüyle gösterir. Kilogram fiyatınızı buraya girin; örneğin geçen haftaki kestane balı için.</value>
@@ -9727,7 +9727,7 @@
     <value>Arıcı SMS kodunu ve sonraki mesajları bu dilde alır.</value>
   </data>
   <data name="Cust.Info.Number" xml:space="preserve">
-    <value>Arıcının kayıt numarasını (örneğin TR520401200241) veya işletme numarasını yazıp Bul'a basın. Ardından arıcının arılıkları formda çıkar.</value>
+    <value>Arıcının işletme tanımlama numarasını (örneğin TR520401200241) veya platform numarasını yazıp Bul'a basın. Ardından arıcının arılıkları formda çıkar.</value>
   </data>
   <data name="Ci.ArrivedUnsealed" xml:space="preserve">
     <value>Mühürsüz geldi (olağan)</value>
@@ -10442,5 +10442,116 @@
   </data>
   <data name="Container {0} emptied into batch {1}; seal {2} is now opened." xml:space="preserve">
     <value>Kap {0}, {1} partisine boşaltıldı; {2} mührü artık açıldı.</value>
+  </data>
+  <data name="Num.Official" xml:space="preserve">
+    <value>İşletme tanımlama numarası</value>
+  </data>
+  <data name="Num.Platform" xml:space="preserve">
+    <value>Platform numarası</value>
+  </data>
+  <data name="Login.BeekeeperHint" xml:space="preserve">
+    <value>Arıcılar: Kullanıcı adınız platform numaranızdır (TR-BEE-…).</value>
+  </data>
+  <data name="HT.Other" xml:space="preserve">
+    <value>Diğer (yeni bal türü)</value>
+  </data>
+  <data name="HT.NewName" xml:space="preserve">
+    <value>Yeni bal türünün adı</value>
+  </data>
+  <data name="HT.NewHelp" xml:space="preserve">
+    <value>Önce listeye bakın. Var olan bir türle eşleşen ad (büyük-küçük harf, Türkçe harfler, boşluklar ve "bal" sözcüğü dikkate alınmadan) kabul edilmez; o durumda türü listeden seçin.</value>
+  </data>
+  <data name="HT.NewClass" xml:space="preserve">
+    <value>Bal sınıfı</value>
+  </data>
+  <data name="HT.ClassHelp" xml:space="preserve">
+    <value>Bu bala hangi laboratuvar sınırlarının uygulanacağını sınıf belirler.</value>
+  </data>
+  <data name="HT.Class.Floral" xml:space="preserve">
+    <value>Çiçek</value>
+  </data>
+  <data name="HT.Class.Honeydew" xml:space="preserve">
+    <value>Salgı</value>
+  </data>
+  <data name="HT.Class.Pine" xml:space="preserve">
+    <value>Çam</value>
+  </data>
+  <data name="HT.BeekeeperTypes" xml:space="preserve">
+    <value>Arıcının ürettiği bal türleri</value>
+  </data>
+  <data name="HT.EditBeekeeperTypes" xml:space="preserve">
+    <value>Arıcının bal türlerini değiştir</value>
+  </data>
+  <data name="HT.Added" xml:space="preserve">
+    <value>Formdan eklendi</value>
+  </data>
+  <data name="HT.Merge.Title" xml:space="preserve">
+    <value>Bal türünü birleştir</value>
+  </data>
+  <data name="HT.Merge.Help" xml:space="preserve">
+    <value>Bu bal türünü kullanan her şey seçtiğiniz türe taşınır: Lotlar, laboratuvar sınırları, arıcıların bal türleri ve diğer türde olmayan çeviriler. Ardından bu bal türü silinir; adı yine diğer türe yönlendirir.</value>
+  </data>
+  <data name="HT.Merge.Lots" xml:space="preserve">
+    <value>Lotlar</value>
+  </data>
+  <data name="HT.Merge.Limits" xml:space="preserve">
+    <value>Bu bal türüne özel sınırlar</value>
+  </data>
+  <data name="HT.Merge.Beekeepers" xml:space="preserve">
+    <value>Bu bal türünü üreten arıcılar</value>
+  </data>
+  <data name="HT.Merge.ClassNote" xml:space="preserve">
+    <value>Lotlar bundan sonra diğer türün bal sınıfının sınırlarına göre değerlendirilir.</value>
+  </data>
+  <data name="HT.Merge.Target" xml:space="preserve">
+    <value>Birleştirilecek tür</value>
+  </data>
+  <data name="HT.Merge.Button" xml:space="preserve">
+    <value>Birleştir</value>
+  </data>
+  <data name="Your role cannot add a honey type; choose one from the list." xml:space="preserve">
+    <value>Rolünüz bal türü ekleyemez; listeden birini seçin.</value>
+  </data>
+  <data name="Enter the name of the new honey type (2 to 100 characters)." xml:space="preserve">
+    <value>Yeni bal türünün adını girin (2 ile 100 karakter arası).</value>
+  </data>
+  <data name="Choose the honey class of the new honey type (floral, honeydew or pine)." xml:space="preserve">
+    <value>Yeni bal türünün sınıfını seçin (çiçek, salgı veya çam).</value>
+  </data>
+  <data name="This honey type already exists as {0}: choose it from the list." xml:space="preserve">
+    <value>Bu bal türü zaten {0} olarak var: Listeden onu seçin.</value>
+  </data>
+  <data name="Only the platform administrator merges honey types." xml:space="preserve">
+    <value>Bal türlerini yalnızca platform yöneticisi birleştirir.</value>
+  </data>
+  <data name="A honey type cannot be merged into itself." xml:space="preserve">
+    <value>Bir bal türü kendisiyle birleştirilemez.</value>
+  </data>
+  <data name="Both honey types have their own limit for {0}: remove one on the Limits page first." xml:space="preserve">
+    <value>İki bal türünün de {0} için kendi sınırı var: Önce Sınırlar sayfasında birini kaldırın.</value>
+  </data>
+  <data name="{0} was merged into {1}." xml:space="preserve">
+    <value>{0}, {1} ile birleştirildi.</value>
+  </data>
+  <data name="The beekeeper's honey types are saved." xml:space="preserve">
+    <value>Arıcının bal türleri kaydedildi.</value>
+  </data>
+  <data name="Holding identification number verified." xml:space="preserve">
+    <value>İşletme tanımlama numarası doğrulandı.</value>
+  </data>
+  <data name="Evidence accepted; the holding identification number is verified." xml:space="preserve">
+    <value>Kanıt kabul edildi; işletme tanımlama numarası doğrulandı.</value>
+  </data>
+  <data name="A beekeeper with this holding identification number is already registered. Find it and re-verify instead." xml:space="preserve">
+    <value>Bu işletme tanımlama numarasıyla bir arıcı zaten kayıtlı. Bulun ve yeniden doğrulayın.</value>
+  </data>
+  <data name="The holding identification number belongs to another province than the directorate. Give a reason to continue." xml:space="preserve">
+    <value>İşletme tanımlama numarası müdürlüğün ilinden farklı bir ile ait. Devam etmek için gerekçe yazın.</value>
+  </data>
+  <data name="Consent recorded. The storefront is published once the holding identification number is verified." xml:space="preserve">
+    <value>Rıza kaydedildi. Arıcı sayfası işletme tanımlama numarası doğrulanınca yayımlanır.</value>
+  </data>
+  <data name="Enter the holding identification number (or the platform number of a registered beekeeper)." xml:space="preserve">
+    <value>İşletme tanımlama numarasını (veya kayıtlı bir arıcının platform numarasını) girin.</value>
   </data>
 </root>

@@ -66,6 +66,8 @@ namespace TOP4HoneyChains.Web.Controllers
             ViewBag.PhotoVersions = await _context.Beekeepers.AsNoTracking().Where(b => b.BeekeeperProfilePhoto != null)
                 .Select(b => new { b.BeekeeperId, Size = EF.Functions.DataLength(b.BeekeeperProfilePhoto) })
                 .ToDictionaryAsync(b => b.BeekeeperId!, b => b.Size ?? 0);
+            // D-98: the official number (İşletme tanımlama numarası) is shown first, the platform number second
+            ViewBag.Registry = await _context.BeekeeperRegistry.AsNoTracking().Where(r => r.RegistryNumber != null).ToDictionaryAsync(r => r.BeekeeperId, r => r.RegistryNumber);
 
             ViewBag.Controller = "Beekeepers";
             ViewBag.Action = "Index";

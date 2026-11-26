@@ -568,13 +568,13 @@
     <value>Rejestr pszczelarzy i stowarzyszenia</value>
   </data>
   <data name="Reg.BusinessNo" xml:space="preserve">
-    <value>Nr działalności</value>
+    <value>Nr na platformie</value>
   </data>
   <data name="Reg.Beekeeper" xml:space="preserve">
     <value>Pszczelarz</value>
   </data>
   <data name="Reg.RegistryNo" xml:space="preserve">
-    <value>Nr w rejestrze</value>
+    <value>Nr identyfikacyjny gospodarstwa</value>
   </data>
   <data name="Reg.Association" xml:space="preserve">
     <value>Stowarzyszenie</value>
@@ -586,7 +586,7 @@
     <value>Format: TR, kod prowincji 01-81 i 10 cyfr. Wymagany jest dokument potwierdzający (wydruk z rejestru lub zdjęcie).</value>
   </data>
   <data name="Reg.ListHelp" xml:space="preserve">
-    <value>Każdy pszczelarz jest rekordem na platformie; pszczelarz zarejestrowany z telefonem komórkowym może też logować się do obszaru pszczelarza. Numer w rejestrze jest weryfikowany, gdy pszczelarz potwierdza rejestrację kodem SMS albo gdy Specjalista ds. zgodności zaakceptuje podpisane zdjęcie. Tutaj administrator platformy sprawdza numer wprowadzony później, z dokumentem potwierdzającym, i zmienia stowarzyszenie.</value>
+    <value>Każdy pszczelarz jest rekordem na platformie; pszczelarz zarejestrowany z telefonem komórkowym może też logować się do obszaru pszczelarza, używając numeru na platformie jako nazwy użytkownika. Numer identyfikacyjny gospodarstwa jest weryfikowany, gdy pszczelarz potwierdza rejestrację kodem SMS albo gdy Specjalista ds. zgodności zaakceptuje podpisane zdjęcie. Tutaj administrator platformy sprawdza numer wprowadzony później, z dokumentem potwierdzającym, i zmienia stowarzyszenie.</value>
   </data>
   <data name="Reg.Submit" xml:space="preserve">
     <value>Prześlij</value>
@@ -757,10 +757,10 @@
     <value>Zarejestruj dostawę</value>
   </data>
   <data name="Cust.NewIntakeHelp" xml:space="preserve">
-    <value>Znajdź pszczelarza po numerze działalności lub numerze w rejestrze, a następnie wprowadź dostawę wraz ze zdjęciem podpisanego formularza dostawy.</value>
+    <value>Znajdź pszczelarza po numerze identyfikacyjnym gospodarstwa lub numerze na platformie, a następnie wprowadź dostawę wraz ze zdjęciem podpisanego formularza dostawy.</value>
   </data>
   <data name="Cust.BeekeeperNumber" xml:space="preserve">
-    <value>Numer działalności lub numer w rejestrze pszczelarza</value>
+    <value>Numer identyfikacyjny gospodarstwa lub numer pszczelarza na platformie</value>
   </data>
   <data name="Cust.Find" xml:space="preserve">
     <value>Znajdź</value>
@@ -1090,7 +1090,7 @@
     <value>Strony pszczelarzy</value>
   </data>
   <data name="P5.StorefrontsHelp" xml:space="preserve">
-    <value>Publiczna strona członka jest publikowana tylko po zarejestrowaniu zgody i przy zweryfikowanym numerze w rejestrze; wycofanie zgody natychmiast cofa publikację.</value>
+    <value>Publiczna strona członka jest publikowana tylko po zarejestrowaniu zgody i przy zweryfikowanym numerze identyfikacyjnym gospodarstwa; wycofanie zgody natychmiast cofa publikację.</value>
   </data>
   <data name="P5.Consent" xml:space="preserve">
     <value>Zgoda</value>
@@ -1114,7 +1114,7 @@
     <value>niepubliczna</value>
   </data>
   <data name="P5.NeedsRegistry" xml:space="preserve">
-    <value>wymaga zweryfikowanego numeru w rejestrze</value>
+    <value>wymaga zweryfikowanego numeru identyfikacyjnego gospodarstwa</value>
   </data>
   <data name="P5.RecordConsent" xml:space="preserve">
     <value>Zarejestruj zgodę</value>
@@ -1189,7 +1189,7 @@
     <value>Organizacje do weryfikacji</value>
   </data>
   <data name="Work.Kind.Registry" xml:space="preserve">
-    <value>Numery w rejestrze do weryfikacji</value>
+    <value>Numery identyfikacyjne gospodarstw do weryfikacji</value>
   </data>
   <data name="Work.Kind.Correction" xml:space="preserve">
     <value>Korekty do rozstrzygnięcia</value>
@@ -2269,7 +2269,7 @@
     <value>Szukaj:</value>
   </data>
   <data name="Registry number:" xml:space="preserve">
-    <value>Numer w rejestrze:</value>
+    <value>Numer identyfikacyjny gospodarstwa:</value>
   </data>
   <data name="Lock-screen" xml:space="preserve">
     <value>Ekran blokady</value>
@@ -3355,7 +3355,7 @@
     <value>Szerokość geograficzna lokalizacji</value>
   </data>
   <data name="Beekeeper Business Number" xml:space="preserve">
-    <value>Numer działalności pszczelarza</value>
+    <value>Numer pszczelarza na platformie</value>
   </data>
   <data name="Enter processing step" xml:space="preserve">
     <value>Wprowadź etap przetwarzania</value>
@@ -3763,7 +3763,7 @@
     <value>pełna identyfikowalność</value>
   </data>
   <data name="Business Number" xml:space="preserve">
-    <value>Numer działalności</value>
+    <value>Numer na platformie</value>
   </data>
   <data name="Enter until when the counter-sample is kept (a future date)." xml:space="preserve">
     <value>Wprowadź, do kiedy przechowywana jest przeciwpróbka (data w przyszłości).</value>
@@ -5164,7 +5164,7 @@
     <value>Sama lista funkcji jest stała: nowa funkcja wymaga skryptu bazy danych i zmiany kodu.</value>
   </data>
   <data name="Cap.Uses.Beekeeping" xml:space="preserve">
-    <value>Gospodarstwo pszczelarskie. Nie loguje się; jego zweryfikowany numer rejestrowy łączy partie z pszczelarzem i wskazuje prowincję.</value>
+    <value>Gospodarstwo pszczelarskie. Nie loguje się; jego zweryfikowany numer identyfikacyjny gospodarstwa łączy partie z pszczelarzem i wskazuje prowincję.</value>
   </data>
   <data name="Cap.Uses.Association" xml:space="preserve">
     <value>Wiąże swoich pszczelarzy, rejestruje ich zgodę i publikuje ich strony oraz widzi partie członków w raportach wycofania; jego inspektor terenowy może wykonać KPK 0, jeśli przydzieli to administrator.</value>
@@ -6319,7 +6319,7 @@
     <value>Organizacja</value>
   </data>
   <data name="Home.Wait.Kind.registry" xml:space="preserve">
-    <value>Numer rejestrowy</value>
+    <value>Numer identyfikacyjny gospodarstwa</value>
   </data>
   <data name="Home.Wait.Kind.correction" xml:space="preserve">
     <value>Korekta</value>
@@ -6373,7 +6373,7 @@
     <value>Organizacja</value>
   </data>
   <data name="Home.Act.Kind.registry" xml:space="preserve">
-    <value>Numer rejestrowy</value>
+    <value>Numer identyfikacyjny gospodarstwa</value>
   </data>
   <data name="Home.Act.Entered" xml:space="preserve">
     <value>wprowadził(a): {0}</value>
@@ -6553,7 +6553,7 @@
     <value>Data urodzenia</value>
   </data>
   <data name="Audit.F.BusinessNumber" xml:space="preserve">
-    <value>Numer gospodarstwa</value>
+    <value>Numer na platformie</value>
   </data>
   <data name="Audit.F.Capability" xml:space="preserve">
     <value>Funkcja</value>
@@ -6622,7 +6622,7 @@
     <value>Wprowadził(a)</value>
   </data>
   <data name="Audit.F.EnterpriseNumber" xml:space="preserve">
-    <value>Numer rejestrowy gospodarstwa</value>
+    <value>Numer identyfikacyjny gospodarstwa</value>
   </data>
   <data name="Audit.F.Event" xml:space="preserve">
     <value>Zdarzenie</value>
@@ -6817,7 +6817,7 @@
     <value>Zarejestrował(a)</value>
   </data>
   <data name="Audit.F.RegistryNumber" xml:space="preserve">
-    <value>Numer rejestrowy</value>
+    <value>Numer identyfikacyjny gospodarstwa</value>
   </data>
   <data name="Audit.F.RejectReason" xml:space="preserve">
     <value>Powód odrzucenia</value>
@@ -7135,7 +7135,7 @@
     <value>Dowód ze zdjęciem podpisu (akceptacja lub odrzucenie)</value>
   </data>
   <data name="Cap.Uses.BeekeeperRegistration" xml:space="preserve">
-    <value>Powiatowa dyrekcja rolnictwa: jej specjaliści ds. rejestracji rejestrują pszczelarzy i ich pasieki, sprawdzają numer rejestrowy, potwierdzają tożsamość i zgodę kodem SMS (lub zdjęciem podpisu) i wydają dane logowania.</value>
+    <value>Powiatowa dyrekcja rolnictwa: jej specjaliści ds. rejestracji rejestrują pszczelarzy i ich pasieki, sprawdzają numer identyfikacyjny gospodarstwa, potwierdzają tożsamość i zgodę kodem SMS (lub zdjęciem podpisu) i wydają dane logowania.</value>
   </data>
   <data name="Org.NoComplianceOfficer" xml:space="preserve">
     <value>Ta organizacja nie ma jeszcze specjalisty ds. zgodności. Każda organizacja wyznacza co najmniej jednego (może to być administrator organizacji z drugim członkostwem).</value>
@@ -7570,7 +7570,7 @@
     <value>Cel pszczelarstwa</value>
   </data>
   <data name="Registry Number" xml:space="preserve">
-    <value>Numer rejestrowy</value>
+    <value>Numer identyfikacyjny gospodarstwa</value>
   </data>
   <data name="Work.Kind.Evidence" xml:space="preserve">
     <value>Sprawdź zdjęcia podpisów</value>
@@ -7579,16 +7579,16 @@
     <value>Rejestracja pszczelarzy</value>
   </data>
   <data name="Reg78.Help" xml:space="preserve">
-    <value>Pszczelarze zarejestrowani przez Twoją organizację. Każdą rejestrację potwierdzają numer rejestrowy, kod SMS na telefon pszczelarza i Twoje oświadczenie.</value>
+    <value>Pszczelarze zarejestrowani przez Twoją organizację. Każdą rejestrację potwierdzają numer identyfikacyjny gospodarstwa, kod SMS na telefon pszczelarza i Twoje oświadczenie.</value>
   </data>
   <data name="Reg78.FindLabel" xml:space="preserve">
-    <value>Numer rejestrowy (AKS) lub numer gospodarstwa</value>
+    <value>Numer identyfikacyjny gospodarstwa (AKS) lub numer na platformie</value>
   </data>
   <data name="Reg78.Find" xml:space="preserve">
     <value>Znajdź lub zarejestruj</value>
   </data>
   <data name="Reg78.FindHelp" xml:space="preserve">
-    <value>Znany pszczelarz jest weryfikowany ponownie; nowy numer rejestrowy rozpoczyna nową rejestrację.</value>
+    <value>Znany pszczelarz jest weryfikowany ponownie; nowy numer identyfikacyjny gospodarstwa rozpoczyna nową rejestrację.</value>
   </data>
   <data name="Reg78.Date" xml:space="preserve">
     <value>Data</value>
@@ -7747,7 +7747,7 @@
     <value>Sprawdzenie zdjęcia podpisu</value>
   </data>
   <data name="Reg78.ReviewHelp" xml:space="preserve">
-    <value>Otwórz zdjęcie i porównaj z rejestracją: tożsamość, numer rejestrowy, wybory pszczelarza i podpis. Nie Ty wprowadzałeś tę rejestrację.</value>
+    <value>Otwórz zdjęcie i porównaj z rejestracją: tożsamość, numer identyfikacyjny gospodarstwa, wybory pszczelarza i podpis. Nie Ty wprowadzałeś tę rejestrację.</value>
   </data>
   <data name="Reg78.ReviewReason" xml:space="preserve">
     <value>Uwaga (wymagana przy odrzuceniu)</value>
@@ -8854,7 +8854,7 @@
     <value>Próbki i laboratorium pokazuje wszystkie słoiki i raporty Twojego laboratorium. Twoje pierwsze zadanie to zatwierdzanie raportów analityków albo zwrot raportu, np. gdy wartość wygląda na błędną.</value>
   </data>
   <data name="Tour.Registration" xml:space="preserve">
-    <value>Rejestracja pszczelarzy to miejsce, gdzie rejestrujesz pszczelarzy i ich pasieki. Wpisz numer rejestrowy, dane pszczelarza i pasieki, wyślij kod SMS i wpisz kod, który pszczelarz Ci odczyta.</value>
+    <value>Rejestracja pszczelarzy to miejsce, gdzie rejestrujesz pszczelarzy i ich pasieki. Wpisz numer identyfikacyjny gospodarstwa, dane pszczelarza, rodzaje miodu i pasiekę, wyślij kod SMS i wpisz kod, który pszczelarz Ci odczyta.</value>
   </data>
   <data name="Tour.Compliance" xml:space="preserve">
     <value>Zgodność to Twoje biurko przeglądów: podpisane zdjęcia, przeglądy jakości, wnioski o dane i dziennik audytu. Zacznij od spraw czekających na Twoją decyzję, np. dostawy potwierdzonej podpisanym zdjęciem zamiast kodu SMS.</value>
@@ -8872,7 +8872,7 @@
     <value>Panel pokazuje, co czeka na Ciebie jako operatora platformy, oraz ostatnią aktywność. Zacznij tutaj, np. od organizacji czekającej na weryfikację.</value>
   </data>
   <data name="Tour.Admin.Data" xml:space="preserve">
-    <value>Pszczelarze, pasieki i listy referencyjne platformy. Znajdź tu pszczelarza, np. po numerze rejestrowym.</value>
+    <value>Pszczelarze, pasieki i listy referencyjne platformy. Znajdź tu pszczelarza, np. po numerze identyfikacyjnym gospodarstwa.</value>
   </data>
   <data name="Tour.Me.Deliveries" xml:space="preserve">
     <value>Moje dostawy pokazuje dostarczony miód z każdym pojemnikiem i jego plombą. Wpisz tu swoją cenę za kilogram, np. za miód kasztanowy z zeszłego tygodnia.</value>
@@ -9851,7 +9851,7 @@
     <value>Pszczelarz otrzyma kod SMS i późniejsze wiadomości w tym języku.</value>
   </data>
   <data name="Cust.Info.Number" xml:space="preserve">
-    <value>Wpisz numer rejestrowy pszczelarza (np. TR520401200241) lub numer gospodarstwa i naciśnij Znajdź. Następnie w formularzu pojawią się jego pasieki.</value>
+    <value>Wpisz numer identyfikacyjny gospodarstwa pszczelarza (np. TR520401200241) lub jego numer na platformie i naciśnij Znajdź. Następnie w formularzu pojawią się jego pasieki.</value>
   </data>
   <data name="Ci.ArrivedUnsealed" xml:space="preserve">
     <value>Dotarł bez plomby (zwykle)</value>
@@ -10566,5 +10566,116 @@
   </data>
   <data name="Container {0} emptied into batch {1}; seal {2} is now opened." xml:space="preserve">
     <value>Pojemnik {0} opróżniono do partii końcowej {1}; plomba {2} jest teraz otwarta.</value>
+  </data>
+  <data name="Num.Official" xml:space="preserve">
+    <value>Numer identyfikacyjny gospodarstwa</value>
+  </data>
+  <data name="Num.Platform" xml:space="preserve">
+    <value>Numer na platformie</value>
+  </data>
+  <data name="Login.BeekeeperHint" xml:space="preserve">
+    <value>Pszczelarze: nazwa użytkownika to Twój numer na platformie (TR-BEE-…).</value>
+  </data>
+  <data name="HT.Other" xml:space="preserve">
+    <value>Inny (nowy rodzaj miodu)</value>
+  </data>
+  <data name="HT.NewName" xml:space="preserve">
+    <value>Nazwa nowego rodzaju miodu</value>
+  </data>
+  <data name="HT.NewHelp" xml:space="preserve">
+    <value>Najpierw sprawdź listę. Nazwa zgodna z istniejącym rodzajem (bez względu na wielkość liter, litery tureckie, spacje i słowo "miód") zostanie odrzucona; wtedy wybierz ten rodzaj z listy.</value>
+  </data>
+  <data name="HT.NewClass" xml:space="preserve">
+    <value>Klasa miodu</value>
+  </data>
+  <data name="HT.ClassHelp" xml:space="preserve">
+    <value>Klasa decyduje, które limity laboratoryjne obowiązują dla tego miodu.</value>
+  </data>
+  <data name="HT.Class.Floral" xml:space="preserve">
+    <value>Nektarowy (kwiatowy)</value>
+  </data>
+  <data name="HT.Class.Honeydew" xml:space="preserve">
+    <value>Spadziowy</value>
+  </data>
+  <data name="HT.Class.Pine" xml:space="preserve">
+    <value>Sosnowy</value>
+  </data>
+  <data name="HT.BeekeeperTypes" xml:space="preserve">
+    <value>Rodzaje miodu produkowane przez pszczelarza</value>
+  </data>
+  <data name="HT.EditBeekeeperTypes" xml:space="preserve">
+    <value>Zmień rodzaje miodu pszczelarza</value>
+  </data>
+  <data name="HT.Added" xml:space="preserve">
+    <value>Dodano z formularza</value>
+  </data>
+  <data name="HT.Merge.Title" xml:space="preserve">
+    <value>Scal rodzaj miodu</value>
+  </data>
+  <data name="HT.Merge.Help" xml:space="preserve">
+    <value>Wszystko, co używa tego rodzaju miodu, przechodzi do wybranego rodzaju: partie, limity laboratoryjne, rodzaje miodu pszczelarzy i tłumaczenia, których brakuje drugiemu rodzajowi. Następnie ten rodzaj miodu jest usuwany; jego nazwa nadal prowadzi do drugiego rodzaju.</value>
+  </data>
+  <data name="HT.Merge.Lots" xml:space="preserve">
+    <value>Partie</value>
+  </data>
+  <data name="HT.Merge.Limits" xml:space="preserve">
+    <value>Limity dla tego rodzaju miodu</value>
+  </data>
+  <data name="HT.Merge.Beekeepers" xml:space="preserve">
+    <value>Pszczelarze z tym rodzajem miodu</value>
+  </data>
+  <data name="HT.Merge.ClassNote" xml:space="preserve">
+    <value>Partie są potem oceniane według limitów klasy miodu drugiego rodzaju.</value>
+  </data>
+  <data name="HT.Merge.Target" xml:space="preserve">
+    <value>Scal z</value>
+  </data>
+  <data name="HT.Merge.Button" xml:space="preserve">
+    <value>Scal</value>
+  </data>
+  <data name="Your role cannot add a honey type; choose one from the list." xml:space="preserve">
+    <value>Twoja rola nie może dodać rodzaju miodu; wybierz jeden z listy.</value>
+  </data>
+  <data name="Enter the name of the new honey type (2 to 100 characters)." xml:space="preserve">
+    <value>Wpisz nazwę nowego rodzaju miodu (od 2 do 100 znaków).</value>
+  </data>
+  <data name="Choose the honey class of the new honey type (floral, honeydew or pine)." xml:space="preserve">
+    <value>Wybierz klasę nowego rodzaju miodu (nektarowy, spadziowy lub sosnowy).</value>
+  </data>
+  <data name="This honey type already exists as {0}: choose it from the list." xml:space="preserve">
+    <value>Ten rodzaj miodu już istnieje jako {0}: wybierz go z listy.</value>
+  </data>
+  <data name="Only the platform administrator merges honey types." xml:space="preserve">
+    <value>Rodzaje miodu scala tylko administrator platformy.</value>
+  </data>
+  <data name="A honey type cannot be merged into itself." xml:space="preserve">
+    <value>Rodzaju miodu nie można scalić z nim samym.</value>
+  </data>
+  <data name="Both honey types have their own limit for {0}: remove one on the Limits page first." xml:space="preserve">
+    <value>Oba rodzaje miodu mają własny limit dla {0}: najpierw usuń jeden na stronie limitów.</value>
+  </data>
+  <data name="{0} was merged into {1}." xml:space="preserve">
+    <value>{0} scalono z {1}.</value>
+  </data>
+  <data name="The beekeeper's honey types are saved." xml:space="preserve">
+    <value>Zapisano rodzaje miodu pszczelarza.</value>
+  </data>
+  <data name="Holding identification number verified." xml:space="preserve">
+    <value>Numer identyfikacyjny gospodarstwa zweryfikowany.</value>
+  </data>
+  <data name="Evidence accepted; the holding identification number is verified." xml:space="preserve">
+    <value>Dowód zaakceptowany; numer identyfikacyjny gospodarstwa jest zweryfikowany.</value>
+  </data>
+  <data name="A beekeeper with this holding identification number is already registered. Find it and re-verify instead." xml:space="preserve">
+    <value>Pszczelarz z tym numerem identyfikacyjnym gospodarstwa jest już zarejestrowany. Znajdź go i zweryfikuj ponownie.</value>
+  </data>
+  <data name="The holding identification number belongs to another province than the directorate. Give a reason to continue." xml:space="preserve">
+    <value>Numer identyfikacyjny gospodarstwa należy do innej prowincji niż dyrekcja. Podaj powód, aby kontynuować.</value>
+  </data>
+  <data name="Consent recorded. The storefront is published once the holding identification number is verified." xml:space="preserve">
+    <value>Zgoda zarejestrowana. Strona zostanie opublikowana po weryfikacji numeru identyfikacyjnego gospodarstwa.</value>
+  </data>
+  <data name="Enter the holding identification number (or the platform number of a registered beekeeper)." xml:space="preserve">
+    <value>Wpisz numer identyfikacyjny gospodarstwa (lub numer zarejestrowanego pszczelarza na platformie).</value>
   </data>
 </root>

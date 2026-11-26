@@ -113,12 +113,8 @@
                                     <i class="mdi mdi-flower-outline me-1 text-muted"></i>
                                     @L["Honey Type"]
                                 </label>
-                                <select asp-for="RawHoneyProductionHoneyType"
-                                        class="form-select shadow-sm"
-                                        asp-items="ViewBag.RawHoneyProductionHoneyType"
-                                        required>
-                                    <option value="">@L["Select Honey Type"]</option>
-                                </select>
+                                @* D-98: "Other" adds a new honey type with its class *@
+                                <partial name="_HoneyTypeSelect" model="@(new TOP4HoneyChains.Web.Models.ViewModels.HoneyTypeChoice("RawHoneyProductionHoneyType", "RawHoneyProductionHoneyType", (IEnumerable<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem>)ViewBag.RawHoneyProductionHoneyType, Model.RawHoneyProductionHoneyType, ViewBag.MayAddHoneyType == true, ViewBag.NewHoneyTypeName as string, ViewBag.NewHoneyTypeClass as string, Placeholder: true))" />
                                 <span asp-validation-for="RawHoneyProductionHoneyType" class="text-danger"></span>
                             </div>
 

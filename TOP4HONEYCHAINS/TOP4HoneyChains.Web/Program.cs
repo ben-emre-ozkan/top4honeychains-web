@@ -149,6 +149,8 @@ builder.Services.AddScoped<BeekeeperSignIn>();
 builder.Services.AddScoped<SealPoolService>();
 builder.Services.AddScoped<ContainerEmptyingService>();   // D-98: the seal check when a container is emptied into a batch
 builder.Services.AddScoped<CustodyIntakeService>();
+// D-98: honey types added from the forms ("Other") and merged by the platform administrator
+builder.Services.AddScoped<HoneyTypeCatalog>();
 builder.Services.AddScoped<DeliveryCorrectionService>();
 builder.Services.Configure<PublicNameOptions>(builder.Configuration.GetSection("PublicNames"));
 builder.Services.AddScoped<PublicNameService>();

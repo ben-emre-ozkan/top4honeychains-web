@@ -431,10 +431,10 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             return 0;
         });
 
-        // the triggers of migrations 023-025 (024 replaces the delivery locks of 023), installed on the test database
+        // the triggers of migrations 023-025 and 035 (024 replaces the delivery locks of 023; 035 lets a honey type merge through), installed on the test database
         internal static async Task InstallTriggersAsync(SqlConnection conn)
         {
-            foreach (var file in new[] { "023_d78_containers_samples.sql", "024_d78_lot_prices.sql", "025_d78_compliance.sql" })
+            foreach (var file in new[] { "023_d78_containers_samples.sql", "024_d78_lot_prices.sql", "025_d78_compliance.sql", "035_d98_honey_types.sql" })
             {
                 var script = await File.ReadAllTextAsync(Path.Combine(RepoRoot(), "db", "migrations", file));
                 foreach (var batch in Regex.Split(script, @"^\s*GO\s*$", RegexOptions.Multiline).Where(b => b.Contains("CREATE OR ALTER TRIGGER")))

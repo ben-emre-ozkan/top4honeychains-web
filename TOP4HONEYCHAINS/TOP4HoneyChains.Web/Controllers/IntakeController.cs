@@ -112,6 +112,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 var registry = bk == null ? null : await _context.BeekeeperRegistry.Where(r => r.BeekeeperId == bk.BeekeeperId && r.Status == RegistryStatus.Verified)
                     .Select(r => r.RegistryNumber).FirstOrDefaultAsync();
                 ViewBag.Province = (places.FromRegistryNumber(number.Trim()) ?? places.FromRegistryNumber(registry))?.Name;
+                ViewBag.BeekeeperRegistry = registry;
             }
             // D-78 P2: the delivery with sealed containers (Features:CustodyIntake)
             if (CustodyOn)
@@ -143,6 +144,8 @@ namespace TOP4HoneyChains.Web.Controllers
         private async Task FillListsAsync()
         {
             ViewBag.HoneyTypes = new SelectList(await _context.HoneyTypes.OrderBy(h => h.HoneyTypeTitle).ToListAsync(), "HoneyTypeId", "HoneyTypeTitle").Translated(HttpContext, "HoneyType", "Title");
+            // D-98: "Other" (a new honey type) for the roles that may add one
+            ViewBag.MayAddHoneyType = await HoneyTypes.MayAddAsync();
             var today = DateOnly.FromDateTime(DateTime.Today);
             var periods = await _context.RawHoneyProductionPeriods.OrderByDescending(p => p.RawHoneyProductionPeriodStartDate).ToListAsync();
             var current = periods.FirstOrDefault(p => p.RawHoneyProductionPeriodStartDate <= today && (p.RawHoneyProductionPeriodEndDate == null || p.RawHoneyProductionPeriodEndDate >= today));
@@ -154,7 +157,8 @@ namespace TOP4HoneyChains.Web.Controllers
         [ValidateAntiForgeryToken]
         [RequestSizeLimit(12 * 1024 * 1024)]
         public async Task<IActionResult> Create(string number, int apiaryId, int honeyTypeId, int periodId, DateOnly? deliveryDate,
-            decimal? quantity, string? province, string? district, IFormFile? deliveryForm, bool sendSms, string? originCountry)
+            decimal? quantity, string? province, string? district, IFormFile? deliveryForm, bool sendSms, string? originCountry,
+            string? newHoneyTypeName = null, string? newHoneyTypeClass = null)
         {
             // D-78 P2: with sealed containers the delivery is recorded with Record (containers, jars, SMS confirmation)
             if (CustodyOn)
@@ -175,8 +179,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 error = "No active beekeeper with this number.";
             else if (bk.Apiaries.All(a => a.ApiaryId != apiaryId))
                 error = "Choose one of the beekeeper's apiaries.";
-            else if (!await _context.HoneyTypes.AnyAsync(h => h.HoneyTypeId == honeyTypeId))
-                error = "Unknown honey type.";
+            else if (await HoneyTypes.CheckChoiceAsync(honeyTypeId, newHoneyTypeName, newHoneyTypeClass) is string honeyError)
+                error = honeyError;
             else if (!await _context.RawHoneyProductionPeriods.AnyAsync(p => p.RawHoneyProductionPeriodId == periodId))
                 error = "The production period is required.";
             else if (deliveryDate == null || deliveryDate > DateOnly.FromDateTime(DateTime.Today))
@@ -208,6 +212,9 @@ namespace TOP4HoneyChains.Web.Controllers
             try
             {
                 await using var transaction = await _context.Database.BeginTransactionAsync();
+                // D-98: the new honey type ("Other") is created with the delivery
+                if (honeyTypeId == HoneyTypeCatalog.Other)
+                    honeyTypeId = await HoneyTypes.CreateAsync(new HoneyTypeCatalog.NewType(newHoneyTypeName!, newHoneyTypeClass!));
                 var lot = new RawHoneyProduction
                 {
                     RawHoneyProductionApiaryId = apiaryId,

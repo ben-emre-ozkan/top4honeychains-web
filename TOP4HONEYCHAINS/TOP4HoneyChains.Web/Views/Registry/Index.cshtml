@@ -14,14 +14,14 @@
                         @* D-95: up to date with the beekeeper portal and the registration *@@L["Reg.ListHelp"]
                     </p>
                     <div class="table-responsive"><table class="table table-sm table-bordered" id="registry-table">
-                        <thead><tr><th>@L["Reg.BusinessNo"]</th><th>@L["Reg.Beekeeper"]</th><th>@L["Reg.RegistryNo"]</th><th>@L["Org.Status"]</th><th>@L["Reg.Association"]</th><th></th></tr></thead>
+                        <thead><tr><th>@L["Num.Official"]</th><th>@L["Reg.Beekeeper"]</th><th>@L["Num.Platform"]</th><th>@L["Org.Status"]</th><th>@L["Reg.Association"]</th><th></th></tr></thead>
                         <tbody>
                             @foreach (var r in Model)
                             {
                                 <tr>
-                                    <td>@r.BusinessNumber</td>
-                                    <td>@r.Name</td>
                                     <td>@r.RegistryNumber</td>
+                                    <td>@r.Name</td>
+                                    <td><small>@r.BusinessNumber</small></td>
                                     <td>@L[r.Status ?? ""]</td>
                                     <td>@r.Association</td>
                                     <td><a asp-action="Edit" asp-route-id="@r.BeekeeperId" class="btn btn-sm btn-primary">@L["Org.Open"]</a></td>

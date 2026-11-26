@@ -1,0 +1,19 @@
+@* D-98: the name and honey class of a new honey type ("Other"); shown while "Other" is chosen (honey-type-other.js) *@
+@model (string Id, bool Show, string? Name, string? HoneyClass)
+<div class="honey-type-new border rounded p-2 mt-2" id="@(Model.Id)-new" hidden="@(!Model.Show)">
+    <label class="form-label required" for="@(Model.Id)-name">@L["HT.NewName"]</label>
+    <input class="form-control" type="text" name="NewHoneyTypeName" id="@(Model.Id)-name" maxlength="100" value="@Model.Name" autocomplete="off" />
+    <div class="form-text">@L["HT.NewHelp"]</div>
+    <fieldset class="mt-2">
+        <legend class="form-label required fs-6 mb-1">@L["HT.NewClass"]</legend>
+        @foreach (var (value, key) in new[] { ("Floral", "HT.Class.Floral"), ("Honeydew", "HT.Class.Honeydew"), ("Pine", "HT.Class.Pine") })
+        {
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="NewHoneyTypeClass" id="@(Model.Id)-class-@value" value="@value" checked="@(Model.HoneyClass == value)" />
+                <label class="form-check-label" for="@(Model.Id)-class-@value">@L[key]</label>
+            </div>
+        }
+        <div class="form-text">@L["HT.ClassHelp"]</div>
+    </fieldset>
+</div>
+<script src="~/js/honey-type-other.js" asp-append-version="true"></script>

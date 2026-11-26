@@ -43,7 +43,7 @@
                                         <th>@L["Latitude"]</th>
                                         <th>@L["Longitude"]</th>
                                         <th>@L["Beekeeper"]</th>
-                                        <th>@L["Beekeeper Business Number"]</th>
+                                        <th>@L["Num.Official"]</th>
                                         <th>@L["Status"]</th>
                                         <th>@L["Actions"]</th>
                                     </tr>
@@ -75,7 +75,7 @@
                                             </td>
 
                                             <td>
-                                                @(item.ApiaryBeekeeper != null ? item.ApiaryBeekeeper.BeekeeperBusinessNumber : "-")
+                                                <partial name="_BeekeeperNumbers" model="@(((ViewBag.Registry as Dictionary<string, string?>)?.GetValueOrDefault(item.ApiaryBeekeeperId ?? ""), item.ApiaryBeekeeper?.BeekeeperBusinessNumber))" />
                                             </td>
 
                                             <td>

@@ -1,0 +1,26 @@
+@* D-98: the beekeeper's honey types (several) and "Other" for a new type, only for the roles that may add one *@
+@model TOP4HoneyChains.Web.Models.ViewModels.HoneyTypeChecks
+<div class="row g-1" id="honey-type-checks">
+    @foreach (var item in Model.Items)
+    {
+        <div class="col-6 col-md-4 col-lg-3">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="HoneyTypeIds" id="honey-type-@item.Value" value="@item.Value" checked="@(Model.Selected.Any(s => s.ToString() == item.Value))" />
+                <label class="form-check-label" for="honey-type-@item.Value">@item.Text</label>
+            </div>
+        </div>
+    }
+    @if (Model.MayAdd)
+    {
+        <div class="col-6 col-md-4 col-lg-3">
+            <div class="form-check">
+                <input class="form-check-input honey-type-other-check" type="checkbox" name="OtherHoneyType" id="honey-type-other" value="true" checked="@Model.Other" data-new="honey-type-new-new" />
+                <label class="form-check-label" for="honey-type-other">@L["HT.Other"]</label>
+            </div>
+        </div>
+    }
+</div>
+@if (Model.MayAdd)
+{
+    <partial name="_HoneyTypeNew" model="@(("honey-type-new", Model.Other, Model.NewName, Model.NewClass))" />
+}

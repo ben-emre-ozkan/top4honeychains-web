@@ -8,6 +8,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using TOP4HoneyChains.Web.Data;
 using TOP4HoneyChains.Web.Models.Entities;
+using TOP4HoneyChains.Web.Services;
+using TOP4HoneyChains.Web.Services.OrgModel;
 
 namespace TOP4HoneyChains.Web.Controllers
 {
@@ -15,10 +17,19 @@ namespace TOP4HoneyChains.Web.Controllers
     public class HoneyTypesController : Controller
     {
         private readonly TOP4HoneyChainsContext _context;
+        private readonly HoneyTypeCatalog _catalog;
 
-        public HoneyTypesController(TOP4HoneyChainsContext context)
+        public HoneyTypesController(TOP4HoneyChainsContext context, HoneyTypeCatalog catalog)
         {
             _context = context;
+            _catalog = catalog;
+        }
+
+        // D-98: a title must not stand for another type (same name ignoring case, letters, spaces and the word "honey")
+        private async Task CheckTitleAsync(HoneyType honeyType)
+        {
+            if (await _catalog.MatchAsync(honeyType.HoneyTypeTitle, honeyType.HoneyTypeId == 0 ? null : honeyType.HoneyTypeId) is HoneyType other)
+                ModelState.AddModelError(nameof(HoneyType.HoneyTypeTitle), $"This honey type already exists as {other.HoneyTypeTitle}: choose it from the list.");
         }
 
         // GET: HoneyTypes
@@ -68,10 +79,13 @@ namespace TOP4HoneyChains.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("HoneyTypeId,HoneyTypeTitle,HoneyTypeDescription,HoneyClass")] HoneyType honeyType)
+        public async Task<IActionResult> Create([Bind("HoneyTypeTitle,HoneyTypeDescription,HoneyClass")] HoneyType honeyType)
         {
+            await CheckTitleAsync(honeyType);
             if (ModelState.IsValid)
             {
+                honeyType.CreatedAt = DateTime.UtcNow;
+                honeyType.CreatedByUserId = HttpContext.RequestServices.GetRequiredService<ICurrentOrg>().UserId;
                 _context.Add(honeyType);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -115,12 +129,20 @@ namespace TOP4HoneyChains.Web.Controllers
                 return NotFound();
             }
 
+            await CheckTitleAsync(honeyType);
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(honeyType);
+                    // D-98: rename, description and class only; who added the type stays
+                    var stored = await _context.HoneyTypes.FirstOrDefaultAsync(h => h.HoneyTypeId == id);
+                    if (stored == null)
+                        return NotFound();
+                    stored.HoneyTypeTitle = honeyType.HoneyTypeTitle;
+                    stored.HoneyTypeDescription = honeyType.HoneyTypeDescription;
+                    stored.HoneyClass = honeyType.HoneyClass;
                     await _context.SaveChangesAsync();
+                    HttpContext.RequestServices.GetRequiredService<TOP4HoneyChains.Web.Services.RefText>().Invalidate();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -176,6 +198,47 @@ namespace TOP4HoneyChains.Web.Controllers
             }
 
             await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        // ---------------------------------------------------------------- D-98: merge one honey type into another
+
+        public async Task<IActionResult> Merge(int id)
+        {
+            var source = await _context.HoneyTypes.AsNoTracking().FirstOrDefaultAsync(h => h.HoneyTypeId == id);
+            if (source == null)
+                return NotFound();
+            await MergeViewAsync(source);
+            return View(source);
+        }
+
+        private async Task MergeViewAsync(HoneyType source)
+        {
+            var id = source.HoneyTypeId;
+            ViewBag.Targets = new SelectList(await _context.HoneyTypes.AsNoTracking().Where(h => h.HoneyTypeId != id).OrderBy(h => h.HoneyTypeTitle).ToListAsync(),
+                "HoneyTypeId", "HoneyTypeTitle").Translated(HttpContext, "HoneyType", "Title");
+            ViewBag.Lots = await _context.RawHoneyProductions.CountAsync(r => r.RawHoneyProductionHoneyType == id);
+            ViewBag.Limits = await _context.CriticalControlPointParameterLimits.CountAsync(l => l.HoneyTypeId == id);
+            ViewBag.Beekeepers = await _context.BeekeeperHoneyTypes.CountAsync(b => b.HoneyTypeId == id);
+            ViewBag.Controller = "Honey Types";
+            ViewBag.Action = "Merge";
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Merge(int id, int targetId)
+        {
+            var source = await _context.HoneyTypes.AsNoTracking().FirstOrDefaultAsync(h => h.HoneyTypeId == id);
+            if (source == null)
+                return NotFound();
+            var target = await _context.HoneyTypes.AsNoTracking().Where(h => h.HoneyTypeId == targetId).Select(h => h.HoneyTypeTitle).FirstOrDefaultAsync();
+            if (await _catalog.MergeAsync(id, targetId) is string error)
+            {
+                ModelState.AddModelError("", error);
+                await MergeViewAsync(source);
+                return View(source);
+            }
+            TempData["Success"] = $"{source.HoneyTypeTitle} was merged into {target}.";
             return RedirectToAction(nameof(Index));
         }
 
