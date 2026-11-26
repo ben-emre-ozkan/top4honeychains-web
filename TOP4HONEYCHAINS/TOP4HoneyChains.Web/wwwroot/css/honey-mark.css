@@ -91,3 +91,10 @@ html[data-scenes="off"] .bee .bee-still { display: inline-block; }
     .bee .bee-anim { display: none; }
     .bee .bee-still { display: inline-block; }
 }
+/* phones: the header logo gives way to the role switch and the user menu */
+@media (max-width: 575.98px) {
+    .app-brand .brand-logo img { width: auto; height: 28px; }
+}
+@media (max-width: 380px) {
+    .app-brand .brand-logo img { height: 24px; }
+}
