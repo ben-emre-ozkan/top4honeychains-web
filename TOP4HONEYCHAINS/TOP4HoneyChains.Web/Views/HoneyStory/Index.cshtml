@@ -261,16 +261,22 @@
             </div>
         </section>
 
-        @* ===== 3. origins by province (D-12, D-72): each province's share of the jar; never an apiary position ===== *@
+        @* ===== 3. origins by province (D-12, D-72): each province's share of the jar; never an apiary position.
+           D-98: a province opens its districts, shaded by their share; each source shows its district's outline ===== *@
         var byProvince = sources.Where(s => s.ProvincePlate > 0).GroupBy(s => s.ProvincePlate)
             .Select(g => (Plate: g.Key, Share: g.Sum(Share), Beekeepers: g.Select(Beekeeper).Distinct().Count()))
             .OrderByDescending(p => p.Share).ToList();
         var unplaced = sources.Where(s => s.ProvincePlate == 0).Sum(Share);
+        var byDistrict = sources.Where(s => s.ProvincePlate > 0 && s.District != null).GroupBy(s => (s.ProvincePlate, s.District!))
+            .Select(g => new TOP4HoneyChains.Web.Models.ViewModels.TurkeyMapDistrictArea(g.Key.ProvincePlate, g.Key.Item2, (double)g.Sum(Share),
+                L["Hst.MapTip", Pct(g.Sum(Share)), g.Select(Beekeeper).Distinct().Count()].Value)).ToList();
         var originMap = new TOP4HoneyChains.Web.Models.ViewModels.TurkeyMapModel
         {
             Id = "hs-tmap",
             Label = L["Hst.MapTitle"].Value,
             FillIn = true,
+            Districts = true,
+            DistrictAreas = byDistrict,
             Areas = byProvince.Select(p => new TOP4HoneyChains.Web.Models.ViewModels.TurkeyMapArea(p.Plate, (double)p.Share, L["Hst.MapTip", Pct(p.Share), p.Beekeepers].Value)).ToList()
         };
         <section class="hs-section" id="hs-map">
@@ -300,9 +306,14 @@
                 @for (var i = 0; i < sources.Count; i++)
                 {
                     var s = sources[i];
+                    var where = s.District != null ? s.District + ", " + Province(s.ProvincePlate) : Province(s.ProvincePlate);
                     <div class="hs-card hs-place @Color(i)">
                         <div class="hs-pin">@(i + 1)</div>
-                        <div class="hs-place-body"><b>@Apiary(s)</b><span>@Beekeeper(s)@if (s.ProvincePlate > 0) {<text> · @Province(s.ProvincePlate)</text>}</span></div>
+                        <div class="hs-place-body"><b>@Apiary(s)</b><span>@Beekeeper(s)@if (s.ProvincePlate > 0) {<text> · @where</text>}</span></div>
+                        @if (s.ProvincePlate > 0)
+                        {
+                            <partial name="~/Views/Shared/_DistrictOutline.cshtml" model="@(new TOP4HoneyChains.Web.Models.ViewModels.DistrictOutlineModel(s.ProvincePlate, s.District, where))" />
+                        }
                         <div class="hs-amount"><b>@Kg(s.UsedAmount) kg</b><span>@Pct(Share(s))</span></div>
                     </div>
                 }
@@ -468,6 +479,29 @@
                                 </div>
                             }
                         }
+                    </div>
+                }
+            </section>
+        }
+
+        @* ===== 6b. D-98: the final honey result (the batch's blend), apart from the lot results ===== *@
+        @if (Model.FinalResult is HoneyStoryFinalResult fr)
+        {
+            <section class="hs-section" id="final-result">
+                @{ Head("<path d=\"M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3\"></path>", L["Final.Eyebrow"].Value, L["Final.Title"].Value); }
+                <p class="hs-intro">@L["Final.PublicIntro"]</p>
+                <a class="hs-report-link" href="/verify-report?code=@fr.ReportCode">
+                    <span class="hs-report-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8C5E2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"></path><path d="m9 12 2 2 4-4"></path></svg></span>
+                    <span class="grow">@L["Sf.VerifyReportCode", fr.ReportCode]@if (fr.LabName != null) {<text> · @fr.LabName</text>}</span><span aria-hidden="true">›</span>
+                </a>
+                @foreach (var v in fr.Values)
+                {
+                    var unit = Ref.Unit(v.ParameterId, v.Unit);
+                    <div class="hs-row">
+                        <div class="hs-row-body"><b>@Ref.Parameter(v.ParameterId, v.Name)</b>
+                            @if (v.Compliant != null && v.Limit != null) {<span>@L["Limit:"] @Ref.Limit(v.Limit, k => L[k])</span>}</div>
+                        <div class="hs-row-value"><b>@(v.Number != null ? Num(v.Number.Value) : v.Text) @if (v.Number != null) {<small title="@unit">@Units.Symbol(unit)</small>}</b>
+                            @if (v.Compliant == true) {<span class="is-ok">@L["Hst.Within"]</span>} else if (v.Compliant == false) {<span class="is-out">@L["Hst.Out"]</span>}</div>
                     </div>
                 }
             </section>

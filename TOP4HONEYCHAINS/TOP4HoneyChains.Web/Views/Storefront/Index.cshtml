@@ -238,7 +238,10 @@
                     {
                         Id = "sf-map",
                         Label = L["Sf.MapLabel", m.Label].Value,
-                        Marker = new TOP4HoneyChains.Web.Models.ViewModels.TurkeyMapMarker(Provinces.PlateOf(Model.Province), m.X, m.Y, m.Label, L["Sf.ApproxArea"].Value)
+                        Marker = new TOP4HoneyChains.Web.Models.ViewModels.TurkeyMapMarker(Provinces.PlateOf(Model.Province), m.X, m.Y, m.Label, L["Sf.ApproxArea"].Value),
+                        // D-98: the marked province opens its districts, with the beekeeper's district shaded
+                        Districts = true,
+                        DistrictAreas = Model.District == null ? new() : new() { new(Provinces.PlateOf(Model.Province), Model.District, 1, L["Sf.ApproxArea"].Value) }
                     })" />
                     <p class="sf-origin-note">@L["Sf.MapNote"]</p>
                 </div>

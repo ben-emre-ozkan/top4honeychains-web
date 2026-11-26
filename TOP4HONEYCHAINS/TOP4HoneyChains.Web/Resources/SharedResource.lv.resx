@@ -568,13 +568,13 @@
     <value>Biškopju reģistrs un biedrības</value>
   </data>
   <data name="Reg.BusinessNo" xml:space="preserve">
-    <value>Saimniecības Nr.</value>
+    <value>Platformas Nr.</value>
   </data>
   <data name="Reg.Beekeeper" xml:space="preserve">
     <value>Biškopis</value>
   </data>
   <data name="Reg.RegistryNo" xml:space="preserve">
-    <value>Reģistrācijas Nr.</value>
+    <value>Saimniecības identifikācijas Nr.</value>
   </data>
   <data name="Reg.Association" xml:space="preserve">
     <value>Biedrība</value>
@@ -586,7 +586,7 @@
     <value>Formāts: TR, provinces kods 01–81 un 10 cipari. Nepieciešams apliecinošs dokuments (reģistra izdruka vai fotoattēls).</value>
   </data>
   <data name="Reg.ListHelp" xml:space="preserve">
-    <value>Katrs biškopis ir ieraksts platformā; biškopis, kas reģistrēts ar mobilo tālruni, var arī pieteikties biškopja sadaļā. Reģistra numurs tiek pārbaudīts, kad biškopis apstiprina reģistrāciju ar SMS kodu vai kad Atbilstības speciālists pieņem parakstīto fotoattēlu. Šeit platformas administrators pārbauda vēlāk ievadītu numuru ar apliecinošu dokumentu un maina biedrību.</value>
+    <value>Katrs biškopis ir ieraksts platformā; biškopis, kas reģistrēts ar mobilo tālruni, var arī pieteikties biškopja sadaļā, izmantojot platformas numuru kā lietotājvārdu. Saimniecības identifikācijas numurs tiek pārbaudīts, kad biškopis apstiprina reģistrāciju ar SMS kodu vai kad Atbilstības speciālists pieņem parakstīto fotoattēlu. Šeit platformas administrators pārbauda vēlāk ievadītu numuru ar apliecinošu dokumentu un maina biedrību.</value>
   </data>
   <data name="Reg.Submit" xml:space="preserve">
     <value>Iesniegt</value>
@@ -757,10 +757,10 @@
     <value>Reģistrēt piegādi</value>
   </data>
   <data name="Cust.NewIntakeHelp" xml:space="preserve">
-    <value>Atrodiet biškopi pēc saimniecības vai reģistrācijas numura, pēc tam ievadiet piegādi ar parakstītās piegādes veidlapas fotoattēlu.</value>
+    <value>Atrodiet biškopi pēc saimniecības identifikācijas numura vai platformas numura, pēc tam ievadiet piegādi ar parakstītās piegādes veidlapas fotoattēlu.</value>
   </data>
   <data name="Cust.BeekeeperNumber" xml:space="preserve">
-    <value>Biškopja saimniecības vai reģistrācijas numurs</value>
+    <value>Biškopja saimniecības identifikācijas numurs vai platformas numurs</value>
   </data>
   <data name="Cust.Find" xml:space="preserve">
     <value>Atrast</value>
@@ -1090,7 +1090,7 @@
     <value>Biškopju lapas</value>
   </data>
   <data name="P5.StorefrontsHelp" xml:space="preserve">
-    <value>Biedra publiskā lapa tiek publicēta tikai ar reģistrētu piekrišanu un pārbaudītu reģistrācijas numuru; piekrišanas atsaukšana nekavējoties atceļ tās publicēšanu.</value>
+    <value>Biedra publiskā lapa tiek publicēta tikai ar reģistrētu piekrišanu un pārbaudītu saimniecības identifikācijas numuru; piekrišanas atsaukšana nekavējoties atceļ tās publicēšanu.</value>
   </data>
   <data name="P5.Consent" xml:space="preserve">
     <value>Piekrišana</value>
@@ -1114,7 +1114,7 @@
     <value>nav publiska</value>
   </data>
   <data name="P5.NeedsRegistry" xml:space="preserve">
-    <value>nepieciešams pārbaudīts reģistrācijas numurs</value>
+    <value>nepieciešams pārbaudīts saimniecības identifikācijas numurs</value>
   </data>
   <data name="P5.RecordConsent" xml:space="preserve">
     <value>Reģistrēt piekrišanu</value>
@@ -1189,7 +1189,7 @@
     <value>Pārbaudāmās organizācijas</value>
   </data>
   <data name="Work.Kind.Registry" xml:space="preserve">
-    <value>Pārbaudāmie reģistrācijas numuri</value>
+    <value>Pārbaudāmie saimniecību identifikācijas numuri</value>
   </data>
   <data name="Work.Kind.Correction" xml:space="preserve">
     <value>Izlemjamie labojumi</value>
@@ -3022,7 +3022,7 @@
     <value>Faila nosaukums</value>
   </data>
   <data name="Business Number" xml:space="preserve">
-    <value>Saimniecības numurs</value>
+    <value>Platformas numurs</value>
   </data>
   <data name="Intake" xml:space="preserve">
     <value>Pieņemšana</value>
@@ -3064,7 +3064,7 @@
     <value>Parole nomainīta.</value>
   </data>
   <data name="Beekeeper Business Number" xml:space="preserve">
-    <value>Biškopja saimniecības numurs</value>
+    <value>Biškopja platformas numurs</value>
   </data>
   <data name="Column visibility" xml:space="preserve">
     <value>Kolonnu redzamība</value>
@@ -3535,7 +3535,7 @@
     <value>Gala partija veiksmīgi pabeigta (fiksēta).</value>
   </data>
   <data name="Registry number:" xml:space="preserve">
-    <value>Reģistrācijas numurs:</value>
+    <value>Saimniecības identifikācijas numurs:</value>
   </data>
   <data name="Sample rejected: the seal is broken." xml:space="preserve">
     <value>Paraugs noraidīts: plomba ir bojāta.</value>
@@ -5164,7 +5164,7 @@
     <value>Pats kompetenču saraksts ir nemainīgs: jaunai kompetencei vajag datubāzes skriptu un koda izmaiņas.</value>
   </data>
   <data name="Cap.Uses.Beekeeping" xml:space="preserve">
-    <value>Biškopja saimniecība. Tā nepiesakās; tās pārbaudītais reģistra numurs sasaista partijas ar biškopi un norāda provinci.</value>
+    <value>Biškopja saimniecība. Tā nepiesakās; tās pārbaudītais saimniecības identifikācijas numurs sasaista partijas ar biškopi un norāda provinci.</value>
   </data>
   <data name="Cap.Uses.Association" xml:space="preserve">
     <value>Sasaista savus biedrus biškopjus, reģistrē viņu piekrišanu un publicē biškopju lapas, kā arī redz biedru partijas atsaukšanas pārskatos; tās lauka inspektors var veikt KKP 0, ja administrators to piešķir.</value>
@@ -5539,7 +5539,7 @@
     <value>Izcelsme pa provincēm</value>
   </data>
   <data name="Hst.MapNote" xml:space="preserve">
-    <value>Tikai pa provincēm; precīza dravu atrašanās vieta nekad netiek publicēta.</value>
+    <value>Pa provincēm un rajoniem; precīza dravu atrašanās vieta nekad netiek publicēta.</value>
   </data>
   <data name="Hst.SourcesEyebrow" xml:space="preserve">
     <value>Iepazīstiet biškopjus</value>
@@ -6292,7 +6292,7 @@
     <value>Dravas provincē</value>
   </data>
   <data name="Home.Map.Note" xml:space="preserve">
-    <value>Tikai pa provincēm; dravu atrašanās vietas nekad netiek rādītas.</value>
+    <value>Pa provincēm un rajoniem; dravu atrašanās vietas nekad netiek rādītas.</value>
   </data>
   <data name="Home.Map.Unlocated" xml:space="preserve">
     <value>Dravas bez atrašanās vietas (nav kartē): {0}.</value>
@@ -6319,7 +6319,7 @@
     <value>Organizācija</value>
   </data>
   <data name="Home.Wait.Kind.registry" xml:space="preserve">
-    <value>Reģistra numurs</value>
+    <value>Saimniecības identifikācijas numurs</value>
   </data>
   <data name="Home.Wait.Kind.correction" xml:space="preserve">
     <value>Labojums</value>
@@ -6373,7 +6373,7 @@
     <value>Organizācija</value>
   </data>
   <data name="Home.Act.Kind.registry" xml:space="preserve">
-    <value>Reģistra numurs</value>
+    <value>Saimniecības identifikācijas numurs</value>
   </data>
   <data name="Home.Act.Entered" xml:space="preserve">
     <value>ievadīja {0}</value>
@@ -6553,7 +6553,7 @@
     <value>Dzimšanas datums</value>
   </data>
   <data name="Audit.F.BusinessNumber" xml:space="preserve">
-    <value>Saimniecības numurs</value>
+    <value>Platformas numurs</value>
   </data>
   <data name="Audit.F.Capability" xml:space="preserve">
     <value>Spēja</value>
@@ -6622,7 +6622,7 @@
     <value>Ievadīja</value>
   </data>
   <data name="Audit.F.EnterpriseNumber" xml:space="preserve">
-    <value>Saimniecības reģistra numurs</value>
+    <value>Saimniecības identifikācijas numurs</value>
   </data>
   <data name="Audit.F.Event" xml:space="preserve">
     <value>Notikums</value>
@@ -6817,7 +6817,7 @@
     <value>Reģistrēja</value>
   </data>
   <data name="Audit.F.RegistryNumber" xml:space="preserve">
-    <value>Reģistra numurs</value>
+    <value>Saimniecības identifikācijas numurs</value>
   </data>
   <data name="Audit.F.RejectReason" xml:space="preserve">
     <value>Noraidījuma iemesls</value>
@@ -7135,7 +7135,7 @@
     <value>Parakstīta foto pierādījums (pieņemt vai noraidīt)</value>
   </data>
   <data name="Cap.Uses.BeekeeperRegistration" xml:space="preserve">
-    <value>Novada lauksaimniecības pārvalde: tās reģistrācijas speciālisti reģistrē biškopjus un viņu dravas, pārbauda reģistra numuru, apstiprina identitāti un piekrišanu ar SMS kodu (vai parakstītu foto) un izsniedz pieteikšanās datus.</value>
+    <value>Novada lauksaimniecības pārvalde: tās reģistrācijas speciālisti reģistrē biškopjus un viņu dravas, pārbauda saimniecības identifikācijas numuru, apstiprina identitāti un piekrišanu ar SMS kodu (vai parakstītu foto) un izsniedz pieteikšanās datus.</value>
   </data>
   <data name="Org.NoComplianceOfficer" xml:space="preserve">
     <value>Šai organizācijai vēl nav atbilstības speciālista. Katra organizācija nosaka vismaz vienu (tas var būt organizācijas administrators ar otru dalību).</value>
@@ -7570,7 +7570,7 @@
     <value>Biškopības mērķis</value>
   </data>
   <data name="Registry Number" xml:space="preserve">
-    <value>Reģistra numurs</value>
+    <value>Saimniecības identifikācijas numurs</value>
   </data>
   <data name="Work.Kind.Evidence" xml:space="preserve">
     <value>Pārbaudīt parakstītos foto</value>
@@ -7579,16 +7579,16 @@
     <value>Biškopju reģistrācija</value>
   </data>
   <data name="Reg78.Help" xml:space="preserve">
-    <value>Jūsu organizācijas reģistrētie biškopji. Katru reģistrāciju apstiprina reģistra numurs, SMS kods uz biškopja tālruni un jūsu apliecinājums.</value>
+    <value>Jūsu organizācijas reģistrētie biškopji. Katru reģistrāciju apstiprina saimniecības identifikācijas numurs, SMS kods uz biškopja tālruni un jūsu apliecinājums.</value>
   </data>
   <data name="Reg78.FindLabel" xml:space="preserve">
-    <value>Reģistra numurs (AKS) vai saimniecības numurs</value>
+    <value>Saimniecības identifikācijas numurs (AKS) vai platformas numurs</value>
   </data>
   <data name="Reg78.Find" xml:space="preserve">
     <value>Atrast vai reģistrēt</value>
   </data>
   <data name="Reg78.FindHelp" xml:space="preserve">
-    <value>Zināms biškopis tiek pārbaudīts atkārtoti; jauns reģistra numurs sāk jaunu reģistrāciju.</value>
+    <value>Zināms biškopis tiek pārbaudīts atkārtoti; jauns saimniecības identifikācijas numurs sāk jaunu reģistrāciju.</value>
   </data>
   <data name="Reg78.Date" xml:space="preserve">
     <value>Datums</value>
@@ -7747,7 +7747,7 @@
     <value>Parakstītā foto pārbaude</value>
   </data>
   <data name="Reg78.ReviewHelp" xml:space="preserve">
-    <value>Atveriet foto un salīdziniet ar reģistrāciju: identitāte, reģistra numurs, biškopja izvēles un paraksts. Jūs šo reģistrāciju neievadījāt.</value>
+    <value>Atveriet foto un salīdziniet ar reģistrāciju: identitāte, saimniecības identifikācijas numurs, biškopja izvēles un paraksts. Jūs šo reģistrāciju neievadījāt.</value>
   </data>
   <data name="Reg78.ReviewReason" xml:space="preserve">
     <value>Piezīme (obligāta noraidīšanai)</value>
@@ -8785,7 +8785,7 @@
     <value>Reģistrējiet katru kannu un tās plombu. Biškopis apstiprina ar SMS kodu.</value>
   </data>
   <data name="Scene.seal" xml:space="preserve">
-    <value>Numurēta plomba tiek izvērta caur rokturi un aizslēgta. Pierakstiet tās numuru.</value>
+    <value>Numurēta plomba savieno vāku ar korpusu un aizslēdzas. Pierakstiet tās numuru.</value>
   </data>
   <data name="Scene.send" xml:space="preserve">
     <value>Noplombētās burkas dodas uz laboratoriju; kontrolparaugi paliek uzņēmumā.</value>
@@ -8854,7 +8854,7 @@
     <value>Paraugi un laboratorija rāda visas jūsu laboratorijas burkas un pārskatus. Jūsu pirmais darbs ir apstiprināt analītiķu iesniegtos pārskatus vai atgriezt kādu, piemēram, ja vērtība šķiet kļūdaina.</value>
   </data>
   <data name="Tour.Registration" xml:space="preserve">
-    <value>Biškopju reģistrācija ir vieta, kur reģistrējat biškopjus un viņu dravas. Ierakstiet reģistra numuru, biškopja datus un dravu, nosūtiet SMS kodu un ierakstiet kodu, ko biškopis jums nolasa.</value>
+    <value>Biškopju reģistrācija ir vieta, kur reģistrējat biškopjus un viņu dravas. Ierakstiet saimniecības identifikācijas numuru, biškopja datus, medus veidus un dravu, nosūtiet SMS kodu un ierakstiet kodu, ko biškopis jums nolasa.</value>
   </data>
   <data name="Tour.Compliance" xml:space="preserve">
     <value>Atbilstība ir jūsu pārbaužu galds: parakstīti foto, kvalitātes pārskati, datu pieprasījumi un audita žurnāls. Sāciet ar to, kas gaida jūsu lēmumu, piemēram, piegādi, kas apstiprināta ar parakstītu foto, nevis SMS kodu.</value>
@@ -8872,7 +8872,7 @@
     <value>Informācijas panelis rāda, kas jūs gaida kā platformas operatoru, un jaunākās darbības. Sāciet šeit, piemēram, ar organizāciju, kas gaida pārbaudi.</value>
   </data>
   <data name="Tour.Admin.Data" xml:space="preserve">
-    <value>Biškopji, dravas un platformas references saraksti. Šeit atrodiet biškopi, piemēram, pēc reģistra numura.</value>
+    <value>Biškopji, dravas un platformas references saraksti. Šeit atrodiet biškopi, piemēram, pēc saimniecības identifikācijas numura.</value>
   </data>
   <data name="Tour.Me.Deliveries" xml:space="preserve">
     <value>Manas piegādes rāda piegādāto medu ar katru tvertni un tās plombu. Ievadiet šeit savu cenu par kilogramu, piemēram, pagājušās nedēļas kastaņu medum.</value>
@@ -9827,7 +9827,7 @@
     <value>Paraugi un laboratorija ir jūsu darba saraksts. Vispirms pieņemiet katru burku (plombas numurs, etiķete, vāciņš), tad ievadiet rezultātus, piemēram, mitrumu un HMF, un iesniedziet pārskatu apstiprināšanai.</value>
   </data>
   <data name="Tour.Approve" xml:space="preserve">
-    <value>Mans darbs rāda kontrolpunktu (KKP) ierakstus, ko iesnieguši jūsu kolēģi. Pārbaudiet katru un apstipriniet vai atgrieziet, piemēram, šodienas piegādes pieņemšanas pārbaudi; neviens neapstiprina savu ierakstu.</value>
+    <value>Mans darbs uzskaita kontroles punktu (KKP) ierakstus, ko iesnieguši jūsu kolēģi. Pārbaudiet katru un apstipriniet vai nosūtiet atpakaļ ar iemeslu: tad tas atgriežas pie personas, kas to ievadīja, piemēram, šodienas piegādes pieņemšanas pārbaude. Neviens neapstiprina paša ievadītu ierakstu.</value>
   </data>
   <data name="Reg78.Info.Registry" xml:space="preserve">
     <value>TR + provinces numura zīmes kods (2 cipari) + 10 cipari, piem., TR520401200241. Provinces kodu salīdzina ar jūsu pārvaldes provinci.</value>
@@ -9851,7 +9851,7 @@
     <value>Biškopis saņems SMS kodu un turpmākās ziņas šajā valodā.</value>
   </data>
   <data name="Cust.Info.Number" xml:space="preserve">
-    <value>Ierakstiet biškopja reģistra numuru (piem., TR520401200241) vai saimniecības numuru un nospiediet Atrast. Pēc tam veidlapā parādās viņa dravas.</value>
+    <value>Ierakstiet biškopja saimniecības identifikācijas numuru (piem., TR520401200241) vai platformas numuru un nospiediet Atrast. Pēc tam veidlapā parādās viņa dravas.</value>
   </data>
   <data name="Ci.ArrivedUnsealed" xml:space="preserve">
     <value>Atvesta bez plombas (parasti)</value>
@@ -9932,25 +9932,25 @@
     <value>Numurēta uzlīme ar QR pāri vākam un korpusam. Der jebkurai tvertnei.</value>
   </data>
   <data name="Ci.Closure.SealLabel.Help" xml:space="preserve">
-    <value>Numurēta uzlīme ar QR kodu, ko izsniedz platforma un iepriekš izdrukā uz VOID drošības uzlīmju materiāla. To uzlīmē pāri vākam un korpusam; ja to noņem, tā saplīst vai atstāj VOID pēdas. Der jebkurai tvertnei.</value>
+    <value>Numurēta uzlīme ar QR kodu, ko izsniedz platforma un iepriekš izdrukā uz VOID drošības uzlīmju materiāla. Tā ir plēšama sloksne pāri savienojumam: puse ar kodu un QR uz vāka, otra puse uz korpusa. Ja to noņem, tā saplīst vai atstāj VOID pēdas. Der jebkurai tvertnei.</value>
   </data>
   <data name="Ci.Closure.PlasticSeal" xml:space="preserve">
     <value>Biškopja tvertne + numurēta plastmasas plomba</value>
   </data>
   <data name="Ci.Closure.PlasticSeal.Short" xml:space="preserve">
-    <value>Caur rokturi vai vāka caurumu; aizslēdzas vienreiz.</value>
+    <value>Caur cilpu, kas savieno vāku ar korpusu; aizslēdzas vienreiz.</value>
   </data>
   <data name="Ci.Closure.PlasticSeal.Help" xml:space="preserve">
-    <value>Tvertnēm ar rokturi vai vāka caurumu: iegādātā numurētā plomba tiek izvērta cauri un aizslēgta; to var atvērt tikai pārgriežot.</value>
+    <value>Iegādātā numurētā plomba tiek izvērta caur cilpu, kas savieno vāku ar korpusu, un aizslēgta; to var atvērt tikai pārgriežot. Šāda cilpa ir tikai biedrības tvertnēm.</value>
   </data>
   <data name="Ci.Closure.OrgContainer" xml:space="preserve">
     <value>Biedrības pastāvīgā tvertne</value>
   </data>
   <data name="Ci.Closure.OrgContainer.Short" xml:space="preserve">
-    <value>Reģistrēta vienreiz; noskenējiet vai ierakstiet tās TK kodu.</value>
+    <value>Reģistrēta vienreiz; noskenējiet vai ierakstiet tās TK kodu. Aizver ar plombas uzlīmi vai plastmasas plombu.</value>
   </data>
   <data name="Ci.Closure.OrgContainer.Help" xml:space="preserve">
-    <value>Biedrības pašas tvertne, reģistrēta vienreiz ar pastāvīgu kodu un QR. Piegādē noskenējiet vai ierakstiet tās kodu; tās lapa rāda katru izmantošanu. To joprojām aizver ar plombu no krājuma.</value>
+    <value>Biedrības pašas tvertne, reģistrēta vienreiz ar pastāvīgu kodu un QR. Piegādē noskenējiet vai ierakstiet tās kodu; tās lapa rāda katru izmantošanu. To aizver ar plombu no krājuma: plombas uzlīmi vai numurētu plastmasas plombu caur cilpu, kas savieno vāku ar korpusu.</value>
   </data>
   <data name="Ci.Info.Closure" xml:space="preserve">
     <value>Tvertni aizver vienreiz pēc paraugu ņemšanas biškopja klātbūtnē. Plomba nāk no jūsu organizācijas krājuma.</value>
@@ -10025,7 +10025,7 @@
     <value>Plombas uzlīme iet pāri vākam un korpusam. Noplēsta tā saplīst un atstāj VOID pēdas.</value>
   </data>
   <data name="Scene.plastic" xml:space="preserve">
-    <value>Numurēta plastmasas plomba tiek izvērta caur rokturi un aizslēgta.</value>
+    <value>Numurēta plastmasas plomba tiek izvērta caur vāka un korpusa cilpām un aizslēgta.</value>
   </data>
   <data name="Scene.scan" xml:space="preserve">
     <value>Biedrības tvertni noskenē pēc tās QR koda.</value>
@@ -10076,7 +10076,7 @@
     <value>Materiāli, kam jābūt pie rokas</value>
   </data>
   <data name="Seal.Materials" xml:space="preserve">
-    <value>VOID drošības uzlīmju materiāls (100 × 50 mm) plombu uzlīmēm, numurētas plastmasas plombas rokturiem, paraugu burkas ar drošības pogas vai gredzena vāciņu un rokas vakuumsūknis pogu vāciņiem.</value>
+    <value>VOID uzlīmju materiāls bez atlikumiem vai sadalāms (olu čaumalas) materiāls (100 × 50 mm) plombu uzlīmēm, numurētas plastmasas plombas biedrības tvertnēm (caur cilpu, kas savieno vāku ar korpusu), paraugu burkas ar drošības pogas vai gredzena vāciņu un rokas vakuumsūknis pogu vāciņiem.</value>
   </data>
   <data name="Seal.Issue" xml:space="preserve">
     <value>Izsniegt plombu uzlīmes</value>
@@ -10097,7 +10097,7 @@
     <value>Pievienot iegādātās plastmasas plombas</value>
   </data>
   <data name="Seal.RangeHelp" xml:space="preserve">
-    <value>Ievadiet uz plombām uzdrukāto diapazonu: neobligātu prefiksu un pirmo un pēdējo numuru.</value>
+    <value>Ievadiet uz plombām uzdrukāto diapazonu: neobligātu prefiksu un pirmo un pēdējo numuru. Plastmasas plombas aizver tikai biedrības tvertnes.</value>
   </data>
   <data name="Seal.Prefix" xml:space="preserve">
     <value>Prefikss</value>
@@ -10169,7 +10169,7 @@
     <value>Visas izmantošanas</value>
   </data>
   <data name="Seal.PrintHelp" xml:space="preserve">
-    <value>Drukājiet uz VOID drošības materiāla.</value>
+    <value>Drukājiet uz VOID materiāla bez atlikumiem vai sadalāma (olu čaumalas) materiāla. Katra uzlīme ir plēšama sloksne: puse ar kodu un QR uz vāka, otra puse uz korpusa.</value>
   </data>
   <data name="Seal.VoidNote" xml:space="preserve">
     <value>NENOŅEMT · VOID</value>
@@ -10284,5 +10284,398 @@
   </data>
   <data name="Enter the capacity and the empty weight in kg (or leave them empty)." xml:space="preserve">
     <value>Ievadiet ietilpību un tukšas tvertnes svaru kg (vai atstājiet tukšu).</value>
+  </data>
+  <data name="Ccp.Return" xml:space="preserve">
+    <value>Sūtīt atpakaļ</value>
+  </data>
+  <data name="Ccp.ReturnPlaceholder" xml:space="preserve">
+    <value>piem., Temperatūras vērtība šķiet kļūdaina; lūdzu, vēlreiz nolasiet termometru.</value>
+  </data>
+  <data name="Ccp.ReturnHelp" xml:space="preserve">
+    <value>Ieraksts atgriežas pie personas, kas to ievadīja, un parādās tās sarakstā Mans darbs ar jūsu iemeslu. Kad persona to saglabās vēlreiz, tas atgriezīsies pie jums apstiprināšanai.</value>
+  </data>
+  <data name="Ccp.Returned" xml:space="preserve">
+    <value>Nosūtīts atpakaļ.</value>
+  </data>
+  <data name="Ccp.ReturnedBy" xml:space="preserve">
+    <value>Nosūtīja atpakaļ {0}, {1}</value>
+  </data>
+  <data name="Ccp.ReturnedHelp" xml:space="preserve">
+    <value>Izlabojiet zemāk esošās vērtības un saglabājiet; ieraksts atkal tiks nosūtīts apstiprināšanai.</value>
+  </data>
+  <data name="Work.Kind.Returned" xml:space="preserve">
+    <value>Jums nosūtīts atpakaļ</value>
+  </data>
+  <data name="Work.Kind.PackingReady" xml:space="preserve">
+    <value>Gatavs iepakošanai?</value>
+  </data>
+  <data name="Path.Title" xml:space="preserve">
+    <value>Ceļš pēc laboratorijas</value>
+  </data>
+  <data name="Path.Association" xml:space="preserve">
+    <value>Biedrības ceļš: uzreiz uz iepakošanu (KKP 2–6 neattiecas)</value>
+  </data>
+  <data name="Path.Company" xml:space="preserve">
+    <value>Uzņēmuma ceļš: pārstrāde (no KKP 2)</value>
+  </data>
+  <data name="Path.Default" xml:space="preserve">
+    <value>noklusējums</value>
+  </data>
+  <data name="Path.Info.Setting" xml:space="preserve">
+    <value>Biedrības parasti iepako biedru medu tādu, kāds tas ir: pēc apstiprināta laboratorijas pārskata kvalitātes nodrošināšanas atbildīgais to atzīmē kā gatavu iepakošanai, un KKP 2–6 neattiecas. Pārstrādes uzņēmumi medu karsē, filtrē un jauc, tāpēc attiecas KKP no 2. Pēc noklusējuma biedrības ceļš organizācijai ar spēju Biedrība, citādi uzņēmuma ceļš. Izmaiņas attiecas uz partijām, kas atzīmētas kā gatavas, un gala partijām, kas izveidotas pēc tam.</value>
+  </data>
+  <data name="Path.PackingReady" xml:space="preserve">
+    <value>Medus gatavs iepakošanai</value>
+  </data>
+  <data name="Path.Info.Association" xml:space="preserve">
+    <value>Jūsu organizācija izmanto biedrības ceļu: kad partijas laboratorijas pārskats ir apstiprināts, kvalitātes nodrošināšanas atbildīgais šeit apstiprina, ka medus nonāk uzreiz iepakošanā. KKP 2–6 (karsēšana, filtrēšana, homogenizēšana, pasterizēšana, dzidrināšana) tad neattiecas uz šo partiju vai tās gala partiju; tos reģistrē kā neattiecināmus ar iemeslu un ieraksta audita žurnālā.</value>
+  </data>
+  <data name="Path.ButtonHelp" xml:space="preserve">
+    <value>Laboratorijas pārskats ir apstiprināts. Apstipriniet, ka medus nonāk iepakošanā tāds, kāds tas ir.</value>
+  </data>
+  <data name="Path.IsReady" xml:space="preserve">
+    <value>Gatavs iepakošanai</value>
+  </data>
+  <data name="Path.ReadyHelp" xml:space="preserve">
+    <value>KKP 2–6 uz šo partiju neattiecas; to var iekļaut gala partijā.</value>
+  </data>
+  <data name="Final.Title" xml:space="preserve">
+    <value>Medus gala rezultāts</value>
+  </data>
+  <data name="Final.Eyebrow" xml:space="preserve">
+    <value>Maisījums burkā</value>
+  </data>
+  <data name="Final.Help" xml:space="preserve">
+    <value>Šajā gala partijā ir medus no vairākām dravām. Gala maisījuma laboratorijas analīze parāda medu tādu, kāds tas ir burkā, atsevišķi no katras partijas rezultātiem.</value>
+  </data>
+  <data name="Final.Info" xml:space="preserve">
+    <value>Paņemiet vienu noplombētu burku un kontrolparaugu no sajauktās gala partijas, noplombējiet abus ar plombu etiķetēm no jūsu organizācijas krājuma un nosūtiet burku verificētai laboratorijai. Apstiprinātais pārskats tiek parādīts šeit un Medus stāstā kā medus gala rezultāts. Pabeigt var arī bez tā, taču tiks parādīts brīdinājums.</value>
+  </data>
+  <data name="Final.PublicIntro" xml:space="preserve">
+    <value>Šis medus ir maisījums no vairākām dravām. Papildus katra avota rezultātiem laboratorija analizēja arī pašu maisījumu.</value>
+  </data>
+  <data name="Final.Approved" xml:space="preserve">
+    <value>Apstiprināts</value>
+  </data>
+  <data name="Final.Parameter" xml:space="preserve">
+    <value>Parametrs</value>
+  </data>
+  <data name="Final.Value" xml:space="preserve">
+    <value>Vērtība</value>
+  </data>
+  <data name="Final.Limit" xml:space="preserve">
+    <value>Robeža</value>
+  </data>
+  <data name="Final.AtLab" xml:space="preserve">
+    <value>Laboratorijā</value>
+  </data>
+  <data name="Final.Rejected" xml:space="preserve">
+    <value>Laboratorija noraidīja paraugu {0}. Paņemiet jaunu paraugu.</value>
+  </data>
+  <data name="Final.TakeSample" xml:space="preserve">
+    <value>Paņemt gala maisījuma paraugu</value>
+  </data>
+  <data name="Final.Lab" xml:space="preserve">
+    <value>Laboratorija</value>
+  </data>
+  <data name="Final.CounterWhere" xml:space="preserve">
+    <value>Kur glabā kontrolparaugu</value>
+  </data>
+  <data name="Final.RetainUntil" xml:space="preserve">
+    <value>Glabāt līdz</value>
+  </data>
+  <data name="Final.Send" xml:space="preserve">
+    <value>Nosūtīt laboratorijai</value>
+  </data>
+  <data name="Final.Warning" xml:space="preserve">
+    <value>Šai gala partijai vēl nav apstiprināta medus gala rezultāta. To joprojām var pabeigt; tad Medus stāsts rādīs tikai katras partijas rezultātus.</value>
+  </data>
+  <data name="Final.BatchSample" xml:space="preserve">
+    <value>Gala partijas nr. {0} gala maisījums</value>
+  </data>
+  <data name="Limit.expected" xml:space="preserve">
+    <value>sagaidāms</value>
+  </data>
+  <data name="This control point does not apply on the association path." xml:space="preserve">
+    <value>Šis kontroles punkts neattiecas uz biedrības ceļu.</value>
+  </data>
+  <data name="Only a submitted record can be sent back." xml:space="preserve">
+    <value>Atpakaļ var sūtīt tikai iesniegtu ierakstu.</value>
+  </data>
+  <data name="A reason is required to send the record back." xml:space="preserve">
+    <value>Lai sūtītu ierakstu atpakaļ, jānorāda iemesls.</value>
+  </data>
+  <data name="Only a {0} of the organization can send a record back." xml:space="preserve">
+    <value>Ierakstu atpakaļ var sūtīt tikai organizācijas {0}.</value>
+  </data>
+  <data name="The record was sent back to the person who entered it." xml:space="preserve">
+    <value>Ieraksts nosūtīts atpakaļ personai, kas to ievadīja.</value>
+  </data>
+  <data name="The honey is ready for packing: CCP 2 to 6 do not apply to this lot." xml:space="preserve">
+    <value>Medus ir gatavs iepakošanai: KKP 2–6 uz šo partiju neattiecas.</value>
+  </data>
+  <data name="The lot does not exist." xml:space="preserve">
+    <value>Partija neeksistē.</value>
+  </data>
+  <data name="The honey of this lot is already marked ready for packing." xml:space="preserve">
+    <value>Šīs partijas medus jau ir atzīmēts kā gatavs iepakošanai.</value>
+  </data>
+  <data name="Only organizations on the association path mark honey ready for packing." xml:space="preserve">
+    <value>Medu kā gatavu iepakošanai atzīmē tikai organizācijas, kas izmanto biedrības ceļu.</value>
+  </data>
+  <data name="Only the organization that holds the lot marks it ready for packing." xml:space="preserve">
+    <value>Partiju kā gatavu iepakošanai atzīmē tikai organizācija, kurai tā pieder.</value>
+  </data>
+  <data name="Only the Quality Assurance Officer marks the honey ready for packing." xml:space="preserve">
+    <value>Medu kā gatavu iepakošanai atzīmē tikai kvalitātes nodrošināšanas atbildīgais.</value>
+  </data>
+  <data name="The lot's laboratory report is not approved yet." xml:space="preserve">
+    <value>Partijas laboratorijas pārskats vēl nav apstiprināts.</value>
+  </data>
+  <data name="CCP 2 or CCP 3 of this lot already has values, so the lot follows the company path." xml:space="preserve">
+    <value>Šīs partijas KKP 2 vai KKP 3 jau ir vērtības, tāpēc partija iet uzņēmuma ceļu.</value>
+  </data>
+  <data name="The lot is in a finalized batch and can no longer be changed." xml:space="preserve">
+    <value>Partija ir pabeigtā gala partijā, un to vairs nevar mainīt.</value>
+  </data>
+  <data name="Association path: the honey goes to packing after the approved laboratory report." xml:space="preserve">
+    <value>Biedrības ceļš: medus nonāk iepakošanā pēc apstiprināta laboratorijas pārskata.</value>
+  </data>
+  <data name="Choose the association path or the company path." xml:space="preserve">
+    <value>Izvēlieties biedrības vai uzņēmuma ceļu.</value>
+  </data>
+  <data name="The path after the laboratory was saved." xml:space="preserve">
+    <value>Ceļš pēc laboratorijas saglabāts.</value>
+  </data>
+  <data name="The batch does not exist." xml:space="preserve">
+    <value>Gala partija neeksistē.</value>
+  </data>
+  <data name="Only the organization that holds the batch takes its samples." xml:space="preserve">
+    <value>Gala partijas paraugus ņem tikai organizācija, kurai tā pieder.</value>
+  </data>
+  <data name="The batch is finalized." xml:space="preserve">
+    <value>Gala partija ir pabeigta.</value>
+  </data>
+  <data name="A final honey result is taken on the company path for a batch with honey from more than one apiary." xml:space="preserve">
+    <value>Medus gala rezultātu nosaka uzņēmuma ceļā gala partijai ar medu no vairākām dravām.</value>
+  </data>
+  <data name="A sample of this batch is already at the laboratory." xml:space="preserve">
+    <value>Šīs gala partijas paraugs jau ir laboratorijā.</value>
+  </data>
+  <data name="Lab report approved; it is the batch's final honey result." xml:space="preserve">
+    <value>Laboratorijas pārskats apstiprināts; tas ir gala partijas medus gala rezultāts.</value>
+  </data>
+  <data name="Map.Back" xml:space="preserve">
+    <value>Visas provinces</value>
+  </data>
+  <data name="Map.DrillHint" xml:space="preserve">
+    <value>Izvēlieties izceltu provinci, lai redzētu tās rajonus.</value>
+  </data>
+  <data name="Map.DistrictCredit" xml:space="preserve">
+    <value>Rajonu robežas: geoBoundaries, © OpenStreetMap līdzautori (ODbL)</value>
+  </data>
+  <data name="Home.Map.DistrictTip" xml:space="preserve">
+    <value>Dravas: {0}</value>
+  </data>
+  <data name="Seal.Split" xml:space="preserve">
+    <value>vāks | korpuss</value>
+  </data>
+  <data name="Seal.InUse" xml:space="preserve">
+    <value>Lietošanā: {0}</value>
+  </data>
+  <data name="Seal.Free" xml:space="preserve">
+    <value>Brīva</value>
+  </data>
+  <data name="Empty.Title" xml:space="preserve">
+    <value>Izcelsmes partiju tvertnes</value>
+  </data>
+  <data name="Empty.Help" xml:space="preserve">
+    <value>Tvertne paliek noplombēta, līdz to iztukšo šajā gala partijā. Pirms iztukšošanas noskenējiet tās aizvēršanas plombu un apstipriniet, ka tā ir neskarta. Cits kods vai bojāta plomba aptur šo soli un tiek reģistrēta.</value>
+  </data>
+  <data name="Empty.Warning" xml:space="preserve">
+    <value>Tvertnes, kas joprojām ir noplombētas vai kurām plombas pārbaude neizdevās: {0}. Pabeigšana netiek bloķēta; vispirms tās iztukšojiet vai noskaidrojiet.</value>
+  </data>
+  <data name="Empty.Checks" xml:space="preserve">
+    <value>Plombas pārbaude iztukšojot</value>
+  </data>
+  <data name="Empty.Seal" xml:space="preserve">
+    <value>Aizvēršanas plomba: noskenējiet vai ierakstiet</value>
+  </data>
+  <data name="Empty.Intact" xml:space="preserve">
+    <value>Plomba ir neskarta</value>
+  </data>
+  <data name="Empty.Button" xml:space="preserve">
+    <value>Iztukšot šajā gala partijā</value>
+  </data>
+  <data name="Empty.BrokenButton" xml:space="preserve">
+    <value>Plomba bojāta</value>
+  </data>
+  <data name="Empty.State.Sealed" xml:space="preserve">
+    <value>Noplombēta</value>
+  </data>
+  <data name="Empty.State.Emptied" xml:space="preserve">
+    <value>Iztukšota gala partijā {0}</value>
+  </data>
+  <data name="Empty.State.NoSeal" xml:space="preserve">
+    <value>Nav reģistrētas aizvēršanas plombas</value>
+  </data>
+  <data name="Empty.Outcome.Emptied" xml:space="preserve">
+    <value>Plomba neskarta, iztukšota gala partijā {0}</value>
+  </data>
+  <data name="Empty.Outcome.Mismatch" xml:space="preserve">
+    <value>Noskenēta cita plomba: {0}</value>
+  </data>
+  <data name="Empty.Outcome.FoundBroken" xml:space="preserve">
+    <value>Plomba atrasta bojāta</value>
+  </data>
+  <data name="Empty.NotEmptied" xml:space="preserve">
+    <value>netika iztukšota gala partijā {0}</value>
+  </data>
+  <data name="Container {0}: a numbered plastic seal closes only an association container; close the beekeeper's container with a seal label." xml:space="preserve">
+    <value>Tvertne {0}: numurēta plastmasas plomba aizver tikai biedrības tvertni; biškopja tvertni aizveriet ar plombas uzlīmi.</value>
+  </data>
+  <data name="Containers are emptied into a batch by those who enter batch data in the organization that owns the batch." xml:space="preserve">
+    <value>Tvertnes gala partijā iztukšo tie, kas ievada gala partiju datus organizācijā, kurai pieder gala partija.</value>
+  </data>
+  <data name="The batch was not found." xml:space="preserve">
+    <value>Gala partija netika atrasta.</value>
+  </data>
+  <data name="The batch is finalized; containers can no longer be emptied into it." xml:space="preserve">
+    <value>Gala partija ir pabeigta; tajā vairs nevar iztukšot tvertnes.</value>
+  </data>
+  <data name="This container does not belong to a lot of this batch." xml:space="preserve">
+    <value>Šī tvertne nepieder nevienai šīs gala partijas partijai.</value>
+  </data>
+  <data name="Container {0} was already emptied into batch {1}." xml:space="preserve">
+    <value>Tvertne {0} jau ir iztukšota gala partijā {1}.</value>
+  </data>
+  <data name="Container {0} has no closing seal on record." xml:space="preserve">
+    <value>Tvertnei {0} nav reģistrētas aizvēršanas plombas.</value>
+  </data>
+  <data name="Scan or type the closing seal of container {0}." xml:space="preserve">
+    <value>Noskenējiet vai ierakstiet tvertnes {0} aizvēršanas plombu.</value>
+  </data>
+  <data name="The seal of container {0} was reported broken. The container was not emptied; the check was recorded." xml:space="preserve">
+    <value>Ziņots, ka tvertnes {0} plomba ir bojāta. Tvertne netika iztukšota; pārbaude ir reģistrēta.</value>
+  </data>
+  <data name="Seal {0} is not the closing seal of container {1}. The container was not emptied; the check was recorded." xml:space="preserve">
+    <value>Plomba {0} nav tvertnes {1} aizvēršanas plomba. Tvertne netika iztukšota; pārbaude ir reģistrēta.</value>
+  </data>
+  <data name="Confirm that the seal of container {0} is intact, or report it broken." xml:space="preserve">
+    <value>Apstipriniet, ka tvertnes {0} plomba ir neskarta, vai ziņojiet, ka tā ir bojāta.</value>
+  </data>
+  <data name="Container {0} emptied into batch {1}; seal {2} is now opened." xml:space="preserve">
+    <value>Tvertne {0} iztukšota gala partijā {1}; plomba {2} tagad ir atvērta.</value>
+  </data>
+  <data name="Num.Official" xml:space="preserve">
+    <value>Saimniecības identifikācijas numurs</value>
+  </data>
+  <data name="Num.Platform" xml:space="preserve">
+    <value>Platformas numurs</value>
+  </data>
+  <data name="Login.BeekeeperHint" xml:space="preserve">
+    <value>Biškopji: jūsu lietotājvārds ir jūsu platformas numurs (TR-BEE-…).</value>
+  </data>
+  <data name="HT.Other" xml:space="preserve">
+    <value>Cits (jauns medus veids)</value>
+  </data>
+  <data name="HT.NewName" xml:space="preserve">
+    <value>Jaunā medus veida nosaukums</value>
+  </data>
+  <data name="HT.NewHelp" xml:space="preserve">
+    <value>Vispirms pārbaudiet sarakstu. Nosaukums, kas sakrīt ar esošu veidu (neņemot vērā lielos burtus, turku burtus, atstarpes un vārdu "medus"), tiek noraidīts; tad izvēlieties šo veidu no saraksta.</value>
+  </data>
+  <data name="HT.NewClass" xml:space="preserve">
+    <value>Medus klase</value>
+  </data>
+  <data name="HT.ClassHelp" xml:space="preserve">
+    <value>Klase nosaka, kuri laboratorijas robežlielumi attiecas uz šo medu.</value>
+  </data>
+  <data name="HT.Class.Floral" xml:space="preserve">
+    <value>Ziedu</value>
+  </data>
+  <data name="HT.Class.Honeydew" xml:space="preserve">
+    <value>Lipaiņu</value>
+  </data>
+  <data name="HT.Class.Pine" xml:space="preserve">
+    <value>Priežu</value>
+  </data>
+  <data name="HT.BeekeeperTypes" xml:space="preserve">
+    <value>Medus veidi, ko biškopis ražo</value>
+  </data>
+  <data name="HT.EditBeekeeperTypes" xml:space="preserve">
+    <value>Mainīt biškopja medus veidus</value>
+  </data>
+  <data name="HT.Added" xml:space="preserve">
+    <value>Pievienots no veidlapas</value>
+  </data>
+  <data name="HT.Merge.Title" xml:space="preserve">
+    <value>Apvienot medus veidu</value>
+  </data>
+  <data name="HT.Merge.Help" xml:space="preserve">
+    <value>Viss, kas izmanto šo medus veidu, pāriet uz jūsu izvēlēto veidu: partijas, laboratorijas robežlielumi, biškopju medus veidi un tulkojumi, kuru trūkst otram veidam. Pēc tam šis medus veids tiek dzēsts; tā nosaukums joprojām ved uz otru veidu.</value>
+  </data>
+  <data name="HT.Merge.Lots" xml:space="preserve">
+    <value>Partijas</value>
+  </data>
+  <data name="HT.Merge.Limits" xml:space="preserve">
+    <value>Šī medus veida robežlielumi</value>
+  </data>
+  <data name="HT.Merge.Beekeepers" xml:space="preserve">
+    <value>Biškopji ar šo medus veidu</value>
+  </data>
+  <data name="HT.Merge.ClassNote" xml:space="preserve">
+    <value>Pēc tam partijas vērtē pēc otra veida medus klases robežlielumiem.</value>
+  </data>
+  <data name="HT.Merge.Target" xml:space="preserve">
+    <value>Apvienot ar</value>
+  </data>
+  <data name="HT.Merge.Button" xml:space="preserve">
+    <value>Apvienot</value>
+  </data>
+  <data name="Your role cannot add a honey type; choose one from the list." xml:space="preserve">
+    <value>Jūsu loma nevar pievienot medus veidu; izvēlieties kādu no saraksta.</value>
+  </data>
+  <data name="Enter the name of the new honey type (2 to 100 characters)." xml:space="preserve">
+    <value>Ievadiet jaunā medus veida nosaukumu (no 2 līdz 100 rakstzīmēm).</value>
+  </data>
+  <data name="Choose the honey class of the new honey type (floral, honeydew or pine)." xml:space="preserve">
+    <value>Izvēlieties jaunā medus veida klasi (ziedu, lipaiņu vai priežu).</value>
+  </data>
+  <data name="This honey type already exists as {0}: choose it from the list." xml:space="preserve">
+    <value>Šis medus veids jau ir kā {0}: izvēlieties to no saraksta.</value>
+  </data>
+  <data name="Only the platform administrator merges honey types." xml:space="preserve">
+    <value>Medus veidus apvieno tikai platformas administrators.</value>
+  </data>
+  <data name="A honey type cannot be merged into itself." xml:space="preserve">
+    <value>Medus veidu nevar apvienot pašu ar sevi.</value>
+  </data>
+  <data name="Both honey types have their own limit for {0}: remove one on the Limits page first." xml:space="preserve">
+    <value>Abiem medus veidiem ir savs robežlielums parametram {0}: vispirms noņemiet vienu robežlielumu lapā.</value>
+  </data>
+  <data name="{0} was merged into {1}." xml:space="preserve">
+    <value>{0} apvienots ar {1}.</value>
+  </data>
+  <data name="The beekeeper's honey types are saved." xml:space="preserve">
+    <value>Biškopja medus veidi ir saglabāti.</value>
+  </data>
+  <data name="Holding identification number verified." xml:space="preserve">
+    <value>Saimniecības identifikācijas numurs pārbaudīts.</value>
+  </data>
+  <data name="Evidence accepted; the holding identification number is verified." xml:space="preserve">
+    <value>Pierādījums pieņemts; saimniecības identifikācijas numurs ir pārbaudīts.</value>
+  </data>
+  <data name="A beekeeper with this holding identification number is already registered. Find it and re-verify instead." xml:space="preserve">
+    <value>Biškopis ar šo saimniecības identifikācijas numuru jau ir reģistrēts. Atrodiet to un pārbaudiet atkārtoti.</value>
+  </data>
+  <data name="The holding identification number belongs to another province than the directorate. Give a reason to continue." xml:space="preserve">
+    <value>Saimniecības identifikācijas numurs pieder citai provincei, nevis pārvaldes provincei. Norādiet iemeslu, lai turpinātu.</value>
+  </data>
+  <data name="Consent recorded. The storefront is published once the holding identification number is verified." xml:space="preserve">
+    <value>Piekrišana reģistrēta. Lapa tiks publicēta, tiklīdz saimniecības identifikācijas numurs būs pārbaudīts.</value>
+  </data>
+  <data name="Enter the holding identification number (or the platform number of a registered beekeeper)." xml:space="preserve">
+    <value>Ievadiet saimniecības identifikācijas numuru (vai reģistrēta biškopja platformas numuru).</value>
   </data>
 </root>

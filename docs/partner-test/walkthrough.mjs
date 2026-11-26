@@ -1,7 +1,8 @@
 // D-86, updated for D-88 and the Şile cast of D-90: walks the partner test scenario "Follow one honey" on the LOCAL app as the people of the live-like cast
 // (tools/live-like/cast.json), never the platform administrator: a new beekeeper is registered (code read on the beekeeper's phone
-// page), signs in to the portal and sets the asking price, delivers in sealed containers, CCP 0, the laboratory, the lot's control
-// sheet (CCP 2–3), New batch in the association, the batch's control sheet (CCP 4–10), finalizing by two people, the shipment to the shop
+// page), signs in to the portal and sets the asking price, delivers two containers (D-97 cards: seal labels from the association's pool,
+// one association container), CCP 0, the laboratory, "ready for packing" (D-98 association path, CCP 2–6 do not apply), New batch in the
+// association, both containers emptied into it (closing seals scanned), the batch's control sheet (CCP 7–10), finalizing by two people, the shipment to the shop
 // with its storage record, the public Honey Story, and a consumer who creates an account from the story, saves the honey and sends
 // feedback that the association answers. It checks that the steps work and saves one screenshot per step outside the repository.
 //   node docs/partner-test/walkthrough.mjs        (run-demo.ps1 running on http://localhost:5255; WALK_LANG=en|tr|es|pl|lv)
@@ -17,7 +18,8 @@ import { fileURLToPath } from 'node:url';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const repo = path.resolve(here, '..', '..');
-const { chromium } = await import(new URL('../manual/node_modules/playwright-core/index.mjs', import.meta.url));
+const { chromium } = await import(new URL('../manual/capture/node_modules/playwright-core/index.mjs', import.meta.url))
+    .catch(() => import(new URL('../manual/node_modules/playwright-core/index.mjs', import.meta.url)));
 const BASE = (process.env.WALK_BASE || 'http://localhost:5255').replace(/\/$/, '');
 if (!/^http:\/\/localhost(:\d+)?$/.test(BASE)) throw new Error('walkthrough.mjs runs against the local app only');
 const LANG = process.env.WALK_LANG || 'en';
@@ -199,7 +201,16 @@ async function approveWithDialog(page, button, dialog) {
 
 const reg = user('RegistrationOfficer', 'directorate'), sao = user('SampleAcceptanceOfficer', 'association'), staff = user('Staff', 'association'), qa = user('QualityApprover', 'association');
 const analyst = user('Analyst', 'lab'), labManager = user('LabManager', 'lab'), shop = user('Staff', 'shop'), shopQa = user('QualityApprover', 'shop');
-let business, lot, batch, composite, qr, portal, story;
+let business, lot, batch, composite, qr, portal, story, closings = [];
+
+// D-97: free seal labels of the association's pool after the ones reserved for the owner's guide (TS-000001..030) and a free association
+// container after TK-0004 (TK-0001..0003: the guide; the last one: tools/live-like/walk.mjs). Seal codes are not personal data.
+function freeCodes() {
+    const org = orgId('association');
+    const labels = sql(`SELECT Code FROM dbo.SealCodes WHERE OrgId = ${org} AND Kind = 'Label' AND Status = 'Issued' AND Code > 'TS-000030' ORDER BY Code`).filter(c => /^TS-\d{6}$/.test(c));
+    const boxes = sql(`SELECT b.Code FROM dbo.OrgContainers b WHERE b.OrgId = ${org} AND b.IsActive = 1 AND b.Code > 'TK-0003' ORDER BY b.Code`).filter(c => /^TK-\d{4}$/.test(c));
+    return { labels, box: boxes.length > 1 ? boxes[boxes.length - 2] : boxes[0] };
+}
 
 try {
     await nextMessage();   // the beekeeper's phone page is open before anything is sent
@@ -267,23 +278,32 @@ try {
         await page.selectOption('#LabOrgId', orgId('lab'));
         if (!(await page.locator('#RetainUntil').inputValue())) { const d = new Date(); d.setFullYear(d.getFullYear() + 2); await page.fill('#RetainUntil', d.toISOString().slice(0, 10)); }
         await page.fill('#CounterLocation', cast.history.counterLocation);
-        if (await page.locator('#containers tbody tr').count() < 2) await page.click('#add-container');
-        const rows = page.locator('#containers tbody tr');
+        // D-97: one card per container, every code from the association's seal pool (checked live); jar caps with a safety button
+        const free = freeCodes();
+        if (free.labels.length < 6 || !free.box) throw new Error('the seal pool has too few free codes: issue seal labels on the Seals page');
+        if (await page.locator('#ci-cards [data-card]').count() < 2) await page.click('#add-container');
+        const cards = page.locator('#ci-cards [data-card]');
         const plan = [
-            { net: '24.2', gross: '25.6', origin: `SAB-2026-W${tag}1`, jar: `SAB-J-W${tag}1`, counter: `SAB-K-W${tag}1`, reseal: `SAB-P-W${tag}1` },
-            { net: '20.9', gross: '22.3', origin: `SAB-2026-W${tag}2`, jar: `SAB-J-W${tag}2`, counter: `SAB-K-W${tag}2`, reseal: `SAB-P-W${tag}2` }
+            { closure: 'SealLabel', net: '24.2', gross: '25.6', jar: free.labels[0], counter: free.labels[1], closing: free.labels[2] },
+            { closure: 'OrgContainer', box: free.box, net: '20.9', gross: '22.3', jar: free.labels[3], counter: free.labels[4], closing: free.labels[5] }
         ];
+        closings = plan.map(p => p.closing);
         for (let i = 0; i < plan.length; i++) {
-            const r = rows.nth(i), p = plan[i];
-            const f = n => r.locator(`[data-field="${n}"]`);
-            await f('Kind').selectOption({ index: 0 });
+            const card = cards.nth(i), p = plan[i];
+            const f = n => card.locator(`[data-field="${n}"]`);
+            await card.locator(`[data-field="Closure"][value="${p.closure}"]`).check();
+            if (p.box) {
+                await f('OrgContainerCode').fill(p.box);
+                await card.locator('.ci-box.is-ok').waitFor({ timeout: 8000 });
+            } else await f('Kind').selectOption({ index: 0 });
             await f('NetKg').fill(p.net);
             await f('GrossKg').fill(p.gross);
-            await f('ArrivedSealed').check(); await f('OriginSeal').fill(p.origin); await f('OriginSealIntact').check();
-            await f('JarSeal').fill(p.jar);
-            await f('CounterSeal').fill(p.counter);
+            await card.locator('[data-field="ArrivedSealed"][value="false"]').check();
+            for (const [field, code] of [['JarSeal', p.jar], ['CounterSeal', p.counter], ['ClosingSeal', p.closing]]) {
+                await f(field).fill(code);
+                await card.locator(`[data-field="${field}"].is-ok`).waitFor({ timeout: 8000 });
+            }
             await f('CapIntact').check();
-            await f('Reseal').fill(p.reseal);
         }
         await submit(page, page.locator('#intake-send'));
         if (!await page.locator('#Code').count()) throw new Error('code not sent: ' + (await page.locator('#intake-errors').innerText().catch(() => '')));
@@ -322,13 +342,13 @@ try {
     await step('Lab receives the jars and makes the composite', analyst, async page => {
         for (let i = 0; i < 4; i++) {
             await page.goto(`${BASE}/Samples/Index`); await settle(page);
-            const form = page.locator('form.receive-jar-form').first();
+            const form = page.locator(`tr:has-text("S-${lot}-C") form.receive-jar-form`).first();   // this run's jars only
             if (!await form.count()) break;
             for (const name of ['sealMatches', 'labelIntact', 'capIntact']) await form.locator(`input[name=${name}][value=true]`).check();
             await submit(page, form.locator('button[type=submit]'));
         }
         await page.goto(`${BASE}/Samples/Index`); await settle(page);
-        await submit(page, page.locator('#composite-ready button[type=submit], form[action*="Composite"] button[type=submit]'));
+        await submit(page, page.locator(`form.composite-form:has(input[name=lotId][value="${lot}"]) button[type=submit]`));   // this run's lot
         if (!/LabReports\/Edit/.test(page.url())) throw new Error('composite: ' + await flash(page));
         composite = page.url().split('/').pop();
         return 'composite sample, report form open';
@@ -352,19 +372,13 @@ try {
     await step('Lab report approved', labManager, async page => {
         await page.goto(`${BASE}/LabReports/Edit/${composite}`); await settle(page);
         await submit(page, page.locator('#approve-report'));
-        return `${await success(page)} ${await workOf(staff, new RegExp(`kind=raw&id=${lot}`))}`;
+        return `${await success(page)} ${await workOf(qa, new RegExp(`rawHoneyProductionId=${lot}&ccpId=`))}`;
     });
 
-    // 7. the lot's control sheet (CCP 2–3): entered by the association's staff, approved in one action by the QA officer
-    await step('Lot control sheet (CCP 2-3) entered', staff, async page => {
-        await page.goto(`${BASE}/CCPMonitoring/Sheet?kind=raw&id=${lot}`); await settle(page);
-        const n = await fillCcpBoxes(page);
-        await submit(page, page.locator('#sheet-save'));
-        return `${n} values; ${await success(page)} ${await workOf(qa, new RegExp(`kind=raw&id=${lot}`))}`;
-    });
-    await step('Lot control sheet approved', qa, async page => {
-        await page.goto(`${BASE}/CCPMonitoring/Sheet?kind=raw&id=${lot}`); await settle(page);
-        await approveWithDialog(page, '#sheet-approve-button', '#oolc-sheet-approve-form');
+    // 7. D-98, association path: the QA officer marks the honey ready for packing (CCP 2–6 do not apply)
+    await step('Honey ready for packing', qa, async page => {
+        await page.goto(`${BASE}/CCPMonitoring/RawHoneyProductionManageCCP?rawHoneyProductionId=${lot}&ccpId=2`); await settle(page);
+        await submit(page, page.locator('#packing-ready-button'));
         return `${await success(page)} ${await workOf(staff, /OrgWorkspace\/NewBatch/)}`;
     });
 
@@ -381,8 +395,22 @@ try {
         return `${await success(page)} ${await workOf(staff, new RegExp(`kind=batch&id=${batch}`))}`;
     });
 
-    // 9. the batch's control sheet (CCP 4–10)
-    await step('Batch control sheet (CCP 4-10) entered', staff, async page => {
+    // 8b. D-98: each container is emptied into the batch once its closing seal is scanned and found intact
+    await step('Containers emptied into the batch', staff, async page => {
+        await page.goto(`${BASE}/OrgWorkspace/Batch/${batch}`); await settle(page);
+        for (let i = 0; i < closings.length; i++) {
+            const row = page.locator(`#emptying-list tr[data-container="L${lot}-C${i + 1}"]`);
+            await row.locator('input.em-seal').fill(closings[i]);
+            await row.locator('input[type=checkbox][name=intact]').check();
+            await submit(page, row.locator('.em-empty'));
+            if (await page.locator(`#emptying-list tr[data-container="L${lot}-C${i + 1}"][data-state="Emptied"]`).count() !== 1)
+                throw new Error(`container ${i + 1} not emptied: ${await flash(page)}`);
+        }
+        return `${closings.length} containers emptied`;
+    });
+
+    // 9. the batch's control sheet (CCP 7–10; CCP 4–6 do not apply on the association path)
+    await step('Batch control sheet (CCP 7-10) entered', staff, async page => {
         await page.goto(`${BASE}/CCPMonitoring/Sheet?kind=batch&id=${batch}`); await settle(page);
         const n = await fillCcpBoxes(page);
         await submit(page, page.locator('#sheet-save'));
@@ -425,7 +453,10 @@ try {
     await step('Shop records storage (CCP 10)', shop, async page => {
         await page.goto(`${BASE}/Shipments/Storage?batchId=${batch}`); await settle(page);
         const ids = await page.locator('#storage-form [name^="values["]').evaluateAll(els => els.map(e => e.name.match(/\d+/)[0]));
-        for (const id of ids) await page.locator(`#storage-form [name="values[${id}]"]`).fill(value(id));
+        for (const id of ids) {
+            const box = page.locator(`#storage-form [name="values[${id}]"]`);
+            if (await box.evaluate(e => e.tagName === 'SELECT')) await box.selectOption(value(id)); else await box.fill(value(id));
+        }
         await submit(page, page.locator('#storage-form button[type=submit]'));
         return `${await success(page)} ${await workOf(shopQa, new RegExp(`Storage\\?batchId=${batch}|CCP 10 · ${BATCH_TITLE.replace(/[/]/g, '.')}`))}`;
     });

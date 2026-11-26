@@ -14,8 +14,8 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">@b.BeekeeperFirstName @b.BeekeeperLastName <small class="text-muted">@b.BeekeeperBusinessNumber</small></h4>
-                    <div>@L["Registry number:"] <strong id="registry-number">@(registry?.RegistryNumber ?? "-")</strong> @L["· Status:"] <strong id="registry-status">@L[registry?.Status ?? RegistryStatus.Unverified]</strong></div>
+                    <h4 class="card-title">@b.BeekeeperFirstName @b.BeekeeperLastName <small class="text-muted" title="@L["Num.Platform"]">@L["Num.Platform"]: @b.BeekeeperBusinessNumber</small></h4>
+                    <div>@L[TOP4HoneyChains.Web.Services.OrgModel.RegistryNumber.LabelKey(registry?.RegistryNumber)]: <strong id="registry-number">@(registry?.RegistryNumber ?? "-")</strong> @L["· Status:"] <strong id="registry-status">@L[registry?.Status ?? RegistryStatus.Unverified]</strong></div>
                 </div>
             </div>
 

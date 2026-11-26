@@ -2,14 +2,16 @@
   <rect x="0" y="0" width="320" height="120" rx="16" fill="#FFF4D6"/>
   <path d="M24 104H296" stroke="#EBD5A8" stroke-width="2" stroke-linecap="round"/>
   <path d="M112 50L118 104H182L188 50Z" fill="#FFFBF0" stroke="#574A40" stroke-width="2" stroke-linejoin="round"/>
-  <rect x="106" y="42" width="88" height="10" rx="4" fill="#FFE7AE" stroke="#574A40" stroke-width="2"/>
-  <path d="M112 47C112 14 188 14 188 47" fill="none" stroke="#574A40" stroke-width="2.5" stroke-linecap="round"/>
-  <circle cx="186" cy="47" r="3" fill="#FFF4D6" stroke="#574A40" stroke-width="1.6"/>
-  <path class="p-strap" d="M186 47C192 52 198 58 206 64" fill="none" stroke="#0B7A75" stroke-width="2.4" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1"/>
+  <rect x="106" y="40" width="88" height="10" rx="4" fill="#FFE7AE" stroke="#574A40" stroke-width="2"/>
+  <path d="M194 41H204A3 3 0 0 1 207 44V47H194" fill="#FFE7AE" stroke="#574A40" stroke-width="1.8" stroke-linejoin="round"/>
+  <path d="M188 53H204A3 3 0 0 1 207 56V59H187" fill="#FFFBF0" stroke="#574A40" stroke-width="1.8" stroke-linejoin="round"/>
+  <circle cx="201" cy="44.5" r="1.8" fill="#FFF4D6" stroke="#574A40" stroke-width="1.2"/>
+  <circle cx="201" cy="56.5" r="1.8" fill="#FFF4D6" stroke="#574A40" stroke-width="1.2"/>
+  <path class="p-strap" d="M201 44.5C196 48 196 53 201 56.5C206 60 211 64 218 68" fill="none" stroke="#0B7A75" stroke-width="2.4" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1"/>
   <g class="p-tag">
-    <path d="M204 58L230 58L238 68L230 78L204 78Z" fill="#E8F8F7" stroke="#574A40" stroke-width="2" stroke-linejoin="round"/>
-    <circle cx="230" cy="68" r="2.5" fill="#FFF4D6" stroke="#574A40" stroke-width="1.2"/>
-    <path d="M210 66H222M210 71H219" stroke="#574A40" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M216 60L242 60L250 70L242 80L216 80Z" fill="#E8F8F7" stroke="#574A40" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="242" cy="70" r="2.5" fill="#FFF4D6" stroke="#574A40" stroke-width="1.2"/>
+    <path d="M222 68H234M222 73H231" stroke="#574A40" stroke-width="1.5" stroke-linecap="round"/>
   </g>
-  <g class="p-tick"><circle cx="258" cy="52" r="8" fill="#E8F8F7" stroke="#0B7A75" stroke-width="2"/><path d="M254 52.5L257 55.5L262 50" fill="none" stroke="#0B7A75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g class="p-tick"><circle cx="270" cy="52" r="8" fill="#E8F8F7" stroke="#0B7A75" stroke-width="2"/><path d="M266 52.5L269 55.5L274 50" fill="none" stroke="#0B7A75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 </svg>

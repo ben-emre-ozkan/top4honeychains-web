@@ -357,7 +357,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 existing.MeasuredNumericValue = v.Number;
                 existing.MeasuredTextValue = v.Text;
                 existing.MeasuredAt = DateTime.UtcNow;
-                var result = CcpLimitEvaluator.Evaluate(p, v.Number, numbers, honey);
+                var result = CcpLimitEvaluator.ExpectedAnswer(p) != null ? CcpLimitEvaluator.EvaluateAnswer(p, v.Text)   // D-98: yes/no with an expected answer
+                    : CcpLimitEvaluator.Evaluate(p, v.Number, numbers, honey);
                 existing.IsInRange = result.IsInRange;
                 existing.AppliedLimit = result.AppliedLimit;
             }

@@ -33,6 +33,9 @@ var Database = Environment.GetEnvironmentVariable("LIVE_LIKE_DATABASE") is { Len
 if (Database is not ("TOP4HoneyChainsDb" or "TOP4HoneyChainsDb_Manual"))
     throw new InvalidOperationException("LIVE_LIKE_DATABASE may only name TOP4HoneyChainsDb_Manual.");
 var manualRun = Database != "TOP4HoneyChainsDb";
+// D-98: LIVE_LIKE_ADD=<org key,...> adds only those organizations of cast.json (with their members and a seal pool) to an existing cast
+// through the operator's pages, then appends their logins; nothing else changes
+var addOnly = (Environment.GetEnvironmentVariable("LIVE_LIKE_ADD") ?? "").Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToHashSet();
 var inv = CultureInfo.InvariantCulture;
 var watch = Stopwatch.StartNew();
 
@@ -64,8 +67,10 @@ await using (var c = new SqlConnection(connectionString))
     await r.ReadAsync();
     if (r.IsDBNull(0) || r.GetInt32(0) != 1 || r.GetString(1) != Database)
         throw new InvalidOperationException("Runs only on the LocalDB database " + Database + ".");
-    if (r.GetInt32(2) > 0)
+    if (addOnly.Count == 0 && r.GetInt32(2) > 0)
         throw new InvalidOperationException("The cast exists already. Run the cleanup script next to the backup first.");
+    if (addOnly.Count > 0 && r.GetInt32(2) == 0)
+        throw new InvalidOperationException("LIVE_LIKE_ADD needs the existing cast.");
 }
 if (System.Net.NetworkInformation.IPGlobalProperties.GetIPGlobalProperties().GetActiveTcpListeners().Any(e => e.Port == 5255))
     throw new InvalidOperationException("Stop run-demo.ps1 first (port 5255 is in use).");
@@ -87,6 +92,7 @@ async Task<TResult> Db<TResult>(Func<TOP4HoneyChainsContext, Task<TResult>> work
 // ---- 1. the platform operator: the app's user services (password rules included), Administrator role, platform membership
 var op = cast.GetProperty("operator");
 var opUser = op.GetProperty("user").GetString()!;
+if (addOnly.Count == 0)
 using (var scope = app.Services.CreateScope())
 {
     var users = Svc<UserManager<ApplicationUser>>(scope);
@@ -111,6 +117,8 @@ var people = cast.GetProperty("people").EnumerateArray().ToList();
 foreach (var o in cast.GetProperty("orgs").EnumerateArray())
 {
     var key = o.GetProperty("key").GetString()!;
+    if (addOnly.Count > 0 && !addOnly.Contains(key))
+        continue;
     var name = o.GetProperty("name").GetString()!;
     var caps = o.GetProperty("capabilities").EnumerateArray().Select(x => x.GetString()!).ToList();
     var accreditation = o.TryGetProperty("accreditation", out var a) ? a.GetString() : null;
@@ -151,6 +159,20 @@ foreach (var o in cast.GetProperty("orgs").EnumerateArray())
     Expect(await operatorClient.PostFlashAsync("/Organizations/ChangeStatus", new() { new("id", id.ToString(inv)), new("toStatus", OrgStatus.Verified) }, $"/Organizations/Details/{id}"),
         "now Verified", $"{name} verification");
     Log($"organization {name}: {people.Count(p => p.GetProperty("org").GetString() == key)} member(s), verified");
+    // D-98: the processing company's seal pool (30 seal labels, as its administrator would issue them)
+    if (key == "company")
+        using (var scope = app.Services.CreateScope())
+        {
+            var operatorId = (await Svc<UserManager<ApplicationUser>>(scope).FindByNameAsync(opUser))!.Id;
+            var issued = await Svc<SealPoolService>(scope).IssueLabelsAsync(id, 30, operatorId, "cast (D-98)");
+            Log($"seal labels {issued.FirstCode}-{issued.LastCode} for {name}");
+        }
+}
+if (addOnly.Count > 0)
+{
+    await AppendLoginsAsync(addOnly);
+    Log($"added {string.Join(", ", addOnly)} in {watch.Elapsed.TotalSeconds:0} s");
+    return 0;
 }
 
 // the chestnut harvest season (reference data, Set-up)
@@ -313,9 +335,12 @@ foreach (var d in history.GetProperty("deliveries").EnumerateArray())
     Expect(await labManager.PostFlashAsync($"/LabReports/Decide/{composite}", new() { new("approve", "true") }, $"/LabReports/Edit/{composite}"), "approved", $"lot {lot} lab approval");
     await ApproveSingleAsync(quality, "raw", lot, "CCP 1");
 
-    await SheetAsync(staff, quality, "raw", lot);
+    // D-98: the association path: after the approved lab report the Quality Assurance Officer marks the honey ready for packing
+    var ccp1Id = await CcpIdAsync("CCP 1");
+    Expect(await quality.PostFlashAsync("/CCPMonitoring/PackingReady", new() { new("lotId", lot.ToString(inv)), new("ccpId", ccp1Id.ToString(inv)) },
+        $"/CCPMonitoring/RawHoneyProductionManageCCP?rawHoneyProductionId={lot}&ccpId={ccp1Id}"), "ready for packing", $"lot {lot} ready for packing");
     lots.Add((lot, kg));
-    Log($"delivery {deliveryNo}: lot {lot}, {kg.ToString("0.##", inv)} kg, lab report {reportNumber}, CCP 0-3 approved");
+    Log($"delivery {deliveryNo}: lot {lot}, {kg.ToString("0.##", inv)} kg, lab report {reportNumber}, CCP 0-1 approved, ready for packing");
 }
 
 // ---- 5. the batch: New batch by the association, the batch control sheet, finalizing by two people
@@ -475,9 +500,10 @@ async Task ApproveSingleAsync(Client approve, string kind, int owner, string cod
 async Task SheetAsync(Client enter, Client approve, string kind, int owner)
 {
     var url = $"/CCPMonitoring/Sheet?kind={kind}&id={owner}";
+    // D-98: records that do not apply (association path) are not on the sheet
     var ccps = await Db(db => kind == "raw"
-        ? db.RawHoneyCCPAssignments.Where(a => a.RawHoneyProductionId == owner && !ControlSheets.OwnPageLotCcps.Contains(a.CCP!.Code)).Select(a => new { Id = a.RawHoneyCCPAssignmentCCP, a.CCP!.Code }).ToListAsync()
-        : db.FinalHoneyCCPAssignments.Where(a => a.FinalHoneyProductionId == owner).Select(a => new { Id = a.FinalHoneyCCPAssignmentCCP, a.CCP!.Code }).ToListAsync());
+        ? db.RawHoneyCCPAssignments.Where(a => a.RawHoneyProductionId == owner && !ControlSheets.OwnPageLotCcps.Contains(a.CCP!.Code) && a.RawHoneyCCPAssignmentStatus != AssignmentStatusIds.NotApplicable).Select(a => new { Id = a.RawHoneyCCPAssignmentCCP, a.CCP!.Code }).ToListAsync()
+        : db.FinalHoneyCCPAssignments.Where(a => a.FinalHoneyProductionId == owner && a.FinalHoneyCCPAssignmentStatus != AssignmentStatusIds.NotApplicable).Select(a => new { Id = a.FinalHoneyCCPAssignmentCCP, a.CCP!.Code }).ToListAsync());
     var form = new List<KeyValuePair<string, string>> { new("Kind", kind), new("Id", owner.ToString(inv)) };
     foreach (var c in ccps.OrderBy(c => c.Id))
     {
@@ -497,6 +523,19 @@ async Task SheetAsync(Client enter, Client approve, string kind, int owner)
         throw new InvalidOperationException($"control sheet of {kind} {owner}: " + Errors(await saved.Content.ReadAsStringAsync()));
     Expect(await approve.PostFlashAsync("/CCPMonitoring/ApproveSheet", new() { new("kind", kind), new("id", owner.ToString(inv)), new("confirmOutOfLimit", "true") }, url),
         "Approved:", $"control sheet approval of {kind} {owner}");
+}
+
+// D-98: the logins of organizations added to an existing cast, appended to the logins file
+async Task AppendLoginsAsync(IReadOnlySet<string> keys)
+{
+    var orgNames = cast.GetProperty("orgs").EnumerateArray().ToDictionary(o => o.GetProperty("key").GetString()!, o => o.GetProperty("name").GetString()!);
+    string Link(string phone) => $"http://localhost:5255/phone/{phoneKey}/{Regex.Replace(phone, "[^0-9]", "")}";
+    var b = new StringBuilder();
+    b.AppendLine();
+    b.AppendLine($"Added {DateTime.Today:yyyy-MM-dd} (D-98, same password):");
+    foreach (var p in people.Where(p => keys.Contains(p.GetProperty("org").GetString()!)))
+        b.AppendLine($"{p.GetProperty("user").GetString(),-18} {p.GetProperty("name").GetString(),-15} {p.GetProperty("role").GetString(),-38} {orgNames[p.GetProperty("org").GetString()!],-42} {p.GetProperty("phone").GetString(),-18} {Link(p.GetProperty("phone").GetString()!)}");
+    await File.AppendAllTextAsync(loginsFile, b.ToString(), new UTF8Encoding(false));
 }
 
 async Task WriteLoginsAsync()

@@ -33,6 +33,10 @@ namespace TOP4HoneyChains.Web.Models.Entities
         // Four-eyes exemption, set only by PlatformAdmin; never applies to lab results (D-27)
         public bool FourEyesExempt { get; set; }
 
+        // D-98 (migration 034): the path after the laboratory (CcpPaths); null = the default by capability
+        [StringLength(20)]
+        public string? CcpPath { get; set; }
+
         public int? LegacyWholesalerId { get; set; }
 
         public DateTime? VerifiedAt { get; set; }

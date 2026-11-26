@@ -185,6 +185,31 @@
                         </div>
                     </div>
 
+                    <!-- D-98: the path after the laboratory -->
+                    @{
+                        var hasAssociation = Model.Capabilities.Any(c => c.Capability == TOP4HoneyChains.Web.Models.Entities.Capabilities.Association);
+                        var effectivePath = TOP4HoneyChains.Web.Services.OrgModel.CcpPaths.Effective(Model.CcpPath, hasAssociation);
+                    }
+                    <div class="card" id="ccp-path-card">
+                        <div class="card-body">
+                            <h5 class="card-title">@L["Path.Title"]<info-tip key="Path.Info.Setting" about="@L["Path.Title"].Value" /></h5>
+                            <div>@L["Org.Current"] <strong id="ccp-path">@L["Path." + effectivePath]</strong>@if (Model.CcpPath == null) { <span class="small text-muted"> (@L["Path.Default"])</span> }</div>
+                            @if (isAdmin)
+                            {
+                                <form asp-action="SetCcpPath" asp-route-id="@Model.OrgId" method="post" class="mt-2 d-flex flex-wrap gap-2 align-items-center">
+                                    <select name="path" class="form-select form-select-sm w-auto" id="ccp-path-select" aria-label="@L["Path.Title"]">
+                                        <option value="" selected="@(Model.CcpPath == null)">@L["Path.Default"] (@L["Path." + TOP4HoneyChains.Web.Services.OrgModel.CcpPaths.Effective(null, hasAssociation)])</option>
+                                        @foreach (var p in TOP4HoneyChains.Web.Services.OrgModel.CcpPaths.All)
+                                        {
+                                            <option value="@p" selected="@(Model.CcpPath == p)">@L["Path." + p]</option>
+                                        }
+                                    </select>
+                                    <button type="submit" class="btn btn-sm btn-outline-primary">@L["Save"]</button>
+                                </form>
+                            }
+                        </div>
+                    </div>
+
                     <!-- D-78: data controller (D78-SPEC 3.5, 6.1) -->
                     <div class="card">
                         <div class="card-body">

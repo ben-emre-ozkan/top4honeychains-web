@@ -58,6 +58,8 @@ namespace TOP4HoneyChains.Web.Controllers
             ViewBag.LastReport = samples.Where(s => s.ApprovedReport != null).OrderByDescending(s => s.ApprovedReport!.ApprovedAt).FirstOrDefault();
             ViewBag.BatchCount = (await _portal.BatchesAsync(me.BeekeeperId!)).Count;
             ViewBag.PendingNotices = (await HttpContext.RequestServices.GetRequiredService<NoticeService>().PendingForCurrentUserAsync(HttpContext, UserId)).Count;
+            // D-98: the official number first; the platform number is the beekeeper's user name
+            ViewBag.RegistryNumber = await _context.BeekeeperRegistry.AsNoTracking().Where(r => r.BeekeeperId == me.BeekeeperId).Select(r => r.RegistryNumber).FirstOrDefaultAsync();
             return View(me);
         }
 

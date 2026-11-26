@@ -77,7 +77,7 @@ namespace TOP4HoneyChains.Web.Controllers
             var normalized = RegistryNumber.Normalize(number);
             if (string.IsNullOrEmpty(normalized))
             {
-                TempData["Error"] = "Enter the registry number (or the business number of a registered beekeeper).";
+                TempData["Error"] = "Enter the holding identification number (or the platform number of a registered beekeeper).";
                 return RedirectToAction(nameof(Index));
             }
             var beekeeperId = await _context.BeekeeperRegistry.Where(r => r.RegistryNumber == normalized).Select(r => r.BeekeeperId).FirstOrDefaultAsync()
@@ -125,7 +125,8 @@ namespace TOP4HoneyChains.Web.Controllers
             {
                 BeekeeperId = bk.BeekeeperId, RegistryNumber = registry?.RegistryNumber, FirstName = bk.BeekeeperFirstName, LastName = bk.BeekeeperLastName,
                 BirthDate = bk.BeekeeperBirthDate, Phone = PhoneNumberPolicy.Display(bk.BeekeeperPhoneNumber), EducationLevelId = bk.BeekeeperEducationLevelId,
-                PurposeTypeId = bk.BeekeeperBeekeepingPurposeTypeId, BeekeepingTypeId = bk.BeekeeperBeekeepingTypeId, Language = bk.PreferredLanguage ?? NoticeService.Language
+                PurposeTypeId = bk.BeekeeperBeekeepingPurposeTypeId, BeekeepingTypeId = bk.BeekeeperBeekeepingTypeId, Language = bk.PreferredLanguage ?? NoticeService.Language,
+                HoneyTypeIds = await _context.BeekeeperHoneyTypes.Where(h => h.BeekeeperId == id).Select(h => h.HoneyTypeId).ToListAsync()
             };
             return await FormAsync(form, registrar, codeSent: false);
         }
@@ -227,6 +228,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 .Where(o => !o.IsPlatform && o.Status == OrgStatus.Verified && o.Capabilities.Any(c => c.Capability == Capabilities.Association))
                 .OrderBy(o => o.DisplayName).ToListAsync(), "OrgId", "DisplayName", form.AssociationOrgId);
             ViewBag.Types = new SelectList(await _context.BeekeepingTypes.AsNoTracking().ToListAsync(), "BeekeepingTypeId", "BeekeepingTypeTitle", form.BeekeepingTypeId).Translated(HttpContext, "BeekeepingType", "Title");
+            await HoneyTypeListAsync();
             ViewBag.Apiaries = form.IsNew ? new List<Apiary>() : await _context.Apiaries.AsNoTracking().Where(a => a.ApiaryBeekeeperId == form.BeekeeperId).ToListAsync();
             ViewBag.Notice = await HttpContext.RequestServices.GetRequiredService<NoticeService>().CurrentAsync(NoticeKind.PrivacyNotice, NoticeAudience.Beekeeper, null, null, form.Language);
             ViewBag.Attestation = await HttpContext.RequestServices.GetRequiredService<NoticeService>().CurrentAsync(NoticeKind.Attestation, NoticeAudience.Member, null, null);
@@ -234,6 +236,14 @@ namespace TOP4HoneyChains.Web.Controllers
             ViewBag.DemoMessage = _sms.IsFake && _sms.DemoPanel && sentTo != null ? _fake.LastTo(sentTo)?.Text : null;
             ViewBag.Controller = "Registration";
             return View("Form", form);
+        }
+
+        // D-98: the honey types for the beekeeper's honey type boxes, and "Other" for the roles that may add one
+        private async Task HoneyTypeListAsync()
+        {
+            ViewBag.HoneyTypeItems = new SelectList(await _context.HoneyTypes.AsNoTracking().OrderBy(h => h.HoneyTypeTitle).ToListAsync(), "HoneyTypeId", "HoneyTypeTitle")
+                .Translated(HttpContext, "HoneyType", "Title").OrderBy(i => i.Text, StringComparer.CurrentCultureIgnoreCase).ToList();
+            ViewBag.MayAddHoneyType = await HttpContext.RequestServices.GetRequiredService<HoneyTypeCatalog>().MayAddAsync();
         }
 
         // ---------------------------------------------------------------- one registration, its evidence and its review
@@ -252,6 +262,12 @@ namespace TOP4HoneyChains.Web.Controllers
             ViewBag.CanRegister = await _registration.RegistrarAsync() is Registrar reg && (reg.IsPlatformAdmin || reg.OrgId == r.RegisteringOrgId);
             ViewBag.SignInEnabled = _signIn.Enabled;
             ViewBag.SignInPending = _signIn.Enabled && r.BeekeeperId != null ? await _signIn.PendingAsync(r.BeekeeperId) : null;
+            // D-98: the beekeeper's honey types (shown; the registering organization's officer changes them here)
+            ViewBag.BeekeeperHoneyTypes = (await _context.BeekeeperHoneyTypes.AsNoTracking().Where(h => h.BeekeeperId == r.BeekeeperId)
+                .Select(h => new { h.HoneyTypeId, h.HoneyType!.HoneyTypeTitle }).ToListAsync())
+                .Select(h => (Id: h.HoneyTypeId, Title: h.HoneyTypeTitle)).ToList();
+            if (ViewBag.CanRegister == true)
+                await HoneyTypeListAsync();
             ViewBag.Controller = "Registration";
             return View(r);
         }
@@ -292,7 +308,7 @@ namespace TOP4HoneyChains.Web.Controllers
             else
             {
                 await _registration.ReviewAsync(r, accept, reason, _current.UserId!);
-                TempData["Success"] = accept ? "Evidence accepted; the registry number is verified." : "Evidence rejected; the beekeeper cannot deliver until registered again.";
+                TempData["Success"] = accept ? "Evidence accepted; the holding identification number is verified." : "Evidence rejected; the beekeeper cannot deliver until registered again.";
             }
             return RedirectToAction(nameof(Details), new { id });
         }
@@ -323,6 +339,39 @@ namespace TOP4HoneyChains.Web.Controllers
             _context.Apiaries.Add(apiary);
             await _context.SaveChangesAsync();
             TempData["Success"] = $"Apiary {apiary.ApiaryTitle} added.";
+            return RedirectToAction(nameof(Details), new { id });
+        }
+
+        // D-98: the beekeeper's honey types, changed later by the officer of the registering organization (with "Other")
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SetHoneyTypes(int id, List<int>? honeyTypeIds, bool otherHoneyType, string? newHoneyTypeName, string? newHoneyTypeClass)
+        {
+            var r = await _context.BeekeeperRegistrations.AsNoTracking().FirstOrDefaultAsync(x => x.RegistrationId == id);
+            var registrar = await _registration.RegistrarAsync();
+            if (r == null || registrar == null || (!registrar.IsPlatformAdmin && registrar.OrgId != r.RegisteringOrgId))
+                return NotFound();
+            var form = new RegistrationForm
+            {
+                HoneyTypeIds = (honeyTypeIds ?? new()).Where(h => h > 0).Distinct().ToList(), OtherHoneyType = otherHoneyType,
+                NewHoneyTypeName = newHoneyTypeName, NewHoneyTypeClass = newHoneyTypeClass
+            };
+            var catalog = HttpContext.RequestServices.GetRequiredService<HoneyTypeCatalog>();
+            string? error = form.HoneyTypeIds.Count > 50 || (form.HoneyTypeIds.Count > 0
+                && await _context.HoneyTypes.CountAsync(h => form.HoneyTypeIds.Contains(h.HoneyTypeId)) != form.HoneyTypeIds.Count) ? "Unknown honey type." : null;
+            if (error == null && otherHoneyType)
+                error = await catalog.CheckNewAsync(newHoneyTypeName, newHoneyTypeClass);
+            if (error != null)
+            {
+                TempData["Error"] = error;
+                return RedirectToAction(nameof(Details), new { id });
+            }
+            await using (var transaction = await _context.Database.BeginTransactionAsync())
+            {
+                await _registration.SetHoneyTypesAsync(r.BeekeeperId, form);
+                await transaction.CommitAsync();
+            }
+            TempData["Success"] = "The beekeeper's honey types are saved.";
             return RedirectToAction(nameof(Details), new { id });
         }
 

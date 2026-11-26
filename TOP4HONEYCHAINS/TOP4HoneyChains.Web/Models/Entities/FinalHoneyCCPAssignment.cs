@@ -40,6 +40,15 @@ namespace TOP4HoneyChains.Web.Models.Entities
 
         public bool SelfApproved { get; set; }
 
+        // D-98 (migration 034): sent back to the person who entered it (status Rejected, shown as "returned")
+        [StringLength(500)]
+        public string? ReturnReason { get; set; }
+
+        [StringLength(450)]
+        public string? ReturnedByUserId { get; set; }
+
+        public DateTime? ReturnedAt { get; set; }
+
         [ForeignKey(nameof(FinalHoneyCCPAssignmentCCP))]
         public virtual CriticalControlPoint? CCP { get; set; }
 

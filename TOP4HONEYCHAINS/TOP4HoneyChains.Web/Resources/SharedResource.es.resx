@@ -568,13 +568,13 @@
     <value>Registro de apicultores y asociaciones</value>
   </data>
   <data name="Reg.BusinessNo" xml:space="preserve">
-    <value>N.º de explotación</value>
+    <value>N.º de plataforma</value>
   </data>
   <data name="Reg.Beekeeper" xml:space="preserve">
     <value>Apicultor</value>
   </data>
   <data name="Reg.RegistryNo" xml:space="preserve">
-    <value>N.º de registro</value>
+    <value>N.º de identificación de la explotación</value>
   </data>
   <data name="Reg.Association" xml:space="preserve">
     <value>Asociación</value>
@@ -586,7 +586,7 @@
     <value>Formato: TR, un código de provincia 01-81 y 10 dígitos. Se requiere un documento probatorio (impresión del registro o foto).</value>
   </data>
   <data name="Reg.ListHelp" xml:space="preserve">
-    <value>Cada apicultor es un registro en la plataforma; un apicultor registrado con un teléfono móvil también puede iniciar sesión en el área de apicultor. El número de registro se verifica cuando el apicultor confirma el registro con el código SMS, o cuando el Responsable de cumplimiento acepta la foto firmada. Aquí un administrador de la plataforma comprueba un número ingresado más tarde, con un documento probatorio, y cambia la asociación.</value>
+    <value>Cada apicultor es un registro en la plataforma; un apicultor registrado con un teléfono móvil también puede iniciar sesión en el área de apicultor, con el número de plataforma como nombre de usuario. El número de identificación de la explotación se verifica cuando el apicultor confirma el registro con el código SMS, o cuando el Responsable de cumplimiento acepta la foto firmada. Aquí un administrador de la plataforma comprueba un número ingresado más tarde, con un documento probatorio, y cambia la asociación.</value>
   </data>
   <data name="Reg.Submit" xml:space="preserve">
     <value>Enviar</value>
@@ -757,10 +757,10 @@
     <value>Registrar una entrega</value>
   </data>
   <data name="Cust.NewIntakeHelp" xml:space="preserve">
-    <value>Busque al apicultor por número de explotación o de registro y luego ingrese la entrega con la foto del formulario de entrega firmado.</value>
+    <value>Busque al apicultor por número de identificación de la explotación o número de plataforma y luego ingrese la entrega con la foto del formulario de entrega firmado.</value>
   </data>
   <data name="Cust.BeekeeperNumber" xml:space="preserve">
-    <value>Número de explotación o de registro del apicultor</value>
+    <value>Número de identificación de la explotación o número de plataforma del apicultor</value>
   </data>
   <data name="Cust.Find" xml:space="preserve">
     <value>Buscar</value>
@@ -1090,7 +1090,7 @@
     <value>Páginas de apicultores</value>
   </data>
   <data name="P5.StorefrontsHelp" xml:space="preserve">
-    <value>La página pública de un miembro solo se publica con un consentimiento registrado y un número de registro verificado; al retirar el consentimiento, se despublica de inmediato.</value>
+    <value>La página pública de un miembro solo se publica con un consentimiento registrado y un número de identificación de la explotación verificado; al retirar el consentimiento, se despublica de inmediato.</value>
   </data>
   <data name="P5.Consent" xml:space="preserve">
     <value>Consentimiento</value>
@@ -1114,7 +1114,7 @@
     <value>no publicada</value>
   </data>
   <data name="P5.NeedsRegistry" xml:space="preserve">
-    <value>requiere un número de registro verificado</value>
+    <value>requiere un número de identificación de la explotación verificado</value>
   </data>
   <data name="P5.RecordConsent" xml:space="preserve">
     <value>Registrar consentimiento</value>
@@ -1189,7 +1189,7 @@
     <value>Organizaciones por verificar</value>
   </data>
   <data name="Work.Kind.Registry" xml:space="preserve">
-    <value>Números de registro por verificar</value>
+    <value>Números de identificación de la explotación por verificar</value>
   </data>
   <data name="Work.Kind.Correction" xml:space="preserve">
     <value>Correcciones por decidir</value>
@@ -2269,7 +2269,7 @@
     <value>Buscar:</value>
   </data>
   <data name="Registry number:" xml:space="preserve">
-    <value>Número de registro:</value>
+    <value>Número de identificación de la explotación:</value>
   </data>
   <data name="Lock-screen" xml:space="preserve">
     <value>Pantalla de bloqueo</value>
@@ -3355,7 +3355,7 @@
     <value>Latitud de la ubicación</value>
   </data>
   <data name="Beekeeper Business Number" xml:space="preserve">
-    <value>Número de empresa del apicultor</value>
+    <value>Número de plataforma del apicultor</value>
   </data>
   <data name="Enter processing step" xml:space="preserve">
     <value>Introduzca la etapa del proceso</value>
@@ -3763,7 +3763,7 @@
     <value>trazabilidad completa</value>
   </data>
   <data name="Business Number" xml:space="preserve">
-    <value>Número de empresa</value>
+    <value>Número de plataforma</value>
   </data>
   <data name="Enter until when the counter-sample is kept (a future date)." xml:space="preserve">
     <value>Indique hasta cuándo se conserva la contramuestra (una fecha futura).</value>
@@ -5164,7 +5164,7 @@
     <value>La lista de capacidades es fija: una capacidad nueva requiere un script de base de datos y un cambio de código.</value>
   </data>
   <data name="Cap.Uses.Beekeeping" xml:space="preserve">
-    <value>La explotación apícola. No inicia sesión; su número de registro verificado vincula los lotes con el apicultor e indica la provincia.</value>
+    <value>La explotación apícola. No inicia sesión; su número de identificación de la explotación verificado vincula los lotes con el apicultor e indica la provincia.</value>
   </data>
   <data name="Cap.Uses.Association" xml:space="preserve">
     <value>Vincula a sus apicultores miembros, registra su consentimiento y publica sus páginas, y ve los lotes de sus miembros en los informes de retirada; su inspector de campo puede hacer el PCC 0 si un administrador lo asigna.</value>
@@ -5539,7 +5539,7 @@
     <value>Origen por provincia</value>
   </data>
   <data name="Hst.MapNote" xml:space="preserve">
-    <value>Solo por provincia; la ubicación exacta de los colmenares nunca se publica.</value>
+    <value>Por provincia y distrito; la ubicación exacta de los colmenares nunca se publica.</value>
   </data>
   <data name="Hst.SourcesEyebrow" xml:space="preserve">
     <value>Conoce a los apicultores</value>
@@ -6292,7 +6292,7 @@
     <value>Colmenares por provincia</value>
   </data>
   <data name="Home.Map.Note" xml:space="preserve">
-    <value>Solo por provincia; la ubicación de los colmenares nunca se muestra.</value>
+    <value>Por provincia y distrito; la ubicación de los colmenares nunca se muestra.</value>
   </data>
   <data name="Home.Map.Unlocated" xml:space="preserve">
     <value>Colmenares sin ubicación (no aparecen en el mapa): {0}.</value>
@@ -6319,7 +6319,7 @@
     <value>Organización</value>
   </data>
   <data name="Home.Wait.Kind.registry" xml:space="preserve">
-    <value>Número de registro</value>
+    <value>Número de identificación de la explotación</value>
   </data>
   <data name="Home.Wait.Kind.correction" xml:space="preserve">
     <value>Corrección</value>
@@ -6373,7 +6373,7 @@
     <value>Organización</value>
   </data>
   <data name="Home.Act.Kind.registry" xml:space="preserve">
-    <value>Número de registro</value>
+    <value>Número de identificación de la explotación</value>
   </data>
   <data name="Home.Act.Entered" xml:space="preserve">
     <value>introducido por {0}</value>
@@ -6553,7 +6553,7 @@
     <value>Fecha de nacimiento</value>
   </data>
   <data name="Audit.F.BusinessNumber" xml:space="preserve">
-    <value>Número de explotación</value>
+    <value>Número de plataforma</value>
   </data>
   <data name="Audit.F.Capability" xml:space="preserve">
     <value>Capacidad</value>
@@ -6622,7 +6622,7 @@
     <value>Introducido por</value>
   </data>
   <data name="Audit.F.EnterpriseNumber" xml:space="preserve">
-    <value>Número de registro de la explotación</value>
+    <value>Número de identificación de la explotación</value>
   </data>
   <data name="Audit.F.Event" xml:space="preserve">
     <value>Evento</value>
@@ -6817,7 +6817,7 @@
     <value>Registrado por</value>
   </data>
   <data name="Audit.F.RegistryNumber" xml:space="preserve">
-    <value>Número de registro</value>
+    <value>Número de identificación de la explotación</value>
   </data>
   <data name="Audit.F.RejectReason" xml:space="preserve">
     <value>Motivo del rechazo</value>
@@ -7135,7 +7135,7 @@
     <value>Prueba con foto firmada (aceptar o rechazar)</value>
   </data>
   <data name="Cap.Uses.BeekeeperRegistration" xml:space="preserve">
-    <value>Dirección distrital de agricultura: sus responsables de registro inscriben a los apicultores y sus colmenares, comprueban el número de registro, confirman la identidad y el consentimiento con un código SMS (o una foto firmada) y emiten el acceso.</value>
+    <value>Dirección distrital de agricultura: sus responsables de registro inscriben a los apicultores y sus colmenares, comprueban el número de identificación de la explotación, confirman la identidad y el consentimiento con un código SMS (o una foto firmada) y emiten el acceso.</value>
   </data>
   <data name="Org.NoComplianceOfficer" xml:space="preserve">
     <value>Esta organización aún no tiene Responsable de cumplimiento. Cada organización nombra al menos uno (puede ser el administrador de la organización con una segunda membresía).</value>
@@ -7570,7 +7570,7 @@
     <value>Finalidad apícola</value>
   </data>
   <data name="Registry Number" xml:space="preserve">
-    <value>Número de registro</value>
+    <value>Número de identificación de la explotación</value>
   </data>
   <data name="Work.Kind.Evidence" xml:space="preserve">
     <value>Revisar fotos firmadas</value>
@@ -7579,16 +7579,16 @@
     <value>Registro de apicultores</value>
   </data>
   <data name="Reg78.Help" xml:space="preserve">
-    <value>Apicultores registrados por su organización. El número de registro, un código SMS al teléfono del apicultor y su declaración confirman cada registro.</value>
+    <value>Apicultores registrados por su organización. El número de identificación de la explotación, un código SMS al teléfono del apicultor y su declaración confirman cada registro.</value>
   </data>
   <data name="Reg78.FindLabel" xml:space="preserve">
-    <value>Número de registro (AKS) o número de explotación</value>
+    <value>Número de identificación de la explotación (AKS) o número de plataforma</value>
   </data>
   <data name="Reg78.Find" xml:space="preserve">
     <value>Buscar o registrar</value>
   </data>
   <data name="Reg78.FindHelp" xml:space="preserve">
-    <value>Un apicultor conocido se verifica de nuevo; un número de registro nuevo inicia un registro nuevo.</value>
+    <value>Un apicultor conocido se verifica de nuevo; un número de identificación de la explotación nuevo inicia un registro nuevo.</value>
   </data>
   <data name="Reg78.Date" xml:space="preserve">
     <value>Fecha</value>
@@ -7747,7 +7747,7 @@
     <value>Revisión de la foto firmada</value>
   </data>
   <data name="Reg78.ReviewHelp" xml:space="preserve">
-    <value>Abra la foto y compárela con el registro: identidad, número de registro, elecciones del apicultor y firma. Usted no grabó este registro.</value>
+    <value>Abra la foto y compárela con el registro: identidad, número de identificación de la explotación, elecciones del apicultor y firma. Usted no grabó este registro.</value>
   </data>
   <data name="Reg78.ReviewReason" xml:space="preserve">
     <value>Nota (obligatoria para rechazar)</value>
@@ -8785,7 +8785,7 @@
     <value>Registre cada lata y su precinto. El apicultor confirma con el código SMS.</value>
   </data>
   <data name="Scene.seal" xml:space="preserve">
-    <value>Un precinto numerado pasa por el asa y se cierra. Anote su número.</value>
+    <value>Un precinto numerado une la tapa al cuerpo y se cierra. Anote su número.</value>
   </data>
   <data name="Scene.send" xml:space="preserve">
     <value>Los frascos precintados viajan al laboratorio; las contramuestras se quedan en la planta.</value>
@@ -8854,7 +8854,7 @@
     <value>Muestras y laboratorio muestra todos los frascos e informes de su laboratorio. Su primera tarea es aprobar los informes que envían sus analistas, o devolver uno, por ejemplo si un valor parece erróneo.</value>
   </data>
   <data name="Tour.Registration" xml:space="preserve">
-    <value>Registro de apicultores es donde registra a los apicultores y sus colmenares. Escriba el número de registro, introduzca los datos del apicultor y su colmenar, envíe el código SMS y escriba el código que el apicultor le lee.</value>
+    <value>Registro de apicultores es donde registra a los apicultores y sus colmenares. Escriba el número de identificación de la explotación, introduzca los datos del apicultor, sus tipos de miel y su colmenar, envíe el código SMS y escriba el código que el apicultor le lee.</value>
   </data>
   <data name="Tour.Compliance" xml:space="preserve">
     <value>Cumplimiento es su mesa de revisión: fotos firmadas, revisiones de calidad, solicitudes de datos y el registro de auditoría. Empiece por lo que espera su decisión, por ejemplo una entrega confirmada con foto firmada en lugar de código SMS.</value>
@@ -8872,7 +8872,7 @@
     <value>El panel muestra lo que le espera como operador de la plataforma y la actividad reciente. Empiece aquí, por ejemplo con una organización pendiente de verificar.</value>
   </data>
   <data name="Tour.Admin.Data" xml:space="preserve">
-    <value>Apicultores, colmenares y las listas de referencia de la plataforma. Busque aquí a un apicultor, por ejemplo por su número de registro.</value>
+    <value>Apicultores, colmenares y las listas de referencia de la plataforma. Busque aquí a un apicultor, por ejemplo por su número de identificación de la explotación.</value>
   </data>
   <data name="Tour.Me.Deliveries" xml:space="preserve">
     <value>Mis entregas muestra la miel que entregó, con cada envase y su precinto. Introduzca aquí su precio por kilo, por ejemplo para la miel de castaño de la semana pasada.</value>
@@ -9827,7 +9827,7 @@
     <value>Muestras y laboratorio es su lista de trabajo. Primero reciba cada frasco (número de precinto, etiqueta, tapa), luego registre los resultados, por ejemplo humedad e HMF, y envíe el informe a aprobación.</value>
   </data>
   <data name="Tour.Approve" xml:space="preserve">
-    <value>Mis tareas lista los registros de puntos de control (PCC) que enviaron sus compañeros. Revise cada uno y apruébelo o devuélvalo, por ejemplo el control de recepción de la entrega de hoy; nadie aprueba lo que registró.</value>
+    <value>Mis tareas enumera los registros de puntos de control (PCC) que enviaron sus compañeros. Revise cada uno y apruébelo, o devuélvalo con un motivo: vuelve entonces a la persona que lo introdujo, por ejemplo el control de recepción de la entrega de hoy. Nadie aprueba su propio registro.</value>
   </data>
   <data name="Reg78.Info.Registry" xml:space="preserve">
     <value>TR + el código de placa de la provincia (2 dígitos) + 10 dígitos, p. ej. TR520401200241. El código de placa se compara con la provincia de su dirección.</value>
@@ -9851,7 +9851,7 @@
     <value>El apicultor recibe el código SMS y los mensajes posteriores en este idioma.</value>
   </data>
   <data name="Cust.Info.Number" xml:space="preserve">
-    <value>Escriba el número de registro del apicultor (p. ej. TR520401200241) o su número de explotación y pulse Buscar. Luego aparecen sus colmenares en el formulario.</value>
+    <value>Escriba el número de identificación de la explotación del apicultor (p. ej. TR520401200241) o su número de plataforma y pulse Buscar. Luego aparecen sus colmenares en el formulario.</value>
   </data>
   <data name="Ci.ArrivedUnsealed" xml:space="preserve">
     <value>Llegó sin precinto (lo normal)</value>
@@ -9932,25 +9932,25 @@
     <value>Etiqueta numerada con QR sobre tapa y cuerpo. Sirve para cualquier envase.</value>
   </data>
   <data name="Ci.Closure.SealLabel.Help" xml:space="preserve">
-    <value>Una etiqueta numerada con QR, emitida por la plataforma e impresa de antemano en papel de seguridad VOID. Va sobre la tapa y el cuerpo y se rompe o deja marcas VOID si alguien la quita. Sirve para cualquier envase.</value>
+    <value>Una etiqueta numerada con QR, emitida por la plataforma e impresa de antemano en papel de seguridad VOID. Es una tira de rotura sobre la junta: la mitad con el código y el QR va en la tapa y la otra mitad en el cuerpo. Se rompe o deja marcas VOID si alguien la quita. Sirve para cualquier envase.</value>
   </data>
   <data name="Ci.Closure.PlasticSeal" xml:space="preserve">
     <value>Envase del apicultor + precinto plástico numerado</value>
   </data>
   <data name="Ci.Closure.PlasticSeal.Short" xml:space="preserve">
-    <value>Pasa por el asa o un orificio de la tapa; se cierra una vez.</value>
+    <value>Pasa por la argolla que une la tapa al cuerpo; se cierra una vez.</value>
   </data>
   <data name="Ci.Closure.PlasticSeal.Help" xml:space="preserve">
-    <value>Para envases con asa u orificio en la tapa: el precinto numerado comprado pasa por ahí y se cierra; solo se abre cortándolo.</value>
+    <value>El precinto numerado comprado pasa por la argolla que une la tapa al cuerpo y se cierra; solo se abre cortándolo. Solo los envases de la asociación tienen esa argolla.</value>
   </data>
   <data name="Ci.Closure.OrgContainer" xml:space="preserve">
     <value>Envase permanente de la asociación</value>
   </data>
   <data name="Ci.Closure.OrgContainer.Short" xml:space="preserve">
-    <value>Registrado una vez; escanee o escriba su código TK.</value>
+    <value>Registrado una vez; escanee o escriba su código TK. Se cierra con una etiqueta de precinto o un precinto plástico.</value>
   </data>
   <data name="Ci.Closure.OrgContainer.Help" xml:space="preserve">
-    <value>El envase propio de la asociación, registrado una vez con un código permanente y QR. En la entrega escanee o escriba su código; su página muestra cada uso. Igual se cierra con un precinto del stock.</value>
+    <value>El envase propio de la asociación, registrado una vez con un código permanente y QR. En la entrega escanee o escriba su código; su página muestra cada uso. Se cierra con un precinto del stock: una etiqueta de precinto o un precinto plástico numerado por la argolla que une la tapa al cuerpo.</value>
   </data>
   <data name="Ci.Info.Closure" xml:space="preserve">
     <value>El envase se cierra una vez, después del muestreo, delante del apicultor. El precinto viene del stock de su organización.</value>
@@ -10025,7 +10025,7 @@
     <value>La etiqueta de precinto va sobre tapa y cuerpo. Si se despega, se rompe y deja marcas VOID.</value>
   </data>
   <data name="Scene.plastic" xml:space="preserve">
-    <value>Un precinto plástico numerado pasa por el asa y se cierra.</value>
+    <value>Un precinto plástico numerado pasa por las argollas de la tapa y del cuerpo y se cierra.</value>
   </data>
   <data name="Scene.scan" xml:space="preserve">
     <value>El envase de la asociación se escanea por su código QR.</value>
@@ -10076,7 +10076,7 @@
     <value>Materiales a tener a mano</value>
   </data>
   <data name="Seal.Materials" xml:space="preserve">
-    <value>Papel de seguridad VOID (100 × 50 mm) para las etiquetas de precinto, precintos plásticos numerados para asas, frascos de muestra con tapa de botón o de anillo de seguridad y una bomba de vacío manual para las tapas de botón.</value>
+    <value>Papel de seguridad VOID sin residuo o destructible (cáscara de huevo) (100 × 50 mm) para las etiquetas de precinto, precintos plásticos numerados para los envases de la asociación (por la argolla que une la tapa al cuerpo), frascos de muestra con tapa de botón o de anillo de seguridad y una bomba de vacío manual para las tapas de botón.</value>
   </data>
   <data name="Seal.Issue" xml:space="preserve">
     <value>Emitir etiquetas de precinto</value>
@@ -10097,7 +10097,7 @@
     <value>Agregar precintos plásticos comprados</value>
   </data>
   <data name="Seal.RangeHelp" xml:space="preserve">
-    <value>Ingrese el rango impreso en los precintos: un prefijo opcional y el primer y último número.</value>
+    <value>Ingrese el rango impreso en los precintos: un prefijo opcional y el primer y último número. Los precintos plásticos solo cierran los envases de la asociación.</value>
   </data>
   <data name="Seal.Prefix" xml:space="preserve">
     <value>Prefijo</value>
@@ -10169,7 +10169,7 @@
     <value>Todos los usos</value>
   </data>
   <data name="Seal.PrintHelp" xml:space="preserve">
-    <value>Imprima en papel de seguridad VOID.</value>
+    <value>Imprima en papel de seguridad VOID sin residuo o destructible (cáscara de huevo). Cada etiqueta es una tira de rotura: la mitad con el código y el QR va en la tapa y la otra mitad en el cuerpo.</value>
   </data>
   <data name="Seal.VoidNote" xml:space="preserve">
     <value>NO QUITAR · VOID</value>
@@ -10284,5 +10284,398 @@
   </data>
   <data name="Enter the capacity and the empty weight in kg (or leave them empty)." xml:space="preserve">
     <value>Ingrese la capacidad y el peso vacío en kg (o déjelos vacíos).</value>
+  </data>
+  <data name="Ccp.Return" xml:space="preserve">
+    <value>Devolver</value>
+  </data>
+  <data name="Ccp.ReturnPlaceholder" xml:space="preserve">
+    <value>p. ej.: El valor de temperatura parece erróneo; vuelva a leer el termómetro.</value>
+  </data>
+  <data name="Ccp.ReturnHelp" xml:space="preserve">
+    <value>El registro vuelve a la persona que lo introdujo y aparece en su lista Mis tareas con su motivo. Cuando lo guarde de nuevo, volverá a usted para su aprobación.</value>
+  </data>
+  <data name="Ccp.Returned" xml:space="preserve">
+    <value>Devuelto.</value>
+  </data>
+  <data name="Ccp.ReturnedBy" xml:space="preserve">
+    <value>Devuelto por {0} el {1}</value>
+  </data>
+  <data name="Ccp.ReturnedHelp" xml:space="preserve">
+    <value>Corrija los valores de abajo y guarde; el registro vuelve a aprobación.</value>
+  </data>
+  <data name="Work.Kind.Returned" xml:space="preserve">
+    <value>Devueltos a usted</value>
+  </data>
+  <data name="Work.Kind.PackingReady" xml:space="preserve">
+    <value>¿Listo para envasar?</value>
+  </data>
+  <data name="Path.Title" xml:space="preserve">
+    <value>Ruta después del laboratorio</value>
+  </data>
+  <data name="Path.Association" xml:space="preserve">
+    <value>Ruta de asociación: directamente al envasado (los PCC 2 a 6 no se aplican)</value>
+  </data>
+  <data name="Path.Company" xml:space="preserve">
+    <value>Ruta de empresa: procesamiento (PCC 2 en adelante)</value>
+  </data>
+  <data name="Path.Default" xml:space="preserve">
+    <value>predeterminado</value>
+  </data>
+  <data name="Path.Info.Setting" xml:space="preserve">
+    <value>Las asociaciones suelen envasar la miel de sus miembros tal cual: tras el informe de laboratorio aprobado, el responsable de aseguramiento de la calidad la marca como lista para envasar y los PCC 2 a 6 no se aplican. Las empresas de procesamiento calientan, filtran y mezclan la miel, por lo que se aplican los PCC 2 en adelante. Por defecto, la ruta de asociación para una organización con la capacidad Asociación y la de empresa en los demás casos. Un cambio afecta a los lotes marcados como listos y a las partidas creadas a partir de entonces.</value>
+  </data>
+  <data name="Path.PackingReady" xml:space="preserve">
+    <value>Miel lista para envasar</value>
+  </data>
+  <data name="Path.Info.Association" xml:space="preserve">
+    <value>Su organización sigue la ruta de asociación: cuando el informe de laboratorio del lote está aprobado, el responsable de aseguramiento de la calidad confirma aquí que la miel va directamente al envasado. Los PCC 2 a 6 (calentamiento, filtrado, homogeneización, pasteurización, clarificación) no se aplican entonces a este lote ni a su partida; se registran como no aplicables con el motivo y quedan en la auditoría.</value>
+  </data>
+  <data name="Path.ButtonHelp" xml:space="preserve">
+    <value>El informe de laboratorio está aprobado. Confirme que la miel va al envasado tal cual.</value>
+  </data>
+  <data name="Path.IsReady" xml:space="preserve">
+    <value>Listo para envasar</value>
+  </data>
+  <data name="Path.ReadyHelp" xml:space="preserve">
+    <value>Los PCC 2 a 6 no se aplican a este lote; puede entrar en una partida.</value>
+  </data>
+  <data name="Final.Title" xml:space="preserve">
+    <value>Resultado final de la miel</value>
+  </data>
+  <data name="Final.Eyebrow" xml:space="preserve">
+    <value>La mezcla del frasco</value>
+  </data>
+  <data name="Final.Help" xml:space="preserve">
+    <value>Esta partida contiene miel de más de un colmenar. Un análisis de laboratorio de la mezcla final muestra la miel tal como está en el frasco, aparte de los resultados de cada lote.</value>
+  </data>
+  <data name="Final.Info" xml:space="preserve">
+    <value>Tome un frasco precintado y una contramuestra de la partida mezclada, precíntelos con etiquetas de precinto del depósito de su organización y envíe el frasco a un laboratorio verificado. El informe aprobado se muestra aquí y en la Historia de la miel como resultado final de la miel. Se puede finalizar sin él, pero aparece un aviso.</value>
+  </data>
+  <data name="Final.PublicIntro" xml:space="preserve">
+    <value>Esta miel es una mezcla de varios colmenares. Además de los resultados de cada origen, la propia mezcla fue analizada por un laboratorio.</value>
+  </data>
+  <data name="Final.Approved" xml:space="preserve">
+    <value>Aprobado</value>
+  </data>
+  <data name="Final.Parameter" xml:space="preserve">
+    <value>Parámetro</value>
+  </data>
+  <data name="Final.Value" xml:space="preserve">
+    <value>Valor</value>
+  </data>
+  <data name="Final.Limit" xml:space="preserve">
+    <value>Límite</value>
+  </data>
+  <data name="Final.AtLab" xml:space="preserve">
+    <value>En el laboratorio</value>
+  </data>
+  <data name="Final.Rejected" xml:space="preserve">
+    <value>El laboratorio rechazó la muestra {0}. Tome una muestra nueva.</value>
+  </data>
+  <data name="Final.TakeSample" xml:space="preserve">
+    <value>Tomar una muestra de la mezcla final</value>
+  </data>
+  <data name="Final.Lab" xml:space="preserve">
+    <value>Laboratorio</value>
+  </data>
+  <data name="Final.CounterWhere" xml:space="preserve">
+    <value>Dónde se guarda la contramuestra</value>
+  </data>
+  <data name="Final.RetainUntil" xml:space="preserve">
+    <value>Conservar hasta</value>
+  </data>
+  <data name="Final.Send" xml:space="preserve">
+    <value>Enviar al laboratorio</value>
+  </data>
+  <data name="Final.Warning" xml:space="preserve">
+    <value>Esta partida aún no tiene un resultado final de la miel aprobado. Puede finalizarla igualmente; la Historia de la miel mostrará entonces solo los resultados de cada lote.</value>
+  </data>
+  <data name="Final.BatchSample" xml:space="preserve">
+    <value>Mezcla final de la partida n.º {0}</value>
+  </data>
+  <data name="Limit.expected" xml:space="preserve">
+    <value>esperado</value>
+  </data>
+  <data name="This control point does not apply on the association path." xml:space="preserve">
+    <value>Este punto de control no se aplica en la ruta de asociación.</value>
+  </data>
+  <data name="Only a submitted record can be sent back." xml:space="preserve">
+    <value>Solo se puede devolver un registro enviado.</value>
+  </data>
+  <data name="A reason is required to send the record back." xml:space="preserve">
+    <value>Se necesita un motivo para devolver el registro.</value>
+  </data>
+  <data name="Only a {0} of the organization can send a record back." xml:space="preserve">
+    <value>Solo un {0} de la organización puede devolver un registro.</value>
+  </data>
+  <data name="The record was sent back to the person who entered it." xml:space="preserve">
+    <value>El registro se devolvió a la persona que lo introdujo.</value>
+  </data>
+  <data name="The honey is ready for packing: CCP 2 to 6 do not apply to this lot." xml:space="preserve">
+    <value>La miel está lista para envasar: los PCC 2 a 6 no se aplican a este lote.</value>
+  </data>
+  <data name="The lot does not exist." xml:space="preserve">
+    <value>El lote no existe.</value>
+  </data>
+  <data name="The honey of this lot is already marked ready for packing." xml:space="preserve">
+    <value>La miel de este lote ya está marcada como lista para envasar.</value>
+  </data>
+  <data name="Only organizations on the association path mark honey ready for packing." xml:space="preserve">
+    <value>Solo las organizaciones de la ruta de asociación marcan la miel como lista para envasar.</value>
+  </data>
+  <data name="Only the organization that holds the lot marks it ready for packing." xml:space="preserve">
+    <value>Solo la organización que tiene el lote lo marca como listo para envasar.</value>
+  </data>
+  <data name="Only the Quality Assurance Officer marks the honey ready for packing." xml:space="preserve">
+    <value>Solo el responsable de aseguramiento de la calidad marca la miel como lista para envasar.</value>
+  </data>
+  <data name="The lot's laboratory report is not approved yet." xml:space="preserve">
+    <value>El informe de laboratorio del lote aún no está aprobado.</value>
+  </data>
+  <data name="CCP 2 or CCP 3 of this lot already has values, so the lot follows the company path." xml:space="preserve">
+    <value>El PCC 2 o el PCC 3 de este lote ya tiene valores, por lo que el lote sigue la ruta de empresa.</value>
+  </data>
+  <data name="The lot is in a finalized batch and can no longer be changed." xml:space="preserve">
+    <value>El lote está en una partida finalizada y ya no se puede cambiar.</value>
+  </data>
+  <data name="Association path: the honey goes to packing after the approved laboratory report." xml:space="preserve">
+    <value>Ruta de asociación: la miel va al envasado tras el informe de laboratorio aprobado.</value>
+  </data>
+  <data name="Choose the association path or the company path." xml:space="preserve">
+    <value>Elija la ruta de asociación o la de empresa.</value>
+  </data>
+  <data name="The path after the laboratory was saved." xml:space="preserve">
+    <value>Se guardó la ruta después del laboratorio.</value>
+  </data>
+  <data name="The batch does not exist." xml:space="preserve">
+    <value>La partida no existe.</value>
+  </data>
+  <data name="Only the organization that holds the batch takes its samples." xml:space="preserve">
+    <value>Solo la organización que tiene la partida toma sus muestras.</value>
+  </data>
+  <data name="The batch is finalized." xml:space="preserve">
+    <value>La partida está finalizada.</value>
+  </data>
+  <data name="A final honey result is taken on the company path for a batch with honey from more than one apiary." xml:space="preserve">
+    <value>El resultado final de la miel se toma en la ruta de empresa para una partida con miel de más de un colmenar.</value>
+  </data>
+  <data name="A sample of this batch is already at the laboratory." xml:space="preserve">
+    <value>Ya hay una muestra de esta partida en el laboratorio.</value>
+  </data>
+  <data name="Lab report approved; it is the batch's final honey result." xml:space="preserve">
+    <value>Informe de laboratorio aprobado; es el resultado final de la miel de la partida.</value>
+  </data>
+  <data name="Map.Back" xml:space="preserve">
+    <value>Todas las provincias</value>
+  </data>
+  <data name="Map.DrillHint" xml:space="preserve">
+    <value>Seleccione una provincia resaltada para ver sus distritos.</value>
+  </data>
+  <data name="Map.DistrictCredit" xml:space="preserve">
+    <value>Límites de distritos: geoBoundaries, © colaboradores de OpenStreetMap (ODbL)</value>
+  </data>
+  <data name="Home.Map.DistrictTip" xml:space="preserve">
+    <value>Colmenares: {0}</value>
+  </data>
+  <data name="Seal.Split" xml:space="preserve">
+    <value>tapa | cuerpo</value>
+  </data>
+  <data name="Seal.InUse" xml:space="preserve">
+    <value>En uso: {0}</value>
+  </data>
+  <data name="Seal.Free" xml:space="preserve">
+    <value>Libre</value>
+  </data>
+  <data name="Empty.Title" xml:space="preserve">
+    <value>Envases de los lotes de origen</value>
+  </data>
+  <data name="Empty.Help" xml:space="preserve">
+    <value>El envase sigue precintado hasta que se vacía en esta partida. Antes de vaciarlo, escanee su precinto de cierre y confirme que está intacto. Un código distinto o un precinto roto detiene el paso y queda registrado.</value>
+  </data>
+  <data name="Empty.Warning" xml:space="preserve">
+    <value>Envases aún precintados o con una comprobación de precinto fallida: {0}. No impide finalizar; vacíelos o aclárelos antes.</value>
+  </data>
+  <data name="Empty.Checks" xml:space="preserve">
+    <value>Comprobación del precinto al vaciar</value>
+  </data>
+  <data name="Empty.Seal" xml:space="preserve">
+    <value>Precinto de cierre: escanéelo o escríbalo</value>
+  </data>
+  <data name="Empty.Intact" xml:space="preserve">
+    <value>El precinto está intacto</value>
+  </data>
+  <data name="Empty.Button" xml:space="preserve">
+    <value>Vaciar en esta partida</value>
+  </data>
+  <data name="Empty.BrokenButton" xml:space="preserve">
+    <value>Precinto roto</value>
+  </data>
+  <data name="Empty.State.Sealed" xml:space="preserve">
+    <value>Precintado</value>
+  </data>
+  <data name="Empty.State.Emptied" xml:space="preserve">
+    <value>Vaciado en la partida {0}</value>
+  </data>
+  <data name="Empty.State.NoSeal" xml:space="preserve">
+    <value>Sin precinto de cierre registrado</value>
+  </data>
+  <data name="Empty.Outcome.Emptied" xml:space="preserve">
+    <value>Precinto intacto, vaciado en la partida {0}</value>
+  </data>
+  <data name="Empty.Outcome.Mismatch" xml:space="preserve">
+    <value>Se escaneó otro precinto: {0}</value>
+  </data>
+  <data name="Empty.Outcome.FoundBroken" xml:space="preserve">
+    <value>Precinto encontrado roto</value>
+  </data>
+  <data name="Empty.NotEmptied" xml:space="preserve">
+    <value>no se vació en la partida {0}</value>
+  </data>
+  <data name="Container {0}: a numbered plastic seal closes only an association container; close the beekeeper's container with a seal label." xml:space="preserve">
+    <value>Envase {0}: un precinto plástico numerado solo cierra un envase de la asociación; cierre el envase del apicultor con una etiqueta de precinto.</value>
+  </data>
+  <data name="Containers are emptied into a batch by those who enter batch data in the organization that owns the batch." xml:space="preserve">
+    <value>Los envases los vacían en una partida quienes introducen datos de partidas en la organización propietaria de la partida.</value>
+  </data>
+  <data name="The batch was not found." xml:space="preserve">
+    <value>No se encontró la partida.</value>
+  </data>
+  <data name="The batch is finalized; containers can no longer be emptied into it." xml:space="preserve">
+    <value>La partida está finalizada; ya no se pueden vaciar envases en ella.</value>
+  </data>
+  <data name="This container does not belong to a lot of this batch." xml:space="preserve">
+    <value>Este envase no pertenece a ningún lote de esta partida.</value>
+  </data>
+  <data name="Container {0} was already emptied into batch {1}." xml:space="preserve">
+    <value>El envase {0} ya se vació en la partida {1}.</value>
+  </data>
+  <data name="Container {0} has no closing seal on record." xml:space="preserve">
+    <value>El envase {0} no tiene precinto de cierre registrado.</value>
+  </data>
+  <data name="Scan or type the closing seal of container {0}." xml:space="preserve">
+    <value>Escanee o escriba el precinto de cierre del envase {0}.</value>
+  </data>
+  <data name="The seal of container {0} was reported broken. The container was not emptied; the check was recorded." xml:space="preserve">
+    <value>Se informó de que el precinto del envase {0} está roto. El envase no se vació; la comprobación quedó registrada.</value>
+  </data>
+  <data name="Seal {0} is not the closing seal of container {1}. The container was not emptied; the check was recorded." xml:space="preserve">
+    <value>El precinto {0} no es el precinto de cierre del envase {1}. El envase no se vació; la comprobación quedó registrada.</value>
+  </data>
+  <data name="Confirm that the seal of container {0} is intact, or report it broken." xml:space="preserve">
+    <value>Confirme que el precinto del envase {0} está intacto o informe de que está roto.</value>
+  </data>
+  <data name="Container {0} emptied into batch {1}; seal {2} is now opened." xml:space="preserve">
+    <value>Envase {0} vaciado en la partida {1}; el precinto {2} queda abierto.</value>
+  </data>
+  <data name="Num.Official" xml:space="preserve">
+    <value>Número de identificación de la explotación</value>
+  </data>
+  <data name="Num.Platform" xml:space="preserve">
+    <value>Número de plataforma</value>
+  </data>
+  <data name="Login.BeekeeperHint" xml:space="preserve">
+    <value>Apicultores: su nombre de usuario es su número de plataforma (TR-BEE-…).</value>
+  </data>
+  <data name="HT.Other" xml:space="preserve">
+    <value>Otro (nuevo tipo de miel)</value>
+  </data>
+  <data name="HT.NewName" xml:space="preserve">
+    <value>Nombre del nuevo tipo de miel</value>
+  </data>
+  <data name="HT.NewHelp" xml:space="preserve">
+    <value>Revise primero la lista. Un nombre que coincide con un tipo existente (sin tener en cuenta mayúsculas, letras turcas, espacios ni la palabra "miel") se rechaza; elija entonces ese tipo de la lista.</value>
+  </data>
+  <data name="HT.NewClass" xml:space="preserve">
+    <value>Clase de miel</value>
+  </data>
+  <data name="HT.ClassHelp" xml:space="preserve">
+    <value>La clase decide qué límites de laboratorio se aplican a esta miel.</value>
+  </data>
+  <data name="HT.Class.Floral" xml:space="preserve">
+    <value>Floral (de flores)</value>
+  </data>
+  <data name="HT.Class.Honeydew" xml:space="preserve">
+    <value>Mielada</value>
+  </data>
+  <data name="HT.Class.Pine" xml:space="preserve">
+    <value>Pino</value>
+  </data>
+  <data name="HT.BeekeeperTypes" xml:space="preserve">
+    <value>Tipos de miel que produce el apicultor</value>
+  </data>
+  <data name="HT.EditBeekeeperTypes" xml:space="preserve">
+    <value>Cambiar los tipos de miel del apicultor</value>
+  </data>
+  <data name="HT.Added" xml:space="preserve">
+    <value>Añadido desde un formulario</value>
+  </data>
+  <data name="HT.Merge.Title" xml:space="preserve">
+    <value>Fusionar tipo de miel</value>
+  </data>
+  <data name="HT.Merge.Help" xml:space="preserve">
+    <value>Todo lo que usa este tipo de miel pasa al tipo que elija: lotes, límites de laboratorio, tipos de miel de los apicultores y las traducciones que le falten al otro tipo. Después se elimina este tipo de miel; su nombre sigue llevando al otro tipo.</value>
+  </data>
+  <data name="HT.Merge.Lots" xml:space="preserve">
+    <value>Lotes</value>
+  </data>
+  <data name="HT.Merge.Limits" xml:space="preserve">
+    <value>Límites de este tipo de miel</value>
+  </data>
+  <data name="HT.Merge.Beekeepers" xml:space="preserve">
+    <value>Apicultores con este tipo de miel</value>
+  </data>
+  <data name="HT.Merge.ClassNote" xml:space="preserve">
+    <value>Después, los lotes se evalúan con los límites de la clase de miel del otro tipo.</value>
+  </data>
+  <data name="HT.Merge.Target" xml:space="preserve">
+    <value>Fusionar con</value>
+  </data>
+  <data name="HT.Merge.Button" xml:space="preserve">
+    <value>Fusionar</value>
+  </data>
+  <data name="Your role cannot add a honey type; choose one from the list." xml:space="preserve">
+    <value>Su rol no puede añadir un tipo de miel; elija uno de la lista.</value>
+  </data>
+  <data name="Enter the name of the new honey type (2 to 100 characters)." xml:space="preserve">
+    <value>Introduzca el nombre del nuevo tipo de miel (de 2 a 100 caracteres).</value>
+  </data>
+  <data name="Choose the honey class of the new honey type (floral, honeydew or pine)." xml:space="preserve">
+    <value>Elija la clase del nuevo tipo de miel (floral, mielada o pino).</value>
+  </data>
+  <data name="This honey type already exists as {0}: choose it from the list." xml:space="preserve">
+    <value>Este tipo de miel ya existe como {0}: elíjalo de la lista.</value>
+  </data>
+  <data name="Only the platform administrator merges honey types." xml:space="preserve">
+    <value>Solo el administrador de la plataforma fusiona tipos de miel.</value>
+  </data>
+  <data name="A honey type cannot be merged into itself." xml:space="preserve">
+    <value>Un tipo de miel no se puede fusionar consigo mismo.</value>
+  </data>
+  <data name="Both honey types have their own limit for {0}: remove one on the Limits page first." xml:space="preserve">
+    <value>Ambos tipos de miel tienen su propio límite para {0}: elimine primero uno en la página de límites.</value>
+  </data>
+  <data name="{0} was merged into {1}." xml:space="preserve">
+    <value>{0} se fusionó con {1}.</value>
+  </data>
+  <data name="The beekeeper's honey types are saved." xml:space="preserve">
+    <value>Se guardaron los tipos de miel del apicultor.</value>
+  </data>
+  <data name="Holding identification number verified." xml:space="preserve">
+    <value>Número de identificación de la explotación verificado.</value>
+  </data>
+  <data name="Evidence accepted; the holding identification number is verified." xml:space="preserve">
+    <value>Prueba aceptada; el número de identificación de la explotación está verificado.</value>
+  </data>
+  <data name="A beekeeper with this holding identification number is already registered. Find it and re-verify instead." xml:space="preserve">
+    <value>Ya hay un apicultor registrado con este número de identificación de la explotación. Búsquelo y vuelva a verificarlo.</value>
+  </data>
+  <data name="The holding identification number belongs to another province than the directorate. Give a reason to continue." xml:space="preserve">
+    <value>El número de identificación de la explotación pertenece a otra provincia distinta de la de la dirección. Indique un motivo para continuar.</value>
+  </data>
+  <data name="Consent recorded. The storefront is published once the holding identification number is verified." xml:space="preserve">
+    <value>Consentimiento registrado. La página se publica en cuanto se verifique el número de identificación de la explotación.</value>
+  </data>
+  <data name="Enter the holding identification number (or the platform number of a registered beekeeper)." xml:space="preserve">
+    <value>Introduzca el número de identificación de la explotación (o el número de plataforma de un apicultor registrado).</value>
   </data>
 </root>

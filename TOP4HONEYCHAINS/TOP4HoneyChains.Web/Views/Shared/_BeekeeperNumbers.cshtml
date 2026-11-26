@@ -1,0 +1,8 @@
+@* D-98: a beekeeper's numbers in a list: the official holding identification number (İşletme tanımlama numarası) first, the
+   platform number (TR-BEE-…, the portal user name) second and smaller *@
+@model (string? Registry, string? Platform)
+<span class="bk-official">@(string.IsNullOrEmpty(Model.Registry) ? "–" : Model.Registry)</span>
+@if (!string.IsNullOrEmpty(Model.Platform))
+{
+    <br /><small class="text-muted bk-platform">@L["Num.Platform"]: @Model.Platform</small>
+}

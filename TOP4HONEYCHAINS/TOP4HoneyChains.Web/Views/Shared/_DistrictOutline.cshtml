@@ -1,0 +1,21 @@
+@using TOP4HoneyChains.Web.Services
+@model TOP4HoneyChains.Web.Models.ViewModels.DistrictOutlineModel
+@{
+    // D-98: one province drawn from its districts, with the given district filled (or the whole province when the district
+    // is unknown). Outlines from the district map (Data/Geo/README.md); never a coordinate. Styles: wwwroot/css/tmap.css.
+    var districts = TurkeyDistricts.Of(Model.Plate);
+    var on = TurkeyDistricts.Find(Model.Plate, Model.District);
+}
+@if (districts.Count > 0)
+{
+    <svg class="tmap-mini@(on == null ? " is-province" : "")" viewBox="@TurkeyDistricts.ViewBoxOf(Model.Plate)" preserveAspectRatio="xMidYMid meet" role="img" aria-label="@Model.Label">
+        @foreach (var d in districts.Where(d => d != on))
+        {
+            <path d="@d.Path"></path>
+        }
+        @if (on != null)
+        {
+            <path class="tmap-mini-on is-on" d="@on.Path"></path>
+        }
+    </svg>
+}

@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using TOP4HoneyChains.Web.Models.Entities;
 
 namespace TOP4HoneyChains.Web.Data;
@@ -30,6 +30,8 @@ public partial class TOP4HoneyChainsContext
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder)
     {
         OnModelCreatingD97(modelBuilder);
+        OnModelCreatingD98Seals(modelBuilder);
+        OnModelCreatingD98HoneyTypes(modelBuilder);
         modelBuilder.Entity<SmsMessage>(entity =>
         {
             entity.ToTable("SmsMessages", tb => tb.HasTrigger("TR_SmsMessages_AppendOnly"));

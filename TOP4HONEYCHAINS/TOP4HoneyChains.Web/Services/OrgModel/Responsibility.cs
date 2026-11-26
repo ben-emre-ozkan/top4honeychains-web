@@ -129,6 +129,11 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             if (active == null)
                 return new CcpAccess(false, false, false, "No active membership.", "No active membership.");
 
+            // D-98: on the association path CCP 2 to 6 do not apply; their records (without values) are not shown
+            if (await SkippedByPathAsync(kind, ownerId, ccpId))
+                return new CcpAccess(false, false, false, "This control point does not apply on the association path.",
+                    "This control point does not apply on the association path.");
+
             var configs = await ConfigsAsync();
             configs.TryGetValue(ccpId, out var cfg);
             var responsible = (await ResponsibleOrgsAsync(kind, ownerId, ccpId)).Contains(active.OrgId);
@@ -165,6 +170,41 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             }
             return new CcpAccess(read, read && enterDenied == null, read && approveDenied == null, enterDenied, approveDenied);
         }
+
+        // ---- D-98: the path after the laboratory ----
+
+        private readonly Dictionary<int, string> _paths = new();
+        private Dictionary<int, string?>? _codes;
+
+        public async Task<string> PathOfAsync(int orgId)
+        {
+            if (_paths.TryGetValue(orgId, out var p))
+                return p;
+            var org = await _context.Organizations.AsNoTracking().Where(o => o.OrgId == orgId)
+                .Select(o => new { o.CcpPath, Association = o.Capabilities.Any(c => c.Capability == Capabilities.Association) })
+                .FirstOrDefaultAsync();
+            return _paths[orgId] = CcpPaths.Effective(org?.CcpPath, org?.Association == true);
+        }
+
+        // A CCP 2-6 record of a lot or batch whose owner is on the association path and that has no values
+        public async Task<bool> SkippedByPathAsync(string kind, int ownerId, int ccpId)
+        {
+            _codes ??= await _context.CriticalControlPoints.AsNoTracking().ToDictionaryAsync(c => c.Id, c => (string?)c.Code);
+            if (!_codes.TryGetValue(ccpId, out var code) || code == null
+                || !(kind == "raw" ? CcpPaths.SkippedLotCcps : CcpPaths.SkippedBatchCcps).Contains(code))
+                return false;
+            var org = kind == "raw" ? await LotOwnerAsync(ownerId) : await BatchOwnerAsync(ownerId);
+            if (org == null || await PathOfAsync(org.Value) != CcpPaths.Association)
+                return false;
+            return kind == "raw"
+                ? !await _context.CriticalControlPointMonitoringLogs.AnyAsync(l => l.RawHoneyProductionId == ownerId && l.CCPId == ccpId)
+                : !await _context.CriticalControlPointMonitoringLogs.AnyAsync(l => l.FinalHoneyProductionId == ownerId && l.CCPId == ccpId);
+        }
+
+        // the lock reason of a lot (finalized batch), for D-98 actions outside the CCP pages
+        public async Task<string?> LotLockedAsync(int lotId) =>
+            await _context.FinalHoneyProductionDetails.AnyAsync(d => d.RawHoneyProductionId == lotId && d.FinalHoneyProduction!.FinalHoneyProductionIsFinalized)
+                ? "The lot is in a finalized batch and can no longer be changed." : null;
 
         // CCP ids of an item the current user may open (for lists)
         public async Task<HashSet<int>> ReadableCcpIdsAsync(string kind, int ownerId, IEnumerable<int> ccpIds)

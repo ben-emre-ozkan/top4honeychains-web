@@ -56,5 +56,6 @@ public partial class TOP4HoneyChainsContext
 
         modelBuilder.Entity<LotIntake>(entity => entity.Property(e => e.JarCapType).IsUnicode(false));
         modelBuilder.Entity<Sample>(entity => entity.Property(e => e.CapType).IsUnicode(false));
+        OnModelCreatingD98(modelBuilder);
     }
 }

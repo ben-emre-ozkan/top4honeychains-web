@@ -31,7 +31,7 @@
                         <table class="table table-sm table-hover" id="registrations">
                             <thead class="table-light">
                                 <tr>
-                                    <th>@L["Reg78.Date"]</th><th>@L["Reg78.Beekeeper"]</th><th>@L["Reg78.RegistryNumber"]</th><th>@L["Reg78.Kind"]</th>
+                                    <th>@L["Reg78.Date"]</th><th>@L["Reg78.Beekeeper"]</th><th>@L["Num.Official"]</th><th>@L["Reg78.Kind"]</th>
                                     <th>@L["Reg78.Method"]</th><th>@L["Reg78.Evidence"]</th>
                                     @if (registrar.IsPlatformAdmin)
                                     {
@@ -44,7 +44,7 @@
                                 {
                                     <tr>
                                         <td class="text-nowrap"><a href="/Registration/Details/@r.RegistrationId">@r.At.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</a></td>
-                                        <td>@r.Beekeeper?.BeekeeperFirstName @r.Beekeeper?.BeekeeperLastName <small class="text-muted">@r.Beekeeper?.BeekeeperBusinessNumber</small></td>
+                                        <td>@r.Beekeeper?.BeekeeperFirstName @r.Beekeeper?.BeekeeperLastName <small class="text-muted" title="@L["Num.Platform"]">@r.Beekeeper?.BeekeeperBusinessNumber</small></td>
                                         <td>@r.RegistryNumber</td>
                                         <td>@L["Reg78.Kind." + r.Kind]</td>
                                         <td>@L["Reg78.Method." + r.Method]</td>

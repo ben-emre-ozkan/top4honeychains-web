@@ -26,6 +26,7 @@
                 <div class="card-body">
                     <h4 class="card-title">@L["Lab.Report"]: @sample.SampleCode</h4>
                     <div class="small text-muted mb-2">
+                        @if (sample.FinalHoneyProductionId != null) { <strong id="final-blend-label">@L["Final.BatchSample", sample.FinalHoneyProductionId]</strong> <text>·</text> }
                         @L["Cust.Lot"] #@sample.RawHoneyProductionId · @Ref.T("HoneyType", sample.RawHoneyProduction?.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeId, "Title", sample.RawHoneyProduction?.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle) ·
                         @L["Lab.Laboratory"]: @sample.LabOrg?.DisplayName · @L["Lab.SealNumber"]: @sample.SealNumber ·
                         @L["Sample status"]: <strong id="sample-status">@L[sample.Status ?? ""]</strong>

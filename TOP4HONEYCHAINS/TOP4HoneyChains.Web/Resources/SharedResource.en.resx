@@ -568,13 +568,13 @@
     <value>Beekeeper registry and associations</value>
   </data>
   <data name="Reg.BusinessNo" xml:space="preserve">
-    <value>Business no.</value>
+    <value>Platform no.</value>
   </data>
   <data name="Reg.Beekeeper" xml:space="preserve">
     <value>Beekeeper</value>
   </data>
   <data name="Reg.RegistryNo" xml:space="preserve">
-    <value>Registry no.</value>
+    <value>Holding ID no.</value>
   </data>
   <data name="Reg.Association" xml:space="preserve">
     <value>Association</value>
@@ -586,7 +586,7 @@
     <value>Format TR, a province code 01-81 and 10 digits. A proof document (registry printout or photo) is required.</value>
   </data>
   <data name="Reg.ListHelp" xml:space="preserve">
-    <value>Each beekeeper is a record on the platform; a beekeeper registered with a mobile phone can also sign in to the beekeeper area. A registry number is verified when the beekeeper confirms the registration with the SMS code, or when the Compliance Officer accepts the signed photo. Here a platform administrator checks a number entered later, with a proof document, and changes the association.</value>
+    <value>Each beekeeper is a record on the platform; a beekeeper registered with a mobile phone can also sign in to the beekeeper area, with the platform number as user name. A holding identification number is verified when the beekeeper confirms the registration with the SMS code, or when the Compliance Officer accepts the signed photo. Here a platform administrator checks a number entered later, with a proof document, and changes the association.</value>
   </data>
   <data name="Reg.Submit" xml:space="preserve">
     <value>Submit</value>
@@ -757,10 +757,10 @@
     <value>Record a delivery</value>
   </data>
   <data name="Cust.NewIntakeHelp" xml:space="preserve">
-    <value>Find the beekeeper by business or registry number, then enter the delivery with the photo of the signed delivery form.</value>
+    <value>Find the beekeeper by holding identification number or platform number, then enter the delivery with the photo of the signed delivery form.</value>
   </data>
   <data name="Cust.BeekeeperNumber" xml:space="preserve">
-    <value>Beekeeper business or registry number</value>
+    <value>Beekeeper's holding identification number or platform number</value>
   </data>
   <data name="Cust.Find" xml:space="preserve">
     <value>Find</value>
@@ -1090,7 +1090,7 @@
     <value>Beekeeper pages</value>
   </data>
   <data name="P5.StorefrontsHelp" xml:space="preserve">
-    <value>A member's public page is published only with a recorded consent and a verified registry number; withdrawing the consent unpublishes it at once.</value>
+    <value>A member's public page is published only with a recorded consent and a verified holding identification number; withdrawing the consent unpublishes it at once.</value>
   </data>
   <data name="P5.Consent" xml:space="preserve">
     <value>Consent</value>
@@ -1114,7 +1114,7 @@
     <value>not public</value>
   </data>
   <data name="P5.NeedsRegistry" xml:space="preserve">
-    <value>needs a verified registry number</value>
+    <value>needs a verified holding identification number</value>
   </data>
   <data name="P5.RecordConsent" xml:space="preserve">
     <value>Record consent</value>
@@ -1189,7 +1189,7 @@
     <value>Organizations to verify</value>
   </data>
   <data name="Work.Kind.Registry" xml:space="preserve">
-    <value>Registry numbers to verify</value>
+    <value>Holding identification numbers to verify</value>
   </data>
   <data name="Work.Kind.Correction" xml:space="preserve">
     <value>Corrections to decide</value>
@@ -1483,7 +1483,7 @@
     <value>Beekeeper</value>
   </data>
   <data name="Beekeeper Business Number" xml:space="preserve">
-    <value>Beekeeper Business Number</value>
+    <value>Beekeeper's platform number</value>
   </data>
   <data name="Actions" xml:space="preserve">
     <value>Actions</value>
@@ -1669,7 +1669,7 @@
     <value>Profile Photo</value>
   </data>
   <data name="Business Number" xml:space="preserve">
-    <value>Business Number</value>
+    <value>Platform number</value>
   </data>
   <data name="No Photo" xml:space="preserve">
     <value>No Photo</value>
@@ -3112,7 +3112,7 @@
     <value>Beekeeper registry</value>
   </data>
   <data name="Registry number:" xml:space="preserve">
-    <value>Registry number:</value>
+    <value>Holding identification number:</value>
   </data>
   <data name="· Status:" xml:space="preserve">
     <value>· Status:</value>
@@ -5164,7 +5164,7 @@
     <value>The list of capabilities itself is fixed: a new capability needs a database script and a code change.</value>
   </data>
   <data name="Cap.Uses.Beekeeping" xml:space="preserve">
-    <value>The beekeeper's enterprise. It does not sign in; its verified registry number links the lots to the beekeeper and tells the province.</value>
+    <value>The beekeeper's enterprise. It does not sign in; its verified holding identification number links the lots to the beekeeper and tells the province.</value>
   </data>
   <data name="Cap.Uses.Association" xml:space="preserve">
     <value>Links its member beekeepers, records their consent and publishes their beekeeper pages, and sees its members' lots in recall reports; its field inspector can do CCP 0 when an administrator assigns it.</value>
@@ -5539,7 +5539,7 @@
     <value>Origins by province</value>
   </data>
   <data name="Hst.MapNote" xml:space="preserve">
-    <value>Shown by province only; exact apiary locations are never published.</value>
+    <value>Shown by province and district; exact apiary locations are never published.</value>
   </data>
   <data name="Hst.SourcesEyebrow" xml:space="preserve">
     <value>Meet the beekeepers</value>
@@ -6292,7 +6292,7 @@
     <value>Apiaries per province</value>
   </data>
   <data name="Home.Map.Note" xml:space="preserve">
-    <value>Shown by province only; apiary locations are never shown.</value>
+    <value>Shown by province and district; apiary locations are never shown.</value>
   </data>
   <data name="Home.Map.Unlocated" xml:space="preserve">
     <value>Apiaries without a location (not on the map): {0}.</value>
@@ -6319,7 +6319,7 @@
     <value>Organization</value>
   </data>
   <data name="Home.Wait.Kind.registry" xml:space="preserve">
-    <value>Registry number</value>
+    <value>Holding identification number</value>
   </data>
   <data name="Home.Wait.Kind.correction" xml:space="preserve">
     <value>Correction</value>
@@ -6373,7 +6373,7 @@
     <value>Organization</value>
   </data>
   <data name="Home.Act.Kind.registry" xml:space="preserve">
-    <value>Registry number</value>
+    <value>Holding identification number</value>
   </data>
   <data name="Home.Act.Entered" xml:space="preserve">
     <value>entered by {0}</value>
@@ -6553,7 +6553,7 @@
     <value>Birth date</value>
   </data>
   <data name="Audit.F.BusinessNumber" xml:space="preserve">
-    <value>Business number</value>
+    <value>Platform number</value>
   </data>
   <data name="Audit.F.Capability" xml:space="preserve">
     <value>Capability</value>
@@ -6622,7 +6622,7 @@
     <value>Entered by</value>
   </data>
   <data name="Audit.F.EnterpriseNumber" xml:space="preserve">
-    <value>Enterprise registry number</value>
+    <value>Holding identification number</value>
   </data>
   <data name="Audit.F.Event" xml:space="preserve">
     <value>Event</value>
@@ -6817,7 +6817,7 @@
     <value>Recorded by</value>
   </data>
   <data name="Audit.F.RegistryNumber" xml:space="preserve">
-    <value>Registry number</value>
+    <value>Holding identification number</value>
   </data>
   <data name="Audit.F.RejectReason" xml:space="preserve">
     <value>Reason for rejection</value>
@@ -7135,7 +7135,7 @@
     <value>Signed-photo evidence (accept or reject)</value>
   </data>
   <data name="Cap.Uses.BeekeeperRegistration" xml:space="preserve">
-    <value>District directorate of agriculture: its beekeeper registration officers register beekeepers and their apiaries, check the registry number, confirm identity and consent with an SMS code (or a signed photo) and issue the sign-in.</value>
+    <value>District directorate of agriculture: its beekeeper registration officers register beekeepers and their apiaries, check the holding identification number, confirm identity and consent with an SMS code (or a signed photo) and issue the sign-in.</value>
   </data>
   <data name="Org.NoComplianceOfficer" xml:space="preserve">
     <value>This organization has no Compliance Officer yet. Every organization names at least one (it may be the organization admin with a second membership).</value>
@@ -7570,7 +7570,7 @@
     <value>Beekeeping purpose</value>
   </data>
   <data name="Registry Number" xml:space="preserve">
-    <value>Registry number</value>
+    <value>Holding identification number</value>
   </data>
   <data name="Work.Kind.Evidence" xml:space="preserve">
     <value>Review signed photos</value>
@@ -7579,16 +7579,16 @@
     <value>Beekeeper registration</value>
   </data>
   <data name="Reg78.Help" xml:space="preserve">
-    <value>Beekeepers registered by your organization. The registry number, an SMS code to the beekeeper's phone and your attestation confirm each registration.</value>
+    <value>Beekeepers registered by your organization. The holding identification number, an SMS code to the beekeeper's phone and your attestation confirm each registration.</value>
   </data>
   <data name="Reg78.FindLabel" xml:space="preserve">
-    <value>Registry number (AKS) or business number</value>
+    <value>Holding identification number (AKS) or platform number</value>
   </data>
   <data name="Reg78.Find" xml:space="preserve">
     <value>Find or register</value>
   </data>
   <data name="Reg78.FindHelp" xml:space="preserve">
-    <value>A known beekeeper is re-verified; a new registry number starts a new registration.</value>
+    <value>A known beekeeper is re-verified; a new holding identification number starts a new registration.</value>
   </data>
   <data name="Reg78.Date" xml:space="preserve">
     <value>Date</value>
@@ -7747,7 +7747,7 @@
     <value>Review of the signed photo</value>
   </data>
   <data name="Reg78.ReviewHelp" xml:space="preserve">
-    <value>Open the photo and check it against the registration: identity, registry number, the beekeeper's choices and the signature. You did not record this registration.</value>
+    <value>Open the photo and check it against the registration: identity, holding identification number, the beekeeper's choices and the signature. You did not record this registration.</value>
   </data>
   <data name="Reg78.ReviewReason" xml:space="preserve">
     <value>Note (required for a rejection)</value>
@@ -8785,7 +8785,7 @@
     <value>Record each tin and its seal. The beekeeper confirms with the SMS code.</value>
   </data>
   <data name="Scene.seal" xml:space="preserve">
-    <value>A numbered seal goes through the handle and clicks shut. Note its number.</value>
+    <value>A numbered seal ties the lid to the body and clicks shut. Note its number.</value>
   </data>
   <data name="Scene.send" xml:space="preserve">
     <value>The sealed jars travel to the laboratory; the counter-samples stay at the plant.</value>
@@ -8854,7 +8854,7 @@
     <value>Samples and lab shows every jar and report of your laboratory. Your first job is to approve the reports your analysts submit, or return one, for example when a value looks wrong.</value>
   </data>
   <data name="Tour.Registration" xml:space="preserve">
-    <value>Beekeeper registration is where you register beekeepers and their apiaries. Type the registry number, enter the beekeeper's details and apiary, send the SMS code and type in the code the beekeeper reads out to you.</value>
+    <value>Beekeeper registration is where you register beekeepers and their apiaries. Type the holding identification number, enter the beekeeper's details, honey types and apiary, send the SMS code and type in the code the beekeeper reads out to you.</value>
   </data>
   <data name="Tour.Compliance" xml:space="preserve">
     <value>Compliance is your review desk: signed photos, quality reviews, data requests and the audit log. Start with what waits for your decision, for example a delivery confirmed with a signed photo instead of an SMS code.</value>
@@ -8872,7 +8872,7 @@
     <value>The dashboard shows what waits for you as platform operator and the latest activity. Start here, for example with an organization waiting to be verified.</value>
   </data>
   <data name="Tour.Admin.Data" xml:space="preserve">
-    <value>Beekeepers, apiaries and the reference lists of the platform. Look up a beekeeper here, for example by registry number.</value>
+    <value>Beekeepers, apiaries and the reference lists of the platform. Look up a beekeeper here, for example by holding identification number.</value>
   </data>
   <data name="Tour.Me.Deliveries" xml:space="preserve">
     <value>My deliveries shows the honey you delivered, with each tin and its seal. Enter your price per kilogram here, for example for last week's chestnut honey.</value>
@@ -9703,7 +9703,7 @@
     <value>Samples and lab is your bench list. First receive each jar (seal number, label, cap), then enter the results, for example moisture and HMF, and submit the report.</value>
   </data>
   <data name="Tour.Approve" xml:space="preserve">
-    <value>My work lists the control point (CCP) records your colleagues submitted. Check each one and approve it or send it back, for example the intake check of today's delivery; nobody approves their own entry.</value>
+    <value>My work lists the control point (CCP) records your colleagues submitted. Check each one and approve it, or send it back with a reason: it then returns to the person who entered it, for example the intake check of today's delivery. Nobody approves their own entry.</value>
   </data>
   <data name="Reg78.Info.Registry" xml:space="preserve">
     <value>TR + the province's plate code (2 digits) + 10 digits, e.g. TR520401200241. The plate code is compared with your directorate's province.</value>
@@ -9727,7 +9727,7 @@
     <value>The beekeeper receives the SMS code and later messages in this language.</value>
   </data>
   <data name="Cust.Info.Number" xml:space="preserve">
-    <value>Type the beekeeper's registry number (e.g. TR520401200241) or business number and press Find. The beekeeper's apiaries then appear in the form.</value>
+    <value>Type the beekeeper's holding identification number (e.g. TR520401200241) or platform number and press Find. The beekeeper's apiaries then appear in the form.</value>
   </data>
   <data name="Ci.ArrivedUnsealed" xml:space="preserve">
     <value>Arrived unsealed (normal)</value>
@@ -9808,25 +9808,25 @@
     <value>Numbered label with QR across lid and body. Works on any container.</value>
   </data>
   <data name="Ci.Closure.SealLabel.Help" xml:space="preserve">
-    <value>A numbered label with a QR code, issued by the platform and printed in advance on tamper-evident VOID label stock. It goes across lid and body and tears or leaves VOID marks if someone removes it. Works on any container.</value>
+    <value>A numbered label with a QR code, issued by the platform and printed in advance on tamper-evident VOID label stock. It is a tear strip across the joint: the half with the code and QR on the lid, the other half on the body. It tears or leaves VOID marks if someone removes it. Works on any container.</value>
   </data>
   <data name="Ci.Closure.PlasticSeal" xml:space="preserve">
     <value>Beekeeper's container + numbered plastic seal</value>
   </data>
   <data name="Ci.Closure.PlasticSeal.Short" xml:space="preserve">
-    <value>Through a handle or a lid hole; it locks once.</value>
+    <value>Through the eyelet that ties the lid to the body; it locks once.</value>
   </data>
   <data name="Ci.Closure.PlasticSeal.Help" xml:space="preserve">
-    <value>For containers with a handle or a lid hole: the purchased numbered seal goes through it and locks; it can only be opened by cutting it.</value>
+    <value>The purchased numbered seal goes through the eyelet that ties the lid to the body and locks; it can only be opened by cutting it. Only the association's containers have such an eyelet.</value>
   </data>
   <data name="Ci.Closure.OrgContainer" xml:space="preserve">
     <value>Association's permanent container</value>
   </data>
   <data name="Ci.Closure.OrgContainer.Short" xml:space="preserve">
-    <value>Registered once; scan or type its TK code.</value>
+    <value>Registered once; scan or type its TK code. Closed with a seal label or a plastic seal.</value>
   </data>
   <data name="Ci.Closure.OrgContainer.Help" xml:space="preserve">
-    <value>The association's own container, registered once with a permanent code and QR. Scan or type its code at the delivery; its page shows every use. It is still closed with a seal from the pool.</value>
+    <value>The association's own container, registered once with a permanent code and QR. Scan or type its code at the delivery; its page shows every use. It is closed with a seal from the pool: a seal label, or a numbered plastic seal through the eyelet that ties the lid to the body.</value>
   </data>
   <data name="Ci.Info.Closure" xml:space="preserve">
     <value>The container is closed once, after sampling, in front of the beekeeper. The seal comes from your organization's seal pool.</value>
@@ -9901,7 +9901,7 @@
     <value>A seal label goes across lid and body. Peeled off, it tears and leaves VOID marks.</value>
   </data>
   <data name="Scene.plastic" xml:space="preserve">
-    <value>A numbered plastic seal goes through the handle and locks.</value>
+    <value>A numbered plastic seal goes through the eyelets of lid and body and locks.</value>
   </data>
   <data name="Scene.scan" xml:space="preserve">
     <value>The association's container is scanned by its QR code.</value>
@@ -9952,7 +9952,7 @@
     <value>Materials to keep at hand</value>
   </data>
   <data name="Seal.Materials" xml:space="preserve">
-    <value>Tamper-evident VOID label stock (100 × 50 mm) for the seal labels, numbered plastic seals for handles, sample jars with safety-button or tamper-ring caps, and a hand vacuum pump for the button caps.</value>
+    <value>Non-residue VOID or destructible (eggshell) label stock (100 × 50 mm) for the seal labels, numbered plastic seals for the association's containers (through the eyelet that ties the lid to the body), sample jars with safety-button or tamper-ring caps, and a hand vacuum pump for the button caps.</value>
   </data>
   <data name="Seal.Issue" xml:space="preserve">
     <value>Issue seal labels</value>
@@ -9973,7 +9973,7 @@
     <value>Add purchased plastic seals</value>
   </data>
   <data name="Seal.RangeHelp" xml:space="preserve">
-    <value>Enter the range printed on the seals: an optional prefix and the first and last number.</value>
+    <value>Enter the range printed on the seals: an optional prefix and the first and last number. Plastic seals close only the association's containers.</value>
   </data>
   <data name="Seal.Prefix" xml:space="preserve">
     <value>Prefix</value>
@@ -10045,7 +10045,7 @@
     <value>Every use</value>
   </data>
   <data name="Seal.PrintHelp" xml:space="preserve">
-    <value>Print on tamper-evident VOID label stock.</value>
+    <value>Print on non-residue VOID or destructible (eggshell) label stock. Each label is a tear strip: the half with the code and QR goes on the lid, the other half on the body.</value>
   </data>
   <data name="Seal.VoidNote" xml:space="preserve">
     <value>DO NOT REMOVE · VOID</value>
@@ -10160,5 +10160,398 @@
   </data>
   <data name="Enter the capacity and the empty weight in kg (or leave them empty)." xml:space="preserve">
     <value>Enter the capacity and the empty weight in kg (or leave them empty).</value>
+  </data>
+  <data name="Ccp.Return" xml:space="preserve">
+    <value>Send back</value>
+  </data>
+  <data name="Ccp.ReturnPlaceholder" xml:space="preserve">
+    <value>e.g. The temperature value looks wrong; please read the thermometer again.</value>
+  </data>
+  <data name="Ccp.ReturnHelp" xml:space="preserve">
+    <value>The record goes back to the person who entered it and appears in their My work with your reason. Once they save it again, it comes back to you for approval.</value>
+  </data>
+  <data name="Ccp.Returned" xml:space="preserve">
+    <value>Sent back.</value>
+  </data>
+  <data name="Ccp.ReturnedBy" xml:space="preserve">
+    <value>Sent back by {0} on {1}</value>
+  </data>
+  <data name="Ccp.ReturnedHelp" xml:space="preserve">
+    <value>Correct the values below and save; the record goes back for approval.</value>
+  </data>
+  <data name="Work.Kind.Returned" xml:space="preserve">
+    <value>Sent back to you</value>
+  </data>
+  <data name="Work.Kind.PackingReady" xml:space="preserve">
+    <value>Ready for packing?</value>
+  </data>
+  <data name="Path.Title" xml:space="preserve">
+    <value>Path after the laboratory</value>
+  </data>
+  <data name="Path.Association" xml:space="preserve">
+    <value>Association path: straight to packing (CCP 2 to 6 do not apply)</value>
+  </data>
+  <data name="Path.Company" xml:space="preserve">
+    <value>Company path: processing (CCP 2 onwards)</value>
+  </data>
+  <data name="Path.Default" xml:space="preserve">
+    <value>default</value>
+  </data>
+  <data name="Path.Info.Setting" xml:space="preserve">
+    <value>Associations usually pack their members' honey as it is: after the approved laboratory report the Quality Assurance Officer marks it ready for packing and CCP 2 to 6 do not apply. Processing companies heat, filter and blend honey, so CCP 2 onwards apply. The default is the association path for an organization with the Association capability and the company path otherwise. A change acts on lots marked ready and batches created from then on.</value>
+  </data>
+  <data name="Path.PackingReady" xml:space="preserve">
+    <value>Honey ready for packing</value>
+  </data>
+  <data name="Path.Info.Association" xml:space="preserve">
+    <value>Your organization follows the association path: once the lot's laboratory report is approved, the Quality Assurance Officer confirms here that the honey goes straight to packing. CCP 2 to 6 (heating, filtering, homogenizing, pasteurizing, clarification) then do not apply to this lot or its batch; they are recorded as not applicable with the reason and audited.</value>
+  </data>
+  <data name="Path.ButtonHelp" xml:space="preserve">
+    <value>The laboratory report is approved. Confirm that the honey goes to packing as it is.</value>
+  </data>
+  <data name="Path.IsReady" xml:space="preserve">
+    <value>Ready for packing</value>
+  </data>
+  <data name="Path.ReadyHelp" xml:space="preserve">
+    <value>CCP 2 to 6 do not apply to this lot; it can go into a batch.</value>
+  </data>
+  <data name="Final.Title" xml:space="preserve">
+    <value>Final honey result</value>
+  </data>
+  <data name="Final.Eyebrow" xml:space="preserve">
+    <value>The blend in the jar</value>
+  </data>
+  <data name="Final.Help" xml:space="preserve">
+    <value>This batch holds honey from more than one apiary. A laboratory analysis of the final blend shows the honey as it is in the jar, apart from the results of each lot.</value>
+  </data>
+  <data name="Final.Info" xml:space="preserve">
+    <value>Take one sealed jar and a counter-sample from the blended batch, seal both with seal labels from your organization's pool and send the jar to a verified laboratory. The approved report is shown here and in the Honey Story as the final honey result. Finalizing without it is possible but shows a warning.</value>
+  </data>
+  <data name="Final.PublicIntro" xml:space="preserve">
+    <value>This honey is a blend from several apiaries. Besides the results of each source, the blend itself was analysed by a laboratory.</value>
+  </data>
+  <data name="Final.Approved" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="Final.Parameter" xml:space="preserve">
+    <value>Parameter</value>
+  </data>
+  <data name="Final.Value" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="Final.Limit" xml:space="preserve">
+    <value>Limit</value>
+  </data>
+  <data name="Final.AtLab" xml:space="preserve">
+    <value>At the laboratory</value>
+  </data>
+  <data name="Final.Rejected" xml:space="preserve">
+    <value>The laboratory rejected sample {0}. Take a new sample.</value>
+  </data>
+  <data name="Final.TakeSample" xml:space="preserve">
+    <value>Take a sample of the final blend</value>
+  </data>
+  <data name="Final.Lab" xml:space="preserve">
+    <value>Laboratory</value>
+  </data>
+  <data name="Final.CounterWhere" xml:space="preserve">
+    <value>Where the counter-sample is kept</value>
+  </data>
+  <data name="Final.RetainUntil" xml:space="preserve">
+    <value>Keep until</value>
+  </data>
+  <data name="Final.Send" xml:space="preserve">
+    <value>Send to the laboratory</value>
+  </data>
+  <data name="Final.Warning" xml:space="preserve">
+    <value>This batch has no approved final honey result yet. You can still finalize it; the Honey Story then shows only the results of each lot.</value>
+  </data>
+  <data name="Final.BatchSample" xml:space="preserve">
+    <value>Final blend of batch #{0}</value>
+  </data>
+  <data name="Limit.expected" xml:space="preserve">
+    <value>expected</value>
+  </data>
+  <data name="This control point does not apply on the association path." xml:space="preserve">
+    <value>This control point does not apply on the association path.</value>
+  </data>
+  <data name="Only a submitted record can be sent back." xml:space="preserve">
+    <value>Only a submitted record can be sent back.</value>
+  </data>
+  <data name="A reason is required to send the record back." xml:space="preserve">
+    <value>A reason is required to send the record back.</value>
+  </data>
+  <data name="Only a {0} of the organization can send a record back." xml:space="preserve">
+    <value>Only a {0} of the organization can send a record back.</value>
+  </data>
+  <data name="The record was sent back to the person who entered it." xml:space="preserve">
+    <value>The record was sent back to the person who entered it.</value>
+  </data>
+  <data name="The honey is ready for packing: CCP 2 to 6 do not apply to this lot." xml:space="preserve">
+    <value>The honey is ready for packing: CCP 2 to 6 do not apply to this lot.</value>
+  </data>
+  <data name="The lot does not exist." xml:space="preserve">
+    <value>The lot does not exist.</value>
+  </data>
+  <data name="The honey of this lot is already marked ready for packing." xml:space="preserve">
+    <value>The honey of this lot is already marked ready for packing.</value>
+  </data>
+  <data name="Only organizations on the association path mark honey ready for packing." xml:space="preserve">
+    <value>Only organizations on the association path mark honey ready for packing.</value>
+  </data>
+  <data name="Only the organization that holds the lot marks it ready for packing." xml:space="preserve">
+    <value>Only the organization that holds the lot marks it ready for packing.</value>
+  </data>
+  <data name="Only the Quality Assurance Officer marks the honey ready for packing." xml:space="preserve">
+    <value>Only the Quality Assurance Officer marks the honey ready for packing.</value>
+  </data>
+  <data name="The lot's laboratory report is not approved yet." xml:space="preserve">
+    <value>The lot's laboratory report is not approved yet.</value>
+  </data>
+  <data name="CCP 2 or CCP 3 of this lot already has values, so the lot follows the company path." xml:space="preserve">
+    <value>CCP 2 or CCP 3 of this lot already has values, so the lot follows the company path.</value>
+  </data>
+  <data name="The lot is in a finalized batch and can no longer be changed." xml:space="preserve">
+    <value>The lot is in a finalized batch and can no longer be changed.</value>
+  </data>
+  <data name="Association path: the honey goes to packing after the approved laboratory report." xml:space="preserve">
+    <value>Association path: the honey goes to packing after the approved laboratory report.</value>
+  </data>
+  <data name="Choose the association path or the company path." xml:space="preserve">
+    <value>Choose the association path or the company path.</value>
+  </data>
+  <data name="The path after the laboratory was saved." xml:space="preserve">
+    <value>The path after the laboratory was saved.</value>
+  </data>
+  <data name="The batch does not exist." xml:space="preserve">
+    <value>The batch does not exist.</value>
+  </data>
+  <data name="Only the organization that holds the batch takes its samples." xml:space="preserve">
+    <value>Only the organization that holds the batch takes its samples.</value>
+  </data>
+  <data name="The batch is finalized." xml:space="preserve">
+    <value>The batch is finalized.</value>
+  </data>
+  <data name="A final honey result is taken on the company path for a batch with honey from more than one apiary." xml:space="preserve">
+    <value>A final honey result is taken on the company path for a batch with honey from more than one apiary.</value>
+  </data>
+  <data name="A sample of this batch is already at the laboratory." xml:space="preserve">
+    <value>A sample of this batch is already at the laboratory.</value>
+  </data>
+  <data name="Lab report approved; it is the batch's final honey result." xml:space="preserve">
+    <value>Lab report approved; it is the batch's final honey result.</value>
+  </data>
+  <data name="Map.Back" xml:space="preserve">
+    <value>All provinces</value>
+  </data>
+  <data name="Map.DrillHint" xml:space="preserve">
+    <value>Select a highlighted province to see its districts.</value>
+  </data>
+  <data name="Map.DistrictCredit" xml:space="preserve">
+    <value>District boundaries: geoBoundaries, © OpenStreetMap contributors (ODbL)</value>
+  </data>
+  <data name="Home.Map.DistrictTip" xml:space="preserve">
+    <value>Apiaries: {0}</value>
+  </data>
+  <data name="Seal.Split" xml:space="preserve">
+    <value>lid | body</value>
+  </data>
+  <data name="Seal.InUse" xml:space="preserve">
+    <value>In use: {0}</value>
+  </data>
+  <data name="Seal.Free" xml:space="preserve">
+    <value>Free</value>
+  </data>
+  <data name="Empty.Title" xml:space="preserve">
+    <value>Containers of the source lots</value>
+  </data>
+  <data name="Empty.Help" xml:space="preserve">
+    <value>A container stays sealed until it is emptied into this batch. Before emptying, scan its closing seal and confirm that it is intact. A different code or a broken seal stops the step and is recorded.</value>
+  </data>
+  <data name="Empty.Warning" xml:space="preserve">
+    <value>Containers still sealed or with a failed seal check: {0}. Finalizing is not blocked; empty or clear them first.</value>
+  </data>
+  <data name="Empty.Checks" xml:space="preserve">
+    <value>Seal check at emptying</value>
+  </data>
+  <data name="Empty.Seal" xml:space="preserve">
+    <value>Closing seal: scan or type it</value>
+  </data>
+  <data name="Empty.Intact" xml:space="preserve">
+    <value>The seal is intact</value>
+  </data>
+  <data name="Empty.Button" xml:space="preserve">
+    <value>Empty into this batch</value>
+  </data>
+  <data name="Empty.BrokenButton" xml:space="preserve">
+    <value>Seal broken</value>
+  </data>
+  <data name="Empty.State.Sealed" xml:space="preserve">
+    <value>Sealed</value>
+  </data>
+  <data name="Empty.State.Emptied" xml:space="preserve">
+    <value>Emptied into batch {0}</value>
+  </data>
+  <data name="Empty.State.NoSeal" xml:space="preserve">
+    <value>No closing seal on record</value>
+  </data>
+  <data name="Empty.Outcome.Emptied" xml:space="preserve">
+    <value>Seal intact, emptied into batch {0}</value>
+  </data>
+  <data name="Empty.Outcome.Mismatch" xml:space="preserve">
+    <value>Different seal scanned: {0}</value>
+  </data>
+  <data name="Empty.Outcome.FoundBroken" xml:space="preserve">
+    <value>Seal found broken</value>
+  </data>
+  <data name="Empty.NotEmptied" xml:space="preserve">
+    <value>not emptied into batch {0}</value>
+  </data>
+  <data name="Container {0}: a numbered plastic seal closes only an association container; close the beekeeper's container with a seal label." xml:space="preserve">
+    <value>Container {0}: a numbered plastic seal closes only an association container; close the beekeeper's container with a seal label.</value>
+  </data>
+  <data name="Containers are emptied into a batch by those who enter batch data in the organization that owns the batch." xml:space="preserve">
+    <value>Containers are emptied into a batch by those who enter batch data in the organization that owns the batch.</value>
+  </data>
+  <data name="The batch was not found." xml:space="preserve">
+    <value>The batch was not found.</value>
+  </data>
+  <data name="The batch is finalized; containers can no longer be emptied into it." xml:space="preserve">
+    <value>The batch is finalized; containers can no longer be emptied into it.</value>
+  </data>
+  <data name="This container does not belong to a lot of this batch." xml:space="preserve">
+    <value>This container does not belong to a lot of this batch.</value>
+  </data>
+  <data name="Container {0} was already emptied into batch {1}." xml:space="preserve">
+    <value>Container {0} was already emptied into batch {1}.</value>
+  </data>
+  <data name="Container {0} has no closing seal on record." xml:space="preserve">
+    <value>Container {0} has no closing seal on record.</value>
+  </data>
+  <data name="Scan or type the closing seal of container {0}." xml:space="preserve">
+    <value>Scan or type the closing seal of container {0}.</value>
+  </data>
+  <data name="The seal of container {0} was reported broken. The container was not emptied; the check was recorded." xml:space="preserve">
+    <value>The seal of container {0} was reported broken. The container was not emptied; the check was recorded.</value>
+  </data>
+  <data name="Seal {0} is not the closing seal of container {1}. The container was not emptied; the check was recorded." xml:space="preserve">
+    <value>Seal {0} is not the closing seal of container {1}. The container was not emptied; the check was recorded.</value>
+  </data>
+  <data name="Confirm that the seal of container {0} is intact, or report it broken." xml:space="preserve">
+    <value>Confirm that the seal of container {0} is intact, or report it broken.</value>
+  </data>
+  <data name="Container {0} emptied into batch {1}; seal {2} is now opened." xml:space="preserve">
+    <value>Container {0} emptied into batch {1}; seal {2} is now opened.</value>
+  </data>
+  <data name="Num.Official" xml:space="preserve">
+    <value>Holding identification number</value>
+  </data>
+  <data name="Num.Platform" xml:space="preserve">
+    <value>Platform number</value>
+  </data>
+  <data name="Login.BeekeeperHint" xml:space="preserve">
+    <value>Beekeepers: your user name is your platform number (TR-BEE-…).</value>
+  </data>
+  <data name="HT.Other" xml:space="preserve">
+    <value>Other (new honey type)</value>
+  </data>
+  <data name="HT.NewName" xml:space="preserve">
+    <value>Name of the new honey type</value>
+  </data>
+  <data name="HT.NewHelp" xml:space="preserve">
+    <value>Check the list first. A name that matches an existing type (ignoring capitals, Turkish letters, spaces and the word "honey") is refused; then choose that type from the list.</value>
+  </data>
+  <data name="HT.NewClass" xml:space="preserve">
+    <value>Honey class</value>
+  </data>
+  <data name="HT.ClassHelp" xml:space="preserve">
+    <value>The class decides which laboratory limits apply to this honey.</value>
+  </data>
+  <data name="HT.Class.Floral" xml:space="preserve">
+    <value>Floral (blossom)</value>
+  </data>
+  <data name="HT.Class.Honeydew" xml:space="preserve">
+    <value>Honeydew</value>
+  </data>
+  <data name="HT.Class.Pine" xml:space="preserve">
+    <value>Pine</value>
+  </data>
+  <data name="HT.BeekeeperTypes" xml:space="preserve">
+    <value>Honey types the beekeeper produces</value>
+  </data>
+  <data name="HT.EditBeekeeperTypes" xml:space="preserve">
+    <value>Change the beekeeper's honey types</value>
+  </data>
+  <data name="HT.Added" xml:space="preserve">
+    <value>Added from a form</value>
+  </data>
+  <data name="HT.Merge.Title" xml:space="preserve">
+    <value>Merge honey type</value>
+  </data>
+  <data name="HT.Merge.Help" xml:space="preserve">
+    <value>Everything that uses this honey type moves to the type you choose: lots, laboratory limits, beekeepers' honey types and the translations the other type lacks. This honey type is then removed; its name still leads to the other type.</value>
+  </data>
+  <data name="HT.Merge.Lots" xml:space="preserve">
+    <value>Lots</value>
+  </data>
+  <data name="HT.Merge.Limits" xml:space="preserve">
+    <value>Limits for this honey type</value>
+  </data>
+  <data name="HT.Merge.Beekeepers" xml:space="preserve">
+    <value>Beekeepers with this honey type</value>
+  </data>
+  <data name="HT.Merge.ClassNote" xml:space="preserve">
+    <value>The lots are then checked against the limits of the other type's honey class.</value>
+  </data>
+  <data name="HT.Merge.Target" xml:space="preserve">
+    <value>Merge into</value>
+  </data>
+  <data name="HT.Merge.Button" xml:space="preserve">
+    <value>Merge</value>
+  </data>
+  <data name="Your role cannot add a honey type; choose one from the list." xml:space="preserve">
+    <value>Your role cannot add a honey type; choose one from the list.</value>
+  </data>
+  <data name="Enter the name of the new honey type (2 to 100 characters)." xml:space="preserve">
+    <value>Enter the name of the new honey type (2 to 100 characters).</value>
+  </data>
+  <data name="Choose the honey class of the new honey type (floral, honeydew or pine)." xml:space="preserve">
+    <value>Choose the honey class of the new honey type (floral, honeydew or pine).</value>
+  </data>
+  <data name="This honey type already exists as {0}: choose it from the list." xml:space="preserve">
+    <value>This honey type already exists as {0}: choose it from the list.</value>
+  </data>
+  <data name="Only the platform administrator merges honey types." xml:space="preserve">
+    <value>Only the platform administrator merges honey types.</value>
+  </data>
+  <data name="A honey type cannot be merged into itself." xml:space="preserve">
+    <value>A honey type cannot be merged into itself.</value>
+  </data>
+  <data name="Both honey types have their own limit for {0}: remove one on the Limits page first." xml:space="preserve">
+    <value>Both honey types have their own limit for {0}: remove one on the Limits page first.</value>
+  </data>
+  <data name="{0} was merged into {1}." xml:space="preserve">
+    <value>{0} was merged into {1}.</value>
+  </data>
+  <data name="The beekeeper's honey types are saved." xml:space="preserve">
+    <value>The beekeeper's honey types are saved.</value>
+  </data>
+  <data name="Holding identification number verified." xml:space="preserve">
+    <value>Holding identification number verified.</value>
+  </data>
+  <data name="Evidence accepted; the holding identification number is verified." xml:space="preserve">
+    <value>Evidence accepted; the holding identification number is verified.</value>
+  </data>
+  <data name="A beekeeper with this holding identification number is already registered. Find it and re-verify instead." xml:space="preserve">
+    <value>A beekeeper with this holding identification number is already registered. Find it and re-verify instead.</value>
+  </data>
+  <data name="The holding identification number belongs to another province than the directorate. Give a reason to continue." xml:space="preserve">
+    <value>The holding identification number belongs to another province than the directorate. Give a reason to continue.</value>
+  </data>
+  <data name="Consent recorded. The storefront is published once the holding identification number is verified." xml:space="preserve">
+    <value>Consent recorded. The storefront is published once the holding identification number is verified.</value>
+  </data>
+  <data name="Enter the holding identification number (or the platform number of a registered beekeeper)." xml:space="preserve">
+    <value>Enter the holding identification number (or the platform number of a registered beekeeper).</value>
   </data>
 </root>

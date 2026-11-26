@@ -568,13 +568,13 @@
     <value>Arıcı kaydı ve birlikler</value>
   </data>
   <data name="Reg.BusinessNo" xml:space="preserve">
-    <value>İşletme no.</value>
+    <value>Platform no.</value>
   </data>
   <data name="Reg.Beekeeper" xml:space="preserve">
     <value>Arıcı</value>
   </data>
   <data name="Reg.RegistryNo" xml:space="preserve">
-    <value>Kayıt no.</value>
+    <value>İşletme tanımlama no.</value>
   </data>
   <data name="Reg.Association" xml:space="preserve">
     <value>Birlik</value>
@@ -586,7 +586,7 @@
     <value>Biçim: TR, 01-81 arası il kodu ve 10 hane. Kanıt belgesi (kayıt çıktısı veya fotoğraf) zorunludur.</value>
   </data>
   <data name="Reg.ListHelp" xml:space="preserve">
-    <value>Her arıcı platformda bir kayıttır; cep telefonuyla kaydedilen arıcı arıcı alanına da giriş yapabilir. Kayıt numarası, arıcı kaydı SMS koduyla onayladığında veya Uyum Sorumlusu imzalı fotoğrafı kabul ettiğinde doğrulanır. Burada platform yöneticisi sonradan girilen bir numarayı kanıt belgesiyle kontrol eder ve birliği değiştirir.</value>
+    <value>Her arıcı platformda bir kayıttır; cep telefonuyla kaydedilen arıcı, kullanıcı adı olarak platform numarasıyla arıcı alanına da giriş yapabilir. İşletme tanımlama numarası, arıcı kaydı SMS koduyla onayladığında veya Uyum Sorumlusu imzalı fotoğrafı kabul ettiğinde doğrulanır. Burada platform yöneticisi sonradan girilen bir numarayı kanıt belgesiyle kontrol eder ve birliği değiştirir.</value>
   </data>
   <data name="Reg.Submit" xml:space="preserve">
     <value>Gönder</value>
@@ -1309,10 +1309,10 @@
     <value>Teslim al</value>
   </data>
   <data name="Cust.NewIntakeHelp" xml:space="preserve">
-    <value>Arıcıyı işletme veya kayıt numarasıyla bulun, ardından teslimi imzalı teslim formunun fotoğrafıyla girin.</value>
+    <value>Arıcıyı işletme tanımlama numarası veya platform numarasıyla bulun, ardından teslimi imzalı teslim formunun fotoğrafıyla girin.</value>
   </data>
   <data name="Cust.BeekeeperNumber" xml:space="preserve">
-    <value>Arıcı işletme veya kayıt numarası</value>
+    <value>Arıcının işletme tanımlama numarası veya platform numarası</value>
   </data>
   <data name="Cust.Find" xml:space="preserve">
     <value>Bul</value>
@@ -1798,7 +1798,7 @@
     <value>Arıcı sayfaları</value>
   </data>
   <data name="P5.StorefrontsHelp" xml:space="preserve">
-    <value>Üyenin herkese açık sayfası yalnızca kayıtlı rıza ve doğrulanmış kayıt numarasıyla yayımlanır; rıza geri çekilince sayfa hemen yayından kalkar.</value>
+    <value>Üyenin herkese açık sayfası yalnızca kayıtlı rıza ve doğrulanmış işletme tanımlama numarasıyla yayımlanır; rıza geri çekilince sayfa hemen yayından kalkar.</value>
   </data>
   <data name="P5.Consent" xml:space="preserve">
     <value>Rıza</value>
@@ -1822,7 +1822,7 @@
     <value>yayında değil</value>
   </data>
   <data name="P5.NeedsRegistry" xml:space="preserve">
-    <value>doğrulanmış kayıt numarası gerekli</value>
+    <value>doğrulanmış işletme tanımlama numarası gerekli</value>
   </data>
   <data name="P5.RecordConsent" xml:space="preserve">
     <value>Rıza kaydet</value>
@@ -1930,7 +1930,7 @@
     <value>Doğrulanacak kurumlar</value>
   </data>
   <data name="Work.Kind.Registry" xml:space="preserve">
-    <value>Doğrulanacak kayıt numaraları</value>
+    <value>Doğrulanacak işletme tanımlama numaraları</value>
   </data>
   <data name="Work.Kind.Correction" xml:space="preserve">
     <value>Karar bekleyen düzeltmeler</value>
@@ -2746,7 +2746,7 @@
     <value>Fotoğraf yüklenmedi.</value>
   </data>
   <data name="Business Number" xml:space="preserve">
-    <value>İşletme Numarası</value>
+    <value>Platform numarası</value>
   </data>
   <data name="Add Role" xml:space="preserve">
     <value>Rol Ekle</value>
@@ -2761,7 +2761,7 @@
     <value>Ara:</value>
   </data>
   <data name="Registry number:" xml:space="preserve">
-    <value>Kayıt numarası:</value>
+    <value>İşletme tanımlama numarası:</value>
   </data>
   <data name="Beekeeping Type Title" xml:space="preserve">
     <value>Arıcılık Türü Adı</value>
@@ -3637,7 +3637,7 @@
     <value>muaf</value>
   </data>
   <data name="Beekeeper Business Number" xml:space="preserve">
-    <value>Arıcı İşletme Numarası</value>
+    <value>Arıcının platform numarası</value>
   </data>
   <data name="Enter processing step" xml:space="preserve">
     <value>İşlem adımını girin</value>
@@ -5164,7 +5164,7 @@
     <value>Yetenek listesinin kendisi sabittir: yeni bir yetenek için veritabanı betiği ve kod değişikliği gerekir.</value>
   </data>
   <data name="Cap.Uses.Beekeeping" xml:space="preserve">
-    <value>Arıcının işletmesi. Sisteme giriş yapmaz; doğrulanmış kayıt numarası lotları arıcıya bağlar ve ili gösterir.</value>
+    <value>Arıcının işletmesi. Sisteme giriş yapmaz; doğrulanmış işletme tanımlama numarası lotları arıcıya bağlar ve ili gösterir.</value>
   </data>
   <data name="Cap.Uses.Association" xml:space="preserve">
     <value>Üye arıcılarını bağlar, rızalarını kaydedip arıcı sayfalarını yayımlar ve geri çağırma raporlarında üyelerinin lotlarını görür; yönetici atarsa saha denetçisi KKN 0'ı yapabilir.</value>
@@ -5539,7 +5539,7 @@
     <value>İllere göre köken</value>
   </data>
   <data name="Hst.MapNote" xml:space="preserve">
-    <value>Yalnızca il düzeyinde gösterilir; arılıkların kesin konumu hiçbir zaman yayımlanmaz.</value>
+    <value>İl ve ilçe düzeyinde gösterilir; arılıkların kesin konumu hiçbir zaman yayımlanmaz.</value>
   </data>
   <data name="Hst.SourcesEyebrow" xml:space="preserve">
     <value>Arıcılarla tanışın</value>
@@ -6292,7 +6292,7 @@
     <value>İl başına arılık</value>
   </data>
   <data name="Home.Map.Note" xml:space="preserve">
-    <value>Yalnızca il düzeyinde gösterilir; arılık konumları hiçbir zaman gösterilmez.</value>
+    <value>İl ve ilçe düzeyinde gösterilir; arılık konumları hiçbir zaman gösterilmez.</value>
   </data>
   <data name="Home.Map.Unlocated" xml:space="preserve">
     <value>Konumu olmayan arılıklar (haritada yok): {0}.</value>
@@ -6319,7 +6319,7 @@
     <value>Kurum</value>
   </data>
   <data name="Home.Wait.Kind.registry" xml:space="preserve">
-    <value>İşletme kayıt numarası</value>
+    <value>İşletme tanımlama numarası</value>
   </data>
   <data name="Home.Wait.Kind.correction" xml:space="preserve">
     <value>Düzeltme</value>
@@ -6373,7 +6373,7 @@
     <value>Kurum</value>
   </data>
   <data name="Home.Act.Kind.registry" xml:space="preserve">
-    <value>İşletme kayıt numarası</value>
+    <value>İşletme tanımlama numarası</value>
   </data>
   <data name="Home.Act.Entered" xml:space="preserve">
     <value>giren: {0}</value>
@@ -6553,7 +6553,7 @@
     <value>Doğum tarihi</value>
   </data>
   <data name="Audit.F.BusinessNumber" xml:space="preserve">
-    <value>İşletme numarası</value>
+    <value>Platform numarası</value>
   </data>
   <data name="Audit.F.Capability" xml:space="preserve">
     <value>Yetkinlik</value>
@@ -6622,7 +6622,7 @@
     <value>Giren</value>
   </data>
   <data name="Audit.F.EnterpriseNumber" xml:space="preserve">
-    <value>İşletme kayıt numarası</value>
+    <value>İşletme tanımlama numarası</value>
   </data>
   <data name="Audit.F.Event" xml:space="preserve">
     <value>Olay</value>
@@ -6817,7 +6817,7 @@
     <value>Kaydeden</value>
   </data>
   <data name="Audit.F.RegistryNumber" xml:space="preserve">
-    <value>Kayıt numarası</value>
+    <value>İşletme tanımlama numarası</value>
   </data>
   <data name="Audit.F.RejectReason" xml:space="preserve">
     <value>Ret gerekçesi</value>
@@ -7135,7 +7135,7 @@
     <value>İmzalı fotoğraf kanıtı (kabul veya ret)</value>
   </data>
   <data name="Cap.Uses.BeekeeperRegistration" xml:space="preserve">
-    <value>İlçe tarım müdürlüğü: arıcı kayıt görevlileri arıcıları ve arılıklarını kaydeder, kayıt numarasını kontrol eder, kimliği ve rızayı SMS koduyla (veya imzalı fotoğrafla) doğrular ve giriş bilgilerini verir.</value>
+    <value>İlçe tarım müdürlüğü: Arıcı kayıt görevlileri arıcıları ve arılıklarını kaydeder, işletme tanımlama numarasını kontrol eder, kimliği ve rızayı SMS koduyla (veya imzalı fotoğrafla) doğrular ve giriş bilgilerini verir.</value>
   </data>
   <data name="Org.NoComplianceOfficer" xml:space="preserve">
     <value>Bu kurumun henüz Uyum Sorumlusu yok. Her kurum en az bir kişi belirler (ikinci bir üyelikle kurum yöneticisi de olabilir).</value>
@@ -7570,7 +7570,7 @@
     <value>Arıcılık amacı</value>
   </data>
   <data name="Registry Number" xml:space="preserve">
-    <value>Kayıt numarası</value>
+    <value>İşletme tanımlama numarası</value>
   </data>
   <data name="Work.Kind.Evidence" xml:space="preserve">
     <value>İmzalı fotoğrafları incele</value>
@@ -7579,16 +7579,16 @@
     <value>Arıcı kaydı</value>
   </data>
   <data name="Reg78.Help" xml:space="preserve">
-    <value>Kurumunuzun kaydettiği arıcılar. Her kayıt kayıt numarası, arıcının telefonuna giden SMS kodu ve sizin beyanınızla doğrulanır.</value>
+    <value>Kurumunuzun kaydettiği arıcılar. Her kayıt işletme tanımlama numarası, arıcının telefonuna giden SMS kodu ve sizin beyanınızla doğrulanır.</value>
   </data>
   <data name="Reg78.FindLabel" xml:space="preserve">
-    <value>Kayıt numarası (AKS) veya işletme numarası</value>
+    <value>İşletme tanımlama numarası (AKS) veya platform numarası</value>
   </data>
   <data name="Reg78.Find" xml:space="preserve">
     <value>Bul veya kaydet</value>
   </data>
   <data name="Reg78.FindHelp" xml:space="preserve">
-    <value>Kayıtlı bir arıcı yeniden doğrulanır; yeni bir kayıt numarası yeni bir kayıt başlatır.</value>
+    <value>Kayıtlı bir arıcı yeniden doğrulanır; yeni bir işletme tanımlama numarası yeni bir kayıt başlatır.</value>
   </data>
   <data name="Reg78.Date" xml:space="preserve">
     <value>Tarih</value>
@@ -7747,7 +7747,7 @@
     <value>İmzalı fotoğrafın incelenmesi</value>
   </data>
   <data name="Reg78.ReviewHelp" xml:space="preserve">
-    <value>Fotoğrafı açın ve kayıtla karşılaştırın: kimlik, kayıt numarası, arıcının tercihleri ve imza. Bu kaydı siz girmediniz.</value>
+    <value>Fotoğrafı açın ve kayıtla karşılaştırın: Kimlik, işletme tanımlama numarası, arıcının tercihleri ve imza. Bu kaydı siz girmediniz.</value>
   </data>
   <data name="Reg78.ReviewReason" xml:space="preserve">
     <value>Not (ret için zorunlu)</value>
@@ -8785,7 +8785,7 @@
     <value>Her tenekeyi ve mührünü kaydedin. Arıcı SMS koduyla onaylar.</value>
   </data>
   <data name="Scene.seal" xml:space="preserve">
-    <value>Numaralı mühür kulptan geçirilip kilitlenir. Numarasını yazın.</value>
+    <value>Numaralı mühür kapağı gövdeye bağlar ve kilitlenir. Numarasını yazın.</value>
   </data>
   <data name="Scene.send" xml:space="preserve">
     <value>Mühürlü kavanozlar laboratuvara gider; şahit numuneler işletmede kalır.</value>
@@ -8854,7 +8854,7 @@
     <value>Numuneler ve laboratuvar, laboratuvarınızın tüm kavanozlarını ve raporlarını gösterir. İlk işiniz analistlerin gönderdiği raporları onaylamak; örneğin bir değer yanlış görünüyorsa raporu geri gönderin.</value>
   </data>
   <data name="Tour.Registration" xml:space="preserve">
-    <value>Arıcı kaydı, arıcıları ve arılıklarını kaydettiğiniz yerdir. Kayıt numarasını yazın, arıcının bilgilerini ve arılığını girin, SMS kodunu gönderin ve arıcının size okuduğu kodu girin.</value>
+    <value>Arıcı kaydı, arıcıları ve arılıklarını kaydettiğiniz yerdir. İşletme tanımlama numarasını yazın, arıcının bilgilerini, bal türlerini ve arılığını girin, SMS kodunu gönderin ve arıcının size okuduğu kodu girin.</value>
   </data>
   <data name="Tour.Compliance" xml:space="preserve">
     <value>Uyum, inceleme masanızdır: imzalı fotoğraflar, kalite incelemeleri, veri başvuruları ve denetim kaydı. Karar bekleyenlerle başlayın; örneğin SMS kodu yerine imzalı fotoğrafla onaylanmış bir teslimat.</value>
@@ -8872,7 +8872,7 @@
     <value>Panel, platform yöneticisi olarak sizi bekleyenleri ve son hareketleri gösterir. Buradan başlayın; örneğin doğrulanmayı bekleyen bir kurum.</value>
   </data>
   <data name="Tour.Admin.Data" xml:space="preserve">
-    <value>Arıcılar, arılıklar ve platformun referans listeleri. Bir arıcıyı buradan bulun, örneğin kayıt numarasıyla.</value>
+    <value>Arıcılar, arılıklar ve platformun referans listeleri. Bir arıcıyı buradan bulun, örneğin işletme tanımlama numarasıyla.</value>
   </data>
   <data name="Tour.Me.Deliveries" xml:space="preserve">
     <value>Teslimatlarım, teslim ettiğiniz balı her teneke ve mührüyle gösterir. Kilogram fiyatınızı buraya girin; örneğin geçen haftaki kestane balı için.</value>
@@ -9703,7 +9703,7 @@
     <value>Numuneler ve laboratuvar, iş listenizdir. Önce her kavanozu teslim alın (mühür numarası, etiket, kapak), sonra sonuçları girin, örneğin nem ve HMF, ve raporu onaya gönderin.</value>
   </data>
   <data name="Tour.Approve" xml:space="preserve">
-    <value>İşlerim, çalışma arkadaşlarınızın gönderdiği kritik kontrol noktası (KKN) kayıtlarını listeler. Her birini kontrol edip onaylayın ya da geri gönderin, örneğin bugünkü teslimatın kabul kontrolü; kimse kendi girdiği kaydı onaylayamaz.</value>
+    <value>İşlerim, çalışma arkadaşlarınızın gönderdiği kritik kontrol noktası (KKN) kayıtlarını listeler. Her birini kontrol edip onaylayın ya da gerekçe yazarak geri gönderin: Kayıt, onu giren kişiye döner; örneğin bugünkü teslimatın kabul kontrolü. Kimse kendi girdiği kaydı onaylayamaz.</value>
   </data>
   <data name="Reg78.Info.Registry" xml:space="preserve">
     <value>TR + ilin plaka kodu (2 hane) + 10 hane, örneğin TR520401200241. Plaka kodu, müdürlüğünüzün iliyle karşılaştırılır.</value>
@@ -9727,7 +9727,7 @@
     <value>Arıcı SMS kodunu ve sonraki mesajları bu dilde alır.</value>
   </data>
   <data name="Cust.Info.Number" xml:space="preserve">
-    <value>Arıcının kayıt numarasını (örneğin TR520401200241) veya işletme numarasını yazıp Bul'a basın. Ardından arıcının arılıkları formda çıkar.</value>
+    <value>Arıcının işletme tanımlama numarasını (örneğin TR520401200241) veya platform numarasını yazıp Bul'a basın. Ardından arıcının arılıkları formda çıkar.</value>
   </data>
   <data name="Ci.ArrivedUnsealed" xml:space="preserve">
     <value>Mühürsüz geldi (olağan)</value>
@@ -9808,25 +9808,25 @@
     <value>Kapak ile gövde üzerine QR kodlu numaralı etiket. Her kapta kullanılır.</value>
   </data>
   <data name="Ci.Closure.SealLabel.Help" xml:space="preserve">
-    <value>Platformun verdiği, önceden VOID güvenlik etiketine basılmış, QR kodlu numaralı etiket. Kapak ile gövdenin üzerinden yapıştırılır; sökülmeye çalışılırsa yırtılır veya VOID izi bırakır. Her kapta kullanılır.</value>
+    <value>Platformun verdiği, önceden VOID güvenlik etiketine basılmış, QR kodlu numaralı etiket. Birleşim yerinin üzerinden geçen bir yırtılma şerididir: Kodlu ve QR'lı yarısı kapağa, diğer yarısı gövdeye yapıştırılır. Sökülmeye çalışılırsa yırtılır veya VOID izi bırakır. Her kapta kullanılır.</value>
   </data>
   <data name="Ci.Closure.PlasticSeal" xml:space="preserve">
     <value>Arıcının kabı + numaralı plastik mühür</value>
   </data>
   <data name="Ci.Closure.PlasticSeal.Short" xml:space="preserve">
-    <value>Kulptan veya kapak deliğinden geçer; bir kez kilitlenir.</value>
+    <value>Kapağı gövdeye bağlayan delikli kulakçıktan geçer; bir kez kilitlenir.</value>
   </data>
   <data name="Ci.Closure.PlasticSeal.Help" xml:space="preserve">
-    <value>Kulplu veya kapağında delik olan kaplar için: Satın alınmış numaralı mühür oradan geçirilip kilitlenir; ancak kesilerek açılabilir.</value>
+    <value>Satın alınmış numaralı mühür, kapağı gövdeye bağlayan delikli kulakçıktan geçirilip kilitlenir; ancak kesilerek açılabilir. Böyle bir kulakçık yalnızca birliğin kaplarında vardır.</value>
   </data>
   <data name="Ci.Closure.OrgContainer" xml:space="preserve">
     <value>Birliğin kalıcı kabı</value>
   </data>
   <data name="Ci.Closure.OrgContainer.Short" xml:space="preserve">
-    <value>Bir kez kaydedilir; TK kodunu okutun veya yazın.</value>
+    <value>Bir kez kaydedilir; TK kodunu okutun veya yazın. Mühür etiketi veya plastik mühürle kapatılır.</value>
   </data>
   <data name="Ci.Closure.OrgContainer.Help" xml:space="preserve">
-    <value>Birliğin kendi kabı; kalıcı bir kod ve QR ile bir kez kaydedilir. Teslimatta kodunu okutun veya yazın; sayfası her kullanımı gösterir. Yine de havuzdan bir mühürle kapatılır.</value>
+    <value>Birliğin kendi kabı; kalıcı bir kod ve QR ile bir kez kaydedilir. Teslimatta kodunu okutun veya yazın; sayfası her kullanımı gösterir. Havuzdan bir mühürle kapatılır: Mühür etiketi veya kapağı gövdeye bağlayan delikli kulakçıktan geçen numaralı plastik mühür.</value>
   </data>
   <data name="Ci.Info.Closure" xml:space="preserve">
     <value>Kap numune alındıktan sonra arıcının önünde bir kez kapatılır. Mühür kurumunuzun mühür havuzundan gelir.</value>
@@ -9901,7 +9901,7 @@
     <value>Mühür etiketi kapak ile gövdenin üzerinden yapıştırılır. Sökülünce yırtılır ve VOID izi bırakır.</value>
   </data>
   <data name="Scene.plastic" xml:space="preserve">
-    <value>Numaralı plastik mühür kulptan geçirilip kilitlenir.</value>
+    <value>Numaralı plastik mühür kapak ile gövdenin kulakçıklarından geçirilip kilitlenir.</value>
   </data>
   <data name="Scene.scan" xml:space="preserve">
     <value>Birliğin kabı QR koduyla okutulur.</value>
@@ -9952,7 +9952,7 @@
     <value>Hazır bulundurulacak malzemeler</value>
   </data>
   <data name="Seal.Materials" xml:space="preserve">
-    <value>Mühür etiketleri için VOID güvenlik etiketi (100 × 50 mm), kulplar için numaralı plastik mühürler, güvenlik düğmeli veya emniyet halkalı kapaklı numune kavanozları ve düğmeli kapaklar için el tipi vakum pompası.</value>
+    <value>Mühür etiketleri için iz bırakmayan VOID veya kırılgan (yumurta kabuğu) etiket (100 × 50 mm), birliğin kapları için numaralı plastik mühürler (kapağı gövdeye bağlayan delikli kulakçıktan geçer), güvenlik düğmeli veya emniyet halkalı kapaklı numune kavanozları ve düğmeli kapaklar için el tipi vakum pompası.</value>
   </data>
   <data name="Seal.Issue" xml:space="preserve">
     <value>Mühür etiketi ver</value>
@@ -9973,7 +9973,7 @@
     <value>Satın alınan plastik mühürleri ekle</value>
   </data>
   <data name="Seal.RangeHelp" xml:space="preserve">
-    <value>Mühürlerin üzerinde basılı aralığı girin: İsteğe bağlı bir ön ek, ilk ve son numara.</value>
+    <value>Mühürlerin üzerinde basılı aralığı girin: İsteğe bağlı bir ön ek, ilk ve son numara. Plastik mühürler yalnızca birliğin kaplarını kapatır.</value>
   </data>
   <data name="Seal.Prefix" xml:space="preserve">
     <value>Ön ek</value>
@@ -10045,7 +10045,7 @@
     <value>Tüm kullanımlar</value>
   </data>
   <data name="Seal.PrintHelp" xml:space="preserve">
-    <value>VOID güvenlik etiketine basın.</value>
+    <value>İz bırakmayan VOID veya kırılgan (yumurta kabuğu) etikete basın. Her etiket bir yırtılma şerididir: Kodlu ve QR'lı yarısı kapağa, diğer yarısı gövdeye yapıştırılır.</value>
   </data>
   <data name="Seal.VoidNote" xml:space="preserve">
     <value>SÖKMEYİN · VOID</value>
@@ -10160,5 +10160,398 @@
   </data>
   <data name="Enter the capacity and the empty weight in kg (or leave them empty)." xml:space="preserve">
     <value>Kapasiteyi ve boş ağırlığı kg olarak girin (veya boş bırakın).</value>
+  </data>
+  <data name="Ccp.Return" xml:space="preserve">
+    <value>Geri gönder</value>
+  </data>
+  <data name="Ccp.ReturnPlaceholder" xml:space="preserve">
+    <value>Örneğin: Sıcaklık değeri hatalı görünüyor; lütfen termometreyi yeniden okuyun.</value>
+  </data>
+  <data name="Ccp.ReturnHelp" xml:space="preserve">
+    <value>Kayıt, onu giren kişiye geri gider ve gerekçenizle birlikte onun İşlerim listesinde görünür. Kişi kaydı yeniden kaydettiğinde onay için size döner.</value>
+  </data>
+  <data name="Ccp.Returned" xml:space="preserve">
+    <value>Geri gönderildi.</value>
+  </data>
+  <data name="Ccp.ReturnedBy" xml:space="preserve">
+    <value>{0} tarafından {1} tarihinde geri gönderildi</value>
+  </data>
+  <data name="Ccp.ReturnedHelp" xml:space="preserve">
+    <value>Aşağıdaki değerleri düzeltip kaydedin; kayıt yeniden onaya gider.</value>
+  </data>
+  <data name="Work.Kind.Returned" xml:space="preserve">
+    <value>Size geri gönderilenler</value>
+  </data>
+  <data name="Work.Kind.PackingReady" xml:space="preserve">
+    <value>Paketlemeye hazır mı?</value>
+  </data>
+  <data name="Path.Title" xml:space="preserve">
+    <value>Laboratuvardan sonraki yol</value>
+  </data>
+  <data name="Path.Association" xml:space="preserve">
+    <value>Birlik yolu: Doğrudan paketlemeye (KKN 2–6 uygulanmaz)</value>
+  </data>
+  <data name="Path.Company" xml:space="preserve">
+    <value>Firma yolu: İşleme (KKN 2 ve sonrası)</value>
+  </data>
+  <data name="Path.Default" xml:space="preserve">
+    <value>varsayılan</value>
+  </data>
+  <data name="Path.Info.Setting" xml:space="preserve">
+    <value>Birlikler üyelerinin balını genellikle olduğu gibi paketler: Onaylı laboratuvar raporundan sonra Kalite Güvence Sorumlusu balı paketlemeye hazır olarak işaretler ve KKN 2–6 uygulanmaz. İşleme firmaları balı ısıtır, süzer ve harmanlar; bu yüzden KKN 2 ve sonrası uygulanır. Birlik yeteneği olan kurumlar için varsayılan birlik yoludur, diğerleri için firma yolu. Değişiklik, bundan sonra hazır işaretlenen lotlara ve oluşturulan partilere uygulanır.</value>
+  </data>
+  <data name="Path.PackingReady" xml:space="preserve">
+    <value>Bal paketlemeye hazır</value>
+  </data>
+  <data name="Path.Info.Association" xml:space="preserve">
+    <value>Kurumunuz birlik yolunu izler: Lotun laboratuvar raporu onaylandığında Kalite Güvence Sorumlusu burada balın doğrudan paketlemeye gittiğini onaylar. Böylece KKN 2–6 (ısıtma, süzme, homojenizasyon, pastörizasyon, berraklaştırma) bu lota ve partisine uygulanmaz; gerekçesiyle uygulanmaz olarak kaydedilir ve denetim kaydına yazılır.</value>
+  </data>
+  <data name="Path.ButtonHelp" xml:space="preserve">
+    <value>Laboratuvar raporu onaylandı. Balın olduğu gibi paketlemeye gittiğini onaylayın.</value>
+  </data>
+  <data name="Path.IsReady" xml:space="preserve">
+    <value>Paketlemeye hazır</value>
+  </data>
+  <data name="Path.ReadyHelp" xml:space="preserve">
+    <value>KKN 2–6 bu lota uygulanmaz; lot bir partiye girebilir.</value>
+  </data>
+  <data name="Final.Title" xml:space="preserve">
+    <value>Nihai bal sonucu</value>
+  </data>
+  <data name="Final.Eyebrow" xml:space="preserve">
+    <value>Kavanozdaki harman</value>
+  </data>
+  <data name="Final.Help" xml:space="preserve">
+    <value>Bu partide birden fazla arılığın balı var. Nihai harmanın laboratuvar analizi, her lotun sonuçlarından ayrı olarak, balı kavanozdaki hâliyle gösterir.</value>
+  </data>
+  <data name="Final.Info" xml:space="preserve">
+    <value>Harmanlanmış partiden mühürlü bir kavanoz ve bir şahit numune alın, ikisini de kurumunuzun havuzundaki mühür etiketleriyle mühürleyin ve kavanozu doğrulanmış bir laboratuvara gönderin. Onaylanan rapor burada ve Bal Hikâyesi'nde nihai bal sonucu olarak gösterilir. Rapor olmadan da sonlandırabilirsiniz, ancak bir uyarı gösterilir.</value>
+  </data>
+  <data name="Final.PublicIntro" xml:space="preserve">
+    <value>Bu bal birkaç arılığın harmanıdır. Her kaynağın sonuçlarına ek olarak harmanın kendisi de laboratuvarda analiz edildi.</value>
+  </data>
+  <data name="Final.Approved" xml:space="preserve">
+    <value>Onaylandı</value>
+  </data>
+  <data name="Final.Parameter" xml:space="preserve">
+    <value>Parametre</value>
+  </data>
+  <data name="Final.Value" xml:space="preserve">
+    <value>Değer</value>
+  </data>
+  <data name="Final.Limit" xml:space="preserve">
+    <value>Sınır</value>
+  </data>
+  <data name="Final.AtLab" xml:space="preserve">
+    <value>Laboratuvarda</value>
+  </data>
+  <data name="Final.Rejected" xml:space="preserve">
+    <value>Laboratuvar {0} numunesini reddetti. Yeni bir numune alın.</value>
+  </data>
+  <data name="Final.TakeSample" xml:space="preserve">
+    <value>Nihai harmandan numune alın</value>
+  </data>
+  <data name="Final.Lab" xml:space="preserve">
+    <value>Laboratuvar</value>
+  </data>
+  <data name="Final.CounterWhere" xml:space="preserve">
+    <value>Şahit numunenin saklandığı yer</value>
+  </data>
+  <data name="Final.RetainUntil" xml:space="preserve">
+    <value>Saklama tarihi</value>
+  </data>
+  <data name="Final.Send" xml:space="preserve">
+    <value>Laboratuvara gönder</value>
+  </data>
+  <data name="Final.Warning" xml:space="preserve">
+    <value>Bu partinin henüz onaylı bir nihai bal sonucu yok. Yine de sonlandırabilirsiniz; bu durumda Bal Hikâyesi yalnızca her lotun sonuçlarını gösterir.</value>
+  </data>
+  <data name="Final.BatchSample" xml:space="preserve">
+    <value>#{0} partisinin nihai harmanı</value>
+  </data>
+  <data name="Limit.expected" xml:space="preserve">
+    <value>beklenen</value>
+  </data>
+  <data name="This control point does not apply on the association path." xml:space="preserve">
+    <value>Bu kontrol noktası birlik yolunda uygulanmaz.</value>
+  </data>
+  <data name="Only a submitted record can be sent back." xml:space="preserve">
+    <value>Yalnızca onaya gönderilmiş bir kayıt geri gönderilebilir.</value>
+  </data>
+  <data name="A reason is required to send the record back." xml:space="preserve">
+    <value>Kaydı geri göndermek için bir gerekçe gereklidir.</value>
+  </data>
+  <data name="Only a {0} of the organization can send a record back." xml:space="preserve">
+    <value>Kaydı yalnızca kurumun {0} rolündeki bir kişi geri gönderebilir.</value>
+  </data>
+  <data name="The record was sent back to the person who entered it." xml:space="preserve">
+    <value>Kayıt, onu giren kişiye geri gönderildi.</value>
+  </data>
+  <data name="The honey is ready for packing: CCP 2 to 6 do not apply to this lot." xml:space="preserve">
+    <value>Bal paketlemeye hazır: KKN 2–6 bu lota uygulanmaz.</value>
+  </data>
+  <data name="The lot does not exist." xml:space="preserve">
+    <value>Lot bulunamadı.</value>
+  </data>
+  <data name="The honey of this lot is already marked ready for packing." xml:space="preserve">
+    <value>Bu lotun balı zaten paketlemeye hazır olarak işaretli.</value>
+  </data>
+  <data name="Only organizations on the association path mark honey ready for packing." xml:space="preserve">
+    <value>Balı paketlemeye hazır olarak yalnızca birlik yolundaki kurumlar işaretler.</value>
+  </data>
+  <data name="Only the organization that holds the lot marks it ready for packing." xml:space="preserve">
+    <value>Lotu paketlemeye hazır olarak yalnızca lotu elinde tutan kurum işaretler.</value>
+  </data>
+  <data name="Only the Quality Assurance Officer marks the honey ready for packing." xml:space="preserve">
+    <value>Balı paketlemeye hazır olarak yalnızca Kalite Güvence Sorumlusu işaretler.</value>
+  </data>
+  <data name="The lot's laboratory report is not approved yet." xml:space="preserve">
+    <value>Lotun laboratuvar raporu henüz onaylanmadı.</value>
+  </data>
+  <data name="CCP 2 or CCP 3 of this lot already has values, so the lot follows the company path." xml:space="preserve">
+    <value>Bu lotun KKN 2 veya KKN 3 kaydında zaten değerler var; bu yüzden lot firma yolunu izler.</value>
+  </data>
+  <data name="The lot is in a finalized batch and can no longer be changed." xml:space="preserve">
+    <value>Lot, sonlandırılmış bir partide olduğu için artık değiştirilemez.</value>
+  </data>
+  <data name="Association path: the honey goes to packing after the approved laboratory report." xml:space="preserve">
+    <value>Birlik yolu: Bal, onaylı laboratuvar raporundan sonra paketlemeye gider.</value>
+  </data>
+  <data name="Choose the association path or the company path." xml:space="preserve">
+    <value>Birlik yolunu ya da firma yolunu seçin.</value>
+  </data>
+  <data name="The path after the laboratory was saved." xml:space="preserve">
+    <value>Laboratuvardan sonraki yol kaydedildi.</value>
+  </data>
+  <data name="The batch does not exist." xml:space="preserve">
+    <value>Parti bulunamadı.</value>
+  </data>
+  <data name="Only the organization that holds the batch takes its samples." xml:space="preserve">
+    <value>Partinin numunelerini yalnızca partiyi elinde tutan kurum alır.</value>
+  </data>
+  <data name="The batch is finalized." xml:space="preserve">
+    <value>Parti sonlandırıldı.</value>
+  </data>
+  <data name="A final honey result is taken on the company path for a batch with honey from more than one apiary." xml:space="preserve">
+    <value>Nihai bal sonucu, firma yolunda birden fazla arılığın balını içeren partiler için alınır.</value>
+  </data>
+  <data name="A sample of this batch is already at the laboratory." xml:space="preserve">
+    <value>Bu partinin bir numunesi zaten laboratuvarda.</value>
+  </data>
+  <data name="Lab report approved; it is the batch's final honey result." xml:space="preserve">
+    <value>Laboratuvar raporu onaylandı; partinin nihai bal sonucu oldu.</value>
+  </data>
+  <data name="Map.Back" xml:space="preserve">
+    <value>Tüm iller</value>
+  </data>
+  <data name="Map.DrillHint" xml:space="preserve">
+    <value>İlçelerini görmek için vurgulu bir ili seçin.</value>
+  </data>
+  <data name="Map.DistrictCredit" xml:space="preserve">
+    <value>İlçe sınırları: geoBoundaries, © OpenStreetMap katkıda bulunanları (ODbL)</value>
+  </data>
+  <data name="Home.Map.DistrictTip" xml:space="preserve">
+    <value>Arılık: {0}</value>
+  </data>
+  <data name="Seal.Split" xml:space="preserve">
+    <value>kapak | gövde</value>
+  </data>
+  <data name="Seal.InUse" xml:space="preserve">
+    <value>Kullanımda: {0}</value>
+  </data>
+  <data name="Seal.Free" xml:space="preserve">
+    <value>Boş</value>
+  </data>
+  <data name="Empty.Title" xml:space="preserve">
+    <value>Kaynak lotların kapları</value>
+  </data>
+  <data name="Empty.Help" xml:space="preserve">
+    <value>Kap bu partiye boşaltılana kadar mühürlü kalır. Boşaltmadan önce kapanış mührünü okutun ve sağlam olduğunu onaylayın. Farklı bir kod veya kırık bir mühür adımı durdurur ve kaydedilir.</value>
+  </data>
+  <data name="Empty.Warning" xml:space="preserve">
+    <value>Hâlâ mühürlü veya mühür kontrolü başarısız olan kaplar: {0}. Kesinleştirme engellenmez; önce bunları boşaltın veya açıklığa kavuşturun.</value>
+  </data>
+  <data name="Empty.Checks" xml:space="preserve">
+    <value>Boşaltmada mühür kontrolü</value>
+  </data>
+  <data name="Empty.Seal" xml:space="preserve">
+    <value>Kapanış mührü: Okutun veya yazın</value>
+  </data>
+  <data name="Empty.Intact" xml:space="preserve">
+    <value>Mühür sağlam</value>
+  </data>
+  <data name="Empty.Button" xml:space="preserve">
+    <value>Bu partiye boşalt</value>
+  </data>
+  <data name="Empty.BrokenButton" xml:space="preserve">
+    <value>Mühür kırık</value>
+  </data>
+  <data name="Empty.State.Sealed" xml:space="preserve">
+    <value>Mühürlü</value>
+  </data>
+  <data name="Empty.State.Emptied" xml:space="preserve">
+    <value>{0} partisine boşaltıldı</value>
+  </data>
+  <data name="Empty.State.NoSeal" xml:space="preserve">
+    <value>Kayıtlı kapanış mührü yok</value>
+  </data>
+  <data name="Empty.Outcome.Emptied" xml:space="preserve">
+    <value>Mühür sağlam, {0} partisine boşaltıldı</value>
+  </data>
+  <data name="Empty.Outcome.Mismatch" xml:space="preserve">
+    <value>Farklı mühür okutuldu: {0}</value>
+  </data>
+  <data name="Empty.Outcome.FoundBroken" xml:space="preserve">
+    <value>Mühür kırık bulundu</value>
+  </data>
+  <data name="Empty.NotEmptied" xml:space="preserve">
+    <value>{0} partisine boşaltılmadı</value>
+  </data>
+  <data name="Container {0}: a numbered plastic seal closes only an association container; close the beekeeper's container with a seal label." xml:space="preserve">
+    <value>Kap {0}: Numaralı plastik mühür yalnızca birliğin kabını kapatır; arıcının kabını mühür etiketiyle kapatın.</value>
+  </data>
+  <data name="Containers are emptied into a batch by those who enter batch data in the organization that owns the batch." xml:space="preserve">
+    <value>Kaplar bir partiye, partinin sahibi olan kurumda parti verisi girenler tarafından boşaltılır.</value>
+  </data>
+  <data name="The batch was not found." xml:space="preserve">
+    <value>Parti bulunamadı.</value>
+  </data>
+  <data name="The batch is finalized; containers can no longer be emptied into it." xml:space="preserve">
+    <value>Parti kesinleştirildi; artık bu partiye kap boşaltılamaz.</value>
+  </data>
+  <data name="This container does not belong to a lot of this batch." xml:space="preserve">
+    <value>Bu kap, bu partinin bir lotuna ait değil.</value>
+  </data>
+  <data name="Container {0} was already emptied into batch {1}." xml:space="preserve">
+    <value>Kap {0} zaten {1} partisine boşaltıldı.</value>
+  </data>
+  <data name="Container {0} has no closing seal on record." xml:space="preserve">
+    <value>Kap {0} için kayıtlı kapanış mührü yok.</value>
+  </data>
+  <data name="Scan or type the closing seal of container {0}." xml:space="preserve">
+    <value>Kap {0} için kapanış mührünü okutun veya yazın.</value>
+  </data>
+  <data name="The seal of container {0} was reported broken. The container was not emptied; the check was recorded." xml:space="preserve">
+    <value>Kap {0} için mührün kırık olduğu bildirildi. Kap boşaltılmadı; kontrol kaydedildi.</value>
+  </data>
+  <data name="Seal {0} is not the closing seal of container {1}. The container was not emptied; the check was recorded." xml:space="preserve">
+    <value>{0} mührü, kap {1} için kapanış mührü değil. Kap boşaltılmadı; kontrol kaydedildi.</value>
+  </data>
+  <data name="Confirm that the seal of container {0} is intact, or report it broken." xml:space="preserve">
+    <value>Kap {0} için mührün sağlam olduğunu onaylayın veya kırık olduğunu bildirin.</value>
+  </data>
+  <data name="Container {0} emptied into batch {1}; seal {2} is now opened." xml:space="preserve">
+    <value>Kap {0}, {1} partisine boşaltıldı; {2} mührü artık açıldı.</value>
+  </data>
+  <data name="Num.Official" xml:space="preserve">
+    <value>İşletme tanımlama numarası</value>
+  </data>
+  <data name="Num.Platform" xml:space="preserve">
+    <value>Platform numarası</value>
+  </data>
+  <data name="Login.BeekeeperHint" xml:space="preserve">
+    <value>Arıcılar: Kullanıcı adınız platform numaranızdır (TR-BEE-…).</value>
+  </data>
+  <data name="HT.Other" xml:space="preserve">
+    <value>Diğer (yeni bal türü)</value>
+  </data>
+  <data name="HT.NewName" xml:space="preserve">
+    <value>Yeni bal türünün adı</value>
+  </data>
+  <data name="HT.NewHelp" xml:space="preserve">
+    <value>Önce listeye bakın. Var olan bir türle eşleşen ad (büyük-küçük harf, Türkçe harfler, boşluklar ve "bal" sözcüğü dikkate alınmadan) kabul edilmez; o durumda türü listeden seçin.</value>
+  </data>
+  <data name="HT.NewClass" xml:space="preserve">
+    <value>Bal sınıfı</value>
+  </data>
+  <data name="HT.ClassHelp" xml:space="preserve">
+    <value>Bu bala hangi laboratuvar sınırlarının uygulanacağını sınıf belirler.</value>
+  </data>
+  <data name="HT.Class.Floral" xml:space="preserve">
+    <value>Çiçek</value>
+  </data>
+  <data name="HT.Class.Honeydew" xml:space="preserve">
+    <value>Salgı</value>
+  </data>
+  <data name="HT.Class.Pine" xml:space="preserve">
+    <value>Çam</value>
+  </data>
+  <data name="HT.BeekeeperTypes" xml:space="preserve">
+    <value>Arıcının ürettiği bal türleri</value>
+  </data>
+  <data name="HT.EditBeekeeperTypes" xml:space="preserve">
+    <value>Arıcının bal türlerini değiştir</value>
+  </data>
+  <data name="HT.Added" xml:space="preserve">
+    <value>Formdan eklendi</value>
+  </data>
+  <data name="HT.Merge.Title" xml:space="preserve">
+    <value>Bal türünü birleştir</value>
+  </data>
+  <data name="HT.Merge.Help" xml:space="preserve">
+    <value>Bu bal türünü kullanan her şey seçtiğiniz türe taşınır: Lotlar, laboratuvar sınırları, arıcıların bal türleri ve diğer türde olmayan çeviriler. Ardından bu bal türü silinir; adı yine diğer türe yönlendirir.</value>
+  </data>
+  <data name="HT.Merge.Lots" xml:space="preserve">
+    <value>Lotlar</value>
+  </data>
+  <data name="HT.Merge.Limits" xml:space="preserve">
+    <value>Bu bal türüne özel sınırlar</value>
+  </data>
+  <data name="HT.Merge.Beekeepers" xml:space="preserve">
+    <value>Bu bal türünü üreten arıcılar</value>
+  </data>
+  <data name="HT.Merge.ClassNote" xml:space="preserve">
+    <value>Lotlar bundan sonra diğer türün bal sınıfının sınırlarına göre değerlendirilir.</value>
+  </data>
+  <data name="HT.Merge.Target" xml:space="preserve">
+    <value>Birleştirilecek tür</value>
+  </data>
+  <data name="HT.Merge.Button" xml:space="preserve">
+    <value>Birleştir</value>
+  </data>
+  <data name="Your role cannot add a honey type; choose one from the list." xml:space="preserve">
+    <value>Rolünüz bal türü ekleyemez; listeden birini seçin.</value>
+  </data>
+  <data name="Enter the name of the new honey type (2 to 100 characters)." xml:space="preserve">
+    <value>Yeni bal türünün adını girin (2 ile 100 karakter arası).</value>
+  </data>
+  <data name="Choose the honey class of the new honey type (floral, honeydew or pine)." xml:space="preserve">
+    <value>Yeni bal türünün sınıfını seçin (çiçek, salgı veya çam).</value>
+  </data>
+  <data name="This honey type already exists as {0}: choose it from the list." xml:space="preserve">
+    <value>Bu bal türü zaten {0} olarak var: Listeden onu seçin.</value>
+  </data>
+  <data name="Only the platform administrator merges honey types." xml:space="preserve">
+    <value>Bal türlerini yalnızca platform yöneticisi birleştirir.</value>
+  </data>
+  <data name="A honey type cannot be merged into itself." xml:space="preserve">
+    <value>Bir bal türü kendisiyle birleştirilemez.</value>
+  </data>
+  <data name="Both honey types have their own limit for {0}: remove one on the Limits page first." xml:space="preserve">
+    <value>İki bal türünün de {0} için kendi sınırı var: Önce Sınırlar sayfasında birini kaldırın.</value>
+  </data>
+  <data name="{0} was merged into {1}." xml:space="preserve">
+    <value>{0}, {1} ile birleştirildi.</value>
+  </data>
+  <data name="The beekeeper's honey types are saved." xml:space="preserve">
+    <value>Arıcının bal türleri kaydedildi.</value>
+  </data>
+  <data name="Holding identification number verified." xml:space="preserve">
+    <value>İşletme tanımlama numarası doğrulandı.</value>
+  </data>
+  <data name="Evidence accepted; the holding identification number is verified." xml:space="preserve">
+    <value>Kanıt kabul edildi; işletme tanımlama numarası doğrulandı.</value>
+  </data>
+  <data name="A beekeeper with this holding identification number is already registered. Find it and re-verify instead." xml:space="preserve">
+    <value>Bu işletme tanımlama numarasıyla bir arıcı zaten kayıtlı. Bulun ve yeniden doğrulayın.</value>
+  </data>
+  <data name="The holding identification number belongs to another province than the directorate. Give a reason to continue." xml:space="preserve">
+    <value>İşletme tanımlama numarası müdürlüğün ilinden farklı bir ile ait. Devam etmek için gerekçe yazın.</value>
+  </data>
+  <data name="Consent recorded. The storefront is published once the holding identification number is verified." xml:space="preserve">
+    <value>Rıza kaydedildi. Arıcı sayfası işletme tanımlama numarası doğrulanınca yayımlanır.</value>
+  </data>
+  <data name="Enter the holding identification number (or the platform number of a registered beekeeper)." xml:space="preserve">
+    <value>İşletme tanımlama numarasını (veya kayıtlı bir arıcının platform numarasını) girin.</value>
   </data>
 </root>

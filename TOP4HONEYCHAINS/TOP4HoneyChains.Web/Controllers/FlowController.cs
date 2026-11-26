@@ -90,7 +90,7 @@ namespace TOP4HoneyChains.Web.Controllers
             if (intake != null)
                 model.Intake = $"{intake.DeliveryDate:dd.MM.yyyy} · {intake.ReceivingOrg?.DisplayName} · {intake.Quantity:0.##} kg";
             foreach (var s in await _context.Samples.AsNoTracking().Include(s => s.LabOrg).Include(s => s.Report)
-                         .Where(s => s.RawHoneyProductionId == id).OrderBy(s => s.SampleId).ToListAsync())
+                         .Where(s => s.RawHoneyProductionId == id && s.FinalHoneyProductionId == null).OrderBy(s => s.SampleId).ToListAsync())
                 model.Samples.Add(new SampleRow(s.SampleId, s.SampleCode, s.LabOrg!.DisplayName, s.Status, s.SealIntact, s.Report?.Status,
                     s.Report?.Status == LabReportStatus.Approved ? s.Report.ReportCode : null));
             ViewBag.Controller = "Flow";

@@ -41,6 +41,10 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         // the country of a number: TR, or the partner country of a demo number
         public static string CountryOf(string value) => IsDemo(value) ? Normalize(value)[..2] : "TR";
 
+        // D-98: the label of a number on screen: Türkiye's official "İşletme tanımlama numarası" (Num.Official); a demo number of
+        // a partner country keeps the general "Registry number"
+        public static string LabelKey(string? value) => value != null && IsDemo(value) ? "Reg78.RegistryNumber" : "Num.Official";
+
         public static string Message(bool demo) => demo ? DemoFormatMessage : FormatMessage;
     }
 

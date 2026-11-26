@@ -146,7 +146,7 @@ namespace TOP4HoneyChains.Web.Controllers
             else
             {
                 await _audit.WriteAsync("Verify", "RegistryVerifications", requestId.ToString(), null, new { Approved = approve, Reason = reason });
-                TempData["Success"] = approve ? "Registry number verified." : "Request rejected.";
+                TempData["Success"] = approve ? "Holding identification number verified." : "Request rejected.";
             }
             return RedirectToAction(nameof(Edit), new { id = request.BeekeeperId });
         }

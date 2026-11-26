@@ -5,7 +5,7 @@
     // js/intake-containers.js copies for a new container. Fields that do not apply to the chosen option are hidden (and disabled).
     var i = Model.Index;
     var r = Model.Row;
-    var closure = ClosureKind.All.Contains(r.Closure ?? "") ? r.Closure! : ClosureKind.SealLabel;
+    var closure = ClosureKind.New.Contains(r.Closure ?? "") ? r.Closure! : ClosureKind.SealLabel;
     var box = closure == ClosureKind.OrgContainer;
     var button = Model.CapType != JarCap.TamperRing;
     string Hide(bool show) => show ? "" : "hidden";
@@ -22,8 +22,9 @@
             <div class="ci-step-body">
                 <fieldset class="ci-closure">
                     <legend class="form-label fw-semibold">@L["Ci.Closure"]<info-tip key="Ci.Info.Closure" about="@L["Ci.Closure"].Value" /></legend>
-                    <div class="ci-tiles">
-                        @foreach (var (value, scene) in new[] { (ClosureKind.SealLabel, "label"), (ClosureKind.PlasticSeal, "plastic"), (ClosureKind.OrgContainer, "scan") })
+                    <div class="ci-tiles ci-tiles-2">
+                        @* D-98: a plastic seal needs the eyelet of an association container, so it is offered only as that container's closing seal *@
+                        @foreach (var (value, scene) in new[] { (ClosureKind.SealLabel, "label"), (ClosureKind.OrgContainer, "scan") })
                         {
                             <label class="ci-tile" data-scene-on-pick="@scene">
                                 <input type="radio" class="ci-tile-input" name="Containers[@i].Closure" value="@value" checked="@(closure == value)" data-field="Closure" />
@@ -39,7 +40,7 @@
                     <label class="form-label" for="c@(i)-box">@L["Ci.BoxCode"]</label>
                     <div class="input-group ci-code">
                         <span class="input-group-text"><i class="mdi mdi-qrcode-scan" aria-hidden="true"></i></span>
-                        <input class="form-control ci-box" id="c@(i)-box" name="Containers[@i].OrgContainerCode" data-field="OrgContainerCode" value="@r.OrgContainerCode" maxlength="80"
+                        <input class="form-control ci-box" id="c@(i)-box" name="Containers[@i].OrgContainerCode" data-field="OrgContainerCode" value="@r.OrgContainerCode" maxlength="200"
                                autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="TK-0001" disabled="@(!box)" />
                     </div>
                     <div class="ci-state small" data-state aria-live="polite"></div>
@@ -76,7 +77,7 @@
                         <label class="form-label" for="c@(i)-origin">@L["Ci.OriginSeal"]</label>
                         <div class="input-group ci-code">
                             <span class="input-group-text"><i class="mdi mdi-qrcode-scan" aria-hidden="true"></i></span>
-                            <input class="form-control ci-seal" data-use="origin" id="c@(i)-origin" name="Containers[@i].OriginSeal" data-field="OriginSeal" value="@r.OriginSeal" maxlength="80"
+                            <input class="form-control ci-seal" data-use="origin" id="c@(i)-origin" name="Containers[@i].OriginSeal" data-field="OriginSeal" value="@r.OriginSeal" maxlength="200"
                                    autocomplete="off" autocapitalize="characters" spellcheck="false" disabled="@(!r.ArrivedSealed)" />
                         </div>
                         <div class="ci-state small" data-state aria-live="polite"></div>
@@ -97,7 +98,7 @@
                         <label class="form-label required" for="c@(i)-jar">@L["Ci.JarSeal"]</label>
                         <div class="input-group ci-code">
                             <span class="input-group-text"><i class="mdi mdi-qrcode-scan" aria-hidden="true"></i></span>
-                            <input class="form-control ci-seal" data-use="jar" id="c@(i)-jar" name="Containers[@i].JarSeal" data-field="JarSeal" value="@r.JarSeal" maxlength="80"
+                            <input class="form-control ci-seal" data-use="jar" id="c@(i)-jar" name="Containers[@i].JarSeal" data-field="JarSeal" value="@r.JarSeal" maxlength="200"
                                    autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="TS-000000" />
                         </div>
                         <div class="ci-state small" data-state aria-live="polite"></div>
@@ -106,7 +107,7 @@
                         <label class="form-label required" for="c@(i)-counter">@L["Ci.CounterSeal"]</label>
                         <div class="input-group ci-code">
                             <span class="input-group-text"><i class="mdi mdi-qrcode-scan" aria-hidden="true"></i></span>
-                            <input class="form-control ci-seal" data-use="jar" id="c@(i)-counter" name="Containers[@i].CounterSeal" data-field="CounterSeal" value="@r.CounterSeal" maxlength="80"
+                            <input class="form-control ci-seal" data-use="jar" id="c@(i)-counter" name="Containers[@i].CounterSeal" data-field="CounterSeal" value="@r.CounterSeal" maxlength="200"
                                    autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="TS-000000" />
                         </div>
                         <div class="ci-state small" data-state aria-live="polite"></div>
@@ -126,14 +127,14 @@
             <div class="ci-step-body">
                 <p class="small text-muted mb-2">@L["Ci.ClosingHelp"]</p>
                 <label class="form-label required" for="c@(i)-closing">
-                    @foreach (var value in ClosureKind.All)
+                    @foreach (var value in ClosureKind.New)
                     {
                         <span data-closing-text="@value" @Hide(closure == value)>@L["Ci.ClosingSeal." + value]</span>
                     }
                 </label>
                 <div class="input-group ci-code">
                     <span class="input-group-text"><i class="mdi mdi-qrcode-scan" aria-hidden="true"></i></span>
-                    <input class="form-control ci-seal" data-use="closing" id="c@(i)-closing" name="Containers[@i].ClosingSeal" data-field="ClosingSeal" value="@r.ClosingSeal" maxlength="80"
+                    <input class="form-control ci-seal" data-use="closing" id="c@(i)-closing" name="Containers[@i].ClosingSeal" data-field="ClosingSeal" value="@r.ClosingSeal" maxlength="200"
                            autocomplete="off" autocapitalize="characters" spellcheck="false" />
                 </div>
                 <div class="ci-state small" data-state aria-live="polite"></div>

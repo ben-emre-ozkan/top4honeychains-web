@@ -131,9 +131,20 @@ namespace TOP4HoneyChains.Web.Services
             : row.HoneyClass != null ? $" ({row.HoneyClass})"
             : "";
 
+        // D-98: a yes/no parameter whose CriticalLimit is "Yes" or "No" expects that answer; another answer is outside the limit
+        public static string? ExpectedAnswer(CriticalControlPointParameter parameter) =>
+            parameter.DataType == CcpDataType.YesNo && parameter.CriticalLimit is "Yes" or "No" ? parameter.CriticalLimit : null;
+
+        public static Result EvaluateAnswer(CriticalControlPointParameter parameter, string? answer) =>
+            ExpectedAnswer(parameter) is string expected && answer is "Yes" or "No"
+                ? new Result(answer == expected, "expected " + expected)
+                : new Result(null, null);
+
         // All limits of a parameter as one line, e.g. "max 20; Pine: max 23"
         public static string? DescribeAll(CriticalControlPointParameter parameter)
         {
+            if (ExpectedAnswer(parameter) is string expected)
+                return "expected " + expected;
             var parts = new List<string>();
             if (parameter.MinValue != null || parameter.MaxValue != null)
                 parts.Add(Describe(parameter.MinValue, parameter.MaxValue, parameter.ParameterUnit));

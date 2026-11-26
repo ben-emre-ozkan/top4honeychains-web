@@ -274,6 +274,79 @@ namespace TOP4HoneyChains.Web.Controllers
             return RedirectToMonitoring(owner.Value, ownerId, ccpId);
         }
 
+        // ------------------------------------------------------------------ D-98: send back to the person who entered it
+
+        // The approver sends a submitted record back with a reason; it shows as "returned" and comes up in the enterer's My work.
+        // Saving the record again submits it again.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Return(string ownerKind, int ownerId, int ccpId, string? reason)
+        {
+            var owner = ParseOwner(ownerKind);
+            if (!_current.Enabled || owner == null)
+                return NotFound();
+            var assignment = await FindAssignmentAsync(owner.Value, ownerId, ccpId);
+            if (assignment == null || !(await AuthorizeAsync(owner.Value, ownerId, ccpId, CcpOperations.Read)).Succeeded)
+                return assignment == null ? NotFound() : Forbidden();
+
+            reason = reason?.Trim();
+            var result = await AuthorizeAsync(owner.Value, ownerId, ccpId, CcpOperations.Approve);
+            HttpContext.Items.Remove(CcpAuthorizationHandler.SelfApprovalKey);
+            string? error = await LockReasonAsync(owner.Value, ownerId);
+            if (error == null && !result.Succeeded)
+                error = ReasonOf(result) ?? $"Only a {OrgRoles.QualityApprover} of the organization can send a record back.";
+            if (error == null && !(assignment.Status is AssignmentStatusIds.Submitted or AssignmentStatusIds.Completed))
+                error = "Only a submitted record can be sent back.";
+            if (error == null && assignment.ApprovedAt != null)
+                error = "This CCP record is already approved.";
+            if (error == null && !await HasValuesAsync(owner.Value, ownerId, ccpId))
+                error = "Only a submitted record can be sent back.";
+            if (error == null && string.IsNullOrEmpty(reason))
+                error = "A reason is required to send the record back.";
+            if (error == null && reason!.Length > 500)
+                error = "The reason can be at most 500 characters.";
+            if (error != null)
+            {
+                TempData["Error"] = error;
+                return RedirectToMonitoring(owner.Value, ownerId, ccpId);
+            }
+
+            assignment.Status = AssignmentStatusIds.Rejected;
+            assignment.EndDate = null;
+            assignment.ReturnReason = reason;
+            assignment.ReturnedByUserId = _current.UserId;
+            assignment.ReturnedAt = DateTime.Now;
+            assignment.ClearApproval();
+            await _context.SaveChangesAsync();
+            await _audit.WriteAsync("Return", owner == Owner.RawLot ? "RawHoneyCCPAssignments" : "FinalHoneyCCPAssignments",
+                $"{ownerId}/{ccpId}", null, new { Status = assignment.Status, Reason = reason });
+            TempData["Success"] = "The record was sent back to the person who entered it.";
+            return RedirectToMonitoring(owner.Value, ownerId, ccpId);
+        }
+
+        // ------------------------------------------------------------------ D-98: association path, "ready for packing"
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> PackingReady(int lotId, int ccpId)
+        {
+            if (!_current.Enabled)
+                return NotFound();
+            if (!(await AuthorizeAsync(Owner.RawLot, lotId, ccpId, CcpOperations.Read)).Succeeded)
+                return Forbidden();
+            var paths = HttpContext.RequestServices.GetRequiredService<CcpPathService>();
+            if (await paths.PackingReadyDeniedAsync(lotId) is string denied)
+            {
+                TempData["Error"] = denied;
+            }
+            else
+            {
+                await paths.MarkPackingReadyAsync(lotId);
+                TempData["Success"] = "The honey is ready for packing: CCP 2 to 6 do not apply to this lot.";
+            }
+            return RedirectToMonitoring(Owner.RawLot, lotId, ccpId);
+        }
+
         // ------------------------------------------------------------------ corrections (D-35)
 
         // A platform administrator requests the change of one recorded value; it is applied only when a
@@ -507,6 +580,22 @@ namespace TOP4HoneyChains.Web.Controllers
                 set { if (Raw != null) Raw.SelfApproved = value; else Final!.SelfApproved = value; }
             }
 
+            public string? ReturnReason
+            {
+                get => Raw != null ? Raw.ReturnReason : Final!.ReturnReason;
+                set { if (Raw != null) Raw.ReturnReason = value; else Final!.ReturnReason = value; }
+            }
+            public string? ReturnedByUserId
+            {
+                get => Raw != null ? Raw.ReturnedByUserId : Final!.ReturnedByUserId;
+                set { if (Raw != null) Raw.ReturnedByUserId = value; else Final!.ReturnedByUserId = value; }
+            }
+            public DateTime? ReturnedAt
+            {
+                get => Raw != null ? Raw.ReturnedAt : Final!.ReturnedAt;
+                set { if (Raw != null) Raw.ReturnedAt = value; else Final!.ReturnedAt = value; }
+            }
+
             // A changed record needs a new approval
             public void ClearApproval()
             {
@@ -625,6 +714,14 @@ namespace TOP4HoneyChains.Web.Controllers
                 HttpContext.Items.Remove(CcpAuthorizationHandler.SelfApprovalKey);
             }
             model.HoneyClass = (await HoneyProfileAsync(owner, ownerId)).HoneyClass;
+            // D-98: a record sent back
+            if (assignment?.ReturnedAt != null)
+            {
+                model.ReturnReason = assignment.ReturnReason;
+                model.ReturnedAt = assignment.ReturnedAt;
+                model.ReturnedBy = assignment.ReturnedByUserId == null ? null
+                    : (await _userManager.FindByIdAsync(assignment.ReturnedByUserId))?.UserName ?? assignment.ReturnedByUserId;
+            }
             // D-67: the person who last entered values, for the record strip
             var lastLog = logs.Where(l => l.RecordedByUserId != null).OrderByDescending(l => l.MeasurementDate ?? DateTime.MinValue).ThenByDescending(l => l.LogId).FirstOrDefault();
             if (lastLog != null)
@@ -657,7 +754,18 @@ namespace TOP4HoneyChains.Web.Controllers
             };
             if (!await MaySeeBeekeepersAsync(Owner.RawLot, rawHoneyProductionId))
                 model.BeekeeperName = model.ApiaryName = null;
-            return await FillCommonAsync(model, Owner.RawLot, rawHoneyProductionId, ccpId) ? model : null;
+            if (!await FillCommonAsync(model, Owner.RawLot, rawHoneyProductionId, ccpId))
+                return null;
+            // D-98: the association path's "ready for packing", on the CCP 1 page
+            if (_current.Enabled && model.CCPCode == LabService.LabCcpCode)
+            {
+                var paths = HttpContext.RequestServices.GetRequiredService<CcpPathService>();
+                model.Path = await paths.OfLotAsync(rawHoneyProductionId);
+                model.PackingReadyAt = production.PackingReadyAt;
+                if (model.Path == CcpPaths.Association && production.PackingReadyAt == null)
+                    model.PackingReadyDenied = await paths.PackingReadyDeniedAsync(rawHoneyProductionId);
+            }
+            return model;
         }
 
         // D-75: beekeepers and apiaries are personal data. As in the recall report, only administrators, the lot owner, owners
@@ -976,7 +1084,9 @@ namespace TOP4HoneyChains.Web.Controllers
             {
                 if (log.ParameterId == null || !parameters.TryGetValue(log.ParameterId.Value, out var p))
                     continue;
-                var result = CcpLimitEvaluator.Evaluate(p, log.MeasuredNumericValue, siblings, honey);
+                var result = CcpLimitEvaluator.ExpectedAnswer(p) != null
+                    ? CcpLimitEvaluator.EvaluateAnswer(p, log.MeasuredTextValue)
+                    : CcpLimitEvaluator.Evaluate(p, log.MeasuredNumericValue, siblings, honey);
                 log.IsInRange = result.IsInRange;
                 log.AppliedLimit = result.AppliedLimit;
             }

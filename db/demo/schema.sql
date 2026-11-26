@@ -371,6 +371,25 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+CREATE TABLE [dbo].[BeekeeperHoneyTypes](
+	[BeekeeperId] [nvarchar](450) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[HoneyTypeId] [int] NOT NULL,
+ CONSTRAINT [PK_BeekeeperHoneyTypes] PRIMARY KEY NONCLUSTERED 
+(
+	[BeekeeperId] ASC,
+	[HoneyTypeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+)
+GO
+CREATE NONCLUSTERED INDEX [IX_BeekeeperHoneyTypes_HoneyTypeId] ON [dbo].[BeekeeperHoneyTypes]
+(
+	[HoneyTypeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[BeekeeperRegistrations](
 	[RegistrationId] [int] IDENTITY(1,1) NOT NULL,
 	[BeekeeperId] [nvarchar](450) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
@@ -855,6 +874,48 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+CREATE TABLE [dbo].[ContainerEmptyings](
+	[EmptyingId] [int] IDENTITY(1,1) NOT NULL,
+	[ContainerId] [int] NOT NULL,
+	[FinalHoneyProductionId] [int] NOT NULL,
+	[Outcome] [varchar](20) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[ExpectedSeal] [varchar](50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[ScannedSeal] [varchar](50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[UserId] [nvarchar](450) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[At] [datetime2](7) NOT NULL,
+	[Note] [nvarchar](300) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+ CONSTRAINT [PK_ContainerEmptyings] PRIMARY KEY CLUSTERED 
+(
+	[EmptyingId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+)
+GO
+CREATE NONCLUSTERED INDEX [IX_ContainerEmptyings_Batch] ON [dbo].[ContainerEmptyings]
+(
+	[FinalHoneyProductionId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+GO
+CREATE NONCLUSTERED INDEX [IX_ContainerEmptyings_Container] ON [dbo].[ContainerEmptyings]
+(
+	[ContainerId] ASC,
+	[EmptyingId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [UX_ContainerEmptyings_Emptied] ON [dbo].[ContainerEmptyings]
+(
+	[ContainerId] ASC
+)
+WHERE ([Outcome]='Emptied')
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+GO
+ALTER TABLE [dbo].[ContainerEmptyings]  WITH CHECK ADD  CONSTRAINT [CK_ContainerEmptyings_Outcome] CHECK  (([Outcome]='FoundBroken' OR [Outcome]='Mismatch' OR [Outcome]='Emptied'))
+GO
+ALTER TABLE [dbo].[ContainerEmptyings] CHECK CONSTRAINT [CK_ContainerEmptyings_Outcome]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[ContainerSealEvents](
 	[EventId] [int] IDENTITY(1,1) NOT NULL,
 	[ContainerId] [int] NOT NULL,
@@ -1271,6 +1332,9 @@ CREATE TABLE [dbo].[FinalHoneyCCPAssignments](
 	[ApprovedByOrgId] [int] NULL,
 	[ApprovedAt] [datetime] NULL,
 	[SelfApproved] [bit] NOT NULL,
+	[ReturnReason] [nvarchar](500) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[ReturnedByUserId] [nvarchar](450) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[ReturnedAt] [datetime2](7) NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[FinalHoneyCCPAssignmentId] ASC
@@ -1416,16 +1480,47 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+CREATE TABLE [dbo].[HoneyTypeMerges](
+	[MergeId] [int] IDENTITY(1,1) NOT NULL,
+	[SourceHoneyTypeId] [int] NOT NULL,
+	[SourceTitle] [nvarchar](100) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[SourceClass] [nvarchar](20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[TargetHoneyTypeId] [int] NOT NULL,
+	[MergedAt] [datetime2](7) NOT NULL,
+	[MergedByUserId] [nvarchar](450) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+ CONSTRAINT [PK_HoneyTypeMerges] PRIMARY KEY CLUSTERED 
+(
+	[MergeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+)
+GO
+CREATE NONCLUSTERED INDEX [IX_HoneyTypeMerges_Target] ON [dbo].[HoneyTypeMerges]
+(
+	[TargetHoneyTypeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [UX_HoneyTypeMerges_Source] ON [dbo].[HoneyTypeMerges]
+(
+	[SourceHoneyTypeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[HoneyTypes](
 	[HoneyTypeId] [int] IDENTITY(1,1) NOT NULL,
-	[HoneyTypeTitle] [varchar](50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[HoneyTypeTitle] [nvarchar](100) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
 	[HoneyTypeDescription] [nvarchar](250) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 	[HoneyClass] [nvarchar](20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[CreatedAt] [datetime2](7) NULL,
+	[CreatedByUserId] [nvarchar](450) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[CreatedByOrgId] [int] NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[HoneyTypeId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF),
-UNIQUE NONCLUSTERED 
+ CONSTRAINT [UQ_HoneyTypes_HoneyTypeTitle] UNIQUE NONCLUSTERED 
 (
 	[HoneyTypeTitle] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
@@ -1939,6 +2034,7 @@ CREATE TABLE [dbo].[Organizations](
 	[DataControllerAddress] [nvarchar](400) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 	[DataControllerContact] [nvarchar](200) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 	[VerbisNumber] [nvarchar](50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[CcpPath] [varchar](20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
  CONSTRAINT [PK_Organizations] PRIMARY KEY CLUSTERED 
 (
 	[OrgId] ASC
@@ -1966,6 +2062,10 @@ GO
 ALTER TABLE [dbo].[Organizations] ADD  CONSTRAINT [DF_Organizations_FourEyesExempt]  DEFAULT ((0)) FOR [FourEyesExempt]
 GO
 ALTER TABLE [dbo].[Organizations] ADD  CONSTRAINT [DF_Organizations_CreatedAt]  DEFAULT (sysutcdatetime()) FOR [CreatedAt]
+GO
+ALTER TABLE [dbo].[Organizations]  WITH CHECK ADD  CONSTRAINT [CK_Organizations_CcpPath] CHECK  (([CcpPath] IS NULL OR ([CcpPath]='Company' OR [CcpPath]='Association')))
+GO
+ALTER TABLE [dbo].[Organizations] CHECK CONSTRAINT [CK_Organizations_CcpPath]
 GO
 ALTER TABLE [dbo].[Organizations]  WITH CHECK ADD  CONSTRAINT [CK_Organizations_Status] CHECK  (([Status]=N'Suspended' OR [Status]=N'Verified' OR [Status]=N'Pending'))
 GO
@@ -2007,6 +2107,9 @@ CREATE TABLE [dbo].[RawHoneyCCPAssignments](
 	[ApprovedByOrgId] [int] NULL,
 	[ApprovedAt] [datetime] NULL,
 	[SelfApproved] [bit] NOT NULL,
+	[ReturnReason] [nvarchar](500) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[ReturnedByUserId] [nvarchar](450) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[ReturnedAt] [datetime2](7) NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[RawHoneyCCPAssignmentId] ASC
@@ -2059,6 +2162,8 @@ CREATE TABLE [dbo].[RawHoneyProductions](
 	[RawHoneyProductionWholesalerId] [int] NULL,
 	[OwnerOrgId] [int] NULL,
 	[OriginCountry] [char](2) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[PackingReadyAt] [datetime2](7) NULL,
+	[PackingReadyByUserId] [nvarchar](450) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
  CONSTRAINT [PK__ApiaryHo__D5D9A2D54CD1EFEC] PRIMARY KEY CLUSTERED 
 (
 	[RawHoneyProductionId] ASC
@@ -2239,6 +2344,7 @@ CREATE TABLE [dbo].[Samples](
 	[LabelIntactAtReception] [bit] NULL,
 	[SealNumberMatches] [bit] NULL,
 	[CapType] [varchar](20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[FinalHoneyProductionId] [int] NULL,
  CONSTRAINT [PK_Samples] PRIMARY KEY CLUSTERED 
 (
 	[SampleId] ASC
@@ -2249,6 +2355,13 @@ CREATE NONCLUSTERED INDEX [IX_Samples_Container] ON [dbo].[Samples]
 (
 	[ContainerId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+GO
+CREATE NONCLUSTERED INDEX [IX_Samples_FinalHoneyProductionId] ON [dbo].[Samples]
+(
+	[FinalHoneyProductionId] ASC
+)
+WHERE ([FinalHoneyProductionId] IS NOT NULL)
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
 GO
 CREATE NONCLUSTERED INDEX [IX_Samples_Lab] ON [dbo].[Samples]
 (
@@ -2270,13 +2383,17 @@ ALTER TABLE [dbo].[Samples] ADD  CONSTRAINT [DF_Samples_Status]  DEFAULT (N'Sent
 GO
 ALTER TABLE [dbo].[Samples] ADD  CONSTRAINT [DF_Samples_TakenAt]  DEFAULT (sysutcdatetime()) FOR [TakenAt]
 GO
+ALTER TABLE [dbo].[Samples]  WITH CHECK ADD  CONSTRAINT [CK_Samples_BatchKind] CHECK  (([Kind]='Batch' AND [FinalHoneyProductionId] IS NOT NULL OR isnull([Kind],'')<>'Batch' AND [FinalHoneyProductionId] IS NULL))
+GO
+ALTER TABLE [dbo].[Samples] CHECK CONSTRAINT [CK_Samples_BatchKind]
+GO
 ALTER TABLE [dbo].[Samples]  WITH CHECK ADD  CONSTRAINT [CK_Samples_CapType] CHECK  (([CapType] IS NULL OR ([CapType]='TamperRing' OR [CapType]='SafetyButton')))
 GO
 ALTER TABLE [dbo].[Samples] CHECK CONSTRAINT [CK_Samples_CapType]
 GO
-ALTER TABLE [dbo].[Samples]  WITH CHECK ADD  CONSTRAINT [CK_Samples_Kind] CHECK  (([Kind] IS NULL OR ([Kind]='Composite' OR [Kind]='Container')))
+ALTER TABLE [dbo].[Samples]  WITH CHECK ADD  CONSTRAINT [CK_Samples_Kind2] CHECK  (([Kind] IS NULL OR ([Kind]='Batch' OR [Kind]='Composite' OR [Kind]='Container')))
 GO
-ALTER TABLE [dbo].[Samples] CHECK CONSTRAINT [CK_Samples_Kind]
+ALTER TABLE [dbo].[Samples] CHECK CONSTRAINT [CK_Samples_Kind2]
 GO
 ALTER TABLE [dbo].[Samples]  WITH CHECK ADD  CONSTRAINT [CK_Samples_Seals] CHECK  (([SealNumber]<>[CounterSealNumber]))
 GO
@@ -2646,6 +2763,16 @@ REFERENCES [dbo].[Organizations] ([OrgId])
 GO
 ALTER TABLE [dbo].[BeekeeperAssociations] CHECK CONSTRAINT [FK_BeekeeperAssociations_Org]
 GO
+ALTER TABLE [dbo].[BeekeeperHoneyTypes]  WITH CHECK ADD  CONSTRAINT [FK_BeekeeperHoneyTypes_Beekeepers] FOREIGN KEY([BeekeeperId])
+REFERENCES [dbo].[Beekeepers] ([BeekeeperId])
+GO
+ALTER TABLE [dbo].[BeekeeperHoneyTypes] CHECK CONSTRAINT [FK_BeekeeperHoneyTypes_Beekeepers]
+GO
+ALTER TABLE [dbo].[BeekeeperHoneyTypes]  WITH CHECK ADD  CONSTRAINT [FK_BeekeeperHoneyTypes_HoneyTypes] FOREIGN KEY([HoneyTypeId])
+REFERENCES [dbo].[HoneyTypes] ([HoneyTypeId])
+GO
+ALTER TABLE [dbo].[BeekeeperHoneyTypes] CHECK CONSTRAINT [FK_BeekeeperHoneyTypes_HoneyTypes]
+GO
 ALTER TABLE [dbo].[BeekeeperRegistrations]  WITH CHECK ADD  CONSTRAINT [FK_BeekeeperRegistrations_Beekeepers] FOREIGN KEY([BeekeeperId])
 REFERENCES [dbo].[Beekeepers] ([BeekeeperId])
 GO
@@ -2785,6 +2912,16 @@ ALTER TABLE [dbo].[ConsumerSavedBatches]  WITH CHECK ADD  CONSTRAINT [FK_Consume
 REFERENCES [dbo].[FinalHoneyProductions] ([FinalHoneyProductionId])
 GO
 ALTER TABLE [dbo].[ConsumerSavedBatches] CHECK CONSTRAINT [FK_ConsumerSavedBatches_FinalHoneyProductions]
+GO
+ALTER TABLE [dbo].[ContainerEmptyings]  WITH CHECK ADD  CONSTRAINT [FK_ContainerEmptyings_Containers] FOREIGN KEY([ContainerId])
+REFERENCES [dbo].[Containers] ([ContainerId])
+GO
+ALTER TABLE [dbo].[ContainerEmptyings] CHECK CONSTRAINT [FK_ContainerEmptyings_Containers]
+GO
+ALTER TABLE [dbo].[ContainerEmptyings]  WITH CHECK ADD  CONSTRAINT [FK_ContainerEmptyings_FinalHoneyProductions] FOREIGN KEY([FinalHoneyProductionId])
+REFERENCES [dbo].[FinalHoneyProductions] ([FinalHoneyProductionId])
+GO
+ALTER TABLE [dbo].[ContainerEmptyings] CHECK CONSTRAINT [FK_ContainerEmptyings_FinalHoneyProductions]
 GO
 ALTER TABLE [dbo].[ContainerSealEvents]  WITH CHECK ADD  CONSTRAINT [FK_ContainerSealEvents_Containers] FOREIGN KEY([ContainerId])
 REFERENCES [dbo].[Containers] ([ContainerId])
@@ -2970,6 +3107,16 @@ ALTER TABLE [dbo].[HolderStorageValues]  WITH CHECK ADD  CONSTRAINT [FK_HolderSt
 REFERENCES [dbo].[HolderStorageRecords] ([RecordId])
 GO
 ALTER TABLE [dbo].[HolderStorageValues] CHECK CONSTRAINT [FK_HolderStorageValues_Record]
+GO
+ALTER TABLE [dbo].[HoneyTypeMerges]  WITH CHECK ADD  CONSTRAINT [FK_HoneyTypeMerges_HoneyTypes] FOREIGN KEY([TargetHoneyTypeId])
+REFERENCES [dbo].[HoneyTypes] ([HoneyTypeId])
+GO
+ALTER TABLE [dbo].[HoneyTypeMerges] CHECK CONSTRAINT [FK_HoneyTypeMerges_HoneyTypes]
+GO
+ALTER TABLE [dbo].[HoneyTypes]  WITH CHECK ADD  CONSTRAINT [FK_HoneyTypes_Organizations] FOREIGN KEY([CreatedByOrgId])
+REFERENCES [dbo].[Organizations] ([OrgId])
+GO
+ALTER TABLE [dbo].[HoneyTypes] CHECK CONSTRAINT [FK_HoneyTypes_Organizations]
 GO
 ALTER TABLE [dbo].[LabReports]  WITH CHECK ADD  CONSTRAINT [FK_LabReports_Lab] FOREIGN KEY([LabOrgId])
 REFERENCES [dbo].[Organizations] ([OrgId])
@@ -3157,6 +3304,11 @@ REFERENCES [dbo].[Containers] ([ContainerId])
 GO
 ALTER TABLE [dbo].[Samples] CHECK CONSTRAINT [FK_Samples_Containers]
 GO
+ALTER TABLE [dbo].[Samples]  WITH CHECK ADD  CONSTRAINT [FK_Samples_FinalHoneyProductions] FOREIGN KEY([FinalHoneyProductionId])
+REFERENCES [dbo].[FinalHoneyProductions] ([FinalHoneyProductionId])
+GO
+ALTER TABLE [dbo].[Samples] CHECK CONSTRAINT [FK_Samples_FinalHoneyProductions]
+GO
 ALTER TABLE [dbo].[Samples]  WITH CHECK ADD  CONSTRAINT [FK_Samples_LabOrg] FOREIGN KEY([LabOrgId])
 REFERENCES [dbo].[Organizations] ([OrgId])
 GO
@@ -3272,6 +3424,21 @@ BEGIN
 END;
 GO
 ALTER TABLE [dbo].[ComplianceReviews] ENABLE TRIGGER [TR_ComplianceReviews_AppendOnly]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE   TRIGGER [dbo].[TR_ContainerEmptyings_AppendOnly] ON [dbo].[ContainerEmptyings] AFTER UPDATE, DELETE
+AS
+BEGIN
+    SET NOCOUNT ON;
+    IF EXISTS (SELECT 1 FROM deleted)
+        THROW 50001, N'ContainerEmptyings is append-only: add a new record instead.', 1;
+END;
+GO
+ALTER TABLE [dbo].[ContainerEmptyings] ENABLE TRIGGER [TR_ContainerEmptyings_AppendOnly]
 GO
 SET ANSI_NULLS ON
 GO
@@ -3479,6 +3646,8 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
+-- ---------------------------------------------------------------- the delivery lock lets a merge through
+
 CREATE   TRIGGER [dbo].[TR_RawHoneyProductions_DeliveryLocked] ON [dbo].[RawHoneyProductions] AFTER UPDATE
 AS
 BEGIN
@@ -3491,7 +3660,11 @@ BEGIN
         JOIN inserted n ON n.RawHoneyProductionId = d.RawHoneyProductionId
         JOIN dbo.LotIntakes i ON i.RawHoneyProductionId = d.RawHoneyProductionId AND i.ContainersRecorded = 1
         WHERE ISNULL(d.RawHoneyProductionApiaryId, -1) <> ISNULL(n.RawHoneyProductionApiaryId, -1)
-           OR ISNULL(d.RawHoneyProductionHoneyType, -1) <> ISNULL(n.RawHoneyProductionHoneyType, -1)
+           -- D-98: a merged honey type moves to its target only inside the merge
+           OR (ISNULL(d.RawHoneyProductionHoneyType, -1) <> ISNULL(n.RawHoneyProductionHoneyType, -1)
+               AND NOT (SESSION_CONTEXT(N'top4.honey_type_merge') IS NOT NULL
+                        AND EXISTS (SELECT 1 FROM dbo.HoneyTypeMerges m
+                                    WHERE m.SourceHoneyTypeId = d.RawHoneyProductionHoneyType AND m.TargetHoneyTypeId = n.RawHoneyProductionHoneyType)))
            OR ISNULL(d.RawHoneyProductionPeriodId, -1) <> ISNULL(n.RawHoneyProductionPeriodId, -1)
            OR ISNULL(d.OriginCountry, '') <> ISNULL(n.OriginCountry, '')
            -- amount and date change only through a confirmed delivery correction

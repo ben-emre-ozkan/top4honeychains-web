@@ -32,7 +32,7 @@
                             {
                                 <tr data-sample-id="@s.SampleId">
                                     <td>@s.SampleCode <partial name="_SampleKind" model="s" /></td>
-                                    <td><a href="/Flow/Lot/@s.RawHoneyProductionId" class="flow-link">#@s.RawHoneyProductionId</a> @Ref.T("HoneyType", s.RawHoneyProduction?.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeId, "Title", s.RawHoneyProduction?.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle)</td>
+                                    <td>@if (s.FinalHoneyProductionId != null) { <a href="/Flow/Batch/@s.FinalHoneyProductionId" class="flow-link">@L["Final.BatchSample", s.FinalHoneyProductionId]</a> } else { <a href="/Flow/Lot/@s.RawHoneyProductionId" class="flow-link">#@s.RawHoneyProductionId</a> @Ref.T("HoneyType", s.RawHoneyProduction?.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeId, "Title", s.RawHoneyProduction?.RawHoneyProductionHoneyTypeNavigation?.HoneyTypeTitle) }</td>
                                     <td>@s.LabOrg?.DisplayName</td>
                                     <td>@s.SealNumber</td>
                                     <td>@s.CounterSealNumber · @s.CounterLocation · @s.RetainUntil.ToString("dd.MM.yyyy")</td>
@@ -86,8 +86,8 @@
                                 @foreach (var s in received)
                                 {
                                     <tr data-sample-id="@s.SampleId">
-                                        <td>@s.SampleCode <partial name="_SampleKind" model="s" /></td>
-                                        <td>@s.TakingOrg?.DisplayName <a href="/Flow/Lot/@s.RawHoneyProductionId" class="small flow-link">@L["Flow.Title"]</a></td>
+                                        <td>@s.SampleCode <partial name="_SampleKind" model="s" />@if (s.FinalHoneyProductionId != null) { <span class="small text-muted final-blend">· @L["Final.BatchSample", s.FinalHoneyProductionId]</span> }</td>
+                                        <td>@s.TakingOrg?.DisplayName <a href="@(s.FinalHoneyProductionId != null ? "/Flow/Batch/" + s.FinalHoneyProductionId : "/Flow/Lot/" + s.RawHoneyProductionId)" class="small flow-link">@L["Flow.Title"]</a></td>
                                         <td>@s.SealNumber</td>
                                         <td class="sample-status"><partial name="_StatusPill" model="@(new TOP4HoneyChains.Web.Models.ViewModels.StatusPill(TOP4HoneyChains.Web.Models.ViewModels.StatusPill.ForSample(s.Status), StatusText(s)))" /> <partial name="_ReceptionChecks" model="s" /> @s.RejectReason</td>
                                         <td><a asp-controller="LabReports" asp-action="Edit" asp-route-id="@s.SampleId" class="report-link">@ReportText(s)</a></td>

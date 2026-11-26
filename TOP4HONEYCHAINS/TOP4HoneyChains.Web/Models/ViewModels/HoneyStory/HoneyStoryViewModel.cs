@@ -21,6 +21,19 @@
 
         // D-72: the batch's real steps for the journey section
         public HoneyStoryJourney Journey { get; set; } = new();
+
+        // D-98: the laboratory result of the batch's final blend (company path), apart from the lot results; null = none
+        public HoneyStoryFinalResult? FinalResult { get; set; }
+    }
+
+    public class HoneyStoryFinalResult
+    {
+        public string ReportCode { get; set; } = "";
+        public string? LabName { get; set; }
+        public DateTime? ApprovedAt { get; set; }
+        public bool Accredited { get; set; }
+        // Compliant only when the limit is verified (public pages show verified limits only)
+        public List<(int ParameterId, string? Name, decimal? Number, string? Text, string? Unit, bool? Compliant, string? Limit)> Values { get; set; } = new();
     }
 
     // D-72: what is on record for each step; Tracked = the organization model is on (deliveries, reports and the shelf exist)

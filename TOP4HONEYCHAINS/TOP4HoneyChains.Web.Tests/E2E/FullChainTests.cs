@@ -266,7 +266,7 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             var storage = new Dictionary<string, string> { ["batchId"] = batch.ToString() };
             var ccp10Params = await _app.WithContextAsync(db => db.CriticalControlPointParameters.Where(p => p.CCPId == ccp10).ToListAsync());
             foreach (var p in ccp10Params)
-                storage[$"values[{p.ParameterId}]"] = p.DataType == CcpDataType.Number ? "18" : "e2e";
+                storage[$"values[{p.ParameterId}]"] = p.DataType == CcpDataType.Number ? "18" : p.DataType == CcpDataType.YesNo ? "Yes" : "e2e";
             var tooWarm = ccp10Params.First(p => p.DataType == CcpDataType.Number && p.MaxValue != null);   // D-64: one value outside its limit
             storage[$"values[{tooWarm.ParameterId}]"] = (tooWarm.MaxValue!.Value + 5).ToString(System.Globalization.CultureInfo.InvariantCulture);
             Assert.Contains("Storage values saved.", await receiverStaff.PostFlashAsync("/Shipments/Storage", storage, $"/Shipments/Storage?batchId={batch}"));

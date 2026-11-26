@@ -6,6 +6,7 @@
     var bk = Model.Beekeeper!;
     var registry = ViewBag.Registry as BeekeeperRegistry;
     var consents = ViewBag.Consents as List<Consent> ?? new();
+    var honeyTypes = ViewBag.BeekeeperHoneyTypes as List<(int Id, string Title)> ?? new();
     var badge = Model.EvidenceStatus switch { EvidenceStatus.Accepted => "bg-success", EvidenceStatus.Rejected => "bg-danger", _ => "bg-warning text-dark" };
 }
 @section AddToHead {
@@ -17,7 +18,9 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title mb-1">@bk.BeekeeperFirstName @bk.BeekeeperLastName <small class="text-muted">@bk.BeekeeperBusinessNumber</small></h4>
+                    <h4 class="card-title mb-1">@bk.BeekeeperFirstName @bk.BeekeeperLastName <small class="text-muted">@(registry?.RegistryNumber ?? Model.RegistryNumber)</small></h4>
+                    @* D-98: the official number first; the platform number (the beekeeper's portal user name) second *@
+                    <div class="small text-muted" id="platform-number">@L["Num.Platform"]: @bk.BeekeeperBusinessNumber</div>
                     <p class="card-title-desc"><a href="/Registration/Index">@L["Reg78.Title"]</a></p>
 
                     <dl class="row mb-0" id="registration-summary">
@@ -30,13 +33,15 @@
                         </dd>
                         <dt class="col-sm-3">@L["Reg78.Kind"]</dt><dd class="col-sm-9">@L["Reg78.Kind." + Model.Kind] · @Model.At.ToLocalTime().ToString("dd.MM.yyyy HH:mm") · @Model.RegisteringOrg?.DisplayName</dd>
                         <dt class="col-sm-3">@L["Reg78.Method"]</dt><dd class="col-sm-9">@L["Reg78.Method." + Model.Method]@if (Model.FallbackReason != null) { <text> · @Model.FallbackReason</text> }</dd>
-                        <dt class="col-sm-3">@L["Reg78.RegistryNumber"]</dt>
+                        <dt class="col-sm-3">@L[TOP4HoneyChains.Web.Services.OrgModel.RegistryNumber.LabelKey(Model.RegistryNumber)]</dt>
                         <dd class="col-sm-9">@Model.RegistryNumber · @(registry != null ? L[registry.Status].Value : "")
                             @if (Model.RegistryProvinceMatches == false)
                             {
                                 <span class="badge bg-light text-dark border">@L["Reg78.OtherProvince"]: @Model.ProvinceMismatchReason</span>
                             }
                         </dd>
+                        <dt class="col-sm-3">@L["HT.BeekeeperTypes"]</dt>
+                        <dd class="col-sm-9" id="beekeeper-honey-types">@(honeyTypes.Count == 0 ? "–" : string.Join(", ", honeyTypes.Select(h => Ref.HoneyType(h.Id, h.Title))))</dd>
                         <dt class="col-sm-3">@L["Notice.MobilePhone"]</dt><dd class="col-sm-9">@(string.IsNullOrEmpty(bk.BeekeeperPhoneNumber) ? "–" : TOP4HoneyChains.Web.Services.PhoneNumberPolicy.Display(bk.BeekeeperPhoneNumber))</dd>
                         <dt class="col-sm-3">@L["Reg78.Consents"]</dt>
                         <dd class="col-sm-9" id="registration-consents">
@@ -123,6 +128,14 @@
                                 <div class="mt-2"><partial name="~/Views/Apiaries/_LocationPicker.cshtml" /></div>
                                 <partial name="_ApiaryPlace" model="@(new TOP4HoneyChains.Web.Models.ViewModels.ApiaryPlaceField("apiaryProvince", "apiaryDistrictId", "apiaryLocality", null, null, null, "ApiaryLocationLatitude", "ApiaryLocationLongitude"))" />
                                 <button type="submit" class="btn btn-primary mt-2">@L["Reg78.AddApiary"]</button>
+                            </form>
+                        </details>
+                        @* D-98: the beekeeper's honey types, with "Other" for a new type *@
+                        <details id="edit-honey-types" class="mt-2">
+                            <summary>@L["HT.EditBeekeeperTypes"]</summary>
+                            <form asp-action="SetHoneyTypes" asp-route-id="@Model.RegistrationId" method="post" class="mt-2">
+                                <partial name="_HoneyTypeChecks" model="@(new TOP4HoneyChains.Web.Models.ViewModels.HoneyTypeChecks((IEnumerable<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem>)ViewBag.HoneyTypeItems, honeyTypes.Select(h => h.Id).ToList(), ViewBag.MayAddHoneyType == true, false))" />
+                                <button type="submit" class="btn btn-primary mt-2" id="save-honey-types">@L["Save"]</button>
                             </form>
                         </details>
                     }

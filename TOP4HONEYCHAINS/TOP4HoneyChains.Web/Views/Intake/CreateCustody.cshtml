@@ -56,7 +56,7 @@
                             <input type="hidden" name="Number" value="@Model.Number" />
                             <input type="hidden" name="DraftKey" value="@Model.DraftKey" />
                             <div class="alert alert-light border" id="beekeeper-found">
-                                <strong>@bk.BeekeeperFirstName @bk.BeekeeperLastName</strong> · @bk.BeekeeperBusinessNumber
+                                <strong>@bk.BeekeeperFirstName @bk.BeekeeperLastName</strong> · <span id="beekeeper-official">@(ViewBag.BeekeeperRegistry as string ?? "–")</span> <small class="text-muted" id="beekeeper-platform">@L["Num.Platform"]: @bk.BeekeeperBusinessNumber</small>
                                 @if (!hasPhone)
                                 {
                                     <span class="badge bg-warning text-dark ms-2" id="no-phone">@L["Ci.NoPhone"]</span>
@@ -83,7 +83,7 @@
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label required" for="HoneyTypeId">@L["Org.HoneyType"]</label>
-                                    <select name="HoneyTypeId" id="HoneyTypeId" class="form-select" asp-items="ViewBag.HoneyTypes" asp-for="HoneyTypeId" data-val="false"></select>
+                                    <partial name="_HoneyTypeSelect" model="@(new TOP4HoneyChains.Web.Models.ViewModels.HoneyTypeChoice("HoneyTypeId", "HoneyTypeId", (IEnumerable<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem>)ViewBag.HoneyTypes, Model.HoneyTypeId, ViewBag.MayAddHoneyType == true, Model.NewHoneyTypeName, Model.NewHoneyTypeClass))" />
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label required" for="PeriodId">@L["Cust.Period"]</label>
@@ -159,7 +159,6 @@
                                 <p class="mb-2">@L["Ci.InfoCard.Closure"]</p>
                                 <ul class="ci-info-list">
                                     <li><strong>@L["Ci.Closure.SealLabel"]:</strong> @L["Ci.Closure.SealLabel.Help"]</li>
-                                    <li><strong>@L["Ci.Closure.PlasticSeal"]:</strong> @L["Ci.Closure.PlasticSeal.Help"]</li>
                                     <li><strong>@L["Ci.Closure.OrgContainer"]:</strong> @L["Ci.Closure.OrgContainer.Help"]</li>
                                 </ul>
                                 <p class="mb-0 small">@L["Ci.InfoCard.Closure.Pool"] <a href="/Seals/Index" id="seal-pool-link">@L["Seal.Title"]</a></p>

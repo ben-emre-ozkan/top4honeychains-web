@@ -121,6 +121,13 @@
                                                         }
                                                         <span class="text-muted">@e.At.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</span></div>
                                                 }
+                                                @if (ViewBag.Emptyings is Dictionary<int, List<ContainerEmptying>> emptyings && emptyings.TryGetValue(c.ContainerId, out var checks))
+                                                {
+                                                    @foreach (var check in checks)
+                                                    {
+                                                        <partial name="_EmptyingCheck" model="check" />
+                                                    }
+                                                }
                                             </td>
                                             <td class="small">
                                                 @foreach (var s in c.Samples.OrderBy(s => s.SampleId))
@@ -137,10 +144,10 @@
                                                     <form asp-controller="Samples" asp-action="Resample" method="post" class="border rounded p-2 mt-1 resample-form">
                                                         <input type="hidden" name="containerId" value="@c.ContainerId" />
                                                         <div class="fw-semibold mb-1">@L["Ci.Resample"]</div>
-                                                        <input name="jarSeal" class="form-control form-control-sm mb-1" maxlength="50" required placeholder="@L["Ci.JarSeal"]" aria-label="@L["Ci.JarSeal"]" />
-                                                        <input name="counterSeal" class="form-control form-control-sm mb-1" maxlength="50" required placeholder="@L["Ci.CounterSeal"]" aria-label="@L["Ci.CounterSeal"]" />
+                                                        <input name="jarSeal" class="form-control form-control-sm mb-1" maxlength="200" required placeholder="@L["Ci.JarSeal"]" aria-label="@L["Ci.JarSeal"]" />
+                                                        <input name="counterSeal" class="form-control form-control-sm mb-1" maxlength="200" required placeholder="@L["Ci.CounterSeal"]" aria-label="@L["Ci.CounterSeal"]" />
                                                         <label class="d-block mb-1"><input type="checkbox" name="capIntact" value="true" required /> @(c.Closure != null && Model.JarCapType != null ? L["Ci.CapCheck." + Model.JarCapType] : L["Ci.Cap"])</label>
-                                                        <input name="reseal" class="form-control form-control-sm mb-1" maxlength="80" required placeholder="@(c.Closure != null ? L["Ci.ClosingSeal." + c.Closure] : L["Ci.Reseal"])" aria-label="@(c.Closure != null ? L["Ci.ClosingSeal." + c.Closure] : L["Ci.Reseal"])" />
+                                                        <input name="reseal" class="form-control form-control-sm mb-1" maxlength="200" required placeholder="@(c.Closure != null ? L["Ci.ClosingSeal." + c.Closure] : L["Ci.Reseal"])" aria-label="@(c.Closure != null ? L["Ci.ClosingSeal." + c.Closure] : L["Ci.Reseal"])" />
                                                         <button type="submit" class="btn btn-sm btn-outline-primary ib"><partial name="_ActionIcon" model="@("seal")" /> @L["Ci.ResampleButton"]</button>
                                                     </form>
                                                 }

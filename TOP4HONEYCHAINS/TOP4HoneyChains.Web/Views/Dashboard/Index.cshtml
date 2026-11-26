@@ -26,6 +26,9 @@
     }.Where(k => k.Key != "Consumers" || k.Value != null).ToArray();   // D-87: only while consumer accounts are switched on
     var mapAreas = f.Provinces.Select(p => new TurkeyMapArea(p.Plate, p.Apiaries > 0 ? p.Apiaries : 0.5, L["Home.Map.Tip", p.Beekeepers, p.Apiaries].Value)).ToList();
     var maxApiaries = f.Provinces.Count == 0 ? 0 : f.Provinces.Max(p => p.Apiaries);
+    // D-98: the provinces open their districts, shaded by apiaries
+    var districtAreas = (f.Districts ?? Array.Empty<TOP4HoneyChains.Web.Services.AdminDistrictCount>())
+        .Select(d => new TurkeyMapDistrictArea(d.Plate, d.District, d.Apiaries, L["Home.Map.DistrictTip", d.Apiaries].Value)).ToList();
     string When(DateTime? at) => at?.ToString(at.Value.Date == DateTime.Today ? "HH:mm" : "d MMM, HH:mm", culture) ?? "";
     string Iso(DateTime? at) => at?.ToString("yyyy-MM-ddTHH:mm", CultureInfo.InvariantCulture) ?? "";
 }
@@ -128,7 +131,7 @@
                         <h2 class="ah-h2">@L["Home.Map.Title"]</h2>
                         @if (mapAreas.Any())
                         {
-                            <partial name="_TurkeyMap" model="@(new TurkeyMapModel { Id = "ah-tmap", Label = L["Home.Map.Label"].Value, Areas = mapAreas, LegendTitle = L["Home.Map.Legend"].Value, LegendLow = "1", LegendHigh = maxApiaries.ToString("N0", culture) })" />
+                            <partial name="_TurkeyMap" model="@(new TurkeyMapModel { Id = "ah-tmap", Label = L["Home.Map.Label"].Value, Areas = mapAreas, Districts = true, DistrictAreas = districtAreas, LegendTitle = L["Home.Map.Legend"].Value, LegendLow = "1", LegendHigh = maxApiaries.ToString("N0", culture) })" />
                             <p class="ah-note">@L["Home.Map.Note"]@if (f.UnlocatedApiaries > 0) {<text> @L["Home.Map.Unlocated", f.UnlocatedApiaries]</text>}</p>
                         }
                         else

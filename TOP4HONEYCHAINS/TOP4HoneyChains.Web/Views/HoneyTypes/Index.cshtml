@@ -54,6 +54,11 @@
                                         <tr>
                                             <td>
                                                 <strong>@Ref.T("HoneyType", item.HoneyTypeId, "Title", item.HoneyTypeTitle)</strong>
+                                                @if (item.CreatedAt != null)
+                                                {
+                                                    @* D-98: added from a data-entry form; check the name and merge it if it duplicates another *@
+                                                    <span class="badge bg-warning-subtle text-dark border ms-1 honey-type-added">@L["HT.Added"] @item.CreatedAt.Value.ToLocalTime().ToString("dd.MM.yyyy")</span>
+                                                }
                                             </td>
 
                                             <td>
@@ -76,6 +81,13 @@
                                                        asp-route-id="@item.HoneyTypeId"
                                                        class="btn btn-sm btn-info w-100">
                                                         @L["Edit"]
+                                                    </a>
+
+                                                    @* D-98: merge into another honey type *@
+                                                    <a asp-action="Merge"
+                                                       asp-route-id="@item.HoneyTypeId"
+                                                       class="btn btn-sm btn-warning w-100">
+                                                        @L["HT.Merge.Button"]
                                                     </a>
 
 

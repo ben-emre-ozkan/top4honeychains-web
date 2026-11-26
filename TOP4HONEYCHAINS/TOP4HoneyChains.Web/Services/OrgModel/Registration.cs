@@ -49,6 +49,11 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         public bool IssueSignIn { get; set; }
         // D-88: the beekeeper's association (optional), linked at registration instead of by the platform administrator
         public int? AssociationOrgId { get; set; }
+        // D-98: the beekeeper's honey types (optional, several) and "Other": one new honey type with its class
+        public List<int> HoneyTypeIds { get; set; } = new();
+        public bool OtherHoneyType { get; set; }
+        public string? NewHoneyTypeName { get; set; }
+        public string? NewHoneyTypeClass { get; set; }
 
         public bool IsNew => string.IsNullOrEmpty(BeekeeperId);
         public bool HasApiary => ApiaryLatitude != null || ApiaryLongitude != null || !string.IsNullOrWhiteSpace(ApiaryProvince)
@@ -87,10 +92,12 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         private readonly Permissions _permissions;
         private readonly SmsOptions _sms;
         private readonly bool _demo;
+        private readonly HoneyTypeCatalog _honeyTypes;
 
         public RegistrationService(TOP4HoneyChainsContext context, IMessageService messages, Places places, NoticeService notices,
-            TimeProvider clock, ICurrentOrg current, Permissions permissions, IOptions<SmsOptions> sms, DemoMode demo)
+            TimeProvider clock, ICurrentOrg current, Permissions permissions, IOptions<SmsOptions> sms, DemoMode demo, HoneyTypeCatalog honeyTypes)
         {
+            _honeyTypes = honeyTypes;
             _demo = demo.Enabled;
             _sms = sms.Value;
             _context = context;
@@ -157,14 +164,14 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             if (!RegistryNumber.IsWellFormed(number, _demo))
                 errors.Add(RegistryNumber.Message(_demo));
             else if (await _context.BeekeeperRegistry.AnyAsync(r => r.RegistryNumber == number && r.BeekeeperId != (f.BeekeeperId ?? "")))
-                errors.Add("A beekeeper with this registry number is already registered. Find it and re-verify instead.");
+                errors.Add("A beekeeper with this holding identification number is already registered. Find it and re-verify instead.");
 
             bool? provinceMatches = null;
             if (RegistryNumber.IsWellFormed(number) && _places.Province(registrar.OrgProvince) is { } orgProvince)
             {
                 provinceMatches = number.Substring(2, 2) == orgProvince.Code;
                 if (provinceMatches == false && string.IsNullOrWhiteSpace(f.ProvinceMismatchReason))
-                    errors.Add("The registry number belongs to another province than the directorate. Give a reason to continue.");
+                    errors.Add("The holding identification number belongs to another province than the directorate. Give a reason to continue.");
             }
 
             if (string.IsNullOrWhiteSpace(f.FirstName) || string.IsNullOrWhiteSpace(f.LastName) || f.FirstName.Trim().Length > 50 || f.LastName.Trim().Length > 50)
@@ -219,6 +226,12 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             if (f.AssociationOrgId != null && !await _context.Organizations.AnyAsync(o => o.OrgId == f.AssociationOrgId && !o.IsPlatform
                     && o.Status == OrgStatus.Verified && o.Capabilities.Any(c => c.Capability == Capabilities.Association)))
                 errors.Add("Choose an organization with the Association capability.");
+            // D-98: the beekeeper's honey types: known ones, and "Other" checked like in every honey type list
+            f.HoneyTypeIds = (f.HoneyTypeIds ?? new()).Where(id => id > 0).Distinct().OrderBy(id => id).ToList();
+            if (f.HoneyTypeIds.Count > 50 || (f.HoneyTypeIds.Count > 0 && await _context.HoneyTypes.CountAsync(h => f.HoneyTypeIds.Contains(h.HoneyTypeId)) != f.HoneyTypeIds.Count))
+                errors.Add("Unknown honey type.");
+            if (f.OtherHoneyType && await _honeyTypes.CheckNewAsync(f.NewHoneyTypeName, f.NewHoneyTypeClass) is string honeyError)
+                errors.Add(honeyError);
             if (!f.Attest)
                 errors.Add("Confirm the attestation: you have seen the identity document and the registry record.");
             if (!SmsTemplates.Languages.Contains(f.Language ?? ""))
@@ -240,7 +253,10 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             }.Concat(f.MoreApiaries.Select(m => string.Join(",", "apiary",
                 m.Latitude?.ToString("0.#########", CultureInfo.InvariantCulture) ?? "", m.Longitude?.ToString("0.#########", CultureInfo.InvariantCulture) ?? "",
                 m.Province ?? "", m.DistrictId?.ToString(CultureInfo.InvariantCulture) ?? "", m.Locality?.Trim() ?? "", m.Hives?.ToString(CultureInfo.InvariantCulture) ?? "")))
-             .Concat(f.AssociationOrgId is int association ? new[] { "association:" + association.ToString(CultureInfo.InvariantCulture) } : Array.Empty<string>())));
+             .Concat(f.AssociationOrgId is int association ? new[] { "association:" + association.ToString(CultureInfo.InvariantCulture) } : Array.Empty<string>())
+             // D-98: the honey types (only when given, so a registration without them hashes as before)
+             .Concat(f.HoneyTypeIds.Count > 0 ? new[] { "honey:" + string.Join(",", f.HoneyTypeIds.OrderBy(id => id).Select(id => id.ToString(CultureInfo.InvariantCulture))) } : Array.Empty<string>())
+             .Concat(f.OtherHoneyType ? new[] { "newhoney:" + (f.NewHoneyTypeName ?? "").Trim() + ";" + f.NewHoneyTypeClass } : Array.Empty<string>())));
 
         public static string SubjectKey(RegistrationForm f) => f.BeekeeperId ?? f.DraftKey!;
 
@@ -278,6 +294,7 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             beekeeper.BeekeeperBeekeepingTypeId = f.BeekeepingTypeId;
             beekeeper.PreferredLanguage = f.Language;
             await _context.SaveChangesAsync();
+            await SetHoneyTypesAsync(beekeeper.BeekeeperId!, f);
 
             var registry = await _context.BeekeeperRegistry.FirstOrDefaultAsync(r => r.BeekeeperId == beekeeper.BeekeeperId);
             if (registry == null)
@@ -362,6 +379,19 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             await _context.SaveChangesAsync();
             await transaction.CommitAsync();
             return new Saved(registration.RegistrationId, beekeeper.BeekeeperId!);
+        }
+
+        // D-98: the beekeeper's honey types become exactly the ones of the form; "Other" creates the new type first (same transaction)
+        public async Task SetHoneyTypesAsync(string beekeeperId, RegistrationForm f)
+        {
+            var ids = (f.HoneyTypeIds ?? new()).Distinct().ToList();
+            if (f.OtherHoneyType)
+                ids.Add(await _honeyTypes.CreateAsync(new HoneyTypeCatalog.NewType(f.NewHoneyTypeName!, f.NewHoneyTypeClass!)));
+            var current = await _context.BeekeeperHoneyTypes.Where(b => b.BeekeeperId == beekeeperId).ToListAsync();
+            _context.BeekeeperHoneyTypes.RemoveRange(current.Where(c => !ids.Contains(c.HoneyTypeId)));
+            foreach (var id in ids.Where(id => current.All(c => c.HoneyTypeId != id)))
+                _context.BeekeeperHoneyTypes.Add(new BeekeeperHoneyType { BeekeeperId = beekeeperId, HoneyTypeId = id });
+            await _context.SaveChangesAsync();
         }
 
         public async Task<Apiary> NewApiaryAsync(string beekeeperId, decimal lat, decimal lng, string provinceCode, int districtId, string locality, short hives,

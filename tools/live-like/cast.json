@@ -1,11 +1,12 @@
 {
-  "_comment": "D-88, D-90: the live-like cast of the local copy. Şile Arıcılar Birliği is a real association's name, used with the owner's decision (D-90); its people, the beekeepers, the laboratory and the shop are fictional. No password here (all accounts use the local practice password, kept outside the repository). Built through the app by tools/live-like (LiveLike.csproj); run-demo.ps1 prints each person's phone page link from this file.",
+  "_comment": "D-88, D-90: the live-like cast of the local copy. Şile Arıcılar Birliği is a real association's name, used with the owner's decision (D-90); its people, the beekeepers, the laboratory and the shop are fictional. No password here (all accounts use the local practice password, kept outside the repository). Built through the app by tools/live-like (LiveLike.csproj); run-demo.ps1 prints each person's phone page link from this file. D-98: Örnek Bal İşleme A.Ş. is a fictional processing company for the company path.",
   "operator": { "user": "selin.aydin", "name": "Selin Aydın", "role": "Platform administrator", "phone": "+90 555 000 01 01" },
   "orgs": [
     { "key": "directorate", "name": "Şile İlçe Tarım ve Orman Müdürlüğü", "legal": "T.C. Tarım ve Orman Bakanlığı Şile İlçe Tarım ve Orman Müdürlüğü", "province": "İstanbul", "district": "Şile", "capabilities": [ "BeekeeperRegistration" ] },
     { "key": "lab", "name": "Anadolu Gıda Analiz Laboratuvarı", "legal": "Anadolu Gıda Analiz Laboratuvarı Ltd. Şti.", "province": "Ankara", "district": "Yenimahalle", "capabilities": [ "Laboratory" ], "accreditation": "AB-9471-T" },
     { "key": "association", "name": "Şile Arıcılar Birliği", "legal": "Şile Arıcılar Birliği", "province": "İstanbul", "district": "Şile", "capabilities": [ "Association", "Processing", "Packing" ] },
-    { "key": "shop", "name": "Çarşı Market", "legal": "Çarşı Market Gıda Ticaret Ltd. Şti.", "province": "İstanbul", "district": "Kadıköy", "capabilities": [ "Retail" ] }
+    { "key": "shop", "name": "Çarşı Market", "legal": "Çarşı Market Gıda Ticaret Ltd. Şti.", "province": "İstanbul", "district": "Kadıköy", "capabilities": [ "Retail" ] },
+    { "key": "company", "name": "Örnek Bal İşleme A.Ş.", "legal": "Örnek Bal İşleme Sanayi ve Ticaret A.Ş. (kurgusal)", "province": "İstanbul", "district": "Ümraniye", "capabilities": [ "Processing", "Packing" ] }
   ],
   "people": [
     { "user": "selin.aydin", "name": "Selin Aydın", "org": "platform", "role": "OrgAdmin", "title": "Platform administrator", "phone": "+90 555 000 01 01" },
@@ -22,7 +23,11 @@
     { "user": "mehmet.ozturk", "name": "Mehmet Öztürk", "org": "association", "role": "QualityApprover", "title": "Quality Assurance Officer", "phone": "+90 555 000 03 03" },
     { "user": "gizem.polat", "name": "Gizem Polat", "org": "shop", "role": "Staff", "title": "Store staff", "phone": "+90 555 000 06 01" },
     { "user": "okan.kurt", "name": "Okan Kurt", "org": "shop", "role": "QualityApprover", "title": "Quality Assurance Officer", "phone": "+90 555 000 06 02" },
-    { "user": "serkan.tas", "name": "Serkan Taş", "org": "shop", "role": "ComplianceOfficer", "title": "Compliance Officer", "phone": "+90 555 000 06 03" }
+    { "user": "serkan.tas", "name": "Serkan Taş", "org": "shop", "role": "ComplianceOfficer", "title": "Compliance Officer", "phone": "+90 555 000 06 03" },
+    { "user": "burcu.tekin", "name": "Burcu Tekin", "org": "company", "role": "ComplianceOfficer", "title": "Compliance Officer", "phone": "+90 555 000 13 03" },
+    { "user": "onur.aydemir", "name": "Onur Aydemir", "org": "company", "role": "SampleAcceptanceOfficer", "title": "Reception officer", "phone": "+90 555 000 13 01" },
+    { "user": "ece.bulut", "name": "Ece Bulut", "org": "company", "role": "Staff", "title": "Processing staff", "phone": "+90 555 000 13 02" },
+    { "user": "tolga.sezer", "name": "Tolga Sezer", "org": "company", "role": "QualityApprover", "title": "Quality Assurance Officer", "phone": "+90 555 000 13 04" }
   ],
   "consumer": { "user": "seda.gunes", "name": "Seda Güneş", "phone": "+90 555 000 07 01" },
   "_beekeepers": "fictional beekeepers in real villages of Şile; the coordinates are approximate points inside the district, never an address",

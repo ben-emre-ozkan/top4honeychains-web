@@ -105,6 +105,13 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                 if (done && !await _resp.RequiresApprovalAsync(a.RawHoneyCCPAssignmentCCP))
                     continue;
                 var access = await _resp.AccessAsync("raw", a.RawHoneyProductionId, a.RawHoneyCCPAssignmentCCP);
+                // D-98: a record sent back goes to the person who entered it
+                if (status == AssignmentStatusIds.Rejected)
+                {
+                    if (access.Enter && await CcpRecorders.OfAsync(_context, "raw", a.RawHoneyProductionId, a.RawHoneyCCPAssignmentCCP, _current.UserId, _current.UserName) != CcpRecorders.Self.None)
+                        Add("Returned", "raw", a.RawHoneyProductionId, $"#{a.RawHoneyProductionId}", a.RawHoneyCCPAssignmentCCP, a.Code, a.RawHoneyCCPAssignmentStartDate);
+                    continue;
+                }
                 if (status == AssignmentStatusIds.Submitted || done)
                 {
                     if (access.Approve && await MayApproveAsync(active, "raw", a.RawHoneyProductionId, a.RawHoneyCCPAssignmentCCP))
@@ -126,6 +133,12 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                 if (done && !await _resp.RequiresApprovalAsync(a.FinalHoneyCCPAssignmentCCP))
                     continue;
                 var access = await _resp.AccessAsync("batch", a.FinalHoneyProductionId, a.FinalHoneyCCPAssignmentCCP);
+                if (status == AssignmentStatusIds.Rejected)
+                {
+                    if (access.Enter && await CcpRecorders.OfAsync(_context, "batch", a.FinalHoneyProductionId, a.FinalHoneyCCPAssignmentCCP, _current.UserId, _current.UserName) != CcpRecorders.Self.None)
+                        Add("Returned", "batch", a.FinalHoneyProductionId, a.FinalHoneyProductionTitle ?? $"#{a.FinalHoneyProductionId}", a.FinalHoneyCCPAssignmentCCP, a.Code, a.FinalHoneyCCPAssignmentStartDate);
+                    continue;
+                }
                 if (status == AssignmentStatusIds.Submitted || done)
                 {
                     if (access.Approve && await MayApproveAsync(active, "batch", a.FinalHoneyProductionId, a.FinalHoneyCCPAssignmentCCP))
@@ -143,6 +156,20 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             {
                 if (b.FinalizeRequestedByUserId != null && _perm.Allows(TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Finalize, TOP4HoneyChains.Web.Models.Entities.PermissionAreas.Approve, active.OrgRole))
                     items.Add(new Item("Finalize", b.FinalHoneyProductionTitle ?? $"#{b.FinalHoneyProductionId}", null, $"/OrgWorkspace/Batch/{b.FinalHoneyProductionId}", b.FinalizeRequestedAt));
+            }
+
+            // D-98: association path, lots whose lab report is approved wait for the Quality Assurance Officer's "ready for packing"
+            if (active.OrgRole == OrgRoles.QualityApprover && active.IsVerified && await _resp.PathOfAsync(active.OrgId) == CcpPaths.Association)
+            {
+                var ccp1 = await _context.CriticalControlPoints.Where(c => c.Code == LabService.LabCcpCode).Select(c => c.Id).FirstOrDefaultAsync();
+                var waiting = await _context.RawHoneyProductions.AsNoTracking()
+                    .Where(r => r.OwnerOrgId == active.OrgId && r.PackingReadyAt == null
+                                && !_context.FinalHoneyProductionDetails.Any(d => d.RawHoneyProductionId == r.RawHoneyProductionId)
+                                && _context.LabReports.Any(l => l.Status == LabReportStatus.Approved && l.Sample!.RawHoneyProductionId == r.RawHoneyProductionId && l.Sample.FinalHoneyProductionId == null)
+                                && !_context.CriticalControlPointMonitoringLogs.Any(l => l.RawHoneyProductionId == r.RawHoneyProductionId && (l.CCP!.Code == "CCP 2" || l.CCP.Code == "CCP 3")))
+                    .OrderBy(r => r.RawHoneyProductionId).Select(r => r.RawHoneyProductionId).Take(50).ToListAsync();
+                foreach (var lotId in waiting)
+                    items.Add(new Item("PackingReady", $"#{lotId}", "lot", $"/CCPMonitoring/RawHoneyProductionManageCCP?rawHoneyProductionId={lotId}&ccpId={ccp1}", null));
             }
 
             // D-88: lots ready for a batch, for the roles that create batches

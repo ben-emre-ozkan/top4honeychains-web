@@ -568,13 +568,13 @@
     <value>Rejestr pszczelarzy i stowarzyszenia</value>
   </data>
   <data name="Reg.BusinessNo" xml:space="preserve">
-    <value>Nr działalności</value>
+    <value>Nr na platformie</value>
   </data>
   <data name="Reg.Beekeeper" xml:space="preserve">
     <value>Pszczelarz</value>
   </data>
   <data name="Reg.RegistryNo" xml:space="preserve">
-    <value>Nr w rejestrze</value>
+    <value>Nr identyfikacyjny gospodarstwa</value>
   </data>
   <data name="Reg.Association" xml:space="preserve">
     <value>Stowarzyszenie</value>
@@ -586,7 +586,7 @@
     <value>Format: TR, kod prowincji 01-81 i 10 cyfr. Wymagany jest dokument potwierdzający (wydruk z rejestru lub zdjęcie).</value>
   </data>
   <data name="Reg.ListHelp" xml:space="preserve">
-    <value>Każdy pszczelarz jest rekordem na platformie; pszczelarz zarejestrowany z telefonem komórkowym może też logować się do obszaru pszczelarza. Numer w rejestrze jest weryfikowany, gdy pszczelarz potwierdza rejestrację kodem SMS albo gdy Specjalista ds. zgodności zaakceptuje podpisane zdjęcie. Tutaj administrator platformy sprawdza numer wprowadzony później, z dokumentem potwierdzającym, i zmienia stowarzyszenie.</value>
+    <value>Każdy pszczelarz jest rekordem na platformie; pszczelarz zarejestrowany z telefonem komórkowym może też logować się do obszaru pszczelarza, używając numeru na platformie jako nazwy użytkownika. Numer identyfikacyjny gospodarstwa jest weryfikowany, gdy pszczelarz potwierdza rejestrację kodem SMS albo gdy Specjalista ds. zgodności zaakceptuje podpisane zdjęcie. Tutaj administrator platformy sprawdza numer wprowadzony później, z dokumentem potwierdzającym, i zmienia stowarzyszenie.</value>
   </data>
   <data name="Reg.Submit" xml:space="preserve">
     <value>Prześlij</value>
@@ -757,10 +757,10 @@
     <value>Zarejestruj dostawę</value>
   </data>
   <data name="Cust.NewIntakeHelp" xml:space="preserve">
-    <value>Znajdź pszczelarza po numerze działalności lub numerze w rejestrze, a następnie wprowadź dostawę wraz ze zdjęciem podpisanego formularza dostawy.</value>
+    <value>Znajdź pszczelarza po numerze identyfikacyjnym gospodarstwa lub numerze na platformie, a następnie wprowadź dostawę wraz ze zdjęciem podpisanego formularza dostawy.</value>
   </data>
   <data name="Cust.BeekeeperNumber" xml:space="preserve">
-    <value>Numer działalności lub numer w rejestrze pszczelarza</value>
+    <value>Numer identyfikacyjny gospodarstwa lub numer pszczelarza na platformie</value>
   </data>
   <data name="Cust.Find" xml:space="preserve">
     <value>Znajdź</value>
@@ -1090,7 +1090,7 @@
     <value>Strony pszczelarzy</value>
   </data>
   <data name="P5.StorefrontsHelp" xml:space="preserve">
-    <value>Publiczna strona członka jest publikowana tylko po zarejestrowaniu zgody i przy zweryfikowanym numerze w rejestrze; wycofanie zgody natychmiast cofa publikację.</value>
+    <value>Publiczna strona członka jest publikowana tylko po zarejestrowaniu zgody i przy zweryfikowanym numerze identyfikacyjnym gospodarstwa; wycofanie zgody natychmiast cofa publikację.</value>
   </data>
   <data name="P5.Consent" xml:space="preserve">
     <value>Zgoda</value>
@@ -1114,7 +1114,7 @@
     <value>niepubliczna</value>
   </data>
   <data name="P5.NeedsRegistry" xml:space="preserve">
-    <value>wymaga zweryfikowanego numeru w rejestrze</value>
+    <value>wymaga zweryfikowanego numeru identyfikacyjnego gospodarstwa</value>
   </data>
   <data name="P5.RecordConsent" xml:space="preserve">
     <value>Zarejestruj zgodę</value>
@@ -1189,7 +1189,7 @@
     <value>Organizacje do weryfikacji</value>
   </data>
   <data name="Work.Kind.Registry" xml:space="preserve">
-    <value>Numery w rejestrze do weryfikacji</value>
+    <value>Numery identyfikacyjne gospodarstw do weryfikacji</value>
   </data>
   <data name="Work.Kind.Correction" xml:space="preserve">
     <value>Korekty do rozstrzygnięcia</value>
@@ -2269,7 +2269,7 @@
     <value>Szukaj:</value>
   </data>
   <data name="Registry number:" xml:space="preserve">
-    <value>Numer w rejestrze:</value>
+    <value>Numer identyfikacyjny gospodarstwa:</value>
   </data>
   <data name="Lock-screen" xml:space="preserve">
     <value>Ekran blokady</value>
@@ -3355,7 +3355,7 @@
     <value>Szerokość geograficzna lokalizacji</value>
   </data>
   <data name="Beekeeper Business Number" xml:space="preserve">
-    <value>Numer działalności pszczelarza</value>
+    <value>Numer pszczelarza na platformie</value>
   </data>
   <data name="Enter processing step" xml:space="preserve">
     <value>Wprowadź etap przetwarzania</value>
@@ -3763,7 +3763,7 @@
     <value>pełna identyfikowalność</value>
   </data>
   <data name="Business Number" xml:space="preserve">
-    <value>Numer działalności</value>
+    <value>Numer na platformie</value>
   </data>
   <data name="Enter until when the counter-sample is kept (a future date)." xml:space="preserve">
     <value>Wprowadź, do kiedy przechowywana jest przeciwpróbka (data w przyszłości).</value>
@@ -5164,7 +5164,7 @@
     <value>Sama lista funkcji jest stała: nowa funkcja wymaga skryptu bazy danych i zmiany kodu.</value>
   </data>
   <data name="Cap.Uses.Beekeeping" xml:space="preserve">
-    <value>Gospodarstwo pszczelarskie. Nie loguje się; jego zweryfikowany numer rejestrowy łączy partie z pszczelarzem i wskazuje prowincję.</value>
+    <value>Gospodarstwo pszczelarskie. Nie loguje się; jego zweryfikowany numer identyfikacyjny gospodarstwa łączy partie z pszczelarzem i wskazuje prowincję.</value>
   </data>
   <data name="Cap.Uses.Association" xml:space="preserve">
     <value>Wiąże swoich pszczelarzy, rejestruje ich zgodę i publikuje ich strony oraz widzi partie członków w raportach wycofania; jego inspektor terenowy może wykonać KPK 0, jeśli przydzieli to administrator.</value>
@@ -5539,7 +5539,7 @@
     <value>Pochodzenie według prowincji</value>
   </data>
   <data name="Hst.MapNote" xml:space="preserve">
-    <value>Tylko według prowincji; dokładne położenie pasiek nigdy nie jest publikowane.</value>
+    <value>Według prowincji i powiatu; dokładne położenie pasiek nigdy nie jest publikowane.</value>
   </data>
   <data name="Hst.SourcesEyebrow" xml:space="preserve">
     <value>Poznaj pszczelarzy</value>
@@ -6292,7 +6292,7 @@
     <value>Pasieki w prowincji</value>
   </data>
   <data name="Home.Map.Note" xml:space="preserve">
-    <value>Tylko według prowincji; położenie pasiek nigdy nie jest pokazywane.</value>
+    <value>Według prowincji i powiatu; położenie pasiek nigdy nie jest pokazywane.</value>
   </data>
   <data name="Home.Map.Unlocated" xml:space="preserve">
     <value>Pasieki bez lokalizacji (poza mapą): {0}.</value>
@@ -6319,7 +6319,7 @@
     <value>Organizacja</value>
   </data>
   <data name="Home.Wait.Kind.registry" xml:space="preserve">
-    <value>Numer rejestrowy</value>
+    <value>Numer identyfikacyjny gospodarstwa</value>
   </data>
   <data name="Home.Wait.Kind.correction" xml:space="preserve">
     <value>Korekta</value>
@@ -6373,7 +6373,7 @@
     <value>Organizacja</value>
   </data>
   <data name="Home.Act.Kind.registry" xml:space="preserve">
-    <value>Numer rejestrowy</value>
+    <value>Numer identyfikacyjny gospodarstwa</value>
   </data>
   <data name="Home.Act.Entered" xml:space="preserve">
     <value>wprowadził(a): {0}</value>
@@ -6553,7 +6553,7 @@
     <value>Data urodzenia</value>
   </data>
   <data name="Audit.F.BusinessNumber" xml:space="preserve">
-    <value>Numer gospodarstwa</value>
+    <value>Numer na platformie</value>
   </data>
   <data name="Audit.F.Capability" xml:space="preserve">
     <value>Funkcja</value>
@@ -6622,7 +6622,7 @@
     <value>Wprowadził(a)</value>
   </data>
   <data name="Audit.F.EnterpriseNumber" xml:space="preserve">
-    <value>Numer rejestrowy gospodarstwa</value>
+    <value>Numer identyfikacyjny gospodarstwa</value>
   </data>
   <data name="Audit.F.Event" xml:space="preserve">
     <value>Zdarzenie</value>
@@ -6817,7 +6817,7 @@
     <value>Zarejestrował(a)</value>
   </data>
   <data name="Audit.F.RegistryNumber" xml:space="preserve">
-    <value>Numer rejestrowy</value>
+    <value>Numer identyfikacyjny gospodarstwa</value>
   </data>
   <data name="Audit.F.RejectReason" xml:space="preserve">
     <value>Powód odrzucenia</value>
@@ -7135,7 +7135,7 @@
     <value>Dowód ze zdjęciem podpisu (akceptacja lub odrzucenie)</value>
   </data>
   <data name="Cap.Uses.BeekeeperRegistration" xml:space="preserve">
-    <value>Powiatowa dyrekcja rolnictwa: jej specjaliści ds. rejestracji rejestrują pszczelarzy i ich pasieki, sprawdzają numer rejestrowy, potwierdzają tożsamość i zgodę kodem SMS (lub zdjęciem podpisu) i wydają dane logowania.</value>
+    <value>Powiatowa dyrekcja rolnictwa: jej specjaliści ds. rejestracji rejestrują pszczelarzy i ich pasieki, sprawdzają numer identyfikacyjny gospodarstwa, potwierdzają tożsamość i zgodę kodem SMS (lub zdjęciem podpisu) i wydają dane logowania.</value>
   </data>
   <data name="Org.NoComplianceOfficer" xml:space="preserve">
     <value>Ta organizacja nie ma jeszcze specjalisty ds. zgodności. Każda organizacja wyznacza co najmniej jednego (może to być administrator organizacji z drugim członkostwem).</value>
@@ -7570,7 +7570,7 @@
     <value>Cel pszczelarstwa</value>
   </data>
   <data name="Registry Number" xml:space="preserve">
-    <value>Numer rejestrowy</value>
+    <value>Numer identyfikacyjny gospodarstwa</value>
   </data>
   <data name="Work.Kind.Evidence" xml:space="preserve">
     <value>Sprawdź zdjęcia podpisów</value>
@@ -7579,16 +7579,16 @@
     <value>Rejestracja pszczelarzy</value>
   </data>
   <data name="Reg78.Help" xml:space="preserve">
-    <value>Pszczelarze zarejestrowani przez Twoją organizację. Każdą rejestrację potwierdzają numer rejestrowy, kod SMS na telefon pszczelarza i Twoje oświadczenie.</value>
+    <value>Pszczelarze zarejestrowani przez Twoją organizację. Każdą rejestrację potwierdzają numer identyfikacyjny gospodarstwa, kod SMS na telefon pszczelarza i Twoje oświadczenie.</value>
   </data>
   <data name="Reg78.FindLabel" xml:space="preserve">
-    <value>Numer rejestrowy (AKS) lub numer gospodarstwa</value>
+    <value>Numer identyfikacyjny gospodarstwa (AKS) lub numer na platformie</value>
   </data>
   <data name="Reg78.Find" xml:space="preserve">
     <value>Znajdź lub zarejestruj</value>
   </data>
   <data name="Reg78.FindHelp" xml:space="preserve">
-    <value>Znany pszczelarz jest weryfikowany ponownie; nowy numer rejestrowy rozpoczyna nową rejestrację.</value>
+    <value>Znany pszczelarz jest weryfikowany ponownie; nowy numer identyfikacyjny gospodarstwa rozpoczyna nową rejestrację.</value>
   </data>
   <data name="Reg78.Date" xml:space="preserve">
     <value>Data</value>
@@ -7747,7 +7747,7 @@
     <value>Sprawdzenie zdjęcia podpisu</value>
   </data>
   <data name="Reg78.ReviewHelp" xml:space="preserve">
-    <value>Otwórz zdjęcie i porównaj z rejestracją: tożsamość, numer rejestrowy, wybory pszczelarza i podpis. Nie Ty wprowadzałeś tę rejestrację.</value>
+    <value>Otwórz zdjęcie i porównaj z rejestracją: tożsamość, numer identyfikacyjny gospodarstwa, wybory pszczelarza i podpis. Nie Ty wprowadzałeś tę rejestrację.</value>
   </data>
   <data name="Reg78.ReviewReason" xml:space="preserve">
     <value>Uwaga (wymagana przy odrzuceniu)</value>
@@ -8785,7 +8785,7 @@
     <value>Zapisz każdą puszkę i jej plombę. Pszczelarz potwierdza kodem SMS.</value>
   </data>
   <data name="Scene.seal" xml:space="preserve">
-    <value>Numerowana plomba przechodzi przez uchwyt i się zatrzaskuje. Zapisz jej numer.</value>
+    <value>Numerowana plomba łączy wieko z korpusem i się zatrzaskuje. Zapisz jej numer.</value>
   </data>
   <data name="Scene.send" xml:space="preserve">
     <value>Zaplombowane słoiki jadą do laboratorium; próbki kontrolne zostają w zakładzie.</value>
@@ -8854,7 +8854,7 @@
     <value>Próbki i laboratorium pokazuje wszystkie słoiki i raporty Twojego laboratorium. Twoje pierwsze zadanie to zatwierdzanie raportów analityków albo zwrot raportu, np. gdy wartość wygląda na błędną.</value>
   </data>
   <data name="Tour.Registration" xml:space="preserve">
-    <value>Rejestracja pszczelarzy to miejsce, gdzie rejestrujesz pszczelarzy i ich pasieki. Wpisz numer rejestrowy, dane pszczelarza i pasieki, wyślij kod SMS i wpisz kod, który pszczelarz Ci odczyta.</value>
+    <value>Rejestracja pszczelarzy to miejsce, gdzie rejestrujesz pszczelarzy i ich pasieki. Wpisz numer identyfikacyjny gospodarstwa, dane pszczelarza, rodzaje miodu i pasiekę, wyślij kod SMS i wpisz kod, który pszczelarz Ci odczyta.</value>
   </data>
   <data name="Tour.Compliance" xml:space="preserve">
     <value>Zgodność to Twoje biurko przeglądów: podpisane zdjęcia, przeglądy jakości, wnioski o dane i dziennik audytu. Zacznij od spraw czekających na Twoją decyzję, np. dostawy potwierdzonej podpisanym zdjęciem zamiast kodu SMS.</value>
@@ -8872,7 +8872,7 @@
     <value>Panel pokazuje, co czeka na Ciebie jako operatora platformy, oraz ostatnią aktywność. Zacznij tutaj, np. od organizacji czekającej na weryfikację.</value>
   </data>
   <data name="Tour.Admin.Data" xml:space="preserve">
-    <value>Pszczelarze, pasieki i listy referencyjne platformy. Znajdź tu pszczelarza, np. po numerze rejestrowym.</value>
+    <value>Pszczelarze, pasieki i listy referencyjne platformy. Znajdź tu pszczelarza, np. po numerze identyfikacyjnym gospodarstwa.</value>
   </data>
   <data name="Tour.Me.Deliveries" xml:space="preserve">
     <value>Moje dostawy pokazuje dostarczony miód z każdym pojemnikiem i jego plombą. Wpisz tu swoją cenę za kilogram, np. za miód kasztanowy z zeszłego tygodnia.</value>
@@ -9827,7 +9827,7 @@
     <value>Próbki i laboratorium to Twoja lista pracy. Najpierw przyjmij każdy słoik (numer plomby, etykieta, wieczko), potem wpisz wyniki, np. wilgotność i HMF, i wyślij raport do zatwierdzenia.</value>
   </data>
   <data name="Tour.Approve" xml:space="preserve">
-    <value>Moja praca pokazuje zapisy punktów kontrolnych (KPK) przesłane przez współpracowników. Sprawdź każdy i zatwierdź go lub zwróć, np. kontrolę przyjęcia dzisiejszej dostawy; nikt nie zatwierdza własnego wpisu.</value>
+    <value>Moja praca zawiera zapisy punktów kontroli (KPK) przesłane przez współpracowników. Sprawdź każdy i zatwierdź go albo odeślij z powodem: wraca wtedy do osoby, która go wprowadziła, np. kontrola przyjęcia dzisiejszej dostawy. Nikt nie zatwierdza własnego wpisu.</value>
   </data>
   <data name="Reg78.Info.Registry" xml:space="preserve">
     <value>TR + kod tablic rejestracyjnych prowincji (2 cyfry) + 10 cyfr, np. TR520401200241. Kod prowincji jest porównywany z prowincją Twojej dyrekcji.</value>
@@ -9851,7 +9851,7 @@
     <value>Pszczelarz otrzyma kod SMS i późniejsze wiadomości w tym języku.</value>
   </data>
   <data name="Cust.Info.Number" xml:space="preserve">
-    <value>Wpisz numer rejestrowy pszczelarza (np. TR520401200241) lub numer gospodarstwa i naciśnij Znajdź. Następnie w formularzu pojawią się jego pasieki.</value>
+    <value>Wpisz numer identyfikacyjny gospodarstwa pszczelarza (np. TR520401200241) lub jego numer na platformie i naciśnij Znajdź. Następnie w formularzu pojawią się jego pasieki.</value>
   </data>
   <data name="Ci.ArrivedUnsealed" xml:space="preserve">
     <value>Dotarł bez plomby (zwykle)</value>
@@ -9932,25 +9932,25 @@
     <value>Numerowana etykieta z QR na wieku i korpusie. Pasuje do każdego pojemnika.</value>
   </data>
   <data name="Ci.Closure.SealLabel.Help" xml:space="preserve">
-    <value>Numerowana etykieta z kodem QR, wydana przez platformę i wydrukowana wcześniej na zabezpieczającym materiale VOID. Nakleja się ją na wieko i korpus; przy próbie zdjęcia rwie się lub zostawia ślady VOID. Pasuje do każdego pojemnika.</value>
+    <value>Numerowana etykieta z kodem QR, wydana przez platformę i wydrukowana wcześniej na zabezpieczającym materiale VOID. To pasek zrywalny przez łączenie: połowa z kodem i QR na wieko, druga połowa na korpus. Przy próbie zdjęcia rwie się lub zostawia ślady VOID. Pasuje do każdego pojemnika.</value>
   </data>
   <data name="Ci.Closure.PlasticSeal" xml:space="preserve">
     <value>Pojemnik pszczelarza + numerowana plomba plastikowa</value>
   </data>
   <data name="Ci.Closure.PlasticSeal.Short" xml:space="preserve">
-    <value>Przez uchwyt lub otwór w wieku; zamyka się raz.</value>
+    <value>Przez ucho łączące wieko z korpusem; zamyka się raz.</value>
   </data>
   <data name="Ci.Closure.PlasticSeal.Help" xml:space="preserve">
-    <value>Dla pojemników z uchwytem lub otworem w wieku: kupiona numerowana plomba przechodzi przez nie i się zatrzaskuje; otworzyć ją można tylko przecinając.</value>
+    <value>Kupiona numerowana plomba przechodzi przez ucho łączące wieko z korpusem i się zatrzaskuje; otworzyć ją można tylko przecinając. Takie ucho mają tylko pojemniki stowarzyszenia.</value>
   </data>
   <data name="Ci.Closure.OrgContainer" xml:space="preserve">
     <value>Stały pojemnik stowarzyszenia</value>
   </data>
   <data name="Ci.Closure.OrgContainer.Short" xml:space="preserve">
-    <value>Zarejestrowany raz; zeskanuj lub wpisz jego kod TK.</value>
+    <value>Zarejestrowany raz; zeskanuj lub wpisz jego kod TK. Zamykany etykietą plombującą lub plombą plastikową.</value>
   </data>
   <data name="Ci.Closure.OrgContainer.Help" xml:space="preserve">
-    <value>Własny pojemnik stowarzyszenia, zarejestrowany raz ze stałym kodem i QR. Przy dostawie zeskanuj lub wpisz jego kod; jego strona pokazuje każde użycie. Nadal zamyka się go plombą z puli.</value>
+    <value>Własny pojemnik stowarzyszenia, zarejestrowany raz ze stałym kodem i QR. Przy dostawie zeskanuj lub wpisz jego kod; jego strona pokazuje każde użycie. Zamyka się go plombą z puli: etykietą plombującą albo numerowaną plombą plastikową przez ucho łączące wieko z korpusem.</value>
   </data>
   <data name="Ci.Info.Closure" xml:space="preserve">
     <value>Pojemnik zamyka się raz, po pobraniu próbek, przy pszczelarzu. Plomba pochodzi z puli Twojej organizacji.</value>
@@ -10025,7 +10025,7 @@
     <value>Etykieta plombująca idzie przez wieko i korpus. Zerwana rwie się i zostawia ślady VOID.</value>
   </data>
   <data name="Scene.plastic" xml:space="preserve">
-    <value>Numerowana plomba plastikowa przechodzi przez uchwyt i się zatrzaskuje.</value>
+    <value>Numerowana plomba plastikowa przechodzi przez ucha wieka i korpusu i się zatrzaskuje.</value>
   </data>
   <data name="Scene.scan" xml:space="preserve">
     <value>Pojemnik stowarzyszenia skanuje się po kodzie QR.</value>
@@ -10076,7 +10076,7 @@
     <value>Materiały pod ręką</value>
   </data>
   <data name="Seal.Materials" xml:space="preserve">
-    <value>Zabezpieczający materiał etykietowy VOID (100 × 50 mm) na etykiety plombujące, numerowane plomby plastikowe do uchwytów, słoiki na próbki z wieczkiem z przyciskiem lub z pierścieniem oraz ręczna pompka próżniowa do wieczek z przyciskiem.</value>
+    <value>Materiał etykietowy VOID niepozostawiający śladów lub kruchy (typu „skorupka jajka”) (100 × 50 mm) na etykiety plombujące, numerowane plomby plastikowe do pojemników stowarzyszenia (przez ucho łączące wieko z korpusem), słoiki na próbki z wieczkiem z przyciskiem lub z pierścieniem oraz ręczna pompka próżniowa do wieczek z przyciskiem.</value>
   </data>
   <data name="Seal.Issue" xml:space="preserve">
     <value>Wydaj etykiety plombujące</value>
@@ -10097,7 +10097,7 @@
     <value>Dodaj kupione plomby plastikowe</value>
   </data>
   <data name="Seal.RangeHelp" xml:space="preserve">
-    <value>Wpisz zakres nadrukowany na plombach: opcjonalny prefiks oraz pierwszy i ostatni numer.</value>
+    <value>Wpisz zakres nadrukowany na plombach: opcjonalny prefiks oraz pierwszy i ostatni numer. Plomby plastikowe zamykają tylko pojemniki stowarzyszenia.</value>
   </data>
   <data name="Seal.Prefix" xml:space="preserve">
     <value>Prefiks</value>
@@ -10169,7 +10169,7 @@
     <value>Wszystkie użycia</value>
   </data>
   <data name="Seal.PrintHelp" xml:space="preserve">
-    <value>Drukuj na zabezpieczającym materiale VOID.</value>
+    <value>Drukuj na materiale VOID niepozostawiającym śladów lub kruchym (typu „skorupka jajka”). Każda etykieta to pasek zrywalny: połowa z kodem i QR na wieko, druga połowa na korpus.</value>
   </data>
   <data name="Seal.VoidNote" xml:space="preserve">
     <value>NIE ZDEJMOWAĆ · VOID</value>
@@ -10284,5 +10284,398 @@
   </data>
   <data name="Enter the capacity and the empty weight in kg (or leave them empty)." xml:space="preserve">
     <value>Wpisz pojemność i masę pustego pojemnika w kg (lub zostaw puste).</value>
+  </data>
+  <data name="Ccp.Return" xml:space="preserve">
+    <value>Odeślij</value>
+  </data>
+  <data name="Ccp.ReturnPlaceholder" xml:space="preserve">
+    <value>np. Wartość temperatury wygląda na błędną; proszę ponownie odczytać termometr.</value>
+  </data>
+  <data name="Ccp.ReturnHelp" xml:space="preserve">
+    <value>Zapis wraca do osoby, która go wprowadziła, i pojawia się w jej liście Moja praca z Twoim powodem. Gdy zapisze go ponownie, wróci do Ciebie do zatwierdzenia.</value>
+  </data>
+  <data name="Ccp.Returned" xml:space="preserve">
+    <value>Odesłano.</value>
+  </data>
+  <data name="Ccp.ReturnedBy" xml:space="preserve">
+    <value>Odesłane przez {0} dnia {1}</value>
+  </data>
+  <data name="Ccp.ReturnedHelp" xml:space="preserve">
+    <value>Popraw poniższe wartości i zapisz; zapis wróci do zatwierdzenia.</value>
+  </data>
+  <data name="Work.Kind.Returned" xml:space="preserve">
+    <value>Odesłane do Ciebie</value>
+  </data>
+  <data name="Work.Kind.PackingReady" xml:space="preserve">
+    <value>Gotowe do pakowania?</value>
+  </data>
+  <data name="Path.Title" xml:space="preserve">
+    <value>Ścieżka po laboratorium</value>
+  </data>
+  <data name="Path.Association" xml:space="preserve">
+    <value>Ścieżka stowarzyszenia: od razu do pakowania (KPK 2–6 nie mają zastosowania)</value>
+  </data>
+  <data name="Path.Company" xml:space="preserve">
+    <value>Ścieżka firmy: przetwarzanie (od KPK 2)</value>
+  </data>
+  <data name="Path.Default" xml:space="preserve">
+    <value>domyślnie</value>
+  </data>
+  <data name="Path.Info.Setting" xml:space="preserve">
+    <value>Stowarzyszenia zwykle pakują miód członków bez przetwarzania: po zatwierdzonym raporcie laboratoryjnym specjalista ds. zapewnienia jakości oznacza go jako gotowy do pakowania, a KPK 2–6 nie mają zastosowania. Firmy przetwórcze podgrzewają, filtrują i mieszają miód, więc obowiązują KPK od 2. Domyślnie ścieżka stowarzyszenia dla organizacji z uprawnieniem Stowarzyszenie, a w pozostałych przypadkach ścieżka firmy. Zmiana dotyczy partii oznaczonych jako gotowe i partii końcowych utworzonych od tej chwili.</value>
+  </data>
+  <data name="Path.PackingReady" xml:space="preserve">
+    <value>Miód gotowy do pakowania</value>
+  </data>
+  <data name="Path.Info.Association" xml:space="preserve">
+    <value>Twoja organizacja stosuje ścieżkę stowarzyszenia: gdy raport laboratoryjny partii zostanie zatwierdzony, specjalista ds. zapewnienia jakości potwierdza tutaj, że miód trafia od razu do pakowania. KPK 2–6 (ogrzewanie, filtrowanie, homogenizacja, pasteryzacja, klarowanie) nie mają wtedy zastosowania do tej partii ani jej partii końcowej; są zapisywane jako nie dotyczy z powodem i trafiają do dziennika audytu.</value>
+  </data>
+  <data name="Path.ButtonHelp" xml:space="preserve">
+    <value>Raport laboratoryjny jest zatwierdzony. Potwierdź, że miód trafia do pakowania bez przetwarzania.</value>
+  </data>
+  <data name="Path.IsReady" xml:space="preserve">
+    <value>Gotowe do pakowania</value>
+  </data>
+  <data name="Path.ReadyHelp" xml:space="preserve">
+    <value>KPK 2–6 nie mają zastosowania do tej partii; może trafić do partii końcowej.</value>
+  </data>
+  <data name="Final.Title" xml:space="preserve">
+    <value>Wynik końcowy miodu</value>
+  </data>
+  <data name="Final.Eyebrow" xml:space="preserve">
+    <value>Mieszanka w słoiku</value>
+  </data>
+  <data name="Final.Help" xml:space="preserve">
+    <value>Ta partia końcowa zawiera miód z więcej niż jednej pasieki. Analiza laboratoryjna mieszanki końcowej pokazuje miód taki, jaki jest w słoiku, niezależnie od wyników poszczególnych partii.</value>
+  </data>
+  <data name="Final.Info" xml:space="preserve">
+    <value>Pobierz jeden zaplombowany słoik i próbkę kontrolną z wymieszanej partii, zaplombuj oba etykietami plombującymi z puli Twojej organizacji i wyślij słoik do zweryfikowanego laboratorium. Zatwierdzony raport jest pokazywany tutaj i w Historii miodu jako wynik końcowy miodu. Można zakończyć bez niego, ale pojawi się ostrzeżenie.</value>
+  </data>
+  <data name="Final.PublicIntro" xml:space="preserve">
+    <value>Ten miód jest mieszanką z kilku pasiek. Oprócz wyników każdego źródła laboratorium przebadało także samą mieszankę.</value>
+  </data>
+  <data name="Final.Approved" xml:space="preserve">
+    <value>Zatwierdzono</value>
+  </data>
+  <data name="Final.Parameter" xml:space="preserve">
+    <value>Parametr</value>
+  </data>
+  <data name="Final.Value" xml:space="preserve">
+    <value>Wartość</value>
+  </data>
+  <data name="Final.Limit" xml:space="preserve">
+    <value>Limit</value>
+  </data>
+  <data name="Final.AtLab" xml:space="preserve">
+    <value>W laboratorium</value>
+  </data>
+  <data name="Final.Rejected" xml:space="preserve">
+    <value>Laboratorium odrzuciło próbkę {0}. Pobierz nową próbkę.</value>
+  </data>
+  <data name="Final.TakeSample" xml:space="preserve">
+    <value>Pobierz próbkę mieszanki końcowej</value>
+  </data>
+  <data name="Final.Lab" xml:space="preserve">
+    <value>Laboratorium</value>
+  </data>
+  <data name="Final.CounterWhere" xml:space="preserve">
+    <value>Miejsce przechowywania próbki kontrolnej</value>
+  </data>
+  <data name="Final.RetainUntil" xml:space="preserve">
+    <value>Przechowywać do</value>
+  </data>
+  <data name="Final.Send" xml:space="preserve">
+    <value>Wyślij do laboratorium</value>
+  </data>
+  <data name="Final.Warning" xml:space="preserve">
+    <value>Ta partia końcowa nie ma jeszcze zatwierdzonego wyniku końcowego miodu. Nadal można ją zakończyć; Historia miodu pokaże wtedy tylko wyniki poszczególnych partii.</value>
+  </data>
+  <data name="Final.BatchSample" xml:space="preserve">
+    <value>Mieszanka końcowa partii nr {0}</value>
+  </data>
+  <data name="Limit.expected" xml:space="preserve">
+    <value>oczekiwane</value>
+  </data>
+  <data name="This control point does not apply on the association path." xml:space="preserve">
+    <value>Ten punkt kontroli nie ma zastosowania na ścieżce stowarzyszenia.</value>
+  </data>
+  <data name="Only a submitted record can be sent back." xml:space="preserve">
+    <value>Odesłać można tylko przesłany zapis.</value>
+  </data>
+  <data name="A reason is required to send the record back." xml:space="preserve">
+    <value>Aby odesłać zapis, trzeba podać powód.</value>
+  </data>
+  <data name="Only a {0} of the organization can send a record back." xml:space="preserve">
+    <value>Zapis może odesłać tylko {0} organizacji.</value>
+  </data>
+  <data name="The record was sent back to the person who entered it." xml:space="preserve">
+    <value>Zapis odesłano do osoby, która go wprowadziła.</value>
+  </data>
+  <data name="The honey is ready for packing: CCP 2 to 6 do not apply to this lot." xml:space="preserve">
+    <value>Miód jest gotowy do pakowania: KPK 2–6 nie mają zastosowania do tej partii.</value>
+  </data>
+  <data name="The lot does not exist." xml:space="preserve">
+    <value>Partia nie istnieje.</value>
+  </data>
+  <data name="The honey of this lot is already marked ready for packing." xml:space="preserve">
+    <value>Miód z tej partii jest już oznaczony jako gotowy do pakowania.</value>
+  </data>
+  <data name="Only organizations on the association path mark honey ready for packing." xml:space="preserve">
+    <value>Tylko organizacje na ścieżce stowarzyszenia oznaczają miód jako gotowy do pakowania.</value>
+  </data>
+  <data name="Only the organization that holds the lot marks it ready for packing." xml:space="preserve">
+    <value>Tylko organizacja, która posiada partię, oznacza ją jako gotową do pakowania.</value>
+  </data>
+  <data name="Only the Quality Assurance Officer marks the honey ready for packing." xml:space="preserve">
+    <value>Tylko specjalista ds. zapewnienia jakości oznacza miód jako gotowy do pakowania.</value>
+  </data>
+  <data name="The lot's laboratory report is not approved yet." xml:space="preserve">
+    <value>Raport laboratoryjny partii nie jest jeszcze zatwierdzony.</value>
+  </data>
+  <data name="CCP 2 or CCP 3 of this lot already has values, so the lot follows the company path." xml:space="preserve">
+    <value>KPK 2 lub KPK 3 tej partii ma już wartości, więc partia idzie ścieżką firmy.</value>
+  </data>
+  <data name="The lot is in a finalized batch and can no longer be changed." xml:space="preserve">
+    <value>Partia jest w zakończonej partii końcowej i nie można jej już zmienić.</value>
+  </data>
+  <data name="Association path: the honey goes to packing after the approved laboratory report." xml:space="preserve">
+    <value>Ścieżka stowarzyszenia: miód trafia do pakowania po zatwierdzonym raporcie laboratoryjnym.</value>
+  </data>
+  <data name="Choose the association path or the company path." xml:space="preserve">
+    <value>Wybierz ścieżkę stowarzyszenia albo ścieżkę firmy.</value>
+  </data>
+  <data name="The path after the laboratory was saved." xml:space="preserve">
+    <value>Zapisano ścieżkę po laboratorium.</value>
+  </data>
+  <data name="The batch does not exist." xml:space="preserve">
+    <value>Partia końcowa nie istnieje.</value>
+  </data>
+  <data name="Only the organization that holds the batch takes its samples." xml:space="preserve">
+    <value>Próbki partii końcowej pobiera tylko organizacja, która ją posiada.</value>
+  </data>
+  <data name="The batch is finalized." xml:space="preserve">
+    <value>Partia końcowa jest zakończona.</value>
+  </data>
+  <data name="A final honey result is taken on the company path for a batch with honey from more than one apiary." xml:space="preserve">
+    <value>Wynik końcowy miodu pobiera się na ścieżce firmy dla partii końcowej z miodem z więcej niż jednej pasieki.</value>
+  </data>
+  <data name="A sample of this batch is already at the laboratory." xml:space="preserve">
+    <value>Próbka tej partii końcowej jest już w laboratorium.</value>
+  </data>
+  <data name="Lab report approved; it is the batch's final honey result." xml:space="preserve">
+    <value>Raport laboratoryjny zatwierdzony; jest wynikiem końcowym miodu tej partii.</value>
+  </data>
+  <data name="Map.Back" xml:space="preserve">
+    <value>Wszystkie prowincje</value>
+  </data>
+  <data name="Map.DrillHint" xml:space="preserve">
+    <value>Wybierz wyróżnioną prowincję, aby zobaczyć jej powiaty.</value>
+  </data>
+  <data name="Map.DistrictCredit" xml:space="preserve">
+    <value>Granice powiatów: geoBoundaries, © współtwórcy OpenStreetMap (ODbL)</value>
+  </data>
+  <data name="Home.Map.DistrictTip" xml:space="preserve">
+    <value>Pasieki: {0}</value>
+  </data>
+  <data name="Seal.Split" xml:space="preserve">
+    <value>wieko | korpus</value>
+  </data>
+  <data name="Seal.InUse" xml:space="preserve">
+    <value>W użyciu: {0}</value>
+  </data>
+  <data name="Seal.Free" xml:space="preserve">
+    <value>Wolny</value>
+  </data>
+  <data name="Empty.Title" xml:space="preserve">
+    <value>Pojemniki partii źródłowych</value>
+  </data>
+  <data name="Empty.Help" xml:space="preserve">
+    <value>Pojemnik pozostaje zaplombowany, dopóki nie zostanie opróżniony do tej partii końcowej. Przed opróżnieniem zeskanuj jego plombę zamykającą i potwierdź, że jest nienaruszona. Inny kod lub zerwana plomba zatrzymuje ten krok i zostaje zapisana.</value>
+  </data>
+  <data name="Empty.Warning" xml:space="preserve">
+    <value>Pojemniki nadal zaplombowane lub z nieudaną kontrolą plomby: {0}. Nie blokuje to zatwierdzenia ostatecznego; najpierw je opróżnij lub wyjaśnij.</value>
+  </data>
+  <data name="Empty.Checks" xml:space="preserve">
+    <value>Kontrola plomby przy opróżnianiu</value>
+  </data>
+  <data name="Empty.Seal" xml:space="preserve">
+    <value>Plomba zamykająca: zeskanuj lub wpisz</value>
+  </data>
+  <data name="Empty.Intact" xml:space="preserve">
+    <value>Plomba jest nienaruszona</value>
+  </data>
+  <data name="Empty.Button" xml:space="preserve">
+    <value>Opróżnij do tej partii końcowej</value>
+  </data>
+  <data name="Empty.BrokenButton" xml:space="preserve">
+    <value>Plomba zerwana</value>
+  </data>
+  <data name="Empty.State.Sealed" xml:space="preserve">
+    <value>Zaplombowany</value>
+  </data>
+  <data name="Empty.State.Emptied" xml:space="preserve">
+    <value>Opróżniony do partii końcowej {0}</value>
+  </data>
+  <data name="Empty.State.NoSeal" xml:space="preserve">
+    <value>Brak zapisanej plomby zamykającej</value>
+  </data>
+  <data name="Empty.Outcome.Emptied" xml:space="preserve">
+    <value>Plomba nienaruszona, opróżniony do partii końcowej {0}</value>
+  </data>
+  <data name="Empty.Outcome.Mismatch" xml:space="preserve">
+    <value>Zeskanowano inną plombę: {0}</value>
+  </data>
+  <data name="Empty.Outcome.FoundBroken" xml:space="preserve">
+    <value>Plomba zastana zerwana</value>
+  </data>
+  <data name="Empty.NotEmptied" xml:space="preserve">
+    <value>nie opróżniono do partii końcowej {0}</value>
+  </data>
+  <data name="Container {0}: a numbered plastic seal closes only an association container; close the beekeeper's container with a seal label." xml:space="preserve">
+    <value>Pojemnik {0}: numerowana plomba plastikowa zamyka tylko pojemnik stowarzyszenia; pojemnik pszczelarza zamknij etykietą plombującą.</value>
+  </data>
+  <data name="Containers are emptied into a batch by those who enter batch data in the organization that owns the batch." xml:space="preserve">
+    <value>Pojemniki do partii końcowej opróżniają osoby, które wprowadzają dane partii końcowych w organizacji będącej jej właścicielem.</value>
+  </data>
+  <data name="The batch was not found." xml:space="preserve">
+    <value>Nie znaleziono partii końcowej.</value>
+  </data>
+  <data name="The batch is finalized; containers can no longer be emptied into it." xml:space="preserve">
+    <value>Partia końcowa jest zatwierdzona ostatecznie; nie można już do niej opróżniać pojemników.</value>
+  </data>
+  <data name="This container does not belong to a lot of this batch." xml:space="preserve">
+    <value>Ten pojemnik nie należy do żadnej partii tej partii końcowej.</value>
+  </data>
+  <data name="Container {0} was already emptied into batch {1}." xml:space="preserve">
+    <value>Pojemnik {0} został już opróżniony do partii końcowej {1}.</value>
+  </data>
+  <data name="Container {0} has no closing seal on record." xml:space="preserve">
+    <value>Pojemnik {0} nie ma zapisanej plomby zamykającej.</value>
+  </data>
+  <data name="Scan or type the closing seal of container {0}." xml:space="preserve">
+    <value>Zeskanuj lub wpisz plombę zamykającą pojemnika {0}.</value>
+  </data>
+  <data name="The seal of container {0} was reported broken. The container was not emptied; the check was recorded." xml:space="preserve">
+    <value>Zgłoszono, że plomba pojemnika {0} jest zerwana. Pojemnika nie opróżniono; kontrolę zapisano.</value>
+  </data>
+  <data name="Seal {0} is not the closing seal of container {1}. The container was not emptied; the check was recorded." xml:space="preserve">
+    <value>Plomba {0} nie jest plombą zamykającą pojemnika {1}. Pojemnika nie opróżniono; kontrolę zapisano.</value>
+  </data>
+  <data name="Confirm that the seal of container {0} is intact, or report it broken." xml:space="preserve">
+    <value>Potwierdź, że plomba pojemnika {0} jest nienaruszona, albo zgłoś, że jest zerwana.</value>
+  </data>
+  <data name="Container {0} emptied into batch {1}; seal {2} is now opened." xml:space="preserve">
+    <value>Pojemnik {0} opróżniono do partii końcowej {1}; plomba {2} jest teraz otwarta.</value>
+  </data>
+  <data name="Num.Official" xml:space="preserve">
+    <value>Numer identyfikacyjny gospodarstwa</value>
+  </data>
+  <data name="Num.Platform" xml:space="preserve">
+    <value>Numer na platformie</value>
+  </data>
+  <data name="Login.BeekeeperHint" xml:space="preserve">
+    <value>Pszczelarze: nazwa użytkownika to Twój numer na platformie (TR-BEE-…).</value>
+  </data>
+  <data name="HT.Other" xml:space="preserve">
+    <value>Inny (nowy rodzaj miodu)</value>
+  </data>
+  <data name="HT.NewName" xml:space="preserve">
+    <value>Nazwa nowego rodzaju miodu</value>
+  </data>
+  <data name="HT.NewHelp" xml:space="preserve">
+    <value>Najpierw sprawdź listę. Nazwa zgodna z istniejącym rodzajem (bez względu na wielkość liter, litery tureckie, spacje i słowo "miód") zostanie odrzucona; wtedy wybierz ten rodzaj z listy.</value>
+  </data>
+  <data name="HT.NewClass" xml:space="preserve">
+    <value>Klasa miodu</value>
+  </data>
+  <data name="HT.ClassHelp" xml:space="preserve">
+    <value>Klasa decyduje, które limity laboratoryjne obowiązują dla tego miodu.</value>
+  </data>
+  <data name="HT.Class.Floral" xml:space="preserve">
+    <value>Nektarowy (kwiatowy)</value>
+  </data>
+  <data name="HT.Class.Honeydew" xml:space="preserve">
+    <value>Spadziowy</value>
+  </data>
+  <data name="HT.Class.Pine" xml:space="preserve">
+    <value>Sosnowy</value>
+  </data>
+  <data name="HT.BeekeeperTypes" xml:space="preserve">
+    <value>Rodzaje miodu produkowane przez pszczelarza</value>
+  </data>
+  <data name="HT.EditBeekeeperTypes" xml:space="preserve">
+    <value>Zmień rodzaje miodu pszczelarza</value>
+  </data>
+  <data name="HT.Added" xml:space="preserve">
+    <value>Dodano z formularza</value>
+  </data>
+  <data name="HT.Merge.Title" xml:space="preserve">
+    <value>Scal rodzaj miodu</value>
+  </data>
+  <data name="HT.Merge.Help" xml:space="preserve">
+    <value>Wszystko, co używa tego rodzaju miodu, przechodzi do wybranego rodzaju: partie, limity laboratoryjne, rodzaje miodu pszczelarzy i tłumaczenia, których brakuje drugiemu rodzajowi. Następnie ten rodzaj miodu jest usuwany; jego nazwa nadal prowadzi do drugiego rodzaju.</value>
+  </data>
+  <data name="HT.Merge.Lots" xml:space="preserve">
+    <value>Partie</value>
+  </data>
+  <data name="HT.Merge.Limits" xml:space="preserve">
+    <value>Limity dla tego rodzaju miodu</value>
+  </data>
+  <data name="HT.Merge.Beekeepers" xml:space="preserve">
+    <value>Pszczelarze z tym rodzajem miodu</value>
+  </data>
+  <data name="HT.Merge.ClassNote" xml:space="preserve">
+    <value>Partie są potem oceniane według limitów klasy miodu drugiego rodzaju.</value>
+  </data>
+  <data name="HT.Merge.Target" xml:space="preserve">
+    <value>Scal z</value>
+  </data>
+  <data name="HT.Merge.Button" xml:space="preserve">
+    <value>Scal</value>
+  </data>
+  <data name="Your role cannot add a honey type; choose one from the list." xml:space="preserve">
+    <value>Twoja rola nie może dodać rodzaju miodu; wybierz jeden z listy.</value>
+  </data>
+  <data name="Enter the name of the new honey type (2 to 100 characters)." xml:space="preserve">
+    <value>Wpisz nazwę nowego rodzaju miodu (od 2 do 100 znaków).</value>
+  </data>
+  <data name="Choose the honey class of the new honey type (floral, honeydew or pine)." xml:space="preserve">
+    <value>Wybierz klasę nowego rodzaju miodu (nektarowy, spadziowy lub sosnowy).</value>
+  </data>
+  <data name="This honey type already exists as {0}: choose it from the list." xml:space="preserve">
+    <value>Ten rodzaj miodu już istnieje jako {0}: wybierz go z listy.</value>
+  </data>
+  <data name="Only the platform administrator merges honey types." xml:space="preserve">
+    <value>Rodzaje miodu scala tylko administrator platformy.</value>
+  </data>
+  <data name="A honey type cannot be merged into itself." xml:space="preserve">
+    <value>Rodzaju miodu nie można scalić z nim samym.</value>
+  </data>
+  <data name="Both honey types have their own limit for {0}: remove one on the Limits page first." xml:space="preserve">
+    <value>Oba rodzaje miodu mają własny limit dla {0}: najpierw usuń jeden na stronie limitów.</value>
+  </data>
+  <data name="{0} was merged into {1}." xml:space="preserve">
+    <value>{0} scalono z {1}.</value>
+  </data>
+  <data name="The beekeeper's honey types are saved." xml:space="preserve">
+    <value>Zapisano rodzaje miodu pszczelarza.</value>
+  </data>
+  <data name="Holding identification number verified." xml:space="preserve">
+    <value>Numer identyfikacyjny gospodarstwa zweryfikowany.</value>
+  </data>
+  <data name="Evidence accepted; the holding identification number is verified." xml:space="preserve">
+    <value>Dowód zaakceptowany; numer identyfikacyjny gospodarstwa jest zweryfikowany.</value>
+  </data>
+  <data name="A beekeeper with this holding identification number is already registered. Find it and re-verify instead." xml:space="preserve">
+    <value>Pszczelarz z tym numerem identyfikacyjnym gospodarstwa jest już zarejestrowany. Znajdź go i zweryfikuj ponownie.</value>
+  </data>
+  <data name="The holding identification number belongs to another province than the directorate. Give a reason to continue." xml:space="preserve">
+    <value>Numer identyfikacyjny gospodarstwa należy do innej prowincji niż dyrekcja. Podaj powód, aby kontynuować.</value>
+  </data>
+  <data name="Consent recorded. The storefront is published once the holding identification number is verified." xml:space="preserve">
+    <value>Zgoda zarejestrowana. Strona zostanie opublikowana po weryfikacji numeru identyfikacyjnego gospodarstwa.</value>
+  </data>
+  <data name="Enter the holding identification number (or the platform number of a registered beekeeper)." xml:space="preserve">
+    <value>Wpisz numer identyfikacyjny gospodarstwa (lub numer zarejestrowanego pszczelarza na platformie).</value>
   </data>
 </root>

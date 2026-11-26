@@ -4,14 +4,30 @@
 @{
     // D-72: the shared Türkiye map (province choropleth or one marker). Styles: wwwroot/css/tmap.css; behaviour: wwwroot/js/tmap.js.
     // Cream land with a soft inner shadow and thin white borders; provinces with data in honey shades, focusable, with a
-    // tooltip; honey dots at their centroids; the outline draws itself once. Provinces only, never a coordinate.
+    // tooltip; honey dots at their centroids; the outline draws itself once. Never a coordinate.
+    // D-98: with Model.Districts, a province with data (or the marked one) opens its districts, zoomed (data-zoom), shaded
+    // by Model.DistrictAreas; a back button and Escape return to Türkiye. District boundaries need the attribution line.
     var id = Model.Id;
-    string F(double v) => v.ToString("0.#", CultureInfo.InvariantCulture);
+    string F(double v) => v.ToString("0.###", CultureInfo.InvariantCulture);
     var areas = Model.Areas.Where(a => TurkeyMap.ByPlate(a.Plate) != null).OrderBy(a => a.Plate).ToList();
     var marked = Model.Marker != null ? TurkeyMap.ByPlate(Model.Marker.Plate) : null;
+    var drillable = !Model.Districts ? new List<int>()
+        : areas.Select(a => a.Plate).Concat(marked != null ? new[] { marked.Plate } : Array.Empty<int>())
+            .Distinct().Where(p => TurkeyDistricts.Of(p).Count > 0).OrderBy(p => p).ToList();
+    var districtData = Model.DistrictAreas
+        .Select(a => (Area: a, District: TurkeyDistricts.Find(a.Plate, a.District)))
+        .Where(a => a.District != null && drillable.Contains(a.Area.Plate))
+        .ToDictionary(a => (a.Area.Plate, a.District!.Name), a => a.Area);
 }
-<figure class="tmap@(Model.Marker != null ? " tmap-has-marker" : "")@(Model.FillIn ? " tmap-fill-in" : "")@(Model.CssClass != null ? " " + Model.CssClass : "")" id="@id" data-tmap>
+<figure class="tmap@(Model.Marker != null ? " tmap-has-marker" : "")@(Model.FillIn ? " tmap-fill-in" : "")@(drillable.Any() ? " tmap-drills" : "")@(Model.CssClass != null ? " " + Model.CssClass : "")" id="@id" data-tmap>
     <div class="tmap-stage">
+        @if (drillable.Any())
+        {
+            <div class="tmap-bar" hidden>
+                <button type="button" class="tmap-back"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>@L["Map.Back"]</button>
+                <b class="tmap-where" aria-live="polite"></b>
+            </div>
+        }
         <svg class="tmap-svg" viewBox="@TurkeyMap.ViewBox" role="group" aria-label="@Model.Label">
             <defs>
                 <filter id="@id-inner" x="-2%" y="-4%" width="104%" height="108%">
@@ -28,74 +44,115 @@
                     <feGaussianBlur stdDeviation="6"></feGaussianBlur>
                 </filter>
             </defs>
-            <path class="tmap-land" d="@TurkeyMap.Outline"></path>
-            <g class="tmap-provinces">
-                @foreach (var p in TurkeyMap.Provinces)
+            <g class="tmap-world">
+                <path class="tmap-land" d="@TurkeyMap.Outline"></path>
+                <g class="tmap-provinces">
+                    @foreach (var p in TurkeyMap.Provinces)
+                    {
+                        var area = areas.FirstOrDefault(a => a.Plate == p.Plate);
+                        var drill = drillable.Contains(p.Plate) ? $"{id}-d{p.Plate}" : null;
+                        if (area != null)
+                        {
+                            var i = areas.IndexOf(area);
+                            <path class="tmap-p is-data tm-v@(Model.Level(area.Value))" id="@id-p@(p.Plate)" d="@p.Path" tabindex="0" role="@(drill != null ? "button" : "img")"
+                                  aria-label="@p.Name: @area.Tip" data-name="@p.Name" data-tip="@area.Tip" data-cx="@F(p.Cx)" data-cy="@F(p.Cy)" data-drill="@drill" style="--i: @i"></path>
+                        }
+                        else if (marked?.Plate == p.Plate)
+                        {
+                            if (drill != null)
+                            {
+                                <path class="tmap-p is-marked is-data" id="@id-p@(p.Plate)" d="@p.Path" tabindex="0" role="button" aria-label="@p.Name: @Model.Marker!.Sub"
+                                      data-name="@p.Name" data-tip="@Model.Marker!.Sub" data-cx="@F(p.Cx)" data-cy="@F(p.Cy)" data-drill="@drill"></path>
+                            }
+                            else
+                            {
+                                <path class="tmap-p is-marked" id="@id-p@(p.Plate)" d="@p.Path"></path>
+                            }
+                        }
+                        else
+                        {
+                            <path class="tmap-p" d="@p.Path"></path>
+                        }
+                    }
+                </g>
+                <path class="tmap-shade" d="@TurkeyMap.Outline" filter="url(#@id-inner)" aria-hidden="true"></path>
+                <path class="tmap-outline" d="@TurkeyMap.Outline" pathLength="1" aria-hidden="true"></path>
+                @foreach (var plate in drillable)
                 {
-                    var area = areas.FirstOrDefault(a => a.Plate == p.Plate);
-                    if (area != null)
-                    {
-                        var i = areas.IndexOf(area);
-                        <path class="tmap-p is-data tm-v@(Model.Level(area.Value))" id="@id-p@(p.Plate)" d="@p.Path" tabindex="0" role="img"
-                              aria-label="@p.Name: @area.Tip" data-name="@p.Name" data-tip="@area.Tip" data-cx="@F(p.Cx)" data-cy="@F(p.Cy)" style="--i: @i"></path>
-                    }
-                    else if (marked?.Plate == p.Plate)
-                    {
-                        <path class="tmap-p is-marked" id="@id-p@(p.Plate)" d="@p.Path"></path>
-                    }
-                    else
-                    {
-                        <path class="tmap-p" d="@p.Path"></path>
-                    }
+                    var (s, tx, ty) = TurkeyDistricts.Zoom(plate);
+                    var n = 0;
+                    <g class="tmap-dg" id="@id-d@(plate)" data-plate="@plate" data-name="@Provinces.ByPlate(plate)" data-zoom="@F(s) @F(tx) @F(ty)">
+                        @foreach (var d in TurkeyDistricts.Of(plate))
+                        {
+                            n++;
+                            if (districtData.TryGetValue((plate, d.Name), out var da))
+                            {
+                                <path class="tmap-d is-data tm-v@(Model.DistrictLevel(da.Value))" id="@id-d@(plate)-@n" d="@d.Path" tabindex="0" role="img"
+                                      aria-label="@d.Name: @da.Tip" data-name="@d.Name" data-tip="@da.Tip" data-cx="@F(d.Cx)" data-cy="@F(d.Cy)"></path>
+                            }
+                            else
+                            {
+                                <path class="tmap-d" d="@d.Path"><title>@d.Name</title></path>
+                            }
+                        }
+                    </g>
+                }
+                <g class="tmap-hover" aria-hidden="true">
+                    <use class="tmap-glow" filter="url(#@id-glow)"></use>
+                    <use class="tmap-lift"></use>
+                    <path class="tmap-ring"></path>
+                </g>
+                @if (areas.Any())
+                {
+                    <g class="tmap-dots" aria-hidden="true">
+                        @foreach (var a in areas)
+                        {
+                            var p = TurkeyMap.ByPlate(a.Plate)!;
+                            <g class="tmap-dot" style="--d: @((areas.IndexOf(a) % 7) * 370)ms">
+                                <circle class="tmap-dot-halo" cx="@F(p.Cx)" cy="@F(p.Cy)" r="5"></circle>
+                                <circle class="tmap-dot-core" cx="@F(p.Cx)" cy="@F(p.Cy)" r="3"></circle>
+                            </g>
+                        }
+                    </g>
+                }
+                @if (Model.Marker is { } m)
+                {
+                    var right = m.X > 470;
+                    var x = F(m.X);
+                    var y = F(m.Y);
+                    var lx = F(right ? m.X - 33 : m.X + 33);
+                    var anchor = right ? "end" : "start";
+                    <g class="tmap-mark">
+                        <circle class="tmap-mark-halo" cx="@x" cy="@y" r="22"></circle>
+                        <circle class="tmap-mark-ring" cx="@x" cy="@y" r="12"></circle>
+                        <circle class="tmap-mark-dot" cx="@x" cy="@y" r="5"></circle>
+                        <text class="tmap-mark-label" x="@lx" y="@F(m.Y - 4)" text-anchor="@anchor">@m.Label</text>
+                        @if (m.Sub != null)
+                        {
+                            <g><text class="tmap-mark-sub" x="@lx" y="@F(m.Y + 12)" text-anchor="@anchor">@m.Sub</text></g>
+                        }
+                    </g>
                 }
             </g>
-            <path class="tmap-shade" d="@TurkeyMap.Outline" filter="url(#@id-inner)" aria-hidden="true"></path>
-            <path class="tmap-outline" d="@TurkeyMap.Outline" pathLength="1" aria-hidden="true"></path>
-            <g class="tmap-hover" aria-hidden="true">
-                <use class="tmap-glow" filter="url(#@id-glow)"></use>
-                <use class="tmap-lift"></use>
-                <path class="tmap-ring"></path>
-            </g>
-            @if (areas.Any())
-            {
-                <g class="tmap-dots" aria-hidden="true">
-                    @foreach (var a in areas)
-                    {
-                        var p = TurkeyMap.ByPlate(a.Plate)!;
-                        <g class="tmap-dot" style="--d: @((areas.IndexOf(a) % 7) * 370)ms">
-                            <circle class="tmap-dot-halo" cx="@F(p.Cx)" cy="@F(p.Cy)" r="5"></circle>
-                            <circle class="tmap-dot-core" cx="@F(p.Cx)" cy="@F(p.Cy)" r="3"></circle>
-                        </g>
-                    }
-                </g>
-            }
-            @if (Model.Marker is { } m)
-            {
-                var right = m.X > 470;
-                var x = F(m.X);
-                var y = F(m.Y);
-                var lx = F(right ? m.X - 33 : m.X + 33);
-                var anchor = right ? "end" : "start";
-                <g class="tmap-mark">
-                    <circle class="tmap-mark-halo" cx="@x" cy="@y" r="22"></circle>
-                    <circle class="tmap-mark-ring" cx="@x" cy="@y" r="12"></circle>
-                    <circle class="tmap-mark-dot" cx="@x" cy="@y" r="5"></circle>
-                    <text class="tmap-mark-label" x="@lx" y="@F(m.Y - 4)" text-anchor="@anchor">@m.Label</text>
-                    @if (m.Sub != null)
-                    {
-                        <g><text class="tmap-mark-sub" x="@lx" y="@F(m.Y + 12)" text-anchor="@anchor">@m.Sub</text></g>
-                    }
-                </g>
-            }
         </svg>
         <div class="tmap-tip" aria-hidden="true" hidden><b></b><span></span></div>
     </div>
-    @if (areas.Any() && Model.LegendTitle != null)
+    @if ((areas.Any() && Model.LegendTitle != null) || drillable.Any())
     {
-        <figcaption class="tmap-legend">
-            <span class="tmap-legend-title">@Model.LegendTitle</span>
-            <span class="tmap-scale" aria-hidden="true">@for (var l = 1; l <= 5; l++) {<i class="tm-v@(l)"></i>}</span>
-            <span class="tmap-legend-ends"><span>@Model.LegendLow</span><span>@Model.LegendHigh</span></span>
+        <figcaption class="tmap-caption">
+            @if (areas.Any() && Model.LegendTitle != null)
+            {
+                <span class="tmap-legend">
+                    <span class="tmap-legend-title">@Model.LegendTitle</span>
+                    <span class="tmap-scale" aria-hidden="true">@for (var l = 1; l <= 5; l++) {<i class="tm-v@(l)"></i>}</span>
+                    <span class="tmap-legend-ends"><span>@Model.LegendLow</span><span>@Model.LegendHigh</span></span>
+                </span>
+            }
+            @if (drillable.Any())
+            {
+                <span class="tmap-hint">@L["Map.DrillHint"]</span>
+                <span class="tmap-credit"><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">@L["Map.DistrictCredit"]</a></span>
+            }
         </figcaption>
     }
 </figure>
