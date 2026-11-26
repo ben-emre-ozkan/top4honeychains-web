@@ -1,0 +1,50 @@
+@model TOP4HoneyChains.Web.Models.Entities.HoneyType
+@* D-98: the platform administrator merges a honey type (often one added from a form with "Other") into another *@
+@{
+    ViewData["Title"] = L["HT.Merge.Title"].Value;
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var title = Ref.HoneyType(Model.HoneyTypeId, Model.HoneyTypeTitle);
+}
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">@L["HT.Merge.Title"]: @title</h4>
+                    <p class="card-title-desc"><a asp-action="Index">@L["Honey Types"]</a></p>
+
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div class="alert alert-danger" role="alert" id="merge-errors">
+                            @foreach (var e in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                            {
+                                <div>@e.ErrorMessage</div>
+                            }
+                        </div>
+                    }
+
+                    <p>@L["HT.Merge.Help"]</p>
+                    <ul id="merge-references">
+                        <li>@L["HT.Merge.Lots"]: @ViewBag.Lots</li>
+                        <li>@L["HT.Merge.Limits"]: @ViewBag.Limits</li>
+                        <li>@L["HT.Merge.Beekeepers"]: @ViewBag.Beekeepers</li>
+                    </ul>
+                    <p class="small text-muted">@L["HT.Merge.ClassNote"]</p>
+
+                    <form asp-action="Merge" asp-route-id="@Model.HoneyTypeId" method="post" class="row g-2 align-items-end">
+                        <div class="col-md-6">
+                            <label class="form-label required" for="targetId">@L["HT.Merge.Target"]</label>
+                            <select class="form-select" id="targetId" name="targetId" asp-items="ViewBag.Targets" required>
+                                <option value="">@L["-- Select --"]</option>
+                            </select>
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-warning" id="merge-submit">@L["HT.Merge.Button"]</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

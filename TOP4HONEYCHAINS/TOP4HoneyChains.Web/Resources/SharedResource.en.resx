@@ -568,13 +568,13 @@
     <value>Beekeeper registry and associations</value>
   </data>
   <data name="Reg.BusinessNo" xml:space="preserve">
-    <value>Business no.</value>
+    <value>Platform no.</value>
   </data>
   <data name="Reg.Beekeeper" xml:space="preserve">
     <value>Beekeeper</value>
   </data>
   <data name="Reg.RegistryNo" xml:space="preserve">
-    <value>Registry no.</value>
+    <value>Holding ID no.</value>
   </data>
   <data name="Reg.Association" xml:space="preserve">
     <value>Association</value>
@@ -586,7 +586,7 @@
     <value>Format TR, a province code 01-81 and 10 digits. A proof document (registry printout or photo) is required.</value>
   </data>
   <data name="Reg.ListHelp" xml:space="preserve">
-    <value>Each beekeeper is a record on the platform; a beekeeper registered with a mobile phone can also sign in to the beekeeper area. A registry number is verified when the beekeeper confirms the registration with the SMS code, or when the Compliance Officer accepts the signed photo. Here a platform administrator checks a number entered later, with a proof document, and changes the association.</value>
+    <value>Each beekeeper is a record on the platform; a beekeeper registered with a mobile phone can also sign in to the beekeeper area, with the platform number as user name. A holding identification number is verified when the beekeeper confirms the registration with the SMS code, or when the Compliance Officer accepts the signed photo. Here a platform administrator checks a number entered later, with a proof document, and changes the association.</value>
   </data>
   <data name="Reg.Submit" xml:space="preserve">
     <value>Submit</value>
@@ -757,10 +757,10 @@
     <value>Record a delivery</value>
   </data>
   <data name="Cust.NewIntakeHelp" xml:space="preserve">
-    <value>Find the beekeeper by business or registry number, then enter the delivery with the photo of the signed delivery form.</value>
+    <value>Find the beekeeper by holding identification number or platform number, then enter the delivery with the photo of the signed delivery form.</value>
   </data>
   <data name="Cust.BeekeeperNumber" xml:space="preserve">
-    <value>Beekeeper business or registry number</value>
+    <value>Beekeeper's holding identification number or platform number</value>
   </data>
   <data name="Cust.Find" xml:space="preserve">
     <value>Find</value>
@@ -1090,7 +1090,7 @@
     <value>Beekeeper pages</value>
   </data>
   <data name="P5.StorefrontsHelp" xml:space="preserve">
-    <value>A member's public page is published only with a recorded consent and a verified registry number; withdrawing the consent unpublishes it at once.</value>
+    <value>A member's public page is published only with a recorded consent and a verified holding identification number; withdrawing the consent unpublishes it at once.</value>
   </data>
   <data name="P5.Consent" xml:space="preserve">
     <value>Consent</value>
@@ -1114,7 +1114,7 @@
     <value>not public</value>
   </data>
   <data name="P5.NeedsRegistry" xml:space="preserve">
-    <value>needs a verified registry number</value>
+    <value>needs a verified holding identification number</value>
   </data>
   <data name="P5.RecordConsent" xml:space="preserve">
     <value>Record consent</value>
@@ -1189,7 +1189,7 @@
     <value>Organizations to verify</value>
   </data>
   <data name="Work.Kind.Registry" xml:space="preserve">
-    <value>Registry numbers to verify</value>
+    <value>Holding identification numbers to verify</value>
   </data>
   <data name="Work.Kind.Correction" xml:space="preserve">
     <value>Corrections to decide</value>
@@ -1483,7 +1483,7 @@
     <value>Beekeeper</value>
   </data>
   <data name="Beekeeper Business Number" xml:space="preserve">
-    <value>Beekeeper Business Number</value>
+    <value>Beekeeper's platform number</value>
   </data>
   <data name="Actions" xml:space="preserve">
     <value>Actions</value>
@@ -1669,7 +1669,7 @@
     <value>Profile Photo</value>
   </data>
   <data name="Business Number" xml:space="preserve">
-    <value>Business Number</value>
+    <value>Platform number</value>
   </data>
   <data name="No Photo" xml:space="preserve">
     <value>No Photo</value>
@@ -3112,7 +3112,7 @@
     <value>Beekeeper registry</value>
   </data>
   <data name="Registry number:" xml:space="preserve">
-    <value>Registry number:</value>
+    <value>Holding identification number:</value>
   </data>
   <data name="· Status:" xml:space="preserve">
     <value>· Status:</value>
@@ -5164,7 +5164,7 @@
     <value>The list of capabilities itself is fixed: a new capability needs a database script and a code change.</value>
   </data>
   <data name="Cap.Uses.Beekeeping" xml:space="preserve">
-    <value>The beekeeper's enterprise. It does not sign in; its verified registry number links the lots to the beekeeper and tells the province.</value>
+    <value>The beekeeper's enterprise. It does not sign in; its verified holding identification number links the lots to the beekeeper and tells the province.</value>
   </data>
   <data name="Cap.Uses.Association" xml:space="preserve">
     <value>Links its member beekeepers, records their consent and publishes their beekeeper pages, and sees its members' lots in recall reports; its field inspector can do CCP 0 when an administrator assigns it.</value>
@@ -6319,7 +6319,7 @@
     <value>Organization</value>
   </data>
   <data name="Home.Wait.Kind.registry" xml:space="preserve">
-    <value>Registry number</value>
+    <value>Holding identification number</value>
   </data>
   <data name="Home.Wait.Kind.correction" xml:space="preserve">
     <value>Correction</value>
@@ -6373,7 +6373,7 @@
     <value>Organization</value>
   </data>
   <data name="Home.Act.Kind.registry" xml:space="preserve">
-    <value>Registry number</value>
+    <value>Holding identification number</value>
   </data>
   <data name="Home.Act.Entered" xml:space="preserve">
     <value>entered by {0}</value>
@@ -6553,7 +6553,7 @@
     <value>Birth date</value>
   </data>
   <data name="Audit.F.BusinessNumber" xml:space="preserve">
-    <value>Business number</value>
+    <value>Platform number</value>
   </data>
   <data name="Audit.F.Capability" xml:space="preserve">
     <value>Capability</value>
@@ -6622,7 +6622,7 @@
     <value>Entered by</value>
   </data>
   <data name="Audit.F.EnterpriseNumber" xml:space="preserve">
-    <value>Enterprise registry number</value>
+    <value>Holding identification number</value>
   </data>
   <data name="Audit.F.Event" xml:space="preserve">
     <value>Event</value>
@@ -6817,7 +6817,7 @@
     <value>Recorded by</value>
   </data>
   <data name="Audit.F.RegistryNumber" xml:space="preserve">
-    <value>Registry number</value>
+    <value>Holding identification number</value>
   </data>
   <data name="Audit.F.RejectReason" xml:space="preserve">
     <value>Reason for rejection</value>
@@ -7135,7 +7135,7 @@
     <value>Signed-photo evidence (accept or reject)</value>
   </data>
   <data name="Cap.Uses.BeekeeperRegistration" xml:space="preserve">
-    <value>District directorate of agriculture: its beekeeper registration officers register beekeepers and their apiaries, check the registry number, confirm identity and consent with an SMS code (or a signed photo) and issue the sign-in.</value>
+    <value>District directorate of agriculture: its beekeeper registration officers register beekeepers and their apiaries, check the holding identification number, confirm identity and consent with an SMS code (or a signed photo) and issue the sign-in.</value>
   </data>
   <data name="Org.NoComplianceOfficer" xml:space="preserve">
     <value>This organization has no Compliance Officer yet. Every organization names at least one (it may be the organization admin with a second membership).</value>
@@ -7570,7 +7570,7 @@
     <value>Beekeeping purpose</value>
   </data>
   <data name="Registry Number" xml:space="preserve">
-    <value>Registry number</value>
+    <value>Holding identification number</value>
   </data>
   <data name="Work.Kind.Evidence" xml:space="preserve">
     <value>Review signed photos</value>
@@ -7579,16 +7579,16 @@
     <value>Beekeeper registration</value>
   </data>
   <data name="Reg78.Help" xml:space="preserve">
-    <value>Beekeepers registered by your organization. The registry number, an SMS code to the beekeeper's phone and your attestation confirm each registration.</value>
+    <value>Beekeepers registered by your organization. The holding identification number, an SMS code to the beekeeper's phone and your attestation confirm each registration.</value>
   </data>
   <data name="Reg78.FindLabel" xml:space="preserve">
-    <value>Registry number (AKS) or business number</value>
+    <value>Holding identification number (AKS) or platform number</value>
   </data>
   <data name="Reg78.Find" xml:space="preserve">
     <value>Find or register</value>
   </data>
   <data name="Reg78.FindHelp" xml:space="preserve">
-    <value>A known beekeeper is re-verified; a new registry number starts a new registration.</value>
+    <value>A known beekeeper is re-verified; a new holding identification number starts a new registration.</value>
   </data>
   <data name="Reg78.Date" xml:space="preserve">
     <value>Date</value>
@@ -7747,7 +7747,7 @@
     <value>Review of the signed photo</value>
   </data>
   <data name="Reg78.ReviewHelp" xml:space="preserve">
-    <value>Open the photo and check it against the registration: identity, registry number, the beekeeper's choices and the signature. You did not record this registration.</value>
+    <value>Open the photo and check it against the registration: identity, holding identification number, the beekeeper's choices and the signature. You did not record this registration.</value>
   </data>
   <data name="Reg78.ReviewReason" xml:space="preserve">
     <value>Note (required for a rejection)</value>
@@ -8854,7 +8854,7 @@
     <value>Samples and lab shows every jar and report of your laboratory. Your first job is to approve the reports your analysts submit, or return one, for example when a value looks wrong.</value>
   </data>
   <data name="Tour.Registration" xml:space="preserve">
-    <value>Beekeeper registration is where you register beekeepers and their apiaries. Type the registry number, enter the beekeeper's details and apiary, send the SMS code and type in the code the beekeeper reads out to you.</value>
+    <value>Beekeeper registration is where you register beekeepers and their apiaries. Type the holding identification number, enter the beekeeper's details, honey types and apiary, send the SMS code and type in the code the beekeeper reads out to you.</value>
   </data>
   <data name="Tour.Compliance" xml:space="preserve">
     <value>Compliance is your review desk: signed photos, quality reviews, data requests and the audit log. Start with what waits for your decision, for example a delivery confirmed with a signed photo instead of an SMS code.</value>
@@ -8872,7 +8872,7 @@
     <value>The dashboard shows what waits for you as platform operator and the latest activity. Start here, for example with an organization waiting to be verified.</value>
   </data>
   <data name="Tour.Admin.Data" xml:space="preserve">
-    <value>Beekeepers, apiaries and the reference lists of the platform. Look up a beekeeper here, for example by registry number.</value>
+    <value>Beekeepers, apiaries and the reference lists of the platform. Look up a beekeeper here, for example by holding identification number.</value>
   </data>
   <data name="Tour.Me.Deliveries" xml:space="preserve">
     <value>My deliveries shows the honey you delivered, with each tin and its seal. Enter your price per kilogram here, for example for last week's chestnut honey.</value>
@@ -9727,7 +9727,7 @@
     <value>The beekeeper receives the SMS code and later messages in this language.</value>
   </data>
   <data name="Cust.Info.Number" xml:space="preserve">
-    <value>Type the beekeeper's registry number (e.g. TR520401200241) or business number and press Find. The beekeeper's apiaries then appear in the form.</value>
+    <value>Type the beekeeper's holding identification number (e.g. TR520401200241) or platform number and press Find. The beekeeper's apiaries then appear in the form.</value>
   </data>
   <data name="Ci.ArrivedUnsealed" xml:space="preserve">
     <value>Arrived unsealed (normal)</value>
@@ -10160,5 +10160,116 @@
   </data>
   <data name="Enter the capacity and the empty weight in kg (or leave them empty)." xml:space="preserve">
     <value>Enter the capacity and the empty weight in kg (or leave them empty).</value>
+  </data>
+  <data name="Num.Official" xml:space="preserve">
+    <value>Holding identification number</value>
+  </data>
+  <data name="Num.Platform" xml:space="preserve">
+    <value>Platform number</value>
+  </data>
+  <data name="Login.BeekeeperHint" xml:space="preserve">
+    <value>Beekeepers: your user name is your platform number (TR-BEE-…).</value>
+  </data>
+  <data name="HT.Other" xml:space="preserve">
+    <value>Other (new honey type)</value>
+  </data>
+  <data name="HT.NewName" xml:space="preserve">
+    <value>Name of the new honey type</value>
+  </data>
+  <data name="HT.NewHelp" xml:space="preserve">
+    <value>Check the list first. A name that matches an existing type (ignoring capitals, Turkish letters, spaces and the word "honey") is refused; then choose that type from the list.</value>
+  </data>
+  <data name="HT.NewClass" xml:space="preserve">
+    <value>Honey class</value>
+  </data>
+  <data name="HT.ClassHelp" xml:space="preserve">
+    <value>The class decides which laboratory limits apply to this honey.</value>
+  </data>
+  <data name="HT.Class.Floral" xml:space="preserve">
+    <value>Floral (blossom)</value>
+  </data>
+  <data name="HT.Class.Honeydew" xml:space="preserve">
+    <value>Honeydew</value>
+  </data>
+  <data name="HT.Class.Pine" xml:space="preserve">
+    <value>Pine</value>
+  </data>
+  <data name="HT.BeekeeperTypes" xml:space="preserve">
+    <value>Honey types the beekeeper produces</value>
+  </data>
+  <data name="HT.EditBeekeeperTypes" xml:space="preserve">
+    <value>Change the beekeeper's honey types</value>
+  </data>
+  <data name="HT.Added" xml:space="preserve">
+    <value>Added from a form</value>
+  </data>
+  <data name="HT.Merge.Title" xml:space="preserve">
+    <value>Merge honey type</value>
+  </data>
+  <data name="HT.Merge.Help" xml:space="preserve">
+    <value>Everything that uses this honey type moves to the type you choose: lots, laboratory limits, beekeepers' honey types and the translations the other type lacks. This honey type is then removed; its name still leads to the other type.</value>
+  </data>
+  <data name="HT.Merge.Lots" xml:space="preserve">
+    <value>Lots</value>
+  </data>
+  <data name="HT.Merge.Limits" xml:space="preserve">
+    <value>Limits for this honey type</value>
+  </data>
+  <data name="HT.Merge.Beekeepers" xml:space="preserve">
+    <value>Beekeepers with this honey type</value>
+  </data>
+  <data name="HT.Merge.ClassNote" xml:space="preserve">
+    <value>The lots are then checked against the limits of the other type's honey class.</value>
+  </data>
+  <data name="HT.Merge.Target" xml:space="preserve">
+    <value>Merge into</value>
+  </data>
+  <data name="HT.Merge.Button" xml:space="preserve">
+    <value>Merge</value>
+  </data>
+  <data name="Your role cannot add a honey type; choose one from the list." xml:space="preserve">
+    <value>Your role cannot add a honey type; choose one from the list.</value>
+  </data>
+  <data name="Enter the name of the new honey type (2 to 100 characters)." xml:space="preserve">
+    <value>Enter the name of the new honey type (2 to 100 characters).</value>
+  </data>
+  <data name="Choose the honey class of the new honey type (floral, honeydew or pine)." xml:space="preserve">
+    <value>Choose the honey class of the new honey type (floral, honeydew or pine).</value>
+  </data>
+  <data name="This honey type already exists as {0}: choose it from the list." xml:space="preserve">
+    <value>This honey type already exists as {0}: choose it from the list.</value>
+  </data>
+  <data name="Only the platform administrator merges honey types." xml:space="preserve">
+    <value>Only the platform administrator merges honey types.</value>
+  </data>
+  <data name="A honey type cannot be merged into itself." xml:space="preserve">
+    <value>A honey type cannot be merged into itself.</value>
+  </data>
+  <data name="Both honey types have their own limit for {0}: remove one on the Limits page first." xml:space="preserve">
+    <value>Both honey types have their own limit for {0}: remove one on the Limits page first.</value>
+  </data>
+  <data name="{0} was merged into {1}." xml:space="preserve">
+    <value>{0} was merged into {1}.</value>
+  </data>
+  <data name="The beekeeper's honey types are saved." xml:space="preserve">
+    <value>The beekeeper's honey types are saved.</value>
+  </data>
+  <data name="Holding identification number verified." xml:space="preserve">
+    <value>Holding identification number verified.</value>
+  </data>
+  <data name="Evidence accepted; the holding identification number is verified." xml:space="preserve">
+    <value>Evidence accepted; the holding identification number is verified.</value>
+  </data>
+  <data name="A beekeeper with this holding identification number is already registered. Find it and re-verify instead." xml:space="preserve">
+    <value>A beekeeper with this holding identification number is already registered. Find it and re-verify instead.</value>
+  </data>
+  <data name="The holding identification number belongs to another province than the directorate. Give a reason to continue." xml:space="preserve">
+    <value>The holding identification number belongs to another province than the directorate. Give a reason to continue.</value>
+  </data>
+  <data name="Consent recorded. The storefront is published once the holding identification number is verified." xml:space="preserve">
+    <value>Consent recorded. The storefront is published once the holding identification number is verified.</value>
+  </data>
+  <data name="Enter the holding identification number (or the platform number of a registered beekeeper)." xml:space="preserve">
+    <value>Enter the holding identification number (or the platform number of a registered beekeeper).</value>
   </data>
 </root>

@@ -34,6 +34,9 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         public string? Number { get; set; }
         public int ApiaryId { get; set; }
         public int HoneyTypeId { get; set; }
+        // D-98: HoneyTypeId = HoneyTypeCatalog.Other: a new honey type with its class, created with the delivery
+        public string? NewHoneyTypeName { get; set; }
+        public string? NewHoneyTypeClass { get; set; }
         public int PeriodId { get; set; }
         public DateOnly? DeliveryDate { get; set; }
         public string? Province { get; set; }
@@ -100,13 +103,22 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         private readonly TOP4HoneyChainsContext _context;
         private readonly TimeProvider _clock;
         private readonly SealPoolService _pool;
+        private readonly HoneyTypeCatalog _honeyTypes;
 
-        public CustodyIntakeService(TOP4HoneyChainsContext context, TimeProvider clock, SealPoolService pool)
+        public CustodyIntakeService(TOP4HoneyChainsContext context, TimeProvider clock, SealPoolService pool, HoneyTypeCatalog honeyTypes)
         {
             _context = context;
             _clock = clock;
             _pool = pool;
+            _honeyTypes = honeyTypes;
         }
+
+        // D-98: what the SMS code binds. With a new honey type ("Other") the content carries no id yet, so the typed name and the
+        // class are bound too; the stored hash then uses the new id (SaveAsync).
+        public static string ConfirmHash(IntakeForm f, IntakeContent content) =>
+            f.HoneyTypeId == HoneyTypeCatalog.Other
+                ? CodeRules.ContentHash(content.Canonical() + "|newhoney:" + HoneyTypeCatalog.Normalize(f.NewHoneyTypeName) + ";" + (f.NewHoneyTypeName ?? "").Trim() + ";" + f.NewHoneyTypeClass)
+                : content.Hash();
 
         private DateTime Now => _clock.GetUtcNow().UtcDateTime;
 
@@ -249,7 +261,13 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             if (intake == null || intake.IsLegacy || intake.ContentSha256 == null)
                 return null;
             var content = await StoredContentAsync(intakeId);
-            return content != null && string.Equals(content.Hash(), intake.ContentSha256.Trim(), StringComparison.OrdinalIgnoreCase);
+            if (content == null)
+                return false;
+            if (string.Equals(content.Hash(), intake.ContentSha256.Trim(), StringComparison.OrdinalIgnoreCase))
+                return true;
+            // D-98: the beekeeper confirmed a honey type that the platform administrator later merged into the lot's current one
+            var merged = await _context.HoneyTypeMerges.AsNoTracking().Where(m => m.TargetHoneyTypeId == content.HoneyTypeId).Select(m => m.SourceHoneyTypeId).ToListAsync();
+            return merged.Any(id => string.Equals((content with { HoneyTypeId = id }).Hash(), intake.ContentSha256.Trim(), StringComparison.OrdinalIgnoreCase));
         }
 
         // Lot, intake, containers, seal events (arrival, broken for sampling, new plant seal) and one jar per container, in one
@@ -259,11 +277,19 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         {
             var now = Now;
             await using var transaction = await _context.Database.BeginTransactionAsync();
+            // D-98: the new honey type ("Other") is created with the delivery; the stored hash binds its id
+            // (the form keeps "Other", so a refused save shows the typed name again)
+            var honeyTypeId = f.HoneyTypeId;
+            if (honeyTypeId == HoneyTypeCatalog.Other)
+            {
+                honeyTypeId = await _honeyTypes.CreateAsync(new HoneyTypeCatalog.NewType(f.NewHoneyTypeName!, f.NewHoneyTypeClass!));
+                content = content with { HoneyTypeId = honeyTypeId };
+            }
             var lot = new RawHoneyProduction
             {
                 RawHoneyProductionApiaryId = f.ApiaryId,
                 RawHoneyProductionPeriodId = f.PeriodId,
-                RawHoneyProductionHoneyType = f.HoneyTypeId,
+                RawHoneyProductionHoneyType = honeyTypeId,
                 RawHoneyProductionAmount = content.TotalKg,
                 RawHoneyProductionDate = f.DeliveryDate,
                 RawHoneyProductionWholesalerId = legacyWholesalerId,

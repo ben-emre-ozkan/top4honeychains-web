@@ -9,7 +9,8 @@
     var notices = (int)ViewBag.PendingNotices;
 }
 <h1 id="me-home">@L["Me.Hello", Model.BeekeeperFirstName]</h1>
-<p class="me-sub">@Model.BeekeeperBusinessNumber</p>
+@* D-98: the official number first; the platform number (the user name) second *@
+<p class="me-sub" id="me-numbers">@if (ViewBag.RegistryNumber is string official) {<span>@L[TOP4HoneyChains.Web.Services.OrgModel.RegistryNumber.LabelKey(official)]: @official</span><br />}<small>@L["Num.Platform"]: @Model.BeekeeperBusinessNumber</small></p>
 <honey-scene name="journey" trigger="first" class="me-journey" />
 
 @if (deliveries.Count == 0)

@@ -568,13 +568,13 @@
     <value>Registro de apicultores y asociaciones</value>
   </data>
   <data name="Reg.BusinessNo" xml:space="preserve">
-    <value>N.º de explotación</value>
+    <value>N.º de plataforma</value>
   </data>
   <data name="Reg.Beekeeper" xml:space="preserve">
     <value>Apicultor</value>
   </data>
   <data name="Reg.RegistryNo" xml:space="preserve">
-    <value>N.º de registro</value>
+    <value>N.º de identificación de la explotación</value>
   </data>
   <data name="Reg.Association" xml:space="preserve">
     <value>Asociación</value>
@@ -586,7 +586,7 @@
     <value>Formato: TR, un código de provincia 01-81 y 10 dígitos. Se requiere un documento probatorio (impresión del registro o foto).</value>
   </data>
   <data name="Reg.ListHelp" xml:space="preserve">
-    <value>Cada apicultor es un registro en la plataforma; un apicultor registrado con un teléfono móvil también puede iniciar sesión en el área de apicultor. El número de registro se verifica cuando el apicultor confirma el registro con el código SMS, o cuando el Responsable de cumplimiento acepta la foto firmada. Aquí un administrador de la plataforma comprueba un número ingresado más tarde, con un documento probatorio, y cambia la asociación.</value>
+    <value>Cada apicultor es un registro en la plataforma; un apicultor registrado con un teléfono móvil también puede iniciar sesión en el área de apicultor, con el número de plataforma como nombre de usuario. El número de identificación de la explotación se verifica cuando el apicultor confirma el registro con el código SMS, o cuando el Responsable de cumplimiento acepta la foto firmada. Aquí un administrador de la plataforma comprueba un número ingresado más tarde, con un documento probatorio, y cambia la asociación.</value>
   </data>
   <data name="Reg.Submit" xml:space="preserve">
     <value>Enviar</value>
@@ -757,10 +757,10 @@
     <value>Registrar una entrega</value>
   </data>
   <data name="Cust.NewIntakeHelp" xml:space="preserve">
-    <value>Busque al apicultor por número de explotación o de registro y luego ingrese la entrega con la foto del formulario de entrega firmado.</value>
+    <value>Busque al apicultor por número de identificación de la explotación o número de plataforma y luego ingrese la entrega con la foto del formulario de entrega firmado.</value>
   </data>
   <data name="Cust.BeekeeperNumber" xml:space="preserve">
-    <value>Número de explotación o de registro del apicultor</value>
+    <value>Número de identificación de la explotación o número de plataforma del apicultor</value>
   </data>
   <data name="Cust.Find" xml:space="preserve">
     <value>Buscar</value>
@@ -1090,7 +1090,7 @@
     <value>Páginas de apicultores</value>
   </data>
   <data name="P5.StorefrontsHelp" xml:space="preserve">
-    <value>La página pública de un miembro solo se publica con un consentimiento registrado y un número de registro verificado; al retirar el consentimiento, se despublica de inmediato.</value>
+    <value>La página pública de un miembro solo se publica con un consentimiento registrado y un número de identificación de la explotación verificado; al retirar el consentimiento, se despublica de inmediato.</value>
   </data>
   <data name="P5.Consent" xml:space="preserve">
     <value>Consentimiento</value>
@@ -1114,7 +1114,7 @@
     <value>no publicada</value>
   </data>
   <data name="P5.NeedsRegistry" xml:space="preserve">
-    <value>requiere un número de registro verificado</value>
+    <value>requiere un número de identificación de la explotación verificado</value>
   </data>
   <data name="P5.RecordConsent" xml:space="preserve">
     <value>Registrar consentimiento</value>
@@ -1189,7 +1189,7 @@
     <value>Organizaciones por verificar</value>
   </data>
   <data name="Work.Kind.Registry" xml:space="preserve">
-    <value>Números de registro por verificar</value>
+    <value>Números de identificación de la explotación por verificar</value>
   </data>
   <data name="Work.Kind.Correction" xml:space="preserve">
     <value>Correcciones por decidir</value>
@@ -2269,7 +2269,7 @@
     <value>Buscar:</value>
   </data>
   <data name="Registry number:" xml:space="preserve">
-    <value>Número de registro:</value>
+    <value>Número de identificación de la explotación:</value>
   </data>
   <data name="Lock-screen" xml:space="preserve">
     <value>Pantalla de bloqueo</value>
@@ -3355,7 +3355,7 @@
     <value>Latitud de la ubicación</value>
   </data>
   <data name="Beekeeper Business Number" xml:space="preserve">
-    <value>Número de empresa del apicultor</value>
+    <value>Número de plataforma del apicultor</value>
   </data>
   <data name="Enter processing step" xml:space="preserve">
     <value>Introduzca la etapa del proceso</value>
@@ -3763,7 +3763,7 @@
     <value>trazabilidad completa</value>
   </data>
   <data name="Business Number" xml:space="preserve">
-    <value>Número de empresa</value>
+    <value>Número de plataforma</value>
   </data>
   <data name="Enter until when the counter-sample is kept (a future date)." xml:space="preserve">
     <value>Indique hasta cuándo se conserva la contramuestra (una fecha futura).</value>
@@ -5164,7 +5164,7 @@
     <value>La lista de capacidades es fija: una capacidad nueva requiere un script de base de datos y un cambio de código.</value>
   </data>
   <data name="Cap.Uses.Beekeeping" xml:space="preserve">
-    <value>La explotación apícola. No inicia sesión; su número de registro verificado vincula los lotes con el apicultor e indica la provincia.</value>
+    <value>La explotación apícola. No inicia sesión; su número de identificación de la explotación verificado vincula los lotes con el apicultor e indica la provincia.</value>
   </data>
   <data name="Cap.Uses.Association" xml:space="preserve">
     <value>Vincula a sus apicultores miembros, registra su consentimiento y publica sus páginas, y ve los lotes de sus miembros en los informes de retirada; su inspector de campo puede hacer el PCC 0 si un administrador lo asigna.</value>
@@ -6319,7 +6319,7 @@
     <value>Organización</value>
   </data>
   <data name="Home.Wait.Kind.registry" xml:space="preserve">
-    <value>Número de registro</value>
+    <value>Número de identificación de la explotación</value>
   </data>
   <data name="Home.Wait.Kind.correction" xml:space="preserve">
     <value>Corrección</value>
@@ -6373,7 +6373,7 @@
     <value>Organización</value>
   </data>
   <data name="Home.Act.Kind.registry" xml:space="preserve">
-    <value>Número de registro</value>
+    <value>Número de identificación de la explotación</value>
   </data>
   <data name="Home.Act.Entered" xml:space="preserve">
     <value>introducido por {0}</value>
@@ -6553,7 +6553,7 @@
     <value>Fecha de nacimiento</value>
   </data>
   <data name="Audit.F.BusinessNumber" xml:space="preserve">
-    <value>Número de explotación</value>
+    <value>Número de plataforma</value>
   </data>
   <data name="Audit.F.Capability" xml:space="preserve">
     <value>Capacidad</value>
@@ -6622,7 +6622,7 @@
     <value>Introducido por</value>
   </data>
   <data name="Audit.F.EnterpriseNumber" xml:space="preserve">
-    <value>Número de registro de la explotación</value>
+    <value>Número de identificación de la explotación</value>
   </data>
   <data name="Audit.F.Event" xml:space="preserve">
     <value>Evento</value>
@@ -6817,7 +6817,7 @@
     <value>Registrado por</value>
   </data>
   <data name="Audit.F.RegistryNumber" xml:space="preserve">
-    <value>Número de registro</value>
+    <value>Número de identificación de la explotación</value>
   </data>
   <data name="Audit.F.RejectReason" xml:space="preserve">
     <value>Motivo del rechazo</value>
@@ -7135,7 +7135,7 @@
     <value>Prueba con foto firmada (aceptar o rechazar)</value>
   </data>
   <data name="Cap.Uses.BeekeeperRegistration" xml:space="preserve">
-    <value>Dirección distrital de agricultura: sus responsables de registro inscriben a los apicultores y sus colmenares, comprueban el número de registro, confirman la identidad y el consentimiento con un código SMS (o una foto firmada) y emiten el acceso.</value>
+    <value>Dirección distrital de agricultura: sus responsables de registro inscriben a los apicultores y sus colmenares, comprueban el número de identificación de la explotación, confirman la identidad y el consentimiento con un código SMS (o una foto firmada) y emiten el acceso.</value>
   </data>
   <data name="Org.NoComplianceOfficer" xml:space="preserve">
     <value>Esta organización aún no tiene Responsable de cumplimiento. Cada organización nombra al menos uno (puede ser el administrador de la organización con una segunda membresía).</value>
@@ -7570,7 +7570,7 @@
     <value>Finalidad apícola</value>
   </data>
   <data name="Registry Number" xml:space="preserve">
-    <value>Número de registro</value>
+    <value>Número de identificación de la explotación</value>
   </data>
   <data name="Work.Kind.Evidence" xml:space="preserve">
     <value>Revisar fotos firmadas</value>
@@ -7579,16 +7579,16 @@
     <value>Registro de apicultores</value>
   </data>
   <data name="Reg78.Help" xml:space="preserve">
-    <value>Apicultores registrados por su organización. El número de registro, un código SMS al teléfono del apicultor y su declaración confirman cada registro.</value>
+    <value>Apicultores registrados por su organización. El número de identificación de la explotación, un código SMS al teléfono del apicultor y su declaración confirman cada registro.</value>
   </data>
   <data name="Reg78.FindLabel" xml:space="preserve">
-    <value>Número de registro (AKS) o número de explotación</value>
+    <value>Número de identificación de la explotación (AKS) o número de plataforma</value>
   </data>
   <data name="Reg78.Find" xml:space="preserve">
     <value>Buscar o registrar</value>
   </data>
   <data name="Reg78.FindHelp" xml:space="preserve">
-    <value>Un apicultor conocido se verifica de nuevo; un número de registro nuevo inicia un registro nuevo.</value>
+    <value>Un apicultor conocido se verifica de nuevo; un número de identificación de la explotación nuevo inicia un registro nuevo.</value>
   </data>
   <data name="Reg78.Date" xml:space="preserve">
     <value>Fecha</value>
@@ -7747,7 +7747,7 @@
     <value>Revisión de la foto firmada</value>
   </data>
   <data name="Reg78.ReviewHelp" xml:space="preserve">
-    <value>Abra la foto y compárela con el registro: identidad, número de registro, elecciones del apicultor y firma. Usted no grabó este registro.</value>
+    <value>Abra la foto y compárela con el registro: identidad, número de identificación de la explotación, elecciones del apicultor y firma. Usted no grabó este registro.</value>
   </data>
   <data name="Reg78.ReviewReason" xml:space="preserve">
     <value>Nota (obligatoria para rechazar)</value>
@@ -8854,7 +8854,7 @@
     <value>Muestras y laboratorio muestra todos los frascos e informes de su laboratorio. Su primera tarea es aprobar los informes que envían sus analistas, o devolver uno, por ejemplo si un valor parece erróneo.</value>
   </data>
   <data name="Tour.Registration" xml:space="preserve">
-    <value>Registro de apicultores es donde registra a los apicultores y sus colmenares. Escriba el número de registro, introduzca los datos del apicultor y su colmenar, envíe el código SMS y escriba el código que el apicultor le lee.</value>
+    <value>Registro de apicultores es donde registra a los apicultores y sus colmenares. Escriba el número de identificación de la explotación, introduzca los datos del apicultor, sus tipos de miel y su colmenar, envíe el código SMS y escriba el código que el apicultor le lee.</value>
   </data>
   <data name="Tour.Compliance" xml:space="preserve">
     <value>Cumplimiento es su mesa de revisión: fotos firmadas, revisiones de calidad, solicitudes de datos y el registro de auditoría. Empiece por lo que espera su decisión, por ejemplo una entrega confirmada con foto firmada en lugar de código SMS.</value>
@@ -8872,7 +8872,7 @@
     <value>El panel muestra lo que le espera como operador de la plataforma y la actividad reciente. Empiece aquí, por ejemplo con una organización pendiente de verificar.</value>
   </data>
   <data name="Tour.Admin.Data" xml:space="preserve">
-    <value>Apicultores, colmenares y las listas de referencia de la plataforma. Busque aquí a un apicultor, por ejemplo por su número de registro.</value>
+    <value>Apicultores, colmenares y las listas de referencia de la plataforma. Busque aquí a un apicultor, por ejemplo por su número de identificación de la explotación.</value>
   </data>
   <data name="Tour.Me.Deliveries" xml:space="preserve">
     <value>Mis entregas muestra la miel que entregó, con cada envase y su precinto. Introduzca aquí su precio por kilo, por ejemplo para la miel de castaño de la semana pasada.</value>
@@ -9851,7 +9851,7 @@
     <value>El apicultor recibe el código SMS y los mensajes posteriores en este idioma.</value>
   </data>
   <data name="Cust.Info.Number" xml:space="preserve">
-    <value>Escriba el número de registro del apicultor (p. ej. TR520401200241) o su número de explotación y pulse Buscar. Luego aparecen sus colmenares en el formulario.</value>
+    <value>Escriba el número de identificación de la explotación del apicultor (p. ej. TR520401200241) o su número de plataforma y pulse Buscar. Luego aparecen sus colmenares en el formulario.</value>
   </data>
   <data name="Ci.ArrivedUnsealed" xml:space="preserve">
     <value>Llegó sin precinto (lo normal)</value>
@@ -10284,5 +10284,116 @@
   </data>
   <data name="Enter the capacity and the empty weight in kg (or leave them empty)." xml:space="preserve">
     <value>Ingrese la capacidad y el peso vacío en kg (o déjelos vacíos).</value>
+  </data>
+  <data name="Num.Official" xml:space="preserve">
+    <value>Número de identificación de la explotación</value>
+  </data>
+  <data name="Num.Platform" xml:space="preserve">
+    <value>Número de plataforma</value>
+  </data>
+  <data name="Login.BeekeeperHint" xml:space="preserve">
+    <value>Apicultores: su nombre de usuario es su número de plataforma (TR-BEE-…).</value>
+  </data>
+  <data name="HT.Other" xml:space="preserve">
+    <value>Otro (nuevo tipo de miel)</value>
+  </data>
+  <data name="HT.NewName" xml:space="preserve">
+    <value>Nombre del nuevo tipo de miel</value>
+  </data>
+  <data name="HT.NewHelp" xml:space="preserve">
+    <value>Revise primero la lista. Un nombre que coincide con un tipo existente (sin tener en cuenta mayúsculas, letras turcas, espacios ni la palabra "miel") se rechaza; elija entonces ese tipo de la lista.</value>
+  </data>
+  <data name="HT.NewClass" xml:space="preserve">
+    <value>Clase de miel</value>
+  </data>
+  <data name="HT.ClassHelp" xml:space="preserve">
+    <value>La clase decide qué límites de laboratorio se aplican a esta miel.</value>
+  </data>
+  <data name="HT.Class.Floral" xml:space="preserve">
+    <value>Floral (de flores)</value>
+  </data>
+  <data name="HT.Class.Honeydew" xml:space="preserve">
+    <value>Mielada</value>
+  </data>
+  <data name="HT.Class.Pine" xml:space="preserve">
+    <value>Pino</value>
+  </data>
+  <data name="HT.BeekeeperTypes" xml:space="preserve">
+    <value>Tipos de miel que produce el apicultor</value>
+  </data>
+  <data name="HT.EditBeekeeperTypes" xml:space="preserve">
+    <value>Cambiar los tipos de miel del apicultor</value>
+  </data>
+  <data name="HT.Added" xml:space="preserve">
+    <value>Añadido desde un formulario</value>
+  </data>
+  <data name="HT.Merge.Title" xml:space="preserve">
+    <value>Fusionar tipo de miel</value>
+  </data>
+  <data name="HT.Merge.Help" xml:space="preserve">
+    <value>Todo lo que usa este tipo de miel pasa al tipo que elija: lotes, límites de laboratorio, tipos de miel de los apicultores y las traducciones que le falten al otro tipo. Después se elimina este tipo de miel; su nombre sigue llevando al otro tipo.</value>
+  </data>
+  <data name="HT.Merge.Lots" xml:space="preserve">
+    <value>Lotes</value>
+  </data>
+  <data name="HT.Merge.Limits" xml:space="preserve">
+    <value>Límites de este tipo de miel</value>
+  </data>
+  <data name="HT.Merge.Beekeepers" xml:space="preserve">
+    <value>Apicultores con este tipo de miel</value>
+  </data>
+  <data name="HT.Merge.ClassNote" xml:space="preserve">
+    <value>Después, los lotes se evalúan con los límites de la clase de miel del otro tipo.</value>
+  </data>
+  <data name="HT.Merge.Target" xml:space="preserve">
+    <value>Fusionar con</value>
+  </data>
+  <data name="HT.Merge.Button" xml:space="preserve">
+    <value>Fusionar</value>
+  </data>
+  <data name="Your role cannot add a honey type; choose one from the list." xml:space="preserve">
+    <value>Su rol no puede añadir un tipo de miel; elija uno de la lista.</value>
+  </data>
+  <data name="Enter the name of the new honey type (2 to 100 characters)." xml:space="preserve">
+    <value>Introduzca el nombre del nuevo tipo de miel (de 2 a 100 caracteres).</value>
+  </data>
+  <data name="Choose the honey class of the new honey type (floral, honeydew or pine)." xml:space="preserve">
+    <value>Elija la clase del nuevo tipo de miel (floral, mielada o pino).</value>
+  </data>
+  <data name="This honey type already exists as {0}: choose it from the list." xml:space="preserve">
+    <value>Este tipo de miel ya existe como {0}: elíjalo de la lista.</value>
+  </data>
+  <data name="Only the platform administrator merges honey types." xml:space="preserve">
+    <value>Solo el administrador de la plataforma fusiona tipos de miel.</value>
+  </data>
+  <data name="A honey type cannot be merged into itself." xml:space="preserve">
+    <value>Un tipo de miel no se puede fusionar consigo mismo.</value>
+  </data>
+  <data name="Both honey types have their own limit for {0}: remove one on the Limits page first." xml:space="preserve">
+    <value>Ambos tipos de miel tienen su propio límite para {0}: elimine primero uno en la página de límites.</value>
+  </data>
+  <data name="{0} was merged into {1}." xml:space="preserve">
+    <value>{0} se fusionó con {1}.</value>
+  </data>
+  <data name="The beekeeper's honey types are saved." xml:space="preserve">
+    <value>Se guardaron los tipos de miel del apicultor.</value>
+  </data>
+  <data name="Holding identification number verified." xml:space="preserve">
+    <value>Número de identificación de la explotación verificado.</value>
+  </data>
+  <data name="Evidence accepted; the holding identification number is verified." xml:space="preserve">
+    <value>Prueba aceptada; el número de identificación de la explotación está verificado.</value>
+  </data>
+  <data name="A beekeeper with this holding identification number is already registered. Find it and re-verify instead." xml:space="preserve">
+    <value>Ya hay un apicultor registrado con este número de identificación de la explotación. Búsquelo y vuelva a verificarlo.</value>
+  </data>
+  <data name="The holding identification number belongs to another province than the directorate. Give a reason to continue." xml:space="preserve">
+    <value>El número de identificación de la explotación pertenece a otra provincia distinta de la de la dirección. Indique un motivo para continuar.</value>
+  </data>
+  <data name="Consent recorded. The storefront is published once the holding identification number is verified." xml:space="preserve">
+    <value>Consentimiento registrado. La página se publica en cuanto se verifique el número de identificación de la explotación.</value>
+  </data>
+  <data name="Enter the holding identification number (or the platform number of a registered beekeeper)." xml:space="preserve">
+    <value>Introduzca el número de identificación de la explotación (o el número de plataforma de un apicultor registrado).</value>
   </data>
 </root>

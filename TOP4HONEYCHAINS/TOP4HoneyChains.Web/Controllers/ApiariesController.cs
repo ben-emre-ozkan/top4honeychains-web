@@ -25,6 +25,8 @@ namespace TOP4HoneyChains.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var tOP4HoneyChainsContext = _context.Apiaries.Include(a => a.ApiaryBeekeeper);
+            // D-98: the official number (İşletme tanımlama numarası) is shown first, the platform number second
+            ViewBag.Registry = await _context.BeekeeperRegistry.AsNoTracking().Where(r => r.RegistryNumber != null).ToDictionaryAsync(r => r.BeekeeperId, r => r.RegistryNumber);
             ViewBag.Controller = "Apiaries";
             ViewBag.Action = "Index";
             return View(await tOP4HoneyChainsContext.ToListAsync());

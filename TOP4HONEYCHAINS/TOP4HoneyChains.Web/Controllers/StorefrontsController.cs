@@ -174,7 +174,7 @@ namespace TOP4HoneyChains.Web.Controllers
             var state = (await _storefronts.StatesAsync(new[] { id }))[id];
             TempData["Success"] = state.Published
                 ? "Consent recorded; the storefront is published."
-                : "Consent recorded. The storefront is published once the registry number is verified.";
+                : "Consent recorded. The storefront is published once the holding identification number is verified.";
             return RedirectToAction(nameof(Index));
         }
 

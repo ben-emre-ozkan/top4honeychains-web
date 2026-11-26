@@ -146,6 +146,8 @@ builder.Services.AddScoped<RegistrationService>();
 builder.Services.AddScoped<BeekeeperSignIn>();
 builder.Services.AddScoped<SealPoolService>();
 builder.Services.AddScoped<CustodyIntakeService>();
+// D-98: honey types added from the forms ("Other") and merged by the platform administrator
+builder.Services.AddScoped<HoneyTypeCatalog>();
 builder.Services.AddScoped<DeliveryCorrectionService>();
 builder.Services.Configure<PublicNameOptions>(builder.Configuration.GetSection("PublicNames"));
 builder.Services.AddScoped<PublicNameService>();

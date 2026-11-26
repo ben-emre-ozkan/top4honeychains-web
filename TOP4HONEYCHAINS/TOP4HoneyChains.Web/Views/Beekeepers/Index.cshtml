@@ -47,7 +47,7 @@
                                         <th>@L["Birth Date"]</th>
                                         <th>@L["Experience Time"]</th>
                                         <th>@L["Phone Number"]</th>
-                                        <th>@L["Business Number"]</th>
+                                        <th>@L["Num.Official"]</th>
                                         <th>@L["Beekeeping Purpose Type"]</th>
                                         <th>@L["Beekeeping Type"]</th>
                                         <th>@L["Education Level"]</th>
@@ -87,7 +87,7 @@
                                                 @TOP4HoneyChains.Web.Services.PhoneNumberPolicy.Display(item.BeekeeperPhoneNumber)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.BeekeeperBusinessNumber)
+                                                <partial name="_BeekeeperNumbers" model="@(((ViewBag.Registry as Dictionary<string, string?>)?.GetValueOrDefault(item.BeekeeperId!), item.BeekeeperBusinessNumber))" />
                                             </td>
                                             <td>
                                                 @Ref.T("BeekeepingPurposeType", item.BeekeeperBeekeepingPurposeType?.BeekeepingPurposeTypeId, "Title", item.BeekeeperBeekeepingPurposeType?.BeekeepingPurposeTypeTitle)

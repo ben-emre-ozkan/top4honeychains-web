@@ -1,0 +1,23 @@
+@* D-98: a honey type list; "Other" (value -1) reveals the name and class of a new type, only for the roles that may add one *@
+@model TOP4HoneyChains.Web.Models.ViewModels.HoneyTypeChoice
+@{
+    var other = TOP4HoneyChains.Web.Services.OrgModel.HoneyTypeCatalog.Other;
+}
+<select name="@Model.Name" id="@Model.Id" class="form-select honey-type-select" data-val="false" data-new="@(Model.MayAdd ? Model.Id + "-new" : null)">
+    @if (Model.Placeholder)
+    {
+        <option value="">@L["-- Select --"]</option>
+    }
+    @foreach (var item in Model.Items)
+    {
+        <option value="@item.Value" selected="@(Model.Selected?.ToString() == item.Value)">@item.Text</option>
+    }
+    @if (Model.MayAdd)
+    {
+        <option value="@other" selected="@(Model.Selected == other)" id="@(Model.Id)-other">@L["HT.Other"]</option>
+    }
+</select>
+@if (Model.MayAdd)
+{
+    <partial name="_HoneyTypeNew" model="@((Model.Id, Model.Selected == other, Model.NewName, Model.NewClass))" />
+}

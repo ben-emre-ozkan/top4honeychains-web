@@ -37,6 +37,26 @@ namespace TOP4HoneyChains.Web.Controllers
                     "Code", "Name", selected ?? Origin.Default);
         }
 
+        // D-98: "Other" in the honey type list: a new honey type with its class (the platform administrator may add)
+        private TOP4HoneyChains.Web.Services.OrgModel.HoneyTypeCatalog HoneyTypes =>
+            HttpContext.RequestServices.GetRequiredService<TOP4HoneyChains.Web.Services.OrgModel.HoneyTypeCatalog>();
+
+        private async Task FillNewHoneyTypeAsync(string? name = null, string? honeyClass = null)
+        {
+            ViewBag.MayAddHoneyType = await HoneyTypes.MayAddAsync();
+            ViewBag.NewHoneyTypeName = name;
+            ViewBag.NewHoneyTypeClass = honeyClass;
+        }
+
+        // the honey type of the form: an existing one, or a new one ("Other") checked here and created by SaveNewHoneyTypeAsync
+        private async Task CheckHoneyTypeAsync(RawHoneyProduction lot, string? name, string? honeyClass)
+        {
+            if (lot.RawHoneyProductionHoneyType == null)
+                return;
+            if (await HoneyTypes.CheckChoiceAsync(lot.RawHoneyProductionHoneyType, name, honeyClass) is string error)
+                ModelState.AddModelError("RawHoneyProductionHoneyType", error);
+        }
+
         // D-36: the owning organization is chosen on the edit form only with the organization model
         private void FillOwnerOrgs(int? selected)
         {
@@ -144,6 +164,7 @@ namespace TOP4HoneyChains.Web.Controllers
 
 
             FillOrigins(null);
+            await FillNewHoneyTypeAsync();
             ViewBag.Controller = "Raw Honey Production";
             ViewBag.Action = "Create";
 
@@ -155,8 +176,9 @@ namespace TOP4HoneyChains.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(RawHoneyProduction rawHoneyProduction)
+        public async Task<IActionResult> Create(RawHoneyProduction rawHoneyProduction, string? newHoneyTypeName, string? newHoneyTypeClass)
         {
+            await CheckHoneyTypeAsync(rawHoneyProduction, newHoneyTypeName, newHoneyTypeClass);
             // D-89: an apiary may deliver several times in a period (each record its own lot); the same honey type from the same
             // apiary on the same day is pointed out after saving, never refused
             var sameDay = rawHoneyProduction.RawHoneyProductionDate is DateOnly day
@@ -172,8 +194,12 @@ namespace TOP4HoneyChains.Web.Controllers
 
             if (ModelState.IsValid)
             {
+                await using var transaction = await _context.Database.BeginTransactionAsync();
+                if (rawHoneyProduction.RawHoneyProductionHoneyType == TOP4HoneyChains.Web.Services.OrgModel.HoneyTypeCatalog.Other)
+                    rawHoneyProduction.RawHoneyProductionHoneyType = await HoneyTypes.CreateAsync(new(newHoneyTypeName!, newHoneyTypeClass!));
                 _context.Add(rawHoneyProduction);
                 await _context.SaveChangesAsync();
+                await transaction.CommitAsync();
                 if (sameDay != null)
                     TempData["Info"] = $"Lot #{sameDay} is a delivery of the same honey type from this apiary on the same day. Check that this is another delivery.";
 
@@ -206,6 +232,7 @@ namespace TOP4HoneyChains.Web.Controllers
 
 
             FillOrigins(rawHoneyProduction.OriginCountry);
+            await FillNewHoneyTypeAsync(newHoneyTypeName, newHoneyTypeClass);
             ViewBag.Controller = "Raw Honey Production";
             ViewBag.Action = "Create";
 
@@ -254,6 +281,7 @@ namespace TOP4HoneyChains.Web.Controllers
 
             FillOwnerOrgs(rawHoneyProduction.OwnerOrgId);
             FillOrigins(rawHoneyProduction.OriginCountry);
+            await FillNewHoneyTypeAsync();
             ViewBag.Controller = "Raw Honey Production";
             ViewBag.Action = "Edit";
             ViewBag.DeliveryLocked = await _context.LotIntakes.AnyAsync(i => i.RawHoneyProductionId == id && i.ContainersRecorded == true);
@@ -263,7 +291,7 @@ namespace TOP4HoneyChains.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, RawHoneyProduction rawHoneyProduction)
+        public async Task<IActionResult> Edit(int id, RawHoneyProduction rawHoneyProduction, string? newHoneyTypeName, string? newHoneyTypeClass)
         {
             if (id != rawHoneyProduction.RawHoneyProductionId)
             {
@@ -302,13 +330,19 @@ namespace TOP4HoneyChains.Web.Controllers
                 foreach (var key in new[] { "RawHoneyProductionApiaryId", "RawHoneyProductionHoneyType", "RawHoneyProductionPeriodId", "RawHoneyProductionAmount", "RawHoneyProductionDate", "OriginCountry" })
                     ModelState.Remove(key);
             }
+            else
+                await CheckHoneyTypeAsync(rawHoneyProduction, newHoneyTypeName, newHoneyTypeClass);
 
             if (ModelState.IsValid)
             {
                 try
                 {
+                    await using var transaction = await _context.Database.BeginTransactionAsync();
+                    if (rawHoneyProduction.RawHoneyProductionHoneyType == TOP4HoneyChains.Web.Services.OrgModel.HoneyTypeCatalog.Other)
+                        rawHoneyProduction.RawHoneyProductionHoneyType = await HoneyTypes.CreateAsync(new(newHoneyTypeName!, newHoneyTypeClass!));
                     _context.Update(rawHoneyProduction);
                     await _context.SaveChangesAsync();
+                    await transaction.CommitAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -333,6 +367,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 "WholesalerId", "WholesalerTitle", rawHoneyProduction.RawHoneyProductionWholesalerId);
             FillOwnerOrgs(rawHoneyProduction.OwnerOrgId);
             FillOrigins(rawHoneyProduction.OriginCountry);
+            await FillNewHoneyTypeAsync(newHoneyTypeName, newHoneyTypeClass);
 
 
             ViewBag.Controller = "Raw Honey Production";

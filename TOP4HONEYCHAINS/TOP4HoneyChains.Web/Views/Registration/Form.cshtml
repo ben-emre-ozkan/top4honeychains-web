@@ -45,10 +45,10 @@
                         <input type="hidden" name="DraftKey" value="@Model.DraftKey" />
                         <input type="hidden" asp-for="BeekeeperId" />
 
-                        <h5 class="mt-2">1. @L["Reg78.Registry"]</h5>
+                        <h5 class="mt-2">1. @L["Num.Official"]</h5>
                         <div class="row g-2">
                             <div class="col-md-4">
-                                <label class="form-label required" for="RegistryNumber">@L["Reg78.RegistryNumber"]</label><info-tip key="Reg78.Info.Registry" about="@L["Reg78.RegistryNumber"].Value" />
+                                <label class="form-label required" for="RegistryNumber">@L["Num.Official"]</label><info-tip key="Reg78.Info.Registry" about="@L["Num.Official"].Value" />
                                 <input class="form-control" asp-for="RegistryNumber" placeholder="TR520401200241" autocomplete="off" />
                                 <div class="form-text">@L["Reg78.RegistryHelp"]@if (Demo.Enabled) {<text> </text><span id="registry-demo-help">@L["Demo.RegistryHelp"]</span>}</div>
                             </div>
@@ -90,6 +90,11 @@
                                     <option value="">@L["Reg78.NoAssociation"]</option>
                                 </select>
                             </div>
+                            @* D-98: the beekeeper's honey types (several) and "Other" for a new type *@
+                            <fieldset class="col-12 mt-2" id="registration-honey-types">
+                                <legend class="form-label fs-6 mb-1">@L["HT.BeekeeperTypes"] <span class="text-muted fw-normal">@L["(optional)"]</span></legend>
+                                <partial name="_HoneyTypeChecks" model="@(new TOP4HoneyChains.Web.Models.ViewModels.HoneyTypeChecks((IEnumerable<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem>)ViewBag.HoneyTypeItems, Model.HoneyTypeIds, ViewBag.MayAddHoneyType == true, Model.OtherHoneyType, Model.NewHoneyTypeName, Model.NewHoneyTypeClass))" />
+                            </fieldset>
                         </div>
 
                         <h5 class="mt-4">3. @L["Reg78.Apiary"]</h5>
