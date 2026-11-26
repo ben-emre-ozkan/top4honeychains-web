@@ -284,6 +284,7 @@ namespace TOP4HoneyChains.Web.Controllers
             await FillCcpBlocksAsync(vm);
             await FillBadgesAsync(vm);
             await FillJourneyAsync(vm, batch);
+            await FillDistrictsAsync(vm);
 
             return View(vm);
         }
@@ -612,6 +613,32 @@ namespace TOP4HoneyChains.Web.Controllers
         // D-72: the batch's real steps for the journey (harvest, delivery, laboratory, processing, shelf) and the province of
         // each source: the province declared at delivery, else the apiary's (computed above), else the enterprise registry's.
         // Deliveries, laboratory reports and the shelf exist only with the organization model; without it they show empty states.
+        // D-98: the district of each source, within its province: the apiary's district (DistrictId), else the district
+        // declared at delivery, matched by name on the district map; unknown otherwise (the page then shows the province)
+        private async Task FillDistrictsAsync(HoneyStoryViewModel vm)
+        {
+            var sources = vm.RawSources.Where(s => s.ProvincePlate > 0).ToList();
+            if (sources.Count == 0)
+                return;
+            var apiaryIds = sources.Select(s => s.ApiaryId).OfType<int>().Distinct().ToList();
+            var apiaryDistricts = await _context.Apiaries.AsNoTracking()
+                .Where(a => apiaryIds.Contains(a.ApiaryId) && a.DistrictId != null)
+                .Join(_context.Districts, a => a.DistrictId, d => d.DistrictId, (a, d) => new { a.ApiaryId, d.ProvinceCode, d.Name })
+                .ToListAsync();
+            var rawIds = sources.Select(s => s.RawHoneyProductionId).ToList();
+            var declared = await _context.LotIntakes.AsNoTracking().Where(i => rawIds.Contains(i.RawHoneyProductionId))
+                .Select(i => new { i.RawHoneyProductionId, i.Province, i.District }).ToListAsync();
+            foreach (var s in sources)
+            {
+                var own = apiaryDistricts.FirstOrDefault(a => a.ApiaryId == s.ApiaryId);
+                var fromApiary = own != null && int.TryParse(own.ProvinceCode, out var plate) && plate == s.ProvincePlate
+                    ? TurkeyDistricts.Find(plate, own.Name) : null;
+                var atDelivery = declared.Where(i => i.RawHoneyProductionId == s.RawHoneyProductionId && Provinces.PlateOf(i.Province) == s.ProvincePlate)
+                    .Select(i => TurkeyDistricts.Find(s.ProvincePlate, i.District)).FirstOrDefault(d => d != null);
+                s.District = (fromApiary ?? atDelivery)?.Name;
+            }
+        }
+
         private async Task FillJourneyAsync(HoneyStoryViewModel vm, FinalHoneyProduction batch)
         {
             var j = vm.Journey;

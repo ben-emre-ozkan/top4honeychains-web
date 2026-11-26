@@ -5539,7 +5539,7 @@
     <value>Pochodzenie według prowincji</value>
   </data>
   <data name="Hst.MapNote" xml:space="preserve">
-    <value>Tylko według prowincji; dokładne położenie pasiek nigdy nie jest publikowane.</value>
+    <value>Według prowincji i powiatu; dokładne położenie pasiek nigdy nie jest publikowane.</value>
   </data>
   <data name="Hst.SourcesEyebrow" xml:space="preserve">
     <value>Poznaj pszczelarzy</value>
@@ -6292,7 +6292,7 @@
     <value>Pasieki w prowincji</value>
   </data>
   <data name="Home.Map.Note" xml:space="preserve">
-    <value>Tylko według prowincji; położenie pasiek nigdy nie jest pokazywane.</value>
+    <value>Według prowincji i powiatu; położenie pasiek nigdy nie jest pokazywane.</value>
   </data>
   <data name="Home.Map.Unlocated" xml:space="preserve">
     <value>Pasieki bez lokalizacji (poza mapą): {0}.</value>
@@ -10464,5 +10464,17 @@
   </data>
   <data name="Lab report approved; it is the batch's final honey result." xml:space="preserve">
     <value>Raport laboratoryjny zatwierdzony; jest wynikiem końcowym miodu tej partii.</value>
+  </data>
+  <data name="Map.Back" xml:space="preserve">
+    <value>Wszystkie prowincje</value>
+  </data>
+  <data name="Map.DrillHint" xml:space="preserve">
+    <value>Wybierz wyróżnioną prowincję, aby zobaczyć jej powiaty.</value>
+  </data>
+  <data name="Map.DistrictCredit" xml:space="preserve">
+    <value>Granice powiatów: geoBoundaries, © współtwórcy OpenStreetMap (ODbL)</value>
+  </data>
+  <data name="Home.Map.DistrictTip" xml:space="preserve">
+    <value>Pasieki: {0}</value>
   </data>
 </root>

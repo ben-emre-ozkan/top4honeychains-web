@@ -5539,7 +5539,7 @@
     <value>Origins by province</value>
   </data>
   <data name="Hst.MapNote" xml:space="preserve">
-    <value>Shown by province only; exact apiary locations are never published.</value>
+    <value>Shown by province and district; exact apiary locations are never published.</value>
   </data>
   <data name="Hst.SourcesEyebrow" xml:space="preserve">
     <value>Meet the beekeepers</value>
@@ -6292,7 +6292,7 @@
     <value>Apiaries per province</value>
   </data>
   <data name="Home.Map.Note" xml:space="preserve">
-    <value>Shown by province only; apiary locations are never shown.</value>
+    <value>Shown by province and district; apiary locations are never shown.</value>
   </data>
   <data name="Home.Map.Unlocated" xml:space="preserve">
     <value>Apiaries without a location (not on the map): {0}.</value>
@@ -10340,5 +10340,17 @@
   </data>
   <data name="Lab report approved; it is the batch's final honey result." xml:space="preserve">
     <value>Lab report approved; it is the batch's final honey result.</value>
+  </data>
+  <data name="Map.Back" xml:space="preserve">
+    <value>All provinces</value>
+  </data>
+  <data name="Map.DrillHint" xml:space="preserve">
+    <value>Select a highlighted province to see its districts.</value>
+  </data>
+  <data name="Map.DistrictCredit" xml:space="preserve">
+    <value>District boundaries: geoBoundaries, © OpenStreetMap contributors (ODbL)</value>
+  </data>
+  <data name="Home.Map.DistrictTip" xml:space="preserve">
+    <value>Apiaries: {0}</value>
   </data>
 </root>

@@ -261,16 +261,22 @@
             </div>
         </section>
 
-        @* ===== 3. origins by province (D-12, D-72): each province's share of the jar; never an apiary position ===== *@
+        @* ===== 3. origins by province (D-12, D-72): each province's share of the jar; never an apiary position.
+           D-98: a province opens its districts, shaded by their share; each source shows its district's outline ===== *@
         var byProvince = sources.Where(s => s.ProvincePlate > 0).GroupBy(s => s.ProvincePlate)
             .Select(g => (Plate: g.Key, Share: g.Sum(Share), Beekeepers: g.Select(Beekeeper).Distinct().Count()))
             .OrderByDescending(p => p.Share).ToList();
         var unplaced = sources.Where(s => s.ProvincePlate == 0).Sum(Share);
+        var byDistrict = sources.Where(s => s.ProvincePlate > 0 && s.District != null).GroupBy(s => (s.ProvincePlate, s.District!))
+            .Select(g => new TOP4HoneyChains.Web.Models.ViewModels.TurkeyMapDistrictArea(g.Key.ProvincePlate, g.Key.Item2, (double)g.Sum(Share),
+                L["Hst.MapTip", Pct(g.Sum(Share)), g.Select(Beekeeper).Distinct().Count()].Value)).ToList();
         var originMap = new TOP4HoneyChains.Web.Models.ViewModels.TurkeyMapModel
         {
             Id = "hs-tmap",
             Label = L["Hst.MapTitle"].Value,
             FillIn = true,
+            Districts = true,
+            DistrictAreas = byDistrict,
             Areas = byProvince.Select(p => new TOP4HoneyChains.Web.Models.ViewModels.TurkeyMapArea(p.Plate, (double)p.Share, L["Hst.MapTip", Pct(p.Share), p.Beekeepers].Value)).ToList()
         };
         <section class="hs-section" id="hs-map">
@@ -300,9 +306,14 @@
                 @for (var i = 0; i < sources.Count; i++)
                 {
                     var s = sources[i];
+                    var where = s.District != null ? s.District + ", " + Province(s.ProvincePlate) : Province(s.ProvincePlate);
                     <div class="hs-card hs-place @Color(i)">
                         <div class="hs-pin">@(i + 1)</div>
-                        <div class="hs-place-body"><b>@Apiary(s)</b><span>@Beekeeper(s)@if (s.ProvincePlate > 0) {<text> · @Province(s.ProvincePlate)</text>}</span></div>
+                        <div class="hs-place-body"><b>@Apiary(s)</b><span>@Beekeeper(s)@if (s.ProvincePlate > 0) {<text> · @where</text>}</span></div>
+                        @if (s.ProvincePlate > 0)
+                        {
+                            <partial name="~/Views/Shared/_DistrictOutline.cshtml" model="@(new TOP4HoneyChains.Web.Models.ViewModels.DistrictOutlineModel(s.ProvincePlate, s.District, where))" />
+                        }
                         <div class="hs-amount"><b>@Kg(s.UsedAmount) kg</b><span>@Pct(Share(s))</span></div>
                     </div>
                 }

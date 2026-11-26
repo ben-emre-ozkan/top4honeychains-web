@@ -18,7 +18,11 @@ namespace TOP4HoneyChains.Web.Services
 
     public record AdminProvinceCount(int Plate, int Beekeepers, int Apiaries);
 
-    public record AdminHomeFigures(AdminKpis Kpis, IReadOnlyList<AdminChainStep> Chain, IReadOnlyList<AdminProvinceCount> Provinces, int UnlocatedApiaries);
+    // D-98: apiaries per district (District: the name on the district map), for the drill-down of the map
+    public record AdminDistrictCount(int Plate, string District, int Apiaries);
+
+    public record AdminHomeFigures(AdminKpis Kpis, IReadOnlyList<AdminChainStep> Chain, IReadOnlyList<AdminProvinceCount> Provinces, int UnlocatedApiaries,
+        IReadOnlyList<AdminDistrictCount>? Districts = null);
 
     // Kind: ccp, report, storage, finalize, shipment, intake, org, registry. First = entered / requested / sent,
     // Second = approved / finalized / received / verified; a pair of the same record is shown as one entry
@@ -62,8 +66,8 @@ namespace TOP4HoneyChains.Web.Services
                     OrgModel ? (await WaitingAsync()).Count : null,
                     OrgModel ? await _context.Organizations.CountAsync(o => o.Status == OrgStatus.Verified) : null,
                     _flags.ConsumerAccounts ? await _context.ConsumerAccounts.CountAsync() : null);
-                var (provinces, unlocated) = await ProvincesAsync();
-                return new AdminHomeFigures(kpis, await ChainAsync(), provinces, unlocated);
+                var (provinces, unlocated, districts) = await ProvincesAsync();
+                return new AdminHomeFigures(kpis, await ChainAsync(), provinces, unlocated, districts);
             }))!;
 
         // ------------------------------------------------------------------ chain strip
@@ -108,12 +112,25 @@ namespace TOP4HoneyChains.Web.Services
 
         // ------------------------------------------------------------------ map: beekeepers and apiaries per province
 
-        private async Task<(List<AdminProvinceCount>, int)> ProvincesAsync()
+        private async Task<(List<AdminProvinceCount>, int, List<AdminDistrictCount>)> ProvincesAsync()
         {
-            // the apiary's province is computed here; its coordinates never leave the server
+            // the apiary's province and district are computed here; its coordinates never leave the server
             var apiaries = await _context.Apiaries.AsNoTracking()
-                .Select(a => new { a.ApiaryBeekeeperId, a.ApiaryLocationLatitude, a.ApiaryLocationLongitude }).ToListAsync();
+                .Select(a => new { a.ApiaryBeekeeperId, a.ApiaryLocationLatitude, a.ApiaryLocationLongitude, a.DistrictId }).ToListAsync();
             var placed = apiaries.Select(a => (a.ApiaryBeekeeperId, Plate: TurkeyMap.PlateAt((double)a.ApiaryLocationLatitude, (double)a.ApiaryLocationLongitude))).ToList();
+            // D-98: the district chosen for the apiary (DistrictId) when it lies in that province, else the district of the position
+            var named = (await _context.Districts.AsNoTracking().Select(d => new { d.DistrictId, d.ProvinceCode, d.Name }).ToListAsync())
+                .ToDictionary(d => d.DistrictId);
+            var inDistricts = apiaries.Zip(placed, (a, p) =>
+            {
+                if (p.Plate == 0)
+                    return null;
+                var chosen = a.DistrictId is int id && named.TryGetValue(id, out var d) && d.ProvinceCode == p.Plate.ToString("00", System.Globalization.CultureInfo.InvariantCulture)
+                    ? TurkeyDistricts.Find(p.Plate, d.Name) : null;
+                return chosen ?? TurkeyDistricts.At(p.Plate, (double)a.ApiaryLocationLatitude, (double)a.ApiaryLocationLongitude);
+            }).OfType<TurkeyDistricts.District>().ToList();
+            var districts = inDistricts.GroupBy(d => (d.Plate, d.Name)).Select(g => new AdminDistrictCount(g.Key.Plate, g.Key.Name, g.Count()))
+                .OrderBy(d => d.Plate).ThenBy(d => d.District).ToList();
             var beekeepers = placed.Where(p => p.Plate > 0 && p.ApiaryBeekeeperId != null).Select(p => (Id: p.ApiaryBeekeeperId!, p.Plate)).ToHashSet();
             if (OrgModel)
             {
@@ -129,7 +146,7 @@ namespace TOP4HoneyChains.Web.Services
             var plates = placed.Where(p => p.Plate > 0).Select(p => p.Plate).Concat(beekeepers.Select(b => b.Plate)).Distinct();
             var counts = plates.Select(p => new AdminProvinceCount(p, beekeepers.Count(b => b.Plate == p), placed.Count(a => a.Plate == p)))
                 .OrderBy(c => c.Plate).ToList();
-            return (counts, placed.Count(p => p.Plate == 0));
+            return (counts, placed.Count(p => p.Plate == 0), districts);
         }
 
         // ------------------------------------------------------------------ waiting for approval (organization model)
