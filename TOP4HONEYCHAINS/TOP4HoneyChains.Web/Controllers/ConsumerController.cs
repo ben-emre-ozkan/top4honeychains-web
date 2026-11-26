@@ -171,7 +171,9 @@ namespace TOP4HoneyChains.Web.Controllers
             var me = await _consumers.OfAsync(_users.GetUserId(User));
             if (me == null || me.Status != ConsumerAccountStatus.Active)
                 return Json(new { signedIn = false });
-            return Json(new { signedIn = true, saved = await _consumers.IsSavedAsync(me.UserId, qr) });
+            // D-108: the consumer's "Show animations" switch, so the story's sheet follows it without user-specific HTML
+            return Json(new { signedIn = true, saved = await _consumers.IsSavedAsync(me.UserId, qr),
+                scenes = await HttpContext.RequestServices.GetRequiredService<Services.UiPreferences>().ShowAnimationsAsync() });
         }
 
         // saving is explicit: a confirmation page, then a POST (opening a story is never recorded)

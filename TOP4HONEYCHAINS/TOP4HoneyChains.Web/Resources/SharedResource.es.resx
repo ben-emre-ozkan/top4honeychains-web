@@ -10768,4 +10768,142 @@
   <data name="Ci.Gloss.Checks.Text" xml:space="preserve">
     <value>En la recepción del laboratorio, para cada frasco: el código coincide, la etiqueta de precinto está intacta (sin roturas ni marcas VOID) y la tapa está cerrada (botón abajo o anillo intacto). Cuando un envase se vacía en una partida, su precinto de cierre se comprueba igual: el mismo código e intacto. Un código distinto o un precinto dañado detiene el vaciado y queda registrado.</value>
   </data>
+  <data name="Hs2.Verdict.ok" xml:space="preserve">
+    <value>Analizada en laboratorio y dentro de todos los límites verificados</value>
+  </data>
+  <data name="Hs2.Verdict.okSub" xml:space="preserve">
+    <value>Cada valor de laboratorio de abajo tiene un límite verificado y está dentro de él.</value>
+  </data>
+  <data name="Hs2.Verdict.out" xml:space="preserve">
+    <value>Analizada en laboratorio: algunos valores están fuera de su límite</value>
+  </data>
+  <data name="Hs2.Verdict.outSub" xml:space="preserve">
+    <value>Los valores fuera de su límite están marcados abajo.</value>
+  </data>
+  <data name="Hs2.Verdict.tested" xml:space="preserve">
+    <value>Analizada en laboratorio y trazada desde la colmena hasta el tarro</value>
+  </data>
+  <data name="Hs2.Verdict.testedSub" xml:space="preserve">
+    <value>Los valores de laboratorio se muestran abajo. Un valor cuyo límite aún se está verificando se muestra sin indicar si está dentro o fuera.</value>
+  </data>
+  <data name="Hs2.Verdict.traced" xml:space="preserve">
+    <value>Trazada desde la colmena hasta el tarro</value>
+  </data>
+  <data name="Hs2.Verdict.tracedSub" xml:space="preserve">
+    <value>Todavía no se ha publicado ningún resultado de laboratorio para este lote.</value>
+  </data>
+  <data name="Hs2.Fact.Type" xml:space="preserve">
+    <value>Tipo de miel</value>
+  </data>
+  <data name="Hs2.Fact.Origin" xml:space="preserve">
+    <value>Origen</value>
+  </data>
+  <data name="Hs2.Fact.Amount" xml:space="preserve">
+    <value>Cantidad del lote</value>
+  </data>
+  <data name="Hs2.Fact.Beekeepers" xml:space="preserve">
+    <value>Apicultores</value>
+  </data>
+  <data name="Hs2.Fact.Harvest" xml:space="preserve">
+    <value>Cosecha</value>
+  </data>
+  <data name="Hs2.Fact.Produced" xml:space="preserve">
+    <value>Fecha de producción</value>
+  </data>
+  <data name="Hs2.Where.Intro" xml:space="preserve">
+    <value>La parte de cada apicultor en los {0} kg de este lote, por peso.</value>
+  </data>
+  <data name="Hs2.Protect.Title" xml:space="preserve">
+    <value>Cómo se protegió</value>
+  </data>
+  <data name="Hs2.Protect.Intro" xml:space="preserve">
+    <value>Lo que se registró entre la colmena y el tarro. Solo se muestran cantidades, nunca códigos de precinto.</value>
+  </data>
+  <data name="Hs2.Protect.Containers" xml:space="preserve">
+    <value>{0} de {1} envases entregados estaban precintados</value>
+  </data>
+  <data name="Hs2.Protect.Jars" xml:space="preserve">
+    <value>Tarros de muestra precintados enviados al laboratorio: {0}</value>
+  </data>
+  <data name="Hs2.Protect.LabChecked" xml:space="preserve">
+    <value>{0} de {1} tarros llegaron al laboratorio con el precinto intacto</value>
+  </data>
+  <data name="Hs2.Protect.Sms" xml:space="preserve">
+    <value>{0} de {1} entregas confirmadas por el apicultor con un código SMS</value>
+  </data>
+  <data name="Hs2.Protect.None" xml:space="preserve">
+    <value>No hay registros de entregas ni de precintos publicados para este lote.</value>
+  </data>
+  <data name="Hs2.Lab.Title" xml:space="preserve">
+    <value>El laboratorio</value>
+  </data>
+  <data name="Hs2.Lab.Intro" xml:space="preserve">
+    <value>Toque un valor para ver qué significa, con un breve vídeo.</value>
+  </data>
+  <data name="Hs2.Lab.None" xml:space="preserve">
+    <value>Todavía no se ha publicado ningún resultado de laboratorio para este lote.</value>
+  </data>
+  <data name="Hs2.Process.Title" xml:space="preserve">
+    <value>Puntos de control en resumen</value>
+  </data>
+  <data name="Hs2.Process.Intro" xml:space="preserve">
+    <value>Abra uno para ver lo que se registró.</value>
+  </data>
+  <data name="Hs2.Close" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
+  <data name="Hs2.Sheet.More" xml:space="preserve">
+    <value>Abrir la página completa de este valor</value>
+  </data>
+  <data name="Hs2.VideoLang.en" xml:space="preserve">
+    <value>Este vídeo está en inglés.</value>
+  </data>
+  <data name="Hs2.VideoLang.tr" xml:space="preserve">
+    <value>Este vídeo está en turco.</value>
+  </data>
+  <data name="Hs2.P.moisture" xml:space="preserve">
+    <value>Cuánta agua contiene la miel. La miel madura tiene poca agua y se conserva sin fermentar.</value>
+  </data>
+  <data name="Hs2.P.hmf" xml:space="preserve">
+    <value>Un indicador de frescura: aumenta cuando la miel se calienta o se almacena demasiado tiempo.</value>
+  </data>
+  <data name="Hs2.P.diastase" xml:space="preserve">
+    <value>Una enzima natural de las abejas. Un valor alto muestra que la miel no se sobrecalentó.</value>
+  </data>
+  <data name="Hs2.P.c4-sugar" xml:space="preserve">
+    <value>Muestra si se añadió jarabe de caña o de maíz a la miel.</value>
+  </data>
+  <data name="Hs2.P.sucrose" xml:space="preserve">
+    <value>El azúcar de mesa. En la miel auténtica se mantiene bajo.</value>
+  </data>
+  <data name="Hs2.P.fructose-glucose" xml:space="preserve">
+    <value>Los dos azúcares naturales principales de la miel. Su equilibrio muestra que la miel es auténtica.</value>
+  </data>
+  <data name="Hs2.P.maltose" xml:space="preserve">
+    <value>Un azúcar minoritario. Una cantidad alta puede indicar jarabe añadido.</value>
+  </data>
+  <data name="Hs2.P.pesticides" xml:space="preserve">
+    <value>Restos de productos fitosanitarios. La miel no debería tener ninguno o casi ninguno.</value>
+  </data>
+  <data name="Hs2.P.antibiotics" xml:space="preserve">
+    <value>Restos de medicamentos usados en las colmenas. La miel no debería tener ninguno.</value>
+  </data>
+  <data name="Hs2.P.electrical-conductivity" xml:space="preserve">
+    <value>El contenido mineral. Distingue la miel de flores de la miel de mielada, como la de pino.</value>
+  </data>
+  <data name="Hs2.P.proline" xml:space="preserve">
+    <value>Un aminoácido que añaden las abejas. Una cantidad suficiente indica miel madura y auténtica.</value>
+  </data>
+  <data name="Hs2.P.ph" xml:space="preserve">
+    <value>Lo ácida que es la miel. La miel es por naturaleza ligeramente ácida.</value>
+  </data>
+  <data name="Hs2.P.free-acidity" xml:space="preserve">
+    <value>Los ácidos naturales de la miel. Un exceso puede indicar que ha empezado a fermentar.</value>
+  </data>
+  <data name="Hs2.P.insoluble-matter" xml:space="preserve">
+    <value>Restos de cera, polen o suciedad que quedan tras el filtrado. La miel limpia tiene muy pocos.</value>
+  </data>
+  <data name="Hs2.P.naphthalene" xml:space="preserve">
+    <value>Restos de naftalina usada contra la polilla de la cera. La miel no debería tener ninguno.</value>
+  </data>
 </root>

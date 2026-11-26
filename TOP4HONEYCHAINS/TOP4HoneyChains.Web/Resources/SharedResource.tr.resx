@@ -10644,4 +10644,142 @@
   <data name="Ci.Gloss.Checks.Text" xml:space="preserve">
     <value>Laboratuvar kabulünde her kavanoz için: Kod eşleşiyor mu, mühür etiketi sağlam mı (yırtık veya VOID izi yok), kapak kapalı mı (düğme aşağıda veya halka kopmamış)? Kap bir partiye boşaltılırken kapatma mührü de aynı şekilde kontrol edilir: Kod aynı, mühür sağlam olmalıdır. Farklı bir kod veya hasarlı bir mühür boşaltmayı durdurur ve kaydedilir.</value>
   </data>
+  <data name="Hs2.Verdict.ok" xml:space="preserve">
+    <value>Laboratuvarda test edildi ve doğrulanmış tüm sınırların içinde</value>
+  </data>
+  <data name="Hs2.Verdict.okSub" xml:space="preserve">
+    <value>Aşağıdaki her laboratuvar değerinin doğrulanmış bir sınırı var ve değer bu sınırın içinde.</value>
+  </data>
+  <data name="Hs2.Verdict.out" xml:space="preserve">
+    <value>Laboratuvarda test edildi: Bazı değerler sınırın dışında</value>
+  </data>
+  <data name="Hs2.Verdict.outSub" xml:space="preserve">
+    <value>Sınırın dışındaki değerler aşağıda işaretlidir.</value>
+  </data>
+  <data name="Hs2.Verdict.tested" xml:space="preserve">
+    <value>Laboratuvarda test edildi, kovandan kavanoza izlendi</value>
+  </data>
+  <data name="Hs2.Verdict.testedSub" xml:space="preserve">
+    <value>Laboratuvar değerleri aşağıdadır. Sınırı henüz doğrulanmakta olan bir değer, sınır içi veya dışı yorumu olmadan gösterilir.</value>
+  </data>
+  <data name="Hs2.Verdict.traced" xml:space="preserve">
+    <value>Kovandan kavanoza izlendi</value>
+  </data>
+  <data name="Hs2.Verdict.tracedSub" xml:space="preserve">
+    <value>Bu parti için henüz yayımlanmış bir laboratuvar sonucu yok.</value>
+  </data>
+  <data name="Hs2.Fact.Type" xml:space="preserve">
+    <value>Bal türü</value>
+  </data>
+  <data name="Hs2.Fact.Origin" xml:space="preserve">
+    <value>Menşei</value>
+  </data>
+  <data name="Hs2.Fact.Amount" xml:space="preserve">
+    <value>Partideki miktar</value>
+  </data>
+  <data name="Hs2.Fact.Beekeepers" xml:space="preserve">
+    <value>Arıcı sayısı</value>
+  </data>
+  <data name="Hs2.Fact.Harvest" xml:space="preserve">
+    <value>Hasat</value>
+  </data>
+  <data name="Hs2.Fact.Produced" xml:space="preserve">
+    <value>Üretim tarihi</value>
+  </data>
+  <data name="Hs2.Where.Intro" xml:space="preserve">
+    <value>Bu partideki {0} kg balda her arıcının ağırlık payı.</value>
+  </data>
+  <data name="Hs2.Protect.Title" xml:space="preserve">
+    <value>Nasıl korundu</value>
+  </data>
+  <data name="Hs2.Protect.Intro" xml:space="preserve">
+    <value>Kovan ile kavanoz arasında kaydedilenler. Yalnızca sayılar gösterilir, mühür kodları asla gösterilmez.</value>
+  </data>
+  <data name="Hs2.Protect.Containers" xml:space="preserve">
+    <value>Teslim edilen {1} kabın {0} tanesi mühürlüydü</value>
+  </data>
+  <data name="Hs2.Protect.Jars" xml:space="preserve">
+    <value>Laboratuvara gönderilen mühürlü numune kavanozu: {0}</value>
+  </data>
+  <data name="Hs2.Protect.LabChecked" xml:space="preserve">
+    <value>{1} kavanozun {0} tanesi laboratuvara mührü sağlam ulaştı</value>
+  </data>
+  <data name="Hs2.Protect.Sms" xml:space="preserve">
+    <value>{1} teslimatın {0} tanesini arıcı SMS koduyla onayladı</value>
+  </data>
+  <data name="Hs2.Protect.None" xml:space="preserve">
+    <value>Bu parti için yayımlanmış bir teslim veya mühür kaydı yok.</value>
+  </data>
+  <data name="Hs2.Lab.Title" xml:space="preserve">
+    <value>Laboratuvar</value>
+  </data>
+  <data name="Hs2.Lab.Intro" xml:space="preserve">
+    <value>Bir değere dokunun; ne anlama geldiğini kısa bir videoyla görün.</value>
+  </data>
+  <data name="Hs2.Lab.None" xml:space="preserve">
+    <value>Bu parti için henüz yayımlanmış bir laboratuvar sonucu yok.</value>
+  </data>
+  <data name="Hs2.Process.Title" xml:space="preserve">
+    <value>Kısaca kontrol noktaları</value>
+  </data>
+  <data name="Hs2.Process.Intro" xml:space="preserve">
+    <value>Kaydedilenleri görmek için birini açın.</value>
+  </data>
+  <data name="Hs2.Close" xml:space="preserve">
+    <value>Kapat</value>
+  </data>
+  <data name="Hs2.Sheet.More" xml:space="preserve">
+    <value>Bu değerin sayfasını açın</value>
+  </data>
+  <data name="Hs2.VideoLang.en" xml:space="preserve">
+    <value>Bu video İngilizcedir.</value>
+  </data>
+  <data name="Hs2.VideoLang.tr" xml:space="preserve">
+    <value>Bu video Türkçedir.</value>
+  </data>
+  <data name="Hs2.P.moisture" xml:space="preserve">
+    <value>Baldaki su miktarı. Olgun balda su azdır ve bal mayalanmadan saklanır.</value>
+  </data>
+  <data name="Hs2.P.hmf" xml:space="preserve">
+    <value>Tazelik göstergesi: Bal ısıtılınca ya da çok uzun bekletilince yükselir.</value>
+  </data>
+  <data name="Hs2.P.diastase" xml:space="preserve">
+    <value>Arılardan gelen doğal bir enzim. Yüksek olması balın aşırı ısıtılmadığını gösterir.</value>
+  </data>
+  <data name="Hs2.P.c4-sugar" xml:space="preserve">
+    <value>Bala kamış veya mısır şurubu katılıp katılmadığını gösterir.</value>
+  </data>
+  <data name="Hs2.P.sucrose" xml:space="preserve">
+    <value>Sofra şekeri. Gerçek balda düşük kalır.</value>
+  </data>
+  <data name="Hs2.P.fructose-glucose" xml:space="preserve">
+    <value>Balın iki ana doğal şekeri. Aralarındaki denge balın gerçek olduğunu gösterir.</value>
+  </data>
+  <data name="Hs2.P.maltose" xml:space="preserve">
+    <value>Balda az bulunan bir şeker. Yüksek olması şurup katkısına işaret edebilir.</value>
+  </data>
+  <data name="Hs2.P.pesticides" xml:space="preserve">
+    <value>Tarım ilacı kalıntıları. Balda hiç ya da neredeyse hiç bulunmamalıdır.</value>
+  </data>
+  <data name="Hs2.P.antibiotics" xml:space="preserve">
+    <value>Kovanlarda kullanılan ilaçların kalıntıları. Balda bulunmamalıdır.</value>
+  </data>
+  <data name="Hs2.P.electrical-conductivity" xml:space="preserve">
+    <value>Mineral içeriği. Çiçek balını çam balı gibi salgı ballarından ayırır.</value>
+  </data>
+  <data name="Hs2.P.proline" xml:space="preserve">
+    <value>Arıların bala kattığı bir amino asit. Yeterli olması balın olgun ve gerçek olduğunu gösterir.</value>
+  </data>
+  <data name="Hs2.P.ph" xml:space="preserve">
+    <value>Balın asitlik derecesi. Bal doğal olarak hafif asidiktir.</value>
+  </data>
+  <data name="Hs2.P.free-acidity" xml:space="preserve">
+    <value>Baldaki doğal asitler. Fazla olması balın mayalanmaya başladığını gösterebilir.</value>
+  </data>
+  <data name="Hs2.P.insoluble-matter" xml:space="preserve">
+    <value>Süzmeden sonra kalan mum, polen veya kir parçacıkları. Temiz balda çok azdır.</value>
+  </data>
+  <data name="Hs2.P.naphthalene" xml:space="preserve">
+    <value>Mum güvesine karşı kullanılan naftalinin kalıntısı. Balda bulunmamalıdır.</value>
+  </data>
 </root>

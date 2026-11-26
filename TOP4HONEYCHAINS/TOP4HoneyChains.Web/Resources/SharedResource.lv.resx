@@ -10768,4 +10768,142 @@
   <data name="Ci.Gloss.Checks.Text" xml:space="preserve">
     <value>Laboratorijas pieņemšanā katrai burkai: kods sakrīt, plombas uzlīme ir neskarta (bez plīsumiem un VOID pēdām) un vāciņš aizvērts (poga nospiesta vai gredzens nepārrauts). Kad tvertni iztukšo partijā, tās aizvēršanas plombu pārbauda tāpat: tas pats kods un neskarta. Cits kods vai bojāta plomba aptur iztukšošanu, un to reģistrē.</value>
   </data>
+  <data name="Hs2.Verdict.ok" xml:space="preserve">
+    <value>Pārbaudīts laboratorijā un atbilst visiem pārbaudītajiem limitiem</value>
+  </data>
+  <data name="Hs2.Verdict.okSub" xml:space="preserve">
+    <value>Katrai zemāk redzamajai laboratorijas vērtībai ir pārbaudīts limits, un vērtība to nepārsniedz.</value>
+  </data>
+  <data name="Hs2.Verdict.out" xml:space="preserve">
+    <value>Pārbaudīts laboratorijā: dažas vērtības ir ārpus limita</value>
+  </data>
+  <data name="Hs2.Verdict.outSub" xml:space="preserve">
+    <value>Vērtības ārpus limita ir atzīmētas zemāk.</value>
+  </data>
+  <data name="Hs2.Verdict.tested" xml:space="preserve">
+    <value>Pārbaudīts laboratorijā un izsekots no stropa līdz burkai</value>
+  </data>
+  <data name="Hs2.Verdict.testedSub" xml:space="preserve">
+    <value>Laboratorijas vērtības ir redzamas zemāk. Vērtība, kuras limits vēl tiek pārbaudīts, ir parādīta bez vērtējuma par atbilstību.</value>
+  </data>
+  <data name="Hs2.Verdict.traced" xml:space="preserve">
+    <value>Izsekots no stropa līdz burkai</value>
+  </data>
+  <data name="Hs2.Verdict.tracedSub" xml:space="preserve">
+    <value>Šai partijai vēl nav publicēts neviens laboratorijas rezultāts.</value>
+  </data>
+  <data name="Hs2.Fact.Type" xml:space="preserve">
+    <value>Medus veids</value>
+  </data>
+  <data name="Hs2.Fact.Origin" xml:space="preserve">
+    <value>Izcelsme</value>
+  </data>
+  <data name="Hs2.Fact.Amount" xml:space="preserve">
+    <value>Daudzums partijā</value>
+  </data>
+  <data name="Hs2.Fact.Beekeepers" xml:space="preserve">
+    <value>Biškopji</value>
+  </data>
+  <data name="Hs2.Fact.Harvest" xml:space="preserve">
+    <value>Ievākšana</value>
+  </data>
+  <data name="Hs2.Fact.Produced" xml:space="preserve">
+    <value>Ražošanas datums</value>
+  </data>
+  <data name="Hs2.Where.Intro" xml:space="preserve">
+    <value>Katra biškopja daļa no šīs partijas {0} kg, pēc svara.</value>
+  </data>
+  <data name="Hs2.Protect.Title" xml:space="preserve">
+    <value>Kā tas tika aizsargāts</value>
+  </data>
+  <data name="Hs2.Protect.Intro" xml:space="preserve">
+    <value>Kas tika reģistrēts starp stropu un burku. Redzami tikai skaitļi, nekad plombu kodi.</value>
+  </data>
+  <data name="Hs2.Protect.Containers" xml:space="preserve">
+    <value>{0} no {1} piegādātajām tvertnēm bija noplombētas</value>
+  </data>
+  <data name="Hs2.Protect.Jars" xml:space="preserve">
+    <value>Uz laboratoriju nosūtītās noplombētās paraugu burkas: {0}</value>
+  </data>
+  <data name="Hs2.Protect.LabChecked" xml:space="preserve">
+    <value>{0} no {1} burkām nonāca laboratorijā ar neskartu plombu</value>
+  </data>
+  <data name="Hs2.Protect.Sms" xml:space="preserve">
+    <value>{0} no {1} piegādēm biškopis apstiprināja ar SMS kodu</value>
+  </data>
+  <data name="Hs2.Protect.None" xml:space="preserve">
+    <value>Šai partijai nav publicētu piegāžu vai plombu ierakstu.</value>
+  </data>
+  <data name="Hs2.Lab.Title" xml:space="preserve">
+    <value>Laboratorija</value>
+  </data>
+  <data name="Hs2.Lab.Intro" xml:space="preserve">
+    <value>Pieskarieties vērtībai, lai redzētu, ko tā nozīmē, ar īsu video.</value>
+  </data>
+  <data name="Hs2.Lab.None" xml:space="preserve">
+    <value>Šai partijai vēl nav publicēts neviens laboratorijas rezultāts.</value>
+  </data>
+  <data name="Hs2.Process.Title" xml:space="preserve">
+    <value>Kontrolpunkti īsumā</value>
+  </data>
+  <data name="Hs2.Process.Intro" xml:space="preserve">
+    <value>Atveriet kādu, lai redzētu, kas tika reģistrēts.</value>
+  </data>
+  <data name="Hs2.Close" xml:space="preserve">
+    <value>Aizvērt</value>
+  </data>
+  <data name="Hs2.Sheet.More" xml:space="preserve">
+    <value>Atvērt šīs vērtības pilno lapu</value>
+  </data>
+  <data name="Hs2.VideoLang.en" xml:space="preserve">
+    <value>Šis video ir angļu valodā.</value>
+  </data>
+  <data name="Hs2.VideoLang.tr" xml:space="preserve">
+    <value>Šis video ir turku valodā.</value>
+  </data>
+  <data name="Hs2.P.moisture" xml:space="preserve">
+    <value>Cik daudz ūdens ir medū. Nobriedušā medū ūdens ir maz, un tas neraudzējas.</value>
+  </data>
+  <data name="Hs2.P.hmf" xml:space="preserve">
+    <value>Svaiguma rādītājs: tas pieaug, ja medu karsē vai pārāk ilgi uzglabā.</value>
+  </data>
+  <data name="Hs2.P.diastase" xml:space="preserve">
+    <value>Dabisks enzīms no bitēm. Augsta vērtība liecina, ka medus nav pārkarsēts.</value>
+  </data>
+  <data name="Hs2.P.c4-sugar" xml:space="preserve">
+    <value>Parāda, vai medum pievienots niedru vai kukurūzas sīrups.</value>
+  </data>
+  <data name="Hs2.P.sucrose" xml:space="preserve">
+    <value>Galda cukurs. Īstā medū tā ir maz.</value>
+  </data>
+  <data name="Hs2.P.fructose-glucose" xml:space="preserve">
+    <value>Divi galvenie dabiskie medus cukuri. To līdzsvars parāda, ka medus ir īsts.</value>
+  </data>
+  <data name="Hs2.P.maltose" xml:space="preserve">
+    <value>Mazāk sastopams cukurs. Liels daudzums var liecināt par pievienotu sīrupu.</value>
+  </data>
+  <data name="Hs2.P.pesticides" xml:space="preserve">
+    <value>Augu aizsardzības līdzekļu atliekas. Medū to nedrīkst būt vai jābūt gandrīz nemaz.</value>
+  </data>
+  <data name="Hs2.P.antibiotics" xml:space="preserve">
+    <value>Stropos lietotu zāļu atliekas. Medū to nedrīkst būt.</value>
+  </data>
+  <data name="Hs2.P.electrical-conductivity" xml:space="preserve">
+    <value>Minerālvielu saturs. Tas ļauj atšķirt ziedu medu no lapu medus, piemēram, priežu medus.</value>
+  </data>
+  <data name="Hs2.P.proline" xml:space="preserve">
+    <value>Aminoskābe, ko pievieno bites. Pietiekams daudzums liecina par nobriedušu, īstu medu.</value>
+  </data>
+  <data name="Hs2.P.ph" xml:space="preserve">
+    <value>Cik skābs ir medus. Medus dabiski ir nedaudz skābs.</value>
+  </data>
+  <data name="Hs2.P.free-acidity" xml:space="preserve">
+    <value>Medus dabiskās skābes. Pārāk daudz var nozīmēt, ka tas sācis raudzēties.</value>
+  </data>
+  <data name="Hs2.P.insoluble-matter" xml:space="preserve">
+    <value>Vaska, ziedputekšņu vai netīrumu daļiņas, kas paliek pēc filtrēšanas. Tīrā medū to ir ļoti maz.</value>
+  </data>
+  <data name="Hs2.P.naphthalene" xml:space="preserve">
+    <value>Naftalīna atliekas, ko lieto pret vaska kodēm. Medū to nedrīkst būt.</value>
+  </data>
 </root>
