@@ -8,6 +8,10 @@ Bu rehber sunucuyu yöneten kişi içindir. İki bölümü vardır:
 Her şey bu depodan yapılır; başka bir dosya, yedek veya paket gerekmez. Ayrıntılı kontrol listesi ve gerekçeler
 [GO-LIVE.md](GO-LIVE.md) dosyasındadır (İngilizce).
 
+**Sürüm paketiyle çalışıyorsanız** (ör. `TOP4-surum-2026-11-26`): Derleme gerekmez; `<YAYIN>` paketteki `Publish` klasörü,
+`<DEPO>` paketin klasörüdür, `db\migrations` yerine `SQL\migrations`, `db\install` yerine `SQL\install` kullanılır. 0. bölümün
+derleme adımlarını (Git, SDK, `dotnet publish`) atlayın; önce paketteki `ONCE-OKU.pdf` dosyasını okuyun.
+
 Komutlardaki yer tutucular:
 
 | Yer tutucu | Anlamı | Örnek |
