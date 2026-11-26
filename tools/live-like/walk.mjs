@@ -1,6 +1,6 @@
 // D-88 (Şile cast since D-90): the end-to-end check in a browser, as the people of the live-like cast (never the platform administrator): a new beekeeper is
-// registered, delivers chestnut honey in sealed containers (code read on the beekeeper's phone page), CCP 0, the laboratory, the lot's
-// control sheet, New batch, the batch's control sheet, finalizing, the shipment to the shop with its storage record, the public Honey
+// registered, delivers chestnut honey in sealed containers (code read on the beekeeper's phone page), CCP 0, the laboratory, "ready for packing" (D-98,
+// association path), New batch, the batch's control sheet, finalizing, the shipment to the shop with its storage record, the public Honey
 // Story, and a consumer who creates an account from the story, saves the honey and sends feedback that the association answers.
 //   node tools/live-like/walk.mjs            (run-demo.ps1 running; English pages)
 //   WALK_LANG=tr node tools/live-like/walk.mjs   (the same walk on Turkish pages; D-97)
@@ -402,21 +402,15 @@ try {
         await go(page, `/LabReports/Edit/${composite}`);
         await press(page, '#approve-report');
         await result(page, /approved/i);
-        // the approved report writes CCP 1 of the lot, completed and approved (four-eyes: analyst and lab manager)
-        await workOf(staff, new RegExp(`kind=raw&id=${lot}`));
+        // the approved report writes CCP 1 of the lot, completed and approved (four-eyes: analyst and lab manager);
+        // D-98: on the association path the Quality Assurance Officer is asked next whether the honey is ready for packing
+        await workOf(qa, new RegExp(`rawHoneyProductionId=${lot}&ccpId=`));
     });
 
-    await step('Lot control sheet (CCP 2–3) entered', staff, async page => {
-        await go(page, `/CCPMonitoring/Sheet?kind=raw&id=${lot}`);
-        await fillCcpBoxes(page);
-        await press(page, '#sheet-save');
-        await result(page, /Control sheet saved/i);
-        await workOf(qa, new RegExp(`kind=raw&id=${lot}`));
-    });
-    await step('Lot control sheet approved in one action', qa, async page => {
-        await go(page, `/CCPMonitoring/Sheet?kind=raw&id=${lot}`);
-        await approveWithDialog(page, '#sheet-approve-button', '#oolc-sheet-approve-form');
-        await result(page, /Approved:/);
+    await step('Honey ready for packing (association path: CCP 2–6 do not apply)', qa, async page => {
+        await go(page, `/CCPMonitoring/RawHoneyProductionManageCCP?rawHoneyProductionId=${lot}&ccpId=2`);
+        await press(page, '#packing-ready-button');
+        await result(page, /ready for packing/i);
         await workOf(staff, /OrgWorkspace\/NewBatch/);
     });
 
@@ -434,7 +428,7 @@ try {
         facts.records.batch = batch;
         await workOf(staff, new RegExp(`kind=batch&id=${batch}`));
     });
-    await step('Batch control sheet (CCP 4–10) entered', staff, async page => {
+    await step('Batch control sheet (CCP 7–10) entered', staff, async page => {
         await go(page, `/CCPMonitoring/Sheet?kind=batch&id=${batch}`);
         await fillCcpBoxes(page);
         await press(page, '#sheet-save');
@@ -476,8 +470,11 @@ try {
     await step('The shop records storage (CCP 10)', shop, async page => {
         await go(page, `/Shipments/Storage?batchId=${batch}`);
         const ids = await page.locator('#storage-form [name^="values["]').evaluateAll(els => els.map(e => e.name.match(/\d+/)[0]));
-        for (const id of ids) await page.locator(`#storage-form [name="values[${id}]"]`).fill(value(id));
-        current.did.push({ type: 'type', label: `${ids.length} values (temperature 18, relative humidity 55)` });
+        for (const id of ids) {
+            const box = page.locator(`#storage-form [name="values[${id}]"]`);
+            if (await box.evaluate(e => e.tagName === 'SELECT')) await box.selectOption(value(id)); else await box.fill(value(id));
+        }
+        current.did.push({ type: 'type', label: `${ids.length} values (temperature 18, relative humidity 55, jars kept in the dark: yes)` });
         await press(page, '#storage-form button[type=submit]');
         await result(page, /saved/i);
         await workOf(shopQa, new RegExp(ccp(10)));
