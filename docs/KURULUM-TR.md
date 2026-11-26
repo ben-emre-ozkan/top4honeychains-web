@@ -192,7 +192,7 @@ Canlıya geçmeden önce (ayrıntı: GO-LIVE.md "People and material"):
   yazıcısı veya A4 etiket yaprakları; numaralı **plastik mühürler**; **güvenlik düğmeli (vakumlu) veya halkalı kapaklı
   numune kavanozları**; düğmeli kapaklar için **el vakum pompası** (bal vakum için asla ısıtılmaz). Resepsiyon için USB QR
   okuyucu isteğe bağlıdır.
-- Her teslim alan kurumun yöneticisi ilk teslimden önce **Teslim (kabul) > Mühür havuzu ve kaplar** sayfasında mühür etiketi
+- Her teslim alan kurumun yöneticisi ilk teslimden önce **Teslim almalar > Mühür havuzu ve kaplar** sayfasında mühür etiketi
   üretip basar, plastik mühürleri numara aralığı olarak ekler ve derneğin kalıcı kaplarını kaydeder.
 
 ### A7. Bakım modunu kaldırma ve duman testi
@@ -202,8 +202,8 @@ Canlıya geçmeden önce (ayrıntı: GO-LIVE.md "People and material"):
    - Yönetici girişi çalışıyor; ana sayfa ve her menü sayfası açılıyor.
    - `http://<alan adı>/` adresi `https://` adresine yönleniyor.
    - Bir onaylı partinin Bal Hikâyesi (`/honeystory/...`) açılıyor; QR kodu bu adrese gidiyor.
-   - **Kullanıcı Yönetimi > Veri saklama** sayfası "Kapalı" diyor.
-   - Denetim kaydında (`/Audit`) "Zinciri doğrula" bütün satırların doğrulandığını söylüyor.
+   - **Veri saklama** sayfası (/Retention) "Kapalı" diyor.
+   - Denetim kaydında (`/Audit`) "Hash zincirini doğrula" bütün satırların doğrulandığını söylüyor.
    - Veritabanında `SELECT is_disabled FROM sys.triggers WHERE name = 'TR_AuditEntries_AppendOnly'` sonucu `0`.
    - `/phone/deneme/905550000101` adresi 404 veriyor.
 
@@ -293,7 +293,12 @@ $env:ConnectionStrings__DefaultConnection = "Server=<SUNUCU>;Database=<VERITABAN
 - `--phone` zorunludur (uluslararası biçimde; `0532…` yazılırsa Türkiye numarası sayılır), `--email` isteğe bağlıdır.
 - `Password:` ve `Password again:` sorularına parolayı yazın; yazdıklarınız görünmez.
 - Başarılı olunca "The administrator … was created with an Organization admin membership in "Platform administration"." yazar.
-- Bağlantı ayarı **mutlaka** bu pencerede verilmelidir: `web.config` içindeki ayarlar bu komuta ulaşmaz.
+- Bağlantı ayarı **mutlaka** bu pencerede verilmelidir: `web.config` içindeki ayarlar bu komuta ulaşmaz. Verilmezse komut
+  depodaki `appsettings.json` içindeki geliştirici sunucusuna bağlanmaya çalışır.
+- Komutu sunucunun kendi penceresinde (masaüstü veya uzak masaüstü) çalıştırın; parola klavyeden okunduğu için uzaktan komut
+  çalıştıran araçlarla (ör. girdi yönlendirilen bir oturumda) çalışmaz.
+- `cmd` kullanıyorsanız da adı `.\TOP4HoneyChains.Web.exe` diye yazın: bazı sunucularda bulunduğunuz klasördeki program yalnızca
+  adıyla bulunmaz.
 - İşiniz bitince PowerShell penceresini kapatın.
 
 Komutun reddettiği durumlar (hiçbir şey oluşturulmaz): zaten bir yönetici var; iki parola farklı; parola kurallara uymuyor;
@@ -309,8 +314,8 @@ Sonraki yöneticiler ve bütün kullanıcılar uygulama içinden eklenir (**Kull
    perakendeciler). Her kurum için en az bir belge yükleyin, **Uyum Sorumlusu**nu atayın ve **Doğrula**'yı seçin. Yalnızca
    doğrulanmış bir kurum veri girer.
 3. Platform kurumunun ve her kurumun veri sorumlusu bilgilerini kurum sayfasında doldurun.
-4. **Ham Bal Üretim Dönemleri**: en az bir hasat dönemi oluşturun (yeni kurulumda dönem yoktur; teslimlerde dönem seçilir).
-5. **Bildirim ve onay metinleri**: kişisel verilerin korunması biriminin onayladığı metinleri "Taslak" işareti kaldırılarak
+4. **Kurulum > Referans veriler > Üretim Dönemleri**: en az bir hasat dönemi oluşturun (yeni kurulumda dönem yoktur; teslimlerde dönem seçilir).
+5. **Kurulum > Aydınlatma ve rıza metinleri**: kişisel verilerin korunması biriminin onayladığı metinleri "Taslak" işareti kaldırılarak
    yeni sürüm olarak yayımlayın (yeni kurulumda yalnızca taslaklar vardır).
 6. Kurum yöneticilerini **Üye ekle** ile ekleyin (giriş bilgileri SMS ile gider). Her teslim alan kurumun yöneticisi mühür
    havuzunu hazırlar (A6).
@@ -323,3 +328,12 @@ Bu bölüm (B), deponun temiz bir kopyası ve boş bir yerel veritabanı (LocalD
 açık, `Sms__Provider=Logging`, deneme amaçlı bir `Sms__CodeKey`), giriş, bir kurumun oluşturulup doğrulanması ve bütün menü
 sayfaları. IIS ve HTTPS adımları (B4 hesap, B5) yerel denemede yapılamaz; uygulama doğrudan `TOP4HoneyChains.Web.exe --urls`
 ile çalıştırıldı.
+
+Denemede bulunan ve düzeltilen eksikler:
+
+- Deponun temiz kopyası derlenmiyordu: proje dosyası depoda olmayan `node_modules` dosyalarını sayıyordu (kaldırıldı).
+- `023` betiği ikinci kez çalıştırıldığında (veya `db\install` sonrasında) `034`'ün kaldırdığı dar numune türü kuralını geri
+  getiriyordu; parti numuneleri reddedilirdi (düzeltildi).
+- `001` betiği hesabı olmayan yeni bir veritabanında durup hata veriyordu (artık bir mesaj yazıp geçiyor).
+- `db\install` ikinci kez çalıştırıldığında adı sistem tarafından verilen bazı kuralları çift ekliyordu (düzeltildi).
+- Yeni kurulumda hasat dönemi yoktur: B7 adım 4 eklendi.
