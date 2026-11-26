@@ -22,6 +22,9 @@ public partial class RawHoneyProductionPeriod : IValidatableObject
     [Required(ErrorMessage = "The end date is required.")]
     public DateOnly? RawHoneyProductionPeriodEndDate { get; set; }
 
+    // D-112 (migration 037): the harvest season of the live site's test set
+    public bool IsTestData { get; set; }
+
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
         if (RawHoneyProductionPeriodStartDate.HasValue && RawHoneyProductionPeriodEndDate.HasValue

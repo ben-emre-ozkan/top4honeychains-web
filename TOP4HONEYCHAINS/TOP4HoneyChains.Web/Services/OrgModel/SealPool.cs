@@ -16,6 +16,9 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
     {
         public const string LabelPrefix = "TS-";
         public const string ContainerPrefix = "TK-";
+        // D-112: the seal labels, plastic seals and containers of the test set's organizations start with TEST- and have their own
+        // numbering, so they never use up or look like a real code
+        public const string TestPrefix = "TEST-";
         public const int MaxBatch = 500;
         public const int MaxRange = 1000;
         private static readonly Regex PrefixPattern = new("^[A-Z0-9][A-Z0-9-]{0,19}$");
@@ -61,12 +64,15 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
 
         // ---------------------------------------------------------------- the pool
 
+        private Task<bool> IsTestOrgAsync(int orgId) => _context.Organizations.AnyAsync(o => o.OrgId == orgId && o.IsTestData);
+
         public async Task<SealBatch> IssueLabelsAsync(int orgId, int count, string userId, string? note)
         {
             count = Math.Clamp(count, 1, MaxBatch);
-            var last = await _context.SealCodes.Where(c => c.Code.StartsWith(LabelPrefix)).Select(c => c.Code).OrderByDescending(c => c).FirstOrDefaultAsync();
-            var next = last != null && int.TryParse(last[LabelPrefix.Length..], NumberStyles.None, CultureInfo.InvariantCulture, out var n) ? n + 1 : 1;
-            var codes = Enumerable.Range(next, count).Select(i => LabelPrefix + i.ToString("D6", CultureInfo.InvariantCulture)).ToList();
+            var prefix = await IsTestOrgAsync(orgId) ? TestPrefix + LabelPrefix : LabelPrefix;
+            var last = await _context.SealCodes.Where(c => c.Code.StartsWith(prefix)).Select(c => c.Code).OrderByDescending(c => c).FirstOrDefaultAsync();
+            var next = last != null && int.TryParse(last[prefix.Length..], NumberStyles.None, CultureInfo.InvariantCulture, out var n) ? n + 1 : 1;
+            var codes = Enumerable.Range(next, count).Select(i => prefix + i.ToString("D6", CultureInfo.InvariantCulture)).ToList();
             return await AddBatchAsync(orgId, SealKind.Label, codes, userId, note);
         }
 
@@ -86,10 +92,17 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             if (b - a + 1 > MaxRange)
                 return (null, "At most 1000 seals per range.");
             var width = Math.Max(from.Length, to.Length);
+            // D-112: a test organization's seals get the TEST- prefix; a real organization cannot use it
+            var test = await IsTestOrgAsync(orgId);
+            if (test && !prefix.StartsWith(TestPrefix, StringComparison.Ordinal))
+                prefix = TestPrefix + prefix;
+            else if (!test && prefix.StartsWith(TestPrefix, StringComparison.Ordinal))
+                return (null, "TEST- is kept for the seals of the test set.");
             var codes = new List<string>();
             for (var i = a; i <= b; i++)
                 codes.Add(prefix + i.ToString(CultureInfo.InvariantCulture).PadLeft(width, '0'));
-            if (codes.Any(c => c.StartsWith(LabelPrefix, StringComparison.Ordinal) || c.StartsWith(ContainerPrefix, StringComparison.Ordinal)))
+            if (codes.Any(c => c.StartsWith(LabelPrefix, StringComparison.Ordinal) || c.StartsWith(ContainerPrefix, StringComparison.Ordinal)
+                               || c.StartsWith(TestPrefix + LabelPrefix, StringComparison.Ordinal) || c.StartsWith(TestPrefix + ContainerPrefix, StringComparison.Ordinal)))
                 return (null, "TS- and TK- are kept for the platform's seal labels and containers.");
             var taken = await _context.SealCodes.Where(c => codes.Contains(c.Code)).Select(c => c.Code).OrderBy(c => c).ToListAsync();
             if (taken.Count > 0)
@@ -121,11 +134,12 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                 return (null, "The name has at most 100 characters.");
             if (capacityKg is <= 0 or > 100000 || tareKg is < 0 or > 100000)
                 return (null, "Enter the capacity and the empty weight in kg (or leave them empty).");
-            var last = await _context.OrgContainers.Where(c => c.Code.StartsWith(ContainerPrefix)).Select(c => c.Code).OrderByDescending(c => c).FirstOrDefaultAsync();
-            var next = last != null && int.TryParse(last[ContainerPrefix.Length..], NumberStyles.None, CultureInfo.InvariantCulture, out var n) ? n + 1 : 1;
+            var prefix = await IsTestOrgAsync(orgId) ? TestPrefix + ContainerPrefix : ContainerPrefix;
+            var last = await _context.OrgContainers.Where(c => c.Code.StartsWith(prefix)).Select(c => c.Code).OrderByDescending(c => c).FirstOrDefaultAsync();
+            var next = last != null && int.TryParse(last[prefix.Length..], NumberStyles.None, CultureInfo.InvariantCulture, out var n) ? n + 1 : 1;
             var container = new OrgContainer
             {
-                OrgId = orgId, Code = ContainerPrefix + next.ToString("D4", CultureInfo.InvariantCulture), Kind = kind!, Name = name,
+                OrgId = orgId, Code = prefix + next.ToString("D4", CultureInfo.InvariantCulture), Kind = kind!, Name = name,
                 CapacityKg = capacityKg, TareKg = tareKg, CreatedByUserId = userId, CreatedAt = Now
             };
             _context.OrgContainers.Add(container);

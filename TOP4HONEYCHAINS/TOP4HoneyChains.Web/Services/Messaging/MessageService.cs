@@ -115,7 +115,9 @@ namespace TOP4HoneyChains.Web.Services.Messaging
         {
             var day = Now.Date;
             var next = day.AddDays(1);
-            return _db.SmsMessages.Where(m => m.CreatedAt >= day && m.CreatedAt < next && m.Status != SmsStatus.Failed).Sum(m => (int?)m.Segments) ?? 0;
+            // D-112: messages to test numbers never leave the server and do not count
+            return _db.SmsMessages.Where(m => m.CreatedAt >= day && m.CreatedAt < next && m.Status != SmsStatus.Failed && m.Provider != TestPhones.Provider)
+                .Sum(m => (int?)m.Segments) ?? 0;
         }
 
         public bool DailyLimitReached() => SegmentsToday() >= _options.DailyLimit;
@@ -211,12 +213,14 @@ namespace TOP4HoneyChains.Web.Services.Messaging
         private async Task<SmsMessage> SendAsync(string purpose, string? subjectType, string? subjectKey, string e164, string phoneHash, string? language,
             string text, int segments, IEnumerable<string> secrets, bool isCode, string? senderUserId, int? orgId)
         {
-            var gateway = _gateways.Current();
+            // D-112: an SMS to a test number goes to the test inbox, never to the provider, with its full text
+            var test = TestPhones.IsTest(e164);
+            ISmsGateway gateway = test ? TestInboxGateway.Instance : _gateways.Current();
             var sms = new SmsMessage
             {
                 Purpose = purpose, SubjectType = subjectType, SubjectKey = subjectKey,
                 ToPhoneMasked = PhoneMask.Mask(e164), ToPhoneHash = phoneHash, Language = SmsTemplates.Language(language),
-                BodyStored = gateway is FakeSmsGateway ? text : CodeRules.Masked(text, secrets),
+                BodyStored = gateway is FakeSmsGateway || test ? text : CodeRules.Masked(text, secrets),
                 Segments = (byte)Math.Min(segments, 255), Provider = gateway.Name, Status = SmsStatus.Queued,
                 SentByUserId = senderUserId, OrgId = orgId, CreatedAt = Now
             };

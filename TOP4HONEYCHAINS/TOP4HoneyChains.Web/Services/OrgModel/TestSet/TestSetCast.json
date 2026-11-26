@@ -1,0 +1,100 @@
+{
+  "_comment": "D-112: the test set of the live site (create-test-set). The cast, roles, flow and starting state of tools/live-like/cast.json: the same user names and person names, the organizations with 'TEST ' in front, and per tester set a consumer account and a beekeeper to register live. Phone numbers: TestPhones (+90 512 000 gg pp: pager numbers nobody can receive; group 00 = the shared cast, 01.. = a set). Registry numbers keep the official format TR34 9999 00 gg pp. No password here: every account gets its own random password at run time. The suggested values come from docs/partner-test/values.json (all within the limits).",
+  "operator": { "user": "selin.aydin", "name": "Selin Aydın", "phone": 1 },
+  "orgs": [
+    { "key": "directorate", "name": "Şile İlçe Tarım ve Orman Müdürlüğü", "legal": "T.C. Tarım ve Orman Bakanlığı Şile İlçe Tarım ve Orman Müdürlüğü", "province": "İstanbul", "district": "Şile", "capabilities": [ "BeekeeperRegistration" ] },
+    { "key": "lab", "name": "Anadolu Gıda Analiz Laboratuvarı", "legal": "Anadolu Gıda Analiz Laboratuvarı Ltd. Şti.", "province": "Ankara", "district": "Yenimahalle", "capabilities": [ "Laboratory" ], "accreditation": "TEST-AB-9471-T" },
+    { "key": "association", "name": "Şile Arıcılar Birliği", "legal": "Şile Arıcılar Birliği", "province": "İstanbul", "district": "Şile", "capabilities": [ "Association", "Processing", "Packing" ] },
+    { "key": "shop", "name": "Çarşı Market", "legal": "Çarşı Market Gıda Ticaret Ltd. Şti.", "province": "İstanbul", "district": "Kadıköy", "capabilities": [ "Retail" ] },
+    { "key": "company", "name": "Örnek Bal İşleme A.Ş.", "legal": "Örnek Bal İşleme Sanayi ve Ticaret A.Ş. (kurgusal)", "province": "İstanbul", "district": "Ümraniye", "capabilities": [ "Processing", "Packing" ] }
+  ],
+  "people": [
+    { "user": "selin.aydin", "name": "Selin Aydın", "org": "platform", "role": "OrgAdmin", "phone": 1 },
+    { "user": "murat.kaya", "name": "Murat Kaya", "org": "directorate", "role": "RegistrationOfficer", "phone": 2 },
+    { "user": "elif.sahin", "name": "Elif Şahin", "org": "directorate", "role": "ComplianceOfficer", "phone": 3 },
+    { "user": "can.yildiz", "name": "Can Yıldız", "org": "lab", "role": "Analyst", "phone": 4 },
+    { "user": "deniz.koc", "name": "Deniz Koç", "org": "lab", "role": "LabManager", "phone": 5 },
+    { "user": "kemal.erdem", "name": "Kemal Erdem", "org": "lab", "role": "ComplianceOfficer", "phone": 6 },
+    { "user": "fatma.aksoy", "name": "Fatma Aksoy", "org": "association", "role": "OrgAdmin", "phone": 7 },
+    { "user": "emre.dogan", "name": "Emre Doğan", "org": "association", "role": "FieldInspector", "phone": 8 },
+    { "user": "leyla.cetin", "name": "Leyla Çetin", "org": "association", "role": "ComplianceOfficer", "phone": 9 },
+    { "user": "hasan.demir", "name": "Hasan Demir", "org": "association", "role": "SampleAcceptanceOfficer", "phone": 10 },
+    { "user": "zeynep.arslan", "name": "Zeynep Arslan", "org": "association", "role": "Staff", "phone": 11 },
+    { "user": "mehmet.ozturk", "name": "Mehmet Öztürk", "org": "association", "role": "QualityApprover", "phone": 12 },
+    { "user": "gizem.polat", "name": "Gizem Polat", "org": "shop", "role": "Staff", "phone": 13 },
+    { "user": "okan.kurt", "name": "Okan Kurt", "org": "shop", "role": "QualityApprover", "phone": 14 },
+    { "user": "serkan.tas", "name": "Serkan Taş", "org": "shop", "role": "ComplianceOfficer", "phone": 15 },
+    { "user": "burcu.tekin", "name": "Burcu Tekin", "org": "company", "role": "ComplianceOfficer", "phone": 16 },
+    { "user": "onur.aydemir", "name": "Onur Aydemir", "org": "company", "role": "SampleAcceptanceOfficer", "phone": 17 },
+    { "user": "ece.bulut", "name": "Ece Bulut", "org": "company", "role": "Staff", "phone": 18 },
+    { "user": "tolga.sezer", "name": "Tolga Sezer", "org": "company", "role": "QualityApprover", "phone": 19 }
+  ],
+  "beekeeper": { "name": "Ali Yazıcı", "first": "Ali", "last": "Yazıcı", "birth": "1968-04-12", "phone": 31,
+    "province": "İstanbul", "provinceCode": "34", "district": "Şile", "locality": "Kabakoz", "lat": "41.1240", "lng": "29.6630", "hives": "64",
+    "apiary2": { "district": "Şile", "locality": "Akçakese", "lat": "41.1530", "lng": "29.5390", "hives": "40" } },
+  "_sets": "per tester set: a consumer account (set 1 = the cast's consumer) and a beekeeper to register live (set 1 = the cast's 'new' beekeeper), fictional people in real villages of Şile (approximate points inside the district, never an address)",
+  "sets": [
+    { "consumer": { "user": "seda.gunes", "name": "Seda Güneş" }, "beekeeper": { "first": "Hatice", "last": "Turan", "birth": "1975-09-03", "locality": "Sofular", "lat": "41.0710", "lng": "29.6020", "hives": "38" } },
+    { "consumer": { "user": "aylin.yurt", "name": "Aylin Yurt" }, "beekeeper": { "first": "Mustafa", "last": "Çelik", "birth": "1962-02-17", "locality": "Ağva", "lat": "41.1350", "lng": "29.8520", "hives": "52" } },
+    { "consumer": { "user": "baris.ekinci", "name": "Barış Ekinci" }, "beekeeper": { "first": "Ayşe", "last": "Korkmaz", "birth": "1979-06-21", "locality": "Kumbaba", "lat": "41.1680", "lng": "29.5950", "hives": "27" } },
+    { "consumer": { "user": "cem.oral", "name": "Cem Oral" }, "beekeeper": { "first": "Hüseyin", "last": "Kurtuluş", "birth": "1958-11-05", "locality": "Yeniköy", "lat": "41.0950", "lng": "29.7310", "hives": "71" } },
+    { "consumer": { "user": "derya.kilic", "name": "Derya Kılıç" }, "beekeeper": { "first": "Emine", "last": "Şimşek", "birth": "1983-03-14", "locality": "Karakiraz", "lat": "41.0430", "lng": "29.6440", "hives": "33" } },
+    { "consumer": { "user": "eda.sonmez", "name": "Eda Sönmez" }, "beekeeper": { "first": "İbrahim", "last": "Yalçın", "birth": "1970-08-29", "locality": "Doğancılı", "lat": "41.0820", "lng": "29.5610", "hives": "45" } },
+    { "consumer": { "user": "ferhat.uslu", "name": "Ferhat Uslu" }, "beekeeper": { "first": "Fadime", "last": "Erdoğan", "birth": "1966-12-09", "locality": "Satmazlı", "lat": "41.1190", "lng": "29.7980", "hives": "58" } },
+    { "consumer": { "user": "gamze.tan", "name": "Gamze Tan" }, "beekeeper": { "first": "Osman", "last": "Güler", "birth": "1961-05-30", "locality": "Bucaklı", "lat": "41.0560", "lng": "29.7020", "hives": "39" } },
+    { "consumer": { "user": "ilker.bayram", "name": "İlker Bayram" }, "beekeeper": { "first": "Zehra", "last": "Bozkurt", "birth": "1977-01-23", "locality": "Ahmetli", "lat": "41.1020", "lng": "29.6280", "hives": "24" } },
+    { "consumer": { "user": "nazli.cakir", "name": "Nazlı Çakır" }, "beekeeper": { "first": "Recep", "last": "Uçar", "birth": "1955-10-11", "locality": "Hacıllı", "lat": "41.1460", "lng": "29.6790", "hives": "66" } },
+    { "consumer": { "user": "ozan.kara", "name": "Ozan Kara" }, "beekeeper": { "first": "Hacer", "last": "Tunç", "birth": "1981-07-07", "locality": "Kızılca", "lat": "41.0680", "lng": "29.5380", "hives": "30" } },
+    { "consumer": { "user": "pinar.ates", "name": "Pınar Ateş" }, "beekeeper": { "first": "Yusuf", "last": "Özkan", "birth": "1964-04-02", "locality": "Çavuş", "lat": "41.1120", "lng": "29.7560", "hives": "48" } }
+  ],
+  "history": {
+    "period": "TEST {year} Chestnut Honey Harvest Season",
+    "honeyType": "Chestnut Honey",
+    "botanical": "Chestnut (Castanea sativa)",
+    "values": { "CCP 1|Electrical Conductivity": "1.24", "CCP 1|Proline": "640", "CCP 1|Sensory Analysis": "Dark amber, typical bitter chestnut taste and smell" },
+    "batchTitle": "TEST Şile Kestane Balı 2026/1",
+    "counterLocation": "Yönetim ofisi, şahit numune dolabı",
+    "seals": { "jar": "TEST-SAB-J-", "counter": "TEST-SAB-K-", "reseal": "TEST-SAB-P-", "first": 34101 },
+    "deliveries": [
+      { "daysAgo": 24, "apiary": 1, "containers": [ { "net": "24.6", "gross": "26.0", "originSeal": "TEST-SAB-2026-0412" }, { "net": "23.9", "gross": "25.3", "originSeal": "TEST-SAB-2026-0413" } ] },
+      { "daysAgo": 17, "apiary": 2, "containers": [ { "net": "25.1", "gross": "26.5", "originSeal": "TEST-SAB-2026-0431" }, { "net": "22.4", "gross": "23.8", "originSeal": "TEST-SAB-2026-0432" } ] }
+    ],
+    "shipKg": "40",
+    "reportPrefix": "TEST-AGA-2026-"
+  },
+  "values": {
+    "numbers": {
+      "CCP 1|Moisture": "17.4", "CCP 1|HMF": "11.2", "CCP 1|Diastase": "14.6", "CCP 1|C4 Sugar": "1.2", "CCP 1|Sucrose": "1.8",
+      "CCP 1|Glikoz": "31.5", "CCP 1|Fruktoz": "38.9", "CCP 1|Maltoz": "2.1", "CCP 1|Pesticides": "0", "CCP 1|Antibiotics": "0",
+      "CCP 1|Electrical Conductivity": "0.42", "CCP 1|Proline": "520", "CCP 1|pH": "3.9", "CCP 1|Free Acidity": "24",
+      "CCP 1|Insoluble Matter": "0.05", "CCP 1|Naphthalene": "0",
+      "CCP 2|Temperature": "38", "CCP 2|HMF": "12.8", "CCP 2|Diastase": "14.1", "CCP 2|Moisture": "17.3", "CCP 2|Proline": "512", "CCP 2|Heating time": "20",
+      "CCP 3|Filter integrity": "200", "CCP 3|Pore size": "200",
+      "CCP 4|Moisture": "17.5",
+      "CCP 5|Temperature": "45", "CCP 5|Holding Time": "30", "CCP 5|HMF": "14.2", "CCP 5|Diastase": "13.9", "CCP 5|Moisture": "17.5", "CCP 5|Proline": "505",
+      "CCP 6|Holding Time": "20", "CCP 6|Temperature": "40",
+      "CCP 7|Net weight": "450",
+      "CCP 10|Temperature": "18", "CCP 10|Relative Humidity": "55"
+    },
+    "texts": {
+      "CCP 1|Sensory Analysis": "Typical colour, aroma and taste",
+      "CCP 3|Sediment presence": "No",
+      "CCP 4|Visual appearance": "Uniform", "CCP 4|Viscosity": "Normal", "CCP 4|Color consistency": "Consistent",
+      "CCP 2|Foam check": "Yes",
+      "CCP 6|Clarity (visual inspection)": "Clear, no sediment",
+      "CCP 7|Visual Inspection": "Correct fill level", "CCP 7|Is there any physical residue in the jar? (glass fragments etc.)": "No",
+      "CCP 10|Are the jars kept in the dark?": "Yes",
+      "CCP 8|Origin": "{country}",
+      "CCP 8|Botanical source": "{botanical}",
+      "CCP 8|Analytical consistency": "Consistent with the lab report",
+      "CCP 9|Material type": "Glass jar, metal lid", "CCP 9|Cleanliness": "Clean", "CCP 9|Physical durability": "Intact"
+    },
+    "ccp0": {
+      "yesNo": "Yes",
+      "If yes": "Hot water and scraping",
+      "To what extent": "Drinking-water quality, checked yearly",
+      "text": "Monitored weekly"
+    },
+    "otherYesNo": "Yes"
+  }
+}

@@ -276,7 +276,8 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             string kind;
             if (f.IsNew)
             {
-                beekeeper = new Beekeeper { BeekeeperId = Guid.NewGuid().ToString(), BeekeeperBusinessNumber = await BusinessNumbers.NextAsync(_context, now.Year, RegistryNumber.CountryOf(c.RegistryNumber!), _demo), IsActive = true };
+                var testSet = await _context.Organizations.AnyAsync(o => o.OrgId == registrar.OrgId && o.IsTestData);   // D-112
+                beekeeper = new Beekeeper { BeekeeperId = Guid.NewGuid().ToString(), BeekeeperBusinessNumber = await BusinessNumbers.NextAsync(_context, now.Year, RegistryNumber.CountryOf(c.RegistryNumber!), _demo, testSet), IsActive = true };
                 _context.Beekeepers.Add(beekeeper);
                 kind = RegistrationKind.New;
             }
@@ -436,12 +437,14 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
 
     // Business numbers TR-BEE-{year}-{nnnnnn}, the next free one. D-86: on a demo site {country}-BEE-DEMO-{nnnnnn}, so a demo
     // number never equals a real one (country TR, or AR, PL, LV for the demo registry numbers of the partner countries).
+    // D-112: a beekeeper registered by an organization of the test set gets {country}-BEE-TEST-{nnnnnn}, so the real numbering is
+    // not used up.
     public static class BusinessNumbers
     {
-        public static async Task<string> NextAsync(TOP4HoneyChainsContext db, int year, string country = "TR", bool demo = false)
+        public static async Task<string> NextAsync(TOP4HoneyChainsContext db, int year, string country = "TR", bool demo = false, bool test = false)
         {
-            var prefix = demo ? $"{country}-BEE-DEMO-" : $"{country}-BEE-{year}-";
-            var series = demo ? "BEE-DEMO-" : $"BEE-{year}-";
+            var prefix = test ? $"{country}-BEE-TEST-" : demo ? $"{country}-BEE-DEMO-" : $"{country}-BEE-{year}-";
+            var series = test ? "BEE-TEST-" : demo ? "BEE-DEMO-" : $"BEE-{year}-";
             var count = await db.Beekeepers.CountAsync(b => b.BeekeeperBusinessNumber.Contains(series));
             for (var n = count + 1; ; n++)
             {
