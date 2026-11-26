@@ -5,8 +5,8 @@ Bu rehber sunucuyu yöneten kişi içindir. İki bölümü vardır:
 - **A) Canlı sunucuyu güncelleme**: çalışan sitenin yeni sürüme geçirilmesi.
 - **B) Yeni kurulum**: boş bir veritabanı üzerinde yepyeni bir sistem kurulması.
 
-Her şey bu depodan yapılır; başka bir dosya, yedek veya paket gerekmez. Ayrıntılı kontrol listesi ve gerekçeler
-[GO-LIVE.md](GO-LIVE.md) dosyasındadır (İngilizce).
+Her şey bu depodan ya da sürüm paketinden yapılır; başka bir dosya veya yedek gerekmez. Ayrıntılı kontrol listesi ve
+gerekçeler depodaki `docs/GO-LIVE.md` dosyasındadır (İngilizce; pakette yoktur, bu rehber tek başına yeterlidir).
 
 **Sürüm paketiyle çalışıyorsanız** (ör. `TOP4-surum-2026-11-26`): Derleme gerekmez; `<YAYIN>` paketteki `Publish` klasörü,
 `<DEPO>` paketin klasörüdür, `db\migrations` yerine `SQL\migrations`, `db\install` yerine `SQL\install` kullanılır. 0. bölümün
@@ -76,11 +76,18 @@ Dosya durdukça site ziyaretçilere bu sayfayı gösterir ve uygulama dosyaları
 `db\migrations` klasöründeki betikler numara sırasıyla çalıştırılır. Her betik tekrar çalıştırılabilir (ikinci kez
 çalıştırıldığında bir şey değiştirmez), ama **hangi betiklerin çalıştırıldığını bir deftere yazın**.
 
-- **İlk geçişte** (canlı sistemin bu yeni sürüme ilk geçişi, GO-LIVE.md) `001` dahil hepsi çalıştırılır.
-- **Sonraki güncellemelerde** yalnızca defterde olmayan yeni betikler çalıştırılır.
-- **Dikkat: `001_lock_out_non_admin_accounts.sql` yalnızca ilk geçişte çalıştırılır** (GO-LIVE.md adım 4, ve adım 5–7'deki
-  yönetici kontrolünden sonra bir kez daha). Sonraki bir güncellemede çalıştırılırsa yönetici olmayan **bütün** hesapları
-  (kurum personeli, arıcılar) kilitler.
+- **Nereden başlanır?** Canlı veritabanında şu sorguyu çalıştırın ve ilk boş (NULL) satırın numarasından başlayın:
+
+  ```sql
+  SELECT '004' AS Betik, OBJECT_ID('dbo.Capabilities') AS Var UNION ALL SELECT '018', OBJECT_ID('dbo.SmsMessages')
+  UNION ALL SELECT '029', OBJECT_ID('dbo.ConsumerAccounts') UNION ALL SELECT '033', OBJECT_ID('dbo.SealCodes')
+  UNION ALL SELECT '036', OBJECT_ID('dbo.ContainerEmptyings');
+  ```
+
+  9 Ekim paketiyle güncellenmiş bir site `018`'den, 28 Ekim paketiyle güncellenmiş bir site `029`'dan başlar. Bütün
+  betikler tekrar çalıştırılabilir; emin değilseniz `002`'den başlamak da güvenlidir.
+- **`001_lock_out_non_admin_accounts.sql` eski sisteme ilk geçişe aittir.** Kurum modeli (`004`) kurulmuş bir veritabanında
+  artık kendiliğinden atlanır ("Skipped: … 001 runs only once" yazar) ve hiçbir hesabı kilitlemez; yine de çalıştırmanız gerekmez.
 
 Bir betiği tek başına çalıştırmak için (her betik için aynı komut, yalnızca dosya adı değişir):
 
@@ -90,11 +97,11 @@ sqlcmd -S <SUNUCU> -d <VERITABANI> -E -I -f 65001 -b -i db\migrations\002_ccp_in
 ```
 
 Belli bir numaradan başlayarak sonuna kadar hepsini sırayla çalıştırmak için (`$ilk` değerini ilk çalıştırılacak betiğin
-numarasına ayarlayın; ilk geçişte `1`). Bir betik hata verirse döngü durur; hatayı not edip sahibine bildirin, sonrakilere geçmeyin.
+numarasına ayarlayın: canlı sitede yukarıdaki sorgunun sonucu, yeni kurulumda `1`). Bir betik hata verirse döngü durur; hatayı not edip sahibine bildirin, sonrakilere geçmeyin.
 
 ```powershell
 cd <DEPO>
-$ilk = 1
+$ilk = 18   # nereden başlanacağı yukarıdaki sorguyla bulunur
 Get-ChildItem db\migrations\*.sql | Sort-Object Name | Where-Object { [int]$_.Name.Substring(0,3) -ge $ilk } | ForEach-Object {
     Write-Host "== $($_.Name)"
     sqlcmd -S <SUNUCU> -d <VERITABANI> -E -I -f 65001 -b -i $_.FullName
@@ -106,7 +113,7 @@ Betikler ve beklenen çıktılar:
 
 | Betik | Ne yapar | Not |
 |---|---|---|
-| `001_lock_out_non_admin_accounts.sql` | Yönetici olmayan eski hesapları kilitler | Yalnızca ilk geçişte. Yönetici yoksa durur. |
+| `001_lock_out_non_admin_accounts.sql` | Yönetici olmayan eski hesapları kilitler | Yalnızca eski sisteme ilk geçişte; `004` kurulduysa atlar. |
 | `002` – `008` | KKN düzeni, kurum modeli, sorumluluklar, teslim, laboratuvar, köken | `004`, `005`, `006`, `007`, `008` bir öncekine bağlıdır; sıra bozulursa durur. |
 | `009` – `011` | Çeviriler, iller ve ilçeler | Türkçe harfler için `-f 65001` şarttır. |
 | `012` – `017` | Türkçe adlar, yetkiler, koşullu alanlar, dizinler, metinler | |
@@ -132,7 +139,9 @@ robocopy <YAYIN> <SITE> /E /XF web.config appsettings.Production.json appsetting
 ### A5. Sunucu ayarları
 
 Ayarlar depodan gelmez; sunucuda `web.config` içindeki `<environmentVariables>` bölümünde (veya site klasöründeki
-`appsettings.Production.json` dosyasında) tutulur. Bu dosyalar hiçbir zaman depoya kopyalanmaz.
+`appsettings.Production.json` dosyasında) tutulur. Bu dosyalar hiçbir zaman depoya kopyalanmaz. Paketteki `Publish` klasöründe
+`appsettings*.json` yoktur: Sunucudakiler aynen kalır. Sunucuda hiç `appsettings.json` yoksa günlük ayarını da verin:
+`Logging__LogLevel__Default=Warning` (yoksa günlük her veritabanı komutunu yazar).
 
 **Dört özellik anahtarı** (canlıda dördü de açık):
 
@@ -210,6 +219,8 @@ Canlıya geçmeden önce (ayrıntı: GO-LIVE.md "People and material"):
    - Denetim kaydında (`/Audit`) "Hash zincirini doğrula" bütün satırların doğrulandığını söylüyor.
    - Veritabanında `SELECT is_disabled FROM sys.triggers WHERE name = 'TR_AuditEntries_AppendOnly'` sonucu `0`.
    - `/phone/deneme/905550000101` adresi 404 veriyor.
+   - Veritabanı kullanıcıları gözden geçirildi: Uygulamanın hesabı `db_owner` değil; eski `DefaultAppPool` ve `apiaryphotoapi`
+     kullanıcıları (8 Ekim teslimindeki veritabanında `db_owner`) artık gerekmiyorsa kaldırıldı.
 
 ### A8. Geri dönüş
 
@@ -271,7 +282,7 @@ administration") oluşturulur. Beklenen çıktılar:
 
 - `001`: "No user accounts yet (new installation); nothing to lock." (henüz hesap yok; normaldir).
 - `004`: "Platform organization created" (yalnızca ilk çalıştırmada).
-- `029`: "maximum key length" uyarısı.
+- `029`: Yeni kurulumda uyarı vermez (aynı uyarıyı B2'de `01_schema.sql` zaten verir).
 
 **Bundan sonra `001` bu veritabanında bir daha çalıştırılmaz** (A3'teki uyarı). Sonraki güncellemeler A bölümüne göre yapılır.
 
@@ -316,7 +327,7 @@ $env:ConnectionStrings__DefaultConnection = "Server=<SUNUCU>;Database=<VERITABAN
 - `Password:` ve `Password again:` sorularına parolayı yazın; yazdıklarınız görünmez.
 - Başarılı olunca "The administrator … was created with an Organization admin membership in "Platform administration"." yazar.
 - Bağlantı ayarı **mutlaka** bu pencerede verilmelidir: `web.config` içindeki ayarlar bu komuta ulaşmaz. Verilmezse komut
-  depodaki `appsettings.json` içindeki geliştirici sunucusuna bağlanmaya çalışır.
+  uygulama klasöründe bir `appsettings.json` varsa oradaki bağlantıyı, yoksa hiçbir bağlantıyı kullanmaz ve hata verir.
 - Komutu sunucunun kendi penceresinde (masaüstü veya uzak masaüstü) çalıştırın; parola klavyeden okunduğu için uzaktan komut
   çalıştıran araçlarla (ör. girdi yönlendirilen bir oturumda) çalışmaz.
 - `cmd` kullanıyorsanız da adı `.\TOP4HoneyChains.Web.exe` diye yazın: bazı sunucularda bulunduğunuz klasördeki program yalnızca

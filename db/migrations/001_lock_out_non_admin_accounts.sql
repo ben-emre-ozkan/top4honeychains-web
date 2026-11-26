@@ -29,6 +29,14 @@ BEGIN
     RETURN;
 END;
 
+-- Release 1.1.0: 001 belongs to the first switch from the old system. Once the organization model (004) is in place, the
+-- database was switched over before and its non-admin accounts are real staff and beekeepers: never lock them again.
+IF OBJECT_ID(N'dbo.Capabilities', N'U') IS NOT NULL
+BEGIN
+    PRINT N'Skipped: this database was switched over before (the organization model of 004 exists); 001 runs only once.';
+    RETURN;
+END;
+
 -- Refuse to run if no administrator exists; locking everyone out would leave no way in.
 IF NOT EXISTS (
     SELECT 1
