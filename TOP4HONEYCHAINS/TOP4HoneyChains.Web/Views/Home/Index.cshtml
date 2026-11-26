@@ -80,12 +80,12 @@
     <link href="~/css/honey-mark.css" rel="stylesheet" asp-append-version="true">
     <script>document.documentElement.classList.add('js');</script>
 </head>
-<body class="ld">
+<body class="ld ld-brand-later">
     <a class="ld-skip b-btn b-btn-ink" href="#main">@L["Land.SkipToContent"]</a>
 
     <header class="ld-top" id="top">
         <div class="ld-wrap ld-top-in">
-            <a class="ld-brand b-link th-logo-trigger" href="/" aria-label="TOP4HoneyChains">
+            <a class="ld-brand ld-brand-top b-link th-logo-trigger" href="/" aria-label="TOP4HoneyChains">
                 <partial name="_BrandLogo" model="@(new TOP4HoneyChains.Web.Models.ViewModels.BrandLogo(132, Class: "ld-brand-logo"))" />
             </a>
             <nav class="ld-nav" aria-label="TOP4HoneyChains">
@@ -409,6 +409,17 @@
     </footer>
 
     <script src="~/js/hero-comb.js" asp-append-version="true" defer></script>
+    @* one logo on the first screen: the header logo appears once the hero logo has scrolled out of view *@
+    <noscript><style>.ld-brand-later .ld-brand-top { visibility: visible; opacity: 1; }</style></noscript>
+    <script>
+        (function () {
+            var hero = document.querySelector('.ld-hero-logo'), body = document.body;
+            if (!hero || !('IntersectionObserver' in window)) { body.classList.add('is-hero-gone'); return; }
+            new IntersectionObserver(function (entries) {
+                body.classList.toggle('is-hero-gone', !entries[0].isIntersecting);
+            }).observe(hero);
+        })();
+    </script>
     <script src="~/js/landing.js" asp-append-version="true" defer></script>
     <script src="~/js/honey-mark.js" asp-append-version="true" defer></script>
 </body>
