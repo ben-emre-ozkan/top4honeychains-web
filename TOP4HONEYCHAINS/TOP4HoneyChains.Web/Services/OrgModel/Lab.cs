@@ -46,6 +46,7 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         // matrix names) comes before the lab test. Results are entered and approved only when it is done (approved, or
         // not applicable); a lot without a CCP 0 assignment is not held.
         public const string Ccp0Code = "CCP 0";
+        public const string LabCcpCode = "CCP 1";
         public const string Ccp0Pending = "CCP 0 (primary audit) of this lot is not completed yet; lab results are entered and approved only after it.";
 
         public async Task<HashSet<int>> LotsWaitingForCcp0Async(IEnumerable<int> lotIds)
@@ -112,6 +113,9 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
 
         public async Task ApplyApprovedReportAsync(LabReport report, Sample sample, string approverUserId, IReadOnlyDictionary<int, LabValue>? values = null)
         {
+            // D-98: the final honey result of a batch stays with the batch (shown as "final honey result"); no lot values
+            if (sample.FinalHoneyProductionId != null)
+                return;
             var ccpId = await LabCcpIdAsync() ?? throw new InvalidOperationException("CCP 1 is missing.");
             var lotId = sample.RawHoneyProductionId;
             var parameters = (await LabParametersAsync(ccpId)).ToDictionary(p => p.ParameterId);

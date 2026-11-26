@@ -91,7 +91,7 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
         }
 
         // Whether an approved report on this sample becomes the lot's CCP 1 values
-        public bool SetsLotValues(Sample sample) => sample.Kind != SampleKind.Container || Mode == LabAnalysisMode.PerContainer;
+        public bool SetsLotValues(Sample sample) => sample.Kind != SampleKind.Batch && (sample.Kind != SampleKind.Container || Mode == LabAnalysisMode.PerContainer);
 
         // Extra rule for entering results on a container jar in composite mode
         public async Task<string?> ReportDeniedAsync(Sample sample)

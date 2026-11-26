@@ -66,6 +66,12 @@ namespace TOP4HoneyChains.Web.Models.Entities
 
         public bool? SealNumberMatches { get; set; }
 
+        // D-98 (migration 034): a sample of a batch's final blend (Kind Batch). RawHoneyProductionId then holds one lot of the
+        // batch only so the lot-based checks apply; the results are never written to that lot.
+        public int? FinalHoneyProductionId { get; set; }
+
+        public virtual FinalHoneyProduction? FinalHoneyProduction { get; set; }
+
         public virtual Container? Container { get; set; }
 
         public virtual RawHoneyProduction? RawHoneyProduction { get; set; }
@@ -79,6 +85,7 @@ namespace TOP4HoneyChains.Web.Models.Entities
     {
         public const string Container = "Container";
         public const string Composite = "Composite";
+        public const string Batch = "Batch";   // D-98: the final blend of a batch
     }
 
     // D-78 P2: the container jars a composite sample was made from

@@ -473,6 +473,29 @@
             </section>
         }
 
+        @* ===== 6b. D-98: the final honey result (the batch's blend), apart from the lot results ===== *@
+        @if (Model.FinalResult is HoneyStoryFinalResult fr)
+        {
+            <section class="hs-section" id="final-result">
+                @{ Head("<path d=\"M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3\"></path>", L["Final.Eyebrow"].Value, L["Final.Title"].Value); }
+                <p class="hs-intro">@L["Final.PublicIntro"]</p>
+                <a class="hs-report-link" href="/verify-report?code=@fr.ReportCode">
+                    <span class="hs-report-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8C5E2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"></path><path d="m9 12 2 2 4-4"></path></svg></span>
+                    <span class="grow">@L["Sf.VerifyReportCode", fr.ReportCode]@if (fr.LabName != null) {<text> · @fr.LabName</text>}</span><span aria-hidden="true">›</span>
+                </a>
+                @foreach (var v in fr.Values)
+                {
+                    var unit = Ref.Unit(v.ParameterId, v.Unit);
+                    <div class="hs-row">
+                        <div class="hs-row-body"><b>@Ref.Parameter(v.ParameterId, v.Name)</b>
+                            @if (v.Compliant != null && v.Limit != null) {<span>@L["Limit:"] @Ref.Limit(v.Limit, k => L[k])</span>}</div>
+                        <div class="hs-row-value"><b>@(v.Number != null ? Num(v.Number.Value) : v.Text) @if (v.Number != null) {<small title="@unit">@Units.Symbol(unit)</small>}</b>
+                            @if (v.Compliant == true) {<span class="is-ok">@L["Hst.Within"]</span>} else if (v.Compliant == false) {<span class="is-out">@L["Hst.Out"]</span>}</div>
+                    </div>
+                }
+            </section>
+        }
+
         @* ===== 7. process checks: every CCP of the lots (except the lab, CCP 1) and of the batch ===== *@
         <section class="hs-section" id="process">
             @{ Head("<rect x=\"5\" y=\"4\" width=\"14\" height=\"17\" rx=\"2\"></rect><path d=\"M9 4V3h6v1M9 13l2 2 4-4\"></path>", L["Hst.ProcessEyebrow"].Value, L["Hst.ProcessTitle"].Value); }

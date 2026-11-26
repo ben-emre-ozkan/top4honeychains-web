@@ -62,6 +62,89 @@
                 </div>
             </div>
 
+            @{
+                var final = ViewBag.Final as TOP4HoneyChains.Web.Services.OrgModel.BatchSampleService.State;
+                var finalDenied = ViewBag.FinalDenied as string;
+                var labs = ViewBag.Labs as Dictionary<int, string>;
+            }
+            @if (final != null && (final.Applies || final.Sample != null))
+            {
+                @* D-98: the final honey result, apart from the lot results *@
+                <div class="card" id="final-result">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="mdi mdi-flask-outline me-1" aria-hidden="true"></i>@L["Final.Title"]<info-tip key="Final.Info" about="@L["Final.Title"].Value" /></h5>
+                        <p class="small text-muted">@L["Final.Help"]</p>
+                        @if (final.Approved != null)
+                        {
+                            var r = final.Approved;
+                            <div class="mb-2" id="final-report"><partial name="_StatusPill" model="@(new TOP4HoneyChains.Web.Models.ViewModels.StatusPill(TOP4HoneyChains.Web.Models.ViewModels.StatusPill.Approved, L["Final.Approved"].Value))" />
+                                <a asp-controller="Verify" asp-action="Index" asp-route-code="@r.ReportCode" class="ms-2"><code>@r.ReportCode</code></a>
+                                <span class="small text-muted">· @final.Sample?.LabOrg?.DisplayName · @r.ApprovedAt?.ToLocalTime().ToString("dd.MM.yyyy")</span></div>
+                            <div class="table-responsive"><table class="table table-sm" id="final-values">
+                                <thead><tr><th>@L["Final.Parameter"]</th><th>@L["Final.Value"]</th><th>@L["Final.Limit"]</th></tr></thead>
+                                <tbody>
+                                    @foreach (var v in r.Results.OrderBy(v => v.ParameterId))
+                                    {
+                                        <tr class="@(v.IsInRange == false ? "table-danger" : null)">
+                                            <td>@Ref.T("Parameter", v.ParameterId, "Name", v.Parameter?.ParameterName)</td>
+                                            <td>@(v.MeasuredNumericValue?.ToString("0.####") ?? v.MeasuredTextValue) @(v.Parameter?.ParameterUnit is string u && u != "None" ? Ref.T("Parameter", v.ParameterId, "Unit", u) : "")</td>
+                                            <td class="small text-muted">@Ref.Limit(v.AppliedLimit, k => L[k])</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table></div>
+                        }
+                        else if (final.Sample != null && final.Sample.Status != TOP4HoneyChains.Web.Models.Entities.SampleStatus.Rejected)
+                        {
+                            <div id="final-pending"><partial name="_StatusPill" model="@(new TOP4HoneyChains.Web.Models.ViewModels.StatusPill(TOP4HoneyChains.Web.Models.ViewModels.StatusPill.Pending, L["Final.AtLab"].Value))" />
+                                <span class="small text-muted ms-1">@final.Sample.SampleCode · @final.Sample.LabOrg?.DisplayName</span></div>
+                        }
+                        @if (final.Approved == null && finalDenied == null && labs != null)
+                        {
+                            @if (final.Sample?.Status == TOP4HoneyChains.Web.Models.Entities.SampleStatus.Rejected)
+                            {
+                                <div class="alert alert-warning small">@L["Final.Rejected", final.Sample.SampleCode]</div>
+                            }
+                            <details class="mt-2" id="final-sample-box" open="@(final.Sample == null)">
+                                <summary class="text-primary" style="cursor:pointer">@L["Final.TakeSample"]</summary>
+                                <form asp-action="FinalSample" asp-route-id="@Model.FinalHoneyProductionId" method="post" class="row g-2 mt-1" id="final-sample-form">
+                                    <div class="col-md-6">
+                                        <label class="form-label required" for="final-lab">@L["Final.Lab"]</label>
+                                        <select class="form-select" id="final-lab" name="labOrgId" required>
+                                            <option value="">—</option>
+                                            @foreach (var l in labs) { <option value="@l.Key">@l.Value</option> }
+                                        </select>
+                                    </div>
+                                    <div class="col-6 col-md-3">
+                                        <label class="form-label required" for="final-seal">@L["Ci.JarSeal"]</label>
+                                        <input class="form-control" id="final-seal" name="sealNumber" maxlength="80" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="TS-000000" required />
+                                    </div>
+                                    <div class="col-6 col-md-3">
+                                        <label class="form-label required" for="final-counter">@L["Ci.CounterSeal"]</label>
+                                        <input class="form-control" id="final-counter" name="counterSealNumber" maxlength="80" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="TS-000000" required />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label required" for="final-where">@L["Final.CounterWhere"]</label>
+                                        <input class="form-control" id="final-where" name="counterLocation" maxlength="200" required />
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label required" for="final-until">@L["Final.RetainUntil"]</label>
+                                        <input class="form-control" type="date" id="final-until" name="retainUntil" value="@DateTime.Today.AddYears(1).ToString("yyyy-MM-dd")" required />
+                                    </div>
+                                    <div class="col-md-3 d-flex align-items-end">
+                                        <button type="submit" class="btn btn-primary w-100" id="final-sample-send">@L["Final.Send"]</button>
+                                    </div>
+                                </form>
+                            </details>
+                        }
+                        else if (final.Approved == null && finalDenied != null && final.Sample == null)
+                        {
+                            <p class="small text-muted mb-0" id="final-denied">@Msg.T(finalDenied)</p>
+                        }
+                    </div>
+                </div>
+            }
+
             <div class="card" id="finalize-card">
                 <div class="card-body">
                     <h5 class="card-title">@L["Org.Finalize"]</h5>
@@ -109,6 +192,11 @@
                                 <strong>@L["Org.MissingBeforeFinalize"]</strong>
                                 <ul class="mb-0">@foreach (var b in blockers) { <li>@Msg.T(b)</li> }</ul>
                             </div>
+                        }
+                        @if (final != null && final.Applies && final.Approved == null)
+                        {
+                            @* D-98: a warning, not a block *@
+                            <div class="alert alert-info small" id="final-warning"><i class="mdi mdi-information-outline me-1" aria-hidden="true"></i>@L["Final.Warning"]</div>
                         }
                         @if (Model.FinalizeRequestedByUserId == null)
                         {

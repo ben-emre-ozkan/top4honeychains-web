@@ -1271,6 +1271,9 @@ CREATE TABLE [dbo].[FinalHoneyCCPAssignments](
 	[ApprovedByOrgId] [int] NULL,
 	[ApprovedAt] [datetime] NULL,
 	[SelfApproved] [bit] NOT NULL,
+	[ReturnReason] [nvarchar](500) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[ReturnedByUserId] [nvarchar](450) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[ReturnedAt] [datetime2](7) NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[FinalHoneyCCPAssignmentId] ASC
@@ -1939,6 +1942,7 @@ CREATE TABLE [dbo].[Organizations](
 	[DataControllerAddress] [nvarchar](400) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 	[DataControllerContact] [nvarchar](200) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 	[VerbisNumber] [nvarchar](50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[CcpPath] [varchar](20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
  CONSTRAINT [PK_Organizations] PRIMARY KEY CLUSTERED 
 (
 	[OrgId] ASC
@@ -1966,6 +1970,10 @@ GO
 ALTER TABLE [dbo].[Organizations] ADD  CONSTRAINT [DF_Organizations_FourEyesExempt]  DEFAULT ((0)) FOR [FourEyesExempt]
 GO
 ALTER TABLE [dbo].[Organizations] ADD  CONSTRAINT [DF_Organizations_CreatedAt]  DEFAULT (sysutcdatetime()) FOR [CreatedAt]
+GO
+ALTER TABLE [dbo].[Organizations]  WITH CHECK ADD  CONSTRAINT [CK_Organizations_CcpPath] CHECK  (([CcpPath] IS NULL OR ([CcpPath]='Company' OR [CcpPath]='Association')))
+GO
+ALTER TABLE [dbo].[Organizations] CHECK CONSTRAINT [CK_Organizations_CcpPath]
 GO
 ALTER TABLE [dbo].[Organizations]  WITH CHECK ADD  CONSTRAINT [CK_Organizations_Status] CHECK  (([Status]=N'Suspended' OR [Status]=N'Verified' OR [Status]=N'Pending'))
 GO
@@ -2007,6 +2015,9 @@ CREATE TABLE [dbo].[RawHoneyCCPAssignments](
 	[ApprovedByOrgId] [int] NULL,
 	[ApprovedAt] [datetime] NULL,
 	[SelfApproved] [bit] NOT NULL,
+	[ReturnReason] [nvarchar](500) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[ReturnedByUserId] [nvarchar](450) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[ReturnedAt] [datetime2](7) NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[RawHoneyCCPAssignmentId] ASC
@@ -2059,6 +2070,8 @@ CREATE TABLE [dbo].[RawHoneyProductions](
 	[RawHoneyProductionWholesalerId] [int] NULL,
 	[OwnerOrgId] [int] NULL,
 	[OriginCountry] [char](2) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[PackingReadyAt] [datetime2](7) NULL,
+	[PackingReadyByUserId] [nvarchar](450) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
  CONSTRAINT [PK__ApiaryHo__D5D9A2D54CD1EFEC] PRIMARY KEY CLUSTERED 
 (
 	[RawHoneyProductionId] ASC
@@ -2239,6 +2252,7 @@ CREATE TABLE [dbo].[Samples](
 	[LabelIntactAtReception] [bit] NULL,
 	[SealNumberMatches] [bit] NULL,
 	[CapType] [varchar](20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[FinalHoneyProductionId] [int] NULL,
  CONSTRAINT [PK_Samples] PRIMARY KEY CLUSTERED 
 (
 	[SampleId] ASC
@@ -2249,6 +2263,13 @@ CREATE NONCLUSTERED INDEX [IX_Samples_Container] ON [dbo].[Samples]
 (
 	[ContainerId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+GO
+CREATE NONCLUSTERED INDEX [IX_Samples_FinalHoneyProductionId] ON [dbo].[Samples]
+(
+	[FinalHoneyProductionId] ASC
+)
+WHERE ([FinalHoneyProductionId] IS NOT NULL)
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
 GO
 CREATE NONCLUSTERED INDEX [IX_Samples_Lab] ON [dbo].[Samples]
 (
@@ -2270,13 +2291,17 @@ ALTER TABLE [dbo].[Samples] ADD  CONSTRAINT [DF_Samples_Status]  DEFAULT (N'Sent
 GO
 ALTER TABLE [dbo].[Samples] ADD  CONSTRAINT [DF_Samples_TakenAt]  DEFAULT (sysutcdatetime()) FOR [TakenAt]
 GO
+ALTER TABLE [dbo].[Samples]  WITH CHECK ADD  CONSTRAINT [CK_Samples_BatchKind] CHECK  (([Kind]='Batch' AND [FinalHoneyProductionId] IS NOT NULL OR isnull([Kind],'')<>'Batch' AND [FinalHoneyProductionId] IS NULL))
+GO
+ALTER TABLE [dbo].[Samples] CHECK CONSTRAINT [CK_Samples_BatchKind]
+GO
 ALTER TABLE [dbo].[Samples]  WITH CHECK ADD  CONSTRAINT [CK_Samples_CapType] CHECK  (([CapType] IS NULL OR ([CapType]='TamperRing' OR [CapType]='SafetyButton')))
 GO
 ALTER TABLE [dbo].[Samples] CHECK CONSTRAINT [CK_Samples_CapType]
 GO
-ALTER TABLE [dbo].[Samples]  WITH CHECK ADD  CONSTRAINT [CK_Samples_Kind] CHECK  (([Kind] IS NULL OR ([Kind]='Composite' OR [Kind]='Container')))
+ALTER TABLE [dbo].[Samples]  WITH CHECK ADD  CONSTRAINT [CK_Samples_Kind2] CHECK  (([Kind] IS NULL OR ([Kind]='Batch' OR [Kind]='Composite' OR [Kind]='Container')))
 GO
-ALTER TABLE [dbo].[Samples] CHECK CONSTRAINT [CK_Samples_Kind]
+ALTER TABLE [dbo].[Samples] CHECK CONSTRAINT [CK_Samples_Kind2]
 GO
 ALTER TABLE [dbo].[Samples]  WITH CHECK ADD  CONSTRAINT [CK_Samples_Seals] CHECK  (([SealNumber]<>[CounterSealNumber]))
 GO
@@ -3156,6 +3181,11 @@ ALTER TABLE [dbo].[Samples]  WITH CHECK ADD  CONSTRAINT [FK_Samples_Containers] 
 REFERENCES [dbo].[Containers] ([ContainerId])
 GO
 ALTER TABLE [dbo].[Samples] CHECK CONSTRAINT [FK_Samples_Containers]
+GO
+ALTER TABLE [dbo].[Samples]  WITH CHECK ADD  CONSTRAINT [FK_Samples_FinalHoneyProductions] FOREIGN KEY([FinalHoneyProductionId])
+REFERENCES [dbo].[FinalHoneyProductions] ([FinalHoneyProductionId])
+GO
+ALTER TABLE [dbo].[Samples] CHECK CONSTRAINT [FK_Samples_FinalHoneyProductions]
 GO
 ALTER TABLE [dbo].[Samples]  WITH CHECK ADD  CONSTRAINT [FK_Samples_LabOrg] FOREIGN KEY([LabOrgId])
 REFERENCES [dbo].[Organizations] ([OrgId])

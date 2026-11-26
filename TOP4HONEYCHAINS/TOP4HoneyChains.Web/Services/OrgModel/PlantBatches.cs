@@ -52,11 +52,13 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
 
         private readonly TOP4HoneyChainsContext _context;
         private readonly CcpIntegrityService _ccp;
+        private readonly CcpPathService? _paths;
 
-        public PlantBatchService(TOP4HoneyChainsContext context, CcpIntegrityService ccp)
+        public PlantBatchService(TOP4HoneyChainsContext context, CcpIntegrityService ccp, CcpPathService? paths = null)
         {
             _context = context;
             _ccp = ccp;
+            _paths = paths;
         }
 
         // Why the active membership may not create batches; null when it may
@@ -157,6 +159,9 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                     FinalHoneyCCPAssignmentStartDate = DateTime.Now
                 });
             await _context.SaveChangesAsync();
+            // D-98: on the association path CCP 4 to 6 do not apply
+            if (_paths != null)
+                await _paths.ApplyToNewBatchAsync(batch.FinalHoneyProductionId, orgId);
             await transaction.CommitAsync();
             return new Created(batch.FinalHoneyProductionId, ccps.Count);
         }

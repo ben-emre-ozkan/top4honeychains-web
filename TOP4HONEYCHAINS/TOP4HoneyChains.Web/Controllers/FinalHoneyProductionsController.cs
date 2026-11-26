@@ -666,7 +666,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 {
                     var lotIds = model.Lots.Select(l => l.LotId).ToList();
                     model.Reports = await _context.LabReports.AsNoTracking()
-                        .Where(r => r.Status == LabReportStatus.Approved && lotIds.Contains(r.Sample!.RawHoneyProductionId))
+                        .Where(r => r.Status == LabReportStatus.Approved && lotIds.Contains(r.Sample!.RawHoneyProductionId) && r.Sample.FinalHoneyProductionId == null)
                         .OrderBy(r => r.ReportCode)
                         .Select(r => new DetailsReport(r.ReportCode, r.LabOrg!.DisplayName, r.IsAccredited, r.AccreditationNumber, r.InHouse, r.IssuedOn))
                         .ToListAsync();

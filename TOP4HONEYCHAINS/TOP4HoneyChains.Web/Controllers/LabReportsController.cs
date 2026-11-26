@@ -334,7 +334,8 @@ namespace TOP4HoneyChains.Web.Controllers
             await _audit.WriteAsync("Approve", "LabReports", report.ReportId.ToString(), null,
                 new { report.ReportCode, report.Sha256, report.IsAccredited, report.InHouse });
             await transaction.CommitAsync();
-            TempData["Success"] = setsLot ? "Lab report approved; the results are now the lot's CCP 1 values."
+            TempData["Success"] = sample.Kind == SampleKind.Batch ? "Lab report approved; it is the batch's final honey result."
+                : setsLot ? "Lab report approved; the results are now the lot's CCP 1 values."
                 : "Lab report approved for this container's jar; the lot's CCP 1 values stay those of the composite.";
             TempData["JustApproved"] = true;   // D-67: the status pill draws its check mark once
             return RedirectToAction(nameof(Edit), new { id });

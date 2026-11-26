@@ -109,6 +109,8 @@ builder.Services.AddSingleton<TOP4HoneyChains.Web.Services.OrgModel.Permissions>
 builder.Services.AddScoped<MessageTranslator>();
 builder.Services.AddScoped<ICurrentOrg, CurrentOrg>();
 builder.Services.AddScoped<CcpResponsibilityService>();
+builder.Services.AddScoped<CcpPathService>();   // D-98
+builder.Services.AddScoped<BatchSampleService>();   // D-98
 builder.Services.AddScoped<OrgScope>();
 builder.Services.AddScoped<CustodyService>();
 builder.Services.AddScoped<LabService>();

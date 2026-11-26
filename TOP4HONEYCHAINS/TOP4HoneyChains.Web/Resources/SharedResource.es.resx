@@ -9827,7 +9827,7 @@
     <value>Muestras y laboratorio es su lista de trabajo. Primero reciba cada frasco (número de precinto, etiqueta, tapa), luego registre los resultados, por ejemplo humedad e HMF, y envíe el informe a aprobación.</value>
   </data>
   <data name="Tour.Approve" xml:space="preserve">
-    <value>Mis tareas lista los registros de puntos de control (PCC) que enviaron sus compañeros. Revise cada uno y apruébelo o devuélvalo, por ejemplo el control de recepción de la entrega de hoy; nadie aprueba lo que registró.</value>
+    <value>Mis tareas enumera los registros de puntos de control (PCC) que enviaron sus compañeros. Revise cada uno y apruébelo, o devuélvalo con un motivo: vuelve entonces a la persona que lo introdujo, por ejemplo el control de recepción de la entrega de hoy. Nadie aprueba su propio registro.</value>
   </data>
   <data name="Reg78.Info.Registry" xml:space="preserve">
     <value>TR + el código de placa de la provincia (2 dígitos) + 10 dígitos, p. ej. TR520401200241. El código de placa se compara con la provincia de su dirección.</value>
@@ -10284,5 +10284,185 @@
   </data>
   <data name="Enter the capacity and the empty weight in kg (or leave them empty)." xml:space="preserve">
     <value>Ingrese la capacidad y el peso vacío en kg (o déjelos vacíos).</value>
+  </data>
+  <data name="Ccp.Return" xml:space="preserve">
+    <value>Devolver</value>
+  </data>
+  <data name="Ccp.ReturnPlaceholder" xml:space="preserve">
+    <value>p. ej.: El valor de temperatura parece erróneo; vuelva a leer el termómetro.</value>
+  </data>
+  <data name="Ccp.ReturnHelp" xml:space="preserve">
+    <value>El registro vuelve a la persona que lo introdujo y aparece en su lista Mis tareas con su motivo. Cuando lo guarde de nuevo, volverá a usted para su aprobación.</value>
+  </data>
+  <data name="Ccp.Returned" xml:space="preserve">
+    <value>Devuelto.</value>
+  </data>
+  <data name="Ccp.ReturnedBy" xml:space="preserve">
+    <value>Devuelto por {0} el {1}</value>
+  </data>
+  <data name="Ccp.ReturnedHelp" xml:space="preserve">
+    <value>Corrija los valores de abajo y guarde; el registro vuelve a aprobación.</value>
+  </data>
+  <data name="Work.Kind.Returned" xml:space="preserve">
+    <value>Devueltos a usted</value>
+  </data>
+  <data name="Work.Kind.PackingReady" xml:space="preserve">
+    <value>¿Listo para envasar?</value>
+  </data>
+  <data name="Path.Title" xml:space="preserve">
+    <value>Ruta después del laboratorio</value>
+  </data>
+  <data name="Path.Association" xml:space="preserve">
+    <value>Ruta de asociación: directamente al envasado (los PCC 2 a 6 no se aplican)</value>
+  </data>
+  <data name="Path.Company" xml:space="preserve">
+    <value>Ruta de empresa: procesamiento (PCC 2 en adelante)</value>
+  </data>
+  <data name="Path.Default" xml:space="preserve">
+    <value>predeterminado</value>
+  </data>
+  <data name="Path.Info.Setting" xml:space="preserve">
+    <value>Las asociaciones suelen envasar la miel de sus miembros tal cual: tras el informe de laboratorio aprobado, el responsable de aseguramiento de la calidad la marca como lista para envasar y los PCC 2 a 6 no se aplican. Las empresas de procesamiento calientan, filtran y mezclan la miel, por lo que se aplican los PCC 2 en adelante. Por defecto, la ruta de asociación para una organización con la capacidad Asociación y la de empresa en los demás casos. Un cambio afecta a los lotes marcados como listos y a las partidas creadas a partir de entonces.</value>
+  </data>
+  <data name="Path.PackingReady" xml:space="preserve">
+    <value>Miel lista para envasar</value>
+  </data>
+  <data name="Path.Info.Association" xml:space="preserve">
+    <value>Su organización sigue la ruta de asociación: cuando el informe de laboratorio del lote está aprobado, el responsable de aseguramiento de la calidad confirma aquí que la miel va directamente al envasado. Los PCC 2 a 6 (calentamiento, filtrado, homogeneización, pasteurización, clarificación) no se aplican entonces a este lote ni a su partida; se registran como no aplicables con el motivo y quedan en la auditoría.</value>
+  </data>
+  <data name="Path.ButtonHelp" xml:space="preserve">
+    <value>El informe de laboratorio está aprobado. Confirme que la miel va al envasado tal cual.</value>
+  </data>
+  <data name="Path.IsReady" xml:space="preserve">
+    <value>Listo para envasar</value>
+  </data>
+  <data name="Path.ReadyHelp" xml:space="preserve">
+    <value>Los PCC 2 a 6 no se aplican a este lote; puede entrar en una partida.</value>
+  </data>
+  <data name="Final.Title" xml:space="preserve">
+    <value>Resultado final de la miel</value>
+  </data>
+  <data name="Final.Eyebrow" xml:space="preserve">
+    <value>La mezcla del frasco</value>
+  </data>
+  <data name="Final.Help" xml:space="preserve">
+    <value>Esta partida contiene miel de más de un colmenar. Un análisis de laboratorio de la mezcla final muestra la miel tal como está en el frasco, aparte de los resultados de cada lote.</value>
+  </data>
+  <data name="Final.Info" xml:space="preserve">
+    <value>Tome un frasco precintado y una contramuestra de la partida mezclada, precíntelos con etiquetas de precinto del depósito de su organización y envíe el frasco a un laboratorio verificado. El informe aprobado se muestra aquí y en la Historia de la miel como resultado final de la miel. Se puede finalizar sin él, pero aparece un aviso.</value>
+  </data>
+  <data name="Final.PublicIntro" xml:space="preserve">
+    <value>Esta miel es una mezcla de varios colmenares. Además de los resultados de cada origen, la propia mezcla fue analizada por un laboratorio.</value>
+  </data>
+  <data name="Final.Approved" xml:space="preserve">
+    <value>Aprobado</value>
+  </data>
+  <data name="Final.Parameter" xml:space="preserve">
+    <value>Parámetro</value>
+  </data>
+  <data name="Final.Value" xml:space="preserve">
+    <value>Valor</value>
+  </data>
+  <data name="Final.Limit" xml:space="preserve">
+    <value>Límite</value>
+  </data>
+  <data name="Final.AtLab" xml:space="preserve">
+    <value>En el laboratorio</value>
+  </data>
+  <data name="Final.Rejected" xml:space="preserve">
+    <value>El laboratorio rechazó la muestra {0}. Tome una muestra nueva.</value>
+  </data>
+  <data name="Final.TakeSample" xml:space="preserve">
+    <value>Tomar una muestra de la mezcla final</value>
+  </data>
+  <data name="Final.Lab" xml:space="preserve">
+    <value>Laboratorio</value>
+  </data>
+  <data name="Final.CounterWhere" xml:space="preserve">
+    <value>Dónde se guarda la contramuestra</value>
+  </data>
+  <data name="Final.RetainUntil" xml:space="preserve">
+    <value>Conservar hasta</value>
+  </data>
+  <data name="Final.Send" xml:space="preserve">
+    <value>Enviar al laboratorio</value>
+  </data>
+  <data name="Final.Warning" xml:space="preserve">
+    <value>Esta partida aún no tiene un resultado final de la miel aprobado. Puede finalizarla igualmente; la Historia de la miel mostrará entonces solo los resultados de cada lote.</value>
+  </data>
+  <data name="Final.BatchSample" xml:space="preserve">
+    <value>Mezcla final de la partida n.º {0}</value>
+  </data>
+  <data name="Limit.expected" xml:space="preserve">
+    <value>esperado</value>
+  </data>
+  <data name="This control point does not apply on the association path." xml:space="preserve">
+    <value>Este punto de control no se aplica en la ruta de asociación.</value>
+  </data>
+  <data name="Only a submitted record can be sent back." xml:space="preserve">
+    <value>Solo se puede devolver un registro enviado.</value>
+  </data>
+  <data name="A reason is required to send the record back." xml:space="preserve">
+    <value>Se necesita un motivo para devolver el registro.</value>
+  </data>
+  <data name="Only a {0} of the organization can send a record back." xml:space="preserve">
+    <value>Solo un {0} de la organización puede devolver un registro.</value>
+  </data>
+  <data name="The record was sent back to the person who entered it." xml:space="preserve">
+    <value>El registro se devolvió a la persona que lo introdujo.</value>
+  </data>
+  <data name="The honey is ready for packing: CCP 2 to 6 do not apply to this lot." xml:space="preserve">
+    <value>La miel está lista para envasar: los PCC 2 a 6 no se aplican a este lote.</value>
+  </data>
+  <data name="The lot does not exist." xml:space="preserve">
+    <value>El lote no existe.</value>
+  </data>
+  <data name="The honey of this lot is already marked ready for packing." xml:space="preserve">
+    <value>La miel de este lote ya está marcada como lista para envasar.</value>
+  </data>
+  <data name="Only organizations on the association path mark honey ready for packing." xml:space="preserve">
+    <value>Solo las organizaciones de la ruta de asociación marcan la miel como lista para envasar.</value>
+  </data>
+  <data name="Only the organization that holds the lot marks it ready for packing." xml:space="preserve">
+    <value>Solo la organización que tiene el lote lo marca como listo para envasar.</value>
+  </data>
+  <data name="Only the Quality Assurance Officer marks the honey ready for packing." xml:space="preserve">
+    <value>Solo el responsable de aseguramiento de la calidad marca la miel como lista para envasar.</value>
+  </data>
+  <data name="The lot's laboratory report is not approved yet." xml:space="preserve">
+    <value>El informe de laboratorio del lote aún no está aprobado.</value>
+  </data>
+  <data name="CCP 2 or CCP 3 of this lot already has values, so the lot follows the company path." xml:space="preserve">
+    <value>El PCC 2 o el PCC 3 de este lote ya tiene valores, por lo que el lote sigue la ruta de empresa.</value>
+  </data>
+  <data name="The lot is in a finalized batch and can no longer be changed." xml:space="preserve">
+    <value>El lote está en una partida finalizada y ya no se puede cambiar.</value>
+  </data>
+  <data name="Association path: the honey goes to packing after the approved laboratory report." xml:space="preserve">
+    <value>Ruta de asociación: la miel va al envasado tras el informe de laboratorio aprobado.</value>
+  </data>
+  <data name="Choose the association path or the company path." xml:space="preserve">
+    <value>Elija la ruta de asociación o la de empresa.</value>
+  </data>
+  <data name="The path after the laboratory was saved." xml:space="preserve">
+    <value>Se guardó la ruta después del laboratorio.</value>
+  </data>
+  <data name="The batch does not exist." xml:space="preserve">
+    <value>La partida no existe.</value>
+  </data>
+  <data name="Only the organization that holds the batch takes its samples." xml:space="preserve">
+    <value>Solo la organización que tiene la partida toma sus muestras.</value>
+  </data>
+  <data name="The batch is finalized." xml:space="preserve">
+    <value>La partida está finalizada.</value>
+  </data>
+  <data name="A final honey result is taken on the company path for a batch with honey from more than one apiary." xml:space="preserve">
+    <value>El resultado final de la miel se toma en la ruta de empresa para una partida con miel de más de un colmenar.</value>
+  </data>
+  <data name="A sample of this batch is already at the laboratory." xml:space="preserve">
+    <value>Ya hay una muestra de esta partida en el laboratorio.</value>
+  </data>
+  <data name="Lab report approved; it is the batch's final honey result." xml:space="preserve">
+    <value>Informe de laboratorio aprobado; es el resultado final de la miel de la partida.</value>
   </data>
 </root>

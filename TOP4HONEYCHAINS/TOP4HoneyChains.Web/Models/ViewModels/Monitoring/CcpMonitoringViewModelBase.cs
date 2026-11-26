@@ -45,6 +45,11 @@
         public DateTime? ApprovedAt { get; set; }
         public bool SelfApproved { get; set; }
 
+        // D-98: the record was sent back by the approver (status Rejected)
+        public string? ReturnReason { get; set; }
+        public string? ReturnedBy { get; set; }
+        public DateTime? ReturnedAt { get; set; }
+
         // Platform administrators with the organization model: read-only, changes through corrections (D-35)
         public bool AdminCorrections { get; set; }
         public List<TOP4HoneyChains.Web.Models.Entities.CcpCorrection> Corrections { get; set; } = new();

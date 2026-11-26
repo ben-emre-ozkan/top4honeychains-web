@@ -112,7 +112,7 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
 
             // Approved reports of verified laboratories, on the batches' lots (the beekeeper's and the others)
             var reports = await _context.LabReports.AsNoTracking()
-                .Where(r => r.Status == LabReportStatus.Approved && allLotIds.Contains(r.Sample!.RawHoneyProductionId) && r.LabOrg!.Status == OrgStatus.Verified)
+                .Where(r => r.Status == LabReportStatus.Approved && allLotIds.Contains(r.Sample!.RawHoneyProductionId) && r.Sample.FinalHoneyProductionId == null && r.LabOrg!.Status == OrgStatus.Verified)
                 .Select(r => new { r.ReportId, r.ReportCode, r.Sample!.RawHoneyProductionId, r.IsAccredited, r.LabOrgId, Lab = r.LabOrg!.DisplayName, r.ApprovedAt })
                 .ToListAsync();
             var ownReports = reports.Where(r => lotIds.Contains(r.RawHoneyProductionId)).ToList();

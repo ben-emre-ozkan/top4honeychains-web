@@ -102,7 +102,7 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             var ids = await Lots(beekeeperId).Select(r => r.RawHoneyProductionId).ToListAsync();
             var samples = await _context.Samples.AsNoTracking().Include(s => s.Container).Include(s => s.LabOrg)
                 .Include(s => s.Report!).ThenInclude(r => r.Results)
-                .Where(s => ids.Contains(s.RawHoneyProductionId)).OrderByDescending(s => s.SampleId).ToListAsync();
+                .Where(s => ids.Contains(s.RawHoneyProductionId) && s.FinalHoneyProductionId == null).OrderByDescending(s => s.SampleId).ToListAsync();
             var parameterIds = samples.Where(s => s.Report?.Status == LabReportStatus.Approved).SelectMany(s => s.Report!.Results.Select(r => r.ParameterId)).Distinct().ToList();
             var parameters = await _context.CriticalControlPointParameters.AsNoTracking().Where(p => parameterIds.Contains(p.ParameterId)).ToDictionaryAsync(p => p.ParameterId);
             // C4: a report is shown only once approved

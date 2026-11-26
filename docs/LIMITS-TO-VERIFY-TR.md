@@ -26,10 +26,11 @@
 | 16 | C4 şekeri | Tümü | en çok 7 | % | Proje sahibinin TGK listesi | | |
 | 17 | Antibiyotik (veteriner ilaç kalıntısı) | Tümü | 0 (sıfır tolerans) | ppb | Proje sahibinin TGK listesi | | |
 | 18 | Depolama sıcaklığı (CCP10) | Tümü | en çok 25 | °C | WP4 raporu, Tablo 1 | | |
+| 19 | Isıtma sıcaklığı (CCP2) | Tümü | en çok 45 | °C | Ortaklar toplantısı, 26.11.2026 | | |
 
 **Kullanım yerleri:**
 - Satır 1 ve 2 (nem): ham bal kabulü (CCP1), ısıtma (CCP2), homojenizasyon (CCP4) ve pastörizasyon (CCP5).
-- Satır 11–14 (HMF, diyastaz, prolin): CCP1, CCP2 ve CCP5.
+- Satır 11–14 (HMF, diyastaz, prolin): CCP1, CCP2 ve CCP5. CCP2'de bu değerler 26.11.2026'dan beri isteğe bağlıdır (laboratuvar doğrular).
 - Diğer analizler yalnızca ham bal kabulünde (CCP1).
 
 **Limiti olmayan ölçümler:** Pestisit, naftalin, maltoz, çözünmeyen madde, bağıl nem. Bunlar için tebliğde limit varsa lütfen "Doğru değer" sütununa ekleyin.

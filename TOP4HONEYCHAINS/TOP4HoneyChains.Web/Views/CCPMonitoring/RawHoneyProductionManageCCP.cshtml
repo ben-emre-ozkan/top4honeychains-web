@@ -84,6 +84,34 @@
 
             <partial name="_CcpStatusPanel" model="Model" />
 
+            @if (Model.Path == TOP4HoneyChains.Web.Services.OrgModel.CcpPaths.Association)
+            {
+                @* D-98: association path, the honey goes from the approved lab report straight to packing *@
+                <div class="card mb-4 border-0 shadow-sm" id="packing-ready">
+                    <div class="card-body">
+                        <h2 class="h6 mb-1"><i class="mdi mdi-package-variant-closed me-1" aria-hidden="true"></i>@L["Path.PackingReady"]<info-tip key="Path.Info.Association" about="@L["Path.PackingReady"].Value" /></h2>
+                        @if (Model.PackingReadyAt != null)
+                        {
+                            <div id="packing-ready-state"><partial name="_StatusPill" model="@(new TOP4HoneyChains.Web.Models.ViewModels.StatusPill(TOP4HoneyChains.Web.Models.ViewModels.StatusPill.Approved, L["Path.IsReady"].Value))" /> <span class="small text-muted">@Model.PackingReadyAt?.ToString("dd.MM.yyyy HH:mm")</span></div>
+                            <p class="small text-muted mb-0 mt-1">@L["Path.ReadyHelp"]</p>
+                        }
+                        else if (Model.PackingReadyDenied == null)
+                        {
+                            <p class="small text-muted mb-2">@L["Path.ButtonHelp"]</p>
+                            <form asp-action="PackingReady" method="post">
+                                <input type="hidden" name="lotId" value="@Model.RawHoneyProductionId" />
+                                <input type="hidden" name="ccpId" value="@Model.CCPId" />
+                                <button type="submit" class="btn btn-success" id="packing-ready-button"><i class="mdi mdi-check-decagram-outline me-1" aria-hidden="true"></i>@L["Path.PackingReady"]</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <p class="small text-muted mb-0" id="packing-ready-denied">@Msg.T(Model.PackingReadyDenied)</p>
+                        }
+                    </div>
+                </div>
+            }
+
             <!-- 🔷 MONITORING FORM -->
             <div class="card border-0 shadow-lg">
                 <div class="card-body">

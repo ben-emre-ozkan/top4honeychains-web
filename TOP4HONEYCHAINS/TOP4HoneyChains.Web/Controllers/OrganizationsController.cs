@@ -305,6 +305,30 @@ namespace TOP4HoneyChains.Web.Controllers
             return RedirectToAction(nameof(Details), new { id });
         }
 
+        // D-98: the path after the laboratory (association: straight to packing; company: CCP 2 onwards). Empty = the default
+        // by capability. Existing records keep their state; it acts on lots marked ready and batches created from now on.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Policy = AuthPolicies.PlatformAdmin)]
+        public async Task<IActionResult> SetCcpPath(int id, string? path)
+        {
+            var org = await LoadAsync(id);
+            if (org == null)
+                return NotFound();
+            path = string.IsNullOrEmpty(path) ? null : path;
+            if (path != null && !CcpPaths.All.Contains(path))
+            {
+                TempData["Error"] = "Choose the association path or the company path.";
+                return RedirectToAction(nameof(Details), new { id });
+            }
+            var old = org.CcpPath;
+            org.CcpPath = path;
+            await _context.SaveChangesAsync();
+            await _audit.WriteAsync("SetCcpPath", "Organizations", id.ToString(), new { CcpPath = old }, new { CcpPath = path });
+            TempData["Success"] = "The path after the laboratory was saved.";
+            return RedirectToAction(nameof(Details), new { id });
+        }
+
         // ---------------------------------------------------------------- documents
 
         [HttpPost]

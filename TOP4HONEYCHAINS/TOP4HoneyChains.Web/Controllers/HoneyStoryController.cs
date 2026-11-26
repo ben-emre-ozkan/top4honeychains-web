@@ -40,7 +40,7 @@ namespace TOP4HoneyChains.Web.Controllers
                 return;
             var rawIds = vm.RawSources.Select(s => s.RawHoneyProductionId).Distinct().ToList();
             var reports = await _context.LabReports.AsNoTracking()
-                .Where(r => r.Status == LabReportStatus.Approved && rawIds.Contains(r.Sample!.RawHoneyProductionId)
+                .Where(r => r.Status == LabReportStatus.Approved && rawIds.Contains(r.Sample!.RawHoneyProductionId) && r.Sample.FinalHoneyProductionId == null
                             && r.LabOrg!.Status == OrgStatus.Verified)
                 .Select(r => new { r.Sample!.RawHoneyProductionId, r.IsAccredited, r.AccreditationNumber, r.InHouse, r.ReportCode, Lab = r.LabOrg!.DisplayName, r.ApprovedAt })
                 .ToListAsync();
@@ -53,6 +53,23 @@ namespace TOP4HoneyChains.Web.Controllers
                 source.LabAccredited = report?.IsAccredited == true;
                 source.LabApprovedAt = report?.ApprovedAt;
             }
+            // D-98: the final honey result of the batch (latest approved report of a batch sample)
+            var final = await _context.LabReports.AsNoTracking()
+                .Where(r => r.Status == LabReportStatus.Approved && r.Sample!.FinalHoneyProductionId == vm.FinalHoneyProductionId && r.LabOrg!.Status == OrgStatus.Verified)
+                .Include(r => r.LabOrg).Include(r => r.Results).ThenInclude(x => x.Parameter)
+                .OrderByDescending(r => r.ApprovedAt).FirstOrDefaultAsync();
+            if (final != null)
+                vm.FinalResult = new HoneyStoryFinalResult
+                {
+                    ReportCode = final.ReportCode ?? "",
+                    LabName = final.LabOrg?.DisplayName,
+                    ApprovedAt = final.ApprovedAt,
+                    Accredited = final.IsAccredited,
+                    Values = final.Results.OrderBy(x => x.ParameterId)
+                        .Select(x => (x.ParameterId, x.Parameter?.ParameterName, x.MeasuredNumericValue, x.MeasuredTextValue, x.Parameter?.ParameterUnit,
+                            x.Parameter?.LimitVerified == true ? x.IsInRange : null, x.Parameter?.LimitVerified == true ? x.AppliedLimit : null))
+                        .ToList()
+                };
             var rows = vm.RawSources.SelectMany(s => s.CcpBlocks).Concat(vm.BatchCcpBlocks).SelectMany(b => b.Parameters)
                 .Where(r => r.Compliant != null).ToList();
             vm.Badges = new HoneyStoryBadges
@@ -488,6 +505,8 @@ namespace TOP4HoneyChains.Web.Controllers
                 var own = rawAssignments.Where(a => a.RawHoneyProductionId == source.RawHoneyProductionId).ToList();
                 source.CcpBlocks = ccps
                     .Where(c => c.AppliesTo == CcpAppliesTo.RawLot || own.Any(a => a.RawHoneyCCPAssignmentCCP == c.Id))
+                    // D-98: control points that do not apply on the association path are not shown
+                    .Where(c => !own.Any(a => a.RawHoneyCCPAssignmentCCP == c.Id && a.NotApplicableReason == TOP4HoneyChains.Web.Services.OrgModel.CcpPaths.Reason))
                     .Select(c =>
                     {
                         var a = own.FirstOrDefault(x => x.RawHoneyCCPAssignmentCCP == c.Id);
@@ -502,6 +521,7 @@ namespace TOP4HoneyChains.Web.Controllers
             var batchHoney = new HoneyProfile(batchTypes.Count == 1 ? batchTypes[0] : null, batchClasses.Count == 1 ? batchClasses[0] : null);
             vm.BatchCcpBlocks = ccps
                 .Where(c => c.AppliesTo == CcpAppliesTo.Batch || batchAssignments.Any(a => a.FinalHoneyCCPAssignmentCCP == c.Id))
+                .Where(c => !batchAssignments.Any(a => a.FinalHoneyCCPAssignmentCCP == c.Id && a.NotApplicableReason == TOP4HoneyChains.Web.Services.OrgModel.CcpPaths.Reason))
                 .Select(c =>
                 {
                     var a = batchAssignments.FirstOrDefault(x => x.FinalHoneyCCPAssignmentCCP == c.Id);

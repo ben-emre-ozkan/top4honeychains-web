@@ -9703,7 +9703,7 @@
     <value>Numuneler ve laboratuvar, iş listenizdir. Önce her kavanozu teslim alın (mühür numarası, etiket, kapak), sonra sonuçları girin, örneğin nem ve HMF, ve raporu onaya gönderin.</value>
   </data>
   <data name="Tour.Approve" xml:space="preserve">
-    <value>İşlerim, çalışma arkadaşlarınızın gönderdiği kritik kontrol noktası (KKN) kayıtlarını listeler. Her birini kontrol edip onaylayın ya da geri gönderin, örneğin bugünkü teslimatın kabul kontrolü; kimse kendi girdiği kaydı onaylayamaz.</value>
+    <value>İşlerim, çalışma arkadaşlarınızın gönderdiği kritik kontrol noktası (KKN) kayıtlarını listeler. Her birini kontrol edip onaylayın ya da gerekçe yazarak geri gönderin: Kayıt, onu giren kişiye döner; örneğin bugünkü teslimatın kabul kontrolü. Kimse kendi girdiği kaydı onaylayamaz.</value>
   </data>
   <data name="Reg78.Info.Registry" xml:space="preserve">
     <value>TR + ilin plaka kodu (2 hane) + 10 hane, örneğin TR520401200241. Plaka kodu, müdürlüğünüzün iliyle karşılaştırılır.</value>
@@ -10160,5 +10160,185 @@
   </data>
   <data name="Enter the capacity and the empty weight in kg (or leave them empty)." xml:space="preserve">
     <value>Kapasiteyi ve boş ağırlığı kg olarak girin (veya boş bırakın).</value>
+  </data>
+  <data name="Ccp.Return" xml:space="preserve">
+    <value>Geri gönder</value>
+  </data>
+  <data name="Ccp.ReturnPlaceholder" xml:space="preserve">
+    <value>Örneğin: Sıcaklık değeri hatalı görünüyor; lütfen termometreyi yeniden okuyun.</value>
+  </data>
+  <data name="Ccp.ReturnHelp" xml:space="preserve">
+    <value>Kayıt, onu giren kişiye geri gider ve gerekçenizle birlikte onun İşlerim listesinde görünür. Kişi kaydı yeniden kaydettiğinde onay için size döner.</value>
+  </data>
+  <data name="Ccp.Returned" xml:space="preserve">
+    <value>Geri gönderildi.</value>
+  </data>
+  <data name="Ccp.ReturnedBy" xml:space="preserve">
+    <value>{0} tarafından {1} tarihinde geri gönderildi</value>
+  </data>
+  <data name="Ccp.ReturnedHelp" xml:space="preserve">
+    <value>Aşağıdaki değerleri düzeltip kaydedin; kayıt yeniden onaya gider.</value>
+  </data>
+  <data name="Work.Kind.Returned" xml:space="preserve">
+    <value>Size geri gönderilenler</value>
+  </data>
+  <data name="Work.Kind.PackingReady" xml:space="preserve">
+    <value>Paketlemeye hazır mı?</value>
+  </data>
+  <data name="Path.Title" xml:space="preserve">
+    <value>Laboratuvardan sonraki yol</value>
+  </data>
+  <data name="Path.Association" xml:space="preserve">
+    <value>Birlik yolu: Doğrudan paketlemeye (KKN 2–6 uygulanmaz)</value>
+  </data>
+  <data name="Path.Company" xml:space="preserve">
+    <value>Firma yolu: İşleme (KKN 2 ve sonrası)</value>
+  </data>
+  <data name="Path.Default" xml:space="preserve">
+    <value>varsayılan</value>
+  </data>
+  <data name="Path.Info.Setting" xml:space="preserve">
+    <value>Birlikler üyelerinin balını genellikle olduğu gibi paketler: Onaylı laboratuvar raporundan sonra Kalite Güvence Sorumlusu balı paketlemeye hazır olarak işaretler ve KKN 2–6 uygulanmaz. İşleme firmaları balı ısıtır, süzer ve harmanlar; bu yüzden KKN 2 ve sonrası uygulanır. Birlik yeteneği olan kurumlar için varsayılan birlik yoludur, diğerleri için firma yolu. Değişiklik, bundan sonra hazır işaretlenen lotlara ve oluşturulan partilere uygulanır.</value>
+  </data>
+  <data name="Path.PackingReady" xml:space="preserve">
+    <value>Bal paketlemeye hazır</value>
+  </data>
+  <data name="Path.Info.Association" xml:space="preserve">
+    <value>Kurumunuz birlik yolunu izler: Lotun laboratuvar raporu onaylandığında Kalite Güvence Sorumlusu burada balın doğrudan paketlemeye gittiğini onaylar. Böylece KKN 2–6 (ısıtma, süzme, homojenizasyon, pastörizasyon, berraklaştırma) bu lota ve partisine uygulanmaz; gerekçesiyle uygulanmaz olarak kaydedilir ve denetim kaydına yazılır.</value>
+  </data>
+  <data name="Path.ButtonHelp" xml:space="preserve">
+    <value>Laboratuvar raporu onaylandı. Balın olduğu gibi paketlemeye gittiğini onaylayın.</value>
+  </data>
+  <data name="Path.IsReady" xml:space="preserve">
+    <value>Paketlemeye hazır</value>
+  </data>
+  <data name="Path.ReadyHelp" xml:space="preserve">
+    <value>KKN 2–6 bu lota uygulanmaz; lot bir partiye girebilir.</value>
+  </data>
+  <data name="Final.Title" xml:space="preserve">
+    <value>Nihai bal sonucu</value>
+  </data>
+  <data name="Final.Eyebrow" xml:space="preserve">
+    <value>Kavanozdaki harman</value>
+  </data>
+  <data name="Final.Help" xml:space="preserve">
+    <value>Bu partide birden fazla arılığın balı var. Nihai harmanın laboratuvar analizi, her lotun sonuçlarından ayrı olarak, balı kavanozdaki hâliyle gösterir.</value>
+  </data>
+  <data name="Final.Info" xml:space="preserve">
+    <value>Harmanlanmış partiden mühürlü bir kavanoz ve bir şahit numune alın, ikisini de kurumunuzun havuzundaki mühür etiketleriyle mühürleyin ve kavanozu doğrulanmış bir laboratuvara gönderin. Onaylanan rapor burada ve Bal Hikâyesi'nde nihai bal sonucu olarak gösterilir. Rapor olmadan da sonlandırabilirsiniz, ancak bir uyarı gösterilir.</value>
+  </data>
+  <data name="Final.PublicIntro" xml:space="preserve">
+    <value>Bu bal birkaç arılığın harmanıdır. Her kaynağın sonuçlarına ek olarak harmanın kendisi de laboratuvarda analiz edildi.</value>
+  </data>
+  <data name="Final.Approved" xml:space="preserve">
+    <value>Onaylandı</value>
+  </data>
+  <data name="Final.Parameter" xml:space="preserve">
+    <value>Parametre</value>
+  </data>
+  <data name="Final.Value" xml:space="preserve">
+    <value>Değer</value>
+  </data>
+  <data name="Final.Limit" xml:space="preserve">
+    <value>Sınır</value>
+  </data>
+  <data name="Final.AtLab" xml:space="preserve">
+    <value>Laboratuvarda</value>
+  </data>
+  <data name="Final.Rejected" xml:space="preserve">
+    <value>Laboratuvar {0} numunesini reddetti. Yeni bir numune alın.</value>
+  </data>
+  <data name="Final.TakeSample" xml:space="preserve">
+    <value>Nihai harmandan numune alın</value>
+  </data>
+  <data name="Final.Lab" xml:space="preserve">
+    <value>Laboratuvar</value>
+  </data>
+  <data name="Final.CounterWhere" xml:space="preserve">
+    <value>Şahit numunenin saklandığı yer</value>
+  </data>
+  <data name="Final.RetainUntil" xml:space="preserve">
+    <value>Saklama tarihi</value>
+  </data>
+  <data name="Final.Send" xml:space="preserve">
+    <value>Laboratuvara gönder</value>
+  </data>
+  <data name="Final.Warning" xml:space="preserve">
+    <value>Bu partinin henüz onaylı bir nihai bal sonucu yok. Yine de sonlandırabilirsiniz; bu durumda Bal Hikâyesi yalnızca her lotun sonuçlarını gösterir.</value>
+  </data>
+  <data name="Final.BatchSample" xml:space="preserve">
+    <value>#{0} partisinin nihai harmanı</value>
+  </data>
+  <data name="Limit.expected" xml:space="preserve">
+    <value>beklenen</value>
+  </data>
+  <data name="This control point does not apply on the association path." xml:space="preserve">
+    <value>Bu kontrol noktası birlik yolunda uygulanmaz.</value>
+  </data>
+  <data name="Only a submitted record can be sent back." xml:space="preserve">
+    <value>Yalnızca onaya gönderilmiş bir kayıt geri gönderilebilir.</value>
+  </data>
+  <data name="A reason is required to send the record back." xml:space="preserve">
+    <value>Kaydı geri göndermek için bir gerekçe gereklidir.</value>
+  </data>
+  <data name="Only a {0} of the organization can send a record back." xml:space="preserve">
+    <value>Kaydı yalnızca kurumun {0} rolündeki bir kişi geri gönderebilir.</value>
+  </data>
+  <data name="The record was sent back to the person who entered it." xml:space="preserve">
+    <value>Kayıt, onu giren kişiye geri gönderildi.</value>
+  </data>
+  <data name="The honey is ready for packing: CCP 2 to 6 do not apply to this lot." xml:space="preserve">
+    <value>Bal paketlemeye hazır: KKN 2–6 bu lota uygulanmaz.</value>
+  </data>
+  <data name="The lot does not exist." xml:space="preserve">
+    <value>Lot bulunamadı.</value>
+  </data>
+  <data name="The honey of this lot is already marked ready for packing." xml:space="preserve">
+    <value>Bu lotun balı zaten paketlemeye hazır olarak işaretli.</value>
+  </data>
+  <data name="Only organizations on the association path mark honey ready for packing." xml:space="preserve">
+    <value>Balı paketlemeye hazır olarak yalnızca birlik yolundaki kurumlar işaretler.</value>
+  </data>
+  <data name="Only the organization that holds the lot marks it ready for packing." xml:space="preserve">
+    <value>Lotu paketlemeye hazır olarak yalnızca lotu elinde tutan kurum işaretler.</value>
+  </data>
+  <data name="Only the Quality Assurance Officer marks the honey ready for packing." xml:space="preserve">
+    <value>Balı paketlemeye hazır olarak yalnızca Kalite Güvence Sorumlusu işaretler.</value>
+  </data>
+  <data name="The lot's laboratory report is not approved yet." xml:space="preserve">
+    <value>Lotun laboratuvar raporu henüz onaylanmadı.</value>
+  </data>
+  <data name="CCP 2 or CCP 3 of this lot already has values, so the lot follows the company path." xml:space="preserve">
+    <value>Bu lotun KKN 2 veya KKN 3 kaydında zaten değerler var; bu yüzden lot firma yolunu izler.</value>
+  </data>
+  <data name="The lot is in a finalized batch and can no longer be changed." xml:space="preserve">
+    <value>Lot, sonlandırılmış bir partide olduğu için artık değiştirilemez.</value>
+  </data>
+  <data name="Association path: the honey goes to packing after the approved laboratory report." xml:space="preserve">
+    <value>Birlik yolu: Bal, onaylı laboratuvar raporundan sonra paketlemeye gider.</value>
+  </data>
+  <data name="Choose the association path or the company path." xml:space="preserve">
+    <value>Birlik yolunu ya da firma yolunu seçin.</value>
+  </data>
+  <data name="The path after the laboratory was saved." xml:space="preserve">
+    <value>Laboratuvardan sonraki yol kaydedildi.</value>
+  </data>
+  <data name="The batch does not exist." xml:space="preserve">
+    <value>Parti bulunamadı.</value>
+  </data>
+  <data name="Only the organization that holds the batch takes its samples." xml:space="preserve">
+    <value>Partinin numunelerini yalnızca partiyi elinde tutan kurum alır.</value>
+  </data>
+  <data name="The batch is finalized." xml:space="preserve">
+    <value>Parti sonlandırıldı.</value>
+  </data>
+  <data name="A final honey result is taken on the company path for a batch with honey from more than one apiary." xml:space="preserve">
+    <value>Nihai bal sonucu, firma yolunda birden fazla arılığın balını içeren partiler için alınır.</value>
+  </data>
+  <data name="A sample of this batch is already at the laboratory." xml:space="preserve">
+    <value>Bu partinin bir numunesi zaten laboratuvarda.</value>
+  </data>
+  <data name="Lab report approved; it is the batch's final honey result." xml:space="preserve">
+    <value>Laboratuvar raporu onaylandı; partinin nihai bal sonucu oldu.</value>
   </data>
 </root>

@@ -9827,7 +9827,7 @@
     <value>Paraugi un laboratorija ir jūsu darba saraksts. Vispirms pieņemiet katru burku (plombas numurs, etiķete, vāciņš), tad ievadiet rezultātus, piemēram, mitrumu un HMF, un iesniedziet pārskatu apstiprināšanai.</value>
   </data>
   <data name="Tour.Approve" xml:space="preserve">
-    <value>Mans darbs rāda kontrolpunktu (KKP) ierakstus, ko iesnieguši jūsu kolēģi. Pārbaudiet katru un apstipriniet vai atgrieziet, piemēram, šodienas piegādes pieņemšanas pārbaudi; neviens neapstiprina savu ierakstu.</value>
+    <value>Mans darbs uzskaita kontroles punktu (KKP) ierakstus, ko iesnieguši jūsu kolēģi. Pārbaudiet katru un apstipriniet vai nosūtiet atpakaļ ar iemeslu: tad tas atgriežas pie personas, kas to ievadīja, piemēram, šodienas piegādes pieņemšanas pārbaude. Neviens neapstiprina paša ievadītu ierakstu.</value>
   </data>
   <data name="Reg78.Info.Registry" xml:space="preserve">
     <value>TR + provinces numura zīmes kods (2 cipari) + 10 cipari, piem., TR520401200241. Provinces kodu salīdzina ar jūsu pārvaldes provinci.</value>
@@ -10284,5 +10284,185 @@
   </data>
   <data name="Enter the capacity and the empty weight in kg (or leave them empty)." xml:space="preserve">
     <value>Ievadiet ietilpību un tukšas tvertnes svaru kg (vai atstājiet tukšu).</value>
+  </data>
+  <data name="Ccp.Return" xml:space="preserve">
+    <value>Sūtīt atpakaļ</value>
+  </data>
+  <data name="Ccp.ReturnPlaceholder" xml:space="preserve">
+    <value>piem., Temperatūras vērtība šķiet kļūdaina; lūdzu, vēlreiz nolasiet termometru.</value>
+  </data>
+  <data name="Ccp.ReturnHelp" xml:space="preserve">
+    <value>Ieraksts atgriežas pie personas, kas to ievadīja, un parādās tās sarakstā Mans darbs ar jūsu iemeslu. Kad persona to saglabās vēlreiz, tas atgriezīsies pie jums apstiprināšanai.</value>
+  </data>
+  <data name="Ccp.Returned" xml:space="preserve">
+    <value>Nosūtīts atpakaļ.</value>
+  </data>
+  <data name="Ccp.ReturnedBy" xml:space="preserve">
+    <value>Nosūtīja atpakaļ {0}, {1}</value>
+  </data>
+  <data name="Ccp.ReturnedHelp" xml:space="preserve">
+    <value>Izlabojiet zemāk esošās vērtības un saglabājiet; ieraksts atkal tiks nosūtīts apstiprināšanai.</value>
+  </data>
+  <data name="Work.Kind.Returned" xml:space="preserve">
+    <value>Jums nosūtīts atpakaļ</value>
+  </data>
+  <data name="Work.Kind.PackingReady" xml:space="preserve">
+    <value>Gatavs iepakošanai?</value>
+  </data>
+  <data name="Path.Title" xml:space="preserve">
+    <value>Ceļš pēc laboratorijas</value>
+  </data>
+  <data name="Path.Association" xml:space="preserve">
+    <value>Biedrības ceļš: uzreiz uz iepakošanu (KKP 2–6 neattiecas)</value>
+  </data>
+  <data name="Path.Company" xml:space="preserve">
+    <value>Uzņēmuma ceļš: pārstrāde (no KKP 2)</value>
+  </data>
+  <data name="Path.Default" xml:space="preserve">
+    <value>noklusējums</value>
+  </data>
+  <data name="Path.Info.Setting" xml:space="preserve">
+    <value>Biedrības parasti iepako biedru medu tādu, kāds tas ir: pēc apstiprināta laboratorijas pārskata kvalitātes nodrošināšanas atbildīgais to atzīmē kā gatavu iepakošanai, un KKP 2–6 neattiecas. Pārstrādes uzņēmumi medu karsē, filtrē un jauc, tāpēc attiecas KKP no 2. Pēc noklusējuma biedrības ceļš organizācijai ar spēju Biedrība, citādi uzņēmuma ceļš. Izmaiņas attiecas uz partijām, kas atzīmētas kā gatavas, un gala partijām, kas izveidotas pēc tam.</value>
+  </data>
+  <data name="Path.PackingReady" xml:space="preserve">
+    <value>Medus gatavs iepakošanai</value>
+  </data>
+  <data name="Path.Info.Association" xml:space="preserve">
+    <value>Jūsu organizācija izmanto biedrības ceļu: kad partijas laboratorijas pārskats ir apstiprināts, kvalitātes nodrošināšanas atbildīgais šeit apstiprina, ka medus nonāk uzreiz iepakošanā. KKP 2–6 (karsēšana, filtrēšana, homogenizēšana, pasterizēšana, dzidrināšana) tad neattiecas uz šo partiju vai tās gala partiju; tos reģistrē kā neattiecināmus ar iemeslu un ieraksta audita žurnālā.</value>
+  </data>
+  <data name="Path.ButtonHelp" xml:space="preserve">
+    <value>Laboratorijas pārskats ir apstiprināts. Apstipriniet, ka medus nonāk iepakošanā tāds, kāds tas ir.</value>
+  </data>
+  <data name="Path.IsReady" xml:space="preserve">
+    <value>Gatavs iepakošanai</value>
+  </data>
+  <data name="Path.ReadyHelp" xml:space="preserve">
+    <value>KKP 2–6 uz šo partiju neattiecas; to var iekļaut gala partijā.</value>
+  </data>
+  <data name="Final.Title" xml:space="preserve">
+    <value>Medus gala rezultāts</value>
+  </data>
+  <data name="Final.Eyebrow" xml:space="preserve">
+    <value>Maisījums burkā</value>
+  </data>
+  <data name="Final.Help" xml:space="preserve">
+    <value>Šajā gala partijā ir medus no vairākām dravām. Gala maisījuma laboratorijas analīze parāda medu tādu, kāds tas ir burkā, atsevišķi no katras partijas rezultātiem.</value>
+  </data>
+  <data name="Final.Info" xml:space="preserve">
+    <value>Paņemiet vienu noplombētu burku un kontrolparaugu no sajauktās gala partijas, noplombējiet abus ar plombu etiķetēm no jūsu organizācijas krājuma un nosūtiet burku verificētai laboratorijai. Apstiprinātais pārskats tiek parādīts šeit un Medus stāstā kā medus gala rezultāts. Pabeigt var arī bez tā, taču tiks parādīts brīdinājums.</value>
+  </data>
+  <data name="Final.PublicIntro" xml:space="preserve">
+    <value>Šis medus ir maisījums no vairākām dravām. Papildus katra avota rezultātiem laboratorija analizēja arī pašu maisījumu.</value>
+  </data>
+  <data name="Final.Approved" xml:space="preserve">
+    <value>Apstiprināts</value>
+  </data>
+  <data name="Final.Parameter" xml:space="preserve">
+    <value>Parametrs</value>
+  </data>
+  <data name="Final.Value" xml:space="preserve">
+    <value>Vērtība</value>
+  </data>
+  <data name="Final.Limit" xml:space="preserve">
+    <value>Robeža</value>
+  </data>
+  <data name="Final.AtLab" xml:space="preserve">
+    <value>Laboratorijā</value>
+  </data>
+  <data name="Final.Rejected" xml:space="preserve">
+    <value>Laboratorija noraidīja paraugu {0}. Paņemiet jaunu paraugu.</value>
+  </data>
+  <data name="Final.TakeSample" xml:space="preserve">
+    <value>Paņemt gala maisījuma paraugu</value>
+  </data>
+  <data name="Final.Lab" xml:space="preserve">
+    <value>Laboratorija</value>
+  </data>
+  <data name="Final.CounterWhere" xml:space="preserve">
+    <value>Kur glabā kontrolparaugu</value>
+  </data>
+  <data name="Final.RetainUntil" xml:space="preserve">
+    <value>Glabāt līdz</value>
+  </data>
+  <data name="Final.Send" xml:space="preserve">
+    <value>Nosūtīt laboratorijai</value>
+  </data>
+  <data name="Final.Warning" xml:space="preserve">
+    <value>Šai gala partijai vēl nav apstiprināta medus gala rezultāta. To joprojām var pabeigt; tad Medus stāsts rādīs tikai katras partijas rezultātus.</value>
+  </data>
+  <data name="Final.BatchSample" xml:space="preserve">
+    <value>Gala partijas nr. {0} gala maisījums</value>
+  </data>
+  <data name="Limit.expected" xml:space="preserve">
+    <value>sagaidāms</value>
+  </data>
+  <data name="This control point does not apply on the association path." xml:space="preserve">
+    <value>Šis kontroles punkts neattiecas uz biedrības ceļu.</value>
+  </data>
+  <data name="Only a submitted record can be sent back." xml:space="preserve">
+    <value>Atpakaļ var sūtīt tikai iesniegtu ierakstu.</value>
+  </data>
+  <data name="A reason is required to send the record back." xml:space="preserve">
+    <value>Lai sūtītu ierakstu atpakaļ, jānorāda iemesls.</value>
+  </data>
+  <data name="Only a {0} of the organization can send a record back." xml:space="preserve">
+    <value>Ierakstu atpakaļ var sūtīt tikai organizācijas {0}.</value>
+  </data>
+  <data name="The record was sent back to the person who entered it." xml:space="preserve">
+    <value>Ieraksts nosūtīts atpakaļ personai, kas to ievadīja.</value>
+  </data>
+  <data name="The honey is ready for packing: CCP 2 to 6 do not apply to this lot." xml:space="preserve">
+    <value>Medus ir gatavs iepakošanai: KKP 2–6 uz šo partiju neattiecas.</value>
+  </data>
+  <data name="The lot does not exist." xml:space="preserve">
+    <value>Partija neeksistē.</value>
+  </data>
+  <data name="The honey of this lot is already marked ready for packing." xml:space="preserve">
+    <value>Šīs partijas medus jau ir atzīmēts kā gatavs iepakošanai.</value>
+  </data>
+  <data name="Only organizations on the association path mark honey ready for packing." xml:space="preserve">
+    <value>Medu kā gatavu iepakošanai atzīmē tikai organizācijas, kas izmanto biedrības ceļu.</value>
+  </data>
+  <data name="Only the organization that holds the lot marks it ready for packing." xml:space="preserve">
+    <value>Partiju kā gatavu iepakošanai atzīmē tikai organizācija, kurai tā pieder.</value>
+  </data>
+  <data name="Only the Quality Assurance Officer marks the honey ready for packing." xml:space="preserve">
+    <value>Medu kā gatavu iepakošanai atzīmē tikai kvalitātes nodrošināšanas atbildīgais.</value>
+  </data>
+  <data name="The lot's laboratory report is not approved yet." xml:space="preserve">
+    <value>Partijas laboratorijas pārskats vēl nav apstiprināts.</value>
+  </data>
+  <data name="CCP 2 or CCP 3 of this lot already has values, so the lot follows the company path." xml:space="preserve">
+    <value>Šīs partijas KKP 2 vai KKP 3 jau ir vērtības, tāpēc partija iet uzņēmuma ceļu.</value>
+  </data>
+  <data name="The lot is in a finalized batch and can no longer be changed." xml:space="preserve">
+    <value>Partija ir pabeigtā gala partijā, un to vairs nevar mainīt.</value>
+  </data>
+  <data name="Association path: the honey goes to packing after the approved laboratory report." xml:space="preserve">
+    <value>Biedrības ceļš: medus nonāk iepakošanā pēc apstiprināta laboratorijas pārskata.</value>
+  </data>
+  <data name="Choose the association path or the company path." xml:space="preserve">
+    <value>Izvēlieties biedrības vai uzņēmuma ceļu.</value>
+  </data>
+  <data name="The path after the laboratory was saved." xml:space="preserve">
+    <value>Ceļš pēc laboratorijas saglabāts.</value>
+  </data>
+  <data name="The batch does not exist." xml:space="preserve">
+    <value>Gala partija neeksistē.</value>
+  </data>
+  <data name="Only the organization that holds the batch takes its samples." xml:space="preserve">
+    <value>Gala partijas paraugus ņem tikai organizācija, kurai tā pieder.</value>
+  </data>
+  <data name="The batch is finalized." xml:space="preserve">
+    <value>Gala partija ir pabeigta.</value>
+  </data>
+  <data name="A final honey result is taken on the company path for a batch with honey from more than one apiary." xml:space="preserve">
+    <value>Medus gala rezultātu nosaka uzņēmuma ceļā gala partijai ar medu no vairākām dravām.</value>
+  </data>
+  <data name="A sample of this batch is already at the laboratory." xml:space="preserve">
+    <value>Šīs gala partijas paraugs jau ir laboratorijā.</value>
+  </data>
+  <data name="Lab report approved; it is the batch's final honey result." xml:space="preserve">
+    <value>Laboratorijas pārskats apstiprināts; tas ir gala partijas medus gala rezultāts.</value>
   </data>
 </root>

@@ -26,6 +26,12 @@ public partial class RawHoneyProduction
     [Range(typeof(decimal), "0.01", "99999999", ParseLimitsInInvariantCulture = true, ErrorMessage = "The amount must be greater than 0.")]
     public decimal? RawHoneyProductionAmount { get; set; }
 
+    // D-98 (migration 034): association path, the Quality Assurance Officer's "ready for packing" after the approved lab report
+    public DateTime? PackingReadyAt { get; set; }
+
+    [StringLength(450)]
+    public string? PackingReadyByUserId { get; set; }
+
     public DateOnly? RawHoneyProductionDate { get; set; }
     
     [Column("RawHoneyProductionWholesalerId")]

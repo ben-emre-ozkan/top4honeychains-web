@@ -124,6 +124,8 @@ namespace TOP4HoneyChains.Web.Services
             text = System.Text.RegularExpressions.Regex.Replace(text, @"\bmin\b", ui("Limit.min"));
             text = System.Text.RegularExpressions.Regex.Replace(text, @"\bmax\b", ui("Limit.max"));
             text = System.Text.RegularExpressions.Regex.Replace(text, @"\bif\b", ui("Limit.if"));
+            // D-98: the expected answer of a yes/no question
+            text = System.Text.RegularExpressions.Regex.Replace(text, @"\bexpected (Yes|No)\b", m => ui("Limit.expected") + " " + ui(m.Groups[1].Value));
             text = text.Replace("(not checkable)", "(" + ui("Limit.notCheckable") + ")");
             text = System.Text.RegularExpressions.Regex.Replace(text, @"\bhoney type (\d+)", m => T(RefEntity.HoneyType, m.Groups[1].Value, "Title", ui("Limit.honeyType") + " " + m.Groups[1].Value));
             return System.Text.RegularExpressions.Regex.Replace(text, "\u0001(\\d+)\u0002", m => parts[int.Parse(m.Groups[1].Value)]);

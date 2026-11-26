@@ -190,9 +190,40 @@ namespace TOP4HoneyChains.Web.Controllers
             ViewBag.CanRequest = active.IsVerified && FinalizeRequestRoles.Contains(active.OrgRole);
             ViewBag.CanFinalize = active.IsVerified && FinalizeApproveRoles.Contains(active.OrgRole);
             ViewBag.Done = await _ccp.DonePredicateAsync();
+            // D-98: the final honey result (company path, honey from more than one apiary)
+            var finals = HttpContext.RequestServices.GetRequiredService<BatchSampleService>();
+            var final = await finals.StateAsync(id);
+            ViewBag.Final = final;
+            if (final.Applies && !batch.FinalHoneyProductionIsFinalized)
+            {
+                ViewBag.FinalDenied = await finals.DeniedAsync(id);
+                if (ViewBag.FinalDenied == null)
+                    ViewBag.Labs = await _context.Organizations.AsNoTracking()
+                        .Where(o => !o.IsPlatform && o.Status == OrgStatus.Verified && o.Capabilities.Any(c => c.Capability == Capabilities.Laboratory))
+                        .OrderBy(o => o.DisplayName).Select(o => new { o.OrgId, o.DisplayName }).ToDictionaryAsync(o => o.OrgId, o => o.DisplayName);
+            }
             ViewBag.Controller = "My organization";
             ViewBag.Action = "Batch";
             return View(batch);
+        }
+
+        // D-98: the sample of the batch's final blend, sent to a laboratory
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> FinalSample(int id, int labOrgId, string? sealNumber, string? counterSealNumber, string? counterLocation, DateOnly? retainUntil)
+        {
+            if (await OwnBatchAsync(id) == null)
+                return NotFound();
+            var finals = HttpContext.RequestServices.GetRequiredService<BatchSampleService>();
+            var (sample, error) = await finals.CreateAsync(id, labOrgId, sealNumber, counterSealNumber, counterLocation, retainUntil, DateOnly.FromDateTime(DateTime.Today));
+            if (error != null)
+                TempData["Error"] = error;
+            else
+            {
+                TempData["Success"] = $"Sample {sample!.SampleCode} sent to the laboratory.";
+                TempData["Scene"] = "sample";
+            }
+            return RedirectToAction(nameof(Batch), new { id });
         }
 
         // C3 (D-84): finalizing is for an organization that processes or packs honey
