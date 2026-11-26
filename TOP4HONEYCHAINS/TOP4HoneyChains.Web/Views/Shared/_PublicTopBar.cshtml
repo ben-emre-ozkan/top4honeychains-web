@@ -8,8 +8,7 @@
 <header class="sf-top">
     <div class="sf-top-in">
         <a href="#top" class="sf-brand">
-            <img class="b-logo" src="~/img/brand/top4-mark-small.svg" alt="" width="37" height="32">
-            <img class="b-logo sf-brand-word" src="~/img/brand/top4-wordmark-w3.svg" alt="TOP4HoneyChains" width="218" height="16">
+            <partial name="_BrandLogo" model="@(new TOP4HoneyChains.Web.Models.ViewModels.BrandLogo(120, Alt: "TOP4HoneyChains", Class: "sf-brand-logo"))" />
             <span class="sf-brand-sub">@Model</span>
         </a>
         <nav class="sf-nav" aria-label="@L["Language"]">

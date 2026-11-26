@@ -1,0 +1,4 @@
+@model TOP4HoneyChains.Web.Models.ViewModels.Bee
+@* The bee animations of the brand (wwwroot/img/bee, self-contained animated SVGs, transparent): the animated one, or the static
+   bee when "Show animations" is off or reduced motion is set (CSS in wwwroot/css/honey-mark.css). *@
+<span class="bee bee-@Model.Kind @Model.Class" @(string.IsNullOrEmpty(Model.Alt) ? "aria-hidden=true" : "role=img") aria-label="@(string.IsNullOrEmpty(Model.Alt) ? null : Model.Alt)"><img class="bee-anim" src="/img/bee/bee-@(Model.Kind).svg" alt="" width="@Model.Width" height="@Model.Width"><img class="bee-still" src="/img/bee/bee-static.svg" alt="" width="@Model.Width" height="@Model.Width" loading="lazy"></span>

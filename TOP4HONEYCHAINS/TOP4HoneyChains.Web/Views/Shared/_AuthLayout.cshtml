@@ -30,7 +30,7 @@
             <canvas class="au-comb" data-honeycomb data-theme="light" data-speed="0.45" aria-hidden="true"
                     data-path="0.10,0.86 0.30,0.70 0.52,0.84 0.72,0.66 0.92,0.80" data-path-wide="0.10,0.86 0.30,0.70 0.52,0.84 0.72,0.66 0.92,0.80"></canvas>
             <div class="au-panel-in">
-                <a class="au-brand b-link th-logo-trigger" href="/" aria-label="TOP4HoneyChains"><honey-mark mode="once" size="136" /><img class="b-logo au-brand-word" src="~/img/brand/top4-wordmark-w2.svg" alt="" width="158" height="66"></a>
+                <a class="au-brand b-link th-logo-trigger" href="/" aria-label="TOP4HoneyChains"><partial name="_BrandLogo" model="@(new TOP4HoneyChains.Web.Models.ViewModels.BrandLogo(300, Class: "au-brand-logo"))" /></a>
                 <p class="au-tagline">@L["Trustable and Sustainable Open Platform for Smart Honey Value Chains"]</p>
                 <ul class="au-points">
                     <li><span class="au-point-icon" aria-hidden="true"><partial name="_LandingIcon" model="@("foureyes")" /></span>@L["Auth.Point1"]</li>
@@ -62,7 +62,7 @@
             </div>
 
             <div class="au-card">
-                <a class="au-form-logo b-link th-logo-trigger" href="/" aria-label="TOP4HoneyChains"><honey-mark size="40" class="b-brand-mark" data-hm-once="(max-width: 860px)" /><img class="b-logo b-brand-word" src="~/img/brand/top4-wordmark-w3.svg" alt="" width="177" height="13"></a>
+                <a class="au-form-logo b-link th-logo-trigger" href="/" aria-label="TOP4HoneyChains"><partial name="_BrandLogo" model="@(new TOP4HoneyChains.Web.Models.ViewModels.BrandLogo(150, Class: "au-form-brand-logo"))" /></a>
                 @if (!string.IsNullOrEmpty(error))
                 {
                     <div class="au-alert au-alert-error" role="alert" id="flash-error">@Msg.T(error)<button type="button" class="au-alert-close" aria-label="@L["Close"]">×</button></div>

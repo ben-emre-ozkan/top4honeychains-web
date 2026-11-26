@@ -1,4 +1,4 @@
-@model TOP4HoneyChains.Web.Models.Entities.LotIntake
+﻿@model TOP4HoneyChains.Web.Models.Entities.LotIntake
 @using TOP4HoneyChains.Web.Models.Entities
 @using TOP4HoneyChains.Web.Controllers
 @{
@@ -38,6 +38,7 @@
         .qr svg { width: 100%; height: 100%; }
         .txt { display: flex; flex-direction: column; justify-content: space-between; min-width: 0; }
         .code { font-size: 15pt; font-weight: 700; letter-spacing: .02em; }
+        .emb { height: 3.4mm; width: auto; vertical-align: -0.7mm; margin-right: 1mm; }
         .kind { font-size: 8pt; text-transform: uppercase; letter-spacing: .08em; color: #333; }
         .line { font-size: 9pt; line-height: 1.25; overflow-wrap: anywhere; }
         .seal { font-size: 10pt; font-weight: 700; }
@@ -54,7 +55,7 @@
             <div class="label container-label">
                 <div class="qr">@Html.Raw(IntakeController.QrSvg(c.ContainerCode))</div>
                 <div class="txt">
-                    <div><div class="kind">@L["Ci.Container"] · @L["Ci.Kind." + c.Kind]</div><div class="code">@c.ContainerCode</div></div>
+                    <div><div class="kind"><img class="emb" src="/img/brand/logo-emblem-128.png" alt="">@L["Ci.Container"] · @L["Ci.Kind." + c.Kind]</div><div class="code">@c.ContainerCode</div></div>
                     <div class="line">@honey · @c.NetWeightKg.ToString("0.##") kg net<br>@date</div>
                     <div class="seal">@L["Ci.SealShort"] @seal</div>
                 </div>
@@ -64,7 +65,7 @@
                 <div class="label jar-label">
                     <div class="qr">@Html.Raw(IntakeController.QrSvg(s.SampleCode))</div>
                     <div class="txt">
-                        <div><div class="kind">@L["Ci.SampleJar"]</div><div class="code">@s.SampleCode</div></div>
+                        <div><div class="kind"><img class="emb" src="/img/brand/logo-emblem-128.png" alt="">@L["Ci.SampleJar"]</div><div class="code">@s.SampleCode</div></div>
                         <div class="line">@c.ContainerCode · @honey<br>@date</div>
                         <div class="seal">@L["Ci.SealShort"] @s.SealNumber</div>
                     </div>
@@ -72,7 +73,7 @@
                 <div class="label jar-label">
                     <div class="qr">@Html.Raw(IntakeController.QrSvg(s.SampleCode + "-K"))</div>
                     <div class="txt">
-                        <div><div class="kind">@L["Ci.CounterJar"]</div><div class="code">@(s.SampleCode)-K</div></div>
+                        <div><div class="kind"><img class="emb" src="/img/brand/logo-emblem-128.png" alt="">@L["Ci.CounterJar"]</div><div class="code">@(s.SampleCode)-K</div></div>
                         <div class="line">@c.ContainerCode · @honey<br>@L["Ci.KeepUntil"] @s.RetainUntil.ToString("dd.MM.yyyy")</div>
                         <div class="seal">@L["Ci.SealShort"] @s.CounterSealNumber</div>
                     </div>

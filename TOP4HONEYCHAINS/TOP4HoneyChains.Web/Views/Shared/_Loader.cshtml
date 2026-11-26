@@ -5,7 +5,7 @@
      data-msg-default="@L["Loader.Loading"]" data-msg-save="@L["Loader.Saving"]" data-msg-upload="@L["Loader.Upload"]"
      data-msg-report="@L["Loader.Report"]" data-msg-seal="@L["Loader.Seal"]" data-msg-pdf="@L["Loader.Pdf"]">
     <div class="hm-loader-in">
-        <honey-mark mode="loop" size="112" />
+        <partial name="_Bee" model="@(new TOP4HoneyChains.Web.Models.ViewModels.Bee("loading", 112))" />
         <p class="hm-loader-text"></p>
     </div>
 </div>
