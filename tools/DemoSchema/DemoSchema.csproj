@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <!-- D-86: scripts the schema of the local database (after db/migrations 001 to 028) into db/demo/schema.sql for the demo database.
-       Schema only, never rows. Usage: see Program.cs -->
+  <!-- D-86: scripts the schema of the local database into db/demo/schema.sql for the demo database (schema only, never rows).
+       D-98: install mode writes db/install (idempotent schema and the reference rows) for a new installation. Usage: see Program.cs -->
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>

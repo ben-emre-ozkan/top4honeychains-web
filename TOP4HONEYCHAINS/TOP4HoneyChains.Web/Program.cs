@@ -11,6 +11,10 @@ using TOP4HoneyChains.Web.Services;
 using TOP4HoneyChains.Web.Services.OrgModel;
 using Microsoft.AspNetCore.Authorization;
 
+// D-98: "create-first-admin" creates the first platform administrator of a new installation and exits (docs/KURULUM-TR.md, part B)
+if (args.Length > 0 && args[0] == FirstAdminCommand.Name)
+    return await FirstAdminCommand.RunAsync(args[1..], new ConsoleSecretReader());
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -22,23 +26,9 @@ builder.Services.AddDbContext<TOP4HoneyChainsContext>((sp, options) => options
     .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
     .AddInterceptors(sp.GetRequiredService<AuditInterceptor>()));
 
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-{
-    options.Password.RequireDigit = false;
-    options.Password.RequireLowercase = false;
-    options.Password.RequireUppercase = false;
-    options.Password.RequireNonAlphanumeric = false;
-    options.Password.RequiredLength = 10;   // D-78 (D78-SPEC 4.3): at least 10 characters for new passwords; plus PasswordPolicyValidator
-
-    // Lock an account for 15 minutes after 5 failed sign-ins (brute-force protection)
-    options.Lockout.AllowedForNewUsers = true;
-    options.Lockout.MaxFailedAccessAttempts = 5;
-    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
-})
-.AddEntityFrameworkStores<ApplicationDbContext>()
-.AddErrorDescriber<LocalizedIdentityErrors>()   // D-75: account errors in the user's language
-.AddPasswordValidator<PasswordPolicyValidator>()   // D-78: not the user name, not a common password
-.AddDefaultTokenProviders();
+// Password rules (at least 10 characters, not the user name, not a common password) and the lockout; shared with
+// create-first-admin (D-98)
+builder.Services.AddAppIdentity();
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
@@ -315,5 +305,6 @@ app.MapControllerRoute(
 
 
 app.Run();
+return 0;
 // Lets the integration tests host the app (WebApplicationFactory<Program>)
 public partial class Program { }

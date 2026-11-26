@@ -3,6 +3,7 @@
 Everything ships together in one deployment. Nothing from `main` is live until this checklist is done.
 Tick items as they are completed; add new items whenever a change needs a deploy-time step.
 See `docs/ARCHITECTURE.md` for background on each point.
+The step-by-step guide for the server operator (Turkish) is [KURULUM-TR.md](KURULUM-TR.md): part A updates the live server, part B installs a new instance on an empty database (`db/install`).
 
 ## 1. Before deployment day
 
@@ -54,6 +55,7 @@ The values below are in git history, so rotating them is the actual fix. Removin
 - [x] Public self-registration: **closed** ([D-02](DECISIONS.md)). Removed in `fix/account-flows`.
 - [x] Beekeeper accounts whose password equals their business number: decided in [D-09](DECISIONS.md). New accounts get a random password (`fix/beekeeper-accounts`); existing non-admin accounts are locked by `db/migrations/001_lock_out_non_admin_accounts.sql` (deployment step 4).
 - [ ] Review users who self-registered on production while sign-up was open (role `Beekeeper` without a Beekeepers profile) and remove them.
+- First administrator of a **new** installation (D-98; not needed on the live server, which has administrators): `TOP4HoneyChains.Web.exe create-first-admin --user <name> --phone <+90…>` in the site folder, with `ConnectionStrings__DefaultConnection` set in that window. It works only while no account is in the Administrator role, asks twice for the password without echo (never from arguments, files or pipes), applies the password rules, adds the platform organization's OrgAdmin membership like 004 and writes an audit entry; it needs no SMS settings ([KURULUM-TR.md](KURULUM-TR.md) B6).
 
 ### Open product decisions (resolve or explicitly accept)
 - [x] QR codes encode the full public URL (`https://<domain>/honeystory/{guid}`), with the base URL taken from `App:PublicBaseUrl` ([D-11](DECISIONS.md), `feat/qr-full-url`). Without the setting, production cannot render QR codes (logged error).
