@@ -64,7 +64,6 @@
                         }
                     </div>
                     <div class="ah-welcome-copy">
-                        <button type="button" class="ah-bee th-logo-trigger" data-hm-click aria-label="@L["Land.PlayBee"]"><honey-mark mode="once" size="58" /></button>
                         <div>
                             <p class="ah-kicker">@L["Home.Kicker"] · <time datetime="@DateTime.Today.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)">@DateTime.Today.ToString("D", culture)</time></p>
                             <h1 class="ah-title" id="ah-title">@greeting</h1>
@@ -136,7 +135,7 @@
                         }
                         else
                         {
-                            <div class="ah-empty-state"><honey-mark mode="slow" size="44" /><p>@L["Home.Map.Empty"]</p></div>
+                            <div class="ah-empty-state"><i class="mdi mdi-information-outline ah-empty-icon" aria-hidden="true"></i><p>@L["Home.Map.Empty"]</p></div>
                         }
                     </div>
 
@@ -229,7 +228,7 @@
                     }
                     else
                     {
-                        <div class="ah-empty-state"><honey-mark mode="slow" size="44" /><p>@L["Home.Act.Empty"]</p></div>
+                        <div class="ah-empty-state"><i class="mdi mdi-information-outline ah-empty-icon" aria-hidden="true"></i><p>@L["Home.Act.Empty"]</p></div>
                     }
                 </div>
 

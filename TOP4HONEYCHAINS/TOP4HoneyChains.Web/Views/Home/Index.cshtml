@@ -1,4 +1,4 @@
-@model TOP4HoneyChains.Web.Models.ViewModels.LandingViewModel
+﻿@model TOP4HoneyChains.Web.Models.ViewModels.LandingViewModel
 @using TOP4HoneyChains.Web.Services
 @{
     // Public landing page (D-65, D-71). Styles: wwwroot/css/brand.css + landing.css + honey-mark.css; motion: wwwroot/js/hero-comb.js
@@ -124,8 +124,7 @@
                 <div class="ld-hcopy">
                     <p class="ld-kicker" data-comb-calm>@L["Land.HeroKicker"]</p>
                     <div class="ld-title-row">
-                        <span class="ld-hero-mark"><partial name="_Bee" model="@(new TOP4HoneyChains.Web.Models.ViewModels.Bee("landing", 120))" /></span>
-                        <h1 id="hero-title" class="ld-hero-title" data-comb-calm><span class="b-visually-hidden">TOP4HoneyChains</span><span class="ld-wm" aria-hidden="true"><partial name="_BrandLogo" model="@(new TOP4HoneyChains.Web.Models.ViewModels.BrandLogo(300, Class: "ld-hero-logo"))" /></span></h1>
+                        <h1 id="hero-title" class="ld-hero-title" data-comb-calm><span class="b-visually-hidden">TOP4HoneyChains</span><span class="ld-wm" aria-hidden="true"><partial name="_BrandLogo" model="@(new TOP4HoneyChains.Web.Models.ViewModels.BrandLogo(380, Class: "ld-hero-logo"))" /></span></h1>
                     </div>
                     <p class="ld-hero-tagline" data-comb-calm>@tagline</p>
                     <p class="ld-hero-lead" data-comb-calm>@L["Land.HeroLead"]</p>
@@ -173,7 +172,7 @@
                     }
                 </ol>
             </div>
-            <a class="ld-scroll b-link" href="#chain"><img class="ld-scroll-bee" src="~/img/brand/logo-emblem-128.png" alt="" width="33" height="34" loading="lazy" decoding="async"><span>@L["Land.ScrollHint"]</span></a>
+            <a class="ld-scroll b-link" href="#chain"><svg class="ld-scroll-arrow" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg><span>@L["Land.ScrollHint"]</span></a>
         </section>
 
         @if (Model.Stats.Any)
