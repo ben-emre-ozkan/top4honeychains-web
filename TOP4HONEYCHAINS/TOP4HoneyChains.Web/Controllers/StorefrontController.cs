@@ -47,6 +47,9 @@ namespace TOP4HoneyChains.Web.Controllers
         {
             if (await PublishedAsync(code) is not var (state, bk))
                 return NotFound();
+            // D-112: a beekeeper of the test set shows the TEST banner
+            if (await TestData.IsTestBeekeeperAsync(_context, bk.BeekeeperId))
+                TestData.MarkPage(HttpContext);
             return View(await _page.BuildAsync(state, bk));
         }
 

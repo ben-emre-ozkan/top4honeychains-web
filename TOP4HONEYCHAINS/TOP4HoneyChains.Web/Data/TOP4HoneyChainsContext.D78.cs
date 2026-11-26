@@ -32,6 +32,7 @@ public partial class TOP4HoneyChainsContext
         OnModelCreatingD97(modelBuilder);
         OnModelCreatingD98Seals(modelBuilder);
         OnModelCreatingD98HoneyTypes(modelBuilder);
+        OnModelCreatingD112(modelBuilder);
         modelBuilder.Entity<SmsMessage>(entity =>
         {
             entity.ToTable("SmsMessages", tb => tb.HasTrigger("TR_SmsMessages_AppendOnly"));

@@ -19,14 +19,16 @@ namespace TOP4HoneyChains.Web.Filters
         private static readonly HashSet<string> Open = new(StringComparer.OrdinalIgnoreCase)
         {
             "Account.Logout", "Account.FirstPassword", "Account.AccessDenied", "Account.Animations", "Account.TourSeen", "Home.SetLanguage",
-            "Notices.Accept", "Notices.SendCode", "Notices.Public"
+            "Notices.Accept", "Notices.SendCode", "Notices.Public",
+            // D-112: the test inbox (it refuses every account that is not a test-set account)
+            "TestInbox.Index"
         };
 
         // D-87: consumers never receive issued sign-in details, so the first-password page is not theirs
         private static readonly HashSet<string> ConsumerOpen = new(StringComparer.OrdinalIgnoreCase)
         {
             "Account.Logout", "Account.AccessDenied", "Account.Animations", "Account.TourSeen", "Home.SetLanguage",
-            "Notices.Accept", "Notices.SendCode", "Notices.Public"
+            "Notices.Accept", "Notices.SendCode", "Notices.Public", "TestInbox.Index"
         };
 
         public const string BeekeeperArea = "Me";

@@ -10906,4 +10906,31 @@
   <data name="Hs2.P.naphthalene" xml:space="preserve">
     <value>Restos de naftalina usada contra la polilla de la cera. La miel no debería tener ninguno.</value>
   </data>
+  <data name="TestSet.PageBanner" xml:space="preserve">
+    <value>Datos de prueba: esta página muestra el conjunto de prueba del sitio, no una miel real.</value>
+  </data>
+  <data name="TestSet.AccountBanner" xml:space="preserve">
+    <value>Cuenta de prueba: ha iniciado sesión con una cuenta del conjunto de prueba del sitio.</value>
+  </data>
+  <data name="TestSet.InboxLink" xml:space="preserve">
+    <value>Bandeja de SMS de prueba</value>
+  </data>
+  <data name="TestSet.InboxTitle" xml:space="preserve">
+    <value>Bandeja de SMS de prueba</value>
+  </data>
+  <data name="TestSet.InboxHelp" xml:space="preserve">
+    <value>Cada SMS a un número de prueba (+90 512 000 …) se queda en el servidor y se muestra aquí, el más reciente primero. Use el código o los datos de acceso como lo haría la persona desde su teléfono. La página se actualiza cada 15 segundos.</value>
+  </data>
+  <data name="TestSet.InboxNumber" xml:space="preserve">
+    <value>Número</value>
+  </data>
+  <data name="TestSet.InboxShow" xml:space="preserve">
+    <value>Mostrar</value>
+  </data>
+  <data name="TestSet.InboxAll" xml:space="preserve">
+    <value>Todos los números</value>
+  </data>
+  <data name="TEST- is kept for the seals of the test set." xml:space="preserve">
+    <value>TEST- está reservado para los precintos del conjunto de prueba.</value>
+  </data>
 </root>

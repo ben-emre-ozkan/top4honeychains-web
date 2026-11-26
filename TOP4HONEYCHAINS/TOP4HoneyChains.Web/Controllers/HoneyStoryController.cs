@@ -128,6 +128,10 @@ namespace TOP4HoneyChains.Web.Controllers
                 vm.Related = await _context.CriticalControlPointParameters.AsNoTracking()
                     .Where(p => p.CCPId == parameter.CCPId && pair.Contains(p.ParameterName!)).ToListAsync();
 
+            // D-112: opened from the Honey Story of a test batch
+            if (qr != null && await _context.FinalHoneyProductions.AnyAsync(f => f.FinalHoneyProductionQR == qr && _context.Organizations.Any(o => o.OrgId == f.OwnerOrgId && o.IsTestData)))
+                Services.OrgModel.TestData.MarkPage(HttpContext);
+
             // "In this jar": the value of one lot of a published batch, only through its Honey Story link (D-12)
             if (qr != null && lot != null)
             {
@@ -191,6 +195,9 @@ namespace TOP4HoneyChains.Web.Controllers
             // D-12: only finalized (published) batches have a public page
             if (batch == null || !batch.FinalHoneyProductionIsFinalized)
                 return NotFound();
+            // D-112: a batch of the test set shows the TEST banner
+            if (await Services.OrgModel.TestData.IsTestOrgAsync(_context, batch.OwnerOrgId))
+                Services.OrgModel.TestData.MarkPage(HttpContext);
 
             var vm = new HoneyStoryViewModel
             {
@@ -375,6 +382,9 @@ namespace TOP4HoneyChains.Web.Controllers
             // D-12: only finalized (published) batches have a public page
             if (batch == null || !batch.FinalHoneyProductionIsFinalized)
                 return NotFound();
+            // D-112: a batch of the test set shows the TEST banner
+            if (await Services.OrgModel.TestData.IsTestOrgAsync(_context, batch.OwnerOrgId))
+                Services.OrgModel.TestData.MarkPage(HttpContext);
 
             var vm = new HoneyStoryViewModel
             {

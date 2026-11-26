@@ -30,6 +30,9 @@ namespace TOP4HoneyChains.Web.Models.Entities
 
         public bool IsPlatform { get; set; }
 
+        // D-112 (migration 037): an organization of the live site's test set (create-test-set); its records are test data
+        public bool IsTestData { get; set; }
+
         // Four-eyes exemption, set only by PlatformAdmin; never applies to lab results (D-27)
         public bool FourEyesExempt { get; set; }
 
