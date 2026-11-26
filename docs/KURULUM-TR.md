@@ -81,7 +81,7 @@ Dosya durdukça site ziyaretçilere bu sayfayı gösterir ve uygulama dosyaları
   ```sql
   SELECT '004' AS Betik, OBJECT_ID('dbo.Capabilities') AS Var UNION ALL SELECT '018', OBJECT_ID('dbo.SmsMessages')
   UNION ALL SELECT '029', OBJECT_ID('dbo.ConsumerAccounts') UNION ALL SELECT '033', OBJECT_ID('dbo.SealCodes')
-  UNION ALL SELECT '036', OBJECT_ID('dbo.ContainerEmptyings');
+  UNION ALL SELECT '036', OBJECT_ID('dbo.ContainerEmptyings') UNION ALL SELECT '037', OBJECT_ID('dbo.TestSetAccounts');
   ```
 
   9 Ekim paketiyle güncellenmiş bir site `018`'den, 28 Ekim paketiyle güncellenmiş bir site `029`'dan başlar. Bütün
@@ -122,6 +122,7 @@ Betikler ve beklenen çıktılar:
 | `030` – `032` | Parti yetkisi, metinler | |
 | `033_d97_seal_pool_containers.sql` | Mühür havuzu ve kurum kapları | Sonrasında her teslim alan kurumun mühür etiketi olmalı (A6). |
 | `034_d98_ccp_paths.sql` ve sonrakiler | D-98: KKN yolları, mühürlerin boşaltılması | Yeni betikler bu sırayla eklenir. |
+| `037_d112_test_set.sql` | Test seti işareti (B9) | Gerçek veriye dokunmaz. |
 
 Betiklerin her birinin ayrıntılı açıklaması GO-LIVE.md "Deployment day", adım 4'tedir.
 
@@ -385,3 +386,68 @@ Denemede bulunan ve düzeltilen eksikler:
 - `001` betiği hesabı olmayan yeni bir veritabanında durup hata veriyordu (artık bir mesaj yazıp geçiyor).
 - `db\install` ikinci kez çalıştırıldığında adı sistem tarafından verilen bazı kuralları çift ekliyordu (düzeltildi).
 - Yeni kurulumda hasat dönemi yoktur: B7 adım 4 eklendi.
+
+### B9. Canlı sitede test seti
+
+Yeni kurulumdan sonra (B7'den sonra), **gerçek kullanıcılar gelmeden önce** bal yolculuğunun tamamı canlı sitede gerçek
+girişlerle denenir. Yeni kurulumda yalnızca ilk yönetici vardır; test seti, yerel kopyadaki kadronun aynısını (aynı kullanıcı
+adları ve kişi adları) canlı veritabanına kurar. Kurumların adının başında "TEST " yazar; test verisinden oluşan her Bal
+Hikâyesi sayfasında ve bir test hesabıyla açılan her sayfada kırmızı bir **TEST** şeridi görünür. Test verisi adla değil,
+veritabanındaki bir işaretle (`037` betiği) ayırt edilir.
+
+Test seti şunları içerir:
+
+- Beş TEST kurumu (ilçe müdürlüğü, laboratuvar, Şile Arıcılar Birliği, market, işleme şirketi), doğrulanmış, belgeleriyle.
+- Kadronun 19 hesabı (platform yöneticisi `selin.aydin` dahil), kayıtlı arıcı Ali Yazıcı ve portal hesabı.
+- Geçmiş: Ali Yazıcı'nın iki teslimi, laboratuvar raporları, kontrol formları, sonlandırılmış "TEST Şile Kestane Balı 2026/1"
+  partisi ve markette 40 kg stok.
+- Her test eden kişi için bir **set** (varsayılan 6): Bir tüketici hesabı, canlı olarak kaydedilecek bir arıcı, birliğin mühür
+  etiketleri, plastik mühürleri ve bir kabı.
+
+Kodlar gerçek olanlarla karışmaz: Mühür etiketleri `TEST-TS-…`, kaplar `TEST-TK-…`, plastik mühürler `TEST-…`, test kurumlarının
+kaydettiği arıcılar `TR-BEE-TEST-…` numarası alır. Telefon numaraları `+90 512 000 …` (kimsenin SMS alamadığı çağrı cihazı
+numaraları) biçimindedir: Bu numaralara giden SMS'ler gerçek bir SMS sağlayıcısı açık olsa bile sunucudan çıkmaz, **Test SMS
+gelen kutusunda** (`https://<alan adı>/TestInbox`) görünür. Kutuyu platform yöneticileri ve test setinin bütün hesapları açabilir;
+kutuda yalnızca test numaralarına giden SMS'ler vardır.
+
+**Test setini oluşturma.** Sunucuda, B6'daki gibi kendi Windows hesabınızla bir PowerShell penceresi açın:
+
+```powershell
+cd <SITE>
+$env:ASPNETCORE_ENVIRONMENT = "Production"
+.\TOP4HoneyChains.Web.exe create-test-set --sets 6
+```
+
+- Komut sitenin ayarlarını `<SITE>\web.config` dosyasından okur (bağlantı, dört özellik anahtarı, SMS ayarları, sitenin
+  adresi). Bu yüzden komutu mutlaka site klasöründe çalıştırın.
+- `--sets` kaç kişinin aynı anda test edeceğidir (1 ile 12 arası; yazılmazsa 6).
+- Komut bir iki dakika sürer, kısa bir sonuç yazar ve kapanır: "The test set was created: …" ve "Logins and sets: <klasör>".
+- Giriş bilgileri varsayılan olarak komutu çalıştıranın **Belgeler** klasöründe yeni bir klasöre yazılır
+  (`TOP4-test-set-<tarih-saat>`). Başka bir klasör için `--out <klasör>` verin; site klasörünün içi kabul edilmez.
+- Klasörde üç dosya vardır: `test-set-logins.csv` (kullanıcı adı, parola, kişi, kurum, rol, giriş sırası), okunur hali
+  `test-set-logins.txt` ve setlerin kodlarıyla `test-set-sets.csv`. Her hesabın parolası komut çalışırken yeni ve rastgele
+  üretilir; parolalar yalnızca bu dosyalarda vardır: Ekrana, kayıtlara, veritabanına veya pakete yazılmaz.
+- Bu dosyaları **yalnızca test edecek kişilerle** paylaşın. Test bitince klasörü silin.
+
+Komutun reddettiği durumlar (hiçbir şey oluşturulmaz veya değişmez): Dört özellik anahtarından biri kapalı (komut hangisi
+olduğunu yazar); kadronun bir kullanıcı adı gerçek bir hesapta kullanılıyor; `--out` site klasörünün içinde veya boş olmayan bir
+klasör; test seti zaten var ("The test set already exists … Nothing was changed."). Komut yarıda kalırsa önce test setini
+kaldırın (aşağıda), sonra yeniden oluşturun.
+
+**Test setini kaldırma.** Test bittiğinde, **gerçek kullanıcılar başlamadan önce**:
+
+```powershell
+cd <SITE>
+$env:ASPNETCORE_ENVIRONMENT = "Production"
+.\TOP4HoneyChains.Web.exe remove-test-set
+.\TOP4HoneyChains.Web.exe remove-test-set --commit
+```
+
+- `--commit` olmadan komut yalnızca sayar: Hangi tablodan kaç satır silineceğini yazar, hiçbir şeyi değiştirmez.
+- `--commit` ile test setini ve test hesaplarının oluşturduğu her şeyi (kayıtlar, teslimler, partiler, SMS'ler, dosyalar) tek
+  seferde siler. Başka hiçbir kayda dokunmaz.
+- Gerçek bir kayıt test verisine bağlıysa (ör. gerçek bir kurumun test partisine ait depolama kaydı) komut durur, bu kayıtları
+  listeler ve hiçbir şey silmez. Listelenen kayıtları uygulamada kontrol edin ve komutu yeniden çalıştırın.
+- Denetim kaydı yalnızca eklenebilir olduğu için test setinin denetim kayıtları kalır; komut kaç tane olduğunu yazar ve silme
+  işlemini de denetim kaydına ekler.
+- Bitince `remove-test-set` "There is no test set in this database." yazmalıdır.
