@@ -5,6 +5,8 @@
     ViewData["Title"] = Model.Code;
     Layout = "~/Views/Shared/HorizontalLayout.cshtml";
     var uses = ViewBag.Uses as List<Container> ?? new();
+    var emptyings = ViewBag.Emptyings as Dictionary<int, List<ContainerEmptying>> ?? new();
+    var inUse = ViewBag.InUse as string;
 }
 @* D-97: one permanent container of the organization and every delivery it carried *@
 
@@ -14,11 +16,13 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex flex-wrap gap-4 align-items-start">
-                        <div style="width: 120px" aria-hidden="true">@Html.Raw(IntakeController.QrSvg(Model.Code))</div>
+                        <div style="width: 120px" aria-hidden="true">@Html.Raw(IntakeController.QrSvg(TOP4HoneyChains.Web.Services.OrgModel.SealPoolService.ShortUrl(Context, Model.Code)))</div>
                         <div>
                             <div class="text-muted small text-uppercase">@L["Ci.Closure.OrgContainer"]</div>
                             <h4 class="card-title mb-1"><code id="box-code">@Model.Code</code></h4>
                             <div>@L["Ci.Kind." + Model.Kind]@(Model.Name != null ? " · " + Model.Name : "")</div>
+                            @* D-98: free again once its honey was emptied into a batch *@
+                            <div class="mt-1" id="box-state" data-in-use="@(inUse != null ? "true" : "false")">@if (inUse != null) { <span class="st-pill st-locked"><i class="mdi mdi-lock-outline" aria-hidden="true"></i><span>@L["Seal.InUse", inUse]</span></span> } else { <span class="st-pill st-approved"><span>@L["Seal.Free"]</span></span> }</div>
                             <div class="small text-muted">
                                 @if (Model.CapacityKg != null) { <span>@L["Seal.Capacity"]: @Model.CapacityKg.Value.ToString("0.##")</span> }
                                 @if (Model.TareKg != null) { <span> · @L["Seal.Tare"]: @Model.TareKg.Value.ToString("0.##")</span> }
@@ -36,7 +40,8 @@
                                     <td>@c.Intake?.DeliveryDate.ToString("dd.MM.yyyy")</td>
                                     <td><a asp-controller="Intake" asp-action="Details" asp-route-id="@c.IntakeId">@c.ContainerCode</a></td>
                                     <td>@c.NetWeightKg.ToString("0.##")</td>
-                                    <td>@foreach (var e in c.SealEvents.OrderBy(e => e.EventId)) { <div>@L["Ci.Seal." + e.Event] <code>@e.SealNumber</code></div> }</td>
+                                    <td>@foreach (var e in c.SealEvents.OrderBy(e => e.EventId)) { <div>@L["Ci.Seal." + e.Event] <code>@e.SealNumber</code></div> }
+                                        @if (emptyings.TryGetValue(c.ContainerId, out var checks)) { foreach (var check in checks) { <partial name="_EmptyingCheck" model="check" /> } }</td>
                                     <td>@foreach (var s in c.Samples.OrderBy(s => s.SampleId)) { <div>@s.SampleCode · <code>@s.SealNumber</code></div> }</td>
                                 </tr>
                             }

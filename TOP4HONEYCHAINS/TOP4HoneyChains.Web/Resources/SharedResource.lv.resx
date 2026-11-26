@@ -8785,7 +8785,7 @@
     <value>Reģistrējiet katru kannu un tās plombu. Biškopis apstiprina ar SMS kodu.</value>
   </data>
   <data name="Scene.seal" xml:space="preserve">
-    <value>Numurēta plomba tiek izvērta caur rokturi un aizslēgta. Pierakstiet tās numuru.</value>
+    <value>Numurēta plomba savieno vāku ar korpusu un aizslēdzas. Pierakstiet tās numuru.</value>
   </data>
   <data name="Scene.send" xml:space="preserve">
     <value>Noplombētās burkas dodas uz laboratoriju; kontrolparaugi paliek uzņēmumā.</value>
@@ -9932,25 +9932,25 @@
     <value>Numurēta uzlīme ar QR pāri vākam un korpusam. Der jebkurai tvertnei.</value>
   </data>
   <data name="Ci.Closure.SealLabel.Help" xml:space="preserve">
-    <value>Numurēta uzlīme ar QR kodu, ko izsniedz platforma un iepriekš izdrukā uz VOID drošības uzlīmju materiāla. To uzlīmē pāri vākam un korpusam; ja to noņem, tā saplīst vai atstāj VOID pēdas. Der jebkurai tvertnei.</value>
+    <value>Numurēta uzlīme ar QR kodu, ko izsniedz platforma un iepriekš izdrukā uz VOID drošības uzlīmju materiāla. Tā ir plēšama sloksne pāri savienojumam: puse ar kodu un QR uz vāka, otra puse uz korpusa. Ja to noņem, tā saplīst vai atstāj VOID pēdas. Der jebkurai tvertnei.</value>
   </data>
   <data name="Ci.Closure.PlasticSeal" xml:space="preserve">
     <value>Biškopja tvertne + numurēta plastmasas plomba</value>
   </data>
   <data name="Ci.Closure.PlasticSeal.Short" xml:space="preserve">
-    <value>Caur rokturi vai vāka caurumu; aizslēdzas vienreiz.</value>
+    <value>Caur cilpu, kas savieno vāku ar korpusu; aizslēdzas vienreiz.</value>
   </data>
   <data name="Ci.Closure.PlasticSeal.Help" xml:space="preserve">
-    <value>Tvertnēm ar rokturi vai vāka caurumu: iegādātā numurētā plomba tiek izvērta cauri un aizslēgta; to var atvērt tikai pārgriežot.</value>
+    <value>Iegādātā numurētā plomba tiek izvērta caur cilpu, kas savieno vāku ar korpusu, un aizslēgta; to var atvērt tikai pārgriežot. Šāda cilpa ir tikai biedrības tvertnēm.</value>
   </data>
   <data name="Ci.Closure.OrgContainer" xml:space="preserve">
     <value>Biedrības pastāvīgā tvertne</value>
   </data>
   <data name="Ci.Closure.OrgContainer.Short" xml:space="preserve">
-    <value>Reģistrēta vienreiz; noskenējiet vai ierakstiet tās TK kodu.</value>
+    <value>Reģistrēta vienreiz; noskenējiet vai ierakstiet tās TK kodu. Aizver ar plombas uzlīmi vai plastmasas plombu.</value>
   </data>
   <data name="Ci.Closure.OrgContainer.Help" xml:space="preserve">
-    <value>Biedrības pašas tvertne, reģistrēta vienreiz ar pastāvīgu kodu un QR. Piegādē noskenējiet vai ierakstiet tās kodu; tās lapa rāda katru izmantošanu. To joprojām aizver ar plombu no krājuma.</value>
+    <value>Biedrības pašas tvertne, reģistrēta vienreiz ar pastāvīgu kodu un QR. Piegādē noskenējiet vai ierakstiet tās kodu; tās lapa rāda katru izmantošanu. To aizver ar plombu no krājuma: plombas uzlīmi vai numurētu plastmasas plombu caur cilpu, kas savieno vāku ar korpusu.</value>
   </data>
   <data name="Ci.Info.Closure" xml:space="preserve">
     <value>Tvertni aizver vienreiz pēc paraugu ņemšanas biškopja klātbūtnē. Plomba nāk no jūsu organizācijas krājuma.</value>
@@ -10025,7 +10025,7 @@
     <value>Plombas uzlīme iet pāri vākam un korpusam. Noplēsta tā saplīst un atstāj VOID pēdas.</value>
   </data>
   <data name="Scene.plastic" xml:space="preserve">
-    <value>Numurēta plastmasas plomba tiek izvērta caur rokturi un aizslēgta.</value>
+    <value>Numurēta plastmasas plomba tiek izvērta caur vāka un korpusa cilpām un aizslēgta.</value>
   </data>
   <data name="Scene.scan" xml:space="preserve">
     <value>Biedrības tvertni noskenē pēc tās QR koda.</value>
@@ -10076,7 +10076,7 @@
     <value>Materiāli, kam jābūt pie rokas</value>
   </data>
   <data name="Seal.Materials" xml:space="preserve">
-    <value>VOID drošības uzlīmju materiāls (100 × 50 mm) plombu uzlīmēm, numurētas plastmasas plombas rokturiem, paraugu burkas ar drošības pogas vai gredzena vāciņu un rokas vakuumsūknis pogu vāciņiem.</value>
+    <value>VOID uzlīmju materiāls bez atlikumiem vai sadalāms (olu čaumalas) materiāls (100 × 50 mm) plombu uzlīmēm, numurētas plastmasas plombas biedrības tvertnēm (caur cilpu, kas savieno vāku ar korpusu), paraugu burkas ar drošības pogas vai gredzena vāciņu un rokas vakuumsūknis pogu vāciņiem.</value>
   </data>
   <data name="Seal.Issue" xml:space="preserve">
     <value>Izsniegt plombu uzlīmes</value>
@@ -10097,7 +10097,7 @@
     <value>Pievienot iegādātās plastmasas plombas</value>
   </data>
   <data name="Seal.RangeHelp" xml:space="preserve">
-    <value>Ievadiet uz plombām uzdrukāto diapazonu: neobligātu prefiksu un pirmo un pēdējo numuru.</value>
+    <value>Ievadiet uz plombām uzdrukāto diapazonu: neobligātu prefiksu un pirmo un pēdējo numuru. Plastmasas plombas aizver tikai biedrības tvertnes.</value>
   </data>
   <data name="Seal.Prefix" xml:space="preserve">
     <value>Prefikss</value>
@@ -10169,7 +10169,7 @@
     <value>Visas izmantošanas</value>
   </data>
   <data name="Seal.PrintHelp" xml:space="preserve">
-    <value>Drukājiet uz VOID drošības materiāla.</value>
+    <value>Drukājiet uz VOID materiāla bez atlikumiem vai sadalāma (olu čaumalas) materiāla. Katra uzlīme ir plēšama sloksne: puse ar kodu un QR uz vāka, otra puse uz korpusa.</value>
   </data>
   <data name="Seal.VoidNote" xml:space="preserve">
     <value>NENOŅEMT · VOID</value>
@@ -10284,5 +10284,95 @@
   </data>
   <data name="Enter the capacity and the empty weight in kg (or leave them empty)." xml:space="preserve">
     <value>Ievadiet ietilpību un tukšas tvertnes svaru kg (vai atstājiet tukšu).</value>
+  </data>
+  <data name="Seal.Split" xml:space="preserve">
+    <value>vāks | korpuss</value>
+  </data>
+  <data name="Seal.InUse" xml:space="preserve">
+    <value>Lietošanā: {0}</value>
+  </data>
+  <data name="Seal.Free" xml:space="preserve">
+    <value>Brīva</value>
+  </data>
+  <data name="Empty.Title" xml:space="preserve">
+    <value>Izcelsmes partiju tvertnes</value>
+  </data>
+  <data name="Empty.Help" xml:space="preserve">
+    <value>Tvertne paliek noplombēta, līdz to iztukšo šajā gala partijā. Pirms iztukšošanas noskenējiet tās aizvēršanas plombu un apstipriniet, ka tā ir neskarta. Cits kods vai bojāta plomba aptur šo soli un tiek reģistrēta.</value>
+  </data>
+  <data name="Empty.Warning" xml:space="preserve">
+    <value>Tvertnes, kas joprojām ir noplombētas vai kurām plombas pārbaude neizdevās: {0}. Pabeigšana netiek bloķēta; vispirms tās iztukšojiet vai noskaidrojiet.</value>
+  </data>
+  <data name="Empty.Checks" xml:space="preserve">
+    <value>Plombas pārbaude iztukšojot</value>
+  </data>
+  <data name="Empty.Seal" xml:space="preserve">
+    <value>Aizvēršanas plomba: noskenējiet vai ierakstiet</value>
+  </data>
+  <data name="Empty.Intact" xml:space="preserve">
+    <value>Plomba ir neskarta</value>
+  </data>
+  <data name="Empty.Button" xml:space="preserve">
+    <value>Iztukšot šajā gala partijā</value>
+  </data>
+  <data name="Empty.BrokenButton" xml:space="preserve">
+    <value>Plomba bojāta</value>
+  </data>
+  <data name="Empty.State.Sealed" xml:space="preserve">
+    <value>Noplombēta</value>
+  </data>
+  <data name="Empty.State.Emptied" xml:space="preserve">
+    <value>Iztukšota gala partijā {0}</value>
+  </data>
+  <data name="Empty.State.NoSeal" xml:space="preserve">
+    <value>Nav reģistrētas aizvēršanas plombas</value>
+  </data>
+  <data name="Empty.Outcome.Emptied" xml:space="preserve">
+    <value>Plomba neskarta, iztukšota gala partijā {0}</value>
+  </data>
+  <data name="Empty.Outcome.Mismatch" xml:space="preserve">
+    <value>Noskenēta cita plomba: {0}</value>
+  </data>
+  <data name="Empty.Outcome.FoundBroken" xml:space="preserve">
+    <value>Plomba atrasta bojāta</value>
+  </data>
+  <data name="Empty.NotEmptied" xml:space="preserve">
+    <value>netika iztukšota gala partijā {0}</value>
+  </data>
+  <data name="Container {0}: a numbered plastic seal closes only an association container; close the beekeeper's container with a seal label." xml:space="preserve">
+    <value>Tvertne {0}: numurēta plastmasas plomba aizver tikai biedrības tvertni; biškopja tvertni aizveriet ar plombas uzlīmi.</value>
+  </data>
+  <data name="Containers are emptied into a batch by those who enter batch data in the organization that owns the batch." xml:space="preserve">
+    <value>Tvertnes gala partijā iztukšo tie, kas ievada gala partiju datus organizācijā, kurai pieder gala partija.</value>
+  </data>
+  <data name="The batch was not found." xml:space="preserve">
+    <value>Gala partija netika atrasta.</value>
+  </data>
+  <data name="The batch is finalized; containers can no longer be emptied into it." xml:space="preserve">
+    <value>Gala partija ir pabeigta; tajā vairs nevar iztukšot tvertnes.</value>
+  </data>
+  <data name="This container does not belong to a lot of this batch." xml:space="preserve">
+    <value>Šī tvertne nepieder nevienai šīs gala partijas partijai.</value>
+  </data>
+  <data name="Container {0} was already emptied into batch {1}." xml:space="preserve">
+    <value>Tvertne {0} jau ir iztukšota gala partijā {1}.</value>
+  </data>
+  <data name="Container {0} has no closing seal on record." xml:space="preserve">
+    <value>Tvertnei {0} nav reģistrētas aizvēršanas plombas.</value>
+  </data>
+  <data name="Scan or type the closing seal of container {0}." xml:space="preserve">
+    <value>Noskenējiet vai ierakstiet tvertnes {0} aizvēršanas plombu.</value>
+  </data>
+  <data name="The seal of container {0} was reported broken. The container was not emptied; the check was recorded." xml:space="preserve">
+    <value>Ziņots, ka tvertnes {0} plomba ir bojāta. Tvertne netika iztukšota; pārbaude ir reģistrēta.</value>
+  </data>
+  <data name="Seal {0} is not the closing seal of container {1}. The container was not emptied; the check was recorded." xml:space="preserve">
+    <value>Plomba {0} nav tvertnes {1} aizvēršanas plomba. Tvertne netika iztukšota; pārbaude ir reģistrēta.</value>
+  </data>
+  <data name="Confirm that the seal of container {0} is intact, or report it broken." xml:space="preserve">
+    <value>Apstipriniet, ka tvertnes {0} plomba ir neskarta, vai ziņojiet, ka tā ir bojāta.</value>
+  </data>
+  <data name="Container {0} emptied into batch {1}; seal {2} is now opened." xml:space="preserve">
+    <value>Tvertne {0} iztukšota gala partijā {1}; plomba {2} tagad ir atvērta.</value>
   </data>
 </root>

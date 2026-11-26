@@ -8785,7 +8785,7 @@
     <value>Zapisz każdą puszkę i jej plombę. Pszczelarz potwierdza kodem SMS.</value>
   </data>
   <data name="Scene.seal" xml:space="preserve">
-    <value>Numerowana plomba przechodzi przez uchwyt i się zatrzaskuje. Zapisz jej numer.</value>
+    <value>Numerowana plomba łączy wieko z korpusem i się zatrzaskuje. Zapisz jej numer.</value>
   </data>
   <data name="Scene.send" xml:space="preserve">
     <value>Zaplombowane słoiki jadą do laboratorium; próbki kontrolne zostają w zakładzie.</value>
@@ -9932,25 +9932,25 @@
     <value>Numerowana etykieta z QR na wieku i korpusie. Pasuje do każdego pojemnika.</value>
   </data>
   <data name="Ci.Closure.SealLabel.Help" xml:space="preserve">
-    <value>Numerowana etykieta z kodem QR, wydana przez platformę i wydrukowana wcześniej na zabezpieczającym materiale VOID. Nakleja się ją na wieko i korpus; przy próbie zdjęcia rwie się lub zostawia ślady VOID. Pasuje do każdego pojemnika.</value>
+    <value>Numerowana etykieta z kodem QR, wydana przez platformę i wydrukowana wcześniej na zabezpieczającym materiale VOID. To pasek zrywalny przez łączenie: połowa z kodem i QR na wieko, druga połowa na korpus. Przy próbie zdjęcia rwie się lub zostawia ślady VOID. Pasuje do każdego pojemnika.</value>
   </data>
   <data name="Ci.Closure.PlasticSeal" xml:space="preserve">
     <value>Pojemnik pszczelarza + numerowana plomba plastikowa</value>
   </data>
   <data name="Ci.Closure.PlasticSeal.Short" xml:space="preserve">
-    <value>Przez uchwyt lub otwór w wieku; zamyka się raz.</value>
+    <value>Przez ucho łączące wieko z korpusem; zamyka się raz.</value>
   </data>
   <data name="Ci.Closure.PlasticSeal.Help" xml:space="preserve">
-    <value>Dla pojemników z uchwytem lub otworem w wieku: kupiona numerowana plomba przechodzi przez nie i się zatrzaskuje; otworzyć ją można tylko przecinając.</value>
+    <value>Kupiona numerowana plomba przechodzi przez ucho łączące wieko z korpusem i się zatrzaskuje; otworzyć ją można tylko przecinając. Takie ucho mają tylko pojemniki stowarzyszenia.</value>
   </data>
   <data name="Ci.Closure.OrgContainer" xml:space="preserve">
     <value>Stały pojemnik stowarzyszenia</value>
   </data>
   <data name="Ci.Closure.OrgContainer.Short" xml:space="preserve">
-    <value>Zarejestrowany raz; zeskanuj lub wpisz jego kod TK.</value>
+    <value>Zarejestrowany raz; zeskanuj lub wpisz jego kod TK. Zamykany etykietą plombującą lub plombą plastikową.</value>
   </data>
   <data name="Ci.Closure.OrgContainer.Help" xml:space="preserve">
-    <value>Własny pojemnik stowarzyszenia, zarejestrowany raz ze stałym kodem i QR. Przy dostawie zeskanuj lub wpisz jego kod; jego strona pokazuje każde użycie. Nadal zamyka się go plombą z puli.</value>
+    <value>Własny pojemnik stowarzyszenia, zarejestrowany raz ze stałym kodem i QR. Przy dostawie zeskanuj lub wpisz jego kod; jego strona pokazuje każde użycie. Zamyka się go plombą z puli: etykietą plombującą albo numerowaną plombą plastikową przez ucho łączące wieko z korpusem.</value>
   </data>
   <data name="Ci.Info.Closure" xml:space="preserve">
     <value>Pojemnik zamyka się raz, po pobraniu próbek, przy pszczelarzu. Plomba pochodzi z puli Twojej organizacji.</value>
@@ -10025,7 +10025,7 @@
     <value>Etykieta plombująca idzie przez wieko i korpus. Zerwana rwie się i zostawia ślady VOID.</value>
   </data>
   <data name="Scene.plastic" xml:space="preserve">
-    <value>Numerowana plomba plastikowa przechodzi przez uchwyt i się zatrzaskuje.</value>
+    <value>Numerowana plomba plastikowa przechodzi przez ucha wieka i korpusu i się zatrzaskuje.</value>
   </data>
   <data name="Scene.scan" xml:space="preserve">
     <value>Pojemnik stowarzyszenia skanuje się po kodzie QR.</value>
@@ -10076,7 +10076,7 @@
     <value>Materiały pod ręką</value>
   </data>
   <data name="Seal.Materials" xml:space="preserve">
-    <value>Zabezpieczający materiał etykietowy VOID (100 × 50 mm) na etykiety plombujące, numerowane plomby plastikowe do uchwytów, słoiki na próbki z wieczkiem z przyciskiem lub z pierścieniem oraz ręczna pompka próżniowa do wieczek z przyciskiem.</value>
+    <value>Materiał etykietowy VOID niepozostawiający śladów lub kruchy (typu „skorupka jajka”) (100 × 50 mm) na etykiety plombujące, numerowane plomby plastikowe do pojemników stowarzyszenia (przez ucho łączące wieko z korpusem), słoiki na próbki z wieczkiem z przyciskiem lub z pierścieniem oraz ręczna pompka próżniowa do wieczek z przyciskiem.</value>
   </data>
   <data name="Seal.Issue" xml:space="preserve">
     <value>Wydaj etykiety plombujące</value>
@@ -10097,7 +10097,7 @@
     <value>Dodaj kupione plomby plastikowe</value>
   </data>
   <data name="Seal.RangeHelp" xml:space="preserve">
-    <value>Wpisz zakres nadrukowany na plombach: opcjonalny prefiks oraz pierwszy i ostatni numer.</value>
+    <value>Wpisz zakres nadrukowany na plombach: opcjonalny prefiks oraz pierwszy i ostatni numer. Plomby plastikowe zamykają tylko pojemniki stowarzyszenia.</value>
   </data>
   <data name="Seal.Prefix" xml:space="preserve">
     <value>Prefiks</value>
@@ -10169,7 +10169,7 @@
     <value>Wszystkie użycia</value>
   </data>
   <data name="Seal.PrintHelp" xml:space="preserve">
-    <value>Drukuj na zabezpieczającym materiale VOID.</value>
+    <value>Drukuj na materiale VOID niepozostawiającym śladów lub kruchym (typu „skorupka jajka”). Każda etykieta to pasek zrywalny: połowa z kodem i QR na wieko, druga połowa na korpus.</value>
   </data>
   <data name="Seal.VoidNote" xml:space="preserve">
     <value>NIE ZDEJMOWAĆ · VOID</value>
@@ -10284,5 +10284,95 @@
   </data>
   <data name="Enter the capacity and the empty weight in kg (or leave them empty)." xml:space="preserve">
     <value>Wpisz pojemność i masę pustego pojemnika w kg (lub zostaw puste).</value>
+  </data>
+  <data name="Seal.Split" xml:space="preserve">
+    <value>wieko | korpus</value>
+  </data>
+  <data name="Seal.InUse" xml:space="preserve">
+    <value>W użyciu: {0}</value>
+  </data>
+  <data name="Seal.Free" xml:space="preserve">
+    <value>Wolny</value>
+  </data>
+  <data name="Empty.Title" xml:space="preserve">
+    <value>Pojemniki partii źródłowych</value>
+  </data>
+  <data name="Empty.Help" xml:space="preserve">
+    <value>Pojemnik pozostaje zaplombowany, dopóki nie zostanie opróżniony do tej partii końcowej. Przed opróżnieniem zeskanuj jego plombę zamykającą i potwierdź, że jest nienaruszona. Inny kod lub zerwana plomba zatrzymuje ten krok i zostaje zapisana.</value>
+  </data>
+  <data name="Empty.Warning" xml:space="preserve">
+    <value>Pojemniki nadal zaplombowane lub z nieudaną kontrolą plomby: {0}. Nie blokuje to zatwierdzenia ostatecznego; najpierw je opróżnij lub wyjaśnij.</value>
+  </data>
+  <data name="Empty.Checks" xml:space="preserve">
+    <value>Kontrola plomby przy opróżnianiu</value>
+  </data>
+  <data name="Empty.Seal" xml:space="preserve">
+    <value>Plomba zamykająca: zeskanuj lub wpisz</value>
+  </data>
+  <data name="Empty.Intact" xml:space="preserve">
+    <value>Plomba jest nienaruszona</value>
+  </data>
+  <data name="Empty.Button" xml:space="preserve">
+    <value>Opróżnij do tej partii końcowej</value>
+  </data>
+  <data name="Empty.BrokenButton" xml:space="preserve">
+    <value>Plomba zerwana</value>
+  </data>
+  <data name="Empty.State.Sealed" xml:space="preserve">
+    <value>Zaplombowany</value>
+  </data>
+  <data name="Empty.State.Emptied" xml:space="preserve">
+    <value>Opróżniony do partii końcowej {0}</value>
+  </data>
+  <data name="Empty.State.NoSeal" xml:space="preserve">
+    <value>Brak zapisanej plomby zamykającej</value>
+  </data>
+  <data name="Empty.Outcome.Emptied" xml:space="preserve">
+    <value>Plomba nienaruszona, opróżniony do partii końcowej {0}</value>
+  </data>
+  <data name="Empty.Outcome.Mismatch" xml:space="preserve">
+    <value>Zeskanowano inną plombę: {0}</value>
+  </data>
+  <data name="Empty.Outcome.FoundBroken" xml:space="preserve">
+    <value>Plomba zastana zerwana</value>
+  </data>
+  <data name="Empty.NotEmptied" xml:space="preserve">
+    <value>nie opróżniono do partii końcowej {0}</value>
+  </data>
+  <data name="Container {0}: a numbered plastic seal closes only an association container; close the beekeeper's container with a seal label." xml:space="preserve">
+    <value>Pojemnik {0}: numerowana plomba plastikowa zamyka tylko pojemnik stowarzyszenia; pojemnik pszczelarza zamknij etykietą plombującą.</value>
+  </data>
+  <data name="Containers are emptied into a batch by those who enter batch data in the organization that owns the batch." xml:space="preserve">
+    <value>Pojemniki do partii końcowej opróżniają osoby, które wprowadzają dane partii końcowych w organizacji będącej jej właścicielem.</value>
+  </data>
+  <data name="The batch was not found." xml:space="preserve">
+    <value>Nie znaleziono partii końcowej.</value>
+  </data>
+  <data name="The batch is finalized; containers can no longer be emptied into it." xml:space="preserve">
+    <value>Partia końcowa jest zatwierdzona ostatecznie; nie można już do niej opróżniać pojemników.</value>
+  </data>
+  <data name="This container does not belong to a lot of this batch." xml:space="preserve">
+    <value>Ten pojemnik nie należy do żadnej partii tej partii końcowej.</value>
+  </data>
+  <data name="Container {0} was already emptied into batch {1}." xml:space="preserve">
+    <value>Pojemnik {0} został już opróżniony do partii końcowej {1}.</value>
+  </data>
+  <data name="Container {0} has no closing seal on record." xml:space="preserve">
+    <value>Pojemnik {0} nie ma zapisanej plomby zamykającej.</value>
+  </data>
+  <data name="Scan or type the closing seal of container {0}." xml:space="preserve">
+    <value>Zeskanuj lub wpisz plombę zamykającą pojemnika {0}.</value>
+  </data>
+  <data name="The seal of container {0} was reported broken. The container was not emptied; the check was recorded." xml:space="preserve">
+    <value>Zgłoszono, że plomba pojemnika {0} jest zerwana. Pojemnika nie opróżniono; kontrolę zapisano.</value>
+  </data>
+  <data name="Seal {0} is not the closing seal of container {1}. The container was not emptied; the check was recorded." xml:space="preserve">
+    <value>Plomba {0} nie jest plombą zamykającą pojemnika {1}. Pojemnika nie opróżniono; kontrolę zapisano.</value>
+  </data>
+  <data name="Confirm that the seal of container {0} is intact, or report it broken." xml:space="preserve">
+    <value>Potwierdź, że plomba pojemnika {0} jest nienaruszona, albo zgłoś, że jest zerwana.</value>
+  </data>
+  <data name="Container {0} emptied into batch {1}; seal {2} is now opened." xml:space="preserve">
+    <value>Pojemnik {0} opróżniono do partii końcowej {1}; plomba {2} jest teraz otwarta.</value>
   </data>
 </root>

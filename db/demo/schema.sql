@@ -855,6 +855,48 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+CREATE TABLE [dbo].[ContainerEmptyings](
+	[EmptyingId] [int] IDENTITY(1,1) NOT NULL,
+	[ContainerId] [int] NOT NULL,
+	[FinalHoneyProductionId] [int] NOT NULL,
+	[Outcome] [varchar](20) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[ExpectedSeal] [varchar](50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[ScannedSeal] [varchar](50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[UserId] [nvarchar](450) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[At] [datetime2](7) NOT NULL,
+	[Note] [nvarchar](300) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+ CONSTRAINT [PK_ContainerEmptyings] PRIMARY KEY CLUSTERED 
+(
+	[EmptyingId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+)
+GO
+CREATE NONCLUSTERED INDEX [IX_ContainerEmptyings_Batch] ON [dbo].[ContainerEmptyings]
+(
+	[FinalHoneyProductionId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+GO
+CREATE NONCLUSTERED INDEX [IX_ContainerEmptyings_Container] ON [dbo].[ContainerEmptyings]
+(
+	[ContainerId] ASC,
+	[EmptyingId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [UX_ContainerEmptyings_Emptied] ON [dbo].[ContainerEmptyings]
+(
+	[ContainerId] ASC
+)
+WHERE ([Outcome]='Emptied')
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF)
+GO
+ALTER TABLE [dbo].[ContainerEmptyings]  WITH CHECK ADD  CONSTRAINT [CK_ContainerEmptyings_Outcome] CHECK  (([Outcome]='FoundBroken' OR [Outcome]='Mismatch' OR [Outcome]='Emptied'))
+GO
+ALTER TABLE [dbo].[ContainerEmptyings] CHECK CONSTRAINT [CK_ContainerEmptyings_Outcome]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[ContainerSealEvents](
 	[EventId] [int] IDENTITY(1,1) NOT NULL,
 	[ContainerId] [int] NOT NULL,
@@ -2786,6 +2828,16 @@ REFERENCES [dbo].[FinalHoneyProductions] ([FinalHoneyProductionId])
 GO
 ALTER TABLE [dbo].[ConsumerSavedBatches] CHECK CONSTRAINT [FK_ConsumerSavedBatches_FinalHoneyProductions]
 GO
+ALTER TABLE [dbo].[ContainerEmptyings]  WITH CHECK ADD  CONSTRAINT [FK_ContainerEmptyings_Containers] FOREIGN KEY([ContainerId])
+REFERENCES [dbo].[Containers] ([ContainerId])
+GO
+ALTER TABLE [dbo].[ContainerEmptyings] CHECK CONSTRAINT [FK_ContainerEmptyings_Containers]
+GO
+ALTER TABLE [dbo].[ContainerEmptyings]  WITH CHECK ADD  CONSTRAINT [FK_ContainerEmptyings_FinalHoneyProductions] FOREIGN KEY([FinalHoneyProductionId])
+REFERENCES [dbo].[FinalHoneyProductions] ([FinalHoneyProductionId])
+GO
+ALTER TABLE [dbo].[ContainerEmptyings] CHECK CONSTRAINT [FK_ContainerEmptyings_FinalHoneyProductions]
+GO
 ALTER TABLE [dbo].[ContainerSealEvents]  WITH CHECK ADD  CONSTRAINT [FK_ContainerSealEvents_Containers] FOREIGN KEY([ContainerId])
 REFERENCES [dbo].[Containers] ([ContainerId])
 GO
@@ -3272,6 +3324,21 @@ BEGIN
 END;
 GO
 ALTER TABLE [dbo].[ComplianceReviews] ENABLE TRIGGER [TR_ComplianceReviews_AppendOnly]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE   TRIGGER [dbo].[TR_ContainerEmptyings_AppendOnly] ON [dbo].[ContainerEmptyings] AFTER UPDATE, DELETE
+AS
+BEGIN
+    SET NOCOUNT ON;
+    IF EXISTS (SELECT 1 FROM deleted)
+        THROW 50001, N'ContainerEmptyings is append-only: add a new record instead.', 1;
+END;
+GO
+ALTER TABLE [dbo].[ContainerEmptyings] ENABLE TRIGGER [TR_ContainerEmptyings_AppendOnly]
 GO
 SET ANSI_NULLS ON
 GO

@@ -31,17 +31,32 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
 
         private DateTime Now => _clock.GetUtcNow().UtcDateTime;
 
-        // what a person typed or a scanner sent, as a code: trimmed, upper case, no spaces; "https://…/TS-000123" -> "TS-000123"
+        // what a person typed or a scanner sent, as a code: trimmed, upper case, no spaces; "https://…/s/TS-000123" -> "TS-000123"
+        // (D-98: the printed QR holds the seal's short address, so every code field accepts it)
         public static string? Normalize(string? raw)
         {
             if (string.IsNullOrWhiteSpace(raw))
                 return null;
             var s = raw.Trim();
+            if (s.Contains("://", StringComparison.Ordinal) && s.IndexOfAny(new[] { '?', '#' }) is var cut and > 0)
+                s = s[..cut];
             var slash = s.TrimEnd('/').LastIndexOfAny(new[] { '/', '=' });
             if (slash >= 0)
                 s = s.TrimEnd('/')[(slash + 1)..];
             s = Regex.Replace(s, @"\s+", "").ToUpperInvariant();
             return s.Length == 0 ? null : s;
+        }
+
+        // D-98: the short address of a seal or a permanent container, printed in its QR code (/s/{code}). Absolute: App:PublicBaseUrl
+        // when set, else the address the page was opened with (the print page is only for signed-in members)
+        public const string ShortPrefix = "/s/";
+
+        public static string ShortPath(string code) => ShortPrefix + Uri.EscapeDataString(code);
+
+        public static string ShortUrl(HttpContext http, string code)
+        {
+            var path = http.Request.PathBase + ShortPath(code);
+            return PublicUrl.Build(http, path) ?? $"{http.Request.Scheme}://{http.Request.Host}{path}";
         }
 
         // ---------------------------------------------------------------- the pool

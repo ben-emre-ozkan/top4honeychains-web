@@ -31,7 +31,7 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             Assert.All(batch.Codes, c => Assert.Matches("^TS-\\d{6}$", c.Code));
             Assert.Contains($"Print them on VOID label stock", issued);
             var print = await oa.HtmlAsync($"/Seals/Print?batchId={batch.BatchId}&size=label");
-            Assert.Equal(3, System.Text.RegularExpressions.Regex.Matches(print, "class=\"label seal-label\"").Count);
+            Assert.Equal(3, System.Text.RegularExpressions.Regex.Matches(print, "class=\"label seal-label ").Count);
             Assert.Contains("@page { size: 100mm 50mm", print);
             Assert.Contains("<svg", print);
             Assert.Contains(batch.FirstCode, print);
@@ -71,12 +71,15 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             await SealPoolAsync(_app, p.OrgId, SealKind.Plastic, new[] { "SP2-P1", "SP2-P2" });
             var oa = await OrgAdminAsync(p);
             await oa.PostFlashAsync("/Seals/Register", new() { ["kind"] = ContainerKind.Bucket, ["name"] = "zz_test bucket", ["tareKg"] = "1.2" }, "/Seals/Index");
-            var box = await _app.WithContextAsync(db => db.OrgContainers.SingleAsync(b => b.OrgId == p.OrgId));
+            await oa.PostFlashAsync("/Seals/Register", new() { ["kind"] = ContainerKind.Drum, ["name"] = "zz_test drum" }, "/Seals/Index");
+            var boxes = await _app.WithContextAsync(db => db.OrgContainers.Where(b => b.OrgId == p.OrgId).OrderBy(b => b.OrgContainerId).ToListAsync());
+            var (box, drum) = (boxes[0], boxes[1]);
 
             var form = Form(p, 3, (i, f) =>
             {
                 var c = $"Containers[{i}].";
-                if (i == 1) { f[c + "Closure"] = ClosureKind.PlasticSeal; f[c + "ClosingSeal"] = "sp2-p1"; }
+                // D-98: a plastic seal closes only an association container (through the eyelet that ties the lid to the body)
+                if (i == 1) { f[c + "Closure"] = ClosureKind.OrgContainer; f[c + "OrgContainerCode"] = drum.Code; f[c + "ClosingSeal"] = "sp2-p1"; }
                 if (i == 2) { f[c + "Closure"] = ClosureKind.OrgContainer; f[c + "OrgContainerCode"] = box.Code.ToLowerInvariant(); f[c + "Kind"] = ContainerKind.Tin; }
             });
             form["CapType"] = JarCap.TamperRing;
@@ -94,13 +97,14 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             var intake = await _app.WithContextAsync(db => db.LotIntakes.Include(i => i.Containers).ThenInclude(c => c.Samples).FirstAsync(i => i.IntakeId == intakeId));
             Assert.Equal(JarCap.TamperRing, intake.JarCapType);
             var cs = intake.Containers.OrderBy(c => c.Seq).ToList();
-            Assert.Equal(new[] { ClosureKind.SealLabel, ClosureKind.PlasticSeal, ClosureKind.OrgContainer }, cs.Select(c => c.Closure));
+            Assert.Equal(new[] { ClosureKind.SealLabel, ClosureKind.OrgContainer, ClosureKind.OrgContainer }, cs.Select(c => c.Closure));
+            Assert.Equal(SealKind.Plastic, await _app.WithContextAsync(db => db.SealCodes.Where(s => s.Code == "SP2-P1" && s.ContainerId == cs[1].ContainerId).Select(s => s.Kind).SingleAsync()));
             Assert.Equal((ContainerKind.Bucket, (int?)box.OrgContainerId), (cs[2].Kind, cs[2].OrgContainerId));   // the registered kind wins
             Assert.All(cs, c => Assert.Equal(JarCap.TamperRing, c.Samples.Single().CapType));
             Assert.Contains($"L{lot}-C3", await p.Sao.HtmlAsync($"/Seals/Box/{box.OrgContainerId}"));
             var details = await p.Sao.HtmlAsync($"/Intake/Details/{intakeId}");
             Assert.Contains("id=\"content-verified\"", details);
-            Assert.Contains("data-closure=\"PlasticSeal\"", details);
+            Assert.Contains("data-closure=\"OrgContainer\"", details);
             Assert.Contains(box.Code, details);
 
             // the laboratory asks about the ring, not the button
@@ -126,8 +130,10 @@ namespace TOP4HoneyChains.Web.Tests.E2E
                 await SendAsync(Form(p, 1, (i, f) => f[$"Containers[{i}].CounterSeal"] = "sp3x-j0")));
             Assert.Contains("Container 1: Seal SP3-P1 is a numbered plastic seal; a seal label is needed here.",
                 await SendAsync(Form(p, 1, (i, f) => f[$"Containers[{i}].JarSeal"] = "sp3-p1")));
-            Assert.Contains("Container 1: Seal SP3-R0 is a seal label; a numbered plastic seal is needed here.",
-                await SendAsync(Form(p, 1, (i, f) => f[$"Containers[{i}].Closure"] = ClosureKind.PlasticSeal)));
+            Assert.Contains("Container 1: a numbered plastic seal closes only an association container; close the beekeeper's container with a seal label.",
+                await SendAsync(Form(p, 1, (i, f) => f[$"Containers[{i}].Closure"] = ClosureKind.PlasticSeal)));   // D-98
+            Assert.Contains("Container 1: Seal SP3-P1 is a numbered plastic seal; a seal label is needed here.",
+                await SendAsync(Form(p, 1, (i, f) => f[$"Containers[{i}].ClosingSeal"] = "sp3-p1")));
             Assert.Contains("Container 1: Container TK-9999 is not registered for your organization.",
                 await SendAsync(Form(p, 1, (i, f) => { f[$"Containers[{i}].Closure"] = ClosureKind.OrgContainer; f[$"Containers[{i}].OrgContainerCode"] = "TK-9999"; })));
             Assert.Contains("Container 1: choose how the container is closed.",
