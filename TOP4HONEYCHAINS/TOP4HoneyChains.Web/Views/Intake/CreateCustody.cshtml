@@ -109,6 +109,23 @@
                             <h5 class="ci-h"><span class="ci-num" aria-hidden="true">2</span> @L["Ci.Containers"]</h5>
                             <p class="small text-muted">@L["Ci.ContainersHelp"]</p>
 
+                            @* the words of this step in plain language; closed until opened *@
+                            <details class="ci-info ci-info-wide ci-gloss" id="ci-glossary">
+                                <summary><i class="mdi mdi-book-open-variant ci-info-icon" aria-hidden="true"></i> <strong>@L["Ci.Gloss.Title"]</strong></summary>
+                                <dl class="ci-gloss-list">
+                                    <dt>@L["Ci.Gloss.SealLabel"]</dt><dd>@L["Ci.Closure.SealLabel.Help"]</dd>
+                                    <dt>@L["Ci.Gloss.PlasticSeal"]</dt><dd>@L["Ci.Gloss.PlasticSeal.Text"]</dd>
+                                    <dt>@L["Ci.Closure.OrgContainer"]</dt><dd>@L["Ci.Closure.OrgContainer.Help"]</dd>
+                                    <dt>@L["Ci.Gloss.Arrival"]</dt><dd>@L["Ci.Gloss.Arrival.Text"]</dd>
+                                    <dt>@L["Ci.SampleJar"]</dt><dd>@L["Ci.Gloss.SampleJar.Text"]</dd>
+                                    <dt>@L["Ci.Gloss.CounterJar"]</dt><dd>@L["Ci.Gloss.CounterJar.Text"]</dd>
+                                    <dt>@L["Ci.Cap.SafetyButton"]</dt><dd>@L["Ci.Gloss.SafetyButton.Text"]</dd>
+                                    <dt>@L["Ci.Cap.TamperRing"]</dt><dd>@L["Ci.Gloss.TamperRing.Text"]</dd>
+                                    <dt>@L["Ci.Gloss.Void"]</dt><dd>@L["Ci.Gloss.Void.Text"]</dd>
+                                    <dt>@L["Ci.Gloss.Checks"]</dt><dd>@L["Ci.Gloss.Checks.Text"]</dd>
+                                </dl>
+                            </details>
+
                             <div class="ci-panel" id="ci-jars">
                                 <h6 class="fw-semibold mb-2"><i class="mdi mdi-flask-outline" aria-hidden="true"></i> @L["Ci.JarSetup"]</h6>
                                 <fieldset>
@@ -116,12 +133,15 @@
                                     <div class="ci-tiles ci-tiles-2">
                                         @foreach (var (value, scene) in new[] { (JarCap.SafetyButton, "button"), (JarCap.TamperRing, "ring") })
                                         {
+                                            <div class="ci-tile-cell">
                                             <label class="ci-tile" data-scene-on-pick="@scene">
                                                 <input type="radio" class="ci-tile-input" name="CapType" value="@value" checked="@(capType == value)" />
                                                 <span class="hs hs-@scene ci-ill" data-duration="@TOP4HoneyChains.Web.TagHelpers.HoneySceneTagHelper.Durations[scene]">@Html.Raw(TOP4HoneyChains.Web.TagHelpers.HoneySceneTagHelper.Template(scene).Replace("<svg ", "<svg class=\"hs-art\" aria-hidden=\"true\" focusable=\"false\" ", StringComparison.Ordinal))</span>
                                                 <span class="ci-tile-title">@L["Ci.Cap." + value]</span>
                                                 <span class="ci-tile-help">@L["Ci.Cap." + value + ".Help"]</span>
                                             </label>
+                                            <info-tip key="@("Ci.Info.Cap." + value)" about="@L["Ci.Cap." + value].Value" />
+                                            </div>
                                         }
                                     </div>
                                 </fieldset>
@@ -135,7 +155,7 @@
                                 </aside>
                                 <div class="row mt-2">
                                     <div class="col-md-4 mb-2">
-                                        <label class="form-label required" for="LabOrgId">@L["Lab.Laboratory"]</label>
+                                        <label class="form-label required" for="LabOrgId">@L["Lab.Laboratory"]</label><info-tip key="Ci.Info.Lab" about="@L["Lab.Laboratory"].Value" />
                                         <select name="LabOrgId" id="LabOrgId" class="form-select">
                                             @foreach (var lab in labs)
                                             {
@@ -148,7 +168,7 @@
                                         <input name="CounterLocation" id="CounterLocation" class="form-control" value="@Model.CounterLocation" maxlength="200" />
                                     </div>
                                     <div class="col-md-3 mb-2">
-                                        <label class="form-label required" for="RetainUntil">@L["Ci.RetainUntil"]</label>
+                                        <label class="form-label required" for="RetainUntil">@L["Ci.RetainUntil"]</label><info-tip key="Ci.Info.RetainUntil" about="@L["Ci.RetainUntil"].Value" />
                                         <input type="date" name="RetainUntil" id="RetainUntil" class="form-control" value="@Model.RetainUntil?.ToString("yyyy-MM-dd")" />
                                     </div>
                                 </div>

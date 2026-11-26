@@ -9733,16 +9733,16 @@
     <value>Arrived unsealed (normal)</value>
   </data>
   <data name="Ci.Info.Arrival" xml:space="preserve">
-    <value>Normally the container arrives unsealed: take the samples, then close it with one seal. Choose “sealed at harvest” only when the association's field inspector sealed it at the apiary with a seal from the association's pool; check that the seal is intact.</value>
+    <value>How the container came in. Unsealed is the normal case: take the samples, then close it once in front of the beekeeper. Choose “Sealed at harvest by the field inspector” only when the association's field inspector sealed it at the apiary with a seal from the pool; its code and state are then recorded and show the honey was not touched on the way.</value>
   </data>
   <data name="Ci.Info.Jars" xml:space="preserve">
-    <value>Fill two jars from this container. Put a seal label from the pool over cap and jar on each: the sample jar goes to the laboratory, the counter-sample jar stays with you in case a result is disputed.</value>
+    <value>Fill two new jars from this container: the sample jar goes to the laboratory, the counter-sample jar stays with you in case a result is disputed. Close each with the cap chosen above and stick a seal label from the pool across cap and jar.</value>
   </data>
   <data name="Ci.Info.Reseal" xml:space="preserve">
     <value>Taking the samples opens the container. Seal it again and type the new seal number; the container keeps this seal until it is used.</value>
   </data>
   <data name="Ci.Info.CounterLocation" xml:space="preserve">
-    <value>Where the counter-sample jars are stored, e.g. “Cold room 2, shelf B”. Keep them until the date next to it, in case a result is disputed.</value>
+    <value>Where you store the counter-sample jars, e.g. “Cold room 2, shelf B”. Keep them cool, dark and closed with their seal labels intact, so the honey can be tested again if a result is disputed.</value>
   </data>
   <data name="Me.PriceAfterDelivery" xml:space="preserve">
     <value>No delivery yet. After your first delivery, you enter your price per kg here under My deliveries.</value>
@@ -9808,7 +9808,7 @@
     <value>Numbered label with QR across lid and body. Works on any container.</value>
   </data>
   <data name="Ci.Closure.SealLabel.Help" xml:space="preserve">
-    <value>A numbered label with a QR code, issued by the platform and printed in advance on tamper-evident VOID label stock. It is a tear strip across the joint: the half with the code and QR on the lid, the other half on the body. It tears or leaves VOID marks if someone removes it. Works on any container.</value>
+    <value>A numbered label with a QR code from your organization's seal pool, printed on tamper-evident VOID label stock. Wipe the edge dry and stick it across the lid and the body, half on each; on a snap-on bucket lid add one or two plain security strips on the other sides. Opening the lid tears it or leaves a VOID mark, and it cannot be stuck back unnoticed. Its code is in what the beekeeper confirmed, so a new label would not match. The container stays reusable; only the label is single-use.</value>
   </data>
   <data name="Ci.Closure.PlasticSeal" xml:space="preserve">
     <value>Beekeeper's container + numbered plastic seal</value>
@@ -9826,10 +9826,10 @@
     <value>Registered once; scan or type its TK code. Closed with a seal label or a plastic seal.</value>
   </data>
   <data name="Ci.Closure.OrgContainer.Help" xml:space="preserve">
-    <value>The association's own container, registered once with a permanent code and QR. Scan or type its code at the delivery; its page shows every use. It is closed with a seal from the pool: a seal label, or a numbered plastic seal through the eyelet that ties the lid to the body.</value>
+    <value>The association's own container, registered once with a permanent code and QR. The honey is poured into it in front of the beekeeper, whose bucket goes back. Scan or type its code at the delivery; its page shows every use. It is closed with a seal from the pool: a seal label, or a numbered plastic seal through the hole that ties the lid to the body.</value>
   </data>
   <data name="Ci.Info.Closure" xml:space="preserve">
-    <value>The container is closed once, after sampling, in front of the beekeeper. The seal comes from your organization's seal pool.</value>
+    <value>Choose how this container is closed after sampling. Most beekeepers bring their own tin or bucket: close it with a seal label. Choose the association's permanent container only when the honey is poured into one of the association's own registered containers.</value>
   </data>
   <data name="Ci.Step.Container" xml:space="preserve">
     <value>Container</value>
@@ -9859,7 +9859,7 @@
     <value>on both jars</value>
   </data>
   <data name="Ci.Info.CapCheck" xml:space="preserve">
-    <value>Check both jars after closing them. A raised button or a broken ring means the jar was opened: discard it and fill a new one.</value>
+    <value>After closing, check both jars: the button is down, or the ring is unbroken. Tick only when both pass. A raised button or a broken ring means the jar was opened: discard it and fill a new one. The laboratory checks the same at reception.</value>
   </data>
   <data name="Ci.ClosingHelp" xml:space="preserve">
     <value>After sampling, close the container in front of the beekeeper and scan or type the seal.</value>
@@ -10553,5 +10553,95 @@
   </data>
   <data name="Enter the holding identification number (or the platform number of a registered beekeeper)." xml:space="preserve">
     <value>Enter the holding identification number (or the platform number of a registered beekeeper).</value>
+  </data>
+  <data name="Ci.Info.Tile.SealLabel" xml:space="preserve">
+    <value>For the beekeeper's own tin or bucket. Wipe the edge dry and stick a numbered QR seal label from the pool across lid and body, half on each; on a snap-on bucket lid add one or two plain security strips. Opening the lid tears the label or leaves a VOID mark, so it proves the container was not opened. The container stays reusable; only the label is single-use.</value>
+  </data>
+  <data name="Ci.Info.Tile.OrgContainer" xml:space="preserve">
+    <value>For the association's own container with a permanent code (TK-…). Pour the honey into it in front of the beekeeper, who takes their bucket back. Close it with a seal label or, through the hole that ties the lid to the body, a numbered plastic seal from the pool. Its page shows every delivery it held.</value>
+  </data>
+  <data name="Ci.Info.BoxCode" xml:space="preserve">
+    <value>The permanent code printed on the association's container (TK-…). Scan its QR or type the code; the field shows whether the container is registered. It ties this delivery to that exact container.</value>
+  </data>
+  <data name="Ci.Info.Kind" xml:space="preserve">
+    <value>What the beekeeper's container is: tin, drum, bucket, IBC or other. Choose what you see; it helps to recognise the container later. Not asked for the association's container.</value>
+  </data>
+  <data name="Ci.Info.NetKg" xml:space="preserve">
+    <value>The weight of the honey alone, without the container. Weigh the full container and subtract the empty container's weight. This is the amount the beekeeper confirms and the amount that can later go into batches.</value>
+  </data>
+  <data name="Ci.Info.GrossKg" xml:space="preserve">
+    <value>Optional: the weight of the full container as the scale shows it. With it, the form shows the empty weight (tare), so a typing error in the net weight stands out.</value>
+  </data>
+  <data name="Ci.Info.OriginSeal" xml:space="preserve">
+    <value>The code of the seal the field inspector put on at the apiary. Scan its QR or type it; it must be a code from the pool. A matching code shows this is the container that was sealed at harvest.</value>
+  </data>
+  <data name="Ci.Info.OriginIntact" xml:space="preserve">
+    <value>Look at the harvest seal before you open the container: a seal label must have no tear and no VOID mark, a plastic seal must be uncut and locked. Tick only if it is intact; otherwise leave it unticked and the delivery records that the seal was not intact.</value>
+  </data>
+  <data name="Ci.Info.JarSeal" xml:space="preserve">
+    <value>Scan or type the code of the seal label on the sample jar. Stick it across cap and jar, so the jar cannot be opened without tearing it. The laboratory checks that the code matches, the label is intact and the cap is closed.</value>
+  </data>
+  <data name="Ci.Info.CounterSeal" xml:space="preserve">
+    <value>Scan or type the code of the seal label on the counter-sample jar, stuck across cap and jar like the sample's. This jar stays with you; if a result is disputed, its intact label shows it holds untouched honey from this delivery.</value>
+  </data>
+  <data name="Ci.Info.Cap.SafetyButton" xml:space="preserve">
+    <value>A vacuum cap with a button in the middle, as on baby-food jars. After filling, draw a vacuum with a hand vacuum pump until the button goes down; never heat the honey. The button stays down only while the vacuum holds, so a raised button shows the jar was opened.</value>
+  </data>
+  <data name="Ci.Info.Cap.TamperRing" xml:space="preserve">
+    <value>A screw cap with a ring under it that breaks the first time the cap is opened. Turn the cap until the ring sits tight; no tool is needed. An unbroken ring shows the jar has not been opened.</value>
+  </data>
+  <data name="Ci.Info.ClosingSeal" xml:space="preserve">
+    <value>After sampling, close the container in front of the beekeeper and scan or type its seal. On the beekeeper's container this is a seal label across lid and body; on the association's container a seal label or a numbered plastic seal through the hole that ties the lid to the body. When the container is emptied into a batch, this seal is checked: same code and intact.</value>
+  </data>
+  <data name="Ci.Info.Lab" xml:space="preserve">
+    <value>The laboratory that receives the sample jars of this delivery. At reception it checks each jar: the code matches, the seal label is intact (no tear or VOID mark) and the cap is closed (button down or ring unbroken).</value>
+  </data>
+  <data name="Ci.Info.RetainUntil" xml:space="preserve">
+    <value>The date until which you keep the counter-samples. Choose a date by which no dispute about the results can still come up; after it the jars may be discarded.</value>
+  </data>
+  <data name="Ci.Gloss.Title" xml:space="preserve">
+    <value>Glossary</value>
+  </data>
+  <data name="Ci.Gloss.SealLabel" xml:space="preserve">
+    <value>Seal label</value>
+  </data>
+  <data name="Ci.Gloss.PlasticSeal" xml:space="preserve">
+    <value>Numbered plastic seal</value>
+  </data>
+  <data name="Ci.Gloss.PlasticSeal.Text" xml:space="preserve">
+    <value>A numbered plastic seal from the pool that locks once and comes off only by cutting it. Use it only on a container with a hole that ties the lid to the body, that is the association's own drums or buckets. On a handle it proves nothing, because the lid can still be opened.</value>
+  </data>
+  <data name="Ci.Gloss.Arrival" xml:space="preserve">
+    <value>Unsealed on arrival / Sealed at harvest</value>
+  </data>
+  <data name="Ci.Gloss.Arrival.Text" xml:space="preserve">
+    <value>Unsealed is the normal case: the container is closed only after sampling, in front of the beekeeper. “Sealed at harvest” applies only when the association's field inspector sealed the container at the apiary with a seal from the pool; its code is then recorded and checked on arrival.</value>
+  </data>
+  <data name="Ci.Gloss.SampleJar.Text" xml:space="preserve">
+    <value>A new jar filled from the container for the laboratory. It gets a seal label across cap and jar.</value>
+  </data>
+  <data name="Ci.Gloss.CounterJar" xml:space="preserve">
+    <value>Counter-sample jar</value>
+  </data>
+  <data name="Ci.Gloss.CounterJar.Text" xml:space="preserve">
+    <value>A second new jar filled from the same container at the same time and sealed the same way. It stays at the association, so the honey can be tested again if a result is disputed.</value>
+  </data>
+  <data name="Ci.Gloss.SafetyButton.Text" xml:space="preserve">
+    <value>A cap whose button stays down only while there is a vacuum in the jar. Draw the vacuum with a hand vacuum pump; never heat honey. A raised button shows the jar was opened.</value>
+  </data>
+  <data name="Ci.Gloss.TamperRing.Text" xml:space="preserve">
+    <value>A cap with a ring that breaks the first time it is opened. No tool is needed. An unbroken ring shows the jar has not been opened.</value>
+  </data>
+  <data name="Ci.Gloss.Void" xml:space="preserve">
+    <value>VOID mark</value>
+  </data>
+  <data name="Ci.Gloss.Void.Text" xml:space="preserve">
+    <value>The word VOID (or a pattern) that stays behind on the surface when a security label is peeled off. Like a tear, it shows the label was removed; a peeled label cannot be stuck back unnoticed.</value>
+  </data>
+  <data name="Ci.Gloss.Checks" xml:space="preserve">
+    <value>What gets checked?</value>
+  </data>
+  <data name="Ci.Gloss.Checks.Text" xml:space="preserve">
+    <value>At laboratory reception, for each jar: the code matches, the seal label is intact (no tear or VOID mark) and the cap is closed (button down or ring unbroken). When a container is emptied into a batch, its closing seal is checked the same way: same code and intact. A different code or a damaged seal stops the emptying and is recorded.</value>
   </data>
 </root>
