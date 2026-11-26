@@ -10,7 +10,7 @@ namespace TOP4HoneyChains.Web.Tests.Demo
     // its pages. Nothing else is copied from the local database.
     public sealed class DemoApp : E2EApp
     {
-        public const string BuildDatabase = "TOP4HoneyChainsDemoBuild";
+        public static readonly string BuildDatabase = Environment.GetEnvironmentVariable("DEMO_BUILD_DB") ?? "TOP4HoneyChainsDemoBuild";
         public static string SourceDatabase => Environment.GetEnvironmentVariable("DEMO_SOURCE_DB") ?? "TOP4HoneyChainsDb";
 
         public DemoSeed.Result Seed { get; private set; } = null!;

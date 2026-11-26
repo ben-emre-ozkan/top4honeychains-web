@@ -24,7 +24,7 @@ namespace TOP4HoneyChains.Web.Tests.E2E
     {
         public const string Password = "E2e-Test-Pw-2026!";
         private const string Server = @"(localdb)\MSSQLLocalDB";
-        public static readonly string Database = "TOP4HoneyChainsE2E";
+        public static readonly string Database = Environment.GetEnvironmentVariable("E2E_DB") ?? "TOP4HoneyChainsE2E";
         public static string SourceDatabase => Environment.GetEnvironmentVariable("E2E_SOURCE_DB") ?? "TOP4HoneyChainsDb";
 
         // D-78: the application's clock; tests move it forward to check expiry and rate limits, and reset it afterwards
