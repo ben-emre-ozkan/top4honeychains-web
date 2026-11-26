@@ -5539,7 +5539,7 @@
     <value>İllere göre köken</value>
   </data>
   <data name="Hst.MapNote" xml:space="preserve">
-    <value>Yalnızca il düzeyinde gösterilir; arılıkların kesin konumu hiçbir zaman yayımlanmaz.</value>
+    <value>İl ve ilçe düzeyinde gösterilir; arılıkların kesin konumu hiçbir zaman yayımlanmaz.</value>
   </data>
   <data name="Hst.SourcesEyebrow" xml:space="preserve">
     <value>Arıcılarla tanışın</value>
@@ -6292,7 +6292,7 @@
     <value>İl başına arılık</value>
   </data>
   <data name="Home.Map.Note" xml:space="preserve">
-    <value>Yalnızca il düzeyinde gösterilir; arılık konumları hiçbir zaman gösterilmez.</value>
+    <value>İl ve ilçe düzeyinde gösterilir; arılık konumları hiçbir zaman gösterilmez.</value>
   </data>
   <data name="Home.Map.Unlocated" xml:space="preserve">
     <value>Konumu olmayan arılıklar (haritada yok): {0}.</value>
@@ -10160,5 +10160,17 @@
   </data>
   <data name="Enter the capacity and the empty weight in kg (or leave them empty)." xml:space="preserve">
     <value>Kapasiteyi ve boş ağırlığı kg olarak girin (veya boş bırakın).</value>
+  </data>
+  <data name="Map.Back" xml:space="preserve">
+    <value>Tüm iller</value>
+  </data>
+  <data name="Map.DrillHint" xml:space="preserve">
+    <value>İlçelerini görmek için vurgulu bir ili seçin.</value>
+  </data>
+  <data name="Map.DistrictCredit" xml:space="preserve">
+    <value>İlçe sınırları: geoBoundaries, © OpenStreetMap katkıda bulunanları (ODbL)</value>
+  </data>
+  <data name="Home.Map.DistrictTip" xml:space="preserve">
+    <value>Arılık: {0}</value>
   </data>
 </root>

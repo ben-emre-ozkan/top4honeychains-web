@@ -5539,7 +5539,7 @@
     <value>Origen por provincia</value>
   </data>
   <data name="Hst.MapNote" xml:space="preserve">
-    <value>Solo por provincia; la ubicación exacta de los colmenares nunca se publica.</value>
+    <value>Por provincia y distrito; la ubicación exacta de los colmenares nunca se publica.</value>
   </data>
   <data name="Hst.SourcesEyebrow" xml:space="preserve">
     <value>Conoce a los apicultores</value>
@@ -6292,7 +6292,7 @@
     <value>Colmenares por provincia</value>
   </data>
   <data name="Home.Map.Note" xml:space="preserve">
-    <value>Solo por provincia; la ubicación de los colmenares nunca se muestra.</value>
+    <value>Por provincia y distrito; la ubicación de los colmenares nunca se muestra.</value>
   </data>
   <data name="Home.Map.Unlocated" xml:space="preserve">
     <value>Colmenares sin ubicación (no aparecen en el mapa): {0}.</value>
@@ -10284,5 +10284,17 @@
   </data>
   <data name="Enter the capacity and the empty weight in kg (or leave them empty)." xml:space="preserve">
     <value>Ingrese la capacidad y el peso vacío en kg (o déjelos vacíos).</value>
+  </data>
+  <data name="Map.Back" xml:space="preserve">
+    <value>Todas las provincias</value>
+  </data>
+  <data name="Map.DrillHint" xml:space="preserve">
+    <value>Seleccione una provincia resaltada para ver sus distritos.</value>
+  </data>
+  <data name="Map.DistrictCredit" xml:space="preserve">
+    <value>Límites de distritos: geoBoundaries, © colaboradores de OpenStreetMap (ODbL)</value>
+  </data>
+  <data name="Home.Map.DistrictTip" xml:space="preserve">
+    <value>Colmenares: {0}</value>
   </data>
 </root>

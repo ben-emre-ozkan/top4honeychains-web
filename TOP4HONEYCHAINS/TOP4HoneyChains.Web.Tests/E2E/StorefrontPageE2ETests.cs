@@ -44,7 +44,11 @@ namespace TOP4HoneyChains.Web.Tests.E2E
                 var other = NewBeekeeper("Sfother");
                 db.Beekeepers.AddRange(bk, other);
                 await db.SaveChangesAsync();
-                var apiary = new Apiary { ApiaryBeekeeperId = bk.BeekeeperId!, ApiaryTitle = "SF Apiary", ApiaryBeehivesCount = 8, ApiaryQRCode = Guid.NewGuid(), ApiaryLocationLatitude = Latitude, ApiaryLocationLongitude = Longitude };
+                // D-98: the apiary's district as chosen in the form (the district of its position); the other apiary has none
+                var plate = TurkeyMap.PlateAt((double)Latitude, (double)Longitude);
+                var districtName = TurkeyDistricts.At(plate, (double)Latitude, (double)Longitude)!.Name;
+                var districtId = await db.Districts.Where(d => d.ProvinceCode == plate.ToString("00", CultureInfo.InvariantCulture) && d.Name == districtName).Select(d => d.DistrictId).FirstAsync();
+                var apiary = new Apiary { ApiaryBeekeeperId = bk.BeekeeperId!, ApiaryTitle = "SF Apiary", ApiaryBeehivesCount = 8, ApiaryQRCode = Guid.NewGuid(), ApiaryLocationLatitude = Latitude, ApiaryLocationLongitude = Longitude, DistrictId = districtId };
                 var otherApiary = new Apiary { ApiaryBeekeeperId = other.BeekeeperId!, ApiaryTitle = "SF Other Apiary", ApiaryBeehivesCount = 8, ApiaryQRCode = Guid.NewGuid(), ApiaryLocationLatitude = Latitude, ApiaryLocationLongitude = Longitude };
                 db.Apiaries.AddRange(apiary, otherApiary);
                 foreach (var b in new[] { bk, other })
@@ -182,6 +186,20 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             Assert.Contains($"id=\"hs-tmap-p{plate}\"", story);
             Assert.Contains($"<b>{Provinces.ByPlate(plate)}</b>", story);
             Assert.DoesNotContain("hs-map-area", story);
+            // D-98: the province opens its districts; the apiary's district is shaded there and drawn as an outline on its
+            // card; the other source (no district) shows its province; the attribution of the district boundaries
+            var district = TurkeyDistricts.At(plate, (double)Latitude, (double)Longitude)!;
+            Assert.Contains($"id=\"hs-tmap-d{plate}\"", story);
+            Assert.Contains($"data-drill=\"hs-tmap-d{plate}\"", story);
+            Assert.Contains($"class=\"tmap-d is-data tm-v5\" id=\"hs-tmap-d{plate}-", story);
+            Assert.Contains($"d=\"{district.Path}\" tabindex=\"0\"", story);
+            Assert.Contains($"aria-label=\"{district.Name}: ", story);
+            Assert.Contains($"class=\"tmap-mini-on is-on\" d=\"{district.Path}\"", story);
+            Assert.Contains($"{district.Name}, {Provinces.ByPlate(plate)}", story);
+            Assert.Contains("class=\"tmap-mini is-province\"", story);
+            Assert.Contains("OpenStreetMap", story);
+            Assert.DoesNotContain("40.918", story);
+            Assert.DoesNotContain("31.736", story);
             Assert.Contains("data-step", story);
             Assert.Contains($"href=\"/storefront/{seed.Code}\" class=\"storefront-link\"", story);
             Assert.Contains("/verify-report?code=SFREP", story);

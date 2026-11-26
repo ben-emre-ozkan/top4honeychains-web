@@ -5539,7 +5539,7 @@
     <value>Izcelsme pa provincēm</value>
   </data>
   <data name="Hst.MapNote" xml:space="preserve">
-    <value>Tikai pa provincēm; precīza dravu atrašanās vieta nekad netiek publicēta.</value>
+    <value>Pa provincēm un rajoniem; precīza dravu atrašanās vieta nekad netiek publicēta.</value>
   </data>
   <data name="Hst.SourcesEyebrow" xml:space="preserve">
     <value>Iepazīstiet biškopjus</value>
@@ -6292,7 +6292,7 @@
     <value>Dravas provincē</value>
   </data>
   <data name="Home.Map.Note" xml:space="preserve">
-    <value>Tikai pa provincēm; dravu atrašanās vietas nekad netiek rādītas.</value>
+    <value>Pa provincēm un rajoniem; dravu atrašanās vietas nekad netiek rādītas.</value>
   </data>
   <data name="Home.Map.Unlocated" xml:space="preserve">
     <value>Dravas bez atrašanās vietas (nav kartē): {0}.</value>
@@ -10284,5 +10284,17 @@
   </data>
   <data name="Enter the capacity and the empty weight in kg (or leave them empty)." xml:space="preserve">
     <value>Ievadiet ietilpību un tukšas tvertnes svaru kg (vai atstājiet tukšu).</value>
+  </data>
+  <data name="Map.Back" xml:space="preserve">
+    <value>Visas provinces</value>
+  </data>
+  <data name="Map.DrillHint" xml:space="preserve">
+    <value>Izvēlieties izceltu provinci, lai redzētu tās rajonus.</value>
+  </data>
+  <data name="Map.DistrictCredit" xml:space="preserve">
+    <value>Rajonu robežas: geoBoundaries, © OpenStreetMap līdzautori (ODbL)</value>
+  </data>
+  <data name="Home.Map.DistrictTip" xml:space="preserve">
+    <value>Dravas: {0}</value>
   </data>
 </root>

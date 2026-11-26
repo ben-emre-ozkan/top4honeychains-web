@@ -16,6 +16,10 @@ namespace TOP4HoneyChains.Web.Models.ViewModels.HoneyStory
         // D-72: plate code of the province (0 when unknown); the only place information on the public page
         public int ProvincePlate { get; set; }
 
+        // D-98: the district in that province (its name in the Districts table and on the district map), null when unknown;
+        // the page shows its outline, never a coordinate
+        public string? District { get; set; }
+
         // Photos for that apiary
         public List<HoneyStoryPhoto> Photos { get; set; } = new();
 

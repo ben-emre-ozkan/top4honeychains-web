@@ -1,6 +1,7 @@
 /* D-72: the shared Türkiye map (Views/Shared/_TurkeyMap.cshtml, wwwroot/js/tmap.js). Motion follows docs/brand/MOTION.md:
    the lift and glow fade with opacity and transform; the dots pulse with transform and opacity and pause off screen, in a
-   hidden tab and while someone types; the outline draws once; reduced motion shows everything at rest. */
+   hidden tab and while someone types; the outline draws once; reduced motion shows everything at rest.
+   D-98: a province opens its districts (zoom and fade); reduced motion switches without movement. */
 .tmap { --tm-land: #FFF6E0; --tm-border: #FFFFFF; --tm-ink: var(--b-ink, #574A40); --tm-muted: var(--b-muted, #7B6A5C);
     position: relative; margin: 0; }
 .tmap-stage { position: relative; }
@@ -11,6 +12,10 @@
 body .tmap .tmap-p.is-data:focus, body .tmap .tmap-p.is-data:focus-visible { outline: none !important; box-shadow: none !important; }
 .tmap-p.is-data { cursor: pointer; transition: opacity 600ms ease-out; transition-delay: calc(var(--i, 0) * 70ms); }
 .tmap-p.is-marked { fill: #FFD98A; }
+/* D-98: districts of the opened province; the stroke keeps its width at any zoom */
+.tmap-d { fill: var(--tm-land); stroke: #E2C79C; stroke-width: 0.9; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.tmap-d.is-data { cursor: pointer; }
+body .tmap .tmap-d.is-data:focus, body .tmap .tmap-d.is-data:focus-visible { outline: none !important; box-shadow: none !important; }
 .tm-v1 { fill: #FFE9B8; } .tm-v2 { fill: #FFD889; } .tm-v3 { fill: #FFC25E; } .tm-v4 { fill: #F5A53C; } .tm-v5 { fill: #DC8625; }
 .tmap-shade { fill: #000000; pointer-events: none; }
 .tmap-outline { fill: none; stroke: #D9B98A; stroke-width: 1.1; stroke-linejoin: round; pointer-events: none; }
@@ -19,10 +24,10 @@ body .tmap .tmap-p.is-data:focus, body .tmap .tmap-p.is-data:focus-visible { out
 .tmap-hover { pointer-events: none; opacity: 0; transition: opacity 180ms ease-out; }
 .tmap.is-hot .tmap-hover { opacity: 1; }
 .tmap-lift { stroke: #FFFFFF; stroke-width: 1.4; transform-box: view-box; transform: translateY(0) scale(1); transition: transform 200ms var(--b-ease, ease-out); }
-.tmap.is-hot .tmap-lift { transform: translateY(-3px) scale(1.035); }
+.tmap.is-hot .tmap-lift { transform: translateY(calc(-3px / var(--z, 1))) scale(1.035); }
 /* keyboard focus: a teal ring on the lifted province (a path copied from it; the lifted copy keeps the province's own border) */
-.tmap-ring { fill: none; stroke: none; transform-box: view-box; transition: transform 200ms var(--b-ease, ease-out); }
-.tmap.is-hot .tmap-ring { transform: translateY(-3px) scale(1.035); }
+.tmap-ring { fill: none; stroke: none; transform-box: view-box; transition: transform 200ms var(--b-ease, ease-out); vector-effect: non-scaling-stroke; }
+.tmap.is-hot .tmap-ring { transform: translateY(calc(-3px / var(--z, 1))) scale(1.035); }
 .tmap.is-focus .tmap-ring { stroke: var(--b-focus, #0B7A75); stroke-width: 2.2; stroke-linejoin: round; }
 
 /* honey dots at the centroids of the provinces with data */
@@ -54,8 +59,35 @@ html.is-hidden-tab .tmap-dot-halo, html.is-typing .tmap-dot-halo, .tmap-mark-hal
 .tmap-tip b { display: block; font-family: var(--b-display, system-ui); font-size: 14px; color: var(--b-heading, #8C5E2E); }
 .tmap-tip span { display: block; color: var(--tm-muted); }
 
+/* D-98: drill-down. tmap.js zooms the world group to the province (data-zoom: scale, x, y) and sets --z to the scale;
+   the country fades out, the province's districts fade in; a back button and Escape return to Türkiye */
+.tmap-world { transform-box: view-box; transform-origin: 0 0; transition: transform 650ms var(--b-ease, ease-out); }
+.tmap-dg { opacity: 0; visibility: hidden; transition: opacity 300ms ease-out, visibility 0s linear 300ms; }
+.tmap-dg.is-open { opacity: 1; visibility: visible; transition: opacity 450ms ease-out 250ms, visibility 0s; }
+.tmap-land, .tmap-provinces, .tmap-shade, .tmap-dots, .tmap-mark { transition: opacity 300ms ease-out; }
+.tmap.is-drilled :is(.tmap-land, .tmap-provinces, .tmap-shade, .tmap-outline, .tmap-dots, .tmap-mark) { opacity: 0; visibility: hidden; transition: opacity 300ms ease-out, visibility 0s linear 300ms; }
+.tmap.is-drilled .tmap-glow { display: none; }
+.tmap-p[data-drill] { cursor: zoom-in; }
+.tmap-bar { position: absolute; left: 0; top: 0; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
+.tmap-bar[hidden] { display: none; }
+.tmap-back { display: inline-flex; align-items: center; gap: 4px; min-height: 32px; padding: 5px 12px 5px 8px; border: 0; border-radius: 999px; background: #FFFFFF; cursor: pointer;
+    box-shadow: 0 0 0 1px var(--b-line, #F2E3C6), 0 4px 12px rgba(200, 146, 79, 0.18); color: var(--tm-ink); font: inherit; font-size: 13px; font-weight: 600; }
+.tmap-back:hover { background: var(--tm-land); }
+.tmap-where { font-family: var(--b-display, system-ui); font-size: 15px; color: var(--b-heading, #8C5E2E); }
+
+/* caption: legend, the drill-down hint and the attribution of the district boundaries */
+.tmap-caption { display: flex; flex-direction: column; gap: 6px; margin-top: 10px; font-size: 12.5px; color: var(--tm-muted); }
+.tmap-hint, .tmap-credit { font-size: 12px; }
+.tmap-credit a { color: inherit; text-decoration: underline; text-decoration-color: rgba(123, 106, 92, 0.4); }
+
+/* D-98: a small map of one province with the district filled (Views/Shared/_DistrictOutline.cshtml) */
+.tmap-mini { display: block; width: 76px; height: 56px; flex-shrink: 0; }
+.tmap-mini path { fill: #FFF6E0; stroke: #E2C79C; stroke-width: 0.8; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.tmap-mini path.is-on { fill: #FFC25E; stroke: #C8924F; stroke-width: 1.4; }
+.tmap-mini.is-province path { fill: #FFD889; stroke: #FFFFFF; }
+
 /* legend: the honey scale with its two ends */
-.tmap-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin-top: 10px; font-size: 12.5px; color: var(--tm-muted); }
+.tmap-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-size: 12.5px; color: var(--tm-muted); }
 .tmap-legend-title { font-weight: 600; color: var(--tm-ink); }
 .tmap-scale { display: inline-flex; border-radius: 6px; overflow: hidden; box-shadow: 0 0 0 1px var(--b-line, #F2E3C6); }
 .tmap-scale i { width: 22px; height: 10px; }
@@ -69,6 +101,7 @@ html.is-hidden-tab .tmap-dot-halo, html.is-typing .tmap-dot-halo, .tmap-mark-hal
     .tmap.is-live .tmap-dot-halo { animation: none; }
     .tmap.is-hot .tmap-lift, .tmap.is-hot .tmap-ring { transform: none; }
     .tmap-ring { transition: none; }
+    .tmap-world, .tmap-dg, .tmap-dg.is-open, .tmap-land, .tmap-provinces, .tmap-shade, .tmap-dots, .tmap-mark, .tmap.is-drilled :is(.tmap-land, .tmap-provinces, .tmap-shade, .tmap-outline, .tmap-dots, .tmap-mark) { transition: none !important; }
     .tmap.is-armed:not(.is-drawn) .tmap-outline { stroke-dashoffset: 0; }
     .tmap.is-armed.tmap-fill-in:not(.is-drawn) .tmap-p.is-data, .tmap.is-armed.tmap-fill-in:not(.is-drawn) .tmap-dots { opacity: 1; }
 }

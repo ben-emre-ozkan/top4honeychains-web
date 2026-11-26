@@ -251,6 +251,9 @@
   <ItemGroup>
     <Content Remove="Data\Geo\turkey-provinces.json" />
     <EmbeddedResource Include="Data\Geo\turkey-provinces.json" LogicalName="TOP4HoneyChains.Web.turkey-provinces.json" />
+    <!-- D-98: the district map, read by Services/TurkeyDistricts.cs -->
+    <Content Remove="Data\Geo\turkey-districts.json" />
+    <EmbeddedResource Include="Data\Geo\turkey-districts.json" LogicalName="TOP4HoneyChains.Web.turkey-districts.json" />
   </ItemGroup>
 
   <!-- D-78 P4: the explanatory scenes, inlined by TagHelpers/HoneySceneTagHelper.cs -->
