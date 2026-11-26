@@ -210,7 +210,7 @@ async function freeCodes(who) {
 
 const reg = user('RegistrationOfficer', 'directorate'), sao = user('SampleAcceptanceOfficer', 'association'), staff = user('Staff', 'association'), qa = user('QualityApprover', 'association');
 const analyst = user('Analyst', 'lab'), labManager = user('LabManager', 'lab'), shop = user('Staff', 'shop'), shopQa = user('QualityApprover', 'shop');
-let business, portalUser, lot, intake, batch, qr, composite;
+let business, portalUser, lot, intake, batch, qr, composite, closings = [];
 
 try {
     await step('Register the new beekeeper (SMS code from the beekeeper\'s phone)', reg, async page => {
@@ -313,6 +313,7 @@ try {
             { closure: 'SealLabel', net: '23.8', gross: '25.2', jar: free.labels[0], counter: free.labels[1], closing: free.labels[2] },
             { closure: 'OrgContainer', box: free.box, net: '21.6', gross: '23.0', jar: free.labels[3], counter: free.labels[4], closing: free.labels[5] }
         ];
+        closings = plan.map(p => p.closing);
         for (let i = 0; i < plan.length; i++) {
             const card = cards.nth(i), p = plan[i];
             const f = n => card.locator(`[data-field="${n}"]`);
@@ -427,6 +428,21 @@ try {
         await result(page, /Batch created/i);
         facts.records.batch = batch;
         await workOf(staff, new RegExp(`kind=batch&id=${batch}`));
+    });
+    // D-98: each container of the lot is emptied into the batch after its closing seal is scanned and found intact
+    await step('Containers emptied into the batch (closing seals scanned, intact)', staff, async page => {
+        await go(page, `/OrgWorkspace/Batch/${batch}`);
+        for (let i = 0; i < closings.length; i++) {
+            const row = page.locator(`#emptying-list tr[data-container="L${lot}-C${i + 1}"]`);
+            await row.locator('input.em-seal').fill(closings[i]);
+            await row.locator('input[type=checkbox][name=intact]').check();
+            await Promise.all([page.waitForNavigation(), row.locator('.em-empty').click()]);
+            await settle(page);
+            current.did.push({ type: 'type', label: `Container ${i + 1}: closing seal`, value: `${closings[i]}, the seal is intact` });
+            if (await page.locator(`#emptying-list tr[data-container="L${lot}-C${i + 1}"][data-state="Emptied"]`).count() !== 1)
+                throw new Error(`container ${i + 1} was not emptied: ${await flash(page)}`);
+        }
+        current.result = `${closings.length} containers emptied`;
     });
     await step('Batch control sheet (CCP 7–10) entered', staff, async page => {
         await go(page, `/CCPMonitoring/Sheet?kind=batch&id=${batch}`);
