@@ -113,7 +113,9 @@ IF COL_LENGTH(N'dbo.Samples', N'ContainerId') IS NULL
         SealNumberMatches       bit         NULL;
 GO
 
-IF NOT EXISTS (SELECT 1 FROM sys.check_constraints WHERE name = N'CK_Samples_Kind')
+-- D-98: not again once 034 has replaced it by the wider CK_Samples_Kind2 (a second run of 023, or db/install followed by
+-- every migration, would otherwise bring back the narrow check and refuse batch samples)
+IF NOT EXISTS (SELECT 1 FROM sys.check_constraints WHERE name IN (N'CK_Samples_Kind', N'CK_Samples_Kind2'))
     ALTER TABLE dbo.Samples ADD CONSTRAINT CK_Samples_Kind CHECK (Kind IS NULL OR Kind IN ('Container', 'Composite'));
 GO
 
