@@ -7,6 +7,8 @@
         .then(function (r) { return r.ok && (r.headers.get('content-type') || '').indexOf('application/json') === 0 ? r.json() : null; })
         .then(function (s) {
             if (!s || !s.signedIn) return;
+            // D-108: the consumer's "Show animations" switch (the Honey Story's sheet reads html[data-scenes])
+            if (s.scenes === false) document.documentElement.setAttribute('data-scenes', 'off');
             var anon = document.getElementById('consumer-anon');
             if (anon) anon.hidden = true;
             var save = document.getElementById('consumer-save');

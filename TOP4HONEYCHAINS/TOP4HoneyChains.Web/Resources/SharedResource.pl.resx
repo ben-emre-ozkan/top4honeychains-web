@@ -10678,4 +10678,142 @@
   <data name="Enter the holding identification number (or the platform number of a registered beekeeper)." xml:space="preserve">
     <value>Wpisz numer identyfikacyjny gospodarstwa (lub numer zarejestrowanego pszczelarza na platformie).</value>
   </data>
+  <data name="Hs2.Verdict.ok" xml:space="preserve">
+    <value>Zbadany w laboratorium i w granicach wszystkich zweryfikowanych limitów</value>
+  </data>
+  <data name="Hs2.Verdict.okSub" xml:space="preserve">
+    <value>Każdy wynik laboratoryjny poniżej ma zweryfikowany limit i mieści się w nim.</value>
+  </data>
+  <data name="Hs2.Verdict.out" xml:space="preserve">
+    <value>Zbadany w laboratorium: niektóre wyniki są poza limitem</value>
+  </data>
+  <data name="Hs2.Verdict.outSub" xml:space="preserve">
+    <value>Wyniki poza limitem są oznaczone poniżej.</value>
+  </data>
+  <data name="Hs2.Verdict.tested" xml:space="preserve">
+    <value>Zbadany w laboratorium i prześledzony od ula do słoika</value>
+  </data>
+  <data name="Hs2.Verdict.testedSub" xml:space="preserve">
+    <value>Wyniki laboratoryjne są pokazane poniżej. Wynik, którego limit jest jeszcze weryfikowany, jest pokazany bez oceny „w limicie” lub „poza limitem”.</value>
+  </data>
+  <data name="Hs2.Verdict.traced" xml:space="preserve">
+    <value>Prześledzony od ula do słoika</value>
+  </data>
+  <data name="Hs2.Verdict.tracedSub" xml:space="preserve">
+    <value>Dla tej partii nie opublikowano jeszcze wyników laboratoryjnych.</value>
+  </data>
+  <data name="Hs2.Fact.Type" xml:space="preserve">
+    <value>Rodzaj miodu</value>
+  </data>
+  <data name="Hs2.Fact.Origin" xml:space="preserve">
+    <value>Pochodzenie</value>
+  </data>
+  <data name="Hs2.Fact.Amount" xml:space="preserve">
+    <value>Ilość w partii</value>
+  </data>
+  <data name="Hs2.Fact.Beekeepers" xml:space="preserve">
+    <value>Pszczelarze</value>
+  </data>
+  <data name="Hs2.Fact.Harvest" xml:space="preserve">
+    <value>Zbiór</value>
+  </data>
+  <data name="Hs2.Fact.Produced" xml:space="preserve">
+    <value>Data produkcji</value>
+  </data>
+  <data name="Hs2.Where.Intro" xml:space="preserve">
+    <value>Udział każdego pszczelarza w {0} kg tej partii, według wagi.</value>
+  </data>
+  <data name="Hs2.Protect.Title" xml:space="preserve">
+    <value>Jak był chroniony</value>
+  </data>
+  <data name="Hs2.Protect.Intro" xml:space="preserve">
+    <value>Co zarejestrowano między ulem a słoikiem. Pokazujemy tylko liczby, nigdy kodów plomb.</value>
+  </data>
+  <data name="Hs2.Protect.Containers" xml:space="preserve">
+    <value>{0} z {1} dostarczonych pojemników było zaplombowanych</value>
+  </data>
+  <data name="Hs2.Protect.Jars" xml:space="preserve">
+    <value>Zaplombowane słoiki z próbkami wysłane do laboratorium: {0}</value>
+  </data>
+  <data name="Hs2.Protect.LabChecked" xml:space="preserve">
+    <value>{0} z {1} słoików dotarło do laboratorium z nienaruszoną plombą</value>
+  </data>
+  <data name="Hs2.Protect.Sms" xml:space="preserve">
+    <value>{0} z {1} dostaw potwierdzonych przez pszczelarza kodem SMS</value>
+  </data>
+  <data name="Hs2.Protect.None" xml:space="preserve">
+    <value>Dla tej partii nie opublikowano zapisów dostaw ani plomb.</value>
+  </data>
+  <data name="Hs2.Lab.Title" xml:space="preserve">
+    <value>Laboratorium</value>
+  </data>
+  <data name="Hs2.Lab.Intro" xml:space="preserve">
+    <value>Dotknij wyniku, aby zobaczyć, co oznacza, wraz z krótkim filmem.</value>
+  </data>
+  <data name="Hs2.Lab.None" xml:space="preserve">
+    <value>Dla tej partii nie opublikowano jeszcze wyników laboratoryjnych.</value>
+  </data>
+  <data name="Hs2.Process.Title" xml:space="preserve">
+    <value>Punkty kontrolne w skrócie</value>
+  </data>
+  <data name="Hs2.Process.Intro" xml:space="preserve">
+    <value>Otwórz jeden, aby zobaczyć, co zarejestrowano.</value>
+  </data>
+  <data name="Hs2.Close" xml:space="preserve">
+    <value>Zamknij</value>
+  </data>
+  <data name="Hs2.Sheet.More" xml:space="preserve">
+    <value>Otwórz pełną stronę tego wyniku</value>
+  </data>
+  <data name="Hs2.VideoLang.en" xml:space="preserve">
+    <value>Ten film jest w języku angielskim.</value>
+  </data>
+  <data name="Hs2.VideoLang.tr" xml:space="preserve">
+    <value>Ten film jest w języku tureckim.</value>
+  </data>
+  <data name="Hs2.P.moisture" xml:space="preserve">
+    <value>Ile wody zawiera miód. Dojrzały miód ma mało wody i nie fermentuje.</value>
+  </data>
+  <data name="Hs2.P.hmf" xml:space="preserve">
+    <value>Wskaźnik świeżości: rośnie, gdy miód jest podgrzewany lub zbyt długo przechowywany.</value>
+  </data>
+  <data name="Hs2.P.diastase" xml:space="preserve">
+    <value>Naturalny enzym pochodzący od pszczół. Wysoka wartość świadczy o tym, że miód nie był przegrzany.</value>
+  </data>
+  <data name="Hs2.P.c4-sugar" xml:space="preserve">
+    <value>Pokazuje, czy do miodu dodano syrop trzcinowy lub kukurydziany.</value>
+  </data>
+  <data name="Hs2.P.sucrose" xml:space="preserve">
+    <value>Cukier stołowy. W prawdziwym miodzie jego poziom jest niski.</value>
+  </data>
+  <data name="Hs2.P.fructose-glucose" xml:space="preserve">
+    <value>Dwa główne naturalne cukry miodu. Ich proporcja świadczy o tym, że miód jest prawdziwy.</value>
+  </data>
+  <data name="Hs2.P.maltose" xml:space="preserve">
+    <value>Cukier występujący w małych ilościach. Wysoka zawartość może wskazywać na dodatek syropu.</value>
+  </data>
+  <data name="Hs2.P.pesticides" xml:space="preserve">
+    <value>Pozostałości środków ochrony roślin. W miodzie nie powinno ich być wcale lub prawie wcale.</value>
+  </data>
+  <data name="Hs2.P.antibiotics" xml:space="preserve">
+    <value>Pozostałości leków stosowanych w ulach. W miodzie nie powinno ich być.</value>
+  </data>
+  <data name="Hs2.P.electrical-conductivity" xml:space="preserve">
+    <value>Zawartość minerałów. Pozwala odróżnić miód nektarowy od spadziowego, np. sosnowego.</value>
+  </data>
+  <data name="Hs2.P.proline" xml:space="preserve">
+    <value>Aminokwas dodawany przez pszczoły. Odpowiednia ilość świadczy o dojrzałym, prawdziwym miodzie.</value>
+  </data>
+  <data name="Hs2.P.ph" xml:space="preserve">
+    <value>Kwasowość miodu. Miód jest naturalnie lekko kwaśny.</value>
+  </data>
+  <data name="Hs2.P.free-acidity" xml:space="preserve">
+    <value>Naturalne kwasy miodu. Zbyt duża ilość może oznaczać, że zaczął fermentować.</value>
+  </data>
+  <data name="Hs2.P.insoluble-matter" xml:space="preserve">
+    <value>Resztki wosku, pyłku lub zanieczyszczeń pozostałe po filtrowaniu. Czysty miód ma ich bardzo mało.</value>
+  </data>
+  <data name="Hs2.P.naphthalene" xml:space="preserve">
+    <value>Pozostałość naftalenu stosowanego przeciw barciakowi. W miodzie nie powinno go być.</value>
+  </data>
 </root>

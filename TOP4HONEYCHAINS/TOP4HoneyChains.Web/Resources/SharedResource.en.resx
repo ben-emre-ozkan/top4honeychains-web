@@ -10554,4 +10554,142 @@
   <data name="Enter the holding identification number (or the platform number of a registered beekeeper)." xml:space="preserve">
     <value>Enter the holding identification number (or the platform number of a registered beekeeper).</value>
   </data>
+  <data name="Hs2.Verdict.ok" xml:space="preserve">
+    <value>Tested in a laboratory and within every verified limit</value>
+  </data>
+  <data name="Hs2.Verdict.okSub" xml:space="preserve">
+    <value>Every laboratory value below has a verified limit and is within it.</value>
+  </data>
+  <data name="Hs2.Verdict.out" xml:space="preserve">
+    <value>Tested in a laboratory: some values are outside their limit</value>
+  </data>
+  <data name="Hs2.Verdict.outSub" xml:space="preserve">
+    <value>The values outside their limit are marked below.</value>
+  </data>
+  <data name="Hs2.Verdict.tested" xml:space="preserve">
+    <value>Tested in a laboratory and traced from the hive to the jar</value>
+  </data>
+  <data name="Hs2.Verdict.testedSub" xml:space="preserve">
+    <value>The laboratory values are shown below. A value whose limit is still being verified is shown without a within or outside verdict.</value>
+  </data>
+  <data name="Hs2.Verdict.traced" xml:space="preserve">
+    <value>Traced from the hive to the jar</value>
+  </data>
+  <data name="Hs2.Verdict.tracedSub" xml:space="preserve">
+    <value>No laboratory result is published for this batch yet.</value>
+  </data>
+  <data name="Hs2.Fact.Type" xml:space="preserve">
+    <value>Honey type</value>
+  </data>
+  <data name="Hs2.Fact.Origin" xml:space="preserve">
+    <value>Origin</value>
+  </data>
+  <data name="Hs2.Fact.Amount" xml:space="preserve">
+    <value>Amount in the batch</value>
+  </data>
+  <data name="Hs2.Fact.Beekeepers" xml:space="preserve">
+    <value>Beekeepers</value>
+  </data>
+  <data name="Hs2.Fact.Harvest" xml:space="preserve">
+    <value>Harvest</value>
+  </data>
+  <data name="Hs2.Fact.Produced" xml:space="preserve">
+    <value>Produced on</value>
+  </data>
+  <data name="Hs2.Where.Intro" xml:space="preserve">
+    <value>Each beekeeper's share of the {0} kg in this batch, by weight.</value>
+  </data>
+  <data name="Hs2.Protect.Title" xml:space="preserve">
+    <value>How it was protected</value>
+  </data>
+  <data name="Hs2.Protect.Intro" xml:space="preserve">
+    <value>What was recorded between the hive and the jar. Only counts are shown, never seal codes.</value>
+  </data>
+  <data name="Hs2.Protect.Containers" xml:space="preserve">
+    <value>{0} of {1} delivered containers were sealed</value>
+  </data>
+  <data name="Hs2.Protect.Jars" xml:space="preserve">
+    <value>Sealed sample jars sent to the laboratory: {0}</value>
+  </data>
+  <data name="Hs2.Protect.LabChecked" xml:space="preserve">
+    <value>{0} of {1} jars reached the laboratory with the seal intact</value>
+  </data>
+  <data name="Hs2.Protect.Sms" xml:space="preserve">
+    <value>{0} of {1} deliveries confirmed by the beekeeper with an SMS code</value>
+  </data>
+  <data name="Hs2.Protect.None" xml:space="preserve">
+    <value>No delivery or seal records are published for this batch.</value>
+  </data>
+  <data name="Hs2.Lab.Title" xml:space="preserve">
+    <value>The laboratory</value>
+  </data>
+  <data name="Hs2.Lab.Intro" xml:space="preserve">
+    <value>Tap a value to see what it means, with a short video.</value>
+  </data>
+  <data name="Hs2.Lab.None" xml:space="preserve">
+    <value>No laboratory result is published for this batch yet.</value>
+  </data>
+  <data name="Hs2.Process.Title" xml:space="preserve">
+    <value>Control points in short</value>
+  </data>
+  <data name="Hs2.Process.Intro" xml:space="preserve">
+    <value>Open one to see what was recorded.</value>
+  </data>
+  <data name="Hs2.Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Hs2.Sheet.More" xml:space="preserve">
+    <value>Open the full page of this value</value>
+  </data>
+  <data name="Hs2.VideoLang.en" xml:space="preserve">
+    <value>This video is in English.</value>
+  </data>
+  <data name="Hs2.VideoLang.tr" xml:space="preserve">
+    <value>This video is in Turkish.</value>
+  </data>
+  <data name="Hs2.P.moisture" xml:space="preserve">
+    <value>How much water the honey holds. Ripe honey has little water and keeps without fermenting.</value>
+  </data>
+  <data name="Hs2.P.hmf" xml:space="preserve">
+    <value>A sign of freshness: it rises when honey is heated or stored too long.</value>
+  </data>
+  <data name="Hs2.P.diastase" xml:space="preserve">
+    <value>A natural enzyme from the bees. A high value shows that the honey was not overheated.</value>
+  </data>
+  <data name="Hs2.P.c4-sugar" xml:space="preserve">
+    <value>Shows whether cane or corn syrup was added to the honey.</value>
+  </data>
+  <data name="Hs2.P.sucrose" xml:space="preserve">
+    <value>Table sugar. In genuine honey it stays low.</value>
+  </data>
+  <data name="Hs2.P.fructose-glucose" xml:space="preserve">
+    <value>The two main natural sugars of honey. Their balance shows that the honey is genuine.</value>
+  </data>
+  <data name="Hs2.P.maltose" xml:space="preserve">
+    <value>A minor sugar. A high amount can point to added syrup.</value>
+  </data>
+  <data name="Hs2.P.pesticides" xml:space="preserve">
+    <value>Traces of plant protection products. Honey should carry none or almost none.</value>
+  </data>
+  <data name="Hs2.P.antibiotics" xml:space="preserve">
+    <value>Traces of medicines used in hives. Honey should carry none.</value>
+  </data>
+  <data name="Hs2.P.electrical-conductivity" xml:space="preserve">
+    <value>The mineral content. It tells flower honey apart from honeydew honey such as pine honey.</value>
+  </data>
+  <data name="Hs2.P.proline" xml:space="preserve">
+    <value>An amino acid that the bees add. Enough of it shows ripe, genuine honey.</value>
+  </data>
+  <data name="Hs2.P.ph" xml:space="preserve">
+    <value>How acidic the honey is. Honey is naturally slightly acidic.</value>
+  </data>
+  <data name="Hs2.P.free-acidity" xml:space="preserve">
+    <value>The natural acids of the honey. Too much can mean that it has started to ferment.</value>
+  </data>
+  <data name="Hs2.P.insoluble-matter" xml:space="preserve">
+    <value>Bits of wax, pollen or dirt left after filtering. Clean honey has very little.</value>
+  </data>
+  <data name="Hs2.P.naphthalene" xml:space="preserve">
+    <value>A trace of the mothballs used against wax moths. Honey should carry none.</value>
+  </data>
 </root>
