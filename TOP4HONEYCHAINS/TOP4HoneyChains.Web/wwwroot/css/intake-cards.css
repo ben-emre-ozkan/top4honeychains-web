@@ -76,3 +76,17 @@ html[data-scenes="off"] .ci-card.ci-enter, html[data-scenes="off"] .ci-card.ci-l
 .ci-section [hidden], .ci-card [hidden] { display: none !important; }
 /* legends of the choices read as field labels, not as headings */
 .ci-section legend, .ci-card legend { float: none; width: auto; font-size: 15px; font-weight: 600; margin-bottom: 8px; color: var(--b-ink, #574A40); }
+
+/* every choice and field of the step has an (i) (TagHelpers/InfoTipTagHelper.cs). On a tile the button sits next to the radio,
+   outside the label, so a tap on the tile still selects it and the note opens below the tile. */
+.ci-tile-cell { position: relative; display: flex; flex-direction: column; min-width: 0; }
+.ci-tile-cell > .ci-tile { flex: 1 1 auto; }
+.ci-tile-cell > .info-tip-btn { position: absolute; top: 7px; right: 34px; margin: 0; z-index: 1; }
+.ci-tile-cell .ci-tile-title { padding-right: 52px; }
+.ci-tile-cell > .info-tip-note { max-width: none; }
+.ci-capcheck { flex-wrap: wrap; }
+.ci-capcheck > .info-tip-note { flex-basis: 100%; }
+/* the glossary of the step: closed until opened */
+.ci-gloss-list { margin: 8px 0 0; }
+.ci-gloss-list dt { font-weight: 700; margin-top: 8px; }
+.ci-gloss-list dd { margin: 2px 0 0; overflow-wrap: anywhere; }

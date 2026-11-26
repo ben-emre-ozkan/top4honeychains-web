@@ -77,3 +77,24 @@
 .hm-loader-text { margin: 0; min-height: 1.5em; color: var(--b-ink, #574A40); font-family: var(--b-text, system-ui, sans-serif); font-weight: 600; font-size: 17px; }
 @media (prefers-reduced-motion: reduce) { .hm-loader { transition: none; } }
 @media print { .hm-loader { display: none !important; } }
+
+/* The project's logo and the bee animations (2026-11-26): the static bee replaces an animation when "Show animations" is off
+   (html[data-scenes=off]) or the system asks for reduced motion */
+.brand-logo { display: inline-block; line-height: 0; }
+.brand-logo img { max-width: 100%; height: auto; }
+.bee { display: inline-block; line-height: 0; }
+.bee img { max-width: 100%; height: auto; }
+.bee .bee-still { display: none; }
+html[data-scenes="off"] .bee .bee-anim { display: none; }
+html[data-scenes="off"] .bee .bee-still { display: inline-block; }
+@media (prefers-reduced-motion: reduce) {
+    .bee .bee-anim { display: none; }
+    .bee .bee-still { display: inline-block; }
+}
+/* phones: the header logo gives way to the role switch and the user menu */
+@media (max-width: 575.98px) {
+    .app-brand .brand-logo img { width: auto; height: 28px; }
+}
+@media (max-width: 380px) {
+    .app-brand .brand-logo img { height: 24px; }
+}

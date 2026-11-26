@@ -29,6 +29,23 @@ namespace TOP4HoneyChains.Web.TagHelpers
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
+            // 2026-11-26: the project's emblem (docs/brand/logo-2026-11/logo-normal-size.png) replaces the drawn mark everywhere;
+            // the page loader uses the bee animation instead (Views/Shared/_Loader.cshtml)
+            {
+                var w = (int)Math.Round(Size * 1207.0 / 1254.0);
+                var src = Size > 64 ? "logo-emblem" : "logo-emblem-128";
+                var alt = System.Net.WebUtility.HtmlEncode(Label ?? "");
+                output.TagName = "span";
+                output.TagMode = TagMode.StartTagAndEndTag;
+                var cls = output.Attributes.TryGetAttribute("class", out var c0) ? " " + c0.Value : "";
+                output.Attributes.SetAttribute("class", "hm brand-logo" + cls);
+                if (string.IsNullOrWhiteSpace(Label))
+                    output.Attributes.SetAttribute("aria-hidden", "true");
+                output.Content.SetHtmlContent($"<picture><source type=\"image/webp\" srcset=\"/img/brand/{src}.webp\"><img src=\"/img/brand/{src}.png\" alt=\"{alt}\" width=\"{w}\" height=\"{Size}\" decoding=\"async\"></picture>");
+                return;
+            }
+#pragma warning disable CS0162
+
             var prefix = NextPrefix();
             var svg = Template().Replace("id=\"th-", $"id=\"{prefix}-").Replace("url(#th-", $"url(#{prefix}-");
             var width = (int)Math.Round(Size * 512.0 / 445.0);
@@ -52,6 +69,7 @@ namespace TOP4HoneyChains.Web.TagHelpers
             if (Mode == "once")
                 output.Attributes.SetAttribute("data-hm-once", "");
             output.Content.SetHtmlContent(svg);
+#pragma warning restore CS0162
         }
 
         // hm1, hm2, … per request

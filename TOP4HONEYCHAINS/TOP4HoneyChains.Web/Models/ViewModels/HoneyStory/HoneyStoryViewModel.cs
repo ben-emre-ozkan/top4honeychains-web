@@ -24,6 +24,23 @@
 
         // D-98: the laboratory result of the batch's final blend (company path), apart from the lot results; null = none
         public HoneyStoryFinalResult? FinalResult { get; set; }
+
+        // D-108: how the honey was protected on its way (counts only, never seal or container codes); null without the organization model
+        public HoneyStoryProtection? Protection { get; set; }
+
+        // D-108: the explanation of each lab parameter on the page (active content, first by sort order), for the value sheet
+        public Dictionary<int, Entities.CriticalControlPointParameterContent> ParameterContents { get; set; } = new();
+    }
+
+    // D-108: counts of the custody records of the batch's lots and of its final blend sample
+    public class HoneyStoryProtection
+    {
+        public int Containers { get; set; }
+        public int SealedContainers { get; set; }
+        public int Jars { get; set; }
+        public int JarsCheckedAtLab { get; set; }
+        public int Deliveries { get; set; }
+        public int SmsConfirmedDeliveries { get; set; }
     }
 
     public class HoneyStoryFinalResult

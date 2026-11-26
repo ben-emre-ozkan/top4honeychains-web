@@ -1,5 +1,7 @@
 # TOP4HoneyChains brand kit
 
+**Current logo (2026-11-26):** see [logo-2026-11/README.md](logo-2026-11/README.md); it replaces the drawn marks below on every page.
+
 The mark: a bee whose wings open behind three linked hexagons (the value chain and the honeycomb), with a turquoise head. `top4-mark-animated.svg` is the master drawing; every static file here is derived from it. Text in the logos is converted to outlines, so no font is needed.
 
 ## Files

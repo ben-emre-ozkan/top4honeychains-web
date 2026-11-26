@@ -3,15 +3,18 @@
 @using TOP4HoneyChains.Web.Services.OrgModel
 @using TOP4HoneyChains.Web.Models.ViewModels.HoneyStory
 @model HoneyStoryViewModel
-@inject IWebHostEnvironment Env
 @inject Microsoft.Extensions.Options.IOptionsSnapshot<TOP4HoneyChains.Web.Services.OrgModel.FeatureFlags> Flags
+@inject ParameterVideos Videos
 @{
-    // Public Honey Story opened from the QR code on the jar. Sections, order and wording follow the mobile app's
-    // honey story (header, origins, apiary locations, source composition, quality at a glance, lab report, process
-    // checks, verified footer); data and rules are the web's: verified data only, compliance only for verified
-    // limits (D-18), apiary areas only approximate (D-12), gaps shown as "not recorded" (D-16).
+    // Public Honey Story opened from the QR code on the jar (D-108: light, phone first). Order: the verdict and what this honey is;
+    // where it came from (shares, district map); how it was protected (counts of seals and confirmations, never codes; the journey);
+    // the laboratory (each value in plain language, its limit bar, the final honey result, links to verify the reports); the
+    // control points in short. Tapping a value opens a sheet with its explanation and video (wwwroot/js/honeystory-v2.js).
+    // Rules unchanged: verified data only, compliance only for verified limits (D-18), names only with consent (D-78), no phone,
+    // no photos of people, no prices, no coordinates (D-12, D-72), gaps shown as "not recorded" (D-16), drafts never public.
     Layout = null;
     var culture = CultureInfo.CurrentUICulture;
+    var lang = culture.TwoLetterISOLanguageName;
     var sources = Model.RawSources;
     var used = sources.Sum(s => s.UsedAmount);
     var total = Model.TotalAmount ?? used;
@@ -20,25 +23,48 @@
     string Pct(decimal share) => (share * 100).ToString("0.#", culture) + "%";
     string Num(decimal v) => v.ToString("0.##", culture);
     string Beekeeper(HoneyStoryRawSource s) => string.IsNullOrWhiteSpace(s.BeekeeperName) ? L["Hst.UnknownBeekeeper"].Value : s.BeekeeperName!;
+    string Province(int plate) => TOP4HoneyChains.Web.Services.Provinces.ByPlate(plate) ?? "";
     // D-85: without a public title the apiary is named by its province only
     string Apiary(HoneyStoryRawSource s) => !string.IsNullOrWhiteSpace(s.ApiaryName) ? s.ApiaryName!
         : s.ProvincePlate > 0 ? L["Hst.ApiaryIn", Province(s.ProvincePlate)].Value : L["Hst.AnApiary"].Value;
     string Color(int i) => "hs-c" + (i % 6);
     var biggest = sources.Count == 0 ? 0 : sources.IndexOf(sources.OrderByDescending(s => s.UsedAmount).First());
     var badges = Model.Badges;
-    var anyLab = sources.Any(s => HoneyStoryLab.Values(s).Any());
-    var anyUnverified = sources.SelectMany(HoneyStoryLab.Values).Any(v => v.Compliant == null);
-    var paramQuery = $"?qr={Model.BatchQR}";
-    // D-72: richer and animated (wwwroot/js/honeystory.js, tmap.js, honey-mark.js; docs/brand/MOTION.md): the bee plays once in the
-    // hero, the journey lights up step by step, the province map fills in, the meters move to their values, the seal stamps once.
-    // Everything is real data with designed empty states; the step photos are decorative backgrounds, never photos of this batch.
     var journey = Model.Journey;
+    var fr = Model.FinalResult;
     string Day(DateOnly? d) => d?.ToString("d MMM yyyy", culture) ?? "";
     string Moment(DateTime? d) => d?.ToString("d MMM yyyy", culture) ?? "";
-    string Province(int plate) => TOP4HoneyChains.Web.Services.Provinces.ByPlate(plate) ?? "";
+
+    // the verdict: from the published values only; "within" only when every value has a verified limit and is within it
+    var labValues = sources.SelectMany(HoneyStoryLab.Values).ToList();
+    var anyLab = labValues.Any();
+    var anyUnverified = labValues.Any(v => v.Compliant == null);
+    var finalCompliance = fr?.Values.Select(v => v.Compliant).ToList() ?? new List<bool?>();
+    var compliance = labValues.Select(v => v.Compliant).Concat(finalCompliance).ToList();
+    var verdict = compliance.Any(c => c == false) ? "out"
+        : compliance.Count > 0 && compliance.All(c => c == true) ? "ok"
+        : compliance.Count > 0 ? "tested" : "traced";
+    var paramQuery = $"?qr={Model.BatchQR}";
+
+    // what this honey is
+    var honeyTypes = sources.Where(s => s.HoneyType != null).Select(s => Ref.Text("HoneyType", "Title", s.HoneyType!)).Distinct().ToList();
+    var byProvince = sources.Where(s => s.ProvincePlate > 0).GroupBy(s => s.ProvincePlate)
+        .Select(g => (Plate: g.Key, Share: g.Sum(Share), Beekeepers: g.Select(Beekeeper).Distinct().Count()))
+        .OrderByDescending(p => p.Share).ToList();
+    var origin = byProvince.Any() ? string.Join(", ", byProvince.Select(p => Province(p.Plate)))
+        : badges?.Origins.Any() == true ? string.Join(", ", badges.Origins.Select(o => o.Country)) : null;
+    var harvest = journey.HarvestFrom == null ? null
+        : journey.HarvestFrom == journey.HarvestTo ? Day(journey.HarvestFrom) : Day(journey.HarvestFrom) + " – " + Day(journey.HarvestTo);
+    var beekeeperCount = sources.Select(Beekeeper).Distinct().Count();
+    var apiaryCount = sources.Select(s => s.ApiaryId ?? -s.RawHoneyProductionId).Distinct().Count();
+
+    // the parameters of the page, each once: its sheet (name, plain language, explanation, video)
+    var sheetParameters = labValues.Select(v => (Id: v.ParameterId!.Value, v.ParameterName))
+        .Concat(fr?.Values.Select(v => (Id: v.ParameterId, ParameterName: v.Name)) ?? Enumerable.Empty<(int, string?)>())
+        .GroupBy(p => p.Id).Select(g => g.First()).ToList();
 }
 <!doctype html>
-<html lang="@culture.TwoLetterISOLanguageName">
+<html lang="@lang">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,224 +74,157 @@
     <meta name="theme-color" content="#FFFBF0">
     <link href="~/css/brand.css" rel="stylesheet" asp-append-version="true">
     <link href="~/css/storefront.css" rel="stylesheet" asp-append-version="true">
-    <link href="~/css/honeystory.css" rel="stylesheet" asp-append-version="true">
     <link href="~/css/honey-mark.css" rel="stylesheet" asp-append-version="true">
     <link href="~/css/tmap.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/css/honeystory-v2.css" rel="stylesheet" asp-append-version="true">
 </head>
 <body class="sf-body">
-<div class="sf hs" id="honeystory" data-qr="@Model.BatchQR">
+<div class="sf hv" id="honeystory" data-qr="@Model.BatchQR">
 
 <partial name="_PublicTopBar" model="@(L["Hst.Title"].Value)" />
 
-<main id="top" class="sf-main">
+<main id="top" class="hv-main">
 
     @{
-        // Razor helpers: section header and one lab value tile
-        void Head(string icon, string eyebrow, string title)
+        // one lab value: a link to the parameter page that opens the value sheet instead (JS); the measure part is copied into the sheet
+        void Value(int parameterId, string? name, decimal? number, string? text, string? unitName, bool? compliant, string? limitText,
+            (double ZoneStart, double ZoneEnd, double Value)? bar, string href)
         {
-            <div class="hs-head">
-                <div class="hs-head-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#A2450B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">@Html.Raw(icon)</svg></div>
-                <div>
-                    <div class="hs-eyebrow">@eyebrow</div>
-                    <h2 class="hs-title">@title</h2>
-                </div>
-            </div>
-        }
-        void Tile(HoneyStoryCCPRow v, HoneyStoryRawSource s)
-        {
-            var unit = Ref.Unit(v.ParameterId, v.Unit);
-            var bar = HoneyStoryLab.Bar(v);
-            <a class="hs-tile" href="/honeystory/parameter/@v.ParameterId@(paramQuery)&amp;lot=@s.RawHoneyProductionId" data-parameter="@v.ParameterName">
-                <div class="hs-tile-name">@Ref.Parameter(v.ParameterId, v.ParameterName)</div>
-                <div class="hs-tile-value">@Num(v.NumericValue!.Value) <small title="@unit">@Units.Symbol(unit)</small></div>
-                @if (v.Compliant == true)
-                {
-                    <span class="hs-status is-ok">✓ @L["Hst.Within"]</span>
-                }
-                else if (v.Compliant == false)
-                {
-                    <span class="hs-status is-out">! @L["Hst.Out"]</span>
-                }
-                @if (bar != null)
-                {
-                    <div class="hs-bar" aria-hidden="true">
-                        <div class="hs-bar-zone" style="left: @bar.Value.ZoneStart.ToString(CultureInfo.InvariantCulture)%; right: @((100 - bar.Value.ZoneEnd).ToString(CultureInfo.InvariantCulture))%"></div>
-                        <div class="hs-bar-run" style="--x: @bar.Value.Value.ToString(CultureInfo.InvariantCulture)%"><span class="hs-bar-dot@(v.Compliant == false ? " is-out" : "")"></span></div>
-                    </div>
-                }
-                @if (v.Compliant != null && v.LimitText != null)
-                {
-                    <div class="hs-limit">@L["Limit:"] @Ref.Limit(v.LimitText, k => L[k])</div>
-                }
+            var unit = Ref.Unit(parameterId, unitName);
+            var key = ParameterVideos.KeyOf(name);
+            <a class="hv-val" href="@href" data-sheet="@parameterId">
+                <span class="hv-val-text">
+                    <b class="hv-val-name">@Ref.Parameter(parameterId, name)</b>
+                    @if (key != null)
+                    {
+                        <span class="hv-val-plain">@L["Hs2.P." + key]</span>
+                    }
+                </span>
+                <span class="hv-measure">
+                    <span class="hv-num">@(number != null ? Num(number.Value) : text) @if (number != null) {<small title="@unit">@Units.Symbol(unit)</small>}</span>
+                    @if (compliant == true)
+                    {
+                        <span class="hv-pill is-ok">✓ @L["Hst.Within"]</span>
+                    }
+                    else if (compliant == false)
+                    {
+                        <span class="hv-pill is-out">! @L["Hst.Out"]</span>
+                    }
+                    @if (bar != null)
+                    {
+                        <span class="hv-bar" aria-hidden="true">
+                            <span class="hv-bar-zone" style="left: @bar.Value.ZoneStart.ToString(CultureInfo.InvariantCulture)%; right: @((100 - bar.Value.ZoneEnd).ToString(CultureInfo.InvariantCulture))%"></span>
+                            <span class="hv-bar-dot@(compliant == false ? " is-out" : "")" style="left: @bar.Value.Value.ToString(CultureInfo.InvariantCulture)%"></span>
+                        </span>
+                    }
+                    @if (compliant != null && limitText != null)
+                    {
+                        <span class="hv-limit">@L["Limit:"] @Ref.Limit(limitText, k => L[k])</span>
+                    }
+                </span>
+                <span class="hv-val-go" aria-hidden="true">›</span>
             </a>
         }
         void Chips()
         {
             if (sources.Count > 1)
             {
-                <div class="hs-chips" role="group" aria-label="@L["Hst.SourceLabel"]">
+                <div class="hv-chips" role="group" aria-label="@L["Hst.SourceLabel"]">
                     @for (var i = 0; i < sources.Count; i++)
                     {
-                        <button type="button" class="hs-chip @Color(i)@(i == biggest ? " is-on" : "")" data-src="@i" aria-pressed="@(i == biggest ? "true" : "false")">
-                            <span class="hs-dot"></span>@Apiary(sources[i]) · @Pct(Share(sources[i]))
+                        <button type="button" class="hv-chip @Color(i)@(i == biggest ? " is-on" : "")" data-src="@i" aria-pressed="@(i == biggest ? "true" : "false")">
+                            <span class="hv-dot"></span>@Apiary(sources[i]) · @Pct(Share(sources[i]))
                         </button>
                     }
                 </div>
             }
         }
+        void VerifyLink(string code, string? lab)
+        {
+            <a class="hv-verify" href="/verify-report?code=@code">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"></path><path d="m9 12 2 2 4-4"></path></svg>
+                <span class="grow">@L["Sf.VerifyReportCode", code]@if (lab != null) {<small>@lab</small>}</span><span aria-hidden="true">›</span>
+            </a>
+        }
     }
 
-    @* ===== 1. header card ===== *@
-    <section class="hs-hero">
-        <span class="hs-hero-glow" aria-hidden="true"></span>
-        <svg class="hs-hero-hex" viewBox="0 0 100 100" aria-hidden="true"><polygon points="50,3 93,27 93,73 50,97 7,73 7,27" fill="none" stroke="#FFB547" stroke-width="5"></polygon></svg>
-        <div class="hs-hero-row">
-            <button type="button" class="hs-bee th-logo-trigger" data-hm-click aria-label="@L["Land.PlayBee"]"><honey-mark mode="once" size="54" /></button>
-            <div>
-                <span class="hs-traceable">✓ @L["Hst.Traceable"]</span>
-                <h1 class="hs-batch">@(Model.BatchTitle ?? L["Hst.Untitled"].Value)</h1>
-                <div class="hs-maker">@(Model.WholesalerName ?? L["Hst.UnknownWholesaler"].Value)</div>
+    @* ===== 1. the verdict and what this honey is ===== *@
+    <section class="hv-hero" id="hs-verdict">
+        <div class="hv-hero-top">
+            <span class="hv-hero-bee"><partial name="_Bee" model="@(new TOP4HoneyChains.Web.Models.ViewModels.Bee("landing", 56))" /></span>
+            <div class="hv-hero-name">
+                <span class="hv-traceable">✓ @L["Hst.Traceable"]</span>
+                <h1 class="hv-batch">@(Model.BatchTitle ?? L["Hst.Untitled"].Value)</h1>
+                <div class="hv-maker">@(Model.WholesalerName ?? L["Hst.UnknownWholesaler"].Value)</div>
             </div>
         </div>
-        <div class="hs-stats">
-            <div class="hs-stat"><b>@Kg(total)</b><span>@L["Hst.KgHoney"]</span></div>
-            <div class="hs-stat"><b>@sources.Count</b><span>@L["Hst.Beekeepers"]</span></div>
-            <div class="hs-stat"><b>@(Model.ProductionDate?.ToString("d MMM yyyy", culture) ?? L["Hst.NotAvailable"].Value)</b><span>@L["Hst.Produced"]</span></div>
+        <div class="hv-verdict is-@verdict" id="hs-verdict-box">
+            <span class="hv-verdict-icon" aria-hidden="true">
+                @if (verdict == "out")
+                {
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"></path><path d="M12 8v5M12 16.5v.01"></path></svg>
+                }
+                else
+                {
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"></path><path d="m9 12 2 2 4-4"></path></svg>
+                }
+            </span>
+            <div>
+                <p class="hv-verdict-line">@L["Hs2.Verdict." + verdict]</p>
+                <p class="hv-verdict-sub">@L["Hs2.Verdict." + verdict + "Sub"]</p>
+            </div>
         </div>
+        <dl class="hv-facts">
+            @if (honeyTypes.Any())
+            {
+                <div><dt>@L["Hs2.Fact.Type"]</dt><dd>@string.Join(", ", honeyTypes)</dd></div>
+            }
+            @if (origin != null)
+            {
+                <div><dt>@L["Hs2.Fact.Origin"]</dt><dd>@origin</dd></div>
+            }
+            <div><dt>@L["Hs2.Fact.Amount"]</dt><dd>@Kg(total) kg</dd></div>
+            <div><dt>@L["Hs2.Fact.Beekeepers"]</dt><dd>@beekeeperCount</dd></div>
+            @if (harvest != null)
+            {
+                <div><dt>@L["Hs2.Fact.Harvest"]</dt><dd>@harvest</dd></div>
+            }
+            <div><dt>@L["Hs2.Fact.Produced"]</dt><dd>@(Model.ProductionDate?.ToString("d MMM yyyy", culture) ?? L["Hst.NotAvailable"].Value)</dd></div>
+        </dl>
         @if (badges != null)
         {
-            <div class="hs-badges" id="honeystory-badges">
+            <div class="hv-badges" id="honeystory-badges">
                 @if (badges.AccreditedLab)
                 {
-                    <span class="hs-badge is-ok" id="badge-accredited">✓ @L["Hs.AccreditedLab"]@if (badges.AccreditationNumbers.Any()) {<small>(@string.Join(", ", badges.AccreditationNumbers))</small>}</span>
+                    <span class="hv-badge is-ok" id="badge-accredited">✓ @L["Hs.AccreditedLab"]@if (badges.AccreditationNumbers.Any()) {<small>(@string.Join(", ", badges.AccreditationNumbers))</small>}</span>
                 }
                 @if (badges.InHouseLab)
                 {
-                    <span class="hs-badge" id="badge-inhouse">@L["Hs.InHouseLab"]</span>
+                    <span class="hv-badge" id="badge-inhouse">@L["Hs.InHouseLab"]</span>
                 }
                 @if (badges.AllCcpsApproved)
                 {
-                    <span class="hs-badge is-ok" id="badge-approved">✓ @L["Hs.AllCcpsApproved"]</span>
+                    <span class="hv-badge is-ok" id="badge-approved">✓ @L["Hs.AllCcpsApproved"]</span>
                 }
                 @if (badges.LimitsCompliant)
                 {
-                    <span class="hs-badge is-ok" id="badge-limits">✓ @L["Hs.LimitsCompliant"]</span>
+                    <span class="hv-badge is-ok" id="badge-limits">✓ @L["Hs.LimitsCompliant"]</span>
                 }
                 @if (badges.Origins.Any())
                 {
-                    <span class="hs-badge" id="badge-origin">@L["P5.Origin"]: @string.Join(", ", badges.Origins.Select(o => $"{o.Country} {o.Percentage.ToString("0.##", culture)}%"))</span>
+                    <span class="hv-badge" id="badge-origin">@L["P5.Origin"]: @string.Join(", ", badges.Origins.Select(o => $"{o.Country} {o.Percentage.ToString("0.##", culture)}%"))</span>
                 }
                 @foreach (var code in badges.ReportCodes)
                 {
-                    <a class="hs-badge report-code" href="/verify-report?code=@code">@L["Hs.LabReport"] @code</a>
+                    <a class="hv-badge report-code" href="/verify-report?code=@code">@L["Hs.LabReport"] @code</a>
                 }
             </div>
         }
     </section>
 
-    @* ===== journey (D-72): this batch's real steps on a vertical light path; each step lights up as it scrolls into view ===== *@
-    @{
-        var apiaryCount = sources.Select(s => s.ApiaryId ?? -s.RawHoneyProductionId).Distinct().Count();
-        var beekeeperCount = sources.Select(Beekeeper).Distinct().Count();
-        var harvest = journey.HarvestFrom == null ? null
-            : journey.HarvestFrom == journey.HarvestTo ? L["Hst.J.Harvest", Day(journey.HarvestFrom)].Value
-            : L["Hst.J.HarvestRange", Day(journey.HarvestFrom), Day(journey.HarvestTo)].Value;
-        var steps = new (string Key, string Line, string? Sub, string? Href, bool Empty)[]
-        {
-            ("apiary", sources.Any() ? L["Hst.J.Apiary", beekeeperCount, apiaryCount].Value : L["Hst.J.NoSources"].Value, harvest, sources.Any() ? "#hs-sources" : null, !sources.Any()),
-            ("delivery", journey.Deliveries > 0 ? L["Hst.J.Delivery", journey.Deliveries, string.Join(", ", journey.Receivers)].Value : L["Hst.J.NoDelivery"].Value,
-                journey.DeliveredOn != null ? Day(journey.DeliveredOn) : null, null, journey.Deliveries == 0),
-            ("lab", journey.ApprovedReports > 0 ? L["Hst.J.Lab", journey.ApprovedReports, string.Join(", ", journey.Labs)].Value : journey.LabValuesRecorded ? L["Hst.J.LabValues"].Value : L["Hst.J.NoLab"].Value,
-                journey.LabApprovedAt != null ? Moment(journey.LabApprovedAt) : null, anyLab ? "#lab-report" : null, journey.ApprovedReports == 0 && !journey.LabValuesRecorded),
-            ("processing", journey.ControlPointsTotal > 0 ? L["Hst.J.Process", journey.ControlPointsRecorded, journey.ControlPointsTotal].Value : L["Hst.J.NoProcess"].Value,
-                journey.FinalizedAt != null ? L["Hst.J.Sealed", Moment(journey.FinalizedAt)].Value : null, sources.Any() ? "#process" : null, journey.ControlPointsTotal == 0),
-            ("shelf", journey.Retailers.Any() ? L["Hst.J.Shelf", string.Join(", ", journey.Retailers)].Value : L["Hst.J.NoShelf"].Value,
-                journey.OnShelfSince != null ? Moment(journey.OnShelfSince) : null, null, !journey.Retailers.Any())
-        };
-        var stepNames = new[] { L["Land.Station.Apiary"].Value, L["Land.Station.Delivery"].Value, L["Land.Station.Lab"].Value, L["Land.Station.Processing"].Value, L["Land.Station.Shelf"].Value };
-        var stepImages = new[] { "step-1-apiary", "step-2-delivery", "step-3-lab", "step-4-processing", "step-5-shelf" }
-            .Select(n => LandingImages.Find(Env, n)).Select(i => i.WebP.Where(w => w.Width == 480).Select(w => w.Url).FirstOrDefault() ?? i.Jpeg).ToArray();
-    }
-    <section class="hs-section" id="hs-journey">
-        @{ Head("<path d=\"M12 3v18\"></path><circle cx=\"12\" cy=\"6\" r=\"2.5\"></circle><circle cx=\"12\" cy=\"12\" r=\"2.5\"></circle><circle cx=\"12\" cy=\"18\" r=\"2.5\"></circle>", L["Hst.J.Eyebrow"].Value, L["Hst.J.Title"].Value); }
-        <div class="hs-journey-box" data-journey>
-            <span class="hs-jline" aria-hidden="true"><span class="hs-jline-fill"></span></span>
-            <ol class="hs-journey">
-                @for (var i = 0; i < steps.Length; i++)
-                {
-                    var st = steps[i];
-                    <li class="hs-jstep@(st.Empty ? " is-empty" : "")" id="journey-@st.Key" data-step>
-                        <span class="hs-jnode" aria-hidden="true"><partial name="~/Views/Shared/_LandingIcon.cshtml" model="@st.Key" /></span>
-                        <div class="hs-jcard">
-                            @if (stepImages[i] != null)
-                            {
-                                <span class="hs-jbg" aria-hidden="true" data-bg="@stepImages[i]"></span>
-                            }
-                            <div class="hs-jbody">
-                                <span class="hs-jkicker">@(i + 1) · @stepNames[i]</span>
-                                <b>@st.Line</b>
-                                @if (st.Sub != null)
-                                {
-                                    <span class="hs-jsub">@st.Sub</span>
-                                }
-                                @if (st.Href != null)
-                                {
-                                    <a href="@st.Href">@L["Hst.J.Details"] ›</a>
-                                }
-                            </div>
-                        </div>
-                    </li>
-                }
-            </ol>
-        </div>
-        <p class="hs-note">@L["Hst.J.Illustration"]</p>
-    </section>
-
     @if (sources.Any())
     {
-        @* ===== 2. honey origins ===== *@
-        <section class="hs-section" id="hs-origins">
-            @{ Head("<path d=\"M21 12a9 9 0 1 1-9-9v9z\"></path><path d=\"M12 3a9 9 0 0 1 9 9h-9z\"></path>", L["Hst.OriginsEyebrow"].Value, L["Hst.OriginsTitle"].Value); }
-            <div class="hs-card hs-origins">
-                <div class="hs-donut">
-                    <svg viewBox="0 0 180 180" aria-hidden="true">
-                        @{
-                            const double r = 75;
-                            var circumference = 2 * Math.PI * r;
-                            double offset = 0;
-                            for (var i = 0; i < sources.Count; i++)
-                            {
-                                var dash = (double)Share(sources[i]) * circumference;
-                                <circle class="@Color(i)" cx="90" cy="90" r="75" stroke-dasharray="@dash.ToString("0.##", CultureInfo.InvariantCulture) @((circumference - dash).ToString("0.##", CultureInfo.InvariantCulture))" stroke-dashoffset="@((-offset).ToString("0.##", CultureInfo.InvariantCulture))"></circle>
-                                offset += dash;
-                            }
-                        }
-                    </svg>
-                    <div class="hs-donut-center"><b>@Kg(used) kg</b><span>@L["Hst.TotalHoney"]</span></div>
-                </div>
-                <div class="hs-legend">
-                    @for (var i = 0; i < sources.Count; i++)
-                    {
-                        var s = sources[i];
-                        <div class="hs-legend-item @Color(i)">
-                            <div class="hs-legend-top">
-                                <span class="hs-dot"></span>
-                                <span class="hs-legend-name">@Beekeeper(s)</span>
-                                <span class="hs-legend-kg">@Kg(s.UsedAmount) kg</span>
-                                <span class="hs-legend-pct">@Pct(Share(s))</span>
-                            </div>
-                            <div class="hs-track"><div class="hs-fill" style="width: @((Share(s) * 100).ToString("0.##", CultureInfo.InvariantCulture))%"></div></div>
-                        </div>
-                    }
-                </div>
-            </div>
-        </section>
-
-        @* ===== 3. origins by province (D-12, D-72): each province's share of the jar; never an apiary position.
-           D-98: a province opens its districts, shaded by their share; each source shows its district's outline ===== *@
-        var byProvince = sources.Where(s => s.ProvincePlate > 0).GroupBy(s => s.ProvincePlate)
-            .Select(g => (Plate: g.Key, Share: g.Sum(Share), Beekeepers: g.Select(Beekeeper).Distinct().Count()))
-            .OrderByDescending(p => p.Share).ToList();
+        @* ===== 2. where it came from: each beekeeper's share and the district map (D-12, D-72, D-98: never an apiary position) ===== *@
         var unplaced = sources.Where(s => s.ProvincePlate == 0).Sum(Share);
         var byDistrict = sources.Where(s => s.ProvincePlate > 0 && s.District != null).GroupBy(s => (s.ProvincePlate, s.District!))
             .Select(g => new TOP4HoneyChains.Web.Models.ViewModels.TurkeyMapDistrictArea(g.Key.ProvincePlate, g.Key.Item2, (double)g.Sum(Share),
@@ -279,238 +238,237 @@
             DistrictAreas = byDistrict,
             Areas = byProvince.Select(p => new TOP4HoneyChains.Web.Models.ViewModels.TurkeyMapArea(p.Plate, (double)p.Share, L["Hst.MapTip", Pct(p.Share), p.Beekeepers].Value)).ToList()
         };
-        <section class="hs-section" id="hs-map">
-            @{ Head("<path d=\"M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z\"></path><circle cx=\"12\" cy=\"9.5\" r=\"2.5\"></circle>", L["Hst.MapEyebrow"].Value, L["Hst.MapTitle"].Value); }
-            @if (byProvince.Any())
-            {
-                <div class="hs-card hs-map">
-                    <partial name="~/Views/Shared/_TurkeyMap.cshtml" model="originMap" />
-                    <ul class="hs-provinces" aria-label="@L["Hst.MapLegend"]">
-                        @foreach (var p in byProvince)
-                        {
-                            <li><i class="hs-swatch tm-v@(originMap.Level((double)p.Share))" aria-hidden="true"></i><b>@Province(p.Plate)</b><span>@Pct(p.Share)</span></li>
-                        }
-                        @if (unplaced > 0)
-                        {
-                            <li class="is-unplaced"><i class="hs-swatch" aria-hidden="true"></i><b>@L["Hst.MapUnplaced"]</b><span>@Pct(unplaced)</span></li>
-                        }
-                    </ul>
-                </div>
-                <p class="hs-note">@L["Hst.MapNote"]</p>
-            }
-            else
-            {
-                <div class="hs-card hs-map-empty"><span class="hs-head-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#A2450B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg></span><p>@L["Hst.MapEmpty"]</p></div>
-            }
-            <div class="hs-places">
-                @for (var i = 0; i < sources.Count; i++)
-                {
-                    var s = sources[i];
-                    var where = s.District != null ? s.District + ", " + Province(s.ProvincePlate) : Province(s.ProvincePlate);
-                    <div class="hs-card hs-place @Color(i)">
-                        <div class="hs-pin">@(i + 1)</div>
-                        <div class="hs-place-body"><b>@Apiary(s)</b><span>@Beekeeper(s)@if (s.ProvincePlate > 0) {<text> · @where</text>}</span></div>
-                        @if (s.ProvincePlate > 0)
-                        {
-                            <partial name="~/Views/Shared/_DistrictOutline.cshtml" model="@(new TOP4HoneyChains.Web.Models.ViewModels.DistrictOutlineModel(s.ProvincePlate, s.District, where))" />
-                        }
-                        <div class="hs-amount"><b>@Kg(s.UsedAmount) kg</b><span>@Pct(Share(s))</span></div>
-                    </div>
-                }
-            </div>
-        </section>
-
-        @* ===== 4. source composition ===== *@
-        <section class="hs-section" id="hs-sources">
-            @{ Head("<path d=\"M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2\"></path><circle cx=\"10\" cy=\"7\" r=\"4\"></circle><path d=\"M21 21v-2a4 4 0 0 0-3-3.9\"></path>", L["Hst.SourcesEyebrow"].Value, L["Hst.SourcesTitle"].Value); }
-            <div class="hs-stack" aria-hidden="true">
+        <section class="hv-section" id="hs-origins">
+            <h2 class="hv-h2">@L["Hst.OriginsEyebrow"]</h2>
+            <p class="hv-intro">@L["Hs2.Where.Intro", Kg(used)]</p>
+            <div class="hv-stack" aria-hidden="true">
                 @for (var i = 0; i < sources.Count; i++)
                 {
                     <span class="@Color(i)" style="flex: @((Share(sources[i]) * 1000).ToString("0", CultureInfo.InvariantCulture))"></span>
                 }
             </div>
-            <div class="hs-sources">
+            <ol class="hv-sources" id="hs-sources">
                 @for (var i = 0; i < sources.Count; i++)
                 {
                     var s = sources[i];
-                    <div class="hs-card @Color(i)" data-lot="@s.RawHoneyProductionId">
-                        <div class="hs-source-head">
-                            <div class="hs-avatar">@StorefrontPage.Initials(Beekeeper(s))</div>
-                            <div class="hs-source-name">
+                    var where = s.District != null ? s.District + ", " + Province(s.ProvincePlate) : Province(s.ProvincePlate);
+                    <li class="hv-source @Color(i)" data-lot="@s.RawHoneyProductionId">
+                        <div class="hv-source-row">
+                            <span class="hv-share"><b>@Pct(Share(s))</b><small>@Kg(s.UsedAmount) kg</small></span>
+                            <div class="hv-source-body">
                                 <b>@if (s.StorefrontCode != null) {<a href="/storefront/@s.StorefrontCode" class="storefront-link">@Beekeeper(s)</a>} else {<text>@Beekeeper(s)</text>}</b>
-                                <span>@Apiary(s)</span>
+                                <span>@Apiary(s)@if (s.ProvincePlate > 0) {<text> · @where</text>}</span>
+                                @if (s.HoneyType != null)
+                                {
+                                    <span class="hv-type">@Ref.Text("HoneyType", "Title", s.HoneyType)</span>
+                                }
                             </div>
-                            @if (s.HoneyType != null)
+                            @if (s.ProvincePlate > 0)
                             {
-                                <span class="hs-type">@Ref.Text("HoneyType", "Title", s.HoneyType)</span>
+                                <span class="hv-outline"><partial name="~/Views/Shared/_DistrictOutline.cshtml" model="@(new TOP4HoneyChains.Web.Models.ViewModels.DistrictOutlineModel(s.ProvincePlate, s.District, where))" /></span>
                             }
                         </div>
-                        <div class="hs-used">
-                            <span>⚖ @L["Hst.KgUsed", Kg(s.UsedAmount)]</span>
-                            <span class="hs-share-pill">@L["Hst.ShareOfJar", Pct(Share(s))]</span>
-                        </div>
-                        @if (s.StorefrontCode != null)
-                        {
-                            <a class="hs-sf-link" href="/storefront/@s.StorefrontCode">@L["P5.BeekeeperPage"] →</a>
-                        }
                         @if (s.Photos.Any())
                         {
-                            <div class="hs-photos">
+                            <div class="hv-photos">
                                 @foreach (var p in s.Photos)
                                 {
                                     <img src="@Url.Action("Image", "HoneyStory", new { id = p.ApiaryPhotoId, qr = Model.BatchQR })" alt="@(p.Description ?? Apiary(s))" loading="lazy">
                                 }
                             </div>
                         }
+                        @if (s.StorefrontCode != null)
+                        {
+                            <a class="hv-sf-link" href="/storefront/@s.StorefrontCode">@L["P5.BeekeeperPage"] →</a>
+                        }
+                    </li>
+                }
+            </ol>
+            <div class="hv-map" id="hs-map">
+                <h3 class="hv-h3">@L["Hst.MapTitle"]</h3>
+                @if (byProvince.Any())
+                {
+                    <div class="hv-card hv-map-card">
+                        <partial name="~/Views/Shared/_TurkeyMap.cshtml" model="originMap" />
+                        <ul class="hv-provinces" aria-label="@L["Hst.MapLegend"]">
+                            @foreach (var p in byProvince)
+                            {
+                                <li><i class="hv-swatch tm-v@(originMap.Level((double)p.Share))" aria-hidden="true"></i><b>@Province(p.Plate)</b><span>@Pct(p.Share)</span></li>
+                            }
+                            @if (unplaced > 0)
+                            {
+                                <li class="is-unplaced"><i class="hv-swatch" aria-hidden="true"></i><b>@L["Hst.MapUnplaced"]</b><span>@Pct(unplaced)</span></li>
+                            }
+                        </ul>
                     </div>
+                    <p class="hv-note">@L["Hst.MapNote"]</p>
+                }
+                else
+                {
+                    <p class="hv-card hv-empty">@L["Hst.MapEmpty"]</p>
                 }
             </div>
         </section>
+    }
 
-        @* ===== 5. quality at a glance ===== *@
-        <section class="hs-section" id="hs-lab">
-            @{ Head("<path d=\"M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3\"></path>", L["Hst.LabEyebrow"].Value, L["Hst.LabTitle"].Value); }
+    @* ===== 3. how it was protected: counts only, never seal or container codes; then the journey (D-72) ===== *@
+    @{
+        var pr = Model.Protection;
+        var steps = new (string Key, string Line, string? Sub, bool Empty)[]
+        {
+            ("apiary", sources.Any() ? L["Hst.J.Apiary", beekeeperCount, apiaryCount].Value : L["Hst.J.NoSources"].Value,
+                journey.HarvestFrom == null ? null : journey.HarvestFrom == journey.HarvestTo ? L["Hst.J.Harvest", Day(journey.HarvestFrom)].Value : L["Hst.J.HarvestRange", Day(journey.HarvestFrom), Day(journey.HarvestTo)].Value,
+                !sources.Any()),
+            ("delivery", journey.Deliveries > 0 ? L["Hst.J.Delivery", journey.Deliveries, string.Join(", ", journey.Receivers)].Value : L["Hst.J.NoDelivery"].Value,
+                journey.DeliveredOn != null ? Day(journey.DeliveredOn) : null, journey.Deliveries == 0),
+            ("lab", journey.ApprovedReports > 0 ? L["Hst.J.Lab", journey.ApprovedReports, string.Join(", ", journey.Labs)].Value : journey.LabValuesRecorded ? L["Hst.J.LabValues"].Value : L["Hst.J.NoLab"].Value,
+                journey.LabApprovedAt != null ? Moment(journey.LabApprovedAt) : null, journey.ApprovedReports == 0 && !journey.LabValuesRecorded),
+            ("processing", journey.ControlPointsTotal > 0 ? L["Hst.J.Process", journey.ControlPointsRecorded, journey.ControlPointsTotal].Value : L["Hst.J.NoProcess"].Value,
+                journey.FinalizedAt != null ? L["Hst.J.Sealed", Moment(journey.FinalizedAt)].Value : null, journey.ControlPointsTotal == 0),
+            ("shelf", journey.Retailers.Any() ? L["Hst.J.Shelf", string.Join(", ", journey.Retailers)].Value : L["Hst.J.NoShelf"].Value,
+                journey.OnShelfSince != null ? Moment(journey.OnShelfSince) : null, !journey.Retailers.Any())
+        };
+        var stepNames = new[] { L["Land.Station.Apiary"].Value, L["Land.Station.Delivery"].Value, L["Land.Station.Lab"].Value, L["Land.Station.Processing"].Value, L["Land.Station.Shelf"].Value };
+        var guards = pr == null ? new List<(string Icon, int Count, int Of, string Text)>() : new List<(string Icon, int Count, int Of, string Text)>
+        {
+            ("container", pr.SealedContainers, pr.Containers, L["Hs2.Protect.Containers", pr.SealedContainers, pr.Containers].Value),
+            ("jar", pr.Jars, 0, L["Hs2.Protect.Jars", pr.Jars].Value),
+            ("lab", pr.JarsCheckedAtLab, pr.Jars, L["Hs2.Protect.LabChecked", pr.JarsCheckedAtLab, pr.Jars].Value),
+            ("sms", pr.SmsConfirmedDeliveries, pr.Deliveries, L["Hs2.Protect.Sms", pr.SmsConfirmedDeliveries, pr.Deliveries].Value)
+        }.Where(g => g.Count > 0 || g.Of > 0).ToList();
+    }
+    <section class="hv-section" id="hs-protect">
+        <h2 class="hv-h2">@L["Hs2.Protect.Title"]</h2>
+        <p class="hv-intro">@L["Hs2.Protect.Intro"]</p>
+        @if (guards.Any())
+        {
+            <ul class="hv-guards">
+                @foreach (var g in guards)
+                {
+                    <li class="hv-guard" data-guard="@g.Icon">
+                        <span class="hv-guard-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                @switch (g.Icon)
+                                {
+                                    case "container": <path d="M5 7h14v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2zM4 4h16v3H4zM10 11h4"></path> break;
+                                    case "jar": <path d="M8 3h8v3H8zM7 6h10l1 3v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9zM9 13h6"></path> break;
+                                    case "lab": <path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3M8 15h8"></path> break;
+                                    default: <path d="M7 3h10a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM10 18h4M9 9l2 2 4-4"></path> break;
+                                }
+                            </svg>
+                        </span>
+                        <span class="hv-guard-num"><b>@g.Count</b>@if (g.Of > 0) {<small>/@g.Of</small>}</span>
+                        <span class="hv-guard-text">@g.Text</span>
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p class="hv-card hv-empty">@L["Hs2.Protect.None"]</p>
+        }
+        <div class="hv-journey" id="hs-journey">
+            <h3 class="hv-h3">@L["Hst.J.Title"]</h3>
+            <ol class="hv-steps">
+                @for (var i = 0; i < steps.Length; i++)
+                {
+                    var st = steps[i];
+                    <li class="hv-step@(st.Empty ? " is-empty" : "")" id="journey-@st.Key" data-step>
+                        <span class="hv-step-node" aria-hidden="true"><partial name="~/Views/Shared/_LandingIcon.cshtml" model="@st.Key" /></span>
+                        <span class="hv-step-body">
+                            <span class="hv-step-kicker">@stepNames[i]</span>
+                            <b>@st.Line</b>
+                            @if (st.Sub != null)
+                            {
+                                <span class="hv-step-sub">@st.Sub</span>
+                            }
+                        </span>
+                    </li>
+                }
+            </ol>
+        </div>
+    </section>
+
+    @if (sources.Any())
+    {
+        @* ===== 4. the laboratory: each value in plain language with its limit bar (verified limits only), the final honey result ===== *@
+        <section class="hv-section" id="hs-lab">
+            <h2 class="hv-h2">@L["Hs2.Lab.Title"]</h2>
+            <p class="hv-intro">@L[anyLab || fr != null ? "Hs2.Lab.Intro" : "Hs2.Lab.None"]</p>
             @if (anyLab && anyUnverified)
             {
-                <div class="hs-pending" id="hs-limits-pending">ⓘ <span>@L["Hst.LimitsPending"]</span></div>
+                <div class="hv-pending" id="hs-limits-pending">ⓘ <span>@L["Hst.LimitsPending"]</span></div>
             }
-            @{ Chips(); }
-            @for (var i = 0; i < sources.Count; i++)
+
+            @if (fr != null)
             {
-                var s = sources[i];
-                var highlights = HoneyStoryLab.HighlightValues(s);
-                <div class="hs-panel@(i == biggest ? " is-on" : "")" data-src="@i">
-                    @if (sources.Count > 1)
-                    {
-                        <p class="hs-panel-title">@L["Hst.FromSource", Apiary(s)]</p>
-                    }
-                    @if (highlights.Any())
-                    {
-                        <div class="hs-tiles">
-                            @foreach (var v in highlights) { Tile(v, s); }
-                        </div>
-                    }
-                    else
-                    {
-                        <p class="hs-note">@L["Hst.NoResults"]</p>
-                    }
+                <div class="hv-final" id="final-result">
+                    <h3 class="hv-h3">@L["Final.Title"]</h3>
+                    <p class="hv-note">@L["Final.PublicIntro"]</p>
+                    @{ VerifyLink(fr.ReportCode, fr.LabName); }
+                    <div class="hv-vals">
+                        @foreach (var v in fr.Values)
+                        {
+                            Value(v.ParameterId, v.Name, v.Number, v.Text, v.Unit, v.Compliant, v.Limit, null, $"/honeystory/parameter/{v.ParameterId}");
+                        }
+                    </div>
                 </div>
             }
+
             @if (anyLab)
             {
-                <a class="hs-report-link" href="#lab-report">
-                    <span class="hs-report-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8C5E2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6M8 13h8M8 17h5"></path></svg></span>
-                    <span class="grow">@L["Hst.SeeFullReport"]</span><span aria-hidden="true">›</span>
-                </a>
-            }
-        </section>
-
-        @* ===== 6. full lab report ===== *@
-        @if (anyLab)
-        {
-            <section class="hs-section" id="lab-report">
-                @{ Head("<path d=\"M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z\"></path><path d=\"M14 3v6h6\"></path>", L["Hst.ReportEyebrow"].Value, L["Hst.ReportTitle"].Value); }
-                @if (sources.Count > 1)
-                {
-                    <p class="hs-intro">@L["Hst.SourceHint"]</p>
-                }
-                @{ Chips(); }
-                @for (var i = 0; i < sources.Count; i++)
-                {
-                    var s = sources[i];
-                    var values = HoneyStoryLab.Values(s);
-                    <div class="hs-panel@(i == biggest ? " is-on" : "")" data-src="@i">
-                        <p class="hs-panel-title">@L["Hst.FromSource", Apiary(s)]@if (s.LabName != null) {<text> · @s.LabName</text>}</p>
-                        @if (s.LabReportCode != null)
-                        {
-                            <a class="hs-report-link" href="/verify-report?code=@s.LabReportCode">
-                                <span class="hs-report-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8C5E2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"></path><path d="m9 12 2 2 4-4"></path></svg></span>
-                                <span class="grow">@L["Sf.VerifyReportCode", s.LabReportCode]</span><span aria-hidden="true">›</span>
-                            </a>
-                        }
-                        @if (!values.Any())
-                        {
-                            <p class="hs-note">@L["Hst.NoResults"]</p>
-                        }
-                        @foreach (var group in HoneyStoryLab.Groups)
-                        {
-                            var rows = values.Where(v => HoneyStoryLab.GroupOfParameter(v.ParameterName) == group).ToList();
-                            if (!rows.Any())
+                <div id="lab-report">
+                    @if (sources.Count > 1)
+                    {
+                        <p class="hv-note">@L["Hst.SourceHint"]</p>
+                    }
+                    @{ Chips(); }
+                    @for (var i = 0; i < sources.Count; i++)
+                    {
+                        var s = sources[i];
+                        var values = HoneyStoryLab.Values(s);
+                        <div class="hv-panel@(i == biggest ? " is-on" : "")" data-src="@i">
+                            <p class="hv-panel-title">@L["Hst.FromSource", Apiary(s)]</p>
+                            @if (s.LabReportCode != null)
                             {
-                                continue;
+                                VerifyLink(s.LabReportCode, s.LabName);
                             }
-                            if (group == HoneyStoryLab.Residues)
+                            @if (!values.Any())
                             {
-                                var outCount = rows.Count(v => v.Compliant == false);
-                                var verified = rows.Count(v => v.Compliant != null);
-                                <details class="hs-fold" data-group="@group">
-                                    <summary>
-                                        <span class="hs-head-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#A2450B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"></path><circle cx="12" cy="11" r="3"></circle></svg></span>
-                                        <span class="grow"><b>@L["Hst.Group." + group]</b>
-                                            <span>@L["Hst.ResiduesTested", rows.Count]@if (verified > 0) {<text> · @(outCount == 0 ? L["Hst.ResiduesAllClear"] : L["Hst.ResiduesOut", outCount])</text>}</span></span>
-                                        <span class="hs-chev" aria-hidden="true">⌄</span>
-                                    </summary>
-                                    <div class="hs-fold-body">
-                                        <p class="hs-note">@L["Hst.GroupDesc." + group]</p>
-                                        @foreach (var v in rows)
-                                        {
-                                            var unit = Ref.Unit(v.ParameterId, v.Unit);
-                                            <div class="hs-row">
-                                                <div class="hs-row-body"><b><a href="/honeystory/parameter/@v.ParameterId@(paramQuery)&amp;lot=@s.RawHoneyProductionId">@Ref.Parameter(v.ParameterId, v.ParameterName)</a></b>
-                                                    @if (v.Compliant != null && v.LimitText != null) {<span>@L["Limit:"] @Ref.Limit(v.LimitText, k => L[k])</span>}</div>
-                                                <div class="hs-row-value"><b>@Num(v.NumericValue!.Value) <small title="@unit">@Units.Symbol(unit)</small></b>
-                                                    @if (v.Compliant == true) {<span class="is-ok">@L["Hst.Within"]</span>} else if (v.Compliant == false) {<span class="is-out">@L["Hst.Out"]</span>}</div>
-                                            </div>
-                                        }
-                                    </div>
-                                </details>
+                                <p class="hv-note">@L["Hst.NoResults"]</p>
                             }
-                            else
+                            @foreach (var group in HoneyStoryLab.Groups)
                             {
-                                <div class="hs-group" data-group="@group">
-                                    <h3>@L["Hst.Group." + group]</h3>
+                                var rows = values.Where(v => HoneyStoryLab.GroupOfParameter(v.ParameterName) == group).ToList();
+                                if (!rows.Any())
+                                {
+                                    continue;
+                                }
+                                <div class="hv-group" data-group="@group">
+                                    <h4>@L["Hst.Group." + group]</h4>
                                     @if (group != HoneyStoryLab.Other)
                                     {
                                         <p>@L["Hst.GroupDesc." + group]</p>
                                     }
-                                    <div class="hs-tiles">
-                                        @foreach (var v in rows) { Tile(v, s); }
+                                    <div class="hv-vals">
+                                        @foreach (var v in rows)
+                                        {
+                                            Value(v.ParameterId!.Value, v.ParameterName, v.NumericValue, null, v.Unit, v.Compliant, v.LimitText, HoneyStoryLab.Bar(v),
+                                                $"/honeystory/parameter/{v.ParameterId}{paramQuery}&lot={s.RawHoneyProductionId}");
+                                        }
                                     </div>
                                 </div>
                             }
-                        }
-                    </div>
-                }
-            </section>
-        }
+                        </div>
+                    }
+                </div>
+            }
+        </section>
 
-        @* ===== 6b. D-98: the final honey result (the batch's blend), apart from the lot results ===== *@
-        @if (Model.FinalResult is HoneyStoryFinalResult fr)
-        {
-            <section class="hs-section" id="final-result">
-                @{ Head("<path d=\"M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3\"></path>", L["Final.Eyebrow"].Value, L["Final.Title"].Value); }
-                <p class="hs-intro">@L["Final.PublicIntro"]</p>
-                <a class="hs-report-link" href="/verify-report?code=@fr.ReportCode">
-                    <span class="hs-report-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8C5E2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"></path><path d="m9 12 2 2 4-4"></path></svg></span>
-                    <span class="grow">@L["Sf.VerifyReportCode", fr.ReportCode]@if (fr.LabName != null) {<text> · @fr.LabName</text>}</span><span aria-hidden="true">›</span>
-                </a>
-                @foreach (var v in fr.Values)
-                {
-                    var unit = Ref.Unit(v.ParameterId, v.Unit);
-                    <div class="hs-row">
-                        <div class="hs-row-body"><b>@Ref.Parameter(v.ParameterId, v.Name)</b>
-                            @if (v.Compliant != null && v.Limit != null) {<span>@L["Limit:"] @Ref.Limit(v.Limit, k => L[k])</span>}</div>
-                        <div class="hs-row-value"><b>@(v.Number != null ? Num(v.Number.Value) : v.Text) @if (v.Number != null) {<small title="@unit">@Units.Symbol(unit)</small>}</b>
-                            @if (v.Compliant == true) {<span class="is-ok">@L["Hst.Within"]</span>} else if (v.Compliant == false) {<span class="is-out">@L["Hst.Out"]</span>}</div>
-                    </div>
-                }
-            </section>
-        }
-
-        @* ===== 7. process checks: every CCP of the lots (except the lab, CCP 1) and of the batch ===== *@
-        <section class="hs-section" id="process">
-            @{ Head("<rect x=\"5\" y=\"4\" width=\"14\" height=\"17\" rx=\"2\"></rect><path d=\"M9 4V3h6v1M9 13l2 2 4-4\"></path>", L["Hst.ProcessEyebrow"].Value, L["Hst.ProcessTitle"].Value); }
-            <p class="hs-intro">@L["Hst.ProcessIntro"]</p>
+        @* ===== 5. the control points in short: every CCP of the lots (except the lab, CCP 1) and of the batch ===== *@
+        <section class="hv-section" id="process">
+            <h2 class="hv-h2">@L["Hs2.Process.Title"]</h2>
+            <p class="hv-intro">@(journey.ControlPointsTotal > 0 ? L["Hst.J.Process", journey.ControlPointsRecorded, journey.ControlPointsTotal].Value : L["Hst.J.NoProcess"].Value) @L["Hs2.Process.Intro"]</p>
             @{
                 void Block(HoneyStoryCcpBlock b)
                 {
@@ -521,20 +479,20 @@
                         HoneyStoryCcpBlock.NotApplicable => ("", "Not applicable"),
                         _ => ("", "Not recorded")
                     };
-                    <details class="hs-fold ccp-card" data-ccp="@b.CCPCode" data-state="@b.State">
+                    <details class="hv-ccp ccp-card" data-ccp="@b.CCPCode" data-state="@b.State">
                         <summary>
-                            <span class="hs-head-icon hs-code">@b.CCPCode?.Replace("CCP ", "")</span>
-                            <span class="grow"><b>@Ref.Code(b.CCPCode) · @Ref.CcpTitle(b.CCPId, b.CCPTitle)</b><span>@Ref.T("Ccp", b.CCPId, "ProcessingStep", b.ProcessingStep)</span></span>
-                            <span class="hs-state @cls">@L[text]</span>
+                            <span class="hv-ccp-code">@b.CCPCode?.Replace("CCP ", "")</span>
+                            <span class="grow"><b>@Ref.CcpTitle(b.CCPId, b.CCPTitle)</b><small>@Ref.T("Ccp", b.CCPId, "ProcessingStep", b.ProcessingStep)</small></span>
+                            <span class="hv-state @cls">@L[text]</span>
                         </summary>
-                        <div class="hs-fold-body">
+                        <div class="hv-ccp-body">
                             @if (b.State == HoneyStoryCcpBlock.NotApplicable)
                             {
-                                <p class="hs-note">@L["This control point does not apply to this honey. Reason:"] @b.NotApplicableReason</p>
+                                <p class="hv-note">@L["This control point does not apply to this honey. Reason:"] @b.NotApplicableReason</p>
                             }
                             else if (b.State == HoneyStoryCcpBlock.NotRecorded)
                             {
-                                <p class="hs-note">@L["No values were recorded for this control point."]</p>
+                                <p class="hv-note">@L["No values were recorded for this control point."]</p>
                             }
                             else
                             {
@@ -545,11 +503,10 @@
                                         : row.Compliant == true ? ("is-ok", L["Hst.Pass"].Value)
                                         : row.Compliant == false ? ("is-out", L["Hst.Fail"].Value)
                                         : ("is-info", L["Recorded"].Value);
-                                    <div class="hs-row">
-                                        <span class="hs-row-icon" aria-hidden="true">@(row.Compliant == true ? "✅" : row.Compliant == false ? "⚠️" : "ⓘ")</span>
-                                        <div class="hs-row-body"><b>@Ref.Parameter(row.ParameterId, row.ParameterName)</b>
+                                    <div class="hv-row">
+                                        <div class="hv-row-body"><b>@Ref.Parameter(row.ParameterId, row.ParameterName)</b>
                                             @if (row.Compliant != null && row.LimitText != null) {<span>@L["Limit:"] @Ref.Limit(row.LimitText, k => L[k])</span>}</div>
-                                        <div class="hs-row-value">
+                                        <div class="hv-row-value">
                                             @if (row.Recorded)
                                             {
                                                 <b>@if (row.IsFile) {<text>@L["document on file"]</text>} else if (row.NumericValue != null) {<text>@Num(row.NumericValue.Value) <small title="@unit">@Units.Symbol(unit)</small></text>} else {<text>@(row.TextValue is "Yes" or "No" ? L[row.TextValue!].Value : row.TextValue)</text>}</b>
@@ -570,39 +527,42 @@
                 {
                     continue;
                 }
-                <h3 class="hs-subhead">@Apiary(s) · @Beekeeper(s)</h3>
-                foreach (var b in blocks) { Block(b); }
+                <h3 class="hv-h3">@Apiary(s) · @Beekeeper(s)</h3>
+                <div class="hv-ccps">
+                    @foreach (var b in blocks) { Block(b); }
+                </div>
             }
             @if (Model.BatchCcpBlocks.Any())
             {
-                <h3 class="hs-subhead">@L["Hst.BatchSteps"]</h3>
-                foreach (var b in Model.BatchCcpBlocks) { Block(b); }
+                <h3 class="hv-h3">@L["Hst.BatchSteps"]</h3>
+                <div class="hv-ccps">
+                    @foreach (var b in Model.BatchCcpBlocks) { Block(b); }
+                </div>
             }
         </section>
     }
 
-    @* ===== 8. verified footer ===== *@
-    <section class="hs-verified" data-seal>
-        <span class="hs-verified-sweep" aria-hidden="true"></span>
-        <div class="hs-verified-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#2BC4BC" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"></path><path d="m9 12 2 2 4-4"></path></svg></div>
-        <h2>@L["Hst.VerifiedTitle"]</h2>
-        <p>@L["Hst.VerifiedSub"]</p>
-        <hr>
-        <small>🐝 @L["Hst.VerifiedLabel"]</small>
+    @* ===== the verified band ===== *@
+    <section class="hv-verified">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"></path><path d="m9 12 2 2 4-4"></path></svg>
+        <div>
+            <h2>@L["Hst.VerifiedTitle"]</h2>
+            <p>@L["Hst.VerifiedSub"]</p>
+        </div>
     </section>
-    <a class="hs-action" href="/verify-report">@L["Sf.VerifyReport"]</a>
+    <a class="hv-action" href="/verify-report">@L["Sf.VerifyReport"]</a>
 
     @* D-87: the same HTML for everyone (nothing user-specific, so it can never land in a shared cache). The consumer's state
-       (signed in, saved) comes from a private no-store endpoint, asked only when the consumer marker cookie is present, so
-       anonymous visitors make no extra request. *@
+       (signed in, saved, "Show animations") comes from a private no-store endpoint, asked only when the consumer marker cookie is
+       present, so anonymous visitors make no extra request. *@
     @if (Flags.Value.ConsumerAccounts)
     {
         var storyUrl = Uri.EscapeDataString("/honeystory/" + Model.BatchQR);
-        <section class="hs-consumer" id="consumer-actions" data-qr="@Model.BatchQR">
-            <h2 class="hs-consumer-title">@L["Consumer.Story.Title"]</h2>
-            <a class="hs-action hs-action-soft" id="consumer-save" href="/Consumer/Save?qr=@Model.BatchQR" data-saved-text="@L["Consumer.Story.Saved"]">@L["Consumer.Story.Save"]</a>
-            <a class="hs-action hs-action-soft" id="consumer-feedback" href="/Consumer/Feedback?qr=@Model.BatchQR">@L["Consumer.Story.Feedback"]</a>
-            <p class="hs-consumer-anon" id="consumer-anon">
+        <section class="hv-consumer" id="consumer-actions" data-qr="@Model.BatchQR">
+            <h2 class="hv-h3">@L["Consumer.Story.Title"]</h2>
+            <a class="hv-action hv-action-soft" id="consumer-save" href="/Consumer/Save?qr=@Model.BatchQR" data-saved-text="@L["Consumer.Story.Saved"]">@L["Consumer.Story.Save"]</a>
+            <a class="hv-action hv-action-soft" id="consumer-feedback" href="/Consumer/Feedback?qr=@Model.BatchQR">@L["Consumer.Story.Feedback"]</a>
+            <p class="hv-note" id="consumer-anon">
                 @L["Consumer.Story.Anon"]
                 <a href="/Account/Login?ReturnUrl=@storyUrl">@L["Login.LoginButton"]</a> ·
                 <a href="/Consumer/SignUp?returnUrl=@storyUrl">@L["Consumer.LoginHintLink"]</a>
@@ -612,31 +572,56 @@
 
 </main>
 
+@* the value sheet (D-108): one template per parameter on the page; the video in the page language, else English, else Turkish *@
+@foreach (var p in sheetParameters)
+{
+    var key = ParameterVideos.KeyOf(p.ParameterName);
+    var videoLang = key == null ? null : Videos.LanguageFor(key, lang);
+    Model.ParameterContents.TryGetValue(p.Id, out var content);
+    <template id="hv-p-@p.Id" data-title="@Ref.Parameter(p.Id, p.ParameterName)" data-video="@(videoLang != null ? $"/honeystory/video/{videoLang}/{key}" : null)" data-video-note="@(videoLang != null && videoLang != lang ? L["Hs2.VideoLang." + videoLang].Value : null)">
+        @if (key != null)
+        {
+            <p class="hv-sheet-plain">@L["Hs2.P." + key]</p>
+        }
+        @if (!string.IsNullOrWhiteSpace(content?.WhatIsIt))
+        {
+            <h3>@L["Hst.WhatIsIt"]</h3><p>@Ref.T("ParameterContent", content!.ContentId, "WhatIsIt", content.WhatIsIt)</p>
+        }
+        @if (!string.IsNullOrWhiteSpace(content?.WhyImportant))
+        {
+            <h3>@L["Hst.WhyImportant"]</h3><p>@Ref.T("ParameterContent", content!.ContentId, "WhyImportant", content.WhyImportant)</p>
+        }
+    </template>
+}
+<dialog class="hv-sheet" id="hv-sheet" aria-labelledby="hv-sheet-head">
+    <div class="hv-sheet-in">
+        <div class="hv-sheet-top">
+            <span class="hv-sheet-grip" aria-hidden="true"></span>
+            <h2 id="hv-sheet-head" class="hv-sheet-head"></h2>
+            <button type="button" class="hv-sheet-close" data-close aria-label="@L["Hs2.Close"]">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+            </button>
+        </div>
+        <div class="hv-sheet-measure"></div>
+        <div class="hv-sheet-video" hidden>
+            <video playsinline controls preload="none" disablepictureinpicture></video>
+            <p class="hv-note hv-sheet-vnote"></p>
+        </div>
+        <div class="hv-sheet-text"></div>
+        <a class="hv-sheet-more" href="#">@L["Hs2.Sheet.More"] ›</a>
+    </div>
+</dialog>
+
 <footer class="sf-footer">
-    <span class="sf-foot-brand"><img class="b-logo" src="~/img/brand/top4-logo-w2.svg" alt="TOP4HoneyChains" width="96" height="40"><span>@L["Sf.FooterTag"]</span></span>
+    <span class="sf-foot-brand"><img class="b-logo" src="~/img/brand/logo-wide-480.png" alt="TOP4HoneyChains" width="119" height="40"><span>@L["Sf.FooterTag"]</span></span>
     <span>@L["Hst.FooterNote"]</span>
 </footer>
 </div>
-<script src="~/js/honey-mark.js" asp-append-version="true" defer></script>
 <script src="~/js/tmap.js" asp-append-version="true" defer></script>
-<script src="~/js/honeystory.js" asp-append-version="true" defer></script>
+<script src="~/js/honeystory-v2.js" asp-append-version="true" defer></script>
 @if (Flags.Value.ConsumerAccounts)
 {
     <script src="~/js/consumer-story.js" asp-append-version="true" defer></script>
 }
-<script>
-    // source chips: show the values of one source in both lab sections
-    document.querySelectorAll('.hs-chip').forEach(function (chip) {
-        chip.addEventListener('click', function () {
-            var src = chip.getAttribute('data-src');
-            document.querySelectorAll('.hs-chip').forEach(function (c) {
-                var on = c.getAttribute('data-src') === src;
-                c.classList.toggle('is-on', on);
-                c.setAttribute('aria-pressed', on ? 'true' : 'false');
-            });
-            document.querySelectorAll('.hs-panel').forEach(function (p) { p.classList.toggle('is-on', p.getAttribute('data-src') === src); });
-        });
-    });
-</script>
 </body>
 </html>

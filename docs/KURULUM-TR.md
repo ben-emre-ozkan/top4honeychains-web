@@ -8,6 +8,10 @@ Bu rehber sunucuyu yöneten kişi içindir. İki bölümü vardır:
 Her şey bu depodan yapılır; başka bir dosya, yedek veya paket gerekmez. Ayrıntılı kontrol listesi ve gerekçeler
 [GO-LIVE.md](GO-LIVE.md) dosyasındadır (İngilizce).
 
+**Sürüm paketiyle çalışıyorsanız** (ör. `TOP4-surum-2026-11-26`): Derleme gerekmez; `<YAYIN>` paketteki `Publish` klasörü,
+`<DEPO>` paketin klasörüdür, `db\migrations` yerine `SQL\migrations`, `db\install` yerine `SQL\install` kullanılır. 0. bölümün
+derleme adımlarını (Git, SDK, `dotnet publish`) atlayın; önce paketteki `ONCE-OKU.pdf` dosyasını okuyun.
+
 Komutlardaki yer tutucular:
 
 | Yer tutucu | Anlamı | Örnek |
@@ -214,6 +218,24 @@ Canlıya geçmeden önce (ayrıntı: GO-LIVE.md "People and material"):
    uygulama yeni şemada çalışır.
 3. Değiştirilen parolalar ve anahtarlar eski haline döndürülmez.
 
+### A9. Parametre videoları (Bal Hikâyesi)
+
+Bal Hikâyesi'nde bir laboratuvar değerine dokunulunca o parametrenin kısa videosu oynar. Videolar paketteki
+`Videos\` klasöründedir (Türkçe ve İngilizce, 30 dosya); uygulamanın içinde değildir, ayrıca kopyalanır.
+
+1. Paketteki `Videos` klasöründe yönetici olarak PowerShell açın: `cd <DEPO>\Videos`.
+2. Şu komutu çalıştırın (uygulama klasörünü kendi yolunuzla değiştirin):
+
+   ```
+   powershell -ExecutionPolicy Bypass -File .\ImportParameterVideos.ps1 -Source . -Target "C:\inetpub\TOP4HoneyChains\App_Data\parameter-videos"
+   ```
+
+3. Komut "Copied 30 video(s)" yazmalıdır. `es`, `pl` ve `lv` için "no videos" satırı normaldir: Bu dillerde İngilizce video oynar.
+4. Uygulama havuzunun kullanıcısı `App_Data\parameter-videos` klasörünü okuyabilmelidir (App_Data'nın diğer klasörleri gibi).
+5. Kontrol: Bir Bal Hikâyesi açın, bir laboratuvar değerine dokunun; açılan pencerede video oynamalıdır.
+
+Videoları başka bir klasörde tutmak isterseniz `appsettings.Production.json` dosyasına `"Videos": { "Root": "D:\\Videolar\\parameter-videos" }` yazın ve komuttaki `-Target` yolunu buna göre verin. Video yoksa sayfa hata vermez; pencerede yalnızca açıklama görünür.
+
 ## B) Yeni kurulum (boş veritabanı)
 
 Bu bölüm, içinde hiç veri olmayan yeni bir sistem içindir. **Canlı veritabanında çalıştırmayın**: `db\install` betikleri
@@ -319,7 +341,8 @@ Sonraki yöneticiler ve bütün kullanıcılar uygulama içinden eklenir (**Kull
    yeni sürüm olarak yayımlayın (yeni kurulumda yalnızca taslaklar vardır).
 6. Kurum yöneticilerini **Üye ekle** ile ekleyin (giriş bilgileri SMS ile gider). Her teslim alan kurumun yöneticisi mühür
    havuzunu hazırlar (A6).
-7. A7'deki kontrolleri yapın.
+7. Parametre videolarını A9'daki gibi yükleyin.
+8. A7'deki kontrolleri yapın.
 
 ### B8. Bu rehberin denenmesi
 

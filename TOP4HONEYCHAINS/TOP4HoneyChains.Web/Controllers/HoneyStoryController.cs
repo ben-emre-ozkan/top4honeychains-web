@@ -285,6 +285,8 @@ namespace TOP4HoneyChains.Web.Controllers
             await FillBadgesAsync(vm);
             await FillJourneyAsync(vm, batch);
             await FillDistrictsAsync(vm);
+            await FillProtectionAsync(vm);
+            await FillParameterContentsAsync(vm);
 
             return View(vm);
         }
@@ -637,6 +639,60 @@ namespace TOP4HoneyChains.Web.Controllers
                     .Select(i => TurkeyDistricts.Find(s.ProvincePlate, i.District)).FirstOrDefault(d => d != null);
                 s.District = (fromApiary ?? atDelivery)?.Name;
             }
+        }
+
+        // D-108: how the honey was protected, as counts (never codes): the delivered containers and how many were sealed, the
+        // sealed sample jars (lots and the final blend) and how many arrived at the laboratory with the seal intact, the deliveries
+        // and how many the beekeeper confirmed with the SMS code. Only with the organization model (the records exist only there).
+        private async Task FillProtectionAsync(HoneyStoryViewModel vm)
+        {
+            if (!_flags.Value.OrgRoleModel)
+                return;
+            var rawIds = vm.RawSources.Select(s => s.RawHoneyProductionId).Distinct().ToList();
+            var batchId = vm.FinalHoneyProductionId;
+            var containers = await _context.Containers.AsNoTracking().Where(c => rawIds.Contains(c.RawHoneyProductionId))
+                .Select(c => new { Sealed = c.OriginSealNumber != null || c.Closure != null }).ToListAsync();
+            var jars = await _context.Samples.AsNoTracking()
+                .Where(s => (rawIds.Contains(s.RawHoneyProductionId) && s.FinalHoneyProductionId == null) || s.FinalHoneyProductionId == batchId)
+                .Select(s => new { s.SealIntact }).ToListAsync();
+            var intakes = await _context.LotIntakes.AsNoTracking().Where(i => rawIds.Contains(i.RawHoneyProductionId))
+                .Select(i => new { i.ConfirmationMethod, i.ConfirmedAt }).ToListAsync();
+            vm.Protection = new HoneyStoryProtection
+            {
+                Containers = containers.Count,
+                SealedContainers = containers.Count(c => c.Sealed),
+                Jars = jars.Count,
+                JarsCheckedAtLab = jars.Count(j => j.SealIntact == true),
+                Deliveries = intakes.Count,
+                SmsConfirmedDeliveries = intakes.Count(i => i.ConfirmationMethod == ConfirmationMethod.SmsCode && i.ConfirmedAt != null)
+            };
+        }
+
+        // D-108: the explanation of every lab parameter the page shows, for the value sheet
+        private async Task FillParameterContentsAsync(HoneyStoryViewModel vm)
+        {
+            var ids = vm.RawSources.SelectMany(HoneyStoryLab.Values).Select(v => v.ParameterId)
+                .Concat(vm.FinalResult?.Values.Select(v => (int?)v.ParameterId) ?? Enumerable.Empty<int?>())
+                .OfType<int>().Distinct().ToList();
+            if (ids.Count == 0)
+                return;
+            var contents = await _context.CriticalControlPointParameterContents.AsNoTracking()
+                .Where(c => ids.Contains(c.ParameterId) && c.IsActive).OrderBy(c => c.SortOrder).ThenBy(c => c.ContentId).ToListAsync();
+            vm.ParameterContents = contents.GroupBy(c => c.ParameterId).ToDictionary(g => g.Key, g => g.First());
+        }
+
+        // D-108: the video of a lab parameter for the value sheet: only known keys and languages (no path from the request reaches
+        // the disk), range requests for the video player, cached by the browser for a day
+        [HttpGet("video/{lang}/{key}")]
+        public IActionResult Video(string lang, string key, [FromServices] ParameterVideos videos)
+        {
+            var path = videos.File(lang, key);
+            if (path == null)
+                return NotFound();
+            var info = new FileInfo(path);
+            Response.Headers.CacheControl = "public, max-age=86400";
+            var tag = new Microsoft.Net.Http.Headers.EntityTagHeaderValue($"\"{info.Length:x}-{info.LastWriteTimeUtc.Ticks:x}\"");
+            return PhysicalFile(path, "video/mp4", new DateTimeOffset(info.LastWriteTimeUtc), tag, enableRangeProcessing: true);
         }
 
         private async Task FillJourneyAsync(HoneyStoryViewModel vm, FinalHoneyProduction batch)

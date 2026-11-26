@@ -14,7 +14,7 @@ namespace TOP4HoneyChains.Web.Tests
         {
             "Account.Login", "Account.ForgotPassword", "Account.ResetPassword", "Account.AccessDenied",
             "Dashboard.Error", "Dashboard.Status", "Home.Index", "Home.SetLanguage",
-            "HoneyStory.ParameterDetails", "HoneyStory.Index", "HoneyStory.BatchQRCode", "HoneyStory.Image", "HoneyStory.Details",
+            "HoneyStory.ParameterDetails", "HoneyStory.Index", "HoneyStory.BatchQRCode", "HoneyStory.Image", "HoneyStory.Details", "HoneyStory.Video",
             "Storefront.Index", "Storefront.Qr", "Verify.Index", "Notices.Public", "Consumer.SignUp", "Consumer.State", "Account.SendResetCode", "Account.ResetWithCode",
             // D-78 P4: the scene gallery, answered only in Development (404 elsewhere)
             "Dev.Scenes",

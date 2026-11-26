@@ -9857,16 +9857,16 @@
     <value>Dotarł bez plomby (zwykle)</value>
   </data>
   <data name="Ci.Info.Arrival" xml:space="preserve">
-    <value>Zwykle pojemnik dociera bez plomby: pobierz próbki, potem zamknij go jedną plombą. Wybierz „zaplombowany przy zbiorze” tylko wtedy, gdy inspektor terenowy stowarzyszenia zaplombował go w pasiece plombą z puli stowarzyszenia; sprawdź, czy plomba jest nienaruszona.</value>
+    <value>Jak pojemnik dotarł. Zwykle dociera bez plomby: pobierz próbki, potem zamknij go raz w obecności pszczelarza. „Zaplombowany przy zbiorze przez inspektora terenowego” wybierz tylko wtedy, gdy inspektor terenowy stowarzyszenia zaplombował go w pasiece plombą z puli; wtedy zapisuje się jej kod i stan, które pokazują, że nikt nie ruszał miodu po drodze.</value>
   </data>
   <data name="Ci.Info.Jars" xml:space="preserve">
-    <value>Napełnij z tego pojemnika dwa słoiki. Na każdy naklej etykietę plombującą z puli na wieczko i słoik: słoik próbki trafia do laboratorium, słoik próbki kontrolnej zostaje u Ciebie na wypadek sporu o wynik.</value>
+    <value>Napełnij z tego pojemnika dwa nowe słoiki: słoik z próbką trafia do laboratorium, słoik z próbką kontrolną zostaje u Ciebie na wypadek sporu o wynik. Zamknij każdy wieczkiem wybranym wyżej i naklej etykietę plombującą z puli na wieczko i słoik.</value>
   </data>
   <data name="Ci.Info.Reseal" xml:space="preserve">
     <value>Pobranie próbek otwiera pojemnik. Zaplombuj go ponownie i wpisz numer nowej plomby; pojemnik zachowuje tę plombę, dopóki nie zostanie użyty.</value>
   </data>
   <data name="Ci.Info.CounterLocation" xml:space="preserve">
-    <value>Gdzie przechowywane są słoiki próbek kontrolnych, np. „Chłodnia 2, regał B”. Przechowuj je do daty obok, na wypadek sporu o wynik.</value>
+    <value>Miejsce przechowywania słoików z próbkami kontrolnymi, np. „Chłodnia 2, półka B”. Trzymaj je w chłodnym, ciemnym miejscu, zamknięte i z nienaruszonymi etykietami plombującymi, aby w razie sporu o wynik miód można było zbadać ponownie.</value>
   </data>
   <data name="Me.PriceAfterDelivery" xml:space="preserve">
     <value>Nie ma jeszcze dostaw. Po pierwszej dostawie wpiszesz tutaj, w sekcji Moje dostawy, swoją cenę za kg.</value>
@@ -9932,7 +9932,7 @@
     <value>Numerowana etykieta z QR na wieku i korpusie. Pasuje do każdego pojemnika.</value>
   </data>
   <data name="Ci.Closure.SealLabel.Help" xml:space="preserve">
-    <value>Numerowana etykieta z kodem QR, wydana przez platformę i wydrukowana wcześniej na zabezpieczającym materiale VOID. To pasek zrywalny przez łączenie: połowa z kodem i QR na wieko, druga połowa na korpus. Przy próbie zdjęcia rwie się lub zostawia ślady VOID. Pasuje do każdego pojemnika.</value>
+    <value>Numerowana etykieta z kodem QR z puli plomb Twojej organizacji, wydrukowana na zabezpieczającym materiale VOID. Wytrzyj krawędź do sucha i naklej ją przez wieko i korpus, po połowie na każde; na wciskanym wieku wiadra dodaj z pozostałych stron jeden lub dwa zwykłe paski zabezpieczające. Otwarcie wieka rwie etykietę lub zostawia ślad VOID i nie da się jej niepostrzeżenie nakleić z powrotem. Jej kod jest w tym, co potwierdził pszczelarz, więc nowa etykieta by nie pasowała. Pojemnik można używać dalej; jednorazowa jest tylko etykieta.</value>
   </data>
   <data name="Ci.Closure.PlasticSeal" xml:space="preserve">
     <value>Pojemnik pszczelarza + numerowana plomba plastikowa</value>
@@ -9950,10 +9950,10 @@
     <value>Zarejestrowany raz; zeskanuj lub wpisz jego kod TK. Zamykany etykietą plombującą lub plombą plastikową.</value>
   </data>
   <data name="Ci.Closure.OrgContainer.Help" xml:space="preserve">
-    <value>Własny pojemnik stowarzyszenia, zarejestrowany raz ze stałym kodem i QR. Przy dostawie zeskanuj lub wpisz jego kod; jego strona pokazuje każde użycie. Zamyka się go plombą z puli: etykietą plombującą albo numerowaną plombą plastikową przez ucho łączące wieko z korpusem.</value>
+    <value>Własny pojemnik stowarzyszenia, zarejestrowany raz ze stałym kodem i QR. Miód przelewa się do niego w obecności pszczelarza, który zabiera swoje wiadro z powrotem. Przy dostawie zeskanuj lub wpisz jego kod; jego strona pokazuje każde użycie. Zamyka się go plombą z puli: etykietą plombującą albo numerowaną plombą plastikową przez otwór łączący wieko z korpusem.</value>
   </data>
   <data name="Ci.Info.Closure" xml:space="preserve">
-    <value>Pojemnik zamyka się raz, po pobraniu próbek, przy pszczelarzu. Plomba pochodzi z puli Twojej organizacji.</value>
+    <value>Wybierz, jak ten pojemnik zostanie zamknięty po pobraniu próbek. Większość pszczelarzy przywozi własną puszkę lub wiadro: zamknij je etykietą plombującą. Stały pojemnik stowarzyszenia wybierz tylko wtedy, gdy miód jest przelewany do jednego z zarejestrowanych pojemników stowarzyszenia.</value>
   </data>
   <data name="Ci.Step.Container" xml:space="preserve">
     <value>Pojemnik</value>
@@ -9983,7 +9983,7 @@
     <value>na obu słoikach</value>
   </data>
   <data name="Ci.Info.CapCheck" xml:space="preserve">
-    <value>Sprawdź oba słoiki po zamknięciu. Podniesiony przycisk lub zerwany pierścień oznacza, że słoik otwierano: wyrzuć go i napełnij nowy.</value>
+    <value>Po zamknięciu sprawdź oba słoiki: przycisk jest wciśnięty albo pierścień nie jest zerwany. Zaznacz tylko wtedy, gdy oba są w porządku. Podniesiony przycisk lub zerwany pierścień oznacza, że słoik otwierano: wyrzuć go i napełnij nowy. Laboratorium sprawdza to samo przy przyjęciu.</value>
   </data>
   <data name="Ci.ClosingHelp" xml:space="preserve">
     <value>Po pobraniu próbek zamknij pojemnik przy pszczelarzu i zeskanuj lub wpisz plombę.</value>
@@ -10677,5 +10677,233 @@
   </data>
   <data name="Enter the holding identification number (or the platform number of a registered beekeeper)." xml:space="preserve">
     <value>Wpisz numer identyfikacyjny gospodarstwa (lub numer zarejestrowanego pszczelarza na platformie).</value>
+  </data>
+  <data name="Ci.Info.Tile.SealLabel" xml:space="preserve">
+    <value>Do własnej puszki lub wiadra pszczelarza. Wytrzyj krawędź do sucha i naklej numerowaną etykietę plombującą z QR z puli przez wieko i korpus, po połowie na każde; na wciskanym wieku wiadra dodaj jeden lub dwa zwykłe paski zabezpieczające. Otwarcie wieka rwie etykietę lub zostawia ślad VOID, więc etykieta dowodzi, że pojemnika nie otwierano. Pojemnik można używać dalej; jednorazowa jest tylko etykieta.</value>
+  </data>
+  <data name="Ci.Info.Tile.OrgContainer" xml:space="preserve">
+    <value>Do własnego pojemnika stowarzyszenia ze stałym kodem (TK-…). Przelej do niego miód w obecności pszczelarza, który zabiera swoje wiadro. Zamknij go etykietą plombującą albo numerowaną plombą plastikową z puli przez otwór łączący wieko z korpusem. Jego strona pokazuje każdą dostawę, którą zawierał.</value>
+  </data>
+  <data name="Ci.Info.BoxCode" xml:space="preserve">
+    <value>Stały kod nadrukowany na pojemniku stowarzyszenia (TK-…). Zeskanuj jego QR lub wpisz kod; pole pokaże, czy pojemnik jest zarejestrowany. Wiąże tę dostawę z dokładnie tym pojemnikiem.</value>
+  </data>
+  <data name="Ci.Info.Kind" xml:space="preserve">
+    <value>Jaki to pojemnik pszczelarza: puszka, beczka, wiadro, IBC lub inny. Wybierz to, co widzisz; pomaga to później rozpoznać pojemnik. Dla pojemnika stowarzyszenia nie jest wymagane.</value>
+  </data>
+  <data name="Ci.Info.NetKg" xml:space="preserve">
+    <value>Masa samego miodu, bez pojemnika. Zważ pełny pojemnik i odejmij masę pustego. To ilość, którą potwierdza pszczelarz i która może później trafić do partii.</value>
+  </data>
+  <data name="Ci.Info.GrossKg" xml:space="preserve">
+    <value>Opcjonalnie: masa pełnego pojemnika, jaką pokazuje waga. Wtedy formularz pokazuje masę pustego pojemnika (tarę), więc błąd we wpisanej masie netto rzuca się w oczy.</value>
+  </data>
+  <data name="Ci.Info.OriginSeal" xml:space="preserve">
+    <value>Kod plomby, którą inspektor terenowy założył w pasiece. Zeskanuj jej QR lub wpisz kod; musi to być kod z puli. Zgodny kod pokazuje, że to ten pojemnik, który zaplombowano przy zbiorze.</value>
+  </data>
+  <data name="Ci.Info.OriginIntact" xml:space="preserve">
+    <value>Obejrzyj plombę ze zbioru, zanim otworzysz pojemnik: etykieta plombująca nie może być naderwana ani mieć śladu VOID, plomba plastikowa musi być nieprzecięta i zamknięta. Zaznacz tylko, jeśli jest nienaruszona; w przeciwnym razie zostaw puste, a dostawa zapisze, że plomba była naruszona.</value>
+  </data>
+  <data name="Ci.Info.JarSeal" xml:space="preserve">
+    <value>Zeskanuj lub wpisz kod etykiety plombującej na słoiku z próbką. Naklej ją przez wieczko i słoik, tak aby słoika nie dało się otworzyć bez jej rozerwania. Laboratorium sprawdza, czy kod się zgadza, etykieta jest nienaruszona, a wieczko zamknięte.</value>
+  </data>
+  <data name="Ci.Info.CounterSeal" xml:space="preserve">
+    <value>Zeskanuj lub wpisz kod etykiety plombującej na słoiku z próbką kontrolną, naklejonej przez wieczko i słoik jak na próbce. Ten słoik zostaje u Ciebie; w razie sporu o wynik jego nienaruszona etykieta pokazuje, że zawiera nieruszany miód z tej dostawy.</value>
+  </data>
+  <data name="Ci.Info.Cap.SafetyButton" xml:space="preserve">
+    <value>Wieczko próżniowe z przyciskiem pośrodku, jak na słoiczkach z jedzeniem dla niemowląt. Po napełnieniu odciągnij powietrze ręczną pompką próżniową, aż przycisk się wciśnie; nigdy nie podgrzewaj miodu. Przycisk pozostaje wciśnięty tylko przy podciśnieniu, więc podniesiony przycisk pokazuje, że słoik otwierano.</value>
+  </data>
+  <data name="Ci.Info.Cap.TamperRing" xml:space="preserve">
+    <value>Zakrętka z pierścieniem pod spodem, który zrywa się przy pierwszym otwarciu. Zakręć wieczko, aż pierścień ściśle przylega; narzędzia nie są potrzebne. Niezerwany pierścień pokazuje, że słoika nie otwierano.</value>
+  </data>
+  <data name="Ci.Info.ClosingSeal" xml:space="preserve">
+    <value>Po pobraniu próbek zamknij pojemnik w obecności pszczelarza i zeskanuj lub wpisz jego plombę. Na pojemniku pszczelarza jest to etykieta plombująca przez wieko i korpus; na pojemniku stowarzyszenia etykieta plombująca albo numerowana plomba plastikowa przez otwór łączący wieko z korpusem. Gdy pojemnik jest opróżniany do partii, ta plomba jest sprawdzana: ten sam kod i nienaruszona.</value>
+  </data>
+  <data name="Ci.Info.Lab" xml:space="preserve">
+    <value>Laboratorium, które otrzymuje słoiki z próbkami z tej dostawy. Przy przyjęciu sprawdza każdy słoik: kod się zgadza, etykieta plombująca jest nienaruszona (bez rozdarć i śladów VOID), a wieczko zamknięte (przycisk wciśnięty lub pierścień niezerwany).</value>
+  </data>
+  <data name="Ci.Info.RetainUntil" xml:space="preserve">
+    <value>Data, do której przechowujesz próbki kontrolne. Wybierz datę, po której spór o wyniki nie może już powstać; potem słoiki można wyrzucić.</value>
+  </data>
+  <data name="Ci.Gloss.Title" xml:space="preserve">
+    <value>Słowniczek</value>
+  </data>
+  <data name="Ci.Gloss.SealLabel" xml:space="preserve">
+    <value>Etykieta plombująca</value>
+  </data>
+  <data name="Ci.Gloss.PlasticSeal" xml:space="preserve">
+    <value>Numerowana plomba plastikowa</value>
+  </data>
+  <data name="Ci.Gloss.PlasticSeal.Text" xml:space="preserve">
+    <value>Numerowana plomba plastikowa z puli, która zamyka się raz i daje się zdjąć tylko przez przecięcie. Używaj jej tylko na pojemniku z otworem łączącym wieko z korpusem, czyli na własnych beczkach lub wiadrach stowarzyszenia. Na uchwycie niczego nie dowodzi, bo wieko nadal da się otworzyć.</value>
+  </data>
+  <data name="Ci.Gloss.Arrival" xml:space="preserve">
+    <value>Bez plomby przy przyjęciu / Zaplombowany przy zbiorze</value>
+  </data>
+  <data name="Ci.Gloss.Arrival.Text" xml:space="preserve">
+    <value>Brak plomby to zwykła sytuacja: pojemnik zamyka się dopiero po pobraniu próbek, w obecności pszczelarza. „Zaplombowany przy zbiorze” dotyczy tylko sytuacji, gdy inspektor terenowy stowarzyszenia zaplombował pojemnik w pasiece plombą z puli; wtedy jej kod jest zapisywany i sprawdzany przy przyjęciu.</value>
+  </data>
+  <data name="Ci.Gloss.SampleJar.Text" xml:space="preserve">
+    <value>Nowy słoik napełniony z pojemnika dla laboratorium. Dostaje etykietę plombującą przez wieczko i słoik.</value>
+  </data>
+  <data name="Ci.Gloss.CounterJar" xml:space="preserve">
+    <value>Słoik z próbką kontrolną</value>
+  </data>
+  <data name="Ci.Gloss.CounterJar.Text" xml:space="preserve">
+    <value>Drugi nowy słoik napełniony z tego samego pojemnika w tym samym czasie i zaplombowany tak samo. Zostaje w stowarzyszeniu, aby w razie sporu o wynik miód można było zbadać ponownie.</value>
+  </data>
+  <data name="Ci.Gloss.SafetyButton.Text" xml:space="preserve">
+    <value>Wieczko, którego przycisk pozostaje wciśnięty tylko przy podciśnieniu w słoiku. Odciągnij powietrze ręczną pompką próżniową; nigdy nie podgrzewaj miodu. Podniesiony przycisk pokazuje, że słoik otwierano.</value>
+  </data>
+  <data name="Ci.Gloss.TamperRing.Text" xml:space="preserve">
+    <value>Wieczko z pierścieniem, który zrywa się przy pierwszym otwarciu. Narzędzia nie są potrzebne. Niezerwany pierścień pokazuje, że słoika nie otwierano.</value>
+  </data>
+  <data name="Ci.Gloss.Void" xml:space="preserve">
+    <value>Ślad VOID</value>
+  </data>
+  <data name="Ci.Gloss.Void.Text" xml:space="preserve">
+    <value>Napis VOID (lub wzór), który zostaje na powierzchni po oderwaniu etykiety zabezpieczającej. Tak jak rozdarcie pokazuje, że etykietę zdjęto; oderwanej etykiety nie da się niepostrzeżenie nakleić z powrotem.</value>
+  </data>
+  <data name="Ci.Gloss.Checks" xml:space="preserve">
+    <value>Co jest sprawdzane?</value>
+  </data>
+  <data name="Ci.Gloss.Checks.Text" xml:space="preserve">
+    <value>Przy przyjęciu w laboratorium, dla każdego słoika: kod się zgadza, etykieta plombująca jest nienaruszona (bez rozdarć i śladów VOID), a wieczko zamknięte (przycisk wciśnięty lub pierścień niezerwany). Gdy pojemnik jest opróżniany do partii, jego plomba zamykająca jest sprawdzana tak samo: ten sam kod i nienaruszona. Inny kod lub uszkodzona plomba zatrzymuje opróżnianie i zostaje zapisana.</value>
+  </data>
+  <data name="Hs2.Verdict.ok" xml:space="preserve">
+    <value>Zbadany w laboratorium i w granicach wszystkich zweryfikowanych limitów</value>
+  </data>
+  <data name="Hs2.Verdict.okSub" xml:space="preserve">
+    <value>Każdy wynik laboratoryjny poniżej ma zweryfikowany limit i mieści się w nim.</value>
+  </data>
+  <data name="Hs2.Verdict.out" xml:space="preserve">
+    <value>Zbadany w laboratorium: niektóre wyniki są poza limitem</value>
+  </data>
+  <data name="Hs2.Verdict.outSub" xml:space="preserve">
+    <value>Wyniki poza limitem są oznaczone poniżej.</value>
+  </data>
+  <data name="Hs2.Verdict.tested" xml:space="preserve">
+    <value>Zbadany w laboratorium i prześledzony od ula do słoika</value>
+  </data>
+  <data name="Hs2.Verdict.testedSub" xml:space="preserve">
+    <value>Wyniki laboratoryjne są pokazane poniżej. Wynik, którego limit jest jeszcze weryfikowany, jest pokazany bez oceny „w limicie” lub „poza limitem”.</value>
+  </data>
+  <data name="Hs2.Verdict.traced" xml:space="preserve">
+    <value>Prześledzony od ula do słoika</value>
+  </data>
+  <data name="Hs2.Verdict.tracedSub" xml:space="preserve">
+    <value>Dla tej partii nie opublikowano jeszcze wyników laboratoryjnych.</value>
+  </data>
+  <data name="Hs2.Fact.Type" xml:space="preserve">
+    <value>Rodzaj miodu</value>
+  </data>
+  <data name="Hs2.Fact.Origin" xml:space="preserve">
+    <value>Pochodzenie</value>
+  </data>
+  <data name="Hs2.Fact.Amount" xml:space="preserve">
+    <value>Ilość w partii</value>
+  </data>
+  <data name="Hs2.Fact.Beekeepers" xml:space="preserve">
+    <value>Pszczelarze</value>
+  </data>
+  <data name="Hs2.Fact.Harvest" xml:space="preserve">
+    <value>Zbiór</value>
+  </data>
+  <data name="Hs2.Fact.Produced" xml:space="preserve">
+    <value>Data produkcji</value>
+  </data>
+  <data name="Hs2.Where.Intro" xml:space="preserve">
+    <value>Udział każdego pszczelarza w {0} kg tej partii, według wagi.</value>
+  </data>
+  <data name="Hs2.Protect.Title" xml:space="preserve">
+    <value>Jak był chroniony</value>
+  </data>
+  <data name="Hs2.Protect.Intro" xml:space="preserve">
+    <value>Co zarejestrowano między ulem a słoikiem. Pokazujemy tylko liczby, nigdy kodów plomb.</value>
+  </data>
+  <data name="Hs2.Protect.Containers" xml:space="preserve">
+    <value>{0} z {1} dostarczonych pojemników było zaplombowanych</value>
+  </data>
+  <data name="Hs2.Protect.Jars" xml:space="preserve">
+    <value>Zaplombowane słoiki z próbkami wysłane do laboratorium: {0}</value>
+  </data>
+  <data name="Hs2.Protect.LabChecked" xml:space="preserve">
+    <value>{0} z {1} słoików dotarło do laboratorium z nienaruszoną plombą</value>
+  </data>
+  <data name="Hs2.Protect.Sms" xml:space="preserve">
+    <value>{0} z {1} dostaw potwierdzonych przez pszczelarza kodem SMS</value>
+  </data>
+  <data name="Hs2.Protect.None" xml:space="preserve">
+    <value>Dla tej partii nie opublikowano zapisów dostaw ani plomb.</value>
+  </data>
+  <data name="Hs2.Lab.Title" xml:space="preserve">
+    <value>Laboratorium</value>
+  </data>
+  <data name="Hs2.Lab.Intro" xml:space="preserve">
+    <value>Dotknij wyniku, aby zobaczyć, co oznacza, wraz z krótkim filmem.</value>
+  </data>
+  <data name="Hs2.Lab.None" xml:space="preserve">
+    <value>Dla tej partii nie opublikowano jeszcze wyników laboratoryjnych.</value>
+  </data>
+  <data name="Hs2.Process.Title" xml:space="preserve">
+    <value>Punkty kontrolne w skrócie</value>
+  </data>
+  <data name="Hs2.Process.Intro" xml:space="preserve">
+    <value>Otwórz jeden, aby zobaczyć, co zarejestrowano.</value>
+  </data>
+  <data name="Hs2.Close" xml:space="preserve">
+    <value>Zamknij</value>
+  </data>
+  <data name="Hs2.Sheet.More" xml:space="preserve">
+    <value>Otwórz pełną stronę tego wyniku</value>
+  </data>
+  <data name="Hs2.VideoLang.en" xml:space="preserve">
+    <value>Ten film jest w języku angielskim.</value>
+  </data>
+  <data name="Hs2.VideoLang.tr" xml:space="preserve">
+    <value>Ten film jest w języku tureckim.</value>
+  </data>
+  <data name="Hs2.P.moisture" xml:space="preserve">
+    <value>Ile wody zawiera miód. Dojrzały miód ma mało wody i nie fermentuje.</value>
+  </data>
+  <data name="Hs2.P.hmf" xml:space="preserve">
+    <value>Wskaźnik świeżości: rośnie, gdy miód jest podgrzewany lub zbyt długo przechowywany.</value>
+  </data>
+  <data name="Hs2.P.diastase" xml:space="preserve">
+    <value>Naturalny enzym pochodzący od pszczół. Wysoka wartość świadczy o tym, że miód nie był przegrzany.</value>
+  </data>
+  <data name="Hs2.P.c4-sugar" xml:space="preserve">
+    <value>Pokazuje, czy do miodu dodano syrop trzcinowy lub kukurydziany.</value>
+  </data>
+  <data name="Hs2.P.sucrose" xml:space="preserve">
+    <value>Cukier stołowy. W prawdziwym miodzie jego poziom jest niski.</value>
+  </data>
+  <data name="Hs2.P.fructose-glucose" xml:space="preserve">
+    <value>Dwa główne naturalne cukry miodu. Ich proporcja świadczy o tym, że miód jest prawdziwy.</value>
+  </data>
+  <data name="Hs2.P.maltose" xml:space="preserve">
+    <value>Cukier występujący w małych ilościach. Wysoka zawartość może wskazywać na dodatek syropu.</value>
+  </data>
+  <data name="Hs2.P.pesticides" xml:space="preserve">
+    <value>Pozostałości środków ochrony roślin. W miodzie nie powinno ich być wcale lub prawie wcale.</value>
+  </data>
+  <data name="Hs2.P.antibiotics" xml:space="preserve">
+    <value>Pozostałości leków stosowanych w ulach. W miodzie nie powinno ich być.</value>
+  </data>
+  <data name="Hs2.P.electrical-conductivity" xml:space="preserve">
+    <value>Zawartość minerałów. Pozwala odróżnić miód nektarowy od spadziowego, np. sosnowego.</value>
+  </data>
+  <data name="Hs2.P.proline" xml:space="preserve">
+    <value>Aminokwas dodawany przez pszczoły. Odpowiednia ilość świadczy o dojrzałym, prawdziwym miodzie.</value>
+  </data>
+  <data name="Hs2.P.ph" xml:space="preserve">
+    <value>Kwasowość miodu. Miód jest naturalnie lekko kwaśny.</value>
+  </data>
+  <data name="Hs2.P.free-acidity" xml:space="preserve">
+    <value>Naturalne kwasy miodu. Zbyt duża ilość może oznaczać, że zaczął fermentować.</value>
+  </data>
+  <data name="Hs2.P.insoluble-matter" xml:space="preserve">
+    <value>Resztki wosku, pyłku lub zanieczyszczeń pozostałe po filtrowaniu. Czysty miód ma ich bardzo mało.</value>
+  </data>
+  <data name="Hs2.P.naphthalene" xml:space="preserve">
+    <value>Pozostałość naftalenu stosowanego przeciw barciakowi. W miodzie nie powinno go być.</value>
   </data>
 </root>

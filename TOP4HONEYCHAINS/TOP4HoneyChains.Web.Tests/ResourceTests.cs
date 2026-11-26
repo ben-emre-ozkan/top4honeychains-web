@@ -149,6 +149,18 @@ namespace TOP4HoneyChains.Web.Tests
                     Assert.True(Resources.Value[lang].TryGetValue(key, out var text) && text.Length > 0, $"{lang}: missing \"{key}\"");
         }
 
+        // D-108: the Honey Story builds the verdict, the plain-language line of each parameter and the video language note at run time
+        [Fact]
+        public void Honey_story_v2_keys_exist()
+        {
+            var keys = new[] { "ok", "out", "tested", "traced" }.SelectMany(v => new[] { "Hs2.Verdict." + v, "Hs2.Verdict." + v + "Sub" })
+                .Concat(TOP4HoneyChains.Web.Services.ParameterVideos.Keys.Keys.Select(k => "Hs2.P." + k))
+                .Concat(new[] { "Hs2.VideoLang.en", "Hs2.VideoLang.tr" });
+            foreach (var lang in Languages)
+                foreach (var key in keys)
+                    Assert.True(Resources.Value[lang].TryGetValue(key, out var text) && text.Length > 0, $"{lang}: missing \"{key}\"");
+        }
+
         // The capabilities page explains every capability with the key "Cap.Uses.<code>" (built at run time)
         [Fact]
         public void Every_capability_has_an_explanation()

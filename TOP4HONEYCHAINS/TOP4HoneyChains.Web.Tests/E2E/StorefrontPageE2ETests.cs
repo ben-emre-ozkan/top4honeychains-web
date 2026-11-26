@@ -180,6 +180,16 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             var story = WebUtility.HtmlDecode(await visitor.HtmlAsync($"/honeystory/{seed.BatchQr}"));
             foreach (var section in new[] { "hs-journey", "hs-origins", "hs-map", "hs-sources", "hs-lab", "lab-report", "process" })
                 Assert.Contains($"id=\"{section}\"", story);
+            // D-108: the verdict first, the protection counts, the value sheet; the video answers only known keys and languages
+            Assert.Contains("id=\"hs-verdict\"", story);
+            Assert.Contains("id=\"hs-protect\"", story);
+            Assert.Contains("id=\"hv-sheet\"", story);
+            Assert.Contains("data-sheet=\"", story);
+            Assert.True(story.IndexOf("id=\"hs-verdict\"") < story.IndexOf("id=\"hs-origins\"") && story.IndexOf("id=\"hs-origins\"") < story.IndexOf("id=\"hs-protect\"")
+                        && story.IndexOf("id=\"hs-protect\"") < story.IndexOf("id=\"hs-lab\"") && story.IndexOf("id=\"hs-lab\"") < story.IndexOf("id=\"process\""));
+            Assert.Equal(404, await visitor.StatusAsync("/honeystory/video/en/unknown"));
+            Assert.Equal(404, await visitor.StatusAsync("/honeystory/video/xx/hmf"));
+            Assert.Equal(404, await visitor.StatusAsync("/honeystory/video/en/..%2F..%2Fappsettings"));
             // D-72: origins by province on the shared map, computed on the server; no coordinate of the apiary is sent
             var plate = TurkeyMap.PlateAt((double)Latitude, (double)Longitude);
             Assert.InRange(plate, 1, 81);

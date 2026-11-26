@@ -95,6 +95,7 @@ builder.Services.Configure<Microsoft.AspNetCore.ResponseCompression.GzipCompress
 builder.Services.AddScoped<LimitFormatter>();
 builder.Services.AddSingleton<RefText>();
 builder.Services.AddSingleton<Places>();
+builder.Services.AddSingleton<ParameterVideos>();   // the parameter videos of the Honey Story (outside git, Videos:Root)
 builder.Services.AddSingleton<TOP4HoneyChains.Web.Services.OrgModel.Permissions>();
 builder.Services.AddScoped<MessageTranslator>();
 builder.Services.AddScoped<ICurrentOrg, CurrentOrg>();

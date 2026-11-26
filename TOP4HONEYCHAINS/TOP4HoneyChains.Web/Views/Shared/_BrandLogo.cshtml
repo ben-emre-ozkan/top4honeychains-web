@@ -1,0 +1,9 @@
+@model TOP4HoneyChains.Web.Models.ViewModels.BrandLogo
+@* The project's main logo (docs/brand/logo-2026-11/logo-wide.png: emblem, wordmark and tagline; for light backgrounds), never
+   redrawn or recoloured. Wide = the full logo; otherwise the emblem only (logo-normal-size.png). *@
+@{
+    var wide = Model.Wide;
+    var src = wide ? (Model.Width > 240 ? "logo-wide" : "logo-wide-480") : (Model.Width > 64 ? "logo-emblem" : "logo-emblem-128");
+    var height = wide ? (int)Math.Round(Model.Width * 706.0 / 2104.0) : (int)Math.Round(Model.Width * 1254.0 / 1207.0);
+}
+<picture class="brand-logo @Model.Class"><source type="image/webp" srcset="/img/brand/@(src).webp"><img src="/img/brand/@(src).png" alt="@Model.Alt" width="@Model.Width" height="@height" decoding="async"></picture>
