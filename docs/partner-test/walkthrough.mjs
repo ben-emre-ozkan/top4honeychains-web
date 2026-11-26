@@ -18,7 +18,8 @@ import { fileURLToPath } from 'node:url';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const repo = path.resolve(here, '..', '..');
-const { chromium } = await import(new URL('../manual/node_modules/playwright-core/index.mjs', import.meta.url));
+const { chromium } = await import(new URL('../manual/capture/node_modules/playwright-core/index.mjs', import.meta.url))
+    .catch(() => import(new URL('../manual/node_modules/playwright-core/index.mjs', import.meta.url)));
 const BASE = (process.env.WALK_BASE || 'http://localhost:5255').replace(/\/$/, '');
 if (!/^http:\/\/localhost(:\d+)?$/.test(BASE)) throw new Error('walkthrough.mjs runs against the local app only');
 const LANG = process.env.WALK_LANG || 'en';
@@ -341,13 +342,13 @@ try {
     await step('Lab receives the jars and makes the composite', analyst, async page => {
         for (let i = 0; i < 4; i++) {
             await page.goto(`${BASE}/Samples/Index`); await settle(page);
-            const form = page.locator('form.receive-jar-form').first();
+            const form = page.locator(`tr:has-text("S-${lot}-C") form.receive-jar-form`).first();   // this run's jars only
             if (!await form.count()) break;
             for (const name of ['sealMatches', 'labelIntact', 'capIntact']) await form.locator(`input[name=${name}][value=true]`).check();
             await submit(page, form.locator('button[type=submit]'));
         }
         await page.goto(`${BASE}/Samples/Index`); await settle(page);
-        await submit(page, page.locator('#composite-ready button[type=submit], form[action*="Composite"] button[type=submit]'));
+        await submit(page, page.locator(`form.composite-form:has(input[name=lotId][value="${lot}"]) button[type=submit]`));   // this run's lot
         if (!/LabReports\/Edit/.test(page.url())) throw new Error('composite: ' + await flash(page));
         composite = page.url().split('/').pop();
         return 'composite sample, report form open';
