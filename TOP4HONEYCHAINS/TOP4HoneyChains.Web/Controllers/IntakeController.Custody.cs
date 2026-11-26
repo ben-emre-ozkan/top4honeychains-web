@@ -232,6 +232,8 @@ namespace TOP4HoneyChains.Web.Controllers
             ViewBag.MayResample = !_current.IsPlatformAdmin && await _current.GetAsync() is { } m && m.OrgId == intake.ReceivingOrgId
                 && Perm.Allows(PermissionAreas.Samples, PermissionAreas.Enter, m.OrgRole);
             ViewBag.IsRecorder = intake.ReceivedByUserId == _current.UserId;
+            // D-98: the seal checks when the containers were (or were to be) emptied into a batch
+            ViewBag.Emptyings = await HttpContext.RequestServices.GetRequiredService<ContainerEmptyingService>().ChecksAsync(intake.Containers.Select(c => c.ContainerId));
             await CorrectionsViewAsync(intake);
             ViewBag.PriceHistory = await HttpContext.RequestServices.GetRequiredService<LotPriceReader>().HistoryAsync(intake.RawHoneyProductionId);
             ViewBag.Controller = "Intake";

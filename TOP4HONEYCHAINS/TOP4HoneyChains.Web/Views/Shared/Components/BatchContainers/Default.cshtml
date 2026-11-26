@@ -1,0 +1,78 @@
+@model TOP4HoneyChains.Web.ViewComponents.BatchContainersViewComponent.Model
+@using TOP4HoneyChains.Web.Models.Entities
+@* D-98: the containers of the batch's lots. A container stays sealed until it is emptied into the batch: its closing seal is
+   scanned (the QR holds the seal's short address; the code works too) and confirmed intact. Another code or a broken seal stops
+   the step and is recorded. The closing seal's code is not shown here: it must come from the container. *@
+@if (Model.Rows.Count > 0)
+{
+    var open = Model.Rows.Count(r => r.Sealed || r.Failed != null);
+    <div class="card" id="batch-containers">
+        <div class="card-body">
+            <h5 class="card-title">@L["Empty.Title"]</h5>
+            <p class="small text-muted">@L["Empty.Help"]</p>
+            @if (!Model.Finalized && open > 0)
+            {
+                <div class="alert alert-warning py-2" id="emptying-warning"><i class="mdi mdi-alert-outline me-1" aria-hidden="true"></i>@L["Empty.Warning", open]</div>
+            }
+            <div class="table-responsive">
+                <table class="table table-sm align-middle" id="emptying-list">
+                    <thead><tr><th>@L["Lot"]</th><th>@L["Ci.Container"]</th><th>@L["Seal.State"]</th><th>@L["Empty.Checks"]</th></tr></thead>
+                    <tbody>
+                        @foreach (var r in Model.Rows)
+                        {
+                            var c = r.Container;
+                            <tr data-container="@c.ContainerCode" data-state="@(r.Emptied != null ? "Emptied" : r.Sealed ? "Sealed" : "NoSeal")">
+                                <td>#@c.RawHoneyProductionId</td>
+                                <td><a href="/Intake/Details/@c.IntakeId"><strong>@c.ContainerCode</strong></a>
+                                    <div class="small text-muted">@L["Ci.Kind." + c.Kind] · @c.NetWeightKg.ToString("0.##") kg · @L["Ci.Closure." + c.Closure]
+                                        @if (c.OrgContainer != null) { <span>· <code>@c.OrgContainer.Code</code></span> }</div>
+                                </td>
+                                <td>
+                                    @if (r.Emptied != null)
+                                    {
+                                        <span class="st-pill st-approved"><i class="mdi mdi-check" aria-hidden="true"></i><span>@L["Empty.State.Emptied", "#" + r.Emptied.FinalHoneyProductionId]</span></span>
+                                    }
+                                    else if (r.Sealed)
+                                    {
+                                        <span class="st-pill st-locked"><i class="mdi mdi-lock-outline" aria-hidden="true"></i><span>@L["Empty.State.Sealed"]</span></span>
+                                    }
+                                    else
+                                    {
+                                        <span class="st-pill st-na"><span>@L["Empty.State.NoSeal"]</span></span>
+                                    }
+                                </td>
+                                <td>
+                                    @foreach (var e in r.Checks)
+                                    {
+                                        <partial name="_EmptyingCheck" model="e" />
+                                    }
+                                    @if (Model.CanEmpty && r.Sealed)
+                                    {
+                                        <form action="/Emptying/Empty" method="post" class="emptying-form border rounded p-2 mt-1">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="batchId" value="@Model.BatchId" />
+                                            <input type="hidden" name="containerId" value="@c.ContainerId" />
+                                            <label class="form-label small mb-1" for="em-seal-@c.ContainerId">@L["Empty.Seal"]</label>
+                                            <div class="input-group input-group-sm mb-1">
+                                                <span class="input-group-text"><i class="mdi mdi-qrcode-scan" aria-hidden="true"></i></span>
+                                                <input class="form-control em-seal" id="em-seal-@c.ContainerId" name="seal" maxlength="200" required
+                                                       autocomplete="off" autocapitalize="characters" spellcheck="false" />
+                                            </div>
+                                            <div class="form-check mb-1">
+                                                <input class="form-check-input" type="checkbox" id="em-intact-@c.ContainerId" name="intact" value="true" />
+                                                <label class="form-check-label small" for="em-intact-@c.ContainerId">@L["Empty.Intact"]</label>
+                                            </div>
+                                            <button type="submit" class="btn btn-sm btn-primary em-empty">@L["Empty.Button"]</button>
+                                            <button type="submit" class="btn btn-sm btn-outline-danger em-broken" name="broken" value="true" formnovalidate>@L["Empty.BrokenButton"]</button>
+                                        </form>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="~/js/batch-containers.js" asp-append-version="true" defer></script>
+}

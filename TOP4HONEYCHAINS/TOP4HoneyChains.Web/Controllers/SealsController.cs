@@ -79,7 +79,10 @@ namespace TOP4HoneyChains.Web.Controllers
             return View();
         }
 
-        public record BoxRow(OrgContainer Box, int Uses, DateOnly? LastUse);
+        // D-98: InUse is the delivery container that still holds honey (not emptied into a batch yet); null = free
+        public record BoxRow(OrgContainer Box, int Uses, DateOnly? LastUse, string? InUse = null);
+
+        private ContainerEmptyingService Emptying => HttpContext.RequestServices.GetRequiredService<ContainerEmptyingService>();
 
         private async Task<List<BoxRow>> BoxesAsync(int orgId)
         {
@@ -87,7 +90,9 @@ namespace TOP4HoneyChains.Web.Controllers
             var ids = boxes.Select(b => b.OrgContainerId).ToList();
             var uses = await _context.Containers.AsNoTracking().Where(c => c.OrgContainerId != null && ids.Contains(c.OrgContainerId.Value))
                 .GroupBy(c => c.OrgContainerId!.Value).Select(g => new { Id = g.Key, N = g.Count(), Last = g.Max(c => c.Intake!.DeliveryDate) }).ToListAsync();
-            return boxes.Select(b => new BoxRow(b, uses.FirstOrDefault(u => u.Id == b.OrgContainerId)?.N ?? 0, uses.FirstOrDefault(u => u.Id == b.OrgContainerId)?.Last)).ToList();
+            var inUse = await Emptying.BoxesInUseAsync(ids);
+            return boxes.Select(b => new BoxRow(b, uses.FirstOrDefault(u => u.Id == b.OrgContainerId)?.N ?? 0, uses.FirstOrDefault(u => u.Id == b.OrgContainerId)?.Last,
+                inUse.TryGetValue(b.OrgContainerId, out var c) ? c : null)).ToList();
         }
 
         [HttpPost]
@@ -167,9 +172,13 @@ namespace TOP4HoneyChains.Web.Controllers
             var box = await _context.OrgContainers.AsNoTracking().FirstOrDefaultAsync(b => b.OrgContainerId == id && b.OrgId == active.OrgId);
             if (box == null)
                 return NotFound();
-            ViewBag.Uses = await _context.Containers.AsNoTracking().Where(c => c.OrgContainerId == id)
+            var uses = await _context.Containers.AsNoTracking().Where(c => c.OrgContainerId == id)
                 .Include(c => c.Intake).Include(c => c.SealEvents).Include(c => c.Samples)
                 .OrderByDescending(c => c.ContainerId).ToListAsync();
+            ViewBag.Uses = uses;
+            // D-98: the seal checks at emptying, and whether the container holds honey (not emptied into a batch yet)
+            ViewBag.Emptyings = await Emptying.ChecksAsync(uses.Select(c => c.ContainerId));
+            ViewBag.InUse = (await Emptying.BoxesInUseAsync(new[] { id })).GetValueOrDefault(id);
             ViewBag.Controller = "Intake";
             ViewBag.Action = "Seals";
             return View(box);

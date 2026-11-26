@@ -8785,7 +8785,7 @@
     <value>Record each tin and its seal. The beekeeper confirms with the SMS code.</value>
   </data>
   <data name="Scene.seal" xml:space="preserve">
-    <value>A numbered seal goes through the handle and clicks shut. Note its number.</value>
+    <value>A numbered seal ties the lid to the body and clicks shut. Note its number.</value>
   </data>
   <data name="Scene.send" xml:space="preserve">
     <value>The sealed jars travel to the laboratory; the counter-samples stay at the plant.</value>
@@ -9808,25 +9808,25 @@
     <value>Numbered label with QR across lid and body. Works on any container.</value>
   </data>
   <data name="Ci.Closure.SealLabel.Help" xml:space="preserve">
-    <value>A numbered label with a QR code, issued by the platform and printed in advance on tamper-evident VOID label stock. It goes across lid and body and tears or leaves VOID marks if someone removes it. Works on any container.</value>
+    <value>A numbered label with a QR code, issued by the platform and printed in advance on tamper-evident VOID label stock. It is a tear strip across the joint: the half with the code and QR on the lid, the other half on the body. It tears or leaves VOID marks if someone removes it. Works on any container.</value>
   </data>
   <data name="Ci.Closure.PlasticSeal" xml:space="preserve">
     <value>Beekeeper's container + numbered plastic seal</value>
   </data>
   <data name="Ci.Closure.PlasticSeal.Short" xml:space="preserve">
-    <value>Through a handle or a lid hole; it locks once.</value>
+    <value>Through the eyelet that ties the lid to the body; it locks once.</value>
   </data>
   <data name="Ci.Closure.PlasticSeal.Help" xml:space="preserve">
-    <value>For containers with a handle or a lid hole: the purchased numbered seal goes through it and locks; it can only be opened by cutting it.</value>
+    <value>The purchased numbered seal goes through the eyelet that ties the lid to the body and locks; it can only be opened by cutting it. Only the association's containers have such an eyelet.</value>
   </data>
   <data name="Ci.Closure.OrgContainer" xml:space="preserve">
     <value>Association's permanent container</value>
   </data>
   <data name="Ci.Closure.OrgContainer.Short" xml:space="preserve">
-    <value>Registered once; scan or type its TK code.</value>
+    <value>Registered once; scan or type its TK code. Closed with a seal label or a plastic seal.</value>
   </data>
   <data name="Ci.Closure.OrgContainer.Help" xml:space="preserve">
-    <value>The association's own container, registered once with a permanent code and QR. Scan or type its code at the delivery; its page shows every use. It is still closed with a seal from the pool.</value>
+    <value>The association's own container, registered once with a permanent code and QR. Scan or type its code at the delivery; its page shows every use. It is closed with a seal from the pool: a seal label, or a numbered plastic seal through the eyelet that ties the lid to the body.</value>
   </data>
   <data name="Ci.Info.Closure" xml:space="preserve">
     <value>The container is closed once, after sampling, in front of the beekeeper. The seal comes from your organization's seal pool.</value>
@@ -9901,7 +9901,7 @@
     <value>A seal label goes across lid and body. Peeled off, it tears and leaves VOID marks.</value>
   </data>
   <data name="Scene.plastic" xml:space="preserve">
-    <value>A numbered plastic seal goes through the handle and locks.</value>
+    <value>A numbered plastic seal goes through the eyelets of lid and body and locks.</value>
   </data>
   <data name="Scene.scan" xml:space="preserve">
     <value>The association's container is scanned by its QR code.</value>
@@ -9952,7 +9952,7 @@
     <value>Materials to keep at hand</value>
   </data>
   <data name="Seal.Materials" xml:space="preserve">
-    <value>Tamper-evident VOID label stock (100 × 50 mm) for the seal labels, numbered plastic seals for handles, sample jars with safety-button or tamper-ring caps, and a hand vacuum pump for the button caps.</value>
+    <value>Non-residue VOID or destructible (eggshell) label stock (100 × 50 mm) for the seal labels, numbered plastic seals for the association's containers (through the eyelet that ties the lid to the body), sample jars with safety-button or tamper-ring caps, and a hand vacuum pump for the button caps.</value>
   </data>
   <data name="Seal.Issue" xml:space="preserve">
     <value>Issue seal labels</value>
@@ -9973,7 +9973,7 @@
     <value>Add purchased plastic seals</value>
   </data>
   <data name="Seal.RangeHelp" xml:space="preserve">
-    <value>Enter the range printed on the seals: an optional prefix and the first and last number.</value>
+    <value>Enter the range printed on the seals: an optional prefix and the first and last number. Plastic seals close only the association's containers.</value>
   </data>
   <data name="Seal.Prefix" xml:space="preserve">
     <value>Prefix</value>
@@ -10045,7 +10045,7 @@
     <value>Every use</value>
   </data>
   <data name="Seal.PrintHelp" xml:space="preserve">
-    <value>Print on tamper-evident VOID label stock.</value>
+    <value>Print on non-residue VOID or destructible (eggshell) label stock. Each label is a tear strip: the half with the code and QR goes on the lid, the other half on the body.</value>
   </data>
   <data name="Seal.VoidNote" xml:space="preserve">
     <value>DO NOT REMOVE · VOID</value>
@@ -10352,5 +10352,95 @@
   </data>
   <data name="Home.Map.DistrictTip" xml:space="preserve">
     <value>Apiaries: {0}</value>
+  </data>
+  <data name="Seal.Split" xml:space="preserve">
+    <value>lid | body</value>
+  </data>
+  <data name="Seal.InUse" xml:space="preserve">
+    <value>In use: {0}</value>
+  </data>
+  <data name="Seal.Free" xml:space="preserve">
+    <value>Free</value>
+  </data>
+  <data name="Empty.Title" xml:space="preserve">
+    <value>Containers of the source lots</value>
+  </data>
+  <data name="Empty.Help" xml:space="preserve">
+    <value>A container stays sealed until it is emptied into this batch. Before emptying, scan its closing seal and confirm that it is intact. A different code or a broken seal stops the step and is recorded.</value>
+  </data>
+  <data name="Empty.Warning" xml:space="preserve">
+    <value>Containers still sealed or with a failed seal check: {0}. Finalizing is not blocked; empty or clear them first.</value>
+  </data>
+  <data name="Empty.Checks" xml:space="preserve">
+    <value>Seal check at emptying</value>
+  </data>
+  <data name="Empty.Seal" xml:space="preserve">
+    <value>Closing seal: scan or type it</value>
+  </data>
+  <data name="Empty.Intact" xml:space="preserve">
+    <value>The seal is intact</value>
+  </data>
+  <data name="Empty.Button" xml:space="preserve">
+    <value>Empty into this batch</value>
+  </data>
+  <data name="Empty.BrokenButton" xml:space="preserve">
+    <value>Seal broken</value>
+  </data>
+  <data name="Empty.State.Sealed" xml:space="preserve">
+    <value>Sealed</value>
+  </data>
+  <data name="Empty.State.Emptied" xml:space="preserve">
+    <value>Emptied into batch {0}</value>
+  </data>
+  <data name="Empty.State.NoSeal" xml:space="preserve">
+    <value>No closing seal on record</value>
+  </data>
+  <data name="Empty.Outcome.Emptied" xml:space="preserve">
+    <value>Seal intact, emptied into batch {0}</value>
+  </data>
+  <data name="Empty.Outcome.Mismatch" xml:space="preserve">
+    <value>Different seal scanned: {0}</value>
+  </data>
+  <data name="Empty.Outcome.FoundBroken" xml:space="preserve">
+    <value>Seal found broken</value>
+  </data>
+  <data name="Empty.NotEmptied" xml:space="preserve">
+    <value>not emptied into batch {0}</value>
+  </data>
+  <data name="Container {0}: a numbered plastic seal closes only an association container; close the beekeeper's container with a seal label." xml:space="preserve">
+    <value>Container {0}: a numbered plastic seal closes only an association container; close the beekeeper's container with a seal label.</value>
+  </data>
+  <data name="Containers are emptied into a batch by those who enter batch data in the organization that owns the batch." xml:space="preserve">
+    <value>Containers are emptied into a batch by those who enter batch data in the organization that owns the batch.</value>
+  </data>
+  <data name="The batch was not found." xml:space="preserve">
+    <value>The batch was not found.</value>
+  </data>
+  <data name="The batch is finalized; containers can no longer be emptied into it." xml:space="preserve">
+    <value>The batch is finalized; containers can no longer be emptied into it.</value>
+  </data>
+  <data name="This container does not belong to a lot of this batch." xml:space="preserve">
+    <value>This container does not belong to a lot of this batch.</value>
+  </data>
+  <data name="Container {0} was already emptied into batch {1}." xml:space="preserve">
+    <value>Container {0} was already emptied into batch {1}.</value>
+  </data>
+  <data name="Container {0} has no closing seal on record." xml:space="preserve">
+    <value>Container {0} has no closing seal on record.</value>
+  </data>
+  <data name="Scan or type the closing seal of container {0}." xml:space="preserve">
+    <value>Scan or type the closing seal of container {0}.</value>
+  </data>
+  <data name="The seal of container {0} was reported broken. The container was not emptied; the check was recorded." xml:space="preserve">
+    <value>The seal of container {0} was reported broken. The container was not emptied; the check was recorded.</value>
+  </data>
+  <data name="Seal {0} is not the closing seal of container {1}. The container was not emptied; the check was recorded." xml:space="preserve">
+    <value>Seal {0} is not the closing seal of container {1}. The container was not emptied; the check was recorded.</value>
+  </data>
+  <data name="Confirm that the seal of container {0} is intact, or report it broken." xml:space="preserve">
+    <value>Confirm that the seal of container {0} is intact, or report it broken.</value>
+  </data>
+  <data name="Container {0} emptied into batch {1}; seal {2} is now opened." xml:space="preserve">
+    <value>Container {0} emptied into batch {1}; seal {2} is now opened.</value>
   </data>
 </root>

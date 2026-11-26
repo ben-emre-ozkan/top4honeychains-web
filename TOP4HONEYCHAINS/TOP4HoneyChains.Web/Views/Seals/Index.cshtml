@@ -190,7 +190,7 @@
                         <a asp-action="Print" asp-route-what="containers" asp-route-size="label" target="_blank" rel="noopener" class="btn btn-sm btn-outline-secondary">@L["Ci.LabelsSingle"]</a>
                     </div>
                     <div class="table-responsive"><table class="table table-sm table-bordered" id="org-containers">
-                        <thead><tr><th>@L["Seal.Code"]</th><th>@L["Ci.Kind"]</th><th>@L["Seal.Name"]</th><th>@L["Seal.Capacity"]</th><th>@L["Seal.Tare"]</th><th>@L["Seal.Uses"]</th><th>@L["Seal.LastUse"]</th></tr></thead>
+                        <thead><tr><th>@L["Seal.Code"]</th><th>@L["Ci.Kind"]</th><th>@L["Seal.Name"]</th><th>@L["Seal.Capacity"]</th><th>@L["Seal.Tare"]</th><th>@L["Seal.Uses"]</th><th>@L["Seal.LastUse"]</th><th>@L["Seal.State"]</th></tr></thead>
                         <tbody>
                             @foreach (var b in boxes)
                             {
@@ -202,11 +202,12 @@
                                     <td>@b.Box.TareKg?.ToString("0.##")</td>
                                     <td>@b.Uses</td>
                                     <td>@b.LastUse?.ToString("dd.MM.yyyy")</td>
+                                    <td class="box-state">@(b.InUse != null ? L["Seal.InUse", b.InUse] : L["Seal.Free"])</td>
                                 </tr>
                             }
                             @if (boxes.Count == 0)
                             {
-                                <tr><td colspan="7" class="text-muted">@L["Org.None"]</td></tr>
+                                <tr><td colspan="8" class="text-muted">@L["Org.None"]</td></tr>
                             }
                         </tbody>
                     </table></div>

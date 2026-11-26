@@ -141,7 +141,13 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
                     c.OriginSeal = null;
                     c.OriginSealIntact = false;
                 }
-                if (!ClosureKind.All.Contains(c.Closure ?? ""))
+                // D-98: a plastic seal needs the eyelet that ties the lid to the body, which only the association's containers have
+                if (c.Closure == ClosureKind.PlasticSeal)
+                {
+                    errors.Add($"Container {n}: a numbered plastic seal closes only an association container; close the beekeeper's container with a seal label.");
+                    continue;
+                }
+                if (!ClosureKind.New.Contains(c.Closure ?? ""))
                 {
                     errors.Add($"Container {n}: choose how the container is closed.");
                     continue;

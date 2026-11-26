@@ -109,7 +109,8 @@ namespace TOP4HoneyChains.Web.Models.Entities
     {
         // a numbered seal label with a QR code on VOID label stock, across lid and body (or cap and jar)
         public const string Label = "Label";
-        // a purchased numbered plastic seal through a handle or a lid hole
+        // a purchased numbered plastic seal through the eyelet that ties the lid to the body (D-98: only the association's containers
+        // have one, so a plastic seal closes only those)
         public const string Plastic = "Plastic";
         public static readonly string[] All = { Label, Plastic };
     }
@@ -135,11 +136,14 @@ namespace TOP4HoneyChains.Web.Models.Entities
     {
         // the beekeeper's own container with a platform seal label across lid and body (default; works on any container)
         public const string SealLabel = "SealLabel";
-        // the beekeeper's own container with a numbered plastic seal through a handle or lid hole
+        // the beekeeper's own container with a numbered plastic seal: recorded by D-97 deliveries only. D-98: no longer offered for new
+        // deliveries (a beekeeper's container has no eyelet tying the lid to the body); old deliveries keep it and stay verified.
         public const string PlasticSeal = "PlasticSeal";
-        // the association's own permanent container (registered once, code TK-nnnn)
+        // the association's own permanent container (registered once, code TK-nnnn); closed with a seal label or a plastic seal
         public const string OrgContainer = "OrgContainer";
         public static readonly string[] All = { SealLabel, PlasticSeal, OrgContainer };
+        // D-98: the closures a new delivery may choose
+        public static readonly string[] New = { SealLabel, OrgContainer };
     }
 
     // D-97: the cap of the sample jars, chosen once per delivery
@@ -150,5 +154,45 @@ namespace TOP4HoneyChains.Web.Models.Entities
         // a tamper-ring cap: the ring breaks when the cap is opened
         public const string TamperRing = "TamperRing";
         public static readonly string[] All = { SafetyButton, TamperRing };
+    }
+
+    // D-98 (migration 036): a seal check when a container is emptied into a batch (append-only). Emptied: the scanned code is the
+    // container's closing seal and it is intact; Mismatch / FoundBroken: the step stopped, the container stays sealed.
+    public class ContainerEmptying
+    {
+        [Key]
+        public int EmptyingId { get; set; }
+
+        public int ContainerId { get; set; }
+
+        public int FinalHoneyProductionId { get; set; }
+
+        [StringLength(20)]
+        public string Outcome { get; set; } = EmptyingOutcome.Emptied;
+
+        [StringLength(50)]
+        public string ExpectedSeal { get; set; } = null!;
+
+        [StringLength(50)]
+        public string? ScannedSeal { get; set; }
+
+        [StringLength(450)]
+        public string UserId { get; set; } = null!;
+
+        public DateTime At { get; set; }
+
+        [StringLength(300)]
+        public string? Note { get; set; }
+
+        public virtual Container? Container { get; set; }
+        public virtual FinalHoneyProduction? Batch { get; set; }
+    }
+
+    public static class EmptyingOutcome
+    {
+        public const string Emptied = "Emptied";
+        public const string Mismatch = "Mismatch";
+        public const string FoundBroken = "FoundBroken";
+        public static readonly string[] All = { Emptied, Mismatch, FoundBroken };
     }
 }

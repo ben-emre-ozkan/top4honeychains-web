@@ -174,6 +174,13 @@ namespace TOP4HoneyChains.Web.Services.OrgModel
             jarSeal = jarSeal?.Trim();
             counterSeal = counterSeal?.Trim();
             reseal = reseal?.Trim();
+            if (container.Closure != null)
+            {
+                // D-98: pool codes may come as the seal's short address (the QR of the label)
+                jarSeal = SealPoolService.Normalize(jarSeal);
+                counterSeal = SealPoolService.Normalize(counterSeal);
+                reseal = SealPoolService.Normalize(reseal);
+            }
             if (string.IsNullOrEmpty(jarSeal) || string.IsNullOrEmpty(counterSeal) || string.IsNullOrEmpty(reseal))
                 return (null, "Enter the seal numbers of the new jar, of its counter-sample and the new seal of the container.");
             if (jarSeal.Length > 50 || counterSeal.Length > 50 || reseal.Length > 50)

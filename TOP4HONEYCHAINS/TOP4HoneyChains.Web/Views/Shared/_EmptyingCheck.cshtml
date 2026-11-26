@@ -1,0 +1,23 @@
+@model TOP4HoneyChains.Web.Models.Entities.ContainerEmptying
+@using TOP4HoneyChains.Web.Models.Entities
+@* D-98: one seal check when a container was (or was to be) emptied into a batch; a failed check stays visible *@
+@{
+    var batch = "#" + Model.FinalHoneyProductionId;
+}
+<div class="emptying-check" data-outcome="@Model.Outcome">
+    @if (Model.Outcome == EmptyingOutcome.Emptied)
+    {
+        <span class="st-pill st-approved"><i class="mdi mdi-check" aria-hidden="true"></i><span>@L["Empty.Outcome.Emptied", batch]</span></span>
+    }
+    else if (Model.Outcome == EmptyingOutcome.Mismatch)
+    {
+        <span class="st-pill st-outlimit"><i class="mdi mdi-alert-outline" aria-hidden="true"></i><span>@L["Empty.Outcome.Mismatch", Model.ScannedSeal ?? "-"]</span></span>
+        <span class="small">@L["Empty.NotEmptied", batch]</span>
+    }
+    else
+    {
+        <span class="st-pill st-outlimit"><i class="mdi mdi-alert-outline" aria-hidden="true"></i><span>@L["Empty.Outcome.FoundBroken"]</span></span>
+        <span class="small">@L["Empty.NotEmptied", batch]</span>
+    }
+    <span class="small text-muted">@Model.At.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</span>
+</div>

@@ -145,6 +145,8 @@
                 </div>
             }
 
+            @await Component.InvokeAsync("BatchContainers", new { batchId = Model.FinalHoneyProductionId, finalized = Model.FinalHoneyProductionIsFinalized })
+
             <div class="card" id="finalize-card">
                 <div class="card-body">
                     <h5 class="card-title">@L["Org.Finalize"]</h5>

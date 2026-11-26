@@ -8785,7 +8785,7 @@
     <value>Registre cada lata y su precinto. El apicultor confirma con el código SMS.</value>
   </data>
   <data name="Scene.seal" xml:space="preserve">
-    <value>Un precinto numerado pasa por el asa y se cierra. Anote su número.</value>
+    <value>Un precinto numerado une la tapa al cuerpo y se cierra. Anote su número.</value>
   </data>
   <data name="Scene.send" xml:space="preserve">
     <value>Los frascos precintados viajan al laboratorio; las contramuestras se quedan en la planta.</value>
@@ -9932,25 +9932,25 @@
     <value>Etiqueta numerada con QR sobre tapa y cuerpo. Sirve para cualquier envase.</value>
   </data>
   <data name="Ci.Closure.SealLabel.Help" xml:space="preserve">
-    <value>Una etiqueta numerada con QR, emitida por la plataforma e impresa de antemano en papel de seguridad VOID. Va sobre la tapa y el cuerpo y se rompe o deja marcas VOID si alguien la quita. Sirve para cualquier envase.</value>
+    <value>Una etiqueta numerada con QR, emitida por la plataforma e impresa de antemano en papel de seguridad VOID. Es una tira de rotura sobre la junta: la mitad con el código y el QR va en la tapa y la otra mitad en el cuerpo. Se rompe o deja marcas VOID si alguien la quita. Sirve para cualquier envase.</value>
   </data>
   <data name="Ci.Closure.PlasticSeal" xml:space="preserve">
     <value>Envase del apicultor + precinto plástico numerado</value>
   </data>
   <data name="Ci.Closure.PlasticSeal.Short" xml:space="preserve">
-    <value>Pasa por el asa o un orificio de la tapa; se cierra una vez.</value>
+    <value>Pasa por la argolla que une la tapa al cuerpo; se cierra una vez.</value>
   </data>
   <data name="Ci.Closure.PlasticSeal.Help" xml:space="preserve">
-    <value>Para envases con asa u orificio en la tapa: el precinto numerado comprado pasa por ahí y se cierra; solo se abre cortándolo.</value>
+    <value>El precinto numerado comprado pasa por la argolla que une la tapa al cuerpo y se cierra; solo se abre cortándolo. Solo los envases de la asociación tienen esa argolla.</value>
   </data>
   <data name="Ci.Closure.OrgContainer" xml:space="preserve">
     <value>Envase permanente de la asociación</value>
   </data>
   <data name="Ci.Closure.OrgContainer.Short" xml:space="preserve">
-    <value>Registrado una vez; escanee o escriba su código TK.</value>
+    <value>Registrado una vez; escanee o escriba su código TK. Se cierra con una etiqueta de precinto o un precinto plástico.</value>
   </data>
   <data name="Ci.Closure.OrgContainer.Help" xml:space="preserve">
-    <value>El envase propio de la asociación, registrado una vez con un código permanente y QR. En la entrega escanee o escriba su código; su página muestra cada uso. Igual se cierra con un precinto del stock.</value>
+    <value>El envase propio de la asociación, registrado una vez con un código permanente y QR. En la entrega escanee o escriba su código; su página muestra cada uso. Se cierra con un precinto del stock: una etiqueta de precinto o un precinto plástico numerado por la argolla que une la tapa al cuerpo.</value>
   </data>
   <data name="Ci.Info.Closure" xml:space="preserve">
     <value>El envase se cierra una vez, después del muestreo, delante del apicultor. El precinto viene del stock de su organización.</value>
@@ -10025,7 +10025,7 @@
     <value>La etiqueta de precinto va sobre tapa y cuerpo. Si se despega, se rompe y deja marcas VOID.</value>
   </data>
   <data name="Scene.plastic" xml:space="preserve">
-    <value>Un precinto plástico numerado pasa por el asa y se cierra.</value>
+    <value>Un precinto plástico numerado pasa por las argollas de la tapa y del cuerpo y se cierra.</value>
   </data>
   <data name="Scene.scan" xml:space="preserve">
     <value>El envase de la asociación se escanea por su código QR.</value>
@@ -10076,7 +10076,7 @@
     <value>Materiales a tener a mano</value>
   </data>
   <data name="Seal.Materials" xml:space="preserve">
-    <value>Papel de seguridad VOID (100 × 50 mm) para las etiquetas de precinto, precintos plásticos numerados para asas, frascos de muestra con tapa de botón o de anillo de seguridad y una bomba de vacío manual para las tapas de botón.</value>
+    <value>Papel de seguridad VOID sin residuo o destructible (cáscara de huevo) (100 × 50 mm) para las etiquetas de precinto, precintos plásticos numerados para los envases de la asociación (por la argolla que une la tapa al cuerpo), frascos de muestra con tapa de botón o de anillo de seguridad y una bomba de vacío manual para las tapas de botón.</value>
   </data>
   <data name="Seal.Issue" xml:space="preserve">
     <value>Emitir etiquetas de precinto</value>
@@ -10097,7 +10097,7 @@
     <value>Agregar precintos plásticos comprados</value>
   </data>
   <data name="Seal.RangeHelp" xml:space="preserve">
-    <value>Ingrese el rango impreso en los precintos: un prefijo opcional y el primer y último número.</value>
+    <value>Ingrese el rango impreso en los precintos: un prefijo opcional y el primer y último número. Los precintos plásticos solo cierran los envases de la asociación.</value>
   </data>
   <data name="Seal.Prefix" xml:space="preserve">
     <value>Prefijo</value>
@@ -10169,7 +10169,7 @@
     <value>Todos los usos</value>
   </data>
   <data name="Seal.PrintHelp" xml:space="preserve">
-    <value>Imprima en papel de seguridad VOID.</value>
+    <value>Imprima en papel de seguridad VOID sin residuo o destructible (cáscara de huevo). Cada etiqueta es una tira de rotura: la mitad con el código y el QR va en la tapa y la otra mitad en el cuerpo.</value>
   </data>
   <data name="Seal.VoidNote" xml:space="preserve">
     <value>NO QUITAR · VOID</value>
@@ -10476,5 +10476,95 @@
   </data>
   <data name="Home.Map.DistrictTip" xml:space="preserve">
     <value>Colmenares: {0}</value>
+  </data>
+  <data name="Seal.Split" xml:space="preserve">
+    <value>tapa | cuerpo</value>
+  </data>
+  <data name="Seal.InUse" xml:space="preserve">
+    <value>En uso: {0}</value>
+  </data>
+  <data name="Seal.Free" xml:space="preserve">
+    <value>Libre</value>
+  </data>
+  <data name="Empty.Title" xml:space="preserve">
+    <value>Envases de los lotes de origen</value>
+  </data>
+  <data name="Empty.Help" xml:space="preserve">
+    <value>El envase sigue precintado hasta que se vacía en esta partida. Antes de vaciarlo, escanee su precinto de cierre y confirme que está intacto. Un código distinto o un precinto roto detiene el paso y queda registrado.</value>
+  </data>
+  <data name="Empty.Warning" xml:space="preserve">
+    <value>Envases aún precintados o con una comprobación de precinto fallida: {0}. No impide finalizar; vacíelos o aclárelos antes.</value>
+  </data>
+  <data name="Empty.Checks" xml:space="preserve">
+    <value>Comprobación del precinto al vaciar</value>
+  </data>
+  <data name="Empty.Seal" xml:space="preserve">
+    <value>Precinto de cierre: escanéelo o escríbalo</value>
+  </data>
+  <data name="Empty.Intact" xml:space="preserve">
+    <value>El precinto está intacto</value>
+  </data>
+  <data name="Empty.Button" xml:space="preserve">
+    <value>Vaciar en esta partida</value>
+  </data>
+  <data name="Empty.BrokenButton" xml:space="preserve">
+    <value>Precinto roto</value>
+  </data>
+  <data name="Empty.State.Sealed" xml:space="preserve">
+    <value>Precintado</value>
+  </data>
+  <data name="Empty.State.Emptied" xml:space="preserve">
+    <value>Vaciado en la partida {0}</value>
+  </data>
+  <data name="Empty.State.NoSeal" xml:space="preserve">
+    <value>Sin precinto de cierre registrado</value>
+  </data>
+  <data name="Empty.Outcome.Emptied" xml:space="preserve">
+    <value>Precinto intacto, vaciado en la partida {0}</value>
+  </data>
+  <data name="Empty.Outcome.Mismatch" xml:space="preserve">
+    <value>Se escaneó otro precinto: {0}</value>
+  </data>
+  <data name="Empty.Outcome.FoundBroken" xml:space="preserve">
+    <value>Precinto encontrado roto</value>
+  </data>
+  <data name="Empty.NotEmptied" xml:space="preserve">
+    <value>no se vació en la partida {0}</value>
+  </data>
+  <data name="Container {0}: a numbered plastic seal closes only an association container; close the beekeeper's container with a seal label." xml:space="preserve">
+    <value>Envase {0}: un precinto plástico numerado solo cierra un envase de la asociación; cierre el envase del apicultor con una etiqueta de precinto.</value>
+  </data>
+  <data name="Containers are emptied into a batch by those who enter batch data in the organization that owns the batch." xml:space="preserve">
+    <value>Los envases los vacían en una partida quienes introducen datos de partidas en la organización propietaria de la partida.</value>
+  </data>
+  <data name="The batch was not found." xml:space="preserve">
+    <value>No se encontró la partida.</value>
+  </data>
+  <data name="The batch is finalized; containers can no longer be emptied into it." xml:space="preserve">
+    <value>La partida está finalizada; ya no se pueden vaciar envases en ella.</value>
+  </data>
+  <data name="This container does not belong to a lot of this batch." xml:space="preserve">
+    <value>Este envase no pertenece a ningún lote de esta partida.</value>
+  </data>
+  <data name="Container {0} was already emptied into batch {1}." xml:space="preserve">
+    <value>El envase {0} ya se vació en la partida {1}.</value>
+  </data>
+  <data name="Container {0} has no closing seal on record." xml:space="preserve">
+    <value>El envase {0} no tiene precinto de cierre registrado.</value>
+  </data>
+  <data name="Scan or type the closing seal of container {0}." xml:space="preserve">
+    <value>Escanee o escriba el precinto de cierre del envase {0}.</value>
+  </data>
+  <data name="The seal of container {0} was reported broken. The container was not emptied; the check was recorded." xml:space="preserve">
+    <value>Se informó de que el precinto del envase {0} está roto. El envase no se vació; la comprobación quedó registrada.</value>
+  </data>
+  <data name="Seal {0} is not the closing seal of container {1}. The container was not emptied; the check was recorded." xml:space="preserve">
+    <value>El precinto {0} no es el precinto de cierre del envase {1}. El envase no se vació; la comprobación quedó registrada.</value>
+  </data>
+  <data name="Confirm that the seal of container {0} is intact, or report it broken." xml:space="preserve">
+    <value>Confirme que el precinto del envase {0} está intacto o informe de que está roto.</value>
+  </data>
+  <data name="Container {0} emptied into batch {1}; seal {2} is now opened." xml:space="preserve">
+    <value>Envase {0} vaciado en la partida {1}; el precinto {2} queda abierto.</value>
   </data>
 </root>

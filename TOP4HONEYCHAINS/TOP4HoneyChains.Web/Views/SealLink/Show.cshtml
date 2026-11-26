@@ -1,0 +1,70 @@
+@model TOP4HoneyChains.Web.Controllers.SealLinkController.SealView
+@using TOP4HoneyChains.Web.Models.Entities
+@{
+    ViewData["Title"] = Model.Code;
+    Layout = "~/Views/Shared/HorizontalLayout.cshtml";
+    var s = Model.Seal;
+    var c = Model.Container;
+}
+@* D-98: what a member of the issuing organization sees after scanning a seal's QR (/s/{code}) *@
+
+<body data-topbar="light" data-layout="horizontal">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card" id="seal-link">
+                <div class="card-body">
+                    @if (s != null)
+                    {
+                        <div class="text-muted small text-uppercase">@L["Seal.Kind." + s.Kind]</div>
+                        <h4 class="card-title mb-2"><code id="seal-code">@s.Code</code>
+                            <span class="badge @(s.Status == SealStatus.Issued ? "bg-success" : s.Status == SealStatus.Used ? "bg-primary" : "bg-secondary")" id="seal-status" data-status="@s.Status">@L["Seal.Status." + s.Status]</span></h4>
+                        @if (s.UsedAs != null)
+                        {
+                            <p class="mb-2" id="seal-use">@L["Seal.UsedOn"]: <strong>@L["Seal.Use." + s.UsedAs]</strong>
+                                @if (c != null) { <span>· <a href="/Intake/Details/@c.IntakeId" id="seal-container">@c.ContainerCode</a></span> }
+                                <span class="text-muted">· @s.UsedAt?.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</span>
+                                @if (s.BrokenAt != null) { <span class="text-muted">· @L["Seal.Status.Broken"] @s.BrokenAt.Value.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</span> }</p>
+                        }
+                        @if (c != null)
+                        {
+                            <h5 class="mt-3">@L["Ci.SealHistory"] · @c.ContainerCode</h5>
+                            <div class="small">@c.Intake?.DeliveryDate.ToString("dd.MM.yyyy") · @L["Ci.Kind." + c.Kind] · @c.NetWeightKg.ToString("0.##") kg
+                                @if (c.Closure != null) { <span>· @L["Ci.Closure." + c.Closure]</span> }
+                                @if (c.OrgContainer != null) { <span>· <code>@c.OrgContainer.Code</code></span> }</div>
+                            <div class="small mt-2" id="seal-history">
+                                @foreach (var e in c.SealEvents.OrderBy(e => e.EventId))
+                                {
+                                    <div>@L["Ci.Seal." + e.Event] <code>@e.SealNumber</code> <span class="text-muted">@e.At.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</span></div>
+                                }
+                                @foreach (var e in Model.Checks)
+                                {
+                                    <partial name="_EmptyingCheck" model="e" />
+                                }
+                                @foreach (var j in c.Samples.OrderBy(j => j.SampleId))
+                                {
+                                    <div>@j.SampleCode · <code>@j.SealNumber</code> · @L["Lab.Status" + j.Status]</div>
+                                }
+                            </div>
+                        }
+                    }
+                    else if (Model.Box != null)
+                    {
+                        var b = Model.Box;
+                        <div class="text-muted small text-uppercase">@L["Ci.Closure.OrgContainer"]</div>
+                        <h4 class="card-title mb-1"><code id="seal-code">@b.Code</code></h4>
+                        <div>@L["Ci.Kind." + b.Kind]@(b.Name != null ? " · " + b.Name : "")</div>
+                        <div class="mt-1" id="box-state" data-in-use="@(Model.InUse != null ? "true" : "false")">@(Model.InUse != null ? L["Seal.InUse", Model.InUse] : L["Seal.Free"])</div>
+                        <ul class="small mt-2 mb-0">
+                            @foreach (var u in Model.BoxUses)
+                            {
+                                <li>@u.Intake?.DeliveryDate.ToString("dd.MM.yyyy") · <a href="/Intake/Details/@u.IntakeId">@u.ContainerCode</a></li>
+                            }
+                        </ul>
+                        <a class="btn btn-sm btn-outline-secondary mt-2" href="/Seals/Box/@b.OrgContainerId">@L["Seal.BoxUses"]</a>
+                    }
+                </div>
+            </div>
+            <a href="/Seals/Index" class="btn btn-link app-back"><i class="mdi mdi-arrow-left" aria-hidden="true"></i> @L["Seal.Title"]</a>
+        </div>
+    </div>
+</body>
