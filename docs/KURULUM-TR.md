@@ -213,7 +213,7 @@ Canlıya geçmeden önce (ayrıntı: GO-LIVE.md "People and material"):
 1. `<SITE>\app_offline.htm` dosyasını silin.
 2. Kontrol edin (ayrıntılı liste: GO-LIVE.md bölüm 3):
    - Yönetici girişi çalışıyor; ana sayfa ve her menü sayfası açılıyor.
-   - `http://<alan adı>/` adresi `https://` adresine yönleniyor.
+   - `http://<alan adı>/` adresi `https://` adresine yönleniyor (Cloudflare kullanılıyorsa B5a: "Full (strict)", asla "Flexible").
    - Bir onaylı partinin Bal Hikâyesi (`/honeystory/...`) açılıyor; QR kodu bu adrese gidiyor.
    - **Veri saklama** sayfası (/Retention) "Kapalı" diyor.
    - Denetim kaydında (`/Audit`) "Hash zincirini doğrula" bütün satırların doğrulandığını söylüyor.
@@ -305,6 +305,20 @@ sqlcmd -S <SUNUCU> -d <VERITABANI> -E -I -b -Q "CREATE LOGIN [<HESAP>] FROM WIND
 2. `<YAYIN>` klasörünün içeriğini `<SITE>` klasörüne kopyalayın: `robocopy <YAYIN> <SITE> /E`
 3. `<SITE>\App_Data` klasörünü oluşturun ve uygulama havuzu hesabına yazma izni verin.
 4. `<SITE>\web.config` dosyasına A5'teki ayarları yazın (dört anahtar açık, `Sms__CodeKey` dahil bütün zorunlu ayarlar).
+
+### B5a. Cloudflare (alan adı Cloudflare üzerindeyse)
+
+Site Cloudflare'in arkasındaysa HTTPS iki parçadır: Ziyaretçi ile Cloudflare arası ve Cloudflare ile sunucu arası.
+
+1. Cloudflare panelinde **SSL/TLS** modu **"Full (strict)"** olmalıdır. **"Flexible" asla seçilmez:** Uygulama HTTP isteğini
+   HTTPS'e yönlendirir; Flexible modda Cloudflare sunucuya HTTP ile gittiği için sayfa sonsuz bir yönlendirme döngüsüne girer.
+2. Sunucuda IIS sitesinin **443** bağlantısına geçerli bir sertifika bağlanır. Cloudflare'in ücretsiz **Origin CA** sertifikası
+   yeterlidir (Cloudflare > SSL/TLS > Origin Server > Create Certificate; sertifikayı ve anahtarı PFX olarak sunucuya alıp
+   IIS > Server Certificates > Import ile yükleyin, sonra site > Bindings > https 443'e seçin).
+3. **80** bağlantısı da kalır (uygulama oradan gelen isteği HTTPS'e yönlendirir).
+4. `App:PublicBaseUrl` sitenin `https://` adresidir; `AllowedHosts` alan adını içerir.
+5. Kontrol: `http://<alan adı>/` tarayıcıda tek bir yönlendirmeyle `https://` adresine gider; "too many redirects" hatası
+   görülürse SSL/TLS modu yanlıştır.
 
 ### B6. İlk platform yöneticisi
 
