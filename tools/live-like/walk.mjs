@@ -198,6 +198,27 @@ async function approveWithDialog(page, buttonSelector, dialogSelector) {
     current.urls.push(new URL(page.url()).pathname + new URL(page.url()).search);
 }
 
+// D-98: a laboratory report on the open sample: values, a PDF, submitted by the analyst and approved by the lab manager
+async function labReport(page, sample, reportNumber) {
+    await go(page, `/LabReports/Edit/${sample}`);
+    await page.fill('#reportNumber', reportNumber);
+    await page.fill('#issuedOn', new Date().toISOString().slice(0, 10));
+    for (const id of await page.locator('[name^="values["]').evaluateAll(els => els.map(e => e.name.match(/\d+/)[0]))) {
+        const input = page.locator(`[name="values[${id}]"]`);
+        if ((await input.evaluate(e => e.tagName)) === 'SELECT') await input.selectOption(value(id)); else await input.fill(value(id));
+    }
+    const pdf = path.join(os.tmpdir(), `walk-${reportNumber}.pdf`);
+    fs.writeFileSync(pdf, '%PDF-1.4\n1 0 obj<</Type/Catalog>>endobj\ntrailer<</Root 1 0 R>>\n%%EOF\n');
+    await page.setInputFiles('#reportFile', pdf);
+    await press(page, '#required-save, #report-form button[type=submit]');
+    fs.rmSync(pdf, { force: true });
+    await press(page, '#submit-report');
+    const manager = await actor(user('LabManager', 'lab'));
+    await go(manager, `/LabReports/Edit/${sample}`);
+    await press(manager, '#approve-report');
+    if (!await manager.locator('#flash-success').count()) throw new Error(`report ${reportNumber} not approved: ${await flash(manager)}`);
+}
+
 // D-97: free seal labels and the association's last permanent container, read from the Seals page (never the guide's reserved codes)
 async function freeCodes(who) {
     const page = await actor(who);
@@ -567,6 +588,180 @@ try {
         if (!/raw chestnut honey/i.test(text)) throw new Error('the answer is not shown to the consumer');
         current.result = 'answer shown under My feedback; the honey under My honeys';
     });
+
+    // ======================== D-98: the company path (Örnek Bal İşleme A.Ş., fictional): two deliveries of the cast's registered
+    // beekeeper from two apiaries, CCP 0, the laboratory, the lot control sheets (CCP 2–3 with the foam check) of which the QA officer
+    // sends one back, New batch, emptying, the final honey result of the blend, the batch sheet, finalizing and the Honey Story
+    if (process.env.WALK_COMPANY !== '0') {
+        const cSao = user('SampleAcceptanceOfficer', 'company'), cStaff = user('Staff', 'company'), cQa = user('QualityApprover', 'company');
+        const reg2 = cast.beekeepers.find(b => b.key === 'registered');
+        const reg2Digits = reg2.phone.replace(/\D/g, '');
+        const cLots = [], cClosings = {};
+        let cBatch, cFinal, cQr;
+        for (const apiary of [1, 2]) {
+            await step(`Company: delivery from apiary ${apiary} (code from the beekeeper's phone)`, cSao, async page => {
+                const free = await freeCodes(cSao);
+                if (free.labels.length < 3) throw new Error('the company\'s seal pool has too few free labels');
+                await go(page, '/Intake/Index');
+                await press(page, '#new-intake');
+                if (await page.locator('input[name=number]').count() && !await page.locator('#ApiaryId').count()) {
+                    await fill(page, 'input[name=number]', reg2.registry);
+                    await press(page, 'form:has(input[name=number]) button[type=submit]');
+                }
+                await page.locator('#ApiaryId').selectOption({ index: apiary });
+                await page.selectOption('#HoneyTypeId', refId(`SELECT HoneyTypeId FROM dbo.HoneyTypes WHERE HoneyTypeTitle = N'${cast.history.honeyType.replace(/'/g, "''")}'`));
+                await page.selectOption('#PeriodId', refId(`SELECT MAX(RawHoneyProductionPeriodId) FROM dbo.RawHoneyProductionPeriods WHERE RawHoneyProductionPeriodTitle = N'${cast.history.period.title.replace(/'/g, "''")}'`));
+                const prov = page.locator('select[data-province-select]').first();
+                await prov.selectOption({ label: reg2.province });
+                const did = await prov.getAttribute('data-province-select');
+                await page.waitForFunction(id => document.getElementById(id).options.length > 1, did);
+                await page.locator('#' + did).selectOption({ label: apiary === 1 ? reg2.district : reg2.apiary2.district });
+                if (!(await page.locator('#DeliveryDate').inputValue())) await page.fill('#DeliveryDate', new Date().toISOString().slice(0, 10));
+                await page.selectOption('#OriginCountry', 'TR').catch(() => {});
+                await choose(page, '#LabOrgId', orgName('lab'));
+                if (!(await page.locator('#RetainUntil').inputValue())) { const d = new Date(); d.setFullYear(d.getFullYear() + 2); await page.fill('#RetainUntil', d.toISOString().slice(0, 10)); }
+                await page.fill('#CounterLocation', 'Numune dolabı 1');
+                const card = page.locator('#ci-cards [data-card]').first();
+                const f = n => card.locator(`[data-field="${n}"]`);
+                await card.locator('[data-field="Closure"][value="SealLabel"]').check();
+                await f('Kind').selectOption({ index: 0 });
+                await f('NetKg').fill(apiary === 1 ? '24.0' : '19.5');
+                await f('GrossKg').fill(apiary === 1 ? '25.4' : '20.9');
+                await card.locator('[data-field="ArrivedSealed"][value="false"]').check();
+                const [jar, counter, closing] = free.labels;
+                for (const [field, code] of [['JarSeal', jar], ['CounterSeal', counter], ['ClosingSeal', closing]]) {
+                    await f(field).fill(code);
+                    await card.locator(`[data-field="${field}"].is-ok`).waitFor({ timeout: 8000 });
+                }
+                await f('CapIntact').check();
+                current.did.push({ type: 'type', label: 'Container 1', value: `seal label, sample jar ${jar}, counter-sample ${counter}, closing seal ${closing}` });
+                await phonePage(reg2Digits);   // the beekeeper's phone is open before the code is sent
+                await press(page, '#intake-send');
+                if (!await page.locator('#Code').count()) throw new Error('code not sent: ' + await errorsOf(page));
+                await fill(page, '#Code', codeIn(await nextMessage(reg2Digits)));
+                await press(page, '#intake-confirm');
+                current.result = await flash(page);
+                const l = current.result.match(/#(\d+)/)?.[1];
+                if (!l) throw new Error('no lot number: ' + current.result);
+                cLots.push(l); cClosings[l] = closing;
+            });
+        }
+        await step('Company: CCP 0 entered and approved for both lots', cSao, async page => {
+            for (const l of cLots) {
+                await go(page, `/CCPMonitoring/RawHoneyProductionManageCCP?rawHoneyProductionId=${l}&ccpId=1`);
+                await fillCcpBoxes(page);
+                await press(page, 'form.field-form button[type=submit]');
+                const qaPage = await actor(cQa);
+                await go(qaPage, `/CCPMonitoring/RawHoneyProductionManageCCP?rawHoneyProductionId=${l}&ccpId=1`);
+                await approveWithDialog(qaPage, '#approve-button', '#oolc-approve-form');
+            }
+            current.result = `CCP 0 of lots #${cLots.join(', #')} approved`;
+        });
+        await step('Company: the laboratory analyses both lots', analyst, async page => {
+            for (const l of cLots) {
+                await go(page, '/Samples/Index');
+                const form = page.locator(`tr:has-text("S-${l}-C") form.receive-jar-form`).first();
+                for (const name of ['sealMatches', 'labelIntact', 'capIntact']) await form.locator(`input[name=${name}][value=true]`).check();
+                await press(page, `tr:has-text("S-${l}-C") form.receive-jar-form button[type=submit]`);
+                await press(page, `form.composite-form:has(input[name=lotId][value="${l}"]) button[type=submit]`);
+                const sample = page.url().split('/').pop();
+                await labReport(page, sample, `${cast.history.lab.reportPrefix}C${l}`);
+            }
+            current.result = 'two reports approved';
+        });
+        await step('Company: lot control sheets (CCP 2–3, with the foam check) entered', cStaff, async page => {
+            for (const l of cLots) {
+                await go(page, `/CCPMonitoring/Sheet?kind=raw&id=${l}`);
+                const foam = Object.entries(params).find(([, p]) => p.code === 'CCP 2' && p.name === 'Foam check')[0];
+                if (!await page.locator(`.ccp-param[data-parameter-id="${foam}"]`).count()) throw new Error('the foam check is not on the sheet');
+                await fillCcpBoxes(page);
+                await press(page, '#sheet-save');
+                await result(page, /Control sheet saved/i);
+            }
+        });
+        await step('Company: the QA officer sends CCP 2 of the first lot back', cQa, async page => {
+            await go(page, `/CCPMonitoring/RawHoneyProductionManageCCP?rawHoneyProductionId=${cLots[0]}&ccpId=3`);
+            await page.locator('#return-box summary').click();
+            await fill(page, '#return-reason', 'Isıtma süresini kontrol edin / please check the heating time.');
+            await press(page, '#return-button');
+            await result(page, /sent back/i);
+            await workOf(cStaff, new RegExp(`kind=raw&id=${cLots[0]}`));
+        });
+        await step('Company: the record is saved again and both sheets are approved', cStaff, async page => {
+            await go(page, `/CCPMonitoring/Sheet?kind=raw&id=${cLots[0]}`);
+            await fillCcpBoxes(page);
+            await press(page, '#sheet-save');
+            await result(page, /Control sheet saved/i);
+            const qaPage = await actor(cQa);
+            for (const l of cLots) {
+                await go(qaPage, `/CCPMonitoring/Sheet?kind=raw&id=${l}`);
+                await approveWithDialog(qaPage, '#sheet-approve-button', '#oolc-sheet-approve-form');
+            }
+        });
+        await step('Company: New batch from both lots, containers emptied', cStaff, async page => {
+            await go(page, '/OrgWorkspace/Index');
+            await press(page, '#link-new-batch');
+            for (const id of await page.locator('#new-batch-lots tbody tr').evaluateAll(els => els.map(e => e.dataset.lotId)))
+                if (!cLots.includes(id)) await page.locator(`#use-${id}`).uncheck(); else await page.locator(`#use-${id}`).check();
+            await fill(page, '#batch-title', 'Örnek Harman Balı 2026/1');
+            await press(page, '#new-batch-submit');
+            cBatch = page.url().match(/\/OrgWorkspace\/Batch\/(\d+)/)?.[1];
+            if (!cBatch) throw new Error('batch: ' + await errorsOf(page));
+            for (const l of cLots) {
+                const row = page.locator(`#emptying-list tr[data-container="L${l}-C1"]`);
+                await row.locator('input.em-seal').fill(cClosings[l]);
+                await row.locator('input[type=checkbox][name=intact]').check();
+                await Promise.all([page.waitForNavigation(), row.locator('.em-empty').click()]);
+                await settle(page);
+            }
+            if (!await page.locator('#final-result').count()) throw new Error('no final honey result card on the blended batch');
+            if (!await page.locator('#final-warning').count()) throw new Error('no finalize warning without the final honey result');
+            current.result = `batch #${cBatch}, 2 containers emptied`;
+        });
+        await step('Company: sample of the final blend sent to the laboratory', cSao, async page => {
+            const free = await freeCodes(cSao);
+            await go(page, `/OrgWorkspace/Batch/${cBatch}`);
+            await choose(page, '#final-lab', orgName('lab'));
+            await fill(page, '#final-seal', free.labels[0]);
+            await fill(page, '#final-counter', free.labels[1]);
+            await fill(page, '#final-where', 'Numune dolabı 1');
+            await press(page, '#final-sample-send');
+            await result(page, /sent to the laboratory/i);
+        });
+        await step('Company: the laboratory analyses the final blend', analyst, async page => {
+            await go(page, '/Samples/Index');
+            const row = page.locator(`tr:has(.final-blend):has(form.receive-form)`).first();
+            cFinal = await row.getAttribute('data-sample-id');
+            await press(page, `tr[data-sample-id="${cFinal}"] form.receive-form button[name=sealIntact][value=true]`);
+            await labReport(page, cFinal, `${cast.history.lab.reportPrefix}F${cBatch}`);
+            current.result = `final blend sample ${cFinal}`;
+        });
+        await step('Company: the batch shows the final honey result; batch sheet, finalizing', cStaff, async page => {
+            await go(page, `/OrgWorkspace/Batch/${cBatch}`);
+            if (!await page.locator('#final-report').count()) throw new Error('no final honey result on the batch page');
+            await go(page, `/CCPMonitoring/Sheet?kind=batch&id=${cBatch}`);
+            await fillCcpBoxes(page);
+            await press(page, '#sheet-save');
+            const qaPage = await actor(cQa);
+            await go(qaPage, `/CCPMonitoring/Sheet?kind=batch&id=${cBatch}`);
+            await approveWithDialog(qaPage, '#sheet-approve-button', '#oolc-sheet-approve-form');
+            await go(page, `/OrgWorkspace/Batch/${cBatch}`);
+            await press(page, '#request-finalize');
+            await go(qaPage, `/OrgWorkspace/Batch/${cBatch}`);
+            await press(qaPage, '#confirm-finalize');
+            cQr = (await qaPage.content()).match(/honeystory\/([0-9A-Fa-f-]{36})/)?.[1];
+            if (!cQr) throw new Error('not finalized: ' + await flash(qaPage));
+        });
+        await step('Company: the Honey Story shows the final honey result', null, async () => {
+            const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, locale: LANG });
+            const s = await context.newPage();
+            await s.goto(`${BASE}/Home/SetLanguage?culture=${LANG}&returnUrl=${encodeURIComponent('/honeystory/' + cQr)}`);
+            await settle(s);
+            if (!await s.locator('#final-result').count()) throw new Error('no final honey result in the Honey Story');
+            current.result = 'final honey result shown apart from the lot results';
+            await context.close();
+        });
+    }
 } finally {
     facts.totalSeconds = +((Date.now() - started) / 1000).toFixed(1);
     if (process.env.WALK_OUT) fs.writeFileSync(process.env.WALK_OUT, JSON.stringify(facts, null, 2));

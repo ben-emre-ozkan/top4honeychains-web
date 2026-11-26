@@ -87,8 +87,8 @@
                                     {
                                         <tr class="@(v.IsInRange == false ? "table-danger" : null)">
                                             <td>@Ref.T("Parameter", v.ParameterId, "Name", v.Parameter?.ParameterName)</td>
-                                            <td>@(v.MeasuredNumericValue?.ToString("0.####") ?? v.MeasuredTextValue) @(v.Parameter?.ParameterUnit is string u && u != "None" ? Ref.T("Parameter", v.ParameterId, "Unit", u) : "")</td>
-                                            <td class="small text-muted">@Ref.Limit(v.AppliedLimit, k => L[k])</td>
+                                            <td>@(v.MeasuredNumericValue?.ToString("0.####") ?? (v.MeasuredTextValue is "Yes" or "No" ? L[v.MeasuredTextValue].Value : v.MeasuredTextValue)) @(v.MeasuredNumericValue != null && v.Parameter?.ParameterUnit is string u && u != "None" ? TOP4HoneyChains.Web.Services.Units.Symbol(Ref.Unit(v.ParameterId, u)) : "")</td>
+                                            <td class="small text-muted">@(v.Parameter != null ? Limits.Describe(v.Parameter) : Ref.Limit(v.AppliedLimit, k => L[k]))</td>
                                         </tr>
                                     }
                                 </tbody>

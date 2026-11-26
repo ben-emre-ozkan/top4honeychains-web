@@ -1,4 +1,4 @@
-using System.Globalization;
+﻿using System.Globalization;
 using Microsoft.Extensions.Localization;
 using TOP4HoneyChains.Web.Models.Entities;
 
@@ -23,6 +23,9 @@ namespace TOP4HoneyChains.Web.Services
         // rows for that honey are shown and without a scope label; otherwise every row, scoped by honey class or type.
         public string? Describe(CriticalControlPointParameter p, HoneyProfile? honey = null)
         {
+            // D-98: a yes/no question with an expected answer
+            if (CcpLimitEvaluator.ExpectedAnswer(p) is string expected)
+                return $"{_l["Limit.expected"].Value} {_l[expected].Value}";
             var known = honey != null && (honey.HoneyClass != null || honey.HoneyTypeId != null);
             var rows = p.Limits
                 .Where(l => !known || ((l.HoneyTypeId == null || l.HoneyTypeId == honey!.HoneyTypeId) && (l.HoneyClass == null || l.HoneyClass == honey!.HoneyClass)))
