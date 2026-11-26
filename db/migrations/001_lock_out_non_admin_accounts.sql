@@ -21,6 +21,14 @@ BEGIN
     RETURN;
 END;
 
+-- D-98: a new installation (db/install) has no accounts at all, so there is nothing to lock and no administrator yet; the
+-- first administrator is created afterwards (docs/KURULUM-TR.md, part B). A database with any account behaves as before.
+IF NOT EXISTS (SELECT 1 FROM dbo.AspNetUsers)
+BEGIN
+    PRINT N'No user accounts yet (new installation); nothing to lock.';
+    RETURN;
+END;
+
 -- Refuse to run if no administrator exists; locking everyone out would leave no way in.
 IF NOT EXISTS (
     SELECT 1
