@@ -108,6 +108,14 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.23" />
     <PackageReference Include="QRCoder" Version="1.7.0" />
     <PackageReference Include="SkiaSharp" Version="4.153.1" />
+    <!-- D-112: create-test-set drives the app's own pages in memory (no network port), as the people of the test set -->
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="8.0.11" />
+  </ItemGroup>
+
+  <!-- D-112: the cast of the live site's test set, read by create-test-set; embedded, not published as a content file -->
+  <ItemGroup>
+    <Content Remove="Services\OrgModel\TestSet\TestSetCast.json" />
+    <EmbeddedResource Include="Services\OrgModel\TestSet\TestSetCast.json" LogicalName="TOP4HoneyChains.Web.TestSetCast.json" />
   </ItemGroup>
 
   <!-- D-70: the animated mark is inlined by TagHelpers/HoneyMarkTagHelper.cs; embedded so it does not depend on the web root -->

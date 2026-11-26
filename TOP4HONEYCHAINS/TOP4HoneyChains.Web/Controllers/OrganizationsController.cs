@@ -105,6 +105,8 @@ namespace TOP4HoneyChains.Web.Controllers
 
             org.Status = OrgStatus.Pending;
             org.CreatedByUserId = _current.UserId;
+            // D-112: an organization created by the test set's platform administrator belongs to the test set
+            org.IsTestData = await _context.TestSetAccounts.AnyAsync(a => a.UserId == _current.UserId);
             foreach (var c in capabilities.Distinct())
                 org.Capabilities.Add(new OrgCapability
                 {

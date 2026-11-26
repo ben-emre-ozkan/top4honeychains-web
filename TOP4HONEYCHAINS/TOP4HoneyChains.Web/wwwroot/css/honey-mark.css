@@ -1,4 +1,4 @@
-/* The animated brand mark (D-70). Markup: <honey-mark> tag helper (TagHelpers/HoneyMarkTagHelper.cs), which inlines
+﻿/* The animated brand mark (D-70). Markup: <honey-mark> tag helper (TagHelpers/HoneyMarkTagHelper.cs), which inlines
    docs/brand/top4-mark-animated.svg; these rules are the master's own <style>, written once instead of per copy,
    plus the loop modes and the page loader. Only transform and opacity are animated (docs/brand/MOTION.md).
    States:
@@ -98,3 +98,9 @@ html[data-scenes="off"] .bee .bee-still { display: inline-block; }
 @media (max-width: 380px) {
     .app-brand .brand-logo img { height: 24px; }
 }
+.ld-scroll-arrow { display: block; margin: 0 auto 4px; color: var(--b-kicker, #8C5E2E); }
+.ah-empty-icon { font-size: 32px; color: var(--b-kicker, #8C5E2E); }
+/* home page: the header logo waits until the hero logo has left the screen (one logo per view) */
+.ld-brand-later .ld-brand-top { visibility: hidden; opacity: 0; transition: opacity .25s ease, visibility 0s linear .25s; }
+.ld-brand-later.is-hero-gone .ld-brand-top { visibility: visible; opacity: 1; transition: opacity .25s ease; }
+@media (prefers-reduced-motion: reduce) { .ld-brand-later .ld-brand-top, .ld-brand-later.is-hero-gone .ld-brand-top { transition: none; } }

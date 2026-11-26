@@ -135,6 +135,8 @@ namespace TOP4HoneyChains.Web.Controllers
                     ModelState.AddModelError("", e);
                 return await SignUpView(model, returnUrl);
             }
+            // D-112: an account signed up from a test Honey Story or with a test number belongs to the test set (remove-test-set)
+            await TestData.MarkConsumerAsync(HttpContext.RequestServices.GetRequiredService<TOP4HoneyChains.Web.Data.TOP4HoneyChainsContext>(), user.Id, phone, returnUrl);
             await _signIn.SignInAsync(user, isPersistent: false);
             Response.Cookies.Append(ConsumerMarker.Name, "1", ConsumerMarker.Options(Request.IsHttps));
             SetCulture(account!.Language);

@@ -5800,7 +5800,7 @@
     <value>Kovandan rafa bal izlenebilirliği</value>
   </data>
   <data name="Land.HeroLead" xml:space="preserve">
-    <value>Bir kavanoz balın attığı her adımın tek ve ortak kaydı: işi yapanlar tutar, başka biri kontrol eder.</value>
+    <value>Bir kavanoz balın attığı her adımın tek ve ortak kaydı: İşi yapanlar tutar, başka biri kontrol eder.</value>
   </data>
   <data name="Land.Consumer" xml:space="preserve">
     <value>Elinizde kavanoz mu var? Etiketindeki QR kodu okutun.</value>
@@ -10781,5 +10781,32 @@
   </data>
   <data name="Hs2.P.naphthalene" xml:space="preserve">
     <value>Mum güvesine karşı kullanılan naftalinin kalıntısı. Balda bulunmamalıdır.</value>
+  </data>
+  <data name="TestSet.PageBanner" xml:space="preserve">
+    <value>Test verisi: Bu sayfa sitenin test setini gösterir, gerçek bir bal değildir.</value>
+  </data>
+  <data name="TestSet.AccountBanner" xml:space="preserve">
+    <value>Test hesabı: Sitenin test setine ait bir hesapla giriş yaptınız.</value>
+  </data>
+  <data name="TestSet.InboxLink" xml:space="preserve">
+    <value>Test SMS gelen kutusu</value>
+  </data>
+  <data name="TestSet.InboxTitle" xml:space="preserve">
+    <value>Test SMS gelen kutusu</value>
+  </data>
+  <data name="TestSet.InboxHelp" xml:space="preserve">
+    <value>Test numaralarına (+90 512 000 …) giden her SMS sunucuda kalır ve burada, en yenisi en üstte gösterilir. Kodu veya giriş bilgilerini kişi telefonundan okuyormuş gibi kullanın. Sayfa 15 saniyede bir yenilenir.</value>
+  </data>
+  <data name="TestSet.InboxNumber" xml:space="preserve">
+    <value>Numara</value>
+  </data>
+  <data name="TestSet.InboxShow" xml:space="preserve">
+    <value>Göster</value>
+  </data>
+  <data name="TestSet.InboxAll" xml:space="preserve">
+    <value>Bütün numaralar</value>
+  </data>
+  <data name="TEST- is kept for the seals of the test set." xml:space="preserve">
+    <value>TEST- öneki test setinin mühürlerine ayrılmıştır.</value>
   </data>
 </root>

@@ -1,4 +1,4 @@
-@using System.Globalization
+﻿@using System.Globalization
 @using TOP4HoneyChains.Web.Services
 @using TOP4HoneyChains.Web.Services.OrgModel
 @using TOP4HoneyChains.Web.Models.ViewModels.HoneyStory
@@ -151,7 +151,6 @@
     @* ===== 1. the verdict and what this honey is ===== *@
     <section class="hv-hero" id="hs-verdict">
         <div class="hv-hero-top">
-            <span class="hv-hero-bee"><partial name="_Bee" model="@(new TOP4HoneyChains.Web.Models.ViewModels.Bee("landing", 56))" /></span>
             <div class="hv-hero-name">
                 <span class="hv-traceable">✓ @L["Hst.Traceable"]</span>
                 <h1 class="hv-batch">@(Model.BatchTitle ?? L["Hst.Untitled"].Value)</h1>
@@ -613,7 +612,7 @@
 </dialog>
 
 <footer class="sf-footer">
-    <span class="sf-foot-brand"><img class="b-logo" src="~/img/brand/logo-wide-480.png" alt="TOP4HoneyChains" width="119" height="40"><span>@L["Sf.FooterTag"]</span></span>
+    <span class="sf-foot-brand"><span>@L["Sf.FooterTag"]</span></span>
     <span>@L["Hst.FooterNote"]</span>
 </footer>
 </div>

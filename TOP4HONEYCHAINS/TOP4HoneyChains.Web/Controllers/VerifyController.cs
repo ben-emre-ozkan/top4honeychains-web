@@ -35,6 +35,9 @@ namespace TOP4HoneyChains.Web.Controllers
             // C4 (D-84): only an approved report is confirmed publicly; a draft or submitted one is "not found"
             if (r == null || r.Status != LabReportStatus.Approved)
                 return View((ReportInfo?)null);
+            // D-112: a report of the test set's laboratory shows the TEST banner
+            if (r.LabOrg!.IsTestData)
+                TestData.MarkPage(HttpContext);
             return View(new ReportInfo(r.ReportCode, r.Status, r.ReportNumber, r.IssuedOn, r.LabOrg!.DisplayName,
                 r.IsAccredited, r.AccreditationNumber, r.InHouse, r.Sha256, r.ApprovedAt));
         }

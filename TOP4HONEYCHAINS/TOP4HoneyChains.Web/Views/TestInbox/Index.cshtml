@@ -1,0 +1,68 @@
+@model List<TOP4HoneyChains.Web.Controllers.TestInboxController.Row>
+@{
+    // D-112: the test SMS inbox of the live site's test set: every SMS to a test number, newest on top, refreshed every 15 seconds.
+    // A page of its own (no panel menus), so a beekeeper's or a consumer's test account sees it the same way.
+    Layout = null;
+    var lang = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+    string? filter = ViewBag.Filter as string;
+    string? digits = ViewBag.FilterDigits as string;
+}
+<!doctype html>
+<html lang="@lang">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="refresh" content="15">
+    <title>@L["TestSet.InboxTitle"]</title>
+    <style>
+        :root { --bg: #f4f1ec; --card: #fff; --ink: #1f1a17; --muted: #6f655d; --line: #e4ddd3; --test: #B42318; }
+        @@media (prefers-color-scheme: dark) { :root { --bg: #15120f; --card: #221c17; --ink: #f3ede6; --muted: #a59a90; --line: #3a312a; } }
+        * { box-sizing: border-box; }
+        body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+        main { max-width: 860px; margin: 0 auto; padding: 16px; }
+        h1 { font-size: 1.35rem; margin: 8px 0 4px; }
+        p.help { color: var(--muted); margin: 0 0 12px; }
+        form { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; }
+        input { font: inherit; padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); color: var(--ink); min-width: 0; }
+        button, a.btn { font: inherit; padding: 6px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--card); color: var(--ink); text-decoration: none; cursor: pointer; }
+        .msg { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; margin-bottom: 10px; }
+        .meta { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+        .meta .to { color: var(--ink); font-weight: 700; }
+        .text { white-space: pre-wrap; overflow-wrap: anywhere; }
+        .empty { color: var(--muted); }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>@L["TestSet.InboxTitle"]</h1>
+        <p class="help">@L["TestSet.InboxHelp"]</p>
+        <form method="get" action="/TestInbox">
+            <label for="to">@L["TestSet.InboxNumber"]</label>
+            <input id="to" name="to" inputmode="numeric" placeholder="905120000031" value="@digits">
+            <button type="submit">@L["TestSet.InboxShow"]</button>
+            @if (filter != null)
+            {
+                <a class="btn" href="/TestInbox">@L["TestSet.InboxAll"]</a>
+            }
+        </form>
+        <div id="test-inbox">
+            @foreach (var m in Model)
+            {
+                <div class="msg" data-id="@m.Id">
+                    <div class="meta">
+                        <span class="to">@m.To@(m.Person != null ? " · " + m.Person : "")</span>
+                        <span>@L["Sms.Purpose." + m.Purpose]</span>
+                        <span data-utc="@DateTime.SpecifyKind(m.At, DateTimeKind.Utc).ToString("o")">@DateTime.SpecifyKind(m.At, DateTimeKind.Utc).ToLocalTime().ToString("dd.MM.yyyy HH:mm:ss")</span>
+                    </div>
+                    <div class="text">@m.Text</div>
+                </div>
+            }
+            @if (Model.Count == 0)
+            {
+                <p class="empty">@L["Sms.NoMessages"]</p>
+            }
+        </div>
+    </main>
+</body>
+</html>

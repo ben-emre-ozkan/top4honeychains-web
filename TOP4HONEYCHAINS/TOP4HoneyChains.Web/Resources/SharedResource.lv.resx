@@ -10906,4 +10906,31 @@
   <data name="Hs2.P.naphthalene" xml:space="preserve">
     <value>Naftalīna atliekas, ko lieto pret vaska kodēm. Medū to nedrīkst būt.</value>
   </data>
+  <data name="TestSet.PageBanner" xml:space="preserve">
+    <value>Testa dati: šī lapa rāda vietnes testa kopu, nevis īstu medu.</value>
+  </data>
+  <data name="TestSet.AccountBanner" xml:space="preserve">
+    <value>Testa konts: jūs esat pieteicies ar vietnes testa kopas kontu.</value>
+  </data>
+  <data name="TestSet.InboxLink" xml:space="preserve">
+    <value>Testa SMS iesūtne</value>
+  </data>
+  <data name="TestSet.InboxTitle" xml:space="preserve">
+    <value>Testa SMS iesūtne</value>
+  </data>
+  <data name="TestSet.InboxHelp" xml:space="preserve">
+    <value>Katra SMS uz testa numuru (+90 512 000 …) paliek serverī un tiek rādīta šeit, jaunākā augšā. Izmantojiet kodu vai pieteikšanās datus tā, kā persona to darītu savā tālrunī. Lapa atjaunojas ik pēc 15 sekundēm.</value>
+  </data>
+  <data name="TestSet.InboxNumber" xml:space="preserve">
+    <value>Numurs</value>
+  </data>
+  <data name="TestSet.InboxShow" xml:space="preserve">
+    <value>Rādīt</value>
+  </data>
+  <data name="TestSet.InboxAll" xml:space="preserve">
+    <value>Visi numuri</value>
+  </data>
+  <data name="TEST- is kept for the seals of the test set." xml:space="preserve">
+    <value>Prefikss TEST- ir rezervēts testa kopas plombām.</value>
+  </data>
 </root>

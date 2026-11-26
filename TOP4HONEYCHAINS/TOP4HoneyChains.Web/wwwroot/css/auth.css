@@ -1,4 +1,4 @@
-/* Sign-in pages (Views/Shared/_AuthLayout.cshtml, D-65). Uses only the tokens of brand.css (load it first). */
+﻿/* Sign-in pages (Views/Shared/_AuthLayout.cshtml, D-65). Uses only the tokens of brand.css (load it first). */
 
 *, *::before, *::after { box-sizing: border-box; }
 html, body.au { height: 100%; }
@@ -133,3 +133,6 @@ body.au { margin: 0; font-family: var(--b-text); font-size: 16px; line-height: 1
 .au-help { color: var(--b-muted); font-size: 13px; }
 .au-field select { width: 100%; min-height: 50px; padding: 0 12px; font: inherit; font-size: 16px; color: var(--b-ink); background: var(--b-card); border: 1.5px solid #A88456; border-radius: 14px; }
 .au-consumer-hint { margin-top: 18px; }
+
+/* 2026-11-26: one logo per view: the form's logo only where the panel does not show its own */
+@media (min-width: 861px) { .au-form-logo { display: none; } }

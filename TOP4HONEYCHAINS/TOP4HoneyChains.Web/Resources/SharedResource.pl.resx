@@ -10906,4 +10906,31 @@
   <data name="Hs2.P.naphthalene" xml:space="preserve">
     <value>Pozostałość naftalenu stosowanego przeciw barciakowi. W miodzie nie powinno go być.</value>
   </data>
+  <data name="TestSet.PageBanner" xml:space="preserve">
+    <value>Dane testowe: ta strona pokazuje zestaw testowy serwisu, a nie prawdziwy miód.</value>
+  </data>
+  <data name="TestSet.AccountBanner" xml:space="preserve">
+    <value>Konto testowe: jesteś zalogowany na konto z zestawu testowego serwisu.</value>
+  </data>
+  <data name="TestSet.InboxLink" xml:space="preserve">
+    <value>Skrzynka testowych SMS</value>
+  </data>
+  <data name="TestSet.InboxTitle" xml:space="preserve">
+    <value>Skrzynka testowych SMS</value>
+  </data>
+  <data name="TestSet.InboxHelp" xml:space="preserve">
+    <value>Każdy SMS na numer testowy (+90 512 000 …) zostaje na serwerze i jest pokazywany tutaj, najnowszy na górze. Użyj kodu lub danych logowania tak, jak ta osoba zrobiłaby to na swoim telefonie. Strona odświeża się co 15 sekund.</value>
+  </data>
+  <data name="TestSet.InboxNumber" xml:space="preserve">
+    <value>Numer</value>
+  </data>
+  <data name="TestSet.InboxShow" xml:space="preserve">
+    <value>Pokaż</value>
+  </data>
+  <data name="TestSet.InboxAll" xml:space="preserve">
+    <value>Wszystkie numery</value>
+  </data>
+  <data name="TEST- is kept for the seals of the test set." xml:space="preserve">
+    <value>Prefiks TEST- jest zarezerwowany dla plomb zestawu testowego.</value>
+  </data>
 </root>

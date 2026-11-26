@@ -60,8 +60,8 @@
 /* 2. where it came from */
 .hv-stack { display: flex; height: 12px; border-radius: 999px; overflow: hidden; gap: 2px; background: var(--b-track); }
 .hv-stack span { background: var(--c); min-width: 4px; }
-.hv-sources { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 10px; }
-.hv-source { border: 1px solid var(--hv-line); border-left: 4px solid var(--c); border-radius: 14px; padding: 12px; background: #FFFFFF; }
+.hv-sources { list-style: none; margin: 12px 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
+.hv-source { min-width: 0; border: 1px solid var(--hv-line); border-left: 4px solid var(--c); border-radius: 14px; padding: 12px; background: #FFFFFF; }
 .hv-source-row { display: flex; align-items: center; gap: 12px; }
 .hv-share { display: flex; flex-direction: column; align-items: flex-start; min-width: 64px; }
 .hv-share b { font-family: var(--b-display); font-weight: 800; font-size: 20px; color: var(--hv-head); }

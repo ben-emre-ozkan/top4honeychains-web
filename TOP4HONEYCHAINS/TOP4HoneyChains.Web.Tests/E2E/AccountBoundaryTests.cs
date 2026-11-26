@@ -25,13 +25,15 @@ namespace TOP4HoneyChains.Web.Tests.E2E
         private static readonly HashSet<string> ConsumerAllowed = new(StringComparer.OrdinalIgnoreCase)
         {
             "Account.Logout", "Account.AccessDenied", "Account.Animations", "Account.TourSeen", "Home.SetLanguage",
-            "Notices.Accept", "Notices.SendCode", "Notices.Public"
+            "Notices.Accept", "Notices.SendCode", "Notices.Public",
+            // D-112: the test SMS inbox passes the boundary and refuses every account that is not a test-set account itself (404)
+            "TestInbox.Index"
         };
 
         private static readonly HashSet<string> BeekeeperAllowed = new(StringComparer.OrdinalIgnoreCase)
         {
             "Account.Logout", "Account.FirstPassword", "Account.AccessDenied", "Account.Animations", "Account.TourSeen", "Home.SetLanguage",
-            "Notices.Accept", "Notices.SendCode", "Notices.Public"
+            "Notices.Accept", "Notices.SendCode", "Notices.Public", "TestInbox.Index"
         };
 
         public record Probe(string Controller, string Action, string Method, string Url, bool IsPublic);
@@ -117,6 +119,7 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             Assert.True(wrong.Count == 0, "not blocked for a consumer: " + string.Join("; ", wrong));
             // the public pages stay open
             Assert.Equal(200, await consumer.StatusAsync("/"));
+            Assert.Equal(404, await consumer.StatusAsync("/TestInbox"));   // D-112: not a test-set account
             return 0;
         });
 
@@ -139,6 +142,7 @@ namespace TOP4HoneyChains.Web.Tests.E2E
             var wrong = await NotBlockedAsync(beekeeper, BeekeeperAllowed, "Me", "/Me/Account");
             Assert.True(wrong.Count == 0, "not blocked for a beekeeper: " + string.Join("; ", wrong));
             Assert.Equal(200, await beekeeper.StatusAsync("/"));
+            Assert.Equal(404, await beekeeper.StatusAsync("/TestInbox"));   // D-112: not a test-set account
             return 0;
         });
 
