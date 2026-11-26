@@ -9857,16 +9857,16 @@
     <value>Llegó sin precinto (lo normal)</value>
   </data>
   <data name="Ci.Info.Arrival" xml:space="preserve">
-    <value>Lo normal es que el envase llegue sin precinto: tome las muestras y luego ciérrelo con un solo precinto. Elija “precintado en la cosecha” solo si el inspector de campo de la asociación lo precintó en el apiario con un precinto del stock de la asociación; compruebe que el precinto está intacto.</value>
+    <value>Cómo llegó el envase. Lo normal es que llegue sin precinto: tome las muestras y luego ciérrelo una vez delante del apicultor. Elija “Precintado en la cosecha por el inspector de campo” solo si el inspector de campo de la asociación lo precintó en el apiario con un precinto del stock; entonces se registran su código y su estado, que muestran que nadie tocó la miel por el camino.</value>
   </data>
   <data name="Ci.Info.Jars" xml:space="preserve">
-    <value>Llene dos frascos de este envase. Ponga en cada uno una etiqueta de precinto del stock sobre la tapa y el frasco: el de muestra va al laboratorio, el de contramuestra se queda con usted por si se discute un resultado.</value>
+    <value>Llene dos frascos nuevos de este envase: el de muestra va al laboratorio y el de contramuestra se queda con usted por si se discute un resultado. Cierre cada uno con la tapa elegida arriba y pegue una etiqueta de precinto del stock sobre la tapa y el frasco.</value>
   </data>
   <data name="Ci.Info.Reseal" xml:space="preserve">
     <value>Al tomar las muestras se abre el envase. Vuelva a precintarlo y escriba el número del precinto nuevo; el envase lo conserva hasta que se use.</value>
   </data>
   <data name="Ci.Info.CounterLocation" xml:space="preserve">
-    <value>Dónde se guardan los frascos de contramuestra, p. ej. «Cámara fría 2, estante B». Consérvelos hasta la fecha de al lado, por si se discute un resultado.</value>
+    <value>Dónde guarda los frascos de contramuestra, p. ej. “Cámara fría 2, estante B”. Guárdelos en un lugar fresco y oscuro, cerrados y con las etiquetas de precinto intactas, para poder analizar la miel de nuevo si se discute un resultado.</value>
   </data>
   <data name="Me.PriceAfterDelivery" xml:space="preserve">
     <value>Todavía no hay entregas. Después de su primera entrega, introduzca aquí su precio por kg, en Mis entregas.</value>
@@ -9932,7 +9932,7 @@
     <value>Etiqueta numerada con QR sobre tapa y cuerpo. Sirve para cualquier envase.</value>
   </data>
   <data name="Ci.Closure.SealLabel.Help" xml:space="preserve">
-    <value>Una etiqueta numerada con QR, emitida por la plataforma e impresa de antemano en papel de seguridad VOID. Es una tira de rotura sobre la junta: la mitad con el código y el QR va en la tapa y la otra mitad en el cuerpo. Se rompe o deja marcas VOID si alguien la quita. Sirve para cualquier envase.</value>
+    <value>Una etiqueta numerada con QR del stock de precintos de su organización, impresa en papel de seguridad VOID. Seque el borde con un paño y péguela sobre la tapa y el cuerpo, mitad en cada uno; en la tapa a presión de un cubo añada una o dos tiras de seguridad lisas en los otros lados. Al abrir la tapa se rompe o deja una marca VOID, y no se puede volver a pegar sin que se note. Su código está en lo que confirmó el apicultor, así que una etiqueta nueva no coincidiría. El envase se puede reutilizar; solo la etiqueta es de un solo uso.</value>
   </data>
   <data name="Ci.Closure.PlasticSeal" xml:space="preserve">
     <value>Envase del apicultor + precinto plástico numerado</value>
@@ -9950,10 +9950,10 @@
     <value>Registrado una vez; escanee o escriba su código TK. Se cierra con una etiqueta de precinto o un precinto plástico.</value>
   </data>
   <data name="Ci.Closure.OrgContainer.Help" xml:space="preserve">
-    <value>El envase propio de la asociación, registrado una vez con un código permanente y QR. En la entrega escanee o escriba su código; su página muestra cada uso. Se cierra con un precinto del stock: una etiqueta de precinto o un precinto plástico numerado por la argolla que une la tapa al cuerpo.</value>
+    <value>El envase propio de la asociación, registrado una vez con un código permanente y QR. La miel se vierte en él delante del apicultor, a quien se le devuelve su cubo. En la entrega escanee o escriba su código; su página muestra cada uso. Se cierra con un precinto del stock: una etiqueta de precinto o un precinto plástico numerado por el orificio que une la tapa al cuerpo.</value>
   </data>
   <data name="Ci.Info.Closure" xml:space="preserve">
-    <value>El envase se cierra una vez, después del muestreo, delante del apicultor. El precinto viene del stock de su organización.</value>
+    <value>Elija cómo se cierra este envase después de tomar las muestras. La mayoría de los apicultores traen su propia lata o cubo: ciérrelo con una etiqueta de precinto. Elija el envase permanente de la asociación solo si la miel se vierte en uno de los envases registrados de la asociación.</value>
   </data>
   <data name="Ci.Step.Container" xml:space="preserve">
     <value>Envase</value>
@@ -9983,7 +9983,7 @@
     <value>en los dos frascos</value>
   </data>
   <data name="Ci.Info.CapCheck" xml:space="preserve">
-    <value>Revise los dos frascos después de cerrarlos. Un botón levantado o un anillo roto indica que el frasco se abrió: deséchelo y llene uno nuevo.</value>
+    <value>Después de cerrarlos, revise los dos frascos: el botón está abajo o el anillo está intacto. Márquelo solo si ambos lo cumplen. Un botón levantado o un anillo roto indica que el frasco se abrió: deséchelo y llene uno nuevo. El laboratorio comprueba lo mismo en la recepción.</value>
   </data>
   <data name="Ci.ClosingHelp" xml:space="preserve">
     <value>Después del muestreo, cierre el envase delante del apicultor y escanee o escriba el precinto.</value>
@@ -10677,5 +10677,95 @@
   </data>
   <data name="Enter the holding identification number (or the platform number of a registered beekeeper)." xml:space="preserve">
     <value>Introduzca el número de identificación de la explotación (o el número de plataforma de un apicultor registrado).</value>
+  </data>
+  <data name="Ci.Info.Tile.SealLabel" xml:space="preserve">
+    <value>Para la lata o el cubo propio del apicultor. Seque el borde y pegue una etiqueta de precinto numerada con QR del stock sobre la tapa y el cuerpo, mitad en cada uno; en la tapa a presión de un cubo añada una o dos tiras de seguridad lisas. Al abrir la tapa la etiqueta se rompe o deja una marca VOID, así que demuestra que el envase no se abrió. El envase se puede reutilizar; solo la etiqueta es de un solo uso.</value>
+  </data>
+  <data name="Ci.Info.Tile.OrgContainer" xml:space="preserve">
+    <value>Para el envase propio de la asociación con un código permanente (TK-…). Vierta la miel en él delante del apicultor, que se lleva su cubo. Ciérrelo con una etiqueta de precinto o con un precinto plástico numerado del stock pasado por el orificio que une la tapa al cuerpo. Su página muestra cada entrega que contuvo.</value>
+  </data>
+  <data name="Ci.Info.BoxCode" xml:space="preserve">
+    <value>El código permanente impreso en el envase de la asociación (TK-…). Escanee su QR o escriba el código; el campo indica si el envase está registrado. Vincula esta entrega a ese envase concreto.</value>
+  </data>
+  <data name="Ci.Info.Kind" xml:space="preserve">
+    <value>Qué tipo de envase trae el apicultor: lata, bidón, cubo, IBC u otro. Elija lo que ve; ayuda a reconocer el envase más adelante. No se pregunta para el envase de la asociación.</value>
+  </data>
+  <data name="Ci.Info.NetKg" xml:space="preserve">
+    <value>El peso de la miel sola, sin el envase. Pese el envase lleno y reste el peso del envase vacío. Es la cantidad que confirma el apicultor y la que después puede entrar en partidas.</value>
+  </data>
+  <data name="Ci.Info.GrossKg" xml:space="preserve">
+    <value>Opcional: el peso del envase lleno tal como lo muestra la báscula. Con él, el formulario muestra el peso vacío (tara), y así se nota un error al escribir el peso neto.</value>
+  </data>
+  <data name="Ci.Info.OriginSeal" xml:space="preserve">
+    <value>El código del precinto que el inspector de campo puso en el apiario. Escanee su QR o escríbalo; debe ser un código del stock. Si coincide, este es el envase que se precintó en la cosecha.</value>
+  </data>
+  <data name="Ci.Info.OriginIntact" xml:space="preserve">
+    <value>Mire el precinto de la cosecha antes de abrir el envase: una etiqueta de precinto no debe tener roturas ni marcas VOID, y un precinto plástico debe estar sin cortar y cerrado. Márquelo solo si está intacto; si no, déjelo sin marcar y la entrega registra que el precinto no estaba intacto.</value>
+  </data>
+  <data name="Ci.Info.JarSeal" xml:space="preserve">
+    <value>Escanee o escriba el código de la etiqueta de precinto del frasco de muestra. Péguela sobre la tapa y el frasco, de modo que el frasco no pueda abrirse sin romperla. El laboratorio comprueba que el código coincide, que la etiqueta está intacta y que la tapa está cerrada.</value>
+  </data>
+  <data name="Ci.Info.CounterSeal" xml:space="preserve">
+    <value>Escanee o escriba el código de la etiqueta de precinto del frasco de contramuestra, pegada sobre la tapa y el frasco como en la muestra. Este frasco se queda con usted; si se discute un resultado, su etiqueta intacta muestra que contiene miel de esta entrega sin tocar.</value>
+  </data>
+  <data name="Ci.Info.Cap.SafetyButton" xml:space="preserve">
+    <value>Una tapa de vacío con un botón en el centro, como en los tarros de comida infantil. Después de llenar, haga el vacío con una bomba de vacío manual hasta que el botón baje; nunca caliente la miel. El botón solo queda abajo mientras dura el vacío, así que un botón levantado indica que el frasco se abrió.</value>
+  </data>
+  <data name="Ci.Info.Cap.TamperRing" xml:space="preserve">
+    <value>Una tapa de rosca con un anillo debajo que se rompe la primera vez que se abre la tapa. Gire la tapa hasta que el anillo quede bien asentado; no hace falta ninguna herramienta. Un anillo intacto indica que el frasco no se abrió.</value>
+  </data>
+  <data name="Ci.Info.ClosingSeal" xml:space="preserve">
+    <value>Después de tomar las muestras, cierre el envase delante del apicultor y escanee o escriba su precinto. En el envase del apicultor es una etiqueta de precinto sobre la tapa y el cuerpo; en el envase de la asociación, una etiqueta de precinto o un precinto plástico numerado por el orificio que une la tapa al cuerpo. Cuando el envase se vacía en una partida, se comprueba este precinto: el mismo código e intacto.</value>
+  </data>
+  <data name="Ci.Info.Lab" xml:space="preserve">
+    <value>El laboratorio que recibe los frascos de muestra de esta entrega. En la recepción comprueba cada frasco: el código coincide, la etiqueta de precinto está intacta (sin roturas ni marcas VOID) y la tapa está cerrada (botón abajo o anillo intacto).</value>
+  </data>
+  <data name="Ci.Info.RetainUntil" xml:space="preserve">
+    <value>La fecha hasta la que guarda las contramuestras. Elija una fecha a partir de la cual ya no pueda surgir ninguna discusión sobre los resultados; después, los frascos se pueden desechar.</value>
+  </data>
+  <data name="Ci.Gloss.Title" xml:space="preserve">
+    <value>Glosario</value>
+  </data>
+  <data name="Ci.Gloss.SealLabel" xml:space="preserve">
+    <value>Etiqueta de precinto</value>
+  </data>
+  <data name="Ci.Gloss.PlasticSeal" xml:space="preserve">
+    <value>Precinto plástico numerado</value>
+  </data>
+  <data name="Ci.Gloss.PlasticSeal.Text" xml:space="preserve">
+    <value>Un precinto plástico numerado del stock que se cierra una sola vez y solo se quita cortándolo. Úselo solo en un envase con un orificio que une la tapa al cuerpo, es decir, en los bidones o cubos propios de la asociación. En un asa no demuestra nada, porque la tapa se puede seguir abriendo.</value>
+  </data>
+  <data name="Ci.Gloss.Arrival" xml:space="preserve">
+    <value>Sin precinto a la llegada / Precintado en la cosecha</value>
+  </data>
+  <data name="Ci.Gloss.Arrival.Text" xml:space="preserve">
+    <value>Lo normal es que llegue sin precinto: el envase se cierra solo después de tomar las muestras, delante del apicultor. “Precintado en la cosecha” solo vale si el inspector de campo de la asociación precintó el envase en el apiario con un precinto del stock; entonces su código se registra y se comprueba a la llegada.</value>
+  </data>
+  <data name="Ci.Gloss.SampleJar.Text" xml:space="preserve">
+    <value>Un frasco nuevo que se llena del envase para el laboratorio. Lleva una etiqueta de precinto sobre la tapa y el frasco.</value>
+  </data>
+  <data name="Ci.Gloss.CounterJar" xml:space="preserve">
+    <value>Frasco de contramuestra</value>
+  </data>
+  <data name="Ci.Gloss.CounterJar.Text" xml:space="preserve">
+    <value>Un segundo frasco nuevo que se llena del mismo envase al mismo tiempo y se precinta igual. Se queda en la asociación, para poder analizar la miel de nuevo si se discute un resultado.</value>
+  </data>
+  <data name="Ci.Gloss.SafetyButton.Text" xml:space="preserve">
+    <value>Una tapa cuyo botón solo queda abajo mientras hay vacío en el frasco. Haga el vacío con una bomba de vacío manual; nunca caliente la miel. Un botón levantado indica que el frasco se abrió.</value>
+  </data>
+  <data name="Ci.Gloss.TamperRing.Text" xml:space="preserve">
+    <value>Una tapa con un anillo que se rompe la primera vez que se abre. No hace falta ninguna herramienta. Un anillo intacto indica que el frasco no se abrió.</value>
+  </data>
+  <data name="Ci.Gloss.Void" xml:space="preserve">
+    <value>Marca VOID</value>
+  </data>
+  <data name="Ci.Gloss.Void.Text" xml:space="preserve">
+    <value>La palabra VOID (o un dibujo) que queda en la superficie cuando se despega una etiqueta de seguridad. Igual que una rotura, muestra que la etiqueta se quitó; una etiqueta despegada no se puede volver a pegar sin que se note.</value>
+  </data>
+  <data name="Ci.Gloss.Checks" xml:space="preserve">
+    <value>¿Qué se comprueba?</value>
+  </data>
+  <data name="Ci.Gloss.Checks.Text" xml:space="preserve">
+    <value>En la recepción del laboratorio, para cada frasco: el código coincide, la etiqueta de precinto está intacta (sin roturas ni marcas VOID) y la tapa está cerrada (botón abajo o anillo intacto). Cuando un envase se vacía en una partida, su precinto de cierre se comprueba igual: el mismo código e intacto. Un código distinto o un precinto dañado detiene el vaciado y queda registrado.</value>
   </data>
 </root>

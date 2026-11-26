@@ -9733,16 +9733,16 @@
     <value>Mühürsüz geldi (olağan)</value>
   </data>
   <data name="Ci.Info.Arrival" xml:space="preserve">
-    <value>Kap normalde mühürsüz gelir: Numuneleri alın, sonra tek bir mühürle kapatın. “Hasatta mühürlendi” seçeneğini yalnızca birliğin saha denetçisi kabı arılıkta birliğin havuzundan bir mühürle kapattıysa seçin; mührün sağlam olduğunu kontrol edin.</value>
+    <value>Kabın nasıl geldiği. Mühürsüz gelmesi olağandır: Numuneleri alın, sonra kabı arıcının önünde bir kez kapatın. “Hasatta saha denetçisi mühürledi” seçeneğini yalnızca birliğin saha denetçisi kabı arılıkta havuzdan bir mühürle kapattıysa seçin; o zaman mührün kodu ve durumu kaydedilir ve bala yolda dokunulmadığını gösterir.</value>
   </data>
   <data name="Ci.Info.Jars" xml:space="preserve">
-    <value>Bu kaptan iki kavanoz doldurun. Her birine kapak ile kavanozun üzerinden havuzdan bir mühür etiketi yapıştırın: Numune kavanozu laboratuvara gider, şahit numune kavanozu bir sonuca itiraz edilirse diye sizde kalır.</value>
+    <value>Bu kaptan iki yeni kavanoz doldurun: Numune kavanozu laboratuvara gider, şahit numune kavanozu bir sonuca itiraz edilirse diye sizde kalır. Her birini yukarıda seçilen kapakla kapatın ve havuzdan bir mühür etiketini kapak ile kavanozun üzerine yapıştırın.</value>
   </data>
   <data name="Ci.Info.Reseal" xml:space="preserve">
     <value>Numune alırken kap açılır. Kabı yeniden mühürleyin ve yeni mührün numarasını yazın; kap kullanılana kadar bu mühürle kalır.</value>
   </data>
   <data name="Ci.Info.CounterLocation" xml:space="preserve">
-    <value>Şahit numune kavanozlarının saklandığı yer, örneğin “Soğuk oda 2, B rafı”. Bir sonuca itiraz edilirse diye yanındaki tarihe kadar saklayın.</value>
+    <value>Şahit numune kavanozlarını sakladığınız yer, örneğin “Soğuk oda 2, B rafı”. Bir sonuca itiraz edilirse bal yeniden test edilebilsin diye kavanozları serin ve karanlık bir yerde, mühür etiketleri sağlam olarak saklayın.</value>
   </data>
   <data name="Me.PriceAfterDelivery" xml:space="preserve">
     <value>Henüz teslimatınız yok. İlk teslimatınızdan sonra kilogram fiyatınızı burada, Teslimatlarım bölümünde girersiniz.</value>
@@ -9808,7 +9808,7 @@
     <value>Kapak ile gövde üzerine QR kodlu numaralı etiket. Her kapta kullanılır.</value>
   </data>
   <data name="Ci.Closure.SealLabel.Help" xml:space="preserve">
-    <value>Platformun verdiği, önceden VOID güvenlik etiketine basılmış, QR kodlu numaralı etiket. Birleşim yerinin üzerinden geçen bir yırtılma şerididir: Kodlu ve QR'lı yarısı kapağa, diğer yarısı gövdeye yapıştırılır. Sökülmeye çalışılırsa yırtılır veya VOID izi bırakır. Her kapta kullanılır.</value>
+    <value>Kurumunuzun mühür havuzundan gelen, VOID güvenlik etiketine basılmış, QR kodlu numaralı etiket. Kenarı silip kurulayın ve etiketi yarısı kapakta, yarısı gövdede olacak şekilde yapıştırın; geçmeli kova kapağında diğer kenarlara bir veya iki düz güvenlik şeridi ekleyin. Kapak açılırsa etiket yırtılır veya VOID izi bırakır ve fark edilmeden geri yapıştırılamaz. Kodu arıcının onayladığı bilgilerde yer aldığı için yeni bir etiket eşleşmez. Kap yeniden kullanılabilir; yalnızca etiket tek kullanımlıktır.</value>
   </data>
   <data name="Ci.Closure.PlasticSeal" xml:space="preserve">
     <value>Arıcının kabı + numaralı plastik mühür</value>
@@ -9826,10 +9826,10 @@
     <value>Bir kez kaydedilir; TK kodunu okutun veya yazın. Mühür etiketi veya plastik mühürle kapatılır.</value>
   </data>
   <data name="Ci.Closure.OrgContainer.Help" xml:space="preserve">
-    <value>Birliğin kendi kabı; kalıcı bir kod ve QR ile bir kez kaydedilir. Teslimatta kodunu okutun veya yazın; sayfası her kullanımı gösterir. Havuzdan bir mühürle kapatılır: Mühür etiketi veya kapağı gövdeye bağlayan delikli kulakçıktan geçen numaralı plastik mühür.</value>
+    <value>Birliğin kendi kabı; kalıcı bir kod ve QR ile bir kez kaydedilir. Bal arıcının önünde bu kaba aktarılır; arıcının kovası geri verilir. Teslimatta kodunu okutun veya yazın; sayfası her kullanımı gösterir. Havuzdan bir mühürle kapatılır: Mühür etiketi veya kapağı gövdeye bağlayan delikten geçen numaralı plastik mühür.</value>
   </data>
   <data name="Ci.Info.Closure" xml:space="preserve">
-    <value>Kap numune alındıktan sonra arıcının önünde bir kez kapatılır. Mühür kurumunuzun mühür havuzundan gelir.</value>
+    <value>Numune alındıktan sonra bu kabın nasıl kapatılacağını seçin. Arıcıların çoğu kendi tenekesini veya kovasını getirir: Bunu mühür etiketiyle kapatın. Birliğin kalıcı kabını yalnızca bal, birliğin kayıtlı kendi kaplarından birine aktarılıyorsa seçin.</value>
   </data>
   <data name="Ci.Step.Container" xml:space="preserve">
     <value>Kap</value>
@@ -9859,7 +9859,7 @@
     <value>iki kavanozda da</value>
   </data>
   <data name="Ci.Info.CapCheck" xml:space="preserve">
-    <value>Kapattıktan sonra iki kavanozu da kontrol edin. Düğmesi kalkmış kapak veya kopmuş halka kavanozun açıldığını gösterir: Kavanozu atın ve yenisini doldurun.</value>
+    <value>Kapattıktan sonra iki kavanozu da kontrol edin: Düğme aşağıda mı, halka kopmamış mı? Yalnızca ikisi de sağlamsa işaretleyin. Düğmesi kalkmış kapak veya kopmuş halka kavanozun açıldığını gösterir: Kavanozu atın ve yenisini doldurun. Laboratuvar da kabulde aynı şeyi kontrol eder.</value>
   </data>
   <data name="Ci.ClosingHelp" xml:space="preserve">
     <value>Numuneyi aldıktan sonra kabı arıcının önünde kapatın ve mührü okutun veya yazın.</value>
@@ -10553,5 +10553,95 @@
   </data>
   <data name="Enter the holding identification number (or the platform number of a registered beekeeper)." xml:space="preserve">
     <value>İşletme tanımlama numarasını (veya kayıtlı bir arıcının platform numarasını) girin.</value>
+  </data>
+  <data name="Ci.Info.Tile.SealLabel" xml:space="preserve">
+    <value>Arıcının kendi tenekesi veya kovası için. Kenarı silip kurulayın ve havuzdan QR kodlu numaralı bir mühür etiketini yarısı kapakta, yarısı gövdede olacak şekilde yapıştırın; geçmeli kova kapağına bir veya iki düz güvenlik şeridi ekleyin. Kapak açılırsa etiket yırtılır veya VOID izi bırakır; böylece kabın açılmadığını kanıtlar. Kap yeniden kullanılabilir; yalnızca etiket tek kullanımlıktır.</value>
+  </data>
+  <data name="Ci.Info.Tile.OrgContainer" xml:space="preserve">
+    <value>Birliğin kalıcı kodlu (TK-…) kendi kabı için. Balı arıcının önünde bu kaba aktarın; arıcı kendi kovasını geri alır. Kabı bir mühür etiketiyle ya da kapağı gövdeye bağlayan delikten geçen, havuzdan alınmış numaralı bir plastik mühürle kapatın. Kabın sayfası taşıdığı her teslimatı gösterir.</value>
+  </data>
+  <data name="Ci.Info.BoxCode" xml:space="preserve">
+    <value>Birliğin kabının üzerinde basılı kalıcı kod (TK-…). QR'ı okutun veya kodu yazın; alan kabın kayıtlı olup olmadığını gösterir. Bu teslimatı tam olarak o kaba bağlar.</value>
+  </data>
+  <data name="Ci.Info.Kind" xml:space="preserve">
+    <value>Arıcının kabının türü: Teneke, varil, kova, IBC veya diğer. Gördüğünüzü seçin; kabın daha sonra tanınmasına yardım eder. Birliğin kabında sorulmaz.</value>
+  </data>
+  <data name="Ci.Info.NetKg" xml:space="preserve">
+    <value>Kap hariç yalnızca balın ağırlığı. Dolu kabı tartın ve boş kabın ağırlığını çıkarın. Arıcının onayladığı ve daha sonra partilere girebilecek miktar budur.</value>
+  </data>
+  <data name="Ci.Info.GrossKg" xml:space="preserve">
+    <value>İsteğe bağlı: Dolu kabın terazide görünen ağırlığı. Girildiğinde form boş ağırlığı (darayı) gösterir; böylece net ağırlıktaki bir yazım hatası göze çarpar.</value>
+  </data>
+  <data name="Ci.Info.OriginSeal" xml:space="preserve">
+    <value>Saha denetçisinin arılıkta taktığı mührün kodu. QR'ı okutun veya kodu yazın; kod havuzdan gelmiş olmalıdır. Kodun eşleşmesi bunun hasatta mühürlenen kap olduğunu gösterir.</value>
+  </data>
+  <data name="Ci.Info.OriginIntact" xml:space="preserve">
+    <value>Kabı açmadan önce hasat mührüne bakın: Mühür etiketinde yırtık veya VOID izi olmamalı, plastik mühür kesilmemiş ve kilitli olmalıdır. Yalnızca sağlamsa işaretleyin; değilse boş bırakın, teslimat mührün sağlam olmadığını kaydeder.</value>
+  </data>
+  <data name="Ci.Info.JarSeal" xml:space="preserve">
+    <value>Numune kavanozundaki mühür etiketinin kodunu okutun veya yazın. Etiketi kapak ile kavanozun üzerine yapıştırın; böylece kavanoz etiket yırtılmadan açılamaz. Laboratuvar kodun eşleştiğini, etiketin sağlam ve kapağın kapalı olduğunu kontrol eder.</value>
+  </data>
+  <data name="Ci.Info.CounterSeal" xml:space="preserve">
+    <value>Şahit numune kavanozundaki mühür etiketinin kodunu okutun veya yazın; etiket, numunedeki gibi kapak ile kavanozun üzerine yapıştırılır. Bu kavanoz sizde kalır; bir sonuca itiraz edilirse sağlam etiket, içindekinin bu teslimattan gelen ve dokunulmamış bal olduğunu gösterir.</value>
+  </data>
+  <data name="Ci.Info.Cap.SafetyButton" xml:space="preserve">
+    <value>Bebek maması kavanozlarındaki gibi ortasında düğme olan vakumlu kapak. Doldurduktan sonra düğme aşağı inene kadar el tipi vakum pompasıyla vakum yapın; balı asla ısıtmayın. Düğme yalnızca vakum sürdükçe aşağıda kalır; kalkmış düğme kavanozun açıldığını gösterir.</value>
+  </data>
+  <data name="Ci.Info.Cap.TamperRing" xml:space="preserve">
+    <value>Altında halka olan vidalı kapak; halka, kapak ilk açıldığında kopar. Halka tam oturana kadar kapağı çevirin; alet gerekmez. Kopmamış halka kavanozun açılmadığını gösterir.</value>
+  </data>
+  <data name="Ci.Info.ClosingSeal" xml:space="preserve">
+    <value>Numuneyi aldıktan sonra kabı arıcının önünde kapatın ve mührü okutun veya yazın. Arıcının kabında bu, kapak ile gövdenin üzerine yapıştırılan mühür etiketidir; birliğin kabında mühür etiketi ya da kapağı gövdeye bağlayan delikten geçen numaralı plastik mühürdür. Kap bir partiye boşaltılırken bu mühür kontrol edilir: Kod aynı, mühür sağlam olmalıdır.</value>
+  </data>
+  <data name="Ci.Info.Lab" xml:space="preserve">
+    <value>Bu teslimatın numune kavanozlarını alacak laboratuvar. Laboratuvar kabulde her kavanozu kontrol eder: Kod eşleşiyor mu, mühür etiketi sağlam mı (yırtık veya VOID izi yok), kapak kapalı mı (düğme aşağıda veya halka kopmamış)?</value>
+  </data>
+  <data name="Ci.Info.RetainUntil" xml:space="preserve">
+    <value>Şahit numuneleri saklayacağınız son tarih. Sonuçlara artık itiraz edilemeyecek bir tarih seçin; bu tarihten sonra kavanozlar atılabilir.</value>
+  </data>
+  <data name="Ci.Gloss.Title" xml:space="preserve">
+    <value>Sözlük</value>
+  </data>
+  <data name="Ci.Gloss.SealLabel" xml:space="preserve">
+    <value>Mühür etiketi</value>
+  </data>
+  <data name="Ci.Gloss.PlasticSeal" xml:space="preserve">
+    <value>Numaralı plastik mühür</value>
+  </data>
+  <data name="Ci.Gloss.PlasticSeal.Text" xml:space="preserve">
+    <value>Havuzdan gelen, bir kez kilitlenen ve ancak kesilerek çıkarılabilen numaralı plastik mühür. Yalnızca kapağı gövdeye bağlayan deliği olan kaplarda, yani birliğin kendi varil veya kovalarında kullanın. Sapa takılırsa hiçbir şey kanıtlamaz, çünkü kapak yine açılabilir.</value>
+  </data>
+  <data name="Ci.Gloss.Arrival" xml:space="preserve">
+    <value>Gelişte mühürsüz / Hasatta mühürlenmiş</value>
+  </data>
+  <data name="Ci.Gloss.Arrival.Text" xml:space="preserve">
+    <value>Mühürsüz gelmesi olağandır: Kap ancak numune alındıktan sonra arıcının önünde kapatılır. “Hasatta mühürlenmiş” yalnızca birliğin saha denetçisi kabı arılıkta havuzdan bir mühürle kapattıysa geçerlidir; o zaman mührün kodu kaydedilir ve gelişte kontrol edilir.</value>
+  </data>
+  <data name="Ci.Gloss.SampleJar.Text" xml:space="preserve">
+    <value>Kaptan laboratuvar için doldurulan yeni kavanoz. Kapak ile kavanozun üzerine bir mühür etiketi yapıştırılır.</value>
+  </data>
+  <data name="Ci.Gloss.CounterJar" xml:space="preserve">
+    <value>Şahit numune kavanozu</value>
+  </data>
+  <data name="Ci.Gloss.CounterJar.Text" xml:space="preserve">
+    <value>Aynı kaptan aynı anda doldurulan ve aynı şekilde mühürlenen ikinci yeni kavanoz. Birlik tarafından saklanır; böylece bir sonuca itiraz edilirse bal yeniden test edilebilir.</value>
+  </data>
+  <data name="Ci.Gloss.SafetyButton.Text" xml:space="preserve">
+    <value>Düğmesi yalnızca kavanozda vakum varken aşağıda kalan kapak. Vakumu el tipi vakum pompasıyla yapın; balı asla ısıtmayın. Kalkmış düğme kavanozun açıldığını gösterir.</value>
+  </data>
+  <data name="Ci.Gloss.TamperRing.Text" xml:space="preserve">
+    <value>İlk açılışta kopan bir halkası olan kapak. Alet gerekmez. Kopmamış halka kavanozun açılmadığını gösterir.</value>
+  </data>
+  <data name="Ci.Gloss.Void" xml:space="preserve">
+    <value>VOID izi</value>
+  </data>
+  <data name="Ci.Gloss.Void.Text" xml:space="preserve">
+    <value>Güvenlik etiketi sökülünce yüzeyde kalan VOID yazısı (veya desen). Yırtık gibi o da etiketin söküldüğünü gösterir; sökülmüş bir etiket fark edilmeden geri yapıştırılamaz.</value>
+  </data>
+  <data name="Ci.Gloss.Checks" xml:space="preserve">
+    <value>Ne kontrol edilir?</value>
+  </data>
+  <data name="Ci.Gloss.Checks.Text" xml:space="preserve">
+    <value>Laboratuvar kabulünde her kavanoz için: Kod eşleşiyor mu, mühür etiketi sağlam mı (yırtık veya VOID izi yok), kapak kapalı mı (düğme aşağıda veya halka kopmamış)? Kap bir partiye boşaltılırken kapatma mührü de aynı şekilde kontrol edilir: Kod aynı, mühür sağlam olmalıdır. Farklı bir kod veya hasarlı bir mühür boşaltmayı durdurur ve kaydedilir.</value>
   </data>
 </root>
